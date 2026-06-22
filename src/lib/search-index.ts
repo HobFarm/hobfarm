@@ -1,0 +1,186 @@
+import { getCollection } from "astro:content";
+import { getPublishedPosts } from "@/lib/blog";
+import { galleryTypeLabels, type GalleryType } from "@/lib/gallery";
+
+export type SearchItem = {
+  type: "blog" | "project" | "gallery" | "grimoire" | "help" | "changelog";
+  title: string;
+  description: string;
+  href: string;
+  tags?: string[];
+  category?: string;
+  date?: string;
+  notes?: string;
+};
+
+const stripExt = (id: string) => id.replace(/\.(md|mdx)$/, "");
+const toISO = (d: unknown) => (d instanceof Date ? d.toISOString() : undefined);
+
+function buildGalleryNotes(data: any): string {
+  const parts: string[] = [];
+  if (data.concept?.thesis) parts.push(data.concept.thesis);
+  if (data.concept?.method) parts.push(data.concept.method);
+  if (data.concept?.reusablePattern) parts.push(data.concept.reusablePattern);
+  if (Array.isArray(data.concept?.seedInputs)) parts.push(...data.concept.seedInputs);
+  if (Array.isArray(data.concept?.growthStages)) parts.push(...data.concept.growthStages);
+  if (Array.isArray(data.concept?.usefulFor)) parts.push(...data.concept.usefulFor);
+  if (Array.isArray(data.methods)) parts.push(...data.methods);
+  if (Array.isArray(data.visualDNA)) {
+    for (const v of data.visualDNA) parts.push(`${v.label}: ${v.value}`);
+  }
+  if (Array.isArray(data.fieldNotes)) {
+    for (const n of data.fieldNotes) parts.push(`${n.label}. ${n.text}`);
+  }
+  if (Array.isArray(data.lessons)) {
+    for (const l of data.lessons) parts.push(`${l.label}. ${l.text}`);
+  }
+  if (Array.isArray(data.workflowSteps)) {
+    for (const s of data.workflowSteps) parts.push(`${s.label}. ${s.text}`);
+  }
+  if (Array.isArray(data.lockedTraits)) parts.push(...data.lockedTraits);
+  if (Array.isArray(data.flexibleTraits)) parts.push(...data.flexibleTraits);
+  if (Array.isArray(data.infoModules)) {
+    for (const m of data.infoModules) parts.push(`${m.label}: ${m.value}`);
+  }
+  if (data.processNotes) parts.push(data.processNotes);
+  if (data.specimenSheet) {
+    const s = data.specimenSheet;
+    if (s.specimenId) parts.push(s.specimenId);
+    if (s.subjectName) parts.push(s.subjectName);
+    if (s.subjectRole) parts.push(s.subjectRole);
+    if (s.edition) parts.push(s.edition);
+    if (s.status) parts.push(s.status);
+    if (s.origin) parts.push(s.origin);
+    if (s.creator) parts.push(s.creator);
+    if (s.license) parts.push(s.license);
+  }
+  if (data.colorChemistry) {
+    const c = data.colorChemistry;
+    if (c.mood) parts.push(c.mood);
+    if (c.contrast) parts.push(c.contrast);
+    if (c.notes) parts.push(c.notes);
+    if (Array.isArray(c.palette)) {
+      for (const p of c.palette) {
+        const tail = [p.finish, p.role].filter(Boolean).join(" ");
+        parts.push(`${p.name} ${p.hex}${tail ? " " + tail : ""}`);
+      }
+    }
+  }
+  if (Array.isArray(data.wardrobeGrammar)) {
+    for (const w of data.wardrobeGrammar) {
+      parts.push(w.item);
+      if (Array.isArray(w.materials)) parts.push(...w.materials);
+      if (Array.isArray(w.colors)) parts.push(...w.colors);
+      if (w.notes) parts.push(w.notes);
+    }
+  }
+  if (Array.isArray(data.materials)) parts.push(...data.materials);
+  if (Array.isArray(data.accessories)) parts.push(...data.accessories);
+  if (data.styleProfile) {
+    const sp = data.styleProfile;
+    if (Array.isArray(sp.anchors)) parts.push(...sp.anchors);
+    if (sp.arrangement) parts.push(sp.arrangement);
+    if (sp.register) parts.push(sp.register);
+    if (sp.weight) parts.push(sp.weight);
+    if (sp.era) parts.push(sp.era);
+    if (sp.hardness) parts.push(sp.hardness);
+    if (sp.notes) parts.push(sp.notes);
+  }
+  return parts.join(" · ");
+}
+
+export async function buildSearchIndex(): Promise<SearchItem[]> {
+  const blogItems: SearchItem[] = (await getPublishedPosts()).map((post) => ({
+    type: "blog",
+    title: post.data.title,
+    description: post.data.excerpt,
+    href: `/blog/posts/${stripExt(post.id)}`,
+    tags: post.data.tags,
+    category: post.data.category,
+    date: toISO(post.data.publishedAt),
+  }));
+
+  const projectHrefOverrides: Record<string, string> = {
+    shop: "/shop/",
+    courses: "/academy/",
+    grimoire: "/grimoire/",
+  };
+  const projectItems: SearchItem[] = (await getCollection("projects")).map((project) => {
+    const slug = stripExt(project.id);
+    return {
+      type: "project",
+      title: project.data.title,
+      description: project.data.description,
+      href: projectHrefOverrides[slug] ?? `/projects/${slug}`,
+      category: project.data.category,
+      date: toISO(project.data.pubDate),
+    };
+  });
+
+  const servicesItem: SearchItem = {
+    type: "project",
+    title: "Services",
+    description:
+      "Hire HobFarm for video production, image and design, web development, AI workflow design, and marketing.",
+    href: "/services/",
+  };
+
+  const galleryItems: SearchItem[] = (await getCollection("gallery"))
+    .filter((entry) => !entry.data.draft)
+    .map((entry) => ({
+      type: "gallery",
+      title: entry.data.title,
+      description: entry.data.summary,
+      href: `/gallery/${stripExt(entry.id)}`,
+      tags: entry.data.tags,
+      category: galleryTypeLabels[entry.data.type as GalleryType],
+      date: toISO(entry.data.date),
+      notes: buildGalleryNotes(entry.data),
+    }));
+
+  const grimoireItems: SearchItem[] = (await getCollection("grimoire"))
+    .filter((entry) => !entry.data.draft)
+    .map((entry) => ({
+      type: "grimoire",
+      title: entry.data.title,
+      description: entry.data.description,
+      href: `/grimoire/${stripExt(entry.id)}`,
+      tags: entry.data.tags,
+      category: entry.data.category,
+      date: toISO(entry.data.date),
+    }));
+
+  const helpItems: SearchItem[] = (await getCollection("help")).map((entry) => ({
+    type: "help",
+    title: entry.data.title,
+    description: entry.data.description,
+    href: `/helpcenter/${stripExt(entry.id)}`,
+    category: entry.data.section,
+    date: toISO(entry.data.publishedAt),
+  }));
+
+  const changelogItems: SearchItem[] = (await getCollection("changelog")).map((entry) => {
+    const parts: string[] = [];
+    if (entry.data.project) parts.push(entry.data.project);
+    if (entry.data.version) parts.push(`v${entry.data.version}`);
+    return {
+      type: "changelog",
+      title: entry.data.title,
+      description: parts.length ? parts.join(" · ") : "",
+      href: `/changelog/${stripExt(entry.id)}`,
+      tags: entry.data.tags,
+      category: entry.data.project,
+      date: toISO(entry.data.publishedAt),
+    };
+  });
+
+  return [
+    ...blogItems,
+    ...projectItems,
+    servicesItem,
+    ...galleryItems,
+    ...grimoireItems,
+    ...helpItems,
+    ...changelogItems,
+  ];
+}

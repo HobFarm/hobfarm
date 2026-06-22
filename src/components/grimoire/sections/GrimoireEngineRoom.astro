@@ -1,0 +1,716 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import { DEFAULT_GRIMOIRE_SNAPSHOT } from "@/lib/grimoire/snapshot";
+
+const snap = DEFAULT_GRIMOIRE_SNAPSHOT;
+const byLevel = {
+  green: snap.diagnostics.filter((d) => d.level === "green"),
+  yellow: snap.diagnostics.filter((d) => d.level === "yellow"),
+  red: snap.diagnostics.filter((d) => d.level === "red"),
+};
+const navLayers = [...snap.layers].reverse();
+---
+
+<section class="grimoire-engine-room border-t border-base-800/50">
+  <Wrapper variant="standard" class="py-20 lg:py-24">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-start mb-12">
+      <div class="lg:col-span-1">
+        <Text tag="span" variant="textSM" class="text-accent-500 font-mono tracking-wider uppercase">
+          Engine room
+        </Text>
+        <Text tag="h2" variant="displayLG" class="mt-6 text-white text-balance font-display">
+          See the substrate.
+        </Text>
+      </div>
+      <div class="lg:col-span-2">
+        <Text tag="p" variant="textBase" class="text-base-400 leading-relaxed text-pretty">
+          A symbolic cross-section of the knowledge machine. Five layers, biweekly snapshot.
+          Geometry is decorative; labels and diagnostics come from the current snapshot.
+        </Text>
+      </div>
+    </div>
+
+    <div
+      id="grimoireEngineWrapper"
+      class="grimoire-wrapper grimoire-engine-room__stage"
+      role="group"
+      aria-label={`Grimoire Engine Room cross-section. Snapshot from ${snap.capturedAt}.`}
+    >
+      <div class="grimoire-title-bar">
+        <div>
+          <div class="grimoire-title">The Grimoire Engine Room</div>
+          <div class="grimoire-subtitle">HobFarm &mdash; Knowledge Machine Architecture</div>
+        </div>
+        <div class="grimoire-title-actions">
+          <div class="grimoire-snapshot-label" id="grimoireSnapshotLabel">
+            <span data-snapshot-label-full>Snapshot updated {snap.capturedAt}</span>
+            <span data-snapshot-label-short>Updated {snap.capturedAt}</span>
+          </div>
+          <button
+            class="fullscreen-btn"
+            id="grimoireFullscreenBtn"
+            type="button"
+            aria-label="Open Engine Room fullscreen"
+            aria-pressed="false"
+          >
+            Fullscreen
+          </button>
+        </div>
+      </div>
+
+      <div class="grimoire-bottom-bar">
+        <div class="grimoire-hint">ORBIT: drag &middot; ZOOM: scroll &middot; CLICK layer to focus &middot; HOVER for details</div>
+      </div>
+
+      <div class="grimoire-tooltip" id="grimoireTooltip" role="status" aria-live="polite"></div>
+
+      <div class="focus-label" id="grimoireFocusLabel" aria-hidden="true"></div>
+      <button
+        class="reset-btn"
+        id="grimoireResetBtn"
+        type="button"
+        aria-label="Reset camera view"
+      >
+        &larr; Reset View
+      </button>
+
+      <nav class="layer-nav" id="grimoireLayerNav" aria-label="Engine room layers">
+        <div class="layer-nav-spine" aria-hidden="true"></div>
+        {navLayers.map((layer) => (
+          <button
+            type="button"
+            class="layer-nav-dot"
+            data-layer-id={layer.id}
+            aria-label={layer.name}
+            aria-pressed="false"
+            title={layer.name}
+          >
+            <span
+              class="ln-dot"
+              style={`background:${layer.color};box-shadow:0 0 6px ${layer.color}`}
+            ></span>
+            <span class="ln-label">{layer.id}</span>
+          </button>
+        ))}
+      </nav>
+
+      <aside class="diag-panel" id="grimoireDiagPanel" aria-label="System diagnostics">
+        <div class="diag-header">System Diagnostics</div>
+        <div id="grimoireDiagBody">
+          {byLevel.green.length > 0 && (
+            <>
+              <div class="diag-section-title green">&#9632; GREEN</div>
+              {byLevel.green.map((d) => (
+                <div class="diag-item">
+                  <span class="diag-dot green"></span>
+                  <span>{d.message}</span>
+                </div>
+              ))}
+            </>
+          )}
+          {byLevel.yellow.length > 0 && (
+            <>
+              <div class="diag-section-title yellow">&#9632; YELLOW</div>
+              {byLevel.yellow.map((d) => (
+                <div class="diag-item">
+                  <span class="diag-dot yellow"></span>
+                  <span>{d.message}</span>
+                </div>
+              ))}
+            </>
+          )}
+          {byLevel.red.length > 0 && (
+            <>
+              <div class="diag-section-title red">&#9632; RED</div>
+              {byLevel.red.map((d) => (
+                <div class="diag-item">
+                  <span class="diag-dot red"></span>
+                  <span>{d.message}</span>
+                </div>
+              ))}
+            </>
+          )}
+        </div>
+      </aside>
+    </div>
+
+    <ul
+      id="grimoireMobileDiag"
+      class="grimoire-mobile-diag mt-6 space-y-2"
+      aria-label="System diagnostics"
+    >
+      {snap.diagnostics.map((d) => (
+        <li class={`diag-item diag-item-mobile ${d.level}`}>
+          <span class={`diag-dot ${d.level}`}></span>
+          <span>{d.message}</span>
+        </li>
+      ))}
+    </ul>
+
+    <p class="grimoire-engine-room__caption">
+      Visualizer built with
+      <a
+        href="https://omma.build/?ref=dCMTgePp"
+        target="_blank"
+        rel="noopener"
+      >Omma</a>.
+    </p>
+  </Wrapper>
+</section>
+
+<style is:global>
+  .grimoire-engine-room .grimoire-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1120px;
+    margin-left: auto;
+    margin-right: auto;
+    aspect-ratio: 16 / 9;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 229, 255, 0.18);
+    background: #0a0a12;
+    box-shadow:
+      0 0 60px rgba(0, 229, 255, 0.06),
+      0 0 120px rgba(170, 68, 255, 0.04);
+  }
+  .grimoire-engine-room .grimoire-wrapper:fullscreen {
+    width: 100vw;
+    height: 100svh;
+    max-width: none;
+    aspect-ratio: auto;
+    border-radius: 0;
+    border: 0;
+  }
+  .grimoire-engine-room .grimoire-wrapper canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .grimoire-engine-room .grimoire-title-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    background: linear-gradient(
+      180deg,
+      rgba(10, 10, 18, 0.92) 0%,
+      rgba(10, 10, 18, 0) 100%
+    );
+    z-index: 10;
+    pointer-events: none;
+  }
+  .grimoire-engine-room .grimoire-title-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    min-width: 0;
+  }
+  .grimoire-engine-room .grimoire-title {
+    font-family: "IBM Plex Mono", "JetBrains Mono", monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: #00e5ff;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-shadow: 0 0 12px rgba(0, 229, 255, 0.35);
+  }
+  .grimoire-engine-room .grimoire-subtitle {
+    font-family: "IBM Plex Mono", "JetBrains Mono", monospace;
+    font-size: 10px;
+    color: #555568;
+    letter-spacing: 1.5px;
+  }
+  .grimoire-engine-room .grimoire-snapshot-label {
+    font-family: "IBM Plex Mono", "JetBrains Mono", monospace;
+    font-size: 10px;
+    color: #888899;
+    letter-spacing: 1.5px;
+    text-align: right;
+    text-transform: uppercase;
+  }
+  .grimoire-engine-room .grimoire-snapshot-label [data-snapshot-label-short] {
+    display: none;
+  }
+  .grimoire-engine-room .fullscreen-btn {
+    pointer-events: auto;
+    font-family: "IBM Plex Mono", "JetBrains Mono", monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: #00e5ff;
+    background: rgba(0, 229, 255, 0.1);
+    border: 1px solid rgba(0, 229, 255, 0.28);
+    border-radius: 3px;
+    padding: 6px 9px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .grimoire-engine-room .fullscreen-btn:hover {
+    background: rgba(0, 229, 255, 0.18);
+    border-color: rgba(0, 229, 255, 0.5);
+  }
+  .grimoire-engine-room .fullscreen-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+  }
+  .grimoire-engine-room .grimoire-wrapper.is-fullscreen .fullscreen-btn {
+    color: #ffeedd;
+    border-color: rgba(255, 238, 221, 0.28);
+  }
+
+  .grimoire-engine-room .grimoire-bottom-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    background: linear-gradient(
+      0deg,
+      rgba(10, 10, 18, 0.88) 0%,
+      rgba(10, 10, 18, 0) 100%
+    );
+    z-index: 10;
+    pointer-events: none;
+  }
+  .grimoire-engine-room .grimoire-hint {
+    font-family: "IBM Plex Mono", "JetBrains Mono", monospace;
+    font-size: 9px;
+    color: #444455;
+    letter-spacing: 1px;
+  }
+
+  .grimoire-engine-room .grimoire-tooltip {
+    position: absolute;
+    pointer-events: none;
+    padding: 10px 14px;
+    background: rgba(10, 10, 22, 0.94);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    border-radius: 3px;
+    color: #ccc;
+    font-family: "IBM Plex Mono", "JetBrains Mono", monospace;
+    font-size: 11px;
+    line-height: 1.55;
+    max-width: 250px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 20;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    white-space: pre-line;
+  }
+  .grimoire-engine-room .grimoire-tooltip .tt-title {
+    font-weight: 700;
+    margin-bottom: 4px;
+    font-size: 11px;
+  }
+
+  .grimoire-engine-room .diag-panel {
+    position: absolute;
+    top: 40px;
+    right: 12px;
+    bottom: 36px;
+    width: 210px;
+    background: rgba(12, 12, 22, 0.88);
+    border: 1px solid rgba(0, 229, 255, 0.15);
+    border-radius: 4px;
+    z-index: 8;
+    overflow-y: auto;
+    padding: 12px 10px;
+    font-family: "IBM Plex Mono", "JetBrains Mono", monospace;
+    scrollbar-width: thin;
+    scrollbar-color: #222 transparent;
+  }
+  .grimoire-engine-room .diag-panel::-webkit-scrollbar {
+    width: 4px;
+  }
+  .grimoire-engine-room .diag-panel::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 2px;
+  }
+  .grimoire-engine-room .diag-header {
+    font-size: 10px;
+    font-weight: 700;
+    color: #ffeedd;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(255, 238, 221, 0.15);
+  }
+  .grimoire-engine-room .diag-section-title {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin: 10px 0 5px 0;
+    padding: 3px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .grimoire-engine-room .diag-section-title.green {
+    color: #2fe089;
+  }
+  .grimoire-engine-room .diag-section-title.yellow {
+    color: #ffe033;
+  }
+  .grimoire-engine-room .diag-section-title.red {
+    color: #ff2222;
+  }
+  .grimoire-engine-room .diag-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    margin: 4px 0;
+    font-size: 9px;
+    line-height: 1.4;
+    color: #999;
+  }
+  .grimoire-engine-room .diag-dot {
+    width: 6px;
+    height: 6px;
+    min-width: 6px;
+    border-radius: 50%;
+    margin-top: 3px;
+  }
+  .grimoire-engine-room .diag-dot.green {
+    background: #2fe089;
+    box-shadow: 0 0 6px #2fe089;
+  }
+  .grimoire-engine-room .diag-dot.yellow {
+    background: #ffe033;
+    box-shadow: 0 0 6px #ffe033;
+  }
+  .grimoire-engine-room .diag-dot.red {
+    background: #ff2222;
+    box-shadow: 0 0 6px #ff2222;
+    animation: grimoire-pulse-red 1.5s ease-in-out infinite;
+  }
+  @keyframes grimoire-pulse-red {
+    0%, 100% {
+      opacity: 1;
+      box-shadow: 0 0 6px #ff2222;
+    }
+    50% {
+      opacity: 0.5;
+      box-shadow: 0 0 12px #ff2222;
+    }
+  }
+
+  .grimoire-engine-room .reset-btn {
+    position: absolute;
+    bottom: 32px;
+    left: 16px;
+    z-index: 12;
+    font-family: "IBM Plex Mono", "JetBrains Mono", monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #00e5ff;
+    background: rgba(0, 229, 255, 0.08);
+    border: 1px solid rgba(0, 229, 255, 0.25);
+    border-radius: 3px;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, opacity 0.3s;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .grimoire-engine-room .reset-btn.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .grimoire-engine-room .reset-btn:hover {
+    background: rgba(0, 229, 255, 0.16);
+    border-color: rgba(0, 229, 255, 0.5);
+  }
+
+  .grimoire-engine-room .focus-label {
+    position: absolute;
+    bottom: 58px;
+    left: 16px;
+    z-index: 12;
+    font-family: "IBM Plex Mono", "JetBrains Mono", monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  .grimoire-engine-room .focus-label.visible {
+    opacity: 1;
+  }
+
+  .grimoire-engine-room .layer-nav {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 12;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 10px 4px;
+    background: rgba(10, 10, 22, 0.7);
+    border: 1px solid rgba(0, 229, 255, 0.12);
+    border-radius: 4px;
+  }
+  .grimoire-engine-room .layer-nav-spine {
+    position: absolute;
+    left: 50%;
+    top: 14px;
+    bottom: 14px;
+    width: 2px;
+    transform: translateX(-50%);
+    background: linear-gradient(
+      180deg,
+      rgba(170, 68, 255, 0.35) 0%,
+      rgba(255, 0, 170, 0.3) 25%,
+      rgba(0, 229, 255, 0.35) 50%,
+      rgba(57, 255, 20, 0.3) 75%,
+      rgba(255, 224, 51, 0.35) 100%
+    );
+    border-radius: 1px;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .grimoire-engine-room .layer-nav-dot {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    padding: 7px 8px 7px 6px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.25s;
+  }
+  .grimoire-engine-room .layer-nav-dot:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+  .grimoire-engine-room .layer-nav-dot[aria-pressed="true"] {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.18);
+  }
+  .grimoire-engine-room .ln-dot {
+    width: 8px;
+    height: 8px;
+    min-width: 8px;
+    border-radius: 50%;
+    transition: transform 0.2s;
+  }
+  .grimoire-engine-room .layer-nav-dot[aria-pressed="true"] .ln-dot {
+    transform: scale(1.4);
+  }
+  .grimoire-engine-room .ln-label {
+    font-family: "IBM Plex Mono", "JetBrains Mono", monospace;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #666;
+    transition: color 0.2s;
+  }
+  .grimoire-engine-room .layer-nav-dot:hover .ln-label {
+    color: #aaa;
+  }
+  .grimoire-engine-room .layer-nav-dot[aria-pressed="true"] .ln-label {
+    color: #ddd;
+  }
+
+  .grimoire-engine-room .grimoire-mobile-diag {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0 0;
+  }
+  .grimoire-engine-room .diag-item-mobile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "IBM Plex Mono", "JetBrains Mono", monospace;
+    font-size: 11px;
+    color: #999;
+    padding: 4px 0;
+  }
+
+  @media (max-width: 640px) {
+    .grimoire-engine-room .grimoire-wrapper {
+      max-width: min(100%, 460px);
+      aspect-ratio: 9 / 16;
+      min-height: 70svh;
+    }
+    .grimoire-engine-room .grimoire-title-bar {
+      align-items: flex-start;
+      padding: 10px;
+    }
+    .grimoire-engine-room .grimoire-title {
+      font-size: 10px;
+      letter-spacing: 1.8px;
+    }
+    .grimoire-engine-room .grimoire-subtitle {
+      display: none;
+    }
+    .grimoire-engine-room .grimoire-title-actions {
+      align-items: flex-end;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .grimoire-engine-room .grimoire-snapshot-label {
+      font-size: 8px;
+      letter-spacing: 0.8px;
+    }
+    .grimoire-engine-room .grimoire-snapshot-label [data-snapshot-label-full] {
+      display: none;
+    }
+    .grimoire-engine-room .grimoire-snapshot-label [data-snapshot-label-short] {
+      display: inline;
+    }
+    .grimoire-engine-room .fullscreen-btn {
+      font-size: 8px;
+      letter-spacing: 1px;
+      padding: 5px 7px;
+    }
+    .grimoire-engine-room .diag-panel {
+      display: none;
+    }
+    .grimoire-engine-room .layer-nav {
+      left: 50%;
+      right: auto;
+      top: auto;
+      bottom: 34px;
+      transform: translateX(-50%);
+      flex-direction: row-reverse;
+      padding: 4px 8px;
+    }
+    .grimoire-engine-room .layer-nav-spine {
+      left: 14px;
+      right: 14px;
+      top: 50%;
+      bottom: auto;
+      width: auto;
+      height: 2px;
+      transform: translateY(-50%);
+      background: linear-gradient(
+        90deg,
+        rgba(255, 224, 51, 0.35) 0%,
+        rgba(57, 255, 20, 0.3) 25%,
+        rgba(0, 229, 255, 0.35) 50%,
+        rgba(255, 0, 170, 0.3) 75%,
+        rgba(170, 68, 255, 0.35) 100%
+      );
+    }
+    .grimoire-engine-room .layer-nav-dot {
+      padding: 8px 7px;
+    }
+    .grimoire-engine-room .ln-label {
+      display: none;
+    }
+    .grimoire-engine-room .grimoire-bottom-bar {
+      padding-bottom: 8px;
+    }
+    .grimoire-engine-room .grimoire-hint {
+      max-width: 220px;
+      text-align: center;
+      font-size: 8px;
+      line-height: 1.4;
+    }
+    .grimoire-engine-room .focus-label {
+      bottom: 76px;
+      max-width: calc(100% - 32px);
+      font-size: 9px;
+      letter-spacing: 1.2px;
+    }
+    .grimoire-engine-room .reset-btn {
+      bottom: 52px;
+      font-size: 8px;
+      padding: 5px 10px;
+    }
+    .grimoire-engine-room .grimoire-tooltip {
+      max-width: min(230px, calc(100% - 36px));
+      font-size: 10px;
+    }
+  }
+  @media (min-width: 641px) {
+    .grimoire-engine-room .grimoire-mobile-diag {
+      display: none;
+    }
+  }
+  .grimoire-engine-room .grimoire-wrapper.is-fullscreen {
+    width: 100vw;
+    height: 100svh;
+    max-width: none;
+    aspect-ratio: auto;
+    min-height: 100svh;
+    border-radius: 0;
+  }
+  .grimoire-engine-room .grimoire-wrapper.is-fullscreen .diag-panel {
+    display: none;
+  }
+  .grimoire-engine-room .grimoire-wrapper.is-fullscreen .layer-nav {
+    display: flex;
+  }
+
+  .grimoire-engine-room__caption {
+    margin-top: 14px;
+    text-align: center;
+    font-family: "IBM Plex Mono", "JetBrains Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #555568;
+  }
+  .grimoire-engine-room__caption a {
+    color: #888899;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 229, 255, 0.25);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .grimoire-engine-room__caption a:hover {
+    color: #00e5ff;
+    border-bottom-color: rgba(0, 229, 255, 0.6);
+  }
+</style>
+
+<script>
+  const wrapper = document.getElementById("grimoireEngineWrapper");
+  if (wrapper && "IntersectionObserver" in window) {
+    let mounted: { dispose(): void } | null = null;
+    const obs = new IntersectionObserver(
+      async (entries) => {
+        if (!entries.some((e) => e.isIntersecting) || mounted) return;
+        obs.disconnect();
+        try {
+          const mod = await import("@/scripts/grimoire/engineRoom");
+          mounted = mod.mountEngineRoom(wrapper);
+        } catch (err) {
+          console.error("[GrimoireEngineRoom] failed to mount scene", err);
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    obs.observe(wrapper);
+    window.addEventListener(
+      "pagehide",
+      () => {
+        mounted?.dispose();
+        mounted = null;
+      },
+      { once: true }
+    );
+  }
+</script>

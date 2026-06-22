@@ -1,0 +1,40 @@
+---
+interface Props {
+  href: string;
+  variant?: "default" | "accent" | "muted";
+  external?: boolean;
+  underline?: boolean;
+  class?: string;
+}
+
+const {
+  href,
+  variant = "default",
+  external = false,
+  underline = false,
+  class: className,
+} = Astro.props;
+
+const variantMap = {
+  default: "text-base-200 hover:text-white",
+  accent: "text-accent-400 hover:text-accent-300",
+  muted: "text-base-400 hover:text-base-300",
+};
+
+const externalProps = external
+  ? { target: "_blank", rel: "noopener noreferrer" }
+  : {};
+---
+
+<a
+  href={href}
+  {...externalProps}
+  class:list={[
+    "transition-colors duration-200",
+    variantMap[variant],
+    underline && "underline underline-offset-4 decoration-base-600 hover:decoration-base-400",
+    className,
+  ]}
+>
+  <slot />
+</a>

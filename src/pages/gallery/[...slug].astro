@@ -1,0 +1,43 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import GalleryDetail from "@/components/gallery/GalleryDetail.astro";
+import Lightbox from "@/components/gallery/Lightbox";
+import { mediaUrl } from "@/lib/gallery";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const galleryEntries = await getCollection("gallery");
+  return galleryEntries
+    .filter((entry) => !entry.data.draft)
+    .map((entry) => ({
+      params: { slug: entry.id.replace(/\.(md|mdx)$/, "") },
+      props: { entry },
+    }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const heroImage = mediaUrl(
+  entry.data.folder,
+  entry.data.hero.type === "image" ? entry.data.hero.file : entry.data.hero.poster
+);
+---
+
+<BaseLayout
+  title={`${entry.data.title} | HobFarm Gallery`}
+  description={entry.data.summary}
+  image={heroImage}
+>
+  <section class="bg-noise">
+    <ContentPanel>
+      <Wrapper variant="standard" class="pt-0 pb-12 lg:pt-0 lg:pb-16">
+        <GalleryDetail entry={entry}>
+          <Content />
+        </GalleryDetail>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+  <Lightbox client:only="react" />
+</BaseLayout>

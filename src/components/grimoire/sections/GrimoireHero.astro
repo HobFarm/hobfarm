@@ -1,0 +1,36 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+---
+
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-1/2 left-1/3 w-[640px] h-[640px] -translate-y-1/2 rounded-full bg-spot-purple/10 blur-[180px]"></div>
+    <div class="absolute bottom-0 right-1/4 w-[420px] h-[420px] rounded-full bg-spot-green/5 blur-[140px]"></div>
+  </div>
+
+  <Wrapper variant="standard" class="relative z-10 py-20 lg:py-28">
+    <Text tag="span" variant="textSM" class="text-accent-500 font-mono tracking-wider uppercase">
+      Structured knowledge substrate
+    </Text>
+    <Text tag="h1" variant="displayXL" class="mt-6 text-white text-balance font-display max-w-4xl">
+      Grimoire is the substrate.<br />Agents are replaceable.
+    </Text>
+    <Text tag="p" variant="textBase" class="text-base-400 mt-6 max-w-2xl leading-relaxed text-pretty">
+      HobFarm's structured knowledge substrate for data-grounded AI workflows. References,
+      atoms, composites, correspondences, validation traces, agent-readable context.
+      Models change. Providers change. Agents change. The substrate persists, improves,
+      and gives every new agent a better landscape to work inside.
+    </Text>
+
+    <div class="mt-10 flex flex-wrap items-center gap-4">
+      <Button isLink size="sm" variant="green" href="#ask">
+        Ask the Grimoire
+      </Button>
+      <Button isLink size="sm" variant="muted" href="/changelog/grimoire-knowledge-base">
+        Read system notes &rarr;
+      </Button>
+    </div>
+  </Wrapper>
+</section>

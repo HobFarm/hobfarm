@@ -1,0 +1,137 @@
+---
+// Grimoire Article Detail Page
+import GrimoireLayout from "@/layouts/GrimoireLayout.astro";
+import GrimoireBreadcrumb from "@/components/grimoire/GrimoireBreadcrumb.astro";
+import GrimoireTOC from "@/components/grimoire/GrimoireTOC.astro";
+import GrimoireRelated from "@/components/grimoire/GrimoireRelated.astro";
+import { type CollectionEntry, getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const docs = await getCollection("grimoire", ({ data }) => !data.draft);
+  const sortedDocs = docs.sort((a, b) => {
+    if (a.data.category === b.data.category) {
+      return (a.data.order ?? 999) - (b.data.order ?? 999);
+    }
+    return a.data.category.localeCompare(b.data.category);
+  });
+
+  return sortedDocs.map((doc, index) => {
+    const prevDoc = index > 0 ? sortedDocs[index - 1] : null;
+    const nextDoc = index < sortedDocs.length - 1 ? sortedDocs[index + 1] : null;
+    return {
+      params: { slug: doc.id },
+      props: { doc, prevDoc, nextDoc },
+    };
+  });
+}
+
+type Props = {
+  doc: CollectionEntry<"grimoire">;
+  prevDoc: CollectionEntry<"grimoire"> | null;
+  nextDoc: CollectionEntry<"grimoire"> | null;
+};
+
+const { doc, prevDoc, nextDoc } = Astro.props;
+const { Content, headings } = await render(doc);
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }).format(date);
+---
+
+<GrimoireLayout title={doc.data.title} description={doc.data.description}>
+  <div class="flex">
+    <!-- Article content -->
+    <div class="flex-1 min-w-0 px-6 py-8 lg:px-12 lg:py-10">
+      <!-- Breadcrumb -->
+      <GrimoireBreadcrumb category={doc.data.category} title={doc.data.title} />
+
+      <!-- Header -->
+      <div class="mt-6 mb-8">
+        <h1 class="text-2xl lg:text-3xl font-semibold text-base-100 leading-tight">
+          {doc.data.title}
+        </h1>
+        <p class="text-sm text-base-400 mt-2">{doc.data.description}</p>
+        <div class="flex items-center gap-4 mt-3 text-xs text-base-500 font-mono">
+          {doc.data.difficulty && (
+            <span class={`uppercase tracking-wider px-2 py-0.5 rounded ${
+              doc.data.difficulty === "beginner"
+                ? "text-spot-green bg-spot-green/10"
+                : doc.data.difficulty === "intermediate"
+                  ? "text-accent-400 bg-accent-400/10"
+                  : "text-spot-magenta bg-spot-magenta/10"
+            }`}>
+              {doc.data.difficulty}
+            </span>
+          )}
+          {doc.data.updated && (
+            <span>Updated {formatDate(doc.data.updated)}</span>
+          )}
+        </div>
+      </div>
+
+      <!-- Markdown content -->
+      <article class="prose prose-invert prose-sm max-w-none prose-headings:text-base-100 prose-headings:font-semibold prose-p:text-base-300 prose-a:text-accent-400 prose-a:no-underline hover:prose-a:underline prose-strong:text-base-200 prose-code:text-accent-400 prose-code:bg-base-800 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-xs prose-pre:bg-base-800 prose-pre:border prose-pre:border-base-700 prose-li:text-base-300 prose-hr:border-base-700">
+        <Content />
+      </article>
+
+      <!-- Tags -->
+      {doc.data.tags && doc.data.tags.length > 0 && (
+        <div class="mt-8 flex flex-wrap gap-2">
+          {doc.data.tags.map((tag: string) => (
+            <span class="text-[10px] font-mono text-base-400 bg-base-800 border border-base-700 px-2 py-0.5 rounded">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+
+      <!-- Related articles -->
+      <GrimoireRelated
+        related={doc.data.related}
+        currentId={doc.id}
+        category={doc.data.category}
+      />
+
+      <!-- Prev / Next -->
+      <nav class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10 pt-6 border-t border-base-700">
+        <div>
+          {prevDoc && (
+            <a
+              href={`/grimoire/${prevDoc.id}`}
+              class="group block p-4 rounded-lg hover:bg-base-800/50 transition-colors"
+            >
+              <span class="text-[10px] font-mono text-base-500 uppercase tracking-wider">
+                Previous
+              </span>
+              <div class="text-sm text-base-200 group-hover:text-accent-400 mt-1 transition-colors">
+                {prevDoc.data.title}
+              </div>
+            </a>
+          )}
+        </div>
+        <div class="text-right">
+          {nextDoc && (
+            <a
+              href={`/grimoire/${nextDoc.id}`}
+              class="group block p-4 rounded-lg hover:bg-base-800/50 transition-colors"
+            >
+              <span class="text-[10px] font-mono text-base-500 uppercase tracking-wider">
+                Next
+              </span>
+              <div class="text-sm text-base-200 group-hover:text-accent-400 mt-1 transition-colors">
+                {nextDoc.data.title}
+              </div>
+            </a>
+          )}
+        </div>
+      </nav>
+    </div>
+
+    <!-- Right TOC -->
+    <GrimoireTOC headings={headings} />
+  </div>
+</GrimoireLayout>

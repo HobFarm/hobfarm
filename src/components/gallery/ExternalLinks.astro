@@ -1,0 +1,58 @@
+---
+import KofiCta from "@/components/KofiCta.astro";
+
+interface Links {
+  deviantArt?: string;
+  deviantArtPremium?: string;
+  kofi?: string;
+  patreon?: string;
+  course?: string;
+}
+
+interface Props {
+  links: Links;
+  class?: string;
+}
+
+const { links, class: className } = Astro.props;
+
+const items = [
+  { key: "deviantArt", label: "DeviantArt", href: links.deviantArt },
+  { key: "deviantArtPremium", label: "DA Premium", href: links.deviantArtPremium },
+  { key: "kofi", label: "Ko-fi", href: links.kofi },
+  { key: "patreon", label: "Patreon", href: links.patreon },
+  { key: "course", label: "Course", href: links.course },
+].filter((i) => i.href);
+---
+
+{items.length > 0 && (
+  <div class:list={["flex flex-wrap items-center gap-2", className]}>
+    {items.map((item) => (
+      item.key === "kofi" ? (
+        <KofiCta variant="button" href={item.href} />
+      ) : (
+        <a
+          href={item.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center px-3 py-1.5 text-xs font-mono uppercase tracking-wider rounded-full bg-base-900 text-white border border-base-700 hover:border-accent-500 hover:text-accent-300 transition-colors"
+        >
+          {item.label}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="10"
+            height="10"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            class="ml-1.5"
+          >
+            <path d="M7 17 17 7" />
+            <path d="M7 7h10v10" />
+          </svg>
+        </a>
+      )
+    ))}
+  </div>
+)}

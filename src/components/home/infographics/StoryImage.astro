@@ -1,0 +1,81 @@
+---
+// Single representative "story image" slot. When `src` is set it renders a
+// responsive, lazy image via the Cloudflare image transforms. When `src` is
+// null it renders an intentional coded placeholder frame (never a broken <img>).
+import { transformImageUrl, imageSrcset } from "@/lib/media-transforms";
+
+interface Props {
+  src?: string | null;
+  alt: string;
+  label: string;
+  aspectClass?: string;
+  class?: string;
+}
+
+const {
+  src = null,
+  alt,
+  label,
+  aspectClass = "aspect-[16/10]",
+  class: className = "",
+} = Astro.props;
+
+const hasImage = typeof src === "string" && src.length > 0;
+const displaySrc = hasImage
+  ? transformImageUrl(src as string, { width: 1280, quality: 82, fit: "cover" })
+  : "";
+const srcset = hasImage ? imageSrcset(src as string, [640, 960, 1280, 1600], { quality: 82 }) : "";
+const sizes = "(min-width: 1024px) 48rem, 100vw";
+---
+
+{
+  hasImage ? (
+    <figure
+      class:list={[
+        "overflow-hidden rounded-lg border border-base-800 bg-base-950 shadow-dimensional",
+        className,
+      ]}
+    >
+      <img
+        src={displaySrc}
+        srcset={srcset}
+        sizes={sizes}
+        alt={alt}
+        loading="lazy"
+        decoding="async"
+        class:list={["w-full object-cover", aspectClass]}
+      />
+    </figure>
+  ) : (
+    <div
+      class:list={[
+        "relative overflow-hidden rounded-lg border border-base-800 bg-base-900/40",
+        aspectClass,
+        className,
+      ]}
+      role="img"
+      aria-label={alt}
+    >
+      <svg
+        class="absolute inset-0 h-full w-full text-base-700"
+        viewBox="0 0 400 250"
+        preserveAspectRatio="xMidYMid slice"
+        fill="none"
+        aria-hidden="true"
+      >
+        <rect x="16" y="16" width="368" height="218" rx="6" stroke="currentColor" stroke-width="1" />
+        <rect x="34" y="34" width="332" height="182" rx="4" stroke="currentColor" stroke-width="0.6" stroke-dasharray="3 5" />
+        <line x1="200" y1="34" x2="200" y2="216" stroke="currentColor" stroke-width="0.5" />
+        <line x1="34" y1="125" x2="366" y2="125" stroke="currentColor" stroke-width="0.5" />
+        <circle cx="200" cy="125" r="3" fill="currentColor" />
+        <circle cx="200" cy="125" r="22" stroke="currentColor" stroke-width="0.6" />
+      </svg>
+      <div class="absolute inset-0 flex flex-col items-center justify-center gap-2 px-4 text-center">
+        <span class="font-mono text-[10px] uppercase tracking-widest text-base-400">{label}</span>
+        <span class="rounded-full border border-base-700 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-base-400">
+          image in production
+        </span>
+      </div>
+    </div>
+  )
+}

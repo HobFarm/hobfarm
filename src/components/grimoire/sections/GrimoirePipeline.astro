@@ -1,0 +1,77 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
+const nodes = [
+  { num: "01", label: "SOURCES",         desc: "Visual references, cultural metadata, text corpora, gallery inputs." },
+  { num: "02", label: "EXTRACTION",      desc: "Agents read sources into structured fields. Provider-agnostic." },
+  { num: "03", label: "ATOMS",           desc: "Schema-backed units. The smallest persistent things the substrate holds." },
+  { num: "04", label: "COMPOSITES",      desc: "Atoms arranged into reusable structures: palettes, identities, scenes." },
+  { num: "05", label: "CORRESPONDENCES", desc: "Links between atoms across categories. The substrate's connective tissue." },
+  { num: "06", label: "AGENT CONTEXT",   desc: "Substrate state shaped into context an agent can read at runtime." },
+  { num: "07", label: "OUTPUTS",         desc: "Generated images, compiled prompts, structured answers, downstream payloads." },
+  { num: "08", label: "REPLAY",          desc: "Every run logged with inputs, schema versions, and validation traces." },
+];
+---
+
+<section class="border-t border-base-800/50">
+  <Wrapper variant="standard" class="py-20 lg:py-24">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-start mb-12">
+      <div class="lg:col-span-1">
+        <Text tag="span" variant="textSM" class="text-accent-500 font-mono tracking-wider uppercase">
+          How it works
+        </Text>
+        <Text tag="h2" variant="displayLG" class="mt-6 text-white text-balance font-display">
+          From source to replay.
+        </Text>
+      </div>
+      <div class="lg:col-span-2">
+        <Text tag="p" variant="textBase" class="text-base-400 leading-relaxed text-pretty">
+          Every artifact passes through the same pipeline. Sources enter, agents extract into
+          structured atoms, atoms combine into composites, correspondences link them across
+          categories. Downstream, agent context is assembled from substrate state, outputs are
+          generated, and every step is logged so any run can be replayed.
+        </Text>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+      {nodes.map((n, i) => {
+        const isAtoms = n.label === "ATOMS";
+        return (
+          <div class="relative rounded-md border border-base-800 bg-base-900/60 p-5">
+            <div class="flex items-center gap-2">
+              <span class="text-[10px] font-mono text-base-500 tracking-wider">{n.num}</span>
+              <span class="text-[10px] font-mono text-accent-500 tracking-wider">/</span>
+              <span class="text-[11px] font-mono text-base-200 tracking-wider">
+                {n.label}
+              </span>
+              {isAtoms && (
+                <span aria-hidden="true" class="ml-auto inline-flex">
+                  <span class="w-1.5 h-1.5 rounded-full bg-spot-green animate-pulse"></span>
+                </span>
+              )}
+            </div>
+            <p class="mt-3 text-xs text-base-400 leading-relaxed">{n.desc}</p>
+            {i < nodes.length - 1 && (
+              <>
+                <span
+                  aria-hidden="true"
+                  class="hidden lg:block absolute -right-2 top-1/2 -translate-y-1/2 text-base-700 text-xs font-mono"
+                >
+                  &rarr;
+                </span>
+                <span
+                  aria-hidden="true"
+                  class="lg:hidden absolute left-1/2 -bottom-2 -translate-x-1/2 text-base-700 text-xs font-mono"
+                >
+                  &darr;
+                </span>
+              </>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  </Wrapper>
+</section>

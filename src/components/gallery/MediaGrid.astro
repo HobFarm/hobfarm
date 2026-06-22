@@ -1,0 +1,177 @@
+---
+import { mediaImageSrcset, mediaImageUrl, mediaUrl } from "@/lib/gallery";
+
+interface MediaItem {
+  type: "image" | "video";
+  file: string;
+  alt?: string;
+  caption?: string;
+  title?: string;
+  tags?: string[];
+  role?: string;
+  provider?: string;
+  poster?: string;
+}
+
+interface Props {
+  media: MediaItem[];
+  folder: string;
+  class?: string;
+}
+
+const { media, folder, class: className } = Astro.props;
+
+function previewFor(item: MediaItem): string {
+  if (item.type === "video") {
+    return item.poster
+      ? mediaImageUrl(folder, item.poster, { width: 640, quality: 82, fit: "scale-down" })
+      : "";
+  }
+  return mediaImageUrl(folder, item.file, { width: 640, quality: 82, fit: "scale-down" });
+}
+
+function previewSrcsetFor(item: MediaItem): string | undefined {
+  const file = item.type === "video" ? item.poster : item.file;
+  if (!file) return undefined;
+  return mediaImageSrcset(folder, file, [320, 480, 640, 900], {
+    quality: 82,
+    fit: "scale-down",
+  });
+}
+
+const anyMeta = media.some(
+  (item) => item.title || item.caption || (item.tags && item.tags.length > 0)
+);
+---
+
+{media.length > 0 && (
+  <div
+    class:list={[
+      "grid gap-3 md:gap-4",
+      anyMeta
+        ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+        : "grid-cols-2 md:grid-cols-3 xl:grid-cols-4",
+      className,
+    ]}
+  >
+    {media.map((item) => {
+      const fullSrc = mediaUrl(folder, item.file);
+      const preview = previewFor(item);
+      const previewSrcset = previewSrcsetFor(item);
+      const hasMeta = !!(
+        item.title || item.caption || (item.tags && item.tags.length > 0)
+      );
+      const dynamicMediaFrame = hasMeta && (item.type === "image" || !!item.poster);
+      const frameClass = dynamicMediaFrame
+        ? "relative aspect-[2/3] w-full overflow-hidden bg-base-950"
+        : "relative aspect-square w-full overflow-hidden";
+      const imageClass = dynamicMediaFrame
+        ? "absolute inset-0 w-full h-full object-contain bg-base-950 group-hover:scale-[1.02] transition-transform duration-500"
+        : "absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500";
+      return (
+        <button
+          type="button"
+          class="group relative flex w-full flex-col overflow-hidden border border-base-800 bg-base-950 text-left hover:border-accent-500 transition-colors cursor-zoom-in"
+          data-lightbox={fullSrc}
+          data-lightbox-type={item.type}
+          data-lightbox-alt={item.alt}
+          data-lightbox-caption={item.caption}
+          data-lightbox-provider={item.provider}
+          aria-label={`Open ${item.title || item.alt || item.file}`}
+        >
+          <div
+            class={frameClass}
+            data-media-frame={dynamicMediaFrame ? "dynamic" : undefined}
+          >
+            {preview ? (
+              <img
+                src={preview}
+                srcset={previewSrcset}
+                sizes={hasMeta ? "(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" : "(min-width: 1280px) 25vw, (min-width: 768px) 33vw, 50vw"}
+                alt={item.alt || ""}
+                loading="lazy"
+                decoding="async"
+                class={imageClass}
+              />
+            ) : (
+              <span class="absolute inset-0 flex items-center justify-center text-base-500 font-mono text-xs uppercase tracking-wider">
+                {item.type === "video" ? "Video" : "Image"}
+              </span>
+            )}
+            {item.type === "video" && (
+              <span class="absolute inset-0 flex items-center justify-center bg-base-950/30 group-hover:bg-base-950/10 transition-colors">
+                <span class="flex items-center justify-center w-10 h-10 rounded-full bg-base-950/80 border border-white/30 text-white">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </span>
+              </span>
+            )}
+            {item.role && (
+              <span class="absolute top-2 left-2 px-1.5 py-0.5 text-[10px] font-mono uppercase tracking-wider bg-base-950/80 text-white border border-base-700">
+                {item.role}
+              </span>
+            )}
+          </div>
+          {hasMeta && (
+            <div class="flex flex-1 flex-col gap-1.5 border-t border-base-800/70 bg-gradient-to-b from-base-950 to-base-900/60 px-3 py-3 md:px-4">
+              {item.title && (
+                <h3 class="text-sm font-display tracking-tight text-white">
+                  {item.title}
+                </h3>
+              )}
+              {item.caption && (
+                <p class="text-xs leading-relaxed text-base-300 md:text-[13px]">
+                  {item.caption}
+                </p>
+              )}
+              {item.tags && item.tags.length > 0 && (
+                <ul class="mt-auto flex flex-wrap gap-1.5 pt-1">
+                  {item.tags.map((tag) => (
+                    <li class="rounded-full border border-base-800 bg-base-900/80 px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider text-base-400">
+                      {tag}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )}
+        </button>
+      );
+    })}
+  </div>
+)}
+
+<script>
+  function syncDynamicMediaFrames(root = document) {
+    const frames = root.querySelectorAll("[data-media-frame='dynamic']");
+
+    frames.forEach((frame) => {
+      if (!(frame instanceof HTMLElement)) return;
+      const img = frame.querySelector("img");
+      if (!(img instanceof HTMLImageElement)) return;
+
+      const applyAspect = () => {
+        if (img.naturalWidth <= 0 || img.naturalHeight <= 0) return;
+        frame.style.aspectRatio = `${img.naturalWidth} / ${img.naturalHeight}`;
+      };
+
+      if (img.complete) {
+        applyAspect();
+        return;
+      }
+
+      if (frame.dataset.mediaAspectBound === "true") return;
+      frame.dataset.mediaAspectBound = "true";
+      img.addEventListener("load", applyAspect, { once: true });
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => syncDynamicMediaFrames());
+  } else {
+    syncDynamicMediaFrames();
+  }
+
+  document.addEventListener("astro:page-load", () => syncDynamicMediaFrames());
+</script>

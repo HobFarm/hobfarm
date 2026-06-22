@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /login
+Disallow: /account
+Disallow: /api/
+
+Sitemap: https://hob.farm/sitemap-index.xml

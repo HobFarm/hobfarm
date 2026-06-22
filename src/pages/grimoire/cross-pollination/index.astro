@@ -1,0 +1,51 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import CrossPollinationArchive from "@/components/grimoire/CrossPollinationArchive";
+import { CROSS_POLLINATION_FRAMING } from "@/lib/grimoire/display";
+
+const title = "Cross-Pollination Archive | Grimoire";
+const description =
+  "Speculative synthesis cards from the Grimoire, not tutorials or factual claims: coined microgenres, unexpected connections, style recipes, and provocations. Some plausible, some impossible. Every one is kept.";
+---
+
+<BaseLayout title={title} description={description} palette="magenta-cyan">
+  <section class="border-b border-base-800/70">
+    <Wrapper variant="standard" class="py-16 lg:py-20">
+      <Text
+        tag="span"
+        variant="textSM"
+        class="font-mono uppercase tracking-widest text-accent-500"
+      >
+        {CROSS_POLLINATION_FRAMING.kicker}
+      </Text>
+      <Text tag="h1" variant="displayLG" class="mt-5 font-display text-white">
+        The Archive
+      </Text>
+      <Text tag="p" variant="textBase" class="mt-4 max-w-2xl leading-relaxed text-base-300">
+        Once a day the Grimoire fuses distant elements from the knowledge graph into one new
+        artifact: a coined microgenre, an unexpected connection, a style recipe, or a
+        provocation. Every one is kept here. Nothing gets thrown away.
+      </Text>
+      <Text tag="p" variant="textBase" class="mt-4 max-w-2xl leading-relaxed text-base-400">
+        {CROSS_POLLINATION_FRAMING.intro}
+      </Text>
+
+      <div class="mt-8 max-w-2xl rounded-lg border border-base-800 bg-base-900/50 p-4 sm:p-5">
+        <p class="font-mono text-[10px] uppercase tracking-widest text-accent-400">
+          {CROSS_POLLINATION_FRAMING.howToReadTitle}
+        </p>
+        <p class="mt-2 text-sm leading-relaxed text-base-300">
+          {CROSS_POLLINATION_FRAMING.howToRead}
+        </p>
+      </div>
+    </Wrapper>
+  </section>
+
+  <section>
+    <Wrapper variant="standard" class="py-12 lg:py-16">
+      <CrossPollinationArchive client:idle />
+    </Wrapper>
+  </section>
+</BaseLayout>

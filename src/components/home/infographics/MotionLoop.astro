@@ -1,0 +1,40 @@
+---
+// Optional, dormant motion layer. Renders a muted, looping, poster-backed video
+// only when a video URL is provided; otherwise renders nothing (no empty src,
+// poster, or orphan <source>). Fill motionAssets in homepage-systems.ts to use.
+interface Props {
+  video?: string | null;
+  poster?: string | null;
+  label?: string;
+  class?: string;
+}
+
+const { video = null, poster = null, label, class: className = "" } = Astro.props;
+
+const hasVideo = typeof video === "string" && video.length > 0;
+const type = hasVideo && (video as string).endsWith(".webm") ? "video/webm" : "video/mp4";
+---
+
+{
+  hasVideo && (
+    <figure
+      class:list={[
+        "overflow-hidden rounded-lg border border-base-800 bg-base-950 shadow-dimensional",
+        className,
+      ]}
+    >
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        poster={poster ?? undefined}
+        aria-label={label}
+        class="aspect-video w-full object-cover"
+      >
+        <source src={video} type={type} />
+      </video>
+    </figure>
+  )
+}

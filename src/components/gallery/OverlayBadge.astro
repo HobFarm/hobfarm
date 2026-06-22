@@ -1,0 +1,52 @@
+---
+// Shared specimen-label overlay chip used on gallery card thumbnails.
+// All overlays share identical structure (shape, padding, font, text size,
+// border weight, background). Only the accent color changes.
+//
+// Visual treatment:
+//   - dark translucent background (rgba(8,10,14,0.84)) + backdrop blur
+//   - near-white label text for readability on bright + dark images
+//   - 1px tinted border using the accent at 50% alpha
+//   - small accent dot before the label for category identification
+//   - subtle outer shadow + inner ring for image separation
+
+interface Props {
+  label: string;
+  accentHex: string;
+  size?: "sm" | "md";
+  class?: string;
+}
+
+const { label, accentHex, size = "sm", class: className } = Astro.props;
+
+const sizeClass =
+  size === "md"
+    ? "px-3 py-1.5 text-[11px] gap-2"
+    : "px-2 py-1 text-[10px] gap-1.5";
+
+// Hex + alpha suffix (8-digit hex). 80 ≈ 50% alpha for border tint.
+const borderColor = `${accentHex}80`;
+const dotColor = accentHex;
+const style = [
+  "background-color: rgba(8, 10, 14, 0.84)",
+  "color: #F4F6FA",
+  `border-color: ${borderColor}`,
+  "box-shadow: 0 1px 3px rgba(0,0,0,0.55), 0 0 0 1px rgba(0,0,0,0.35)",
+].join("; ");
+---
+
+<span
+  class:list={[
+    "inline-flex items-center font-mono font-medium uppercase tracking-wider rounded-full border backdrop-blur-sm whitespace-nowrap",
+    sizeClass,
+    className,
+  ]}
+  style={style}
+>
+  <span
+    class="inline-block w-1.5 h-1.5 rounded-full shrink-0"
+    style={`background-color: ${dotColor}`}
+    aria-hidden="true"
+  ></span>
+  <span>{label}</span>
+</span>

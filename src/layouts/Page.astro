@@ -1,0 +1,16 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  palette?: "purple-green" | "magenta-cyan" | "blue-red";
+}
+
+const { title, description, canonical, palette } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} canonical={canonical} palette={palette}>
+  <slot />
+</BaseLayout>

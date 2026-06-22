@@ -1,0 +1,58 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import PipelineStrip from "@/components/home/infographics/PipelineStrip.astro";
+import StoryPanel from "@/components/home/infographics/StoryPanel.astro";
+import { visualSystems, storyPanels } from "@/data/homepage-systems";
+
+const story = storyPanels.visualSystems;
+// Per-card accent: PsyGoth magenta, Technodelic cyan.
+const cardTone = ["text-accent-magenta-bright", "text-accent-cyan"];
+const cardBorder = ["hover:border-accent-magenta/40", "hover:border-accent-cyan/40"];
+---
+
+<section id="visual-systems" class="border-b border-base-800/70">
+  <Wrapper variant="standard" class="py-16 lg:py-20">
+    <div class="max-w-2xl">
+      <Text tag="span" variant="textSM" class="font-mono uppercase tracking-widest text-accent-magenta-bright">
+        {visualSystems.eyebrow}
+      </Text>
+      <Text tag="h2" variant="displayLG" class="mt-5 font-display text-white">
+        {visualSystems.heading}
+      </Text>
+      <p class="mt-5 text-base leading-relaxed text-base-400">{visualSystems.intro}</p>
+    </div>
+
+    <!-- The formula every system runs through -->
+    <div class="mt-10 rounded-lg border border-base-800 bg-base-900/50 p-4 sm:p-5">
+      <p class="mb-3 font-mono text-[10px] uppercase tracking-widest text-base-400">The formula</p>
+      <PipelineStrip steps={visualSystems.formula} tone="accent" />
+    </div>
+
+    <div class="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-2">
+      {visualSystems.systems.map((system, i) => (
+        <div class:list={["rounded-lg border border-base-800 bg-base-900/60 p-5 transition-colors sm:p-6", cardBorder[i]]}>
+          <div class="flex items-center gap-3">
+            <span class:list={["font-mono text-[10px] uppercase tracking-widest", cardTone[i]]}>
+              Visual system {String(i + 1).padStart(2, "0")}
+            </span>
+            <div class="h-px flex-1 bg-base-800"></div>
+          </div>
+          <h3 class="mt-3 font-display text-2xl text-white">{system.name}</h3>
+          <p class="mt-3 text-sm leading-relaxed text-base-400">{system.summary}</p>
+
+          <dl class="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-2">
+            {system.traits.map((trait) => (
+              <div class="rounded-md border border-base-800 bg-base-950/50 px-3 py-2">
+                <dt class="font-mono text-[10px] uppercase tracking-wider text-base-400">{trait.label}</dt>
+                <dd class="mt-0.5 text-xs leading-snug text-base-200">{trait.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      ))}
+    </div>
+
+    <StoryPanel panel={story} class="mt-6" />
+  </Wrapper>
+</section>

@@ -1,0 +1,186 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import GalleryCard from "@/components/gallery/GalleryCard.astro";
+import { getCollection } from "astro:content";
+
+const SERIES_TAG = "seed-to-world";
+
+const seriesEntries = (await getCollection("gallery"))
+  .filter((e) => !e.data.draft && (e.data.tags ?? []).includes(SERIES_TAG))
+  .sort((a, b) => {
+    if (a.data.date && b.data.date) {
+      return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+    }
+    return a.data.title.localeCompare(b.data.title);
+  });
+
+const deck =
+  "Small character systems built from a baseline image, refined identity, style translation, world variant, and motion pass. Each set shows a compact transformation rather than a single isolated render.";
+
+const intro =
+  "Seed to World is a compact character-development loop. Every set in the series starts with a baseline character, locks the strongest identity anchors, runs a style pass, moves the character into a scene, and finishes with a short motion proof. The collection grows as new seeds are translated into new worlds.";
+
+const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
+const seriesJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Seed to World Sets",
+  description: deck,
+  url: `${siteOrigin}/gallery/seed-to-world`,
+  isPartOf: {
+    "@type": "CollectionPage",
+    name: "HobFarm Field Notes",
+    url: `${siteOrigin}/gallery/`,
+  },
+  mainEntity: {
+    "@type": "ItemList",
+    itemListOrder: "https://schema.org/ItemListOrderDescending",
+    numberOfItems: seriesEntries.length,
+    itemListElement: seriesEntries.map((e, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: e.data.title,
+      url: `${siteOrigin}/gallery/${e.id.replace(/\.(md|mdx)$/, "")}`,
+    })),
+  },
+};
+---
+
+<BaseLayout
+  title="Seed to World Sets | HobFarm Gallery"
+  description={deck}
+  palette="magenta-cyan"
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(seriesJsonLd)} />
+  <section class="bg-noise">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-10 lg:py-14">
+
+        <nav class="flex flex-wrap items-center gap-3 mb-6" aria-label="Series breadcrumbs">
+          <a
+            href="/gallery/"
+            class="text-xs font-mono uppercase tracking-widest text-base-500 hover:text-white transition-colors"
+          >
+            &larr; Gallery
+          </a>
+          <span class="text-[10px] font-mono uppercase tracking-widest text-base-700">/</span>
+          <span class="text-xs font-mono uppercase tracking-widest text-base-400">
+            Seed to World
+          </span>
+        </nav>
+
+        <header class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end">
+          <div class="lg:col-span-7">
+            <Text tag="span" variant="textSM" class="text-accent-500 font-mono tracking-wider uppercase">
+              Series
+            </Text>
+            <Text
+              tag="h1"
+              variant="displayXL"
+              class="mt-4 text-white text-balance font-display tracking-tight"
+            >
+              Seed to World Sets
+            </Text>
+            <Text tag="p" variant="textBase" class="text-base-300 mt-4 text-balance max-w-2xl leading-relaxed">
+              {deck}
+            </Text>
+
+            <div class="mt-6 flex flex-wrap gap-3">
+              <a
+                href="/process/seed-to-world/"
+                class="inline-flex items-center gap-2 px-4 py-2 text-xs font-mono uppercase tracking-wider rounded-full bg-accent-500/10 text-accent-200 border border-accent-500/40 hover:border-accent-500 hover:text-accent-100 transition-colors"
+              >
+                See the process
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </a>
+              <a
+                href="/gallery/"
+                class="inline-flex items-center gap-2 px-4 py-2 text-xs font-mono uppercase tracking-wider rounded-full border border-base-700 text-base-200 hover:border-base-100 hover:text-white transition-colors"
+              >
+                Browse all field notes
+              </a>
+            </div>
+          </div>
+
+          <aside class="lg:col-span-5" aria-labelledby="series-summary-heading">
+            <div class="border border-base-800 bg-base-950/40 p-5">
+              <h2
+                id="series-summary-heading"
+                class="text-[10px] font-mono uppercase tracking-wider text-base-300"
+              >
+                Series Summary
+              </h2>
+              <p class="text-sm text-base-200 leading-relaxed mt-3">
+                {intro}
+              </p>
+              <dl class="mt-4 grid grid-cols-2 gap-3 text-xs">
+                <div class="flex flex-col gap-0.5">
+                  <dt class="text-[10px] font-mono uppercase tracking-wider text-base-400">
+                    Sets
+                  </dt>
+                  <dd class="text-base-100 font-mono">
+                    {seriesEntries.length} {seriesEntries.length === 1 ? "set" : "sets"}
+                  </dd>
+                </div>
+                <div class="flex flex-col gap-0.5">
+                  <dt class="text-[10px] font-mono uppercase tracking-wider text-base-400">
+                    Method
+                  </dt>
+                  <dd class="text-base-100 font-mono">
+                    Seed to World
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          </aside>
+        </header>
+
+        {seriesEntries.length > 0 && (
+          <section class="mt-10" aria-labelledby="series-sets-heading">
+            <div class="flex items-end justify-between gap-4 mb-5">
+              <h2 id="series-sets-heading" class="text-accent-gold font-mono uppercase tracking-wider text-xs">
+                Sets in this series
+              </h2>
+              <span class="text-[10px] font-mono uppercase tracking-wider text-base-500">
+                {seriesEntries.length} indexed
+              </span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-8">
+              {seriesEntries.map((entry) => (
+                <GalleryCard entry={entry} />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {seriesEntries.length === 0 && (
+          <div class="mt-12 border border-dashed border-base-800 p-8 text-center">
+            <Text tag="p" variant="textBase" class="text-base-400">
+              First set landing soon. More coming.
+            </Text>
+            <div class="mt-6 flex flex-wrap justify-center gap-3">
+              <a
+                href="/process/seed-to-world/"
+                class="inline-flex items-center gap-2 px-4 py-2 text-xs font-mono uppercase tracking-wider rounded-full bg-accent-500/10 text-accent-200 border border-accent-500/40 hover:border-accent-500 hover:text-accent-100 transition-colors"
+              >
+                See the process
+              </a>
+              <a
+                href="/gallery/"
+                class="inline-flex items-center gap-2 px-4 py-2 text-xs font-mono uppercase tracking-wider rounded-full border border-base-700 text-base-200 hover:border-base-100 hover:text-white transition-colors"
+              >
+                Browse all field notes
+              </a>
+            </div>
+          </div>
+        )}
+
+      </Wrapper>
+    </ContentPanel>
+  </section>
+</BaseLayout>

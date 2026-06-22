@@ -1,0 +1,419 @@
+import { defineCollection } from "astro:content";
+import { z } from "astro/zod";
+import { glob } from "astro/loaders";
+
+const blog = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/blog" }),
+  schema: z.object({
+    title: z.string(),
+    excerpt: z.string(),
+    author: z.string().default("d00d"),
+    tags: z.array(z.string()).default([]),
+    category: z
+      .enum([
+        "technical",
+        "magazine-time-machine",
+        "cultural-thread",
+        "grimoire",
+        "stylefusion",
+        "hobbot",
+        "business",
+        "research",
+      ])
+      .optional(),
+    hero: z.string().optional(),
+    heroAlt: z.string().optional(),
+    arrangement: z.string().optional(),
+    publishedAt: z.coerce.date(),
+    updatedAt: z.coerce.date().optional(),
+    featured: z.boolean().default(false),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const GALLERY_TYPES = [
+  "fashion",
+  "character-dev",
+  "before-and-after",
+  "cute-corrupted",
+  "compilation",
+  "scene",
+  "asset-lab",
+  "model-lab",
+  "video-workflow",
+  "premium-showcase",
+] as const;
+
+const heroImage = z.object({
+  type: z.literal("image"),
+  file: z.string(),
+  alt: z.string(),
+});
+
+const heroVideo = z.object({
+  type: z.literal("video"),
+  file: z.string(),
+  alt: z.string(),
+  poster: z.string(),
+});
+
+const galleryMediaItem = z.object({
+  type: z.enum(["image", "video"]),
+  file: z.string(),
+  alt: z.string().optional(),
+  caption: z.string().optional(),
+  title: z.string().optional(),
+  tags: z.array(z.string()).optional(),
+  role: z
+    .enum([
+      "primary",
+      "reference",
+      "variant",
+      "failure",
+      "preview",
+      "process",
+    ])
+    .optional(),
+  provider: z.string().optional(),
+  poster: z.string().optional(),
+});
+
+const gallery = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/gallery" }),
+  schema: z.object({
+    title: z.string(),
+    type: z.enum(GALLERY_TYPES),
+    summary: z.string(),
+    folder: z.string(),
+    hero: z.discriminatedUnion("type", [heroImage, heroVideo]),
+    heroAspect: z.string().optional(),
+
+    date: z.coerce.date().optional(),
+    featured: z.boolean().default(false),
+    draft: z.boolean().default(false),
+    tags: z.array(z.string()).default([]),
+
+    thumb: z
+      .object({
+        file: z.string(),
+        alt: z.string(),
+      })
+      .optional(),
+
+    media: z
+      .array(galleryMediaItem)
+      .default([]),
+
+    mediaSections: z
+      .array(
+        z.object({
+          title: z.string(),
+          text: z.string().optional(),
+          media: z.array(galleryMediaItem),
+        })
+      )
+      .optional(),
+
+    irFile: z.string().optional(),
+
+    infoModules: z
+      .array(
+        z.object({
+          label: z.string(),
+          value: z.string(),
+        })
+      )
+      .default([]),
+
+    comparison: z
+      .object({
+        mode: z.enum(["image", "text", "multimodal", "video"]).optional(),
+        testedModels: z.array(z.string()).optional(),
+        promptSummary: z.string().optional(),
+        findings: z.array(z.string()).optional(),
+        failureModes: z.array(z.string()).optional(),
+        bestFor: z.array(z.string()).optional(),
+      })
+      .optional(),
+
+    processNotes: z.string().optional(),
+
+    externalLinks: z
+      .object({
+        deviantArt: z.string().url().optional(),
+        deviantArtPremium: z.string().url().optional(),
+        kofi: z.string().url().optional(),
+        patreon: z.string().url().optional(),
+        course: z.string().url().optional(),
+      })
+      .optional(),
+
+    related: z.array(z.string()).optional(),
+
+    methods: z.array(z.string()).optional(),
+    relatedProcess: z.string().optional(),
+
+    concept: z
+      .object({
+        thesis: z.string().optional(),
+        method: z.string().optional(),
+        seedInputs: z.array(z.string()).optional(),
+        growthStages: z.array(z.string()).optional(),
+        reusablePattern: z.string().optional(),
+        usefulFor: z.array(z.string()).optional(),
+      })
+      .optional(),
+
+    fieldNotes: z
+      .array(
+        z.object({
+          label: z.string(),
+          text: z.string(),
+        })
+      )
+      .optional(),
+
+    visualDNA: z
+      .array(
+        z.object({
+          label: z.string(),
+          value: z.string(),
+        })
+      )
+      .optional(),
+
+    workflowSteps: z
+      .array(
+        z.object({
+          label: z.string(),
+          text: z.string(),
+        })
+      )
+      .optional(),
+
+    lessons: z
+      .array(
+        z.object({
+          label: z.string(),
+          text: z.string(),
+          kind: z.enum(["win", "lesson", "fail"]).optional(),
+        })
+      )
+      .optional(),
+
+    lockedTraits: z.array(z.string()).optional(),
+    flexibleTraits: z.array(z.string()).optional(),
+
+    specimenSheet: z
+      .object({
+        specimenId: z.string().optional(),
+        subjectName: z.string().optional(),
+        subjectRole: z.string().optional(),
+        edition: z.string().optional(),
+        status: z.string().optional(),
+        origin: z.string().optional(),
+        creator: z.string().optional(),
+        license: z.string().optional(),
+        dropDate: z.coerce.date().optional(),
+        dimensions: z.string().optional(),
+      })
+      .optional(),
+
+    colorChemistry: z
+      .object({
+        palette: z
+          .array(
+            z.object({
+              name: z.string(),
+              hex: z.string(),
+              finish: z.string().optional(),
+              role: z.string().optional(),
+            })
+          )
+          .optional(),
+        mood: z.string().optional(),
+        contrast: z.string().optional(),
+        notes: z.string().optional(),
+      })
+      .optional(),
+
+    wardrobeGrammar: z
+      .array(
+        z.object({
+          item: z.string(),
+          materials: z.array(z.string()).optional(),
+          colors: z.array(z.string()).optional(),
+          notes: z.string().optional(),
+        })
+      )
+      .optional(),
+
+    materials: z.array(z.string()).optional(),
+    accessories: z.array(z.string()).optional(),
+
+    styleProfile: z
+      .object({
+        anchors: z.array(z.string()).optional(),
+        arrangement: z.string().optional(),
+        register: z.string().optional(),
+        weight: z.string().optional(),
+        era: z.string().optional(),
+        hardness: z.string().optional(),
+        notes: z.string().optional(),
+      })
+      .optional(),
+  }),
+});
+
+const projects = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/projects" }),
+  schema: ({ image }) =>
+    z.object({
+      order: z.number(),
+      tier: z.enum(['1', '2', '3']),
+      status: z.enum(['live', 'active', 'planned', 'paused']),
+      category: z.enum(['tool', 'content', 'service', 'collaboration', 'game', 'research', 'education']),
+      type: z.enum(['tool', 'game', 'content', 'service', 'research', 'education']).optional(),
+      title: z.string(),
+      subtitle: z.string(),
+      description: z.string(),
+      oneLiner: z.string().optional(),
+      pubDate: z.coerce.date(),
+      updatedDate: z.coerce.date().optional(),
+      liveUrl: z.string().optional(),
+      repoUrl: z.string().optional(),
+      heroVideo: z.string().optional(),
+      heroImage: z.string().optional(),
+      logo: z.object({
+        url: image(),
+        alt: z.string(),
+      }).optional(),
+      image: z.object({
+        url: image(),
+        alt: z.string(),
+      }).optional(),
+      images: z.array(
+        z.object({
+          url: image(),
+          alt: z.string(),
+        })
+      ).optional(),
+      stack: z.array(z.string()).optional(),
+      highlights: z.array(z.string()).optional(),
+      features: z.array(
+        z.object({
+          title: z.string(),
+          description: z.string(),
+        })
+      ).optional(),
+      // Optional CTAs. When `ctas` is non-empty, or `primaryCta` is set,
+      // the detail layout suppresses the auto-generated "Visit Project"
+      // button (sourced from liveUrl) in favor of these. The repoUrl-driven
+      // "Source Code" button is unaffected.
+      //
+      // `ctas` is the multi-button form (used e.g. by the shop page for
+      // Etsy / Ko-fi / Visuals / Contact): an ordered list rendered as
+      // buttons (first default-styled, the rest muted). `external: true`
+      // opens in a new tab; internal paths like /gallery stay same-tab.
+      // `primaryCta`/`secondaryCta` remain for the membership-gated funnel.
+      ctas: z.array(
+        z.object({
+          label: z.string(),
+          href: z.string(),
+          external: z.boolean().optional(),
+        })
+      ).optional(),
+      // Optional heading override for the features grid (defaults to
+      // "System Features"). Lets the shop label its grid "Product Families".
+      featuresTitle: z.string().optional(),
+      primaryCta: z.object({
+        label: z.string(),
+        href: z.string(),
+      }).optional(),
+      secondaryCta: z.object({
+        label: z.string(),
+        href: z.string(),
+      }).optional(),
+    }),
+});
+
+const changelog = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/changelog" }),
+  schema: z.object({
+    title: z.string(),
+    project: z
+      .enum(["stylefusion", "grimoire", "hobbot", "hobfarm", "kalshi"])
+      .optional(),
+    version: z.string().optional(),
+    publishedAt: z.coerce.date(),
+    tags: z.array(z.string()).default([]),
+  }),
+});
+
+const help = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/help" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    project: z
+      .enum(["stylefusion", "grimoire", "hobbot", "general"])
+      .default("general"),
+    section: z.string().default("general"),
+    order: z.number().default(0),
+    publishedAt: z.coerce.date().optional(),
+    updatedAt: z.coerce.date().optional(),
+  }),
+});
+
+
+
+const legal = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/legal" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    publishedAt: z.coerce.date().optional(),
+    updatedAt: z.coerce.date().optional(),
+  }),
+});
+
+
+const grimoire = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/grimoire" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    category: z.string(),
+    subcategory: z.string().optional(),
+    order: z.number().optional(),
+    date: z.coerce.date().optional(),
+    updated: z.coerce.date().optional(),
+    tags: z.array(z.string()).optional(),
+    related: z.array(z.string()).optional(),
+    difficulty: z.enum(["beginner", "intermediate", "advanced"]).optional(),
+    project: z.string().optional(),
+    draft: z.boolean().default(false),
+  }),
+});
+
+const stack = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/stack" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    category: z.string(),
+    url: z.string().optional(),
+    icon: z.string().optional(),
+  }),
+});
+
+export const collections = {
+  blog,
+  gallery,
+  projects,
+  changelog,
+  help,
+  legal,
+  grimoire,
+  stack,
+};

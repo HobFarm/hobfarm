@@ -1,0 +1,149 @@
+---
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+---
+
+<section>
+  <Wrapper variant="standard" class="py-24">
+    <!-- Top: mascot + intro side by side -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+      <!-- Mascot image -->
+      <div class="flex items-center justify-center lg:justify-start">
+        <img
+          src="https://cdn.hob.farm/pages/home/hob-mascot.jpg"
+          alt="The Hob, HobFarm's resident maker"
+          width="360"
+          height="360"
+          class="rounded-lg border border-base-800"
+          loading="lazy"
+        />
+      </div>
+
+      <!-- Main content -->
+      <div class="lg:col-span-2">
+        <Text tag="span" variant="textSM" class="text-accent-500 font-mono">
+          MEET THE HOB
+        </Text>
+        <Text
+          tag="h2"
+          variant="displayLG"
+          class="mt-4 text-white font-display"
+        >
+          The Hob
+        </Text>
+        <div class="mt-6 space-y-4">
+          <Text tag="p" variant="textBase" class="text-base-400 text-pretty">
+            In the folklore of the North York Moors, a hob is a household spirit.
+            Not mischievous like elves, not menacing like boggarts. Helpful. A hob
+            shows up uninvited, does the work nobody asked for, and disappears
+            before dawn. Churns the butter, mends the fence, finishes the half-done
+            chores. You never see it work. You just see the results.
+          </Text>
+          <Text tag="p" variant="textBase" class="text-base-400 text-pretty">
+            The tradition came with rules. Leave out an offering of cream (full-fat,
+            never skimmed, or you'd feel their wrath). Never spy on them. And never,
+            under any circumstances, give them clothing; a clothed hob takes offense
+            and leaves, never to return.
+          </Text>
+          <Text tag="p" variant="textBase" class="text-base-400 text-pretty">
+            The North York Moors is still marked with their names. Hob Hole, Hob's
+            Beck, Boggle Hole. In the 1820s, a man named George Calvert walked the
+            region collecting their stories before they faded: T'Hob o' Hobgarth,
+            the Cross Hob of Lastingham, Hodge Hob o' Bransdale, dozens more. Each
+            one tied to a specific place, a specific household, a specific kind of
+            help.
+          </Text>
+          <Text tag="p" variant="textBase" class="text-base-400 text-pretty">
+            That's the idea behind HobFarm. The "farm" part pulls triple duty:
+            a farm full of hobs tending to creative tasks, a server farm running
+            autonomous workflows, and the folklore tradition of leaving offerings
+            so the spirits keep working. Feed the system good inputs, and the
+            hobs do the rest.
+          </Text>
+          <Text tag="p" variant="textSM" class="text-base-500 mt-2">
+            The hob tradition originates in the folklore of the North York Moors.
+            To learn more about the helpful hobs and the Calvert Manuscript, visit the
+            <Text
+              tag="a"
+              variant="textSM"
+              href="https://www.ryedalefolkmuseum.co.uk/the-helpful-hobs-of-the-north-york-moors/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-base-400 hover:text-white underline decoration-base-600 hover:decoration-white transition-colors"
+            >
+              Ryedale Folk Museum
+            </Text>.
+          </Text>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom: expanded context in two columns -->
+    <div class="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <!-- The Character -->
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-2 h-2 rounded-full bg-accent-500"></div>
+          <Text tag="h3" variant="textSM" class="text-white font-mono">
+            The Character
+          </Text>
+        </div>
+        <div class="space-y-4">
+          <Text tag="p" variant="textSM" class="text-base-400 text-pretty">
+            He's been a mechanic with grease on his hands and a server rack behind
+            him. A noir detective under sodium lights. A medieval tinkerer soldering
+            something that shouldn't exist yet. The setting changes; the face
+            doesn't. That's the point.
+          </Text>
+          <Text tag="p" variant="textSM" class="text-base-400 text-pretty">
+            The Hob is built entirely through prompt engineering and reference
+            management, not fine-tuning or custom models. Same bone structure, same
+            attitude, same presence, regardless of what world he lands in. Drop him
+            into a cyberpunk alley or a Renaissance workshop and you'd still
+            recognize him. That consistency is what StyleFusion is designed to
+            produce, and the Hob is the longest-running proof that the system works.
+          </Text>
+        </div>
+      </div>
+
+      <!-- The Companions -->
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-2 h-2 rounded-full bg-accent-500"></div>
+          <Text tag="h3" variant="textSM" class="text-white font-mono">
+            The Companions
+          </Text>
+        </div>
+        <div class="space-y-4">
+          <Text tag="p" variant="textSM" class="text-base-400 text-pretty">
+            Stories have always been built around parties, not solo acts. The hero
+            needs the trickster, the sage, the wildcard. It's not just narrative
+            tradition; it's how audiences orient themselves in a world. Each
+            companion is a lens on a different part of the story.
+          </Text>
+          <Text tag="p" variant="textSM" class="text-base-400 text-pretty">
+            HobFarm works the same way. The Hob lives on the website and builds
+            things. HobGal handles social media and public-facing work. Buffcock
+            exists to cause problems. More will follow as the world grows, each one
+            filling a role in how the ecosystem communicates.
+          </Text>
+          <Text tag="p" variant="textSM" class="text-base-400 text-pretty">
+            These aren't just mascots. They're a demonstration of the core problem
+            HobFarm solves: maintaining identity and consistency across tools that
+            have no memory. Each character is a walking portfolio piece, showing
+            that you can build a coherent visual world with off-the-shelf AI tools
+            if you bring the right system to the table.
+          </Text>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <Button isLink size="sm" variant="muted" href="/about">
+        About HobFarm &rarr;
+      </Button>
+    </div>
+  </Wrapper>
+</section>

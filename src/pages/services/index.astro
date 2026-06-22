@@ -1,0 +1,159 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Eyebrow from "@/components/sections/Eyebrow.astro";
+import SectionHeader from "@/components/sections/SectionHeader.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+
+type Offer = { title: string; body: string };
+
+const offers: Offer[] = [
+  {
+    title: "Video production",
+    body: "Editing, motion graphics, trailers, social cuts, and AI-assisted video. From raw footage to a finished cut in Premiere and After Effects.",
+  },
+  {
+    title: "Image + design",
+    body: "Character sheets, visual development, covers, posters, book layouts, and commercial imagery. Built with the HobFarm system and finished by hand in Photoshop, Illustrator, InDesign, and Acrobat.",
+  },
+  {
+    title: "Web development",
+    body: "Fast static sites, landing pages, and small web apps, built on the same stack that runs hob.farm.",
+  },
+  {
+    title: "AI workflows",
+    body: "Custom AI workflow design: prompt systems, multi-model setups, and automation built to ship real work, not demos.",
+  },
+  {
+    title: "Marketing",
+    body: "Product media, mockups, lifestyle images, short ads, and social content built around what you actually sell.",
+  },
+  {
+    title: "Reselling + sourcing",
+    body: "HobFarm also buys, restores, and sells physical goods, run as the BASS Show. See the shop for current finds.",
+  },
+];
+
+type ProcessCard = { title: string; body: string; href: string };
+
+const processCards: ProcessCard[] = [
+  {
+    title: "Starlet",
+    body: "A character built from outfit logic, pose, accessories, material, and palette, packaged so it can be reused across new images.",
+    href: "/process/fashion/",
+  },
+  {
+    title: "Hellcat",
+    body: "One character turned into a short motion reel: four stills become animated clips, transitions, and an editorial loop.",
+    href: "/process/motion/",
+  },
+  {
+    title: "The Star in the Skull",
+    body: "A story idea worked up into a cover, an illustration system, a motion teaser, and a reusable visual world.",
+    href: "/process/book/",
+  },
+  {
+    title: "Seed to World",
+    body: "A single base character developed into a small visual world: identity, style, world translation, and a motion proof.",
+    href: "/process/seed-to-world/",
+  },
+];
+---
+
+<BaseLayout
+  title="Services | HobFarm"
+  description="Hire HobFarm for video production, image and design, web development, AI workflow design, and marketing. See how the work gets made."
+>
+  {/* ── Hero ── */}
+  <section class="bg-noise border-b border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-20 lg:py-28">
+        <Eyebrow text="HobFarm / Las Vegas" />
+        <Text tag="h1" variant="display2XL" class="mt-6 text-white font-display max-w-4xl text-balance">
+          Services
+        </Text>
+        <Text tag="p" variant="textBase" class="text-base-300 mt-6 max-w-2xl text-pretty leading-relaxed">
+          HobFarm takes on outside work. The same tools and systems behind every project here can be pointed at your video, images, site, or workflow. Fast where speed helps, careful where it counts.
+        </Text>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <Button isLink size="sm" variant="green" href="/contact/">Hire HobFarm</Button>
+          <Button isLink size="sm" variant="muted" href="#process">See how it's made</Button>
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  {/* ── Offers ── */}
+  <section class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <SectionHeader eyebrow="01" heading="What HobFarm does" note="Pick a lane, or describe the job." />
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {offers.map((offer) => (
+            <div class="rounded-lg border border-base-800 bg-base-900/40 p-6">
+              <Text tag="h3" variant="textLG" class="text-white font-display">
+                {offer.title}
+              </Text>
+              <Text tag="p" variant="textSM" class="text-base-400 mt-3 text-pretty leading-relaxed">
+                {offer.body}
+              </Text>
+            </div>
+          ))}
+        </div>
+        <Text tag="p" variant="textSM" class="text-base-500 mt-8 max-w-2xl text-pretty leading-relaxed">
+          Production runs on professional tools (Photoshop, InDesign, Premiere, After Effects, Illustrator, Acrobat) alongside the HobFarm system. The tools exist because moving fast matters. The work is knowing where to aim them.
+        </Text>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  {/* ── How it's made / process ── */}
+  <section id="process" class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <SectionHeader eyebrow="02" heading="How it's made" note="Real jobs, start to finish." />
+        <Text tag="p" variant="textBase" class="text-base-400 max-w-2xl mb-10 text-pretty leading-relaxed">
+          Each of these is a real piece taken from first idea to finished output. They show how the work moves: what gets locked early, what stays flexible, and where the time goes.
+        </Text>
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+          {processCards.map((card) => (
+            <a
+              href={card.href}
+              class="group rounded-lg border border-base-800 bg-base-900/40 p-6 transition-colors hover:border-accent-500"
+            >
+              <Text tag="h3" variant="textLG" class="text-white font-display">
+                {card.title}
+              </Text>
+              <Text tag="p" variant="textSM" class="text-base-400 mt-3 text-pretty leading-relaxed">
+                {card.body}
+              </Text>
+              <span class="mt-4 inline-block text-sm text-accent-violet-bright group-hover:text-white">
+                See the process →
+              </span>
+            </a>
+          ))}
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  {/* ── CTA ── */}
+  <section class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <Text tag="h2" variant="displaySM" class="text-white font-display">
+          Have something in mind?
+        </Text>
+        <Text tag="p" variant="textBase" class="text-base-400 mt-4 max-w-2xl text-pretty leading-relaxed">
+          Tell HobFarm what you are making and what you need. Custom work is by request.
+        </Text>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <Button isLink size="sm" variant="green" href="/contact/">Hire HobFarm</Button>
+          <Button isLink size="sm" variant="muted" href="/gallery">See the visuals</Button>
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+</BaseLayout>

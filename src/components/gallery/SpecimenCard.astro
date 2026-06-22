@@ -1,0 +1,66 @@
+---
+interface Sheet {
+  specimenId?: string;
+  subjectName?: string;
+  subjectRole?: string;
+  edition?: string;
+  status?: string;
+  origin?: string;
+  creator?: string;
+  license?: string;
+  dropDate?: Date;
+  dimensions?: string;
+}
+
+interface Props {
+  sheet: Sheet;
+}
+
+const { sheet } = Astro.props;
+
+const dropLabel = sheet.dropDate
+  ? new Date(sheet.dropDate).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    })
+  : null;
+
+const rows: Array<[string, string]> = [];
+if (sheet.specimenId) rows.push(["Tag", sheet.specimenId]);
+if (sheet.subjectName) rows.push(["Subject", sheet.subjectName]);
+if (sheet.subjectRole) rows.push(["Role", sheet.subjectRole]);
+if (sheet.edition) rows.push(["Edition", sheet.edition]);
+if (sheet.status) rows.push(["Status", sheet.status]);
+if (sheet.origin) rows.push(["Origin", sheet.origin]);
+if (sheet.creator) rows.push(["Creator", sheet.creator]);
+if (sheet.license) rows.push(["License", sheet.license]);
+if (dropLabel) rows.push(["Drop date", dropLabel]);
+if (sheet.dimensions) rows.push(["Dimensions", sheet.dimensions]);
+---
+
+{rows.length > 0 && (
+  <section
+    class="border border-base-800 bg-base-950/40 p-6 lg:p-8"
+    aria-labelledby="specimen-sheet-heading"
+  >
+    <h3
+      id="specimen-sheet-heading"
+      class="text-base-500 font-mono uppercase tracking-wider text-xs mb-5"
+    >
+      Spec sheet
+    </h3>
+    <dl class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-3">
+      {rows.map(([label, value]) => (
+        <div class="flex flex-col gap-0.5 border-l-2 border-base-800 pl-3">
+          <dt class="text-[10px] font-mono uppercase tracking-wider text-base-500">
+            {label}
+          </dt>
+          <dd class="text-sm text-base-100 font-mono leading-snug break-words">
+            {value}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+)}

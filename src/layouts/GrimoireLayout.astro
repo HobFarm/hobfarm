@@ -1,0 +1,29 @@
+---
+// Grimoire Knowledgebase Layout
+// Two-column doc layout: sidebar nav + content area with optional right TOC
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import GrimoireSidebar from "@/components/grimoire/GrimoireSidebar.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="flex min-h-[calc(100svh-5rem)]">
+    <!-- Sidebar -->
+    <GrimoireSidebar />
+
+    <!-- Main content area -->
+    <div class="flex-1 min-w-0">
+      <slot />
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  /* Override BaseLayout's main padding for doc layout */
+</style>

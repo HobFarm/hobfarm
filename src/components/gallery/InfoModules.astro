@@ -1,0 +1,31 @@
+---
+interface Module {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  modules: Module[];
+  class?: string;
+}
+
+const { modules, class: className } = Astro.props;
+---
+
+{modules.length > 0 && (
+  <div
+    class:list={[
+      "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-px bg-base-800 border border-base-800",
+      className,
+    ]}
+  >
+    {modules.map((mod) => (
+      <div class="bg-base-950 px-4 py-3 flex flex-col gap-1">
+        <span class="text-[10px] font-mono uppercase tracking-wider text-base-500">
+          {mod.label}
+        </span>
+        <span class="text-sm text-white">{mod.value}</span>
+      </div>
+    ))}
+  </div>
+)}

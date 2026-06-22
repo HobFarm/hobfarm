@@ -1,0 +1,63 @@
+---
+// Fundations
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+---
+
+<BaseLayout>
+  <section class="bg-noise">
+    <ContentPanel>
+    <Wrapper
+      variant="standard"
+      class="py-12 lg:py-16 relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4"
+    >
+      <div class="md:col-span-2 md:col-start-2">
+        <div>
+          <Text
+            tag="h1"
+            variant="display2XL"
+            class="mt-12 text-balance font-display text-accent-gold"
+          >
+            404
+          </Text>
+          <Text tag="p" variant="textBase" class="text-white mt-2 text-balance">
+            The hob looked everywhere. This page doesn't exist.
+          </Text>
+        </div>
+        <Wrapper variant="prose" class="mt-12">
+          <p>
+            Whatever you were looking for isn't here. It might have moved,
+            might never have existed, or the URL might be wrong.
+          </p>
+          <p>Try one of these instead:</p>
+          <ul>
+            <li>
+              <a href="/">Homepage</a> to start from the top.
+            </li>
+            <li>
+              <a href="/projects/">Projects</a> to see what we're building.
+            </li>
+            <li>
+              <a href="/gallery/">Gallery</a> for AI image comparisons.
+            </li>
+            <li>
+              <a href="/helpcenter/">Help Center</a> if you need a hand.
+            </li>
+          </ul>
+        </Wrapper>
+        <div class="flex gap-4">
+          <Button isLink href="/" size="base" variant="muted" class="mt-8">
+            Go home
+          </Button>
+          <Button isLink href="/helpcenter/" size="base" variant="muted" class="mt-8">
+            Get help
+          </Button>
+        </div>
+      </div>
+    </Wrapper>
+    </ContentPanel>
+  </section>
+</BaseLayout>

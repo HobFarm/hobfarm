@@ -1,0 +1,28 @@
+---
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+const { title, url } = {
+  url: "/helpcenter/" + Astro.props.post.id,
+  title: Astro.props.post.data.title,
+};
+---
+
+<li class="w-full group relative">
+  <Text
+    tag="a"
+    href={url}
+    title={title}
+    class="group relative flex h-14 items-center diration-500 overflow-hidden text-white group-hover:text-base-400"
+  >
+    <div
+      class="translate-y-0 transition-transform duration-500 ease-in-out group-hover:-translate-y-[200%]"
+    >
+      {title}
+    </div>
+    <div
+      class="absolute translate-y-[200%] transition-transform duration-500 ease-in-out group-hover:translate-y-0"
+    >
+      {title}
+    </div>
+  </Text>
+</li>

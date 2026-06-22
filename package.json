@@ -1,0 +1,43 @@
+{
+  "name": "@hobfarm/website",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "dev:pages": "node scripts/dev-pages.mjs",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^13.1.0",
+    "@astrojs/mdx": "^5.0.0",
+    "@astrojs/react": "^5.0.0",
+    "@astrojs/rss": "^4.0.17",
+    "@astrojs/sitemap": "^3.7.1",
+    "@fontsource-variable/ibm-plex-sans": "^5.2.8",
+    "@fontsource/ibm-plex-mono": "^5.2.7",
+    "@tailwindcss/forms": "^0.5.11",
+    "@tailwindcss/typography": "^0.5.19",
+    "@tailwindcss/vite": "^4.2.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "astro": "^6.0.3",
+    "fuse.js": "^7.1.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "reading-time": "^1.5.0",
+    "stripe": "^22.1.1",
+    "tailwind-scrollbar-hide": "^4.0.0",
+    "tailwindcss": "^4.2.1",
+    "three": "^0.183.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@cloudflare/workers-types": "^4.20260517.1",
+    "@types/three": "^0.183.1",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.92.0"
+  }
+}

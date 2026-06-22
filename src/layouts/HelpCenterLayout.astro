@@ -1,0 +1,36 @@
+---
+// Fundations
+import BaseLayout from "./BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Frontmatter
+import ContentPanel from "@/components/ContentPanel.astro";
+const { frontmatter } = Astro.props;
+
+const pageTitle = `${frontmatter.title} | Help Center | HobFarm`;
+const pageDescription =
+  frontmatter.description || "Help center article on HobFarm.";
+---
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <section>
+    <ContentPanel>
+    <Wrapper variant="standard" class="py-12 lg:py-16 grid grid-cols-1 lg:grid-cols-4">
+      <div class="lg:col-span-2">
+        <Text
+          tag="h1"
+          variant="display2XL"
+          class="mt-12 text-white text-balance font-display"
+        >
+          {frontmatter.title}
+        </Text>
+        <Text tag="span" variant="textSM" class="text-white">
+          {frontmatter.description}
+        </Text>
+      </div>
+      <Wrapper variant="prose" class="mt-12 lg:row-start-2 lg:col-span-2"
+        ><slot /></Wrapper
+      >
+    </Wrapper>
+    </ContentPanel>
+  </section>
+</BaseLayout>

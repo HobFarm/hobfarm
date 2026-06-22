@@ -1,0 +1,153 @@
+=== StyleFusion Compiled Prompts ===
+Generated: 2026-03-13T02:27:14.629Z
+
+--- IMAGE GENERATION JSON ---
+{
+  "subject": {
+    "form": "Large elephant-headed humanoid figure with a skeletal torso and ribcage, grey wrinkled skin texture, muscular elephantine head, and slender, bony limbs.",
+    "surface": "wrinkled skin, bony skeletal surface, matte ink drawing, muted grey elephant skin",
+    "coloring": "Base muted grey elephant skin (#736363), vibrant red forehead symbol (#B91C1C), accent bright yellow sun background (#FDE047)",
+    "features": [
+      "Deep-set green eye on the right side of the face, heavy brow ridges, large elephant ears, trunk curled downward, and a prominent orange-red symbol on the forehead.",
+      "skeletal ribcage",
+      "orange forehead symbol",
+      "multi-armed posture"
+    ],
+    "covering": "None visible",
+    "position": "Dynamic, multi-armed stance with one arm raised holding a tree-like object, another arm extended outward, and skeletal legs positioned in a wide, dancing posture.",
+    "held_objects": "tree-like organic structure, right hand",
+    "expression_intent": "A sense of ancient, cosmic wisdom and serene detachment, as if the figure is observing the flow of time and existence."
+  },
+  "scene": {
+    "setting": "The environment is an abstract, fluid dreamscape where a radiant yellow circle and green geometric grid float against a backdrop of glowing light. Below, a mosaic of colorful, glyph-covered tiles creates a textured foundation, while ornate circular emblems hover in the midground, suspended within an infinite, shifting space.",
+    "elements": [
+      "parchment-like paper texture, matte, overall background",
+      "organic skin texture, wrinkled and folded, elephant head",
+      "bony skeletal structure, matte, lower body",
+      "smooth ceramic-like glyph blocks, matte, bottom and top borders",
+      "glowing yellow circle, center background",
+      "ornate circular emblem, center-left midground"
+    ],
+    "atmosphere": "vibrating color fields, subtle shimmering effect, visual texture"
+  },
+  "camera": {
+    "shot": "full body, eye level, centered",
+    "lens": "wide-angle, deep depth of field, no visible bokeh"
+  },
+  "lighting": {
+    "key": "A pervasive, stylized glow radiates from the circular yellow background, backlighting the central figure. This light creates sharp, high-contrast silhouettes and highlights the intricate, day-glo color palette across the composition's complex surfaces.",
+    "fill": "Minimal fill, with deep, high-contrast shadows defining the anatomy of the skeletal structure and the folds of the elephant's skin, suggesting a lack of secondary ambient light sources.",
+    "effects": [
+      "radiant glow from the circular yellow background",
+      "glowing light rays emanating from the top border of glyphs"
+    ]
+  },
+  "style": {
+    "medium": "digital painting mimicking traditional airbrush and ink techniques",
+    "quality": "high-contrast saturated color gradients, intricate fine-line detailing, smooth blending, luminous highlights, and complex symmetrical composition",
+    "color_map": {
+      "upper_eyes_yellow": {
+        "hex": "#F4E34A",
+        "finish": "emissive glow"
+      },
+      "foliage_green": {
+        "hex": "#3D7A32",
+        "finish": "matte diffuse"
+      },
+      "serpent_blue": {
+        "hex": "#2B5A8C",
+        "finish": "iridescent sheen"
+      },
+      "central_figure_orange": {
+        "hex": "#F58220",
+        "finish": "translucent bloom"
+      },
+      "hand_skin_tone": {
+        "hex": "#8B5A2B",
+        "finish": "matte diffuse"
+      },
+      "background_sky": {
+        "hex": "#87CEEB",
+        "finish": "matte diffuse"
+      },
+      "eye_color": {
+        "hex": "#F4E34A",
+        "finish": "deep-set green iris with natural depth and specular highlights"
+      }
+    },
+    "textures": [
+      "smooth airbrush gradients",
+      "fine, dense cross-hatching linework",
+      "blended oil-like paint transitions",
+      "soft, luminous color layering"
+    ],
+    "style_anchors": [
+      "psychedelic art",
+      "visionary art",
+      "art nouveau",
+      "surrealism",
+      "trippy aesthetic"
+    ],
+    "light_interaction": "upper eyes yellow glow casts warm highlights onto adjacent surfaces. radiant glow from the circular yellow background produces localized color spill on nearby skin and fabric. glowing light rays emanating from the top border of glyphs produces localized color spill on nearby skin and fabric"
+  },
+  "negative": "Avoid photorealistic rendering, flat studio lighting, muddy desaturated tones, cartoonish proportions, heavy impasto brushwork, visible canvas weave, incoherent text artifacts, over-sharpened edges, singular directional spotlights, and uncanny valley skin textures.",
+  "aspect_ratio": "3:4",
+  "arrangement": "art-nouveau",
+  "arrangement_matched": 1.2939878005064451,
+  "palette_modifier": 0.134
+}
+
+--- DESCRIPTION ---
+[Subject] This surreal, multi-armed elephant-headed deity dominates the frame with its skeletal ribcage and intricately cross-hatched grey skin. It strikes a dynamic, dancing pose against a vibrant yellow and green geometric mandala, holding a small tree-like object in one hand. A small owl hovers nearby, while the entire figure is framed by ancient-looking glyphs. The subject exudes a sense of ancient, cosmic wisdom, blending organic elephant features with stark, bony anatomy in a highly detailed, mystical composition.
+
+[Style] psychedelic art, visionary art, art nouveau, surrealism, trippy aesthetic
+
+[Scene] The environment is an abstract, fluid dreamscape where a radiant yellow circle and green geometric grid float against a backdrop of glowing light. Below, a mosaic of colorful, glyph-covered tiles creates a textured foundation, while ornate circular emblems hover in the midground, suspended within an infinite, shifting space.
+
+[Camera] A full body, centered shot at eye level emphasizes the intricate, symmetrical patterns and the expansive, psychedelic nature of the composition.
+
+[Lighting] A pervasive, stylized glow radiates from the circular yellow background, backlighting the central figure. This light creates sharp, high-contrast silhouettes and highlights the intricate, day-glo color palette across the composition's complex surfaces.
+
+[Color] The palette features a vibrant yellow (#FDE047) background contrasting with a muted grey (#736363) subject. Saturated blue (#3B82F6) and red (#EF4444) accents create a high-contrast, psychedelic atmosphere that feels both mystical and intense.
+
+[Texture] Intricate cross-hatched ink linework, stippled shading gradients, smooth airbrushed color transitions, flat opaque color fills, and dense hand-drawn pen hatching define the overall visual aesthetic.
+
+[Avoid] Avoid photorealistic rendering, flat studio lighting, muddy desaturated tones, cartoonish proportions, heavy impasto brushwork, visible canvas weave, incoherent text artifacts, over-sharpened edges, singular directional spotlights, and uncanny valley skin textures.
+
+--- CREATIVE SLOTS ---
+[Render]
+Digital painting utilizing smooth airbrushed gradients, intricate fine-line ink detailing, and vibrant, saturated color transitions to create a luminous, psychedelic visual effect.
+
+[Subject]
+This surreal, multi-armed elephant-headed deity dominates the frame with its skeletal ribcage and intricately cross-hatched grey skin. It strikes a dynamic, dancing pose against a vibrant yellow and green geometric mandala, holding a small tree-like object in one hand. A small owl hovers nearby, while the entire figure is framed by ancient-looking glyphs. The subject exudes a sense of ancient, cosmic wisdom, blending organic elephant features with stark, bony anatomy in a highly detailed, mystical composition.
+
+[Style]
+psychedelic art, visionary art, art nouveau, surrealism, trippy aesthetic
+
+[Scene]
+The environment is an abstract, fluid dreamscape where a radiant yellow circle and green geometric grid float against a backdrop of glowing light. Below, a mosaic of colorful, glyph-covered tiles creates a textured foundation, while ornate circular emblems hover in the midground, suspended within an infinite, shifting space.
+
+[Camera]
+A full body, centered shot at eye level emphasizes the intricate, symmetrical patterns and the expansive, psychedelic nature of the composition.
+
+[Light]
+A pervasive, stylized glow radiates from the circular yellow background, backlighting the central figure. This light creates sharp, high-contrast silhouettes and highlights the intricate, day-glo color palette across the composition's complex surfaces.
+
+[Color]
+The palette features a vibrant yellow (#FDE047) background contrasting with a muted grey (#736363) subject. Saturated blue (#3B82F6) and red (#EF4444) accents create a high-contrast, psychedelic atmosphere that feels both mystical and intense.
+
+[Texture]
+Intricate cross-hatched ink linework, stippled shading gradients, smooth airbrushed color transitions, flat opaque color fills, and dense hand-drawn pen hatching define the overall visual aesthetic.
+
+[Negative]
+Avoid photorealistic rendering, flat studio lighting, muddy desaturated tones, cartoonish proportions, heavy impasto brushwork, visible canvas weave, incoherent text artifacts, over-sharpened edges, singular directional spotlights, and uncanny valley skin textures.
+
+[Aspect_ratio]
+3:4
+
+[_render_mode]
+painterly
+
+
+--- COMPACT PROMPT ---
+This surreal, multi-armed elephant-headed deity dominates the frame with its skeletal ribcage and intricately cross-hatched grey skin. It strikes a dynamic, dancing pose against a vibrant yellow and green geometric mandala, holding a small tree-like object in one hand. A small owl hovers nearby, while the entire figure is framed by ancient-looking glyphs. The subject exudes a sense of ancient, cosmic wisdom, blending organic elephant features with stark, bony anatomy in a highly detailed, mystical composition. The environment is an abstract, fluid dreamscape where a radiant yellow circle and green geometric grid float against a backdrop of glowing light. Below, a mosaic of colorful, glyph-covered tiles creates a textured foundation, while ornate circular emblems hover in the midground, suspended within an infinite, shifting space. Digital painting utilizing smooth airbrushed gradients, intricate fine-line ink detailing, and vibrant, saturated color transitions to create a luminous, psychedelic visual effect. A pervasive, stylized glow radiates from the circular yellow background, backlighting the central figure. This light creates sharp, high-contrast silhouettes and highlights the intricate, day-glo color palette across the composition's complex surfaces. The palette features a vibrant yellow (#FDE047) background contrasting with a muted grey (#736363) subject. Saturated blue (#3B82F6) and red (#EF4444) accents create a high-contrast, psychedelic atmosphere that feels both mystical and intense. A full body, centered shot at eye level emphasizes the intricate, symmetrical patterns and the expansive, psychedelic nature of the composition.

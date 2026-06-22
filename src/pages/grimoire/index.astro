@@ -1,0 +1,32 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+import GrimoireHero from "@/components/grimoire/sections/GrimoireHero.astro";
+import GrimoireSignalsStrip from "@/components/grimoire/sections/GrimoireSignalsStrip.astro";
+import GrimoirePipeline from "@/components/grimoire/sections/GrimoirePipeline.astro";
+import GrimoireWhyItMatters from "@/components/grimoire/sections/GrimoireWhyItMatters.astro";
+import GrimoireSystem from "@/components/grimoire/sections/GrimoireSystem.astro";
+import GrimoireEngineRoom from "@/components/grimoire/sections/GrimoireEngineRoom.astro";
+import GrimoireChatSection from "@/components/grimoire/sections/GrimoireChatSection.astro";
+import GrimoireArticles from "@/components/grimoire/sections/GrimoireArticles.astro";
+import GrimoireCTA from "@/components/grimoire/sections/GrimoireCTA.astro";
+
+const title = "Grimoire: structured knowledge substrate";
+const description =
+  "HobFarm's structured knowledge substrate for data-grounded AI workflows. Atoms, composites, correspondences, validation traces. Models change. The substrate persists.";
+
+const docs = await getCollection("grimoire", ({ data }) => !data.draft);
+---
+
+<BaseLayout title={title} description={description}>
+  <GrimoireHero />
+  <GrimoireSignalsStrip />
+  <GrimoirePipeline />
+  <GrimoireWhyItMatters />
+  <GrimoireSystem />
+  <GrimoireEngineRoom />
+  <GrimoireChatSection />
+  <GrimoireArticles docs={docs} />
+  <GrimoireCTA />
+</BaseLayout>

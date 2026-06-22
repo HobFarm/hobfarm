@@ -1,0 +1,62 @@
+---
+// Table of Contents - auto-generated from headings
+// Rendered in the right sidebar on desktop
+interface Props {
+  headings: Array<{ depth: number; slug: string; text: string }>;
+}
+
+const { headings } = Astro.props;
+const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+
+{tocHeadings.length > 0 && (
+  <aside class="hidden xl:block w-56 shrink-0 sticky top-24 self-start max-h-[calc(100svh-8rem)] overflow-y-auto">
+    <h4 class="text-xs font-semibold text-base-300 uppercase tracking-wide mb-3 px-4">
+      On this page
+    </h4>
+    <nav class="flex flex-col">
+      {tocHeadings.map((heading) => (
+        <a
+          href={`#${heading.slug}`}
+          class="toc-link block py-1 text-xs text-base-500 hover:text-accent-400 transition-all duration-200 border-l-2 border-transparent hover:border-accent-400/50"
+          style={`padding-left: ${heading.depth === 3 ? "2rem" : "1rem"}`}
+          data-heading-id={heading.slug}
+        >
+          {heading.text}
+        </a>
+      ))}
+    </nav>
+  </aside>
+)}
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const tocLinks = document.querySelectorAll(".toc-link");
+    if (tocLinks.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            tocLinks.forEach((link) => {
+              const el = link as HTMLElement;
+              if (el.dataset.headingId === id) {
+                el.classList.add("text-accent-400", "border-l-accent-400");
+                el.classList.remove("text-base-500", "border-transparent");
+              } else {
+                el.classList.remove("text-accent-400", "border-l-accent-400");
+                el.classList.add("text-base-500", "border-transparent");
+              }
+            });
+          }
+        }
+      },
+      { rootMargin: "-80px 0px -80% 0px", threshold: 0 }
+    );
+
+    document.querySelectorAll("h2[id], h3[id]").forEach((heading) => {
+      observer.observe(heading);
+    });
+  });
+</script>

@@ -1,0 +1,43 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import ProfileCard from "@/components/auth/ProfileCard";
+import ApiKeysSection from "@/components/auth/ApiKeysSection";
+import DangerZone from "@/components/auth/DangerZone";
+import AccountMembershipCard from "@/components/auth/AccountMembershipCard";
+---
+
+<BaseLayout
+  title="Account | HobFarm"
+  description="Manage your profile, API keys, and account."
+>
+  <section>
+    <ContentPanel>
+      <Wrapper variant="standard" class="grid grid-cols-1 py-12 lg:py-16 lg:grid-cols-4">
+        <div class="lg:col-span-3 lg:col-start-1 xl:col-span-3 xl:col-start-1">
+          <Text tag="span" variant="textSM" class="text-accent-500 font-mono">Account</Text>
+          <Text
+            tag="h1"
+            variant="displayXL"
+            class="mt-12 text-white text-balance font-display"
+          >
+            Account
+          </Text>
+          <Text tag="p" variant="textBase" class="mt-2 text-base-400 text-balance max-w-xl">
+            Manage your profile, API keys, and account.
+          </Text>
+
+          <div class="mt-12 space-y-6 max-w-3xl">
+            <ProfileCard client:load />
+            <AccountMembershipCard client:load />
+            <ApiKeysSection client:load />
+            <DangerZone client:load />
+          </div>
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+</BaseLayout>

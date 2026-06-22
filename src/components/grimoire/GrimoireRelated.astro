@@ -1,0 +1,61 @@
+---
+// Related Articles component
+// Shows at the bottom of article pages
+import { getCollection } from "astro:content";
+
+interface Props {
+  related?: string[];
+  currentId: string;
+  category: string;
+}
+
+const { related = [], currentId, category } = Astro.props;
+
+const allDocs = await getCollection("grimoire", ({ data }) => !data.draft);
+
+// Get explicitly related articles
+let relatedDocs = related.length > 0
+  ? allDocs.filter((doc) => related.includes(doc.id))
+  : [];
+
+// If no explicit relations, show same-category articles
+if (relatedDocs.length === 0) {
+  relatedDocs = allDocs
+    .filter((doc) => doc.data.category === category && doc.id !== currentId)
+    .slice(0, 3);
+}
+---
+
+{relatedDocs.length > 0 && (
+  <div class="border-t border-base-700 pt-6 mt-8">
+    <h3 class="text-xs font-semibold text-base-400 uppercase tracking-wide mb-4">
+      Related Articles
+    </h3>
+    <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      {relatedDocs.map((doc) => (
+        <a
+          href={`/grimoire/${doc.id}`}
+          class="group block p-4 rounded-lg bg-base-800/50 border border-base-700 hover:border-accent-400/30 hover:bg-base-800 transition-all duration-200"
+        >
+          <div class="text-sm font-medium text-base-200 group-hover:text-accent-400 transition-colors">
+            {doc.data.title}
+          </div>
+          <div class="text-xs text-base-500 mt-1 line-clamp-2">
+            {doc.data.description}
+          </div>
+          {doc.data.difficulty && (
+            <span class={`inline-block mt-2 text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded ${
+              doc.data.difficulty === "beginner"
+                ? "text-spot-green bg-spot-green/10"
+                : doc.data.difficulty === "intermediate"
+                  ? "text-accent-400 bg-accent-400/10"
+                  : "text-spot-magenta bg-spot-magenta/10"
+            }`}>
+              {doc.data.difficulty}
+            </span>
+          )}
+        </a>
+      ))}
+    </div>
+  </div>
+)}

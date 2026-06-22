@@ -1,0 +1,65 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Eyebrow from "@/components/sections/Eyebrow.astro";
+---
+
+<section class="border-t border-base-800/50">
+  <Wrapper variant="standard" class="py-20 lg:py-24">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+      {/* Mascot image */}
+      <div class="flex items-start justify-center lg:justify-start">
+        <img
+          src="https://cdn.hob.farm/pages/home/hob-mascot.jpg"
+          alt="The Hob, HobFarm's resident maker"
+          width="360"
+          height="360"
+          class="rounded-lg border border-base-800"
+          loading="lazy"
+        />
+      </div>
+
+      {/* Text content */}
+      <div class="lg:col-span-2">
+        <Eyebrow text="Where the name comes from" />
+
+        <Text
+          tag="h2"
+          variant="displayLG"
+          class="mt-4 text-white font-display"
+        >
+          Meet the Hob
+        </Text>
+
+        <div class="mt-6 space-y-4">
+          <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+            HobFarm is named for a creature out of English folklore. In the
+            tales of the North York Moors, a hob is a household spirit. Not
+            mischievous, not menacing. Helpful. A hob turns up uninvited,
+            does the work nobody asked it to do, and is gone before dawn.
+            You never see it work. You just see the results.
+          </Text>
+          <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+            The connection is simple. The AI and software tools take on the
+            chores: drafting, sorting, organizing, and running the tedious work
+            so I can move faster. I give them good inputs and decide what is
+            worth keeping. The tools do the busywork. I still run the place.
+          </Text>
+          <Text tag="p" variant="textSM" class="text-base-500 mt-2">
+            Folklore details courtesy of the
+            <Text
+              tag="a"
+              variant="textSM"
+              href="https://www.ryedalefolkmuseum.co.uk/the-helpful-hobs-of-the-north-york-moors/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-base-400 hover:text-white underline decoration-base-600 hover:decoration-white transition-colors"
+            >
+              Ryedale Folk Museum
+            </Text>.
+          </Text>
+        </div>
+      </div>
+    </div>
+  </Wrapper>
+</section>

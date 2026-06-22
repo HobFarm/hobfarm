@@ -1,0 +1,109 @@
+---
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Array
+import ContentPanel from "@/components/ContentPanel.astro";
+const statusItems = [
+  { service: "Website (hob.farm)", status: "Operational" },
+  { service: "StyleFusion", status: "Operational" },
+  { service: "CDN (cdn.hob.farm)", status: "Operational" },
+  { service: "Gallery", status: "Operational" },
+  { service: "AI Gateway", status: "Operational" },
+];
+
+const dotFill: Record<string, string> = {
+  Operational: "fill-accent-500",
+  Degraded:    "fill-accent-gold",
+  Down:        "fill-red-500",
+  Unknown:     "fill-base-400",
+};
+
+const events = [
+  {
+    status: "Completed",
+    description:
+      "Site rebuilt on Astro + Cloudflare. Atomic Noir design system launched.",
+    timestamp: "Feb 13, 2026",
+  },
+];
+---
+
+<section>
+  <ContentPanel>
+  <Wrapper
+    variant="standard"
+    class="py-12 lg:py-16 relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4"
+  >
+    <div class="md:col-span-2 md:col-start-2">
+      <Text tag="span" variant="textSM" class="text-white">
+        Last checked: <time>just now</time>
+      </Text>
+
+      <Text
+        tag="h1"
+        variant="display2XL"
+        class="mt-12 text-white text-balance font-display"
+      >
+        Service Status:
+        <span class="text-base-400 block"> All systems operational</span>
+      </Text>
+      <Text tag="p" variant="textBase" class="text-white mt-2 text-balance">
+        HobFarm services are monitored continuously. Issues and scheduled
+        maintenance will be reported here.
+      </Text>
+
+      <ul role="list" class="mt-12">
+        {
+          statusItems.map((item) => (
+            <li class="flex items-center justify-between space-x-3 py-2">
+              <span class="relative inline-flex items-center gap-x-1.5 text-sm leading-6 text-base-500">
+                <svg
+                  class={`size-1.5 ${dotFill[item.status] ?? "fill-base-400"} animate-pulse`}
+                  viewBox="0 0 6 6"
+                  aria-hidden="true"
+                >
+                  <circle cx="3" cy="3" r="3" />
+                </svg>
+                {item.service}
+              </span>
+              <span class="flex-1 mx-2 border-dotted border-b border-base-300" />
+              <p class="flex-shrink-0 text-sm text-white">{item.status}</p>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="mt-24 w-full">
+        <Text tag="span" variant="textSM" class="text-white">
+          Feb 2026 - Site Launch
+        </Text>
+        <Text
+          tag="h1"
+          variant="displaySM"
+          class="mt-12 text-white text-balance font-display"
+        >
+          Past Incidents:
+          <span class="text-base-400 block"> No incidents today.</span>
+        </Text>
+        <ul role="list" class="text-white pt-6 mt-4">
+          {
+            events.map((event) => (
+              <li class="py-4">
+                <span class="text-base-500 block">
+                  <strong class="text-white">{event.status}</strong> -
+                  {event.description}
+                </span>
+                <span>
+                  <time class="block text-base-400 text-xs mt-2">
+                    {event.timestamp}
+                  </time>
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </Wrapper>
+  </ContentPanel>
+</section>

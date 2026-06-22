@@ -1,0 +1,48 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import StoryPanel from "@/components/home/infographics/StoryPanel.astro";
+import { workflow, storyPanels } from "@/data/homepage-systems";
+
+const story = storyPanels.workflow;
+---
+
+<section id="workflow" class="border-b border-base-800/70">
+  <Wrapper variant="standard" class="py-16 lg:py-20">
+    <div class="grid grid-cols-1 gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+      <div>
+        <Text tag="span" variant="textSM" class="font-mono uppercase tracking-widest text-accent-green">
+          {workflow.eyebrow}
+        </Text>
+        <Text tag="h2" variant="displayLG" class="mt-5 font-display text-white">
+          {workflow.heading}
+        </Text>
+        <p class="mt-5 max-w-md text-base leading-relaxed text-base-400">{workflow.copy}</p>
+        <div class="mt-8 flex flex-wrap gap-2">
+          <Button isLink size="sm" variant="green" href="/services/#process">
+            See how it's made
+          </Button>
+        </div>
+      </div>
+
+      <div class="rounded-lg border border-base-800 bg-base-900/50 p-4 sm:p-5">
+        <ol class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {workflow.steps.map((step, index) => (
+            <li class="grid grid-cols-[2.5rem_1fr] gap-3 rounded-md border border-base-800 bg-base-950/50 p-4">
+              <span class="flex size-9 items-center justify-center rounded-full border border-accent-green/40 font-mono text-xs text-accent-green">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <div>
+                <h3 class="font-mono text-xs uppercase tracking-wider text-white">{step.title}</h3>
+                <p class="mt-1.5 text-sm leading-relaxed text-base-400">{step.body}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+
+    <StoryPanel panel={story} class="mt-8" />
+  </Wrapper>
+</section>

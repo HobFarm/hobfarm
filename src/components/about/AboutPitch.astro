@@ -1,0 +1,80 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Eyebrow from "@/components/sections/Eyebrow.astro";
+import { transformVideoUrl } from "@/lib/media-transforms";
+
+const glowVideo = "https://cdn.hob.farm/pages/about/about-glow-vid.mp4";
+---
+
+<section class="border-t border-base-800/50">
+  <Wrapper variant="standard" class="py-20 lg:py-24">
+    <Eyebrow text="Why this exists" />
+
+    <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+      {/* Text column */}
+      <div>
+        <Text
+          tag="h2"
+          variant="displayLG"
+          class="text-white text-balance font-display"
+        >
+          AI assists. I decide what ships.
+        </Text>
+
+        <div class="mt-6 space-y-4">
+          <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+            HobFarm exists to make creative work and put it where people can
+            find it, and to let the work pay for the next round of work. The
+            tools cost money; the shop, products, and memberships help cover
+            them. That is the business, said plainly and without a pitch.
+          </Text>
+          <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+            Underneath, HobFarm runs less like a single button and more like a
+            pipeline. I describe the outcome I want, and a series of specialized
+            steps handles it: one pulls a reference apart, one compiles the
+            pieces, one generates, one sorts and tags the result. My job is not
+            to do every task. It is to set the goal, run the process, and make
+            the final call.
+          </Text>
+          <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+            None of it generates from nowhere. Every job is anchored to the
+            Grimoire, HobFarm's own knowledge graph, so the work stays grounded
+            in a real, checkable vocabulary instead of drifting into whatever
+            the model felt like inventing. Ground truth lives in the database,
+            not the model's mood.
+          </Text>
+          <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+            Because AI is not magic, and it is not trustworthy on its own. It
+            gets details wrong, drifts off the plan, and will look you straight
+            in the eye and tell you your own notes are wrong when they are not.
+            It will rewrite the thing you asked it to leave alone. It messes
+            with your head.
+          </Text>
+          <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+            So I check everything and set it right. The AI proposes; I decide
+            what gets kept and what gets cut. That judgment is the whole job.
+          </Text>
+          <Text tag="p" variant="textBase" class="text-white font-medium italic">
+            Made with AI in some parts, by hand in others, and watched closely
+            either way.
+          </Text>
+        </div>
+      </div>
+
+      {/* Visual column: looping ambient video */}
+      <div class="relative rounded-xl border border-base-800 bg-base-900/50 overflow-hidden aspect-[2/3]">
+        <video
+          autoplay
+          muted
+          loop
+          playsinline
+          class="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src={transformVideoUrl(glowVideo, { width: 640 })} type="video/mp4" />
+        </video>
+        <div class="absolute inset-0 bg-gradient-to-t from-base-950/60 to-transparent pointer-events-none"></div>
+      </div>
+    </div>
+  </Wrapper>
+</section>

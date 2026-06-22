@@ -1,0 +1,42 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import GrimoireChat from "@/components/grimoire/GrimoireChat";
+---
+
+<section id="ask" class="border-t border-base-800/50 scroll-mt-24">
+  <Wrapper variant="standard" class="py-20 lg:py-24">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-start mb-10">
+      <div class="lg:col-span-1">
+        <Text tag="span" variant="textSM" class="text-accent-500 font-mono tracking-wider uppercase">
+          Public interface
+        </Text>
+        <Text tag="h2" variant="displayLG" class="mt-6 text-white text-balance font-display">
+          Ask the Grimoire.
+        </Text>
+      </div>
+      <div class="lg:col-span-2">
+        <Text tag="p" variant="textBase" class="text-base-400 leading-relaxed text-pretty">
+          A read-only window into the public side of the substrate. Ask about atoms,
+          correspondences, prompt compilation, identity lock, or how a particular pattern
+          is structured. When the underlying context is available, the answer surfaces it
+          alongside the response.
+        </Text>
+      </div>
+    </div>
+
+    <div class="glass border border-base-800 rounded-xl overflow-hidden min-h-[500px] lg:h-[600px]">
+      <GrimoireChat client:only="react">
+        <div slot="fallback" class="flex h-full min-h-[500px] items-center justify-center bg-base-950 px-6 text-center lg:min-h-[600px]">
+          <div>
+            <div class="mb-4 text-5xl opacity-60">&#x1F56F;</div>
+            <p class="text-xl text-base-200">Opening substrate channel...</p>
+            <p class="mx-auto mt-2 max-w-sm text-sm text-base-500">
+              Loading the public Grimoire interface.
+            </p>
+          </div>
+        </div>
+      </GrimoireChat>
+    </div>
+  </Wrapper>
+</section>

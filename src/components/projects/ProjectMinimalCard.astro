@@ -1,0 +1,44 @@
+---
+/**
+ * ProjectMinimalCard: Tier 3 compact text-only card.
+ * Visually subordinate. Muted styling. Under the Hood infrastructure entries.
+ */
+interface Props {
+  title: string;
+  oneLiner: string;
+  status: 'live' | 'active' | 'planned' | 'paused';
+  href: string;
+  liveUrl?: string;
+}
+
+const { title, oneLiner, status, href, liveUrl } = Astro.props;
+const linkTarget = liveUrl || href;
+
+const statusDot: Record<string, string> = {
+  live: 'bg-spot-green',
+  active: 'bg-spot-blue',
+  planned: 'bg-spot-purple',
+  paused: 'bg-base-500',
+};
+---
+
+<a
+  href={linkTarget}
+  class="group flex items-start gap-4 py-4 px-5 rounded-lg border border-base-800/50 bg-base-900/50 hover:border-base-700 hover:bg-base-900 transition-all duration-200"
+>
+  {/* Status dot */}
+  <span class:list={["w-2 h-2 rounded-full mt-1.5 shrink-0", statusDot[status] || 'bg-base-500']}></span>
+
+  <div class="flex-1 min-w-0">
+    <h4 class="text-sm font-medium text-base-300 group-hover:text-white transition-colors">
+      {title}
+    </h4>
+    <p class="text-xs text-base-500 leading-relaxed mt-0.5">
+      {oneLiner}
+    </p>
+  </div>
+
+  <svg class="w-4 h-4 text-base-600 group-hover:text-base-400 shrink-0 mt-0.5 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7" />
+  </svg>
+</a>

@@ -1,0 +1,88 @@
+---
+/**
+ * ProjectCard: Tier 2 medium card for shipped output.
+ * Fits in a 2 or 3-col grid. Optional thumbnail, type label, status badge.
+ */
+interface Props {
+  title: string;
+  subtitle: string;
+  description: string;
+  status: 'live' | 'active' | 'planned' | 'paused';
+  type?: string;
+  heroVideo?: string;
+  heroImage?: string;
+  href: string;
+  liveUrl?: string;
+}
+
+import StatusBadge from "@/components/ui/StatusBadge.astro";
+import { transformImageUrl } from "@/lib/media-transforms";
+
+const { title, description, status, type, heroVideo, heroImage, href, liveUrl } = Astro.props;
+const linkTarget = liveUrl || href;
+const transformedHeroImage = heroImage
+  ? transformImageUrl(heroImage, { width: 720, quality: 82, fit: "cover" })
+  : undefined;
+---
+
+<a
+  href={linkTarget}
+  class:list={[
+    "group flex flex-col overflow-hidden rounded-xl border border-base-700 bg-base-900 transition-all duration-300",
+    "hover:border-accent-500/50 hover:shadow-[0_0_30px_rgba(var(--color-accent-500-rgb,100,200,100),0.06)]",
+  ]}
+>
+  {/* Thumbnail */}
+  {(heroVideo || heroImage) && (
+    <div class="relative w-full aspect-video overflow-hidden bg-base-950">
+      {heroVideo ? (
+        <video
+          autoplay
+          muted
+          loop
+          playsinline
+          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        >
+          <source src={heroVideo} type="video/mp4" />
+        </video>
+      ) : heroImage ? (
+        <img
+          src={transformedHeroImage}
+          alt={title}
+          loading="lazy"
+          decoding="async"
+          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+      ) : null}
+      <div class="absolute inset-0 bg-gradient-to-t from-base-900/60 to-transparent"></div>
+    </div>
+  )}
+
+  {/* Content */}
+  <div class="flex flex-col flex-1 p-5 lg:p-6">
+    {/* Header row */}
+    <div class="flex items-center justify-between gap-2 mb-3">
+      <div class="flex items-center gap-2">
+        {type && (
+          <span class="text-xs font-mono text-base-500 uppercase tracking-wider">{type}</span>
+        )}
+      </div>
+      <StatusBadge status={status} />
+    </div>
+
+    <h3 class="text-lg font-medium text-white group-hover:text-accent-500 transition-colors duration-200 mb-2">
+      {title}
+    </h3>
+    <p class="text-base-400 text-sm leading-relaxed flex-1">
+      {description}
+    </p>
+
+    {/* Hover CTA */}
+    <div class="mt-4 inline-flex items-center gap-1.5 text-xs font-mono text-accent-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <span>{liveUrl ? 'Visit' : 'Details'}</span>
+      <svg class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      </svg>
+    </div>
+  </div>
+</a>

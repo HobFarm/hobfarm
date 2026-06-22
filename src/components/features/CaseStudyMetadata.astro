@@ -1,0 +1,196 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
+const palette = [
+  { hex: "#FF4500", label: "Flame Orange" },
+  { hex: "#FF00FF", label: "Magenta" },
+  { hex: "#2E0854", label: "Deep Violet" },
+  { hex: "#00AEEF", label: "Cyan" },
+  { hex: "#121212", label: "Void Black" },
+];
+
+const faceFeatures = [
+  { label: "Face", value: "Oval with a soft, rounded jawline" },
+  { label: "Eyes", value: "Hooded, deep-set, and almond-shaped" },
+  { label: "Brows", value: "Natural arch, medium thickness, soft taper" },
+  { label: "Nose", value: "Straight bridge with a slightly rounded, refined tip" },
+  { label: "Lips", value: "Balanced, soft heart-shaped with a subtle cupid's bow" },
+];
+
+const textures = [
+  "stippled dot-work",
+  "fine-line etching",
+  "coarse blazer wool",
+  "organic tentacle skin",
+];
+
+const accents = [
+  "halftone patterns",
+  "glowing radial lines",
+  "intricate fabric embroidery",
+];
+
+const negatives = [
+  "blue eyes",
+  "smooth airbrushed skin",
+  "blonde hair",
+  "sharp angular jawline",
+  "thick heavy eyebrows",
+];
+---
+
+<Wrapper variant="standard" class="pb-24">
+  <div class="mb-8">
+    <Text tag="span" variant="textSM" class="text-accent-500 font-mono">
+      What StyleFusion extracts
+    </Text>
+    <Text
+      tag="p"
+      variant="textBase"
+      class="text-base-400 mt-2 max-w-2xl"
+    >
+      One image in, structured character DNA out. Every card below was
+      generated automatically from a single source image.
+    </Text>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+    <!-- Card 1: Meta & Intent -->
+    <div class="sf-card rounded-lg border border-base-700 bg-base-900 p-5">
+      <h3 class="sf-card-title text-xs font-mono font-semibold tracking-wider mb-4">
+        META & INTENT
+      </h3>
+      <dl class="space-y-3 text-sm">
+        <div>
+          <dt class="text-base-500 text-xs uppercase tracking-wide">Intent</dt>
+          <dd class="text-base-200 mt-0.5">Eldritch Psychedelic Portrait</dd>
+        </div>
+        <div>
+          <dt class="text-base-500 text-xs uppercase tracking-wide">Archetype</dt>
+          <dd class="text-base-200 mt-0.5">Eldritch Bureaucrat</dd>
+        </div>
+        <div>
+          <dt class="text-base-500 text-xs uppercase tracking-wide">Quality</dt>
+          <dd class="text-base-400 mt-0.5 text-xs leading-relaxed">
+            Highly detailed illustrative synthesis, stippled texture, sharp fine-line work
+          </dd>
+        </div>
+        <div>
+          <dt class="text-base-500 text-xs uppercase tracking-wide">Aspect Ratio</dt>
+          <dd class="text-base-200 mt-0.5 font-mono">2:3</dd>
+        </div>
+      </dl>
+    </div>
+
+    <!-- Card 2: Palette & Mood -->
+    <div class="sf-card rounded-lg border border-base-700 bg-base-900 p-5">
+      <h3 class="sf-card-title text-xs font-mono font-semibold tracking-wider mb-4">
+        PALETTE & MOOD
+      </h3>
+      <div class="space-y-4">
+        <div>
+          <dt class="text-base-500 text-xs uppercase tracking-wide">Mood</dt>
+          <dd class="text-base-200 mt-1 text-sm">Neon-Gothic Psychedelia</dd>
+        </div>
+        <div>
+          <dt class="text-base-500 text-xs uppercase tracking-wide mb-2">Identity Colors</dt>
+          <dd class="flex items-center gap-3 mt-1">
+            {palette.map((c) => (
+              <div class="group relative">
+                <div
+                  class="w-7 h-7 rounded-full border border-white/10 shadow-sm"
+                  style={`background-color: ${c.hex};`}
+                  title={`${c.label} (${c.hex})`}
+                />
+                <span class="absolute -bottom-5 left-1/2 -translate-x-1/2 text-[10px] font-mono text-base-500 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                  {c.hex}
+                </span>
+              </div>
+            ))}
+          </dd>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3: Face Geometry -->
+    <div class="sf-card rounded-lg border border-base-700 bg-base-900 p-5">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="sf-card-title text-xs font-mono font-semibold tracking-wider">
+          FACE GEOMETRY
+        </h3>
+        <span class="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-accent-500/15 text-accent-500 border border-accent-500/30">
+          85% confidence
+        </span>
+      </div>
+      <dl class="space-y-2 text-sm">
+        {faceFeatures.map((f) => (
+          <div class="flex gap-2">
+            <dt class="text-base-500 text-xs uppercase tracking-wide w-12 shrink-0 pt-0.5">{f.label}</dt>
+            <dd class="text-base-400 text-xs leading-relaxed">{f.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+
+    <!-- Card 4: Details & Textures -->
+    <div class="sf-card rounded-lg border border-base-700 bg-base-900 p-5">
+      <h3 class="sf-card-title text-xs font-mono font-semibold tracking-wider mb-4">
+        DETAILS & TEXTURES
+      </h3>
+      <div class="space-y-3">
+        <div>
+          <span class="text-base-500 text-xs uppercase tracking-wide">Textures</span>
+          <div class="flex flex-wrap gap-1.5 mt-1.5">
+            {textures.map((t) => (
+              <span class="sf-pill text-[11px] px-2.5 py-1 rounded-full border border-base-600 text-base-300">
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
+        <div>
+          <span class="text-base-500 text-xs uppercase tracking-wide">Accents</span>
+          <div class="flex flex-wrap gap-1.5 mt-1.5">
+            {accents.map((a) => (
+              <span class="sf-pill text-[11px] px-2.5 py-1 rounded-full border border-accent-500/30 text-accent-300">
+                {a}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5: Identity Negatives -->
+    <div class="sf-card rounded-lg border border-base-700 bg-base-900 p-5 md:col-span-2 lg:col-span-2">
+      <h3 class="sf-card-title text-xs font-mono font-semibold tracking-wider mb-3">
+        IDENTITY NEGATIVES
+        <span class="text-base-500 font-normal ml-1">(avoid)</span>
+      </h3>
+      <p class="text-base-500 text-xs mb-3">
+        Traits that would break character consistency. Automatically added to negative prompts.
+      </p>
+      <div class="flex flex-wrap gap-1.5">
+        {negatives.map((n) => (
+          <span class="sf-pill-negative text-[11px] px-2.5 py-1 rounded-full border text-red-400/80 border-red-500/25 bg-red-500/5">
+            {n}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+</Wrapper>
+
+<style>
+  .sf-card-title {
+    color: var(--color-accent-500);
+  }
+  .sf-card {
+    transition: border-color 0.3s ease;
+  }
+  .sf-card:hover {
+    border-color: var(--color-base-600);
+  }
+</style>

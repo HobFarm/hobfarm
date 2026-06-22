@@ -1,0 +1,477 @@
+=== StyleFusion Complete Export ===
+Generated: 3/12/2026, 7:27:15 PM
+IR Version: 4.0
+Extraction Model: gemini-3.1-flash-lite-preview
+
+--- STYLE ANCHORS ---
+psychedelic art, visionary art, art nouveau, surrealism, trippy aesthetic
+
+--- GENERATIVE DESCRIPTION ---
+[Subject] This surreal, multi-armed elephant-headed deity dominates the frame with its skeletal ribcage and intricately cross-hatched grey skin. It strikes a dynamic, dancing pose against a vibrant yellow and green geometric mandala, holding a small tree-like object in one hand. A small owl hovers nearby, while the entire figure is framed by ancient-looking glyphs. The subject exudes a sense of ancient, cosmic wisdom, blending organic elephant features with stark, bony anatomy in a highly detailed, mystical composition.
+
+[Style] psychedelic art, visionary art, art nouveau, surrealism, trippy aesthetic
+
+[Scene] The environment is an abstract, fluid dreamscape where a radiant yellow circle and green geometric grid float against a backdrop of glowing light. Below, a mosaic of colorful, glyph-covered tiles creates a textured foundation, while ornate circular emblems hover in the midground, suspended within an infinite, shifting space.
+
+[Camera] A full body, centered shot at eye level emphasizes the intricate, symmetrical patterns and the expansive, psychedelic nature of the composition.
+
+[Lighting] A pervasive, stylized glow radiates from the circular yellow background, backlighting the central figure. This light creates sharp, high-contrast silhouettes and highlights the intricate, day-glo color palette across the composition's complex surfaces.
+
+[Color] The palette features a vibrant yellow (#FDE047) background contrasting with a muted grey (#736363) subject. Saturated blue (#3B82F6) and red (#EF4444) accents create a high-contrast, psychedelic atmosphere that feels both mystical and intense.
+
+[Texture] Intricate cross-hatched ink linework, stippled shading gradients, smooth airbrushed color transitions, flat opaque color fills, and dense hand-drawn pen hatching define the overall visual aesthetic.
+
+[Avoid] Avoid photorealistic rendering, flat studio lighting, muddy desaturated tones, cartoonish proportions, heavy impasto brushwork, visible canvas weave, incoherent text artifacts, over-sharpened edges, singular directional spotlights, and uncanny valley skin textures.
+
+--- IMAGE GENERATION JSON ---
+{
+  "subject": {
+    "form": "Large elephant-headed humanoid figure with a skeletal torso and ribcage, grey wrinkled skin texture, muscular elephantine head, and slender, bony limbs.",
+    "surface": "wrinkled skin, bony skeletal surface, matte ink drawing, muted grey elephant skin",
+    "coloring": "Base muted grey elephant skin (#736363), vibrant red forehead symbol (#B91C1C), accent bright yellow sun background (#FDE047)",
+    "features": [
+      "Deep-set green eye on the right side of the face, heavy brow ridges, large elephant ears, trunk curled downward, and a prominent orange-red symbol on the forehead.",
+      "skeletal ribcage",
+      "orange forehead symbol",
+      "multi-armed posture"
+    ],
+    "covering": "None visible",
+    "position": "Dynamic, multi-armed stance with one arm raised holding a tree-like object, another arm extended outward, and skeletal legs positioned in a wide, dancing posture.",
+    "held_objects": "tree-like organic structure, right hand",
+    "expression_intent": "A sense of ancient, cosmic wisdom and serene detachment, as if the figure is observing the flow of time and existence."
+  },
+  "scene": {
+    "setting": "The environment is an abstract, fluid dreamscape where a radiant yellow circle and green geometric grid float against a backdrop of glowing light. Below, a mosaic of colorful, glyph-covered tiles creates a textured foundation, while ornate circular emblems hover in the midground, suspended within an infinite, shifting space.",
+    "elements": [
+      "parchment-like paper texture, matte, overall background",
+      "organic skin texture, wrinkled and folded, elephant head",
+      "bony skeletal structure, matte, lower body",
+      "smooth ceramic-like glyph blocks, matte, bottom and top borders",
+      "glowing yellow circle, center background",
+      "ornate circular emblem, center-left midground"
+    ],
+    "atmosphere": "vibrating color fields, subtle shimmering effect, visual texture"
+  },
+  "camera": {
+    "shot": "full body, eye level, centered",
+    "lens": "wide-angle, deep depth of field, no visible bokeh"
+  },
+  "lighting": {
+    "key": "A pervasive, stylized glow radiates from the circular yellow background, backlighting the central figure. This light creates sharp, high-contrast silhouettes and highlights the intricate, day-glo color palette across the composition's complex surfaces.",
+    "fill": "Minimal fill, with deep, high-contrast shadows defining the anatomy of the skeletal structure and the folds of the elephant's skin, suggesting a lack of secondary ambient light sources.",
+    "effects": [
+      "radiant glow from the circular yellow background",
+      "glowing light rays emanating from the top border of glyphs"
+    ]
+  },
+  "style": {
+    "medium": "digital painting mimicking traditional airbrush and ink techniques",
+    "quality": "high-contrast saturated color gradients, intricate fine-line detailing, smooth blending, luminous highlights, and complex symmetrical composition",
+    "color_map": {
+      "upper_eyes_yellow": {
+        "hex": "#F4E34A",
+        "finish": "emissive glow"
+      },
+      "foliage_green": {
+        "hex": "#3D7A32",
+        "finish": "matte diffuse"
+      },
+      "serpent_blue": {
+        "hex": "#2B5A8C",
+        "finish": "iridescent sheen"
+      },
+      "central_figure_orange": {
+        "hex": "#F58220",
+        "finish": "translucent bloom"
+      },
+      "hand_skin_tone": {
+        "hex": "#8B5A2B",
+        "finish": "matte diffuse"
+      },
+      "background_sky": {
+        "hex": "#87CEEB",
+        "finish": "matte diffuse"
+      },
+      "eye_color": {
+        "hex": "#F4E34A",
+        "finish": "deep-set green iris with natural depth and specular highlights"
+      }
+    },
+    "textures": [
+      "smooth airbrush gradients",
+      "fine, dense cross-hatching linework",
+      "blended oil-like paint transitions",
+      "soft, luminous color layering"
+    ],
+    "style_anchors": [
+      "psychedelic art",
+      "visionary art",
+      "art nouveau",
+      "surrealism",
+      "trippy aesthetic"
+    ],
+    "light_interaction": "upper eyes yellow glow casts warm highlights onto adjacent surfaces. radiant glow from the circular yellow background produces localized color spill on nearby skin and fabric. glowing light rays emanating from the top border of glyphs produces localized color spill on nearby skin and fabric"
+  },
+  "negative": "Avoid photorealistic rendering, flat studio lighting, muddy desaturated tones, cartoonish proportions, heavy impasto brushwork, visible canvas weave, incoherent text artifacts, over-sharpened edges, singular directional spotlights, and uncanny valley skin textures.",
+  "aspect_ratio": "3:4",
+  "arrangement": "art-nouveau",
+  "arrangement_matched": 1.2939878005064451,
+  "palette_modifier": 0.134
+}
+
+--- INTERMEDIATE REPRESENTATION ---
+{
+  "version": "4.0",
+  "id": "JVZfN3F_wple",
+  "style_anchors": [
+    "psychedelic art",
+    "visionary art",
+    "art nouveau",
+    "surrealism",
+    "trippy aesthetic"
+  ],
+  "subjects": [
+    {
+      "role": "primary",
+      "subject_type": "figurative",
+      "figure": "Large elephant-headed humanoid figure with a skeletal torso and ribcage, grey wrinkled skin texture, muscular elephantine head, and slender, bony limbs.",
+      "face": "Deep-set green eye on the right side of the face, heavy brow ridges, large elephant ears, trunk curled downward, and a prominent orange-red symbol on the forehead.",
+      "hair": "",
+      "pose": "Dynamic, multi-armed stance with one arm raised holding a tree-like object, another arm extended outward, and skeletal legs positioned in a wide, dancing posture.",
+      "attire": [],
+      "held_objects": [
+        "tree-like organic structure, right hand"
+      ],
+      "proximal_objects": [
+        "small owl, hovering near the left arm",
+        "geometric star-shaped mandala background"
+      ],
+      "description": "The primary subject is a surreal, multi-armed elephant-headed deity with a skeletal ribcage and torso. Its skin is rendered with heavy, detailed cross-hatching to emphasize deep wrinkles and anatomical structure. The figure is positioned centrally against a vibrant yellow and green star-patterned background, surrounded by various symbolic glyphs and icons. The composition blends organic elephant features with skeletal human anatomy, creating a complex, mystical aesthetic.",
+      "expression_intent": "A sense of ancient, cosmic wisdom and serene detachment, as if the figure is observing the flow of time and existence.",
+      "identity": {
+        "primary_color": {
+          "is": {
+            "description": "muted grey elephant skin",
+            "hex": "#736363"
+          },
+          "not": [
+            "adjacent hue drift",
+            "generic default",
+            "enhancement drift"
+          ]
+        },
+        "secondary_color": {
+          "is": {
+            "description": "vibrant red forehead symbol",
+            "hex": "#B91C1C"
+          },
+          "not": [
+            "red",
+            "green",
+            "purple"
+          ]
+        },
+        "accent_color": {
+          "is": {
+            "description": "bright yellow sun background",
+            "hex": "#FDE047"
+          },
+          "not": [
+            "pink",
+            "brown",
+            "teal"
+          ]
+        },
+        "textures": [
+          "wrinkled skin",
+          "bony skeletal surface",
+          "matte ink drawing"
+        ],
+        "structure": "Asymmetrical, multi-limbed humanoid elephant hybrid",
+        "distinguishing_features": [
+          "skeletal ribcage",
+          "orange forehead symbol",
+          "multi-armed posture"
+        ],
+        "confidence": {
+          "figure": 0.95,
+          "face": 0.95,
+          "hair": 0,
+          "overall": 0.95
+        }
+      },
+      "_priority": 5
+    }
+  ],
+  "visual_dna": {
+    "figure": "Large elephant-headed humanoid figure with a skeletal torso and ribcage, grey wrinkled skin texture, muscular elephantine head, and slender, bony limbs.",
+    "face": "Deep-set green eye on the right side of the face, heavy brow ridges, large elephant ears, trunk curled downward, and a prominent orange-red symbol on the forehead.",
+    "hair": "",
+    "pose": "Dynamic, multi-armed stance with one arm raised holding a tree-like object, another arm extended outward, and skeletal legs positioned in a wide, dancing posture.",
+    "attire": [],
+    "held_objects": [
+      "tree-like organic structure, right hand"
+    ],
+    "proximal_objects": [
+      "small owl, hovering near the left arm",
+      "geometric star-shaped mandala background"
+    ],
+    "description": "The primary subject is a surreal, multi-armed elephant-headed deity with a skeletal ribcage and torso. Its skin is rendered with heavy, detailed cross-hatching to emphasize deep wrinkles and anatomical structure. The figure is positioned centrally against a vibrant yellow and green star-patterned background, surrounded by various symbolic glyphs and icons. The composition blends organic elephant features with skeletal human anatomy, creating a complex, mystical aesthetic.",
+    "expression_intent": "A sense of ancient, cosmic wisdom and serene detachment, as if the figure is observing the flow of time and existence.",
+    "identity": {
+      "primary_color": {
+        "is": {
+          "description": "muted grey elephant skin",
+          "hex": "#736363"
+        },
+        "not": [
+          "adjacent hue drift",
+          "generic default",
+          "enhancement drift"
+        ]
+      },
+      "secondary_color": {
+        "is": {
+          "description": "vibrant red forehead symbol",
+          "hex": "#B91C1C"
+        },
+        "not": [
+          "red",
+          "green",
+          "purple"
+        ]
+      },
+      "accent_color": {
+        "is": {
+          "description": "bright yellow sun background",
+          "hex": "#FDE047"
+        },
+        "not": [
+          "pink",
+          "brown",
+          "teal"
+        ]
+      },
+      "textures": [
+        "wrinkled skin",
+        "bony skeletal surface",
+        "matte ink drawing"
+      ],
+      "structure": "Asymmetrical, multi-limbed humanoid elephant hybrid",
+      "distinguishing_features": [
+        "skeletal ribcage",
+        "orange forehead symbol",
+        "multi-armed posture"
+      ],
+      "confidence": {
+        "figure": 0.95,
+        "face": 0.95,
+        "hair": 0,
+        "overall": 0.95
+      }
+    },
+    "_priority": 5
+  },
+  "environment": {
+    "setting": "An abstract, surreal dreamscape featuring a vibrant, multi-colored geometric background. The space is defined by a large, glowing yellow circle layered over a green triangular grid, surrounded by a mosaic of colorful, glyph-covered tiles and a radiant, light-filled sky.",
+    "surfaces": [
+      "parchment-like paper texture, matte, overall background",
+      "organic skin texture, wrinkled and folded, elephant head",
+      "bony skeletal structure, matte, lower body",
+      "smooth ceramic-like glyph blocks, matte, bottom and top borders"
+    ],
+    "props": [
+      "glyph-covered tiles, bottom-left background",
+      "glyph-covered tiles, bottom-right background",
+      "glowing yellow circle, center background",
+      "green triangular grid, center background",
+      "ornate circular emblem, center-left midground",
+      "ornate circular emblem, center-right midground",
+      "small flying creature, center-right midground"
+    ],
+    "atmosphere": [
+      "vibrating color fields",
+      "subtle shimmering effect",
+      "visual texture"
+    ],
+    "_priority": 3
+  },
+  "camera": {
+    "shot": "full body, eye level, centered",
+    "lens": "wide-angle, deep depth of field, no visible bokeh",
+    "focus": "entire image is in sharp focus, uniform depth plane",
+    "_priority": 3
+  },
+  "lighting": {
+    "key": "The primary light source is a stylized, pervasive, and diffuse glow emanating from behind the central figure, radiating outward from the circular yellow background. It creates a high-contrast, backlit effect that emphasizes the silhouette of the elephant-skeleton hybrid.",
+    "fill": "Minimal fill, with deep, high-contrast shadows defining the anatomy of the skeletal structure and the folds of the elephant's skin, suggesting a lack of secondary ambient light sources.",
+    "practical": [
+      "radiant glow from the circular yellow background",
+      "glowing light rays emanating from the top border of glyphs"
+    ],
+    "_priority": 3
+  },
+  "palette": {
+    "color_map": {
+      "upper_eyes_yellow": {
+        "hex": "#F4E34A",
+        "finish": "emissive glow"
+      },
+      "foliage_green": {
+        "hex": "#3D7A32",
+        "finish": "matte diffuse"
+      },
+      "serpent_blue": {
+        "hex": "#2B5A8C",
+        "finish": "iridescent sheen"
+      },
+      "central_figure_orange": {
+        "hex": "#F58220",
+        "finish": "translucent bloom"
+      },
+      "hand_skin_tone": {
+        "hex": "#8B5A2B",
+        "finish": "matte diffuse"
+      },
+      "background_sky": {
+        "hex": "#87CEEB",
+        "finish": "matte diffuse"
+      }
+    },
+    "colors": [
+      "lime green",
+      "electric blue",
+      "vibrant orange",
+      "deep forest green",
+      "sunny yellow"
+    ],
+    "hex": [
+      "#3D7A32",
+      "#2B5A8C",
+      "#F58220",
+      "#1A3D1A",
+      "#F4E34A"
+    ],
+    "contrast": "high contrast vibrant split-complementary",
+    "mood": "psychedelic transcendental intensity",
+    "_priority": 3
+  },
+  "rendering": {
+    "medium": "digital painting mimicking traditional airbrush and ink techniques",
+    "detail": "high-contrast saturated color gradients, intricate fine-line detailing, smooth blending, luminous highlights, and complex symmetrical composition",
+    "_priority": 4
+  },
+  "details": {
+    "textures": [
+      "smooth airbrush gradients",
+      "fine, dense cross-hatching linework",
+      "blended oil-like paint transitions",
+      "soft, luminous color layering"
+    ],
+    "accents": [
+      "glowing light aura around central figure",
+      "specular highlights on serpent eyes",
+      "iridescent sheen on central insectoid form",
+      "rim lighting bloom on hands",
+      "glistening moisture-like highlights on organic forms"
+    ]
+  },
+  "negative": [
+    "photorealistic rendering",
+    "3D-modeled plastic sheen",
+    "vector-based flat graphic design",
+    "oil painting impasto",
+    "low-resolution pixel art",
+    "neon-heavy color bleeding",
+    "desaturated grayscale",
+    "washed-out pastel tones",
+    "inconsistent color temperature",
+    "harsh directional studio spotlighting",
+    "flat, shadowless illumination",
+    "lens flare artifacts",
+    "unnatural global illumination",
+    "overexposed white highlights",
+    "photographic skin textures",
+    "blurred facial features",
+    "photographic grain",
+    "over-smoothed skin surfaces",
+    "unintentional noise patterns",
+    "JPEG compression artifacts",
+    "gradient banding",
+    "watermark-like noise",
+    "asymmetrical composition errors",
+    "hallucinated text characters",
+    "photorealistic render artifacts",
+    "vector-style flat shading",
+    "low-resolution pixelation",
+    "muddy desaturated grays",
+    "monochromatic color washing",
+    "harsh black-and-white contrast",
+    "clashing neon color noise",
+    "harsh directional studio shadows",
+    "unnatural lens flares",
+    "flat uniform brightness",
+    "distorted facial symmetry",
+    "incoherent limb connections",
+    "heavy impasto brushstrokes",
+    "coarse canvas grain",
+    "digital noise patterns",
+    "blurred pixel smearing",
+    "watermark artifacts",
+    "text rendering errors",
+    "JPEG compression banding",
+    "gradient posterization"
+  ],
+  "blend": {
+    "sources": [
+      {
+        "reference_type": "subject",
+        "weight": 1,
+        "notes": "subject reference"
+      },
+      {
+        "reference_type": "style",
+        "weight": 1,
+        "notes": "style reference"
+      }
+    ],
+    "blend_notes": "Deterministic merge from 2 references",
+    "generative_description": "The primary subject is a surreal, multi-armed elephant-headed deity with a skeletal ribcage and torso. Its skin is rendered with heavy, detailed cross-hatching to emphasize deep wrinkles and anatomical structure. The figure is positioned centrally against a vibrant yellow and green star-patterned background, surrounded by various symbolic glyphs and icons. The composition blends organic elephant features with skeletal human anatomy, creating a complex, mystical aesthetic.. Set in An abstract, surreal dreamscape featuring a vibrant, multi-colored geometric background. The space is defined by a large, glowing yellow circle layered over a green triangular grid, surrounded by a mosaic of colorful, glyph-covered tiles and a radiant, light-filled sky.. Rendered as digital painting mimicking traditional airbrush and ink techniques. Lit by The primary light source is a stylized, pervasive, and diffuse glow emanating from behind the central figure, radiating outward from the circular yellow background. It creates a high-contrast, backlit effect that emphasizes the silhouette of the elephant-skeleton hybrid."
+  },
+  "character_dna": {
+    "name": "unnamed",
+    "anchors": [],
+    "flex": [
+      "elephant-headed",
+      "skeletal-torso",
+      "multi-armed",
+      "luminous",
+      "meditative",
+      "centralized",
+      "surreal",
+      "mystical",
+      "anatomical",
+      "ethereal",
+      "psychedelic",
+      "radiant"
+    ]
+  },
+  "meta": {
+    "created": "2026-03-13T02:20:23.340Z",
+    "extraction_model": "gemini-3.1-flash-lite-preview",
+    "notes": "v4.0 normalized",
+    "aspect_ratio": "3:4"
+  },
+  "compiled_slots": {
+    "subject": "This surreal, multi-armed elephant-headed deity dominates the frame with its skeletal ribcage and intricately cross-hatched grey skin. It strikes a dynamic, dancing pose against a vibrant yellow and green geometric mandala, holding a small tree-like object in one hand. A small owl hovers nearby, while the entire figure is framed by ancient-looking glyphs. The subject exudes a sense of ancient, cosmic wisdom, blending organic elephant features with stark, bony anatomy in a highly detailed, mystical composition.",
+    "render": "Digital painting utilizing smooth airbrushed gradients, intricate fine-line ink detailing, and vibrant, saturated color transitions to create a luminous, psychedelic visual effect.",
+    "style": "psychedelic art, visionary art, art nouveau, surrealism, trippy aesthetic",
+    "render_mode": "painterly",
+    "scene": "The environment is an abstract, fluid dreamscape where a radiant yellow circle and green geometric grid float against a backdrop of glowing light. Below, a mosaic of colorful, glyph-covered tiles creates a textured foundation, while ornate circular emblems hover in the midground, suspended within an infinite, shifting space.",
+    "camera": "A full body, centered shot at eye level emphasizes the intricate, symmetrical patterns and the expansive, psychedelic nature of the composition.",
+    "color": "The palette features a vibrant yellow (#FDE047) background contrasting with a muted grey (#736363) subject. Saturated blue (#3B82F6) and red (#EF4444) accents create a high-contrast, psychedelic atmosphere that feels both mystical and intense.",
+    "light": "A pervasive, stylized glow radiates from the circular yellow background, backlighting the central figure. This light creates sharp, high-contrast silhouettes and highlights the intricate, day-glo color palette across the composition's complex surfaces.",
+    "texture": "Intricate cross-hatched ink linework, stippled shading gradients, smooth airbrushed color transitions, flat opaque color fills, and dense hand-drawn pen hatching define the overall visual aesthetic.",
+    "negative": "Avoid photorealistic rendering, flat studio lighting, muddy desaturated tones, cartoonish proportions, heavy impasto brushwork, visible canvas weave, incoherent text artifacts, over-sharpened edges, singular directional spotlights, and uncanny valley skin textures."
+  }
+}

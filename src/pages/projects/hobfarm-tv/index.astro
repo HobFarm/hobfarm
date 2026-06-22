@@ -1,0 +1,118 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import StatusBadge from "@/components/ui/StatusBadge.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Eyebrow from "@/components/sections/Eyebrow.astro";
+import { getCollection } from "astro:content";
+
+// Shows live as nested project entries under projects/hobfarm-tv/. Querying the
+// collection keeps this hub in sync: any new show file added to the folder
+// appears here automatically, ordered by its `order` frontmatter.
+const shows = (await getCollection("projects"))
+  .filter((p) => p.id.startsWith("hobfarm-tv/"))
+  .sort((a, b) => a.data.order - b.data.order);
+
+type ContentImageMetadata = {
+  src: string;
+  width: number;
+  height: number;
+  format: "svg" | "png" | "jpg" | "jpeg" | "tiff" | "webp" | "gif" | "avif";
+};
+---
+
+<BaseLayout
+  title="HobFarm TV | HobFarm"
+  description="HobFarm TV is the picture-show channel: cult-film archaeology, cultural analysis, and build logs. Home of 3 Degrees of Dick Miller and Magazine Time Machine."
+>
+  <section class="bg-noise">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-24">
+
+        {/* ── Header ── */}
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
+          <div class="max-w-2xl">
+            <Eyebrow text="HobFarm TV / Channel" />
+            <Text tag="h1" variant="display2XL" class="mt-6 text-white text-balance font-display">
+              HobFarm TV
+            </Text>
+            <Text tag="p" variant="textLG" class="text-base-400 mt-6 text-pretty leading-relaxed">
+              The picture-show channel. Part cult-film archaeology, part cultural analysis, part build log: a slate of shows built on the HobFarm workshop and its AI tooling. Early days. Subscribe to catch it from the start.
+            </Text>
+          </div>
+          <div class="flex flex-wrap gap-3 shrink-0">
+            <Button isLink size="base" variant="default" href="https://www.youtube.com/@HobFarm" target="_blank" rel="noopener noreferrer">
+              Subscribe on YouTube
+            </Button>
+          </div>
+        </div>
+
+        {/* ── Hero ── */}
+        <div class="relative w-full aspect-video rounded-2xl overflow-hidden border border-base-800 mb-16 bg-base-900 isolate">
+          <div class="absolute inset-0 bg-linear-to-b from-transparent to-base-950/80 mix-blend-multiply z-10"></div>
+          <video autoplay muted loop playsinline preload="metadata" class="w-full h-full object-cover rounded-2xl">
+            <source src="https://cdn.hob.farm/pages/home/hero-bg-video.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        {/* ── Shows ── */}
+        <Text tag="h2" variant="displayLG" class="text-white font-display mb-8">The Shows</Text>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {shows.map((show) => {
+            const href = `/projects/${show.id.replace(/\.md$/, "")}/`;
+            return (
+              <a
+                href={href}
+                class="flex flex-col p-6 lg:p-8 rounded-xl border border-base-800 bg-base-900/50 hover:border-accent-500/40 transition-colors duration-300 group"
+              >
+                <div class="flex items-start gap-4 mb-4">
+                  {show.data.logo && (
+                    <div class="w-14 h-14 rounded-xl bg-base-900 border border-base-800 flex items-center justify-center p-2 shrink-0">
+                      {show.data.logo.url.src.endsWith(".svg") ? (
+                        <img
+                          src={show.data.logo.url.src}
+                          alt={show.data.logo.alt}
+                          width={56}
+                          height={56}
+                          class="w-full h-full object-contain"
+                        />
+                      ) : (
+                        <Image
+                          src={show.data.logo.url as ContentImageMetadata}
+                          alt={show.data.logo.alt}
+                          width={56}
+                          height={56}
+                          format="webp"
+                          quality={82}
+                          class="w-full h-full object-contain"
+                        />
+                      )}
+                    </div>
+                  )}
+                  <div class="flex-1 min-w-0">
+                    <div class="mb-1.5">
+                      <StatusBadge status={show.data.status} />
+                    </div>
+                    <Text tag="h3" variant="textXL" class="text-white font-medium group-hover:text-white">
+                      {show.data.title}
+                    </Text>
+                  </div>
+                </div>
+                <Text tag="p" variant="textBase" class="text-base-400 leading-relaxed flex-1">
+                  {show.data.subtitle}
+                </Text>
+                <span class="mt-6 text-sm font-mono uppercase tracking-wider text-accent-violet-bright">
+                  View show &rarr;
+                </span>
+              </a>
+            );
+          })}
+        </div>
+
+      </Wrapper>
+    </ContentPanel>
+  </section>
+</BaseLayout>

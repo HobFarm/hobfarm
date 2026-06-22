@@ -1,0 +1,465 @@
+---
+/**
+ * FFEPipeline.astro
+ * Interactive Fusion Engine pipeline diagram.
+ * Atomic Noir design tokens, IBM Plex fonts, cyan accent scale.
+ * Drop into any page: <FFEPipeline />
+ */
+
+interface Phase {
+  num: string;
+  name: string;
+  desc: string;
+}
+
+const phases: Phase[] = [
+  {
+    num: "01",
+    name: "Ingest",
+    desc: "Accept raw input, normalize into a typed payload. This phase receives and structures; it does not interpret. Text, images, API responses, and user selections all enter as structured data with declared types.",
+  },
+  {
+    num: "02",
+    name: "Index",
+    desc: "Make ingested data searchable and navigable. Simple tasks skip this entirely. Complex tasks chunk documents, extract metadata, and build search indices. Output is a ContextHandle: a query interface, not a data blob.",
+  },
+  {
+    num: "03",
+    name: "Mediate",
+    desc: "Give the model a query interface to the data: search, read, compare, list. The model decides what it needs. Also selects the AI provider based on task characteristics. Fast models for extraction, frontier models for reasoning.",
+  },
+  {
+    num: "04",
+    name: "Execute",
+    desc: "The model does its work. Can loop (re-enter with refined input), spawn (create sub-tasks running their own FFE pipeline), or recurse (scoped sub-contexts). Budget and depth controls enforce hard limits.",
+  },
+  {
+    num: "05",
+    name: "Validate",
+    desc: "Human-in-the-loop checkpoint. Simple tasks get automated schema checks. Compound tasks require human review before delivery. Can reject and send back to Execute with feedback.",
+  },
+  {
+    num: "06",
+    name: "Deliver",
+    desc: "Format and deliver final output. Terminal phase, never recurses. Also feeds novel discoveries back upstream: new vocabulary to the knowledge graph, content to platforms, conversations to persistence.",
+  },
+];
+---
+
+<section class="ffe-pipeline" id="ffe-pipeline" aria-label="Fractal Fusion Engine pipeline">
+  <div class="ffe-track">
+    {phases.map((phase, i) => (
+      <>
+        <button
+          class="ffe-phase"
+          data-idx={i}
+          aria-expanded="false"
+          aria-controls="ffe-desc"
+        >
+          <span class="ffe-phase-num">{phase.num}</span>
+          <span class="ffe-phase-name">{phase.name}</span>
+          <div class="ffe-phase-glow" aria-hidden="true" />
+        </button>
+        {i < phases.length - 1 && (
+          <div class="ffe-connector" aria-hidden="true">
+            <svg viewBox="0 0 20 16" fill="none">
+              <path
+                d="M2 8h16M14 3l4 5-4 5"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+        )}
+      </>
+    ))}
+    <div class="ffe-pulse" id="ffe-pulse" aria-hidden="true" />
+  </div>
+
+  <!-- Feedback loop -->
+  <div class="ffe-feedback" aria-hidden="true">
+    <svg
+      width="100%"
+      height="32"
+      viewBox="0 0 100 32"
+      preserveAspectRatio="none"
+    >
+      <path
+        d="M85 4 C 92 28, 8 28, 15 4"
+        fill="none"
+        stroke="var(--ffe-border)"
+        stroke-width="0.5"
+        stroke-dasharray="4 3"
+        vector-effect="non-scaling-stroke"
+      />
+      <path
+        d="M15.5 8 L15 2 L14.5 8"
+        fill="none"
+        stroke="var(--ffe-border)"
+        stroke-width="0.5"
+        vector-effect="non-scaling-stroke"
+      />
+    </svg>
+    <span class="ffe-feedback-label">reject / recurse</span>
+  </div>
+
+  <!-- Description panel -->
+  <div class="ffe-desc" id="ffe-desc" role="region" aria-live="polite">
+    <p class="ffe-desc-title" id="ffe-desc-title">Fusion Engine</p>
+    <p class="ffe-desc-text" id="ffe-desc-text">
+      The same six-phase structure repeats at every scale. A simple lookup and a
+      100-document synthesis follow the same shape. The difference is depth, not
+      structure.
+    </p>
+  </div>
+</section>
+
+<style>
+  /* Psychedelic-goth tokens scoped to this component */
+  .ffe-pipeline {
+    --ffe-bg: #0e0b16;
+    --ffe-surface: #07060b;
+    --ffe-border: #221a33;
+    --ffe-text: #ece9f5;
+    --ffe-text-secondary: #9b96ad;
+    --ffe-text-muted: #6b6580;
+    --ffe-accent: #19e3e3; /* hf-cyan */
+    --ffe-accent-dim: rgba(25, 227, 227, 0.12);
+    --ffe-accent-glow: rgba(25, 227, 227, 0.25);
+    --ffe-mono: "IBM Plex Mono", ui-monospace, monospace;
+    --ffe-sans: "IBM Plex Sans", system-ui, sans-serif;
+
+    font-family: var(--ffe-sans);
+    padding: 2rem 0;
+    position: relative;
+  }
+
+  /* Phase track (horizontal flow) */
+  .ffe-track {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    justify-content: center;
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* Individual phase button */
+  .ffe-phase {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    cursor: pointer;
+    background: var(--ffe-bg);
+    border: 1px solid var(--ffe-border);
+    border-radius: 8px;
+    padding: 14px 8px 12px;
+    text-align: center;
+    transition: border-color 0.3s, background 0.3s, transform 0.2s;
+    overflow: hidden;
+    outline: none;
+  }
+  .ffe-phase:hover,
+  .ffe-phase[aria-expanded="true"] {
+    border-color: var(--ffe-accent);
+    background: var(--ffe-accent-dim);
+    transform: translateY(-2px);
+  }
+  .ffe-phase:focus-visible {
+    box-shadow: 0 0 0 2px var(--ffe-accent);
+  }
+
+  /* Phase glow layer (bottom edge accent) */
+  .ffe-phase-glow {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--ffe-accent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .ffe-phase:hover .ffe-phase-glow,
+  .ffe-phase[aria-expanded="true"] .ffe-phase-glow {
+    opacity: 1;
+  }
+
+  .ffe-phase-num {
+    display: block;
+    font-family: var(--ffe-mono);
+    font-size: 11px;
+    color: var(--ffe-text-muted);
+    margin-bottom: 4px;
+    transition: color 0.3s;
+  }
+  .ffe-phase:hover .ffe-phase-num,
+  .ffe-phase[aria-expanded="true"] .ffe-phase-num {
+    color: var(--ffe-accent);
+  }
+
+  .ffe-phase-name {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ffe-text);
+    transition: color 0.3s;
+    letter-spacing: 0.01em;
+  }
+  .ffe-phase:hover .ffe-phase-name,
+  .ffe-phase[aria-expanded="true"] .ffe-phase-name {
+    color: var(--ffe-accent);
+  }
+
+  /* Connector arrows */
+  .ffe-connector {
+    width: 24px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ffe-border);
+  }
+  .ffe-connector svg {
+    width: 18px;
+    height: 14px;
+  }
+
+  /* Animated pulse dot */
+  .ffe-pulse {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--ffe-accent);
+    box-shadow: 0 0 12px var(--ffe-accent-glow);
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  /* Feedback loop arc */
+  .ffe-feedback {
+    position: relative;
+    max-width: 720px;
+    margin: 6px auto 0;
+    height: 32px;
+  }
+  .ffe-feedback svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .ffe-feedback-label {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--ffe-mono);
+    font-size: 11px;
+    color: var(--ffe-text-muted);
+    white-space: nowrap;
+  }
+
+  /* Description panel */
+  .ffe-desc {
+    max-width: 720px;
+    margin: 1.25rem auto 0;
+    min-height: 72px;
+    border-radius: 8px;
+    padding: 14px 18px;
+    background: var(--ffe-bg);
+    border: 1px solid var(--ffe-border);
+    transition: border-color 0.3s;
+  }
+  .ffe-desc-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ffe-accent);
+    margin: 0 0 6px;
+  }
+  .ffe-desc-text {
+    font-size: 14px;
+    color: var(--ffe-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Responsive: stack vertically on narrow screens */
+  @media (max-width: 560px) {
+    .ffe-track {
+      flex-direction: column;
+      gap: 4px;
+    }
+    .ffe-phase {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      text-align: left;
+    }
+    .ffe-phase-num {
+      margin-bottom: 0;
+    }
+    .ffe-connector {
+      width: auto;
+      height: 16px;
+      transform: rotate(90deg);
+    }
+    .ffe-feedback {
+      display: none;
+    }
+    .ffe-pulse {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const phases = [
+      {
+        name: "Ingest",
+        desc: "Accept raw input, normalize into a typed payload. This phase receives and structures; it does not interpret. Text, images, API responses, and user selections all enter as structured data with declared types.",
+      },
+      {
+        name: "Index",
+        desc: "Make ingested data searchable and navigable. Simple tasks skip this entirely. Complex tasks chunk documents, extract metadata, and build search indices. Output is a ContextHandle: a query interface, not a data blob.",
+      },
+      {
+        name: "Mediate",
+        desc: "Give the model a query interface to the data: search, read, compare, list. The model decides what it needs. Also selects the AI provider based on task characteristics. Fast models for extraction, frontier models for reasoning.",
+      },
+      {
+        name: "Execute",
+        desc: "The model does its work. Can loop (re-enter with refined input), spawn (create sub-tasks running their own FFE pipeline), or recurse (scoped sub-contexts). Budget and depth controls enforce hard limits.",
+      },
+      {
+        name: "Validate",
+        desc: "Human-in-the-loop checkpoint. Simple tasks get automated schema checks. Compound tasks require human review before delivery. Can reject and send back to Execute with feedback.",
+      },
+      {
+        name: "Deliver",
+        desc: "Format and deliver final output. Terminal phase, never recurses. Also feeds novel discoveries back upstream: new vocabulary to the knowledge graph, content to platforms, conversations to persistence.",
+      },
+    ];
+
+    const container = document.getElementById("ffe-pipeline");
+    if (!container) return;
+
+    const phaseEls = container.querySelectorAll<HTMLButtonElement>(".ffe-phase");
+    const descTitle = document.getElementById("ffe-desc-title");
+    const descText = document.getElementById("ffe-desc-text");
+    const pulse = document.getElementById("ffe-pulse");
+    const track = container.querySelector<HTMLElement>(".ffe-track");
+
+    let activeIdx = -1;
+    let pulseActive = true;
+    let pulseRaf: number | null = null;
+
+    function setDesc(title: string, text: string) {
+      if (descTitle) descTitle.textContent = title;
+      if (descText) descText.textContent = text;
+    }
+
+    function selectPhase(idx: number) {
+      if (activeIdx === idx) {
+        activeIdx = -1;
+        phaseEls.forEach((p) => p.setAttribute("aria-expanded", "false"));
+        setDesc(
+          "Fusion Engine",
+          "The same six-phase structure repeats at every scale. A simple lookup and a 100-document synthesis follow the same shape. The difference is depth, not structure."
+        );
+        pulseActive = true;
+        startPulse();
+        return;
+      }
+      activeIdx = idx;
+      phaseEls.forEach((p, i) =>
+        p.setAttribute("aria-expanded", String(i === idx))
+      );
+      setDesc(
+        `${String(idx + 1).padStart(2, "0")} ${phases[idx].name}`,
+        phases[idx].desc
+      );
+      stopPulse();
+    }
+
+    phaseEls.forEach((el, i) => {
+      el.addEventListener("click", () => selectPhase(i));
+    });
+
+    // Pulse animation
+    function startPulse() {
+      if (!pulse || !track || pulseRaf) return;
+      pulseActive = true;
+      const dur = 4000;
+      let start: number | null = null;
+
+      function step(ts: number) {
+        if (!pulseActive) {
+          if (pulse) pulse.style.opacity = "0";
+          pulseRaf = null;
+          return;
+        }
+        if (!start) start = ts;
+        const t = ((ts - start) % dur) / dur;
+        const trackRect = track!.getBoundingClientRect();
+        const boxes = [...phaseEls].map((p) => {
+          const r = p.getBoundingClientRect();
+          return {
+            left: r.left - trackRect.left,
+            right: r.right - trackRect.left,
+          };
+        });
+        const totalSpan = boxes[5].right - boxes[0].left;
+        const x = boxes[0].left + t * totalSpan;
+        pulse!.style.left = x + "px";
+
+        // Fade at edges
+        if (t > 0.95) pulse!.style.opacity = String((1 - t) * 20 * 0.7);
+        else if (t < 0.05) pulse!.style.opacity = String(t * 20 * 0.7);
+        else pulse!.style.opacity = "0.7";
+
+        // Highlight current phase during auto-play
+        if (activeIdx === -1) {
+          const phaseIdx = boxes.findIndex(
+            (b) => x >= b.left && x <= b.right
+          );
+          if (phaseIdx >= 0) {
+            phaseEls.forEach((p, i) =>
+              p.setAttribute("aria-expanded", String(i === phaseIdx))
+            );
+            setDesc(
+              `${String(phaseIdx + 1).padStart(2, "0")} ${phases[phaseIdx].name}`,
+              phases[phaseIdx].desc
+            );
+          }
+        }
+
+        pulseRaf = requestAnimationFrame(step);
+      }
+      pulseRaf = requestAnimationFrame(step);
+    }
+
+    function stopPulse() {
+      pulseActive = false;
+      if (pulse) pulse.style.opacity = "0";
+    }
+
+    // Respect reduced motion
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (!prefersReducedMotion) {
+      setTimeout(startPulse, 600);
+    }
+  });
+</script>

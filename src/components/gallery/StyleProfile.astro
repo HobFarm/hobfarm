@@ -1,0 +1,89 @@
+---
+import { mediaUrl } from "@/lib/gallery";
+
+interface Profile {
+  anchors?: string[];
+  arrangement?: string;
+  register?: string;
+  weight?: string;
+  era?: string;
+  hardness?: string;
+  notes?: string;
+}
+
+interface Props {
+  data: Profile;
+  folder?: string;
+  irFile?: string;
+}
+
+const { data, folder, irFile } = Astro.props;
+const hasAnchors = data.anchors && data.anchors.length > 0;
+const traitRows: Array<[string, string]> = [];
+if (data.arrangement) traitRows.push(["Arrangement", data.arrangement]);
+if (data.register) traitRows.push(["Register", data.register]);
+if (data.weight) traitRows.push(["Weight", data.weight]);
+if (data.era) traitRows.push(["Era", data.era]);
+if (data.hardness) traitRows.push(["Hardness", data.hardness]);
+
+const hasAnything = hasAnchors || traitRows.length > 0 || data.notes;
+const irHref = folder && irFile ? mediaUrl(folder, irFile) : null;
+---
+
+{hasAnything && (
+  <section
+    class="border border-base-800 bg-base-950/40 p-6 lg:p-8"
+    aria-labelledby="style-profile-heading"
+  >
+    <header class="flex flex-wrap items-center justify-between gap-3 mb-5">
+      <h3
+        id="style-profile-heading"
+        class="text-base-500 font-mono uppercase tracking-wider text-xs"
+      >
+        Style Profile
+      </h3>
+      {irHref && (
+        <a
+          href={irHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1 px-2 py-1 text-[10px] font-mono uppercase tracking-wider rounded-full bg-base-900 text-base-400 border border-base-700 hover:border-accent-500 hover:text-accent-300 transition-colors"
+        >
+          Raw growth map
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 17 17 7" />
+            <path d="M7 7h10v10" />
+          </svg>
+        </a>
+      )}
+    </header>
+
+    {hasAnchors && (
+      <div class="mb-5">
+        <h4 class="text-[10px] font-mono uppercase tracking-wider text-base-500 mb-2">Anchors</h4>
+        <ul class="flex flex-wrap gap-2">
+          {data.anchors!.map((anchor) => (
+            <li class="px-2 py-1 text-xs font-mono text-accent-200 bg-accent-500/10 border border-accent-500/30 rounded-full">
+              {anchor}
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    {traitRows.length > 0 && (
+      <dl class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-3 mb-3">
+        {traitRows.map(([label, value]) => (
+          <div class="flex flex-col gap-0.5 border-l-2 border-base-800 pl-3">
+            <dt class="text-[10px] font-mono uppercase tracking-wider text-base-500">{label}</dt>
+            <dd class="text-sm text-base-100 leading-snug">{value}</dd>
+          </div>
+        ))}
+      </dl>
+    )}
+
+    {data.notes && (
+      <p class="text-sm text-base-300 leading-relaxed">{data.notes}</p>
+    )}
+  </section>
+)}

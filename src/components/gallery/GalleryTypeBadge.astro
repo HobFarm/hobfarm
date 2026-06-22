@@ -1,0 +1,19 @@
+---
+import OverlayBadge from "@/components/gallery/OverlayBadge.astro";
+import { galleryTypeLabels, galleryTypeAccentHex, type GalleryType } from "@/lib/gallery";
+
+interface Props {
+  type: GalleryType;
+  size?: "sm" | "md";
+  class?: string;
+}
+
+const { type, size = "sm", class: className } = Astro.props;
+---
+
+<OverlayBadge
+  label={galleryTypeLabels[type]}
+  accentHex={galleryTypeAccentHex[type]}
+  size={size}
+  class={className}
+/>

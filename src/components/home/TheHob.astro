@@ -1,0 +1,80 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+---
+
+<section class="border-t border-base-800/50">
+  <Wrapper variant="standard" class="py-20 lg:py-24">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+      {/* Mascot image */}
+      <div class="flex items-start justify-center lg:justify-start">
+        <img
+          src="https://cdn.hob.farm/pages/home/hob-mascot.jpg"
+          alt="The Hob, HobFarm's resident maker"
+          width="360"
+          height="360"
+          class="rounded-lg border border-base-800"
+          loading="lazy"
+        />
+      </div>
+
+      {/* Main content */}
+      <div class="lg:col-span-2">
+        <Text tag="span" variant="textSM" class="text-accent-500 font-mono tracking-wider uppercase">
+          Meet the Hob
+        </Text>
+        <Text tag="h2" variant="displayLG" class="mt-4 text-white font-display">
+          The Hob
+        </Text>
+        <div class="mt-6 space-y-4">
+          <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+            In the folklore of the North York Moors, a hob is a household spirit.
+            Not mischievous like elves, not menacing like boggarts. Helpful. A hob
+            shows up uninvited, does the work nobody asked for, and disappears
+            before dawn. Churns the butter, mends the fence, finishes the half-done
+            chores. You never see it work. You just see the results.
+          </Text>
+          <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+            That's the idea behind HobFarm. The "farm" part pulls triple duty:
+            a farm full of hobs tending to creative tasks, a server farm running
+            autonomous workflows, and the folklore tradition of leaving offerings
+            so the spirits keep working. Feed the system good inputs, and the
+            hobs do the rest.
+          </Text>
+        </div>
+
+        {/* Character description */}
+        <div class="mt-8 pt-6 border-t border-base-800/50">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-2 h-2 rounded-full bg-accent-500"></div>
+            <Text tag="h3" variant="textSM" class="text-white font-mono">
+              The Character
+            </Text>
+          </div>
+          <div class="space-y-4">
+            <Text tag="p" variant="textSM" class="text-base-400 text-pretty leading-relaxed">
+              He's been a mechanic with grease on his hands and a server rack behind
+              him. A noir detective under sodium lights. A medieval tinkerer soldering
+              something that shouldn't exist yet. The setting changes; the face
+              doesn't. That's the point.
+            </Text>
+            <Text tag="p" variant="textSM" class="text-base-400 text-pretty leading-relaxed">
+              The Hob is built entirely through prompt engineering and reference
+              management, not fine-tuning or custom models. Same bone structure, same
+              attitude, same presence, regardless of what world he lands in. That
+              consistency is what StyleFusion is designed to produce, and the Hob is
+              the longest-running proof that the system works.
+            </Text>
+          </div>
+        </div>
+
+        <div class="mt-8">
+          <Button isLink size="sm" variant="muted" href="/about">
+            About HobFarm &rarr;
+          </Button>
+        </div>
+      </div>
+    </div>
+  </Wrapper>
+</section>

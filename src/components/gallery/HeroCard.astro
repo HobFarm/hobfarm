@@ -1,0 +1,108 @@
+---
+import { mediaImageSrcset, mediaImageUrl, mediaUrl } from "@/lib/gallery";
+
+type HeroImage = { type: "image"; file: string; alt: string };
+type HeroVideo = { type: "video"; file: string; alt: string; poster: string };
+type Hero = HeroImage | HeroVideo;
+
+interface Props {
+  hero: Hero;
+  folder: string;
+  caption?: string;
+  provider?: string;
+  class?: string;
+  aspect?: string;
+}
+
+const {
+  hero,
+  folder,
+  caption,
+  provider,
+  class: className,
+  aspect = "aspect-[4/5]",
+} = Astro.props;
+
+const src = mediaUrl(folder, hero.file);
+const poster = hero.type === "video" ? mediaUrl(folder, hero.poster) : null;
+const previewSrc =
+  hero.type === "video"
+    ? mediaImageUrl(folder, hero.poster, { width: 1000, quality: 84, fit: "cover" })
+    : mediaImageUrl(folder, hero.file, { width: 1000, quality: 84, fit: "cover" });
+const previewSrcset =
+  hero.type === "video"
+    ? mediaImageSrcset(folder, hero.poster, [480, 720, 1000, 1400], {
+        quality: 84,
+        fit: "cover",
+      })
+    : mediaImageSrcset(folder, hero.file, [480, 720, 1000, 1400], {
+        quality: 84,
+        fit: "cover",
+      });
+const lightboxType = hero.type;
+const videoType =
+  hero.type === "video"
+    ? hero.file.toLowerCase().endsWith(".webm")
+      ? "video/webm"
+      : "video/mp4"
+    : null;
+---
+
+<button
+  type="button"
+  class:list={[
+    "group block w-full overflow-hidden border border-base-800 bg-base-950 hover:border-accent-500 transition-colors cursor-zoom-in",
+    aspect,
+    className,
+  ]}
+  data-lightbox={src}
+  data-lightbox-type={lightboxType}
+  data-lightbox-alt={hero.alt}
+  data-lightbox-caption={caption}
+  data-lightbox-provider={provider}
+  aria-label={`Open ${hero.alt}`}
+>
+  <div class="relative w-full h-full">
+    {hero.type === "video" && poster ? (
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        poster={previewSrc}
+        aria-label={hero.alt}
+        class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+      >
+        <source src={src} type={videoType ?? "video/mp4"} />
+        <img
+          src={previewSrc}
+          alt={hero.alt}
+          loading="eager"
+          decoding="async"
+          class="absolute inset-0 w-full h-full object-cover"
+        />
+      </video>
+    ) : (
+      <img
+        src={previewSrc}
+        srcset={previewSrcset}
+        sizes="(min-width: 1024px) 40vw, 100vw"
+        alt={hero.alt}
+        loading="eager"
+        decoding="async"
+        class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+      />
+    )}
+    {hero.type === "video" && (
+      <span class="absolute bottom-3 right-3 flex size-10 items-center justify-center rounded-full border border-base-700/70 bg-base-950/75 text-base-200 shadow-lg shadow-black/40 backdrop-blur-sm transition-colors group-hover:border-accent-500/60 group-hover:text-white">
+        <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="m20 20-3.5-3.5"></path>
+          <path d="M11 8v6"></path>
+          <path d="M8 11h6"></path>
+        </svg>
+      </span>
+    )}
+  </div>
+</button>

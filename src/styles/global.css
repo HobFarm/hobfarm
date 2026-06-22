@@ -1,0 +1,151 @@
+@import '@fontsource-variable/ibm-plex-sans';
+@import '@fontsource/ibm-plex-mono';
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/forms";
+@plugin "tailwind-scrollbar-hide";
+@import "./gradients.css";
+@import "./shiki.css";
+@theme {
+  /* Typography */
+  --font-sans: 'IBM Plex Sans Variable', 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'IBM Plex Sans Variable', 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'Courier New', monospace;
+  /* Accent scale (purple ramp approx hue 293, primary accent) */
+  --color-accent-50:  oklch(0.97 0.02 293);
+  --color-accent-100: oklch(0.93 0.05 293);
+  --color-accent-200: oklch(0.85 0.11 293);
+  --color-accent-300: oklch(0.75 0.18 293);
+  --color-accent-400: oklch(0.64 0.24 293);
+  --color-accent-500: #7b2ff7;
+  --color-accent-600: oklch(0.47 0.25 293);
+  --color-accent-700: oklch(0.41 0.21 293);
+  --color-accent-800: oklch(0.35 0.17 293);
+  --color-accent-900: oklch(0.29 0.13 293);
+  --color-accent-950: oklch(0.21 0.09 293);
+  /* rgb form of accent-500, referenced by ProjectCard/ProjectHeroCard */
+  --color-accent-500-rgb: 123, 47, 247;
+  /* Spot Colors (aligned to the psychedelic-goth palette) */
+  --color-spot-green:   oklch(0.80 0.16 160);
+  --color-spot-magenta: oklch(0.60 0.22 352);
+  --color-spot-cyan:    oklch(0.80 0.13 195);
+  --color-spot-purple:  oklch(0.53 0.25 293);
+  --color-spot-blue:    oklch(0.58 0.16 262);
+  --color-spot-red:     oklch(0.60 0.20 22);
+  /* Primary text override */
+  --color-white: #ece9f5;
+  /* Base scale (psychedelic-goth grounds + text) */
+  --color-base-50:  #f4f2fa;
+  --color-base-100: #ece9f5;
+  --color-base-200: #d8d4e4;
+  --color-base-300: #c8c6d4;
+  --color-base-400: #9b96ad;
+  --color-base-500: #6b6580;
+  --color-base-600: #2c2440;
+  --color-base-700: #221a33;
+  --color-base-800: #15101f;
+  --color-base-900: #0e0b16;
+  --color-base-950: #07060b;
+  /* Syntax highlighting */
+  --color-purple: #a06bff;
+  --color-cyan: #2fe089;
+  /* Named ground/text tokens (psychedelic-goth) */
+  --color-noir-bg: #07060b;
+  --color-noir-surface: #0e0b16;
+  --color-noir-elevated: #15101f;
+  --color-noir-border: #221a33;
+  --color-noir-border-light: #2c2440;
+  --color-noir-text: #ece9f5;
+  --color-noir-muted: #9b96ad;
+  --color-noir-subtle: #6b6580;
+  --color-accent-violet: #7b2ff7;
+  --color-accent-violet-dim: #5b1fb8;
+  --color-accent-violet-bright: #a06bff;
+  --color-accent-green: #2fe089;
+  --color-accent-green-dim: #22b86d;
+  --color-accent-green-bright: #5cf0a6;
+  /* Magenta + Cyan palette */
+  --color-accent-magenta: #e0218a;
+  --color-accent-magenta-dim: #b51a6f;
+  --color-accent-magenta-bright: #f24da6;
+  --color-accent-cyan: #19e3e3;
+  --color-accent-cyan-dim: #14b5b5;
+  --color-accent-cyan-bright: #5cf0f0;
+  /* Blue + Red palette */
+  --color-accent-blue: #3b6fe0;
+  --color-accent-blue-dim: #2f59b5;
+  --color-accent-blue-bright: #6b93ed;
+  --color-accent-red: #e23a4e;
+  --color-accent-red-dim: #b52e3e;
+  --color-accent-red-bright: #ed6675;
+  /* Highlight tokens */
+  --color-accent-gold: #e0b13c;
+  --color-accent-gold-bright: #f0c96b;
+  --color-accent-silver: #c8c6d4;
+  /* Shadows */
+  --shadow-dimensional: inset 0 0 0.5px 1px hsla(0, 0%, 100%, 0.1),
+    0 0 0 1px hsla(0, 0%, 0%, 0.08), 0 0.3px 0.4px hsla(0, 0%, 0%, 0.05),
+    0 0.9px 1.5px hsla(0, 0%, 0%, 0.08), 0 3.5px 6px hsla(0, 0%, 0%, 0.18);
+}
+
+/* Palette switching */
+:root {
+  --color-accent-primary: var(--color-accent-violet);
+  --color-accent-secondary: var(--color-accent-green);
+}
+[data-palette="purple-green"] {
+  --color-accent-primary: var(--color-accent-violet);
+  --color-accent-secondary: var(--color-accent-green);
+}
+[data-palette="magenta-cyan"] {
+  --color-accent-primary: var(--color-accent-magenta);
+  --color-accent-secondary: var(--color-accent-cyan);
+}
+[data-palette="blue-red"] {
+  --color-accent-primary: var(--color-accent-blue);
+  --color-accent-secondary: var(--color-accent-red);
+}
+
+:root {
+  font-feature-settings: "liga" 1, "calt" 1,
+    /* Contextual Alternates */ "dlig" 1, /* Discretionary Ligatures */ "ss07" 1,
+    /* fSquare punctuation */ "ss08" 1, /* Square quotes */ "zero" 1,
+    /* Slashed zero */ "tnum" 1, /* Tabular numbers */ "cv03" 1,
+    /* Open six */ "cv04" 1, /* Open nine */ "cv01" 1,
+    /* Alternate one */ "cv09", /* Flat-top three */ "cv02" 1; /* Open 4 */
+}
+@layer utilities {
+  .glow-green {
+    box-shadow: 0 0 10px rgba(47, 224, 137, 0.3),
+                0 0 20px rgba(47, 224, 137, 0.1);
+  }
+  .glow-violet {
+    box-shadow: 0 0 10px rgba(123, 47, 247, 0.3),
+                0 0 20px rgba(123, 47, 247, 0.1);
+  }
+  .text-glow-green {
+    text-shadow: 0 0 8px rgba(47, 224, 137, 0.4);
+  }
+  .text-glow-violet {
+    text-shadow: 0 0 8px rgba(123, 47, 247, 0.4);
+  }
+  .glass {
+    background: rgba(14, 11, 22, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(34, 26, 51, 0.6);
+  }
+  .border-circuit {
+    border-image: linear-gradient(
+      to right,
+      transparent,
+      #2fe089,
+      transparent
+    ) 1;
+  }
+  .content-panel {
+    background: color-mix(in srgb, var(--color-base-900) 80%, transparent);
+    border: 1px solid var(--color-base-700);
+    border-radius: 1rem;
+  }
+}

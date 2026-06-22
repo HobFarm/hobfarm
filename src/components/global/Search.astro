@@ -1,0 +1,292 @@
+---
+import Button from "@/components/fundations/elements/Button.astro";
+import SearchIcon from "@/components/fundations/icons/Search.astro";
+---
+
+<div class="relative">
+  <Button
+    iconOnly
+    size="base"
+    variant="muted"
+    type="button"
+    id="searchButton"
+    aria-label="Search HobFarm"
+    class="fixed bottom-10 right-10 z-50"
+  >
+    <SearchIcon slot="icon" size="sm" />
+  </Button>
+  <div
+    id="searchModal"
+    class="fixed inset-0 z-50 overflow-y-auto hidden"
+    role="dialog"
+    aria-modal="true"
+  >
+    <div class="min-h-screen px-4 text-center">
+      <div
+        class="fixed inset-0 bg-base-950/50 backdrop-blur transition-opacity"
+        id="modalOverlay"
+      >
+      </div>
+      <div
+        class="inline-block w-full max-w-2xl px-8 mb-8 mt-12 relative lg:mt-48 p-8 bg-base-950 text-left align-middle transition-all transform"
+      >
+        <div class="hidden relative">
+          <button
+            type="button"
+            id="closeSearch"
+            class="text-base-400 hover:text-base-500 cursor-pointer ml-auto"
+            aria-label="Close search"
+          >
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 15 15"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              ><path
+                d="M0.877075 7.49988C0.877075 3.84219 3.84222 0.877045 7.49991 0.877045C11.1576 0.877045 14.1227 3.84219 14.1227 7.49988C14.1227 11.1575 11.1576 14.1227 7.49991 14.1227C3.84222 14.1227 0.877075 11.1575 0.877075 7.49988ZM7.49991 1.82704C4.36689 1.82704 1.82708 4.36686 1.82708 7.49988C1.82708 10.6329 4.36689 13.1727 7.49991 13.1727C10.6329 13.1727 13.1727 10.6329 13.1727 7.49988C13.1727 4.36686 10.6329 1.82704 7.49991 1.82704ZM9.85358 5.14644C10.0488 5.3417 10.0488 5.65829 9.85358 5.85355L8.20713 7.49999L9.85358 9.14644C10.0488 9.3417 10.0488 9.65829 9.85358 9.85355C9.65832 10.0488 9.34173 10.0488 9.14647 9.85355L7.50002 8.2071L5.85358 9.85355C5.65832 10.0488 5.34173 10.0488 5.14647 9.85355C4.95121 9.65829 4.95121 9.3417 5.14647 9.14644L6.79292 7.49999L5.14647 5.85355C4.95121 5.65829 4.95121 5.3417 5.14647 5.14644C5.34173 4.95118 5.65832 4.95118 5.85358 5.14644L7.50002 6.79289L9.14647 5.14644C9.34173 4.95118 9.65832 4.95118 9.85358 5.14644Z"
+                fill="currentColor"
+                fill-rule="evenodd"
+                clip-rule="evenodd"></path></svg
+            >
+          </button>
+        </div>
+        <div class="relative">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search HobFarm..."
+            class="peer relative placeholder:duration-500 placeholder:absolute focus:placeholder:pt-10 tblock w-full px-3 py-3 border-l border-l-white border-transparent appearance-none text-white bg-base-900 focus:border-white focus:bg-base-950 focus:outline-none duration-300 focus:ring-white sm:text-sm placeholder-base-500 h-14 focus:placeholder:text-transparent z-10"
+          />
+          <label
+            for="searchInput"
+            class="duration-500 opacity-0 mb-1 peer-focus:opacity-100 text-base-500 text-xs -translate-y-12 peer-focus:translate-y-0 after:ml-0.5 z-0"
+          >
+            Search..
+          </label>
+        </div>
+        <div
+          id="searchResults"
+          class="max-h-100 overflow-y-auto relative bg-base-950 overflow-hidden w-full scrollbar-hide"
+        >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  type SearchItem = {
+    type: "blog" | "project" | "gallery" | "grimoire" | "help" | "changelog";
+    title: string;
+    description: string;
+    href: string;
+    tags?: string[];
+    category?: string;
+    date?: string;
+    notes?: string;
+  };
+
+  type SearchResult = {
+    item: SearchItem;
+  };
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const searchButton = document.getElementById("searchButton");
+    const searchModal = document.getElementById("searchModal");
+    const modalOverlay = document.getElementById("modalOverlay");
+    const searchInput = document.getElementById("searchInput") as HTMLInputElement | null;
+    const searchResults = document.getElementById("searchResults");
+    const closeSearch = document.getElementById("closeSearch");
+
+    if (
+      !searchButton ||
+      !searchModal ||
+      !modalOverlay ||
+      !searchInput ||
+      !searchResults ||
+      !closeSearch
+    ) {
+      return;
+    }
+
+    let searchIndexPromise: Promise<SearchItem[]> | null = null;
+    let fusePromise: Promise<any> | null = null;
+    let fuseInstance: any = null;
+
+    function loadSearchIndex(): Promise<SearchItem[]> {
+      if (!searchIndexPromise) {
+        searchIndexPromise = fetch("/search-index.json", {
+          headers: { accept: "application/json" },
+        }).then((response) => {
+          if (!response.ok) {
+            throw new Error(`Search index request failed: ${response.status}`);
+          }
+          return response.json() as Promise<SearchItem[]>;
+        });
+      }
+      return searchIndexPromise;
+    }
+
+    async function loadFuse() {
+      if (fuseInstance) return fuseInstance;
+      if (!fusePromise) {
+        fusePromise = Promise.all([import("fuse.js"), loadSearchIndex()]).then(
+          ([mod, searchData]) =>
+            new mod.default(searchData, {
+              keys: ["title", "description", "tags", "category", "notes"],
+              threshold: 0.35,
+              ignoreLocation: true,
+              includeMatches: true,
+            })
+        );
+      }
+      fuseInstance = await fusePromise;
+      return fuseInstance;
+    }
+
+    searchResults.classList.add("hidden");
+
+    function openSearch(e: Event) {
+      e.preventDefault();
+      e.stopPropagation();
+      searchModal.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+      setTimeout(() => searchInput.focus(), 100);
+      void loadFuse().catch(() => renderError());
+    }
+
+    function closeSearchModal(e?: Event) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      searchModal.classList.add("hidden");
+      document.body.style.overflow = "";
+      searchInput.value = "";
+      while (searchResults.firstChild) {
+        searchResults.removeChild(searchResults.firstChild);
+      }
+      searchResults.classList.add("hidden");
+    }
+
+    function clearResults() {
+      while (searchResults.firstChild) {
+        searchResults.removeChild(searchResults.firstChild);
+      }
+    }
+
+    function renderStatus(messageText: string) {
+      clearResults();
+      const wrapper = document.createElement("div");
+      const message = document.createElement("h3");
+      message.className = "font-medium text-base text-base-500";
+      message.textContent = messageText;
+      wrapper.appendChild(message);
+      searchResults.appendChild(wrapper);
+      searchResults.classList.remove("hidden");
+    }
+
+    function formatDate(iso?: string) {
+      if (!iso) return "";
+      try {
+        return new Date(iso).toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "2-digit",
+        });
+      } catch (_err) {
+        return "";
+      }
+    }
+
+    function renderEmpty() {
+      renderStatus("There's nothing here...");
+    }
+
+    function renderError() {
+      renderStatus("Search is unavailable right now.");
+    }
+
+    function renderResults(results: SearchResult[]) {
+      if (!searchInput.value.trim()) {
+        clearResults();
+        searchResults.classList.add("hidden");
+        return;
+      }
+      if (results.length === 0) {
+        renderEmpty();
+        return;
+      }
+      clearResults();
+      for (const result of results) {
+        const item = result.item;
+
+        const link = document.createElement("a");
+        link.href = item.href;
+        link.className = "block py-4 duration-300";
+
+        const heading = document.createElement("h3");
+        heading.className =
+          "font-medium text-base text-white block relative px-4 before:absolute after:absolute before:bg-white before:top-0 before:left-0 before:h-6 before:w-px after:top-8 after:bottom-0 after:left-0 after:w-px";
+        heading.textContent = item.title;
+        link.appendChild(heading);
+
+        if (item.description) {
+          const desc = document.createElement("p");
+          desc.className = "text-base-500 text-sm block mt-4";
+          desc.textContent = item.description;
+          link.appendChild(desc);
+        }
+
+        const meta = document.createElement("p");
+        meta.className =
+          "text-xs text-base-500 mt-4 uppercase tracking-wider";
+        const metaParts: string[] = [item.type];
+        const dateLabel = formatDate(item.date);
+        if (dateLabel) metaParts.push(dateLabel);
+        meta.textContent = metaParts.join(" · ");
+        link.appendChild(meta);
+
+        searchResults.appendChild(link);
+      }
+      searchResults.classList.remove("hidden");
+    }
+
+    async function runSearch() {
+      const value = searchInput.value.trim();
+      if (!value) {
+        clearResults();
+        searchResults.classList.add("hidden");
+        return;
+      }
+
+      renderStatus("Searching...");
+
+      try {
+        const fuse = await loadFuse();
+        if (searchInput.value.trim() !== value) return;
+        renderResults(fuse.search(value));
+      } catch {
+        renderError();
+      }
+    }
+
+    searchButton.addEventListener("click", openSearch);
+    searchButton.addEventListener("touchend", openSearch);
+
+    closeSearch.addEventListener("click", closeSearchModal);
+    closeSearch.addEventListener("touchend", closeSearchModal);
+    modalOverlay.addEventListener("click", closeSearchModal);
+    modalOverlay.addEventListener("touchend", closeSearchModal);
+
+    searchInput.addEventListener("input", () => {
+      void runSearch();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !searchModal.classList.contains("hidden")) {
+        closeSearchModal();
+      }
+    });
+  });
+</script>

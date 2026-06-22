@@ -1,0 +1,90 @@
+
+> @lexington/buio@0.0.1 build
+> astro build
+
+[2m15:55:09[22m [34m[@astrojs/cloudflare][39m Enabling compile-time image optimization. Images will be pre-optimized at build time.
+[2m15:55:09[22m [34m[@astrojs/cloudflare][39m Enabling sessions with Cloudflare KV with the "SESSION" KV binding.
+[33m[1m15:55:09[22m [WARN] [vite][39m [2mDefault inspector port 9229 not available, using 9231 instead
+[22m
+[2m15:55:10[22m [34m[vite][39m Re-optimizing dependencies because vite config has changed
+[2m15:55:13[22m [34m[vite][39m Re-optimizing dependencies because vite config has changed
+[2m15:55:13[22m [34m[vite][39m Re-optimizing dependencies because vite config has changed
+[2m15:55:14[22m [34m[content][39m Syncing content
+[33m[1m15:55:14[22m [WARN] [glob-loader][39m No files found matching "**/*.{md,mdx}" in directory "src\content\integrations"
+[2m15:55:14[22m [34m[content][39m Synced content
+[2m15:55:14[22m [34m[types][39m Generated [2m4.76s[22m
+[2m15:55:14[22m [34m[build][39m output: [34m"static"[39m
+[2m15:55:14[22m [34m[build][39m mode: [34m"server"[39m
+[2m15:55:14[22m [34m[build][39m directory: [34mC:\Users\xkxxk\hobfarm\dist\[39m
+[2m15:55:14[22m [34m[build][39m adapter: [32m@astrojs/cloudflare[39m
+[2m15:55:14[22m [34m[build][39m Collecting build info...
+[2m15:55:14[22m [34m[build][39m [32mΓ£ô Completed in 4.82s.[39m
+[2m15:55:14[22m [34m[build][39m Building server entrypoints...
+[2m15:55:16[22m [34m[vite][39m [32mΓ£ô built in 1.40s[39m
+[2m15:55:20[22m [34m[vite][39m [32mΓ£ô built in 4.46s[39m
+[2m15:55:21[22m [34m[vite][39m [32mΓ£ô built in 734ms[39m
+
+[42m[30m prerendering static routes [39m[49m
+[2m15:55:22[22m   [34mΓö£ΓöÇ[39m [2m/404.html[22m [2m(+61ms)[22m 
+[2m15:55:22[22m   [34mΓö£ΓöÇ[39m [2m/about/index.html[22m [2m(+32ms)[22m 
+[2m15:55:22[22m   [34mΓö£ΓöÇ[39m [2m/blog/category/technical/index.html[22m [2m(+28ms)[22m 
+[2m15:55:22[22m   [34mΓö£ΓöÇ[39m [2m/blog/category/magazine-time-machine/index.html[22m [2m(+26ms)[22m 
+[2m15:55:22[22m   [34mΓö£ΓöÇ[39m [2m/blog/category/cultural-thread/index.html[22m [2m(+23ms)[22m 
+[2m15:55:22[22m   [34mΓö£ΓöÇ[39m [2m/blog/category/grimoire/index.html[22m [2m(+25ms)[22m 
+[2m15:55:22[22m   [34mΓö£ΓöÇ[39m [2m/blog/category/stylefusion/index.html[22m [2m(+23ms)[22m 
+[2m15:55:22[22m   [34mΓö£ΓöÇ[39m [2m/blog/category/hobbot/index.html[22m [2m(+27ms)[22m 
+[2m15:55:22[22m   [34mΓö£ΓöÇ[39m [2m/blog/category/business/index.html[22m [2m(+24ms)[22m 
+[2m15:55:22[22m   [34mΓö£ΓöÇ[39m [2m/blog/posts/grimoire-knowledge-graph/index.html[22m [2m(+29ms)[22m 
+[2m15:55:22[22m   [34mΓö£ΓöÇ[39m [2m/blog/posts/stylefusion-ir-extraction/index.html[22m [2m(+28ms)[22m 
+[2m15:55:22[22m   [34mΓö£ΓöÇ[39m [2m/blog/posts/building-in-public/index.html[22m [2m(+33ms)[22m 
+[2m15:55:22[22m   [34mΓö£ΓöÇ[39m [2m/blog/posts/hello-world/index.html[22m [2m(+23ms)[22m 
+[2m15:55:22[22m   [34mΓö£ΓöÇ[39m [2m/blog/tags/ai/index.html[22m [2m(+29ms)[22m 
+[2m15:55:22[22m   [34mΓö£ΓöÇ[39m [2m/blog/tags/workflow/index.html[22m [2m(+25ms)[22m 
+[2m15:55:22[22m   [34mΓö£ΓöÇ[39m [2m/blog/tags/hobfarm/index.html[22m [2m(+22ms)[22m 
+[2m15:55:22[22m   [34mΓö£ΓöÇ[39m [2m/blog/tags/grimoire/index.html[22m [2m(+22ms)[22m 
+[2m15:55:22[22m   [34mΓö£ΓöÇ[39m [2m/blog/tags/knowledge-graph/index.html[22m [2m(+22ms)[22m 
+[2m15:55:22[22m   [34mΓö£ΓöÇ[39m [2m/blog/tags/cloudflare/index.html[22m [2m(+25ms)[22m 
+[2m15:55:22[22m   [34mΓö£ΓöÇ[39m [2m/blog/tags/architecture/index.html[22m [2m(+22ms)[22m 
+[2m15:55:22[22m   [34mΓö£ΓöÇ[39m [2m/blog/tags/workers/index.html[22m [2m(+22ms)[22m 
+[2m15:55:22[22m   [34mΓö£ΓöÇ[39m [2m/blog/tags/stylefusion/index.html[22m [2m(+22ms)[22m 
+[2m15:55:22[22m   [34mΓö£ΓöÇ[39m [2m/blog/tags/image-generation/index.html[22m [2m(+27ms)[22m 
+[2m15:55:22[22m   [34mΓö£ΓöÇ[39m [2m/blog/tags/index.html[22m [2m(+21ms)[22m 
+[2m15:55:22[22m   [34mΓö£ΓöÇ[39m [2m/blog/index.html[22m [2m(+28ms)[22m 
+[2m15:55:22[22m   [34mΓö£ΓöÇ[39m [2m/changelog/index.html[22m [2m(+21ms)[22m 
+[2m15:55:22[22m   [34mΓö£ΓöÇ[39m [2m/changelog/site-launch/index.html[22m [2m(+23ms)[22m 
+[2m15:55:22[22m   [34mΓö£ΓöÇ[39m [2m/contact/index.html[22m [2m(+38ms)[22m 
+[2m15:55:22[22m   [34mΓö£ΓöÇ[39m [2m/gallery/index.html[22m [2m(+27ms)[22m 
+[2m15:55:23[22m   [34mΓö£ΓöÇ[39m [2m/gallery/neon-cityscape/index.html[22m [2m(+27ms)[22m 
+[2m15:55:23[22m   [34mΓö£ΓöÇ[39m [2m/gallery/noir-detective/index.html[22m [2m(+24ms)[22m 
+[2m15:55:23[22m   [34mΓö£ΓöÇ[39m [2m/grimoire/index.html[22m [2m(+20ms)[22m 
+[2m15:55:23[22m   [34mΓö£ΓöÇ[39m [2m/helpcenter/knowledge-base/index.html[22m [2m(+24ms)[22m 
+[2m15:55:23[22m   [34mΓö£ΓöÇ[39m [2m/helpcenter/status/index.html[22m [2m(+22ms)[22m 
+[2m15:55:23[22m   [34mΓö£ΓöÇ[39m [2m/helpcenter/index.html[22m [2m(+21ms)[22m 
+[2m15:55:23[22m   [34mΓö£ΓöÇ[39m [2m/helpcenter/1/index.html[22m [2m(+23ms)[22m 
+[2m15:55:23[22m   [34mΓö£ΓöÇ[39m [2m/helpcenter/2/index.html[22m [2m(+19ms)[22m 
+[2m15:55:23[22m   [34mΓö£ΓöÇ[39m [2m/helpcenter/3/index.html[22m [2m(+19ms)[22m 
+[2m15:55:23[22m   [34mΓö£ΓöÇ[39m [2m/helpcenter/4/index.html[22m [2m(+20ms)[22m 
+[2m15:55:23[22m   [34mΓö£ΓöÇ[39m [2m/helpcenter/5/index.html[22m [2m(+20ms)[22m 
+[2m15:55:23[22m   [34mΓö£ΓöÇ[39m [2m/helpcenter/6/index.html[22m [2m(+20ms)[22m 
+[2m15:55:23[22m   [34mΓö£ΓöÇ[39m [2m/legal/bug-bounty/index.html[22m [2m(+21ms)[22m 
+[2m15:55:23[22m   [34mΓö£ΓöÇ[39m [2m/legal/cookies/index.html[22m [2m(+23ms)[22m 
+[2m15:55:23[22m   [34mΓö£ΓöÇ[39m [2m/legal/dpa/index.html[22m [2m(+20ms)[22m 
+[2m15:55:23[22m   [34mΓö£ΓöÇ[39m [2m/legal/privacy/index.html[22m [2m(+19ms)[22m 
+[2m15:55:23[22m   [34mΓö£ΓöÇ[39m [2m/legal/terms/index.html[22m [2m(+19ms)[22m 
+[2m15:55:23[22m   [34mΓö£ΓöÇ[39m [2m/legal/usage/index.html[22m [2m(+19ms)[22m 
+[2m15:55:23[22m   [34mΓö£ΓöÇ[39m [2m/projects/index.html[22m [2m(+29ms)[22m 
+[2m15:55:23[22m   [34mΓö£ΓöÇ[39m [2m/projects/anomalybot/index.html[22m [2m(+25ms)[22m 
+[2m15:55:23[22m   [34mΓö£ΓöÇ[39m [2m/projects/gptops/index.html[22m [2m(+25ms)[22m 
+[2m15:55:23[22m   [34mΓö£ΓöÇ[39m [2m/projects/grimoire/index.html[22m [2m(+31ms)[22m 
+[2m15:55:23[22m   [34mΓö£ΓöÇ[39m [2m/projects/hobbot/index.html[22m [2m(+27ms)[22m 
+[2m15:55:23[22m   [34mΓö£ΓöÇ[39m [2m/projects/stylefusion/index.html[22m [2m(+23ms)[22m 
+[2m15:55:23[22m   [34mΓö£ΓöÇ[39m [2m/rss.xml[22m [2m(+19ms)[22m 
+[2m15:55:23[22m   [34mΓö£ΓöÇ[39m [2m/status/index.html[22m [2m(+32ms)[22m 
+[2m15:55:23[22m   [34mΓö£ΓöÇ[39m [2m/index.html[22m [2m(+40ms)[22m 
+[2m15:55:23[22m [32mΓ£ô Completed in 2.39s.
+[39m
+[2m15:55:23[22m [34m[build][39m Rearranging server assets...
+[2m15:55:23[22m [34m[build][39m [32mΓ£ô Completed in 9.12s.[39m
+[2m15:55:23[22m [34m[@astrojs/sitemap][39m `sitemap-index.xml` created at `dist\client`
+[2m15:55:23[22m [34m[build][39m Server built in [1m14.00s[22m
+[2m15:55:23[22m [34m[build][39m [1mComplete![22m

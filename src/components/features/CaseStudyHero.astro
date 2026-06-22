@@ -1,0 +1,81 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import { transformVideoUrl, transformImageUrl, videoPosterUrl } from "@/lib/media-transforms";
+
+const cdnBase = "https://cdn.hob.farm/pages/home/concept";
+---
+
+<Wrapper variant="standard" class="py-24">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <!-- Text Column -->
+    <div>
+      <Text tag="span" variant="textSM" class="text-accent-500 font-mono">
+        Case study
+      </Text>
+      <Text
+        tag="h2"
+        variant="displayLG"
+        class="mt-4 text-white text-balance font-display"
+      >
+        From concept to consistent character
+      </Text>
+      <Text
+        tag="p"
+        variant="textBase"
+        class="text-base-200 mt-4 text-pretty font-medium"
+      >
+        The hard part isn't making the thing. It's knowing what you want to make.
+      </Text>
+
+      <div class="mt-6 space-y-4 text-base-400 text-sm leading-relaxed">
+        <p>
+          We started with the most boring prompt we could think of: "generic
+          female AI character." The result was exactly what you'd expect. No
+          color, no personality, no direction. A placeholder.
+        </p>
+        <p>
+          Then we thought about what kind of art we actually like. The
+          saturated energy of psychedelic poster art. The obsessive detail of
+          surrealist illustration. We fed those influences into StyleFusion
+          alongside the original image.
+        </p>
+        <p>
+          Ten minutes later, she was the Eldritch Bureaucrat, and she'll look
+          like herself anywhere we put her. Not because the tool is magic, but
+          because we knew what we were looking for before we started.
+        </p>
+        <p class="text-base-300">
+          StyleFusion handles the technical translation. The creative decisions
+          are yours.
+        </p>
+      </div>
+
+      <div class="mt-8">
+        <Button isLink size="sm" variant="green" href="#">
+          See how it works &rarr;
+        </Button>
+      </div>
+    </div>
+
+    <!-- Video Column -->
+    <div class="rounded-lg overflow-hidden border border-base-700 shadow-dimensional">
+      <video
+        autoplay
+        loop
+        muted
+        playsinline
+        poster={videoPosterUrl(`${cdnBase}/stylefusion-concept-vid.mp4`, 640)}
+        class="w-full aspect-[2/3] object-cover"
+      >
+        <source src={transformVideoUrl(`${cdnBase}/stylefusion-concept-vid.mp4`, { width: 640 })} type="video/mp4" />
+        <img
+          src={transformImageUrl(`${cdnBase}/stylefusion-concept2.jpg`, { width: 640, quality: 85, fit: 'cover' })}
+          alt="StyleFusion character concept development"
+          class="w-full aspect-[2/3] object-cover"
+        />
+      </video>
+    </div>
+  </div>
+</Wrapper>

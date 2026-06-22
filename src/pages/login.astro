@@ -1,0 +1,36 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import LoginForm from "@/components/auth/LoginForm";
+---
+
+<BaseLayout
+  title="Login | HobFarm"
+  description="Sign in to your HobFarm account."
+>
+  <section>
+    <ContentPanel>
+      <Wrapper variant="standard" class="grid grid-cols-1 py-12 lg:py-16 lg:grid-cols-4">
+        <div class="lg:col-span-2 lg:col-start-2">
+          <Text tag="span" variant="textSM" class="text-accent-500 font-mono">Account</Text>
+          <Text
+            tag="h1"
+            variant="displayXL"
+            class="mt-12 text-white text-balance font-display"
+          >
+            Sign in
+          </Text>
+          <Text tag="p" variant="textBase" class="mt-2 text-base-400 text-balance max-w-xl">
+            Enter your email to get a one-time code. New accounts are created automatically on first verification.
+          </Text>
+
+          <div class="mt-12 max-w-md">
+            <LoginForm client:load />
+          </div>
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+</BaseLayout>

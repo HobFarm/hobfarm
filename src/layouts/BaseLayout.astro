@@ -1,0 +1,37 @@
+---
+// Fundations
+import "../styles/global.css";
+import BaseHead from "@/components/fundations/head/BaseHead.astro"; // Assets
+import BottomBlurLine from "@/components/assets/BottomBlurLine.astro";
+// Components
+import Search from "@/components/global/Search.astro";
+// Sections
+import Footer from "@/components/global/Footer.astro";
+import Navigation from "@/components/global/Navigation.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  image?: string;
+  palette?: "purple-green" | "magenta-cyan" | "blue-red";
+}
+
+const { title, description, canonical, image, palette = "purple-green" } = Astro.props;
+---
+
+<html
+  lang="en"
+  class="selection:text-white selection:bg-base-500 scroll-smooth"
+>
+  <head>
+    <BaseHead title={title} description={description} canonical={canonical} image={image} />
+  </head>
+  <body class="bg-base-950 flex flex-col min-h-svh" data-palette={palette}>
+    <Search />
+    <Navigation />
+    <main class="grow relative z-10 pt-20"><slot /></main>
+    <Footer />
+    <BottomBlurLine />
+  </body>
+</html>

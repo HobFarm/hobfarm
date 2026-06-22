@@ -1,0 +1,70 @@
+---
+interface PaletteColor {
+  name: string;
+  hex: string;
+  finish?: string;
+  role?: string;
+}
+
+interface Palette {
+  palette?: PaletteColor[];
+  mood?: string;
+  contrast?: string;
+  notes?: string;
+}
+
+interface Props {
+  data: Palette;
+}
+
+const { data } = Astro.props;
+const hasPalette = data.palette && data.palette.length > 0;
+const hasAnything =
+  hasPalette || data.mood || data.contrast || data.notes;
+---
+
+{hasAnything && (
+  <section
+    class="border border-base-800 bg-base-950/40 p-6 lg:p-8"
+    aria-labelledby="color-chemistry-heading"
+  >
+    <header class="flex flex-wrap items-center justify-between gap-3 mb-5">
+      <h3
+        id="color-chemistry-heading"
+        class="text-base-500 font-mono uppercase tracking-wider text-xs"
+      >
+        Color Chemistry
+      </h3>
+      {(data.mood || data.contrast) && (
+        <p class="text-[10px] font-mono uppercase tracking-wider text-base-500">
+          {[data.mood, data.contrast].filter(Boolean).join(" · ")}
+        </p>
+      )}
+    </header>
+
+    {hasPalette && (
+      <ul class="flex flex-wrap gap-2 mb-4">
+        {data.palette!.map((color) => (
+          <li class="flex items-center gap-2 px-2 py-1 bg-base-900 border border-base-700 rounded-full">
+            <span
+              class="inline-block w-5 h-5 rounded-full border border-base-700 shrink-0"
+              style={`background-color:${color.hex}`}
+              aria-hidden="true"
+            />
+            <span class="flex flex-col leading-tight">
+              <span class="text-xs font-mono text-base-100">{color.name}</span>
+              <span class="text-[10px] font-mono text-base-500">
+                {color.hex}{color.finish ? ` · ${color.finish}` : ""}
+                {color.role ? ` · ${color.role}` : ""}
+              </span>
+            </span>
+          </li>
+        ))}
+      </ul>
+    )}
+
+    {data.notes && (
+      <p class="text-sm text-base-300 leading-relaxed">{data.notes}</p>
+    )}
+  </section>
+)}

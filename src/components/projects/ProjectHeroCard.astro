@@ -1,0 +1,93 @@
+---
+/**
+ * ProjectHeroCard: Tier 1 hero card with video/image, status badge, type label.
+ * Full-width or 2-col span. Designed for the most compelling projects.
+ */
+interface Props {
+  title: string;
+  subtitle: string;
+  description: string;
+  status: 'live' | 'active' | 'planned' | 'paused';
+  type?: string;
+  heroVideo?: string;
+  heroImage?: string;
+  href: string;
+  liveUrl?: string;
+}
+
+import StatusBadge from "@/components/ui/StatusBadge.astro";
+import { imageSrcset, transformImageUrl } from "@/lib/media-transforms";
+
+const { title, description, status, type, heroVideo, heroImage, href, liveUrl } = Astro.props;
+const transformedHeroImage = heroImage
+  ? transformImageUrl(heroImage, { width: 1200, quality: 84, fit: "cover" })
+  : undefined;
+const heroSrcset = heroImage
+  ? imageSrcset(heroImage, [640, 960, 1200, 1600], { quality: 84, fit: "cover" })
+  : undefined;
+---
+
+<a
+  href={href}
+  class:list={[
+    "group relative block overflow-hidden rounded-2xl border border-base-700 bg-base-900 transition-all duration-300",
+    "hover:border-accent-500/60 hover:shadow-[0_0_40px_rgba(var(--color-accent-500-rgb,100,200,100),0.08)]",
+  ]}
+>
+  {/* Hero media container */}
+  <div class="relative w-full aspect-[21/9] overflow-hidden bg-base-950">
+    {heroVideo ? (
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+      >
+        <source src={heroVideo} type="video/mp4" />
+      </video>
+    ) : heroImage ? (
+      <img
+        src={transformedHeroImage}
+        srcset={heroSrcset}
+        sizes="100vw"
+        alt={title}
+        loading="lazy"
+        decoding="async"
+        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+      />
+    ) : (
+      <div class="absolute inset-0 bg-gradient-to-br from-base-800 to-base-950 flex items-center justify-center">
+        <span class="font-mono text-base-600 text-sm tracking-wider uppercase">Hero visual pending</span>
+      </div>
+    )}
+    {/* Gradient overlay */}
+    <div class="absolute inset-0 bg-gradient-to-t from-base-900 via-base-900/40 to-transparent"></div>
+
+    {/* Status + type badges floating top-right */}
+    <div class="absolute top-4 right-4 flex items-center gap-2 z-10">
+      {type && (
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-mono font-medium tracking-wider uppercase bg-base-900/80 text-base-300 ring-1 ring-inset ring-base-700 backdrop-blur-sm">
+          {type}
+        </span>
+      )}
+      <StatusBadge status={status} />
+    </div>
+  </div>
+
+  {/* Content area */}
+  <div class="relative p-6 lg:p-8">
+    <h3 class="text-xl lg:text-2xl font-medium text-white group-hover:text-accent-500 transition-colors duration-200 mb-2">
+      {title}
+    </h3>
+    <p class="text-base-400 text-sm lg:text-base leading-relaxed max-w-3xl">
+      {description}
+    </p>
+    <div class="mt-4 inline-flex items-center gap-1.5 text-sm font-mono text-accent-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <span>{liveUrl ? 'Try it' : 'Learn more'}</span>
+      <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      </svg>
+    </div>
+  </div>
+</a>

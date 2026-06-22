@@ -1,0 +1,28 @@
+---
+interface DnaItem {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  items: DnaItem[];
+}
+
+const { items } = Astro.props;
+---
+
+{items.length > 0 && (
+  <section class="border border-base-800 bg-base-950/40 p-6 lg:p-8">
+    <h3 class="text-base-500 font-mono uppercase tracking-wider text-xs mb-5">Visual DNA</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+      {items.map((item) => (
+        <div class="flex flex-col gap-1 bg-base-900 border border-base-800 px-3 py-2 rounded">
+          <span class="text-[10px] font-mono uppercase tracking-wider text-base-500">
+            {item.label}
+          </span>
+          <span class="text-sm text-base-100 leading-snug">{item.value}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+)}

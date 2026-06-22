@@ -1,0 +1,99 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Eyebrow from "@/components/sections/Eyebrow.astro";
+import SectionHeader from "@/components/sections/SectionHeader.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import KofiCta from "@/components/KofiCta.astro";
+
+type Track = { title: string; body: string };
+
+const tracks: Track[] = [
+  {
+    title: "Platform fundamentals",
+    body: "Getting set up on the main AI platforms: figuring out what each model is good at, getting your API keys working, and learning the quirks of Grok on X, Meta AI, and Gemini. This is the groundwork everything else builds on.",
+  },
+  {
+    title: "Prompt science",
+    body: "How to write prompts that actually work. Run the same prompt through different models and compare the results. Try the same model with different formats (plain text, markdown, JSON, tag lists) and watch what changes. Learn how the order of a prompt shifts the answer, and where each platform's length limits get in the way.",
+  },
+  {
+    title: "Image workflows",
+    body: "The full image process, start to finish. Mask a source image in Photoshop, run it through StyleFusion, and bring it back out. See how one masked image becomes a family of new images, and how Grimoire keeps track of references, notes, and metadata.",
+  },
+  {
+    title: "Building with AI",
+    body: "How the HobFarm apps actually get built: the tools, the tech stack, the custom Claude skills and instructions behind them, and how one person ships real software with AI.",
+  },
+  {
+    title: "Selling your work",
+    body: "Etsy and print-on-demand, run from a real shop. How to set up listings, turn generated art into physical products people can buy, and let a single post that shows a real technique do the selling for you.",
+  },
+  {
+    title: "Character sheets",
+    body: "Reusable character sheets and reference files that keep a character looking the same from one image to the next, across different models and projects.",
+  },
+];
+---
+
+<BaseLayout
+  title="Academy | HobFarm"
+  description="Practical AI training from HobFarm: writing prompts, image workflows, building apps, and selling your work. Built from the real work behind the site. Courses are in production now."
+>
+  {/* ── Hero ── */}
+  <section class="bg-noise border-b border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-20 lg:py-28">
+        <Eyebrow text="HobFarm / Academy" />
+        <Text tag="h1" variant="display2XL" class="mt-6 text-white font-display max-w-4xl text-balance">
+          Academy
+        </Text>
+        <Text tag="p" variant="textBase" class="text-base-300 mt-6 max-w-2xl text-pretty leading-relaxed">
+          Practical AI training built from the work behind this site: writing prompts, comparing models, setting up workflows, and turning rough images into finished pieces. The courses are still in production, so this page lists what they will cover.
+        </Text>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <Button isLink size="sm" variant="green" href="/blog">Follow on the blog</Button>
+          <KofiCta variant="symbol" text="Ko-fi" />
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  {/* ── What's coming ── */}
+  <section class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <SectionHeader eyebrow="01" heading="What's coming" note="In production." />
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+          {tracks.map((track) => (
+            <div class="rounded-lg border border-base-800 bg-base-900/40 p-6">
+              <Text tag="h3" variant="textLG" class="text-white font-display">
+                {track.title}
+              </Text>
+              <Text tag="p" variant="textSM" class="text-base-400 mt-3 text-pretty leading-relaxed">
+                {track.body}
+              </Text>
+            </div>
+          ))}
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  {/* ── Built from real work ── */}
+  <section class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <SectionHeader eyebrow="02" heading="Built from real work" note="Nothing here is theory." />
+        <Text tag="p" variant="textBase" class="text-base-400 max-w-2xl text-pretty leading-relaxed">
+          These courses come from the same work behind StyleFusion, Grimoire, and the rest of HobFarm. When a lesson covers a prompt change, it shows the results side by side. When it covers a platform quirk, it explains where the issue came up and how it was handled.
+        </Text>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <Button isLink size="sm" variant="green" href="/blog">Get notified on the blog</Button>
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+</BaseLayout>

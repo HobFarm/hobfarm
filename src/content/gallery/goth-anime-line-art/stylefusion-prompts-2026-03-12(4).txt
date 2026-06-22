@@ -1,0 +1,148 @@
+=== StyleFusion Compiled Prompts ===
+Generated: 2026-03-12T03:23:08.267Z
+
+--- IMAGE GENERATION JSON ---
+{
+  "subject": {
+    "form": "Petite humanoid female figure, slender build, smooth matte skin, small curved horns protruding from the sides of the head",
+    "surface": "fine pores visible under directional light, subtle subsurface scattering, fine mesh fishnets, structured fabric, charcoal gray line work",
+    "coloring": "Base charcoal gray line work (#2D2926), warm taupe shading (#8B837D), accent pale beige skin tone (#EAE4E0)",
+    "features": [
+      "Short, chin-length bob with straight-cut bangs, smooth matte texture",
+      "Almond-shaped eyes with sharp, defined lids, gaze directed slightly downward, thin arched brows, small nose, lips slightly parted in a subtle smirk",
+      "small curved horns",
+      "sharp blade held in hand",
+      "fishnet stockings"
+    ],
+    "covering": "Structured corset-style bodice with lace-up front, matte fabric, Puffed-sleeve blouse worn underneath, light fabric, Short flared skirt, matte fabric, Fishnet stockings, fine mesh, Thigh-high boots with buckle details, matte finish",
+    "position": "Seated in a three-quarter profile, legs crossed at the knees, left hand resting on her lap, right hand raised near her face with fingers curled",
+    "held_objects": "Small sharp blade, right hand",
+    "expression_intent": "Confident and enigmatic, with a hint of playful malice in her gaze"
+  },
+  "scene": {
+    "setting": "The scene is set against a stark, minimalist off-white backdrop that isolates the central composition. A complex, ornate metal structure serves as a focal point, surrounded by stylized, sharp-edged decorative elements that radiate outward, creating a balanced and symmetrical arrangement of gothic-inspired motifs.",
+    "elements": [
+      "leather corset, matte finish with metallic buckle details, subject torso",
+      "fishnet hosiery, fine mesh texture, subject legs",
+      "ornate metal structure, center midground"
+    ],
+    "atmosphere": "Clear"
+  },
+  "camera": {
+    "shot": "full body, eye level, centered",
+    "lens": "standard portrait focal length, deep focus, no perspective distortion"
+  },
+  "lighting": {
+    "key": "The scene is illuminated by a neutral, stylized light source from above, creating soft highlights on the character's hair and clothing while casting crisp, defined shadows that emphasize the intricate line-art details.",
+    "fill": "Minimal fill, with deep, clean-line shadows defining the form and depth of the character and skulls."
+  },
+  "style": {
+    "medium": "with clean vector-style linework",
+    "quality": "The image features precise, uniform line weights, minimal flat shading with subtle gradient transitions, high-contrast monochrome aesthetic, and clean, sharp edges without visible grain or texture.",
+    "color_map": {
+      "background_primary": {
+        "hex": "#EBEBEB",
+        "finish": "matte diffuse"
+      },
+      "line_work_charcoal": {
+        "hex": "#333333",
+        "finish": "matte ink"
+      },
+      "skin_tone": {
+        "hex": "#D1D1D1",
+        "finish": "matte diffuse"
+      },
+      "eye_glow": {
+        "hex": "#FF00FF",
+        "finish": "emissive glow"
+      },
+      "lip_accent": {
+        "hex": "#FF00FF",
+        "finish": "satin"
+      },
+      "clothing_base": {
+        "hex": "#BDBDBD",
+        "finish": "matte fabric"
+      },
+      "eye_color": {
+        "hex": "#FF00FF",
+        "finish": "almond-shaped iris with natural depth and specular highlights"
+      }
+    },
+    "textures": [
+      "clean vector-style linework",
+      "smooth digital gradients",
+      "sharp, high-contrast ink outlines",
+      "flat, uniform shading blocks"
+    ],
+    "style_anchors": [
+      "gothic fantasy",
+      "dark anime illustration",
+      "tattoo art style",
+      "manga aesthetic",
+      "digital line art",
+      "dark anime"
+    ],
+    "light_interaction": "eye glow casts neutral highlights onto adjacent surfaces"
+  },
+  "negative": "Avoid photorealistic skin pores, 3D plastic-like sheen, muddy color bleeding, inconsistent shadow directions, blurry edges, heavy impasto, noisy grain, anatomical distortions, mangled fingers, overexposed highlights, chromatic aberration, and unintended color saturation.",
+  "aspect_ratio": "2:3",
+  "arrangement": "gothic",
+  "arrangement_matched": 0.9434607315589587,
+  "palette_modifier": -0.133
+}
+
+--- DESCRIPTION ---
+[Subject] A petite, horned humanoid female sits with confident poise atop a large skull, holding a small blade in her right hand. She is dressed in a structured corset and fishnet stockings, framed by sharp, wing-like decorative spikes. To her side rests another human skull, completing the macabre aesthetic. Her expression is enigmatic and playful, suggesting a character with a dark, calculated nature.
+
+[Style] gothic fantasy, dark anime, pop-surrealism, character design, stylized illustration
+
+[Scene] The scene is set against a stark, minimalist off-white backdrop that isolates the central composition. A complex, ornate metal structure serves as a focal point, surrounded by stylized, sharp-edged decorative elements that radiate outward, creating a balanced and symmetrical arrangement of gothic-inspired motifs.
+
+[Camera] Full body shot at eye level, centered to emphasize the symmetrical arrangement of the ornate decorative elements and the balanced composition.
+
+[Lighting] The scene is illuminated by a neutral, stylized light source from above, creating soft highlights on the character's hair and clothing while casting crisp, defined shadows that emphasize the intricate line-art details.
+
+[Color] The palette is defined by stark charcoal gray (#2D2926) line work against an off-white (#F9F7F4) background. Warm taupe (#8B837D) shading provides depth, creating a high-contrast, sophisticated, and somber gothic illustrative aesthetic.
+
+[Texture] clean vector linework, smooth digital gradients, monochromatic ink shading, cross-hatching patterns, sharp angular spikes, ornate filigree flourishes, stylized star-shaped highlights, subtle drop shadows
+
+[Avoid] Avoid photorealistic skin pores, 3D plastic-like sheen, muddy color bleeding, inconsistent shadow directions, blurry edges, heavy impasto, noisy grain, anatomical distortions, mangled fingers, overexposed highlights, chromatic aberration, and unintended color saturation.
+
+--- CREATIVE SLOTS ---
+[Render]
+Digital illustration featuring precise, clean linework, flat shading with subtle gradients, and a high-contrast monochrome aesthetic with sharp, well-defined edges.
+
+[Subject]
+A petite, horned humanoid female sits with confident poise atop a large skull, holding a small blade in her right hand. She is dressed in a structured corset and fishnet stockings, framed by sharp, wing-like decorative spikes. To her side rests another human skull, completing the macabre aesthetic. Her expression is enigmatic and playful, suggesting a character with a dark, calculated nature.
+
+[Style]
+gothic fantasy, dark anime, pop-surrealism, character design, stylized illustration
+
+[Scene]
+The scene is set against a stark, minimalist off-white backdrop that isolates the central composition. A complex, ornate metal structure serves as a focal point, surrounded by stylized, sharp-edged decorative elements that radiate outward, creating a balanced and symmetrical arrangement of gothic-inspired motifs.
+
+[Camera]
+Full body shot at eye level, centered to emphasize the symmetrical arrangement of the ornate decorative elements and the balanced composition.
+
+[Light]
+The scene is illuminated by a neutral, stylized light source from above, creating soft highlights on the character's hair and clothing while casting crisp, defined shadows that emphasize the intricate line-art details.
+
+[Color]
+The palette is defined by stark charcoal gray (#2D2926) line work against an off-white (#F9F7F4) background. Warm taupe (#8B837D) shading provides depth, creating a high-contrast, sophisticated, and somber gothic illustrative aesthetic.
+
+[Texture]
+clean vector linework, smooth digital gradients, monochromatic ink shading, cross-hatching patterns, sharp angular spikes, ornate filigree flourishes, stylized star-shaped highlights, subtle drop shadows
+
+[Negative]
+Avoid photorealistic skin pores, 3D plastic-like sheen, muddy color bleeding, inconsistent shadow directions, blurry edges, heavy impasto, noisy grain, anatomical distortions, mangled fingers, overexposed highlights, chromatic aberration, and unintended color saturation.
+
+[Aspect_ratio]
+2:3
+
+[_render_mode]
+illustration
+
+
+--- COMPACT PROMPT ---
+A petite, horned humanoid female sits with confident poise atop a large skull, holding a small blade in her right hand. She is dressed in a structured corset and fishnet stockings, framed by sharp, wing-like decorative spikes. To her side rests another human skull, completing the macabre aesthetic. Her expression is enigmatic and playful, suggesting a character with a dark, calculated nature. The scene is set against a stark, minimalist off-white backdrop that isolates the central composition. A complex, ornate metal structure serves as a focal point, surrounded by stylized, sharp-edged decorative elements that radiate outward, creating a balanced and symmetrical arrangement of gothic-inspired motifs. Digital illustration featuring precise, clean linework, flat shading with subtle gradients, and a high-contrast monochrome aesthetic with sharp, well-defined edges. The scene is illuminated by a neutral, stylized light source from above, creating soft highlights on the character's hair and clothing while casting crisp, defined shadows that emphasize the intricate line-art details. The palette is defined by stark charcoal gray (#2D2926) line work against an off-white (#F9F7F4) background. Warm taupe (#8B837D) shading provides depth, creating a high-contrast, sophisticated, and somber gothic illustrative aesthetic. Full body shot at eye level, centered to emphasize the symmetrical arrangement of the ornate decorative elements and the balanced composition. --ar 2x3

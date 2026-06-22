@@ -1,0 +1,28 @@
+---
+interface Note {
+  label: string;
+  text: string;
+}
+
+interface Props {
+  notes: Note[];
+}
+
+const { notes } = Astro.props;
+---
+
+{notes.length > 0 && (
+  <section class="border-t border-base-800 pt-8">
+    <h2 class="text-base-500 font-mono uppercase tracking-wider text-xs mb-6">Field Notes</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+      {notes.map((note) => (
+        <div class="border-l-2 border-base-700 pl-4">
+          <h3 class="text-[10px] font-mono uppercase tracking-wider text-accent-400 mb-1.5">
+            {note.label}
+          </h3>
+          <p class="text-sm text-base-300 leading-relaxed whitespace-pre-line">{note.text}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+)}

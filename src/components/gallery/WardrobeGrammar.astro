@@ -1,0 +1,48 @@
+---
+interface WardrobeItem {
+  item: string;
+  materials?: string[];
+  colors?: string[];
+  notes?: string;
+}
+
+interface Props {
+  items: WardrobeItem[];
+}
+
+const { items } = Astro.props;
+---
+
+{items.length > 0 && (
+  <section
+    class="border border-base-800 bg-base-950/40 p-6 lg:p-8"
+    aria-labelledby="wardrobe-grammar-heading"
+  >
+    <h3
+      id="wardrobe-grammar-heading"
+      class="text-base-500 font-mono uppercase tracking-wider text-xs mb-5"
+    >
+      Wardrobe Grammar
+    </h3>
+    <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {items.map((entry) => (
+        <li class="border-l-2 border-base-700 pl-4 py-1">
+          <h4 class="text-sm text-base-100 leading-snug mb-1.5">{entry.item}</h4>
+          {(entry.materials && entry.materials.length > 0) && (
+            <p class="text-[11px] font-mono uppercase tracking-wider text-base-500 mb-0.5">
+              Materials: <span class="text-base-300 normal-case tracking-normal">{entry.materials.join(", ")}</span>
+            </p>
+          )}
+          {(entry.colors && entry.colors.length > 0) && (
+            <p class="text-[11px] font-mono uppercase tracking-wider text-base-500 mb-0.5">
+              Colors: <span class="text-base-300 normal-case tracking-normal">{entry.colors.join(", ")}</span>
+            </p>
+          )}
+          {entry.notes && (
+            <p class="text-xs text-base-400 leading-relaxed mt-2">{entry.notes}</p>
+          )}
+        </li>
+      ))}
+    </ul>
+  </section>
+)}

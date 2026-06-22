@@ -1,0 +1,48 @@
+---
+// A linear sequence of step cards with decorative arrows: horizontal on >= sm,
+// stacked vertical on mobile. Arrows are aria-hidden. (Internal name only; the
+// visible heading copy avoids the word "pipeline".)
+import { NODE_BORDER, TONE_TEXT, type Tone } from "./tones";
+
+interface Props {
+  steps: string[];
+  tone?: Tone;
+  class?: string;
+}
+
+const { steps, tone = "accent", class: className = "" } = Astro.props;
+
+const borderClass = NODE_BORDER[tone];
+const arrowClass = TONE_TEXT[tone];
+---
+
+<div
+  class:list={[
+    "flex flex-col items-stretch gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-2",
+    className,
+  ]}
+>
+  {
+    steps.map((step, i) => (
+      <>
+        <div
+          class:list={[
+            "rounded-md border bg-base-950/50 px-3 py-2 text-center",
+            borderClass,
+          ]}
+        >
+          <span class="font-mono text-[11px] uppercase tracking-wider text-base-100">{step}</span>
+        </div>
+        {i < steps.length - 1 && (
+          <span
+            aria-hidden="true"
+            class:list={["flex items-center justify-center font-mono text-sm leading-none", arrowClass]}
+          >
+            <span class="sm:hidden">&darr;</span>
+            <span class="hidden sm:inline">&rarr;</span>
+          </span>
+        )}
+      </>
+    ))
+  }
+</div>

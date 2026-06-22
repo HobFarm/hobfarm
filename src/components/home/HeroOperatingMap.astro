@@ -1,0 +1,162 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import PipelineStrip from "@/components/home/infographics/PipelineStrip.astro";
+import { operatingMap, capabilities, storyImages } from "@/data/homepage-systems";
+
+const diagramImage = storyImages.operatingMap;
+const hasDiagramImage = typeof diagramImage.src === "string" && diagramImage.src.length > 0;
+
+const compactColumns = [
+  {
+    title: "Inputs",
+    items: operatingMap.inputs.slice(0, 4),
+    text: "text-accent-cyan",
+    border: "border-accent-cyan/40",
+    dot: "bg-accent-cyan",
+  },
+  {
+    title: "System",
+    items: operatingMap.system.slice(0, 4),
+    text: "text-accent-magenta-bright",
+    border: "border-accent-magenta/40",
+    dot: "bg-accent-magenta",
+  },
+  {
+    title: "Finished",
+    items: operatingMap.finished.slice(0, 4),
+    text: "text-accent-green",
+    border: "border-accent-green/40",
+    dot: "bg-accent-green",
+  },
+];
+---
+
+<section id="hero-operating-map" class="bg-noise relative overflow-hidden border-b border-base-800/70">
+  <Wrapper variant="standard" class="py-10 lg:py-12">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(340px,0.62fr)] lg:items-start">
+      <div>
+        <Text tag="span" variant="textSM" class="font-mono uppercase tracking-widest text-accent-magenta-bright">
+          {operatingMap.brand} / {operatingMap.eyebrow}
+        </Text>
+        <Text tag="h1" variant="displayMD" class="mt-4 max-w-3xl font-display text-balance text-white">
+          {operatingMap.headline}
+        </Text>
+        <div class="mt-5 max-w-3xl space-y-4 text-base leading-relaxed text-base-300">
+          <p>{operatingMap.subhead}</p>
+          <p>{operatingMap.goal}</p>
+        </div>
+
+        <div class="mt-6 flex flex-wrap gap-2">
+          <Button isLink size="sm" variant="green" href={operatingMap.ctas[0].href}>
+            {operatingMap.ctas[0].label}
+          </Button>
+          <Button isLink size="sm" variant="muted" href={operatingMap.ctas[1].href}>
+            {operatingMap.ctas[1].label}
+          </Button>
+          <Button isLink size="sm" variant="muted" href={operatingMap.ctas[2].href}>
+            {operatingMap.ctas[2].label}
+          </Button>
+        </div>
+
+        <div class="mt-5 flex max-w-3xl flex-wrap gap-2">
+          {capabilities.map((chip) => (
+            <span class="rounded-full border border-base-700 bg-base-900/70 px-3 py-1.5 text-[11px] font-mono uppercase tracking-wider text-base-300">
+              {chip}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <figure class="rounded-lg border border-base-800 bg-base-900/60 p-4 shadow-dimensional">
+        {hasDiagramImage ? (
+          <img
+            src={diagramImage.src}
+            alt={diagramImage.alt}
+            loading="eager"
+            decoding="async"
+            class="aspect-[4/3] w-full rounded-md border border-base-800 object-cover"
+          />
+        ) : (
+          <div
+            class="relative min-h-[430px] overflow-hidden rounded-md border border-base-800 bg-base-950 p-4 sm:aspect-[4/3] sm:min-h-0"
+            role="img"
+            aria-label={diagramImage.alt}
+          >
+            <div class="absolute inset-0 opacity-25">
+              <div class="h-full w-full bg-[radial-gradient(circle_at_20%_15%,rgba(25,227,227,0.28),transparent_28%),radial-gradient(circle_at_86%_78%,rgba(224,33,138,0.22),transparent_30%)]"></div>
+            </div>
+            <div class="relative flex h-full flex-col justify-between">
+              <p class="font-mono text-[10px] uppercase tracking-widest text-accent-cyan">
+                {operatingMap.diagram.title}
+              </p>
+
+              <div class="grid grid-cols-1 gap-3">
+                {operatingMap.diagram.stages.map((stage, index) => (
+                  <div class="grid grid-cols-[auto_1fr] gap-3">
+                    <div class="flex flex-col items-center">
+                      <span class:list={[
+                        "grid size-7 place-items-center rounded-full border font-mono text-[10px]",
+                        index === 0 && "border-accent-cyan/50 text-accent-cyan",
+                        index === 1 && "border-accent-magenta/50 text-accent-magenta-bright",
+                        index === 2 && "border-accent-green/50 text-accent-green",
+                      ]}>
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      {index < operatingMap.diagram.stages.length - 1 && (
+                        <span class="mt-1 h-8 w-px bg-base-700" aria-hidden="true"></span>
+                      )}
+                    </div>
+                    <div class="rounded-md border border-base-800 bg-base-900/70 p-3">
+                      <p class="font-mono text-[10px] uppercase tracking-widest text-base-200">{stage.label}</p>
+                      <div class="mt-2 flex flex-wrap gap-1.5">
+                        {stage.items.map((item) => (
+                          <span class="rounded-full border border-base-700 bg-base-950 px-2 py-1 font-mono text-[9px] uppercase tracking-wider text-base-300">
+                            {item}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+      </figure>
+    </div>
+
+    <!-- Compact operating map: inputs -> system -> finished work -->
+    <div class="mt-8 rounded-lg border border-base-800 bg-base-900/50 p-4 shadow-dimensional">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <p class="font-mono text-[10px] uppercase tracking-widest text-base-400">
+          Operating map / compact view
+        </p>
+        <p class="font-mono text-[10px] uppercase tracking-widest text-base-400">
+          same idea / more uses
+        </p>
+      </div>
+
+      <div class="mt-4 grid grid-cols-1 gap-3 lg:grid-cols-3">
+        {compactColumns.map((column) => (
+          <div class:list={["rounded-md border bg-base-950/45 p-3", column.border]}>
+            <p class:list={["font-mono text-[10px] uppercase tracking-widest", column.text]}>{column.title}</p>
+            <div class="mt-2 grid grid-cols-2 gap-2">
+              {column.items.map((item) => (
+                <div class="flex items-center gap-2 rounded-md border border-base-800 bg-base-950/80 px-2.5 py-2">
+                  <span class:list={["size-1.5 shrink-0 rounded-full", column.dot]} aria-hidden="true"></span>
+                  <span class="font-mono text-[10px] uppercase tracking-wider text-base-100">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-4 border-t border-base-800 pt-4">
+        <PipelineStrip steps={operatingMap.loop} tone="accent" />
+      </div>
+    </div>
+  </Wrapper>
+</section>

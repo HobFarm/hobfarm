@@ -1,0 +1,217 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import { transformImageUrl } from "@/lib/media-transforms";
+
+const CDN = "https://cdn.hob.farm/pages/home";
+
+// All showcase images with actual uploaded extensions.
+// width/height mirror the CDN media dimensions to reserve layout before lazy decode.
+const showcaseItems = [
+  // Style Range
+  { src: `${CDN}/style-range-1.png`, label: "Noir Realism", provider: "Nano Banana 2", tag: "Style", width: 896, height: 1200 },
+  { src: `${CDN}/style-range-2.png`, label: "Psychedelic Poster", provider: "Nano Banana 2", tag: "Style", width: 896, height: 1200 },
+  { src: `${CDN}/style-range-3.png`, label: "Art Nouveau", provider: "Nano Banana 2", tag: "Style", width: 896, height: 1200 },
+  { src: `${CDN}/comp-lighting-1.png`, label: "Chiaroscuro", provider: "Midjourney", tag: "Lighting", width: 928, height: 1232 },
+  { src: `${CDN}/style-range-4.jpg`, label: "Cel-Shaded Anime", provider: "Grok Imagine Web", tag: "Style", width: 848, height: 1264 },
+  { src: `${CDN}/comp-lighting-2.jpg`, label: "Neon Rim Light", provider: "Grok Imagine Web", tag: "Lighting", video: `${CDN}/comp-lighting-2.mp4`, width: 784, height: 1168 },
+  { src: `${CDN}/style-range-5.jpeg`, label: "Gothic Baroque", provider: "Nano Banana 2", tag: "Style", width: 848, height: 1264 },
+  { src: `${CDN}/comp-lighting-3.png`, label: "Golden Hour", provider: "Nano Banana 2", tag: "Lighting", width: 1280, height: 896 },
+  { src: `${CDN}/technique-painterly.jpg`, label: "Painterly", provider: "Nano Banana 2", tag: "Technique", width: 1024, height: 1024 },
+  { src: `${CDN}/technique-flat.webp`, label: "Flat Graphic", provider: "Recraft V4 Pro", tag: "Technique", width: 1792, height: 2432 },
+  { src: `${CDN}/technique-lineart.png`, label: "Ink Line Art", provider: "Nano Banana 2", tag: "Technique", width: 896, height: 1200 },
+  { src: `${CDN}/technique-photo.png`, label: "Photorealistic", provider: "Nano Banana 2", tag: "Technique", width: 1152, height: 768 },
+];
+---
+
+<section id="showcase" class="border-t border-base-800/50">
+  <Wrapper variant="standard" class="py-20 lg:py-24">
+    <Text tag="span" variant="textSM" class="text-accent-500 font-mono tracking-wider uppercase">
+      Showcase
+    </Text>
+    <Text tag="h2" variant="displayLG" class="mt-6 text-white font-display max-w-2xl">
+      One System. Infinite Range.
+    </Text>
+    <Text tag="p" variant="textBase" class="text-base-400 mt-4 max-w-2xl text-pretty leading-relaxed">
+      Every image below grows from the same extraction workflow.
+      Same architecture, different inputs. The style changes; the structural approach doesn't.
+    </Text>
+
+    {/* Masonry gallery — native aspect ratios */}
+    <div class="showcase-masonry mt-12">
+      {showcaseItems.map((item) => (
+        <button
+          class="showcase-item group relative rounded-lg overflow-hidden border border-base-800 bg-base-900 cursor-pointer"
+          data-full={item.src}
+          data-label={item.label}
+          data-provider={item.provider}
+          data-tag={item.tag}
+          data-video={item.video || ""}
+          type="button"
+        >
+          {item.video ? (
+            <video
+              src={item.video}
+              autoplay
+              muted
+              loop
+              playsinline
+              width={item.width}
+              height={item.height}
+              poster={transformImageUrl(item.src, { width: 600, quality: 85 })}
+              class="w-full h-auto block group-hover:scale-105 transition-transform duration-500"
+            />
+          ) : (
+            <img
+              src={transformImageUrl(item.src, { width: 600, quality: 85 })}
+              alt={item.label}
+              width={item.width}
+              height={item.height}
+              loading="lazy"
+              class="w-full h-auto block group-hover:scale-105 transition-transform duration-500"
+            />
+          )}
+          {/* Hover overlay */}
+          <div class="absolute inset-0 bg-gradient-to-t from-base-950/90 via-base-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+            <span class="text-[10px] font-mono text-accent-500 uppercase tracking-wider">{item.tag}</span>
+            <p class="text-sm font-mono text-white mt-0.5">{item.label}</p>
+            <p class="text-[10px] font-mono text-base-400">{item.provider}</p>
+          </div>
+        </button>
+      ))}
+    </div>
+
+    <div class="mt-8">
+      <a href="/gallery" class="text-sm text-accent-500 hover:text-white transition-colors font-mono">
+        View the full gallery &rarr;
+      </a>
+    </div>
+  </Wrapper>
+</section>
+
+{/* Lightbox */}
+<div id="showcase-lightbox" class="fixed inset-0 z-[9999] hidden items-center justify-center bg-base-950/95 backdrop-blur-sm">
+  <button id="lb-close" type="button" class="absolute top-4 right-4 text-white/70 hover:text-white bg-base-900/60 hover:bg-base-900/90 backdrop-blur-sm rounded-full w-10 h-10 flex items-center justify-center text-2xl font-mono z-10 transition-all duration-200 border border-base-700/50" aria-label="Close">&times;</button>
+  <div class="relative max-w-5xl w-full mx-4">
+    <img id="lb-img" alt="" class="w-full max-h-[85vh] object-contain rounded-lg" />
+    <video id="lb-video" loop playsinline class="w-full max-h-[85vh] object-contain rounded-lg hidden"></video>
+    <div class="mt-3 text-center">
+      <span id="lb-tag" class="text-[10px] font-mono text-accent-500 uppercase tracking-wider"></span>
+      <p id="lb-label" class="text-sm font-mono text-white mt-0.5"></p>
+      <p id="lb-provider" class="text-[10px] font-mono text-base-400"></p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .showcase-masonry {
+    columns: 3;
+    column-gap: 0.75rem;
+  }
+  .showcase-masonry .showcase-item {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 0.75rem;
+    break-inside: avoid;
+  }
+
+  @media (max-width: 1024px) {
+    .showcase-masonry {
+      columns: 2;
+    }
+  }
+  @media (max-width: 480px) {
+    .showcase-masonry {
+      columns: 1;
+    }
+  }
+</style>
+
+<script>
+  function initShowcaseLightbox() {
+    const lightbox = document.getElementById("showcase-lightbox");
+    const lbImg = document.getElementById("lb-img") as HTMLImageElement;
+    const lbVideo = document.getElementById("lb-video") as HTMLVideoElement;
+    const lbLabel = document.getElementById("lb-label");
+    const lbProvider = document.getElementById("lb-provider");
+    const lbTag = document.getElementById("lb-tag");
+    const lbClose = document.getElementById("lb-close");
+
+    if (!lightbox || !lbImg) return;
+
+    const items = document.querySelectorAll<HTMLElement>(".showcase-item");
+
+    // Open
+    items.forEach((item) => {
+      item.addEventListener("click", () => {
+        const videoSrc = item.dataset.video;
+        if (lbLabel) lbLabel.textContent = item.dataset.label || "";
+        if (lbProvider) lbProvider.textContent = item.dataset.provider || "";
+        if (lbTag) lbTag.textContent = item.dataset.tag || "";
+
+        if (videoSrc && lbVideo) {
+          // Show video, hide image
+          lbImg.classList.add("hidden");
+          lbImg.removeAttribute("src");
+          lbImg.alt = "";
+          lbVideo.src = videoSrc;
+          lbVideo.load();
+          lbVideo.classList.remove("hidden");
+          lbVideo.play().catch(() => {});
+        } else {
+          // Show image, hide video
+          if (lbVideo) {
+            lbVideo.classList.add("hidden");
+            lbVideo.pause();
+            lbVideo.removeAttribute("src");
+            lbVideo.load();
+          }
+          lbImg.src = item.dataset.full || "";
+          lbImg.alt = item.dataset.label || "";
+          lbImg.classList.remove("hidden");
+        }
+
+        lightbox.classList.remove("hidden");
+        lightbox.classList.add("flex");
+        document.body.style.overflow = "hidden";
+        // Hide navbar so it doesn't cover lightbox
+        const nav = document.getElementById("nav-wrapper");
+        if (nav) nav.style.display = "none";
+      });
+    });
+
+    // Close
+    const close = () => {
+      lightbox.classList.add("hidden");
+      lightbox.classList.remove("flex");
+      document.body.style.overflow = "";
+      // Restore navbar
+      const nav = document.getElementById("nav-wrapper");
+      if (nav) nav.style.display = "";
+      if (lbVideo) {
+        lbVideo.pause();
+        lbVideo.removeAttribute("src");
+        lbVideo.load();
+        lbVideo.classList.add("hidden");
+      }
+      lbImg.removeAttribute("src");
+      lbImg.alt = "";
+      lbImg.classList.remove("hidden");
+    };
+    lbClose?.addEventListener("click", close);
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) close();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !lightbox.classList.contains("hidden")) close();
+    });
+  }
+
+  // Fire on both events to cover all scenarios
+  document.addEventListener("astro:page-load", initShowcaseLightbox);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initShowcaseLightbox);
+  } else {
+    initShowcaseLightbox();
+  }
+</script>

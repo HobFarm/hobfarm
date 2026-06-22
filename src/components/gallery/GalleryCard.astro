@@ -1,0 +1,213 @@
+---
+import {
+  featuredAccentHex,
+  mediaImageSrcset,
+  mediaImageUrl,
+  mediaUrl,
+  neutralAccentHex,
+} from "@/lib/gallery";
+import GalleryTypeBadge from "@/components/gallery/GalleryTypeBadge.astro";
+import OverlayBadge from "@/components/gallery/OverlayBadge.astro";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  entry: CollectionEntry<"gallery">;
+}
+
+const { entry } = Astro.props;
+const { data, id } = entry;
+
+function pickThumbFile(): { file: string; alt: string } | null {
+  if (data.thumb?.file) return { file: data.thumb.file, alt: data.thumb.alt };
+  if (data.hero.type === "image") return { file: data.hero.file, alt: data.hero.alt };
+  if (data.hero.type === "video" && data.hero.poster)
+    return { file: data.hero.poster, alt: data.hero.alt };
+  return null;
+}
+
+const thumb = pickThumbFile();
+const thumbSrc = thumb
+  ? mediaImageUrl(data.folder, thumb.file, { width: 640, quality: 82, fit: "scale-down" })
+  : null;
+const thumbSrcset = thumb
+  ? mediaImageSrcset(data.folder, thumb.file, [320, 480, 640, 900], {
+      quality: 82,
+      fit: "scale-down",
+    })
+  : null;
+const thumbAlt = thumb?.alt || data.title;
+
+const inlineVideo =
+  data.hero.type === "video" && !data.thumb?.file
+    ? {
+        src: mediaUrl(data.folder, data.hero.file),
+        poster: data.hero.poster
+          ? mediaImageUrl(data.folder, data.hero.poster, {
+              width: 640,
+              quality: 82,
+              fit: "scale-down",
+            })
+          : null,
+        posterSrcset: data.hero.poster
+          ? mediaImageSrcset(data.folder, data.hero.poster, [320, 480, 640, 900], {
+              quality: 82,
+              fit: "scale-down",
+            })
+          : null,
+        type: data.hero.file.toLowerCase().endsWith(".webm") ? "video/webm" : "video/mp4",
+      }
+    : null;
+
+const slug = id.replace(/\.(md|mdx)$/, "");
+const href = `/gallery/${slug}`;
+
+const method = data.methods?.[0] ?? data.concept?.method ?? null;
+const eyebrow = method ?? data.tags?.[0] ?? null;
+const specimenLabel =
+  data.specimenSheet?.specimenId ??
+  data.specimenSheet?.edition ??
+  null;
+const dateLabel = data.date
+  ? new Date(data.date).toLocaleDateString("en-US", { month: "short", year: "numeric" })
+  : null;
+const status = data.specimenSheet?.status ?? null;
+const frameAspect = data.heroAspect ?? "aspect-[2/3]";
+---
+
+<a href={href} class="group flex flex-col gap-3" aria-label={`Open ${data.title} field notes`}>
+  <div
+    class:list={[
+      "relative overflow-hidden border border-base-800 bg-base-950 group-hover:border-accent-500 transition-colors",
+      frameAspect,
+    ]}
+    data-gallery-card-frame="dynamic"
+  >
+    {inlineVideo?.poster ? (
+      <img
+        src={inlineVideo.poster}
+        srcset={inlineVideo.posterSrcset ?? undefined}
+        sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+        alt={thumbAlt}
+        loading="lazy"
+        decoding="async"
+        class="absolute inset-0 w-full h-full bg-base-950 object-contain group-hover:scale-[1.03] transition-transform duration-700"
+      />
+    ) : thumbSrc ? (
+      <img
+        src={thumbSrc}
+        srcset={thumbSrcset ?? undefined}
+        sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+        alt={thumbAlt}
+        loading="lazy"
+        decoding="async"
+        class="absolute inset-0 w-full h-full bg-base-950 object-contain group-hover:scale-[1.03] transition-transform duration-700"
+      />
+    ) : (
+      <span class="absolute inset-0 flex items-center justify-center text-base-500 font-mono text-xs uppercase tracking-wider">
+        {data.title}
+      </span>
+    )}
+    <div class="absolute top-2 left-2">
+      <GalleryTypeBadge type={data.type} />
+    </div>
+    {data.featured && (
+      <div class="absolute top-2 right-2">
+        <OverlayBadge label="Featured" accentHex={featuredAccentHex} />
+      </div>
+    )}
+    {data.hero.type === "video" && (
+      <div class="absolute bottom-2 right-2">
+        <OverlayBadge label="Video" accentHex={neutralAccentHex} />
+      </div>
+    )}
+  </div>
+
+  <div class="flex flex-col gap-1">
+    {eyebrow && (
+      <p class="text-[10px] font-mono uppercase tracking-wider text-accent-400">{eyebrow}</p>
+    )}
+    <h3 class="text-white text-base font-display leading-snug group-hover:text-accent-300 transition-colors">
+      {data.title}
+    </h3>
+    <p class="text-xs text-base-400 leading-relaxed line-clamp-2">{data.summary}</p>
+
+    {(specimenLabel || dateLabel || status) && (
+      <p class="text-[10px] font-mono uppercase tracking-wider text-base-500 mt-1 flex flex-wrap gap-x-2">
+        {specimenLabel && <span>{specimenLabel}</span>}
+        {specimenLabel && (dateLabel || status) && <span aria-hidden="true">·</span>}
+        {dateLabel && <span>{dateLabel}</span>}
+        {dateLabel && status && <span aria-hidden="true">·</span>}
+        {status && <span class="text-accent-500">{status}</span>}
+      </p>
+    )}
+  </div>
+</a>
+
+<script>
+  function syncGalleryCardFrames(root: ParentNode = document) {
+    const frames = root.querySelectorAll("[data-gallery-card-frame='dynamic']");
+
+    frames.forEach((frame) => {
+      if (!(frame instanceof HTMLElement)) return;
+
+      const applyAspect = (width: number, height: number) => {
+        if (width <= 0 || height <= 0) return;
+        frame.style.aspectRatio = `${width} / ${height}`;
+      };
+
+      const video = frame.querySelector("video");
+      if (video instanceof HTMLVideoElement) {
+        if (video.videoWidth > 0 && video.videoHeight > 0) {
+          applyAspect(video.videoWidth, video.videoHeight);
+          return;
+        }
+
+        if (frame.dataset.galleryVideoAspectBound !== "true") {
+          frame.dataset.galleryVideoAspectBound = "true";
+          video.addEventListener(
+            "loadedmetadata",
+            () => applyAspect(video.videoWidth, video.videoHeight),
+            { once: true }
+          );
+        }
+
+        const poster = video.getAttribute("poster");
+        if (poster && frame.dataset.galleryPosterAspectBound !== "true") {
+          frame.dataset.galleryPosterAspectBound = "true";
+          const posterImage = new Image();
+          posterImage.addEventListener(
+            "load",
+            () => applyAspect(posterImage.naturalWidth, posterImage.naturalHeight),
+            { once: true }
+          );
+          posterImage.src = poster;
+        }
+        return;
+      }
+
+      const img = frame.querySelector("img");
+      if (!(img instanceof HTMLImageElement)) return;
+
+      if (img.complete) {
+        applyAspect(img.naturalWidth, img.naturalHeight);
+        return;
+      }
+
+      if (frame.dataset.galleryImageAspectBound === "true") return;
+      frame.dataset.galleryImageAspectBound = "true";
+      img.addEventListener(
+        "load",
+        () => applyAspect(img.naturalWidth, img.naturalHeight),
+        { once: true }
+      );
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => syncGalleryCardFrames());
+  } else {
+    syncGalleryCardFrames();
+  }
+
+  document.addEventListener("astro:page-load", () => syncGalleryCardFrames());
+</script>

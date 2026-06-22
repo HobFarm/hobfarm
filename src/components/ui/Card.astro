@@ -1,0 +1,45 @@
+---
+interface Props {
+  variant?: "default" | "elevated" | "outlined";
+  href?: string;
+  padding?: "sm" | "md" | "lg";
+  class?: string;
+}
+
+const {
+  variant = "default",
+  href,
+  padding = "md",
+  class: className,
+} = Astro.props;
+
+const paddingMap = {
+  sm: "p-3",
+  md: "p-5",
+  lg: "p-8",
+};
+
+const variantMap = {
+  default: "bg-base-900 border border-base-700",
+  elevated: "bg-base-800 border border-base-700 shadow-dimensional",
+  outlined: "bg-transparent border border-base-600",
+};
+
+const Tag = href ? "a" : "div";
+const linkProps = href ? { href } : {};
+---
+
+<Tag
+  {...linkProps}
+  class:list={[
+    "rounded-lg transition-colors duration-200",
+    variantMap[variant],
+    paddingMap[padding],
+    href && "hover:border-base-500 cursor-pointer block",
+    className,
+  ]}
+>
+  <slot name="header" />
+  <slot />
+  <slot name="footer" />
+</Tag>

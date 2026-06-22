@@ -1,0 +1,292 @@
+---
+import {
+  grimoireSyntheses,
+  synthesisForDate,
+  synthesisKindMeta,
+} from "@/data/grimoire-synthesis";
+import {
+  CROSS_POLLINATION_FRAMING,
+  cardFramingNote,
+  plausibilityChip,
+  publicTagLabel,
+} from "@/lib/grimoire/display";
+
+interface Props {
+  id?: string;
+}
+
+const { id } = Astro.props;
+
+// Server render = sensible no-JS fallback (a stable build-date pick). The inline
+// script re-derives the item for the visitor's local date so the window grafts a
+// new synthesis every day without a redeploy.
+const { item } = synthesisForDate(new Date());
+const meta = synthesisKindMeta[item.kind];
+const plaus = plausibilityChip(item.plausibility);
+const note = cardFramingNote(item);
+
+const synthesesData = JSON.stringify(grimoireSyntheses);
+const kindMetaData = JSON.stringify(synthesisKindMeta);
+---
+
+<aside
+  id={id}
+  data-grimoire-synthesis
+  data-syntheses={synthesesData}
+  data-kindmeta={kindMetaData}
+  class="overflow-hidden rounded-lg border border-accent-500/30 bg-base-900/85 shadow-dimensional"
+>
+  <div class="flex items-start justify-between gap-4 border-b border-base-800 px-4 py-3 sm:px-5">
+    <div class="min-w-0">
+      <p class="font-mono text-[10px] uppercase tracking-widest text-accent-300">
+        {CROSS_POLLINATION_FRAMING.kicker}
+      </p>
+      <div class="mt-2 flex flex-wrap items-center gap-2">
+        <span
+          data-syn-kind
+          class="rounded-full border px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider"
+          style={`color: ${meta.accent}; border-color: color-mix(in srgb, ${meta.accent} 35%, transparent); background-color: color-mix(in srgb, ${meta.accent} 10%, transparent)`}
+        >
+          {meta.label}
+        </span>
+        <span
+          data-syn-plaus
+          class={plaus ? "rounded-full border px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider" : "hidden"}
+          style={plaus ? `color: ${plaus.accent}; border-color: color-mix(in srgb, ${plaus.accent} 35%, transparent); background-color: color-mix(in srgb, ${plaus.accent} 10%, transparent)` : ""}
+        >
+          {plaus?.label ?? ""}
+        </span>
+        <p class="font-mono text-[10px] uppercase tracking-wider text-base-400">
+          <span data-syn-date>compiled today</span>
+          <span class="mx-1 text-base-700">/</span>new synthesis daily
+        </p>
+      </div>
+      <h2 data-syn-title class="mt-2 text-xl font-display leading-tight text-white sm:text-2xl">
+        {item.title}
+      </h2>
+      <p data-syn-note class="mt-1.5 text-[11px] leading-snug text-base-400">{note}</p>
+    </div>
+    <span
+      class="mt-1 size-2 shrink-0 rounded-full bg-spot-green shadow-[0_0_18px_var(--color-spot-green)]"
+      title="daily synthesis is live"
+    ></span>
+  </div>
+
+  <div class="space-y-4 px-4 py-4 sm:px-5">
+    <p data-syn-text class="text-sm leading-relaxed text-base-200">{item.synthesis}</p>
+
+    <figure data-syn-image class="hidden overflow-hidden rounded-md border border-base-800"></figure>
+
+    <section aria-label="Fused from">
+      <p class="font-mono text-[10px] uppercase tracking-widest text-base-400">
+        Fused from
+      </p>
+      <div data-syn-ingredients class="mt-2 flex flex-wrap gap-2">
+        {item.ingredients.map((ing) => (
+          <span class="inline-flex items-center gap-1.5 rounded-full border border-base-700 bg-base-950/70 px-2.5 py-1.5 text-[11px] leading-none text-base-200">
+            <span class="font-mono uppercase tracking-wider text-accent-300">{ing.category}</span>
+            <span class="text-base-300">{publicTagLabel(ing.label)}</span>
+          </span>
+        ))}
+      </div>
+    </section>
+
+    <section
+      data-syn-connection-wrap
+      class={item.connection ? "rounded-md border border-base-800 bg-base-950/50 px-3 py-2.5" : "hidden rounded-md border border-base-800 bg-base-950/50 px-3 py-2.5"}
+      aria-label="Why it connects"
+    >
+      <p class="font-mono text-[10px] uppercase tracking-widest text-base-400">Why it connects</p>
+      <p data-syn-connection class="mt-1.5 text-xs leading-relaxed text-base-400">
+        {item.connection}
+      </p>
+    </section>
+
+    <div class="flex flex-wrap items-center justify-between gap-2 border-t border-base-800 pt-3">
+      <a
+        data-syn-thread
+        href={item.thread?.href ?? "/grimoire/"}
+        class="rounded-full border border-accent-500/40 px-3 py-1.5 text-[11px] leading-none text-accent-300 transition-colors hover:border-accent-500 hover:text-white"
+      >
+        {item.thread?.label ?? "Follow the thread"}
+      </a>
+      <a
+        href="/grimoire/cross-pollination/"
+        class="font-mono text-[10px] uppercase tracking-widest text-base-400 transition-colors hover:text-accent-400"
+      >
+        See the archive &rarr;
+      </a>
+    </div>
+  </div>
+</aside>
+
+<script>
+  import type { GrimoireSynthesis } from "@/data/grimoire-synthesis";
+  import {
+    cardFramingNote,
+    plausibilityChip,
+    publicTagLabel,
+  } from "@/lib/grimoire/display";
+
+  type Synthesis = GrimoireSynthesis;
+  type KindMeta = Record<string, { label: string; accent: string }>;
+
+  // Prefer the item's generated_at (live), fall back to a YYYY-MM-DD id, then to
+  // today. Curated ids are slugs (no match) so they show today's date.
+  function compiledLabel(item: Synthesis): string {
+    const raw = item.generated_at ?? item.id;
+    const m = typeof raw === "string" ? raw.match(/^(\d{4})-(\d{2})-(\d{2})/) : null;
+    const parsed = m ? new Date(`${m[1]}-${m[2]}-${m[3]}T00:00:00.000Z`) : null;
+    if (parsed && !Number.isNaN(parsed.getTime())) {
+      return parsed.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+        timeZone: "UTC",
+      });
+    }
+    return new Date().toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
+  }
+
+  function applyItem(root: HTMLElement, item: Synthesis, kindMeta: KindMeta) {
+    const meta = kindMeta[item.kind] ?? { label: item.kind, accent: "var(--color-accent-500)" };
+
+    const q = <T extends HTMLElement>(sel: string) => root.querySelector<T>(sel);
+    const setText = (sel: string, value: string) => {
+      const el = q<HTMLElement>(sel);
+      if (el) el.textContent = value;
+    };
+
+    setText("[data-syn-title]", item.title);
+    setText("[data-syn-text]", item.synthesis);
+
+    const kindEl = q<HTMLElement>("[data-syn-kind]");
+    if (kindEl) {
+      kindEl.textContent = meta.label;
+      kindEl.style.color = meta.accent;
+      kindEl.style.borderColor = `color-mix(in srgb, ${meta.accent} 35%, transparent)`;
+      kindEl.style.backgroundColor = `color-mix(in srgb, ${meta.accent} 10%, transparent)`;
+    }
+
+    const noteEl = q<HTMLElement>("[data-syn-note]");
+    if (noteEl) noteEl.textContent = cardFramingNote(item);
+
+    const plausEl = q<HTMLElement>("[data-syn-plaus]");
+    if (plausEl) {
+      const plaus = plausibilityChip(item.plausibility);
+      if (plaus) {
+        plausEl.textContent = plaus.label;
+        plausEl.className =
+          "rounded-full border px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider";
+        plausEl.style.color = plaus.accent;
+        plausEl.style.borderColor = `color-mix(in srgb, ${plaus.accent} 35%, transparent)`;
+        plausEl.style.backgroundColor = `color-mix(in srgb, ${plaus.accent} 10%, transparent)`;
+      } else {
+        plausEl.textContent = "";
+        plausEl.className = "hidden";
+        plausEl.removeAttribute("style");
+      }
+    }
+
+    const ingredients = q<HTMLElement>("[data-syn-ingredients]");
+    if (ingredients) {
+      ingredients.replaceChildren(
+        ...item.ingredients.map((ing) => {
+          const chip = document.createElement("span");
+          chip.className =
+            "inline-flex items-center gap-1.5 rounded-full border border-base-700 bg-base-950/70 px-2.5 py-1.5 text-[11px] leading-none text-base-200";
+          const cat = document.createElement("span");
+          cat.className = "font-mono uppercase tracking-wider text-accent-300";
+          cat.textContent = ing.category;
+          const label = document.createElement("span");
+          label.className = "text-base-300";
+          label.textContent = publicTagLabel(ing.label);
+          chip.appendChild(cat);
+          chip.appendChild(label);
+          return chip;
+        })
+      );
+    }
+
+    const connWrap = q<HTMLElement>("[data-syn-connection-wrap]");
+    const conn = q<HTMLElement>("[data-syn-connection]");
+    if (connWrap && conn) {
+      if (item.connection) {
+        conn.textContent = item.connection;
+        connWrap.classList.remove("hidden");
+      } else {
+        connWrap.classList.add("hidden");
+      }
+    }
+
+    const figure = q<HTMLElement>("[data-syn-image]");
+    if (figure) {
+      if (item.image?.url) {
+        let img = figure.querySelector("img");
+        if (!img) {
+          img = document.createElement("img");
+          img.className = "aspect-video w-full object-cover";
+          figure.replaceChildren(img);
+        }
+        img.src = item.image.url;
+        img.alt = item.image.alt ?? "";
+        figure.classList.remove("hidden");
+      } else {
+        figure.classList.add("hidden");
+        figure.replaceChildren();
+      }
+    }
+
+    const thread = q<HTMLAnchorElement>("[data-syn-thread]");
+    if (thread) {
+      thread.textContent = item.thread?.label ?? "Follow the thread";
+      thread.href = item.thread?.href ?? "/grimoire/";
+    }
+
+    const dateEl = q<HTMLElement>("[data-syn-date]");
+    if (dateEl) {
+      dateEl.textContent = `compiled ${compiledLabel(item)}`;
+    }
+  }
+
+  async function hydrate(root: HTMLElement) {
+    let items: Synthesis[];
+    let kindMeta: KindMeta;
+    try {
+      items = JSON.parse(root.dataset.syntheses ?? "[]");
+      kindMeta = JSON.parse(root.dataset.kindmeta ?? "{}");
+    } catch {
+      return;
+    }
+    if (!items.length) return;
+
+    // Instant paint: today's curated item (local-date day index, matching
+    // synthesisForDate's epoch-day math). Also the offline / pre-launch fallback.
+    const day = Math.floor(
+      Date.UTC(
+        new Date().getFullYear(),
+        new Date().getMonth(),
+        new Date().getDate()
+      ) / 86_400_000
+    );
+    const total = items.length;
+    applyItem(root, items[((day % total) + total) % total], kindMeta);
+
+    // Upgrade to the live daily synthesis when the grimoire endpoint is wired.
+    try {
+      const { loadLiveSynthesis } = await import("@/lib/grimoire/synthesis");
+      const live = await loadLiveSynthesis();
+      if (live) applyItem(root, live as unknown as Synthesis, kindMeta);
+    } catch {
+      // keep the curated item
+    }
+  }
+
+  document
+    .querySelectorAll<HTMLElement>("[data-grimoire-synthesis]")
+    .forEach(hydrate);
+</script>

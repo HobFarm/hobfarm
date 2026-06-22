@@ -1,0 +1,25 @@
+---
+// A titled column of nodes: mono kicker header + a vertical stack of NodeCards.
+// Used to build the left-to-right "map" diagrams (inputs -> system -> finished).
+import NodeCard from "./NodeCard.astro";
+import { TONE_TEXT, type Tone } from "./tones";
+
+interface Props {
+  title: string;
+  items: string[];
+  tone?: Tone;
+  glow?: boolean;
+  class?: string;
+}
+
+const { title, items, tone = "base", glow = false, class: className = "" } = Astro.props;
+
+const kickerClass = TONE_TEXT[tone];
+---
+
+<div class:list={["flex flex-col gap-3", className]}>
+  <p class:list={["font-mono text-[10px] uppercase tracking-widest", kickerClass]}>{title}</p>
+  <div class="flex flex-col gap-2">
+    {items.map((item) => <NodeCard label={item} tone={tone} glow={glow} />)}
+  </div>
+</div>

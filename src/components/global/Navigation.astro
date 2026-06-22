@@ -1,0 +1,127 @@
+---
+// Fundations
+import Button from "@/components/fundations/elements/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import MobileNav from "@/components/global/MobileNav.astro";
+import { topNavLinks as navLinks } from "@/data/navigation";
+
+const currentPath = Astro.url.pathname;
+
+function isActive(href: string): boolean {
+  if (href === "/") return currentPath === "/";
+  return currentPath === href || currentPath.startsWith(href + "/");
+}
+---
+
+<div
+  id="nav-wrapper"
+  class="mx-auto fixed top-0 w-full py-4 inset-x-0 z-100 transition-all duration-300 ease-in-out"
+>
+  <Wrapper class="standard">
+    <div
+      id="navigation-wrapper"
+      class="relative flex items-center justify-between"
+    >
+      <!-- Logo -->
+      <a
+        href="/"
+        aria-label="Go to homepage"
+        title="Homepage"
+        class="shrink-0"
+      >
+        <img
+          src="https://cdn.hob.farm/brand/hobfarm-logo-white.svg"
+          alt="HobFarm"
+          class="h-8"
+        />
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-6">
+        {
+          navLinks.map((link) => (
+            <a
+              title={link.label}
+              aria-label={link.label}
+              href={link.href}
+              class:list={[
+                "text-sm transition-colors",
+                isActive(link.href)
+                  ? "text-white border-b border-accent-500"
+                  : "text-base-400 hover:text-base-300",
+              ]}
+            >
+              {link.label}
+            </a>
+          ))
+        }
+        <!-- Auth-state-dependent CTA. Both rendered; JS shows the right one
+             based on /api/auth/me. Default visible = anonymous "Account" CTA
+             pointing at /login?next=/account. Once /api/auth/me returns 200
+             the JS swaps to the authenticated "Account" CTA pointing at
+             /account directly. Both share the label so users see only an
+             href change, not a label flicker. -->
+        <Button
+          isLink
+          size="sm"
+          variant="green"
+          href="/login?next=/account"
+          data-auth-cta="anonymous"
+        >
+          Account
+        </Button>
+        <Button
+          isLink
+          size="sm"
+          variant="green"
+          href="/account"
+          data-auth-cta="authenticated"
+          class="hidden"
+        >
+          Account
+        </Button>
+      </nav>
+
+      <!-- Mobile Navigation -->
+      <MobileNav navLinks={navLinks} />
+    </div>
+  </Wrapper>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const navWrapper = document.getElementById("nav-wrapper");
+    const scrollThreshold = 20;
+
+    function handleScroll() {
+      const scrolled = window.scrollY > scrollThreshold;
+
+      navWrapper.classList.toggle("backdrop-blur-md", scrolled);
+      navWrapper.classList.toggle("bg-base-950/80", scrolled);
+      navWrapper.classList.toggle("py-2", scrolled);
+      navWrapper.classList.toggle("py-4", !scrolled);
+    }
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    // Swap the auth-aware Account CTA based on session state. Default HTML
+    // shows the anonymous Account CTA (-> /login?next=/account); if
+    // /api/auth/me returns 200 we hide it and reveal the authenticated
+    // Account CTA (-> /account). Both share the label, only href differs.
+    (async () => {
+      try {
+        const res = await fetch("/api/auth/me", { credentials: "include" });
+        if (res.status !== 200) return;
+        document
+          .querySelectorAll('[data-auth-cta="anonymous"]')
+          .forEach((el) => el.classList.add("hidden"));
+        document
+          .querySelectorAll('[data-auth-cta="authenticated"]')
+          .forEach((el) => el.classList.remove("hidden"));
+      } catch {
+        // network failure: leave default Membership visible
+      }
+    })();
+  });
+</script>

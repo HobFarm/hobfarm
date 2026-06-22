@@ -1,0 +1,173 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Eyebrow from "@/components/sections/Eyebrow.astro";
+import SectionHeader from "@/components/sections/SectionHeader.astro";
+import StatusCard from "@/components/sections/StatusCard.astro";
+
+type Cta = { label: string; href: string; external?: boolean; variant?: "green" | "muted" };
+
+type HubCard = {
+  title: string;
+  status: string;
+  statusClass: string;
+  body: string;
+  ctas: Cta[];
+};
+
+type HubSection = {
+  eyebrow: string;
+  heading: string;
+  note: string;
+  cards: HubCard[];
+};
+
+const sections: HubSection[] = [
+  {
+    eyebrow: "01",
+    heading: "Tools",
+    note: "Live and in use.",
+    cards: [
+      {
+        title: "StyleFusion",
+        status: "Free",
+        statusClass: "text-accent-green",
+        body: "The public tool for structured visual work. Drop in references, separate subject from style, pull out the useful parts, and turn messy image direction into reusable prompt and metadata packages. Free with a HobFarm account.",
+        ctas: [
+          { label: "Use StyleFusion", href: "https://sf.hob.farm", external: true, variant: "green" },
+          { label: "Send feedback", href: "/contact/", variant: "muted" },
+        ],
+      },
+      {
+        title: "Grimoire",
+        status: "Live",
+        statusClass: "text-accent-green",
+        body: "The knowledge system under everything. A working database of how images, words, styles, references, prompts, and finished work connect. Models change; the knowledge stays.",
+        ctas: [
+          { label: "Explore Grimoire", href: "/grimoire/", variant: "green" },
+          { label: "Read the method", href: "/whitepaper", variant: "muted" },
+        ],
+      },
+      {
+        title: "HobBot",
+        status: "Live",
+        statusClass: "text-accent-green",
+        body: "The multi-agent system that runs HobFarm's knowledge pipeline and chat. It classifies, connects, and keeps Grimoire current behind the scenes.",
+        ctas: [
+          { label: "See HobBot", href: "/projects/hobbot/", variant: "muted" },
+        ],
+      },
+    ],
+  },
+  {
+    eyebrow: "02",
+    heading: "HobFarm TV",
+    note: "The channel.",
+    cards: [
+      {
+        title: "HobFarm TV",
+        status: "Just Starting",
+        statusClass: "text-accent-violet-bright",
+        body: "The video channel: build logs, behind-the-scenes of how the work gets made, and shows in production. Magazine Time Machine takes apart vintage print ads against their modern equivalents. 3 Degrees of Dick Miller traces film-history connections through one of cinema's most prolific character actors.",
+        ctas: [
+          { label: "HobFarm TV", href: "/projects/hobfarm-tv/", variant: "green" },
+          { label: "Subscribe on YouTube", href: "https://www.youtube.com/@HobFarm", external: true, variant: "muted" },
+        ],
+      },
+    ],
+  },
+  {
+    eyebrow: "03",
+    heading: "Experiments",
+    note: "Early, still in progress.",
+    cards: [
+      {
+        title: "Drifter",
+        status: "In progress",
+        statusClass: "text-accent-violet-bright",
+        body: "Frame-iterative video generation: style from an image, motion from music, stitched a frame at a time.",
+        ctas: [
+          { label: "See Drifter", href: "/projects/drifter/", variant: "muted" },
+        ],
+      },
+      {
+        title: "XKXXKX",
+        status: "In progress",
+        statusClass: "text-accent-violet-bright",
+        body: "A procedural choose-your-own-adventure engine: interactive fiction that branches on the fly. An experiment in what the system can do beyond images.",
+        ctas: [
+          { label: "See XKXXKX", href: "/projects/xkxxkx/", variant: "muted" },
+        ],
+      },
+      {
+        title: "AnomalyBot",
+        status: "In progress",
+        statusClass: "text-accent-violet-bright",
+        body: "The same engine behind StyleFusion, pointed at noisy data: weather, biodiversity, and other pattern detection. Proof the system works well beyond images.",
+        ctas: [
+          { label: "See AnomalyBot", href: "/projects/anomalybot/", variant: "muted" },
+        ],
+      },
+      {
+        title: "More in progress",
+        status: "Early",
+        statusClass: "text-accent-violet-bright",
+        body: "Other experiments not ready to show yet: music, voiceover workflows, and AI avatars. Follow the blog to watch them come together.",
+        ctas: [
+          { label: "Follow along", href: "/blog", variant: "muted" },
+        ],
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Projects | HobFarm"
+  description="The tools and systems HobFarm builds: StyleFusion, Grimoire, HobBot, HobFarm TV, and ongoing experiments."
+>
+  <section class="bg-noise">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+
+        {/* ── Header ── */}
+        <div class="mb-16 lg:mb-20 max-w-3xl">
+          <Eyebrow text="HobFarm / Las Vegas" />
+          <Text tag="h1" variant="display2XL" class="mt-6 text-white text-balance font-display">
+            Projects
+          </Text>
+          <Text tag="p" variant="textBase" class="text-base-300 mt-6 text-pretty leading-relaxed">
+            HobFarm is a creative studio in Las Vegas. These are the tools and systems behind the work: the ones you can use, the channel, and the experiments still in progress.
+          </Text>
+          <Text tag="p" variant="textBase" class="text-base-400 mt-4 text-pretty leading-relaxed">
+            Looking for finished pieces, goods, courses, or custom work? Those live under Visuals, Shop, Academy, and Services.
+          </Text>
+        </div>
+
+        {/* ── Sections ── */}
+        <div class="space-y-16 lg:space-y-20">
+          {sections.map((section) => (
+            <div>
+              <SectionHeader eyebrow={section.eyebrow} heading={section.heading} note={section.note} />
+
+              <div class:list={["grid grid-cols-1 gap-6", section.cards.length >= 3 ? "md:grid-cols-2 lg:grid-cols-3" : "md:grid-cols-2"]}>
+                {section.cards.map((card) => (
+                  <StatusCard
+                    title={card.title}
+                    status={card.status}
+                    statusClass={card.statusClass}
+                    body={card.body}
+                    ctas={card.ctas}
+                  />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </Wrapper>
+    </ContentPanel>
+  </section>
+</BaseLayout>

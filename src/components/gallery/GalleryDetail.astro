@@ -1,0 +1,315 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import Text from "@/components/fundations/elements/Text.astro";
+import GalleryTypeBadge from "@/components/gallery/GalleryTypeBadge.astro";
+import HeroCard from "@/components/gallery/HeroCard.astro";
+import MediaGrid from "@/components/gallery/MediaGrid.astro";
+import InfoModules from "@/components/gallery/InfoModules.astro";
+import ComparisonBlock from "@/components/gallery/ComparisonBlock.astro";
+import ExternalLinks from "@/components/gallery/ExternalLinks.astro";
+import ColorChemistry from "@/components/gallery/ColorChemistry.astro";
+import WardrobeGrammar from "@/components/gallery/WardrobeGrammar.astro";
+import StyleProfile from "@/components/gallery/StyleProfile.astro";
+import GalleryCard from "@/components/gallery/GalleryCard.astro";
+import ConceptPanel from "@/components/gallery/ConceptPanel.astro";
+import VisualDnaModule from "@/components/gallery/VisualDnaModule.astro";
+import TraitLockPills from "@/components/gallery/TraitLockPills.astro";
+import WorkflowStrip from "@/components/gallery/WorkflowStrip.astro";
+import FieldNotes from "@/components/gallery/FieldNotes.astro";
+import LessonBlocks from "@/components/gallery/LessonBlocks.astro";
+import SpecimenCard from "@/components/gallery/SpecimenCard.astro";
+import { mediaUrl, galleryTypeLabels, type GalleryType } from "@/lib/gallery";
+
+interface Props {
+  entry: CollectionEntry<"gallery">;
+}
+
+const { entry } = Astro.props;
+const { data } = entry;
+
+const dateLabel = data.date
+  ? new Date(data.date).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })
+  : null;
+
+let relatedEntries: CollectionEntry<"gallery">[] = [];
+if (data.related && data.related.length > 0) {
+  const all = await getCollection("gallery");
+  const wantedIds = new Set(data.related.map((r) => r.replace(/\.(md|mdx)$/, "")));
+  relatedEntries = all
+    .filter((e) => !e.data.draft)
+    .filter((e) => wantedIds.has(e.id.replace(/\.(md|mdx)$/, "")))
+    .slice(0, 3);
+}
+
+const hasExternal =
+  !!data.externalLinks &&
+  Object.values(data.externalLinks).some((v) => typeof v === "string" && v.length > 0);
+
+const hasTraitLock =
+  (data.lockedTraits && data.lockedTraits.length > 0) ||
+  (data.flexibleTraits && data.flexibleTraits.length > 0);
+
+const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
+const slugPath = entry.id.replace(/\.(md|mdx)$/, "");
+const canonicalUrl = `${siteOrigin}/gallery/${slugPath}`;
+const heroUrl = mediaUrl(
+  data.folder,
+  data.hero.type === "image" ? data.hero.file : data.hero.poster
+);
+const keywords = Array.from(
+  new Set([
+    ...(data.tags ?? []),
+    ...(data.methods ?? []),
+    ...(data.lockedTraits ?? []),
+    ...(data.flexibleTraits ?? []),
+    galleryTypeLabels[data.type as GalleryType],
+  ])
+).filter(Boolean);
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  name: data.title,
+  description: data.summary,
+  url: canonicalUrl,
+  image: heroUrl,
+  genre: galleryTypeLabels[data.type as GalleryType],
+  ...(data.date && { dateCreated: new Date(data.date).toISOString() }),
+  ...(keywords.length > 0 && { keywords: keywords.join(", ") }),
+  ...(data.specimenSheet?.specimenId && { identifier: data.specimenSheet.specimenId }),
+  ...(data.specimenSheet?.creator && {
+    creator: { "@type": "Person", name: data.specimenSheet.creator },
+  }),
+  ...(data.specimenSheet?.license && { license: data.specimenSheet.license }),
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
+
+<article class="pt-8 lg:pt-12">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+    <div class="lg:col-span-5">
+      <HeroCard
+        hero={data.hero}
+        folder={data.folder}
+        caption={data.title}
+        aspect={data.heroAspect ?? "aspect-[4/5]"}
+      />
+    </div>
+
+    <div class="lg:col-span-7 flex flex-col gap-5">
+      <div class="flex flex-wrap items-center gap-3">
+        <GalleryTypeBadge type={data.type} size="md" />
+        {dateLabel && (
+          <span class="text-xs font-mono uppercase tracking-wider text-base-500">
+            {dateLabel}
+          </span>
+        )}
+        {data.methods && data.methods.length > 0 && data.methods.map((m) => (
+          <span class="px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider rounded-full bg-base-950/70 border border-accent-500/40 text-accent-300">
+            {m}
+          </span>
+        ))}
+      </div>
+
+      <Text
+        tag="h1"
+        variant="displayXL"
+        class="text-white font-display tracking-tight text-balance"
+      >
+        {data.title}
+      </Text>
+
+      <Text tag="p" variant="textLG" class="text-base-300 leading-relaxed text-balance">
+        {data.summary}
+      </Text>
+
+      {data.tags && data.tags.length > 0 && (
+        <div class="flex flex-wrap gap-2">
+          {data.tags.map((tag) => (
+            <span class="px-2 py-1 text-xs font-mono text-base-400 bg-base-900 border border-base-800 rounded-full">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+
+      {data.relatedProcess && (
+        <div class="pt-2">
+          <a
+            href={data.relatedProcess}
+            class="inline-flex items-center gap-2 px-3 py-2 text-xs font-mono uppercase tracking-wider rounded-full bg-accent-500/10 text-accent-200 border border-accent-500/40 hover:border-accent-500 hover:text-accent-100 transition-colors"
+          >
+            See how this was grown
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </a>
+        </div>
+      )}
+    </div>
+  </div>
+
+  {data.infoModules && data.infoModules.length > 0 && (
+    <div class="mt-12">
+      <InfoModules modules={data.infoModules} />
+    </div>
+  )}
+
+  {data.specimenSheet && (
+    <div class="mt-12">
+      <SpecimenCard sheet={data.specimenSheet} />
+    </div>
+  )}
+
+  {data.concept && (
+    <div class="mt-12">
+      <ConceptPanel concept={data.concept} />
+    </div>
+  )}
+
+  {data.visualDNA && data.visualDNA.length > 0 && (
+    <div class="mt-12">
+      <VisualDnaModule items={data.visualDNA} />
+    </div>
+  )}
+
+  {hasTraitLock && (
+    <div class="mt-12">
+      <TraitLockPills locked={data.lockedTraits} flexible={data.flexibleTraits} />
+    </div>
+  )}
+
+  {data.workflowSteps && data.workflowSteps.length > 0 && (
+    <div class="mt-12">
+      <WorkflowStrip steps={data.workflowSteps} />
+    </div>
+  )}
+
+  {data.media && data.media.length > 0 && (
+    <div class="mt-12">
+      <h2 class="text-base-500 font-mono uppercase tracking-wider text-xs mb-6">Media</h2>
+      <MediaGrid media={data.media} folder={data.folder} />
+    </div>
+  )}
+
+  {data.mediaSections && data.mediaSections.length > 0 && (
+    <div class="mt-12 space-y-14">
+      {data.mediaSections.map((section) => (
+        <section class="border-t border-base-900 pt-8" aria-labelledby={`${section.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-heading`}>
+          <div class="mb-6 max-w-3xl">
+            <h2
+              id={`${section.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-heading`}
+              class="text-base-500 font-mono uppercase tracking-wider text-xs"
+            >
+              {section.title}
+            </h2>
+            {section.text && (
+              <p class="mt-3 text-sm leading-relaxed text-base-300">
+                {section.text}
+              </p>
+            )}
+          </div>
+          <MediaGrid media={section.media} folder={data.folder} />
+        </section>
+      ))}
+    </div>
+  )}
+
+  <div class="mt-12 prose prose-invert prose-sm max-w-none">
+    <slot />
+  </div>
+
+  {data.fieldNotes && data.fieldNotes.length > 0 && (
+    <div class="mt-12">
+      <FieldNotes notes={data.fieldNotes} />
+    </div>
+  )}
+
+  {data.processNotes && (
+    <div class="mt-12 border-t border-base-800 pt-8">
+      <h2 class="text-base-500 font-mono uppercase tracking-wider text-xs mb-4">Process Notes</h2>
+      <p class="text-sm text-base-300 leading-relaxed whitespace-pre-line">{data.processNotes}</p>
+    </div>
+  )}
+
+  {data.lessons && data.lessons.length > 0 && (
+    <div class="mt-12">
+      <LessonBlocks lessons={data.lessons} />
+    </div>
+  )}
+
+  {data.comparison && (
+    <div class="mt-12">
+      <ComparisonBlock comparison={data.comparison} />
+    </div>
+  )}
+
+  {data.colorChemistry && (
+    <div class="mt-12">
+      <ColorChemistry data={data.colorChemistry} />
+    </div>
+  )}
+
+  {data.wardrobeGrammar && data.wardrobeGrammar.length > 0 && (
+    <div class="mt-12">
+      <WardrobeGrammar items={data.wardrobeGrammar} />
+    </div>
+  )}
+
+  {data.materials && data.materials.length > 0 && (
+    <section class="mt-12 border border-base-800 bg-base-950/40 p-6 lg:p-8" aria-labelledby="materials-heading">
+      <h3 id="materials-heading" class="text-base-500 font-mono uppercase tracking-wider text-xs mb-4">
+        Materials
+      </h3>
+      <ul class="flex flex-wrap gap-2">
+        {data.materials.map((m) => (
+          <li class="px-2 py-1 text-xs font-mono text-base-200 bg-base-900 border border-base-700 rounded-full">
+            {m}
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  {data.accessories && data.accessories.length > 0 && (
+    <section class="mt-12 border border-base-800 bg-base-950/40 p-6 lg:p-8" aria-labelledby="accessories-heading">
+      <h3 id="accessories-heading" class="text-base-500 font-mono uppercase tracking-wider text-xs mb-4">
+        Accessories
+      </h3>
+      <ul class="flex flex-wrap gap-2">
+        {data.accessories.map((a) => (
+          <li class="px-2 py-1 text-xs font-mono text-base-200 bg-base-900 border border-base-700 rounded-full">
+            {a}
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  {data.styleProfile && (
+    <div class="mt-12">
+      <StyleProfile data={data.styleProfile} folder={data.folder} irFile={data.irFile} />
+    </div>
+  )}
+
+  {data.externalLinks && hasExternal && (
+    <div class="mt-12">
+      <ExternalLinks links={data.externalLinks} />
+    </div>
+  )}
+
+  {relatedEntries.length > 0 && (
+    <div class="mt-16 border-t border-base-800 pt-12">
+      <h2 class="text-base-500 font-mono uppercase tracking-wider text-xs mb-8">Related</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {relatedEntries.map((rel) => <GalleryCard entry={rel} />)}
+      </div>
+    </div>
+  )}
+</article>

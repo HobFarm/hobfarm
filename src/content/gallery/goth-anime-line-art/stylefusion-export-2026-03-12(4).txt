@@ -1,0 +1,469 @@
+=== StyleFusion Complete Export ===
+Generated: 3/11/2026, 8:23:11 PM
+IR Version: 4.0
+Extraction Model: gemini-3.1-flash-lite-preview
+
+--- STYLE ANCHORS ---
+gothic fantasy, dark anime illustration, tattoo art style, manga aesthetic, digital line art, dark anime
+
+--- GENERATIVE DESCRIPTION ---
+[Subject] A petite, horned humanoid female sits with confident poise atop a large skull, holding a small blade in her right hand. She is dressed in a structured corset and fishnet stockings, framed by sharp, wing-like decorative spikes. To her side rests another human skull, completing the macabre aesthetic. Her expression is enigmatic and playful, suggesting a character with a dark, calculated nature.
+
+[Style] gothic fantasy, dark anime, pop-surrealism, character design, stylized illustration
+
+[Scene] The scene is set against a stark, minimalist off-white backdrop that isolates the central composition. A complex, ornate metal structure serves as a focal point, surrounded by stylized, sharp-edged decorative elements that radiate outward, creating a balanced and symmetrical arrangement of gothic-inspired motifs.
+
+[Camera] Full body shot at eye level, centered to emphasize the symmetrical arrangement of the ornate decorative elements and the balanced composition.
+
+[Lighting] The scene is illuminated by a neutral, stylized light source from above, creating soft highlights on the character's hair and clothing while casting crisp, defined shadows that emphasize the intricate line-art details.
+
+[Color] The palette is defined by stark charcoal gray (#2D2926) line work against an off-white (#F9F7F4) background. Warm taupe (#8B837D) shading provides depth, creating a high-contrast, sophisticated, and somber gothic illustrative aesthetic.
+
+[Texture] clean vector linework, smooth digital gradients, monochromatic ink shading, cross-hatching patterns, sharp angular spikes, ornate filigree flourishes, stylized star-shaped highlights, subtle drop shadows
+
+[Avoid] Avoid photorealistic skin pores, 3D plastic-like sheen, muddy color bleeding, inconsistent shadow directions, blurry edges, heavy impasto, noisy grain, anatomical distortions, mangled fingers, overexposed highlights, chromatic aberration, and unintended color saturation.
+
+--- IMAGE GENERATION JSON ---
+{
+  "subject": {
+    "form": "Petite humanoid female figure, slender build, smooth matte skin, small curved horns protruding from the sides of the head",
+    "surface": "fine pores visible under directional light, subtle subsurface scattering, fine mesh fishnets, structured fabric, charcoal gray line work",
+    "coloring": "Base charcoal gray line work (#2D2926), warm taupe shading (#8B837D), accent pale beige skin tone (#EAE4E0)",
+    "features": [
+      "Short, chin-length bob with straight-cut bangs, smooth matte texture",
+      "Almond-shaped eyes with sharp, defined lids, gaze directed slightly downward, thin arched brows, small nose, lips slightly parted in a subtle smirk",
+      "small curved horns",
+      "sharp blade held in hand",
+      "fishnet stockings"
+    ],
+    "covering": "Structured corset-style bodice with lace-up front, matte fabric, Puffed-sleeve blouse worn underneath, light fabric, Short flared skirt, matte fabric, Fishnet stockings, fine mesh, Thigh-high boots with buckle details, matte finish",
+    "position": "Seated in a three-quarter profile, legs crossed at the knees, left hand resting on her lap, right hand raised near her face with fingers curled",
+    "held_objects": "Small sharp blade, right hand",
+    "expression_intent": "Confident and enigmatic, with a hint of playful malice in her gaze"
+  },
+  "scene": {
+    "setting": "The scene is set against a stark, minimalist off-white backdrop that isolates the central composition. A complex, ornate metal structure serves as a focal point, surrounded by stylized, sharp-edged decorative elements that radiate outward, creating a balanced and symmetrical arrangement of gothic-inspired motifs.",
+    "elements": [
+      "leather corset, matte finish with metallic buckle details, subject torso",
+      "fishnet hosiery, fine mesh texture, subject legs",
+      "ornate metal structure, center midground"
+    ],
+    "atmosphere": "Clear"
+  },
+  "camera": {
+    "shot": "full body, eye level, centered",
+    "lens": "standard portrait focal length, deep focus, no perspective distortion"
+  },
+  "lighting": {
+    "key": "The scene is illuminated by a neutral, stylized light source from above, creating soft highlights on the character's hair and clothing while casting crisp, defined shadows that emphasize the intricate line-art details.",
+    "fill": "Minimal fill, with deep, clean-line shadows defining the form and depth of the character and skulls."
+  },
+  "style": {
+    "medium": "with clean vector-style linework",
+    "quality": "The image features precise, uniform line weights, minimal flat shading with subtle gradient transitions, high-contrast monochrome aesthetic, and clean, sharp edges without visible grain or texture.",
+    "color_map": {
+      "background_primary": {
+        "hex": "#EBEBEB",
+        "finish": "matte diffuse"
+      },
+      "line_work_charcoal": {
+        "hex": "#333333",
+        "finish": "matte ink"
+      },
+      "skin_tone": {
+        "hex": "#D1D1D1",
+        "finish": "matte diffuse"
+      },
+      "eye_glow": {
+        "hex": "#FF00FF",
+        "finish": "emissive glow"
+      },
+      "lip_accent": {
+        "hex": "#FF00FF",
+        "finish": "satin"
+      },
+      "clothing_base": {
+        "hex": "#BDBDBD",
+        "finish": "matte fabric"
+      },
+      "eye_color": {
+        "hex": "#FF00FF",
+        "finish": "almond-shaped iris with natural depth and specular highlights"
+      }
+    },
+    "textures": [
+      "clean vector-style linework",
+      "smooth digital gradients",
+      "sharp, high-contrast ink outlines",
+      "flat, uniform shading blocks"
+    ],
+    "style_anchors": [
+      "gothic fantasy",
+      "dark anime illustration",
+      "tattoo art style",
+      "manga aesthetic",
+      "digital line art",
+      "dark anime"
+    ],
+    "light_interaction": "eye glow casts neutral highlights onto adjacent surfaces"
+  },
+  "negative": "Avoid photorealistic skin pores, 3D plastic-like sheen, muddy color bleeding, inconsistent shadow directions, blurry edges, heavy impasto, noisy grain, anatomical distortions, mangled fingers, overexposed highlights, chromatic aberration, and unintended color saturation.",
+  "aspect_ratio": "2:3",
+  "arrangement": "gothic",
+  "arrangement_matched": 0.9434607315589587,
+  "palette_modifier": -0.133
+}
+
+--- INTERMEDIATE REPRESENTATION ---
+{
+  "version": "4.0",
+  "id": "TmvOi9BVZhsc",
+  "style_anchors": [
+    "gothic fantasy",
+    "dark anime illustration",
+    "tattoo art style",
+    "manga aesthetic",
+    "digital line art",
+    "dark anime"
+  ],
+  "subjects": [
+    {
+      "role": "primary",
+      "figure": "Petite humanoid female figure, slender build, smooth matte skin, small curved horns protruding from the sides of the head",
+      "face": "Almond-shaped eyes with sharp, defined lids, gaze directed slightly downward, thin arched brows, small nose, lips slightly parted in a subtle smirk",
+      "hair": "Short, chin-length bob with straight-cut bangs, smooth matte texture",
+      "pose": "Seated in a three-quarter profile, legs crossed at the knees, left hand resting on her lap, right hand raised near her face with fingers curled",
+      "attire": [
+        "Structured corset-style bodice with lace-up front, matte fabric",
+        "Puffed-sleeve blouse worn underneath, light fabric",
+        "Short flared skirt, matte fabric",
+        "Fishnet stockings, fine mesh",
+        "Thigh-high boots with buckle details, matte finish"
+      ],
+      "held_objects": [
+        "Small sharp blade, right hand"
+      ],
+      "proximal_objects": [
+        "Large human skull positioned directly beneath her",
+        "Ornate decorative base with spiked, wing-like protrusions"
+      ],
+      "description": "A petite, horned humanoid female sits elegantly atop a large, detailed human skull. She wears a structured corset bodice over a light-colored blouse, paired with a short skirt and fishnet stockings. Her right hand is raised near her face, delicately holding a small, sharp blade. The entire composition is framed by sharp, wing-like decorative elements that emanate from the base behind her.",
+      "expression_intent": "Confident and enigmatic, with a hint of playful malice in her gaze",
+      "identity": {
+        "primary_color": {
+          "is": {
+            "description": "charcoal gray line work",
+            "hex": "#2D2926"
+          },
+          "not": [
+            "vibrant red",
+            "deep blue",
+            "neon green"
+          ]
+        },
+        "secondary_color": {
+          "is": {
+            "description": "warm taupe shading",
+            "hex": "#8B837D"
+          },
+          "not": [
+            "bright yellow",
+            "purple",
+            "orange"
+          ]
+        },
+        "accent_color": {
+          "is": {
+            "description": "pale beige skin tone",
+            "hex": "#EAE4E0"
+          },
+          "not": [
+            "gold",
+            "silver",
+            "bronze"
+          ]
+        },
+        "textures": [
+          "smooth matte skin",
+          "fine mesh fishnets",
+          "structured fabric"
+        ],
+        "structure": "Symmetrical composition centered on a seated figure with radiating decorative spikes",
+        "distinguishing_features": [
+          "small curved horns",
+          "sharp blade held in hand",
+          "fishnet stockings"
+        ],
+        "confidence": {
+          "figure": 1,
+          "face": 1,
+          "hair": 1,
+          "overall": 1
+        }
+      },
+      "_priority": 5
+    }
+  ],
+  "visual_dna": {
+    "figure": "Petite humanoid female figure, slender build, smooth matte skin, small curved horns protruding from the sides of the head",
+    "face": "Almond-shaped eyes with sharp, defined lids, gaze directed slightly downward, thin arched brows, small nose, lips slightly parted in a subtle smirk",
+    "hair": "Short, chin-length bob with straight-cut bangs, smooth matte texture",
+    "pose": "Seated in a three-quarter profile, legs crossed at the knees, left hand resting on her lap, right hand raised near her face with fingers curled",
+    "attire": [
+      "Structured corset-style bodice with lace-up front, matte fabric",
+      "Puffed-sleeve blouse worn underneath, light fabric",
+      "Short flared skirt, matte fabric",
+      "Fishnet stockings, fine mesh",
+      "Thigh-high boots with buckle details, matte finish"
+    ],
+    "held_objects": [
+      "Small sharp blade, right hand"
+    ],
+    "proximal_objects": [
+      "Large human skull positioned directly beneath her",
+      "Ornate decorative base with spiked, wing-like protrusions"
+    ],
+    "description": "A petite, horned humanoid female sits elegantly atop a large, detailed human skull. She wears a structured corset bodice over a light-colored blouse, paired with a short skirt and fishnet stockings. Her right hand is raised near her face, delicately holding a small, sharp blade. The entire composition is framed by sharp, wing-like decorative elements that emanate from the base behind her.",
+    "expression_intent": "Confident and enigmatic, with a hint of playful malice in her gaze",
+    "identity": {
+      "primary_color": {
+        "is": {
+          "description": "charcoal gray line work",
+          "hex": "#2D2926"
+        },
+        "not": [
+          "vibrant red",
+          "deep blue",
+          "neon green"
+        ]
+      },
+      "secondary_color": {
+        "is": {
+          "description": "warm taupe shading",
+          "hex": "#8B837D"
+        },
+        "not": [
+          "bright yellow",
+          "purple",
+          "orange"
+        ]
+      },
+      "accent_color": {
+        "is": {
+          "description": "pale beige skin tone",
+          "hex": "#EAE4E0"
+        },
+        "not": [
+          "gold",
+          "silver",
+          "bronze"
+        ]
+      },
+      "textures": [
+        "smooth matte skin",
+        "fine mesh fishnets",
+        "structured fabric"
+      ],
+      "structure": "Symmetrical composition centered on a seated figure with radiating decorative spikes",
+      "distinguishing_features": [
+        "small curved horns",
+        "sharp blade held in hand",
+        "fishnet stockings"
+      ],
+      "confidence": {
+        "figure": 1,
+        "face": 1,
+        "hair": 1,
+        "overall": 1
+      }
+    },
+    "_priority": 5
+  },
+  "environment": {
+    "setting": "A neutral, off-white, solid background with no architectural features or environmental context.",
+    "surfaces": [
+      "leather corset, matte finish with metallic buckle details, subject torso",
+      "fishnet hosiery, fine mesh texture, subject legs",
+      "bone skulls, smooth matte surface with etched crevices, foreground",
+      "fabric sleeves, soft matte texture, subject arms",
+      "metallic boots, polished finish with sharp edges, subject feet"
+    ],
+    "props": [
+      "skull, bottom-left foreground",
+      "skull, bottom-center foreground",
+      "ornate metal structure, center midground",
+      "spiked circular frame, background"
+    ],
+    "atmosphere": [],
+    "_priority": 3
+  },
+  "camera": {
+    "shot": "full body, eye level, centered",
+    "lens": "standard portrait focal length, deep focus, no perspective distortion",
+    "focus": "sharp focus across the entire illustration, no depth of field blur",
+    "_priority": 3
+  },
+  "lighting": {
+    "key": "Implied light source from above and slightly to the front, creating a soft, stylized, and neutral-toned illumination consistent with a studio-lit illustration.",
+    "fill": "Minimal fill, with deep, clean-line shadows defining the form and depth of the character and skulls.",
+    "practical": [],
+    "_priority": 3
+  },
+  "palette": {
+    "color_map": {
+      "background_primary": {
+        "hex": "#EBEBEB",
+        "finish": "matte diffuse"
+      },
+      "line_work_charcoal": {
+        "hex": "#333333",
+        "finish": "matte ink"
+      },
+      "skin_tone": {
+        "hex": "#D1D1D1",
+        "finish": "matte diffuse"
+      },
+      "eye_glow": {
+        "hex": "#FF00FF",
+        "finish": "emissive glow"
+      },
+      "lip_accent": {
+        "hex": "#FF00FF",
+        "finish": "satin"
+      },
+      "clothing_base": {
+        "hex": "#BDBDBD",
+        "finish": "matte fabric"
+      }
+    },
+    "colors": [
+      "light gray",
+      "charcoal",
+      "magenta",
+      "white"
+    ],
+    "hex": [
+      "#EBEBEB",
+      "#333333",
+      "#FF00FF",
+      "#FFFFFF"
+    ],
+    "contrast": "high contrast between monochromatic grayscale linework and vibrant neon magenta accents",
+    "mood": "gothic illustrative elegance",
+    "_priority": 3
+  },
+  "rendering": {
+    "medium": "digital illustration with clean vector-style linework",
+    "detail": "The image features precise, uniform line weights, minimal flat shading with subtle gradient transitions, high-contrast monochrome aesthetic, and clean, sharp edges without visible grain or texture.",
+    "_priority": 4
+  },
+  "details": {
+    "textures": [
+      "clean vector-style linework",
+      "smooth digital gradients",
+      "sharp, high-contrast ink outlines",
+      "flat, uniform shading blocks"
+    ],
+    "accents": [
+      "vibrant magenta glow on eyes",
+      "saturated pink highlight on lips",
+      "sharp, stylized thorn-like tendrils",
+      "crisp, defined edge lighting"
+    ]
+  },
+  "negative": [
+    "3D-rendered plastic sheen",
+    "photorealistic skin pores",
+    "oil painting brushstrokes",
+    "watercolor bleeding",
+    "over-saturated neon hues",
+    "HDR bloom clipping",
+    "vibrant primary color injection",
+    "harsh directional spotlighting",
+    "lens flare artifacts",
+    "flat, muddy illumination",
+    "inconsistent shadow casting",
+    "photorealistic human anatomy",
+    "distorted limb proportions",
+    "heavy impasto layering",
+    "blurry airbrush smudging",
+    "noisy photographic grain",
+    "JPEG compression banding",
+    "gradient posterization",
+    "watermark artifacts",
+    "text rendering artifacts",
+    "photorealistic rendering",
+    "3D-modeled plastic sheen",
+    "painterly brushstrokes",
+    "blurry watercolor edges",
+    "muddy color mixing",
+    "unintended chromatic aberration",
+    "over-saturated rainbow noise",
+    "sepia-toned degradation",
+    "harsh lens flare",
+    "inconsistent multi-directional shadows",
+    "blown-out HDR highlights",
+    "flat, muddy ambient occlusion",
+    "distorted skeletal structures",
+    "asymmetrical facial features",
+    "mangled finger placement",
+    "grainy film noise",
+    "pixelated dithering",
+    "JPEG compression artifacts",
+    "watermark inclusions",
+    "unwanted text fragments",
+    "gradient banding"
+  ],
+  "blend": {
+    "sources": [
+      {
+        "reference_type": "subject",
+        "weight": 1,
+        "notes": "subject reference"
+      },
+      {
+        "reference_type": "style",
+        "weight": 1,
+        "notes": "style reference"
+      }
+    ],
+    "blend_notes": "Deterministic merge from 2 references",
+    "generative_description": "A petite, horned humanoid female sits elegantly atop a large, detailed human skull. She wears a structured corset bodice over a light-colored blouse, paired with a short skirt and fishnet stockings. Her right hand is raised near her face, delicately holding a small, sharp blade. The entire composition is framed by sharp, wing-like decorative elements that emanate from the base behind her.. Set in A neutral, off-white, solid background with no architectural features or environmental context.. Rendered as digital illustration with clean vector-style linework. Lit by Implied light source from above and slightly to the front, creating a soft, stylized, and neutral-toned illumination consistent with a studio-lit illustration."
+  },
+  "character_dna": {
+    "name": "Unnamed Horned Figure",
+    "anchors": [],
+    "flex": [
+      "horns",
+      "corset",
+      "skull",
+      "blade",
+      "fishnets",
+      "elven",
+      "gothic",
+      "monochromatic",
+      "skulls",
+      "illustrative",
+      "anime-inspired",
+      "dark fantasy"
+    ]
+  },
+  "meta": {
+    "created": "2026-03-12T03:21:21.716Z",
+    "extraction_model": "gemini-3.1-flash-lite-preview",
+    "notes": "v4.0 normalized",
+    "aspect_ratio": "2:3"
+  },
+  "compiled_slots": {
+    "subject": "A petite, horned humanoid female sits with confident poise atop a large skull, holding a small blade in her right hand. She is dressed in a structured corset and fishnet stockings, framed by sharp, wing-like decorative spikes. To her side rests another human skull, completing the macabre aesthetic. Her expression is enigmatic and playful, suggesting a character with a dark, calculated nature.",
+    "render": "Digital illustration featuring precise, clean linework, flat shading with subtle gradients, and a high-contrast monochrome aesthetic with sharp, well-defined edges.",
+    "style": "gothic fantasy, dark anime, pop-surrealism, character design, stylized illustration",
+    "render_mode": "illustration",
+    "scene": "The scene is set against a stark, minimalist off-white backdrop that isolates the central composition. A complex, ornate metal structure serves as a focal point, surrounded by stylized, sharp-edged decorative elements that radiate outward, creating a balanced and symmetrical arrangement of gothic-inspired motifs.",
+    "camera": "Full body shot at eye level, centered to emphasize the symmetrical arrangement of the ornate decorative elements and the balanced composition.",
+    "color": "The palette is defined by stark charcoal gray (#2D2926) line work against an off-white (#F9F7F4) background. Warm taupe (#8B837D) shading provides depth, creating a high-contrast, sophisticated, and somber gothic illustrative aesthetic.",
+    "light": "The scene is illuminated by a neutral, stylized light source from above, creating soft highlights on the character's hair and clothing while casting crisp, defined shadows that emphasize the intricate line-art details.",
+    "texture": "clean vector linework, smooth digital gradients, monochromatic ink shading, cross-hatching patterns, sharp angular spikes, ornate filigree flourishes, stylized star-shaped highlights, subtle drop shadows",
+    "negative": "Avoid photorealistic skin pores, 3D plastic-like sheen, muddy color bleeding, inconsistent shadow directions, blurry edges, heavy impasto, noisy grain, anatomical distortions, mangled fingers, overexposed highlights, chromatic aberration, and unintended color saturation."
+  }
+}

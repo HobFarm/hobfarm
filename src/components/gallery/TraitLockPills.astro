@@ -1,0 +1,55 @@
+---
+interface Props {
+  locked?: string[];
+  flexible?: string[];
+}
+
+const { locked = [], flexible = [] } = Astro.props;
+const hasLocked = locked.length > 0;
+const hasFlexible = flexible.length > 0;
+---
+
+{(hasLocked || hasFlexible) && (
+  <section class="border border-base-800 bg-base-950/40 p-6 lg:p-8">
+    <h3 class="text-base-500 font-mono uppercase tracking-wider text-xs mb-5">Trait Lock</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {hasLocked && (
+        <div>
+          <h4 class="flex items-center gap-2 text-[10px] font-mono uppercase tracking-wider text-magenta-300 mb-3">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+            Locked
+          </h4>
+          <div class="flex flex-wrap gap-2">
+            {locked.map((trait) => (
+              <span class="px-2 py-1 text-xs font-mono text-magenta-200 bg-magenta-700/10 border border-magenta-700/30 rounded-full">
+                {trait}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {hasFlexible && (
+        <div>
+          <h4 class="flex items-center gap-2 text-[10px] font-mono uppercase tracking-wider text-cyan-300 mb-3">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0 1 9.9-1" />
+            </svg>
+            Flexible
+          </h4>
+          <div class="flex flex-wrap gap-2">
+            {flexible.map((trait) => (
+              <span class="px-2 py-1 text-xs font-mono text-cyan-200 bg-cyan-700/10 border border-cyan-700/30 rounded-full">
+                {trait}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  </section>
+)}

@@ -1,0 +1,111 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Eyebrow from "@/components/sections/Eyebrow.astro";
+import { transformVideoUrl } from "@/lib/media-transforms";
+
+const octopusVideo = "https://cdn.hob.farm/pages/about/Fractal%20Octopus.mp4";
+---
+
+<section class="relative overflow-hidden">
+  {/* Background video */}
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    class="absolute inset-0 w-full h-full object-cover z-0"
+  >
+    <source src={transformVideoUrl(octopusVideo, { width: 1280 })} type="video/mp4" />
+  </video>
+  {/* Dark overlay for legibility */}
+  <div class="absolute inset-0 z-1 bg-base-950/80"></div>
+  {/* Atmospheric gradient effects */}
+  <div class="absolute inset-0 pointer-events-none z-2">
+    <div class="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full bg-accent-500/5 blur-[150px]"></div>
+    <div class="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full bg-accent-500/3 blur-[120px]"></div>
+  </div>
+  <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-base-700 to-transparent z-3"></div>
+
+  <Wrapper variant="standard" class="py-24 lg:py-32 relative z-10">
+    <Eyebrow text="Philosophy" />
+
+    <Text
+      tag="h2"
+      variant="displayLG"
+      class="mt-6 text-white font-display"
+    >
+      The Fractal Octopus
+    </Text>
+
+    <div class="mt-8 space-y-6 max-w-3xl">
+      <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+        The good ideas rarely come from inside a single discipline.
+        They show up at the edges, where mathematics meets folklore,
+        where circuit design overlaps with psychedelic art, where
+        scientific rigor runs into pattern recognition and intuition.
+      </Text>
+      <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+        The architecture is shaped that way on purpose. One brain, many
+        arms, each reaching into a different domain, all wired to the
+        same nervous system. A fractal octopus. The recursion is not
+        decoration: it is why a single image and a 300-frame video can
+        be built from the same system, and why the knowledge graph that sharpens
+        an image prompt is the same one that will read a field of data or a
+        document.
+      </Text>
+      <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+        Self-similarity is everywhere once you look for it. A branching
+        tree, a river delta, a lightning strike: same geometry, different
+        scale.
+      </Text>
+      <Text tag="p" variant="textBase" class="text-white font-medium italic">
+        Feed the system a photograph and it pulls out visual DNA. Feed it
+        a vocabulary and it builds a living knowledge graph. Same engine,
+        same principles, infinite depth.
+      </Text>
+    </div>
+
+    {/* The moving parts of a real orchestrated system: an orchestrator,
+        specialized agents, a grounding layer, and open protocols. The MCP
+        detail is literal, not metaphor. */}
+    <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl">
+      {[
+        {
+          label: "Direction",
+          title: "Orchestrator",
+          text: "I set the goal, keep control, and make the final call. Intent goes in, judgment comes out. The work that ships is decided here, by hand.",
+        },
+        {
+          label: "Tools",
+          title: "Specialized agents",
+          text: "One job each: pull apart, compile, generate, sort, tag, connect. A pipeline of steps, not a single button you press and hope.",
+        },
+        {
+          label: "Grimoire",
+          title: "Ground truth",
+          text: "The knowledge graph every job is anchored to, so nothing generates from nowhere and the work stays grounded instead of drifting.",
+        },
+        {
+          label: "Standards",
+          title: "Protocols",
+          text: "The pieces talk to each other and to outside tools over open standards. HobBot runs as an MCP server, not a walled garden.",
+        },
+      ].map((part) => (
+        <div class="flex flex-col p-5 rounded-xl border border-base-800 bg-base-900/50 backdrop-blur-sm">
+          <span class="text-[10px] font-mono uppercase tracking-wider text-base-500">
+            {part.label}
+          </span>
+          <Text tag="h3" variant="textBase" class="mt-1 text-white font-medium">
+            {part.title}
+          </Text>
+          <Text tag="p" variant="textSM" class="mt-2 text-base-400 leading-relaxed">
+            {part.text}
+          </Text>
+        </div>
+      ))}
+    </div>
+  </Wrapper>
+
+  <div class="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-base-700 to-transparent"></div>
+</section>

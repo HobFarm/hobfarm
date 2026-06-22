@@ -1,0 +1,20 @@
+---
+// Mono uppercase eyebrow label (e.g. "HobFarm / Las Vegas"). Shared by the
+// Workshop (/projects) and About pages so the page-intro label stays uniform.
+import Text from "@/components/fundations/elements/Text.astro";
+
+interface Props {
+  text: string;
+  class?: string;
+}
+
+const { text, class: className } = Astro.props;
+---
+
+<Text
+  tag="span"
+  variant="textSM"
+  class:list={["text-accent-violet-bright font-mono tracking-wider uppercase", className]}
+>
+  {text}
+</Text>

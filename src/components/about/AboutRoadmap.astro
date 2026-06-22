@@ -1,0 +1,99 @@
+---
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import SectionHeader from "@/components/sections/SectionHeader.astro";
+import { live, inDevelopment, planned } from "@/data/roadmap";
+---
+
+<section class="border-t border-base-800/50">
+  <Wrapper variant="standard" class="py-20 lg:py-24">
+    <div class="mb-12">
+      <SectionHeader eyebrow="Ahead" heading="Where this is going" />
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+      {/* Live Now */}
+      <div class="rounded-xl border border-base-800 bg-base-900/50 p-6">
+        <div class="flex items-center gap-2 mb-6">
+          <div class="w-2 h-2 rounded-full bg-accent-green animate-pulse"></div>
+          <span class="text-xs font-mono text-accent-green uppercase tracking-wider">
+            Live Now
+          </span>
+        </div>
+        <ul class="space-y-4">
+          {live.map((item) => (
+            <li class="border-l-2 border-accent-green/30 pl-4">
+              {item.href ? (
+                <a
+                  href={item.href}
+                  class="text-sm text-white font-medium hover:text-accent-500 transition-colors"
+                  {...(item.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                >
+                  {item.name}
+                </a>
+              ) : (
+                <p class="text-sm text-white font-medium">{item.name}</p>
+              )}
+              <p class="text-xs text-base-400 mt-1 leading-relaxed">{item.description}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* In Development */}
+      <div class="rounded-xl border border-base-800 bg-base-900/50 p-6">
+        <div class="flex items-center gap-2 mb-6">
+          <div class="w-2 h-2 rounded-full bg-accent-500 animate-pulse"></div>
+          <span class="text-xs font-mono text-accent-500 uppercase tracking-wider">
+            In Development
+          </span>
+        </div>
+        <ul class="space-y-4">
+          {inDevelopment.map((item) => (
+            <li class="border-l-2 border-accent-500/30 pl-4">
+              {item.href ? (
+                <a
+                  href={item.href}
+                  class="text-sm text-white font-medium hover:text-accent-500 transition-colors"
+                  {...(item.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                >
+                  {item.name}
+                </a>
+              ) : (
+                <p class="text-sm text-white font-medium">{item.name}</p>
+              )}
+              <p class="text-xs text-base-400 mt-1 leading-relaxed">{item.description}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Planned */}
+      <div class="rounded-xl border border-base-800 bg-base-900/50 p-6">
+        <div class="flex items-center gap-2 mb-6">
+          <div class="w-2 h-2 rounded-full bg-base-500"></div>
+          <span class="text-xs font-mono text-base-500 uppercase tracking-wider">
+            Planned
+          </span>
+        </div>
+        <ul class="space-y-4">
+          {planned.map((item) => (
+            <li class="border-l-2 border-base-700 pl-4">
+              {item.href ? (
+                <a
+                  href={item.href}
+                  class="text-sm text-white font-medium hover:text-accent-500 transition-colors"
+                  {...(item.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                >
+                  {item.name}
+                </a>
+              ) : (
+                <p class="text-sm text-white font-medium">{item.name}</p>
+              )}
+              <p class="text-xs text-base-400 mt-1 leading-relaxed">{item.description}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </Wrapper>
+</section>

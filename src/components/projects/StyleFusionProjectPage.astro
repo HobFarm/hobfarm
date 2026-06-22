@@ -1,0 +1,355 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import StatusBadge from "@/components/ui/StatusBadge.astro";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+
+const accountHref = project.data.primaryCta?.href ?? "/login?next=https%3A%2F%2Fsf.hob.farm%2F";
+const appHref = project.data.secondaryCta?.href ?? project.data.liveUrl ?? "https://sf.hob.farm/";
+const appIsExternal = appHref.startsWith("http");
+
+const actions = [
+  {
+    title: "Extract Visual DNA",
+    body: "Upload a reference and StyleFusion breaks it into character traits, clothing, colors, materials, lighting, composition, and style cues.",
+  },
+  {
+    title: "Fuse Without Contamination",
+    body: "Use one image for the subject, another for style, another for composition. StyleFusion keeps roles separated so references do not leak into each other.",
+  },
+  {
+    title: "Compile for Generation",
+    body: "Turn the structured profile into provider-ready prompts, generation JSON, compact prompts, character sheets, or reusable creative metadata.",
+  },
+];
+
+const outcomes = [
+  "Build repeatable characters instead of one-off images.",
+  "Turn one strong concept into a gallery, listing, character sheet, or style pack.",
+  "Compare multiple model interpretations from the same structured input.",
+  "Keep internal generation metadata separate from public-facing gallery metadata.",
+  "Reuse strong characters, styles, and prompts without rebuilding from scratch.",
+];
+
+const workflow = [
+  "Reference",
+  "Extraction",
+  "Intermediate Representation",
+  "Grimoire Enrichment",
+  "Provider Compilation",
+  "Generation",
+  "Packaging",
+];
+
+const accountBenefits = [
+  "Create or sign in with a one-time email code.",
+  "Open the gated StyleFusion workspace from the same HobFarm identity.",
+  "Manage profile details and provider API keys from the account page.",
+  "Keep saved provider keys encrypted at rest; plaintext is not returned by the API or shown in the UI.",
+];
+
+const faqs = [
+  {
+    question: "Do I need API keys?",
+    answer:
+      "StyleFusion is BYOK-first. You need a provider key for the work you want to run. Some providers can cover both reference extraction and image generation, so you do not always need multiple keys to begin.",
+  },
+  {
+    question: "What does BYOK mean?",
+    answer:
+      "BYOK means Bring Your Own Key. You use your own provider account, control which providers are active, and pay those providers directly for usage.",
+  },
+  {
+    question: "Can I use it for character consistency?",
+    answer:
+      "Yes. The strongest use case is turning a reference into a structured character identity that can survive style changes, provider swaps, and repeated prompt compilation.",
+  },
+  {
+    question: "Is this only for AI artists?",
+    answer:
+      "No. It is for anyone who needs repeatable visual language: artists, writers, game masters, worldbuilders, character designers, visual researchers, and small studios.",
+  },
+  {
+    question: "Can I use it for commercial projects?",
+    answer:
+      "That depends on your rights to the references and the terms of the provider you use for generation. StyleFusion helps structure the workflow; it does not override provider licenses or copyright obligations.",
+  },
+  {
+    question: "Does HobFarm store my API keys?",
+    answer:
+      "Saved account keys are encrypted at rest with a per-account key. Plaintext keys are not returned by the API or shown again in the account UI.",
+  },
+  {
+    question: "What is the Grimoire?",
+    answer:
+      "The Grimoire is HobFarm's visual vocabulary and correspondence system. It gives StyleFusion a deeper language for aesthetics, materials, lighting, movements, textures, and visual relationships.",
+  },
+  {
+    question: "Why use this instead of prompting directly?",
+    answer:
+      "Direct prompts are fragile. StyleFusion keeps references role-scoped, turns them into reusable structure, enriches that structure through the Grimoire, and compiles it for different providers without starting over.",
+  },
+];
+---
+
+<BaseLayout
+  title="StyleFusion | HobFarm"
+  description={project.data.subtitle}
+  image={project.data.heroImage}
+  palette="magenta-cyan"
+>
+  <section class="bg-noise overflow-hidden">
+    <ContentPanel class="overflow-hidden">
+      <Wrapper variant="standard" class="py-10 lg:py-16">
+        <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.82fr)] lg:items-center">
+          <div class="max-w-3xl">
+            <div class="mb-5 flex flex-wrap items-center gap-3">
+              <span class="font-mono text-xs uppercase tracking-widest text-accent-400">
+                HobFarm visual compiler
+              </span>
+              <StatusBadge status={project.data.status} />
+            </div>
+
+            <Text tag="h1" variant="displayXL" class="text-white text-balance font-display leading-none">
+              Turn references into reusable visual systems.
+            </Text>
+
+            <p class="mt-6 max-w-2xl text-base leading-7 text-base-300 sm:text-lg">
+              StyleFusion extracts the visual DNA from your images, builds structured character and style profiles, enriches them through the Grimoire, and helps you generate consistent results across providers without starting over every time.
+            </p>
+
+            <p class="mt-4 max-w-xl font-mono text-sm text-base-500">
+              StyleFusion is HobFarm's visual compiler for reference-driven AI image workflows.
+            </p>
+
+            <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Button isLink size="lg" variant="green" href={accountHref}>
+                Create free account
+              </Button>
+              <Button
+                isLink
+                size="lg"
+                variant="muted"
+                href={appHref}
+                target={appIsExternal ? "_blank" : undefined}
+                rel={appIsExternal ? "noopener noreferrer" : undefined}
+                data-stylefusion-auth-cta
+                aria-hidden="true"
+                class="hidden"
+              >
+                Open StyleFusion
+              </Button>
+              <Button isLink size="lg" variant="link" href="#workflow" class="text-base-300 hover:text-white">
+                See how it works
+              </Button>
+            </div>
+          </div>
+
+          <div class="relative min-h-[420px] overflow-hidden rounded-2xl border border-base-700 bg-base-950 shadow-dimensional">
+            {project.data.heroVideo ? (
+              <video
+                autoplay
+                muted
+                loop
+                playsinline
+                poster={project.data.heroImage}
+                class="absolute inset-0 h-full w-full object-cover opacity-55"
+              >
+                <source src={project.data.heroVideo} type="video/mp4" />
+              </video>
+            ) : project.data.heroImage && (
+              <img
+                src={project.data.heroImage}
+                alt="StyleFusion reference-to-image workspace"
+                width={960}
+                height={1080}
+                class="absolute inset-0 h-full w-full object-cover opacity-55"
+              />
+            )}
+            <div class="absolute inset-0 bg-linear-to-b from-base-950/25 via-base-950/65 to-base-950"></div>
+            <div class="relative flex h-full min-h-[420px] flex-col justify-end p-4 sm:p-6">
+              <div class="grid gap-3">
+                <div class="rounded-xl border border-accent-500/30 bg-base-950/75 p-4 backdrop-blur">
+                  <p class="font-mono text-xs uppercase tracking-widest text-accent-300">Reference</p>
+                  <p class="mt-2 text-sm text-base-300">Subject, style, composition, palette.</p>
+                </div>
+                <div class="rounded-xl border border-base-600 bg-base-950/80 p-4 backdrop-blur">
+                  <p class="font-mono text-xs uppercase tracking-widest text-base-400">Visual DNA</p>
+                  <div class="mt-3 grid grid-cols-3 gap-2">
+                    <span class="h-2 rounded-full bg-accent-500/80"></span>
+                    <span class="h-2 rounded-full bg-spot-magenta/70"></span>
+                    <span class="h-2 rounded-full bg-base-500"></span>
+                  </div>
+                  <p class="mt-3 text-sm text-base-300">Traits, materials, lighting, identity locks.</p>
+                </div>
+                <div class="rounded-xl border border-white/10 bg-white/10 p-4 backdrop-blur">
+                  <p class="font-mono text-xs uppercase tracking-widest text-white">Compiled Result</p>
+                  <p class="mt-2 text-sm text-base-300">Provider-ready prompts and reusable creative metadata.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="what-it-does" class="mt-16 grid gap-4 md:grid-cols-3">
+          {actions.map((action) => (
+            <article class="rounded-xl border border-base-700 bg-base-900/80 p-5">
+              <h2 class="font-mono text-sm uppercase tracking-widest text-accent-300">{action.title}</h2>
+              <p class="mt-4 text-sm leading-6 text-base-300">{action.body}</p>
+            </article>
+          ))}
+        </div>
+
+        <div id="workflow" class="mt-16 rounded-2xl border border-base-700 bg-base-950/70 p-4 sm:p-6">
+          <div class="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p class="font-mono text-xs uppercase tracking-widest text-accent-400">The workflow</p>
+              <h2 class="mt-2 text-2xl font-medium text-white">From reference to packaged system</h2>
+            </div>
+            <p class="max-w-md text-sm text-base-400">
+              The details can get deep. The core loop stays compact.
+            </p>
+          </div>
+          <ol class="grid gap-3 sm:grid-cols-2 lg:grid-cols-7">
+            {workflow.map((step, index) => (
+              <li class="min-h-24 rounded-lg border border-base-700 bg-base-900 p-3">
+                <span class="font-mono text-xs text-accent-400">{String(index + 1).padStart(2, "0")}</span>
+                <p class="mt-3 text-sm font-medium leading-5 text-white">{step}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <div class="mt-16 grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+          <section class="rounded-2xl border border-base-700 bg-base-900/75 p-6 sm:p-8">
+            <p class="font-mono text-xs uppercase tracking-widest text-accent-400">Why it matters</p>
+            <h2 class="mt-3 text-3xl font-medium text-white">Reusable systems beat one-off prompts.</h2>
+            <ul class="mt-6 space-y-3">
+              {outcomes.map((item) => (
+                <li class="flex gap-3 text-sm leading-6 text-base-300">
+                  <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-400"></span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section class="rounded-2xl border border-base-700 bg-base-950/75 p-6 sm:p-8">
+            <p class="font-mono text-xs uppercase tracking-widest text-accent-400">Creator fit</p>
+            <h2 class="mt-3 text-3xl font-medium text-white">Built for creators who use AI seriously.</h2>
+            <p class="mt-5 text-base leading-7 text-base-300">
+              Most AI image tools are built around single prompts. StyleFusion is built around reusable creative systems. It is for artists, worldbuilders, writers, game masters, character designers, visual researchers, and creators building their own image language one reference at a time.
+            </p>
+          </section>
+        </div>
+
+        <div class="mt-16 grid gap-8 lg:grid-cols-3">
+          <section class="lg:col-span-2 rounded-2xl border border-base-700 bg-base-900/80 p-6 sm:p-8">
+            <p class="font-mono text-xs uppercase tracking-widest text-accent-400">Why create an account</p>
+            <h2 class="mt-3 text-3xl font-medium text-white">Membership starts with a HobFarm account.</h2>
+            <p class="mt-5 text-base leading-7 text-base-300">
+              There is no fake bundle of mystery perks here. A HobFarm account gives you the current access layer for StyleFusion and account-managed provider keys, then ties you into the wider Grimoire and HobFarm tool ecosystem as those surfaces grow.
+            </p>
+            <ul class="mt-6 grid gap-3 sm:grid-cols-2">
+              {accountBenefits.map((benefit) => (
+                <li class="rounded-lg border border-base-700 bg-base-950 p-4 text-sm leading-6 text-base-300">
+                  {benefit}
+                </li>
+              ))}
+            </ul>
+            <div class="mt-7">
+              <Button isLink size="base" variant="green" href={accountHref}>
+                Create free account
+              </Button>
+            </div>
+          </section>
+
+          <section class="rounded-2xl border border-accent-500/30 bg-accent-950/20 p-6 sm:p-8">
+            <p class="font-mono text-xs uppercase tracking-widest text-accent-300">Powered by the Grimoire</p>
+            <h2 class="mt-3 text-2xl font-medium text-white">A deeper visual vocabulary.</h2>
+            <p class="mt-5 text-sm leading-6 text-base-300">
+              StyleFusion is powered by the Grimoire, HobFarm's visual vocabulary and correspondence system. The Grimoire gives the compiler a deeper language for aesthetics, materials, lighting, movements, textures, and visual relationships.
+            </p>
+            <a href="/grimoire" class="mt-6 inline-flex text-sm font-medium text-accent-300 hover:text-accent-200">
+              Explore the Grimoire
+            </a>
+          </section>
+        </div>
+
+        <div class="mt-16 grid gap-8 lg:grid-cols-2">
+          <section class="rounded-2xl border border-base-700 bg-base-950/75 p-6 sm:p-8">
+            <p class="font-mono text-xs uppercase tracking-widest text-accent-400">Provider-portable by design</p>
+            <h2 class="mt-3 text-3xl font-medium text-white">Use the right generator for the job.</h2>
+            <p class="mt-5 text-base leading-7 text-base-300">
+              StyleFusion is built around replaceable providers. Use different generation systems for different jobs, compare outputs, and avoid locking your creative workflow to one vendor.
+            </p>
+            <p class="mt-4 text-sm leading-6 text-base-400">
+              Provider setup belongs in the help center, not in the middle of the pitch.
+            </p>
+            <a href="/helpcenter/history-and-providers" class="mt-6 inline-flex text-sm font-medium text-accent-300 hover:text-accent-200">
+              Open the provider guide
+            </a>
+          </section>
+
+          <section class="rounded-2xl border border-base-700 bg-base-900/80 p-6 sm:p-8">
+            <p class="font-mono text-xs uppercase tracking-widest text-accent-400">Live lab, active development</p>
+            <h2 class="mt-3 text-3xl font-medium text-white">A working lab, not polished corporate AI.</h2>
+            <p class="mt-5 text-base leading-7 text-base-300">
+              StyleFusion is a live HobFarm lab tool under active development. Some provider errors come from upstream services, and some experimental features may change as the system improves. The goal is powerful creative control, visible progress, and tools that get sharper through use.
+            </p>
+          </section>
+        </div>
+
+        <section id="faq" class="mt-16">
+          <div class="mb-6">
+            <p class="font-mono text-xs uppercase tracking-widest text-accent-400">FAQ</p>
+            <h2 class="mt-3 text-3xl font-medium text-white">Questions before you start.</h2>
+          </div>
+          <div class="grid gap-3 lg:grid-cols-2">
+            {faqs.map((faq) => (
+              <details class="group rounded-xl border border-base-700 bg-base-900/80 p-5">
+                <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-medium text-white">
+                  <span>{faq.question}</span>
+                  <span class="font-mono text-accent-400 transition-transform group-open:rotate-45">+</span>
+                </summary>
+                <p class="mt-4 text-sm leading-6 text-base-300">{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+</BaseLayout>
+
+<script>
+  async function revealStyleFusionCtaForSignedInUsers() {
+    const cta = document.querySelector("[data-stylefusion-auth-cta]");
+    if (!cta) return;
+
+    try {
+      const response = await fetch("/api/auth/me", {
+        credentials: "include",
+        headers: { Accept: "application/json" },
+      });
+
+      if (response.ok) {
+        cta.classList.remove("hidden");
+        cta.removeAttribute("aria-hidden");
+      }
+    } catch {
+      // Keep the workspace CTA hidden when auth state cannot be confirmed.
+    }
+  }
+
+  revealStyleFusionCtaForSignedInUsers();
+</script>

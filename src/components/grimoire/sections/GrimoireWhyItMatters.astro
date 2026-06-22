@@ -1,0 +1,76 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
+const changes = [
+  { name: "Models",           note: "Frontier weights cycle on a monthly cadence." },
+  { name: "Providers",        note: "API surfaces and pricing shift constantly." },
+  { name: "Agent frameworks", note: "Today's orchestration is next year's footnote." },
+  { name: "Prompts",          note: "Phrasing rots. Compilation strategies drift." },
+];
+
+const persists = [
+  { name: "Atoms",             note: "Schema-backed units survive model swaps." },
+  { name: "Composites",        note: "Arrangements remain valid across providers." },
+  { name: "Correspondences",   note: "Cross-references compound in value over time." },
+  { name: "Validation traces", note: "Runs are replayable, audits are durable." },
+];
+---
+
+<section class="border-t border-base-800/50">
+  <Wrapper variant="standard" class="py-20 lg:py-24">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-start mb-12">
+      <div class="lg:col-span-1">
+        <Text tag="span" variant="textSM" class="text-accent-500 font-mono tracking-wider uppercase">
+          Why it matters
+        </Text>
+        <Text tag="h2" variant="displayLG" class="mt-6 text-white text-balance font-display">
+          Durable data.<br />Replaceable agents.
+        </Text>
+      </div>
+      <div class="lg:col-span-2">
+        <Text tag="p" variant="textBase" class="text-base-400 leading-relaxed text-pretty">
+          Anything you build on top of a specific model is on a deprecation clock. Anything you
+          build on top of structured, schema-backed data outlives the model that produced it.
+          Grimoire keeps the durable side of that line, and treats the rest as swappable.
+        </Text>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+      <div class="rounded-xl border border-base-800 bg-base-900/50 p-6">
+        <div class="flex items-center gap-2 mb-6">
+          <div class="w-2 h-2 rounded-full bg-spot-purple"></div>
+          <span class="text-xs font-mono text-spot-purple uppercase tracking-wider">
+            What changes
+          </span>
+        </div>
+        <ul class="space-y-4">
+          {changes.map((item) => (
+            <li class="border-l-2 border-spot-purple/30 pl-4">
+              <p class="text-sm text-white font-medium">{item.name}</p>
+              <p class="text-xs text-base-400 mt-1 leading-relaxed">{item.note}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="rounded-xl border border-base-800 bg-base-900/50 p-6">
+        <div class="flex items-center gap-2 mb-6">
+          <div class="w-2 h-2 rounded-full bg-spot-green animate-pulse"></div>
+          <span class="text-xs font-mono text-spot-green uppercase tracking-wider">
+            What persists
+          </span>
+        </div>
+        <ul class="space-y-4">
+          {persists.map((item) => (
+            <li class="border-l-2 border-spot-green/30 pl-4">
+              <p class="text-sm text-white font-medium">{item.name}</p>
+              <p class="text-xs text-base-400 mt-1 leading-relaxed">{item.note}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </Wrapper>
+</section>

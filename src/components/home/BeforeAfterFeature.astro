@@ -1,0 +1,87 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import { beforeAfter } from "@/data/homepage-systems";
+---
+
+<section id="before-after" class="border-b border-base-800/70">
+  <Wrapper variant="standard" class="py-16 lg:py-20">
+    <div class="grid grid-cols-1 gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
+      <div>
+        <Text tag="span" variant="textSM" class="font-mono uppercase tracking-widest text-accent-cyan">
+          {beforeAfter.eyebrow}
+        </Text>
+        <Text tag="h2" variant="displayLG" class="mt-5 font-display text-white">
+          {beforeAfter.heading}
+        </Text>
+        <p class="mt-5 text-base leading-relaxed text-base-400">{beforeAfter.copy}</p>
+        <p class="mt-4 text-sm leading-relaxed text-base-400">{beforeAfter.detail}</p>
+
+        <div class="mt-6 flex flex-wrap gap-2">
+          {beforeAfter.steps.map((step) => (
+            <span class="rounded-full border border-base-700 bg-base-900/70 px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider text-base-300">
+              {step}
+            </span>
+          ))}
+        </div>
+
+        <div class="mt-7 flex flex-wrap gap-2">
+          {beforeAfter.ctas.map((cta, index) => (
+            <Button isLink size="sm" variant={index === 0 ? "green" : "muted"} href={cta.href}>
+              {cta.label}
+            </Button>
+          ))}
+        </div>
+      </div>
+
+      <article class="rounded-lg border border-base-800 bg-base-900/60 p-4 shadow-dimensional sm:p-5">
+        <a
+          href="/gallery/before-and-after/1926-now/"
+          class="group block overflow-hidden rounded-md border border-base-800 bg-base-950"
+        >
+          <span class="sr-only">Open the 1926 / Now Before &amp; After gallery entry</span>
+          <div class="relative aspect-[9/16] overflow-hidden bg-base-950 sm:aspect-[4/5] lg:aspect-[9/16]">
+            <video
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              poster={beforeAfter.feature.image}
+              aria-label={beforeAfter.feature.alt}
+              class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+            >
+              <source src={beforeAfter.feature.video} type="video/mp4" />
+              <img src={beforeAfter.feature.image} alt={beforeAfter.feature.alt} loading="lazy" decoding="async" />
+            </video>
+
+            <div class="absolute inset-x-0 top-0 flex justify-between p-3">
+              <span class="rounded-full border border-accent-cyan/50 bg-base-950/80 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-accent-cyan">
+                {beforeAfter.feature.beforeLabel}
+              </span>
+              <span class="rounded-full border border-accent-magenta/50 bg-base-950/80 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-accent-magenta-bright">
+                {beforeAfter.feature.afterLabel}
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <p class="font-mono text-[10px] uppercase tracking-widest text-accent-cyan">Featured comparison</p>
+            <h3 class="mt-2 font-display text-2xl leading-tight text-white">{beforeAfter.feature.title}</h3>
+          </div>
+          <dl class="grid gap-2">
+            {beforeAfter.feature.notes.map((note) => (
+              <div class="rounded-md border border-base-800 bg-base-950/60 p-3">
+                <dt class="font-mono text-[10px] uppercase tracking-wider text-base-400">{note.label}</dt>
+                <dd class="mt-1 text-sm leading-relaxed text-base-200">{note.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </article>
+    </div>
+  </Wrapper>
+</section>

@@ -1,0 +1,67 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+---
+
+<BaseLayout
+  title="Membership Checkout Complete | HobFarm"
+  description="Stripe checkout confirmation for HobFarm memberships and digital products."
+>
+  <section class="bg-noise">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <div class="max-w-3xl">
+          <Text tag="span" variant="textSM" class="text-accent-500 font-mono">
+            Stripe Checkout
+          </Text>
+          <Text tag="h1" variant="displayXL" class="mt-10 text-white text-balance font-display">
+            Payment received.
+          </Text>
+          <p class="mt-4 text-base text-base-400 leading-relaxed text-balance">
+            Stripe received the checkout result and sent the confirmation back to HobFarm. Access,
+            receipts, and product delivery are handled through the checkout email and the HobFarm
+            support path while the membership system comes online.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <Button isLink size="sm" variant="green" href="/account/">
+              View Account
+            </Button>
+            <Button isLink size="sm" variant="muted" href="/support/">
+              Contact Support
+            </Button>
+          </div>
+        </div>
+
+        <div class="mt-14 grid grid-cols-1 gap-8 border-t border-base-800 pt-10 md:grid-cols-3">
+          <div>
+            <Text tag="h2" variant="textSM" class="text-white font-mono uppercase tracking-widest">
+              Receipt
+            </Text>
+            <p class="mt-3 text-sm text-base-400 leading-relaxed">
+              Stripe emails the receipt and payment details to the address used at checkout.
+            </p>
+          </div>
+          <div>
+            <Text tag="h2" variant="textSM" class="text-white font-mono uppercase tracking-widest">
+              Access
+            </Text>
+            <p class="mt-3 text-sm text-base-400 leading-relaxed">
+              Membership access may require account review while checkout fulfillment is finalized.
+            </p>
+          </div>
+          <div>
+            <Text tag="h2" variant="textSM" class="text-white font-mono uppercase tracking-widest">
+              Help
+            </Text>
+            <p class="mt-3 text-sm text-base-400 leading-relaxed">
+              For missing access, include the checkout email, Stripe receipt, and product name.
+            </p>
+          </div>
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+</BaseLayout>

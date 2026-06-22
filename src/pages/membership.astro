@@ -1,0 +1,19 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import MembershipPage from "@/components/membership/MembershipPage";
+---
+
+<BaseLayout
+  title="Membership | HobFarm"
+  description="Optional $5/month supporter membership. Helps cover HobFarm infrastructure, API costs, and tool work. Cancel any time."
+>
+  <section class="bg-noise">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <MembershipPage client:load />
+      </Wrapper>
+    </ContentPanel>
+  </section>
+</BaseLayout>

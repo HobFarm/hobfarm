@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "project": {
+      "type": "string",
+      "enum": [
+        "stylefusion",
+        "grimoire",
+        "hobbot",
+        "hobfarm",
+        "kalshi"
+      ]
+    },
+    "version": {
+      "type": "string"
+    },
+    "publishedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "tags": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "publishedAt",
+    "tags"
+  ],
+  "additionalProperties": false
+}

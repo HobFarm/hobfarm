@@ -1,0 +1,161 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import GalleryCard from "@/components/gallery/GalleryCard.astro";
+import { getCollection } from "astro:content";
+
+const seriesEntries = (await getCollection("gallery"))
+  .filter((e) => !e.data.draft && e.data.type === "before-and-after")
+  .sort((a, b) => {
+    if (a.data.date && b.data.date) {
+      return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+    }
+    return a.data.title.localeCompare(b.data.title);
+  });
+
+const deck =
+  "Same-character transformations across eras, subcultures, moods, and visual settings. Each piece keeps the identity readable while the styling rules change.";
+
+const intro =
+  "Before & After is built around a simple rule: the same character appears in two different forms. Face, body type, proportions, and core identity stay consistent, while wardrobe, posture, props, background, lighting, color palette, attitude, and cultural language all shift from one side of the image to the other.";
+
+const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
+const seriesJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Before & After",
+  description: deck,
+  url: `${siteOrigin}/gallery/before-and-after/`,
+  isPartOf: {
+    "@type": "CollectionPage",
+    name: "HobFarm Visuals",
+    url: `${siteOrigin}/gallery/`,
+  },
+  mainEntity: {
+    "@type": "ItemList",
+    itemListOrder: "https://schema.org/ItemListOrderDescending",
+    numberOfItems: seriesEntries.length,
+    itemListElement: seriesEntries.map((e, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: e.data.title,
+      url: `${siteOrigin}/gallery/${e.id.replace(/\.(md|mdx)$/, "")}`,
+    })),
+  },
+};
+---
+
+<BaseLayout
+  title="Before & After | HobFarm Gallery"
+  description={deck}
+  palette="magenta-cyan"
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(seriesJsonLd)} />
+  <section class="bg-noise">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-10 lg:py-14">
+        <nav class="mb-6 flex flex-wrap items-center gap-3" aria-label="Series breadcrumbs">
+          <a
+            href="/gallery/"
+            class="font-mono text-xs uppercase tracking-widest text-base-500 transition-colors hover:text-white"
+          >
+            &larr; Gallery
+          </a>
+          <span class="font-mono text-[10px] uppercase tracking-widest text-base-700">/</span>
+          <span class="font-mono text-xs uppercase tracking-widest text-base-400">
+            Before & After
+          </span>
+        </nav>
+
+        <header class="grid grid-cols-1 items-end gap-6 lg:grid-cols-12 lg:gap-10">
+          <div class="lg:col-span-7">
+            <Text tag="span" variant="textSM" class="font-mono uppercase tracking-wider text-accent-500">
+              Transformation Series
+            </Text>
+            <Text tag="h1" variant="displayXL" class="mt-4 text-balance font-display tracking-tight text-white">
+              Before & After
+            </Text>
+            <Text tag="p" variant="textBase" class="mt-4 max-w-2xl text-balance leading-relaxed text-base-300">
+              {deck}
+            </Text>
+
+            <div class="mt-6 flex flex-wrap gap-3">
+              <a
+                href="/#before-after"
+                class="inline-flex items-center gap-2 rounded-full border border-accent-500/40 bg-accent-500/10 px-4 py-2 font-mono text-xs uppercase tracking-wider text-accent-200 transition-colors hover:border-accent-500 hover:text-accent-100"
+              >
+                See homepage feature
+              </a>
+              <a
+                href="/#workflow"
+                class="inline-flex items-center gap-2 rounded-full border border-base-700 px-4 py-2 font-mono text-xs uppercase tracking-wider text-base-200 transition-colors hover:border-base-100 hover:text-white"
+              >
+                See the workflow
+              </a>
+            </div>
+          </div>
+
+          <aside class="lg:col-span-5" aria-labelledby="before-after-summary-heading">
+            <div class="border border-base-800 bg-base-950/40 p-5">
+              <h2
+                id="before-after-summary-heading"
+                class="font-mono text-[10px] uppercase tracking-wider text-base-300"
+              >
+                Series Summary
+              </h2>
+              <p class="mt-3 text-sm leading-relaxed text-base-200">
+                {intro}
+              </p>
+              <dl class="mt-4 grid grid-cols-2 gap-3 text-xs">
+                <div class="flex flex-col gap-0.5">
+                  <dt class="font-mono text-[10px] uppercase tracking-wider text-base-400">
+                    Entries
+                  </dt>
+                  <dd class="font-mono text-base-100">
+                    {seriesEntries.length} {seriesEntries.length === 1 ? "piece" : "pieces"}
+                  </dd>
+                </div>
+                <div class="flex flex-col gap-0.5">
+                  <dt class="font-mono text-[10px] uppercase tracking-wider text-base-400">
+                    First Format
+                  </dt>
+                  <dd class="font-mono text-base-100">
+                    Poster + loop
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          </aside>
+        </header>
+
+        {seriesEntries.length > 0 && (
+          <section class="mt-10" aria-labelledby="before-after-entries-heading">
+            <div class="mb-5 flex items-end justify-between gap-4">
+              <h2 id="before-after-entries-heading" class="font-mono text-xs uppercase tracking-wider text-accent-gold">
+                Entries
+              </h2>
+              <span class="font-mono text-[10px] uppercase tracking-wider text-base-500">
+                {seriesEntries.length} indexed
+              </span>
+            </div>
+            <div class="grid grid-cols-1 gap-x-5 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+              {seriesEntries.map((entry) => (
+                <GalleryCard entry={entry} />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {seriesEntries.length === 0 && (
+          <div class="mt-12 border border-dashed border-base-800 p-8 text-center">
+            <Text tag="p" variant="textBase" class="text-base-400">
+              First Before & After piece is being prepared.
+            </Text>
+          </div>
+        )}
+      </Wrapper>
+    </ContentPanel>
+  </section>
+</BaseLayout>

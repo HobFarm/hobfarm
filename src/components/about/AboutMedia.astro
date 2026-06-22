@@ -1,0 +1,72 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import SectionHeader from "@/components/sections/SectionHeader.astro";
+
+type Show = {
+  title: string;
+  status: string;
+  statusClass: string;
+  body: string;
+  cta?: { label: string; href: string; external?: boolean };
+};
+
+const shows: Show[] = [
+  {
+    title: "HobFarm TV",
+    status: "In Production",
+    statusClass: "text-accent-violet-bright",
+    body: "The video side of the project. It collects film-history work, fake trailers, product stories, resale adventures, character pieces, visual experiments, and project updates. The goal is to turn the work itself into watchable formats: how things are found, built, researched, connected, packaged, sold, and turned into the next thing.",
+    cta: { label: "Watch on HobFarm TV", href: "/projects/hobfarm-tv/" },
+  },
+  {
+    title: "The BASS Show",
+    status: "In Development",
+    statusClass: "text-accent-violet-bright",
+    body: "Short for Buying And Selling Shit Show. Pronounced \"base.\" It is not about fish. It is not about sound. Except when it is, because there are actual subwoofers to sell. The format follows auction finds, resale inventory, weird objects, useful gear, DVDs, electronics, bad purchases, good flips, and whatever strange thing ends up on the table next.",
+  },
+];
+---
+
+<section class="border-t border-base-800/50">
+  <Wrapper variant="standard" class="py-20 lg:py-24">
+    <SectionHeader eyebrow="Buying, selling, and media" heading="The process becomes the content" note="Video and resale." />
+
+    <Text tag="p" variant="textBase" class="text-base-400 max-w-2xl mb-12 text-pretty leading-relaxed">
+      The resale side is part of the project, not separate from it. Finding, sorting, testing, photographing, listing, and selling objects creates material for content, research, product development, and future HobFarm TV formats.
+    </Text>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {shows.map((show) => (
+        <div class="flex flex-col p-6 lg:p-8 rounded-xl border border-base-800 bg-base-900/50">
+          <div class="flex items-start justify-between gap-3 mb-3">
+            <Text tag="h3" variant="textXL" class="text-white font-medium">
+              {show.title}
+            </Text>
+            <div class="flex items-center gap-1.5 flex-shrink-0 mt-1.5">
+              <div class={`w-1.5 h-1.5 rounded-full ${show.statusClass.replace("text-", "bg-")}`}></div>
+              <span class={`text-[10px] font-mono tracking-wider uppercase whitespace-nowrap ${show.statusClass}`}>
+                {show.status}
+              </span>
+            </div>
+          </div>
+          <Text tag="p" variant="textBase" class="text-base-400 leading-relaxed flex-1">
+            {show.body}
+          </Text>
+          {show.cta && (
+            <a
+              href={show.cta.href}
+              {...(show.cta.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              class="mt-6 inline-flex items-center gap-2 text-sm font-mono text-accent-violet-bright hover:text-white transition-colors duration-200"
+            >
+              <span>{show.cta.label}</span>
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          )}
+        </div>
+      ))}
+    </div>
+  </Wrapper>
+</section>

@@ -1,0 +1,34 @@
+---
+// A single infographic node: bordered HTML card with a tone dot, a mono
+// uppercase label, and an optional sub-line. DOM-first (real text), tokens only.
+import { NODE_BORDER, NODE_DOT, glowClass, type Tone } from "./tones";
+
+interface Props {
+  label: string;
+  note?: string;
+  tone?: Tone;
+  glow?: boolean;
+  class?: string;
+}
+
+const { label, note, tone = "base", glow = false, class: className = "" } = Astro.props;
+
+const borderClass = NODE_BORDER[tone];
+const dotClass = NODE_DOT[tone];
+const glowUtility = glow ? glowClass(tone) : "";
+---
+
+<div
+  class:list={[
+    "rounded-md border bg-base-950/50 px-3 py-2.5",
+    borderClass,
+    glowUtility,
+    className,
+  ]}
+>
+  <div class="flex items-center gap-2">
+    <span class:list={["size-1.5 shrink-0 rounded-full", dotClass]} aria-hidden="true"></span>
+    <span class="font-mono text-[11px] uppercase tracking-wider text-base-100">{label}</span>
+  </div>
+  {note && <p class="mt-1 pl-3.5 text-xs leading-snug text-base-400">{note}</p>}
+</div>

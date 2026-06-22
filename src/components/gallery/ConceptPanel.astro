@@ -1,0 +1,80 @@
+---
+interface Concept {
+  thesis?: string;
+  method?: string;
+  seedInputs?: string[];
+  growthStages?: string[];
+  reusablePattern?: string;
+  usefulFor?: string[];
+}
+
+interface Props {
+  concept: Concept;
+}
+
+const { concept } = Astro.props;
+---
+
+<section class="border border-base-800 bg-base-950/40 p-6 lg:p-8">
+  <header class="flex flex-wrap items-center justify-between gap-4 mb-6">
+    <h3 class="text-base-500 font-mono uppercase tracking-wider text-xs">Concept</h3>
+    {concept.method && (
+      <span class="inline-flex items-center px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider rounded-full border border-accent-500/40 text-accent-300 bg-accent-500/10">
+        Method: {concept.method}
+      </span>
+    )}
+  </header>
+
+  {concept.thesis && (
+    <p class="text-base text-base-200 leading-relaxed mb-6 max-w-3xl">{concept.thesis}</p>
+  )}
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    {concept.seedInputs && concept.seedInputs.length > 0 && (
+      <div>
+        <h4 class="text-[10px] font-mono uppercase tracking-wider text-base-500 mb-2">Seed Inputs</h4>
+        <div class="flex flex-wrap gap-2">
+          {concept.seedInputs.map((s) => (
+            <span class="px-2 py-1 text-xs font-mono text-base-200 bg-base-900 border border-base-700 rounded-full">
+              {s}
+            </span>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {concept.usefulFor && concept.usefulFor.length > 0 && (
+      <div>
+        <h4 class="text-[10px] font-mono uppercase tracking-wider text-base-500 mb-2">Useful For</h4>
+        <div class="flex flex-wrap gap-2">
+          {concept.usefulFor.map((u) => (
+            <span class="px-2 py-1 text-xs font-mono text-green-300 bg-green-700/10 border border-green-700/30 rounded-full">
+              {u}
+            </span>
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+
+  {concept.growthStages && concept.growthStages.length > 0 && (
+    <div class="mt-6">
+      <h4 class="text-[10px] font-mono uppercase tracking-wider text-base-500 mb-2">Growth Stages</h4>
+      <ol class="space-y-1.5">
+        {concept.growthStages.map((stage, i) => (
+          <li class="text-sm text-base-300 flex gap-3">
+            <span class="text-accent-500 font-mono text-xs mt-0.5 min-w-[1.25rem]">{String(i + 1).padStart(2, "0")}</span>
+            <span>{stage}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  )}
+
+  {concept.reusablePattern && (
+    <div class="mt-6 border-l-2 border-accent-500 pl-4 py-2 bg-accent-500/5">
+      <h4 class="text-[10px] font-mono uppercase tracking-wider text-accent-400 mb-1">Reusable Pattern</h4>
+      <p class="text-sm text-base-200 leading-relaxed italic">{concept.reusablePattern}</p>
+    </div>
+  )}
+</section>

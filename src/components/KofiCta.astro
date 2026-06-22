@@ -1,0 +1,100 @@
+---
+type KofiVariant = "symbol" | "logo" | "button" | "badge";
+
+interface Props {
+  variant?: KofiVariant;
+  href?: string;
+  label?: string;
+  text?: string;
+  class?: string;
+}
+
+const {
+  variant = "button",
+  href = "https://ko-fi.com/hobfarm/",
+  label = "Support HobFarm on Ko-fi",
+  text = "",
+  class: className,
+} = Astro.props as Props;
+
+const assets: Record<KofiVariant, string> = {
+  symbol: "https://cdn.hob.farm/brand/kofi_symbol.png",
+  logo: "https://cdn.hob.farm/brand/kofi_logo.png",
+  button: "https://cdn.hob.farm/brand/support_me_on_kofi_dark.png",
+  badge: "https://cdn.hob.farm/brand/support_me_on_kofi_badge_dark.png",
+};
+
+const src = assets[variant] ?? assets.button;
+const imgAlt = text ? "" : label;
+---
+
+<a
+  class:list={["kofi-cta", `kofi-cta--${variant}`, className]}
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={label}
+>
+  <img src={src} alt={imgAlt} loading="lazy" decoding="async" />
+  {text && <span class="kofi-cta__text">{text}</span>}
+</a>
+
+<style>
+  .kofi-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    width: fit-content;
+    max-width: 100%;
+    text-decoration: none;
+  }
+
+  .kofi-cta:focus-visible {
+    border-radius: 999px;
+    outline: 2px solid var(--color-accent-500);
+    outline-offset: 4px;
+  }
+
+  .kofi-cta img {
+    display: block;
+    flex: 0 1 auto;
+    height: auto;
+    max-width: 100%;
+  }
+
+  .kofi-cta__text {
+    color: var(--color-base-400);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    text-transform: uppercase;
+    transition: color 180ms ease;
+  }
+
+  .kofi-cta:hover .kofi-cta__text {
+    color: var(--color-white);
+  }
+
+  .kofi-cta--symbol img {
+    width: clamp(28px, 2.2vw, 36px);
+  }
+
+  .kofi-cta--logo {
+    width: min(220px, 100%);
+  }
+
+  .kofi-cta--button {
+    width: min(360px, 100%);
+  }
+
+  .kofi-cta--badge {
+    width: min(420px, 100%);
+  }
+
+  .kofi-cta--logo img,
+  .kofi-cta--button img,
+  .kofi-cta--badge img {
+    width: 100%;
+  }
+</style>

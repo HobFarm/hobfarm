@@ -1,0 +1,306 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import GalleryCard from "@/components/gallery/GalleryCard.astro";
+import KofiCta from "@/components/KofiCta.astro";
+import { galleryTypeLabels, galleryTypeOrder } from "@/lib/gallery";
+import { getCollection } from "astro:content";
+
+const allEntries = (await getCollection("gallery"))
+  .filter((e) => !e.data.draft)
+  .sort((a, b) => {
+    if (a.data.date && b.data.date) {
+      return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+    }
+    return a.data.title.localeCompare(b.data.title);
+  });
+
+const featured = allEntries.filter((e) => e.data.featured);
+const rest = allEntries.filter((e) => !e.data.featured);
+
+// Populated types for the filter chip row
+const typeCounts: Record<string, number> = {};
+for (const e of allEntries) typeCounts[e.data.type] = (typeCounts[e.data.type] ?? 0) + 1;
+const populatedTypes = galleryTypeOrder.filter((t) => (typeCounts[t] ?? 0) > 0);
+
+const latestEntry = allEntries[0];
+const latestDateLabel = latestEntry?.data.date
+  ? new Date(latestEntry.data.date).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })
+  : null;
+
+const intro =
+  "Notes, Before & After transformations, Cute / Corrupted character studies, color systems, field tests, and motion studies from HobFarm. Each entry is a writeup for a visual system: what it is, what makes it work, and how it can be refined or reused.";
+
+const browseFraming =
+  "The archive holds Before & After loops, Cute / Corrupted sheets, character systems, fashion grammar studies, scene studies, material references, model field tests, motion experiments, and reusable visual frameworks.";
+
+const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
+const archiveJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "HobFarm Visuals",
+  description: intro,
+  url: `${siteOrigin}/gallery/`,
+  mainEntity: {
+    "@type": "ItemList",
+    itemListOrder: "https://schema.org/ItemListOrderDescending",
+    numberOfItems: allEntries.length,
+    itemListElement: allEntries.slice(0, 30).map((e, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: e.data.title,
+      url: `${siteOrigin}/gallery/${e.id.replace(/\.(md|mdx)$/, "")}`,
+    })),
+  },
+};
+---
+
+<BaseLayout
+  title="Visuals | HobFarm Gallery"
+  description="HobFarm visuals archive: Before & After transformations, Cute / Corrupted character studies, searchable color systems, fashion grammar, scene studies, material references, model tests, and motion workflows."
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(archiveJsonLd)} />
+  <section class="bg-noise">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-10 lg:py-14">
+
+        <header class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end">
+          <div class="lg:col-span-7">
+            <Text tag="span" variant="textSM" class="text-accent-500 font-mono tracking-wider uppercase">
+              HobFarm Gallery
+            </Text>
+            <Text
+              tag="h1"
+              variant="displayXL"
+              class="mt-4 text-white text-balance font-display tracking-tight"
+            >
+              Visuals
+            </Text>
+            <Text tag="p" variant="textBase" class="text-base-300 mt-4 text-balance max-w-2xl leading-relaxed">
+              {intro}
+            </Text>
+          </div>
+
+          <aside class="lg:col-span-5" aria-labelledby="field-archive-heading">
+            <div class="border border-base-800 bg-base-950/40 p-5">
+              <h2
+                id="field-archive-heading"
+                class="text-[10px] font-mono uppercase tracking-wider text-base-300"
+              >
+                Gallery Archive
+              </h2>
+              <p class="text-sm text-base-200 leading-relaxed mt-3">
+                This page collects HobFarm pieces, systems, studies, and motion experiments.
+                New entries surface once they are documented and useful enough to keep.
+              </p>
+              <dl class="mt-4 grid grid-cols-2 gap-3 text-xs">
+                <div class="flex flex-col gap-0.5">
+                  <dt class="text-[10px] font-mono uppercase tracking-wider text-base-400">
+                    Indexed
+                  </dt>
+                  <dd class="text-base-100 font-mono">
+                    {allEntries.length} {allEntries.length === 1 ? "piece" : "pieces"}
+                  </dd>
+                </div>
+                <div class="flex flex-col gap-0.5">
+                  <dt class="text-[10px] font-mono uppercase tracking-wider text-base-400">
+                    Latest
+                  </dt>
+                  <dd class="text-base-100 font-mono">
+                    {latestDateLabel ?? "Pending"}
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          </aside>
+        </header>
+
+        {populatedTypes.length > 0 && (
+          <section class="mt-10" aria-labelledby="browse-heading">
+            <h2 id="browse-heading" class="sr-only">Browse the archive</h2>
+            <p class="text-sm text-base-300 leading-relaxed max-w-3xl mb-4">
+              {browseFraming}
+            </p>
+            <nav class="flex flex-wrap gap-2" aria-label="Filter by type">
+              <button
+                type="button"
+                class="type-filter px-3 py-1.5 text-xs font-mono uppercase tracking-wider border border-base-100 text-base-100 bg-base-100/10 transition-colors rounded-full"
+                data-type="all"
+                aria-pressed="true"
+              >
+                All
+                <span class="ml-1 text-base-300">· {allEntries.length}</span>
+              </button>
+              {populatedTypes.map((type) => (
+                <button
+                  type="button"
+                  class="type-filter px-3 py-1.5 text-xs font-mono uppercase tracking-wider border border-base-700 text-base-100 hover:border-base-100 hover:bg-base-100/5 transition-colors rounded-full"
+                  data-type={type}
+                  aria-pressed="false"
+                >
+                  {galleryTypeLabels[type]}
+                  <span class="ml-1 text-base-400">· {typeCounts[type]}</span>
+                </button>
+              ))}
+            </nav>
+          </section>
+        )}
+
+        {featured.length > 0 && (
+          <section class="mt-10" aria-labelledby="featured-heading">
+            <div class="flex items-end justify-between gap-4 mb-5">
+              <h2 id="featured-heading" class="text-accent-gold font-mono uppercase tracking-wider text-xs">
+                Featured work
+              </h2>
+              <span class="text-[10px] font-mono uppercase tracking-wider text-base-500">
+                {featured.length} curated
+              </span>
+            </div>
+            <div
+              class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-8"
+              id="featuredGrid"
+            >
+              {featured.map((entry) => (
+                <div data-type={entry.data.type} class="filter-item">
+                  <GalleryCard entry={entry} />
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {rest.length > 0 && (
+          <section class="mt-12 border-t border-base-900 pt-10" aria-labelledby="archive-heading">
+            <div class="flex items-end justify-between gap-4 mb-5">
+              <h2 id="archive-heading" class="text-base-500 font-mono uppercase tracking-wider text-xs">
+                Archive
+              </h2>
+              <span class="text-[10px] font-mono uppercase tracking-wider text-base-500">
+                {rest.length} {rest.length === 1 ? "entry" : "entries"}
+              </span>
+            </div>
+            <div
+              class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-5 gap-y-8"
+              id="archiveGrid"
+            >
+              {rest.map((entry) => (
+                <div data-type={entry.data.type} class="filter-item">
+                  <GalleryCard entry={entry} />
+                </div>
+              ))}
+            </div>
+            <div class="filter-empty mt-10 border border-dashed border-base-800 p-8 text-center hidden">
+              <p class="text-sm text-base-400">No pieces in this section yet. More coming soon.</p>
+            </div>
+          </section>
+        )}
+
+        {allEntries.length === 0 && (
+          <div class="mt-12">
+            <Text tag="p" variant="textBase" class="text-base-500">
+              New pieces are being prepared. Check back soon.
+            </Text>
+            <div class="mt-6 flex gap-3">
+              <Button isLink variant="muted" size="sm" href="/">
+                Back to Home
+              </Button>
+              <Button isLink variant="green" size="sm" href="/projects/stylefusion">
+                Try StyleFusion
+              </Button>
+            </div>
+          </div>
+        )}
+
+        <section class="mt-16 border-t border-base-900 pt-10" aria-labelledby="support-heading">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start">
+            <div class="lg:col-span-7">
+              <Text tag="span" variant="textSM" class="text-accent-500 font-mono tracking-wider uppercase">
+                Support
+              </Text>
+              <Text id="support-heading" tag="h2" variant="displayMD" class="mt-3 text-white font-display tracking-tight">
+                Support the visuals
+              </Text>
+              <Text tag="p" variant="textBase" class="text-base-400 mt-3 leading-relaxed max-w-2xl">
+                These galleries start as image experiments and turn into digital drops, product tests, premium sets, and larger releases. Ko-fi helps cover the tools, editing time, and production work behind them.
+              </Text>
+              <div class="mt-6 flex flex-wrap items-center gap-2">
+                <KofiCta variant="button" />
+                <Button isLink variant="muted" size="sm" href="/membership/">
+                  Membership
+                </Button>
+                <Button isLink variant="muted" size="sm" href="/projects/">
+                  Projects
+                </Button>
+                <Button isLink variant="muted" size="sm" href="/services/#process">
+                  How it's made
+                </Button>
+              </div>
+            </div>
+
+            <aside class="lg:col-span-5">
+              <div class="border border-base-800 bg-base-950/40 p-5">
+                <h3 class="text-[10px] font-mono uppercase tracking-wider text-base-500 mb-3">
+                  Use the notes
+                </h3>
+                <ul class="space-y-2 text-sm text-base-300 leading-relaxed">
+                  <li class="flex gap-2">
+                    <span class="text-accent-500 mt-0.5">→</span>
+                    <span>Each entry's <span class="text-base-100">summary</span> and <span class="text-base-100">notes</span> are written for DeviantArt descriptions and social captions.</span>
+                  </li>
+                  <li class="flex gap-2">
+                    <span class="text-accent-500 mt-0.5">→</span>
+                    <span><span class="text-base-100">Tags</span>, <span class="text-base-100">style anchors</span>, and <span class="text-base-100">methods</span> double as DA tags and Pinterest descriptions.</span>
+                  </li>
+                  <li class="flex gap-2">
+                    <span class="text-accent-500 mt-0.5">→</span>
+                    <span>The <span class="text-base-100">Spec sheet</span> carries the edition / status / license info worth quoting in premium drops.</span>
+                  </li>
+                </ul>
+              </div>
+            </aside>
+          </div>
+        </section>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const filterButtons = document.querySelectorAll(".type-filter");
+    if (!filterButtons.length) return;
+    const items = document.querySelectorAll(".filter-item");
+    const archiveEmpty = document.querySelector(".filter-empty");
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const selected = btn.dataset.type;
+        filterButtons.forEach((b) => {
+          b.classList.remove("border-base-100", "bg-base-100/10");
+          b.classList.add("border-base-700");
+          b.setAttribute("aria-pressed", "false");
+        });
+        btn.classList.remove("border-base-700");
+        btn.classList.add("border-base-100", "bg-base-100/10");
+        btn.setAttribute("aria-pressed", "true");
+
+        let archiveVisibleCount = 0;
+        items.forEach((item) => {
+          const matches = selected === "all" || item.dataset.type === selected;
+          item.style.display = matches ? "" : "none";
+          if (matches && item.closest("#archiveGrid")) archiveVisibleCount += 1;
+        });
+        if (archiveEmpty) {
+          archiveEmpty.classList.toggle("hidden", archiveVisibleCount > 0 || selected === "all");
+        }
+      });
+    });
+  });
+</script>

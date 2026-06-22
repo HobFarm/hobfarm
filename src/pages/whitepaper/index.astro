@@ -1,0 +1,651 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import FFEPipeline from "@/components/about/FFEPipeline.astro";
+
+const tocSections = [
+  { id: "the-problem", label: "1. The Problem with AI Tools" },
+  { id: "self-similarity", label: "2. The Core Insight" },
+  { id: "six-phases", label: "3. The Six Phases" },
+  { id: "complexity-routing", label: "4. Complexity Routing" },
+  { id: "provider-abstraction", label: "5. Provider Abstraction" },
+  { id: "context-handles", label: "6. Context Handles" },
+  { id: "pipeline-trace", label: "7. Pipeline Trace" },
+  { id: "compound-tasks", label: "8. Compound Tasks" },
+  { id: "resilience", label: "9. Resilience Patterns" },
+  { id: "product-ecosystem", label: "10. The Workshop" },
+  { id: "whats-next", label: "11. What Comes Next" },
+];
+
+interface Product {
+  name: string;
+  desc: string;
+  status: string;
+  statusColor: string;
+}
+
+const products: Product[] = [
+  {
+    name: "StyleFusion",
+    desc: "The public lab tool and clearest proof surface. Drop in a reference and the system extracts visual DNA: face geometry, color palettes, stylistic lineage, texture patterns. That extraction becomes a schema that drives generation across any provider while holding character identity. Free to use with a HobFarm account.",
+    status: "Free Lab",
+    statusColor: "text-accent-green",
+  },
+  {
+    name: "Grimoire",
+    desc: "The knowledge layer underneath everything. A living creative knowledge base of atoms (concepts, styles, techniques, relationships) that grow through both external ingestion and feedback from the work itself. It informs the other tools rather than facing the public as a chatbot.",
+    status: "Engine Room",
+    statusColor: "text-accent-500",
+  },
+  {
+    name: "Gallery and Shop",
+    desc: "The output board. Finished pieces, character sheets, and process studies live in the gallery; the things worth selling (prints, stickers, activity books, digital goods) go to the HobFarm shop. The pipeline produces, the surfaces show and sell.",
+    status: "Live",
+    statusColor: "text-accent-green",
+  },
+  {
+    name: "Academy and Services",
+    desc: "The teach-or-hire endpoint. Academy turns the method into courses, from a free entry point into deeper paid material. Services aim the same system at outside work: video, books and layout, visual systems, covers, product imagery, and AI workflow design.",
+    status: "In Production",
+    statusColor: "text-accent-500",
+  },
+];
+---
+
+<BaseLayout
+  title="The Fusion Engine | HobFarm Whitepaper"
+  description="The method behind a one-person creative systems studio. Algorithm first, LLM second, durable output only after validation."
+>
+  {/* ── Cover / Hero ── */}
+  <section class="border-b border-base-800/50">
+    <Wrapper variant="standard" class="py-20 lg:py-32">
+      <Text tag="span" variant="textSM" class="text-accent-500 font-mono tracking-wider uppercase">
+        Whitepaper
+      </Text>
+      <Text tag="h1" variant="display2XL" class="mt-6 text-white font-display max-w-3xl">
+        The Fusion Engine
+      </Text>
+      <Text tag="p" variant="displaySM" class="mt-4 text-accent-500 font-display max-w-2xl">
+        The method behind the work.<br />
+        Algorithm first, LLM second, durable output only after validation.
+      </Text>
+      <div class="mt-4 flex items-center gap-4">
+        <Text tag="span" variant="textSM" class="text-base-500 font-mono">
+          HobFarm / Las Vegas
+        </Text>
+      </div>
+    </Wrapper>
+  </section>
+
+  {/* ── Main layout: TOC sidebar + content ── */}
+  <Wrapper variant="standard" class="py-12 lg:py-16">
+    <div class="lg:grid lg:grid-cols-[220px_1fr] lg:gap-16">
+
+      {/* ── Sticky TOC sidebar (desktop) ── */}
+      <aside class="hidden lg:block">
+        <nav class="sticky top-28" id="wp-toc" aria-label="Table of contents">
+          <Text tag="p" variant="textSM" class="text-base-500 font-mono tracking-wider uppercase mb-4">
+            Contents
+          </Text>
+          <ul class="space-y-1.5">
+            {tocSections.map((s) => (
+              <li>
+                <a
+                  href={`#${s.id}`}
+                  class="wp-toc-link block text-sm text-base-500 hover:text-white transition-colors duration-200 py-0.5 border-l-2 border-transparent pl-3 hover:border-accent-500"
+                  data-section={s.id}
+                >
+                  {s.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </aside>
+
+      {/* ── Content column ── */}
+      <div class="min-w-0 wp-content space-y-16 lg:space-y-20">
+
+        {/* ── 1. The Problem ── */}
+        <section id="the-problem">
+          <Text tag="h2" variant="displayLG" class="text-white font-display">
+            1. The Problem with AI Tools
+          </Text>
+          <div class="mt-1 mb-8 h-0.5 w-16 bg-accent-500"></div>
+          <div class="space-y-4">
+            <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+              AI models get a fixed amount of computation per token they generate. For a simple question, that is enough.
+              For a complex task requiring cross-referencing, synthesis, or multi-step reasoning, the model runs out of
+              computational budget and starts guessing. It hallucinates. It loses the thread. It produces output that is
+              80% correct and wrong in ways that are difficult to detect.
+            </Text>
+            <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+              This is structural, not a bug. Language models are stateless prediction engines. They have no working memory
+              between tokens beyond the context window itself. Every complex task is being solved by a system that forgets
+              what it was doing mid-sentence and has to re-derive its approach from the surrounding text.
+            </Text>
+            <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+              Most AI tools accept this limitation and work around it with prompt engineering: longer system prompts,
+              few-shot examples, chain-of-thought instructions. These techniques help, but they are fundamentally limited
+              by the context window and the model's per-token compute budget.
+            </Text>
+            <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+              The Fusion Engine takes a different approach. Instead of asking the model to be smarter, it
+              restructures the work so the model does not need to be. Break complex tasks into pieces small enough to solve
+              reliably. Give each piece only the context it needs. Validate output before it moves downstream. Let humans
+              intervene where judgment matters.
+            </Text>
+            <Text tag="p" variant="textBase" class="text-accent-500 italic pl-4 border-l-2 border-accent-500/30">
+              The result is a system where AI handles the structural labor and humans handle the creative decisions.
+              The engine disappears into the work. You see results, not machinery.
+            </Text>
+          </div>
+        </section>
+
+        {/* ── 2. Self-Similarity ── */}
+        <section id="self-similarity">
+          <Text tag="h2" variant="displayLG" class="text-white font-display">
+            2. The Core Insight: Self-Similarity
+          </Text>
+          <div class="mt-1 mb-8 h-0.5 w-16 bg-accent-500"></div>
+          <div class="space-y-4">
+            <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+              A river delta and a lightning bolt follow the same branching geometry. A coastline looks the same whether you
+              measure it in miles or meters. The mathematics of fractals describes systems where the same pattern repeats at
+              every scale. The structure of the whole is present in each of its parts.
+            </Text>
+            <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+              The Fusion Engine applies this principle to the work. Every task, from analyzing a single image
+              to orchestrating a hundred-document synthesis, runs through the same six-phase pipeline. Simple tasks traverse
+              the pipeline once. Complex tasks recurse: individual phases spawn their own complete pipelines, which may in
+              turn spawn sub-pipelines of their own. The architecture at depth five looks identical to the architecture at
+              depth one.
+            </Text>
+            <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+              This is not just an elegant abstraction. It is a practical constraint that makes the system maintainable,
+              debuggable, and composable. Because every pipeline stage has the same interface contract, you can inspect any
+              point in a deeply nested execution tree and understand exactly what is happening. The shape is always the same.
+              The only variable is depth.
+            </Text>
+            <Text tag="p" variant="textBase" class="text-accent-500 italic pl-4 border-l-2 border-accent-500/30">
+              The difference between generating one image and orchestrating a 300-frame video is depth, not shape.
+            </Text>
+          </div>
+        </section>
+
+        {/* ── 3. The Six Phases ── */}
+        <section id="six-phases">
+          <Text tag="h2" variant="displayLG" class="text-white font-display">
+            3. The Six Phases
+          </Text>
+          <div class="mt-1 mb-8 h-0.5 w-16 bg-accent-500"></div>
+          <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed mb-8">
+            Every Fusion Engine pipeline follows the same six-phase contract. The phases are sequential, with typed JSON schemas
+            defining the input and output of each. No phase may skip ahead, and no phase may modify the output of a previous
+            phase directly. Data flows forward through the pipeline; control flows backward only through the VALIDATE rejection
+            mechanism.
+          </Text>
+
+          {/* Interactive pipeline diagram */}
+          <div class="my-10">
+            <FFEPipeline />
+          </div>
+
+          <div class="space-y-6 mt-8">
+            <div>
+              <Text tag="h3" variant="textBase" class="text-accent-500 font-bold uppercase tracking-wider mb-1">Ingest</Text>
+              <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+                Accept raw input and normalize it into a typed payload. This phase does not interpret, classify, or enrich.
+                It handles format detection, encoding normalization, deduplication checks, and basic structural validation.
+                The output is a NormalizedDocument: a clean, typed representation of whatever came in, whether that was a URL,
+                an image, a PDF, or raw text.
+              </Text>
+            </div>
+            <div>
+              <Text tag="h3" variant="textBase" class="text-accent-500 font-bold uppercase tracking-wider mb-1">Index</Text>
+              <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+                Make the ingested data searchable before any AI model touches it. Simple tasks may skip this phase entirely.
+                Complex tasks chunk documents, extract structural metadata, and build search indices. The output is a
+                ContextHandle: a query interface to the data, not a data blob. This distinction is critical and is discussed
+                further in Section 6.
+              </Text>
+            </div>
+            <div>
+              <Text tag="h3" variant="textBase" class="text-accent-500 font-bold uppercase tracking-wider mb-1">Mediate</Text>
+              <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+                Select the appropriate AI provider and model for the task, and give the model a query interface to the indexed
+                data. The model can search, read, compare, and list. It pulls what it needs rather than having everything pushed
+                into its context window. This phase also handles provider routing: matching task characteristics to the model
+                best suited for the work.
+              </Text>
+            </div>
+            <div>
+              <Text tag="h3" variant="textBase" class="text-accent-500 font-bold uppercase tracking-wider mb-1">Execute</Text>
+              <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+                The model does its work. This is where recursion happens. A simple task executes once and produces output.
+                A complex task breaks into sub-tasks, each of which spawns its own complete six-phase pipeline. Budget controls
+                live here: recursion depth limits, token ceilings, cost caps, and wall-clock timeouts all enforce boundaries
+                on execution.
+              </Text>
+            </div>
+            <div>
+              <Text tag="h3" variant="textBase" class="text-accent-500 font-bold uppercase tracking-wider mb-1">Validate</Text>
+              <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+                A checkpoint before delivery. Simple tasks get automated schema validation: did the output match the expected
+                shape? Complex tasks get human review. This phase can reject output and send it back to EXECUTE with feedback,
+                creating a refinement loop. No fully automated complex output ships without passing through VALIDATE.
+              </Text>
+            </div>
+            <div>
+              <Text tag="h3" variant="textBase" class="text-accent-500 font-bold uppercase tracking-wider mb-1">Deliver</Text>
+              <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+                Format and deliver the final output. This is the terminal phase; it never recurses and never spawns sub-pipelines.
+                Output is structured, typed, and ready for consumption by whatever system comes next. The engine disappears.
+                Only the result remains.
+              </Text>
+            </div>
+          </div>
+
+          <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed mt-8">
+            The contract between phases is always JSON. Every stage has a defined input schema and a defined output schema.
+            This prevents drift between phases, enables debugging at any point in the pipeline, and makes pipelines composable:
+            the DELIVER output of one pipeline can be the INGEST input of another.
+          </Text>
+        </section>
+
+        {/* ── 4. Complexity Routing ── */}
+        <section id="complexity-routing">
+          <Text tag="h2" variant="displayLG" class="text-white font-display">
+            4. Complexity Routing
+          </Text>
+          <div class="mt-1 mb-8 h-0.5 w-16 bg-accent-500"></div>
+          <div class="space-y-4">
+            <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+              After INGEST, the engine evaluates the task and routes it to the appropriate execution path. This is not a binary
+              switch; it is a graduated assessment that determines how much machinery the task needs.
+            </Text>
+
+            <Text tag="h3" variant="displayXS" class="text-white font-display !mt-8">Simple Path (Linear, Depth 1)</Text>
+            <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+              Single data source. No cross-referencing required. The six phases execute once in sequence. Example: extracting
+              metadata from a single image, or classifying a text document into a known taxonomy. Most individual operations
+              follow this path.
+            </Text>
+
+            <Text tag="h3" variant="displayXS" class="text-white font-display !mt-8">Compound Path (Recursive, Depth N)</Text>
+            <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+              Multiple data sources, synthesis required, or the task decomposes into sub-tasks that must be solved independently
+              before the parent can proceed. The EXECUTE phase spawns sub-pipelines, each running the full six-phase contract.
+              Sub-pipelines may themselves be compound, creating a recursive execution tree. Budget enforcement prevents unbounded
+              recursion.
+            </Text>
+
+            <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+              The complexity gate is conservative. It is always safer to over-decompose a task (more sub-pipelines, each simpler)
+              than to under-decompose it (fewer pipelines handling more complexity). An AI model that is given a task within its
+              reliable capability range produces dramatically better output than one that is asked to stretch.
+            </Text>
+          </div>
+        </section>
+
+        {/* ── 5. Provider Abstraction ── */}
+        <section id="provider-abstraction">
+          <Text tag="h2" variant="displayLG" class="text-white font-display">
+            5. Provider Abstraction
+          </Text>
+          <div class="mt-1 mb-8 h-0.5 w-16 bg-accent-500"></div>
+          <div class="space-y-4">
+            <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+              The AI model landscape changes faster than any single application can track. The model that is best for a task
+              today may be surpassed tomorrow. Providers change pricing, deprecate versions, add capabilities, and shift rate
+              limits on timescales measured in weeks. Any system that hardcodes a dependency on a specific model or provider is
+              building on sand.
+            </Text>
+            <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+              The Fusion Engine enforces provider abstraction at the architecture level. The MEDIATE phase is the only phase that knows
+              which model is being used. EXECUTE calls through a unified interface; VALIDATE evaluates output against the
+              schema, not against provider-specific expectations; DELIVER formats results without any knowledge of their origin.
+            </Text>
+            <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+              Provider selection in MEDIATE is quality-aware, not cost-driven. High-impact tasks (subject extraction, style
+              analysis) route to the most capable available model. Low-complexity tasks (negative prompt generation, format
+              validation, context filtering) route to faster, cheaper models that handle those simpler jobs reliably. This is
+              quality-aware cost optimization: every task gets a model matched to its actual complexity.
+            </Text>
+            <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+              When a new model launches, or an existing model improves, the routing configuration updates. No pipeline code
+              changes. No downstream phases are affected. The abstraction boundary holds.
+            </Text>
+          </div>
+        </section>
+
+        {/* ── 6. Context Handles ── */}
+        <section id="context-handles">
+          <Text tag="h2" variant="displayLG" class="text-white font-display">
+            6. Context Handles, Not Context Injection
+          </Text>
+          <div class="mt-1 mb-8 h-0.5 w-16 bg-accent-500"></div>
+          <div class="space-y-4">
+            <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+              The default approach in most AI applications is context injection: gather all potentially relevant data and stuff
+              it into the model's context window before asking the question. This is expensive, slow, and produces worse results
+              as the context grows. Models struggle to locate relevant information in large context windows, leading to missed
+              connections and hallucinated associations.
+            </Text>
+            <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+              The Fusion Engine replaces context injection with context handles. A ContextHandle is a query interface to indexed data. The
+              model receives the handle and a set of operations it can perform: search, read, compare, list, filter. It pulls
+              exactly the information it needs for each sub-task rather than receiving everything upfront.
+            </Text>
+            <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+              In practice, this means specialized agents. During image extraction, for example, different agents handle different
+              aspects of the analysis. A composition agent examines spatial relationships and layout. A lighting agent analyzes
+              illumination and atmosphere. A style agent identifies artistic lineage and technique. Each agent sees only the data
+              relevant to its specific role. The composition agent never sees the style reference image; the style agent never
+              sees the composition breakdown. This role-aware routing eliminates cross-contamination between extraction domains.
+            </Text>
+            <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+              A render context pre-pass constrains all agents before they begin. The system detects the paradigm
+              (photorealistic, illustrated, 3D-rendered, and so on) and enforces that paradigm as a boundary condition. An agent
+              analyzing a cel-shaded anime image cannot hallucinate photorealistic attributes because the render context has
+              already excluded that paradigm.
+            </Text>
+            <Text tag="p" variant="textBase" class="text-accent-500 italic pl-4 border-l-2 border-accent-500/30">
+              The model pulls what it needs through a query interface. Nothing is stuffed into the prompt. The result is faster,
+              cheaper, and more accurate extraction.
+            </Text>
+          </div>
+        </section>
+
+        {/* ── 7. Pipeline Trace ── */}
+        <section id="pipeline-trace">
+          <Text tag="h2" variant="displayLG" class="text-white font-display">
+            7. Pipeline Trace: Image Extraction
+          </Text>
+          <div class="mt-1 mb-8 h-0.5 w-16 bg-accent-500"></div>
+          <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed mb-6">
+            To make the architecture concrete, here is a simplified trace of StyleFusion processing a reference image through
+            the Fusion Engine pipeline. StyleFusion is HobFarm's multi-provider image generation lab.
+          </Text>
+          <div class="space-y-6">
+            <div class="pl-4 border-l-2 border-base-700">
+              <Text tag="h3" variant="textBase" class="text-accent-500 font-bold uppercase tracking-wider mb-1">Ingest</Text>
+              <Text tag="p" variant="textSM" class="text-base-400 leading-relaxed">
+                The user uploads a reference image. The system normalizes it: validates the file format, extracts dimensions,
+                generates a content hash for deduplication, and produces a typed ImageDocument payload. No AI has touched the
+                data yet.
+              </Text>
+            </div>
+            <div class="pl-4 border-l-2 border-base-700">
+              <Text tag="h3" variant="textBase" class="text-accent-500 font-bold uppercase tracking-wider mb-1">Index</Text>
+              <Text tag="p" variant="textSM" class="text-base-400 leading-relaxed">
+                The image is stored and a render context pre-pass runs. The system detects the visual paradigm (illustration,
+                photograph, 3D render, etc.) and queries the Grimoire knowledge graph for relevant artistic vocabulary. This
+                produces a ContextHandle that downstream agents can query against: "What styles are structurally compatible with
+                this paradigm? What color theory applies? What negative constraints should be enforced?"
+              </Text>
+            </div>
+            <div class="pl-4 border-l-2 border-base-700">
+              <Text tag="h3" variant="textBase" class="text-accent-500 font-bold uppercase tracking-wider mb-1">Mediate</Text>
+              <Text tag="p" variant="textSM" class="text-base-400 leading-relaxed">
+                The system selects extraction models based on task complexity. High-impact agents (subject extraction, style
+                analysis) are routed to the most capable available model. Low-complexity agents (negative prompt compilation,
+                blend merging) route to faster, cheaper alternatives. Each agent is assigned its designated image inputs;
+                role-aware routing ensures no agent sees data outside its scope.
+              </Text>
+            </div>
+            <div class="pl-4 border-l-2 border-base-700">
+              <Text tag="h3" variant="textBase" class="text-accent-500 font-bold uppercase tracking-wider mb-1">Execute</Text>
+              <Text tag="p" variant="textSM" class="text-base-400 leading-relaxed">
+                Specialized agents run in parallel where possible. A subject agent extracts face geometry, body structure, and
+                identity-defining features. A style agent identifies artistic lineage, texture patterns, and technique markers.
+                A palette agent maps color relationships and mood. A composition agent analyzes spatial layout and framing. Each
+                agent produces a typed schema fragment. The fragments are merged into a complete Intermediate Representation (IR):
+                a structured description of everything the image contains, organized by extraction domain.
+              </Text>
+            </div>
+            <div class="pl-4 border-l-2 border-base-700">
+              <Text tag="h3" variant="textBase" class="text-accent-500 font-bold uppercase tracking-wider mb-1">Validate</Text>
+              <Text tag="p" variant="textSM" class="text-base-400 leading-relaxed">
+                The IR is validated against the expected schema. Are all required fields present? Are confidence scores within
+                acceptable ranges? Do the extracted values conflict? (For example, if the subject agent says "blue eyes" but the
+                identity lock says "brown eyes," the conflict is flagged.) The user can review the extraction, adjust modifier
+                sliders that control blend ratios between source and reference attributes, and re-run specific agents with
+                adjusted parameters.
+              </Text>
+            </div>
+            <div class="pl-4 border-l-2 border-base-700">
+              <Text tag="h3" variant="textBase" class="text-accent-500 font-bold uppercase tracking-wider mb-1">Deliver</Text>
+              <Text tag="p" variant="textSM" class="text-base-400 leading-relaxed">
+                The validated IR compiles into provider-specific prompts. The same character description, the same style
+                references, the same identity constraints, formatted for each generation provider's specific syntax and parameter
+                expectations. The user generates images across multiple providers and the character looks like herself in all of
+                them. The extraction pipeline is invisible. Only the consistency is visible.
+              </Text>
+            </div>
+          </div>
+        </section>
+
+        {/* ── 8. Compound Tasks ── */}
+        <section id="compound-tasks">
+          <Text tag="h2" variant="displayLG" class="text-white font-display">
+            8. Compound Tasks: The HobBot Swarm
+          </Text>
+          <div class="mt-1 mb-8 h-0.5 w-16 bg-accent-500"></div>
+          <div class="space-y-4">
+            <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+              The Fusion Engine's recursive architecture is most visible in HobBot, an internal swarm of specialized workers
+              that handle content orchestration, knowledge management, and automated publishing behind the scenes at HobFarm.
+            </Text>
+            <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+              HobBot is not a single application. It is a network of Cloudflare Workers, each responsible for a specific domain.
+              A gateway worker receives requests and delegates to specialized pipeline workers via typed RPC. Each worker runs its
+              own Fusion Engine pipelines, and those pipelines frequently spawn sub-pipelines in other workers.
+            </Text>
+
+            <Text tag="h3" variant="displayXS" class="text-white font-display !mt-8">Knowledge Ingestion</Text>
+            <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+              A conductor agent scans the Grimoire knowledge graph for gaps in coverage. When it identifies a topic that needs
+              enrichment, it generates search intents and dispatches them to a discovery agent. The discovery agent searches
+              external sources, evaluates candidates for relevance, and queues promising documents for ingestion. Each queued
+              document triggers its own complete pipeline: fetch, normalize, chunk, extract concepts, match against existing
+              vocabulary, create new atoms for novel concepts, build inter-concept relationships, and generate vector embeddings
+              for semantic search. The conductor monitors completion and marks knowledge requests as fulfilled when the pipeline
+              outputs meet coverage thresholds.
+            </Text>
+            <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+              This is a compound task with three levels of recursion. The conductor pipeline spawns discovery pipelines, which
+              spawn ingestion pipelines, which spawn extraction pipelines. Same six phases at every level.
+            </Text>
+
+            <Text tag="h3" variant="displayXS" class="text-white font-display !mt-8">Content Generation</Text>
+            <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+              A bridge agent scans the Grimoire for topics with enough depth to support a blog post. It evaluates knowledge
+              density, cross-reference richness, and audience relevance, then queues candidates. A composition agent picks up
+              candidates and runs a multi-stage writing pipeline: gather source material from the knowledge graph, draft
+              structured content, enrich with metadata and internal links, validate for quality and coherence, then hold for
+              human review before publishing.
+            </Text>
+
+            <Text tag="h3" variant="displayXS" class="text-white font-display !mt-8">Cross-System Feedback</Text>
+            <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+              When StyleFusion produces image generations, the outcomes feed back into the Grimoire. Successful style
+              combinations strengthen the connections between related visual atoms. Prompt patterns that produce consistent
+              results across providers get recorded as verified techniques. The knowledge graph grows not just from external
+              ingestion but from the operational output of the tools themselves. The system learns from its own work.
+            </Text>
+          </div>
+        </section>
+
+        {/* ── 9. Resilience ── */}
+        <section id="resilience">
+          <Text tag="h2" variant="displayLG" class="text-white font-display">
+            9. Resilience Patterns
+          </Text>
+          <div class="mt-1 mb-8 h-0.5 w-16 bg-accent-500"></div>
+          <div class="space-y-4">
+            <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+              AI provider APIs are unreliable. Models return 500 errors, rate limits fluctuate, and services go down without
+              warning. Any system that depends on a single provider call succeeding on the first attempt is fragile. The Fusion Engine
+              builds resilience into the architecture rather than treating failures as exceptions.
+            </Text>
+
+            <Text tag="h3" variant="displayXS" class="text-white font-display !mt-8">Circuit Breakers</Text>
+            <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+              Each provider connection is monitored. Three failures within a five-minute window trips the circuit breaker, which
+              routes subsequent requests to alternative providers for a fifteen-minute cooldown period. This prevents cascading
+              failures: a single provider outage does not stall the entire pipeline.
+            </Text>
+
+            <Text tag="h3" variant="displayXS" class="text-white font-display !mt-8">Partial Completion</Text>
+            <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+              If a pipeline exhausts its budget mid-execution (token ceiling hit, cost cap reached, or wall-clock timeout
+              exceeded), it does not fail silently and it does not discard partial work. It returns whatever results are
+              available, flagged as incomplete. The consumer can decide whether partial output is useful or whether to retry
+              with adjusted parameters.
+            </Text>
+
+            <Text tag="h3" variant="displayXS" class="text-white font-display !mt-8">Typed Contracts</Text>
+            <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
+              JSON schemas between every phase mean that malformed output is caught immediately at the phase boundary, not three
+              steps downstream where the error manifests as mysterious behavior. Schema validation is cheap insurance against the
+              most common failure mode in AI pipelines: subtly wrong output that looks correct until something depends on it.
+            </Text>
+          </div>
+        </section>
+
+        {/* ── 10. Product Ecosystem ── */}
+        <section id="product-ecosystem">
+          <Text tag="h2" variant="displayLG" class="text-white font-display">
+            10. The Workshop
+          </Text>
+          <div class="mt-1 mb-8 h-0.5 w-16 bg-accent-500"></div>
+          <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed mb-8">
+            The Fusion Engine is not an abstract framework, and HobFarm is not a SaaS platform. It is a one-person creative
+            systems studio in Las Vegas, built on Cloudflare's edge. The engine is the method; the workshop is what comes out
+            of it: tools, galleries, shop products, courses, videos, and services.
+          </Text>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {products.map((product) => (
+              <div class="p-5 rounded-xl border border-base-800 bg-base-900/50">
+                <div class="flex items-center justify-between mb-2">
+                  <Text tag="h3" variant="textBase" class="text-white font-medium">{product.name}</Text>
+                  <span class={`text-[10px] font-mono tracking-wider uppercase ${product.statusColor}`}>
+                    {product.status}
+                  </span>
+                </div>
+                <Text tag="p" variant="textSM" class="text-base-400 leading-relaxed">{product.desc}</Text>
+              </div>
+            ))}
+          </div>
+
+          <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed mt-8">
+            Every surface shares the same engine, the same provider abstraction layer, and the same knowledge layer. A style
+            combination discovered in StyleFusion enriches the Grimoire, which sharpens the next extraction and the next thing
+            that ships out of the shop. The pieces are not isolated products; they are parts of one workshop feeding itself.
+          </Text>
+        </section>
+
+        {/* ── 11. What Comes Next ── */}
+        <section id="whats-next">
+          <Text tag="h2" variant="displayLG" class="text-white font-display">
+            11. What Comes Next
+          </Text>
+          <div class="mt-1 mb-8 h-0.5 w-16 bg-accent-500"></div>
+          <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed mb-6">
+            The Fusion Engine architecture is designed to extend without redesign. Several capabilities are in the pipeline:
+          </Text>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start gap-3">
+              <span class="text-accent-500 mt-1.5 text-xs">&bull;</span>
+              <Text tag="p" variant="textBase" class="text-base-400 leading-relaxed">
+                <span class="text-white font-medium">Open-source Fusion Engine SDK.</span> A public SDK that packages the
+                six-phase pipeline pattern, provider abstraction layer, and ContextHandle system for use in external projects.
+              </Text>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-accent-500 mt-1.5 text-xs">&bull;</span>
+              <Text tag="p" variant="textBase" class="text-base-400 leading-relaxed">
+                <span class="text-white font-medium">HobFarm Academy.</span> A tiered path from free intro material into deeper
+                paid courses, then into services for people who would rather hire the shortcut than build their own version.
+              </Text>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-accent-500 mt-1.5 text-xs">&bull;</span>
+              <Text tag="p" variant="textBase" class="text-base-400 leading-relaxed">
+                <span class="text-white font-medium">Public Grimoire browser.</span> A way to explore the knowledge layer
+                directly, separate from the tools that use it behind the scenes.
+              </Text>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-accent-500 mt-1.5 text-xs">&bull;</span>
+              <Text tag="p" variant="textBase" class="text-base-400 leading-relaxed">
+                <span class="text-white font-medium">Training and services.</span> Workshops, licensing, and hands-on creative
+                services built on the Fusion Engine method.
+              </Text>
+            </li>
+          </ul>
+
+          <div class="border-t border-base-800/50 pt-8 mt-8">
+            <Text tag="p" variant="textBase" class="text-accent-500 italic pl-4 border-l-2 border-accent-500/30 mb-8">
+              The Fusion Engine is the method, not the product. The work is the product: images, books, products, courses, and
+              services. The engine is just how you stop asking AI to be smarter and start giving it structure instead.
+            </Text>
+            <div class="flex flex-wrap items-center gap-4">
+              <Button
+                isLink
+                size="sm"
+                variant="green"
+                href="/about"
+              >
+                Back to About
+              </Button>
+            </div>
+            <div class="mt-6">
+              <Text tag="p" variant="textSM" class="text-base-500 font-mono">
+                hob.farm &middot; <a href="/contact/">contact</a> &middot; github.com/HobFarm &middot; @hobdotfarm
+              </Text>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </Wrapper>
+</BaseLayout>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const toc = document.getElementById("wp-toc");
+    if (!toc) return;
+
+    const links = toc.querySelectorAll<HTMLAnchorElement>(".wp-toc-link");
+    const sections = [...links].map((link) => {
+      const id = link.dataset.section!;
+      return { id, el: document.getElementById(id)!, link };
+    }).filter((s) => s.el);
+
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const match = sections.find((s) => s.el === entry.target);
+          if (!match) return;
+          if (entry.isIntersecting) {
+            links.forEach((l) => {
+              l.classList.remove("!text-white", "!border-accent-500");
+            });
+            match.link.classList.add("!text-white", "!border-accent-500");
+          }
+        });
+      },
+      { rootMargin: "-20% 0px -70% 0px", threshold: 0 }
+    );
+
+    sections.forEach((s) => observer.observe(s.el));
+  });
+</script>

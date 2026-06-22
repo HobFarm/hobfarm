@@ -1,0 +1,33 @@
+---
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+const { title, publishedAt, url } = {
+  url: "/changelog/" + Astro.props.post.id,
+  publishedAt: new Date(Astro.props.post.data.publishedAt).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "2-digit",
+  }),
+  title: Astro.props.post.data.title,
+};
+---
+
+<div>
+  <Text id={publishedAt} tag="p" variant="textXS" class="text-white mt-8">
+    <time datetime={publishedAt}>{publishedAt}</time>
+  </Text>
+  <Text tag="h3" variant="textBase" class="text-white mt-4">{title}</Text>
+  <div class="mt-8 flex">
+    <Button
+      isLink
+      size="base"
+      variant="default"
+      href={url}
+      title={title}
+      aria-label={title}
+    >
+      Read further
+    </Button>
+  </div>
+</div>

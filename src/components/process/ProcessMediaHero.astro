@@ -1,0 +1,123 @@
+---
+import type { ProcessPipeline } from "@/data/processPipelines";
+import { getProcessAssetUrl, getProcessVideoType } from "@/data/processPipelines";
+import { transformImageUrl } from "@/lib/media-transforms";
+
+interface Props {
+  pipeline: ProcessPipeline;
+}
+
+const { pipeline } = Astro.props;
+const videoUrl = getProcessAssetUrl(pipeline, pipeline.media.video);
+const posterUrl = getProcessAssetUrl(pipeline, pipeline.media.poster);
+const artifactFilename = pipeline.media.artifact ?? pipeline.media.sheet ?? pipeline.media.hero;
+const artifactUrl = getProcessAssetUrl(pipeline, artifactFilename);
+const videoType = getProcessVideoType(pipeline.media.video);
+const chips = pipeline.pipeline.split("→").map((chip) => chip.trim());
+const summaryBox = pipeline.heroPanel?.summaryBox ?? {
+  label: "Character package",
+  body: "The sheet carries silhouette, outfit logic, material cues, pose language, palette, and reusable visual DNA.",
+};
+const artifactLabel = pipeline.heroPanel?.artifactLabel ?? "sheet";
+const artifactCaption = pipeline.heroPanel?.artifactCaption ?? `${pipeline.title}: artifact`;
+const artifactAlt = pipeline.heroPanel?.artifactAlt ?? `${pipeline.title} process artifact`;
+---
+
+<section class="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(220px,0.7fr)_minmax(0,1fr)_minmax(220px,0.7fr)] lg:items-stretch">
+  <aside class="order-1 rounded-lg border border-base-800 bg-base-900/70 p-5 sm:p-6 lg:order-2">
+    <p class="font-mono text-[10px] uppercase tracking-widest text-accent-500">{pipeline.eyebrow}</p>
+    <h1 class="mt-4 text-4xl font-display text-white sm:text-5xl">{pipeline.title}</h1>
+    <p class="mt-5 text-base leading-relaxed text-base-300">{pipeline.shortDescription}</p>
+
+    <div class="mt-6 flex flex-wrap gap-2">
+      {chips.map((chip) => (
+        <span class="rounded-full border border-base-700 bg-base-950/70 px-3 py-1.5 text-[11px] font-mono uppercase tracking-wider text-base-300">
+          {chip}
+        </span>
+      ))}
+    </div>
+
+    <div class="mt-7 border-t border-base-800 pt-5">
+      <p class="font-mono text-[10px] uppercase tracking-widest text-base-500">Summary</p>
+      <ul class="mt-4 space-y-3">
+        {pipeline.outputSummary.map((item) => (
+          <li class="flex gap-3 text-sm leading-relaxed text-base-300">
+            <span class="mt-2 size-1.5 shrink-0 rounded-full bg-accent-500"></span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="mt-7 rounded-md border border-base-800 bg-base-950/60 p-4">
+      <p class="font-mono text-[10px] uppercase tracking-widest text-base-500">{summaryBox.label}</p>
+      <p class="mt-2 text-sm leading-relaxed text-base-400">{summaryBox.body}</p>
+    </div>
+  </aside>
+
+  <div class="relative order-2 overflow-hidden rounded-lg border border-base-800 bg-base-950 lg:order-1 lg:h-[34rem]">
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      controls
+      preload="metadata"
+      poster={transformImageUrl(posterUrl, { width: 1200, quality: 84, fit: "cover" })}
+      class="aspect-[2/3] w-full object-cover lg:h-full"
+    >
+      <source src={videoUrl} type={videoType} />
+      <img
+        src={transformImageUrl(posterUrl, { width: 1200, quality: 84, fit: "cover" })}
+        alt={`${pipeline.title} process poster`}
+        class="h-full w-full object-cover"
+      />
+    </video>
+    <button
+      type="button"
+      class="absolute right-4 top-4 flex size-11 items-center justify-center rounded-full border border-base-700/70 bg-base-950/75 text-base-200 shadow-lg shadow-black/40 backdrop-blur-sm transition-colors hover:border-accent-500/60 hover:text-white focus:outline-none focus:ring-2 focus:ring-accent-500/70"
+      data-lightbox={videoUrl}
+      data-lightbox-type="video"
+      data-lightbox-caption={`${pipeline.eyebrow}: ${pipeline.title}`}
+      data-lightbox-alt={`${pipeline.title} process video`}
+      aria-label={`Open ${pipeline.title} process video in a larger view`}
+    >
+      <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="7"></circle>
+        <path d="m20 20-3.5-3.5"></path>
+        <path d="M11 8v6"></path>
+        <path d="M8 11h6"></path>
+      </svg>
+    </button>
+  </div>
+
+  <button
+    type="button"
+    class="group/artifact relative order-3 block cursor-zoom-in overflow-hidden rounded-lg border border-base-800 bg-base-950 text-left transition-colors hover:border-accent-500/40 focus:outline-none focus:ring-2 focus:ring-accent-500/70 lg:h-[34rem]"
+    data-lightbox={artifactUrl}
+    data-lightbox-caption={artifactCaption}
+    data-lightbox-alt={artifactAlt}
+    aria-label={`Open ${pipeline.title} process artifact in a larger view`}
+  >
+    <img
+      src={transformImageUrl(artifactUrl, { width: 900, quality: 86, fit: "cover" })}
+      alt={artifactAlt}
+      width="900"
+      height="1350"
+      loading="eager"
+      decoding="async"
+      class="aspect-[2/3] w-full bg-base-950 object-cover object-top transition-transform duration-500 group-hover/artifact:scale-105 lg:h-full"
+    />
+    <span class="absolute left-4 top-4 rounded-full border border-spot-magenta/30 bg-base-950/70 px-3 py-1 text-[10px] font-mono uppercase tracking-widest text-spot-magenta">
+      {artifactLabel}
+    </span>
+    <span class="absolute bottom-4 right-4 flex size-11 items-center justify-center rounded-full border border-base-700/70 bg-base-950/75 text-base-200 shadow-lg shadow-black/40 backdrop-blur-sm transition-colors group-hover/artifact:border-accent-500/60 group-hover/artifact:text-white">
+      <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="7"></circle>
+        <path d="m20 20-3.5-3.5"></path>
+        <path d="M11 8v6"></path>
+        <path d="M8 11h6"></path>
+      </svg>
+    </span>
+  </button>
+</section>

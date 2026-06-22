@@ -1,0 +1,142 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  docs: CollectionEntry<"grimoire">[];
+}
+
+const { docs } = Astro.props;
+
+const featuredSlugs = new Set([
+  "welcome-to-the-grimoire",
+  "understanding-visual-atoms",
+  "stylefusion-prompt-compilation",
+]);
+
+const categoryOrder: Record<string, number> = {
+  "getting-started": 0,
+  guides: 1,
+  reference: 2,
+  recipes: 3,
+  examples: 4,
+};
+
+const sorted = [...docs].sort((a, b) => {
+  const ca = categoryOrder[a.data.category] ?? 99;
+  const cb = categoryOrder[b.data.category] ?? 99;
+  if (ca !== cb) return ca - cb;
+  return (a.data.order ?? 999) - (b.data.order ?? 999);
+});
+
+const featured = sorted.filter((d) => featuredSlugs.has(d.id));
+const remaining = sorted.filter((d) => !featuredSlugs.has(d.id));
+
+const categoryLabel: Record<string, string> = {
+  "getting-started": "Getting started",
+  guides: "Guides",
+  reference: "Reference",
+  recipes: "Recipes",
+  examples: "Examples",
+};
+
+const difficultyClass = {
+  beginner: "text-spot-green bg-spot-green/10 border-spot-green/20",
+  intermediate: "text-accent-400 bg-accent-400/10 border-accent-400/20",
+  advanced: "text-spot-magenta bg-spot-magenta/10 border-spot-magenta/20",
+} as const;
+---
+
+<section class="border-t border-base-800/50">
+  <Wrapper variant="standard" class="py-20 lg:py-24">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-start mb-10">
+      <div class="lg:col-span-1">
+        <Text tag="span" variant="textSM" class="text-accent-500 font-mono tracking-wider uppercase">
+          Public notes
+        </Text>
+        <Text tag="h2" variant="displayLG" class="mt-6 text-white text-balance font-display">
+          Entry points.
+        </Text>
+      </div>
+      <div class="lg:col-span-2">
+        <Text tag="p" variant="textBase" class="text-base-400 leading-relaxed text-pretty">
+          Public-facing notes from the substrate: vocabulary, schemas, recipes, and walkthroughs.
+          These are the human-readable surface. The structured data lives underneath.
+        </Text>
+      </div>
+    </div>
+
+    {featured.length > 0 && (
+      <div class="mb-10">
+        <p class="text-[10px] font-mono text-base-500 uppercase tracking-wider mb-4">
+          Start here
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {featured.map((doc) => {
+            const slug = doc.id.replace(/\.md$/, "");
+            return (
+              <a
+                href={`/grimoire/${slug}`}
+                class="group block rounded-xl border border-base-800 bg-base-900/60 p-6 hover:border-accent-500/40 hover:bg-base-900 transition-colors"
+              >
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="text-[10px] font-mono text-accent-500 uppercase tracking-wider">
+                    {categoryLabel[doc.data.category] ?? doc.data.category}
+                  </span>
+                  {doc.data.difficulty && (
+                    <span class={`text-[10px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded border ${difficultyClass[doc.data.difficulty]}`}>
+                      {doc.data.difficulty}
+                    </span>
+                  )}
+                </div>
+                <h3 class="text-sm text-white font-medium group-hover:text-accent-400 transition-colors">
+                  {doc.data.title}
+                </h3>
+                <p class="text-xs text-base-400 mt-2 leading-relaxed">
+                  {doc.data.description}
+                </p>
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    )}
+
+    {remaining.length > 0 && (
+      <div>
+        <p class="text-[10px] font-mono text-base-500 uppercase tracking-wider mb-4">
+          More notes
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+          {remaining.map((doc) => {
+            const slug = doc.id.replace(/\.md$/, "");
+            return (
+              <a
+                href={`/grimoire/${slug}`}
+                class="group block rounded-md border border-base-800 bg-base-900/40 p-5 hover:border-accent-500/30 hover:bg-base-900 transition-colors"
+              >
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="text-[10px] font-mono text-base-500 uppercase tracking-wider">
+                    {categoryLabel[doc.data.category] ?? doc.data.category}
+                  </span>
+                  {doc.data.difficulty && (
+                    <span class={`text-[10px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded border ${difficultyClass[doc.data.difficulty]}`}>
+                      {doc.data.difficulty}
+                    </span>
+                  )}
+                </div>
+                <h3 class="text-sm text-white font-medium group-hover:text-accent-400 transition-colors">
+                  {doc.data.title}
+                </h3>
+                <p class="text-xs text-base-400 mt-1 leading-relaxed line-clamp-2">
+                  {doc.data.description}
+                </p>
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    )}
+  </Wrapper>
+</section>

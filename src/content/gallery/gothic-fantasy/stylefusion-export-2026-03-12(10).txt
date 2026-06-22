@@ -1,0 +1,471 @@
+=== StyleFusion Complete Export ===
+Generated: 3/12/2026, 1:50:55 PM
+IR Version: 4.0
+Extraction Model: gemini-3.1-flash-lite-preview
+
+--- STYLE ANCHORS ---
+gothic fantasy, dark anime aesthetic, neo-noir illustration, pop-surrealism, digital character art
+
+--- GENERATIVE DESCRIPTION ---
+[Subject] A striking gothic figure with pale skin and small horns, framed by a dark architectural arch. She wears a black corset and layered silver chains, her short dark hair accented with purple highlights and roses. Holding a glass of purple wine, she gazes forward with a knowing, mischievous smirk. A cracked human skull rests in the foreground, anchoring the composition in a dark, elegant aesthetic.
+
+[Style] gothic fantasy, dark anime, neo-noir illustration, stylized character art, edgy aesthetic
+
+[Scene] The scene is set against a clean, minimalist backdrop featuring subtle architectural line-art pillars that frame the space. A light, neutral gradient fills the background, creating a flat, graphic environment that emphasizes the central arrangement of decorative elements and symbolic objects.
+
+[Camera] A medium close-up shot at eye level, centered to emphasize the symmetry and balance of the graphic composition and its decorative elements.
+
+[Lighting] The scene is illuminated by a soft, neutral light source from above. The glowing purple liquid within the wine glass serves as a localized, vibrant light source, casting a distinct highlight on the glass rim.
+
+[Color] The palette centers on muted lavender gray (#D8D0D6) and dark charcoal (#3E363F), punctuated by the intense, vibrant violet (#8A00C2) of the wine. High contrast creates a sharp, sophisticated, and gothic aesthetic.
+
+[Texture] clean vector linework, smooth digital cel-shading, soft airbrush gradients, high-gloss glass speculars, and matte bone surfaces define the overall aesthetic of this stylized character illustration.
+
+[Avoid] Avoid photorealistic skin pores, heavy oil paint impasto, blurry photographic depth of field, muddy brown color shifts, inconsistent multi-source shadows, anatomical hand deformities, grainy film noise, pixelated edge artifacts, and unwanted background clutter or signature artifacts.
+
+--- IMAGE GENERATION JSON ---
+{
+  "subject": {
+    "form": "Slender humanoid female figure with pale skin, sharp angular proportions, and small dark horns protruding from the top of her head.",
+    "surface": "fine pores visible under directional light, subtle subsurface scattering, sheer fabric, transparent glass with caustic light refractions, vibrant violet wine",
+    "coloring": "Base vibrant violet wine (#8A00C2), dark charcoal hair (#3E363F), accent muted lavender gray background (#D8D0D6)",
+    "features": [
+      "Short, sleek, dark bob-cut hair with blunt bangs and vibrant purple highlights, adorned with two large, detailed roses on the left side.",
+      "Large almond-shaped eyes with dark eyeliner, sharp arched brows, small nose, and lips slightly parted in a subtle, knowing smirk.",
+      "small dark horns",
+      "purple-highlighted bob hair",
+      "cracked skull accessory"
+    ],
+    "covering": "Black strapless corset bodice with intricate lace-up detailing and silver hardware, Sheer black arm sleeves with geometric cutouts, Dark choker necklace with a small heart pendant, Layered silver chain necklace with a central heart-shaped charm",
+    "position": "Frontal portrait, holding a wine glass in her right hand near her chest, while her left hand is raised near her chin with fingers slightly curled.",
+    "held_objects": "Wine glass, right hand",
+    "expression_intent": "Confident, alluring, and slightly mischievous, as if inviting the viewer into a dark secret."
+  },
+  "scene": {
+    "setting": "The scene is set against a clean, minimalist backdrop featuring subtle architectural line-art pillars that frame the space. A light, neutral gradient fills the background, creating a flat, graphic environment that emphasizes the central arrangement of decorative elements and symbolic objects.",
+    "elements": [
+      "glass wine glass, transparent with high-gloss specular reflections, right hand",
+      "bone skull, matte off-white finish, bottom foreground",
+      "metal jewelry, polished reflective finish, neck and earrings",
+      "rose, top-right midground",
+      "chain necklace, center midground"
+    ],
+    "atmosphere": "Clear"
+  },
+  "camera": {
+    "shot": "medium close-up, eye level, centered framing",
+    "lens": "standard portrait perspective, flat depth of field"
+  },
+  "lighting": {
+    "key": "The scene is illuminated by a soft, neutral light source from above. The glowing purple liquid within the wine glass serves as a localized, vibrant light source, casting a distinct highlight on the glass rim.",
+    "fill": "Minimal fill, with deep, stylized shadows defining the character's features and the contours of the skull, typical of high-contrast illustrative line art.",
+    "effects": [
+      "Glowing purple liquid inside the wine glass casting a subtle internal light"
+    ]
+  },
+  "style": {
+    "medium": "with vector-style linework",
+    "quality": "clean, high-contrast black linework, flat cel-shading with subtle gradient transitions, vibrant spot color accents, sharp edges, and a smooth, matte digital finish.",
+    "color_map": {
+      "background_primary": {
+        "hex": "#D7CFD4",
+        "finish": "matte diffuse"
+      },
+      "hair_base": {
+        "hex": "#3D383F",
+        "finish": "matte diffuse"
+      },
+      "hair_highlight": {
+        "hex": "#8B58A4",
+        "finish": "matte diffuse"
+      },
+      "wine_liquid": {
+        "hex": "#8B00FF",
+        "finish": "translucent bloom"
+      },
+      "skin_tone": {
+        "hex": "#E8D8E0",
+        "finish": "matte diffuse"
+      },
+      "skull_base": {
+        "hex": "#B5A7B1",
+        "finish": "matte diffuse"
+      },
+      "clothing_dark": {
+        "hex": "#2A262C",
+        "finish": "matte diffuse"
+      }
+    },
+    "textures": [
+      "clean vector linework",
+      "smooth digital cel-shading",
+      "soft airbrush gradients",
+      "sharp, high-contrast ink-style outlines"
+    ],
+    "style_anchors": [
+      "gothic fantasy",
+      "dark anime aesthetic",
+      "neo-noir illustration",
+      "pop-surrealism",
+      "digital character art"
+    ],
+    "light_interaction": "Glowing purple liquid inside the wine glass casting a subtle internal light produces localized color spill on nearby skin and fabric"
+  },
+  "negative": "Avoid photorealistic skin pores, heavy oil paint impasto, blurry photographic depth of field, muddy brown color shifts, inconsistent multi-source shadows, anatomical hand deformities, grainy film noise, pixelated edge artifacts, and unwanted background clutter or signature artifacts.",
+  "aspect_ratio": "2:3",
+  "arrangement": "surrealism",
+  "arrangement_matched": 1.1765458804131657,
+  "palette_modifier": -0.033
+}
+
+--- INTERMEDIATE REPRESENTATION ---
+{
+  "version": "4.0",
+  "id": "ZaJhAYQFeuae",
+  "style_anchors": [
+    "gothic fantasy",
+    "dark anime aesthetic",
+    "neo-noir illustration",
+    "pop-surrealism",
+    "digital character art"
+  ],
+  "subjects": [
+    {
+      "role": "primary",
+      "subject_type": "figurative",
+      "figure": "Slender humanoid female figure with pale skin, sharp angular proportions, and small dark horns protruding from the top of her head.",
+      "face": "Large almond-shaped eyes with dark eyeliner, sharp arched brows, small nose, and lips slightly parted in a subtle, knowing smirk.",
+      "hair": "Short, sleek, dark bob-cut hair with blunt bangs and vibrant purple highlights, adorned with two large, detailed roses on the left side.",
+      "pose": "Frontal portrait, holding a wine glass in her right hand near her chest, while her left hand is raised near her chin with fingers slightly curled.",
+      "attire": [
+        "Black strapless corset bodice with intricate lace-up detailing and silver hardware",
+        "Sheer black arm sleeves with geometric cutouts",
+        "Dark choker necklace with a small heart pendant",
+        "Layered silver chain necklace with a central heart-shaped charm"
+      ],
+      "held_objects": [
+        "Wine glass, right hand"
+      ],
+      "proximal_objects": [
+        "Human skull with a crack on the forehead, positioned directly below the subject's chest"
+      ],
+      "description": "A stylized, gothic-themed illustration of a pale-skinned woman with dark horns and a sleek purple-highlighted bob. She wears a black corset and layered silver jewelry, holding a glass of vibrant purple wine in her right hand. A detailed human skull with a prominent crack rests in the immediate foreground beneath her. The entire composition is framed by a subtle, dark architectural archway, emphasizing her mysterious and elegant persona.",
+      "expression_intent": "Confident, alluring, and slightly mischievous, as if inviting the viewer into a dark secret.",
+      "identity": {
+        "primary_color": {
+          "is": {
+            "description": "vibrant violet wine",
+            "hex": "#8A00C2"
+          },
+          "not": [
+            "bright white",
+            "neon green",
+            "sky blue"
+          ]
+        },
+        "secondary_color": {
+          "is": {
+            "description": "dark charcoal hair",
+            "hex": "#3E363F"
+          },
+          "not": [
+            "yellow",
+            "orange",
+            "brown"
+          ]
+        },
+        "accent_color": {
+          "is": {
+            "description": "muted lavender gray background",
+            "hex": "#D8D0D6"
+          },
+          "not": [
+            "gold",
+            "bronze",
+            "copper"
+          ]
+        },
+        "textures": [
+          "smooth matte skin",
+          "sheer fabric",
+          "polished glass",
+          "bone texture"
+        ],
+        "structure": "Symmetrical, centered portrait with sharp, angular lines",
+        "distinguishing_features": [
+          "small dark horns",
+          "purple-highlighted bob hair",
+          "cracked skull accessory"
+        ],
+        "confidence": {
+          "figure": 1,
+          "face": 1,
+          "hair": 1,
+          "overall": 1
+        }
+      },
+      "_priority": 5
+    }
+  ],
+  "visual_dna": {
+    "figure": "Slender humanoid female figure with pale skin, sharp angular proportions, and small dark horns protruding from the top of her head.",
+    "face": "Large almond-shaped eyes with dark eyeliner, sharp arched brows, small nose, and lips slightly parted in a subtle, knowing smirk.",
+    "hair": "Short, sleek, dark bob-cut hair with blunt bangs and vibrant purple highlights, adorned with two large, detailed roses on the left side.",
+    "pose": "Frontal portrait, holding a wine glass in her right hand near her chest, while her left hand is raised near her chin with fingers slightly curled.",
+    "attire": [
+      "Black strapless corset bodice with intricate lace-up detailing and silver hardware",
+      "Sheer black arm sleeves with geometric cutouts",
+      "Dark choker necklace with a small heart pendant",
+      "Layered silver chain necklace with a central heart-shaped charm"
+    ],
+    "held_objects": [
+      "Wine glass, right hand"
+    ],
+    "proximal_objects": [
+      "Human skull with a crack on the forehead, positioned directly below the subject's chest"
+    ],
+    "description": "A stylized, gothic-themed illustration of a pale-skinned woman with dark horns and a sleek purple-highlighted bob. She wears a black corset and layered silver jewelry, holding a glass of vibrant purple wine in her right hand. A detailed human skull with a prominent crack rests in the immediate foreground beneath her. The entire composition is framed by a subtle, dark architectural archway, emphasizing her mysterious and elegant persona.",
+    "expression_intent": "Confident, alluring, and slightly mischievous, as if inviting the viewer into a dark secret.",
+    "identity": {
+      "primary_color": {
+        "is": {
+          "description": "vibrant violet wine",
+          "hex": "#8A00C2"
+        },
+        "not": [
+          "bright white",
+          "neon green",
+          "sky blue"
+        ]
+      },
+      "secondary_color": {
+        "is": {
+          "description": "dark charcoal hair",
+          "hex": "#3E363F"
+        },
+        "not": [
+          "yellow",
+          "orange",
+          "brown"
+        ]
+      },
+      "accent_color": {
+        "is": {
+          "description": "muted lavender gray background",
+          "hex": "#D8D0D6"
+        },
+        "not": [
+          "gold",
+          "bronze",
+          "copper"
+        ]
+      },
+      "textures": [
+        "smooth matte skin",
+        "sheer fabric",
+        "polished glass",
+        "bone texture"
+      ],
+      "structure": "Symmetrical, centered portrait with sharp, angular lines",
+      "distinguishing_features": [
+        "small dark horns",
+        "purple-highlighted bob hair",
+        "cracked skull accessory"
+      ],
+      "confidence": {
+        "figure": 1,
+        "face": 1,
+        "hair": 1,
+        "overall": 1
+      }
+    },
+    "_priority": 5
+  },
+  "environment": {
+    "setting": "A stylized, two-dimensional graphic environment featuring a minimalist, light-colored gradient background framed by thin, dark architectural line-art pillars.",
+    "surfaces": [
+      "glass wine glass, transparent with high-gloss specular reflections, right hand",
+      "bone skull, matte off-white finish, bottom foreground",
+      "metal jewelry, polished reflective finish, neck and earrings",
+      "fabric clothing, matte smooth finish, torso"
+    ],
+    "props": [
+      "wine glass, center-left midground",
+      "skull, bottom-center foreground",
+      "rose, top-right midground",
+      "chain necklace, center midground"
+    ],
+    "atmosphere": [],
+    "_priority": 3
+  },
+  "camera": {
+    "shot": "medium close-up, eye level, centered framing",
+    "lens": "standard portrait perspective, flat depth of field",
+    "focus": "sharp focus on the entire subject and foreground skull, soft background",
+    "_priority": 3
+  },
+  "lighting": {
+    "key": "Implied front-facing soft light, likely from an overhead or slightly elevated source, creating consistent highlights on the character's hair, shoulders, and the rim of the wine glass.",
+    "fill": "Minimal fill, with deep, stylized shadows defining the character's features and the contours of the skull, typical of high-contrast illustrative line art.",
+    "practical": [
+      "Glowing purple liquid inside the wine glass casting a subtle internal light"
+    ],
+    "_priority": 3
+  },
+  "palette": {
+    "color_map": {
+      "background_primary": {
+        "hex": "#D7CFD4",
+        "finish": "matte diffuse"
+      },
+      "hair_base": {
+        "hex": "#3D383F",
+        "finish": "matte diffuse"
+      },
+      "hair_highlight": {
+        "hex": "#8B58A4",
+        "finish": "matte diffuse"
+      },
+      "wine_liquid": {
+        "hex": "#8B00FF",
+        "finish": "translucent bloom"
+      },
+      "skin_tone": {
+        "hex": "#E8D8E0",
+        "finish": "matte diffuse"
+      },
+      "skull_base": {
+        "hex": "#B5A7B1",
+        "finish": "matte diffuse"
+      },
+      "clothing_dark": {
+        "hex": "#2A262C",
+        "finish": "matte diffuse"
+      }
+    },
+    "colors": [
+      "cool gray",
+      "dark charcoal",
+      "vibrant violet",
+      "pale lavender"
+    ],
+    "hex": [
+      "#B5A7B1",
+      "#2A262C",
+      "#8B00FF",
+      "#D7CFD4"
+    ],
+    "contrast": "high contrast between desaturated grayscale elements and the luminous violet liquid",
+    "mood": "gothic elegance",
+    "_priority": 3
+  },
+  "rendering": {
+    "medium": "digital illustration with vector-style linework",
+    "detail": "clean, high-contrast black linework, flat cel-shading with subtle gradient transitions, vibrant spot color accents, sharp edges, and a smooth, matte digital finish.",
+    "_priority": 4
+  },
+  "details": {
+    "textures": [
+      "clean vector linework",
+      "smooth digital cel-shading",
+      "soft airbrush gradients",
+      "sharp, high-contrast ink-style outlines"
+    ],
+    "accents": [
+      "glass specular highlights on wine glass",
+      "vibrant purple luminescence in liquid",
+      "sharp rim lighting on hair and horns",
+      "subtle white highlights on eyes and jewelry"
+    ]
+  },
+  "negative": [
+    "photorealistic skin texture",
+    "3D rendered plastic sheen",
+    "oil painting brushstrokes",
+    "watercolor bleeding",
+    "over-saturated neon color bleeding",
+    "warm golden hues",
+    "high-dynamic range bloom",
+    "chromatic aberration",
+    "harsh directional spotlighting",
+    "lens flare",
+    "dynamic volumetric fog",
+    "distorted skeletal structure",
+    "heavy impasto layering",
+    "grainy film noise",
+    "photographic depth of field blur",
+    "JPEG compression artifacts",
+    "gradient posterization",
+    "watermark artifacts",
+    "hallucinated text symbols",
+    "3D-rendered plastic sheen",
+    "photorealistic skin pores",
+    "painterly brushstrokes",
+    "blurry watercolor edges",
+    "muddy color mixing",
+    "unintended chromatic aberration",
+    "over-saturated neon hues",
+    "washed-out desaturation",
+    "lens flare artifacts",
+    "flat, muddy mid-tones",
+    "anatomically incorrect hand structure",
+    "distorted horn symmetry",
+    "blotchy digital artifacts",
+    "JPEG compression banding",
+    "text rendering artifacts"
+  ],
+  "blend": {
+    "sources": [
+      {
+        "reference_type": "subject",
+        "weight": 1,
+        "notes": "subject reference"
+      },
+      {
+        "reference_type": "style",
+        "weight": 1,
+        "notes": "style reference"
+      }
+    ],
+    "blend_notes": "Deterministic merge from 2 references",
+    "generative_description": "A stylized, gothic-themed illustration of a pale-skinned woman with dark horns and a sleek purple-highlighted bob. She wears a black corset and layered silver jewelry, holding a glass of vibrant purple wine in her right hand. A detailed human skull with a prominent crack rests in the immediate foreground beneath her. The entire composition is framed by a subtle, dark architectural archway, emphasizing her mysterious and elegant persona.. Set in A stylized, two-dimensional graphic environment featuring a minimalist, light-colored gradient background framed by thin, dark architectural line-art pillars.. Rendered as digital illustration with vector-style linework. Lit by Implied front-facing soft light, likely from an overhead or slightly elevated source, creating consistent highlights on the character's hair, shoulders, and the rim of the wine glass."
+  },
+  "character_dna": {
+    "name": "unnamed",
+    "anchors": [
+      "gothic",
+      "horns",
+      "skull"
+    ],
+    "flex": [
+      "purple-highlights",
+      "corset",
+      "wine",
+      "crown",
+      "dark fantasy",
+      "anime-inspired",
+      "line-art heavy",
+      "stylized",
+      "line-art",
+      "dark-fantasy"
+    ]
+  },
+  "meta": {
+    "created": "2026-03-12T20:47:33.721Z",
+    "extraction_model": "gemini-3.1-flash-lite-preview",
+    "notes": "v4.0 normalized",
+    "aspect_ratio": "2:3"
+  },
+  "compiled_slots": {
+    "subject": "A striking gothic figure with pale skin and small horns, framed by a dark architectural arch. She wears a black corset and layered silver chains, her short dark hair accented with purple highlights and roses. Holding a glass of purple wine, she gazes forward with a knowing, mischievous smirk. A cracked human skull rests in the foreground, anchoring the composition in a dark, elegant aesthetic.",
+    "render": "A clean digital illustration featuring precise, bold linework, flat cel-shaded coloring, and smooth gradients, emphasizing sharp edges and high-contrast visual clarity.",
+    "style": "gothic fantasy, dark anime, neo-noir illustration, stylized character art, edgy aesthetic",
+    "render_mode": "illustration",
+    "scene": "The scene is set against a clean, minimalist backdrop featuring subtle architectural line-art pillars that frame the space. A light, neutral gradient fills the background, creating a flat, graphic environment that emphasizes the central arrangement of decorative elements and symbolic objects.",
+    "camera": "A medium close-up shot at eye level, centered to emphasize the symmetry and balance of the graphic composition and its decorative elements.",
+    "color": "The palette centers on muted lavender gray (#D8D0D6) and dark charcoal (#3E363F), punctuated by the intense, vibrant violet (#8A00C2) of the wine. High contrast creates a sharp, sophisticated, and gothic aesthetic.",
+    "light": "The scene is illuminated by a soft, neutral light source from above. The glowing purple liquid within the wine glass serves as a localized, vibrant light source, casting a distinct highlight on the glass rim.",
+    "texture": "clean vector linework, smooth digital cel-shading, soft airbrush gradients, high-gloss glass speculars, and matte bone surfaces define the overall aesthetic of this stylized character illustration.",
+    "negative": "Avoid photorealistic skin pores, heavy oil paint impasto, blurry photographic depth of field, muddy brown color shifts, inconsistent multi-source shadows, anatomical hand deformities, grainy film noise, pixelated edge artifacts, and unwanted background clutter or signature artifacts."
+  }
+}

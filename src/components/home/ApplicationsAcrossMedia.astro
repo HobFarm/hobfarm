@@ -1,0 +1,52 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import NodeCard from "@/components/home/infographics/NodeCard.astro";
+import StoryPanel from "@/components/home/infographics/StoryPanel.astro";
+import { applications, storyPanels } from "@/data/homepage-systems";
+import type { Tone } from "@/components/home/infographics/tones";
+
+const story = storyPanels.applications;
+// Cycle psychedelic tones across the deliverables for variety.
+const cycle: Tone[] = ["cyan", "magenta", "green", "accent", "blue"];
+---
+
+<section id="applications" class="border-b border-base-800/70">
+  <Wrapper variant="standard" class="py-16 lg:py-20">
+    <div class="max-w-2xl">
+      <Text tag="span" variant="textSM" class="font-mono uppercase tracking-widest text-accent-cyan">
+        {applications.eyebrow}
+      </Text>
+      <Text tag="h2" variant="displayLG" class="mt-5 font-display text-white">
+        {applications.heading}
+      </Text>
+      <p class="mt-5 text-base leading-relaxed text-base-400">{applications.copy}</p>
+    </div>
+
+    <!-- One system branching into many deliverables -->
+    <div class="mt-10 rounded-lg border border-base-800 bg-base-900/50 p-4 sm:p-6">
+      <div class="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,240px)_auto_1fr] lg:items-center lg:gap-3">
+        <div class="rounded-md border border-accent-magenta/40 bg-base-950/60 p-4 glow-violet">
+          <p class="font-mono text-[10px] uppercase tracking-widest text-accent-magenta-bright">Source</p>
+          <p class="mt-2 font-display text-lg text-white">One style system</p>
+          <p class="mt-2 text-xs leading-snug text-base-400">
+            Style inputs, trait extraction, formula, variants.
+          </p>
+        </div>
+
+        <span aria-hidden="true" class="flex items-center justify-center font-mono text-base text-accent-cyan">
+          <span class="lg:hidden">&darr;</span>
+          <span class="hidden lg:inline">&rarr;</span>
+        </span>
+
+        <div class="grid grid-cols-2 gap-2 sm:grid-cols-3">
+          {applications.items.map((item, i) => (
+            <NodeCard label={item} tone={cycle[i % cycle.length]} />
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <StoryPanel panel={story} class="mt-6" />
+  </Wrapper>
+</section>

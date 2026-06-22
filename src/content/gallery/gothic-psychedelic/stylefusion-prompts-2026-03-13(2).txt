@@ -1,0 +1,150 @@
+=== StyleFusion Compiled Prompts ===
+Generated: 2026-03-13T06:19:12.453Z
+
+--- IMAGE GENERATION JSON ---
+{
+  "subject": {
+    "form": "Humanoid female figure, slender build, pale skin with glowing bioluminescent neon patterns, small curved horns protruding from forehead",
+    "surface": "glowing bioluminescent skin, reflective metallic surface with environment reflections, matte fabric, vibrant magenta wine",
+    "coloring": "Base vibrant magenta wine (#FF00FF), glowing cyan skin markings (#00F5FF), accent pale lavender skin tone (#D8BFFF)",
+    "features": [
+      "Short, layered dark purple hair with vibrant neon-pink highlights, styled with roses on either side",
+      "Large almond-shaped eyes with glowing purple irises, sharp defined cheekbones, thin lips curved into a subtle smirk, pointed ears",
+      "glowing neon skin patterns",
+      "curved horns",
+      "etched geometric skull"
+    ],
+    "covering": "Black corset with intricate circuit-like neon piping, Multiple layered silver chain necklaces, Black choker with metallic accents, Dark fabric draped over shoulders",
+    "position": "Frontal view, seated at a table, right hand raised holding a wine glass, left hand resting near a skull",
+    "held_objects": "Wine glass with swirling neon liquid, right hand",
+    "expression_intent": "Confident, enigmatic, and slightly mischievous, as if sharing a secret with the viewer."
+  },
+  "scene": {
+    "setting": "The scene is set within a mystical, cosmic void where glowing, neon-hued flora emerges from the shadows. A dark, circular table sits in the foreground, marked by intricate, luminous symbols. Behind, a swirling, vibrant nebula stretches across the horizon, punctuated by distant galaxies and sharp, geometric light rays.",
+    "elements": [
+      "bone-like material, smooth and matte with etched geometric patterns, skull on foreground table",
+      "fabric choker and chains, metallic sheen, subject's neck",
+      "glowing flowers, center-right midground"
+    ],
+    "atmosphere": "Soft bloom on highlights, Magical particles, Arcane residue"
+  },
+  "camera": {
+    "shot": "medium shot, eye level, centered framing",
+    "lens": "moderate focal length, shallow depth of field, soft bokeh background"
+  },
+  "lighting": {
+    "key": "Vibrant neon light radiates from the character's skin markings, the skull's geometric patterns, and the glowing wine. This cool, stylized illumination creates sharp, colorful highlights on her skin and the surrounding magical flora.",
+    "fill": "Minimal fill; deep shadows are present in the background and clothing folds, with ambient purple and cyan glow providing subtle separation from the dark environment.",
+    "effects": [
+      "Glowing neon markings on the character's skin",
+      "Luminescent swirling liquid inside the wine glass",
+      "Glowing geometric patterns on the skull",
+      "Neon-colored laser-like light rays in the background",
+      "Bioluminescent floral elements"
+    ]
+  },
+  "style": {
+    "medium": "digital vector illustration",
+    "quality": "clean, uniform-width black linework, smooth monochromatic gradients, subtle radial glow effects, absence of texture or noise, high-contrast flat composition.",
+    "color_map": {
+      "background": {
+        "hex": "#F0EFEA",
+        "finish": "matte diffuse"
+      },
+      "lines_and_details": {
+        "hex": "#232323",
+        "finish": "matte ink"
+      },
+      "crescent_moon": {
+        "hex": "#1D2126",
+        "finish": "matte solid"
+      },
+      "snake_body": {
+        "hex": "#E5E4DE",
+        "finish": "matte diffuse"
+      },
+      "eye_shadowing": {
+        "hex": "#D1D0C9",
+        "finish": "soft gradient"
+      },
+      "eye_color": {
+        "hex": "#D1D0C9",
+        "finish": "large almond-shaped iris with natural depth and specular highlights"
+      }
+    },
+    "textures": [
+      "clean vector linework",
+      "smooth digital gradients",
+      "flat matte fill"
+    ],
+    "style_anchors": [
+      "gothic fantasy",
+      "cyber-goth",
+      "psychedelic art",
+      "digital dark fantasy",
+      "synthwave aesthetic",
+      "neo-traditional tattoo art"
+    ],
+    "light_interaction": "Glowing neon markings on the character's skin produces localized color spill on nearby skin and fabric. Glowing geometric patterns on the skull produces localized color spill on nearby skin and fabric. Neon-colored laser-like light rays in the background produces localized color spill on nearby skin and fabric. Bioluminescent floral elements produces localized color spill on nearby skin and fabric"
+  },
+  "negative": "Avoid photorealistic skin textures, muddy desaturated tones, flat studio lighting, blurry low-resolution edges, grainy film noise, incoherent background geometry, asymmetrical anatomical features, heavy canvas weave, smudged airbrushing, and unintentional color banding.",
+  "aspect_ratio": "9:16",
+  "arrangement": "gothic",
+  "arrangement_matched": 1.1414528674377633,
+  "palette_modifier": 0.034
+}
+
+--- DESCRIPTION ---
+[Subject] A mysterious, horned woman with glowing neon skin patterns sits confidently at a table, holding a glass of swirling, iridescent liquid. Her dark purple hair is adorned with roses, and she wears a tech-inspired corset with layered silver chains. Beside her, a skull etched with glowing geometric lines rests on the table. The scene is framed by vibrant laser beams and a cosmic nebula, creating an enigmatic and otherworldly atmosphere.
+
+[Style] esoteric occult art, minimalist line art, sacred geometry, neo-traditional tattoo style, mystical symbolism
+
+[Scene] The scene is set within a mystical, cosmic void where glowing, neon-hued flora emerges from the shadows. A dark, circular table sits in the foreground, marked by intricate, luminous symbols. Behind, a swirling, vibrant nebula stretches across the horizon, punctuated by distant galaxies and sharp, geometric light rays.
+
+[Camera] This medium shot is captured at eye level, perfectly centered to emphasize the intricate details of the foreground objects and the cosmic backdrop.
+
+[Lighting] Vibrant neon light radiates from the character's skin markings, the skull's geometric patterns, and the glowing wine. This cool, stylized illumination creates sharp, colorful highlights on her skin and the surrounding magical flora.
+
+[Color] The palette is dominated by deep violet (#4B0082) and vibrant magenta (#FF00FF), contrasted sharply against neon cyan (#00F5FF) markings. This high-contrast interplay creates an intense, electric, and otherworldly supernatural atmosphere.
+
+[Texture] Smooth digital cel-shading, clean vector-style linework, soft airbrush gradients, glowing neon luminescence, and sharp glass specular highlights define the overall visual texture of the scene.
+
+[Avoid] Avoid photorealistic skin textures, muddy desaturated tones, flat studio lighting, blurry low-resolution edges, grainy film noise, incoherent background geometry, asymmetrical anatomical features, heavy canvas weave, smudged airbrushing, and unintentional color banding.
+
+--- CREATIVE SLOTS ---
+[Render]
+A clean digital vector illustration featuring sharp, uniform black linework, smooth monochromatic gradients, and subtle radial glow effects for depth.
+
+[Subject]
+A mysterious, horned woman with glowing neon skin patterns sits confidently at a table, holding a glass of swirling, iridescent liquid. Her dark purple hair is adorned with roses, and she wears a tech-inspired corset with layered silver chains. Beside her, a skull etched with glowing geometric lines rests on the table. The scene is framed by vibrant laser beams and a cosmic nebula, creating an enigmatic and otherworldly atmosphere.
+
+[Style]
+esoteric occult art, minimalist line art, sacred geometry, neo-traditional tattoo style, mystical symbolism
+
+[Scene]
+The scene is set within a mystical, cosmic void where glowing, neon-hued flora emerges from the shadows. A dark, circular table sits in the foreground, marked by intricate, luminous symbols. Behind, a swirling, vibrant nebula stretches across the horizon, punctuated by distant galaxies and sharp, geometric light rays.
+
+[Camera]
+This medium shot is captured at eye level, perfectly centered to emphasize the intricate details of the foreground objects and the cosmic backdrop.
+
+[Light]
+Vibrant neon light radiates from the character's skin markings, the skull's geometric patterns, and the glowing wine. This cool, stylized illumination creates sharp, colorful highlights on her skin and the surrounding magical flora.
+
+[Color]
+The palette is dominated by deep violet (#4B0082) and vibrant magenta (#FF00FF), contrasted sharply against neon cyan (#00F5FF) markings. This high-contrast interplay creates an intense, electric, and otherworldly supernatural atmosphere.
+
+[Texture]
+Smooth digital cel-shading, clean vector-style linework, soft airbrush gradients, glowing neon luminescence, and sharp glass specular highlights define the overall visual texture of the scene.
+
+[Negative]
+Avoid photorealistic skin textures, muddy desaturated tones, flat studio lighting, blurry low-resolution edges, grainy film noise, incoherent background geometry, asymmetrical anatomical features, heavy canvas weave, smudged airbrushing, and unintentional color banding.
+
+[Aspect_ratio]
+9:16
+
+[_render_mode]
+illustration
+
+
+--- COMPACT PROMPT ---
+A mysterious, horned woman with glowing neon skin patterns sits confidently at a table, holding a glass of swirling, iridescent liquid. Her dark purple hair is adorned with roses, and she wears a tech-inspired corset with layered silver chains. Beside her, a skull etched with glowing geometric lines rests on the table. The scene is framed by vibrant laser beams and a cosmic nebula, creating an enigmatic and otherworldly atmosphere. The scene is set within a mystical, cosmic void where glowing, neon-hued flora emerges from the shadows. A dark, circular table sits in the foreground, marked by intricate, luminous symbols. Behind, a swirling, vibrant nebula stretches across the horizon, punctuated by distant galaxies and sharp, geometric light rays. A clean digital vector illustration featuring sharp, uniform black linework, smooth monochromatic gradients, and subtle radial glow effects for depth. Vibrant neon light radiates from the character's skin markings, the skull's geometric patterns, and the glowing wine. This cool, stylized illumination creates sharp, colorful highlights on her skin and the surrounding magical flora. The palette is dominated by deep violet (#4B0082) and vibrant magenta (#FF00FF), contrasted sharply against neon cyan (#00F5FF) markings. This high-contrast interplay creates an intense, electric, and otherworldly supernatural atmosphere. This medium shot is captured at eye level, perfectly centered to emphasize the intricate details of the foreground objects and the cosmic backdrop.

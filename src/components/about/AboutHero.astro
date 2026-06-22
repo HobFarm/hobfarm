@@ -1,0 +1,54 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Eyebrow from "@/components/sections/Eyebrow.astro";
+
+// Money-forward paths, surfaced above the fold. Destinations mirror /projects + footer.
+const engage = [
+  { label: "Shop", note: "Buy", href: "/shop/" },
+  { label: "Membership", note: "Support", href: "/membership/" },
+  { label: "Courses", note: "Learn", href: "/academy/" },
+  { label: "Hire", note: "Commission", href: "/contact/" },
+  { label: "Follow", note: "Watch", href: "https://www.youtube.com/@HobFarm", external: true },
+];
+---
+
+<section class="bg-noise border-b border-base-800/50">
+  <Wrapper variant="standard" class="py-20 lg:py-28">
+    <Eyebrow text="HobFarm / Las Vegas" />
+
+    <Text
+      tag="h1"
+      variant="display2XL"
+      class="mt-6 text-white font-display max-w-4xl text-balance"
+    >
+      A creative production and commerce project.
+    </Text>
+
+    <Text tag="p" variant="textBase" class="text-base-300 mt-6 max-w-2xl text-pretty leading-relaxed">
+      HobFarm brings together creative services, original projects, digital and physical products, media experiments, and resale inventory under one brand. The work moves across character design, visual development, AI-assisted media, film-history research, video formats, digital art, product ideas, collectibles, DVDs, auction finds, and whatever else is worth turning into something.
+    </Text>
+
+    <Text tag="p" variant="textBase" class="text-base-400 mt-4 max-w-2xl text-pretty leading-relaxed">
+      Some things are made from scratch. Some are researched and developed into projects. Some are bought, cleaned up, listed, and sold. Some become videos, downloads, designs, products, or recurring formats. The point is simple: HobFarm is where ideas, media, objects, and experiments get turned into usable work.
+    </Text>
+
+    {/* Engagement strip: the money-forward paths, above the fold */}
+    <div class="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+      {engage.map((item) => (
+        <a
+          href={item.href}
+          {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+          class="group flex flex-col gap-1 p-4 rounded-xl border border-base-800 bg-base-900/50 hover:border-accent-500/50 hover:bg-base-900 transition-all duration-300"
+        >
+          <span class="text-[10px] font-mono uppercase tracking-wider text-base-500">
+            {item.note}
+          </span>
+          <span class="text-sm text-white font-medium group-hover:text-accent-violet-bright transition-colors duration-200">
+            {item.label}
+          </span>
+        </a>
+      ))}
+    </div>
+  </Wrapper>
+</section>

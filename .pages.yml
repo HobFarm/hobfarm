@@ -1,0 +1,368 @@
+# .pages.yml — Pages CMS config for HobFarm
+
+media:
+  name: images
+  label: Images
+  input: src/images
+  output: src/images
+  path: ""
+  extensions: [png, jpg, jpeg, webp, svg]
+
+settings:
+  content:
+    merge: true
+
+content:
+  # ---------------------
+  # BLOG
+  # ---------------------
+  - name: blog
+    label: Blog
+    type: collection
+    path: src/content/blog
+    filename: "{primary}.md"
+    view:
+      primary: title
+      fields: [title, category, publishedAt]
+      sort: [publishedAt]
+      default:
+        sort: publishedAt
+        order: desc
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - { name: excerpt, label: Excerpt, type: text, required: true }
+      - { name: author, label: Author, type: string }
+      - name: category
+        label: Category
+        type: select
+        options: [technical, magazine-time-machine, cultural-thread, grimoire, stylefusion, hobbot, business]
+      - { name: tags, label: Tags, type: string, list: true }
+      - { name: hero, label: Hero Image URL, type: string }
+      - { name: heroAlt, label: Hero Alt Text, type: string }
+      - { name: arrangement, label: Grimoire Arrangement, type: string }
+      - { name: publishedAt, label: Published At, type: date, required: true }
+      - { name: draft, label: Draft, type: boolean }
+      - { name: body, label: Body, type: rich-text }
+
+  # ---------------------
+  # GALLERY
+  # ---------------------
+  - name: gallery
+    label: Gallery
+    type: collection
+    path: src/content/gallery
+    filename: "{primary}.md"
+    view:
+      primary: title
+      fields: [title, type, featured, draft]
+      sort: [date]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - name: type
+        label: Type
+        type: select
+        required: true
+        options: [fashion, character-dev, scene, asset-lab, model-lab, video-workflow, premium-showcase]
+      - { name: summary, label: Summary, type: text, required: true }
+      - { name: folder, label: R2 Folder (e.g. gallery/fashion/glamour-pin-up), type: string, required: true }
+      - name: hero
+        label: Hero Media
+        type: object
+        required: true
+        fields:
+          - name: type
+            label: Type
+            type: select
+            required: true
+            options: [image, video]
+          - { name: file, label: File (in folder), type: string, required: true }
+          - { name: alt, label: Alt text, type: string, required: true }
+          - { name: poster, label: Poster file (video only), type: string }
+      - { name: date, label: Date, type: date }
+      - { name: featured, label: Featured, type: boolean }
+      - { name: draft, label: Draft, type: boolean }
+      - { name: tags, label: Tags, type: string, list: true }
+      - name: thumb
+        label: Thumbnail Override
+        type: object
+        fields:
+          - { name: file, label: File, type: string }
+          - { name: alt, label: Alt text, type: string }
+      - name: media
+        label: Media Grid
+        type: object
+        list: true
+        fields:
+          - name: type
+            label: Type
+            type: select
+            options: [image, video]
+          - { name: file, label: File, type: string }
+          - { name: alt, label: Alt text, type: string }
+          - { name: caption, label: Caption, type: string }
+          - name: role
+            label: Role
+            type: select
+            options: [primary, reference, variant, failure, preview, process]
+          - { name: provider, label: Provider, type: string }
+          - { name: poster, label: Poster file (video only), type: string }
+      - { name: irFile, label: IR JSON file in folder, type: string }
+      - name: infoModules
+        label: Info Modules
+        type: object
+        list: true
+        fields:
+          - { name: label, label: Label, type: string }
+          - { name: value, label: Value, type: string }
+      - name: comparison
+        label: Field Test Block (model-lab)
+        type: object
+        fields:
+          - name: mode
+            label: Mode
+            type: select
+            options: [image, text, multimodal, video]
+          - { name: testedModels, label: Tested Models, type: string, list: true }
+          - { name: promptSummary, label: Prompt Summary, type: text }
+          - { name: findings, label: Findings, type: string, list: true }
+          - { name: failureModes, label: Failure Modes, type: string, list: true }
+          - { name: bestFor, label: Best For, type: string, list: true }
+      - { name: processNotes, label: Process Notes, type: text }
+      - name: externalLinks
+        label: External Links
+        type: object
+        fields:
+          - { name: deviantArt, label: DeviantArt URL, type: string }
+          - { name: deviantArtPremium, label: DA Premium URL, type: string }
+          - { name: kofi, label: Ko-fi URL, type: string }
+          - { name: patreon, label: Patreon URL, type: string }
+          - { name: course, label: Course URL, type: string }
+      - { name: related, label: Related entry IDs (e.g. fashion/glamour-pin-up), type: string, list: true }
+      - { name: methods, label: Methods (free-form labels), type: string, list: true }
+      - { name: relatedProcess, label: Related Process (e.g. /process/fashion/), type: string }
+      - name: concept
+        label: Concept
+        type: object
+        fields:
+          - { name: thesis, label: Thesis, type: text }
+          - { name: method, label: Method Name, type: string }
+          - { name: seedInputs, label: Seed Inputs, type: string, list: true }
+          - { name: growthStages, label: Growth Stages, type: string, list: true }
+          - { name: reusablePattern, label: Reusable Pattern, type: text }
+          - { name: usefulFor, label: Useful For, type: string, list: true }
+      - name: fieldNotes
+        label: Field Notes
+        type: object
+        list: true
+        fields:
+          - { name: label, label: Label, type: string }
+          - { name: text, label: Text, type: text }
+      - name: visualDNA
+        label: Visual DNA
+        type: object
+        list: true
+        fields:
+          - { name: label, label: Label, type: string }
+          - { name: value, label: Value, type: string }
+      - name: workflowSteps
+        label: Workflow Steps
+        type: object
+        list: true
+        fields:
+          - { name: label, label: Label, type: string }
+          - { name: text, label: Text, type: text }
+      - name: lessons
+        label: Lessons
+        type: object
+        list: true
+        fields:
+          - { name: label, label: Label, type: string }
+          - { name: text, label: Text, type: text }
+          - name: kind
+            label: Kind
+            type: select
+            options: [win, lesson, fail]
+      - { name: lockedTraits, label: Locked Traits, type: string, list: true }
+      - { name: flexibleTraits, label: Flexible Traits, type: string, list: true }
+      - name: specimenSheet
+        label: Specimen Sheet
+        type: object
+        fields:
+          - { name: specimenId, label: Specimen ID, type: string }
+          - { name: subjectName, label: Subject Name, type: string }
+          - { name: subjectRole, label: Subject Role, type: string }
+          - { name: edition, label: Edition, type: string }
+          - { name: status, label: Status, type: string }
+          - { name: origin, label: Origin, type: string }
+          - { name: creator, label: Creator, type: string }
+          - { name: license, label: License, type: string }
+          - { name: dropDate, label: Drop Date, type: date }
+          - { name: dimensions, label: Dimensions, type: string }
+      - name: colorChemistry
+        label: Color Chemistry
+        type: object
+        fields:
+          - name: palette
+            label: Palette
+            type: object
+            list: true
+            fields:
+              - { name: name, label: Name, type: string }
+              - { name: hex, label: Hex (e.g. #4a235a), type: string }
+              - { name: finish, label: Finish, type: string }
+              - { name: role, label: Role, type: string }
+          - { name: mood, label: Mood, type: string }
+          - { name: contrast, label: Contrast, type: string }
+          - { name: notes, label: Notes, type: text }
+      - name: wardrobeGrammar
+        label: Wardrobe Grammar
+        type: object
+        list: true
+        fields:
+          - { name: item, label: Item, type: string }
+          - { name: materials, label: Materials, type: string, list: true }
+          - { name: colors, label: Colors, type: string, list: true }
+          - { name: notes, label: Notes, type: text }
+      - { name: materials, label: Materials, type: string, list: true }
+      - { name: accessories, label: Accessories, type: string, list: true }
+      - name: styleProfile
+        label: Style Profile
+        type: object
+        fields:
+          - { name: anchors, label: Anchors, type: string, list: true }
+          - { name: arrangement, label: Arrangement, type: string }
+          - { name: register, label: Register, type: string }
+          - { name: weight, label: Weight, type: string }
+          - { name: era, label: Era, type: string }
+          - { name: hardness, label: Hardness, type: string }
+          - { name: notes, label: Notes, type: text }
+      - { name: body, label: Body, type: rich-text }
+
+  # ---------------------
+  # PROJECTS
+  # ---------------------
+  - name: projects
+    label: Projects
+    type: collection
+    path: src/content/projects
+    filename: "{primary}.md"
+    view:
+      primary: title
+      fields: [title, status, order]
+      sort: [order]
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - { name: tagline, label: Tagline, type: string, required: true }
+      - { name: description, label: Description, type: text, required: true }
+      - name: status
+        label: Status
+        type: select
+        options: [live, active, shelved, planned]
+        required: true
+      - { name: url, label: URL, type: string }
+      - { name: repo, label: Repository URL, type: string }
+      - { name: hero, label: Hero Image URL, type: string }
+      - { name: stack, label: Tech Stack, type: string, list: true }
+      - { name: order, label: Sort Order, type: number }
+      - { name: publishedAt, label: Published At, type: date, required: true }
+      - { name: body, label: Body, type: rich-text }
+
+  # ---------------------
+  # CHANGELOG
+  # ---------------------
+  - name: changelog
+    label: Changelog
+    type: collection
+    path: src/content/changelog
+    filename: "{primary}.md"
+    view:
+      primary: title
+      fields: [title, project, publishedAt]
+      sort: [publishedAt]
+      default:
+        sort: publishedAt
+        order: desc
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - name: project
+        label: Project
+        type: select
+        options: [stylefusion, grimoire, hobbot, hobfarm, kalshi]
+      - { name: version, label: Version, type: string }
+      - { name: publishedAt, label: Published At, type: date, required: true }
+      - { name: tags, label: Tags, type: string, list: true }
+      - { name: body, label: Body, type: rich-text }
+
+  # ---------------------
+  # HELP CENTER
+  # ---------------------
+  - name: help
+    label: Help Center
+    type: collection
+    path: src/content/help
+    filename: "{primary}.md"
+    view:
+      primary: title
+      fields: [title, project, order]
+      sort: [order]
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - { name: description, label: Description, type: text, required: true }
+      - name: project
+        label: Project
+        type: select
+        options: [stylefusion, grimoire, hobbot, general]
+      - { name: section, label: Section, type: string }
+      - { name: order, label: Order, type: number }
+      - { name: body, label: Body, type: rich-text }
+
+  # ---------------------
+  # INTEGRATIONS
+  # ---------------------
+  - name: integrations
+    label: Integrations
+    type: collection
+    path: src/content/integrations
+    filename: "{primary}.md"
+    view:
+      primary: title
+      fields: [title, type, status]
+      sort: [order]
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - name: type
+        label: Type
+        type: select
+        options: [image, video, extraction, text, voice]
+        required: true
+      - { name: provider, label: Provider, type: string, required: true }
+      - { name: logo, label: Logo URL, type: string }
+      - { name: url, label: URL, type: string }
+      - { name: description, label: Description, type: text, required: true }
+      - name: status
+        label: Status
+        type: select
+        options: [active, beta, planned, deprecated]
+        required: true
+      - { name: order, label: Order, type: number }
+      - { name: body, label: Body, type: rich-text }
+
+  # ---------------------
+  # LEGAL
+  # ---------------------
+  - name: legal
+    label: Legal
+    type: collection
+    path: src/content/legal
+    filename: "{primary}.md"
+    view:
+      primary: title
+      fields: [title, publishedAt]
+      sort: [title]
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - { name: publishedAt, label: Published At, type: date }
+      - { name: body, label: Body, type: rich-text }

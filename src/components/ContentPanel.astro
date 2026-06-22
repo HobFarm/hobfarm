@@ -1,0 +1,12 @@
+---
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+
+<div class="flow-root">
+  <div class:list={["content-panel mx-4 sm:mx-6 xl:max-w-7xl xl:mx-auto mt-8 mb-8 md:mt-12 md:mb-16", className]}>
+    <slot />
+  </div>
+</div>

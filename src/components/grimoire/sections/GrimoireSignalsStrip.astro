@@ -1,0 +1,46 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import { grimoireSignals } from "@/data/grimoire-signals";
+import { getCollection } from "astro:content";
+
+const publicNotes = (await getCollection("grimoire", ({ data }) => !data.draft)).length;
+
+const accentClass = {
+  violet: "text-spot-purple",
+  green: "text-spot-green",
+  cyan: "text-accent-400",
+};
+---
+
+<section class="border-t border-base-800/50">
+  <Wrapper variant="standard" class="py-16 lg:py-20">
+    <div class="flex items-center gap-4 mb-10">
+      <Text tag="h2" variant="displaySM" class="text-white font-display whitespace-nowrap">
+        Substrate signals
+      </Text>
+      <div class="flex-1 h-px bg-base-800"></div>
+      <span class="text-xs font-mono text-base-500 uppercase tracking-wider whitespace-nowrap">
+        {publicNotes} public notes
+      </span>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+      {grimoireSignals.map((s) => (
+        <div class="rounded-md border border-base-800 bg-base-900/60 p-4">
+          <div class="text-[10px] font-mono text-base-500 uppercase tracking-wider">
+            {s.label}
+          </div>
+          <div class={`mt-2 text-sm font-mono ${accentClass[s.accent ?? "violet"]}`}>
+            {s.state}
+          </div>
+          {s.caption && (
+            <div class="mt-1 text-[10px] font-mono text-base-600">
+              {s.caption}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </Wrapper>
+</section>

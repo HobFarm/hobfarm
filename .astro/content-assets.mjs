@@ -1,0 +1,7 @@
+
+import __ASTRO_IMAGE_IMPORT_Z2sjn5W from "../../../images/projects/3dm-logo.png?astroContentImageFlag=&importer=src%2Fcontent%2Fprojects%2Fhobfarm-tv%2F3-degrees-of-dick-miller.md";
+import __ASTRO_IMAGE_IMPORT_ZCLi8t from "../../images/projects/placeholder.svg?astroContentImageFlag=&importer=src%2Fcontent%2Fprojects%2Fgrimoire.md";
+import __ASTRO_IMAGE_IMPORT_qveF0 from "../../images/projects/placeholder.svg?astroContentImageFlag=&importer=src%2Fcontent%2Fprojects%2Fhobbot.md";
+import __ASTRO_IMAGE_IMPORT_Z1KB5HL from "../../images/projects/placeholder.svg?astroContentImageFlag=&importer=src%2Fcontent%2Fprojects%2Fstylefusion.md";
+export default new Map([["../../../images/projects/3dm-logo.png?astroContentImageFlag=&importer=src%2Fcontent%2Fprojects%2Fhobfarm-tv%2F3-degrees-of-dick-miller.md", __ASTRO_IMAGE_IMPORT_Z2sjn5W], ["../../images/projects/placeholder.svg?astroContentImageFlag=&importer=src%2Fcontent%2Fprojects%2Fgrimoire.md", __ASTRO_IMAGE_IMPORT_ZCLi8t], ["../../images/projects/placeholder.svg?astroContentImageFlag=&importer=src%2Fcontent%2Fprojects%2Fhobbot.md", __ASTRO_IMAGE_IMPORT_qveF0], ["../../images/projects/placeholder.svg?astroContentImageFlag=&importer=src%2Fcontent%2Fprojects%2Fstylefusion.md", __ASTRO_IMAGE_IMPORT_Z1KB5HL]]);
+		

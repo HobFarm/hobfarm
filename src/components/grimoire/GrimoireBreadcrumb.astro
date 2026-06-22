@@ -1,0 +1,35 @@
+---
+// Grimoire Breadcrumb Navigation
+interface Props {
+  category: string;
+  title: string;
+}
+
+const { category, title } = Astro.props;
+
+const categoryLabels: Record<string, string> = {
+  "getting-started": "Getting Started",
+  "guides": "Guides",
+  "reference": "Reference",
+  "examples": "Examples",
+  "recipes": "Recipes",
+};
+
+const categoryLabel = categoryLabels[category] || category;
+---
+
+<nav aria-label="Breadcrumb" class="text-xs font-mono">
+  <ol class="flex items-center gap-1.5 text-base-500">
+    <li>
+      <a href="/grimoire/" class="hover:text-accent-400 transition-colors">Grimoire</a>
+    </li>
+    <li class="text-base-600">/</li>
+    <li>
+      <span class="capitalize">{categoryLabel}</span>
+    </li>
+    <li class="text-base-600">/</li>
+    <li>
+      <span class="text-accent-400">{title}</span>
+    </li>
+  </ol>
+</nav>
