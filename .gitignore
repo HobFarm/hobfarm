@@ -1,5 +1,6 @@
 # Build output
 dist/
+.astro/
 .wrangler/
 _updates/
 
