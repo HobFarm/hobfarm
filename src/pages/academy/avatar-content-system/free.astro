@@ -1,0 +1,175 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Eyebrow from "@/components/sections/Eyebrow.astro";
+import SectionHeader from "@/components/sections/SectionHeader.astro";
+import CourseDiagram from "@/components/academy/CourseDiagram.astro";
+import LessonCard from "@/components/academy/LessonCard.astro";
+import SnippetCards from "@/components/academy/SnippetCards";
+import {
+  affiliateTools,
+  avatarCourse,
+  paidLessons,
+  projectFolderSetup,
+  starterPrompts,
+  workflowPaths,
+} from "@/data/avatar-content-system";
+---
+
+<BaseLayout
+  title={`Free Overview | ${avatarCourse.productName}`}
+  description="The free overview for the Avatar Content System Starter Kit."
+  palette="magenta-cyan"
+>
+  <section class="bg-noise border-b border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-16 lg:py-24">
+        <div class="max-w-4xl">
+          <Eyebrow text="Free overview" />
+          <Text tag="h1" variant="displayXL" class="mt-6 text-balance font-display text-white">
+            Build the first version before you buy the deep version.
+          </Text>
+          <p class="mt-6 max-w-2xl text-base leading-relaxed text-base-300">
+            This page gives you the system map, the two starting paths, the folder setup, and the first prompts. The paid course adds detailed walkthroughs once you know this is the workflow you want.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <Button isLink size="sm" variant="green" href="#starter-prompts">
+              Copy starter prompts
+            </Button>
+            <Button isLink size="sm" variant="muted" href={avatarCourse.coursePath}>
+              Preview paid lessons
+            </Button>
+          </div>
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <SectionHeader eyebrow="01" heading="What you are building" />
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+          <div>
+            <p class="text-base leading-relaxed text-base-300">
+              You are building one short avatar video and the folder system around it: rough idea, cleaned script, voice test, avatar clip, final export, scheduled post, and review note.
+            </p>
+            <p class="mt-4 text-sm leading-relaxed text-base-400">
+              The win is not a perfect first post. The win is a repeatable path from capture to scheduled post without losing half the work in screenshots, downloads, and half-finished chats.
+            </p>
+          </div>
+          <CourseDiagram variant="checklist" />
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <SectionHeader eyebrow="02" heading="Tool stack overview" />
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {affiliateTools.map((tool) => (
+            <article class="border border-base-800 bg-base-900/40 p-5">
+              <h3 class="text-lg font-display text-white">{tool.name}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-base-400">{tool.role}</p>
+              {tool.affiliate && (
+                <p class="mt-4 text-xs font-mono text-base-500">Affiliate link slot</p>
+              )}
+            </article>
+          ))}
+        </div>
+        <p class="mt-6 max-w-3xl text-xs leading-relaxed text-base-500">{avatarCourse.affiliateDisclosure}</p>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <SectionHeader eyebrow="03" heading="Choose your workflow" />
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+          {workflowPaths.map((path) => (
+            <article class="border border-base-800 bg-base-900/40 p-6">
+              <h3 class="text-2xl font-display text-white">{path.title}</h3>
+              <p class="mt-4 text-sm leading-relaxed text-base-400">{path.body}</p>
+              <div class="mt-5 flex flex-wrap gap-2">
+                {path.steps.map((step) => (
+                  <span class="border border-base-700 px-3 py-2 text-xs font-mono text-base-300">
+                    {step}
+                  </span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+        <div class="mt-8">
+          <CourseDiagram variant="phone-laptop" />
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <SectionHeader eyebrow="04" heading="Make your project folder" />
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <p class="text-sm leading-relaxed text-base-400">
+              Use boring folder names at first. You can make it prettier after you have actually shipped something.
+            </p>
+          </div>
+          <pre class="overflow-auto border border-base-800 bg-base-950/70 p-5 text-xs leading-relaxed text-base-300">{projectFolderSetup.join("\n")}</pre>
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section id="starter-prompts" class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <SectionHeader eyebrow="05" heading="First ChatGPT starter prompts" />
+        <SnippetCards snippets={starterPrompts} client:visible />
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <SectionHeader eyebrow="06" heading="Preview of locked paid lessons" />
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {paidLessons.slice(0, 6).map((lesson) => <LessonCard lesson={lesson} />)}
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_0.8fr]">
+          <div>
+            <SectionHeader eyebrow="07" heading="Buy the full starter kit" />
+            <p class="max-w-2xl text-base leading-relaxed text-base-300">
+              {avatarCourse.betaCta} Paid lessons unlock detailed setup, screenshots slots, tool walkthroughs, copyable snippets, and checklists.
+            </p>
+            <div class="mt-6 flex flex-wrap gap-3">
+              <Button isLink size="sm" variant="green" href={avatarCourse.checkoutPath}>
+                Get supporter access
+              </Button>
+              <Button isLink size="sm" variant="muted" href={avatarCourse.coursePath}>
+                Open course index
+              </Button>
+            </div>
+          </div>
+          <CourseDiagram variant="screenshot-loop" />
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+</BaseLayout>

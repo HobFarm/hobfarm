@@ -1,0 +1,159 @@
+---
+import { mergedWorkflow, workflowPaths } from "@/data/avatar-content-system";
+
+interface Props {
+  variant:
+    | "paths"
+    | "phone-laptop"
+    | "workflow"
+    | "screenshot-loop"
+    | "checklist";
+}
+
+const { variant } = Astro.props;
+const voicePath = workflowPaths[0];
+const textPath = workflowPaths[1];
+const checklist = [
+  "Idea captured",
+  "Script saved",
+  "Voice tested",
+  "Avatar exported",
+  "Post scheduled",
+];
+---
+
+{
+  variant === "paths" && (
+    <div class="overflow-hidden border border-base-800 bg-base-950/60 p-5">
+      <div class="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_auto_1fr] lg:items-center">
+        {[voicePath].map((path) => (
+          <section class="border border-base-800 bg-base-900/70 p-5">
+            <h3 class="text-lg font-display text-white">{path.title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-base-400">{path.body}</p>
+            <div class="mt-5 flex flex-wrap gap-2">
+              {path.steps.map((step) => (
+                <span class="border border-base-700 bg-base-950 px-3 py-2 text-xs font-mono text-base-300">
+                  {step}
+                </span>
+              ))}
+            </div>
+          </section>
+        ))}
+        <div class="flex items-center justify-center">
+          <div class="rounded-full border border-accent-green/60 bg-accent-green/10 px-4 py-2 text-xs font-mono uppercase tracking-wider text-accent-green-bright">
+            merge
+          </div>
+        </div>
+        {[textPath].map((path) => (
+          <section class="border border-base-800 bg-base-900/70 p-5">
+            <h3 class="text-lg font-display text-white">{path.title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-base-400">{path.body}</p>
+            <div class="mt-5 flex flex-wrap gap-2">
+              {path.steps.map((step) => (
+                <span class="border border-base-700 bg-base-950 px-3 py-2 text-xs font-mono text-base-300">
+                  {step}
+                </span>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+      <div class="mt-5 border-t border-base-800 pt-5">
+        <div class="grid grid-cols-2 gap-2 md:grid-cols-5 lg:grid-cols-9">
+          {mergedWorkflow.map((step) => (
+            <div class="min-h-16 border border-base-800 bg-base-900/60 p-3 text-center text-xs font-mono text-base-300">
+              {step}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+{
+  variant === "phone-laptop" && (
+    <div class="grid grid-cols-1 gap-4 border border-base-800 bg-base-950/60 p-5 md:grid-cols-[1fr_auto_1fr] md:items-stretch">
+      <section class="border border-base-800 bg-base-900/60 p-5">
+        <p class="text-xs font-mono uppercase tracking-wider text-accent-cyan-bright">Phone captures</p>
+        <div class="mt-5 space-y-3">
+          {["Voice notes", "Screenshots", "Quick links", "Camera roll"].map((item) => (
+            <div class="border-l border-l-accent-cyan bg-base-950/70 px-4 py-3 text-sm text-base-300">
+              {item}
+            </div>
+          ))}
+        </div>
+      </section>
+      <div class="flex items-center justify-center">
+        <div class="rounded-full border border-base-700 px-4 py-2 text-xs font-mono text-base-400">
+          transfer
+        </div>
+      </div>
+      <section class="border border-base-800 bg-base-900/60 p-5">
+        <p class="text-xs font-mono uppercase tracking-wider text-accent-green-bright">Laptop assembles</p>
+        <div class="mt-5 space-y-3">
+          {["Project folders", "Script file", "Voice test", "Avatar export"].map((item) => (
+            <div class="border-l border-l-accent-green bg-base-950/70 px-4 py-3 text-sm text-base-300">
+              {item}
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  )
+}
+
+{
+  variant === "workflow" && (
+    <div class="overflow-hidden border border-base-800 bg-base-950/60 p-5">
+      <div class="grid grid-cols-2 gap-2 md:grid-cols-4 lg:grid-cols-7">
+        {["Idea", "ChatGPT", "Script", "Voice", "Avatar", "Export", "Schedule"].map((step, index) => (
+          <div class="relative min-h-24 border border-base-800 bg-base-900/70 p-4">
+            <span class="font-mono text-xs text-base-500">{String(index + 1).padStart(2, "0")}</span>
+            <p class="mt-4 text-sm font-medium text-white">{step}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+{
+  variant === "screenshot-loop" && (
+    <div class="border border-base-800 bg-base-950/60 p-5">
+      <div class="grid grid-cols-1 gap-3 md:grid-cols-4">
+        {[
+          "Screenshot",
+          "Ask what it proves",
+          "Extract notes",
+          "Send back to script",
+        ].map((step, index) => (
+          <div class="border border-base-800 bg-base-900/70 p-5">
+            <span class="font-mono text-xs text-accent-magenta-bright">Loop {index + 1}</span>
+            <p class="mt-4 text-base font-display text-white">{step}</p>
+          </div>
+        ))}
+      </div>
+      <p class="mt-5 text-sm leading-relaxed text-base-400">
+        The loop exists for messy phone captures. A screenshot is not a script. It is a clue that needs a label, a reason, and a next action.
+      </p>
+    </div>
+  )
+}
+
+{
+  variant === "checklist" && (
+    <div class="border border-base-800 bg-base-950/60 p-5">
+      <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
+        {checklist.map((item, index) => (
+          <div class="min-h-28 border border-base-800 bg-base-900/70 p-4">
+            <div class="flex size-8 items-center justify-center rounded-full border border-accent-green/60 text-xs font-mono text-accent-green-bright">
+              {index + 1}
+            </div>
+            <p class="mt-4 text-sm font-medium text-white">{item}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}

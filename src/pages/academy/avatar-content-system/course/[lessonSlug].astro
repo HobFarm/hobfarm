@@ -1,0 +1,161 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Eyebrow from "@/components/sections/Eyebrow.astro";
+import SectionHeader from "@/components/sections/SectionHeader.astro";
+import SnippetCards from "@/components/academy/SnippetCards";
+import PaidLessonView from "@/components/academy/PaidLessonView";
+import {
+  allLessons,
+  avatarCourse,
+  getFreeLesson,
+  getLessonPreview,
+  lessonHref,
+  type LessonPreview,
+} from "@/data/avatar-content-system";
+
+export function getStaticPaths() {
+  return allLessons.map((lesson) => ({
+    params: { lessonSlug: lesson.slug },
+    props: { lesson },
+  }));
+}
+
+interface Props {
+  lesson: LessonPreview;
+}
+
+const { lesson } = Astro.props;
+const freeLesson = lesson.access === "free" ? getFreeLesson(lesson.slug) : undefined;
+const nextLesson = freeLesson?.nextLessonSlug ? getLessonPreview(freeLesson.nextLessonSlug) : undefined;
+const trackText = lesson.trackTags.join(" / ");
+---
+
+<BaseLayout
+  title={`${lesson.title} | ${avatarCourse.productName}`}
+  description={lesson.preview}
+  palette="magenta-cyan"
+>
+  <section class="bg-noise border-b border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-16 lg:py-20">
+        <div class="max-w-4xl">
+          <Eyebrow text={lesson.access === "free" ? "Free lesson" : "Paid lesson preview"} />
+          <div class="mt-6 flex flex-wrap items-center gap-2">
+            <span class="rounded-full border border-base-700 px-3 py-2 text-xs font-mono text-base-300">
+              Lesson {lesson.number}
+            </span>
+            <span class="rounded-full border border-base-700 px-3 py-2 text-xs font-mono text-base-300">
+              {trackText}
+            </span>
+            <span class:list={[
+              "rounded-full border px-3 py-2 text-xs font-mono uppercase tracking-wider",
+              lesson.access === "free"
+                ? "border-accent-green/50 text-accent-green-bright"
+                : "border-accent-violet/50 text-accent-violet-bright",
+            ]}>
+              {lesson.access}
+            </span>
+          </div>
+          <Text tag="h1" variant="displayXL" class="mt-6 text-balance font-display text-white">
+            {lesson.title}
+          </Text>
+          <p class="mt-5 max-w-2xl text-base leading-relaxed text-base-300">{lesson.preview}</p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <Button isLink size="sm" variant="muted" href={avatarCourse.coursePath}>
+              Back to course
+            </Button>
+            {lesson.access === "paid" && (
+              <Button isLink size="sm" variant="green" href={avatarCourse.checkoutPath}>
+                Get supporter access
+              </Button>
+            )}
+          </div>
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        {freeLesson ? (
+          <article class="space-y-10">
+            <section class="border border-base-800 bg-base-900/40 p-6">
+              <p class="text-xs font-mono uppercase tracking-wider text-accent-green-bright">Goal</p>
+              <p class="mt-4 text-base leading-relaxed text-base-300">{freeLesson.goal}</p>
+            </section>
+
+            <section>
+              <SectionHeader eyebrow="01" heading="What you need" />
+              <ul class="grid grid-cols-1 gap-3 md:grid-cols-2">
+                {freeLesson.whatYouNeed.map((item) => (
+                  <li class="border border-base-800 bg-base-900/40 p-4 text-sm text-base-300">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            <section>
+              <SectionHeader eyebrow="02" heading="Steps" />
+              <ol class="space-y-3">
+                {freeLesson.steps.map((step, index) => (
+                  <li class="grid grid-cols-[auto_1fr] gap-4 border border-base-800 bg-base-900/40 p-4">
+                    <span class="font-mono text-xs text-base-500">{String(index + 1).padStart(2, "0")}</span>
+                    <span class="text-sm leading-relaxed text-base-300">{step}</span>
+                  </li>
+                ))}
+              </ol>
+            </section>
+
+            <section>
+              <SectionHeader eyebrow="03" heading="Copyable snippets" />
+              <SnippetCards snippets={freeLesson.snippets} client:visible />
+            </section>
+
+            <section class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+              <div class="border border-base-800 bg-base-900/40 p-6">
+                <h2 class="text-2xl font-display text-white">Checklist</h2>
+                <ul class="mt-5 space-y-3">
+                  {freeLesson.checklist.map((item) => (
+                    <li class="border-l border-l-accent-green px-4 text-sm leading-relaxed text-base-300">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div class="border border-base-800 bg-base-900/40 p-6">
+                <h2 class="text-2xl font-display text-white">Done when</h2>
+                <ul class="mt-5 space-y-3">
+                  {freeLesson.doneWhen.map((item) => (
+                    <li class="border-l border-l-accent-violet px-4 text-sm leading-relaxed text-base-300">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </section>
+
+            {nextLesson && (
+              <section class="border-t border-base-800 pt-6">
+                <p class="text-xs font-mono uppercase tracking-wider text-base-500">Next lesson</p>
+                <a
+                  href={lessonHref(nextLesson.slug)}
+                  class="mt-3 inline-flex h-9 items-center justify-center rounded-full bg-linear-to-t from-accent-600 to-accent-500 px-4 py-2 text-xs font-medium text-base-950 shadow-dimensional transition-colors hover:from-accent-500 hover:to-accent-600"
+                >
+                  {nextLesson.title}
+                </a>
+              </section>
+            )}
+          </article>
+        ) : (
+          <PaidLessonView slug={lesson.slug} preview={lesson} client:load />
+        )}
+      </Wrapper>
+    </ContentPanel>
+  </section>
+</BaseLayout>

@@ -7,8 +7,8 @@ import { beforeAfter } from "@/data/homepage-systems";
 
 <section id="before-after" class="border-b border-base-800/70">
   <Wrapper variant="standard" class="py-16 lg:py-20">
-    <div class="grid grid-cols-1 gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
-      <div>
+    <div class="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(300px,420px)] lg:items-start lg:gap-12">
+      <div class="max-w-2xl">
         <Text tag="span" variant="textSM" class="font-mono uppercase tracking-widest text-accent-cyan">
           {beforeAfter.eyebrow}
         </Text>
@@ -35,7 +35,7 @@ import { beforeAfter } from "@/data/homepage-systems";
         </div>
       </div>
 
-      <article class="rounded-lg border border-base-800 bg-base-900/60 p-4 shadow-dimensional sm:p-5">
+      <article class="mx-auto w-full max-w-[420px] rounded-lg border border-base-800 bg-base-900/60 p-4 shadow-dimensional sm:p-5 lg:justify-self-end">
         <a
           href="/gallery/before-and-after/1926-now/"
           class="group block overflow-hidden rounded-md border border-base-800 bg-base-950"
@@ -50,7 +50,7 @@ import { beforeAfter } from "@/data/homepage-systems";
               preload="metadata"
               poster={beforeAfter.feature.image}
               aria-label={beforeAfter.feature.alt}
-              class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+              class="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
             >
               <source src={beforeAfter.feature.video} type="video/mp4" />
               <img src={beforeAfter.feature.image} alt={beforeAfter.feature.alt} loading="lazy" decoding="async" />

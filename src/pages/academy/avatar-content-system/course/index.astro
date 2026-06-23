@@ -1,0 +1,115 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Eyebrow from "@/components/sections/Eyebrow.astro";
+import SectionHeader from "@/components/sections/SectionHeader.astro";
+import CourseDiagram from "@/components/academy/CourseDiagram.astro";
+import LessonCard from "@/components/academy/LessonCard.astro";
+import { avatarCourse, courseModules, freeLessons, paidLessons } from "@/data/avatar-content-system";
+---
+
+<BaseLayout
+  title={`Course | ${avatarCourse.productName}`}
+  description="Course index for the Avatar Content System Starter Kit."
+  palette="magenta-cyan"
+>
+  <section class="bg-noise border-b border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-16 lg:py-24">
+        <div class="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_0.85fr] lg:items-start">
+          <div>
+            <Eyebrow text="Course index" />
+            <Text tag="h1" variant="displayXL" class="mt-6 text-balance font-display text-white">
+              {avatarCourse.productName}
+            </Text>
+            <p class="mt-6 max-w-2xl text-base leading-relaxed text-base-300">
+              Start with the four free lessons. Paid lessons stay visible as locked cards, then unlock through supporter beta access after sign-in.
+            </p>
+            <div class="mt-8 flex flex-wrap gap-3">
+              <Button isLink size="sm" variant="green" href={`/academy/avatar-content-system/course/${freeLessons[0].slug}`}>
+                Start lesson 1
+              </Button>
+              <Button isLink size="sm" variant="muted" href={avatarCourse.checkoutPath}>
+                Get supporter access
+              </Button>
+            </div>
+            <p class="mt-4 text-xs font-mono text-base-500">{avatarCourse.betaCta}</p>
+          </div>
+          <aside class="border border-base-800 bg-base-900/40 p-6">
+            <p class="text-xs font-mono uppercase tracking-wider text-accent-cyan-bright">Access</p>
+            <dl class="mt-5 grid grid-cols-2 gap-4">
+              <div>
+                <dt class="text-xs font-mono text-base-500">Free lessons</dt>
+                <dd class="mt-1 text-2xl font-display text-white">{freeLessons.length}</dd>
+              </div>
+              <div>
+                <dt class="text-xs font-mono text-base-500">Paid lessons</dt>
+                <dd class="mt-1 text-2xl font-display text-white">{paidLessons.length}</dd>
+              </div>
+            </dl>
+            <p class="mt-5 text-sm leading-relaxed text-base-400">
+              Lesson pages check access at runtime. Locked visitors can still read titles, tags, and previews.
+            </p>
+          </aside>
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <SectionHeader eyebrow="01" heading="Shared workflow" />
+        <CourseDiagram variant="paths" />
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <SectionHeader eyebrow="02" heading="Modules" />
+        <div class="space-y-10">
+          {courseModules.map((module) => (
+            <section>
+              <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+                <h2 class="text-2xl font-display text-white">{module.title}</h2>
+                <span class="text-xs font-mono text-base-500">{module.lessons.length} lessons</span>
+              </div>
+              <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+                {module.lessons.map((lesson) => <LessonCard lesson={lesson} />)}
+              </div>
+            </section>
+          ))}
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_0.9fr]">
+          <div>
+            <SectionHeader eyebrow="03" heading="Supporter beta access" />
+            <p class="max-w-2xl text-base leading-relaxed text-base-300">
+              {avatarCourse.betaCta} The course-specific one-time product can be added later when a separate entitlement system exists.
+            </p>
+            <div class="mt-6 flex flex-wrap gap-3">
+              <Button isLink size="sm" variant="green" href={avatarCourse.checkoutPath}>
+                Open membership checkout
+              </Button>
+              <Button isLink size="sm" variant="muted" href={avatarCourse.freePath}>
+                Read free overview
+              </Button>
+            </div>
+          </div>
+          <CourseDiagram variant="checklist" />
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+</BaseLayout>

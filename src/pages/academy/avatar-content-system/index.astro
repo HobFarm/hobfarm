@@ -1,0 +1,224 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Eyebrow from "@/components/sections/Eyebrow.astro";
+import SectionHeader from "@/components/sections/SectionHeader.astro";
+import CourseDiagram from "@/components/academy/CourseDiagram.astro";
+import LessonCard from "@/components/academy/LessonCard.astro";
+import {
+  affiliateTools,
+  avatarCourse,
+  courseModules,
+  landingSections,
+  faqItems,
+  workflowPaths,
+} from "@/data/avatar-content-system";
+---
+
+<BaseLayout
+  title={`${avatarCourse.productName} | HobFarm Academy`}
+  description={avatarCourse.summary}
+  palette="magenta-cyan"
+>
+  <section class="bg-noise border-b border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-16 lg:py-24">
+        <div class="grid grid-cols-1 gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div>
+            <Eyebrow text="HobFarm / Academy" />
+            <Text tag="h1" variant="display2XL" class="mt-6 max-w-4xl text-balance font-display text-white">
+              {avatarCourse.productName}
+            </Text>
+            <p class="mt-6 max-w-2xl text-base leading-relaxed text-base-300 text-pretty">
+              {avatarCourse.summary}
+            </p>
+            <p class="mt-4 max-w-2xl text-sm leading-relaxed text-base-400 text-pretty">
+              {avatarCourse.thesis}
+            </p>
+            <div class="mt-8 flex flex-wrap gap-3">
+              <Button isLink size="sm" variant="green" href={avatarCourse.freePath}>
+                Start free overview
+              </Button>
+              <Button isLink size="sm" variant="muted" href={avatarCourse.coursePath}>
+                View course modules
+              </Button>
+            </div>
+            <p class="mt-4 text-xs font-mono text-base-500">{avatarCourse.betaCta}</p>
+          </div>
+          <CourseDiagram variant="workflow" />
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <SectionHeader eyebrow="01" heading="What this helps you make" note="A first usable system." />
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+          {landingSections.helpsMake.map((item) => (
+            <article class="border border-base-800 bg-base-900/40 p-5">
+              <p class="text-sm leading-relaxed text-base-300">{item}</p>
+            </article>
+          ))}
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <SectionHeader eyebrow="02" heading="Voice/Phone vs Text/Computer" note="Start where you actually work." />
+        <CourseDiagram variant="paths" />
+        <div class="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2">
+          {workflowPaths.map((path) => (
+            <article class="border-l border-l-accent-cyan bg-base-900/40 px-5 py-4">
+              <h3 class="text-xl font-display text-white">{path.title}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-base-400">{path.body}</p>
+            </article>
+          ))}
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <SectionHeader eyebrow="03" heading="Avatar content pipeline" note="The shared path." />
+        <CourseDiagram variant="workflow" />
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
+          <section>
+            <SectionHeader eyebrow="04" heading="What is free" />
+            <ul class="space-y-3">
+              {landingSections.freeIncludes.map((item) => (
+                <li class="border-l border-l-accent-green px-4 text-sm leading-relaxed text-base-300">
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <div class="mt-6">
+              <Button isLink size="sm" variant="green" href={avatarCourse.freePath}>
+                Open free overview
+              </Button>
+            </div>
+          </section>
+          <section>
+            <SectionHeader eyebrow="05" heading="Paid starter kit" />
+            <ul class="space-y-3">
+              {landingSections.paidIncludes.map((item) => (
+                <li class="border-l border-l-accent-violet px-4 text-sm leading-relaxed text-base-300">
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <div class="mt-6">
+              <Button isLink size="sm" variant="muted" href={avatarCourse.coursePath}>
+                Preview locked lessons
+              </Button>
+            </div>
+          </section>
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <SectionHeader eyebrow="06" heading="Course modules" note="Free setup, then paid depth." />
+        <div class="space-y-8">
+          {courseModules.map((module) => (
+            <section>
+              <h3 class="mb-4 text-xl font-display text-white">{module.title}</h3>
+              <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+                {module.lessons.map((lesson) => <LessonCard lesson={lesson} />)}
+              </div>
+            </section>
+          ))}
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <SectionHeader eyebrow="07" heading="Tools used" note="The small stack." />
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {affiliateTools.map((tool) => (
+            <article class="border border-base-800 bg-base-900/40 p-5">
+              <h3 class="text-lg font-display text-white">
+                {tool.href ? (
+                  <a href={tool.href} class="hover:text-accent-green-bright" target="_blank" rel="noreferrer">
+                    {tool.name}
+                  </a>
+                ) : (
+                  tool.name
+                )}
+              </h3>
+              <p class="mt-3 text-sm leading-relaxed text-base-400">{tool.role}</p>
+              {tool.affiliate && (
+                <p class="mt-4 text-xs font-mono text-base-500">Affiliate link slot</p>
+              )}
+            </article>
+          ))}
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-start">
+          <div>
+            <SectionHeader eyebrow="08" heading="Beta price" note="Simple access while the kit is new." />
+            <p class="max-w-2xl text-base leading-relaxed text-base-300">
+              {avatarCourse.betaCta} The course-specific one-time product can be added later when the separate entitlement system exists.
+            </p>
+            <div class="mt-6 flex flex-wrap gap-3">
+              <Button isLink size="sm" variant="green" href={avatarCourse.checkoutPath}>
+                Get supporter access
+              </Button>
+              <Button isLink size="sm" variant="muted" href={avatarCourse.coursePath}>
+                See lesson previews
+              </Button>
+            </div>
+          </div>
+          <aside class="border border-base-800 bg-base-900/40 p-5">
+            <p class="text-xs font-mono uppercase tracking-wider text-accent-cyan-bright">Affiliate disclosure</p>
+            <p class="mt-4 text-sm leading-relaxed text-base-400">{avatarCourse.affiliateDisclosure}</p>
+          </aside>
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <SectionHeader eyebrow="09" heading="FAQ" />
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+          {faqItems.map((item) => (
+            <article class="border border-base-800 bg-base-900/40 p-5">
+              <h3 class="text-lg font-display text-white">{item.question}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-base-400">{item.answer}</p>
+            </article>
+          ))}
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+</BaseLayout>

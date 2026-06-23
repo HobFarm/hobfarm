@@ -7,6 +7,7 @@ import Eyebrow from "@/components/sections/Eyebrow.astro";
 import SectionHeader from "@/components/sections/SectionHeader.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import KofiCta from "@/components/KofiCta.astro";
+import { avatarCourse } from "@/data/avatar-content-system";
 
 type Track = { title: string; body: string };
 
@@ -40,7 +41,7 @@ const tracks: Track[] = [
 
 <BaseLayout
   title="Academy | HobFarm"
-  description="Practical AI training from HobFarm: writing prompts, image workflows, building apps, and selling your work. Built from the real work behind the site. Courses are in production now."
+  description="Practical AI training from HobFarm: avatar workflows, prompts, image systems, building apps, and selling your work. Built from the real work behind the site."
 >
   {/* ── Hero ── */}
   <section class="bg-noise border-b border-base-800/50">
@@ -51,11 +52,63 @@ const tracks: Track[] = [
           Academy
         </Text>
         <Text tag="p" variant="textBase" class="text-base-300 mt-6 max-w-2xl text-pretty leading-relaxed">
-          Practical AI training built from the work behind this site: writing prompts, comparing models, setting up workflows, and turning rough images into finished pieces. The courses are still in production, so this page lists what they will cover.
+          Practical AI training built from the work behind this site: avatar workflows, writing prompts, comparing models, setting up files, and turning rough ideas into finished work.
         </Text>
         <div class="mt-8 flex flex-wrap gap-3">
-          <Button isLink size="sm" variant="green" href="/blog">Follow on the blog</Button>
+          <Button isLink size="sm" variant="green" href={avatarCourse.basePath}>
+            Open first course
+          </Button>
+          <Button isLink size="sm" variant="muted" href={avatarCourse.freePath}>
+            Start free overview
+          </Button>
           <KofiCta variant="symbol" text="Ko-fi" />
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  {/* ── First course ── */}
+  <section class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <SectionHeader eyebrow="01" heading="First course" note="Beta access is open." />
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_0.8fr]">
+          <div class="border border-base-800 bg-base-900/40 p-6">
+            <Text tag="h2" variant="displaySM" class="text-white font-display text-balance">
+              {avatarCourse.productName}
+            </Text>
+            <p class="mt-4 max-w-2xl text-sm leading-relaxed text-base-400">
+              A beginner workflow for making avatar videos with ChatGPT, HeyGen, ElevenLabs, and Meta Business Suite. It starts with the real problem: moving between phone, laptop, screenshots, voice notes, scripts, exports, and scheduled posts without turning the whole thing into a junk drawer.
+            </p>
+            <p class="mt-4 text-xs font-mono text-base-500">{avatarCourse.betaCta}</p>
+            <div class="mt-6 flex flex-wrap gap-3">
+              <Button isLink size="sm" variant="green" href={avatarCourse.basePath}>
+                View course
+              </Button>
+              <Button isLink size="sm" variant="muted" href={avatarCourse.coursePath}>
+                See modules
+              </Button>
+            </div>
+          </div>
+          <aside class="border border-base-800 bg-base-950/60 p-6">
+            <p class="text-xs font-mono uppercase tracking-wider text-accent-violet-bright">
+              Free + paid
+            </p>
+            <dl class="mt-5 space-y-4">
+              <div>
+                <dt class="text-sm text-white">Free overview</dt>
+                <dd class="mt-1 text-sm leading-relaxed text-base-400">
+                  System map, workflow choice, folder setup, and starter prompts.
+                </dd>
+              </div>
+              <div>
+                <dt class="text-sm text-white">Paid starter kit</dt>
+                <dd class="mt-1 text-sm leading-relaxed text-base-400">
+                  Modular walkthroughs, screenshot slots, snippets, prompts, and checklists.
+                </dd>
+              </div>
+            </dl>
+          </aside>
         </div>
       </Wrapper>
     </ContentPanel>
@@ -65,7 +118,7 @@ const tracks: Track[] = [
   <section class="border-t border-base-800/50">
     <ContentPanel>
       <Wrapper variant="standard" class="py-12 lg:py-20">
-        <SectionHeader eyebrow="01" heading="What's coming" note="In production." />
+        <SectionHeader eyebrow="02" heading="What's coming" note="More tracks in production." />
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
           {tracks.map((track) => (
             <div class="rounded-lg border border-base-800 bg-base-900/40 p-6">
@@ -86,7 +139,7 @@ const tracks: Track[] = [
   <section class="border-t border-base-800/50">
     <ContentPanel>
       <Wrapper variant="standard" class="py-12 lg:py-20">
-        <SectionHeader eyebrow="02" heading="Built from real work" note="Nothing here is theory." />
+        <SectionHeader eyebrow="03" heading="Built from real work" note="Nothing here is theory." />
         <Text tag="p" variant="textBase" class="text-base-400 max-w-2xl text-pretty leading-relaxed">
           These courses come from the same work behind StyleFusion, Grimoire, and the rest of HobFarm. When a lesson covers a prompt change, it shows the results side by side. When it covers a platform quirk, it explains where the issue came up and how it was handled.
         </Text>
