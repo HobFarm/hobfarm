@@ -1,0 +1,963 @@
+.craps-setup-grid,
+.craps-lab-shell {
+  --craps-bg: rgba(7, 6, 11, 0.82);
+  --craps-panel: rgba(14, 11, 22, 0.76);
+  --craps-panel-strong: rgba(8, 35, 35, 0.58);
+  --craps-border: rgba(25, 227, 227, 0.18);
+  --craps-border-strong: rgba(25, 227, 227, 0.38);
+  --craps-cyan: #19e3e3;
+  --craps-green: #2fe089;
+  --craps-gold: #e0b13c;
+  --craps-text: #ece9f5;
+  --craps-muted: #9b96ad;
+  color: var(--craps-text);
+}
+
+.craps-setup-grid,
+.craps-lab-shell {
+  display: grid;
+  min-width: 0;
+  gap: 1.25rem;
+}
+
+.craps-setup-grid {
+  grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.55fr);
+}
+
+.craps-lab-shell {
+  grid-template-columns: minmax(0, 1fr) 380px;
+  align-items: start;
+}
+
+.craps-lab-main,
+.craps-lab-side {
+  display: grid;
+  min-width: 0;
+  gap: 1rem;
+}
+
+.craps-panel,
+.craps-setup-card,
+.craps-throw-deck,
+.craps-chip-rail,
+.craps-table {
+  border: 1px solid var(--craps-border);
+  background:
+    linear-gradient(135deg, rgba(25, 227, 227, 0.06), transparent 42%),
+    var(--craps-panel);
+  box-shadow: inset 0 1px 0 rgba(236, 233, 245, 0.05), 0 20px 80px rgba(0, 0, 0, 0.24);
+}
+
+.craps-panel,
+.craps-setup-card,
+.craps-throw-deck,
+.craps-chip-rail {
+  padding: 1rem;
+}
+
+.craps-panel__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.craps-panel__header h2,
+.craps-table__header h2 {
+  margin: 0.2rem 0 0;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-weight: 650;
+  letter-spacing: 0;
+}
+
+.craps-panel__header p,
+.craps-table__header p {
+  max-width: 26rem;
+  margin: 0;
+  color: var(--craps-muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.craps-kicker {
+  margin: 0;
+  color: var(--craps-cyan);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  line-height: 1.2;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.craps-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.35rem;
+}
+
+.craps-input {
+  display: block;
+  min-width: 0;
+}
+
+.craps-input span {
+  display: block;
+  color: #6b6580;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.craps-input input,
+.craps-input select {
+  width: 100%;
+  height: 2.75rem;
+  margin-top: 0.5rem;
+  border: 1px solid rgba(34, 26, 51, 0.95);
+  background: rgba(7, 6, 11, 0.72);
+  color: var(--craps-text);
+  padding: 0 0.75rem;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+}
+
+.craps-input input:focus,
+.craps-input select:focus {
+  border-color: var(--craps-cyan);
+  box-shadow: 0 0 0 3px rgba(25, 227, 227, 0.1);
+}
+
+.craps-input input:disabled {
+  opacity: 0.42;
+}
+
+.craps-action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.35rem;
+}
+
+.craps-primary-action,
+.craps-secondary-action,
+.craps-roll-button,
+.craps-mini-action {
+  border: 1px solid rgba(25, 227, 227, 0.36);
+  color: var(--craps-text);
+  font-weight: 650;
+  transition: transform 140ms ease, border-color 140ms ease, background-color 140ms ease, color 140ms ease, box-shadow 140ms ease;
+}
+
+.craps-primary-action,
+.craps-roll-button {
+  background: var(--craps-cyan);
+  color: #07060b;
+}
+
+.craps-primary-action,
+.craps-secondary-action {
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  font-size: 0.88rem;
+}
+
+.craps-secondary-action,
+.craps-mini-action {
+  background: rgba(7, 6, 11, 0.72);
+}
+
+.craps-primary-action:hover,
+.craps-roll-button:hover {
+  background: #5cf0f0;
+  box-shadow: 0 0 24px rgba(25, 227, 227, 0.2);
+}
+
+.craps-secondary-action:hover,
+.craps-mini-action:hover {
+  border-color: var(--craps-text);
+  color: white;
+}
+
+.craps-primary-action:active,
+.craps-secondary-action:active,
+.craps-roll-button:active,
+.craps-mini-action:active,
+.craps-chip:active,
+.craps-bet-zone:active,
+.craps-field-zone:active,
+.craps-place-zone:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.craps-audit-copy {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.9rem;
+  color: #c8c6d4;
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.craps-audit-copy p {
+  margin: 0;
+}
+
+.craps-audit-copy span {
+  color: white;
+  font-family: var(--font-mono);
+}
+
+.craps-status-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.craps-status-tile {
+  min-width: 0;
+  border: 1px solid rgba(34, 26, 51, 0.9);
+  background: rgba(7, 6, 11, 0.58);
+  padding: 0.8rem;
+}
+
+.craps-status-tile p {
+  margin: 0;
+  color: #6b6580;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.craps-status-tile strong {
+  display: block;
+  margin-top: 0.3rem;
+  overflow-wrap: anywhere;
+  color: var(--craps-text);
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+}
+
+.craps-status-tile--green strong {
+  color: #5cf0a6;
+}
+
+.craps-status-tile--gold strong {
+  color: var(--craps-gold);
+}
+
+.craps-status-tile--muted strong {
+  color: #c8c6d4;
+}
+
+.craps-throw-deck {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.52fr);
+  gap: 1rem;
+  align-items: center;
+}
+
+.craps-dice-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: 0.85rem;
+}
+
+.craps-die {
+  width: clamp(4.3rem, 9vw, 5.6rem);
+  aspect-ratio: 1;
+  filter: drop-shadow(0 0 18px rgba(25, 227, 227, 0.1));
+  transform-origin: 50% 60%;
+}
+
+.craps-die svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.craps-die--rolling {
+  animation: craps-die-shake 360ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes craps-die-shake {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  18% {
+    transform: translate3d(-3px, 2px, 0) rotate(-5deg);
+  }
+  36% {
+    transform: translate3d(4px, -2px, 0) rotate(6deg);
+  }
+  54% {
+    transform: translate3d(-2px, -1px, 0) rotate(-4deg);
+  }
+  72% {
+    transform: translate3d(2px, 1px, 0) rotate(3deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+}
+
+.craps-total-readout {
+  min-width: 5.3rem;
+  border-left: 1px solid rgba(25, 227, 227, 0.22);
+  padding-left: 0.9rem;
+}
+
+.craps-total-readout span {
+  color: var(--craps-muted);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.craps-total-readout strong {
+  display: block;
+  color: white;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  line-height: 0.95;
+}
+
+.craps-roll-controls {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.craps-roll-button {
+  min-height: 3.5rem;
+  padding: 0 1.25rem;
+  font-size: 1rem;
+}
+
+.craps-roll-button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.craps-notice {
+  min-height: 2.5rem;
+  margin: 0;
+  border-left: 1px solid var(--craps-border-strong);
+  color: #c8c6d4;
+  padding-left: 0.85rem;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.craps-chip-rail {
+  display: grid;
+  grid-template-columns: minmax(0, 0.35fr) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+}
+
+.craps-chip-rail p:not(.craps-kicker) {
+  margin: 0.35rem 0 0;
+  color: var(--craps-muted);
+  font-size: 0.78rem;
+}
+
+.craps-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.65rem;
+}
+
+.craps-chip {
+  position: relative;
+  display: grid;
+  width: 4.35rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: var(--craps-text);
+  cursor: pointer;
+  padding: 0;
+  transition: transform 140ms ease, filter 140ms ease;
+}
+
+.craps-chip svg {
+  position: absolute;
+  inset: 0;
+}
+
+.craps-chip span {
+  position: relative;
+  z-index: 1;
+  color: white;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.75);
+}
+
+.craps-chip__outer {
+  fill: #11101a;
+  stroke: #19e3e3;
+  stroke-width: 2.5;
+}
+
+.craps-chip__inner {
+  fill: #15101f;
+  stroke: rgba(236, 233, 245, 0.32);
+  stroke-width: 1.4;
+}
+
+.craps-chip__center {
+  fill: #0e0b16;
+  stroke: rgba(25, 227, 227, 0.46);
+  stroke-width: 1.6;
+}
+
+.craps-chip__notch {
+  fill: #19e3e3;
+  opacity: 0.9;
+}
+
+.craps-chip:hover {
+  filter: drop-shadow(0 0 12px rgba(25, 227, 227, 0.24));
+  transform: translateY(-1px);
+}
+
+.craps-chip--selected {
+  filter: drop-shadow(0 0 16px rgba(224, 177, 60, 0.32));
+}
+
+.craps-chip--selected .craps-chip__outer {
+  stroke: var(--craps-gold);
+}
+
+.craps-chip--selected .craps-chip__notch,
+.craps-chip--selected .craps-chip__center {
+  fill: var(--craps-gold);
+}
+
+.craps-chip:disabled {
+  cursor: wait;
+  opacity: 0.64;
+}
+
+.craps-table {
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+  padding: clamp(1rem, 2.5vw, 1.35rem);
+}
+
+.craps-table__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.craps-table__content {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  gap: 0.9rem;
+}
+
+.craps-table__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.craps-point-chip {
+  display: grid;
+  min-width: 5.5rem;
+  place-items: center;
+  border: 1px solid rgba(25, 227, 227, 0.26);
+  background: rgba(7, 6, 11, 0.72);
+  padding: 0.55rem 0.8rem;
+}
+
+.craps-point-chip span {
+  color: var(--craps-muted);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+}
+
+.craps-point-chip strong {
+  color: #c8c6d4;
+  font-size: 1.2rem;
+}
+
+.craps-point-chip--on {
+  border-color: rgba(224, 177, 60, 0.58);
+  box-shadow: 0 0 20px rgba(224, 177, 60, 0.12);
+}
+
+.craps-point-chip--on strong {
+  color: var(--craps-gold);
+}
+
+.craps-zone-grid {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.craps-zone-grid--line {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.craps-bet-zone,
+.craps-field-zone,
+.craps-place-zone {
+  min-width: 0;
+  border: 1px solid rgba(25, 227, 227, 0.23);
+  background: rgba(7, 6, 11, 0.56);
+  color: var(--craps-text);
+  cursor: pointer;
+  transition: border-color 140ms ease, background-color 140ms ease, box-shadow 140ms ease, transform 140ms ease;
+}
+
+.craps-bet-zone:hover,
+.craps-field-zone:hover,
+.craps-place-zone:hover {
+  border-color: rgba(25, 227, 227, 0.64);
+  background: rgba(25, 227, 227, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(25, 227, 227, 0.08), 0 0 20px rgba(25, 227, 227, 0.08);
+}
+
+.craps-bet-zone:disabled {
+  cursor: not-allowed;
+  opacity: 0.38;
+}
+
+.craps-bet-zone {
+  display: flex;
+  min-height: 5rem;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.craps-bet-zone strong,
+.craps-field-zone strong {
+  display: block;
+  color: white;
+  font-size: 0.92rem;
+}
+
+.craps-bet-zone small,
+.craps-field-zone small {
+  display: block;
+  margin-top: 0.3rem;
+  color: var(--craps-muted);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+}
+
+.craps-field-zone {
+  display: flex;
+  min-height: 4.2rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.craps-place-row {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.craps-place-zone {
+  display: grid;
+  min-height: 6rem;
+  place-items: center;
+  padding: 0.65rem 0.4rem;
+}
+
+.craps-place-zone--point {
+  border-color: rgba(224, 177, 60, 0.72);
+  background: rgba(224, 177, 60, 0.08);
+}
+
+.craps-place-zone__number {
+  color: white;
+  font-size: clamp(1.5rem, 4vw, 2.4rem);
+  font-weight: 750;
+  line-height: 1;
+}
+
+.craps-place-zone__label {
+  color: var(--craps-muted);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+}
+
+.craps-zone-amount {
+  display: inline-grid;
+  min-width: 3.1rem;
+  min-height: 1.8rem;
+  place-items: center;
+  align-self: flex-end;
+  border: 1px dashed rgba(236, 233, 245, 0.28);
+  color: rgba(236, 233, 245, 0.68);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0 0.45rem;
+}
+
+.craps-zone-amount--active {
+  border-style: solid;
+  border-color: rgba(224, 177, 60, 0.72);
+  background: rgba(224, 177, 60, 0.12);
+  color: #f0c96b;
+  box-shadow: 0 0 16px rgba(224, 177, 60, 0.12);
+}
+
+.craps-active-bets {
+  min-width: 0;
+}
+
+.craps-resolution-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.85rem;
+}
+
+.craps-resolution {
+  border: 1px solid rgba(236, 233, 245, 0.16);
+  background: rgba(7, 6, 11, 0.55);
+  color: #c8c6d4;
+  font-size: 0.76rem;
+  line-height: 1.35;
+  padding: 0.35rem 0.5rem;
+}
+
+.craps-resolution--win {
+  border-color: rgba(47, 224, 137, 0.36);
+  color: #5cf0a6;
+}
+
+.craps-resolution--loss {
+  border-color: rgba(226, 58, 78, 0.36);
+  color: #ed6675;
+}
+
+.craps-resolution--push,
+.craps-resolution--info {
+  border-color: rgba(224, 177, 60, 0.36);
+  color: #f0c96b;
+}
+
+.craps-empty {
+  margin: 1rem 0 0;
+  color: var(--craps-muted);
+  font-size: 0.88rem;
+}
+
+.craps-bet-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.9rem;
+}
+
+.craps-bet-card {
+  display: grid;
+  gap: 0.75rem;
+  border: 1px solid rgba(34, 26, 51, 0.95);
+  background: rgba(7, 6, 11, 0.56);
+  padding: 0.8rem;
+}
+
+.craps-bet-card h3 {
+  margin: 0;
+  color: white;
+  font-size: 0.95rem;
+}
+
+.craps-bet-card p {
+  margin: 0.15rem 0 0;
+  color: #6b6580;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+}
+
+.craps-bet-card dl {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
+  margin: 0;
+}
+
+.craps-bet-card dt {
+  color: #6b6580;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+}
+
+.craps-bet-card dd {
+  margin: 0.15rem 0 0;
+  color: #c8c6d4;
+  font-weight: 650;
+}
+
+.craps-mini-action {
+  min-height: 2.15rem;
+  padding: 0 0.7rem;
+  font-size: 0.72rem;
+}
+
+.craps-mini-action:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+.craps-session-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.6rem;
+  margin: 1rem 0 0;
+}
+
+.craps-session-list div {
+  border: 1px solid rgba(34, 26, 51, 0.95);
+  background: rgba(7, 6, 11, 0.55);
+  padding: 0.65rem;
+}
+
+.craps-session-list dt {
+  color: #6b6580;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+}
+
+.craps-session-list dd {
+  margin: 0.2rem 0 0;
+  color: white;
+  font-weight: 650;
+}
+
+.craps-last-roll {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 1rem;
+  border: 1px solid rgba(25, 227, 227, 0.18);
+  background: rgba(25, 227, 227, 0.06);
+  padding: 0.8rem;
+}
+
+.craps-last-roll div {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+
+.craps-last-roll span,
+.craps-last-roll strong {
+  color: white;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.craps-last-roll small {
+  color: var(--craps-muted);
+}
+
+.craps-last-roll strong {
+  min-width: 3rem;
+  color: var(--craps-gold);
+  text-align: right;
+}
+
+.craps-last-roll p {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: #c8c6d4;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.craps-roll-log {
+  display: grid;
+  max-height: 19rem;
+  gap: 0.55rem;
+  margin: 0.85rem 0 0;
+  overflow: auto;
+  padding: 0;
+  list-style: none;
+}
+
+.craps-roll-log li {
+  display: grid;
+  grid-template-columns: 2.2rem minmax(0, 1fr);
+  gap: 0.65rem;
+  align-items: start;
+  border-left: 1px solid rgba(25, 227, 227, 0.42);
+  padding-left: 0.65rem;
+}
+
+.craps-roll-log__total {
+  display: grid;
+  width: 2rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid rgba(25, 227, 227, 0.22);
+  color: white;
+  font-weight: 750;
+}
+
+.craps-roll-log p {
+  margin: 0;
+  color: white;
+  font-size: 0.85rem;
+}
+
+.craps-roll-log small {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--craps-muted);
+  font-size: 0.74rem;
+  line-height: 1.4;
+}
+
+.craps-distribution {
+  display: grid;
+  gap: 0.48rem;
+  margin-top: 1rem;
+}
+
+.craps-distribution__row {
+  display: grid;
+  grid-template-columns: 1.8rem minmax(0, 1fr) 2rem 2.6rem;
+  gap: 0.45rem;
+  align-items: center;
+  color: var(--craps-muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+
+.craps-distribution__row > div {
+  height: 0.55rem;
+  overflow: hidden;
+  background: rgba(34, 26, 51, 0.95);
+}
+
+.craps-distribution__row i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--craps-cyan), var(--craps-green));
+  transition: width 180ms ease;
+}
+
+.craps-distribution__row strong {
+  color: #c8c6d4;
+  text-align: right;
+}
+
+.craps-distribution__row small {
+  color: #6b6580;
+  text-align: right;
+}
+
+@media (max-width: 1100px) {
+  .craps-setup-grid,
+  .craps-lab-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .craps-lab-side {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .craps-lab-side > .craps-panel:first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 760px) {
+  .craps-form-grid,
+  .craps-status-grid,
+  .craps-throw-deck,
+  .craps-chip-rail,
+  .craps-zone-grid--line,
+  .craps-bet-card-grid,
+  .craps-lab-side {
+    grid-template-columns: 1fr;
+  }
+
+  .craps-chip-list {
+    justify-content: flex-start;
+  }
+
+  .craps-place-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .craps-table__header,
+  .craps-panel__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .craps-field-zone,
+  .craps-bet-zone {
+    min-height: 4.2rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .craps-panel,
+  .craps-setup-card,
+  .craps-throw-deck,
+  .craps-chip-rail,
+  .craps-table {
+    padding: 0.85rem;
+  }
+
+  .craps-chip {
+    width: 3.75rem;
+  }
+
+  .craps-session-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .craps-die--rolling,
+  .craps-chip,
+  .craps-primary-action,
+  .craps-secondary-action,
+  .craps-roll-button,
+  .craps-mini-action,
+  .craps-bet-zone,
+  .craps-field-zone,
+  .craps-place-zone,
+  .craps-distribution__row i {
+    animation: none;
+    transition: none;
+  }
+}

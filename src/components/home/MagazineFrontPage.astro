@@ -4,7 +4,6 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import ArticleCard from "@/components/articles/ArticleCard.astro";
 import GalleryCard from "@/components/gallery/GalleryCard.astro";
-import CuteCorruptedSection from "@/components/home/CuteCorruptedSection.astro";
 import {
   articlePath,
   getArticleDate,
@@ -105,13 +104,13 @@ const coverHero = coverStory ? getArticleHero(coverStory.data) : undefined;
           HobFarm Magazine / Visual Studio
         </p>
         <h1 class="mt-4 max-w-4xl font-display text-4xl font-light leading-tight text-white text-balance lg:text-6xl">
-          Online magazine for visual culture, media history, and AI-assisted image work.
+          Visual culture from the barn, the archive, and the edge of the feed.
         </h1>
         <p class="mt-5 max-w-3xl text-base leading-relaxed text-base-300">
-          HobFarm is an online magazine and visual studio for visual culture, media history, cartoons, fake ads, archive dives, movie trails, character systems, production notes, and AI-assisted image and video work.
+          HobFarm is an online magazine and visual studio for cartoons, fake ads, media history, character systems, visual experiments, games, workflows, and whatever else crawls out of the workshop.
         </p>
         <div class="mt-6 flex flex-wrap gap-2">
-          <Button isLink size="sm" variant="green" href="/articles/">Read articles</Button>
+          <Button isLink size="sm" variant="green" href="/articles/">Read Articles</Button>
           <Button isLink size="sm" variant="muted" href="/gallery/">Open Visuals</Button>
           <Button isLink size="sm" variant="muted" href="/projects/">Projects</Button>
           <Button isLink size="sm" variant="muted" href="/support/">Support</Button>
@@ -123,7 +122,13 @@ const coverHero = coverStory ? getArticleHero(coverStory.data) : undefined;
           How the magazine moves
         </p>
         <ol class="mt-4 space-y-3 text-sm text-base-300">
-          {["Article", "Social fragment", "Reader returns", "Related visual or project", "Workshop, Academy, or Support"].map((step, index) => (
+          {[
+            "Article",
+            "Visual fragment",
+            "Reader follows the trail",
+            "Related gallery, game, or project",
+            "Workshop note, download, or support path",
+          ].map((step, index) => (
             <li class="flex items-center gap-3">
               <span class="grid size-7 shrink-0 place-items-center rounded-full border border-base-700 font-mono text-[10px] text-accent-cyan">
                 {String(index + 1).padStart(2, "0")}
@@ -185,8 +190,6 @@ const coverHero = coverStory ? getArticleHero(coverStory.data) : undefined;
     )}
   </Wrapper>
 </section>
-
-<CuteCorruptedSection />
 
 {latestArticles.length > 0 && (
   <section class="border-b border-base-800/70">

@@ -18,11 +18,10 @@ import {
 
 const allPosts = await getPublishedArticles();
 const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
-const coverStory =
-  allPosts.find((post) => post.data.coverStory) ??
-  allPosts.find((post) => post.data.featured) ??
-  allPosts[0];
-const latest = allPosts.filter((post) => post.id !== coverStory?.id).slice(0, 9);
+// The lead slot is always the newest published article. Frontmatter flags can
+// still describe content elsewhere, but publishing something new promotes it.
+const coverStory = allPosts[0];
+const latest = allPosts.slice(1, 10);
 const coverDate = coverStory ? getArticleDate(coverStory) : null;
 const coverHero = coverStory ? getArticleHero(coverStory.data) : undefined;
 ---
