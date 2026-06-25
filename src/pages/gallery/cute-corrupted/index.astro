@@ -1,0 +1,185 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import BeforeAfterCompare from "@/components/ui/BeforeAfterCompare.astro";
+import { cuteCorrupted } from "@/data/homepage-systems";
+import { buildCompareItems } from "@/lib/cute-corrupted";
+
+// Long-form landing copy. Lives here because it is specific to this page; the
+// live media/diff for each entry comes from the gallery collection.
+const pageBranches = [
+  {
+    key: "characters",
+    label: "Characters",
+    description:
+      "Cute & Corrupted Characters focuses on mascot figures, fashion characters, hosts, cartoon pinups, scene designs, and character sheets. The cute version introduces the character clearly: face, outfit, pose, palette, attitude, and world. The corrupted version pushes that same character into a heightened state: haunted, glitched, toxic, undead, cursed, overgrown, nightclub-mutated, or transformed by the world around them.",
+    goodFor:
+      "Character sheets, posters, avatar variants, costume sheets, story scenes, social reels, and recurring mascots.",
+    caption: "A resort bunny hostess checks in for the weekend, then never checks out.",
+  },
+  {
+    key: "critters",
+    label: "Critters",
+    description:
+      "Cute & Corrupted Critters focuses on cute animal cartoons, forest creatures, pets, bugs, trash animals, swamp creatures, and mascot-style wildlife. The cute version gives the critter a clean cartoon shape, friendly expression, and readable habitat. The corrupted version keeps the animal visible while the world goes bad: toxic waste, cursed plants, glowing slime, radioactive junk, haunted shadows, fungal growth, or monster-movie logic.",
+    goodFor:
+      "Animal pairs, short transformation videos, sticker-like designs, social posts, seasonal sets, and gallery rows.",
+    caption: "A forest raccoon finds the wrong trash can.",
+  },
+  {
+    key: "cakes",
+    label: "Cakes",
+    description:
+      "Cute & Corrupted Cakes focuses on celebration cakes, wedding cakes, birthday cakes, holiday cakes, bakery display pieces, and occasion centerpieces. The cute version treats the cake like a polished bakery display: clear tiers, clean frosting, strong color, and a professional product-photo setup. The corrupted version flips into a darker bakery fantasy: black icing, glowing filling, cursed frosting, haunted toppers, melted sugar, toxic glaze, and midnight bakery lighting.",
+    goodFor:
+      "Bakery display images, holiday drops, color studies, object sheets, product-style mockups, and themed cake collections.",
+    caption: "A birthday cake with something still growing inside it.",
+  },
+];
+
+const entriesByKey = new Map(cuteCorrupted.branches.map((b) => [b.key, b.entries]));
+const branchData = await Promise.all(
+  pageBranches.map(async (pb) => ({
+    ...pb,
+    compares: await buildCompareItems(entriesByKey.get(pb.key) ?? []),
+  })),
+);
+const posters = cuteCorrupted.posters ?? [];
+---
+
+<BaseLayout
+  title="Cute & Corrupted | HobFarm"
+  description="Cute & Corrupted is a HobFarm visual series built around paired transformations: cute characters, critters, and cakes reimagined as darker, corrupted versions of the same subject."
+  palette="magenta-cyan"
+>
+  <section class="bg-noise border-b border-base-800/70">
+    <Wrapper variant="standard" class="py-14 lg:py-20">
+      <p class="font-mono text-xs uppercase tracking-widest text-accent-magenta-bright">
+        HobFarm Visual Series
+      </p>
+      <h1 class="mt-4 max-w-4xl font-display text-4xl font-light leading-tight text-white text-balance lg:text-6xl">
+        Cute &amp; Corrupted
+      </h1>
+      <div class="mt-6 max-w-3xl space-y-4 text-base leading-relaxed text-base-300">
+        <p>
+          Cute &amp; Corrupted is a paired visual series built around transformation. Each piece starts
+          with a clean, charming version of a subject, then shifts into a darker, more intense version
+          that keeps the same core identity.
+        </p>
+        <p>
+          The cute version is the anchor: readable shape, clear colors, appealing expression, and strong
+          silhouette. The corrupted version is the payoff: heavier mood, altered materials, toxic glow,
+          haunted details, mutated surfaces, broken environments, or cursed decorative logic. Same
+          subject, same basic identity, different state of existence.
+        </p>
+      </div>
+      <div class="mt-7 flex flex-wrap gap-2">
+        {pageBranches.map((branch) => (
+          <a
+            href={`#${branch.key}`}
+            class="rounded-full border border-base-700 px-4 py-2 font-mono text-[11px] uppercase tracking-widest text-base-300 transition-colors hover:border-accent-cyan/50 hover:text-accent-cyan"
+          >
+            {branch.label}
+          </a>
+        ))}
+      </div>
+    </Wrapper>
+  </section>
+
+  {posters.length > 0 && (
+    <section class="border-b border-base-800/70">
+      <Wrapper variant="standard" class="py-14 lg:py-16">
+        <div class="max-w-2xl">
+          <p class="font-mono text-[10px] uppercase tracking-widest text-accent-magenta-bright">In motion</p>
+          <h2 class="mt-2 text-2xl font-display text-white">Series posters</h2>
+          <p class="mt-4 text-sm leading-relaxed text-base-400">
+            Short motion posters that set the tone for the whole series.
+          </p>
+        </div>
+        <div class="mt-8 flex flex-wrap justify-center gap-6 sm:justify-start">
+          {posters.map((poster) => (
+            <figure class="w-full max-w-xs">
+              <div class="overflow-hidden rounded-lg border border-base-800 bg-base-950">
+                <video
+                  class="aspect-[9/16] w-full bg-base-950 object-contain"
+                  src={poster.src}
+                  poster={poster.poster}
+                  controls
+                  muted
+                  loop
+                  playsinline
+                  preload={poster.poster ? "none" : "metadata"}
+                  aria-label={`${poster.title} poster video`}></video>
+              </div>
+              <figcaption class="mt-2 font-mono text-[10px] uppercase tracking-widest text-base-500">
+                {poster.title}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </Wrapper>
+    </section>
+  )}
+
+  {branchData.map((branch) => (
+    <section id={branch.key} class="border-b border-base-800/70">
+      <Wrapper variant="standard" class="py-14 lg:py-20">
+        <div class="max-w-3xl">
+          <p class="font-mono text-xs uppercase tracking-widest text-accent-cyan">
+            Cute / Corrupted {branch.label}
+          </p>
+          <h2 class="mt-3 font-display text-3xl text-white lg:text-4xl">{branch.label}</h2>
+          <p class="mt-5 text-base leading-relaxed text-base-400">{branch.description}</p>
+          <p class="mt-5 border-l-2 border-accent-magenta/50 pl-4 font-display text-lg italic text-base-200">
+            {branch.caption}
+          </p>
+          <p class="mt-5 text-sm leading-relaxed text-base-500">
+            <span class="font-mono text-[10px] uppercase tracking-widest text-base-400">Good for</span>
+            <span class="mt-1 block">{branch.goodFor}</span>
+          </p>
+        </div>
+
+        {branch.compares.length > 0 ? (
+          <div class:list={["mt-8 grid gap-8", branch.compares.length > 1 && "lg:grid-cols-2"]}>
+            {branch.compares.map((item) => (
+              <div>
+                <BeforeAfterCompare
+                  before={item.before}
+                  after={item.after}
+                  video={item.video}
+                  fit="contain"
+                  aspect={item.aspect}
+                  ariaLabel={`${item.title}: cute and corrupted comparison`}
+                />
+                <div class="mt-3 flex items-center justify-between gap-3">
+                  <p class="font-mono text-[11px] uppercase tracking-widest text-base-400">{item.title}</p>
+                  <a href={item.href} class="text-sm text-base-300 transition-colors hover:text-accent-cyan">
+                    Open the page
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div class="mt-8 rounded-lg border border-dashed border-base-700 bg-base-950/40 p-8 text-center">
+            <p class="font-mono text-[10px] uppercase tracking-widest text-base-500">Coming soon</p>
+            <p class="mt-2 text-sm text-base-400">New {branch.label.toLowerCase()} pairs are in production.</p>
+          </div>
+        )}
+      </Wrapper>
+    </section>
+  ))}
+
+  <section>
+    <Wrapper variant="standard" class="py-14 text-center lg:py-16">
+      <p class="font-display text-2xl text-white lg:text-3xl">
+        Every design starts clean. Every design comes back changed.
+      </p>
+      <div class="mt-6 flex flex-wrap justify-center gap-2">
+        <Button isLink size="sm" variant="green" href="/gallery/">Open the gallery</Button>
+        <Button isLink size="sm" variant="muted" href="/articles/">Read articles</Button>
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

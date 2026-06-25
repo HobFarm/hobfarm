@@ -14,10 +14,28 @@ interface Props {
   description?: string;
   canonical?: string;
   image?: string;
+  imageAlt?: string;
+  type?: "website" | "article";
+  publishedTime?: string;
+  modifiedTime?: string;
+  tags?: string[];
+  structuredData?: Record<string, unknown>;
   palette?: "purple-green" | "magenta-cyan" | "blue-red";
 }
 
-const { title, description, canonical, image, palette = "purple-green" } = Astro.props;
+const {
+  title,
+  description,
+  canonical,
+  image,
+  imageAlt,
+  type,
+  publishedTime,
+  modifiedTime,
+  tags,
+  structuredData,
+  palette = "purple-green",
+} = Astro.props;
 ---
 
 <html
@@ -25,7 +43,18 @@ const { title, description, canonical, image, palette = "purple-green" } = Astro
   class="selection:text-white selection:bg-base-500 scroll-smooth"
 >
   <head>
-    <BaseHead title={title} description={description} canonical={canonical} image={image} />
+    <BaseHead
+      title={title}
+      description={description}
+      canonical={canonical}
+      image={image}
+      imageAlt={imageAlt}
+      type={type}
+      publishedTime={publishedTime}
+      modifiedTime={modifiedTime}
+      tags={tags}
+      structuredData={structuredData}
+    />
   </head>
   <body class="bg-base-950 flex flex-col min-h-svh" data-palette={palette}>
     <Search />

@@ -1,0 +1,379 @@
+---
+// Content-neutral before/after compare primitive.
+// Hybrid interaction: one-time scroll-in hint, then draggable wipe.
+// Optional transition video that lazy-loads on demand. Reusable across any
+// transformation lane (Cute/Corrupted, Before/After, StyleFusion passes).
+interface Props {
+  before: { src: string; alt: string; label: string }; // left layer
+  after: { src: string; alt: string; label: string }; // base layer (revealed on the right)
+  video?: { src: string; poster: string; alt?: string }; // optional transition loop
+  fit?: "cover" | "contain"; // default "contain" so full sheets are not cropped
+  aspect?: string; // Tailwind aspect class, default "aspect-[4/5]"
+  startView?: "compare" | "video";
+  beforeAccent?: string; // CSS color, defaults to the cyan token
+  afterAccent?: string; // CSS color, defaults to the magenta token
+  ariaLabel?: string;
+  id?: string;
+}
+
+const {
+  before,
+  after,
+  video,
+  fit = "contain",
+  aspect = "aspect-[4/5]",
+  startView = "compare",
+  beforeAccent = "var(--color-accent-cyan)",
+  afterAccent = "var(--color-accent-magenta)",
+  ariaLabel = "Before and after comparison",
+  id,
+} = Astro.props;
+
+const fitClass = fit === "cover" ? "object-cover" : "object-contain";
+const rootStyle = `--before-accent:${beforeAccent};--after-accent:${afterAccent};`;
+const initialView = video ? startView : "compare";
+---
+
+<figure class="bac" data-bac id={id} style={rootStyle} aria-label={ariaLabel}>
+  {video && (
+    <div class="bac__toggle" role="group" aria-label="Choose view">
+      <button type="button" data-bac-view="compare" aria-pressed={initialView === "compare"}>Compare</button>
+      <button type="button" data-bac-view="video" aria-pressed={initialView === "video"}>Transition</button>
+    </div>
+  )}
+
+  <div class="bac__stage">
+    <div class="bac__panel">
+      <div class={`bac__compare ${aspect}`} data-bac-compare hidden={initialView !== "compare"} style="--pos:50%">
+        <img class={`bac__img ${fitClass}`} src={after.src} alt={after.alt} loading="lazy" decoding="async" />
+        <img class={`bac__img bac__before ${fitClass}`} src={before.src} alt={before.alt} loading="lazy" decoding="async" />
+        <span class="bac__tag bac__tag--before">{before.label}</span>
+        <span class="bac__tag bac__tag--after">{after.label}</span>
+        <button
+          type="button"
+          class="bac__handle"
+          data-bac-handle
+          role="slider"
+          tabindex="0"
+          aria-label={`Reveal ${before.label} or ${after.label}`}
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="50"
+        >
+          <span class="bac__grip" aria-hidden="true">
+            <span class="bac__arrow bac__arrow--l"></span>
+            <span class="bac__arrow bac__arrow--r"></span>
+          </span>
+        </button>
+      </div>
+
+      {video && (
+        <div class={`bac__video ${aspect}`} data-bac-video hidden={initialView !== "video"}>
+          <video
+            class={`bac__img ${fitClass}`}
+            data-bac-player
+            data-src={video.src}
+            poster={video.poster}
+            muted
+            loop
+            playsinline
+            controls
+            preload="none"
+            aria-label={video.alt ?? "Transition video"}></video>
+        </div>
+      )}
+    </div>
+  </div>
+
+  <p class="bac__hint" data-bac-hint>
+    {video ? "Drag to compare, or play the transition." : "Drag to compare."}
+  </p>
+</figure>
+
+<style>
+  .bac {
+    display: block;
+    margin: 0;
+  }
+
+  .bac__toggle {
+    display: inline-flex;
+    gap: 2px;
+    padding: 3px;
+    margin-bottom: 0.75rem;
+    border-radius: 9999px;
+    border: 1px solid var(--color-base-700);
+    background: var(--color-base-950);
+  }
+  .bac__toggle button {
+    padding: 6px 14px;
+    border: 0;
+    border-radius: 9999px;
+    background: transparent;
+    color: var(--color-base-400);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s;
+  }
+  .bac__toggle button[aria-pressed="true"] {
+    color: var(--color-white);
+    background: var(--color-base-800);
+  }
+
+  .bac__stage {
+    position: relative;
+    padding: 2px;
+    border-radius: 14px;
+    background-image: linear-gradient(90deg, var(--before-accent), var(--after-accent));
+  }
+  .bac__panel {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    background: var(--color-base-950);
+  }
+
+  .bac__compare {
+    position: relative;
+    width: 100%;
+    user-select: none;
+    cursor: ew-resize;
+    touch-action: pan-y;
+  }
+  .bac__video {
+    position: relative;
+    width: 100%;
+  }
+  .bac__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .bac__before {
+    clip-path: inset(0 calc(100% - var(--pos, 50%)) 0 0);
+  }
+
+  .bac__tag {
+    position: absolute;
+    top: 12px;
+    z-index: 3;
+    padding: 5px 10px;
+    border-radius: 6px;
+    background: rgba(7, 6, 11, 0.72);
+    border: 1px solid var(--color-base-700);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    backdrop-filter: blur(2px);
+  }
+  .bac__tag--before {
+    left: 12px;
+    color: var(--before-accent);
+  }
+  .bac__tag--after {
+    right: 12px;
+    color: var(--after-accent);
+  }
+
+  .bac__handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: var(--pos, 50%);
+    z-index: 4;
+    width: 2px;
+    padding: 0;
+    border: 0;
+    transform: translateX(-1px);
+    background: linear-gradient(180deg, var(--before-accent), var(--after-accent));
+    cursor: ew-resize;
+  }
+  .bac__handle:focus-visible {
+    outline: 2px solid var(--color-white);
+    outline-offset: 4px;
+  }
+  .bac__grip {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--color-base-950);
+    border: 2px solid var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+  }
+  .bac__arrow {
+    width: 5px;
+    height: 5px;
+    border-top: 2px solid var(--color-white);
+    border-right: 2px solid var(--color-white);
+  }
+  .bac__arrow--l {
+    transform: rotate(-135deg);
+  }
+  .bac__arrow--r {
+    transform: rotate(45deg);
+  }
+  .bac__grip::after {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 1px solid rgba(236, 233, 245, 0.25);
+    animation: bac-pulse 2.4s ease-out infinite;
+  }
+
+  .bac__hint {
+    margin: 12px 2px 0;
+    font-size: 13px;
+    color: var(--color-base-400);
+  }
+
+  @keyframes bac-pulse {
+    0% {
+      transform: scale(0.7);
+      opacity: 0.7;
+    }
+    100% {
+      transform: scale(1.25);
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bac__grip::after {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  function initBac(root: HTMLElement) {
+    if (root.dataset.bacBound === "true") return;
+    root.dataset.bacBound = "true";
+
+    const compare = root.querySelector<HTMLElement>("[data-bac-compare]");
+    const handle = root.querySelector<HTMLElement>("[data-bac-handle]");
+    const player = root.querySelector<HTMLVideoElement>("[data-bac-player]");
+    const viewButtons = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-bac-view]"));
+    const panels: Record<string, HTMLElement | null> = {
+      compare,
+      video: root.querySelector<HTMLElement>("[data-bac-video]"),
+    };
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const setPos = (p: number) => {
+      const clamped = Math.max(3, Math.min(97, p));
+      compare?.style.setProperty("--pos", clamped.toFixed(2) + "%");
+      handle?.setAttribute("aria-valuenow", String(Math.round(clamped)));
+    };
+
+    // Pointer drag
+    if (compare) {
+      let dragging = false;
+      const posFromX = (clientX: number) => {
+        const r = compare.getBoundingClientRect();
+        return ((clientX - r.left) / r.width) * 100;
+      };
+      compare.addEventListener("pointerdown", (e) => {
+        dragging = true;
+        compare.setPointerCapture(e.pointerId);
+        setPos(posFromX(e.clientX));
+      });
+      compare.addEventListener("pointermove", (e) => {
+        if (dragging) setPos(posFromX(e.clientX));
+      });
+      const stop = () => {
+        dragging = false;
+      };
+      compare.addEventListener("pointerup", stop);
+      compare.addEventListener("pointercancel", stop);
+    }
+
+    // Keyboard slider
+    handle?.addEventListener("keydown", (e) => {
+      const cur = parseFloat(handle.getAttribute("aria-valuenow") || "50");
+      const step = e.shiftKey ? 10 : 2;
+      let next: number | null = null;
+      if (e.key === "ArrowLeft" || e.key === "ArrowDown") next = cur - step;
+      else if (e.key === "ArrowRight" || e.key === "ArrowUp") next = cur + step;
+      else if (e.key === "Home") next = 0;
+      else if (e.key === "End") next = 100;
+      if (next !== null) {
+        e.preventDefault();
+        setPos(next);
+      }
+    });
+
+    // View toggle (lazy video)
+    const showView = (view: string) => {
+      Object.keys(panels).forEach((key) => {
+        const el = panels[key];
+        if (el) el.hidden = key !== view;
+      });
+      viewButtons.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.bacView === view)));
+      if (player) {
+        if (view === "video") {
+          if (!player.src && player.dataset.src) player.src = player.dataset.src;
+          if (!reduce) player.play().catch(() => {});
+        } else {
+          player.pause();
+        }
+      }
+    };
+    viewButtons.forEach((b) => b.addEventListener("click", () => showView(b.dataset.bacView || "compare")));
+
+    // One-time scroll-in hint, then idle/draggable
+    if (!reduce && compare && "IntersectionObserver" in window) {
+      let done = false;
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && !done && !compare.hidden) {
+              done = true;
+              io.disconnect();
+              runHint();
+            }
+          });
+        },
+        { threshold: 0.4 }
+      );
+      io.observe(compare);
+    }
+
+    function runHint() {
+      const stops = [50, 18, 82, 50];
+      const dur = 1500;
+      const ease = (t: number) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+      let startT: number | null = null;
+      const frame = (ts: number) => {
+        if (startT === null) startT = ts;
+        const prog = Math.min((ts - startT) / dur, 1);
+        const seg = prog * (stops.length - 1);
+        const i = Math.min(Math.floor(seg), stops.length - 2);
+        const val = stops[i] + (stops[i + 1] - stops[i]) * ease(seg - i);
+        setPos(val);
+        if (prog < 1) requestAnimationFrame(frame);
+        else setPos(50);
+      };
+      requestAnimationFrame(frame);
+    }
+  }
+
+  function initAllBac() {
+    document.querySelectorAll<HTMLElement>("[data-bac]").forEach(initBac);
+  }
+
+  initAllBac();
+  document.addEventListener("astro:page-load", initAllBac);
+</script>

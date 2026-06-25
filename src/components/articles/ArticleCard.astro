@@ -1,0 +1,116 @@
+---
+import type { Article } from "@/lib/articles";
+import {
+  articlePath,
+  getArticleDate,
+  getArticleDepartmentLabel,
+  getArticleHero,
+} from "@/lib/articles";
+import { readingTime } from "@/lib/reading-time";
+import { imageSrcset, transformImageUrl } from "@/lib/media-transforms";
+
+interface Props {
+  post: Article;
+  featured?: boolean;
+}
+
+const { post, featured = false } = Astro.props;
+
+const url = articlePath(post);
+const { title, heroAlt } = post.data;
+const hero = getArticleHero(post.data);
+const heroSrc = hero
+  ? transformImageUrl(hero, { width: featured ? 960 : 640, quality: 82, fit: "cover" })
+  : undefined;
+const heroSrcset = hero
+  ? imageSrcset(hero, featured ? [480, 720, 960, 1280] : [320, 480, 640, 960], {
+      quality: 82,
+      fit: "cover",
+    })
+  : undefined;
+
+const publishedAt = getArticleDate(post);
+const formattedDate = publishedAt.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "2-digit",
+});
+
+const department = getArticleDepartmentLabel(post.data);
+const stats = post.body ? readingTime(post.body) : null;
+---
+
+<article class:list={["relative group", featured && "min-h-full"]}>
+  <a
+    href={url}
+    class="absolute inset-0 z-30"
+    aria-label={`Read ${title}`}
+  />
+  <div class="h-full overflow-hidden rounded-lg border border-base-800 bg-base-950/60 transition-colors duration-300 group-hover:border-base-600">
+    {hero ? (
+      <div class={featured ? "relative min-h-full" : "relative"}>
+        <img
+          src={heroSrc}
+          srcset={heroSrcset}
+          sizes={featured ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"}
+          alt={heroAlt || title}
+          width={featured ? 1200 : 800}
+          height={featured ? 675 : 450}
+          loading={featured ? "eager" : "lazy"}
+          decoding="async"
+          class:list={[
+            "w-full object-cover object-center transition-transform duration-500 group-hover:scale-105",
+            featured ? "aspect-[16/10]" : "aspect-video",
+          ]}
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-base-950 via-base-950/45 to-transparent" />
+        <div class="absolute bottom-0 left-0 right-0 p-4">
+          <div class="flex flex-wrap items-center gap-2 text-[10px] uppercase text-base-400">
+            <time datetime={publishedAt.toISOString()}>{formattedDate}</time>
+            {stats && (
+              <>
+                <span>&middot;</span>
+                <span>{stats.text}</span>
+              </>
+            )}
+          </div>
+          <h3 class:list={[
+            "mt-1.5 font-light tracking-tight text-base-100 line-clamp-2",
+            featured ? "text-xl sm:text-2xl" : "text-sm",
+          ]}>
+            {title}
+          </h3>
+          <p class="mt-2 text-[10px] font-mono uppercase tracking-wider text-accent-cyan">
+            {department}
+          </p>
+        </div>
+      </div>
+    ) : (
+      <div class:list={[
+        "relative flex items-end bg-base-900",
+        featured ? "min-h-[18rem]" : "aspect-video",
+      ]}>
+        <div class="p-4 w-full">
+          <div class="flex flex-wrap items-center gap-2 text-[10px] uppercase text-base-400">
+            <time datetime={publishedAt.toISOString()}>{formattedDate}</time>
+            {stats && (
+              <>
+                <span>&middot;</span>
+                <span>{stats.text}</span>
+              </>
+            )}
+          </div>
+          <h3 class:list={[
+            "mt-1.5 font-light tracking-tight text-base-100 line-clamp-2",
+            featured ? "text-xl sm:text-2xl" : "text-sm",
+          ]}>
+            {title}
+          </h3>
+          <p class="mt-2 text-[10px] font-mono uppercase tracking-wider text-accent-cyan">
+            {department}
+          </p>
+        </div>
+      </div>
+    )}
+  </div>
+</article>

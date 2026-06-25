@@ -1,0 +1,278 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import ArticleCard from "@/components/articles/ArticleCard.astro";
+import GalleryCard from "@/components/gallery/GalleryCard.astro";
+import CuteCorruptedSection from "@/components/home/CuteCorruptedSection.astro";
+import {
+  articlePath,
+  getArticleDate,
+  getArticleDek,
+  getArticleDepartmentLabel,
+  getArticleHero,
+  getPublishedArticles,
+  stripArticleExt,
+} from "@/lib/articles";
+
+const articles = await getPublishedArticles();
+// Cover is always the newest published article; the recent strip is the next
+// few before it. Publishing a new article automatically promotes it to cover
+// and pushes the others down, with no manual flagging.
+const coverStory = articles[0];
+const latestArticles = articles.slice(1, 7);
+
+const galleries = (await getCollection("gallery"))
+  .filter((entry) => !entry.data.draft)
+  .sort((a, b) => {
+    if (a.data.featured !== b.data.featured) return a.data.featured ? -1 : 1;
+    if (a.data.date && b.data.date) {
+      return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+    }
+    return a.data.title.localeCompare(b.data.title);
+  })
+  .slice(0, 4);
+
+const projectHrefOverrides: Record<string, string> = {
+  courses: "/academy/",
+  grimoire: "/grimoire/",
+  shop: "/shop/",
+};
+
+const projectSlugs = [
+  "hobfarm-tv/magazine-time-machine",
+  "hobfarm-tv/3-degrees-of-dick-miller",
+  "stylefusion",
+  "courses",
+];
+
+const projectMap = new Map<string, CollectionEntry<"projects">>();
+(await getCollection("projects")).forEach((project) => {
+  projectMap.set(project.id.replace(/\.(md|mdx)$/, ""), project);
+});
+
+const projectPreviews = projectSlugs
+  .map((slug) => projectMap.get(slug))
+  .filter((project): project is CollectionEntry<"projects"> => Boolean(project));
+
+const projectHref = (project: CollectionEntry<"projects">) => {
+  const slug = project.id.replace(/\.(md|mdx)$/, "");
+  return projectHrefOverrides[slug] ?? `/projects/${slug}/`;
+};
+
+const departments = [
+  {
+    title: "Magazine Time Machine",
+    body: "Vintage magazine artifacts, old ads, dead futures, and then-versus-now cultural research.",
+    href: "/articles/category/magazine-time-machine/",
+  },
+  {
+    title: "3 Degrees of Dick Miller",
+    body: "Movie trails, actor connections, genre history, and cult-film connective tissue.",
+    href: "/projects/hobfarm-tv/3-degrees-of-dick-miller/",
+  },
+  {
+    title: "Fake Ads",
+    body: "Satirical products, fictional campaigns, and modern garbage rebuilt in older media formats.",
+    href: "/articles/",
+  },
+  {
+    title: "Character Department",
+    body: "Hobunny, Gary, Fat Cat, Larry, Cute / Corrupted, and recurring character systems.",
+    href: "/gallery/",
+  },
+  {
+    title: "Archive Remix",
+    body: "Old footage, found-media references, missing-shot tests, and AI-assisted visual experiments.",
+    href: "/gallery/",
+  },
+  {
+    title: "Workshop Notes",
+    body: "Production notes, tool tests, model handoffs, process writeups, and repeatable methods.",
+    href: "/articles/category/technical/",
+  },
+];
+
+const coverDate = coverStory ? getArticleDate(coverStory) : null;
+const coverHero = coverStory ? getArticleHero(coverStory.data) : undefined;
+---
+
+<section id="magazine-front-page" class="bg-noise border-b border-base-800/70">
+  <Wrapper variant="standard" class="py-10 lg:py-14">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.6fr)] lg:items-end">
+      <div>
+        <p class="font-mono text-xs uppercase tracking-widest text-accent-magenta-bright">
+          HobFarm Magazine / Visual Studio
+        </p>
+        <h1 class="mt-4 max-w-4xl font-display text-4xl font-light leading-tight text-white text-balance lg:text-6xl">
+          Online magazine for visual culture, media history, and AI-assisted image work.
+        </h1>
+        <p class="mt-5 max-w-3xl text-base leading-relaxed text-base-300">
+          HobFarm is an online magazine and visual studio for visual culture, media history, cartoons, fake ads, archive dives, movie trails, character systems, production notes, and AI-assisted image and video work.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <Button isLink size="sm" variant="green" href="/articles/">Read articles</Button>
+          <Button isLink size="sm" variant="muted" href="/gallery/">Open Visuals</Button>
+          <Button isLink size="sm" variant="muted" href="/projects/">Projects</Button>
+          <Button isLink size="sm" variant="muted" href="/support/">Support</Button>
+        </div>
+      </div>
+
+      <aside class="rounded-lg border border-base-800 bg-base-950/70 p-5">
+        <p class="font-mono text-[10px] uppercase tracking-widest text-base-400">
+          How the magazine moves
+        </p>
+        <ol class="mt-4 space-y-3 text-sm text-base-300">
+          {["Article", "Social fragment", "Reader returns", "Related visual or project", "Workshop, Academy, or Support"].map((step, index) => (
+            <li class="flex items-center gap-3">
+              <span class="grid size-7 shrink-0 place-items-center rounded-full border border-base-700 font-mono text-[10px] text-accent-cyan">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <span>{step}</span>
+            </li>
+          ))}
+        </ol>
+      </aside>
+    </div>
+
+    {coverStory && (
+      <section class="mt-12" aria-labelledby="homepage-cover-heading">
+        <div class="mb-5 flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <p class="font-mono text-[10px] uppercase tracking-widest text-accent-cyan">
+              Cover story
+            </p>
+            <h2 id="homepage-cover-heading" class="mt-2 text-2xl font-display text-white lg:text-3xl">
+              {coverStory.data.title}
+            </h2>
+          </div>
+          {coverDate && (
+            <time class="font-mono text-[10px] uppercase tracking-wider text-base-500" datetime={coverDate.toISOString()}>
+              {coverDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+            </time>
+          )}
+        </div>
+        <a
+          href={articlePath(coverStory)}
+          class="group grid overflow-hidden rounded-lg border border-base-800 bg-base-950/70 transition-colors hover:border-accent-cyan/50 lg:grid-cols-[1.35fr_0.65fr]"
+        >
+          {coverHero ? (
+            <img
+              src={coverHero}
+              alt={coverStory.data.heroAlt || coverStory.data.title}
+              class="aspect-[16/9] h-full w-full object-cover"
+              loading="eager"
+              decoding="async"
+            />
+          ) : (
+            <div class="aspect-[16/9] bg-base-900" />
+          )}
+          <div class="flex flex-col justify-between p-5 sm:p-6">
+            <div>
+              <p class="font-mono text-[10px] uppercase tracking-widest text-accent-cyan">
+                {getArticleDepartmentLabel(coverStory.data)}
+              </p>
+              <p class="mt-4 text-base leading-relaxed text-base-300">
+                {getArticleDek(coverStory.data)}
+              </p>
+            </div>
+            <span class="mt-6 inline-flex text-sm text-base-100 group-hover:text-accent-cyan">
+              Read the feature
+            </span>
+          </div>
+        </a>
+      </section>
+    )}
+  </Wrapper>
+</section>
+
+<CuteCorruptedSection />
+
+{latestArticles.length > 0 && (
+  <section class="border-b border-base-800/70">
+    <Wrapper variant="standard" class="py-14 lg:py-16">
+      <div class="mb-6 flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p class="font-mono text-[10px] uppercase tracking-widest text-accent-magenta-bright">Latest</p>
+          <h2 class="mt-2 text-2xl font-display text-white">More recent articles</h2>
+        </div>
+        <a href="/articles/" class="text-sm text-base-400 transition-colors hover:text-white">
+          All articles
+        </a>
+      </div>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {latestArticles.map((article) => <ArticleCard post={article} />)}
+      </div>
+    </Wrapper>
+  </section>
+)}
+
+<section class="border-b border-base-800/70">
+  <Wrapper variant="standard" class="py-14 lg:py-16">
+    <div class="max-w-2xl">
+      <p class="font-mono text-[10px] uppercase tracking-widest text-accent-cyan">Departments</p>
+      <h2 class="mt-2 text-2xl font-display text-white">Recurring sections</h2>
+      <p class="mt-4 text-sm leading-relaxed text-base-400">
+        Articles are organized as departments and series so social posts can point back to a clear home.
+      </p>
+    </div>
+    <div class="mt-8 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+      {departments.map((department) => (
+        <a
+          href={department.href}
+          class="rounded-lg border border-base-800 bg-base-900/60 p-4 transition-colors hover:border-accent-cyan/50"
+        >
+          <h3 class="text-base font-display text-white">{department.title}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-base-400">{department.body}</p>
+        </a>
+      ))}
+    </div>
+  </Wrapper>
+</section>
+
+<section class="border-b border-base-800/70">
+  <Wrapper variant="standard" class="py-14 lg:py-16">
+    <div class="mb-6 flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="font-mono text-[10px] uppercase tracking-widest text-accent-green">Visual archive</p>
+        <h2 class="mt-2 text-2xl font-display text-white">Recent visuals</h2>
+      </div>
+      <a href="/gallery/" class="text-sm text-base-400 transition-colors hover:text-white">
+        Open Visuals
+      </a>
+    </div>
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {galleries.map((entry) => <GalleryCard entry={entry} />)}
+    </div>
+  </Wrapper>
+</section>
+
+<section class="border-b border-base-800/70">
+  <Wrapper variant="standard" class="py-14 lg:py-16">
+    <div class="max-w-2xl">
+      <p class="font-mono text-[10px] uppercase tracking-widest text-accent-gold">Projects</p>
+      <h2 class="mt-2 text-2xl font-display text-white">Series and systems behind the magazine</h2>
+      <p class="mt-4 text-sm leading-relaxed text-base-400">
+        HobFarm articles lead into finished visuals, show formats, tools, academy material, and supporter paths.
+      </p>
+    </div>
+    <div class="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+      {projectPreviews.map((project) => {
+        const slug = stripArticleExt(project.id);
+        return (
+          <a
+            href={projectHref(project)}
+            class="rounded-lg border border-base-800 bg-base-900/60 p-4 transition-colors hover:border-accent-magenta/50"
+          >
+            <p class="font-mono text-[10px] uppercase tracking-wider text-base-500">{project.data.category}</p>
+            <h3 class="mt-2 text-lg font-display text-white">{project.data.title}</h3>
+            <p class="mt-2 line-clamp-4 text-sm leading-relaxed text-base-400">
+              {project.data.oneLiner ?? project.data.subtitle}
+            </p>
+            <span class="mt-4 inline-flex text-xs text-base-500">{slug}</span>
+          </a>
+        );
+      })}
+    </div>
+  </Wrapper>
+</section>

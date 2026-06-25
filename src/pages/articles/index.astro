@@ -1,0 +1,151 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ArticleCard from "@/components/articles/ArticleCard.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Subscribe from "@/components/articles/Subscribe.astro";
+import {
+  articleCategories,
+  articleCategoryPath,
+  articlePath,
+  articleTagPath,
+  getArticleDate,
+  getArticleDek,
+  getArticleDepartmentLabel,
+  getArticleHero,
+  getPublishedArticles,
+} from "@/lib/articles";
+
+const allPosts = await getPublishedArticles();
+const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
+const coverStory =
+  allPosts.find((post) => post.data.coverStory) ??
+  allPosts.find((post) => post.data.featured) ??
+  allPosts[0];
+const latest = allPosts.filter((post) => post.id !== coverStory?.id).slice(0, 9);
+const coverDate = coverStory ? getArticleDate(coverStory) : null;
+const coverHero = coverStory ? getArticleHero(coverStory.data) : undefined;
+---
+
+<BaseLayout
+  title="Articles | HobFarm"
+  description="Articles from HobFarm, an online magazine and visual studio for visual culture, media history, cartoons, fake ads, archive dives, movie trails, character systems, production notes, and AI-assisted image and video work."
+  canonical="/articles/"
+>
+  <section>
+    <ContentPanel>
+      <Wrapper
+        variant="standard"
+        class="grid grid-cols-1 py-10 gap-y-10 lg:gap-x-10 lg:grid-cols-4"
+      >
+        <aside class="order-2 lg:order-1">
+          <div class="lg:sticky lg:top-24 lg:pr-8">
+            <p class="font-mono text-xs uppercase tracking-widest text-accent-cyan">
+              HobFarm Magazine
+            </p>
+            <h1 class="mt-4 text-3xl lg:text-4xl font-light text-base-100 text-balance font-display">
+              Articles
+            </h1>
+            <p class="mt-4 text-sm leading-relaxed text-base-400">
+              Features, departments, series notes, visual research, character systems, media-history trails, and production writeups.
+            </p>
+
+            <div class="mt-8 flex flex-wrap gap-2 lg:flex-col">
+              {articleCategories.map((cat) => (
+                <a
+                  href={cat.value === "all" ? "/articles/" : `${articleCategoryPath(cat.value)}/`}
+                  class:list={[
+                    "text-xs font-mono px-3 py-1.5 border transition-colors",
+                    cat.value === "all"
+                      ? "border-base-100 text-base-100"
+                      : "border-base-700 text-base-400 hover:border-base-100 hover:text-base-100",
+                  ]}
+                >
+                  {cat.label}
+                </a>
+              ))}
+            </div>
+
+            <div class="mt-12">
+              <h2 class="text-base font-medium text-base-100">Tags</h2>
+              <div role="list" class="flex flex-wrap gap-2 mt-4 lg:flex-col">
+                {
+                  tags.map((tag) => (
+                    <a
+                      class="text-sm text-base-100 capitalize hover:text-base-400 transition-colors"
+                      href={articleTagPath(tag)}
+                    >
+                      {tag}
+                    </a>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <div class="order-1 lg:order-2 lg:col-span-3">
+          {coverStory && (
+            <section aria-labelledby="cover-story-heading">
+              <div class="mb-4 flex flex-wrap items-end justify-between gap-3">
+                <div>
+                  <p class="font-mono text-[10px] uppercase tracking-widest text-accent-magenta-bright">
+                    Cover story
+                  </p>
+                  <h2 id="cover-story-heading" class="mt-2 text-2xl font-display text-white">
+                    {coverStory.data.title}
+                  </h2>
+                </div>
+                {coverDate && (
+                  <time class="font-mono text-[10px] uppercase tracking-wider text-base-500" datetime={coverDate.toISOString()}>
+                    {coverDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+                  </time>
+                )}
+              </div>
+              <a
+                href={articlePath(coverStory)}
+                class="group grid overflow-hidden rounded-lg border border-base-800 bg-base-950/60 transition-colors hover:border-accent-cyan/50 lg:grid-cols-[1.2fr_0.8fr]"
+              >
+                {coverHero && (
+                  <img
+                    src={coverHero}
+                    alt={coverStory.data.heroAlt || coverStory.data.title}
+                    class="aspect-video h-full w-full object-cover"
+                    loading="eager"
+                    decoding="async"
+                  />
+                )}
+                <div class="p-5 sm:p-6">
+                  <p class="font-mono text-[10px] uppercase tracking-widest text-accent-cyan">
+                    {getArticleDepartmentLabel(coverStory.data)}
+                  </p>
+                  <p class="mt-4 text-base leading-relaxed text-base-300">
+                    {getArticleDek(coverStory.data)}
+                  </p>
+                  <span class="mt-6 inline-flex text-sm text-base-100 group-hover:text-accent-cyan">
+                    Read the feature
+                  </span>
+                </div>
+              </a>
+            </section>
+          )}
+
+          <section class="mt-12" aria-labelledby="latest-articles-heading">
+            <div class="mb-5 flex items-end justify-between gap-4">
+              <h2 id="latest-articles-heading" class="text-xl font-light text-base-100">
+                Latest articles
+              </h2>
+              <span class="font-mono text-[10px] uppercase tracking-wider text-base-500">
+                {allPosts.length} published
+              </span>
+            </div>
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {latest.map((post) => <ArticleCard post={post} />)}
+            </div>
+          </section>
+        </div>
+      </Wrapper>
+    </ContentPanel>
+    <Subscribe />
+  </section>
+</BaseLayout>

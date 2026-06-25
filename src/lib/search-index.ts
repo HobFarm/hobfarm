@@ -1,9 +1,9 @@
 import { getCollection } from "astro:content";
-import { getPublishedPosts } from "@/lib/blog";
+import { getArticleDate, getArticleDescription, getPublishedArticles } from "@/lib/articles";
 import { galleryTypeLabels, type GalleryType } from "@/lib/gallery";
 
 export type SearchItem = {
-  type: "blog" | "project" | "gallery" | "grimoire" | "help" | "changelog";
+  type: "article" | "project" | "gallery" | "grimoire" | "help" | "changelog";
   title: string;
   description: string;
   href: string;
@@ -90,14 +90,14 @@ function buildGalleryNotes(data: any): string {
 }
 
 export async function buildSearchIndex(): Promise<SearchItem[]> {
-  const blogItems: SearchItem[] = (await getPublishedPosts()).map((post) => ({
-    type: "blog",
+  const articleItems: SearchItem[] = (await getPublishedArticles()).map((post) => ({
+    type: "article",
     title: post.data.title,
-    description: post.data.excerpt,
-    href: `/blog/posts/${stripExt(post.id)}`,
+    description: getArticleDescription(post.data),
+    href: `/articles/${stripExt(post.id)}`,
     tags: post.data.tags,
-    category: post.data.category,
-    date: toISO(post.data.publishedAt),
+    category: post.data.department ?? post.data.category,
+    date: getArticleDate(post).toISOString(),
   }));
 
   const projectHrefOverrides: Record<string, string> = {
@@ -175,7 +175,7 @@ export async function buildSearchIndex(): Promise<SearchItem[]> {
   });
 
   return [
-    ...blogItems,
+    ...articleItems,
     ...projectItems,
     servicesItem,
     ...galleryItems,

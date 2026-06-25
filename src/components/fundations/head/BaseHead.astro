@@ -9,12 +9,40 @@ interface Props {
   description?: string;
   canonical?: string;
   image?: string;
+  imageAlt?: string;
+  type?: "website" | "article";
+  publishedTime?: string;
+  modifiedTime?: string;
+  tags?: string[];
+  structuredData?: Record<string, unknown>;
 }
 
-const { title, description, canonical, image } = Astro.props;
+const {
+  title,
+  description,
+  canonical,
+  image,
+  imageAlt,
+  type,
+  publishedTime,
+  modifiedTime,
+  tags,
+  structuredData,
+} = Astro.props;
 ---
 
-<Seo title={title} description={description} canonical={canonical} image={image} />
+<Seo
+  title={title}
+  description={description}
+  canonical={canonical}
+  image={image}
+  imageAlt={imageAlt}
+  type={type}
+  publishedTime={publishedTime}
+  modifiedTime={modifiedTime}
+  tags={tags}
+  structuredData={structuredData}
+/>
 <Meta />
 <Fonts />
 <Favicons />

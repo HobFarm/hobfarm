@@ -1,15 +1,15 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-import ArticleCard from "@/components/blog/ArticleCard.astro";
+import ArticleCard from "@/components/articles/ArticleCard.astro";
 import ContentPanel from "@/components/ContentPanel.astro";
-import { getPublishedPosts } from "@/lib/blog";
+import { articleTagPath, getPublishedArticles } from "@/lib/articles";
 
-const allPosts = await getPublishedPosts();
+const allPosts = await getPublishedArticles();
 const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
 
 export async function getStaticPaths() {
-  const allPosts = await getPublishedPosts();
+  const allPosts = await getPublishedArticles();
   const uniqueTags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
   return uniqueTags.map((tag) => {
     const filteredPosts = allPosts.filter((post) => post.data.tags.includes(tag));
@@ -25,7 +25,7 @@ const { posts } = Astro.props;
 const description = `Articles tagged "${tag}" on HobFarm, covering related systems, visual research, and project notes.`;
 ---
 
-<BaseLayout title={`${tag} | Tags | HobFarm`} description={description}>
+<BaseLayout title={`${tag} Articles | HobFarm`} description={description} canonical={`${articleTagPath(tag!)}/`}>
   <section>
     <ContentPanel>
       <Wrapper
@@ -33,18 +33,18 @@ const description = `Articles tagged "${tag}" on HobFarm, covering related syste
         class="grid grid-cols-1 py-12 lg:py-16 gap-y-12 lg:gap-y-24 lg:grid-cols-4"
       >
         <div class="order-2 lg:order-1 lg:pr-8">
-          <a href="/blog/" class="text-sm text-base-500 hover:text-base-100 transition-colors">
-            &larr; All posts
+          <a href="/articles/" class="text-sm text-base-500 hover:text-base-100 transition-colors">
+            &larr; All articles
           </a>
           <h1 class="mt-4 text-2xl font-light text-base-100 font-display capitalize text-balance">
-            Posts tagged: {tag}
+            Articles tagged: {tag}
           </h1>
           <p class="mt-2 text-sm text-base-400">
-            {posts.length} {posts.length === 1 ? "post" : "posts"}
+            {posts.length} {posts.length === 1 ? "article" : "articles"}
           </p>
 
           <div class="mt-12">
-            <h4 class="text-base font-medium text-base-100">All tags</h4>
+            <h2 class="text-base font-medium text-base-100">All tags</h2>
             <div class="flex flex-wrap gap-2 mt-4 lg:flex-col">
               {
                 tags.map((t) => (
@@ -53,7 +53,7 @@ const description = `Articles tagged "${tag}" on HobFarm, covering related syste
                       "text-sm capitalize transition-colors",
                       t === tag ? "text-base-100 font-medium" : "text-base-400 hover:text-base-100",
                     ]}
-                    href={`/blog/tags/${t}`}
+                    href={articleTagPath(t)}
                   >
                     {t}
                   </a>

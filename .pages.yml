@@ -14,10 +14,10 @@ settings:
 
 content:
   # ---------------------
-  # BLOG
+  # ARTICLES
   # ---------------------
   - name: blog
-    label: Blog
+    label: Articles
     type: collection
     path: src/content/blog
     filename: "{primary}.md"
@@ -31,16 +31,51 @@ content:
     fields:
       - { name: title, label: Title, type: string, required: true }
       - { name: excerpt, label: Excerpt, type: text, required: true }
+      - { name: dek, label: Dek, type: text }
+      - { name: description, label: SEO Description, type: text }
       - { name: author, label: Author, type: string }
       - name: category
         label: Category
         type: select
-        options: [technical, magazine-time-machine, cultural-thread, grimoire, stylefusion, hobbot, business]
+        options: [technical, magazine-time-machine, cultural-thread, grimoire, stylefusion, hobbot, business, research]
+      - name: department
+        label: Department
+        type: select
+        options: [magazine-time-machine, 3-degrees-of-dick-miller, fake-ads, before-after, character-department, archive-remix, dead-future-report, workshop-notes]
+      - { name: series, label: Series, type: string }
       - { name: tags, label: Tags, type: string, list: true }
       - { name: hero, label: Hero Image URL, type: string }
+      - { name: heroImage, label: Hero Image URL (new field), type: string }
       - { name: heroAlt, label: Hero Alt Text, type: string }
+      - { name: socialImage, label: Social Image URL, type: string }
       - { name: arrangement, label: Grimoire Arrangement, type: string }
+      - { name: canonical, label: Canonical URL, type: string }
       - { name: publishedAt, label: Published At, type: date, required: true }
+      - { name: pubDate, label: Publication Date (new field), type: date }
+      - { name: updatedDate, label: Updated Date, type: date }
+      - { name: featured, label: Featured, type: boolean }
+      - { name: coverStory, label: Cover Story, type: boolean }
+      - { name: relatedArticles, label: Related Article Slugs, type: string, list: true }
+      - { name: relatedGallery, label: Related Gallery URL, type: string }
+      - { name: relatedProject, label: Related Project URL, type: string }
+      - name: workshopCTA
+        label: Workshop CTA
+        type: object
+        fields:
+          - { name: label, label: Label, type: string }
+          - { name: href, label: Href, type: string }
+      - name: academyCTA
+        label: Academy CTA
+        type: object
+        fields:
+          - { name: label, label: Label, type: string }
+          - { name: href, label: Href, type: string }
+      - name: supportCTA
+        label: Support CTA
+        type: object
+        fields:
+          - { name: label, label: Label, type: string }
+          - { name: href, label: Href, type: string }
       - { name: draft, label: Draft, type: boolean }
       - { name: body, label: Body, type: rich-text }
 

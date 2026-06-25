@@ -1,0 +1,37 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import CrapsSimulator from "@/components/games/CrapsSimulator";
+---
+
+<BaseLayout
+  title="Craps Strategy Simulator | HobFarm"
+  description="A free-play craps strategy simulator with configurable bankroll, table minimum, table maximum, odds, denomination, virtual chips, and cryptographic random dice."
+  canonical="/games/craps/"
+  palette="magenta-cyan"
+>
+  <section class="bg-noise border-b border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-16">
+        <p class="font-mono text-xs uppercase tracking-wider text-accent-cyan-bright">HobFarm / Games / Strategy Lab</p>
+        <Text tag="h1" variant="display2XL" class="mt-5 max-w-4xl text-balance font-display text-white">
+          Craps Strategy Simulator
+        </Text>
+        <p class="mt-5 max-w-3xl text-base leading-relaxed text-base-300">
+          Configure a virtual craps table, choose a bankroll and odds structure, then test betting systems with browser
+          dice powered by cryptographic randomness. This is a free-play simulator with no deposits or cashout.
+        </p>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section>
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-6 lg:py-8">
+        <CrapsSimulator client:load />
+      </Wrapper>
+    </ContentPanel>
+  </section>
+</BaseLayout>

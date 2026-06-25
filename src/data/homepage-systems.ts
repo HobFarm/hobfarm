@@ -78,7 +78,7 @@ export const operatingMap = {
     "Gallery drops",
     "Social clips",
     "Carousel sheets",
-    "Blog posts",
+    "Articles",
     "Course lessons",
     "Client visuals",
     "Digital packs",
@@ -87,7 +87,7 @@ export const operatingMap = {
   loop: ["Idea", "Sheet", "Style pass", "Post", "Gallery", "Lesson", "Product"],
   ctas: [
     { label: "See the visuals", href: "/gallery/" },
-    { label: "Read the process", href: "/blog/" },
+    { label: "Read articles", href: "/articles/" },
     { label: "Work with HobFarm", href: "/services/" },
   ] as Cta[],
 };
@@ -144,40 +144,53 @@ export const cuteCorrupted = {
   eyebrow: "Cute / Corrupted",
   heading: "Cute things, corrupted on purpose",
   copy:
-    "Kareena and Sienna start as readable character sheets, then shift into corrupted versions without losing the same-person read. The format pairs a cute sheet, a corrupted sheet, a short edit or poster, and gallery notes that can become social posts, premium packs, and future lessons.",
-  sheets: [
+    "A visual series about paired transformations. Every piece starts with a clean, charming version, then mutates into a darker version that keeps the same subject, silhouette, and appeal. Pick a branch and run the change yourself.",
+  cta: "Every design starts clean. Every design comes back changed.",
+  landingHref: "/gallery/cute-corrupted/",
+  defaultBranch: "characters",
+  // Each branch has a `featured` entry (shown in the homepage switcher) and a
+  // full `entries` list (shown on the landing page). Media URLs and
+  // locked/changed traits are read live from each gallery entry
+  // (see src/lib/cute-corrupted.ts) so nothing drifts from the source. A
+  // branch or entry that does not exist yet is skipped automatically.
+  branches: [
     {
-      title: "Kareena cute sheet",
-      body: "Pastel fashion layout with soft pinks, navy hair, purple highlights, aqua accents, heart clips, plush accessories, and daily props.",
-      details: ["same face", "navy bob", "pink palette", "heart accessories", "soft fashion props"],
-      image: {
-        src: "https://cdn.hob.farm/gallery/cute-corrupted/kareena-pink/kareena-cute.jpg",
-        alt: "Cute Kareena character sheet with pink fashion outfit, navy and purple bob haircut, aqua highlights, heart hair clips, plush charm, color palette, expressions, accessories, and full-body turnaround.",
-      },
+      key: "characters",
+      label: "Characters",
+      featured: "cute-corrupted/sienna",
+      entries: ["cute-corrupted/sienna", "cute-corrupted/kareena"],
+      blurb:
+        "Mascots, fashion figures, cartoon hosts, and character sheets transformed from clean charm into corrupted glamour.",
     },
     {
-      title: "Kareena corrupted sheet",
-      body: "Same character pushed into torn zine-punk texture: black fabric, fishnet, chains, safety pins, purple and teal continuity colors, and rougher club energy.",
-      details: ["same character", "black texture", "punk collage", "teal continuity", "social video ready"],
-      image: {
-        src: "https://cdn.hob.farm/gallery/cute-corrupted/kareena-pink/kareena-corrupted.jpg",
-        alt: "Corrupted Kareena character sheet with punk goth outfit, torn black jacket, fishnet, chains, purple and teal hair accents, heart bat accessories, zine collage texture, expression grid, and full-body turnaround.",
-      },
+      key: "critters",
+      label: "Critters",
+      featured: "cute-corrupted/raccoon",
+      entries: ["cute-corrupted/raccoon"],
+      blurb:
+        "Cute animal cartoons pushed into toxic, haunted, mutant, overgrown, or monster-movie versions of themselves.",
+    },
+    {
+      key: "cakes",
+      label: "Cakes",
+      featured: "cute-corrupted/cakes",
+      entries: ["cute-corrupted/cakes"],
+      blurb:
+        "Wedding cakes, birthday cakes, and occasion cakes redesigned as dark bakery centerpieces with cursed frosting logic.",
     },
   ],
-  modes: [
-    "Kareena",
-    "Sienna",
-    "character sheets",
-    "posters",
-    "short videos",
-    "premium packs",
+  // Series-level promo posters (not before/after pairs) shown on the landing page.
+  posters: [
+    {
+      title: "Cute & Corrupted",
+      src: "https://cdn.hob.farm/gallery/cute-corrupted/posters/cute-and-corrupted-poster.mp4",
+      poster: "https://cdn.hob.farm/gallery/cute-corrupted/posters/cute-and-corrupted-poster.jpg",
+    },
+    {
+      title: "Melting Heart",
+      src: "https://cdn.hob.farm/gallery/cute-corrupted/posters/cute-and-corrupted-melting-heart.mp4",
+    },
   ],
-  featureImage: {
-    src: "https://cdn.hob.farm/gallery/cute-corrupted/kareena-pink/kareena-poster.png",
-    alt: "Kareena Cute / Corrupted poster showing the pastel fashion and punk collage versions together.",
-    label: "Current featured format",
-  },
 };
 
 // --- Section 4: Visual Systems ----------------------------------------------
@@ -234,7 +247,7 @@ export const visualSystems = {
 export const applications = {
   eyebrow: "Across Media",
   heading: "One character system, many places to go",
-  copy: "The business value is in reuse. A character or style system can feed Instagram reels, carousel sheets, gallery pages, client visuals, digital downloads, blog posts, and course lessons without starting from nothing every time.",
+  copy: "The business value is in reuse. A character or style system can feed Instagram reels, carousel sheets, gallery pages, client visuals, digital downloads, articles, and course lessons without starting from nothing every time.",
   items: [
     "Character sheets",
     "Before / After loops",
@@ -246,7 +259,7 @@ export const applications = {
     "Digital packs",
     "Product mockups",
     "Client visuals",
-    "Blog posts",
+    "Articles",
     "Lessons + courses",
   ],
 };
@@ -264,7 +277,7 @@ export const workflow = {
     { title: "Variant set", body: "Make enough options to see what survives across formats." },
     { title: "Social edit", body: "Crop the strongest pieces for reels, covers, and carousels." },
     { title: "Gallery page", body: "Archive the finished work with useful metadata and notes." },
-    { title: "Lesson note", body: "Turn the repeatable part into a blog post or course module." },
+    { title: "Lesson note", body: "Turn the repeatable part into an article or course module." },
     { title: "Paid path", body: "Package the best set as services, downloads, products, or support perks." },
   ],
 };
@@ -328,7 +341,7 @@ export const academy = {
     { label: "Course modules", text: "Structured lessons, in progress." },
     { label: "Tool + process guides", text: "How the tools fit together." },
   ],
-  // Blog posts to feature (by content id). Falls back gracefully if absent.
+  // Articles to feature (by content id). Falls back gracefully if absent.
   featuredPostIds: [
     "same-model-different-surface.md",
     "invisible-variable.md",
@@ -348,7 +361,7 @@ export const academy = {
 
 export const exploreLinks: Array<{ label: string; href: string; note: string; soon?: boolean }> = [
   { label: "Galleries", href: "/gallery/", note: "Finished visuals" },
-  { label: "Field notes", href: "/blog/", note: "Essays + process" },
+  { label: "Articles", href: "/articles/", note: "Features + process" },
   { label: "Grimoire", href: "/grimoire/", note: "The memory layer" },
   { label: "Academy", href: "/academy/", note: "Lessons, in progress", soon: true },
 ];
@@ -514,7 +527,7 @@ export const storyPanels: Record<string, StoryPanel> = {
     label: "Learning path",
     title: "The lessons come from finished work",
     copy:
-      "Blog posts and courses should explain the method behind real HobFarm sets: character sheets, style construction, image experiments, and publishing decisions.",
+      "Articles and courses should explain the method behind real HobFarm sets: character sheets, style construction, image experiments, and publishing decisions.",
     accent: "gold",
     images: [
       {
@@ -534,7 +547,7 @@ export const storyPanels: Record<string, StoryPanel> = {
       },
     ],
     callouts: [
-      { label: "Free", value: "blog and notes" },
+      { label: "Free", value: "articles and notes" },
       { label: "Paid", value: "courses and packs" },
       { label: "Proof", value: "real examples" },
     ],

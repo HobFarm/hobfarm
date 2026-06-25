@@ -1,18 +1,18 @@
 import rss from '@astrojs/rss';
-import { getPublishedPosts } from '@/lib/blog';
+import { getArticleDescription, getPublishedArticles } from '@/lib/articles';
 
 export async function GET(context) {
-  const posts = await getPublishedPosts();
+  const posts = await getPublishedArticles();
 
   return rss({
-    title: 'HobFarm',
-    description: 'HobFarm is a creative studio in Las Vegas building AI visual tools, character work, galleries, and the systems behind them.',
+    title: 'HobFarm Articles',
+    description: 'HobFarm is an online magazine and visual studio for visual culture, media history, cartoons, fake ads, archive dives, movie trails, character systems, production notes, and AI-assisted image and video work.',
     site: context.site,
     items: posts.map((post) => ({
       title: post.data.title,
-      pubDate: post.data.publishedAt,
-      description: post.data.excerpt,
-      link: `/blog/posts/${post.id}/`,
+      pubDate: post.data.pubDate ?? post.data.publishedAt,
+      description: getArticleDescription(post.data),
+      link: `/articles/${post.id}/`,
     })),
   });
 }

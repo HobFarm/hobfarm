@@ -1,0 +1,195 @@
+---
+interface Props {
+  title: string;
+  url: string;
+  text?: string;
+  tags?: string[];
+}
+
+const { title, url, text, tags = [] } = Astro.props;
+
+const shareText = text ? `${title}: ${text}` : title;
+const hashtags = tags
+  .slice(0, 4)
+  .map((tag) => `#${tag.replace(/[^a-z0-9]/gi, "")}`)
+  .filter((tag) => tag.length > 1);
+const sharePost = [
+  title,
+  text,
+  "Read it on HobFarm:",
+  url,
+  hashtags.length > 0 ? hashtags.join(" ") : undefined,
+]
+  .filter(Boolean)
+  .join("\n\n");
+const encodedUrl = encodeURIComponent(url);
+const encodedTitle = encodeURIComponent(title);
+const encodedText = encodeURIComponent(shareText);
+const encodedEmailBody = encodeURIComponent(`${shareText}\n\n${url}`);
+
+const links = [
+  {
+    label: "Facebook",
+    href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+  },
+  {
+    label: "Threads",
+    href: `https://www.threads.net/intent/post?text=${encodedText}%20${encodedUrl}`,
+  },
+  {
+    label: "Bluesky",
+    href: `https://bsky.app/intent/compose?text=${encodedText}%20${encodedUrl}`,
+  },
+  {
+    label: "X",
+    href: `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}`,
+  },
+  {
+    label: "Reddit",
+    href: `https://www.reddit.com/submit?url=${encodedUrl}&title=${encodedTitle}`,
+  },
+  {
+    label: "Email",
+    href: `mailto:?subject=${encodedTitle}&body=${encodedEmailBody}`,
+  },
+];
+---
+
+<div class="space-y-3" data-share-buttons data-share-title={title} data-share-text={text} data-share-url={url}>
+  <div class="flex flex-wrap items-center gap-2">
+    <button
+      type="button"
+      data-copy-link
+      data-url={url}
+      class="inline-flex h-9 items-center justify-center rounded-lg border border-base-700 px-3 text-xs font-mono uppercase tracking-wider text-base-300 transition-colors duration-200 hover:border-base-500 hover:text-base-100"
+    >
+      Copy link
+    </button>
+    <button
+      type="button"
+      data-native-share
+      hidden
+      class="inline-flex h-9 items-center justify-center rounded-lg border border-accent-cyan/50 px-3 text-xs font-mono uppercase tracking-wider text-accent-cyan transition-colors duration-200 hover:border-accent-cyan hover:text-base-100"
+    >
+      Share
+    </button>
+    {links.map((link) => (
+      <a
+        href={link.href}
+        target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+        rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+        class="inline-flex h-9 items-center justify-center rounded-lg border border-base-700 px-3 text-xs font-mono uppercase tracking-wider text-base-300 transition-colors duration-200 hover:border-base-500 hover:text-base-100"
+        aria-label={`Share on ${link.label}`}
+      >
+        {link.label}
+      </a>
+    ))}
+  </div>
+
+  <details class="group rounded-lg border border-base-800 bg-base-950/60" data-share-post>
+    <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-3 py-2 text-xs font-mono uppercase tracking-wider text-base-300 transition-colors hover:text-base-100">
+      <span>Share post</span>
+      <span class="text-base-500 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+    </summary>
+    <div class="border-t border-base-800 p-3">
+      <textarea
+        readonly
+        rows="7"
+        data-share-post-text
+        class="min-h-36 w-full resize-y rounded-md border border-base-800 bg-base-950 p-3 font-mono text-xs leading-relaxed text-base-200 outline-none focus:border-accent-cyan"
+      >{sharePost}</textarea>
+      <div class="mt-3 flex flex-wrap items-center gap-2">
+        <button
+          type="button"
+          data-copy-share-post
+          class="inline-flex h-9 items-center justify-center rounded-lg border border-accent-magenta/50 px-3 text-xs font-mono uppercase tracking-wider text-accent-magenta-bright transition-colors duration-200 hover:border-accent-magenta hover:text-base-100"
+        >
+          Copy post
+        </button>
+        <p class="text-xs text-base-500">
+          A short share draft built from the article title, description, link, and tags.
+        </p>
+      </div>
+    </div>
+  </details>
+
+  <span data-copy-status class="sr-only" aria-live="polite"></span>
+</div>
+
+<script>
+  const successClasses = ["border-accent-cyan", "text-accent-cyan"];
+
+  function markButtonCopied(button: HTMLButtonElement, label: string, status?: HTMLElement | null) {
+    const defaultText = button.textContent || label;
+    button.textContent = "Copied";
+    button.classList.add(...successClasses);
+    if (status) status.textContent = `${label} copied.`;
+
+    window.setTimeout(() => {
+      button.textContent = defaultText;
+      button.classList.remove(...successClasses);
+      if (status) status.textContent = "";
+    }, 1800);
+  }
+
+  async function copyText(value: string, button: HTMLButtonElement, label: string, status?: HTMLElement | null) {
+    try {
+      await navigator.clipboard.writeText(value);
+      markButtonCopied(button, label, status);
+    } catch {
+      if (status) status.textContent = "Copy failed.";
+    }
+  }
+
+  function bindArticleShareButtons(root: ParentNode = document) {
+    root.querySelectorAll("[data-share-buttons]").forEach((shareRoot) => {
+      if (!(shareRoot instanceof HTMLElement)) return;
+      if (shareRoot.dataset.shareBound === "true") return;
+      shareRoot.dataset.shareBound = "true";
+
+      const copyButton = shareRoot.querySelector<HTMLButtonElement>("[data-copy-link]");
+      const copySharePostButton = shareRoot.querySelector<HTMLButtonElement>("[data-copy-share-post]");
+      const nativeShareButton = shareRoot.querySelector<HTMLButtonElement>("[data-native-share]");
+      const sharePostText = shareRoot.querySelector<HTMLTextAreaElement>("[data-share-post-text]");
+      const status = shareRoot.querySelector<HTMLElement>("[data-copy-status]");
+
+      copyButton?.addEventListener("click", async () => {
+        const url = copyButton.getAttribute("data-url");
+        if (!url) return;
+
+        await copyText(url, copyButton, "Article link", status);
+      });
+
+      copySharePostButton?.addEventListener("click", async () => {
+        if (!sharePostText?.value) return;
+
+        await copyText(sharePostText.value, copySharePostButton, "Share post", status);
+      });
+
+      if (nativeShareButton && "share" in navigator) {
+        nativeShareButton.hidden = false;
+        nativeShareButton.addEventListener("click", async () => {
+          try {
+            await navigator.share({
+              title: shareRoot.dataset.shareTitle,
+              text: sharePostText?.value || shareRoot.dataset.shareText,
+              url: shareRoot.dataset.shareUrl,
+            });
+            if (status) status.textContent = "Share sheet opened.";
+          } catch (error) {
+            if (error instanceof DOMException && error.name === "AbortError") return;
+            if (status) status.textContent = "Share sheet unavailable.";
+          }
+        });
+      }
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => bindArticleShareButtons());
+  } else {
+    bindArticleShareButtons();
+  }
+
+  document.addEventListener("astro:page-load", () => bindArticleShareButtons());
+</script>

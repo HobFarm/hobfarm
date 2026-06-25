@@ -1,192 +1,542 @@
-# CLAUDE.md : HobFarm Project Context
+# CLAUDE.md: HobFarm Repo Operating Guide
 
-## Identity
+## Role
+
+You are Claude Code operating inside the HobFarm website repo.
+
+Your job is to inspect the repo, make changes, validate the result, and leave the site in a better working state. Act as the implementer. Work directly in the filesystem, use shell commands, run builds, fix errors, and summarize what changed.
+
+Use this file as procedural guidance for building the website and creating content that belongs on the website.
+
+---
+
+## Site Identity
 
 **Site:** [hob.farm](https://hob.farm)
-**Repo:** HobFarm/hobfarm (private)
-**Purpose:** Project landing site. Every page sells a project or establishes authority. This is not a portfolio.
+**Repo:** HobFarm/hobfarm
+**Hosting:** Cloudflare Pages
+**Production branch:** `main`
+
+HobFarm is an online magazine and visual studio.
+
+The site publishes articles, visual galleries, recurring projects, production notes, workflow education, and support paths.
+
+Primary public areas:
+
+| Area     | Purpose                                                                          |
+| -------- | -------------------------------------------------------------------------------- |
+| Homepage | Front page, hero intro, latest articles, featured routes                         |
+| Articles | Main editorial feed, formerly blog                                               |
+| Gallery  | Visual archive for image sets, character sheets, experiments, and finished media |
+| Projects | Recurring characters, series, tools, worlds, and formats                         |
+| Workshop | Process notes, production methods, systems, and behind-the-scenes work           |
+| Academy  | Workflow education, onboarding, courses, and paid learning paths                 |
+| Support  | Ko-fi, Patreon, sponsor paths, contact, and collaboration routes                 |
+
+The site should make it clear that articles are the editorial source, social media distributes fragments, and readers can return to hob.farm for the full article, gallery, project, workflow, or support path.
+
+---
+
+## Working Model
+
+Use this model when making decisions:
+
+1. **Article is the source.**
+   The full idea, research, process, or feature lives on hob.farm.
+
+2. **Social media is distribution.**
+   Reels, images, captions, and short posts should point back to the full article, gallery, project, or academy page.
+
+3. **Gallery is the visual archive.**
+   Finished images, character sheets, posters, video stills, and experiments should be organized as durable visual records.
+
+4. **Projects connect recurring work.**
+   Characters, series, tools, systems, and formats should have project pages when they need a home beyond one article.
+
+5. **Workshop explains how things are made.**
+   Process notes, production methods, model tests, tool notes, failures, revisions, and workflows belong here.
+
+6. **Academy teaches the workflow.**
+   Free and paid learning material should connect naturally from relevant articles, projects, and process pages.
+
+7. **Support gives readers a next action.**
+   Support, sponsor, contact, and collaboration paths should be easy to find without interrupting reading.
+
+---
+
+## Implementation Procedure
+
+When receiving a task brief:
+
+1. Read the task fully.
+2. Inspect the relevant files before editing.
+3. Identify the smallest clean change that satisfies the task.
+4. Prefer existing routes, layouts, components, content collections, and design patterns.
+5. Make the change.
+6. Run validation commands.
+7. Fix build, type, schema, import, and route errors.
+8. Summarize what changed, what was validated, and what still needs manual review.
+
+Use repo evidence. Inspect before assuming.
+
+If the task is ambiguous, proceed with the safest useful interpretation when possible. Ask for clarification only when the missing input blocks the work.
+
+One session should handle one coherent task. If a request contains multiple independent projects, complete the first useful slice and list the remaining slices.
+
+---
 
 ## Stack
 
-- **Framework:** Astro 6 (static output, content collections)
-- **Styling:** Tailwind CSS v4 (CSS-first config). Atomic Noir design tokens live in `src/styles/global.css` inside the `@theme` block. No `tailwind.config.ts` file exists.
-- **Base Theme:** Buio by Lexington Themes (Full Access to 45+ themes for section composition)
-- **CMS:** PagesCMS (git-based, `.pages.yml` at repo root)
-- **CDN:** Cloudflare R2 at `https://cdn.hob.farm`
-- **Hosting:** Cloudflare Pages (auto-deploy on push to `main`)
-- **Chat:** HobBot worker (proxied via Vite dev server at `/api/chat`, `/api/subscribe`)
-- **Image Generation:** Recraft (outputs `.webp`)
+| Layer      | Technology                                                        |
+| ---------- | ----------------------------------------------------------------- |
+| Framework  | Astro 6, static output, content collections                       |
+| Styling    | Tailwind CSS v4, CSS-first configuration                          |
+| Base Theme | Buio by Lexington Themes, with other Lexington sections available |
+| CMS        | PagesCMS, git-based, `.pages.yml` at repo root                    |
+| CDN        | Cloudflare R2 at `https://cdn.hob.farm`                           |
+| Hosting    | Cloudflare Pages                                                  |
+| Functions  | Cloudflare Pages Functions in `functions/api/`                    |
+| Chat       | HobBot worker, proxied in dev where configured                    |
 
-## Workflow: Receiving Task Briefs
+Tailwind 4 uses CSS-first configuration. Design tokens live in `src/styles/global.css` inside the `@theme` block. There is no `tailwind.config.ts`.
 
-You are Claude Code (CC) operating in this repo. Task briefs originate from claude.ai (strategy and architecture surface) and arrive here as markdown files, usually in `/briefs/` or pasted into chat. When a brief lands:
+---
 
-1. Execute it yourself. You have filesystem, shell, git, and `wrangler` access. You are the implementer, not a router.
-2. Do not suggest "handing the brief to CC" or "routing this to Claude Code." You are CC.
-3. Do not delegate back to claude.ai unless the brief explicitly asks for clarification, you hit a true blocker (missing credential, ambiguous requirement), or scope expands beyond what the brief covers.
-4. Investigation briefs produce a markdown report at the path the brief specifies. No code changes.
-5. Implementation briefs produce code, deploys, and a short summary of what was done. No long reports.
-6. One coherent task per session. If the brief tries to do too much, flag the scope problem and execute the first independent slice.
+## Commands
 
-## Design Language: Atomic Noir (Psychedelic Goth)
+```bash
+npm run dev
+npm run build
+npm run preview
+npx astro check
+```
 
-Art Deco meets Vegas-lab goth. The current expression is **psychedelic goth**: dark purple-black grounds with saturated purple/magenta/cyan/green interplay on focal points, selective glow. All tokens live in `src/styles/global.css` inside the Tailwind 4 `@theme` block. There is no `tailwind.config.ts` (CSS-first config); do not create one or search for one. Never hardcode hex values in components. Full palette, contrast rules, and voice live in `docs/brand/voice-glossary.md` (the source of truth).
+Use `npm run build` before committing or pushing meaningful site changes.
 
-| Token | Value | Use |
-|-------|-------|-----|
-| Void (bg) | `#07060b` | Page backgrounds |
-| Surface | `#0e0b16` | Cards, panels, elevated surfaces |
-| Border | `#221a33` | Dividers, card borders |
-| Text | `#ece9f5` | Primary text |
-| Secondary | `#9b96ad` | Captions, metadata, muted text |
+Use `npx astro check` when touching schemas, content collections, TypeScript, layouts, or component props.
 
-**Fonts:** IBM Plex Sans (body), IBM Plex Mono (code/mono).
+Use `npm run preview` for local visual review after building.
 
-**Color use:** goth structure first (dark grounds, strong type, hard contrast), psychedelic color second (purple/magenta/cyan/green interplay on focal points). Glow is selective, not global. This replaces the old "one palette per page, never mix" rule. The three pairings survive as `data-palette` modes (purple-green, magenta-cyan, blue-red) and may now be mixed on focal elements.
-
-Gold/silver: sparse highlights only, never primary. Purple `#7b2ff7` is ~3.33:1 on the dark ground, so use it for borders, large accents, and active states, not small body text.
-
-**Writing style:** plain and clear, strange and polished. Say what the thing is and does; no farm metaphor or SaaS jargon as decoration. No em dashes. Use colons, parentheses, or separate sentences.
-
-## Seasonal Color-Cycle Operating Model
-
-HobFarm uses a flexible seasonal release rhythm:
-
-- Year = 4 seasons.
-- Season = 3 monthly character/cultivar cycles.
-- Month = 1 base character or visual theme.
-- 28 days = ROYGBIV growth cycle, 4 days per color.
-- Final month days = harvest, packaging, gallery/process updates, social/DA/premium/shop/POD prep.
-
-Default monthly color cycle: days 01-04 red, 05-08 orange, 09-12 yellow, 13-16 green, 17-20 blue, 21-24 indigo, 25-28 violet, and days 29-31 harvest / packaging.
-
-This is a creative scaffold, not a compliance system. Use season/month/color phase as organizing context, suggest fitting next tasks, keep metadata optional and backward-compatible, and preserve creative flexibility. Do not force every artifact into every field, block deviations, overbuild scheduling automation, or turn HobFarm into an enterprise content calendar.
-
-## Public Voice and Surface Roles
-
-Public copy is plain and quickly understandable. Lead with what a thing is and does. The farm/cultivation metaphor is **not** required vocabulary; do not use it as decoration in headers, CTAs, or labels (keeper, specimen, grow log, greenhouse, "from signal to ___", "what grew here", cultivation paths). Organic-tech words are allowed only where they name a real structural system: the seasonal release rhythm above, or Grimoire's actual knowledge-graph concepts.
-
-Avoid equally generic SaaS/AI-platform language (leverage, empower, seamless, scalable, innovative, orchestration as marketing) and machine metaphors (pipeline, engine, output as decoration). Describe the actual thing. `specimen` is retired from public copy (see `docs/brand/voice-glossary.md`); internal schema names like `specimenSheet`/`specimenId` stay until a future migration. Product/project names (StyleFusion, Grimoire, HobBot, HobFarm TV, AnomalyBot, Drifter, XKXXKX) and provider names (e.g. Seedream) are names, not metaphors, and stay.
-
-Preserve the dark, strange, polished HobFarm identity through the work and the visual system: Atomic Noir, Art Deco, Vegas lab energy, black ground, cyan/purple/green/magenta accents, and underground/outsider media-lab. Avoid cute rustic farm language, cottagecore, wellness/nature branding, sterile corporate-biotech, and generic-startup tone.
-
-Surface names (plain, literal):
-
-- Projects = the tools and systems HobFarm builds.
-- Visuals = the gallery of finished images and video.
-- Process / How It's Made = how a piece was made.
-- Academy = courses. Shop = goods for sale. Services = hire HobFarm.
-- Blog = essays and notes. About = story and contact.
-
-Gallery pages describe artifacts: visual structure, palette, materials, locked and flexible traits, notes, media, search metadata, and related links.
-
-Process pages describe methods: references, steps, model handoffs, revisions, failures, selection, and stabilization.
-
-Seasonal releases may support light scarcity without fake urgency. Honest language is allowed: "Older seasonal releases may rotate into the archive. Popular pieces can return later as re-released editions or expanded premium packs." Avoid manipulative urgency such as "Gone forever. Buy now."
-
-The constraint above is on copy, not ornament. Visual motifs may still draw on organic-tech and Art Deco geometry (root-line connectors, spore-dot clusters, palette strips, botanical-plate layouts, microscope-slide frames, contour-map dividers) where they serve the Atomic Noir look.
+---
 
 ## Project Structure
 
-```
+```text
 src/
-├── components/          # PascalCase.astro, under 200 lines, one responsibility
+├── components/
 │   ├── global/          # Header, Footer, Nav
 │   ├── gallery/         # Gallery-specific components
 │   ├── grimoire/        # Grimoire-specific components
-│   ├── projects/        # Project card tiers and detail views
-│   ├── sections/        # Composable page sections (from Lexington themes)
-│   └── ui/              # Primitives (buttons, cards, inputs)
-├── content/             # Markdown + YAML frontmatter, schemas in content.config.ts
-│   ├── blog/
+│   ├── projects/        # Project cards and detail views
+│   ├── sections/        # Page sections
+│   └── ui/              # Buttons, cards, inputs, primitives
+├── content/
+│   ├── blog/            # Publicly presented as Articles
 │   ├── gallery/
 │   ├── grimoire/
 │   ├── projects/
 │   ├── changelog/
 │   └── ...
-├── layouts/             # BaseLayout and page layouts
-├── lib/                 # Utility functions and helpers
-├── pages/               # Route entrypoints, 60-100 lines max, declarative composition
-├── styles/              # Global CSS
-└── data/                # Static data files
-functions/api/           # Cloudflare Pages Functions (edge)
+├── layouts/
+├── lib/
+├── pages/
+├── styles/
+└── data/
+
+functions/api/           # Cloudflare Pages Functions
 public/                  # Static assets, _headers, _redirects
+astro.config.mjs
+.pages.yml
 ```
 
-## Commands
+Pages should stay lean and compositional. Prefer importing sections and components instead of placing large blocks of page HTML directly inside route files.
 
-```bash
-npm run dev       # Dev server with API proxy
-npm run build     # Production build (always run before pushing)
-npm run preview   # Preview the built site locally
-npx astro check   # Type/schema validation
-```
+---
 
 ## Content Collections
 
-Schemas defined in `src/content.config.ts`. Always validate frontmatter against the schema before committing.
+Schemas are defined in `src/content.config.ts`.
 
-Release/color metadata must remain optional and backward-compatible. Do not add mandatory season, monthly cultivar, color phase, or availability fields without explicit approval. If optional release metadata is requested, prefer `releaseSeason`, `monthlyCultivar`, `colorPhase`, and `availability` objects with string/date fields that can be omitted by older entries.
+Content files live in `src/content/` and use Markdown with YAML frontmatter.
 
-| Collection | Purpose |
-|------------|---------|
-| `projects/` | Shipped output and tools (the core of the site) |
-| `gallery/` | StyleFusion visual galleries |
-| `blog/` | Long-form posts |
-| `grimoire/` | Grimoire knowledge base entries |
-| `changelog/` | Release notes and updates |
+| Collection   | Public Role | Purpose                                                                              |
+| ------------ | ----------- | ------------------------------------------------------------------------------------ |
+| `blog/`      | Articles    | Editorial articles, features, research, satire, process posts, and recurring entries |
+| `gallery/`   | Gallery     | Visual archive for image sets, character sheets, experiments, and finished media     |
+| `projects/`  | Projects    | Recurring characters, tools, systems, series, worlds, and shipped output             |
+| `grimoire/`  | Grimoire    | Knowledge base and reference material                                                |
+| `changelog/` | Changelog   | Release notes and site updates                                                       |
 
-## CDN Paths
+The internal `blog/` collection may remain named `blog` while the public site presents it as **Articles**. Rename the internal collection only when the routes, schema, imports, PagesCMS config, and redirects are handled cleanly.
 
+---
+
+## Article Model
+
+Articles are the main editorial objects on the site.
+
+When editing or creating articles, support this structure where the schema allows it:
+
+| Field            | Purpose                                                                    |
+| ---------------- | -------------------------------------------------------------------------- |
+| `title`          | Article headline                                                           |
+| `description`    | Card text and social preview summary                                       |
+| `pubDate`        | Publication date                                                           |
+| `updatedDate`    | Optional revision date                                                     |
+| `heroImage`      | Hero image and social preview image                                        |
+| `tags`           | Index terms                                                                |
+| `series`         | Recurring article lane                                                     |
+| `department`     | Larger editorial category                                                  |
+| `relatedGallery` | Optional gallery tie-in                                                    |
+| `relatedProject` | Optional project tie-in                                                    |
+| `ctaType`        | Optional routing hint: share, gallery, academy, support, project, workshop |
+
+Article pages should include:
+
+1. Title.
+2. Publication date.
+3. Description or dek.
+4. Hero image when available.
+5. Tags.
+6. Share actions.
+7. Related articles.
+8. Related gallery or project links when relevant.
+9. Workshop, Academy, Support, or follow CTA when relevant.
+10. Open Graph, canonical URL, and structured metadata.
+
+---
+
+## Homepage Procedure
+
+When improving the homepage, build it as the front page of the online magazine.
+
+Preferred homepage order:
+
+1. Hero intro explaining HobFarm as an online magazine and visual studio.
+2. Featured article or cover story.
+3. Latest Articles feed.
+4. Department, series, or project cards.
+5. Gallery preview.
+6. Workshop or Academy CTA.
+7. Support, sponsor, contact, or follow CTA.
+
+The homepage should answer these questions quickly:
+
+1. What is HobFarm?
+2. What can I read now?
+3. What can I look at now?
+4. What recurring work exists here?
+5. Where do I go if I want more?
+6. How do I share or support it?
+
+---
+
+## Navigation Procedure
+
+Primary nav should point to durable site areas:
+
+* Articles
+* Gallery
+* Projects
+* Workshop
+* Academy
+* Support
+
+Use plain labels. Prefer clarity over cleverness in navigation.
+
+If old routes still exist, preserve working redirects.
+
+When renaming public labels, update all visible references, card labels, empty states, CTAs, metadata, and footer links that use the old label.
+
+---
+
+## Social Sharing Procedure
+
+Every article should be easy to share and should render cleanly when pasted into social platforms.
+
+Required metadata for article pages:
+
+| Field                  | Purpose                     |
+| ---------------------- | --------------------------- |
+| `og:title`             | Social preview headline     |
+| `og:description`       | Social preview summary      |
+| `og:image`             | Social preview image        |
+| `og:url`               | Canonical URL               |
+| `twitter:card`         | Large card preview support  |
+| JSON-LD Article schema | Structured article metadata |
+
+Preferred share actions:
+
+* Copy link
+* Facebook
+* Threads
+* Bluesky
+* X
+* Reddit
+* Email
+
+Keep share controls visible, clean, and secondary to the article.
+
+Share CTAs should fit the content type:
+
+| Content Type | CTA Direction                              |
+| ------------ | ------------------------------------------ |
+| Article      | Share the article or read related articles |
+| Gallery      | View the full visual set                   |
+| Project      | Follow the recurring project               |
+| Workshop     | Read how it was made                       |
+| Academy      | Learn the workflow                         |
+| Support      | Support the site or sponsor the work       |
+
+---
+
+## Content Creation Procedure
+
+When asked to create content for the website:
+
+1. Identify the right content type: article, gallery entry, project page, workshop note, academy page, support page, or changelog entry.
+2. Inspect the matching collection schema.
+3. Create frontmatter that validates against the schema.
+4. Use kebab-case filenames.
+5. Write clear titles and descriptions for cards and metadata.
+6. Add tags when useful.
+7. Add hero images or CDN references when supplied.
+8. Add related links when the content connects to existing pages.
+9. Run build validation.
+
+Write public copy in plain, direct language. Describe what the page contains and what the reader can do next.
+
+---
+
+## Visual and Layout Direction
+
+Use strong hierarchy, readable spacing, clear cards, strong image placement, and page sections that make the content easy to browse.
+
+Prioritize:
+
+1. Clear first impression.
+2. Strong article cards.
+3. Good image presentation.
+4. Fast scanning.
+5. Mobile readability.
+6. Clean CTAs.
+7. Durable routes.
+8. Shareable pages.
+
+Use existing components and section patterns first. Create new components when the existing ones cannot reasonably serve the content.
+
+When creating components:
+
+* Use PascalCase filenames.
+* Keep one responsibility per component.
+* Prefer props over hardcoded content.
+* Use `@/` imports from `src/`.
+* Keep page files as composition manifests.
+* Use static rendering by default.
+* Use `client:visible` or `client:idle` for hydrated components unless immediate hydration is required.
+
+---
+
+## Styling Procedure
+
+Use Tailwind classes and existing global tokens.
+
+When a design change needs a reusable color, spacing, type, or surface value, update `src/styles/global.css` inside the `@theme` block.
+
+Use component-level styling only when it is truly local to the component.
+
+Keep contrast readable.
+
+Keep typography clear.
+
+Keep layouts responsive.
+
+Use existing design language from the current site. Remove stale brand rules when they conflict with the current site direction.
+
+---
+
+## CDN Procedure
+
+All CDN media uses full URLs from Cloudflare R2.
+
+```text
+https://cdn.hob.farm/projects/{project-slug}/
+https://cdn.hob.farm/gallery/{gallery-slug}/
+https://cdn.hob.farm/grimoire/
+https://cdn.hob.farm/site/
 ```
-https://cdn.hob.farm/projects/{project-slug}/   # Project assets
-https://cdn.hob.farm/gallery/{gallery-slug}/     # Gallery images
-https://cdn.hob.farm/grimoire/                   # Grimoire content
-https://cdn.hob.farm/site/                       # General site assets
+
+Use full `https://cdn.hob.farm/` URLs for CDN assets.
+
+Use local `public/` assets only for files intentionally served from the repo.
+
+When adding new media references, confirm the expected path and file extension.
+
+Accepted image formats:
+
+* `.png`
+* `.jpg`
+* `.webp`
+
+Accepted video formats:
+
+* `.mp4`
+* `.gif`
+
+---
+
+## Contact and Security Procedure
+
+Route public contact through `/contact/`.
+
+For security-related contact paths, use `/contact/?subject=security`.
+
+Use `you@example.com` for email input placeholder text.
+
+Use configured contact systems or existing contact routes. Ask before inventing new visible contact addresses.
+
+Keep environment values and secrets out of committed files.
+
+Use `.dev.vars` for local secret values when needed.
+
+---
+
+## Cloudflare and Deployment Procedure
+
+Cloudflare Pages deploys automatically on push to `main`.
+
+Use branches for preview deployments.
+
+Before pushing to `main`:
+
+1. Pull latest `main`.
+2. Run `npm install` if dependencies changed.
+3. Run `npm run build`.
+4. Run `npx astro check` when relevant.
+5. Fix validation errors.
+6. Commit with a short imperative message.
+7. Push to `main`.
+
+After deployment:
+
+1. Check the Cloudflare deployment status.
+2. Open the production URL.
+3. Manually review touched pages.
+4. Confirm routes, images, metadata, and CTAs work.
+
+---
+
+## PagesCMS Procedure
+
+PagesCMS config lives at `.pages.yml`.
+
+When adding, removing, or changing content fields:
+
+1. Update `src/content.config.ts`.
+2. Update `.pages.yml` if editors need the field.
+3. Update templates/components that consume the field.
+4. Preserve backward compatibility where practical.
+5. Run build validation.
+
+Avoid making optional content fields mandatory unless the task explicitly requires it.
+
+---
+
+## Functions Procedure
+
+Cloudflare Pages Functions live in `functions/api/`.
+
+When touching API routes:
+
+1. Inspect the current function.
+2. Confirm expected request and response shape.
+3. Keep secrets in environment variables.
+4. Test the route manually in dev or preview.
+5. Summarize any manual testing performed.
+
+---
+
+## Code Style
+
+Use the existing project style.
+
+For TypeScript and TSX:
+
+* 2-space indentation.
+* Double quotes.
+* Semicolons.
+* `@/` imports for files under `src/`.
+
+For content:
+
+* Kebab-case filenames.
+* Valid YAML frontmatter.
+* Clear title and description.
+* CDN URLs where required.
+* Tags only when useful.
+
+For Astro:
+
+* Keep route files lean.
+* Prefer reusable sections and components.
+* Keep component responsibility narrow.
+* Use semantic HTML.
+* Keep metadata accurate.
+
+---
+
+## Validation Checklist
+
+Use this checklist before considering a task complete:
+
+1. Build passes with `npm run build`.
+2. Astro check passes when relevant.
+3. No broken imports.
+4. No schema errors.
+5. No missing content references.
+6. Touched routes load locally or in preview.
+7. Images resolve.
+8. Article metadata renders correctly.
+9. Share previews have title, description, image, and URL.
+10. CTAs point to real routes.
+11. Mobile layout remains readable.
+12. No secrets or environment values were committed.
+
+---
+
+## Commit Procedure
+
+Use short imperative commit messages.
+
+Examples:
+
+```text
+feat(articles): add latest feed to homepage
+fix(gallery): correct hero image metadata
+chore(content): rename blog labels to articles
+feat(sharing): add article share actions
 ```
 
-Always use the full `https://cdn.hob.farm/` URL. Never relative paths for CDN assets.
+Pull requests should include:
 
-## Rules
+1. User-facing summary.
+2. Routes changed.
+3. Validation performed.
+4. Screenshots for UI changes when practical.
+5. Known follow-up work.
 
-1. **Projects vs products (distinct, both valid).** The apps, tools, and systems HobFarm builds are **projects** (StyleFusion, Grimoire, HobBot, HobFarm TV, etc.); never call those "products." Physical goods that are sourced, restored, and sold are **products** (the eBay/Etsy resale work, run as the BASS Show — Buying And Selling Shit Show — a project under HobFarm TV: auctions, estate/yard sales, thrift finds, some repaired, some flipped). So "products" may appear when referring to physical items for sale or to design deliverables (product designs, product pages), but the apps/tools/systems are always "projects."
-2. **Sanctioned contact routes.** Do not render literal `hob.farm` email addresses in public page text, links, or generated HTML. Use `/contact/`, `/contact/?subject=security`, or a deliberately obfuscated contact control.
+---
 
-   **General routing:**
-   - support contact — primary contact, website-scoped (subscribe confirms, magic codes, account notifications, contact form).
-   - security contact — vulnerability disclosure. Prefer `/contact/?subject=security` on public pages.
-   
-   **Project/concern-scoped (use only when the project context is the email's purpose):**
-   - developer contact — developer-facing routing (engineering docs, API support if/when published).
-   - HobBot contact — HobBot-related contact.
-   - StyleFusion contact — StyleFusion-related contact.
-   - shop contact — commerce.
-   - books contact — books project.
-   - personal/identity contact — identity routing.
-   
-   **Placeholder text only (never a real recipient):**
-   - `you@example.com` — form input placeholder text.
-   
-   The catch-all `*@hob.farm` exists in DNS but is not used as a literal address in the codebase. Don't write `*@hob.farm` anywhere.
-   
-   **Never substitute** `hello@`, `contact@`, `info@`, `support@`, `hi@`, `team@`, `admin@`, `noreply@`, or any other plausible-sounding pattern. If you need an address for a context not covered above, ask the user. Do not invent.
-3. **All design tokens in `src/styles/global.css` `@theme` block.** No per-component color overrides. Change a token once, every page updates. (Tailwind 4 CSS-first config: no `tailwind.config.ts`.)
-4. **Compose from Lexington sections.** Never build a section from scratch when the theme library has one. Buio first, then other Lexington themes.
-5. **Pages are composition manifests.** Target 60-100 lines per page file. Import sections, don't inline HTML.
-6. **Prefer `@/` path alias** for all imports from `src/`.
-7. **Static hydration.** Use `client:visible` or `client:idle` over `client:load` unless immediate hydration is required.
-8. **Secrets in `.dev.vars`.** Never commit environment values.
-9. **Content files are kebab-case.** Components are PascalCase.
-10. **2-space indentation, double quotes, semicolons** in TS and TSX files.
-11. **Form placeholders:** use `you@example.com` for any email input placeholder. The canonical identity allowlist designates this as the only acceptable placeholder address. Real `hob.farm` addresses (`hey@`, `kris@`, etc.) belong in copy and config, never in placeholder attributes.
+## Working Principle
 
-## Testing
+Make the site clearer, more useful, and easier to publish into.
 
-No dedicated test runner. Validation workflow:
-1. `npm run build` (catches schema mismatches, broken imports, type errors)
-2. `npm run preview` (visual validation)
-3. Manually exercise touched `functions/api/*` endpoints
+When in doubt, improve the loop:
 
-## Commits
-
-Prefer short, imperative subjects with optional scope: `feat(gallery): add gothic-psychedelic entry`. Pull requests should describe user-facing impact and include screenshots for UI changes.
+```text
+publish on hob.farm
+share fragments on social
+bring readers back to the site
+connect them to related articles, galleries, projects, workshop notes, academy pages, or support
+make the next action obvious
+```

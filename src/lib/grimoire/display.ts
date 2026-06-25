@@ -6,7 +6,7 @@ import type {
 
 // Public framing for the cross-pollination feature. One source of truth shared by
 // the homepage synthesis window, the archive page, and the upcoming
-// "A False Recipe, a Real Image" blog post, so the argument reads the same
+// "A False Recipe, a Real Image" article, so the argument reads the same
 // everywhere: these are speculative synthesis cards, not tutorials. A recipe can
 // be physically impossible and still be a real image seed.
 //

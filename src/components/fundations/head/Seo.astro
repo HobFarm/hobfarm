@@ -4,6 +4,12 @@ interface Props {
   description?: string;
   canonical?: string;
   image?: string;
+  imageAlt?: string;
+  type?: "website" | "article";
+  publishedTime?: string;
+  modifiedTime?: string;
+  tags?: string[];
+  structuredData?: Record<string, unknown>;
 }
 
 const SITE_ORIGIN = "https://hob.farm";
@@ -23,6 +29,12 @@ const {
   description = DEFAULT_DESCRIPTION,
   canonical: canonicalProp,
   image,
+  imageAlt,
+  type = "website",
+  publishedTime,
+  modifiedTime,
+  tags = [],
+  structuredData: structuredDataProp,
 } = Astro.props;
 
 const normalizePathname = (pathname: string) => {
@@ -49,9 +61,9 @@ const ogImageType = getImageType(ogImage);
 // have unknown dimensions, so let crawlers infer them from the file itself.
 const ogImageWidth = image ? undefined : DEFAULT_OG_IMAGE_WIDTH;
 const ogImageHeight = image ? undefined : DEFAULT_OG_IMAGE_HEIGHT;
-const ogImageAlt = `${SITE_NAME} creative studio social preview`;
+const ogImageAlt = imageAlt ?? `${SITE_NAME} creative studio social preview`;
 
-const structuredData = {
+const structuredData = structuredDataProp ?? {
   "@context": "https://schema.org",
   "@graph": [
     {
@@ -73,20 +85,35 @@ const structuredData = {
         "@id": `${SITE_URL}#organization`,
       },
     },
-    {
-      "@type": "WebPage",
-      "@id": `${canonical}#webpage`,
-      url: canonical,
-      name: title,
-      description,
-      isPartOf: {
-        "@id": `${SITE_URL}#website`,
-      },
-      publisher: {
-        "@id": `${SITE_URL}#organization`,
-      },
-      image: ogImage,
-    },
+    type === "article"
+      ? {
+          "@type": "Article",
+          "@id": `${canonical}#article`,
+          headline: title,
+          description,
+          datePublished: publishedTime,
+          dateModified: modifiedTime ?? publishedTime,
+          mainEntityOfPage: canonical,
+          publisher: {
+            "@id": `${SITE_URL}#organization`,
+          },
+          image: ogImage,
+          keywords: tags,
+        }
+      : {
+          "@type": "WebPage",
+          "@id": `${canonical}#webpage`,
+          url: canonical,
+          name: title,
+          description,
+          isPartOf: {
+            "@id": `${SITE_URL}#website`,
+          },
+          publisher: {
+            "@id": `${SITE_URL}#organization`,
+          },
+          image: ogImage,
+        },
   ],
 };
 ---
@@ -98,7 +125,7 @@ const structuredData = {
 <link rel="canonical" href={canonical} />
 
 <!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
+<meta property="og:type" content={type} />
 <meta property="og:url" content={canonical} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
@@ -109,6 +136,9 @@ const structuredData = {
 <meta property="og:image:type" content={ogImageType} />
 <meta property="og:site_name" content={SITE_NAME} />
 <meta property="og:locale" content="en_US" />
+{type === "article" && publishedTime && <meta property="article:published_time" content={publishedTime} />}
+{type === "article" && modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+{type === "article" && tags.map((tag) => <meta property="article:tag" content={tag} />)}
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />

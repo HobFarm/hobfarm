@@ -2,6 +2,12 @@
 /stylefusion  https://sf.hob.farm  301
 /sf           https://sf.hob.farm  301
 
+# Articles replaced the old public blog routes
+/blog                    /articles/                 301
+/blog/                   /articles/                 301
+/blog/tags               /articles/tags/            301
+/blog/tags/              /articles/tags/            301
+
 # Money/landing surfaces promoted to top-level (IA restructure)
 /projects/shop      /shop/      301
 /projects/shop/     /shop/      301
@@ -27,3 +33,11 @@
 
 # Canonical help center hub
 /helpcenter/knowledge-base  /helpcenter  301
+
+# Dynamic legacy article redirects stay below static redirects for Pages matching
+/blog/posts/:slug        /articles/:slug            301
+/blog/posts/:slug/       /articles/:slug/           301
+/blog/category/:category /articles/category/:category 301
+/blog/category/:category/ /articles/category/:category/ 301
+/blog/tags/:tag          /articles/tags/:tag        301
+/blog/tags/:tag/         /articles/tags/:tag/       301

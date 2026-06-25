@@ -2,28 +2,22 @@
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Button from "@/components/fundations/elements/Button.astro";
+import BeforeAfterCompare from "@/components/ui/BeforeAfterCompare.astro";
 import { cuteCorrupted } from "@/data/homepage-systems";
+import { getCuteCorruptedBranches } from "@/lib/cute-corrupted";
 
-const sheetTone = [
-  {
-    text: "text-accent-cyan",
-    border: "border-accent-cyan/40",
-    bg: "bg-accent-cyan/10",
-    dot: "bg-accent-cyan",
-  },
-  {
-    text: "text-accent-magenta-bright",
-    border: "border-accent-magenta/40",
-    bg: "bg-accent-magenta/10",
-    dot: "bg-accent-magenta",
-  },
-];
+// Branches are built live from their gallery entries. An unfinished branch
+// (no entry yet, e.g. cakes before assets land) is skipped automatically.
+const branches = await getCuteCorruptedBranches();
+const defaultKey = branches.some((b) => b.key === cuteCorrupted.defaultBranch)
+  ? cuteCorrupted.defaultBranch
+  : branches[0]?.key;
 ---
 
-<section id="cute-corrupted" class="border-b border-base-800/70">
-  <Wrapper variant="standard" class="py-16 lg:py-20">
-    <div class="grid grid-cols-1 gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
-      <div>
+{branches.length > 0 && (
+  <section id="cute-corrupted" class="border-b border-base-800/70">
+    <Wrapper variant="standard" class="py-16 lg:py-20">
+      <div class="max-w-2xl">
         <Text tag="span" variant="textSM" class="font-mono uppercase tracking-widest text-accent-cyan">
           {cuteCorrupted.eyebrow}
         </Text>
@@ -31,121 +25,137 @@ const sheetTone = [
           {cuteCorrupted.heading}
         </Text>
         <p class="mt-5 text-base leading-relaxed text-base-400">{cuteCorrupted.copy}</p>
-        <div class="mt-6 flex flex-wrap gap-2">
-          {cuteCorrupted.modes.map((mode) => (
-            <span class="rounded-full border border-base-700 bg-base-900/70 px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider text-base-300">
-              {mode}
-            </span>
-          ))}
-        </div>
-        <div class="mt-7 flex flex-wrap gap-2">
-          <Button isLink size="sm" variant="green" href="/gallery/cute-corrupted/kareena/">
-            Open Kareena page
-          </Button>
-          <Button isLink size="sm" variant="muted" href="/blog/">
-            Read the notes
-          </Button>
-        </div>
       </div>
 
-      <div class="rounded-lg border border-base-800 bg-base-900/60 p-4 shadow-dimensional sm:p-5">
-        {cuteCorrupted.featureImage && (
-          <a
-            href="/gallery/cute-corrupted/kareena/"
-            class="group mb-4 block overflow-hidden rounded-md border border-base-800 bg-base-950/70"
+      <div
+        class="mt-8 flex flex-wrap gap-2"
+        role="tablist"
+        aria-label="Cute and Corrupted branches"
+        data-cc-tablist
+      >
+        {branches.map((branch) => (
+          <button
+            type="button"
+            role="tab"
+            id={`cc-tab-${branch.key}`}
+            data-cc-tab={branch.key}
+            aria-controls={`cc-panel-${branch.key}`}
+            aria-selected={branch.key === defaultKey}
+            tabindex={branch.key === defaultKey ? 0 : -1}
+            class="rounded-full border border-base-700 px-4 py-2 font-mono text-[11px] uppercase tracking-widest text-base-400 transition-colors aria-selected:border-accent-cyan/50 aria-selected:bg-accent-cyan/10 aria-selected:text-accent-cyan hover:text-white"
           >
-            <span class="sr-only">Open the Kareena Cute / Corrupted gallery page</span>
-            <div class="relative aspect-[16/9] overflow-hidden bg-base-950">
-              <img
-                src={cuteCorrupted.featureImage.src}
-                alt={cuteCorrupted.featureImage.alt}
-                loading="lazy"
-                decoding="async"
-                class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-              />
-              <span class="absolute left-3 top-3 rounded-full border border-accent-magenta/50 bg-base-950/80 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-accent-magenta-bright">
-                {cuteCorrupted.featureImage.label}
-              </span>
-            </div>
-          </a>
-        )}
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-[1fr_auto_1fr] md:items-stretch">
-          {cuteCorrupted.sheets.map((sheet, index) => (
-            <>
-              <article class:list={["rounded-lg border bg-base-950/60 p-4", sheetTone[index].border]}>
-                <div class="flex items-center gap-3">
-                  <span class:list={["size-2 rounded-full", sheetTone[index].dot]} aria-hidden="true"></span>
-                  <p class:list={["font-mono text-[10px] uppercase tracking-widest", sheetTone[index].text]}>
-                    Sheet {String(index + 1).padStart(2, "0")}
-                  </p>
-                  <div class="h-px flex-1 bg-base-800"></div>
-                </div>
-
-                <div class="mt-4 grid grid-cols-[0.9fr_1.1fr] gap-3">
-                  <div class:list={["relative aspect-[3/4] overflow-hidden rounded-md border", sheetTone[index].border, sheetTone[index].bg]}>
-                    {sheet.image ? (
-                      <img
-                        src={sheet.image.src}
-                        alt={sheet.image.alt}
-                        loading="lazy"
-                        decoding="async"
-                        class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 hover:scale-[1.02]"
-                      />
-                    ) : (
-                      <svg viewBox="0 0 160 210" class="absolute inset-0 h-full w-full" fill="none" aria-hidden="true">
-                        <path d="M80 28C94 28 105 39 105 53C105 67 94 78 80 78C66 78 55 67 55 53C55 39 66 28 80 28Z" class={index === 0 ? "fill-accent-cyan/20 stroke-accent-cyan" : "fill-accent-magenta/20 stroke-accent-magenta"} stroke-width="2" />
-                        <path d="M80 82L52 103V145L66 184H94L108 145V103L80 82Z" class={index === 0 ? "fill-base-950 stroke-accent-cyan" : "fill-base-950 stroke-accent-magenta"} stroke-width="2" />
-                        <path d="M52 108L30 140M108 108L130 140M67 184L58 205M93 184L102 205" class={index === 0 ? "stroke-accent-cyan" : "stroke-accent-magenta"} stroke-linecap="round" stroke-width="2" />
-                        <path d="M62 54H98M70 64H90" class="stroke-base-200" stroke-linecap="round" stroke-width="1.5" />
-                      </svg>
-                    )}
-                    <div class="absolute inset-x-3 bottom-3 grid grid-cols-5 gap-1">
-                      {["", "", "", "", ""].map((_, swatchIndex) => (
-                        <span
-                          class:list={[
-                            "h-2 rounded-full",
-                            index === 0
-                              ? ["bg-base-200", "bg-accent-cyan", "bg-accent-green", "bg-base-700", "bg-white"][swatchIndex]
-                              : ["bg-base-950", "bg-accent-magenta", "bg-accent-green", "bg-accent-cyan", "bg-accent-gold"][swatchIndex],
-                          ]}
-                        ></span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <h3 class="font-display text-xl leading-tight text-white">{sheet.title}</h3>
-                    <p class="mt-2 text-sm leading-relaxed text-base-400">{sheet.body}</p>
-                    <ul class="mt-4 space-y-2">
-                      {sheet.details.map((detail) => (
-                        <li class="flex items-center gap-2 text-xs leading-snug text-base-200">
-                          <span class:list={["size-1.5 rounded-full", sheetTone[index].dot]} aria-hidden="true"></span>
-                          {detail}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </article>
-
-              {index === 0 && (
-                <div class="flex items-center justify-center">
-                  <span class="rounded-full border border-base-700 px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider text-base-400 md:[writing-mode:vertical-rl]">
-                    same character
-                  </span>
-                </div>
-              )}
-            </>
-          ))}
-        </div>
-
-        <div class="mt-4 rounded-md border border-base-800 bg-base-950/60 p-4">
-          <p class="font-mono text-[10px] uppercase tracking-widest text-base-400">Why it matters</p>
-          <p class="mt-2 text-sm leading-relaxed text-base-300">
-            The viewer gets the transformation immediately, while the sheet keeps the character usable for posts, motion, product art, and lessons.
-          </p>
-        </div>
+            {branch.label}
+          </button>
+        ))}
       </div>
-    </div>
-  </Wrapper>
-</section>
+
+      {branches.map((branch) => (
+        <div
+          id={`cc-panel-${branch.key}`}
+          role="tabpanel"
+          aria-labelledby={`cc-tab-${branch.key}`}
+          data-cc-panel={branch.key}
+          hidden={branch.key !== defaultKey}
+          class="mt-6"
+        >
+          <div class="grid grid-cols-1 gap-6 lg:grid-cols-[1.3fr_0.7fr] lg:items-start">
+            <BeforeAfterCompare
+              before={branch.before}
+              after={branch.after}
+              video={branch.video}
+              fit="contain"
+              aspect={branch.aspect}
+              ariaLabel={`${branch.label}: cute and corrupted comparison`}
+            />
+
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-1">
+              <div class="rounded-lg border border-accent-cyan/30 bg-base-950/60 p-5">
+                <p class="font-mono text-[10px] uppercase tracking-widest text-accent-cyan">Locked</p>
+                <p class="mt-1 text-xs text-base-500">The same-subject read</p>
+                <ul class="mt-4 space-y-2.5">
+                  {branch.locked.map((trait) => (
+                    <li class="flex items-start gap-2.5 text-sm leading-snug text-base-200">
+                      <span class="mt-1.5 size-1.5 shrink-0 rounded-full bg-accent-cyan" aria-hidden="true"></span>
+                      {trait}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div class="rounded-lg border border-accent-magenta/30 bg-base-950/60 p-5">
+                <p class="font-mono text-[10px] uppercase tracking-widest text-accent-magenta-bright">Changed</p>
+                <p class="mt-1 text-xs text-base-500">The surface language</p>
+                <ul class="mt-4 space-y-2.5">
+                  {branch.changed.map((trait) => (
+                    <li class="flex items-start gap-2.5 text-sm leading-snug text-base-200">
+                      <span class="mt-1.5 size-1.5 shrink-0 rounded-full bg-accent-magenta" aria-hidden="true"></span>
+                      {trait}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 flex flex-col gap-4 border-t border-base-800/70 pt-5 sm:flex-row sm:items-center sm:justify-between">
+            <p class="max-w-2xl text-sm leading-relaxed text-base-400">{branch.blurb}</p>
+            <Button isLink size="sm" variant="green" href={branch.href} class="shrink-0">
+              Open the {branch.label} page
+            </Button>
+          </div>
+        </div>
+      ))}
+
+      <div class="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <p class="font-mono text-xs uppercase tracking-widest text-base-500">{cuteCorrupted.cta}</p>
+        <a href={cuteCorrupted.landingHref} class="text-sm text-base-300 transition-colors hover:text-accent-cyan">
+          Explore the full series
+        </a>
+      </div>
+    </Wrapper>
+  </section>
+)}
+
+<script>
+  function initCuteCorrupted(root: HTMLElement) {
+    if (root.dataset.ccBound === "true") return;
+    root.dataset.ccBound = "true";
+
+    const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-cc-tab]"));
+    const panels = Array.from(root.querySelectorAll<HTMLElement>("[data-cc-panel]"));
+    if (!tabs.length) return;
+
+    const select = (key: string, focus = false) => {
+      tabs.forEach((tab) => {
+        const active = tab.dataset.ccTab === key;
+        tab.setAttribute("aria-selected", String(active));
+        tab.tabIndex = active ? 0 : -1;
+        if (active && focus) tab.focus();
+      });
+      panels.forEach((panel) => {
+        panel.hidden = panel.dataset.ccPanel !== key;
+      });
+    };
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => select(tab.dataset.ccTab || ""));
+      tab.addEventListener("keydown", (e) => {
+        let next: number | null = null;
+        if (e.key === "ArrowRight" || e.key === "ArrowDown") next = (index + 1) % tabs.length;
+        else if (e.key === "ArrowLeft" || e.key === "ArrowUp") next = (index - 1 + tabs.length) % tabs.length;
+        else if (e.key === "Home") next = 0;
+        else if (e.key === "End") next = tabs.length - 1;
+        if (next !== null) {
+          e.preventDefault();
+          select(tabs[next].dataset.ccTab || "", true);
+        }
+      });
+    });
+  }
+
+  function initAllCuteCorrupted() {
+    document.querySelectorAll<HTMLElement>("#cute-corrupted").forEach(initCuteCorrupted);
+  }
+
+  initAllCuteCorrupted();
+  document.addEventListener("astro:page-load", initAllCuteCorrupted);
+</script>

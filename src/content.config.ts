@@ -4,31 +4,78 @@ import { glob } from "astro/loaders";
 
 const blog = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/blog" }),
-  schema: z.object({
-    title: z.string(),
-    excerpt: z.string(),
-    author: z.string().default("d00d"),
-    tags: z.array(z.string()).default([]),
-    category: z
-      .enum([
-        "technical",
-        "magazine-time-machine",
-        "cultural-thread",
-        "grimoire",
-        "stylefusion",
-        "hobbot",
-        "business",
-        "research",
-      ])
-      .optional(),
-    hero: z.string().optional(),
-    heroAlt: z.string().optional(),
-    arrangement: z.string().optional(),
-    publishedAt: z.coerce.date(),
-    updatedAt: z.coerce.date().optional(),
-    featured: z.boolean().default(false),
-    draft: z.boolean().default(false),
-  }),
+  schema: z
+    .object({
+      title: z.string(),
+      excerpt: z.string(),
+      dek: z.string().optional(),
+      description: z.string().optional(),
+      author: z.string().default("d00d"),
+      tags: z.array(z.string()).default([]),
+      category: z
+        .enum([
+          "technical",
+          "magazine-time-machine",
+          "cultural-thread",
+          "grimoire",
+          "stylefusion",
+          "hobbot",
+          "business",
+          "research",
+        ])
+        .optional(),
+      department: z
+        .enum([
+          "magazine-time-machine",
+          "3-degrees-of-dick-miller",
+          "fake-ads",
+          "before-after",
+          "character-department",
+          "archive-remix",
+          "dead-future-report",
+          "workshop-notes",
+        ])
+        .optional(),
+      series: z.string().optional(),
+      hero: z.string().optional(),
+      heroImage: z.string().optional(),
+      heroAlt: z.string().optional(),
+      socialImage: z.string().optional(),
+      arrangement: z.string().optional(),
+      canonical: z.string().optional(),
+      publishedAt: z.coerce.date().optional(),
+      pubDate: z.coerce.date().optional(),
+      updatedAt: z.coerce.date().optional(),
+      updatedDate: z.coerce.date().optional(),
+      featured: z.boolean().default(false),
+      coverStory: z.boolean().default(false),
+      relatedArticles: z.array(z.string()).optional(),
+      relatedGallery: z.string().optional(),
+      relatedProject: z.string().optional(),
+      workshopCTA: z
+        .object({
+          label: z.string(),
+          href: z.string(),
+        })
+        .optional(),
+      academyCTA: z
+        .object({
+          label: z.string(),
+          href: z.string(),
+        })
+        .optional(),
+      supportCTA: z
+        .object({
+          label: z.string(),
+          href: z.string(),
+        })
+        .optional(),
+      draft: z.boolean().default(false),
+    })
+    .refine((data) => data.publishedAt || data.pubDate, {
+      message: "Articles need publishedAt or pubDate.",
+      path: ["publishedAt"],
+    }),
 });
 
 export const GALLERY_TYPES = [

@@ -11,7 +11,7 @@ export const topNavLinks: NavLink[] = [
   { label: "Academy", href: "/academy" },
   { label: "Shop", href: "/shop" },
   { label: "Services", href: "/services" },
-  { label: "Blog", href: "/blog" },
+  { label: "Articles", href: "/articles" },
   { label: "About", href: "/about" },
 ];
 
@@ -32,7 +32,7 @@ export const footerLinkGroups: FooterGroup[] = [
   {
     title: "Resources",
     links: [
-      { label: "Blog", href: "/blog" },
+      { label: "Articles", href: "/articles" },
       { label: "Whitepaper", href: "/whitepaper" },
       { label: "Support", href: "/support/" },
       { label: "Help Center", href: "/helpcenter" },

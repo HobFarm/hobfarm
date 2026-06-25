@@ -4,27 +4,27 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import StoryPanel from "@/components/home/infographics/StoryPanel.astro";
 import { academy, storyPanels } from "@/data/homepage-systems";
-import { getCollection, type CollectionEntry } from "astro:content";
+import { articlePath, getArticleDate, getPublishedArticles, type Article } from "@/lib/articles";
 
 const story = storyPanels.academy;
 
-const allPosts = await getCollection("blog", ({ data }) => !data.draft);
-const postMap = new Map<string, CollectionEntry<"blog">>();
+const allPosts = await getPublishedArticles();
+const postMap = new Map<string, Article>();
 allPosts.forEach((post) => {
   postMap.set(post.id, post);
   postMap.set(`${post.id}.md`, post);
   postMap.set(post.id.replace(/\.md$/, ""), post);
 });
 
-function isBlogPost(post: CollectionEntry<"blog"> | undefined): post is CollectionEntry<"blog"> {
+function isArticle(post: Article | undefined): post is Article {
   return Boolean(post);
 }
 
 // Prefer the curated set, then fill with the most recent posts so the row is
 // always full even if a preferred id is renamed or removed.
-const preferred = academy.featuredPostIds.map((id) => postMap.get(id)).filter(isBlogPost);
+const preferred = academy.featuredPostIds.map((id) => postMap.get(id)).filter(isArticle);
 const recent = [...allPosts].sort(
-  (a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime(),
+  (a, b) => getArticleDate(b).getTime() - getArticleDate(a).getTime(),
 );
 const seen = new Set(preferred.map((p) => p.id));
 const posts = [...preferred];
@@ -60,15 +60,15 @@ const featuredPosts = posts.slice(0, 4);
       ))}
     </div>
 
-    <!-- From the blog -->
+    <!-- From the articles -->
     <div class="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:items-start">
       <div>
-        <p class="font-mono text-[10px] uppercase tracking-widest text-base-400">From the field notes</p>
+        <p class="font-mono text-[10px] uppercase tracking-widest text-base-400">From the articles</p>
         <p class="mt-4 max-w-sm text-sm leading-relaxed text-base-400">
-          Deeper notes live on the blog: how surfaces shape a look, how references become structure, and what it takes to run an independent studio.
+          Deeper notes live in articles: how surfaces shape a look, how references become structure, and what it takes to run an independent studio.
         </p>
         <div class="mt-6 flex flex-wrap gap-2">
-          <Button isLink size="sm" variant="muted" href="/blog/">Read the field notes</Button>
+          <Button isLink size="sm" variant="muted" href="/articles/">Read articles</Button>
           <Button isLink size="sm" variant="muted" href="/academy/">Open the Academy</Button>
         </div>
       </div>
@@ -77,7 +77,7 @@ const featuredPosts = posts.slice(0, 4);
         <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
           {featuredPosts.map((post) => (
             <a
-              href={`/blog/posts/${post.id.replace(/\.md$/, "")}`}
+              href={articlePath(post)}
               class="rounded-lg border border-base-800 bg-base-900/60 p-4 transition-colors hover:border-accent-cyan/50"
             >
               <p class="font-mono text-[10px] uppercase tracking-widest text-accent-cyan">

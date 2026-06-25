@@ -1,39 +1,54 @@
 ---
-import type { CollectionEntry } from "astro:content";
-import { getCollection } from "astro:content";
+import type { Article } from "@/lib/articles";
+import {
+  articleCategoryPath,
+  articlePath,
+  articleTagPath,
+  getArticleDate,
+  getArticleDek,
+  getArticleDepartmentLabel,
+  getArticleDescription,
+  getArticleHero,
+  getArticleImage,
+  getArticleUpdatedDate,
+  getPublishedArticles,
+  getRelatedArticles,
+} from "@/lib/articles";
 import BaseLayout from "./BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import ContentPanel from "@/components/ContentPanel.astro";
-import ShareButtons from "@/components/blog/ShareButtons.astro";
-import ArticleCard from "@/components/blog/ArticleCard.astro";
+import ShareButtons from "@/components/articles/ShareButtons.astro";
+import ArticleCard from "@/components/articles/ArticleCard.astro";
 import Lightbox from "@/components/gallery/Lightbox";
 
 interface Props {
-  frontmatter: CollectionEntry<"blog">["data"];
+  article: Article;
   readingTime: string;
-  id: string;
-  previous: CollectionEntry<"blog"> | null;
-  next: CollectionEntry<"blog"> | null;
+  previous: Article | null;
+  next: Article | null;
 }
 
-const { frontmatter, readingTime, id, previous, next } = Astro.props;
+const { article, readingTime, previous, next } = Astro.props;
+const frontmatter = article.data;
 
-const formattedDate = new Date(frontmatter.publishedAt).toLocaleDateString("en-US", {
+const publishedAt = getArticleDate(article);
+const updatedAt = getArticleUpdatedDate(article);
+const description = getArticleDescription(frontmatter);
+const dek = getArticleDek(frontmatter);
+const hero = getArticleHero(frontmatter);
+const seoImage = getArticleImage(frontmatter);
+const departmentLabel = getArticleDepartmentLabel(frontmatter);
+const formattedDate = publishedAt.toLocaleDateString("en-US", {
   year: "numeric",
   month: "long",
   day: "2-digit",
 });
 
-// Related posts: match by tags, exclude current, max 4
-const allPosts = (await getCollection("blog", ({ data }) => !data.draft)).filter(
-  (p) => p.id !== id
-);
-const relatedPosts = allPosts
-  .filter((p) => p.data.tags.some((t) => frontmatter.tags.includes(t)))
-  .sort((a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime())
-  .slice(0, 4);
+const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
+const toAbsoluteUrl = (value: string) => new URL(value, siteOrigin).toString();
+const canonicalPath = frontmatter.canonical ?? `${articlePath(article)}/`;
+const canonicalUrl = toAbsoluteUrl(canonicalPath);
 
-const currentUrl = Astro.url.href;
 const cdnImageBase = "https://cdn.hob.farm/";
 
 const getCdnImageVariant = (src: string, width: number) => {
@@ -53,19 +68,79 @@ const getCdnImageSrcset = (src: string, widths: number[]) => {
     .join(", ");
 };
 
-const heroSrc = frontmatter.hero
-  ? getCdnImageVariant(frontmatter.hero, 1280)
-  : undefined;
-const heroSrcset = frontmatter.hero
-  ? getCdnImageSrcset(frontmatter.hero, [640, 960, 1280, 1600])
-  : undefined;
+const heroSrc = hero ? getCdnImageVariant(hero, 1280) : undefined;
+const heroSrcset = hero ? getCdnImageSrcset(hero, [640, 960, 1280, 1600]) : undefined;
+
+const allArticles = await getPublishedArticles();
+const relatedArticles = getRelatedArticles(article, allArticles, 4);
+
+const relatedLinks = [
+  frontmatter.relatedGallery && {
+    label: "Related visual",
+    href: frontmatter.relatedGallery,
+  },
+  frontmatter.relatedProject && {
+    label: "Related project",
+    href: frontmatter.relatedProject,
+  },
+].filter((link): link is { label: string; href: string } => Boolean(link));
+
+const contextualCtas = [
+  frontmatter.workshopCTA,
+  frontmatter.academyCTA,
+  frontmatter.supportCTA,
+].filter((link): link is { label: string; href: string } => Boolean(link));
+
+if (contextualCtas.length === 0) {
+  if (frontmatter.category === "grimoire") {
+    contextualCtas.push({ label: "Explore Grimoire", href: "/grimoire/" });
+  } else if (["research", "stylefusion", "technical"].includes(frontmatter.category ?? "")) {
+    contextualCtas.push({ label: "Learn the workflow", href: "/academy/" });
+  } else if (["magazine-time-machine", "cultural-thread"].includes(frontmatter.category ?? "")) {
+    contextualCtas.push({ label: "Support the magazine", href: "/support/" });
+  }
+}
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: frontmatter.title,
+  description,
+  image: seoImage ? [toAbsoluteUrl(seoImage)] : undefined,
+  datePublished: publishedAt.toISOString(),
+  dateModified: (updatedAt ?? publishedAt).toISOString(),
+  author: {
+    "@type": "Person",
+    name: frontmatter.author,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "HobFarm",
+    logo: {
+      "@type": "ImageObject",
+      url: `${siteOrigin}/favicon.svg`,
+    },
+  },
+  mainEntityOfPage: canonicalUrl,
+  keywords: frontmatter.tags,
+};
 ---
 
-<BaseLayout title={frontmatter.title} description={frontmatter.excerpt} image={frontmatter.hero}>
+<BaseLayout
+  title={`${frontmatter.title} | HobFarm Articles`}
+  description={description}
+  canonical={canonicalUrl}
+  image={seoImage}
+  imageAlt={frontmatter.heroAlt || frontmatter.title}
+  type="article"
+  publishedTime={publishedAt.toISOString()}
+  modifiedTime={(updatedAt ?? publishedAt).toISOString()}
+  tags={frontmatter.tags}
+  structuredData={articleJsonLd}
+>
   <section>
     <ContentPanel>
-      {/* Hero */}
-      {frontmatter.hero && (
+      {hero && (
         <div class="relative overflow-hidden rounded-t-lg aspect-[4/3] sm:aspect-21/9">
           <img
             src={heroSrc}
@@ -79,18 +154,18 @@ const heroSrcset = frontmatter.hero
           />
           <div class="absolute inset-0 bg-gradient-to-t from-base-950 via-base-950/80 to-base-950/20" />
           <div class="relative z-10 flex flex-col justify-end h-full p-6 sm:p-8 lg:p-12">
-            <div class="flex items-center gap-3 text-xs uppercase text-base-400">
-              <time datetime={frontmatter.publishedAt.toISOString()}>{formattedDate}</time>
+            <div class="flex flex-wrap items-center gap-3 text-xs uppercase text-base-400">
+              <time datetime={publishedAt.toISOString()}>{formattedDate}</time>
               <span>&middot;</span>
               <span>{readingTime}</span>
               {frontmatter.category && (
                 <>
                   <span>&middot;</span>
                   <a
-                    href={`/blog/category/${frontmatter.category}/`}
-                    class="font-mono text-accent-500 hover:text-base-100 transition-colors"
+                    href={articleCategoryPath(frontmatter.category)}
+                    class="font-mono text-accent-cyan hover:text-base-100 transition-colors"
                   >
-                    {frontmatter.category}
+                    {departmentLabel}
                   </a>
                 </>
               )}
@@ -99,35 +174,40 @@ const heroSrcset = frontmatter.hero
               {frontmatter.title}
             </h1>
             <p class="mt-2 sm:mt-3 text-sm sm:text-base text-base-300 max-w-2xl text-balance">
-              {frontmatter.excerpt}
+              {dek}
             </p>
           </div>
         </div>
       )}
 
-      {/* No hero fallback */}
-      {!frontmatter.hero && (
+      {!hero && (
         <Wrapper variant="narrow" class="pt-12 lg:pt-16">
-          <div class="flex items-center gap-3 text-xs uppercase text-base-400">
-            <time datetime={frontmatter.publishedAt.toISOString()}>{formattedDate}</time>
+          <div class="flex flex-wrap items-center gap-3 text-xs uppercase text-base-400">
+            <time datetime={publishedAt.toISOString()}>{formattedDate}</time>
             <span>&middot;</span>
             <span>{readingTime}</span>
+            <span>&middot;</span>
+            <span class="font-mono text-accent-cyan">{departmentLabel}</span>
           </div>
           <h1 class="mt-4 text-3xl lg:text-4xl font-light tracking-tight text-base-100 text-balance">
             {frontmatter.title}
           </h1>
           <p class="mt-3 text-base text-base-300 max-w-2xl text-balance">
-            {frontmatter.excerpt}
+            {dek}
           </p>
         </Wrapper>
       )}
 
-      {/* Tags */}
       <Wrapper variant="narrow" class="mt-6">
         <div class="flex flex-wrap gap-2">
+          {frontmatter.series && (
+            <span class="text-xs font-mono px-2 py-1 border border-accent-cyan/40 text-accent-cyan capitalize">
+              {frontmatter.series}
+            </span>
+          )}
           {frontmatter.tags.map((tag: string) => (
             <a
-              href={`/blog/tags/${tag}`}
+              href={articleTagPath(tag)}
               class="text-xs font-mono px-2 py-1 border border-base-700 text-base-400 hover:text-base-100 hover:border-base-500 transition-colors capitalize"
             >
               {tag}
@@ -136,28 +216,57 @@ const heroSrcset = frontmatter.hero
         </div>
       </Wrapper>
 
-      {/* Article Content */}
+      <Wrapper variant="narrow" class="mt-8">
+        <div class="border-y border-base-800 py-4">
+          <p class="text-xs uppercase tracking-wider text-base-500 mb-3">Share this article</p>
+          <ShareButtons title={frontmatter.title} text={description} url={canonicalUrl} tags={frontmatter.tags} />
+        </div>
+      </Wrapper>
+
       <Wrapper variant="narrow" class="mt-12">
         <Wrapper variant="prose">
           <slot />
         </Wrapper>
       </Wrapper>
 
-      {/* Share */}
+      {(relatedLinks.length > 0 || contextualCtas.length > 0) && (
+        <Wrapper variant="narrow" class="mt-12">
+          <div class="grid grid-cols-1 gap-3 border border-base-800 bg-base-950/60 p-4 sm:grid-cols-2">
+            {relatedLinks.map((link) => (
+              <a
+                href={link.href}
+                class="rounded-md border border-base-800 bg-base-900/70 px-4 py-3 text-sm text-base-200 transition-colors hover:border-accent-cyan/50 hover:text-white"
+              >
+                <span class="block font-mono text-[10px] uppercase tracking-wider text-accent-cyan">Related</span>
+                <span class="mt-1 block">{link.label}</span>
+              </a>
+            ))}
+            {contextualCtas.map((link) => (
+              <a
+                href={link.href}
+                class="rounded-md border border-base-800 bg-base-900/70 px-4 py-3 text-sm text-base-200 transition-colors hover:border-accent-magenta/50 hover:text-white"
+              >
+                <span class="block font-mono text-[10px] uppercase tracking-wider text-accent-magenta-bright">Next</span>
+                <span class="mt-1 block">{link.label}</span>
+              </a>
+            ))}
+          </div>
+        </Wrapper>
+      )}
+
       <Wrapper variant="narrow" class="mt-12">
         <div class="border-t border-base-700 pt-6">
-          <p class="text-xs uppercase text-base-500 mb-3">Share this article</p>
-          <ShareButtons title={frontmatter.title} url={currentUrl} />
+          <p class="text-xs uppercase tracking-wider text-base-500 mb-3">Share this article</p>
+          <ShareButtons title={frontmatter.title} text={description} url={canonicalUrl} tags={frontmatter.tags} />
         </div>
       </Wrapper>
 
-      {/* Prev / Next */}
       {(previous || next) && (
         <Wrapper variant="narrow" class="mt-12">
           <div class="border-t border-base-700 pt-8 grid grid-cols-2 gap-8">
             {previous ? (
               <a
-                href={`/blog/posts/${previous.id}`}
+                href={articlePath(previous)}
                 class="group flex items-start gap-3 text-base-400 hover:text-base-100 transition-colors"
               >
                 <svg class="size-5 mt-0.5 shrink-0 rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -171,7 +280,7 @@ const heroSrcset = frontmatter.hero
             ) : <div />}
             {next ? (
               <a
-                href={`/blog/posts/${next.id}`}
+                href={articlePath(next)}
                 class="group flex items-start gap-3 text-right text-base-400 hover:text-base-100 transition-colors ml-auto"
               >
                 <div>
@@ -187,13 +296,12 @@ const heroSrcset = frontmatter.hero
         </Wrapper>
       )}
 
-      {/* Related Posts */}
-      {relatedPosts.length > 0 && (
+      {relatedArticles.length > 0 && (
         <Wrapper variant="standard" class="mt-16 pb-12">
           <div class="border-t border-base-700 pt-8">
             <h2 class="text-xl font-light text-base-100">Related articles</h2>
             <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-12">
-              {relatedPosts.map((post) => <ArticleCard post={post} />)}
+              {relatedArticles.map((post) => <ArticleCard post={post} />)}
             </div>
           </div>
         </Wrapper>
@@ -204,11 +312,9 @@ const heroSrcset = frontmatter.hero
   <Lightbox client:only="react" />
 
   <style is:global>
-    /* Prose container needs overflow visible for wide breakouts */
     .prose {
       overflow: visible !important;
     }
-    /* Wide figures break out of prose max-width */
     .blog-wide {
       position: relative !important;
       left: 50% !important;
@@ -227,8 +333,6 @@ const heroSrcset = frontmatter.hero
       width: 28rem !important;
       max-width: 82vw !important;
     }
-    /* Wide image grids (break out of prose, multi-column). Use a div, not a
-       figure, so the figure flex rule below does not override the grid. */
     .blog-grid {
       position: relative !important;
       left: 50% !important;
@@ -353,7 +457,6 @@ const heroSrcset = frontmatter.hero
       font-family: "IBM Plex Mono", monospace;
       text-align: center;
     }
-    /* Center all figures in blog posts */
     .prose figure,
     article figure {
       display: flex !important;
@@ -363,7 +466,6 @@ const heroSrcset = frontmatter.hero
       margin-left: auto !important;
       margin-right: auto !important;
     }
-    /* Center all images inside prose */
     .prose img,
     article figure img {
       display: block !important;
@@ -371,7 +473,6 @@ const heroSrcset = frontmatter.hero
       margin-right: auto !important;
       max-width: 100% !important;
     }
-    /* Figcaption styling */
     .prose figcaption,
     article figcaption {
       margin-top: 0.5rem;
@@ -382,7 +483,6 @@ const heroSrcset = frontmatter.hero
       text-align: center !important;
       width: 100%;
     }
-    /* Video styling */
     .prose video,
     article video {
       display: block !important;

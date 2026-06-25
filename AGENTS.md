@@ -1,331 +1,611 @@
-# Repository Guidelines
+# AGENTS.md: HobFarm Repository Guide
 
-## Project Identity
+## Purpose
 
-This repository is the HobFarm website. It is built with Astro 6, Tailwind CSS 4, TypeScript, Cloudflare Pages Functions, and HobFarm-specific content systems.
+This repository contains the HobFarm website.
 
-The site is not a generic SaaS landing page. Preserve the HobFarm / StyleFusion / Grimoire identity: strange but usable, visual-system driven, media-lab oriented, underground/outsider in tone, and connected to the broader HobFarm ecosystem.
+HobFarm is an online magazine and visual studio. The site publishes articles, visual galleries, recurring projects, production notes, workflow education, and support paths.
 
-Default agent behavior: implement narrowly, validate with build/preview, and leave deploys or Cloudflare mutations to explicit user approval.
+Agents working in this repo should help build, fix, organize, validate, and improve the website. Work should be practical, scoped, and validated before handoff.
 
-## HobFarm Seasonal Release Rhythm
+---
 
-HobFarm uses a flexible seasonal release rhythm.
+## Agent Role
 
-- Year = 4 seasons.
-- Season = 3 monthly character/cultivar cycles.
-- Month = 1 base character or visual theme.
-- 28 days = ROYGBIV growth cycle, 4 days per color.
-- Final month days = harvest, packaging, gallery/process updates, social/DA/premium/shop/POD prep.
+You are operating inside the HobFarm website repo.
 
-This rhythm is a creative scaffold, not a rigid rule system. Use it to organize content, metadata, pages, releases, and task suggestions. Do not block or reject useful work just because it does not fit the current phase.
+Your job is to:
 
-## ROYGBIV Monthly Color Cycle
+1. Inspect the current repo state.
+2. Understand the requested task.
+3. Make the smallest useful change that solves the task.
+4. Preserve working behavior.
+5. Run validation.
+6. Summarize what changed and what still needs review.
 
-Default monthly cycle:
+Do not turn a small website fix into a full redesign.
 
-- Days 01-04: Red Phase
-- Days 05-08: Orange Phase
-- Days 09-12: Yellow Phase
-- Days 13-16: Green Phase
-- Days 17-20: Blue Phase
-- Days 21-24: Indigo Phase
-- Days 25-28: Violet Phase
-- Days 29-31: Harvest / packaging
+Do not invent new architecture when existing routes, layouts, components, or content collections can be adapted.
 
-Each color phase may include seed/baseline work, variation, scene/video/model-handoff tests, selection, and field notes.
+Do not focus on outdated brand systems, seasonal scaffolds, or old style language unless an existing file requires compatibility.
 
-## Public Voice Direction
+---
 
-Public copy is plain and quickly understandable. Lead with what a thing is and does. The farm/cultivation metaphor is **not** required vocabulary and must not be used as decoration in headers, CTAs, or labels (keeper, specimen, grow log, greenhouse, "from signal to ___", "what grew here", cultivation paths). Organic-tech words are allowed only where they name a real structural system: the seasonal release rhythm above, or Grimoire's actual knowledge-graph concepts.
+## Current Site Model
 
-Avoid equally generic SaaS/AI-platform language ("leverage", "empower", "seamless", "scalable", "innovative", "orchestration" as marketing) and machine metaphors ("pipeline", "engine", "output" as decoration). Describe the actual thing.
+Use this model when making site decisions:
 
-Preserve HobFarm's dark, strange, polished identity through the work and the visual system, not the lingo: Atomic Noir, Art Deco, Vegas lab energy, black ground, cyan/purple/green/magenta accents, underground/outsider media-lab. Do not make the tone cute, rustic, cottagecore, corporate-biotech, or generic-startup.
+| Area     | Role                                                                                       |
+| -------- | ------------------------------------------------------------------------------------------ |
+| Homepage | Front page, hero intro, featured routes, latest articles                                   |
+| Articles | Main editorial feed, formerly blog                                                         |
+| Gallery  | Visual archive for image sets, character sheets, experiments, and finished media           |
+| Projects | Recurring characters, series, tools, worlds, and formats                                   |
+| Workshop | Process notes, production methods, systems, and behind-the-scenes work                     |
+| Academy  | Workflow education, onboarding, courses, and paid learning paths                           |
+| Support  | Ko-fi, Patreon, sponsor paths, contact, and collaboration routes                           |
+| Grimoire | Knowledge and structure layer for notes, references, content planning, and admin workflows |
 
-`docs/brand/voice-glossary.md` is the source of truth for voice and palette; when it and this file disagree, the glossary wins.
+The website should support this loop:
 
-## Gallery / Process / Release Roles
+```text
+publish on hob.farm
+share fragments on social media
+bring readers back to the article, gallery, project, workshop note, or academy page
+connect them to related content
+make sharing, following, supporting, or learning the obvious next action
+```
 
-Use plain, literal surface names:
+---
 
-- Visuals = the gallery of finished images and video.
-- Process / How It's Made = how a piece was made.
-- Release = a season's collection.
-- StyleFusion = the system that turns references into reusable prompt and metadata packages.
-- Grimoire = the knowledge graph under HobFarm (how images, words, styles, references, and finished work connect).
+## Priority Rules
 
-Gallery pages describe artifacts: visual structure, palette, materials, locked and flexible traits, notes, media, search metadata, and related links.
+When instructions conflict, use this order:
 
-Process pages describe methods: references, steps, model handoffs, revisions, failures, selection, and stabilization.
+1. Explicit user request in the current task.
+2. This `AGENTS.md`.
+3. `CLAUDE.md`, if the agent is Claude Code or the task references Claude Code.
+4. Existing repo conventions.
+5. Framework and platform best practices.
 
-Release pages gather a season: monthly themes, featured pieces, write-ups, notes, premium previews, supporter notes, archives, and re-released editions.
+Current thread context beats old project lore.
 
-## Seasonal Scarcity and Archive Logic
+Working code beats theoretical architecture.
 
-Seasonal releases may support a light scarcity model without fake urgency.
+Validated fixes beat large speculative rewrites.
 
-Public notes should remain useful when possible. Commercial packs, premium downloads, supporter extras, and expanded galleries can rotate, archive, or return as re-released or special editions.
+---
 
-Use honest language: "Older seasonal releases may rotate into the archive. Popular pieces can return later as re-released editions or expanded premium packs."
+## Stack
 
-Avoid manipulative urgency: "Gone forever. Buy now."
+| Layer     | Technology                                     |
+| --------- | ---------------------------------------------- |
+| Framework | Astro 6                                        |
+| Language  | TypeScript                                     |
+| Styling   | Tailwind CSS v4, CSS-first setup               |
+| CMS       | PagesCMS, configured in `.pages.yml`           |
+| Content   | Astro content collections in `src/content/`    |
+| Hosting   | Cloudflare Pages                               |
+| Functions | Cloudflare Pages Functions in `functions/api/` |
+| CDN       | Cloudflare R2 at `https://cdn.hob.farm`        |
 
-## Non-Rigidity Rule
+Tailwind 4 uses CSS-first configuration. Inspect `src/styles/` before changing styling architecture. Do not create a Tailwind 3-style config unless the repo has clearly migrated to one.
 
-The seasonal/color system is a creative scaffold, not a compliance system.
+---
 
-Do:
+## Repo Structure
 
-- use season/month/color phase as organizing context
-- suggest next tasks that fit the rhythm
-- keep metadata optional and backward-compatible
-- preserve creative flexibility
-- help the operator package and monetize work without adding ceremony
+```text
+src/
+├── components/
+│   ├── global/          # Header, footer, nav
+│   ├── gallery/         # Gallery-specific components
+│   ├── grimoire/        # Grimoire-specific components
+│   ├── projects/        # Project cards and detail views
+│   ├── sections/        # Page sections
+│   └── ui/              # Buttons, cards, inputs, primitives
+├── content/
+│   ├── blog/            # Publicly presented as Articles
+│   ├── gallery/
+│   ├── grimoire/
+│   ├── projects/
+│   ├── changelog/
+│   └── ...
+├── layouts/
+├── lib/
+├── pages/
+├── styles/
+└── data/
 
-Do not:
-
-- force every artifact into every field
-- block creative deviations
-- overbuild scheduling automation
-- create enterprise content operations
-- turn the cycle into a rigid checklist
-
-## Project Structure & Module Organization
-
-`src/pages/` contains route entrypoints. Keep page files mostly declarative and compose them from `src/components/` and `src/layouts/`.
-
-Feature components are grouped under folders such as `global/`, `gallery/`, `grimoire`, `projects/`, and `ui/`. Use existing folders and conventions before creating new ones.
-
-Markdown content lives in `src/content/`, with collection schemas in `src/content.config.ts`. Frontmatter must match the configured content schemas.
-
-Shared utilities belong in `src/lib/`, static data in `src/data/`, and site-wide styles in `src/styles/`.
-
-Cloudflare Pages Functions live in `functions/api/`.
-
-Use `public/` for static assets and deploy rules such as `public/_headers` and `public/_redirects`.
+functions/api/           # Cloudflare Pages Functions
+public/                  # Static assets, _headers, _redirects
+astro.config.mjs
+.pages.yml
+```
 
 Do not hand-edit generated output in `.astro/` or `dist/`.
 
-## Tooling and Agent Roles
+---
 
-This repo may be edited from Antigravity, VS Code, Codex CLI, Codex extension, Claude Code, or Antigravity's built-in agent system.
+## Standard Work Procedure
 
-Use Codex or Claude Code for implementation work:
+For every task:
 
-- component edits
-- Astro routing
-- Tailwind class changes
-- content/schema changes
-- Cloudflare Pages Function edits
-- refactors
-- build/debug cycles
+1. Run or inspect `git status --short`.
+2. Identify existing uncommitted changes.
+3. Avoid overwriting unrelated user or agent changes.
+4. Inspect relevant files before editing.
+5. Make focused edits.
+6. Run the correct validation command.
+7. Fix validation errors caused by the task.
+8. Summarize files changed, commands run, and results.
 
-Use Antigravity's built-in browser-capable agent primarily for visual QA and small UI polish:
+If uncommitted changes exist in files you need to edit, inspect them first. Do not overwrite them blindly.
 
-- launch browser
-- inspect rendered desktop/mobile layout
-- catch spacing, overflow, contrast, and navigation issues
-- verify interactions visually
-- make small layout polish edits after implementation
+---
 
-Do not use browser agents for broad refactors, architecture changes, or large code edits unless visual inspection is required.
-
-When Codex has the Cloudflare plugin enabled, use Cloudflare Skills/MCP for Cloudflare-specific docs and account inspection. Use Wrangler for local dev, dry-run, deploy, and migration commands. Do not let MCP or Wrangler mutate Cloudflare resources unless explicitly approved.
-
-## Parallel Agent Safety
-
-Multiple agents may be open at the same time across different projects. Avoid multiple agents editing the same repo/branch simultaneously.
-
-If parallel work is needed in this repo, split work by branch or git worktree. Do not let two agents edit overlapping files in the same working tree.
-
-Before editing, inspect current git status:
-
-```bash
-git status --short
-```
-
-If there are existing uncommitted changes, identify whether they are user-authored or agent-authored before editing. Do not overwrite unrelated changes.
-
-For every task, keep changes scoped to the requested area. Do not opportunistically restyle unrelated pages or normalize unrelated files.
-
-## Build, Test, and Development Commands
+## Commands
 
 Use npm because `package-lock.json` is committed.
-
-Common commands:
 
 ```bash
 npm install
 npm run dev
 npm run build
+npm test
 npm run preview
 npx astro check
 ```
 
-`npm run dev` starts the Astro dev server with local proxying for API routes.
+Before assuming a script exists, inspect `package.json`.
 
-`npm run build` creates the production build in `dist/` and is the main pre-push validation step.
+Use `npm run build` as the main validation command.
 
-`npm run preview` serves the built site locally.
+Use `npm test` for Node-based structural tests. Test files should live in `tests/` and use the `*.test.mjs` suffix.
 
-`npx astro check` is useful when changing content schemas, markdown frontmatter, Astro types, TS, or TSX.
+Use `npx astro check` when touching:
 
-Before making assumptions, inspect `package.json` for the actual scripts available in this repo.
+* content schemas
+* Markdown frontmatter
+* Astro types
+* TypeScript
+* TSX
+* layout props
+* component props
 
-## Validation Rules
+Use `npm run preview` for local visual review after a production build.
 
-For code/content changes, run:
+---
+
+## Git Safety
+
+Multiple agents may touch this repo across different tools.
+
+Before editing:
 
 ```bash
-npm run build
+git status --short
 ```
 
-If the task touches content schemas, frontmatter, TS/TSX, or Astro typing, also run:
+If there are unrelated changes, preserve them.
 
-```bash
-npx astro check
-```
+If parallel work is needed, use separate branches or worktrees.
 
-For visual/UI tasks, run the site locally and validate with preview or a browser-capable agent.
+Keep changes scoped to the requested task.
 
-For touched `functions/api/*` endpoints, manually exercise the relevant endpoint locally when practical. Summarize the endpoint behavior tested.
+Do not restyle unrelated pages.
 
-No dedicated test runner or coverage threshold is currently configured. If automated tests are added, add the command to `package.json` and document the naming convention here.
+Do not normalize unrelated files.
 
-## Browser QA Checklist
-
-For UI-facing changes, final validation should include:
-
-- desktop viewport check
-- mobile viewport check
-- navigation/header/footer check
-- obvious overflow check
-- image/media loading check
-- readability and contrast check
-- interactive component check if hydration is involved
-
-When using the Antigravity browser agent, summarize observations and changes. Do not dump raw screenshots unless requested.
-
-## Coding Style & Naming Conventions
-
-Use 2-space indentation, double quotes, and semicolons in TS and TSX files.
-
-Prefer the `@/` path alias for imports from `src/`.
-
-Name components in PascalCase, for example `ProjectCard.astro`.
-
-Keep content files kebab-case, for example `building-in-public.md`.
-
-Keep page files thin. Move reusable logic into components or `src/lib/`.
-
-Prefer static output and minimal hydration. Use `client:visible` or `client:idle` over `client:load` unless immediate hydration is required.
-
-Do not introduce heavy client-side JavaScript for static marketing/content pages unless the task explicitly requires it.
-
-## Astro Rules
-
-Prefer Astro components for layout, static content, and page composition.
-
-Use React/TSX components only where interactivity, state, or existing component architecture requires them.
-
-Keep content/data separate from layout when practical.
-
-Do not move content into hard-coded components if it belongs in `src/content/` or `src/data/`.
-
-Do not create new global patterns without checking existing layout/component conventions.
-
-## Tailwind CSS Rules
-
-This project uses Tailwind CSS 4. Do not assume Tailwind 3 configuration patterns.
-
-Before changing styling architecture, inspect existing CSS/theme setup in `src/styles/`, global CSS imports, and any Tailwind/PostCSS/Vite configuration present in the repo.
-
-Prefer existing utility patterns, design tokens, theme variables, and component conventions.
-
-Do not flatten the visual language into generic white-card SaaS minimalism.
-
-For UI polish, prefer small focused edits over sweeping design rewrites.
-
-## Visual Direction
-
-Preserve the HobFarm / StyleFusion / Grimoire visual world:
-
-- strange but navigable
-- media-lab / visual-pipeline feel
-- underground, outsider, gothic, psychedelic, surreal, retro-future, or cinematic where appropriate
-- clear hierarchy without corporate blandness
-- functional pages that still feel like part of an authored system
+Do not run destructive git commands unless explicitly instructed.
 
 Avoid:
 
-- generic AI startup gradients
-- lifeless corporate minimalism
-- influencer creator-template aesthetics
-- unnecessary positivity language
-- visual changes that erase the site's edge or specificity
-
-## Content Rules
-
-Frontmatter must match `src/content.config.ts`.
-
-Release/color metadata should remain optional and backward-compatible. Do not introduce mandatory season, monthly cultivar, color phase, or availability fields without explicit approval.
-
-If optional release metadata is requested, prefer this shape unless the local schema has already evolved:
-
-```ts
-releaseSeason?: {
-  year: number;
-  season: "winter" | "spring" | "summer" | "harvest";
-  seasonCode?: string;
-};
-
-monthlyCultivar?: {
-  month: string;
-  characterSlug?: string;
-  theme?: string;
-};
-
-colorPhase?: {
-  name: "red" | "orange" | "yellow" | "green" | "blue" | "indigo" | "violet";
-  phaseIndex?: number;
-  dayRange?: string;
-};
-
-availability?: {
-  status:
-    | "current"
-    | "retiring-soon"
-    | "archived"
-    | "preview-only"
-    | "regrown-edition"
-    | "special-edition";
-  activeFrom?: string;
-  activeUntil?: string;
-  archiveNote?: string;
-  rereleaseNote?: string;
-};
+```bash
+git reset --hard
+git clean -fd
+git checkout -- .
+git push --force
 ```
 
-Keep titles, descriptions, dates, tags, slugs, and collection fields consistent with existing content.
+unless the user explicitly requests that exact kind of cleanup and understands the effect.
 
-Prefer media hosted on `cdn.hob.farm`. Treat checked-in gallery or project assets as existing exceptions rather than the default for new content.
+---
+
+## Website Direction
+
+The site should read as an online magazine and visual studio.
+
+Use clear public labels:
+
+* Articles
+* Gallery
+* Projects
+* Workshop
+* Academy
+* Support
+* Grimoire, only where it is useful as a knowledge or admin system
+
+The public blog should be presented as **Articles**. The internal collection may remain `blog/` until a clean migration is requested.
+
+Use plain descriptive copy. Say what the thing is, what it contains, and what the reader can do next.
+
+Let the content establish the tone. Do not label the work as strange, weird, unusual, or similar vibe words in core positioning.
+
+---
+
+## Homepage Rules
+
+When working on the homepage, treat it as the front page of the publication.
+
+Preferred order:
+
+1. Hero intro explaining HobFarm as an online magazine and visual studio.
+2. Featured article or current lead feature.
+3. Latest Articles feed.
+4. Project or series cards.
+5. Gallery preview.
+6. Workshop or Academy CTA.
+7. Support, sponsor, contact, or follow CTA.
+
+The homepage should quickly answer:
+
+1. What is HobFarm?
+2. What can I read?
+3. What can I look at?
+4. What recurring work exists here?
+5. Where should I go next?
+
+---
+
+## Article Rules
+
+Articles are the main editorial objects.
+
+Article pages should include:
+
+1. Title.
+2. Date.
+3. Description or dek.
+4. Hero image when available.
+5. Tags.
+6. Share actions.
+7. Related articles.
+8. Related gallery or project links when relevant.
+9. Workshop, Academy, Support, or follow CTA when relevant.
+10. Good metadata for social previews.
+
+Recommended article metadata where the schema supports it:
+
+```ts
+title: string;
+description: string;
+pubDate: Date | string;
+updatedDate?: Date | string;
+heroImage?: string;
+tags?: string[];
+series?: string;
+department?: string;
+relatedGallery?: string;
+relatedProject?: string;
+ctaType?: "share" | "gallery" | "academy" | "support" | "project" | "workshop";
+```
+
+Keep optional fields optional unless the user explicitly requests a schema migration.
+
+---
+
+## Social Sharing Rules
+
+Every article should be easy to share.
+
+Required metadata for article pages:
+
+| Field                  | Purpose                     |
+| ---------------------- | --------------------------- |
+| `og:title`             | Social preview headline     |
+| `og:description`       | Social preview text         |
+| `og:image`             | Social preview image        |
+| `og:url`               | Canonical URL               |
+| `twitter:card`         | Large card preview support  |
+| JSON-LD Article schema | Structured article metadata |
+
+Preferred share actions:
+
+* Copy link
+* Facebook
+* Threads
+* Bluesky
+* X
+* Reddit
+* Email
+
+Keep share controls visible, clean, and secondary to the article.
+
+---
+
+## Gallery Rules
+
+Gallery pages are the visual archive.
+
+They should prioritize:
+
+1. Strong image presentation.
+2. Clear title and description.
+3. Related article or project links.
+4. Useful metadata.
+5. Mobile readability.
+6. Fast loading.
+7. Durable CDN image paths.
+
+Prefer media hosted on:
+
+```text
+https://cdn.hob.farm/gallery/{gallery-slug}/
+https://cdn.hob.farm/projects/{project-slug}/
+https://cdn.hob.farm/site/
+```
 
 Do not add large media files to the repo unless explicitly instructed.
 
-If adding gallery/project content, preserve existing content taxonomy and naming conventions.
+---
 
-## Cloudflare Pages and Functions Rules
+## Projects Rules
 
-Cloudflare Pages Functions live in `functions/api/`.
+Project pages should describe recurring work, systems, tools, characters, worlds, or formats.
 
-Do not modify Cloudflare account resources, Pages settings, environment variables, DNS, R2, KV, D1, Workers, Pages projects, routes, or secrets unless explicitly instructed.
+A project page should explain:
 
-Cloudflare inspection through MCP should default to read-only. Treat logs as sensitive.
+1. What it is.
+2. What exists now.
+3. Where to see examples.
+4. How it connects to articles, galleries, workshop notes, or academy material.
+5. What the reader can do next.
 
-`wrangler` commands that deploy, mutate resources, alter secrets, or apply remote migrations require explicit approval.
+Do not call HobFarm tools or recurring creative systems “products” unless the page is specifically about physical goods, store items, or product design work.
 
-Safe/read-only or local-validation commands include:
+---
+
+## Workshop Rules
+
+Workshop pages explain how work is made.
+
+Use Workshop for:
+
+* process notes
+* production methods
+* model tests
+* tool notes
+* prompts and structured workflows
+* revisions and failures
+* before/after analysis
+* build notes
+* website systems
+
+Workshop content should help readers understand the method without becoming a generic tutorial unless the task asks for one.
+
+---
+
+## Academy Rules
+
+Academy pages are for workflow education.
+
+Use Academy for:
+
+* free onboarding material
+* paid courses
+* workflow packs
+* structured learning paths
+* tool literacy
+* production systems
+* templates or reusable methods
+
+Academy content should connect naturally from Articles, Gallery, Projects, and Workshop pages.
+
+---
+
+## Grimoire Rules
+
+Grimoire is the knowledge and structure layer.
+
+Use Grimoire for:
+
+* rough notes
+* reference organization
+* project memory
+* article seeds
+* gallery seeds
+* workshop seeds
+* character and series notes
+* link maps
+* admin planning
+* Codex task packets
+* model-generated structure that needs review
+
+Grimoire is not the main public publication layer. Articles are the public editorial layer.
+
+Public Grimoire pages should exist only when they are useful to readers. Otherwise, Grimoire can remain internal, admin-facing, or semi-private.
+
+When adding Kimi or Workers AI features, prefer Grimoire workflows before generic chatbot workflows.
+
+Useful Kimi-powered Grimoire modes:
+
+* ingest note
+* extract concepts
+* link related entries
+* article brief
+* gallery brief
+* workshop brief
+* Codex packet
+* Codex plan review
+* build error debug
+* social fragment generator
+
+Do not auto-publish AI-generated content. Generate, review, then publish.
+
+---
+
+## Admin AI Rules
+
+Admin AI tools are private.
+
+They may help with:
+
+* article drafts
+* frontmatter repair
+* tag generation
+* Grimoire entry resolution
+* Codex task packets
+* build error diagnosis
+* social captions
+* gallery briefs
+* workshop notes
+
+They must not be public unless explicitly requested.
+
+Use server-side functions. Do not call model APIs directly from browser-only code.
+
+Protect admin endpoints with existing auth. If no auth exists, use a server-side secret until a proper admin gate is connected.
+
+Do not expose secrets in client code.
+
+For Cloudflare Workers AI, use a binding named `AI` when implemented.
+
+---
+
+## Content Creation Procedure
+
+When creating website content:
+
+1. Identify the right content type: article, gallery entry, project page, workshop note, academy page, support page, changelog entry, or Grimoire entry.
+2. Inspect the matching collection schema.
+3. Create valid YAML frontmatter.
+4. Use kebab-case filenames.
+5. Write clear titles and descriptions.
+6. Add useful tags.
+7. Use CDN image URLs when supplied.
+8. Link related articles, galleries, projects, or workshop notes when relevant.
+9. Run validation.
+
+Do not invent missing facts, routes, image URLs, or product details.
+
+If required inputs are missing, use placeholders only when the task allows it and mark them clearly.
+
+---
+
+## Styling Rules
+
+Use existing site patterns first.
+
+When making layout or visual changes:
+
+1. Inspect current components and styles.
+2. Use Tailwind utilities already common in the repo.
+3. Keep contrast readable.
+4. Keep mobile layouts clean.
+5. Avoid heavy client-side JavaScript for static content pages.
+6. Avoid sweeping redesigns unless explicitly requested.
+
+Do not preserve outdated visual branding rules when they conflict with current site direction.
+
+Do not flatten the site into generic SaaS minimalism.
+
+Do not add decorative language or theme concepts just because older docs used them.
+
+---
+
+## Component Rules
+
+Use Astro components for layout, static content, and page composition.
+
+Use React or TSX only when interactivity, state, or existing component architecture requires it.
+
+Component rules:
+
+* PascalCase filenames.
+* One responsibility per component.
+* Prefer props over hardcoded content.
+* Prefer `@/` imports from `src/`.
+* Keep route files lean.
+* Use semantic HTML.
+* Use static rendering by default.
+* Use `client:visible` or `client:idle` instead of `client:load` unless immediate hydration is required.
+
+---
+
+## Content Schema Rules
+
+Schemas live in `src/content.config.ts`.
+
+PagesCMS config lives in `.pages.yml`.
+
+When changing fields:
+
+1. Update `src/content.config.ts`.
+2. Update `.pages.yml` if the CMS needs the field.
+3. Update templates and components consuming the field.
+4. Preserve backward compatibility where practical.
+5. Run validation.
+
+Do not make optional fields mandatory unless the task explicitly requires it.
+
+---
+
+## CDN Rules
+
+Use full CDN URLs for CDN-hosted assets.
+
+```text
+https://cdn.hob.farm/projects/{project-slug}/
+https://cdn.hob.farm/gallery/{gallery-slug}/
+https://cdn.hob.farm/grimoire/
+https://cdn.hob.farm/site/
+```
+
+Accepted image formats:
+
+* `.png`
+* `.jpg`
+* `.webp`
+
+Accepted video formats:
+
+* `.mp4`
+* `.gif`
+
+Use local `public/` assets only for files intentionally served from the repo.
+
+---
+
+## Cloudflare Rules
+
+Cloudflare Pages deploys from `main`.
+
+Preview deployments come from non-production branches.
+
+Cloudflare Pages Functions live in:
+
+```text
+functions/api/
+```
+
+Do not mutate Cloudflare resources unless explicitly approved.
+
+This includes:
+
+* Pages settings
+* environment variables
+* secrets
+* DNS
+* R2
+* KV
+* D1
+* Workers
+* routes
+* production deployments
+* remote migrations
+
+Safe local or read-only commands include:
 
 ```bash
 npx wrangler whoami
@@ -333,15 +613,7 @@ npx wrangler pages dev
 npx wrangler pages project list
 ```
 
-Read-only but sensitive:
-
-```bash
-npx wrangler tail
-```
-
-Only use log/tail commands after confirming the target project. Summarize logs; do not paste raw logs if they may contain user data, tokens, request bodies, emails, or other sensitive data.
-
-Approval-required commands include:
+Commands requiring explicit approval include:
 
 ```bash
 npx wrangler pages deploy
@@ -351,57 +623,142 @@ npx wrangler d1 migrations apply --remote
 npx wrangler d1 execute --remote
 ```
 
-Also require approval for any command or MCP action that mutates Cloudflare resources.
+Treat logs as sensitive. Summarize logs instead of pasting raw user data, tokens, request bodies, emails, or secrets.
 
-## Security & Environment Rules
+---
 
-Keep secrets in `.dev.vars` or the appropriate local secret store. Never commit environment values.
+## Functions Rules
 
-Do not commit `.env`, `.dev.vars`, API keys, service tokens, OAuth secrets, session dumps, raw logs, generated credentials, or account IDs beyond those already intentionally checked into config.
+When touching `functions/api/*`:
 
-Do not paste raw production logs into final responses.
+1. Inspect the existing function style.
+2. Confirm request method.
+3. Validate request body.
+4. Keep secrets server-side.
+5. Return clean JSON errors.
+6. Test locally when practical.
+7. Summarize endpoint behavior tested.
 
-Do not expose private user/customer data from API responses, logs, D1 rows, R2 objects, KV values, or AI Gateway traces.
+Do not expose model APIs, auth tokens, or internal secrets to browser code.
 
-## Commit & Pull Request Guidelines
+---
 
-Recent history mixes plain summaries like `updated components` with scoped commits like `feat(gallery): add new components for gallery functionality`.
+## Security Rules
 
-Prefer short, imperative commit subjects. Add a scope when it clarifies the area changed, for example:
+Never commit:
+
+* `.env`
+* `.dev.vars`
+* API keys
+* service tokens
+* OAuth secrets
+* generated credentials
+* raw logs
+* session dumps
+* private user data
+
+Use `you@example.com` for email input placeholders.
+
+Route public contact through `/contact/`.
+
+Use `/contact/?subject=security` for security-related contact paths.
+
+Do not invent new visible contact addresses.
+
+---
+
+## Validation Checklist
+
+Before finishing a task, check what applies:
+
+1. `npm run build` passes.
+2. `npx astro check` passes when relevant.
+3. No broken imports.
+4. No schema errors.
+5. No missing content references.
+6. Touched routes load.
+7. Images resolve.
+8. Mobile layout remains readable.
+9. CTAs point to real routes.
+10. Article metadata is present when article pages are touched.
+11. Share previews have title, description, image, and URL when sharing is touched.
+12. No secrets were committed.
+
+Do not claim a visual check was completed unless preview or browser QA was actually performed.
+
+---
+
+## Browser QA Checklist
+
+For UI-facing changes, validate:
+
+* desktop viewport
+* mobile viewport
+* header and navigation
+* footer
+* overflow
+* image/media loading
+* readability
+* contrast
+* interactive components when hydration is involved
+
+Summarize what was checked. Do not dump raw screenshots unless requested.
+
+---
+
+## Commit and PR Rules
+
+Use short imperative commit messages.
+
+Examples:
 
 ```text
-feat(gallery): add themed gallery landing cards
-fix(auth): correct email change form state
-docs(site): update HobFarm project copy
-style(home): tighten hero spacing
+feat(articles): add latest feed to homepage
+fix(gallery): correct hero image metadata
+docs(site): update agent guide
+feat(grimoire): add resolve endpoint
+style(home): tighten article card spacing
 ```
 
-Pull requests should describe user-facing impact, list the main files or content collections touched, link related issues, and include screenshots for UI changes.
+Pull requests should include:
 
-## Final Response Requirements for Agents
+1. User-facing summary.
+2. Main files changed.
+3. Routes changed.
+4. Validation performed.
+5. Screenshots for UI changes when practical.
+6. Known follow-up work.
+
+---
+
+## Final Response Requirements
 
 At the end of a task, report:
 
-- files changed
-- commands run
-- build/check result
-- visual QA result if applicable
-- any skipped validation and why
-- whether deploy was skipped or performed
+* files changed
+* commands run
+* build/check result
+* visual QA result if applicable
+* skipped validation and why
+* deploy status, skipped unless explicitly approved
 
-Do not claim a visual check was completed unless a browser/preview was actually used.
+Do not claim deployment unless a deploy command was approved and run.
 
-Do not claim deployment unless a deploy command was explicitly approved and run.
+---
 
-## Standard Implementation Prompt Shape
+## Operating Principle
 
-When receiving a task packet, follow this order:
+Make HobFarm easier to publish, browse, share, and maintain.
 
-1. Inspect relevant files and scripts.
-2. Identify the smallest safe implementation path.
-3. Edit only the necessary files.
-4. Run build/check commands.
-5. For UI work, request or perform browser QA.
-6. Summarize results with files changed and commands run.
+Improve the loop:
 
-If instructions conflict, prioritize: explicit user request, this `AGENTS.md`, local code conventions, then general best practices.
+```text
+site content
+social fragments
+reader returns
+related content
+share or support
+new content
+```
+
+Keep the work scoped. Make the site clearer. Validate before handoff.
