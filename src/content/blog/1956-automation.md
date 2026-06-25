@@ -22,7 +22,7 @@ socialImage: https://cdn.hob.farm/blog/1956-automation/1956-automation-hero-post
 heroAlt: "A retro-futurist automation scene connecting 1950s IBM computers, humanoid robots, and AI infrastructure."
 relatedArticles:
   - 1973-when-airbrush-was-ai
-draft: true
+draft: false
 ---
 
 <figure class="blog-wide">
