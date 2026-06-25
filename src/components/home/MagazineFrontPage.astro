@@ -21,7 +21,11 @@ const articles = await getPublishedArticles();
 const coverStory = articles[0];
 const latestArticles = articles.slice(1, 7);
 
-const galleries = (await getCollection("gallery"))
+const gallerySlug = (entry: CollectionEntry<"gallery">) => entry.id.replace(/\.(md|mdx)$/, "");
+const homepageGallerySwaps: Record<string, string> = {
+  "cute-corrupted/kareena": "cute-corrupted/sienna",
+};
+const galleryEntries = (await getCollection("gallery"))
   .filter((entry) => !entry.data.draft)
   .sort((a, b) => {
     if (a.data.featured !== b.data.featured) return a.data.featured ? -1 : 1;
@@ -29,8 +33,12 @@ const galleries = (await getCollection("gallery"))
       return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
     }
     return a.data.title.localeCompare(b.data.title);
-  })
-  .slice(0, 4);
+  });
+const galleryEntryBySlug = new Map(galleryEntries.map((entry) => [gallerySlug(entry), entry]));
+const galleries = galleryEntries.slice(0, 4).map((entry) => {
+  const swapSlug = homepageGallerySwaps[gallerySlug(entry)];
+  return swapSlug ? galleryEntryBySlug.get(swapSlug) ?? entry : entry;
+});
 
 const projectHrefOverrides: Record<string, string> = {
   courses: "/academy/",

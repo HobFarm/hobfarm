@@ -147,7 +147,7 @@ export const cuteCorrupted = {
     "A visual series about paired transformations. Every piece starts with a clean, charming version, then mutates into a darker version that keeps the same subject, silhouette, and appeal. Pick a branch and run the change yourself.",
   cta: "Every design starts clean. Every design comes back changed.",
   landingHref: "/gallery/cute-corrupted/",
-  defaultBranch: "characters",
+  defaultBranch: "critters",
   // Each branch has a `featured` entry (shown in the homepage switcher) and a
   // full `entries` list (shown on the landing page). Media URLs and
   // locked/changed traits are read live from each gallery entry
@@ -155,20 +155,20 @@ export const cuteCorrupted = {
   // branch or entry that does not exist yet is skipped automatically.
   branches: [
     {
-      key: "characters",
-      label: "Characters",
-      featured: "cute-corrupted/sienna",
-      entries: ["cute-corrupted/sienna", "cute-corrupted/kareena"],
-      blurb:
-        "Mascots, fashion figures, cartoon hosts, and character sheets transformed from clean charm into corrupted glamour.",
-    },
-    {
       key: "critters",
       label: "Critters",
       featured: "cute-corrupted/raccoon",
       entries: ["cute-corrupted/raccoon"],
       blurb:
         "Cute animal cartoons pushed into toxic, haunted, mutant, overgrown, or monster-movie versions of themselves.",
+    },
+    {
+      key: "characters",
+      label: "Characters",
+      featured: "cute-corrupted/sienna",
+      entries: ["cute-corrupted/sienna", "cute-corrupted/kareena"],
+      blurb:
+        "Mascots, fashion figures, cartoon hosts, and character sheets transformed from clean charm into corrupted glamour.",
     },
     {
       key: "cakes",
