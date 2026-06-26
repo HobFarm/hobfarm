@@ -3,6 +3,9 @@ title: "Gary and the Fork"
 excerpt: "A guinea pig named Gary, a fork that would not leave, and the accidental experiment that taught me the difference between a ghost I summoned in one conversation and a default baked into the model."
 author: d00d
 category: technical
+department: workshop-notes
+format: workshop-note
+status: published
 tags:
   - ai
   - image generation

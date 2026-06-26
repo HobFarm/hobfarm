@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type SubmitEvent } from "react";
 import { fetchMe, requestEmailChange, verifyEmailChange, type UserPayload } from "@/lib/auth";
 
 type EmailChangeStage = "idle" | "enter-email" | "enter-code" | "success";
@@ -63,7 +63,7 @@ export default function ProfileCard() {
     setStatus("idle");
   }
 
-  async function handleRequestCode(e: React.FormEvent) {
+  async function handleRequestCode(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     if (status === "submitting") return;
     setStatus("submitting");
@@ -91,7 +91,7 @@ export default function ProfileCard() {
     setStatus("error");
   }
 
-  async function handleVerifyCode(e: React.FormEvent) {
+  async function handleVerifyCode(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     if (status === "submitting") return;
     setStatus("submitting");

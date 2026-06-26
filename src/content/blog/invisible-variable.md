@@ -3,6 +3,9 @@ title: "The Invisible Variable: How Five AI Models Read the Same Image Different
 excerpt: "Five AI vision models extract structured metadata from the same reference images. The differences cascade through twelve generation endpoints. The extraction model is a creative director, not a passive observer."
 author: d00d
 category: research
+department: workshop-notes
+format: workshop-note
+status: published
 tags:
   - stylefusion
   - grimoire

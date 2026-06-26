@@ -3,6 +3,9 @@ title: "Same Model, Different Surface"
 excerpt: "Same prompt, same model, different interface. What happens between your prompt and the AI changes the output more than you think."
 author: d00d
 category: research
+department: workshop-notes
+format: workshop-note
+status: published
 tags:
   - stylefusion
   - research

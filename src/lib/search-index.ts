@@ -1,9 +1,11 @@
 import { getCollection } from "astro:content";
 import { getArticleDate, getArticleDescription, getPublishedArticles } from "@/lib/articles";
+import { comicPath, getComicDate, getPublishedComics } from "@/lib/comics";
 import { galleryTypeLabels, type GalleryType } from "@/lib/gallery";
+import { resolveDepartment } from "@/data/departments";
 
 export type SearchItem = {
-  type: "article" | "project" | "gallery" | "grimoire" | "help" | "changelog";
+  type: "article" | "comic" | "project" | "gallery" | "grimoire" | "help" | "changelog";
   title: string;
   description: string;
   href: string;
@@ -96,8 +98,19 @@ export async function buildSearchIndex(): Promise<SearchItem[]> {
     description: getArticleDescription(post.data),
     href: `/articles/${stripExt(post.id)}`,
     tags: post.data.tags,
-    category: post.data.department ?? post.data.category,
+    category: resolveDepartment(post.data.department ?? post.data.category),
     date: getArticleDate(post).toISOString(),
+  }));
+
+  const comicItems: SearchItem[] = (await getPublishedComics()).map((comic) => ({
+    type: "comic",
+    title: comic.data.title,
+    description:
+      comic.data.caption ?? comic.data.socialCaption ?? "A published comic from HobFarm Funnies.",
+    href: comicPath(comic),
+    tags: comic.data.tags,
+    category: resolveDepartment(comic.data.department),
+    date: getComicDate(comic).toISOString(),
   }));
 
   const projectHrefOverrides: Record<string, string> = {
@@ -176,6 +189,7 @@ export async function buildSearchIndex(): Promise<SearchItem[]> {
 
   return [
     ...articleItems,
+    ...comicItems,
     ...projectItems,
     servicesItem,
     ...galleryItems,

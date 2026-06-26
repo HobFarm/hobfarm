@@ -35,19 +35,29 @@ content:
       - { name: description, label: SEO Description, type: text }
       - { name: author, label: Author, type: string }
       - name: category
-        label: Category
+        label: Category (legacy, use Department)
         type: select
         options: [technical, magazine-time-machine, cultural-thread, grimoire, stylefusion, hobbot, business, research]
       - name: department
         label: Department
         type: select
-        options: [magazine-time-machine, 3-degrees-of-dick-miller, fake-ads, before-after, character-department, archive-remix, dead-future-report, workshop-notes]
+        options: [magazine-time-machine, wtfacts, satire, picture-stories, funnies, cute-corrupted, before-after-eras, critter-feed, hobfarm-presents, workshop-notes, essays-arguments]
+      - name: format
+        label: Format
+        type: select
+        options: [article, cartoon, wtf-card, satire-piece, picture-story, gallery-set, video, trailer, workshop-note, character-page, cover]
+      - name: status
+        label: Status
+        type: select
+        options: [draft, scheduled, published, archived]
       - { name: series, label: Series, type: string }
       - { name: tags, label: Tags, type: string, list: true }
       - { name: hero, label: Hero Image URL, type: string }
       - { name: heroImage, label: Hero Image URL (new field), type: string }
       - { name: heroAlt, label: Hero Alt Text, type: string }
       - { name: socialImage, label: Social Image URL, type: string }
+      - { name: thumbnail, label: Thumbnail URL, type: string }
+      - { name: socialCaption, label: Social Caption, type: text }
       - { name: arrangement, label: Grimoire Arrangement, type: string }
       - { name: canonical, label: Canonical URL, type: string }
       - { name: publishedAt, label: Published At, type: date, required: true }
@@ -58,6 +68,7 @@ content:
       - { name: relatedArticles, label: Related Article Slugs, type: string, list: true }
       - { name: relatedGallery, label: Related Gallery URL, type: string }
       - { name: relatedProject, label: Related Project URL, type: string }
+      - { name: relatedVideo, label: Related Video URL, type: string }
       - name: workshopCTA
         label: Workshop CTA
         type: object
@@ -80,6 +91,49 @@ content:
       - { name: body, label: Body, type: rich-text }
 
   # ---------------------
+  # COMICS (Funnies)
+  # ---------------------
+  - name: comics
+    label: Comics
+    type: collection
+    path: src/content/comics
+    filename: "{primary}.md"
+    view:
+      primary: title
+      fields: [title, series, date, status]
+      sort: [date]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - name: series
+        label: Series
+        type: select
+        required: true
+        options: [gary, gary-fat-cat, fat-cat, larry, buffcock, hobunny, gothcat, one-offs]
+      - { name: characters, label: Characters, type: string, list: true }
+      - name: department
+        label: Department
+        type: select
+        options: [magazine-time-machine, wtfacts, satire, picture-stories, funnies, cute-corrupted, before-after-eras, critter-feed, hobfarm-presents, workshop-notes, essays-arguments]
+      - name: format
+        label: Format
+        type: select
+        options: [article, cartoon, wtf-card, satire-piece, picture-story, gallery-set, video, trailer, workshop-note, character-page, cover]
+      - { name: image, label: Comic Image URL, type: string, required: true }
+      - { name: imageAlt, label: Image Alt Text, type: string }
+      - { name: caption, label: Caption / Premise, type: text }
+      - { name: tags, label: Tags, type: string, list: true }
+      - { name: date, label: Date, type: date, required: true }
+      - { name: socialCaption, label: Social Caption, type: text }
+      - name: status
+        label: Status
+        type: select
+        options: [draft, scheduled, published, archived]
+      - { name: draft, label: Draft, type: boolean }
+
+  # ---------------------
   # GALLERY
   # ---------------------
   - name: gallery
@@ -100,7 +154,15 @@ content:
         label: Type
         type: select
         required: true
-        options: [fashion, character-dev, scene, asset-lab, model-lab, video-workflow, premium-showcase]
+        options: [fashion, character-dev, before-and-after, cute-corrupted, compilation, scene, asset-lab, model-lab, video-workflow, premium-showcase]
+      - name: department
+        label: Department
+        type: select
+        options: [magazine-time-machine, wtfacts, satire, picture-stories, funnies, cute-corrupted, before-after-eras, critter-feed, hobfarm-presents, workshop-notes, essays-arguments]
+      - name: format
+        label: Format
+        type: select
+        options: [article, cartoon, wtf-card, satire-piece, picture-story, gallery-set, video, trailer, workshop-note, character-page, cover]
       - { name: summary, label: Summary, type: text, required: true }
       - { name: folder, label: R2 Folder (e.g. gallery/fashion/glamour-pin-up), type: string, required: true }
       - name: hero

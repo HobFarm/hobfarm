@@ -2,6 +2,9 @@
 title: "Prompt Goth, Get Boots"
 excerpt: "Every AI has a favorite name, a favorite outfit, and one idea for how to stage a picture. Three years of my own chat archive, documented."
 category: technical
+department: workshop-notes
+format: workshop-note
+status: published
 tags:
   - ai
   - image generation

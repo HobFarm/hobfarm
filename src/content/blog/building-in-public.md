@@ -3,6 +3,9 @@ title: "Building in Public with AI Tools"
 excerpt: "What happens when you treat AI models as collaborators instead of code generators. Multi-agent workflows, schema-first design, and the CC task brief pattern."
 author: d00d
 category: technical
+department: workshop-notes
+format: workshop-note
+status: published
 tags:
   - ai
   - workflow

@@ -3,6 +3,9 @@ title: "Psychedelic Goth: A Definition"
 excerpt: "What psychedelic goth actually is, where its look comes from, and the rules used to build it."
 author: d00d
 category: cultural-thread
+department: workshop-notes
+format: workshop-note
+status: published
 tags:
   - psychedelic goth
   - style guide

@@ -1,9 +1,7 @@
 ---
-import { getCollection, type CollectionEntry } from "astro:content";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import ArticleCard from "@/components/articles/ArticleCard.astro";
-import GalleryCard from "@/components/gallery/GalleryCard.astro";
 import {
   articlePath,
   getArticleDate,
@@ -11,8 +9,8 @@ import {
   getArticleDepartmentLabel,
   getArticleHero,
   getPublishedArticles,
-  stripArticleExt,
 } from "@/lib/articles";
+import { hubDepartments, departmentPath } from "@/data/departments";
 
 const articles = await getPublishedArticles();
 // Cover is always the newest published article; the recent strip is the next
@@ -20,85 +18,6 @@ const articles = await getPublishedArticles();
 // and pushes the others down, with no manual flagging.
 const coverStory = articles[0];
 const latestArticles = articles.slice(1, 7);
-
-const gallerySlug = (entry: CollectionEntry<"gallery">) => entry.id.replace(/\.(md|mdx)$/, "");
-const homepageGallerySwaps: Record<string, string> = {
-  "cute-corrupted/kareena": "cute-corrupted/sienna",
-};
-const galleryEntries = (await getCollection("gallery"))
-  .filter((entry) => !entry.data.draft)
-  .sort((a, b) => {
-    if (a.data.featured !== b.data.featured) return a.data.featured ? -1 : 1;
-    if (a.data.date && b.data.date) {
-      return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
-    }
-    return a.data.title.localeCompare(b.data.title);
-  });
-const galleryEntryBySlug = new Map(galleryEntries.map((entry) => [gallerySlug(entry), entry]));
-const galleries = galleryEntries.slice(0, 4).map((entry) => {
-  const swapSlug = homepageGallerySwaps[gallerySlug(entry)];
-  return swapSlug ? galleryEntryBySlug.get(swapSlug) ?? entry : entry;
-});
-
-const projectHrefOverrides: Record<string, string> = {
-  courses: "/academy/",
-  grimoire: "/grimoire/",
-  shop: "/shop/",
-};
-
-const projectSlugs = [
-  "hobfarm-tv/magazine-time-machine",
-  "hobfarm-tv/3-degrees-of-dick-miller",
-  "stylefusion",
-  "courses",
-];
-
-const projectMap = new Map<string, CollectionEntry<"projects">>();
-(await getCollection("projects")).forEach((project) => {
-  projectMap.set(project.id.replace(/\.(md|mdx)$/, ""), project);
-});
-
-const projectPreviews = projectSlugs
-  .map((slug) => projectMap.get(slug))
-  .filter((project): project is CollectionEntry<"projects"> => Boolean(project));
-
-const projectHref = (project: CollectionEntry<"projects">) => {
-  const slug = project.id.replace(/\.(md|mdx)$/, "");
-  return projectHrefOverrides[slug] ?? `/projects/${slug}/`;
-};
-
-const departments = [
-  {
-    title: "Magazine Time Machine",
-    body: "Vintage magazine artifacts, old ads, dead futures, and then-versus-now cultural research.",
-    href: "/articles/category/magazine-time-machine/",
-  },
-  {
-    title: "3 Degrees of Dick Miller",
-    body: "Movie trails, actor connections, genre history, and cult-film connective tissue.",
-    href: "/projects/hobfarm-tv/3-degrees-of-dick-miller/",
-  },
-  {
-    title: "Fake Ads",
-    body: "Satirical products, fictional campaigns, and modern garbage rebuilt in older media formats.",
-    href: "/articles/",
-  },
-  {
-    title: "Character Department",
-    body: "Hobunny, Gary, Fat Cat, Larry, Cute / Corrupted, and recurring character systems.",
-    href: "/gallery/",
-  },
-  {
-    title: "Archive Remix",
-    body: "Old footage, found-media references, missing-shot tests, and AI-assisted visual experiments.",
-    href: "/gallery/",
-  },
-  {
-    title: "Workshop Notes",
-    body: "Production notes, tool tests, model handoffs, process writeups, and repeatable methods.",
-    href: "/articles/category/technical/",
-  },
-];
 
 const coverDate = coverStory ? getArticleDate(coverStory) : null;
 const coverHero = coverStory ? getArticleHero(coverStory.data) : undefined;
@@ -109,18 +28,18 @@ const coverHero = coverStory ? getArticleHero(coverStory.data) : undefined;
     <div class="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.6fr)] lg:items-end">
       <div>
         <p class="font-mono text-xs uppercase tracking-widest text-accent-magenta-bright">
-          HobFarm Magazine / Visual Studio
+          Online Humor Magazine + Visual Studio
         </p>
         <h1 class="mt-4 max-w-4xl font-display text-4xl font-light leading-tight text-white text-balance lg:text-6xl">
           Visual culture from the barn, the archive, and the edge of the feed.
         </h1>
         <p class="mt-5 max-w-3xl text-base leading-relaxed text-base-300">
-          HobFarm is an online magazine and visual studio for cartoons, fake ads, media history, character systems, visual experiments, games, workflows, and whatever else crawls out of the workshop.
+          HobFarm is an online humor magazine and visual studio for cartoons, satire ads, archive dives, character worlds, style experiments, food/fashion mutations, Vegas logic, and backstage culture.
         </p>
         <div class="mt-6 flex flex-wrap gap-2">
           <Button isLink size="sm" variant="green" href="/articles/">Read Articles</Button>
-          <Button isLink size="sm" variant="muted" href="/gallery/">Open Visuals</Button>
-          <Button isLink size="sm" variant="muted" href="/projects/">Projects</Button>
+          <Button isLink size="sm" variant="muted" href="/departments/">Departments</Button>
+          <Button isLink size="sm" variant="muted" href="/gallery/">Gallery</Button>
           <Button isLink size="sm" variant="muted" href="/support/">Support</Button>
         </div>
       </div>
@@ -134,7 +53,7 @@ const coverHero = coverStory ? getArticleHero(coverStory.data) : undefined;
             "Article",
             "Visual fragment",
             "Reader follows the trail",
-            "Related gallery, game, or project",
+            "Related gallery, video, or character",
             "Workshop note, download, or support path",
           ].map((step, index) => (
             <li class="flex items-center gap-3">
@@ -205,7 +124,7 @@ const coverHero = coverStory ? getArticleHero(coverStory.data) : undefined;
       <div class="mb-6 flex flex-wrap items-end justify-between gap-4">
         <div>
           <p class="font-mono text-[10px] uppercase tracking-widest text-accent-magenta-bright">Latest</p>
-          <h2 class="mt-2 text-2xl font-display text-white">More recent articles</h2>
+          <h2 class="mt-2 text-2xl font-display text-white">Latest from HobFarm</h2>
         </div>
         <a href="/articles/" class="text-sm text-base-400 transition-colors hover:text-white">
           All articles
@@ -220,70 +139,31 @@ const coverHero = coverStory ? getArticleHero(coverStory.data) : undefined;
 
 <section class="border-b border-base-800/70">
   <Wrapper variant="standard" class="py-14 lg:py-16">
-    <div class="max-w-2xl">
-      <p class="font-mono text-[10px] uppercase tracking-widest text-accent-cyan">Departments</p>
-      <h2 class="mt-2 text-2xl font-display text-white">Recurring sections</h2>
-      <p class="mt-4 text-sm leading-relaxed text-base-400">
-        Articles are organized as departments and series so social posts can point back to a clear home.
-      </p>
-    </div>
-    <div class="mt-8 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
-      {departments.map((department) => (
-        <a
-          href={department.href}
-          class="rounded-lg border border-base-800 bg-base-900/60 p-4 transition-colors hover:border-accent-cyan/50"
-        >
-          <h3 class="text-base font-display text-white">{department.title}</h3>
-          <p class="mt-2 text-sm leading-relaxed text-base-400">{department.body}</p>
-        </a>
-      ))}
-    </div>
-  </Wrapper>
-</section>
-
-<section class="border-b border-base-800/70">
-  <Wrapper variant="standard" class="py-14 lg:py-16">
     <div class="mb-6 flex flex-wrap items-end justify-between gap-4">
-      <div>
-        <p class="font-mono text-[10px] uppercase tracking-widest text-accent-green">Visual archive</p>
-        <h2 class="mt-2 text-2xl font-display text-white">Recent visuals</h2>
+      <div class="max-w-2xl">
+        <p class="font-mono text-[10px] uppercase tracking-widest text-accent-cyan">Departments</p>
+        <h2 class="mt-2 text-2xl font-display text-white">Recurring sections</h2>
+        <p class="mt-4 text-sm leading-relaxed text-base-400">
+          The magazine's table of contents. Every article, visual, and video files into one of these.
+        </p>
       </div>
-      <a href="/gallery/" class="text-sm text-base-400 transition-colors hover:text-white">
-        Open Visuals
+      <a href="/departments/" class="text-sm text-base-400 transition-colors hover:text-white">
+        All departments
       </a>
     </div>
-    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-      {galleries.map((entry) => <GalleryCard entry={entry} />)}
-    </div>
-  </Wrapper>
-</section>
-
-<section class="border-b border-base-800/70">
-  <Wrapper variant="standard" class="py-14 lg:py-16">
-    <div class="max-w-2xl">
-      <p class="font-mono text-[10px] uppercase tracking-widest text-accent-gold">Projects</p>
-      <h2 class="mt-2 text-2xl font-display text-white">Series and systems behind the magazine</h2>
-      <p class="mt-4 text-sm leading-relaxed text-base-400">
-        HobFarm articles lead into finished visuals, show formats, tools, academy material, and supporter paths.
-      </p>
-    </div>
-    <div class="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-      {projectPreviews.map((project) => {
-        const slug = stripArticleExt(project.id);
-        return (
-          <a
-            href={projectHref(project)}
-            class="rounded-lg border border-base-800 bg-base-900/60 p-4 transition-colors hover:border-accent-magenta/50"
-          >
-            <p class="font-mono text-[10px] uppercase tracking-wider text-base-500">{project.data.category}</p>
-            <h3 class="mt-2 text-lg font-display text-white">{project.data.title}</h3>
-            <p class="mt-2 line-clamp-4 text-sm leading-relaxed text-base-400">
-              {project.data.oneLiner ?? project.data.subtitle}
-            </p>
-            <span class="mt-4 inline-flex text-xs text-base-500">{slug}</span>
-          </a>
-        );
-      })}
+    <div class="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+      {hubDepartments.map((department) => (
+        <a
+          href={departmentPath(department.slug)}
+          class="group rounded-lg border border-base-800 bg-base-900/60 p-4 transition-colors hover:border-base-600"
+        >
+          <div class="flex items-center gap-2.5">
+            <span class="size-2 shrink-0 rounded-full" style={`background-color: ${department.accent}`} />
+            <h3 class="text-base font-display text-white">{department.label}</h3>
+          </div>
+          <p class="mt-2 text-sm leading-relaxed text-base-400">{department.blurb}</p>
+        </a>
+      ))}
     </div>
   </Wrapper>
 </section>

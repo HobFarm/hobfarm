@@ -3,6 +3,9 @@ title: "How to Fix Slop"
 excerpt: "Slop is what happens when AI has no memory, no structure, and no role. The fix is not a better prompt. The fix is a better system."
 author: d00d
 category: cultural-thread
+department: workshop-notes
+format: workshop-note
+status: published
 tags:
   - ai agents
   - structured data

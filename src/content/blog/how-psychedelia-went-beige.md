@@ -3,6 +3,9 @@ title: "How Psychedelia Went Beige"
 excerpt: "The festival and retreat scene set one default picture of the word psychedelic, and AI tools learned to repeat it. A companion to Against Slop."
 author: d00d
 category: cultural-thread
+department: essays-arguments
+format: article
+status: published
 tags:
   - observation
   - psychedelic

@@ -3,6 +3,9 @@ title: "A World of Geniuses Needs a System"
 excerpt: "Dario Amodei says the meaning half of the AI problem is for society to work out, not policy. That hand-off lands on one person at a time. Here is one worked answer: structure first, scoped tools second, stay in the chair."
 author: d00d
 category: cultural-thread
+department: essays-arguments
+format: article
+status: published
 tags:
   - ai
   - agency

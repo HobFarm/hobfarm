@@ -24,16 +24,38 @@ const blog = defineCollection({
           "research",
         ])
         .optional(),
+      // Canonical departments. Source of truth: src/data/departments.ts.
+      // Legacy values still live in `category` (kept below) and resolve to these
+      // via resolveDepartment(); new/migrated content should use these slugs.
       department: z
         .enum([
           "magazine-time-machine",
-          "3-degrees-of-dick-miller",
-          "fake-ads",
-          "before-after",
-          "character-department",
-          "archive-remix",
-          "dead-future-report",
+          "wtfacts",
+          "satire",
+          "picture-stories",
+          "funnies",
+          "cute-corrupted",
+          "before-after-eras",
+          "critter-feed",
+          "hobfarm-presents",
           "workshop-notes",
+          "essays-arguments",
+        ])
+        .optional(),
+      // Object-type. Source of truth: src/data/formats.ts.
+      format: z
+        .enum([
+          "article",
+          "cartoon",
+          "wtf-card",
+          "satire-piece",
+          "picture-story",
+          "gallery-set",
+          "video",
+          "trailer",
+          "workshop-note",
+          "character-page",
+          "cover",
         ])
         .optional(),
       series: z.string().optional(),
@@ -41,6 +63,8 @@ const blog = defineCollection({
       heroImage: z.string().optional(),
       heroAlt: z.string().optional(),
       socialImage: z.string().optional(),
+      thumbnail: z.string().optional(),
+      socialCaption: z.string().optional(),
       arrangement: z.string().optional(),
       canonical: z.string().optional(),
       publishedAt: z.coerce.date().optional(),
@@ -52,6 +76,7 @@ const blog = defineCollection({
       relatedArticles: z.array(z.string()).optional(),
       relatedGallery: z.string().optional(),
       relatedProject: z.string().optional(),
+      relatedVideo: z.string().optional(),
       workshopCTA: z
         .object({
           label: z.string(),
@@ -70,6 +95,11 @@ const blog = defineCollection({
           href: z.string(),
         })
         .optional(),
+      // Editorial status, additive to `draft`. `draft` (and draft:true) still
+      // hides a post; status of draft/scheduled/archived hides it too.
+      status: z
+        .enum(["draft", "scheduled", "published", "archived"])
+        .default("published"),
       draft: z.boolean().default(false),
     })
     .refine((data) => data.publishedAt || data.pubDate, {
@@ -130,6 +160,38 @@ const gallery = defineCollection({
   schema: z.object({
     title: z.string(),
     type: z.enum(GALLERY_TYPES),
+    // Optional editorial filing. When absent, department pages fall back to a
+    // type -> department map (src/data/departments.ts). Not required this pass.
+    department: z
+      .enum([
+        "magazine-time-machine",
+        "wtfacts",
+        "satire",
+        "picture-stories",
+        "funnies",
+        "cute-corrupted",
+        "before-after-eras",
+        "critter-feed",
+        "hobfarm-presents",
+        "workshop-notes",
+        "essays-arguments",
+      ])
+      .optional(),
+    format: z
+      .enum([
+        "article",
+        "cartoon",
+        "wtf-card",
+        "satire-piece",
+        "picture-story",
+        "gallery-set",
+        "video",
+        "trailer",
+        "workshop-note",
+        "character-page",
+        "cover",
+      ])
+      .optional(),
     summary: z.string(),
     folder: z.string(),
     hero: z.discriminatedUnion("type", [heroImage, heroVideo]),
@@ -187,11 +249,11 @@ const gallery = defineCollection({
 
     externalLinks: z
       .object({
-        deviantArt: z.string().url().optional(),
-        deviantArtPremium: z.string().url().optional(),
-        kofi: z.string().url().optional(),
-        patreon: z.string().url().optional(),
-        course: z.string().url().optional(),
+        deviantArt: z.url().optional(),
+        deviantArtPremium: z.url().optional(),
+        kofi: z.url().optional(),
+        patreon: z.url().optional(),
+        course: z.url().optional(),
       })
       .optional(),
 
@@ -454,6 +516,60 @@ const stack = defineCollection({
   }),
 });
 
+// Comics are image-first objects (single-panel gags, strips, recurring bits),
+// not articles. They live in their own collection so they get clean
+// /funnies/[series]/[slug] URLs and stay out of /articles and RSS.
+// `series` and `characters` are slugs into src/data/comic-series.ts and
+// src/data/characters.ts. department/format default to the comics taxonomy.
+const comics = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/comics" }),
+  schema: z.object({
+    title: z.string(),
+    series: z.string(),
+    characters: z.array(z.string()).default([]),
+    department: z
+      .enum([
+        "magazine-time-machine",
+        "wtfacts",
+        "satire",
+        "picture-stories",
+        "funnies",
+        "cute-corrupted",
+        "before-after-eras",
+        "critter-feed",
+        "hobfarm-presents",
+        "workshop-notes",
+        "essays-arguments",
+      ])
+      .default("funnies"),
+    format: z
+      .enum([
+        "article",
+        "cartoon",
+        "wtf-card",
+        "satire-piece",
+        "picture-story",
+        "gallery-set",
+        "video",
+        "trailer",
+        "workshop-note",
+        "character-page",
+        "cover",
+      ])
+      .default("cartoon"),
+    image: z.string(),
+    imageAlt: z.string().optional(),
+    caption: z.string().optional(),
+    tags: z.array(z.string()).default([]),
+    date: z.coerce.date(),
+    socialCaption: z.string().optional(),
+    status: z
+      .enum(["draft", "scheduled", "published", "archived"])
+      .default("published"),
+    draft: z.boolean().default(false),
+  }),
+});
+
 export const collections = {
   blog,
   gallery,
@@ -463,4 +579,5 @@ export const collections = {
   legal,
   grimoire,
   stack,
+  comics,
 };

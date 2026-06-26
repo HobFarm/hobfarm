@@ -6,6 +6,8 @@ description: "A 1985 Playboy tech spread imagined robot companions, TV goggles, 
 author: d00d
 publishedAt: 2026-06-25
 category: magazine-time-machine
+format: article
+status: published
 department: magazine-time-machine
 series: "Magazine Time Machine"
 tags:

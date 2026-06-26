@@ -1,45 +1,20 @@
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
+import {
+  departmentFilters,
+  departmentPath,
+  getDepartmentLabel,
+  resolveDepartment,
+} from "@/data/departments";
 
 export type Article = CollectionEntry<"blog">;
 export type ArticleData = Article["data"];
 
-export const articleDepartmentLabels: Record<string, string> = {
-  technical: "Workshop Notes",
-  "magazine-time-machine": "Magazine Time Machine",
-  "cultural-thread": "Cultural Thread",
-  grimoire: "Grimoire",
-  stylefusion: "StyleFusion",
-  hobbot: "HobBot",
-  business: "Studio Notes",
-  research: "Research",
-  "3-degrees-of-dick-miller": "3 Degrees of Dick Miller",
-  "fake-ads": "Fake Ads",
-  "before-after": "Before / After",
-  "character-department": "Character Department",
-  "archive-remix": "Archive Remix",
-  "dead-future-report": "Dead Future Report",
-  "workshop-notes": "Workshop Notes",
-};
-
-export const articleCategories = [
-  { value: "all", label: "All" },
-  { value: "magazine-time-machine", label: "Magazine Time Machine" },
-  { value: "3-degrees-of-dick-miller", label: "3 Degrees of Dick Miller" },
-  { value: "fake-ads", label: "Fake Ads" },
-  { value: "before-after", label: "Before / After" },
-  { value: "character-department", label: "Character Department" },
-  { value: "archive-remix", label: "Archive Remix" },
-  { value: "dead-future-report", label: "Dead Future Report" },
-  { value: "workshop-notes", label: "Workshop Notes" },
-  { value: "cultural-thread", label: "Cultural Thread" },
-  { value: "research", label: "Research" },
-  { value: "technical", label: "Workshop Notes" },
-  { value: "grimoire", label: "Grimoire" },
-  { value: "stylefusion", label: "StyleFusion" },
-  { value: "hobbot", label: "HobBot" },
-  { value: "business", label: "Studio Notes" },
-];
+// Departments are the canonical taxonomy now (src/data/departments.ts).
+// `articleCategories` is kept as a back-compat re-export of the department
+// filter list so existing imports keep working; prefer importing
+// `departmentFilters` directly in new code.
+export const articleCategories = departmentFilters;
 
 export function stripArticleExt(id: string): string {
   return id.replace(/\.(md|mdx)$/, "");
@@ -54,8 +29,9 @@ export function articleTagPath(tag: string): string {
   return `/articles/tags/${encodeURIComponent(tag)}`;
 }
 
+/** @deprecated Use departmentPath from @/data/departments. */
 export function articleCategoryPath(category: string): string {
-  return `/articles/category/${category}`;
+  return departmentPath(category);
 }
 
 export function getArticleDate(articleOrData: Article | ArticleData): Date {
@@ -86,18 +62,20 @@ export function getArticleHero(data: ArticleData): string | undefined {
 }
 
 export function getArticleDepartment(data: ArticleData): string | undefined {
-  return data.department ?? data.category;
+  return resolveDepartment(data.department ?? data.category);
 }
 
 export function getArticleDepartmentLabel(dataOrValue: ArticleData | string | undefined): string {
   const value =
     typeof dataOrValue === "string" ? dataOrValue : dataOrValue ? getArticleDepartment(dataOrValue) : undefined;
-  if (!value) return "Feature";
-  return articleDepartmentLabels[value] ?? value;
+  return getDepartmentLabel(value);
 }
 
 export function isPublishedArticle(article: Article, now: Date = new Date()): boolean {
   if (article.data.draft) return false;
+  const status = article.data.status ?? "published";
+  if (status === "draft" || status === "archived") return false;
+  // `scheduled` (and everything else) still respects the publish date below.
   return getArticleDate(article).getTime() <= now.getTime();
 }
 

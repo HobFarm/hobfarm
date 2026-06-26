@@ -6,7 +6,7 @@ export async function GET(context) {
 
   return rss({
     title: 'HobFarm Articles',
-    description: 'HobFarm is an online magazine and visual studio for visual culture, media history, cartoons, fake ads, archive dives, movie trails, character systems, production notes, and AI-assisted image and video work.',
+    description: 'HobFarm is an online humor magazine and visual studio for visual culture, media history, cartoons, satire ads, archive dives, character systems, production notes, and image and video work.',
     site: context.site,
     items: posts.map((post) => ({
       title: post.data.title,

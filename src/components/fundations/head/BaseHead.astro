@@ -15,6 +15,7 @@ interface Props {
   modifiedTime?: string;
   tags?: string[];
   structuredData?: Record<string, unknown>;
+  noindex?: boolean;
 }
 
 const {
@@ -28,6 +29,7 @@ const {
   modifiedTime,
   tags,
   structuredData,
+  noindex,
 } = Astro.props;
 ---
 
@@ -42,6 +44,7 @@ const {
   modifiedTime={modifiedTime}
   tags={tags}
   structuredData={structuredData}
+  noindex={noindex}
 />
 <Meta />
 <Fonts />

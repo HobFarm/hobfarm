@@ -3,6 +3,9 @@ title: "Building HobFarm: Architecture for Multi-Provider AI"
 excerpt: "How we built a platform that routes creative work through multiple AI providers without locking into any single one. Cloudflare Workers, AI Gateway, and lessons learned."
 author: d00d
 category: technical
+department: workshop-notes
+format: workshop-note
+status: published
 tags:
   - cloudflare
   - architecture

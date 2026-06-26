@@ -3,6 +3,9 @@ title: "Building in Public as a Solo Developer"
 excerpt: "What it actually takes to ship a creative AI platform alone: the trade-offs, the tooling, and why Cloudflare's edge stack changes the economics."
 publishedAt: 2026-03-10
 category: "business"
+department: workshop-notes
+format: workshop-note
+status: published
 tags: ["solo-dev", "indie", "cloudflare", "business-model"]
 hero: https://cdn.hob.farm/pages/blog/solo_developer_hero.png
 ---

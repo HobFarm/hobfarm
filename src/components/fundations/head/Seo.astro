@@ -10,16 +10,17 @@ interface Props {
   modifiedTime?: string;
   tags?: string[];
   structuredData?: Record<string, unknown>;
+  noindex?: boolean;
 }
 
 const SITE_ORIGIN = "https://hob.farm";
 const SITE_URL = `${SITE_ORIGIN}/`;
 const SITE_NAME = "HobFarm";
-const DEFAULT_TITLE = "HobFarm | A strange creative studio";
+const DEFAULT_TITLE = "HobFarm | Online Humor Magazine and Visual Studio";
 const DEFAULT_DESCRIPTION =
-  "HobFarm is a strange creative studio that makes characters, pictures, videos, and guides, then builds and sells them. Made with AI in some stages and by hand in others.";
+  "HobFarm is an online humor magazine and visual studio for cartoons, satire ads, archive dives, character worlds, style experiments, food/fashion mutations, Vegas logic, and backstage culture.";
 const BUSINESS_DESCRIPTION =
-  "HobFarm is a creative studio that makes and sells AI-assisted goods, memberships, creative tools, online courses, image and video work, downloadable pieces, gallery packs, book and album cover concepts, motion reels, and guides for making them.";
+  "HobFarm publishes articles, visual galleries, character worlds, short videos, workshop notes, and support paths for an online humor magazine and visual studio.";
 const DEFAULT_OG_IMAGE = "https://cdn.hob.farm/brand/hobfarm-website.png";
 const DEFAULT_OG_IMAGE_WIDTH = "1774";
 const DEFAULT_OG_IMAGE_HEIGHT = "887";
@@ -35,6 +36,7 @@ const {
   modifiedTime,
   tags = [],
   structuredData: structuredDataProp,
+  noindex = false,
 } = Astro.props;
 
 const normalizePathname = (pathname: string) => {
@@ -150,7 +152,7 @@ const structuredData = structuredDataProp ?? {
 <meta name="twitter:image:alt" content={ogImageAlt} />
 
 <!-- Additional SEO -->
-<meta name="robots" content="index, follow" />
-<meta name="googlebot" content="index, follow" />
+<meta name="robots" content={noindex ? "noindex, follow" : "index, follow"} />
+<meta name="googlebot" content={noindex ? "noindex, follow" : "index, follow"} />
 
-<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+<script type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />

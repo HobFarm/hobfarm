@@ -1,0 +1,77 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import ComicCard from "@/components/funnies/ComicCard.astro";
+import { comicSeries } from "@/data/comic-series";
+import { characters, characterPath, getCharacterName } from "@/data/characters";
+import { comicsInSeries, getPublishedComics } from "@/lib/comics";
+
+export async function getStaticPaths() {
+  const comics = await getPublishedComics();
+  return comicSeries.map((series) => ({
+    params: { series: series.slug },
+    props: { series, comics: comicsInSeries(comics, series.slug) },
+  }));
+}
+
+const { series, comics } = Astro.props;
+const characterSlugSet = new Set(characters.map((c) => c.slug));
+---
+
+<BaseLayout
+  title={`${series.title} | Funnies | HobFarm`}
+  description={series.premise}
+  canonical={`/funnies/${series.slug}/`}
+>
+  <section>
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-16">
+        <a href="/departments/funnies/" class="text-sm text-base-500 transition-colors hover:text-base-100">
+          &larr; All Funnies
+        </a>
+        <Text tag="h1" variant="display2XL" class="mt-5 font-display text-white text-balance">
+          {series.title}
+        </Text>
+        <Text tag="p" variant="textLG" class="mt-4 max-w-2xl text-base-400 leading-relaxed text-pretty">
+          {series.premise}
+        </Text>
+
+        {series.characters.length > 0 && (
+          <div class="mt-5 flex flex-wrap items-center gap-2">
+            <span class="font-mono text-[10px] uppercase tracking-widest text-base-500">Starring</span>
+            {series.characters.map((slug) =>
+              characterSlugSet.has(slug) ? (
+                <a
+                  href={characterPath(slug)}
+                  class="rounded-full border border-base-700 px-3 py-1 text-xs text-base-200 transition-colors hover:border-accent-green/60 hover:text-white"
+                >
+                  {getCharacterName(slug)}
+                </a>
+              ) : (
+                <span class="rounded-full border border-base-800 px-3 py-1 text-xs text-base-400">{slug}</span>
+              ),
+            )}
+          </div>
+        )}
+
+        <p class="mt-6 font-mono text-[10px] uppercase tracking-widest text-base-500">
+          {comics.length} {comics.length === 1 ? "comic" : "comics"}
+        </p>
+
+        <div class="mt-8">
+          {comics.length > 0 ? (
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {comics.map((comic) => <ComicCard comic={comic} />)}
+            </div>
+          ) : (
+            <div class="rounded-lg border border-dashed border-base-800 bg-base-950/40 p-6">
+              <p class="text-sm text-base-400">No {series.title} comics published yet. Check back soon.</p>
+            </div>
+          )}
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+</BaseLayout>

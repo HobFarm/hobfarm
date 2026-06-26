@@ -34,10 +34,75 @@
 # Canonical help center hub
 /helpcenter/knowledge-base  /helpcenter  301
 
-# Dynamic legacy article redirects stay below static redirects for Pages matching
-/blog/posts/:slug        /articles/:slug            301
-/blog/posts/:slug/       /articles/:slug/           301
-/blog/category/:category /articles/category/:category 301
-/blog/category/:category/ /articles/category/:category/ 301
-/blog/tags/:tag          /articles/tags/:tag        301
-/blog/tags/:tag/         /articles/tags/:tag/       301
+# Articles category pages retired -> Departments (taxonomy migration).
+# Legacy slugs whose name changed remap explicitly (static, one hop). These must
+# stay ABOVE the dynamic :category catch-all below so they win the match.
+/articles/category/technical              /departments/workshop-notes/         301
+/articles/category/technical/             /departments/workshop-notes/         301
+/articles/category/research               /departments/workshop-notes/         301
+/articles/category/research/              /departments/workshop-notes/         301
+/articles/category/grimoire               /departments/workshop-notes/         301
+/articles/category/grimoire/              /departments/workshop-notes/         301
+/articles/category/stylefusion            /departments/workshop-notes/         301
+/articles/category/stylefusion/           /departments/workshop-notes/         301
+/articles/category/hobbot                 /departments/workshop-notes/         301
+/articles/category/hobbot/                /departments/workshop-notes/         301
+/articles/category/business               /departments/workshop-notes/         301
+/articles/category/business/              /departments/workshop-notes/         301
+/articles/category/cultural-thread        /departments/essays-arguments/       301
+/articles/category/cultural-thread/       /departments/essays-arguments/       301
+/articles/category/fake-ads               /departments/satire/                 301
+/articles/category/fake-ads/              /departments/satire/                 301
+/articles/category/before-after           /departments/before-after-eras/      301
+/articles/category/before-after/          /departments/before-after-eras/      301
+/articles/category/character-department   /departments/funnies/                301
+/articles/category/character-department/  /departments/funnies/                301
+/articles/category/archive-remix          /departments/magazine-time-machine/  301
+/articles/category/archive-remix/         /departments/magazine-time-machine/  301
+/articles/category/dead-future-report     /departments/magazine-time-machine/  301
+/articles/category/dead-future-report/    /departments/magazine-time-machine/  301
+/articles/category/3-degrees-of-dick-miller   /departments/hobfarm-presents/   301
+/articles/category/3-degrees-of-dick-miller/  /departments/hobfarm-presents/   301
+
+# Same remaps for the doubly-legacy /blog/category/* chain (one hop, no double).
+/blog/category/technical                  /departments/workshop-notes/         301
+/blog/category/technical/                 /departments/workshop-notes/         301
+/blog/category/research                   /departments/workshop-notes/         301
+/blog/category/research/                  /departments/workshop-notes/         301
+/blog/category/grimoire                   /departments/workshop-notes/         301
+/blog/category/grimoire/                  /departments/workshop-notes/         301
+/blog/category/stylefusion                /departments/workshop-notes/         301
+/blog/category/stylefusion/               /departments/workshop-notes/         301
+/blog/category/hobbot                     /departments/workshop-notes/         301
+/blog/category/hobbot/                    /departments/workshop-notes/         301
+/blog/category/business                   /departments/workshop-notes/         301
+/blog/category/business/                  /departments/workshop-notes/         301
+/blog/category/cultural-thread            /departments/essays-arguments/       301
+/blog/category/cultural-thread/           /departments/essays-arguments/       301
+/blog/category/fake-ads                   /departments/satire/                 301
+/blog/category/fake-ads/                  /departments/satire/                 301
+/blog/category/before-after               /departments/before-after-eras/      301
+/blog/category/before-after/              /departments/before-after-eras/      301
+/blog/category/character-department       /departments/funnies/                301
+/blog/category/character-department/      /departments/funnies/                301
+/blog/category/archive-remix              /departments/magazine-time-machine/  301
+/blog/category/archive-remix/             /departments/magazine-time-machine/  301
+/blog/category/dead-future-report         /departments/magazine-time-machine/  301
+/blog/category/dead-future-report/        /departments/magazine-time-machine/  301
+/blog/category/3-degrees-of-dick-miller   /departments/hobfarm-presents/       301
+/blog/category/3-degrees-of-dick-miller/  /departments/hobfarm-presents/       301
+
+# Comics desk renamed: funny-pages -> funnies.
+/departments/funny-pages   /departments/funnies/   301
+/departments/funny-pages/  /departments/funnies/   301
+
+# Dynamic legacy redirects stay below static redirects for Pages matching.
+/blog/posts/:slug         /articles/:slug             301
+/blog/posts/:slug/        /articles/:slug/            301
+# Canonical department slugs pass straight through to the new department pages.
+/articles/category/:category   /departments/:category/   301
+/articles/category/:category/  /departments/:category/   301
+/blog/category/:category  /departments/:category/     301
+/blog/category/:category/ /departments/:category/     301
+/blog/tags/:tag           /articles/tags/:tag         301
+/blog/tags/:tag/          /articles/tags/:tag/        301

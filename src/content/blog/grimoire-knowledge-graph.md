@@ -3,6 +3,9 @@ title: "Why a Visual Knowledge Graph"
 excerpt: "Grimoire turns unstructured aesthetic knowledge into a queryable vocabulary system. Atoms, arrangements, correspondences, and harmonic scoring."
 author: d00d
 category: grimoire
+department: workshop-notes
+format: workshop-note
+status: published
 tags:
   - grimoire
   - knowledge-graph

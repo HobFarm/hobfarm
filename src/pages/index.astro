@@ -1,28 +1,32 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import MagazineFrontPage from "@/components/home/MagazineFrontPage.astro";
+import RecentVideos from "@/components/home/RecentVideos.astro";
 import CuteCorruptedSection from "@/components/home/CuteCorruptedSection.astro";
-import BeforeAfterFeature from "@/components/home/BeforeAfterFeature.astro";
-import VisualSystems from "@/components/home/VisualSystems.astro";
-import ApplicationsAcrossMedia from "@/components/home/ApplicationsAcrossMedia.astro";
-import WorkflowSection from "@/components/home/WorkflowSection.astro";
-import GrimoireSection from "@/components/home/GrimoireSection.astro";
-import FieldNotesAcademy from "@/components/home/FieldNotesAcademy.astro";
+import DepartmentStrip from "@/components/home/DepartmentStrip.astro";
+import FunniesStrip from "@/components/home/FunniesStrip.astro";
 import ExploreSupportFollow from "@/components/home/ExploreSupportFollow.astro";
 ---
 
 <BaseLayout
-  title="HobFarm | Online Magazine and Visual Studio"
-  description="HobFarm is an online magazine and visual studio for cartoons, fake ads, media history, character systems, visual experiments, games, workflows, and whatever else crawls out of the workshop."
+  title="HobFarm | Online Humor Magazine and Visual Studio"
+  description="HobFarm is an online humor magazine and visual studio for cartoons, satire ads, archive dives, character worlds, style experiments, food/fashion mutations, Vegas logic, and backstage culture."
   palette="magenta-cyan"
 >
+  {/* 1 Hero · 2 Featured article · 3 Latest · 4 Departments */}
   <MagazineFrontPage />
+  {/* 5 Recent videos */}
+  <RecentVideos />
+  {/* 6 Featured visual story */}
   <CuteCorruptedSection />
-  <BeforeAfterFeature />
-  <VisualSystems />
-  <ApplicationsAcrossMedia />
-  <WorkflowSection />
-  <GrimoireSection />
-  <FieldNotesAcademy />
+  {/* 7 Funnies */}
+  <FunniesStrip />
+  {/* 8 WTFacts? — kept wired but auto-suppressed while status is "planned"
+       (DepartmentStrip returns null). Flip status to "active" in departments.ts
+       once it has content to relaunch this slot. */}
+  <DepartmentStrip slug="wtfacts" />
+  {/* 9 Workshop Notes */}
+  <DepartmentStrip slug="workshop-notes" />
+  {/* 10 Support the Farm */}
   <ExploreSupportFollow />
 </BaseLayout>

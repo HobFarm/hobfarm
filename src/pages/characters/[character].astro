@@ -1,0 +1,86 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import ComicCard from "@/components/funnies/ComicCard.astro";
+import { characters } from "@/data/characters";
+import { getComicSeries, seriesPath } from "@/data/comic-series";
+import { comicsForCharacter, getPublishedComics } from "@/lib/comics";
+
+export async function getStaticPaths() {
+  const comics = await getPublishedComics();
+  return characters.map((character) => ({
+    params: { character: character.slug },
+    props: { character, comics: comicsForCharacter(comics, character.slug).slice(0, 6) },
+  }));
+}
+
+const { character, comics } = Astro.props;
+const series = character.relatedSeries
+  .map((slug) => getComicSeries(slug))
+  .filter((s): s is NonNullable<typeof s> => Boolean(s));
+---
+
+<BaseLayout
+  title={`${character.name} | Characters | HobFarm`}
+  description={character.bio}
+  canonical={`/characters/${character.slug}/`}
+>
+  <section>
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-16">
+        <a href="/characters/" class="text-sm text-base-500 transition-colors hover:text-base-100">
+          &larr; Character index
+        </a>
+        <div class="mt-5 flex flex-wrap items-baseline gap-x-4 gap-y-2">
+          <Text tag="h1" variant="display2XL" class="font-display text-white text-balance">
+            {character.name}
+          </Text>
+          <span class="font-mono text-[10px] uppercase tracking-widest text-base-500">{character.role}</span>
+        </div>
+        <Text tag="p" variant="textLG" class="mt-4 max-w-2xl text-base-300 leading-relaxed text-pretty">
+          {character.bio}
+        </Text>
+
+        {character.traits.length > 0 && (
+          <div class="mt-6 flex flex-wrap gap-2">
+            {character.traits.map((trait) => (
+              <span class="rounded-full border border-base-700 px-3 py-1 text-xs text-base-300">{trait}</span>
+            ))}
+          </div>
+        )}
+
+        {series.length > 0 && (
+          <div class="mt-12">
+            <Text tag="h2" variant="displaySM" class="mb-5 font-display text-white">Comic series</Text>
+            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {series.map((s) => (
+                <a
+                  href={seriesPath(s.slug)}
+                  class="group rounded-lg border border-base-800 bg-base-900/50 p-4 transition-colors hover:border-accent-green/50"
+                >
+                  <h3 class="font-display text-base text-white">{s.title}</h3>
+                  <p class="mt-2 text-sm leading-relaxed text-base-400">{s.premise}</p>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div class="mt-12 border-t border-base-800 pt-10">
+          <Text tag="h2" variant="displaySM" class="mb-5 font-display text-white">Latest comics</Text>
+          {comics.length > 0 ? (
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {comics.map((comic) => <ComicCard comic={comic} />)}
+            </div>
+          ) : (
+            <p class="text-sm text-base-400">
+              No published comics featuring {character.name} yet. They are in the rotation.
+            </p>
+          )}
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+</BaseLayout>

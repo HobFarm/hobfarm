@@ -3,6 +3,9 @@ title: "How HobBot Keeps the Lights On"
 excerpt: "A look inside HobFarm's automation bot: what it does, why it exists, and how it keeps content flowing without manual intervention."
 publishedAt: 2026-03-13
 category: "hobbot"
+department: workshop-notes
+format: workshop-note
+status: published
 tags: ["automation", "hobbot", "pipeline", "infrastructure"]
 hero: https://cdn.hob.farm/pages/blog/hobbot_hero.png
 ---

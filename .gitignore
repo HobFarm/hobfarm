@@ -57,3 +57,10 @@ src/content/gallery/**/*.svg
 
 # Reference docs dropped in the repo root, never to be deployed
 /*.pdf
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/

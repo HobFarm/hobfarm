@@ -10,7 +10,6 @@ test("articles route layer exists without exposing public blog routes", () => {
   const routeFiles = [
     "src/pages/articles/index.astro",
     "src/pages/articles/[...slug].astro",
-    "src/pages/articles/category/[category].astro",
     "src/pages/articles/tags/index.astro",
     "src/pages/articles/tags/[tag].astro",
   ];
@@ -18,6 +17,25 @@ test("articles route layer exists without exposing public blog routes", () => {
   for (const file of routeFiles) {
     assert.equal(existsSync(join(root, file)), true, `${file} should exist`);
   }
+});
+
+test("departments taxonomy and routes exist", () => {
+  const files = [
+    "src/data/departments.ts",
+    "src/pages/departments/index.astro",
+    "src/pages/departments/[slug].astro",
+  ];
+  for (const file of files) {
+    assert.equal(existsSync(join(root, file)), true, `${file} should exist`);
+  }
+});
+
+test("the retired articles category route is gone", () => {
+  assert.equal(
+    existsSync(join(root, "src/pages/articles/category/[category].astro")),
+    false,
+    "articles category route should be replaced by /departments and redirects",
+  );
 });
 
 test("navigation prefers Articles over Blog", () => {
@@ -32,8 +50,61 @@ test("legacy blog URLs redirect to canonical articles URLs", () => {
 
   assert.match(redirects, /\/blog\s+\/articles\/\s+301/);
   assert.match(redirects, /\/blog\/posts\/:slug\s+\/articles\/:slug\s+301/);
-  assert.match(redirects, /\/blog\/category\/:category\s+\/articles\/category\/:category\s+301/);
+  assert.match(redirects, /\/blog\/category\/:category\s+\/departments\/:category\/\s+301/);
   assert.match(redirects, /\/blog\/tags\/:tag\s+\/articles\/tags\/:tag\s+301/);
+});
+
+test("legacy category URLs redirect to canonical department pages", () => {
+  const redirects = read("public/_redirects");
+
+  assert.match(redirects, /\/articles\/category\/fake-ads\s+\/departments\/satire\/\s+301/);
+  assert.match(redirects, /\/articles\/category\/technical\s+\/departments\/workshop-notes\/\s+301/);
+  assert.match(
+    redirects,
+    /\/articles\/category\/cultural-thread\s+\/departments\/essays-arguments\/\s+301/,
+  );
+  assert.match(
+    redirects,
+    /\/blog\/category\/cultural-thread\/\s+\/departments\/essays-arguments\/\s+301/,
+  );
+  assert.match(
+    redirects,
+    /\/articles\/category\/before-after\s+\/departments\/before-after-eras\/\s+301/,
+  );
+});
+
+test("search index resolves article entries to canonical departments", () => {
+  const searchIndex = read("src/lib/search-index.ts");
+
+  assert.match(searchIndex, /resolveDepartment/);
+});
+
+test("search index includes published comics without adding them to articles", () => {
+  const searchIndex = read("src/lib/search-index.ts");
+
+  assert.match(searchIndex, /getPublishedComics/);
+  assert.match(searchIndex, /type:\s*"comic"/);
+  assert.doesNotMatch(searchIndex, /\/articles\/\$\{comic/);
+});
+
+test("Funnies comics subsystem routes and data exist", () => {
+  const files = [
+    "src/pages/departments/funnies.astro",
+    "src/pages/funnies/[series]/index.astro",
+    "src/pages/funnies/[series]/[slug].astro",
+    "src/pages/characters/[character].astro",
+    "src/data/comic-series.ts",
+    "src/lib/comics.ts",
+  ];
+  for (const file of files) {
+    assert.equal(existsSync(join(root, file)), true, `${file} should exist`);
+  }
+});
+
+test("legacy funny-pages department redirects to funnies", () => {
+  const redirects = read("public/_redirects");
+
+  assert.match(redirects, /\/departments\/funny-pages\s+\/departments\/funnies\/\s+301/);
 });
 
 test("search and rss point article entries at /articles", () => {

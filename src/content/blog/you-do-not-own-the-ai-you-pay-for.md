@@ -3,6 +3,9 @@ title: "You Do Not Own the AI You Pay For"
 excerpt: "Anthropic's Fable 5 shutdown is a warning about hosted AI: the tool you pay for can change, disappear, or be gated above the user layer."
 author: d00d
 category: cultural-thread
+department: essays-arguments
+format: article
+status: published
 tags:
   - ai
   - hosted ai

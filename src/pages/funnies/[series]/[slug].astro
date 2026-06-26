@@ -1,0 +1,130 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import { getSeriesTitle, seriesPath } from "@/data/comic-series";
+import { characters, characterPath, getCharacterName } from "@/data/characters";
+import { comicPath, comicSlug, comicsInSeries, getPublishedComics } from "@/lib/comics";
+
+export async function getStaticPaths() {
+  const comics = await getPublishedComics();
+  return comics.map((comic) => {
+    const series = comicsInSeries(comics, comic.data.series);
+    const i = series.findIndex((c) => c.id === comic.id);
+    // series is newest-first: previous = older (next index), next = newer.
+    const previous = series[i + 1] ?? null;
+    const next = series[i - 1] ?? null;
+    return {
+      params: { series: comic.data.series, slug: comicSlug(comic) },
+      props: { comic, previous, next },
+    };
+  });
+}
+
+const { comic, previous, next } = Astro.props;
+const { title, image, imageAlt, caption, series, tags, date, socialCaption } = comic.data;
+const characterSlugSet = new Set(characters.map((c) => c.slug));
+const cast = comic.data.characters;
+const publishedTime = date ? new Date(date).toISOString() : undefined;
+const formattedDate = date
+  ? new Date(date).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      timeZone: "UTC",
+    })
+  : null;
+---
+
+<BaseLayout
+  title={`${title} | ${getSeriesTitle(series)} | HobFarm`}
+  description={caption || socialCaption || `${getSeriesTitle(series)} comic from HobFarm Funnies.`}
+  canonical={comicPath(comic)}
+  image={image}
+  imageAlt={imageAlt || title}
+  type="article"
+  publishedTime={publishedTime}
+  tags={tags}
+>
+  <section>
+    <ContentPanel>
+      <Wrapper variant="narrow" class="py-10 lg:py-14">
+        <div class="flex flex-wrap items-center gap-3 text-xs uppercase text-base-400">
+          <a href="/departments/funnies/" class="font-mono text-accent-green hover:text-base-100 transition-colors">Funnies</a>
+          <span>&middot;</span>
+          <a href={seriesPath(series)} class="font-mono text-accent-green hover:text-base-100 transition-colors">
+            {getSeriesTitle(series)}
+          </a>
+          {formattedDate && (
+            <>
+              <span>&middot;</span>
+              <time datetime={new Date(date).toISOString()}>{formattedDate}</time>
+            </>
+          )}
+        </div>
+
+        <Text tag="h1" variant="displayLG" class="mt-4 font-display text-white text-balance">
+          {title}
+        </Text>
+        {caption && <p class="mt-3 max-w-2xl text-base text-base-300 text-pretty">{caption}</p>}
+      </Wrapper>
+
+      <Wrapper variant="standard" class="pb-6">
+        <div class="overflow-hidden rounded-lg border border-base-800 bg-base-950">
+          <img src={image} alt={imageAlt || title} class="mx-auto block w-full max-w-3xl" loading="eager" decoding="async" />
+        </div>
+      </Wrapper>
+
+      <Wrapper variant="narrow" class="pb-12">
+        {cast.length > 0 && (
+          <div class="mt-6 flex flex-wrap items-center gap-2">
+            <span class="font-mono text-[10px] uppercase tracking-widest text-base-500">Starring</span>
+            {cast.map((slug) =>
+              characterSlugSet.has(slug) ? (
+                <a
+                  href={characterPath(slug)}
+                  class="rounded-full border border-base-700 px-3 py-1 text-xs text-base-200 transition-colors hover:border-accent-green/60 hover:text-white"
+                >
+                  {getCharacterName(slug)}
+                </a>
+              ) : (
+                <span class="rounded-full border border-base-800 px-3 py-1 text-xs text-base-400">{slug}</span>
+              ),
+            )}
+          </div>
+        )}
+
+        {tags.length > 0 && (
+          <div class="mt-4 flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <a
+                href={`/articles/tags/${encodeURIComponent(tag)}`}
+                class="border border-base-700 px-2 py-1 font-mono text-xs capitalize text-base-400 transition-colors hover:border-base-500 hover:text-base-100"
+              >
+                {tag}
+              </a>
+            ))}
+          </div>
+        )}
+
+        {(previous || next) && (
+          <div class="mt-12 grid grid-cols-2 gap-8 border-t border-base-800 pt-8">
+            {previous ? (
+              <a href={comicPath(previous)} class="group text-base-400 transition-colors hover:text-base-100">
+                <p class="text-xs uppercase text-base-500">Previous</p>
+                <p class="mt-1 text-sm font-light">{previous.data.title}</p>
+              </a>
+            ) : <div />}
+            {next ? (
+              <a href={comicPath(next)} class="group ml-auto text-right text-base-400 transition-colors hover:text-base-100">
+                <p class="text-xs uppercase text-base-500">Next</p>
+                <p class="mt-1 text-sm font-light">{next.data.title}</p>
+              </a>
+            ) : <div />}
+          </div>
+        )}
+      </Wrapper>
+    </ContentPanel>
+  </section>
+</BaseLayout>

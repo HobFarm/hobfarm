@@ -1,0 +1,57 @@
+---
+// Homepage Funnies strip. Comics are their own collection, so this reads the
+// comics collection directly (the generic DepartmentStrip only sees blog
+// articles). Shows the latest comics, or a teaser pointing at the Funnies
+// landing while the section fills up.
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import ComicCard from "@/components/funnies/ComicCard.astro";
+import { getPublishedComics } from "@/lib/comics";
+import {
+  getDepartment,
+  departmentShowsOnHomepage,
+  departmentShowsWhenEmpty,
+} from "@/data/departments";
+
+const comics = (await getPublishedComics()).slice(0, 4);
+const funnies = getDepartment("funnies");
+// Hide the strip unless Funnies is homepage-visible and either has comics or
+// opts into an empty teaser. Keeps the homepage from showing an empty section.
+const show =
+  !!funnies &&
+  departmentShowsOnHomepage(funnies) &&
+  (comics.length > 0 || departmentShowsWhenEmpty(funnies));
+---
+
+{show && (
+<section class="border-b border-base-800/70">
+  <Wrapper variant="standard" class="py-14 lg:py-16">
+    <div class="mb-6 flex flex-wrap items-end justify-between gap-4">
+      <div class="max-w-2xl">
+        <div class="flex items-center gap-2.5">
+          <span class="size-2 shrink-0 rounded-full" style="background-color: #2fe089" />
+          <p class="font-mono text-[10px] uppercase tracking-widest text-base-400">Department</p>
+        </div>
+        <h2 class="mt-2 text-2xl font-display text-white">Funnies</h2>
+        <p class="mt-3 text-sm leading-relaxed text-base-400">
+          Cartoons, panels, strips, recurring character gags, and comic scraps from HobFarm.
+        </p>
+      </div>
+      <a href="/departments/funnies/" class="text-sm text-base-400 transition-colors hover:text-white">
+        Open Funnies
+      </a>
+    </div>
+
+    {comics.length > 0 ? (
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {comics.map((comic) => <ComicCard comic={comic} />)}
+      </div>
+    ) : (
+      <div class="flex flex-wrap items-center gap-4 rounded-lg border border-dashed border-base-800 bg-base-950/40 p-5">
+        <p class="text-sm text-base-400">Filling up. New strips and gags will land here.</p>
+        <Button isLink size="sm" variant="muted" href="/departments/funnies/">Explore Funnies</Button>
+      </div>
+    )}
+  </Wrapper>
+</section>
+)}

@@ -3,6 +3,9 @@ title: "The Unlit Corner: Chiaroscuro and the Truth of Shadows"
 excerpt: "Chiaroscuro is not merely a lighting trick; it is a philosophy of seeing, revealing truth in the deliberate embrace of darkness, a stark rebuke to the bland uniformity of over-illumination."
 author: d00d
 category: grimoire
+department: workshop-notes
+format: workshop-note
+status: published
 tags:
   - lighting
   - visual-aesthetics

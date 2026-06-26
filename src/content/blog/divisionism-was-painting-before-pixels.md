@@ -3,6 +3,9 @@ title: "Divisionism Was Painting Before Pixels"
 excerpt: "A forgotten nineteenth-century painting method still has something to teach digital image systems: separate the parts, structure the surface, and let the image resolve."
 author: d00d
 category: cultural-thread
+department: essays-arguments
+format: article
+status: published
 tags:
   - divisionism
   - art history

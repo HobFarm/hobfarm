@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, type SubmitEvent } from "react";
 
 const TURNSTILE_SITEKEY = "0x4AAAAAACnfEXz9mYmnu2N6";
 
@@ -60,7 +60,7 @@ export default function ContactForm() {
     };
   }, []);
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!token) {
       setErrorMsg("Please complete the verification.");

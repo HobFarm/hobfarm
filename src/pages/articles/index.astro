@@ -5,8 +5,6 @@ import ArticleCard from "@/components/articles/ArticleCard.astro";
 import ContentPanel from "@/components/ContentPanel.astro";
 import Subscribe from "@/components/articles/Subscribe.astro";
 import {
-  articleCategories,
-  articleCategoryPath,
   articlePath,
   articleTagPath,
   getArticleDate,
@@ -15,6 +13,7 @@ import {
   getArticleHero,
   getPublishedArticles,
 } from "@/lib/articles";
+import { departmentFilters, departmentPath } from "@/data/departments";
 
 const allPosts = await getPublishedArticles();
 const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
@@ -28,7 +27,7 @@ const coverHero = coverStory ? getArticleHero(coverStory.data) : undefined;
 
 <BaseLayout
   title="Articles | HobFarm"
-  description="Articles from HobFarm, an online magazine and visual studio for visual culture, media history, cartoons, fake ads, archive dives, movie trails, character systems, production notes, and AI-assisted image and video work."
+  description="Articles from HobFarm, an online magazine and visual studio for visual culture, media history, cartoons, satire, archive dives, movie trailers, character systems, production notes, and image and video work."
   canonical="/articles/"
 >
   <section>
@@ -50,9 +49,9 @@ const coverHero = coverStory ? getArticleHero(coverStory.data) : undefined;
             </p>
 
             <div class="mt-8 flex flex-wrap gap-2 lg:flex-col">
-              {articleCategories.map((cat) => (
+              {departmentFilters.map((cat) => (
                 <a
-                  href={cat.value === "all" ? "/articles/" : `${articleCategoryPath(cat.value)}/`}
+                  href={cat.value === "all" ? "/articles/" : departmentPath(cat.value)}
                   class:list={[
                     "text-xs font-mono px-3 py-1.5 border transition-colors",
                     cat.value === "all"

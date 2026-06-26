@@ -1,11 +1,11 @@
 ---
 import type { Article } from "@/lib/articles";
 import {
-  articleCategoryPath,
   articlePath,
   articleTagPath,
   getArticleDate,
   getArticleDek,
+  getArticleDepartment,
   getArticleDepartmentLabel,
   getArticleDescription,
   getArticleHero,
@@ -14,6 +14,7 @@ import {
   getPublishedArticles,
   getRelatedArticles,
 } from "@/lib/articles";
+import { departmentPath } from "@/data/departments";
 import BaseLayout from "./BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import ContentPanel from "@/components/ContentPanel.astro";
@@ -38,6 +39,7 @@ const dek = getArticleDek(frontmatter);
 const hero = getArticleHero(frontmatter);
 const seoImage = getArticleImage(frontmatter);
 const departmentLabel = getArticleDepartmentLabel(frontmatter);
+const department = getArticleDepartment(frontmatter);
 const formattedDate = publishedAt.toLocaleDateString("en-US", {
   year: "numeric",
   month: "long",
@@ -83,6 +85,10 @@ const relatedLinks = [
     label: "Related project",
     href: frontmatter.relatedProject,
   },
+  frontmatter.relatedVideo && {
+    label: "Related video",
+    href: frontmatter.relatedVideo,
+  },
 ].filter((link): link is { label: string; href: string } => Boolean(link));
 
 const contextualCtas = [
@@ -92,11 +98,9 @@ const contextualCtas = [
 ].filter((link): link is { label: string; href: string } => Boolean(link));
 
 if (contextualCtas.length === 0) {
-  if (frontmatter.category === "grimoire") {
-    contextualCtas.push({ label: "Explore Grimoire", href: "/grimoire/" });
-  } else if (["research", "stylefusion", "technical"].includes(frontmatter.category ?? "")) {
+  if (department === "workshop-notes") {
     contextualCtas.push({ label: "Learn the workflow", href: "/academy/" });
-  } else if (["magazine-time-machine", "cultural-thread"].includes(frontmatter.category ?? "")) {
+  } else if (department === "magazine-time-machine") {
     contextualCtas.push({ label: "Support the magazine", href: "/support/" });
   }
 }
@@ -158,11 +162,11 @@ const articleJsonLd = {
               <time datetime={publishedAt.toISOString()}>{formattedDate}</time>
               <span>&middot;</span>
               <span>{readingTime}</span>
-              {frontmatter.category && (
+              {department && (
                 <>
                   <span>&middot;</span>
                   <a
-                    href={articleCategoryPath(frontmatter.category)}
+                    href={departmentPath(department)}
                     class="font-mono text-accent-cyan hover:text-base-100 transition-colors"
                   >
                     {departmentLabel}

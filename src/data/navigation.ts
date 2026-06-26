@@ -5,14 +5,17 @@
 
 export type NavLink = { label: string; href: string };
 
+// Magazine front-of-book nav. Home is the logo. Shop/Academy/Services live under
+// Workshop (the studio umbrella), not the top bar. The Departments page is the
+// full table of contents; the top nav stays deliberately short.
 export const topNavLinks: NavLink[] = [
-  { label: "Projects", href: "/projects" },
-  { label: "Visuals", href: "/gallery" },
-  { label: "Academy", href: "/academy" },
-  { label: "Shop", href: "/shop" },
-  { label: "Services", href: "/services" },
   { label: "Articles", href: "/articles" },
-  { label: "About", href: "/about" },
+  { label: "Departments", href: "/departments" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Video", href: "/video" },
+  { label: "Characters", href: "/characters" },
+  { label: "Workshop", href: "/workshop" },
+  { label: "Support", href: "/support" },
 ];
 
 export type FooterGroup = { title: string; links: NavLink[] };
@@ -21,22 +24,30 @@ export const footerLinkGroups: FooterGroup[] = [
   {
     title: "Explore",
     links: [
-      { label: "Projects", href: "/projects" },
-      { label: "Visuals", href: "/gallery" },
-      { label: "Grimoire", href: "/grimoire" },
-      { label: "Academy", href: "/academy" },
+      { label: "Articles", href: "/articles" },
+      { label: "Departments", href: "/departments" },
+      { label: "Gallery", href: "/gallery" },
+      { label: "Video", href: "/video" },
+      { label: "Characters", href: "/characters" },
+    ],
+  },
+  {
+    title: "Workshop",
+    links: [
+      { label: "Workshop Notes", href: "/workshop" },
       { label: "Shop", href: "/shop/" },
+      { label: "Academy", href: "/academy/" },
       { label: "Services", href: "/services/" },
+      { label: "Grimoire", href: "/grimoire" },
     ],
   },
   {
     title: "Resources",
     links: [
-      { label: "Articles", href: "/articles" },
-      { label: "Whitepaper", href: "/whitepaper" },
       { label: "Support", href: "/support/" },
       { label: "Help Center", href: "/helpcenter" },
       { label: "Changelog", href: "/changelog" },
+      { label: "Whitepaper", href: "/whitepaper" },
     ],
   },
   {

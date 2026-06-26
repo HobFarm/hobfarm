@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type SubmitEvent } from "react";
 import {
   fetchKeys,
   putKey,
@@ -48,7 +48,7 @@ export default function ApiKeysSection() {
   const taken = new Set(keys.map((k) => k.provider));
   const availableProviders = ALLOWED_PROVIDERS.filter((p) => !taken.has(p));
 
-  async function handleAdd(e: React.FormEvent) {
+  async function handleAdd(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     if (busy) return;
     setError("");

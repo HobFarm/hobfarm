@@ -1,0 +1,96 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Eyebrow from "@/components/sections/Eyebrow.astro";
+import ArticleCard from "@/components/articles/ArticleCard.astro";
+import VisualSystems from "@/components/home/VisualSystems.astro";
+import ApplicationsAcrossMedia from "@/components/home/ApplicationsAcrossMedia.astro";
+import WorkflowSection from "@/components/home/WorkflowSection.astro";
+import GrimoireSection from "@/components/home/GrimoireSection.astro";
+import { getArticleDepartment, getPublishedArticles } from "@/lib/articles";
+
+const notes = (await getPublishedArticles())
+  .filter((p) => getArticleDepartment(p.data) === "workshop-notes")
+  .slice(0, 9);
+
+// Shop/Academy/Services are downstream of the workshop: what it produces, how to
+// learn it, and hiring it. They live here, not in the top nav.
+const paths = [
+  {
+    title: "Shop",
+    body: "What the workflow produces, for sale.",
+    href: "/shop/",
+  },
+  {
+    title: "Academy",
+    body: "Learn the workflow: lessons, breakdowns, and courses.",
+    href: "/academy/",
+  },
+  {
+    title: "Services",
+    body: "Hire the workflow for video, image, and design work.",
+    href: "/services/",
+  },
+];
+---
+
+<BaseLayout
+  title="Workshop | HobFarm"
+  description="The HobFarm workshop: process, tools, AI workflows, prompt systems, image and video production, reusable looks, tests, failures, and build notes."
+  canonical="/workshop/"
+>
+  <section>
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <div class="max-w-2xl">
+          <Eyebrow text="HobFarm / Workshop" />
+          <Text tag="h1" variant="display2XL" class="mt-6 font-display text-white text-balance">
+            Workshop
+          </Text>
+          <Text tag="p" variant="textLG" class="mt-5 text-base-400 leading-relaxed text-pretty">
+            How the work gets made: process, tools, AI workflows, prompt systems, image and video production, reusable looks, tests, and the failures along the way.
+          </Text>
+        </div>
+
+        <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
+          {paths.map((p) => (
+            <a
+              href={p.href}
+              class="group flex flex-col rounded-lg border border-base-800 bg-base-900/50 p-5 transition-colors hover:border-accent-blue/50"
+            >
+              <Text tag="h2" variant="textXL" class="font-display text-white">{p.title}</Text>
+              <p class="mt-2 flex-1 text-sm leading-relaxed text-base-400">{p.body}</p>
+              <span class="mt-5 font-mono text-[10px] uppercase tracking-wider text-base-400 group-hover:text-white">
+                Open &rarr;
+              </span>
+            </a>
+          ))}
+        </div>
+
+        {notes.length > 0 && (
+          <div class="mt-16 border-t border-base-800 pt-10">
+            <div class="mb-6 flex items-end justify-between gap-4">
+              <Text tag="h2" variant="displaySM" class="font-display text-white">Workshop Notes</Text>
+              <a
+                href="/departments/workshop-notes/"
+                class="font-mono text-[10px] uppercase tracking-wider text-base-400 transition-colors hover:text-white"
+              >
+                All notes &rarr;
+              </a>
+            </div>
+            <div class="grid grid-cols-1 gap-x-4 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+              {notes.map((post) => <ArticleCard post={post} />)}
+            </div>
+          </div>
+        )}
+      </Wrapper>
+    </ContentPanel>
+
+    <VisualSystems />
+    <ApplicationsAcrossMedia />
+    <WorkflowSection />
+    <GrimoireSection />
+  </section>
+</BaseLayout>

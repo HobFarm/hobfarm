@@ -1,0 +1,70 @@
+---
+// Generic homepage section for one department. Self-contained: pass a slug and
+// it pulls that department's latest published articles. Reused for The Funny
+// article strips, so adding a new homepage department section is one line in
+// index.astro, not a new component. When a department has
+// no articles yet it shows a compact teaser instead of an empty grid.
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import ArticleCard from "@/components/articles/ArticleCard.astro";
+import { getArticleDepartment, getPublishedArticles } from "@/lib/articles";
+import {
+  getDepartment,
+  departmentPath,
+  departmentShowsOnHomepage,
+  departmentShowsWhenEmpty,
+} from "@/data/departments";
+
+interface Props {
+  slug: string;
+  limit?: number;
+}
+
+const { slug, limit = 3 } = Astro.props;
+const department = getDepartment(slug);
+const posts = department
+  ? (await getPublishedArticles())
+      .filter((p) => getArticleDepartment(p.data) === department.slug)
+      .slice(0, limit)
+  : [];
+// Only render for homepage-visible (active) departments, and only when there is
+// content or the department explicitly opts into an empty teaser. Planned/empty
+// departments return null so the homepage never reads like a roadmap.
+const show =
+  !!department &&
+  departmentShowsOnHomepage(department) &&
+  (posts.length > 0 || departmentShowsWhenEmpty(department));
+---
+
+{show && department && (
+  <section class="border-b border-base-800/70">
+    <Wrapper variant="standard" class="py-14 lg:py-16">
+      <div class="mb-6 flex flex-wrap items-end justify-between gap-4">
+        <div class="max-w-2xl">
+          <div class="flex items-center gap-2.5">
+            <span class="size-2 shrink-0 rounded-full" style={`background-color: ${department.accent}`} />
+            <p class="font-mono text-[10px] uppercase tracking-widest text-base-400">Department</p>
+          </div>
+          <h2 class="mt-2 text-2xl font-display text-white">{department.label}</h2>
+          <p class="mt-3 text-sm leading-relaxed text-base-400">{department.blurb}</p>
+        </div>
+        <a href={departmentPath(department.slug)} class="text-sm text-base-400 transition-colors hover:text-white">
+          Open department
+        </a>
+      </div>
+
+      {posts.length > 0 ? (
+        <div class="grid grid-cols-1 gap-x-4 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+          {posts.map((post) => <ArticleCard post={post} />)}
+        </div>
+      ) : (
+        <div class="flex flex-wrap items-center gap-4 rounded-lg border border-dashed border-base-800 bg-base-950/40 p-5">
+          <p class="text-sm text-base-400">Filling up. New {department.label} pieces will land here.</p>
+          <Button isLink size="sm" variant="muted" href={departmentPath(department.slug)}>
+            Explore {department.label}
+          </Button>
+        </div>
+      )}
+    </Wrapper>
+  </section>
+)}

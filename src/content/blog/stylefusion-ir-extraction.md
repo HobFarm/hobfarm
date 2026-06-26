@@ -3,6 +3,9 @@ title: "How StyleFusion Reads Images"
 excerpt: "Inside the Intermediate Representation: turning reference images into structured vocabulary that drives prompt compilation."
 author: d00d
 category: stylefusion
+department: workshop-notes
+format: workshop-note
+status: published
 tags:
   - stylefusion
   - ai

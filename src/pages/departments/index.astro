@@ -1,0 +1,90 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Eyebrow from "@/components/sections/Eyebrow.astro";
+import { getCollection } from "astro:content";
+import {
+  departments,
+  hubDepartments,
+  departmentPath,
+  galleryTypeToDepartment,
+  resolveDepartment,
+} from "@/data/departments";
+import { getArticleDepartment, getPublishedArticles } from "@/lib/articles";
+import { getPublishedComics } from "@/lib/comics";
+
+// Count published articles + non-draft gallery entries + published comics filed
+// to each department, so the hub shows how full each section is. Only
+// hub-visible (active) departments are rendered; planned ones stay routable.
+const articles = await getPublishedArticles();
+const visuals = (await getCollection("gallery")).filter((e) => !e.data.draft);
+const comics = await getPublishedComics();
+
+const counts = new Map<string, number>(departments.map((d) => [d.slug, 0]));
+const bump = (slug: string | undefined) => {
+  if (slug && counts.has(slug)) counts.set(slug, counts.get(slug)! + 1);
+};
+for (const a of articles) bump(getArticleDepartment(a.data));
+for (const g of visuals)
+  bump(resolveDepartment(g.data.department ?? galleryTypeToDepartment[g.data.type]));
+for (const c of comics) bump(resolveDepartment(c.data.department));
+
+const departmentDescription = `The active recurring sections of HobFarm: ${hubDepartments
+  .map((dep) => dep.label)
+  .join(", ")}.`;
+---
+
+<BaseLayout
+  title="Departments | HobFarm"
+  description={departmentDescription}
+  canonical="/departments/"
+>
+  <section>
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-16">
+        <div class="max-w-2xl">
+          <Eyebrow text="HobFarm / The Magazine" />
+          <Text tag="h1" variant="display2XL" class="mt-6 font-display text-white text-balance">
+            Departments
+          </Text>
+          <Text tag="p" variant="textLG" class="mt-5 text-base-400 leading-relaxed text-pretty">
+            The recurring sections. Every article, visual, and video files into one of these, the way a magazine sorts its pages.
+          </Text>
+        </div>
+
+        <div class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {hubDepartments.map((dep) => {
+            const count = counts.get(dep.slug) ?? 0;
+            return (
+              <a
+                href={departmentPath(dep.slug)}
+                class="group flex flex-col rounded-lg border border-base-800 bg-base-900/50 p-5 transition-colors hover:border-base-600"
+              >
+                <div class="flex items-center gap-3">
+                  <span
+                    class="size-2.5 shrink-0 rounded-full"
+                    style={`background-color: ${dep.accent}`}
+                  />
+                  <Text tag="h2" variant="textXL" class="font-display text-white">
+                    {dep.label}
+                  </Text>
+                </div>
+                <p class="mt-3 flex-1 text-sm leading-relaxed text-base-400">{dep.blurb}</p>
+                <div class="mt-5 flex items-center justify-between">
+                  <span class="font-mono text-[10px] uppercase tracking-widest text-base-500">
+                    {count} {count === 1 ? "entry" : "entries"}
+                  </span>
+                  <span class="font-mono text-[10px] uppercase tracking-wider text-base-400 group-hover:text-white">
+                    Open &rarr;
+                  </span>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+</BaseLayout>

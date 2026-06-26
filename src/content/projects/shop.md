@@ -40,11 +40,11 @@ features:
   - title: 'Desk Mats'
     description: 'Active. Wide-format desk worlds, portal surfaces, cracked-wall illusions, 3D breach effects, and haunted scenes for gamers, workstations, and artists.'
   - title: 'Digital Sticker Packs'
-    description: 'Active. Low-ticket themed 10-piece downloadable sets: Halloween monsters, haunted objects, fake warning labels, ravens, pumpkins, ghosts, and portal fragments.'
+    description: 'Active. Low-ticket themed 10-piece downloadable sets: Halloween monsters, haunted objects, fictional warning labels, ravens, pumpkins, ghosts, and portal fragments.'
   - title: 'Drinkware'
     description: 'Building. Mugs, tumblers, and pint glasses using simplified wrap concepts, haunted labels, and weird souvenir-shop marks pulled from larger HobFarm worlds.'
   - title: 'Bags & Sleeves'
-    description: 'Building. Totes, laptop sleeves, and duffle bags using bold central graphics, pattern crops, fake brand marks, and portal emblems.'
+    description: 'Building. Totes, laptop sleeves, and duffle bags using bold central graphics, pattern crops, fictional brand marks, and portal emblems.'
   - title: 'Handmade Clay'
     description: 'Testing. Polymer clay oddities, magnets, charms, ghost blobs, portal drips, haunted signposts, and miniature relics that add a handmade layer beyond print-on-demand.'
   - title: 'Vintage Finds'
@@ -57,7 +57,7 @@ features:
 
 The HobFarm shop is where the visual experiments become products.
 
-A design may start as a strange little idea: a haunted craft shop, a portal in a desk mat, a corrupted Halloween creature, a fake warning label, a ghost village, a weird clay object, or a vintage find that looks like it wandered in from the wrong roadside shop. If the idea has a product path, it becomes a listing. You can see where these designs come from in the [visuals](/gallery).
+A design may start as a strange little idea: a haunted craft shop, a portal in a desk mat, a corrupted Halloween creature, a fictional warning label, a ghost village, a weird clay object, or a vintage find that looks like it wandered in from the wrong roadside shop. If the idea has a product path, it becomes a listing. You can see where these designs come from in the [visuals](/gallery).
 
 The current shop system is built around repeatable product families: surreal desk mats, digital sticker and clip-art packs, drinkware, laptop sleeves, bags, soft goods, handmade polymer clay pieces, wall art, and odd vintage finds. The goal is not random merch. The goal is to build small product worlds that can become multiple useful things.
 
@@ -69,7 +69,7 @@ Wide-format desk worlds, portal surfaces, cracked-wall illusions, 3D breach effe
 
 ## Digital Sticker & Clip-Art Packs
 
-Low-ticket digital packs built around themes: Halloween monsters, haunted objects, fake warning labels, weird office decals, ravens, pumpkins, ghosts, portal fragments, and other reusable graphic sets. These are downloadable assets for printable stickers, digital journals, collage, crafting, and personal projects.
+Low-ticket digital packs built around themes: Halloween monsters, haunted objects, fictional warning labels, weird office decals, ravens, pumpkins, ghosts, portal fragments, and other reusable graphic sets. These are downloadable assets for printable stickers, digital journals, collage, crafting, and personal projects.
 
 ## Drinkware
 
@@ -77,7 +77,7 @@ Mugs and tumblers, pint glasses, and related drinkware using simplified graphics
 
 ## Bags & Laptop Sleeves
 
-Totes, laptop sleeves, duffle bags, and other carry goods using bold central graphics, pattern crops, fake brand marks, portal emblems, and design fragments from larger collections.
+Totes, laptop sleeves, duffle bags, and other carry goods using bold central graphics, pattern crops, fictional brand marks, portal emblems, and design fragments from larger collections.
 
 ## Handmade Clay Oddities
 

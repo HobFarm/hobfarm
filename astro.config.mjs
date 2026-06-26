@@ -4,6 +4,13 @@ import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import cloudflare from "@astrojs/cloudflare";
+import { departments, departmentStatus } from "./src/data/departments.ts";
+
+const noindexDepartmentPaths = new Set(
+  departments
+    .filter((department) => departmentStatus(department) !== "active")
+    .map((department) => `/departments/${department.slug}/`),
+);
 
 // https://astro.build/config
 export default defineConfig({
@@ -43,7 +50,14 @@ export default defineConfig({
   site: 'https://hob.farm',
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/login') && !page.includes('/account'),
+      filter: (page) => {
+        const pathname = new URL(page).pathname;
+        return (
+          !page.includes("/login") &&
+          !page.includes("/account") &&
+          !noindexDepartmentPaths.has(pathname)
+        );
+      },
     }),
     mdx(),
     react(),

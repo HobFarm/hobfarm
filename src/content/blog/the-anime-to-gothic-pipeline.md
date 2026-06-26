@@ -3,6 +3,9 @@ title: "The Anime-to-Gothic Pipeline"
 excerpt: "How Japanese animation aesthetics and European gothic art share a visual language, and what that means for AI style transfer."
 publishedAt: 2026-03-08
 category: "cultural-thread"
+department: workshop-notes
+format: workshop-note
+status: published
 tags: ["anime", "gothic", "art-history", "style-transfer", "visual-dna"]
 hero: https://cdn.hob.farm/pages/blog/anime_gothic_hero.png
 ---

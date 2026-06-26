@@ -3,6 +3,9 @@ title: "1973: When Airbrush Was AI"
 excerpt: "How the airbrush revolution in 1970s commercial illustration mirrors today's AI image generation debate, and what happened after."
 publishedAt: 2026-03-05
 category: "magazine-time-machine"
+department: magazine-time-machine
+format: article
+status: published
 tags: ["1970s", "airbrush", "illustration", "history", "ai-parallels"]
 hero: https://cdn.hob.farm/pages/blog/airbrush_hero.png
 ---

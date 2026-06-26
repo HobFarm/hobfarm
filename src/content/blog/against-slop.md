@@ -3,6 +3,9 @@ title: "Against Slop"
 excerpt: "Manifesto #2. The monoculture is dead, every aesthetic is somebody's encoding, and slop is what happens when you let the machine average the residue for you."
 author: d00d
 category: cultural-thread
+department: essays-arguments
+format: article
+status: published
 tags:
   - manifesto
   - ai art

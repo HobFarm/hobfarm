@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type SubmitEvent } from "react";
 import { requestCode, verifyCode, validateReturnUrl } from "@/lib/auth";
 
 type Stage = "email" | "code";
@@ -28,7 +28,7 @@ export default function LoginForm() {
     return validateReturnUrl(raw);
   });
 
-  async function handleEmailSubmit(e: React.FormEvent) {
+  async function handleEmailSubmit(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     if (status === "submitting") return;
     setStatus("submitting");
@@ -50,7 +50,7 @@ export default function LoginForm() {
     setStatus("idle");
   }
 
-  async function handleCodeSubmit(e: React.FormEvent) {
+  async function handleCodeSubmit(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     if (status === "submitting") return;
     setStatus("submitting");

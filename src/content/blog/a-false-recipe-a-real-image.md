@@ -3,6 +3,9 @@ title: "A False Recipe, a Real Image"
 excerpt: "The Grimoire is not a manual. It is a cross-pollination engine that turns stored concepts into speculative artifacts, image seeds, and daily creative prompts."
 author: d00d
 category: grimoire
+department: workshop-notes
+format: workshop-note
+status: published
 tags:
   - grimoire
   - cross-pollination
