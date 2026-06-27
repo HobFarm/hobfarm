@@ -2,10 +2,11 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import ContentPanel from "@/components/ContentPanel.astro";
-import { articleTagPath, getPublishedArticles } from "@/lib/articles";
+import ArticleTagCloud from "@/components/articles/ArticleTagCloud.astro";
+import { getArticleTagCounts, getPublishedArticles } from "@/lib/articles";
 
 const allPosts = await getPublishedArticles();
-const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
+const tagCounts = getArticleTagCounts(allPosts);
 ---
 
 <BaseLayout title="Article Tags | HobFarm" canonical="/articles/tags/">
@@ -13,20 +14,8 @@ const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
     <ContentPanel>
       <Wrapper variant="standard" class="py-12 lg:py-16">
         <h1 class="text-2xl font-light text-base-100 font-display">Article tags</h1>
-        <div class="mt-8 flex flex-col divide-y divide-base-700">
-          {
-            tags.map((tag) => (
-              <a
-                href={articleTagPath(tag)}
-                class="flex items-center justify-between py-3 text-base-100 capitalize font-light hover:text-base-400 transition-colors duration-200"
-              >
-                <span>{tag}</span>
-                <svg class="size-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </a>
-            ))
-          }
+        <div class="mt-8 max-w-5xl">
+          <ArticleTagCloud tags={tagCounts} ariaLabel="All article tags" />
         </div>
       </Wrapper>
     </ContentPanel>

@@ -2,21 +2,22 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import ArticleCard from "@/components/articles/ArticleCard.astro";
+import ArticleTagCloud from "@/components/articles/ArticleTagCloud.astro";
 import ContentPanel from "@/components/ContentPanel.astro";
 import Subscribe from "@/components/articles/Subscribe.astro";
 import {
   articlePath,
-  articleTagPath,
   getArticleDate,
   getArticleDek,
   getArticleDepartmentLabel,
   getArticleHero,
+  getArticleTagCounts,
   getPublishedArticles,
 } from "@/lib/articles";
 import { departmentFilters, departmentPath } from "@/data/departments";
 
 const allPosts = await getPublishedArticles();
-const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
+const tagCounts = getArticleTagCounts(allPosts);
 // The lead slot is always the newest published article. Frontmatter flags can
 // still describe content elsewhere, but publishing something new promotes it.
 const coverStory = allPosts[0];
@@ -64,21 +65,6 @@ const coverHero = coverStory ? getArticleHero(coverStory.data) : undefined;
               ))}
             </div>
 
-            <div class="mt-12">
-              <h2 class="text-base font-medium text-base-100">Tags</h2>
-              <div role="list" class="flex flex-wrap gap-2 mt-4 lg:flex-col">
-                {
-                  tags.map((tag) => (
-                    <a
-                      class="text-sm text-base-100 capitalize hover:text-base-400 transition-colors"
-                      href={articleTagPath(tag)}
-                    >
-                      {tag}
-                    </a>
-                  ))
-                }
-              </div>
-            </div>
           </div>
         </aside>
 
@@ -140,6 +126,21 @@ const coverHero = coverStory ? getArticleHero(coverStory.data) : undefined;
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {latest.map((post) => <ArticleCard post={post} />)}
             </div>
+          </section>
+
+          <section class="mt-12" aria-labelledby="article-tags-heading">
+            <div class="mb-5 flex flex-wrap items-end justify-between gap-4">
+              <h2 id="article-tags-heading" class="text-xl font-light text-base-100">
+                Article tags
+              </h2>
+              <a
+                href="/articles/tags/"
+                class="font-mono text-[10px] uppercase tracking-wider text-base-500 transition-colors hover:text-base-100"
+              >
+                All tags
+              </a>
+            </div>
+            <ArticleTagCloud tags={tagCounts} />
           </section>
         </div>
       </Wrapper>

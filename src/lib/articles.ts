@@ -9,6 +9,10 @@ import {
 
 export type Article = CollectionEntry<"blog">;
 export type ArticleData = Article["data"];
+export type ArticleTagCount = {
+  tag: string;
+  count: number;
+};
 
 // Departments are the canonical taxonomy now (src/data/departments.ts).
 // `articleCategories` is kept as a back-compat re-export of the department
@@ -90,6 +94,20 @@ export function byOldestArticle(a: Article, b: Article): number {
 export async function getPublishedArticles(now: Date = new Date()): Promise<Article[]> {
   const articles = await getCollection("blog");
   return articles.filter((article) => isPublishedArticle(article, now)).sort(byNewestArticle);
+}
+
+export function getArticleTagCounts(articles: Article[]): ArticleTagCount[] {
+  const counts = new Map<string, number>();
+
+  for (const article of articles) {
+    for (const tag of article.data.tags) {
+      counts.set(tag, (counts.get(tag) ?? 0) + 1);
+    }
+  }
+
+  return [...counts.entries()]
+    .map(([tag, count]) => ({ tag, count }))
+    .sort((a, b) => a.tag.localeCompare(b.tag, undefined, { sensitivity: "base" }));
 }
 
 export function getRelatedArticles(current: Article, articles: Article[], limit = 4): Article[] {

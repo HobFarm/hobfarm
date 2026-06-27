@@ -2,16 +2,16 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import ArticleCard from "@/components/articles/ArticleCard.astro";
+import ArticleTagCloud from "@/components/articles/ArticleTagCloud.astro";
 import ContentPanel from "@/components/ContentPanel.astro";
-import { articleTagPath, getPublishedArticles } from "@/lib/articles";
+import { articleTagPath, getArticleTagCounts, getPublishedArticles } from "@/lib/articles";
 
 const allPosts = await getPublishedArticles();
-const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
+const tagCounts = getArticleTagCounts(allPosts);
 
 export async function getStaticPaths() {
   const allPosts = await getPublishedArticles();
-  const uniqueTags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
-  return uniqueTags.map((tag) => {
+  return getArticleTagCounts(allPosts).map(({ tag }) => {
     const filteredPosts = allPosts.filter((post) => post.data.tags.includes(tag));
     return {
       params: { tag },
@@ -45,20 +45,8 @@ const description = `Articles tagged "${tag}" on HobFarm, covering related syste
 
           <div class="mt-12">
             <h2 class="text-base font-medium text-base-100">All tags</h2>
-            <div class="flex flex-wrap gap-2 mt-4 lg:flex-col">
-              {
-                tags.map((t) => (
-                  <a
-                    class:list={[
-                      "text-sm capitalize transition-colors",
-                      t === tag ? "text-base-100 font-medium" : "text-base-400 hover:text-base-100",
-                    ]}
-                    href={articleTagPath(t)}
-                  >
-                    {t}
-                  </a>
-                ))
-              }
+            <div class="mt-4">
+              <ArticleTagCloud tags={tagCounts} activeTag={tag} ariaLabel="All article tags" />
             </div>
           </div>
         </div>

@@ -1,0 +1,55 @@
+---
+import { articleTagPath, type ArticleTagCount } from "@/lib/articles";
+
+interface Props {
+  tags: ArticleTagCount[];
+  activeTag?: string;
+  ariaLabel?: string;
+}
+
+const { tags, activeTag, ariaLabel = "Article tags" } = Astro.props;
+const maxCount = tags.reduce((max, item) => Math.max(max, item.count), 0);
+
+function sizeClass(count: number): string {
+  const ratio = maxCount > 0 ? count / maxCount : 0;
+  if (ratio >= 0.75 && count > 1) return "px-3.5 py-2 text-sm sm:text-base";
+  if (ratio >= 0.4 && count > 1) return "px-3 py-1.5 text-sm";
+  return "px-2.5 py-1.5 text-xs";
+}
+---
+
+<nav aria-label={ariaLabel}>
+  <ul role="list" class="flex flex-wrap items-center gap-2">
+    {
+      tags.map(({ tag, count }) => {
+        const isActive = tag === activeTag;
+        return (
+          <li class="max-w-full">
+            <a
+              href={articleTagPath(tag)}
+              aria-current={isActive ? "page" : undefined}
+              aria-label={`${tag}, ${count} ${count === 1 ? "article" : "articles"}`}
+              class:list={[
+                "inline-flex max-w-full items-center gap-1.5 rounded-md border font-mono capitalize leading-tight transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/70 focus-visible:ring-offset-2 focus-visible:ring-offset-base-950",
+                sizeClass(count),
+                isActive
+                  ? "border-accent-cyan bg-accent-cyan/10 text-base-100"
+                  : "border-base-700 bg-base-900/50 text-base-300 hover:border-base-500 hover:bg-base-900 hover:text-base-100",
+              ]}
+            >
+              <span class="min-w-0 break-words">{tag}</span>
+              <span
+                class:list={[
+                  "shrink-0 rounded-sm border px-1 text-[10px] leading-4",
+                  isActive ? "border-accent-cyan/40 text-accent-cyan" : "border-base-700 text-base-500",
+                ]}
+              >
+                {count}
+              </span>
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</nav>
