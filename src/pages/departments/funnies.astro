@@ -31,14 +31,28 @@ const seriesCards = comicSeries.map((s) => {
     <ContentPanel>
       <Wrapper variant="standard" class="py-12 lg:py-20">
         {/* 1 Hero / intro */}
-        <div class="max-w-2xl">
-          <Eyebrow text="HobFarm / Funnies" />
-          <Text tag="h1" variant="display2XL" class="mt-6 font-display text-white text-balance">
-            Funnies
-          </Text>
-          <Text tag="p" variant="textLG" class="mt-5 text-base-400 leading-relaxed text-pretty">
-            {department.blurb}
-          </Text>
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(320px,0.7fr)] lg:items-end">
+          <div class="max-w-2xl">
+            <Eyebrow text="HobFarm / Funnies" />
+            <Text tag="h1" variant="display2XL" class="mt-6 font-display text-white text-balance">
+              Funnies
+            </Text>
+            <Text tag="p" variant="textLG" class="mt-5 text-base-400 leading-relaxed text-pretty">
+              {department.blurb}
+            </Text>
+          </div>
+
+          {department.heroImage && (
+            <div class="overflow-hidden rounded-lg border border-base-800 bg-base-950">
+              <img
+                src={department.heroImage}
+                alt=""
+                class="aspect-[16/10] w-full object-cover"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+          )}
         </div>
 
         {/* 2 Featured / latest comic */}

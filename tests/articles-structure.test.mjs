@@ -30,6 +30,39 @@ test("departments taxonomy and routes exist", () => {
   }
 });
 
+test("active department hero images are defined and rendered on department surfaces", () => {
+  const departments = read("src/data/departments.ts");
+  const homepage = read("src/components/home/MagazineFrontPage.astro");
+  const departmentHub = read("src/pages/departments/index.astro");
+  const departmentDetail = read("src/pages/departments/[slug].astro");
+  const funnies = read("src/pages/departments/funnies.astro");
+
+  const expectedHeroImages = {
+    "magazine-time-machine": "magazine-time-machine-hero.png",
+    funnies: "funnies-hero.png",
+    "cute-corrupted": "cute-corrupted-hero.png",
+    "before-after-eras": "before-after-hero.png",
+    "hobfarm-presents": "hobfarm-presents-hero.png",
+    "workshop-notes": "workshop-hero.png",
+    "essays-arguments": "essay-hero.png",
+  };
+
+  for (const [slug, image] of Object.entries(expectedHeroImages)) {
+    assert.match(
+      departments,
+      new RegExp(
+        `slug:\\s*"${slug}"[\\s\\S]*?heroImage:\\s*"https://cdn\\.hob\\.farm/hero-images/${image}"`,
+      ),
+      `${slug} should define the expected CDN hero image`,
+    );
+  }
+
+  assert.match(homepage, /department\.heroImage/);
+  assert.match(departmentHub, /dep\.heroImage/);
+  assert.match(departmentDetail, /department\.heroImage/);
+  assert.match(funnies, /department\.heroImage/);
+});
+
 test("the retired articles category route is gone", () => {
   assert.equal(
     existsSync(join(root, "src/pages/articles/category/[category].astro")),

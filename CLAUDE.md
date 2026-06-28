@@ -502,6 +502,18 @@ Use this checklist before considering a task complete:
 11. Mobile layout remains readable.
 12. No secrets or environment values were committed.
 
+### Browser/Chrome QA Tooling
+
+In this local Codex setup, use the **Chrome plugin** for rendered visual QA.
+
+Do not spend time debugging the bundled Browser plugin when the in-app browser instance is unavailable. The Browser plugin can be installed and enabled in config while still exposing no live `iab` instance to the session (`agent.browsers.list()` returns `[]` or `agent.browsers.get("iab")` fails).
+
+For UI-facing work, prefer this order:
+
+1. Chrome plugin for browser QA.
+2. Local Playwright when Chrome is unavailable.
+3. Briefly report the fallback reason in the handoff.
+
 ---
 
 ## Commit Procedure

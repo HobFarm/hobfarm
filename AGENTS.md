@@ -690,6 +690,18 @@ Do not claim a visual check was completed unless preview or browser QA was actua
 
 ## Browser QA Checklist
 
+### Browser/Chrome Tooling Note
+
+In this local Codex setup, the **Chrome plugin** is the usable browser tool for visual QA.
+
+Do not spend time trying to debug the bundled Browser plugin if the in-app browser instance is missing. The Browser plugin may appear installed and enabled on disk, but `agent.browsers.list()` can still return `[]` and `agent.browsers.get("iab")` can fail because no live `iab` instance is exposed to the session.
+
+For rendered UI validation, use this order:
+
+1. Use the Chrome plugin when browser tooling is available or the user asks for browser QA.
+2. Use local Playwright as the fallback when Chrome is unavailable.
+3. Record the fallback reason briefly in the final response.
+
 For UI-facing changes, validate:
 
 * desktop viewport

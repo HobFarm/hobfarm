@@ -26,6 +26,8 @@ export type Department = {
   blurb: string;
   /** Hex accent, applied inline so it survives Tailwind's purge. */
   accent: string;
+  /** CDN hero artwork used on department cards and landing pages. */
+  heroImage?: string;
   /** Which top-nav hub primarily surfaces this department. */
   navHub: DepartmentNavHub;
   /** Defaults to "active" when omitted. */
@@ -47,6 +49,7 @@ export const departments: Department[] = [
     blurb:
       "Vintage magazine artifacts, old ads, dead futures, and then-versus-now cultural research.",
     accent: "#e0b13c",
+    heroImage: "https://cdn.hob.farm/hero-images/magazine-time-machine-hero.png",
     navHub: "Articles",
   },
   {
@@ -82,6 +85,7 @@ export const departments: Department[] = [
     blurb:
       "HobFarm comics, cartoons, single-panel gags, strips, recurring character bits, and bad decisions involving Gary, Fat Cat, Larry, Buffcock, Hobunny, Gothcat, and whoever else wanders into frame.",
     accent: "#2fe089",
+    heroImage: "https://cdn.hob.farm/hero-images/funnies-hero.png",
     navHub: "Characters",
   },
   {
@@ -90,6 +94,7 @@ export const departments: Department[] = [
     blurb:
       "The cute-to-corrupted transformation series across characters, critters, and cakes.",
     accent: "#f24da6",
+    heroImage: "https://cdn.hob.farm/hero-images/cute-corrupted-hero.png",
     navHub: "Characters",
   },
   {
@@ -98,6 +103,7 @@ export const departments: Department[] = [
     blurb:
       "Before and after, juxtapositions, and era comparisons that put two timelines side by side.",
     accent: "#55d7ff",
+    heroImage: "https://cdn.hob.farm/hero-images/before-after-hero.png",
     navHub: "Gallery",
   },
   {
@@ -114,6 +120,7 @@ export const departments: Department[] = [
     blurb:
       "Trailers, short videos, parody promos, avatar bits, animated posters, and story-world video features.",
     accent: "#7b2ff7",
+    heroImage: "https://cdn.hob.farm/hero-images/hobfarm-presents-hero.png",
     navHub: "Video",
   },
   {
@@ -122,6 +129,7 @@ export const departments: Department[] = [
     blurb:
       "Production notes, tool tests, how-tos, model handoffs, and the process behind the work, plus shop, academy, and services.",
     accent: "#3b6fe0",
+    heroImage: "https://cdn.hob.farm/hero-images/workshop-hero.png",
     navHub: "Workshop",
   },
   {
@@ -130,6 +138,7 @@ export const departments: Department[] = [
     blurb:
       "Essays, arguments, manifestos, cultural criticism, art-history threads, media analysis, and opinion pieces from the HobFarm side of the fence.",
     accent: "#c8c6d4",
+    heroImage: "https://cdn.hob.farm/hero-images/essay-hero.png",
     navHub: "Articles",
   },
 ];
