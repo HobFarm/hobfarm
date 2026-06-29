@@ -23,7 +23,12 @@ export type DepartmentStatus = "active" | "planned" | "hidden";
 export type Department = {
   slug: string;
   label: string;
+  /** Short description used on cards, strips, and compact lists. */
   blurb: string;
+  /** Optional landing-page intro paragraphs. Falls back to `blurb`. */
+  intro?: string[];
+  /** Optional page/social meta description. Falls back to `blurb`. */
+  metaDescription?: string;
   /** Hex accent, applied inline so it survives Tailwind's purge. */
   accent: string;
   /** CDN hero artwork used on department cards and landing pages. */
@@ -47,7 +52,14 @@ export const departments: Department[] = [
     slug: "magazine-time-machine",
     label: "Magazine Time Machine",
     blurb:
-      "Vintage magazine artifacts, old ads, dead futures, and then-versus-now cultural research.",
+      "Old magazines, vintage advertisements, dead futures, then-versus-now research, and cultural artifacts that still have something weirdly useful stuck to them.",
+    intro: [
+      "Magazine Time Machine digs through old magazines, advertisements, articles, photos, predictions, gadgets, trends, and cultural leftovers to see what they turned into.",
+      "Some pieces compare then and now. Some follow dead futures that never arrived. Some look at how people used to sell, explain, fear, desire, decorate, or misunderstand the world. Sometimes the old page is the whole story. Sometimes it is just the trapdoor.",
+      "Open an artifact, follow the thread, see where it lands.",
+    ],
+    metaDescription:
+      "Magazine Time Machine collects old magazine artifacts, vintage advertisements, dead futures, then-versus-now comparisons, and cultural research from the HobFarm archive.",
     accent: "#e0b13c",
     heroImage: "https://cdn.hob.farm/hero-images/magazine-time-machine-hero.png",
     navHub: "Articles",
@@ -65,7 +77,7 @@ export const departments: Department[] = [
     slug: "satire",
     label: "Commercial Satire",
     blurb:
-      "Satire ads, parody campaigns, fictional brands, impossible products, mock editorials, and spec ad concepts from HobFarm.",
+      "Ad parodies, satirical magazine ads, spoof advertisements, imaginary advertisements, parody images, mock editorials, and magazine-inspired visual humor from HobFarm.",
     accent: "#e0218a",
     navHub: "Articles",
     status: "planned",

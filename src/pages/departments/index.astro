@@ -31,9 +31,8 @@ for (const g of visuals)
   bump(resolveDepartment(g.data.department ?? galleryTypeToDepartment[g.data.type]));
 for (const c of comics) bump(resolveDepartment(c.data.department));
 
-const departmentDescription = `The active recurring sections of HobFarm: ${hubDepartments
-  .map((dep) => dep.label)
-  .join(", ")}.`;
+const departmentDescription =
+  "The recurring sections of HobFarm: cartoons, humor, visual experiments, old-media archaeology, production notes, arguments, videos, and mildly interesting projects.";
 ---
 
 <BaseLayout
@@ -50,7 +49,10 @@ const departmentDescription = `The active recurring sections of HobFarm: ${hubDe
             Departments
           </Text>
           <Text tag="p" variant="textLG" class="mt-5 text-base-400 leading-relaxed text-pretty">
-            The recurring sections. Every article, visual, and video files into one of these, the way a magazine sorts its pages.
+            The recurring sections of HobFarm: cartoons, humor, visual experiments, old-media archaeology, production notes, arguments, videos, and mildly interesting projects.
+          </Text>
+          <Text tag="p" variant="textBase" class="mt-4 text-base-500 leading-relaxed text-pretty">
+            As HobFarm evolves, the departments will change with it. New sections may be added, existing ones may be removed, and as new content gets added, so will the scope of these departments.
           </Text>
         </div>
 

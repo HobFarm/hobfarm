@@ -280,7 +280,7 @@ That is fine if you want generic output.
 
 It is a problem if you are trying to make something specific.
 
-For people using AI to make pictures, videos, websites, characters, voices, jokes, articles, satire ads, cartoons, research trails, and strange visual systems, the tool is not just doing the work. The tool is part of the material. It has grain. It has failure modes. It has bias toward certain shapes. It has censorship. It has cost. It has hidden knobs.
+For people using AI to make pictures, videos, websites, characters, voices, jokes, articles, satirical magazine ads, cartoons, research trails, and strange visual systems, the tool is not just doing the work. The tool is part of the material. It has grain. It has failure modes. It has bias toward certain shapes. It has censorship. It has cost. It has hidden knobs.
 
 You can make great things with it, but you spend a lot of time negotiating with the machine.
 
@@ -298,7 +298,7 @@ Not one model trying to be everything to everyone.
 
 More small systems. More specialized tools. More weird local workflows. More people using AI for the things they actually care about.
 
-Someone building comics does not need the same system as someone doing legal discovery. Someone making avatar videos does not need the same system as a bank. Someone running robots in a warehouse does not need the same system as someone restoring old magazine scans or making spec 1970s ads.
+Someone building comics does not need the same system as someone doing legal discovery. Someone making avatar videos does not need the same system as a bank. Someone running robots in a warehouse does not need the same system as someone restoring old magazine scans or making 1970s-style ad parodies.
 
 A diverse tool ecosystem would produce more diverse culture.
 
