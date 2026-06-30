@@ -13,8 +13,7 @@ import WardrobeGrammar from "@/components/gallery/WardrobeGrammar.astro";
 import StyleProfile from "@/components/gallery/StyleProfile.astro";
 import GalleryCard from "@/components/gallery/GalleryCard.astro";
 import ConceptPanel from "@/components/gallery/ConceptPanel.astro";
-import VisualDnaModule from "@/components/gallery/VisualDnaModule.astro";
-import TraitLockPills from "@/components/gallery/TraitLockPills.astro";
+import VisualSystemPanel from "@/components/gallery/VisualSystemPanel.astro";
 import WorkflowStrip from "@/components/gallery/WorkflowStrip.astro";
 import FieldNotes from "@/components/gallery/FieldNotes.astro";
 import LessonBlocks from "@/components/gallery/LessonBlocks.astro";
@@ -53,6 +52,7 @@ const hasExternal =
 const hasTraitLock =
   (data.lockedTraits && data.lockedTraits.length > 0) ||
   (data.flexibleTraits && data.flexibleTraits.length > 0);
+const hasVisualSystem = (data.visualDNA && data.visualDNA.length > 0) || hasTraitLock;
 
 const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
 const slugPath = entry.id.replace(/\.(md|mdx)$/, "");
@@ -173,15 +173,13 @@ const structuredData = {
     </div>
   )}
 
-  {data.visualDNA && data.visualDNA.length > 0 && (
+  {hasVisualSystem && (
     <div class="mt-12">
-      <VisualDnaModule items={data.visualDNA} />
-    </div>
-  )}
-
-  {hasTraitLock && (
-    <div class="mt-12">
-      <TraitLockPills locked={data.lockedTraits} flexible={data.flexibleTraits} />
+      <VisualSystemPanel
+        visualDNA={data.visualDNA}
+        locked={data.lockedTraits}
+        flexible={data.flexibleTraits}
+      />
     </div>
   )}
 

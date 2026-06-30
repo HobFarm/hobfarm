@@ -158,7 +158,12 @@ export const cuteCorrupted = {
       key: "critters",
       label: "Critters",
       featured: "cute-corrupted/raccoon",
-      entries: ["cute-corrupted/raccoon"],
+      entries: [
+        "cute-corrupted/raccoon",
+        "cute-corrupted/cat",
+        "cute-corrupted/corgi",
+        "cute-corrupted/koala",
+      ],
       blurb:
         "Cute animal cartoons pushed into toxic, haunted, mutant, overgrown, or monster-movie versions of themselves.",
     },

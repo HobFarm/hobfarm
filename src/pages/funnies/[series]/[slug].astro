@@ -2,7 +2,7 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import ContentPanel from "@/components/ContentPanel.astro";
-import Text from "@/components/fundations/elements/Text.astro";
+import FunniesHero from "@/components/funnies/FunniesHero.astro";
 import { getSeriesTitle, seriesPath } from "@/data/comic-series";
 import { characters, characterPath, getCharacterName } from "@/data/characters";
 import { comicPath, comicSlug, comicsInSeries, getPublishedComics } from "@/lib/comics";
@@ -49,25 +49,29 @@ const formattedDate = date
 >
   <section>
     <ContentPanel>
-      <Wrapper variant="narrow" class="py-10 lg:py-14">
-        <div class="flex flex-wrap items-center gap-3 text-xs uppercase text-base-400">
-          <a href="/departments/funnies/" class="font-mono text-accent-green hover:text-base-100 transition-colors">Funnies</a>
-          <span>&middot;</span>
-          <a href={seriesPath(series)} class="font-mono text-accent-green hover:text-base-100 transition-colors">
-            {getSeriesTitle(series)}
-          </a>
-          {formattedDate && (
-            <>
-              <span>&middot;</span>
-              <time datetime={new Date(date).toISOString()}>{formattedDate}</time>
-            </>
-          )}
-        </div>
-
-        <Text tag="h1" variant="displayLG" class="mt-4 font-display text-white text-balance">
-          {title}
-        </Text>
-        {caption && <p class="mt-3 max-w-2xl text-base text-base-300 text-pretty">{caption}</p>}
+      <Wrapper variant="standard" class="py-10 lg:py-14">
+        <FunniesHero
+          title={title}
+          deck={caption}
+          image={image}
+          imageAlt={imageAlt || title}
+          backHref={seriesPath(series)}
+          backLabel={`${getSeriesTitle(series)} archive`}
+        >
+          <div slot="meta" class="mt-5 flex flex-wrap items-center gap-3 text-xs uppercase text-base-200">
+            <a href="/departments/funnies/" class="font-mono text-accent-green transition-colors hover:text-white">Funnies</a>
+            <span>&middot;</span>
+            <a href={seriesPath(series)} class="font-mono text-accent-green transition-colors hover:text-white">
+              {getSeriesTitle(series)}
+            </a>
+            {formattedDate && (
+              <>
+                <span>&middot;</span>
+                <time datetime={new Date(date).toISOString()}>{formattedDate}</time>
+              </>
+            )}
+          </div>
+        </FunniesHero>
       </Wrapper>
 
       <Wrapper variant="standard" class="pb-6">

@@ -4,6 +4,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import ContentPanel from "@/components/ContentPanel.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import ComicCard from "@/components/funnies/ComicCard.astro";
+import FunniesHero from "@/components/funnies/FunniesHero.astro";
 import { comicSeries } from "@/data/comic-series";
 import { characters, characterPath, getCharacterName } from "@/data/characters";
 import { comicsInSeries, getPublishedComics } from "@/lib/comics";
@@ -18,40 +19,101 @@ export async function getStaticPaths() {
 
 const { series, comics } = Astro.props;
 const characterSlugSet = new Set(characters.map((c) => c.slug));
+const fallbackHeroImage = "https://cdn.hob.farm/hero-images/funnies-hero.png";
+const heroImage = series.heroImage ?? comics[0]?.data.image ?? fallbackHeroImage;
+const heroImageAlt = series.heroImageAlt ?? comics[0]?.data.imageAlt ?? `${series.title} Funnies archive.`;
 ---
 
 <BaseLayout
   title={`${series.title} | Funnies | HobFarm`}
-  description={series.premise}
+  description={series.seoDescription ?? series.premise}
   canonical={`/funnies/${series.slug}/`}
+  image={heroImage}
+  imageAlt={heroImageAlt}
 >
   <section>
     <ContentPanel>
       <Wrapper variant="standard" class="py-12 lg:py-16">
-        <a href="/departments/funnies/" class="text-sm text-base-500 transition-colors hover:text-base-100">
-          &larr; All Funnies
-        </a>
-        <Text tag="h1" variant="display2XL" class="mt-5 font-display text-white text-balance">
-          {series.title}
-        </Text>
-        <Text tag="p" variant="textLG" class="mt-4 max-w-2xl text-base-400 leading-relaxed text-pretty">
-          {series.premise}
-        </Text>
+        <FunniesHero
+          title={series.title}
+          deck={series.deck ?? series.premise}
+          image={heroImage}
+          imageAlt={heroImageAlt}
+          backHref="/departments/funnies/"
+          backLabel="All Funnies"
+        >
+          {series.characters.length > 0 && (
+            <div slot="meta" class="mt-5 flex flex-wrap items-center gap-2">
+              <span class="font-mono text-[10px] uppercase tracking-widest text-base-300">Starring</span>
+              {series.characters.map((slug) =>
+                characterSlugSet.has(slug) ? (
+                  <a
+                    href={characterPath(slug)}
+                    class="rounded-full border border-white/15 bg-white/8 px-3 py-1 text-xs text-base-100 transition-colors hover:border-accent-green/60 hover:text-white"
+                  >
+                    {getCharacterName(slug)}
+                  </a>
+                ) : (
+                  <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-base-200">{slug}</span>
+                ),
+              )}
+            </div>
+          )}
+        </FunniesHero>
 
-        {series.characters.length > 0 && (
-          <div class="mt-5 flex flex-wrap items-center gap-2">
-            <span class="font-mono text-[10px] uppercase tracking-widest text-base-500">Starring</span>
-            {series.characters.map((slug) =>
-              characterSlugSet.has(slug) ? (
-                <a
-                  href={characterPath(slug)}
-                  class="rounded-full border border-base-700 px-3 py-1 text-xs text-base-200 transition-colors hover:border-accent-green/60 hover:text-white"
-                >
-                  {getCharacterName(slug)}
-                </a>
-              ) : (
-                <span class="rounded-full border border-base-800 px-3 py-1 text-xs text-base-400">{slug}</span>
-              ),
+        {series.intro && series.intro.length > 0 && (
+          <div class="mt-12 max-w-3xl space-y-5 border-t border-base-800 pt-10">
+            {series.intro.map((paragraph) => (
+              <p class="text-base leading-relaxed text-base-300 text-pretty">{paragraph}</p>
+            ))}
+          </div>
+        )}
+
+        {(series.engine?.length || series.world || series.supportingCast?.length) && (
+          <div class="mt-12 grid grid-cols-1 gap-8 border-y border-base-800 py-10 lg:grid-cols-3">
+            {series.engine && series.engine.length > 0 && (
+              <section>
+                <Text tag="h2" variant="displayXS" class="font-display text-white">The cartoon engine</Text>
+                <div class="mt-4 space-y-4">
+                  {series.engine.map((paragraph) => (
+                    <p class="text-sm leading-relaxed text-base-400 text-pretty">{paragraph}</p>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {series.world && (
+              <section>
+                <Text tag="h2" variant="displayXS" class="font-display text-white">{series.world.title}</Text>
+                <div class="mt-4 space-y-4">
+                  {series.world.paragraphs.map((paragraph) => (
+                    <p class="text-sm leading-relaxed text-base-400 text-pretty">{paragraph}</p>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {series.supportingCast && series.supportingCast.length > 0 && (
+              <section>
+                <Text tag="h2" variant="displayXS" class="font-display text-white">The supporting cast</Text>
+                <div class="mt-4 space-y-4">
+                  {series.supportingCast.map((castMember) => (
+                    <div>
+                      {castMember.slug && characterSlugSet.has(castMember.slug) ? (
+                        <a
+                          href={characterPath(castMember.slug)}
+                          class="font-display text-base text-white transition-colors hover:text-accent-green"
+                        >
+                          {castMember.name}
+                        </a>
+                      ) : (
+                        <h3 class="font-display text-base text-white">{castMember.name}</h3>
+                      )}
+                      <p class="mt-2 text-sm leading-relaxed text-base-400 text-pretty">{castMember.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
             )}
           </div>
         )}

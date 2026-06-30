@@ -104,7 +104,12 @@ export const departments: Department[] = [
     slug: "cute-corrupted",
     label: "Cute & Corrupted",
     blurb:
-      "The cute-to-corrupted transformation series across characters, critters, and cakes.",
+      "Color-inspired transformations across characters, critters, and cakes, with a layer of \"cute\" and \"corrupted\" applied.",
+    intro: [
+      "Cute & Corrupted starts with a simple question: what represents a color? Yellow can become honey, bees, taxis, rubber ducks, warning stripes, lemons, and sunlight. Green can become limes, parrots, peas, moss, gardens, venom, and greenhouse rot. The color becomes the design inspiration, not just the palette.",
+      "Each set applies that idea into two related versions. Cute is polished, bright, charming, and built to look good on the shelf, cake stand, or character sheet. It is the corporate-friendly version. Corrupted is the alter ego of the same concept: darker, dirtier, riskier, and still fully in control.",
+      "The series moves across cakes, critters, and characters, each with its own image set, posters, and short videos, with more sets and combinations added frequently.",
+    ],
     accent: "#f24da6",
     heroImage: "https://cdn.hob.farm/hero-images/cute-corrupted-hero.png",
     navHub: "Characters",

@@ -1,0 +1,58 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+
+interface Props {
+  title: string;
+  deck?: string;
+  image?: string;
+  imageAlt?: string;
+  eyebrow?: string;
+  backHref?: string;
+  backLabel?: string;
+}
+
+const { title, deck, image, imageAlt = "", eyebrow, backHref, backLabel } = Astro.props;
+---
+
+<header class="overflow-hidden">
+  <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,0.86fr)_minmax(360px,0.74fr)] lg:items-center">
+    <div class="flex flex-col justify-center py-8 sm:py-10 lg:min-h-[380px] lg:pr-8">
+      {backHref && backLabel && (
+        <a href={backHref} class="mb-5 inline-flex text-sm text-base-300 transition-colors hover:text-white">
+          &larr; {backLabel}
+        </a>
+      )}
+
+      {eyebrow && (
+        <p class="font-mono text-[10px] uppercase tracking-widest text-accent-green">{eyebrow}</p>
+      )}
+
+      <Text tag="h1" variant="display2XL" class={eyebrow || backHref ? "mt-4 font-display text-white text-balance" : "font-display text-white text-balance"}>
+        {title}
+      </Text>
+
+      {deck && (
+        <Text tag="p" variant="textLG" class="mt-4 max-w-2xl text-base-200 leading-relaxed text-pretty">
+          {deck}
+        </Text>
+      )}
+
+      <slot name="meta" />
+    </div>
+
+    {image && (
+      <figure
+        data-funnies-hero-media
+        class="mt-6 flex items-center justify-center border-t border-base-800 pt-6 lg:mt-0 lg:min-h-[380px] lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0"
+      >
+        <img
+          src={image}
+          alt={imageAlt}
+          class="block max-h-[420px] max-w-full object-contain"
+          loading="eager"
+          decoding="async"
+        />
+      </figure>
+    )}
+  </div>
+</header>

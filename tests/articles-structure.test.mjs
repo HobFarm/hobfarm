@@ -134,6 +134,68 @@ test("Funnies comics subsystem routes and data exist", () => {
   }
 });
 
+test("Larry cartoons series content and uploaded CDN comics are wired", () => {
+  const series = read("src/data/comic-series.ts");
+  const funnies = read("src/pages/departments/funnies.astro");
+  const seriesPage = read("src/pages/funnies/[series]/index.astro");
+  const expectedComics = [
+    "larry-gothcat-hulmut-heidi-dinner.jpg",
+    "larry-helmut-bauhaus.jpg",
+    "larry-helmut-cabaret.jpg",
+    "larry-helmut-poodles.jpg",
+    "larry-leon-berger.jpg",
+    "larry-poker.jpg",
+  ];
+
+  assert.match(
+    funnies,
+    /Single-panel cartoons, recurring cast members, old comic-strip logic/,
+  );
+  assert.match(series, /Larry is a retired Prussian officer in dachshund form/);
+  assert.match(series, /title:\s*"Larry Cartoons"/);
+  assert.match(series, /heroImage:\s*"https:\/\/cdn\.hob\.farm\/funnies\/larry\/larry-hero\.png"/);
+  assert.match(series, /supportingCast/);
+  assert.match(seriesPage, /series\.heroImage/);
+  assert.match(seriesPage, /series\.engine/);
+  assert.match(seriesPage, /series\.supportingCast/);
+
+  for (const file of expectedComics) {
+    const path = `src/content/comics/${file.replace(/\.(jpg|png)$/, ".md")}`;
+    assert.equal(existsSync(join(root, path)), true, `${path} should exist`);
+    assert.match(read(path), new RegExp(`https://cdn\\.hob\\.farm/funnies/larry/${file}`));
+  }
+});
+
+test("all Funnies pages use the shared contained-media hero", () => {
+  const heroComponent = "src/components/funnies/FunniesHero.astro";
+  const routeFiles = [
+    "src/pages/departments/funnies.astro",
+    "src/pages/funnies/[series]/index.astro",
+    "src/pages/funnies/[series]/[slug].astro",
+  ];
+
+  assert.equal(existsSync(join(root, heroComponent)), true, `${heroComponent} should exist`);
+
+  const hero = read(heroComponent);
+  assert.match(hero, /<header class="overflow-hidden">/);
+  assert.match(hero, /<figure[\s\S]*data-funnies-hero-media/);
+  assert.match(hero, /<img[\s\S]*class="[^"]*object-contain/);
+  assert.doesNotMatch(hero, /<header class="[^"]*(rounded|border|bg-base)/);
+  assert.doesNotMatch(hero, /backdrop-blur/);
+  assert.doesNotMatch(hero, /absolute inset-0 size-full object-cover/);
+  assert.doesNotMatch(hero, /lg:min-h-\[500px\]/);
+  assert.match(hero, /<slot name="meta"/);
+
+  const seriesPage = read("src/pages/funnies/[series]/index.astro");
+  assert.match(seriesPage, /fallbackHeroImage/);
+
+  for (const file of routeFiles) {
+    const source = read(file);
+    assert.match(source, /import FunniesHero from "@\/components\/funnies\/FunniesHero\.astro"/);
+    assert.match(source, /<FunniesHero/);
+  }
+});
+
 test("legacy funny-pages department redirects to funnies", () => {
   const redirects = read("public/_redirects");
 
