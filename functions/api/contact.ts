@@ -169,3 +169,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 
   return Response.json({ success: true }, { headers: jsonHeaders });
 };
+
+export const onRequestGet: PagesFunction = async () => {
+  return jsonError("Method not allowed", 405);
+};
