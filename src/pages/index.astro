@@ -1,8 +1,10 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import MagazineFrontPage from "@/components/home/MagazineFrontPage.astro";
+import VisualSystemFeature from "@/components/home/VisualSystemFeature.astro";
 import RecentVideos from "@/components/home/RecentVideos.astro";
 import CuteCorruptedSection from "@/components/home/CuteCorruptedSection.astro";
+import LatestDrops from "@/components/home/LatestDrops.astro";
 import DepartmentStrip from "@/components/home/DepartmentStrip.astro";
 import FunniesStrip from "@/components/home/FunniesStrip.astro";
 import ExploreSupportFollow from "@/components/home/ExploreSupportFollow.astro";
@@ -13,20 +15,19 @@ import ExploreSupportFollow from "@/components/home/ExploreSupportFollow.astro";
   description="HobFarm is an online humor magazine and visual studio for cartoons, satirical magazine ads, archive dives, character worlds, style experiments, food/fashion mutations, Vegas logic, and backstage culture."
   palette="magenta-cyan"
 >
-  {/* 1 Hero · 2 Featured article · 3 Latest · 4 Departments */}
+  {/* 1 Hero · 2 Cover story · 3 Latest articles · 4 Departments */}
   <MagazineFrontPage />
-  {/* 5 Recent videos */}
-  <RecentVideos />
-  {/* 6 Featured visual story */}
+  {/* 5 Featured visual system (the studio engine) */}
+  <VisualSystemFeature />
+  {/* 6 Gallery preview: a system in action + recent motion */}
   <CuteCorruptedSection />
+  <RecentVideos />
   {/* 7 Funnies */}
   <FunniesStrip />
-  {/* 8 WTFacts? — kept wired but auto-suppressed while status is "planned"
-       (DepartmentStrip returns null). Flip status to "active" in departments.ts
-       once it has content to relaunch this slot. */}
-  <DepartmentStrip slug="wtfacts" />
+  {/* 8 Latest drops (real/planned products only; self-suppresses when empty) */}
+  <LatestDrops />
   {/* 9 Workshop Notes */}
   <DepartmentStrip slug="workshop-notes" />
-  {/* 10 Support the Farm */}
+  {/* 10 Explore · Support · Follow */}
   <ExploreSupportFollow />
 </BaseLayout>

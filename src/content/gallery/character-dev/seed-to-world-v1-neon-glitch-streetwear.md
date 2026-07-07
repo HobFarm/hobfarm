@@ -11,6 +11,12 @@ methods:
 tags:
   - "seed-to-world"
 folder: "gallery/seed-to-world"
+paidAssetPolicy:
+  hasPaidAsset: true
+  publicPreviewOnly: true
+  allowedPublicPreviewTypes: ["web-preview", "poster", "video-preview"]
+  fullAssetHostedOnSite: false
+  notes: "Full-resolution character sheets are sold off-site. Public page shows capped previews and short video only."
 hero:
   type: "video"
   file: "s2w-v1-05.mp4"

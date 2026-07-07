@@ -18,7 +18,7 @@ import WorkflowStrip from "@/components/gallery/WorkflowStrip.astro";
 import FieldNotes from "@/components/gallery/FieldNotes.astro";
 import LessonBlocks from "@/components/gallery/LessonBlocks.astro";
 import SpecimenCard from "@/components/gallery/SpecimenCard.astro";
-import { mediaUrl, galleryTypeLabels, type GalleryType } from "@/lib/gallery";
+import { previewImageUrl, galleryTypeLabels, type GalleryType } from "@/lib/gallery";
 
 interface Props {
   entry: CollectionEntry<"gallery">;
@@ -57,7 +57,8 @@ const hasVisualSystem = (data.visualDNA && data.visualDNA.length > 0) || hasTrai
 const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
 const slugPath = entry.id.replace(/\.(md|mdx)$/, "");
 const canonicalUrl = `${siteOrigin}/gallery/${slugPath}`;
-const heroUrl = mediaUrl(
+// Capped preview for structured data, never the raw full-res original.
+const heroUrl = previewImageUrl(
   data.folder,
   data.hero.type === "image" ? data.hero.file : data.hero.poster
 );
@@ -99,6 +100,7 @@ const structuredData = {
         folder={data.folder}
         caption={data.title}
         aspect={data.heroAspect ?? "aspect-[4/5]"}
+        policy={data.paidAssetPolicy}
       />
     </div>
 
@@ -192,7 +194,7 @@ const structuredData = {
   {data.media && data.media.length > 0 && (
     <div class="mt-12">
       <h2 class="text-base-500 font-mono uppercase tracking-wider text-xs mb-6">Media</h2>
-      <MediaGrid media={data.media} folder={data.folder} />
+      <MediaGrid media={data.media} folder={data.folder} policy={data.paidAssetPolicy} />
     </div>
   )}
 
@@ -213,7 +215,7 @@ const structuredData = {
               </p>
             )}
           </div>
-          <MediaGrid media={section.media} folder={data.folder} />
+          <MediaGrid media={section.media} folder={data.folder} policy={data.paidAssetPolicy} />
         </section>
       ))}
     </div>

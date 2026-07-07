@@ -1,0 +1,77 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Eyebrow from "@/components/sections/Eyebrow.astro";
+import { activeVisualSystems, visualSystemPath } from "@/data/visual-systems";
+import { mediaImageUrl } from "@/lib/gallery";
+
+const systems = activeVisualSystems;
+---
+
+<BaseLayout
+  title="Visual Systems | HobFarm"
+  description="HobFarm builds visual systems, not random image piles. A base mannequin gets an aesthetic rule set, then turns into characters, posters, videos, shop drops, workshop notes, and course material."
+  palette="magenta-cyan"
+>
+  <section class="bg-noise border-b border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-20 lg:py-28">
+        <Eyebrow text="HobFarm / Studio" />
+        <Text tag="h1" variant="display2XL" class="mt-6 text-white font-display max-w-4xl text-balance">
+          Visual systems
+        </Text>
+        <Text tag="p" variant="textBase" class="text-base-300 mt-6 max-w-2xl text-pretty leading-relaxed">
+          HobFarm builds visual systems, not random image piles. A base mannequin gets an aesthetic rule set,
+          then turns into character variants, posters, videos, shop drops, workshop notes, and course material.
+          The character sheet is the paid asset. The poster, hero, and video sell the world.
+        </Text>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section>
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        {systems.length > 0 ? (
+          <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+            {systems.map((system) => {
+              const poster = system.featuredAssets.poster;
+              const posterSrc = poster
+                ? mediaImageUrl(poster.folder, poster.file, { width: 900, quality: 84, fit: "cover" })
+                : null;
+              return (
+                <a href={visualSystemPath(system.slug)} class="group flex flex-col gap-4">
+                  <div class="relative aspect-[4/3] w-full overflow-hidden border border-base-800 bg-base-950 group-hover:border-accent-500 transition-colors">
+                    {posterSrc && (
+                      <img
+                        src={posterSrc}
+                        alt={poster!.alt}
+                        loading="lazy"
+                        decoding="async"
+                        class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                    )}
+                  </div>
+                  <div>
+                    <h2 class="text-white font-display text-xl group-hover:text-accent-300 transition-colors">
+                      {system.title}
+                    </h2>
+                    <p class="mt-2 text-sm text-base-400 leading-relaxed line-clamp-3">
+                      {system.shortDescription}
+                    </p>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        ) : (
+          <Text tag="p" variant="textBase" class="text-base-400">
+            Visual systems are being documented. Check back soon.
+          </Text>
+        )}
+      </Wrapper>
+    </ContentPanel>
+  </section>
+</BaseLayout>

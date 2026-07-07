@@ -7,8 +7,13 @@ import Eyebrow from "@/components/sections/Eyebrow.astro";
 import SectionHeader from "@/components/sections/SectionHeader.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import KofiCta from "@/components/KofiCta.astro";
+import DropCard from "@/components/shop/DropCard.astro";
+import { getPublicProducts } from "@/lib/products";
 
 const ETSY = "https://www.etsy.com/shop/hobfarm";
+
+// Real/planned drops only (live, coming-soon, sold-out). No fake product cards.
+const drops = await getPublicProducts();
 
 type Family = { title: string; body: string };
 
@@ -23,7 +28,7 @@ const families: Family[] = [
   },
   {
     title: "Drinkware",
-    body: "Mugs, tumblers, and pint glasses using simplified graphics, wrap concepts, haunted labels, and weird souvenir-shop marks pulled from larger HobFarm worlds.",
+    body: "Mugs, tumblers, and pint glasses using simplified graphics, wrap concepts, haunted labels, and fictional souvenir-shop marks pulled from larger HobFarm worlds.",
   },
   {
     title: "Bags + laptop sleeves",
@@ -42,7 +47,7 @@ const families: Family[] = [
 
 <BaseLayout
   title="Shop | HobFarm"
-  description="Strange usable objects from the HobFarm visual system: desk mats, digital sticker packs, drinkware, handmade clay oddities, and vintage finds. On Etsy and Ko-fi."
+  description="Usable objects from the HobFarm visual system: desk mats, digital sticker packs, drinkware, handmade clay oddities, and vintage finds. On Etsy and Ko-fi."
 >
   {/* ── Hero ── */}
   <section class="bg-noise border-b border-base-800/50">
@@ -53,7 +58,7 @@ const families: Family[] = [
           Shop
         </Text>
         <Text tag="p" variant="textBase" class="text-base-300 mt-6 max-w-2xl text-pretty leading-relaxed">
-          The shop is where the visual experiments become things you can use, collect, download, or gift. Strange usable objects, built into small product worlds rather than random merch.
+          The shop is where the visual experiments become things you can use, collect, download, or gift. Visual-system objects, built into small product worlds rather than random merch.
         </Text>
         <div class="mt-8 flex flex-wrap items-center gap-3">
           <Button isLink size="sm" variant="green" href={ETSY} target="_blank" rel="noopener noreferrer">Shop on Etsy</Button>
@@ -65,6 +70,24 @@ const families: Family[] = [
       </Wrapper>
     </ContentPanel>
   </section>
+
+  {/* ── Drops (real/planned products only) ── */}
+  {drops.length > 0 && (
+    <section class="border-t border-base-800/50">
+      <ContentPanel>
+        <Wrapper variant="standard" class="py-12 lg:py-20">
+          <SectionHeader
+            eyebrow="Drops"
+            heading="Character packs & drops"
+            note="Preview the system here; full-resolution paid files live on the storefront."
+          />
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {drops.map((product) => <DropCard product={product} />)}
+          </div>
+        </Wrapper>
+      </ContentPanel>
+    </section>
+  )}
 
   {/* ── Product families ── */}
   <section class="border-t border-base-800/50">
@@ -91,7 +114,7 @@ const families: Family[] = [
   <section class="border-t border-base-800/50">
     <ContentPanel>
       <Wrapper variant="standard" class="py-12 lg:py-20">
-        <SectionHeader eyebrow="02" heading="Corrupted Craft Village" note="Dark, strange, product-focused." />
+        <SectionHeader eyebrow="02" heading="Corrupted Craft Village" note="Dark, tactile, product-focused." />
         <Text tag="p" variant="textBase" class="text-base-400 max-w-2xl text-pretty leading-relaxed">
           A product world built from souvenir-house nostalgia, antique shops, New England roads, ghost villages, and haunted windows, run through ooze, portals, and supernatural gift-shop logic. Call it corrupted cottagecore if you need a label. It shows up as desk mats, mugs, posters, sticker packs, digital art, and handmade clay add-ons.
         </Text>

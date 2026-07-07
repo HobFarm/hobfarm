@@ -1,5 +1,6 @@
 ---
-import { mediaImageSrcset, mediaImageUrl, mediaUrl } from "@/lib/gallery";
+import { mediaImageSrcset, mediaImageUrl, safeMediaUrl } from "@/lib/gallery";
+import type { PaidAssetPolicy } from "@/data/asset-policy";
 
 interface MediaItem {
   type: "image" | "video";
@@ -11,15 +12,18 @@ interface MediaItem {
   role?: string;
   provider?: string;
   poster?: string;
+  paid?: boolean;
+  previewMaxWidth?: number;
 }
 
 interface Props {
   media: MediaItem[];
   folder: string;
   class?: string;
+  policy?: PaidAssetPolicy;
 }
 
-const { media, folder, class: className } = Astro.props;
+const { media, folder, class: className, policy } = Astro.props;
 
 function previewFor(item: MediaItem): string {
   if (item.type === "video") {
@@ -55,7 +59,9 @@ const anyMeta = media.some(
     ]}
   >
     {media.map((item) => {
-      const fullSrc = mediaUrl(folder, item.file);
+      const safe = safeMediaUrl(folder, item, policy);
+      const canLightbox = safe.canLightbox;
+      const Tag = canLightbox ? "button" : "div";
       const preview = previewFor(item);
       const previewSrcset = previewSrcsetFor(item);
       const hasMeta = !!(
@@ -69,15 +75,18 @@ const anyMeta = media.some(
         ? "absolute inset-0 w-full h-full object-contain bg-base-950 group-hover:scale-[1.02] transition-transform duration-500"
         : "absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500";
       return (
-        <button
-          type="button"
-          class="group relative flex w-full flex-col overflow-hidden border border-base-800 bg-base-950 text-left hover:border-accent-500 transition-colors cursor-zoom-in"
-          data-lightbox={fullSrc}
-          data-lightbox-type={item.type}
-          data-lightbox-alt={item.alt}
-          data-lightbox-caption={item.caption}
-          data-lightbox-provider={item.provider}
-          aria-label={`Open ${item.title || item.alt || item.file}`}
+        <Tag
+          type={canLightbox ? "button" : undefined}
+          class:list={[
+            "group relative flex w-full flex-col overflow-hidden border border-base-800 bg-base-950 text-left hover:border-accent-500 transition-colors",
+            canLightbox ? "cursor-zoom-in" : "cursor-default",
+          ]}
+          data-lightbox={canLightbox ? safe.src : undefined}
+          data-lightbox-type={canLightbox ? safe.type : undefined}
+          data-lightbox-alt={canLightbox ? item.alt : undefined}
+          data-lightbox-caption={canLightbox ? item.caption : undefined}
+          data-lightbox-provider={canLightbox ? item.provider : undefined}
+          aria-label={canLightbox ? `Open ${item.title || item.alt || item.file}` : undefined}
         >
           <div
             class={frameClass}
@@ -136,7 +145,7 @@ const anyMeta = media.some(
               )}
             </div>
           )}
-        </button>
+        </Tag>
       );
     })}
   </div>

@@ -134,6 +134,73 @@ content:
       - { name: draft, label: Draft, type: boolean }
 
   # ---------------------
+  # PRODUCTS / DROPS
+  # ---------------------
+  - name: products
+    label: Products / Drops
+    type: collection
+    path: src/content/products
+    filename: "{primary}.md"
+    view:
+      primary: title
+      fields: [title, platform, status, featured]
+      sort: [dropDate]
+      default:
+        sort: dropDate
+        order: desc
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - name: platform
+        label: Platform
+        type: select
+        required: true
+        options: [deviantart, kofi, etsy, ebay, lemon-squeezy, hobfarm-direct, patreon]
+      - { name: externalUrl, label: Storefront URL (leave blank until live), type: string }
+      - name: productType
+        label: Product Type
+        type: select
+        options: [premium-sheet-pack, digital-download, print, pod, handmade, vintage, bundle]
+      - name: previewImage
+        label: Preview Image (web-size only)
+        type: object
+        required: true
+        fields:
+          - { name: folder, label: R2 Folder, type: string, required: true }
+          - { name: file, label: Preview file, type: string, required: true }
+          - { name: alt, label: Alt text, type: string, required: true }
+      - { name: shortDescription, label: Short Description, type: text, required: true }
+      - { name: includedItems, label: Included Items, type: string, list: true }
+      - name: department
+        label: Department
+        type: select
+        options: [magazine-time-machine, wtfacts, satire, picture-stories, funnies, cute-corrupted, before-after-eras, critter-feed, hobfarm-presents, workshop-notes, essays-arguments]
+      - { name: visualSystem, label: Visual System id, type: string }
+      - { name: relatedArticle, label: Related Article id, type: string }
+      - { name: relatedWorkshopNote, label: Related Workshop Note id, type: string }
+      - { name: priceLabel, label: Price Label, type: string }
+      - name: paidAssetPolicy
+        label: Paid Asset Policy
+        type: object
+        fields:
+          - { name: hasPaidAsset, label: Has paid full-res counterpart, type: boolean }
+          - { name: publicPreviewOnly, label: Public preview only, type: boolean }
+          - name: allowedPublicPreviewTypes
+            label: Allowed public preview types
+            type: select
+            list: true
+            options: [thumb, web-preview, poster, video-preview, crop]
+          - { name: fullAssetHostedOnSite, label: Full asset hosted on site, type: boolean }
+          - { name: notes, label: Notes, type: text }
+      - name: status
+        label: Status
+        type: select
+        options: [live, planned, coming-soon, sold-out, archived]
+      - { name: dropDate, label: Drop Date, type: date }
+      - { name: edition, label: Edition, type: string }
+      - { name: featured, label: Featured, type: boolean }
+      - { name: body, label: Body, type: rich-text }
+
+  # ---------------------
   # GALLERY
   # ---------------------
   - name: gallery
@@ -206,6 +273,8 @@ content:
             options: [primary, reference, variant, failure, preview, process]
           - { name: provider, label: Provider, type: string }
           - { name: poster, label: Poster file (video only), type: string }
+          - { name: paid, label: Paid original (disables full-size video lightbox), type: boolean }
+          - { name: previewMaxWidth, label: Preview cap width (px, ≤1600), type: number }
       - { name: irFile, label: IR JSON file in folder, type: string }
       - name: infoModules
         label: Info Modules
@@ -237,6 +306,19 @@ content:
           - { name: kofi, label: Ko-fi URL, type: string }
           - { name: patreon, label: Patreon URL, type: string }
           - { name: course, label: Course URL, type: string }
+      - name: paidAssetPolicy
+        label: Paid Asset Policy (preview-only safety)
+        type: object
+        fields:
+          - { name: hasPaidAsset, label: Has paid full-res counterpart, type: boolean }
+          - { name: publicPreviewOnly, label: Public preview only, type: boolean }
+          - name: allowedPublicPreviewTypes
+            label: Allowed public preview types
+            type: select
+            list: true
+            options: [thumb, web-preview, poster, video-preview, crop]
+          - { name: fullAssetHostedOnSite, label: Full asset hosted on site, type: boolean }
+          - { name: notes, label: Notes, type: text }
       - { name: related, label: Related entry IDs (e.g. fashion/glamour-pin-up), type: string, list: true }
       - { name: methods, label: Methods (free-form labels), type: string, list: true }
       - { name: relatedProcess, label: Related Process (e.g. /process/fashion/), type: string }

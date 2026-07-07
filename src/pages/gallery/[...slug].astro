@@ -4,7 +4,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import ContentPanel from "@/components/ContentPanel.astro";
 import GalleryDetail from "@/components/gallery/GalleryDetail.astro";
 import Lightbox from "@/components/gallery/Lightbox";
-import { mediaUrl } from "@/lib/gallery";
+import { previewImageUrl } from "@/lib/gallery";
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
@@ -19,7 +19,8 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
-const heroImage = mediaUrl(
+// Capped social preview, never the raw full-res original.
+const heroImage = previewImageUrl(
   entry.data.folder,
   entry.data.hero.type === "image" ? entry.data.hero.file : entry.data.hero.poster
 );

@@ -1,0 +1,31 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import VisualSystemShowroom from "@/components/visual-systems/VisualSystemShowroom.astro";
+import { visualSystems } from "@/data/visual-systems";
+import { previewImageUrl } from "@/lib/gallery";
+
+export function getStaticPaths() {
+  return visualSystems
+    .filter((s) => s.status !== "hidden")
+    .map((s) => ({ params: { slug: s.slug }, props: { system: s } }));
+}
+
+const { system } = Astro.props;
+const poster = system.featuredAssets.poster;
+// Capped social preview, never the raw full-res original.
+const ogImage = poster ? previewImageUrl(poster.folder, poster.file) : undefined;
+const noindex = system.status !== "active";
+---
+
+<BaseLayout
+  title={`${system.title} | Visual System | HobFarm`}
+  description={system.shortDescription}
+  image={ogImage}
+  palette="magenta-cyan"
+  noindex={noindex}
+>
+  <ContentPanel>
+    <VisualSystemShowroom system={system} />
+  </ContentPanel>
+</BaseLayout>

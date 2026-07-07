@@ -17,6 +17,12 @@ tags:
   - "sandstone palette"
   - "poster study"
 folder: "gallery/cute-corrupted/sienna-red"
+paidAssetPolicy:
+  hasPaidAsset: true
+  publicPreviewOnly: true
+  allowedPublicPreviewTypes: ["web-preview", "poster", "video-preview"]
+  fullAssetHostedOnSite: false
+  notes: "Full-resolution sheets are sold off-site. Public page shows capped previews, poster, and short video only."
 hero:
   type: "image"
   file: "sienna-poster.jpg"

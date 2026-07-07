@@ -63,8 +63,9 @@ const archiveJsonLd = {
 ---
 
 <BaseLayout
-  title="Visuals | HobFarm Gallery"
-  description="HobFarm visuals archive: Before & After transformations, Cute / Corrupted character studies, searchable color systems, fashion grammar, scene studies, material references, model tests, and motion workflows."
+  title="Gallery Archive | HobFarm"
+  description="HobFarm gallery archive: Before & After transformations, Cute / Corrupted character studies, searchable color systems, fashion grammar, scene studies, material references, model tests, and motion workflows."
+  canonical="/gallery/"
 >
   <script is:inline type="application/ld+json" set:html={JSON.stringify(archiveJsonLd)} />
   <section class="bg-noise">
@@ -74,14 +75,14 @@ const archiveJsonLd = {
         <header class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end">
           <div class="lg:col-span-7">
             <Text tag="span" variant="textSM" class="text-accent-500 font-mono tracking-wider uppercase">
-              HobFarm Gallery
+              HobFarm / Gallery Archive
             </Text>
             <Text
               tag="h1"
               variant="displayXL"
               class="mt-4 text-white text-balance font-display tracking-tight"
             >
-              Visuals
+              Gallery Archive
             </Text>
             <Text tag="p" variant="textBase" class="text-base-300 mt-4 text-balance max-w-2xl leading-relaxed">
               {intro}

@@ -1,6 +1,12 @@
 import { getCollection, type CollectionEntry } from "astro:content";
-import { mediaUrl } from "@/lib/gallery";
+import { mediaImageUrl, mediaUrl } from "@/lib/gallery";
 import { cuteCorrupted } from "@/data/homepage-systems";
+
+// Capped preview for the cute/corrupted sheet stills (these are paid character
+// sheets — never expose the raw original). Scale-down keeps the full sheet
+// visible without upscaling.
+const sheetPreview = (folder: string, file: string) =>
+  mediaImageUrl(folder, file, { width: 1200, quality: 84, fit: "scale-down" });
 
 export interface CompareSide {
   src: string;
@@ -50,18 +56,18 @@ function buildCompare(entry: CollectionEntry<"gallery">): CompareItem | null {
     href: `/gallery/${entry.id.replace(/\.(md|mdx)$/, "")}/`,
     title: entry.data.title,
     before: {
-      src: mediaUrl(folder, cuteImg.file),
+      src: sheetPreview(folder, cuteImg.file),
       alt: cuteImg.alt ?? "Cute version",
       label: "Cute",
     },
     after: {
-      src: mediaUrl(folder, corruptedImg.file),
+      src: sheetPreview(folder, corruptedImg.file),
       alt: corruptedImg.alt ?? "Corrupted version",
       label: "Corrupted",
     },
     video:
       hero && hero.type === "video"
-        ? { src: mediaUrl(folder, hero.file), poster: mediaUrl(folder, hero.poster), alt: hero.alt }
+        ? { src: mediaUrl(folder, hero.file), poster: sheetPreview(folder, hero.poster), alt: hero.alt }
         : undefined,
     aspect: entry.data.heroAspect ?? "aspect-[4/5]",
     locked: entry.data.lockedTraits ?? [],

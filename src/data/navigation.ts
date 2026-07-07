@@ -5,16 +5,15 @@
 
 export type NavLink = { label: string; href: string };
 
-// Magazine front-of-book nav. Home is the logo. Shop/Academy/Services live under
-// Workshop (the studio umbrella), not the top bar. The Departments page is the
-// full table of contents; the top nav stays deliberately short.
+// Magazine front-of-book nav. Home is the logo. Search + Account are appended in
+// Navigation.astro (not links). Gallery/Video/Characters are demoted to archive
+// views reachable from the footer; the top bar routes to the durable buckets:
+// Articles, Departments, Workshop (the studio umbrella), Shop, Support.
 export const topNavLinks: NavLink[] = [
   { label: "Articles", href: "/articles" },
   { label: "Departments", href: "/departments" },
-  { label: "Gallery", href: "/gallery" },
-  { label: "Video", href: "/video" },
-  { label: "Characters", href: "/characters" },
   { label: "Workshop", href: "/workshop" },
+  { label: "Shop", href: "/shop" },
   { label: "Support", href: "/support" },
 ];
 
@@ -26,9 +25,12 @@ export const footerLinkGroups: FooterGroup[] = [
     links: [
       { label: "Articles", href: "/articles" },
       { label: "Departments", href: "/departments" },
-      { label: "Gallery", href: "/gallery" },
-      { label: "Video", href: "/video" },
-      { label: "Characters", href: "/characters" },
+      { label: "Visual Systems", href: "/visual-systems" },
+      // Archive/index views: the work's real home is a department, visual
+      // system, project, or workshop note — these are filtered browse surfaces.
+      { label: "Gallery Archive", href: "/gallery" },
+      { label: "Video Archive", href: "/video" },
+      { label: "Character Index", href: "/characters" },
     ],
   },
   {

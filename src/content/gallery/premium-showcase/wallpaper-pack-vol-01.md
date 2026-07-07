@@ -14,6 +14,12 @@ tags:
   - "premium"
   - "release"
 folder: "gallery/psychedelic-elephant"
+paidAssetPolicy:
+  hasPaidAsset: true
+  publicPreviewOnly: true
+  allowedPublicPreviewTypes: ["web-preview", "poster"]
+  fullAssetHostedOnSite: false
+  notes: "Full-resolution wallpaper pack downloads via DeviantArt Premium. Public page shows capped previews only."
 hero:
   type: "image"
   file: "psychedelic-elephant-header.png"

@@ -1,0 +1,101 @@
+---
+import { mediaImageUrl, mediaImageSrcset } from "@/lib/gallery";
+import { platformInfo } from "@/data/product-platforms";
+import { getDepartment, departmentPath } from "@/data/departments";
+import { isBuyable, productSlug } from "@/lib/products";
+import type { ProductEntry } from "@/lib/products";
+
+interface Props {
+  product: ProductEntry;
+}
+
+const { product } = Astro.props;
+const { data } = product;
+
+const plat = platformInfo[data.platform];
+const dept = getDepartment(data.department);
+const buyable = isBuyable(product);
+const slug = productSlug(product);
+
+const preview = mediaImageUrl(data.previewImage.folder, data.previewImage.file, {
+  width: 640,
+  quality: 82,
+  fit: "cover",
+});
+const previewSrcset = mediaImageSrcset(
+  data.previewImage.folder,
+  data.previewImage.file,
+  [320, 480, 640],
+  { quality: 82, fit: "cover" }
+);
+
+const statusLabel =
+  data.status === "coming-soon"
+    ? "Coming soon"
+    : data.status === "sold-out"
+      ? "Sold out"
+      : null;
+---
+
+<article id={slug} class="group relative flex flex-col overflow-hidden border border-base-800 bg-base-950 scroll-mt-24">
+  <div class="relative aspect-[4/5] w-full overflow-hidden bg-base-950">
+    <img
+      src={preview}
+      srcset={previewSrcset}
+      sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+      alt={data.previewImage.alt}
+      loading="lazy"
+      decoding="async"
+      class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+    />
+    <span
+      class="absolute left-2 top-2 border px-1.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-white"
+      style={`border-color:${plat.color}66; background:${plat.color}22`}
+    >
+      {plat.label}
+    </span>
+    {statusLabel && (
+      <span class="absolute right-2 top-2 border border-base-700 bg-base-950/80 px-1.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-base-300">
+        {statusLabel}
+      </span>
+    )}
+  </div>
+
+  <div class="flex flex-1 flex-col gap-2 p-4">
+    <h3 class="font-display text-sm leading-snug text-white">{data.title}</h3>
+    <p class="text-xs leading-relaxed text-base-400 line-clamp-3">{data.shortDescription}</p>
+
+    <div class="mt-auto flex items-center justify-between gap-2 pt-2">
+      {dept ? (
+        <a
+          href={departmentPath(dept.slug)}
+          class="text-[10px] font-mono uppercase tracking-wider"
+          style={`color:${dept.accent}`}
+        >
+          {dept.label}
+        </a>
+      ) : (
+        <span></span>
+      )}
+      {data.priceLabel && (
+        <span class="text-xs font-mono text-base-300">{data.priceLabel}</span>
+      )}
+    </div>
+
+    {buyable ? (
+      <a
+        href={data.externalUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-2 inline-flex items-center justify-center border px-3 py-2 text-xs font-mono uppercase tracking-wider text-white transition-colors hover:bg-white/5"
+        style={`border-color:${plat.color}66`}
+      >
+        {plat.ctaLabel}
+      </a>
+    ) : (
+      <span class="mt-2 inline-flex items-center justify-center border border-base-800 px-3 py-2 text-xs font-mono uppercase tracking-wider text-base-500">
+        {data.status === "sold-out" ? "Sold out" : "Drop coming soon"}
+      </span>
+    )}
+  </div>
+</article>

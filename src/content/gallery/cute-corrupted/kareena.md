@@ -17,6 +17,12 @@ tags:
   - "zine texture"
   - "social video"
 folder: "gallery/cute-corrupted/kareena-pink"
+paidAssetPolicy:
+  hasPaidAsset: true
+  publicPreviewOnly: true
+  allowedPublicPreviewTypes: ["web-preview", "poster", "video-preview"]
+  fullAssetHostedOnSite: false
+  notes: "Full-resolution cute/corrupted sheets are sold off-site (DeviantArt). Public page shows capped previews, poster, and the 6s video only."
 hero:
   type: "video"
   file: "cute-corrupted-kareena.mp4"

@@ -146,9 +146,11 @@ import SearchIcon from "@/components/fundations/icons/Search.astro";
 
     searchResults.classList.add("hidden");
 
-    function openSearch(e: Event) {
-      e.preventDefault();
-      e.stopPropagation();
+    function openSearch(e?: Event) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
       searchModal.classList.remove("hidden");
       document.body.style.overflow = "hidden";
       setTimeout(() => searchInput.focus(), 100);
@@ -273,6 +275,16 @@ import SearchIcon from "@/components/fundations/icons/Search.astro";
 
     searchButton.addEventListener("click", openSearch);
     searchButton.addEventListener("touchend", openSearch);
+
+    // Let any element with [data-search-trigger] (nav, mobile menu) open the
+    // modal. Delegated on document so it survives client-side navigation.
+    document.addEventListener("click", (e) => {
+      const target = e.target as HTMLElement | null;
+      if (target && target.closest("[data-search-trigger]")) {
+        openSearch(e);
+      }
+    });
+    document.addEventListener("hobfarm:open-search", () => openSearch());
 
     closeSearch.addEventListener("click", closeSearchModal);
     closeSearch.addEventListener("touchend", closeSearchModal);

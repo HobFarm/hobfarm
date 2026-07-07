@@ -2,8 +2,14 @@ import { cdn } from "./cdn";
 import {
   imageSrcset,
   transformImageUrl,
+  transformVideoUrl,
   type ImageTransformOptions,
 } from "./media-transforms";
+import {
+  PREVIEW_MAX_WIDTH,
+  SOCIAL_PREVIEW_WIDTH,
+  type PaidAssetPolicy,
+} from "@/data/asset-policy";
 
 export const GALLERY_TYPES = [
   "fashion",
@@ -84,6 +90,74 @@ export function mediaImageSrcset(
   options: Omit<ImageTransformOptions, "width"> = { quality: 84 }
 ): string {
   return imageSrcset(mediaUrl(folder, file), widths, options);
+}
+
+// ── Paid-asset safety: public-preview URL helpers ──────────────────────────
+// These are the ONLY functions gallery UI should use to build a URL that a
+// visitor can open, share, or scrape. They never return the raw full-res
+// original. See src/data/asset-policy.ts for the policy shape and cap.
+
+// A capped image URL safe to open in the lightbox. `previewMaxWidth` may lower
+// the global cap but never raise it.
+export function lightboxImageUrl(
+  folder: string,
+  file: string,
+  previewMaxWidth: number = PREVIEW_MAX_WIDTH
+): string {
+  const width = Math.min(previewMaxWidth, PREVIEW_MAX_WIDTH);
+  return mediaImageUrl(folder, file, { width, quality: 82, fit: "scale-down" });
+}
+
+// A capped preview image URL for OpenGraph / JSON-LD / social. Always a
+// transformed derivative, never the raw original.
+export function previewImageUrl(
+  folder: string,
+  file: string,
+  width: number = SOCIAL_PREVIEW_WIDTH
+): string {
+  return mediaImageUrl(folder, file, { width, quality: 82, fit: "cover" });
+}
+
+export interface SafeMedia {
+  src: string;
+  type: "image" | "video";
+  /** Whether this item may open full-size in the lightbox. */
+  canLightbox: boolean;
+}
+
+type SafeMediaInput = {
+  type: "image" | "video";
+  file: string;
+  paid?: boolean;
+  previewMaxWidth?: number;
+};
+
+// Resolve a public-safe media source plus whether it may open in the lightbox.
+// Images are always capped (safe to open). Videos cannot be capped server-side
+// (no Cloudflare Stream, transformVideoUrl is a no-op), so a paid or
+// non-preview video is preview-only: it renders in the grid/hero but does not
+// open full-size in the lightbox.
+export function safeMediaUrl(
+  folder: string,
+  item: SafeMediaInput,
+  policy?: PaidAssetPolicy
+): SafeMedia {
+  if (item.type === "video") {
+    const videoPreviewAllowed =
+      item.paid !== true &&
+      (!policy?.publicPreviewOnly ||
+        (policy.allowedPublicPreviewTypes ?? []).includes("video-preview"));
+    return {
+      src: transformVideoUrl(mediaUrl(folder, item.file)),
+      type: "video",
+      canLightbox: videoPreviewAllowed,
+    };
+  }
+  return {
+    src: lightboxImageUrl(folder, item.file, item.previewMaxWidth),
+    type: "image",
+    canLightbox: true,
+  };
 }
 
 export const providerLabels: Record<string, string> = {

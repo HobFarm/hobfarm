@@ -1,5 +1,6 @@
 ---
-import { mediaImageSrcset, mediaImageUrl, mediaUrl } from "@/lib/gallery";
+import { mediaImageSrcset, mediaImageUrl, mediaUrl, safeMediaUrl } from "@/lib/gallery";
+import type { PaidAssetPolicy } from "@/data/asset-policy";
 
 type HeroImage = { type: "image"; file: string; alt: string };
 type HeroVideo = { type: "video"; file: string; alt: string; poster: string };
@@ -12,6 +13,7 @@ interface Props {
   provider?: string;
   class?: string;
   aspect?: string;
+  policy?: PaidAssetPolicy;
 }
 
 const {
@@ -21,9 +23,17 @@ const {
   provider,
   class: className,
   aspect = "aspect-[4/5]",
+  policy,
 } = Astro.props;
 
+// Raw playback source for the inline <video> element only (no server-side video
+// transform exists). The lightbox never receives a raw original: images are
+// capped, and paid/non-preview video simply cannot open full-size.
 const src = mediaUrl(folder, hero.file);
+const safe = safeMediaUrl(folder, { type: hero.type, file: hero.file }, policy);
+const lightboxSrc = safe.src;
+const canLightbox = safe.canLightbox;
+const Tag = canLightbox ? "button" : "div";
 const poster = hero.type === "video" ? mediaUrl(folder, hero.poster) : null;
 const previewSrc =
   hero.type === "video"
@@ -48,19 +58,20 @@ const videoType =
     : null;
 ---
 
-<button
-  type="button"
+<Tag
+  type={canLightbox ? "button" : undefined}
   class:list={[
-    "group block w-full overflow-hidden border border-base-800 bg-base-950 hover:border-accent-500 transition-colors cursor-zoom-in",
+    "group block w-full overflow-hidden border border-base-800 bg-base-950 hover:border-accent-500 transition-colors",
+    canLightbox ? "cursor-zoom-in" : "cursor-default",
     aspect,
     className,
   ]}
-  data-lightbox={src}
-  data-lightbox-type={lightboxType}
-  data-lightbox-alt={hero.alt}
-  data-lightbox-caption={caption}
-  data-lightbox-provider={provider}
-  aria-label={`Open ${hero.alt}`}
+  data-lightbox={canLightbox ? lightboxSrc : undefined}
+  data-lightbox-type={canLightbox ? lightboxType : undefined}
+  data-lightbox-alt={canLightbox ? hero.alt : undefined}
+  data-lightbox-caption={canLightbox ? caption : undefined}
+  data-lightbox-provider={canLightbox ? provider : undefined}
+  aria-label={canLightbox ? `Open ${hero.alt}` : undefined}
 >
   <div class="relative w-full h-full">
     {hero.type === "video" && poster ? (
@@ -105,4 +116,4 @@ const videoType =
       </span>
     )}
   </div>
-</button>
+</Tag>

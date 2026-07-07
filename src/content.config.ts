@@ -153,6 +153,28 @@ const galleryMediaItem = z.object({
     .optional(),
   provider: z.string().optional(),
   poster: z.string().optional(),
+  // Paid-asset safety. `paid` marks this specific file as a paid original
+  // (disables full-size lightbox for video; images are always capped).
+  // `previewMaxWidth` lowers the public preview cap further (never above the
+  // global 1600 cap in src/data/asset-policy.ts).
+  paid: z.boolean().optional(),
+  previewMaxWidth: z.number().int().positive().optional(),
+});
+
+// Paid-asset safety policy. Records that an entry's full-resolution originals
+// are sold off-site, so public pages expose only capped/cropped previews.
+// Enforcement lives in src/lib/gallery.ts + the gallery components.
+// CONVENTION: never reference a full-res paid original as a public media[].file
+// or hero.file. Public entries reference web-size crops (suffix -web/-preview);
+// the un-suffixed original stays off public pages / on the external storefront.
+const paidAssetPolicySchema = z.object({
+  hasPaidAsset: z.boolean().default(false),
+  publicPreviewOnly: z.boolean().default(true),
+  allowedPublicPreviewTypes: z
+    .array(z.enum(["thumb", "web-preview", "poster", "video-preview", "crop"]))
+    .default(["web-preview", "poster", "video-preview"]),
+  fullAssetHostedOnSite: z.boolean().default(false),
+  notes: z.string().optional(),
 });
 
 const gallery = defineCollection({
@@ -196,6 +218,10 @@ const gallery = defineCollection({
     folder: z.string(),
     hero: z.discriminatedUnion("type", [heroImage, heroVideo]),
     heroAspect: z.string().optional(),
+
+    // Paid-asset safety. Present when this entry has a paid full-res counterpart
+    // sold off-site; drives the lightbox/OG/JSON-LD capping in the components.
+    paidAssetPolicy: paidAssetPolicySchema.optional(),
 
     date: z.coerce.date().optional(),
     featured: z.boolean().default(false),
@@ -570,6 +596,71 @@ const comics = defineCollection({
   }),
 });
 
+// Products / drops. External-first: each product links OUT to a storefront
+// (DeviantArt first). previewImage is a {folder,file} pair rendered through the
+// capped helpers in src/lib/gallery.ts, so a public preview never exposes a
+// paid original. Cross-refs (department/visualSystem/relatedArticle) are slugs.
+const products = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/products" }),
+  schema: z.object({
+    title: z.string(),
+    platform: z.enum([
+      "deviantart",
+      "kofi",
+      "etsy",
+      "ebay",
+      "lemon-squeezy",
+      "hobfarm-direct",
+      "patreon",
+    ]),
+    // Storefront/listing URL. Optional so a planned/coming-soon drop can exist
+    // before it goes live.
+    externalUrl: z.url().optional(),
+    productType: z.enum([
+      "premium-sheet-pack",
+      "digital-download",
+      "print",
+      "pod",
+      "handmade",
+      "vintage",
+      "bundle",
+    ]),
+    previewImage: z.object({
+      folder: z.string(),
+      file: z.string(),
+      alt: z.string(),
+    }),
+    shortDescription: z.string(),
+    includedItems: z.array(z.string()).default([]),
+    department: z
+      .enum([
+        "magazine-time-machine",
+        "wtfacts",
+        "satire",
+        "picture-stories",
+        "funnies",
+        "cute-corrupted",
+        "before-after-eras",
+        "critter-feed",
+        "hobfarm-presents",
+        "workshop-notes",
+        "essays-arguments",
+      ])
+      .optional(),
+    visualSystem: z.string().optional(),
+    relatedArticle: z.string().optional(),
+    relatedWorkshopNote: z.string().optional(),
+    priceLabel: z.string().optional(),
+    paidAssetPolicy: paidAssetPolicySchema.optional(),
+    status: z
+      .enum(["live", "planned", "coming-soon", "sold-out", "archived"])
+      .default("planned"),
+    dropDate: z.coerce.date().optional(),
+    edition: z.string().optional(),
+    featured: z.boolean().default(false),
+  }),
+});
+
 export const collections = {
   blog,
   gallery,
@@ -580,4 +671,5 @@ export const collections = {
   grimoire,
   stack,
   comics,
+  products,
 };

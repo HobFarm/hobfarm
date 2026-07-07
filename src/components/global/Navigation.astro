@@ -3,6 +3,7 @@
 import Button from "@/components/fundations/elements/Button.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import MobileNav from "@/components/global/MobileNav.astro";
+import SearchIcon from "@/components/fundations/icons/Search.astro";
 import { topNavLinks as navLinks } from "@/data/navigation";
 
 const currentPath = Astro.url.pathname;
@@ -55,6 +56,17 @@ function isActive(href: string): boolean {
             </a>
           ))
         }
+        <!-- Search: opens the global Search modal via the delegated
+             [data-search-trigger] hook in Search.astro. -->
+        <button
+          type="button"
+          data-search-trigger
+          aria-label="Search HobFarm"
+          title="Search"
+          class="text-base-400 hover:text-white transition-colors"
+        >
+          <SearchIcon size="sm" />
+        </button>
         <!-- Auth-state-dependent CTA. Both rendered; JS shows the right one
              based on /api/auth/me. Default visible = anonymous "Account" CTA
              pointing at /login?next=/account. Once /api/auth/me returns 200

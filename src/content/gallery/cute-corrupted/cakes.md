@@ -18,6 +18,12 @@ tags:
   - "celebration cake"
   - "dessert"
 folder: "gallery/cute-corrupted/cakes"
+paidAssetPolicy:
+  hasPaidAsset: true
+  publicPreviewOnly: true
+  allowedPublicPreviewTypes: ["web-preview", "poster", "video-preview"]
+  fullAssetHostedOnSite: false
+  notes: "Full-resolution stills are sold off-site. Public page shows capped previews and short video only."
 hero:
   type: "video"
   file: "cake01.mp4"

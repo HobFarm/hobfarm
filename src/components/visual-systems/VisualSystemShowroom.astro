@@ -1,0 +1,215 @@
+---
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import { mediaImageUrl, mediaUrl } from "@/lib/gallery";
+import { getDepartment, departmentPath } from "@/data/departments";
+import type { VisualSystem } from "@/data/visual-systems";
+
+interface Props {
+  system: VisualSystem;
+}
+
+const { system } = Astro.props;
+const fa = system.featuredAssets;
+
+// All stills capped; the paid `-hd` originals are never emitted at full size.
+const posterSrc = fa.poster
+  ? mediaImageUrl(fa.poster.folder, fa.poster.file, { width: 1200, quality: 84, fit: "cover" })
+  : null;
+const heroSrc = fa.hero
+  ? mediaImageUrl(fa.hero.folder, fa.hero.file, { width: 1000, quality: 84, fit: "cover" })
+  : null;
+// Teaser video plays raw (no server-side video transform); it is a short public
+// preview, never the paid asset.
+const teaserSrc = fa.teaserVideo ? mediaUrl(fa.teaserVideo.folder, fa.teaserVideo.file) : null;
+const teaserPoster = fa.teaserVideo
+  ? mediaImageUrl(fa.teaserVideo.folder, fa.teaserVideo.poster, { width: 1000, quality: 84, fit: "cover" })
+  : null;
+
+const dept = system.departments.map((slug) => getDepartment(slug)).find(Boolean);
+const canBuy = !!system.assetStoreUrl;
+---
+
+<section class="border-b border-base-800/60">
+  <Wrapper variant="standard" class="py-16 lg:py-24">
+    <div class="max-w-3xl">
+      <Text tag="span" variant="textSM" class="font-mono uppercase tracking-widest text-accent-400">
+        Visual System
+      </Text>
+      <Text tag="h1" variant="display2XL" class="mt-5 text-white font-display text-balance">
+        {system.title}
+      </Text>
+      <Text tag="p" variant="textLG" class="mt-6 text-base-300 leading-relaxed text-pretty">
+        {system.shortDescription}
+      </Text>
+      {dept && (
+        <a
+          href={departmentPath(dept.slug)}
+          class="mt-5 inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider"
+          style={`color:${dept.accent}`}
+        >
+          <span class="inline-block size-2 rounded-full" style={`background:${dept.accent}`}></span>
+          {dept.label}
+        </a>
+      )}
+    </div>
+
+    {/* Media packet: poster + teaser video */}
+    <div class="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
+      {posterSrc && (
+        <img
+          src={posterSrc}
+          alt={fa.poster!.alt}
+          loading="eager"
+          decoding="async"
+          class="w-full border border-base-800 bg-base-950 object-cover"
+        />
+      )}
+      {teaserSrc ? (
+        <video
+          src={teaserSrc}
+          poster={teaserPoster ?? undefined}
+          muted
+          loop
+          autoplay
+          playsinline
+          preload="metadata"
+          aria-label={fa.teaserVideo!.alt}
+          class="w-full border border-base-800 bg-base-950 object-cover"
+        ></video>
+      ) : heroSrc ? (
+        <img
+          src={heroSrc}
+          alt={fa.hero!.alt}
+          loading="lazy"
+          decoding="async"
+          class="w-full border border-base-800 bg-base-950 object-cover"
+        />
+      ) : null}
+    </div>
+  </Wrapper>
+</section>
+
+{/* The formula */}
+<section class="border-b border-base-800/60">
+  <Wrapper variant="standard" class="py-14 lg:py-20">
+    <Text tag="h2" variant="displaySM" class="text-white font-display">The rule set</Text>
+    <dl class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+      {system.aestheticRules.map((rule) => (
+        <div class="rounded-md border border-base-800 bg-base-950/50 px-4 py-3">
+          <dt class="font-mono text-[10px] uppercase tracking-wider text-base-400">{rule.label}</dt>
+          <dd class="mt-1 text-sm leading-snug text-base-200">{rule.value}</dd>
+        </div>
+      ))}
+    </dl>
+  </Wrapper>
+</section>
+
+{/* Base workflow pipeline */}
+{system.baseWorkflow.length > 0 && (
+  <section class="border-b border-base-800/60">
+    <Wrapper variant="standard" class="py-14 lg:py-20">
+      <Text tag="h2" variant="displaySM" class="text-white font-display">Base → paid asset</Text>
+      <ol class="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+        {system.baseWorkflow.map((step, i) => (
+          <li class="flex gap-3 rounded-md border border-base-800 bg-base-950/40 px-4 py-3">
+            <span class="font-mono text-xs text-accent-400">{String(i + 1).padStart(2, "0")}</span>
+            <span class="text-sm leading-snug text-base-300">{step}</span>
+          </li>
+        ))}
+      </ol>
+    </Wrapper>
+  </section>
+)}
+
+{/* Variants: same base, different mythology */}
+<section class="border-b border-base-800/60">
+  <Wrapper variant="standard" class="py-14 lg:py-20">
+    <Text tag="h2" variant="displaySM" class="text-white font-display">The variants</Text>
+    <div class="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-2">
+      {system.variants.map((variant) => {
+        const vHero = variant.hero
+          ? mediaImageUrl(variant.hero.folder, variant.hero.file, { width: 800, quality: 84, fit: "cover" })
+          : null;
+        return (
+          <article class="flex flex-col gap-4 border border-base-800 bg-base-950/40 p-5">
+            <div class="flex items-baseline justify-between">
+              <h3 class="text-white font-display text-lg">{variant.label}</h3>
+              {variant.baseSubject && (
+                <span class="text-[10px] font-mono uppercase tracking-wider text-base-500">
+                  base: {variant.baseSubject}
+                </span>
+              )}
+            </div>
+            {vHero && (
+              <img
+                src={vHero}
+                alt={variant.hero!.alt}
+                loading="lazy"
+                decoding="async"
+                class="w-full border border-base-800 bg-base-950 object-cover"
+              />
+            )}
+            <p class="text-sm leading-relaxed text-base-300">{variant.description}</p>
+            {/* Sheet previews: capped, no lightbox — the full sheet is the paid asset */}
+            {variant.sheetPreviews.length > 0 && (
+              <div class="grid grid-cols-2 gap-2">
+                {variant.sheetPreviews.map((sheet) => (
+                  <img
+                    src={mediaImageUrl(sheet.folder, sheet.file, { width: 700, quality: 82, fit: "scale-down" })}
+                    alt={sheet.alt}
+                    loading="lazy"
+                    decoding="async"
+                    class="w-full border border-base-800 bg-base-950 object-contain"
+                  />
+                ))}
+              </div>
+            )}
+            {(variant.lockedTraits?.length || variant.changedTraits?.length) && (
+              <dl class="grid grid-cols-2 gap-3 pt-1">
+                {variant.lockedTraits && variant.lockedTraits.length > 0 && (
+                  <div>
+                    <dt class="font-mono text-[10px] uppercase tracking-wider text-base-500">Locked</dt>
+                    <dd class="mt-1 text-xs text-base-300">{variant.lockedTraits.join(", ")}</dd>
+                  </div>
+                )}
+                {variant.changedTraits && variant.changedTraits.length > 0 && (
+                  <div>
+                    <dt class="font-mono text-[10px] uppercase tracking-wider text-base-500">Changed</dt>
+                    <dd class="mt-1 text-xs text-base-300">{variant.changedTraits.join(", ")}</dd>
+                  </div>
+                )}
+              </dl>
+            )}
+          </article>
+        );
+      })}
+    </div>
+  </Wrapper>
+</section>
+
+{/* Fan-out: buy / learn / read / explore */}
+<section>
+  <Wrapper variant="standard" class="py-14 lg:py-20">
+    <Text tag="h2" variant="displaySM" class="text-white font-display">Where this goes next</Text>
+    <Text tag="p" variant="textBase" class="mt-4 max-w-2xl text-base-400 leading-relaxed text-pretty">
+      The character sheet is the paid asset. The poster, hero, and video sell the world. From here you can buy
+      the sheets, learn the workflow, read the process, or start from the free examples.
+    </Text>
+    <div class="mt-8 flex flex-wrap gap-3">
+      {canBuy ? (
+        <Button isLink size="sm" variant="green" href={system.assetStoreUrl} target="_blank" rel="noopener noreferrer">
+          Buy the character sheets
+        </Button>
+      ) : (
+        <span class="inline-flex h-9 items-center rounded-full border border-base-800 px-4 text-xs font-mono uppercase tracking-wider text-base-500">
+          Full-res sheets — coming soon
+        </span>
+      )}
+      <Button isLink size="sm" variant="muted" href="/academy/">Take the course</Button>
+      <Button isLink size="sm" variant="muted" href="/workshop/">Read the workshop notes</Button>
+      <Button isLink size="sm" variant="muted" href="/gallery/cute-corrupted/">See free examples</Button>
+    </div>
+  </Wrapper>
+</section>

@@ -17,6 +17,12 @@ tags:
   - "animal"
   - "transformation"
 folder: "gallery/cute-corrupted/critters"
+paidAssetPolicy:
+  hasPaidAsset: true
+  publicPreviewOnly: true
+  allowedPublicPreviewTypes: ["web-preview", "poster", "video-preview"]
+  fullAssetHostedOnSite: false
+  notes: "Full-resolution critter stills are sold off-site. Public page shows capped previews and short video only."
 hero:
   type: "video"
   file: "corgi-cute-corrupted.mp4"

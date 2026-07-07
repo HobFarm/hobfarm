@@ -1,27 +1,119 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import AboutHero from "@/components/about/AboutHero.astro";
-import AboutLanes from "@/components/about/AboutLanes.astro";
-import AboutProjects from "@/components/about/AboutProjects.astro";
-import AboutMedia from "@/components/about/AboutMedia.astro";
-import AboutOrigin from "@/components/about/AboutOrigin.astro";
-import AboutPitch from "@/components/about/AboutPitch.astro";
-import AboutPhilosophy from "@/components/about/AboutPhilosophy.astro";
-import AboutRoadmap from "@/components/about/AboutRoadmap.astro";
-import AboutContact from "@/components/about/AboutContact.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Eyebrow from "@/components/sections/Eyebrow.astro";
+
+const sections = [
+  {
+    id: "about-magazine",
+    eyebrow: "Magazine",
+    heading: "The publication layer",
+    body:
+      "HobFarm publishes articles, cartoons, archive dives, visual essays, gallery notes, and recurring departments. Articles are the source; social posts are fragments that point readers back to the full piece.",
+    links: [
+      { label: "Read articles", href: "/articles/" },
+      { label: "Browse departments", href: "/departments/" },
+    ],
+  },
+  {
+    id: "about-studio",
+    eyebrow: "Studio",
+    heading: "The visual-system layer",
+    body:
+      "The studio side builds reusable character and style systems: base mannequins, aesthetic rules, posters, videos, previews, and shop-ready asset packs. The goal is not a pile of images; it is a repeatable set that can keep producing.",
+    links: [
+      { label: "Explore visual systems", href: "/visual-systems/" },
+      { label: "Open the gallery archive", href: "/gallery/" },
+    ],
+  },
+  {
+    id: "about-workshop",
+    eyebrow: "Workshop",
+    heading: "How the work is made",
+    body:
+      "Workshop notes explain the production method: character locks, prompt structure, image tests, motion experiments, publishing decisions, and the failures that make the next pass better.",
+    links: [
+      { label: "Visit workshop", href: "/workshop/" },
+      { label: "See academy", href: "/academy/" },
+    ],
+  },
+  {
+    id: "about-shop",
+    eyebrow: "Shop",
+    heading: "Where finished systems become drops",
+    body:
+      "Shop paths collect paid assets, digital packs, print-on-demand ideas, handmade objects, and external storefront routes. Public pages show capped previews; full-resolution paid files live on the storefront.",
+    links: [
+      { label: "Visit shop", href: "/shop/" },
+      { label: "Support HobFarm", href: "/support/" },
+    ],
+  },
+  {
+    id: "about-contact",
+    eyebrow: "Contact",
+    heading: "Questions, collaborations, and support",
+    body:
+      "Use contact for support questions, collaboration ideas, custom work, security reports, or anything that needs a direct reply.",
+    links: [{ label: "Contact HobFarm", href: "/contact/" }],
+  },
+];
 ---
 
 <BaseLayout
   title="About | HobFarm"
-  description="HobFarm is a creative production and commerce project: creative services, original projects, digital and physical products, resale inventory, and video. Character design, AI-assisted media, film-history work, and more, under one brand."
+  description="HobFarm is an online magazine and visual studio. The site connects articles, visual systems, workshop notes, shop drops, support paths, and contact routes."
 >
-  <AboutHero />
-  <AboutLanes />
-  <AboutProjects />
-  <AboutMedia />
-  <AboutOrigin />
-  <AboutPitch />
-  <AboutPhilosophy />
-  <AboutRoadmap />
-  <AboutContact />
+  <section class="bg-noise border-b border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-16 lg:py-24">
+        <Eyebrow text="HobFarm / About" />
+        <Text tag="h1" variant="display2XL" class="mt-6 max-w-4xl text-white font-display text-balance">
+          HobFarm is an online magazine and visual studio.
+        </Text>
+        <Text tag="p" variant="textLG" class="mt-6 max-w-3xl text-base-300 leading-relaxed text-pretty">
+          The site publishes full articles, visual archives, recurring projects, process notes,
+          workflow education, and support paths. The public loop is simple: publish on hob.farm,
+          share fragments elsewhere, bring readers back to the full work, then connect them to
+          related galleries, systems, drops, lessons, or support.
+        </Text>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  {sections.map((section, index) => (
+    <section id={section.id} class="border-b border-base-800/50">
+      <ContentPanel>
+        <Wrapper variant="standard" class="py-12 lg:py-18">
+          <div class="grid grid-cols-1 gap-6 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-10">
+            <p class="font-mono text-[10px] uppercase tracking-widest text-accent-400">
+              {String(index + 1).padStart(2, "0")} / {section.eyebrow}
+            </p>
+            <div class="max-w-3xl">
+              <Text tag="h2" variant="displaySM" class="text-white font-display text-balance">
+                {section.heading}
+              </Text>
+              <Text tag="p" variant="textBase" class="mt-4 text-base-400 leading-relaxed text-pretty">
+                {section.body}
+              </Text>
+              <div class="mt-6 flex flex-wrap gap-3">
+                {section.links.map((link, linkIndex) => (
+                  <Button
+                    isLink
+                    size="sm"
+                    variant={linkIndex === 0 ? "green" : "muted"}
+                    href={link.href}
+                  >
+                    {link.label}
+                  </Button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Wrapper>
+      </ContentPanel>
+    </section>
+  ))}
 </BaseLayout>

@@ -52,7 +52,7 @@ export const departments: Department[] = [
     slug: "magazine-time-machine",
     label: "Magazine Time Machine",
     blurb:
-      "Old magazines, vintage advertisements, dead futures, then-versus-now research, and cultural artifacts that still have something weirdly useful stuck to them.",
+      "Old magazines, vintage advertisements, dead futures, then-versus-now research, and cultural artifacts with useful context still attached.",
     intro: [
       "Magazine Time Machine digs through old magazines, advertisements, articles, photos, predictions, gadgets, trends, and cultural leftovers to see what they turned into.",
       "Some pieces compare then and now. Some follow dead futures that never arrived. Some look at how people used to sell, explain, fear, desire, decorate, or misunderstand the world. Sometimes the old page is the whole story. Sometimes it is just the trapdoor.",
@@ -68,7 +68,7 @@ export const departments: Department[] = [
     slug: "wtfacts",
     label: "WTFacts?",
     blurb:
-      "What The Facts? Reactions to the dumb and weird things online, told as a joke with the receipt attached.",
+      "What The Facts? Reactions to absurd things online, told as a joke with the receipt attached.",
     accent: "#e23a4e",
     navHub: "Articles",
     status: "planned",

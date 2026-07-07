@@ -1,0 +1,32 @@
+---
+// Homepage "Latest drops" strip. Reads real/planned products only and
+// self-suppresses when there are none, so it never shows an empty shelf.
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import DropCard from "@/components/shop/DropCard.astro";
+import { getLatestDrops } from "@/lib/products";
+
+const drops = await getLatestDrops(4);
+---
+
+{drops.length > 0 && (
+  <section id="latest-drops" class="border-b border-base-800/70">
+    <Wrapper variant="standard" class="py-14 lg:py-16">
+      <div class="mb-6 flex flex-wrap items-end justify-between gap-4">
+        <div class="max-w-2xl">
+          <p class="font-mono text-[10px] uppercase tracking-widest text-accent-magenta-bright">Latest drops</p>
+          <Text tag="h2" variant="displaySM" class="mt-2 font-display text-white">From the shop</Text>
+          <p class="mt-3 text-sm leading-relaxed text-base-400">
+            Preview the system here; full-resolution paid files live on the storefront.
+          </p>
+        </div>
+        <a href="/shop/" class="text-sm text-base-400 transition-colors hover:text-white">
+          Browse the shop
+        </a>
+      </div>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {drops.map((product) => <DropCard product={product} />)}
+      </div>
+    </Wrapper>
+  </section>
+)}
