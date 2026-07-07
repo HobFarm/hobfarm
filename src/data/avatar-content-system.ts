@@ -43,10 +43,11 @@ export const avatarCourse = {
   checkoutPath: "/membership",
   loginPath: "/login?next=/academy/avatar-content-system/course",
   betaCta: "Supporter beta access, $5/mo while this starter kit is in beta.",
+  frameLabel: "A beginner course inside Aesthetic Systems Lab",
   summary:
-    "A practical beginner workflow for making avatar videos with ChatGPT, HeyGen, ElevenLabs, and Meta Business Suite.",
+    "A beginner course inside Aesthetic Systems Lab for building a repeatable avatar content system: one short avatar video from rough idea to script, export, caption, scheduled post, and review note.",
   thesis:
-    "People do not just need prompts. They need a way to move between phone, laptop, screenshots, voice notes, ChatGPT, scripts, avatar tools, downloaded files, and scheduled posts without losing the thread.",
+    "This is still the starter kit. It teaches the smallest complete loop first, then shows how that loop can grow into broader aesthetic systems work without turning the beginner course into a full lab.",
   affiliateDisclosure:
     "Some tool links may be affiliate links. The course is built around tools I use, test, or teach because they fit the workflow.",
 };
@@ -105,6 +106,53 @@ export const mergedWorkflow = [
   "Review",
 ];
 
+export const castMethod = [
+  {
+    term: "Collect",
+    body:
+      "Capture the rough idea, screenshots, voice notes, references, and constraints before asking for a script.",
+  },
+  {
+    term: "Arrange",
+    body:
+      "Put the useful pieces into one starter source file so the work has a shape outside the chat thread.",
+  },
+  {
+    term: "Set",
+    body:
+      "Choose the avatar role, visual lane, voice direction, boundaries, and current output for this one post.",
+  },
+  {
+    term: "Task",
+    body:
+      "Give ChatGPT or the next tool one clear job: write, test, export, schedule, review, or reset for the next post.",
+  },
+];
+
+export const whereThisFits = [
+  {
+    title: "This starter kit",
+    body:
+      "The first outcome stays beginner-sized: one short avatar video, one saved source file, one script, one export, one caption, one scheduled post, and one review note.",
+    href: avatarCourse.basePath,
+    cta: "You are here",
+  },
+  {
+    title: "Aesthetic Systems Lab",
+    body:
+      "Future lab material expands the same habits into visual systems, recurring casts, style lanes, character roles, and larger publishing workflows.",
+    href: null,
+    cta: "In production",
+  },
+  {
+    title: "Color Becomes a Cast",
+    body:
+      "The public article shows the broader direction: turning color, aesthetics, and avatar roles into a reusable cast instead of isolated images.",
+    href: "/articles/color-becomes-a-cast/",
+    cta: "Read the article",
+  },
+];
+
 export const projectFolderSetup = [
   "avatar-content-system/",
   "avatar-content-system/01-ideas/",
@@ -143,6 +191,7 @@ export const starterPrompts: Snippet[] = [
 export const landingSections = {
   helpsMake: [
     "Short avatar videos for Instagram, Facebook, TikTok, YouTube Shorts, or LinkedIn.",
+    "A small source file that keeps the idea, avatar role, visual lane, voice, boundaries, current output, and next task together.",
     "A repeatable file setup so scripts, voice tests, clips, captions, and scheduled posts do not vanish into random downloads.",
     "A first reusable content process that is realistic for beginners and small solo projects.",
   ],
@@ -154,6 +203,7 @@ export const landingSections = {
   ],
   paidIncludes: [
     "Detailed modular lessons with exact steps.",
+    "A starter source-file lesson before deeper ChatGPT, voice, or avatar setup.",
     "Screenshot slots for building the course into a real workspace.",
     "Copyable prompts, snippets, checklists, and review notes.",
     "Walkthroughs for ChatGPT, ElevenLabs, HeyGen, file movement, exports, scheduling, and post review.",
@@ -325,13 +375,23 @@ const freeLessonData: FreeLesson[] = [
       "You have a first script direction saved outside the chat window.",
       "You know what the paid lessons will expand next.",
     ],
-    nextLessonSlug: "set-up-chatgpt-personalization",
+    nextLessonSlug: "create-the-starter-source-file",
   },
 ];
 
 const paidLessonPreviews: LessonPreview[] = [
   {
     number: 5,
+    slug: "create-the-starter-source-file",
+    title: "Create the Starter Source File",
+    access: "paid",
+    trackTags: ["Both"],
+    moduleTitle: "Source file setup",
+    preview:
+      "Turn the rough avatar idea into a small reusable source file before writing scripts or opening avatar tools.",
+  },
+  {
+    number: 6,
     slug: "set-up-chatgpt-personalization",
     title: "Set Up ChatGPT Personalization",
     access: "paid",
@@ -341,7 +401,7 @@ const paidLessonPreviews: LessonPreview[] = [
       "Set a practical preference baseline so ChatGPT stops pitching hype and starts helping with useful avatar scripts.",
   },
   {
-    number: 6,
+    number: 7,
     slug: "create-a-chatgpt-project",
     title: "Create a ChatGPT Project",
     access: "paid",
@@ -351,7 +411,7 @@ const paidLessonPreviews: LessonPreview[] = [
       "Create a dedicated project for ideas, scripts, screenshots, notes, and repeatable instructions.",
   },
   {
-    number: 7,
+    number: 8,
     slug: "screenshot-research-method",
     title: "Screenshot Research Method",
     access: "paid",
@@ -361,7 +421,7 @@ const paidLessonPreviews: LessonPreview[] = [
       "Turn phone screenshots into usable research notes without drowning ChatGPT in context soup.",
   },
   {
-    number: 8,
+    number: 9,
     slug: "build-your-avatar-concept",
     title: "Build Your Avatar Concept",
     access: "paid",
@@ -371,7 +431,7 @@ const paidLessonPreviews: LessonPreview[] = [
       "Define the avatar's job, tone, boundaries, look notes, and recurring content role before generating clips.",
   },
   {
-    number: 9,
+    number: 10,
     slug: "write-or-speak-your-first-script",
     title: "Write or Speak Your First Script",
     access: "paid",
@@ -381,7 +441,7 @@ const paidLessonPreviews: LessonPreview[] = [
       "Use either voice mode or typed drafting to create a short script that sounds like a person, not a webinar funnel.",
   },
   {
-    number: 10,
+    number: 11,
     slug: "create-a-voice-test-in-elevenlabs",
     title: "Create a Voice Test in ElevenLabs",
     access: "paid",
@@ -391,7 +451,7 @@ const paidLessonPreviews: LessonPreview[] = [
       "Run a small voice test, listen for pacing and tone, and save the result where it belongs.",
   },
   {
-    number: 11,
+    number: 12,
     slug: "create-an-avatar-clip-in-heygen",
     title: "Create an Avatar Clip in HeyGen",
     access: "paid",
@@ -401,7 +461,7 @@ const paidLessonPreviews: LessonPreview[] = [
       "Make the first avatar clip from a known script and voice direction instead of improvising in the tool.",
   },
   {
-    number: 12,
+    number: 13,
     slug: "move-files-between-phone-and-laptop",
     title: "Move Files Between Phone and Laptop",
     access: "paid",
@@ -411,7 +471,7 @@ const paidLessonPreviews: LessonPreview[] = [
       "Bridge camera roll, downloads, cloud folders, and desktop editing without losing the source file.",
   },
   {
-    number: 13,
+    number: 14,
     slug: "save-and-name-your-exports",
     title: "Save and Name Your Exports",
     access: "paid",
@@ -421,7 +481,7 @@ const paidLessonPreviews: LessonPreview[] = [
       "Use a simple naming pattern for scripts, voice tests, avatar clips, edits, captions, and final exports.",
   },
   {
-    number: 14,
+    number: 15,
     slug: "schedule-in-meta-business-suite",
     title: "Schedule in Meta Business Suite",
     access: "paid",
@@ -431,14 +491,14 @@ const paidLessonPreviews: LessonPreview[] = [
       "Schedule the finished video with caption, thumbnail check, and account sanity check before it goes out.",
   },
   {
-    number: 15,
+    number: 16,
     slug: "review-the-post-and-make-the-next-one",
-    title: "Review the Post and Make the Next One",
+    title: "Reset the Thread and Make the Next One",
     access: "paid",
     trackTags: ["Both"],
     moduleTitle: "Publish and review",
     preview:
-      "Write a short review note so the next avatar post improves instead of restarting from scratch.",
+      "Review the finished post, save the note, then reset the thread so the next avatar post starts from the system instead of from scratch.",
   },
 ];
 

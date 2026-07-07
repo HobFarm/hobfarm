@@ -21,6 +21,59 @@ export interface PaidLesson {
 
 const lessons: PaidLesson[] = [
   {
+    slug: "create-the-starter-source-file",
+    title: "Create the Starter Source File",
+    trackTags: ["Both"],
+    goal:
+      "Turn the rough avatar idea into a small reusable source file before writing scripts or opening avatar tools.",
+    whatYouNeed: [
+      "The rough idea or first ChatGPT response from the free lesson.",
+      "Your project folder.",
+      "A plain text, Markdown, Google Doc, or notes app file.",
+    ],
+    steps: [
+      "Create a new file named 001-starter-source.md or 001-starter-source.txt in 01-ideas.",
+      "Copy the starter source template into the file.",
+      "Fill in each line with what you know now. Use unknown instead of inventing details.",
+      "Keep the current output small: one short avatar video, not a whole channel plan.",
+      "Add one boundary and one forbidden drift so the idea does not become generic or overpromised.",
+      "Save the file before asking ChatGPT for a full script, voice direction, or avatar setup.",
+    ],
+    screenshotSlots: [
+      {
+        target: "Starter source file before scripting",
+        caption: "Show the filled template with the rough idea organized before script drafting.",
+      },
+      {
+        target: "Starter source file saved in 01-ideas",
+        caption: "Show the source file saved outside ChatGPT so it can be reused in later lessons.",
+      },
+    ],
+    snippets: [
+      {
+        title: "Starter source file template",
+        body:
+          "Project:\nGoal:\nAudience/use:\nAvatar role:\nVisual lane:\nVoice:\nBoundaries:\nForbidden drift:\nCurrent output:\nNext task:",
+      },
+      {
+        title: "Fill the source file from a rough idea",
+        body:
+          "Use my rough avatar idea to fill this starter source file. Keep unknowns visible. Do not write the script yet. The file should help me make one short avatar video with a script, export, caption, scheduled post, and review note.\n\nTemplate:\nProject:\nGoal:\nAudience/use:\nAvatar role:\nVisual lane:\nVoice:\nBoundaries:\nForbidden drift:\nCurrent output:\nNext task:\n\nRough idea: [paste idea]",
+      },
+    ],
+    checklist: [
+      "The starter source file exists in 01-ideas.",
+      "The file includes the avatar role, visual lane, voice, boundaries, forbidden drift, current output, and next task.",
+      "Unknown details are marked instead of invented.",
+      "The current output is still one short avatar video.",
+    ],
+    doneWhen: [
+      "You can paste the source file into ChatGPT and ask for one clear next task.",
+      "The idea is organized enough to write a script without opening avatar tools yet.",
+    ],
+    nextLessonSlug: "set-up-chatgpt-personalization",
+  },
+  {
     slug: "set-up-chatgpt-personalization",
     title: "Set Up ChatGPT Personalization",
     trackTags: ["Both"],
@@ -494,10 +547,10 @@ const lessons: PaidLesson[] = [
   },
   {
     slug: "review-the-post-and-make-the-next-one",
-    title: "Review the Post and Make the Next One",
+    title: "Reset the Thread and Make the Next One",
     trackTags: ["Both"],
     goal:
-      "Write a short practical review so the second avatar video improves instead of restarting from zero.",
+      "Use the review note to close the first messy thread, reset the source file, and make the second avatar video from the system instead of from zero.",
     whatYouNeed: ["The scheduled or published post.", "Your first-video-review note.", "Any basic performance or quality observations."],
     steps: [
       "Open the post after publishing or after the scheduled preview is ready.",
@@ -505,7 +558,8 @@ const lessons: PaidLesson[] = [
       "Review production second: voice, pacing, avatar fit, captions, crop, and file quality.",
       "Review workflow third: where did work slow down or get lost?",
       "Write one keep, one cut, one fix, and one next test.",
-      "Use ChatGPT to turn the review into the next video plan.",
+      "Reset the thread by starting a new ChatGPT chat or project thread for the next post.",
+      "Paste the starter source file, the review note, and one next task into the new thread.",
     ],
     screenshotSlots: [
       {
@@ -524,9 +578,9 @@ const lessons: PaidLesson[] = [
           "Keep: [what worked]\nCut: [what was unnecessary]\nFix: [what confused or slowed the video]\nNext test: [one thing to try in the next avatar post]",
       },
       {
-        title: "Next video prompt",
+        title: "Reset the thread prompt",
         body:
-          "Use this review note to plan the next short avatar video. Keep what worked, remove what dragged, and suggest one small test for the next post. Review note: [paste note]",
+          "Reset the thread for the next short avatar video. Use the starter source file and this review note. Keep what worked, remove what dragged, and give me only the next task.\n\nStarter source file: [paste source]\n\nReview note: [paste note]",
       },
     ],
     checklist: [
@@ -534,9 +588,11 @@ const lessons: PaidLesson[] = [
       "Quality and workflow notes are separate.",
       "The review note is saved.",
       "The next test is specific.",
+      "A fresh thread exists for the next post.",
     ],
     doneWhen: [
       "You know what to repeat, what to remove, and what to test in the next avatar video.",
+      "The next post starts from the source file and review note, not from a blank chat.",
     ],
   },
 ];

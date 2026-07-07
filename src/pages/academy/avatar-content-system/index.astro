@@ -11,9 +11,11 @@ import LessonCard from "@/components/academy/LessonCard.astro";
 import {
   affiliateTools,
   avatarCourse,
+  castMethod,
   courseModules,
   landingSections,
   faqItems,
+  whereThisFits,
   workflowPaths,
 } from "@/data/avatar-content-system";
 ---
@@ -29,6 +31,9 @@ import {
         <div class="grid grid-cols-1 gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div>
             <Eyebrow text="HobFarm / Academy" />
+            <p class="mt-5 text-xs font-mono uppercase tracking-wider text-accent-cyan-bright">
+              {avatarCourse.frameLabel}
+            </p>
             <Text tag="h1" variant="display2XL" class="mt-6 max-w-4xl text-balance font-display text-white">
               {avatarCourse.productName}
             </Text>
@@ -58,7 +63,7 @@ import {
     <ContentPanel>
       <Wrapper variant="standard" class="py-12 lg:py-20">
         <SectionHeader eyebrow="01" heading="What this helps you make" note="A first usable system." />
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
           {landingSections.helpsMake.map((item) => (
             <article class="border border-base-800 bg-base-900/40 p-5">
               <p class="text-sm leading-relaxed text-base-300">{item}</p>
@@ -72,7 +77,26 @@ import {
   <section class="border-t border-base-800/50">
     <ContentPanel>
       <Wrapper variant="standard" class="py-12 lg:py-20">
-        <SectionHeader eyebrow="02" heading="Voice/Phone vs Text/Computer" note="Start where you actually work." />
+        <SectionHeader eyebrow="02" heading="CAST, kept small" note="A light method for the starter kit." />
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {castMethod.map((step) => (
+            <article class="border border-base-800 bg-base-900/40 p-5">
+              <h3 class="text-xl font-display text-white">{step.term}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-base-400">{step.body}</p>
+            </article>
+          ))}
+        </div>
+        <p class="mt-6 max-w-3xl text-sm leading-relaxed text-base-500">
+          CAST is only a handle here. The starter kit uses it to keep one avatar post organized before the larger Aesthetic Systems Lab material expands the method.
+        </p>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <SectionHeader eyebrow="03" heading="Voice/Phone vs Text/Computer" note="Start where you actually work." />
         <CourseDiagram variant="paths" />
         <div class="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2">
           {workflowPaths.map((path) => (
@@ -89,7 +113,7 @@ import {
   <section class="border-t border-base-800/50">
     <ContentPanel>
       <Wrapper variant="standard" class="py-12 lg:py-20">
-        <SectionHeader eyebrow="03" heading="Avatar content pipeline" note="The shared path." />
+        <SectionHeader eyebrow="04" heading="Avatar content pipeline" note="The shared path." />
         <CourseDiagram variant="workflow" />
       </Wrapper>
     </ContentPanel>
@@ -100,7 +124,7 @@ import {
       <Wrapper variant="standard" class="py-12 lg:py-20">
         <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
           <section>
-            <SectionHeader eyebrow="04" heading="What is free" />
+            <SectionHeader eyebrow="05" heading="What is free" />
             <ul class="space-y-3">
               {landingSections.freeIncludes.map((item) => (
                 <li class="border-l border-l-accent-green px-4 text-sm leading-relaxed text-base-300">
@@ -115,7 +139,7 @@ import {
             </div>
           </section>
           <section>
-            <SectionHeader eyebrow="05" heading="Paid starter kit" />
+            <SectionHeader eyebrow="06" heading="Paid starter kit" />
             <ul class="space-y-3">
               {landingSections.paidIncludes.map((item) => (
                 <li class="border-l border-l-accent-violet px-4 text-sm leading-relaxed text-base-300">
@@ -137,7 +161,7 @@ import {
   <section class="border-t border-base-800/50">
     <ContentPanel>
       <Wrapper variant="standard" class="py-12 lg:py-20">
-        <SectionHeader eyebrow="06" heading="Course modules" note="Free setup, then paid depth." />
+        <SectionHeader eyebrow="07" heading="Course modules" note="Free setup, then paid depth." />
         <div class="space-y-8">
           {courseModules.map((module) => (
             <section>
@@ -155,7 +179,7 @@ import {
   <section class="border-t border-base-800/50">
     <ContentPanel>
       <Wrapper variant="standard" class="py-12 lg:py-20">
-        <SectionHeader eyebrow="07" heading="Tools used" note="The small stack." />
+        <SectionHeader eyebrow="08" heading="Tools used" note="The small stack." />
         <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
           {affiliateTools.map((tool) => (
             <article class="border border-base-800 bg-base-900/40 p-5">
@@ -182,9 +206,35 @@ import {
   <section class="border-t border-base-800/50">
     <ContentPanel>
       <Wrapper variant="standard" class="py-12 lg:py-20">
+        <SectionHeader eyebrow="09" heading="Where this fits" note="Starter kit first, lab later." />
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+          {whereThisFits.map((item) => (
+            <article class="border border-base-800 bg-base-900/40 p-5">
+              <h3 class="text-xl font-display text-white">{item.title}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-base-400">{item.body}</p>
+              {item.href ? (
+                <a
+                  href={item.href}
+                  class="mt-5 inline-flex text-xs font-mono uppercase tracking-wider text-accent-green-bright underline decoration-base-700 underline-offset-4 hover:text-white"
+                >
+                  {item.cta}
+                </a>
+              ) : (
+                <p class="mt-5 text-xs font-mono uppercase tracking-wider text-base-500">{item.cta}</p>
+              )}
+            </article>
+          ))}
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
         <div class="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-start">
           <div>
-            <SectionHeader eyebrow="08" heading="Beta price" note="Simple access while the kit is new." />
+            <SectionHeader eyebrow="10" heading="Beta price" note="Simple access while the kit is new." />
             <p class="max-w-2xl text-base leading-relaxed text-base-300">
               {avatarCourse.betaCta} The course-specific one-time product can be added later when the separate entitlement system exists.
             </p>
@@ -209,7 +259,7 @@ import {
   <section class="border-t border-base-800/50">
     <ContentPanel>
       <Wrapper variant="standard" class="py-12 lg:py-20">
-        <SectionHeader eyebrow="09" heading="FAQ" />
+        <SectionHeader eyebrow="11" heading="FAQ" />
         <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
           {faqItems.map((item) => (
             <article class="border border-base-800 bg-base-900/40 p-5">

@@ -22,11 +22,14 @@ import { avatarCourse, courseModules, freeLessons, paidLessons } from "@/data/av
         <div class="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_0.85fr] lg:items-start">
           <div>
             <Eyebrow text="Course index" />
+            <p class="mt-5 text-xs font-mono uppercase tracking-wider text-accent-cyan-bright">
+              {avatarCourse.frameLabel}
+            </p>
             <Text tag="h1" variant="displayXL" class="mt-6 text-balance font-display text-white">
               {avatarCourse.productName}
             </Text>
             <p class="mt-6 max-w-2xl text-base leading-relaxed text-base-300">
-              Start with the four free lessons. Paid lessons stay visible as locked cards, then unlock through supporter beta access after sign-in.
+              Start with the four free lessons, then use the first paid lesson to create the starter source file before deeper ChatGPT, voice, avatar, export, scheduling, and review work. Locked cards stay visible as previews.
             </p>
             <div class="mt-8 flex flex-wrap gap-3">
               <Button isLink size="sm" variant="green" href={`/academy/avatar-content-system/course/${freeLessons[0].slug}`}>

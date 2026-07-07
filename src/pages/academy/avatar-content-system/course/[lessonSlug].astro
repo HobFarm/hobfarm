@@ -44,6 +44,9 @@ const trackText = lesson.trackTags.join(" / ");
       <Wrapper variant="standard" class="py-16 lg:py-20">
         <div class="max-w-4xl">
           <Eyebrow text={lesson.access === "free" ? "Free lesson" : "Paid lesson preview"} />
+          <p class="mt-5 text-xs font-mono uppercase tracking-wider text-accent-cyan-bright">
+            {avatarCourse.frameLabel}
+          </p>
           <div class="mt-6 flex flex-wrap items-center gap-2">
             <span class="rounded-full border border-base-700 px-3 py-2 text-xs font-mono text-base-300">
               Lesson {lesson.number}
