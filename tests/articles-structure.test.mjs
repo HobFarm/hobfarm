@@ -233,3 +233,12 @@ test("article share controls include a generated share post", () => {
   assert.match(shareButtons, /Share post/);
   assert.match(articleLayout, /tags=\{frontmatter\.tags\}/);
 });
+
+test("article embeds allow trusted media players through CSP", () => {
+  const headers = read("public/_headers");
+
+  assert.match(headers, /Content-Security-Policy:/);
+  assert.match(headers, /frame-src[^;\n]*https:\/\/open\.spotify\.com/);
+  assert.match(headers, /frame-src[^;\n]*https:\/\/www\.youtube\.com/);
+  assert.match(headers, /frame-src[^;\n]*https:\/\/www\.youtube-nocookie\.com/);
+});

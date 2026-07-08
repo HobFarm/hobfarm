@@ -25,46 +25,58 @@ const coverHero = coverStory ? getArticleHero(coverStory.data) : undefined;
 
 <section id="magazine-front-page" class="bg-noise border-b border-base-800/70">
   <Wrapper variant="standard" class="py-10 lg:py-14">
-    <div class="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.6fr)] lg:items-end">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(280px,0.58fr)] lg:items-center">
       <div>
         <p class="font-mono text-xs uppercase tracking-widest text-accent-magenta-bright">
-          Online Humor Magazine + Visual Studio
+          ONLINE HUMOR MAGAZINE + VISUAL STUDIO
         </p>
         <h1 class="mt-4 max-w-4xl font-display text-4xl font-light leading-tight text-white text-balance lg:text-6xl">
-          Visual culture from the barn, the archive, and the edge of the feed.
+          Stop on the weird thing. Follow it all the way down.
         </h1>
         <p class="mt-5 max-w-3xl text-base leading-relaxed text-base-300">
-          HobFarm is an online humor magazine and visual studio for cartoons, satirical magazine ads, archive dives, character worlds, style experiments, food/fashion mutations, Vegas logic, and backstage culture.
+          HobFarm turns cartoons, satirical ads, archive dives, character worlds, food/fashion mutations, Vegas logic, and studio experiments into a magazine you can browse, learn from, and get lost in.
         </p>
         <div class="mt-6 flex flex-wrap gap-2">
           <Button isLink size="sm" variant="green" href="/articles/">Read the latest</Button>
-          <Button isLink size="sm" variant="muted" href="/visual-systems/">Explore visual systems</Button>
-          <Button isLink size="sm" variant="muted" href="/shop/">Shop</Button>
-          <Button isLink size="sm" variant="muted" href="/support/">Support</Button>
+          <Button isLink size="sm" variant="muted" href="/visual-systems/">Enter the studio</Button>
+          <Button isLink size="sm" variant="muted" href="/gallery/">Browse galleries</Button>
+          <Button isLink size="sm" variant="muted" href="/support/">Support HobFarm</Button>
         </div>
       </div>
 
-      <aside class="rounded-lg border border-base-800 bg-base-950/70 p-5">
-        <p class="font-mono text-[10px] uppercase tracking-widest text-base-400">
-          How the magazine moves
-        </p>
-        <ol class="mt-4 space-y-3 text-sm text-base-300">
-          {[
-            "Article",
-            "Visual fragment",
-            "Reader follows the trail",
-            "Related gallery, video, or character",
-            "Workshop note, download, or support path",
-          ].map((step, index) => (
-            <li class="flex items-center gap-3">
-              <span class="grid size-7 shrink-0 place-items-center rounded-full border border-base-700 font-mono text-[10px] text-accent-cyan">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <span>{step}</span>
-            </li>
-          ))}
-        </ol>
-      </aside>
+      <figure
+        class="mx-auto mt-2 grid aspect-square w-[min(72vw,320px)] place-items-center overflow-hidden rounded-lg border border-base-800 bg-base-950/80 shadow-[inset_0_0_60px_rgba(180,60,255,0.08),0_24px_80px_rgba(0,0,0,0.35)] lg:mt-0 lg:w-[clamp(280px,30vw,420px)]"
+        aria-label="HobFarm animated drip logo"
+      >
+        <video
+          class="size-full object-contain motion-reduce:hidden"
+          src="https://cdn.hob.farm/brand/hobfarm-drip-logo.mp4"
+          poster="https://cdn.hob.farm/brand/hobfarm-drip-logo.png"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          aria-hidden="true"
+        />
+        <picture class="hidden size-full motion-reduce:block">
+          <source srcset="https://cdn.hob.farm/brand/hobfarm-drip-logo.png" type="image/png" />
+          <img
+            src="https://cdn.hob.farm/brand/hobfarm-logo.jpg"
+            alt="HobFarm drip logo"
+            class="size-full object-contain"
+            loading="eager"
+            decoding="async"
+          />
+        </picture>
+        <noscript>
+          <img
+            src="https://cdn.hob.farm/brand/hobfarm-drip-logo.png"
+            alt="HobFarm drip logo"
+            class="size-full object-contain"
+          />
+        </noscript>
+      </figure>
     </div>
 
     {coverStory && (

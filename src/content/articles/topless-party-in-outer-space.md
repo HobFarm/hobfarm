@@ -124,15 +124,15 @@ So a tune from an Italian mondo movie wanders into American children's televisio
     <iframe
       width="560"
       height="315"
-      src="https://www.youtube.com/embed/TbZ_hTEOKZc?si=y0jPDv-8qjZSIWQO"
-      title="YouTube video player"
+      src="https://www.youtube.com/embed/ibNuEcAt21k"
+      title="Mahna Mahna Phenomahna | The Muppets"
       frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       referrerpolicy="strict-origin-when-cross-origin"
       allowfullscreen>
     </iframe>
   </div>
-  <figcaption>The Muppet-afterlife placement: <em>Mah Na Mah Na</em> as television DNA.</figcaption>
+  <figcaption>The Muppet-afterlife placement: <em>Mah Na Mah Na</em> as television DNA, still circulating in official Muppets form.</figcaption>
 </figure>
 
 <figure class="article-wide article-embed article-embed--spotify">
