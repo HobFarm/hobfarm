@@ -4,12 +4,12 @@ excerpt: "Italian library funk, space-age lounge, Muppet nonsense, Bob Crewe bra
 dek: "Italian soundtrack funk, library music, space-age lounge, Muppet nonsense, Bob Crewe brass, and the part where Spock sings about hobbits."
 description: "A Magazine Time Machine listening-room trail through Giuliano Sorgini, Piero Umiliani, Mah Na Mah Na, The Bob Crewe Generation, Leonard Nimoy, and the background music that became the main event."
 author: d00d
-publishedAt: 2026-07-08
+publishedAt: 2026-07-08T00:00:00-07:00
 category: magazine-time-machine
 department: magazine-time-machine
 format: article
 series: "Magazine Time Machine"
-status: draft
+status: published
 tags:
   - magazine-time-machine
   - italian-soundtracks
@@ -27,7 +27,7 @@ relatedArticles:
   - mad-trump-and-the-magazine-time-machine
   - 1956-automation
   - 1985-future-tech
-draft: true
+draft: false
 ---
 
 Spotify opened the wrong door, which is usually how the best rooms are found.
