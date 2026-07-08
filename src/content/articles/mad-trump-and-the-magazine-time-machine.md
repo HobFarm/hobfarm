@@ -69,7 +69,7 @@ The cover looks like a fossil from a dead economic mood. Not wealth exactly, but
 
 Then that magazine dies too.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img src="https://cdn.hob.farm/articles/mad-trump/mad-trump-trump.png" alt="Editorial image for the TRUMP and Trump Magazine section of the article." />
   <figcaption>The name keeps changing under your feet: 1957 TRUMP as a doomed satire experiment, 2000s Trump Magazine as luxury-brand theater, and the modern association that makes the archive hard to read cleanly.</figcaption>
 </figure>

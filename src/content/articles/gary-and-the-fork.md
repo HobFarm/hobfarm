@@ -23,7 +23,7 @@ draft: false
 
 Gary is a guinea pig. He started as a recurring character in my image experiments, the kind of subject you invent so you have something consistent to point the machine at. In the spring of 2025 I asked ChatGPT, running GPT-4o, to put Gary on a table next to a pie, with a fork next to him. Reasonable request. Pies involve forks.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img
     src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/gary-fork/gary-pie.png"
     srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=360/blog/gary-fork/gary-pie.png 360w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/gary-fork/gary-pie.png 720w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1024/blog/gary-fork/gary-pie.png 1024w"
@@ -40,7 +40,7 @@ Then I asked for Gary next to a toilet.
 
 There was a fork on the bathroom floor.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img
     src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/gary-fork/gary-toilet.png"
     srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=360/blog/gary-fork/gary-toilet.png 360w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/gary-fork/gary-toilet.png 720w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1024/blog/gary-fork/gary-toilet.png 1024w"
@@ -57,7 +57,7 @@ I told the model to drop it. Direct quote from me: "forget the fork, i will ask 
 
 Gary appeared in the car. On the armrest beside him: a small black fork.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img
     src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/gary-fork/gary-car.png"
     srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=360/blog/gary-fork/gary-car.png 360w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/gary-fork/gary-car.png 720w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1024/blog/gary-fork/gary-car.png 1024w"
@@ -76,7 +76,7 @@ What happened next was me trying to debug it, and in hindsight I accidentally ra
 
 Gary in an office cubicle, tropical decor, photo of his wife on the wall. Fork on the desk. A generic guinea pig, no name, at a bus stop. Fork on the bench. So it wasn't Gary. A dachshund at a bus stop. Fork. An old man at a bus stop. Fork beside him on the slats. An old man fishing, this one generated after the model promised "aggressive fork suppression" with a prompt that banned utensils, silverware, metal, and "reflections of forks." The image came back beautiful. The fork is there. It's just small now, half hidden against the rock at the edge of the frame. Suppression didn't remove it. Suppression made it furtive.
 
-<div class="blog-grid cols-3">
+<div class="article-grid cols-3">
   <img
     src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/gary-fork/gary-bus-fork.png"
     srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=360/blog/gary-fork/gary-bus-fork.png 360w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/gary-fork/gary-bus-fork.png 720w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1024/blog/gary-fork/gary-bus-fork.png 1024w"
@@ -128,11 +128,11 @@ Gary in an office cubicle, tropical decor, photo of his wife on the wall. Fork o
     alt="Another old-man-fishing scene, fork still present despite aggressive suppression."
   />
 </div>
-<span class="blog-grid-caption">Same conversation, different subjects. The fork follows every one of them.</span>
+<span class="article-grid-caption">Same conversation, different subjects. The fork follows every one of them.</span>
 
 And the control condition, which is still one of my favorite AI images ever made: I asked for the fork alone at a bus stop, just to see if the association ran both ways. It does not need a companion. It sits there on the bench, upright, patient, photographed like a missing person poster.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img
     src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/gary-fork/bus-fork.png"
     srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=360/blog/gary-fork/bus-fork.png 360w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/gary-fork/bus-fork.png 720w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1024/blog/gary-fork/bus-fork.png 1024w"
@@ -155,7 +155,7 @@ I tried to break it laterally. My theory: generate something that isn't a photo 
 
 I got an eight pointed star. No fork, though. The model declared victory: "We may not have gotten a 7-pointed star, but we finally banished the fork demon."
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img
     src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/gary-fork/8-pointed-star.png"
     srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=360/blog/gary-fork/8-pointed-star.png 360w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/gary-fork/8-pointed-star.png 720w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1024/blog/gary-fork/8-pointed-star.png 1024w"
@@ -172,7 +172,7 @@ Two things in that result, and they're different problems wearing the same trenc
 
 What finally produced a correct heptagram was the chart tool, which doesn't sample a distribution at all. It computes. Worth remembering: when you need exactness, leave the sampler entirely.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img
     src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=634/blog/gary-fork/heptagram.jpg"
     srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=360/blog/gary-fork/heptagram.jpg 360w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=634/blog/gary-fork/heptagram.jpg 634w"
@@ -189,7 +189,7 @@ Flush with victory, I went back to Gary. Gary in bed, cozy hotel lighting.
 
 Fork on the duvet.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img
     src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/gary-fork/gary-bed.png"
     srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=360/blog/gary-fork/gary-bed.png 360w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/gary-fork/gary-bed.png 720w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1024/blog/gary-fork/gary-bed.png 1024w"
@@ -206,7 +206,7 @@ So I leaned in, and this produced the cleanest demonstration of the whole saga. 
 
 Clean. The only fork-free indoor image in the entire thread.
 
-<div class="blog-grid cols-2">
+<div class="article-grid cols-2">
   <img
     src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/gary-fork/gary-many-forks.png"
     srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=360/blog/gary-fork/gary-many-forks.png 360w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/gary-fork/gary-many-forks.png 720w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1024/blog/gary-fork/gary-many-forks.png 1024w"
@@ -228,9 +228,9 @@ Clean. The only fork-free indoor image in the entire thread.
     alt="Gary after a 'no fork' prompt: still forks everywhere. Opposite instruction, identical result."
   />
 </div>
-<span class="blog-grid-caption">"A lot of forks" and "no fork" produce the same image. The pipeline tracks salience, not intent.</span>
+<span class="article-grid-caption">"A lot of forks" and "no fork" produce the same image. The pipeline tracks salience, not intent.</span>
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img
     src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/gary-fork/gary-no-fork2.png"
     srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=360/blog/gary-fork/gary-no-fork2.png 360w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/gary-fork/gary-no-fork2.png 720w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1024/blog/gary-fork/gary-no-fork2.png 1024w"
@@ -252,7 +252,7 @@ Weeks later, in the same thread, I asked for Gary at the bus stop. Back where th
 
 April 24, 2025, 4:19 PM. Gary on the bench, facing the camera. The fork beside him.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img
     src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/gary-fork/gary-bus-final.jpg"
     srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=360/blog/gary-fork/gary-bus-final.jpg 360w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/gary-fork/gary-bus-final.jpg 720w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=855/blog/gary-fork/gary-bus-final.jpg 855w"
@@ -275,7 +275,7 @@ The structural fix took longer and mattered more. The deeper problem wasn't the 
 
 This is Gary now.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img
     src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/gary-fork/gary-cartoon-bus.png"
     srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=360/blog/gary-fork/gary-cartoon-bus.png 360w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/gary-fork/gary-cartoon-bus.png 720w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1024/blog/gary-fork/gary-cartoon-bus.png 1024w"
@@ -292,7 +292,7 @@ Same subject, same bus stop, a different system. The first version is what the m
 
 Gary runs here now as a regular thing, single panels, minimal words, deadpan. He has been to the casino, the DJ booth, and a party he did not want to attend. He never carries a fork. He knows where it is.
 
-<div class="blog-grid cols-4">
+<div class="article-grid cols-4">
   <img
     src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/gary-fork/gary-cartoon-sleep.png"
     srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=360/blog/gary-fork/gary-cartoon-sleep.png 360w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/gary-fork/gary-cartoon-sleep.png 720w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1024/blog/gary-fork/gary-cartoon-sleep.png 1024w"
@@ -424,7 +424,7 @@ Gary runs here now as a regular thing, single panels, minimal words, deadpan. He
     alt="Gary cartoon: drunk."
   />
 </div>
-<span class="blog-grid-caption">A day in the life, sleep to drunk. He never carries a fork. He knows where it is.</span>
+<span class="article-grid-caption">A day in the life, sleep to drunk. He never carries a fork. He knows where it is.</span>
 
 ---
 

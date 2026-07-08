@@ -46,4 +46,4 @@ Going solo means accepting real constraints:
 
 HobFarm isn't trying to be the next Midjourney. The goal is a sustainable creative tools platform that generates enough revenue to justify the time investment, produces work I'm proud of, and demonstrates that the solo developer model works for AI-powered products if you pick the right infrastructure.
 
-The "building in public" part means you get to watch that experiment play out in real time. The blog, the changelog, the gallery, it's all evidence of the process.
+The "building in public" part means you get to watch that experiment play out in real time. The articles, the changelog, the gallery, it's all evidence of the process.

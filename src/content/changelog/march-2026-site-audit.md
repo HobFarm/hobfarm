@@ -11,7 +11,7 @@ Comprehensive audit of the codebase, fixing critical bugs, improving component a
 
 - Fixed broken contact page (removed stale redirect that was sending `/contact` to `/`)
 - Eliminated Alpine.js dependency (replaced with vanilla JS for prompt export tab switcher and copy button)
-- Fixed RSS feed (rewrote from broken glob pattern to proper `getCollection("blog")`)
+- Fixed RSS feed (rewrote from broken glob pattern to proper content collection access)
 - Removed `.webp` files violating format rules (3 files converted to `.png`)
 
 ### Architecture improvements

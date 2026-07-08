@@ -26,7 +26,7 @@ This is not about having more agents. It is about each agent operating in its st
 
 Every feature at HobFarm starts with a schema, not a UI mockup, not a code stub. The TypeScript interface or Zod definition comes first. This forces clarity: what data does this feature need? What are the constraints? What relationships exist? Once the schema is locked, implementation becomes mechanical. The agents can scaffold from the schema with confidence because the contract is explicit.
 
-This pattern extends to our content system. Blog posts, gallery entries, project showcases, changelog items: each has a Zod schema that serves as both validation and documentation. PagesCMS reads the same schema definitions. The CDN paths follow the same naming conventions. One source of truth propagates everywhere.
+This pattern extends to our content system. Articles, gallery entries, project showcases, changelog items: each has a Zod schema that serves as both validation and documentation. PagesCMS reads the same schema definitions. The CDN paths follow the same naming conventions. One source of truth propagates everywhere.
 
 ## The CC Task Brief
 

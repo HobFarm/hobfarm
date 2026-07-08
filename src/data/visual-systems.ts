@@ -58,11 +58,11 @@ export interface VisualSystem {
     teaserVideo?: VideoAssetRef;
     sheetPreviews: AssetRef[];
   };
-  /** Blog ids (src/content/blog). Empty until a verified article exists. */
+  /** Article ids (src/content/articles). Empty until a verified article exists. */
   relatedArticles: string[];
   /** Product slugs (src/content/products). Empty until a verified drop exists. */
   relatedProducts: string[];
-  /** Workshop-note blog ids. Empty until verified. */
+  /** Workshop-note article ids. Empty until verified. */
   relatedWorkshopNotes: string[];
   /** Off-site asset-store buy link (e.g. DeviantArt). Undefined => "coming soon". */
   assetStoreUrl?: string;

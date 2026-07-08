@@ -16,10 +16,10 @@ content:
   # ---------------------
   # ARTICLES
   # ---------------------
-  - name: blog
+  - name: articles
     label: Articles
     type: collection
-    path: src/content/blog
+    path: src/content/articles
     filename: "{primary}.md"
     view:
       primary: title

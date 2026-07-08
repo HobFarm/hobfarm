@@ -64,7 +64,7 @@ Instagram's own explanations of ranking describe different systems for Feed, Sto
 
 That is the environment where buckets thrive.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img src="https://cdn.hob.farm/articles/funnel-buckets/bucket-anatomy.png" alt="A satirical infographic showing the four stages of a funnel bucket: costume, emotion, cheap action, and payload." loading="lazy" decoding="async" />
   <figcaption>Bucket anatomy: costume, emotion, cheap action, payload.</figcaption>
 </figure>
@@ -119,7 +119,7 @@ Fashion becomes a shopping cart with legs.
 
 That is hashtag collapse. A broad world becomes the most clickable interface for that world.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img src="https://cdn.hob.farm/articles/funnel-buckets/hashtag-collapse.png" alt="A satirical infographic showing hashtag collapse, where goth becomes an avatar, psychedelic becomes a motif, and fashionstyle becomes commerce." loading="lazy" decoding="async" />
   <figcaption>Hashtag collapse: broad cultures compressed into feed-ready interfaces.</figcaption>
 </figure>
@@ -212,7 +212,7 @@ This is where the whole machine becomes a Cute & Corrupted problem.
 
 Cute is not always innocent. Corrupted is not always bad. Cute is the socially legible wrapper. Corrupted is the payload, the conversion path, the exposed operating system, the private logic, the sale, the bot, the desperation, the joke, the kink, the list, the link, the hustle.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img src="https://cdn.hob.farm/articles/funnel-buckets/influencer.png" alt="A cartoon Instagram-style host avatar with dark hair, pink accents, heart accessories, and a phone with a funnel icon." loading="lazy" decoding="async" />
   <figcaption>The IG Gal: cute wrapper, corrupted payload, fully aware of the bit.</figcaption>
 </figure>

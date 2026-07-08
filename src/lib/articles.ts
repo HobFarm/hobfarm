@@ -7,7 +7,7 @@ import {
   resolveDepartment,
 } from "@/data/departments";
 
-export type Article = CollectionEntry<"blog">;
+export type Article = CollectionEntry<"articles">;
 export type ArticleData = Article["data"];
 export type ArticleTagCount = {
   tag: string;
@@ -92,7 +92,7 @@ export function byOldestArticle(a: Article, b: Article): number {
 }
 
 export async function getPublishedArticles(now: Date = new Date()): Promise<Article[]> {
-  const articles = await getCollection("blog");
+  const articles = await getCollection("articles");
   return articles.filter((article) => isPublishedArticle(article, now)).sort(byNewestArticle);
 }
 

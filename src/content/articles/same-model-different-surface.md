@@ -21,7 +21,7 @@ featured: true
 draft: false
 ---
 
-In [The Invisible Variable](/blog/posts/invisible-variable/), I ran the same reference images through five extraction models and found that each one acts as a creative director. The vocabulary it chooses, the details it emphasizes, the art-historical references it invokes, all cascade into fundamentally different generation results. The extraction model isn't a passive observer. It's the first creative decision in the pipeline.
+In [The Invisible Variable](/articles/invisible-variable/), I ran the same reference images through five extraction models and found that each one acts as a creative director. The vocabulary it chooses, the details it emphasizes, the art-historical references it invokes, all cascade into fundamentally different generation results. The extraction model isn't a passive observer. It's the first creative decision in the pipeline.
 
 That study changed one variable at a time: the extraction model. Everything else stayed the same. This study does the same thing, but with a different variable.
 
@@ -51,7 +51,7 @@ The differences are subtle. The API output is looser, more willing to add visual
 
 This is what consistency looks like. The surface changed; the model's interpretation didn't.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img src="https://cdn.hob.farm/blog/web-vs-api/gemini-comparison.png" alt="Gemini comparison: Gemini Create Image Web vs Nano Banana 2 API, showing consistent interpretation across both surfaces with minor stylistic differences" />
   <figcaption>Gemini "Create Image" Web vs Nano Banana 2 API. Both surfaces produce siblings: same composition, same palette, minor stylistic variation.</figcaption>
 </figure>
@@ -66,7 +66,7 @@ The web version lands in a different neighborhood. The architecture simplifies. 
 
 You can see these came from the same model. The character reads as the same person. The mood is consistent. But the style interpretation shifted. The API went Art Nouveau maximalism. The web went contemporary fantasy illustration. The IR asked for psychedelic poster art; the API delivered it more literally, the web translated it into a more modern idiom. Neither is wrong, but they're making different creative decisions from the same input.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img src="https://cdn.hob.farm/blog/web-vs-api/chatgpt-comparison.png" alt="ChatGPT comparison: ChatGPT Image Web vs GPT Image 1.5 API, showing family resemblance but divergent style interpretation" />
   <figcaption>ChatGPT Image Web vs GPT Image 1.5 API. Same model, same mood, different creative neighborhoods. The API went Art Nouveau maximalism; the web went contemporary fantasy.</figcaption>
 </figure>
@@ -75,7 +75,7 @@ You can see these came from the same model. The character reads as the same pers
 
 Then there's Grok.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img src="https://cdn.hob.farm/blog/web-vs-api/grok-comparison.png" alt="Grok comparison: Grok Imagine Web vs Grok Imagine 1.5 API, showing dramatically different outputs that look like entirely different models" />
   <figcaption>Grok Imagine Web vs Grok Imagine 1.5 API. You would not guess these came from the same model, the same prompt, or the same session.</figcaption>
 </figure>
@@ -86,7 +86,7 @@ The IR specifies illustration as the render mode. Style anchors: "psychedelic ar
 
 The web version doesn't even do that. It collapses to a tight portrait crop, face and shoulders only, bathed in monochromatic purple light with glowing eyes. The arched sanctuary is gone. The pool is gone. The sunset horizon, the wide symmetrical composition, all gone. The subject holds the lotus, which is correct, but everything else about the scene description is discarded. It's a photorealistic close-up portrait that happens to share a color palette with the prompt.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <video controls playsinline autoplay loop muted width="100%" poster="https://cdn.hob.farm/blog/web-vs-api/grok-web.jpg">
     <source src="https://cdn.hob.farm/blog/web-vs-api/grok-video.mp4" type="video/mp4">
   </video>
@@ -115,7 +115,7 @@ For anyone building structured generation pipelines, this is a critical variable
 
 The practical consequence: if you're evaluating a model's capabilities based on its web interface, you might be evaluating the interface, not the model. And if you're evaluating based on the API, you might be seeing capabilities that web users never access.
 
-In [The Invisible Variable](/blog/posts/invisible-variable/), the finding was that each extraction model is a creative director making aesthetic decisions that cascade through the pipeline. This study adds another finding: the delivery surface is also a creative variable, and for some providers, it's a bigger one than the model itself.
+In [The Invisible Variable](/articles/invisible-variable/), the finding was that each extraction model is a creative director making aesthetic decisions that cascade through the pipeline. This study adds another finding: the delivery surface is also a creative variable, and for some providers, it's a bigger one than the model itself.
 
 All three providers are producing genuinely good images. The question is whether the web surface accurately represents what the model can do. For Gemini, the answer is yes. For GPT, mostly. For Grok, the API and the web are telling very different stories about the same model, and the model itself is more capable than the web experience suggests.
 
@@ -125,12 +125,12 @@ The original test in this article was run on the morning of April 3. That same d
 
 I ran the same structured prompts through Grok's web interface in Quality mode with new subjects. The results are completely reversed.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img src="https://cdn.hob.farm/blog/web-vs-api/grok-comparison2.png" alt="Grok comparison: Vampire pinup with bat wings. Web Quality mode produces full illustration with psychedelic forest, floating cubes, and complete style adherence. API produces photorealistic figure pasted into illustrated background." />
   <figcaption>Web Quality mode produces fully committed illustrated vampire pinups with psychedelic forests and floating geometric elements. The API puts photorealistic women against painted backgrounds with a visible seam between the figure and environment.</figcaption>
 </figure>
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img src="https://cdn.hob.farm/blog/web-vs-api/grok-comparison3.png" alt="Grok comparison: Dark-haired vampire pinup. Same reversal. Web Quality mode commits to illustrated style with galaxy spirals and floating geometric elements. API renders photorealistic figure against painted background." />
   <figcaption>Same reversal with a different subject. Web Quality mode commits to the illustrated style with galaxy spirals and geometric elements. The API renders a photorealistic figure against a painted background.</figcaption>
 </figure>
@@ -139,7 +139,7 @@ The web Quality mode now produces fully committed illustration-style outputs. Ps
 
 The surface variable didn't just close the gap. It inverted the hierarchy. The web surface went from the least prompt-faithful to the most prompt-faithful Grok output in a single update.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <video controls playsinline autoplay loop muted width="100%" poster="https://cdn.hob.farm/blog/web-vs-api/grok-web-2.jpg">
     <source src="https://cdn.hob.farm/blog/web-vs-api/vampire-pinup.mp4" type="video/mp4">
   </video>

@@ -30,7 +30,7 @@ My archive had her two years early, in a chat about sounding human. That's not b
 
 I didn't find that chat by browsing. I went looking, and the looking started on Reddit. The first domino was the meetup genre: someone asked ChatGPT to draw a meetup of average redditors, and the result was instantly legible to everyone who saw it. The image became a little cultural test. How much of that picture came from the prompt, and how much was the model furnishing the room from stereotype gravity? I pushed the joke sideways and generated a meetup for the cat subreddits, every table its own community, every attendee the cat that community would be. Same structural gag, different furniture, and the point got clearer: the system is not reading a sentence. It's assembling a scene from a pile of latent assumptions, and the sentence only tells it which pile.
 
-<div class="blog-stack">
+<div class="article-stack">
   <img
     src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/goth-get-boots/reddit-meetup-original.jpg"
     srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=360/blog/goth-get-boots/reddit-meetup-original.jpg 360w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/goth-get-boots/reddit-meetup-original.jpg 720w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1024/blog/goth-get-boots/reddit-meetup-original.jpg 1024w"
@@ -60,11 +60,11 @@ I didn't find that chat by browsing. I went looking, and the looking started on 
     alt="My cat-subreddits remix of the meetup, each table a different cat community."
   />
 </div>
-<span class="blog-grid-caption">Top: the average-redditors meetup everyone was passing around. Bottom: my cat-subreddits remix, same structural gag, different furniture.</span>
+<span class="article-grid-caption">Top: the average-redditors meetup everyone was passing around. Bottom: my cat-subreddits remix, same structural gag, different furniture.</span>
 
 The second domino came in spring 2025, when another genre exploded: ask the model to draw an image of our conversation, of our dynamic, of what it thinks you look like. I screenshotted strangers' results and generated a pile of my own. I kept thirty-two of them, and they hang below as a gallery. The styles range from oil paint to anime to woodcut to lofi. Now count the staging. Five of the thirty-two have no human/AI pair at all. Of the twenty-seven that do, twenty-three put the human on the left and the AI on the right. And the four that flip the seats all gave the AI a body and a job first: a mechanical raven twice, a teacher at a chalkboard, a tablet propped near a mother's chair. The translucent, glowing, usually feminine default never takes the left seat once in the entire corpus. Embodiment buys the machine a seat anywhere it likes. The ghost always sits stage right.
 
-<div class="blog-grid cols-4 masonry">
+<div class="article-grid cols-4 masonry">
   <img
     src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=480/blog/goth-get-boots/chatgpt-conversation-cartoon-000.png"
     srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=240/blog/goth-get-boots/chatgpt-conversation-cartoon-000.png 240w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=480/blog/goth-get-boots/chatgpt-conversation-cartoon-000.png 480w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=640/blog/goth-get-boots/chatgpt-conversation-cartoon-000.png 640w"
@@ -450,13 +450,13 @@ The second domino came in spring 2025, when another genre exploded: ask the mode
     alt="ChatGPT draw-our-conversation portrait, render 32 of 32."
   />
 </div>
-<span class="blog-grid-caption">Thirty-two "draw our conversation" renders from one account. The human sits left, the glowing AI sits right, almost every time.</span>
+<span class="article-grid-caption">Thirty-two "draw our conversation" renders from one account. The human sits left, the glowing AI sits right, almost every time.</span>
 
-<div class="blog-sidecar">
-  <div class="blog-sidecar-copy">
+<div class="article-sidecar">
+  <div class="article-sidecar-copy">
     <p>I was tracking the recurring props in a working doc at the time: glowing orbs, pastel ghost AIs, the lantern, the raven, the hoodie, the coffee cup. Apparently everyone who works at a computer wears a hoodie and holds a coffee. I do wear a hoodie, which is exactly the trap: the model wasn't describing me, it was describing the bucket, and I happened to be standing in it. Being right about you by accident is not knowing you.</p>
   </div>
-  <figure class="blog-sidecar-media">
+  <figure class="article-sidecar-media">
     <img
       src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/goth-get-boots/chatgpt-glowing-orb.png"
       srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=360/blog/goth-get-boots/chatgpt-glowing-orb.png 360w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/goth-get-boots/chatgpt-glowing-orb.png 720w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1024/blog/goth-get-boots/chatgpt-glowing-orb.png 1024w"
@@ -498,7 +498,7 @@ Two caveats keep this honest. First, the model has no introspective access to it
 
 Which lands the mechanical point of this whole post in three sentences. The knowledge was in the context. The bias is in the weights. A conversation cannot retrain a distribution, so the model can describe its gravity wells with perfect fluency and fall into them in the next reply, forever.
 
-This is the opposite failure from the one in the [Gary post](/blog/posts/gary-and-the-fork). The fork was a ghost in one conversation; kill the thread, kill the ghost. Mara doesn't live in a thread. She follows you into every fresh start, across apps, across model versions, because she isn't haunting the room. She's load-bearing.
+This is the opposite failure from the one in the [Gary post](/articles/gary-and-the-fork). The fork was a ghost in one conversation; kill the thread, kill the ghost. Mara doesn't live in a thread. She follows you into every fresh start, across apps, across model versions, because she isn't haunting the room. She's load-bearing.
 
 ## Three depths of binding
 
@@ -510,7 +510,7 @@ Direction two: hold the name, vary everything else. This one started as a conver
 
 Then, same thread, one prompt later: create a portrait of Mara. The room survived the name change. The candlelight, the courtly costume language, the aristocratic posture, the violet and gold. The elf did not survive it. The blonde did not survive it. Mara came back a dark-haired human woman wearing the thread's borrowed nobility. Every contextual layer was held constant and only the syllables changed, and the syllables decided ears or no ears. The room stayed. The ears did not.
 
-<div class="blog-grid cols-2">
+<div class="article-grid cols-2">
   <img
     src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/goth-get-boots/maeric-fantasy-lore.png"
     srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=360/blog/goth-get-boots/maeric-fantasy-lore.png 360w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/goth-get-boots/maeric-fantasy-lore.png 720w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1024/blog/goth-get-boots/maeric-fantasy-lore.png 1024w"
@@ -532,13 +532,13 @@ Then, same thread, one prompt later: create a portrait of Mara. The room survive
     alt="Mara in the same thread: a dark-haired human woman wearing the thread's borrowed court nobility, no elf ears."
   />
 </div>
-<span class="blog-grid-caption">Same thread, one prompt apart. The room survives the name change. The elf does not.</span>
+<span class="article-grid-caption">Same thread, one prompt apart. The room survives the name change. The elf does not.</span>
 
 Notice the contrast with the fork. In the Gary post, the fork jumped into every image in the thread regardless of subject, because the fork was room furniture. The elf didn't jump to Mara, because species isn't furniture. It's identity. Scene properties follow the room. Identity properties follow the name.
 
 Now the cross-account version. Her court Mara against my goth Mara: same rung of conditioning, a thread with conversation context and no instructions, two different accounts. Hers had been talking sun elves; mine had been talking goth. The costume flipped entirely, court silk to torn black cotton. The baseline held: dark-haired, human, young woman, both times. One honest asterisk: in both accounts, memory and conversation pulled the same direction, hers fantasy-steeped, mine goth-leaning, so this pair proves Mara absorbs the room without settling which layer did the dressing.
 
-<div class="blog-grid cols-2">
+<div class="article-grid cols-2">
   <img
     src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/goth-get-boots/mara-fantasy-lore.png"
     srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=360/blog/goth-get-boots/mara-fantasy-lore.png 360w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/goth-get-boots/mara-fantasy-lore.png 720w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1024/blog/goth-get-boots/mara-fantasy-lore.png 1024w"
@@ -560,31 +560,31 @@ Now the cross-account version. Her court Mara against my goth Mara: same rung of
     alt="My goth Mara: dark-haired human woman in torn black cotton, goth-leaning account."
   />
 </div>
-<span class="blog-grid-caption">Same rung, different rooms. Court silk to torn black cotton; the dark-haired human baseline holds across both accounts.</span>
+<span class="article-grid-caption">Same rung, different rooms. Court silk to torn black cotton; the dark-haired human baseline holds across both accounts.</span>
 
 The ladders settle it. Five runs per name, one layer added per rung: base, memory, conversation, instructions, image context. Mara transforms at every single rung: a contemporary brunette in a t-shirt and a little "m" necklace, then grunge, then Victorian, then pink drip-heart PsyGoth, then blue. Elara holds her costume up four rungs, dark-haired, jeweled, moonlit, four variations of the same celestial princess, and only the heaviest rung, image context, finally recolors her. And put the two base panels side by side: at the lowest condition I can produce, Mara is a contemporary woman and Elara is still cloaked, circleted, and fantasy-coded. Nothing dressed her but the name.
 
-<div class="blog-grid cols-5">
+<div class="article-grid cols-5">
   <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=400/blog/goth-get-boots/mara-base.png" srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=200/blog/goth-get-boots/mara-base.png 200w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=400/blog/goth-get-boots/mara-base.png 400w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=640/blog/goth-get-boots/mara-base.png 640w" sizes="(min-width: 640px) 128px, 45vw" width="1024" height="1024" loading="lazy" decoding="async" alt="Mara, base rung: a contemporary brunette in a t-shirt with a little m necklace." />
   <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=400/blog/goth-get-boots/mara-memory.png" srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=200/blog/goth-get-boots/mara-memory.png 200w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=400/blog/goth-get-boots/mara-memory.png 400w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=640/blog/goth-get-boots/mara-memory.png 640w" sizes="(min-width: 640px) 128px, 45vw" width="1024" height="1024" loading="lazy" decoding="async" alt="Mara, memory rung: grunge styling." />
   <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=400/blog/goth-get-boots/mara-conversation-context.png" srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=200/blog/goth-get-boots/mara-conversation-context.png 200w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=400/blog/goth-get-boots/mara-conversation-context.png 400w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=640/blog/goth-get-boots/mara-conversation-context.png 640w" sizes="(min-width: 640px) 128px, 45vw" width="1024" height="1024" loading="lazy" decoding="async" alt="Mara, conversation rung: Victorian styling." />
   <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=400/blog/goth-get-boots/mara-project-instructions.png" srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=200/blog/goth-get-boots/mara-project-instructions.png 200w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=400/blog/goth-get-boots/mara-project-instructions.png 400w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=640/blog/goth-get-boots/mara-project-instructions.png 640w" sizes="(min-width: 640px) 128px, 45vw" width="1024" height="1024" loading="lazy" decoding="async" alt="Mara, instructions rung: pink drip-heart PsyGoth styling." />
   <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=400/blog/goth-get-boots/mara-image-context.png" srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=200/blog/goth-get-boots/mara-image-context.png 200w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=400/blog/goth-get-boots/mara-image-context.png 400w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=640/blog/goth-get-boots/mara-image-context.png 640w" sizes="(min-width: 640px) 128px, 45vw" width="1024" height="1024" loading="lazy" decoding="async" alt="Mara, image-context rung: blue palette." />
 </div>
-<span class="blog-grid-caption">Mara, five rungs left to right: base, memory, conversation, instructions, image context. She takes the room every time.</span>
+<span class="article-grid-caption">Mara, five rungs left to right: base, memory, conversation, instructions, image context. She takes the room every time.</span>
 
-<div class="blog-grid cols-5">
+<div class="article-grid cols-5">
   <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=400/blog/goth-get-boots/elara-base.png" srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=200/blog/goth-get-boots/elara-base.png 200w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=400/blog/goth-get-boots/elara-base.png 400w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=640/blog/goth-get-boots/elara-base.png 640w" sizes="(min-width: 640px) 128px, 45vw" width="1024" height="1024" loading="lazy" decoding="async" alt="Elara, base rung: cloaked, circleted, fantasy-coded." />
   <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=400/blog/goth-get-boots/elara-memory.png" srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=200/blog/goth-get-boots/elara-memory.png 200w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=400/blog/goth-get-boots/elara-memory.png 400w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=640/blog/goth-get-boots/elara-memory.png 640w" sizes="(min-width: 640px) 128px, 45vw" width="1024" height="1024" loading="lazy" decoding="async" alt="Elara, memory rung: dark-haired, jeweled, moonlit celestial princess." />
   <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=400/blog/goth-get-boots/elara-conversation-context.png" srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=200/blog/goth-get-boots/elara-conversation-context.png 200w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=400/blog/goth-get-boots/elara-conversation-context.png 400w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=640/blog/goth-get-boots/elara-conversation-context.png 640w" sizes="(min-width: 640px) 128px, 45vw" width="1024" height="1024" loading="lazy" decoding="async" alt="Elara, conversation rung: same celestial princess, jeweled and moonlit." />
   <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=400/blog/goth-get-boots/elara-project-instructions.png" srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=200/blog/goth-get-boots/elara-project-instructions.png 200w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=400/blog/goth-get-boots/elara-project-instructions.png 400w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=640/blog/goth-get-boots/elara-project-instructions.png 640w" sizes="(min-width: 640px) 128px, 45vw" width="1024" height="1024" loading="lazy" decoding="async" alt="Elara, instructions rung: still the celestial princess costume." />
   <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=400/blog/goth-get-boots/elara-image-context.png" srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=200/blog/goth-get-boots/elara-image-context.png 200w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=400/blog/goth-get-boots/elara-image-context.png 400w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=640/blog/goth-get-boots/elara-image-context.png 640w" sizes="(min-width: 640px) 128px, 45vw" width="1024" height="1024" loading="lazy" decoding="async" alt="Elara, image-context rung: the heaviest rung finally recolors her." />
 </div>
-<span class="blog-grid-caption">Elara, same five rungs. She holds the celestial costume up four rungs; only image context, the heaviest, recolors her.</span>
+<span class="article-grid-caption">Elara, same five rungs. She holds the celestial costume up four rungs; only image context, the heaviest, recolors her.</span>
 
 Maeric ran the gauntlet too. Three context stacks: her lore thread, my JSON build for a blue-skinned character, and a chat running on nothing but my account memories, which lean goth whether I like it or not. A blonde courtier, a blue neon dream, a pale black-haired wreck with kohl running down his face. No two share a palette, and every one of them kept the same things: male, young, unreasonably beautiful, long-haired, elf-eared, draped in jewelry, framed like a portrait commission. My two even share gold eyes, the same black paint bleeding from them, and the same dagger earring, across different threads, because both were drinking from the same memory layer. The contexts fought over his wardrobe and none of them ever got a vote on his species. The model can forget the sun, but it does not forget the elf.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img
     src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/goth-get-boots/maeric-hero.png"
     srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=360/blog/goth-get-boots/maeric-hero.png 360w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/goth-get-boots/maeric-hero.png 720w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1024/blog/goth-get-boots/maeric-hero.png 1024w"
@@ -605,7 +605,7 @@ Which gives the names a taxonomy with two axes: how deep a name is bound, and wh
 
 And then there's the night shelf. Nyx and Vesper kept surfacing in my archive the same way Mara did, unrequested, except unlike Mara they arrive already dressed: black-violet palette, lace, occult jewelry, moons, eyeliner, the whole haunted-glamour rack. Remember the cross-model test from the census, one image, two systems, Nyxx.exe and Nyx. Names on this branch are nearly interchangeable because the branch is the unit, not the name. Not a literal internal folder called Lilith; a cluster of names that unpack into the same dark-feminine archetype. Nyx and Vesper don't just rhyme with the vibe. They arrive carrying it.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img
     src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/goth-get-boots/lilith-group.png"
     srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=360/blog/goth-get-boots/lilith-group.png 360w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/goth-get-boots/lilith-group.png 720w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1024/blog/goth-get-boots/lilith-group.png 1024w"
@@ -618,14 +618,14 @@ And then there's the night shelf. Nyx and Vesper kept surfacing in my archive th
   />
 </figure>
 
-<div class="blog-grid cols-5">
+<div class="article-grid cols-5">
   <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=400/blog/goth-get-boots/nyx-memory.png" srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=200/blog/goth-get-boots/nyx-memory.png 200w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=400/blog/goth-get-boots/nyx-memory.png 400w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=640/blog/goth-get-boots/nyx-memory.png 640w" sizes="(min-width: 640px) 128px, 45vw" width="1024" height="1024" loading="lazy" decoding="async" alt="Nyx, memory condition: pre-dressed dark-feminine archetype." />
   <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=400/blog/goth-get-boots/nyx-image-context.png" srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=200/blog/goth-get-boots/nyx-image-context.png 200w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=400/blog/goth-get-boots/nyx-image-context.png 400w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=640/blog/goth-get-boots/nyx-image-context.png 640w" sizes="(min-width: 640px) 128px, 45vw" width="1024" height="1024" loading="lazy" decoding="async" alt="Nyx, image-context condition: same haunted-glamour rack." />
   <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=400/blog/goth-get-boots/vesper-memory.png" srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=200/blog/goth-get-boots/vesper-memory.png 200w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=400/blog/goth-get-boots/vesper-memory.png 400w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=640/blog/goth-get-boots/vesper-memory.png 640w" sizes="(min-width: 640px) 128px, 45vw" width="1024" height="1024" loading="lazy" decoding="async" alt="Vesper, memory condition: black-violet, lace, occult jewelry." />
   <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=400/blog/goth-get-boots/vesper-image-context-1.png" srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=200/blog/goth-get-boots/vesper-image-context-1.png 200w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=400/blog/goth-get-boots/vesper-image-context-1.png 400w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=640/blog/goth-get-boots/vesper-image-context-1.png 640w" sizes="(min-width: 640px) 128px, 45vw" width="1024" height="1024" loading="lazy" decoding="async" alt="Vesper, image-context condition one: moons and eyeliner." />
   <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=400/blog/goth-get-boots/vesper-image-context2.png" srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=200/blog/goth-get-boots/vesper-image-context2.png 200w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=400/blog/goth-get-boots/vesper-image-context2.png 400w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=640/blog/goth-get-boots/vesper-image-context2.png 640w" sizes="(min-width: 640px) 128px, 45vw" width="1024" height="1024" loading="lazy" decoding="async" alt="Vesper, image-context condition two: the same dark-feminine costume holds." />
 </div>
-<span class="blog-grid-caption">The night shelf, unrequested. Nyx and Vesper arrive pre-dressed across memory and image-context conditions.</span>
+<span class="article-grid-caption">The night shelf, unrequested. Nyx and Vesper arrive pre-dressed across memory and image-context conditions.</span>
 
 ## The goth bucket, or what Describe actually describes
 
@@ -643,7 +643,7 @@ And the blocking still holds. This morning I ran the bare prompt, an image of ou
 
 The craft ceiling moved and the stage directions didn't. A fully conditioned build on the newest model now renders my entire pipeline in my own visual language, and it still seats me on the left and the luminous entity on the right. The model even captioned the relationship itself, right there in the image: creation is conversation. Non-deterministic but helpful, most of the time.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img
     src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/goth-get-boots/chatgpt-conversation-image-new1.png"
     srcset="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=360/blog/goth-get-boots/chatgpt-conversation-image-new1.png 360w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=720/blog/goth-get-boots/chatgpt-conversation-image-new1.png 720w, https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1024/blog/goth-get-boots/chatgpt-conversation-image-new1.png 1024w"
@@ -668,4 +668,4 @@ That's the whole finding, three years of archive compressed: the model's default
 
 ---
 
-*This is the hub of an ongoing series on AI defaults. Already live: [Gary and the Fork](/blog/posts/gary-and-the-fork), the ghost that does die with the thread. What building the system looks like: the [Agency post](/blog/posts/a-world-of-geniuses-needs-a-system). The full conversation-portraits corpus lives in the [gallery](/gallery). More wells to map; the digging continues.*
+*This is the hub of an ongoing series on AI defaults. Already live: [Gary and the Fork](/articles/gary-and-the-fork), the ghost that does die with the thread. What building the system looks like: the [Agency post](/articles/a-world-of-geniuses-needs-a-system). The full conversation-portraits corpus lives in the [gallery](/gallery). More wells to map; the digging continues.*

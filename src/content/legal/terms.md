@@ -20,7 +20,7 @@ HobFarm products may include AI-assisted character art, gallery packs, book and 
 
 HobFarm services may include:
 
-- **hob.farm:** the public website, blog, project pages, gallery, help center, legal pages, account pages, and public demos.
+- **hob.farm:** the public website, articles, project pages, gallery, help center, legal pages, account pages, and public demos.
 - **StyleFusion:** a creative image and visual workflow system for style exploration, character art, reference analysis, prompt compilation, and generated media.
 - **Grimoire:** a visual vocabulary, knowledge graph, and prompt development system used for creative direction and educational material.
 - **Daily Signal:** a public creative prompt and visual pattern report. Daily Signal is inspiration and creative commentary, not advice, prediction, professional guidance, or a guaranteed production result.

@@ -16,7 +16,7 @@ Running a creative platform with a team of one means automation isn't optional. 
 
 HobBot is a collection of Cloudflare Workers that run on schedules and respond to events. It's not a single monolithic bot; it's a set of purpose-built automations that each handle one job well.
 
-**Content pipeline:** when new gallery entries, blog posts, or grimoire articles are ready, HobBot handles the publishing workflow. Format validation, image optimization, metadata checks, and deployment triggers. The goal is that I write the content and HobBot handles everything between "done writing" and "live on the site."
+**Content pipeline:** when new gallery entries, articles, or grimoire notes are ready, HobBot handles the publishing workflow. Format validation, image optimization, metadata checks, and deployment triggers. The goal is that I write the content and HobBot handles everything between "done writing" and "live on the site."
 
 **Status monitoring:** HobBot polls service health endpoints and updates the status page. If StyleFusion's generation queue backs up, or a Cloudflare Worker starts throwing errors, the status page reflects it within minutes rather than whenever I happen to notice.
 
@@ -42,4 +42,4 @@ This maps directly to HobFarm's Fractal Fusion Engine pattern (INGEST, INDEX, ME
 
 ## What's Next
 
-HobBot is getting smarter. The next phase adds AI-assisted content generation: drafting blog posts from outlines, generating social media variants from long-form content, and suggesting grimoire entries based on gaps in the knowledge graph. The skeleton is there; the intelligence layer is what I'm building now.
+HobBot is getting smarter. The next phase adds AI-assisted content generation: drafting articles from outlines, generating social media variants from long-form content, and suggesting grimoire entries based on gaps in the knowledge graph. The skeleton is there; the intelligence layer is what I'm building now.

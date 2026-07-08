@@ -104,4 +104,4 @@ The mistake is not making spiritual psychedelic art. The mistake is assuming spi
 
 A style starts when you choose the archive yourself.
 
-The rules for not settling are here: [Against Slop](/blog/posts/against-slop/). One style built from them is here: [Psychedelic Goth: A Definition](/blog/posts/psychedelic-goth-defined/).
+The rules for not settling are here: [Against Slop](/articles/against-slop/). One style built from them is here: [Psychedelic Goth: A Definition](/articles/psychedelic-goth-defined/).

@@ -6,7 +6,7 @@ import test from "node:test";
 const root = process.cwd();
 const read = (file) => readFileSync(join(root, file), "utf8");
 
-test("articles route layer exists without exposing public blog routes", () => {
+test("articles route and collection layer exist without exposing public blog routes", () => {
   const routeFiles = [
     "src/pages/articles/index.astro",
     "src/pages/articles/[...slug].astro",
@@ -17,6 +17,18 @@ test("articles route layer exists without exposing public blog routes", () => {
   for (const file of routeFiles) {
     assert.equal(existsSync(join(root, file)), true, `${file} should exist`);
   }
+
+  const contentConfig = read("src/content.config.ts");
+  const pagesConfig = read(".pages.yml");
+
+  assert.equal(existsSync(join(root, "src/content/articles")), true, "articles content directory should exist");
+  assert.equal(existsSync(join(root, "src/content/blog")), false, "legacy blog content directory should be retired");
+  assert.match(contentConfig, /const articles = defineCollection/);
+  assert.match(contentConfig, /base:\s*"\.\/src\/content\/articles"/);
+  assert.doesNotMatch(contentConfig, /const blog = defineCollection/);
+  assert.match(pagesConfig, /name:\s*articles/);
+  assert.match(pagesConfig, /path:\s*src\/content\/articles/);
+  assert.doesNotMatch(pagesConfig, /name:\s*blog/);
 });
 
 test("departments taxonomy and routes exist", () => {

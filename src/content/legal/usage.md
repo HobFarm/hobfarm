@@ -16,7 +16,7 @@ You may use HobFarm services to:
 - Explore and build creative directions using the Grimoire knowledge base
 - Interact with the Grimoire chatbot for prompt development and creative guidance
 - Share generated work in the Gallery (with appropriate attribution where applicable)
-- Access blog content, documentation, and educational resources
+- Access articles, documentation, and educational resources
 - Use the API within documented rate limits and access permissions
 
 ## Prohibited Use

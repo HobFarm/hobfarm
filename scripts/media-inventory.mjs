@@ -47,7 +47,7 @@ function fileTypeFromUrl(url) {
 
 function inferUsage(sourceFile) {
   if (sourceFile.startsWith("src/content/gallery/")) return "gallery";
-  if (sourceFile.startsWith("src/content/blog/")) return "article";
+  if (sourceFile.startsWith("src/content/articles/")) return "article";
   if (sourceFile.startsWith("src/content/comics/")) return "comic";
   if (sourceFile.startsWith("src/content/projects/")) return "project";
   if (sourceFile.startsWith("src/content/products/")) return "product";

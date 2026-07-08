@@ -180,7 +180,7 @@ That makes them productive.
 
 A good cross-pollination card can become:
 
-* a blog post
+* an article
 * a hero image
 * a product-style ad
 * a short-form video
@@ -216,7 +216,7 @@ Not as:
 * safety advice
 * verified material science
 
-That distinction should be visible in the product itself, not just explained later in a blog comment or FAQ.
+That distinction should be visible in the product itself, not just explained later in an article comment or FAQ.
 
 ## What is being improved now
 
@@ -260,7 +260,7 @@ Some will be jokes.
 
 Some will be one-image curiosities.
 
-Some will become larger systems: blog posts, gallery drops, process articles, product mockups, social series, and course material.
+Some will become larger systems: articles, gallery drops, process notes, product mockups, social series, and course material.
 
 That is exactly the point.
 
@@ -278,7 +278,7 @@ That opens up a larger content pipeline:
 
 * daily archive card
 * selected image render
-* expanded blog post
+* expanded article
 * derivative social cuts
 * process notes
 * course examples

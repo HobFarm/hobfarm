@@ -38,7 +38,7 @@ Use this model when making site decisions:
 | Area     | Role                                                                                       |
 | -------- | ------------------------------------------------------------------------------------------ |
 | Homepage | Front page, hero intro, featured routes, latest articles                                   |
-| Articles | Main editorial feed, formerly blog                                                         |
+| Articles | Main editorial feed                                                                         |
 | Gallery  | Visual archive for image sets, character sheets, experiments, and finished media           |
 | Projects | Recurring characters, series, tools, worlds, and formats                                   |
 | Workshop | Process notes, production methods, systems, and behind-the-scenes work                     |
@@ -105,7 +105,7 @@ src/
 │   ├── sections/        # Page sections
 │   └── ui/              # Buttons, cards, inputs, primitives
 ├── content/
-│   ├── blog/            # Publicly presented as Articles
+│   ├── articles/        # Public editorial articles
 │   ├── gallery/
 │   ├── grimoire/
 │   ├── projects/
@@ -226,7 +226,7 @@ Use clear public labels:
 * Support
 * Grimoire, only where it is useful as a knowledge or admin system
 
-The public blog should be presented as **Articles**. The internal collection may remain `blog/` until a clean migration is requested.
+The public editorial feed is **Articles**. New editorial entries live in `src/content/articles/`; do not introduce new `blog` collection or helper naming.
 
 Use plain descriptive copy. Say what the thing is, what it contains, and what the reader can do next.
 

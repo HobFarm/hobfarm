@@ -72,6 +72,6 @@ And slop compounds. Millions of people prompt the token, like what they get, and
 
 ## The demonstration
 
-Psychedelic goth is the case study: a style built by these rules, from named sources, with declared mechanics and recurring motifs. The definition is here: [Psychedelic Goth: A Definition](/blog/posts/psychedelic-goth-defined/). The way I keep a style from sliding into slop is here: [How to Fix Slop](/blog/posts/how-to-fix-slop/). The galleries prove it daily: [the galleries](/gallery/).
+Psychedelic goth is the case study: a style built by these rules, from named sources, with declared mechanics and recurring motifs. The definition is here: [Psychedelic Goth: A Definition](/articles/psychedelic-goth-defined/). The way I keep a style from sliding into slop is here: [How to Fix Slop](/articles/how-to-fix-slop/). The galleries prove it daily: [the galleries](/gallery/).
 
 Manifestos are cheap. The work is the argument.

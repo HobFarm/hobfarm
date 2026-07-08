@@ -39,18 +39,18 @@ Looking back from 2026, the pattern is obvious: Playboy mostly got the **interfa
 
 The future did not arrive as a CD-ROM robot girlfriend, TV mask, satellite hat, and arcade dashboard cockpit. It arrived as phones, cloud maps, robot vacuums, FPV drones, smart glasses, cheap sensors, software subscriptions, and cars slowly absorbing the driver.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img src="https://cdn.hob.farm/articles/mtm/1985-future-tech/future-tech-playboy-december-1985.jpg" alt="Playboy December 1985 future-tech spread titled Hold On, It's Comin'." />
   <figcaption>Playboy's December 1985 future-tech spread, "Hold On, It's Comin'," treated the future like an electronic drawing board: robot dolls, TV goggles, wearable satellite receivers, computerized dashboards, infrared driving, and something close to automatic pilot.</figcaption>
 </figure>
 
-<div class="blog-grid cols-2">
+<div class="article-grid cols-2">
   <img src="https://cdn.hob.farm/articles/mtm/1985-future-tech/future-tech1.jpg" alt="Detail image from Playboy's December 1985 future-tech spread." />
   <img src="https://cdn.hob.farm/articles/mtm/1985-future-tech/future-tech2.jpg" alt="Second detail image from Playboy's December 1985 future-tech spread." />
 </div>
-<span class="blog-grid-caption">Source details from Playboy's December 1985 future-tech spread.</span>
+<span class="article-grid-caption">Source details from Playboy's December 1985 future-tech spread.</span>
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img src="https://cdn.hob.farm/articles/mtm/1985-future-tech/1985-2026-future-tech-hero.png" alt="Then-and-now montage of 1985 future-tech illustrations transforming into modern autonomous cars, humanoid robots, smart glasses, and FPV drone goggles." />
   <figcaption>The 1985 future looked like robot companions, TV masks, satellite headgear, and glowing dashboard cockpits. The 2026 version arrived as phones, smart glasses, cloud maps, drones, humanoid demos, and cars slowly eating the driver.</figcaption>
 </figure>
@@ -82,18 +82,18 @@ The Playboy copy says most domestic robots of the time looked like "high-tech tr
 
 Roomba launched in 2002 as a round automatic floor cleaner. It did not have skin, personality, flirtation, or a compact disc full of commands. It bumped into furniture, avoided stairs, followed walls, and ate dust under the couch. It was not the robot from the centerfold future. It was a small, stubborn appliance with just enough intelligence to do one boring job.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <video controls playsinline preload="metadata" poster="https://cdn.hob.farm/articles/mtm/1985-future-tech/1985-droid.jpg">
     <source src="https://cdn.hob.farm/articles/mtm/1985-future-tech/1985-2026-droid.mp4" type="video/mp4" />
   </video>
   <figcaption>1985 robot-doll fantasy to 2026 humanoid companion demo. The dream came back, but the useful home robot was still the vacuum.</figcaption>
 </figure>
 
-<div class="blog-grid cols-2">
+<div class="article-grid cols-2">
   <img src="https://cdn.hob.farm/articles/mtm/1985-future-tech/1985-droid.jpg" alt="1985 robot companion illustration from Playboy's future-tech spread." />
   <img src="https://cdn.hob.farm/articles/mtm/1985-future-tech/2026-droid.jpg" alt="2026 humanoid companion robot comparison image." />
 </div>
-<span class="blog-grid-caption">Before and after: robot companion as magazine fantasy, then humanoid demo object.</span>
+<span class="article-grid-caption">Before and after: robot companion as magazine fantasy, then humanoid demo object.</span>
 
 That became the real domestic robot lineage: vacuum, mop, lawnmower, pool cleaner. Narrow task. Cheap enough. Dumb enough to work.
 
@@ -111,18 +111,18 @@ Playboy's "TVG" prediction was television goggles with stereo sound, 3-D viewing
 
 Sony later sold products like the Glasstron. In 1998, Sony announced the PC Glasstron PLM-S700 as a personal LCD monitor with tiny displays, stereo headphones, and the virtual experience of watching a 30-inch screen from about 1.2 meters away. It was real, expensive, and extremely "future of 1998."
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <video controls playsinline preload="metadata" poster="https://cdn.hob.farm/articles/mtm/1985-future-tech/1985-vr.jpg">
     <source src="https://cdn.hob.farm/articles/mtm/1985-future-tech/1985-2026-vr.mp4" type="video/mp4" />
   </video>
   <figcaption>1985 TV goggles to 2026 FPV drone goggles. The private screen survived, but the killer use was not reruns in a mask. It was remote flight.</figcaption>
 </figure>
 
-<div class="blog-grid cols-2">
+<div class="article-grid cols-2">
   <img src="https://cdn.hob.farm/articles/mtm/1985-future-tech/1985-vr.jpg" alt="1985 TV goggles illustration from Playboy's future-tech spread." />
   <img src="https://cdn.hob.farm/articles/mtm/1985-future-tech/2026-vr.jpg" alt="2026 FPV drone goggles comparison image." />
 </div>
-<span class="blog-grid-caption">Before and after: private television mask to remote machine vision.</span>
+<span class="article-grid-caption">Before and after: private television mask to remote machine vision.</span>
 
 The category struggled for decades because the idea was not enough. Displays were too crude. Batteries were too weak. Cameras were awkward. Networks were slow. The field of view was limited. The software was thin. The social penalty was enormous. Google Glass later proved that wearing a face camera in public could turn you into a walking privacy argument before the utility was strong enough to defend itself.
 
@@ -138,18 +138,18 @@ The verdict: Playboy imagined TV on your face. The cleaner descendant is not jus
 
 The "Dishmon" is the funniest object in the spread: a portable satellite dish worn around the head, paired with a small flat-screen TV. In theory, you could make video calls on the run or tilt your head to catch the latest episode of *Dynasty*. In practice, nobody wanted to look like a cyberpunk DirecTV installer.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <video controls playsinline preload="metadata" poster="https://cdn.hob.farm/articles/mtm/1985-future-tech/1985-mobile.jpg">
     <source src="https://cdn.hob.farm/articles/mtm/1985-future-tech/1985-2026-mobile.mp4" type="video/mp4" />
   </video>
   <figcaption>1985 wearable satellite fantasy to 2026 smart glasses. The dish disappeared into networks, antennas, chips, satellites, towers, and phones.</figcaption>
 </figure>
 
-<div class="blog-grid cols-2">
+<div class="article-grid cols-2">
   <img src="https://cdn.hob.farm/articles/mtm/1985-future-tech/1985-mobile.jpg" alt="1985 wearable satellite dish headgear illustration from Playboy's future-tech spread." />
   <img src="https://cdn.hob.farm/articles/mtm/1985-future-tech/2026-mobile.jpg" alt="2026 smart glasses comparison image." />
 </div>
-<span class="blog-grid-caption">Before and after: satellite dish headgear to smart-glasses network interface.</span>
+<span class="article-grid-caption">Before and after: satellite dish headgear to smart-glasses network interface.</span>
 
 As a product, dead on arrival.
 
@@ -173,18 +173,18 @@ Playboy's dashboard navigation prediction was the most accurate part of the spre
 
 That is not fantasy. That is a preview of the modern navigation stack.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <video controls playsinline preload="metadata" poster="https://cdn.hob.farm/articles/mtm/1985-future-tech/1985-car.jpg">
     <source src="https://cdn.hob.farm/articles/mtm/1985-future-tech/1985-2026-car.mp4" type="video/mp4" />
   </video>
   <figcaption>1985 digital dashboard fantasy to 2026 autonomous-car interior. Navigation was the clean hit. Automatic pilot became the messy part.</figcaption>
 </figure>
 
-<div class="blog-grid cols-2">
+<div class="article-grid cols-2">
   <img src="https://cdn.hob.farm/articles/mtm/1985-future-tech/1985-car.jpg" alt="1985 digital dashboard and car navigation illustration from Playboy's future-tech spread." />
   <img src="https://cdn.hob.farm/articles/mtm/1985-future-tech/2026-car.jpg" alt="2026 autonomous-car interior comparison image." />
 </div>
-<span class="blog-grid-caption">Before and after: digital dashboard prediction to autonomous-car cockpit.</span>
+<span class="article-grid-caption">Before and after: digital dashboard prediction to autonomous-car cockpit.</span>
 
 Philips CARIN and Bosch-Blaupunkt EVA were part of the real road to in-car navigation: map databases, route-search software, vehicle-position estimation, voice guidance, arrows, diagrams, and visual displays. The basic idea was already there. Store the map. Locate the car. Compute the route. Tell the driver where to go.
 

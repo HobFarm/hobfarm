@@ -319,7 +319,7 @@ const articleJsonLd = {
     .prose {
       overflow: visible !important;
     }
-    .blog-wide {
+    .article-wide {
       position: relative !important;
       left: 50% !important;
       transform: translateX(-50%) !important;
@@ -327,17 +327,21 @@ const articleJsonLd = {
       max-width: 90vw !important;
       scroll-margin-top: 5rem;
     }
-    .blog-wide img,
-    .blog-wide video {
+    .article-wide img,
+    .article-wide video,
+    .article-wide iframe {
       width: 100% !important;
-      height: auto !important;
       border-radius: 0.25rem;
     }
-    .blog-wide.blog-compact {
+    .article-wide img,
+    .article-wide video {
+      height: auto !important;
+    }
+    .article-wide.article-compact {
       width: 28rem !important;
       max-width: 82vw !important;
     }
-    .blog-grid {
+    .article-grid {
       position: relative !important;
       left: 50% !important;
       transform: translateX(-50%) !important;
@@ -350,7 +354,7 @@ const articleJsonLd = {
       grid-template-columns: repeat(2, 1fr);
       margin: 1.5rem auto;
     }
-    .blog-stack {
+    .article-stack {
       position: relative !important;
       left: 50% !important;
       transform: translateX(-50%) !important;
@@ -362,13 +366,13 @@ const articleJsonLd = {
       gap: 0.75rem;
       margin: 1.5rem auto;
     }
-    .blog-stack img {
+    .article-stack img {
       width: 100% !important;
       height: auto !important;
       margin: 0 !important;
       border-radius: 0.25rem;
     }
-    .blog-sidecar {
+    .article-sidecar {
       position: relative !important;
       left: 50% !important;
       transform: translateX(-50%) !important;
@@ -381,64 +385,64 @@ const articleJsonLd = {
       gap: clamp(1rem, 3vw, 1.5rem);
       margin: 1.75rem auto;
     }
-    .blog-sidecar-copy p {
+    .article-sidecar-copy p {
       margin: 0 !important;
     }
-    .blog-sidecar-media {
+    .article-sidecar-media {
       width: 100% !important;
       max-width: 16rem !important;
       margin: 0 auto !important;
     }
-    .blog-sidecar-media img {
+    .article-sidecar-media img {
       width: 100% !important;
       height: auto !important;
       margin: 0 !important;
       border-radius: 0.25rem;
     }
     @media (max-width: 719px) {
-      .blog-sidecar {
+      .article-sidecar {
         width: 32rem !important;
         grid-template-columns: 1fr;
         justify-items: center;
       }
-      .blog-sidecar-media {
+      .article-sidecar-media {
         max-width: 18rem !important;
       }
     }
-    .blog-grid.cols-3,
-    .blog-grid.cols-4 {
+    .article-grid.cols-3,
+    .article-grid.cols-4 {
       grid-template-columns: repeat(2, 1fr);
     }
-    .blog-grid.cols-5 {
+    .article-grid.cols-5 {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
     @media (min-width: 640px) {
-      .blog-grid.cols-3 {
+      .article-grid.cols-3 {
         grid-template-columns: repeat(3, 1fr);
       }
-      .blog-grid.cols-4 {
+      .article-grid.cols-4 {
         grid-template-columns: repeat(4, 1fr);
       }
-      .blog-grid.cols-5 {
+      .article-grid.cols-5 {
         grid-template-columns: repeat(5, minmax(0, 1fr));
       }
     }
-    .blog-grid.masonry {
+    .article-grid.masonry {
       display: block !important;
       column-count: 2;
       column-gap: 0.5rem;
     }
     @media (min-width: 640px) {
-      .blog-grid.masonry {
+      .article-grid.masonry {
         column-count: 4;
       }
     }
-    .blog-grid.masonry img {
+    .article-grid.masonry img {
       display: block !important;
       break-inside: avoid;
       margin-bottom: 0.5rem !important;
     }
-    .blog-grid img {
+    .article-grid img {
       width: 100% !important;
       height: auto !important;
       margin: 0 !important;
@@ -447,7 +451,7 @@ const articleJsonLd = {
     img[data-lightbox] {
       cursor: zoom-in;
     }
-    .blog-grid-caption {
+    .article-grid-caption {
       display: block;
       position: relative;
       left: 50%;
@@ -495,6 +499,80 @@ const articleJsonLd = {
       border-radius: 0.25rem;
       margin-left: auto !important;
       margin-right: auto !important;
+    }
+    .article-embed {
+      margin: 1.75rem auto !important;
+      gap: 0.5rem;
+    }
+    .article-embed iframe {
+      display: block !important;
+      max-width: 100% !important;
+      border: 0 !important;
+      background: #111;
+    }
+    .article-embed--spotify iframe {
+      min-height: 152px;
+      border-radius: 0.75rem;
+    }
+    .article-embed--spotify-album iframe {
+      min-height: 352px;
+    }
+    .article-embed--youtube .article-embed-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 0.5rem;
+      background: #111;
+    }
+    .article-embed--youtube iframe {
+      position: absolute;
+      inset: 0;
+      width: 100% !important;
+      height: 100% !important;
+      border-radius: 0.5rem;
+    }
+    .article-media-stack {
+      position: relative !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      width: 42rem !important;
+      max-width: 90vw !important;
+      display: grid !important;
+      gap: 1rem;
+      margin: 2rem auto !important;
+    }
+    .article-media-stack figure {
+      margin: 0 !important;
+    }
+    .article-connection-map,
+    .article-source-list {
+      position: relative !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      width: 42rem !important;
+      max-width: 90vw !important;
+      margin: 2rem auto !important;
+      border: 1px solid color-mix(in srgb, currentColor 16%, transparent);
+      border-radius: 0.5rem;
+      background: color-mix(in srgb, var(--color-base-900, #0e0b16) 72%, transparent);
+      padding: 1rem;
+    }
+    .article-connection-map h2 {
+      margin-top: 0 !important;
+      font-size: 0.9rem !important;
+      font-family: var(--font-mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .article-connection-map ol,
+    .article-source-list ul {
+      margin-bottom: 0 !important;
+      padding-left: 1.25rem !important;
+    }
+    .article-connection-map li,
+    .article-source-list li {
+      margin: 0.45rem 0 !important;
     }
   </style>
 </BaseLayout>

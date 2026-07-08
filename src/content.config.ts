@@ -2,8 +2,8 @@ import { defineCollection } from "astro:content";
 import { z } from "astro/zod";
 import { glob } from "astro/loaders";
 
-const blog = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/blog" }),
+const articles = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/articles" }),
   schema: z
     .object({
       title: z.string(),
@@ -96,7 +96,7 @@ const blog = defineCollection({
         })
         .optional(),
       // Editorial status, additive to `draft`. `draft` (and draft:true) still
-      // hides a post; status of draft/scheduled/archived hides it too.
+      // hides an article; status of draft/scheduled/archived hides it too.
       status: z
         .enum(["draft", "scheduled", "published", "archived"])
         .default("published"),
@@ -662,7 +662,7 @@ const products = defineCollection({
 });
 
 export const collections = {
-  blog,
+  articles,
   gallery,
   projects,
   changelog,

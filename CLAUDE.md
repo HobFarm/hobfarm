@@ -26,7 +26,7 @@ Primary public areas:
 | Area     | Purpose                                                                          |
 | -------- | -------------------------------------------------------------------------------- |
 | Homepage | Front page, hero intro, latest articles, featured routes                         |
-| Articles | Main editorial feed, formerly blog                                               |
+| Articles | Main editorial feed                                                              |
 | Gallery  | Visual archive for image sets, character sheets, experiments, and finished media |
 | Projects | Recurring characters, series, tools, worlds, and formats                         |
 | Workshop | Process notes, production methods, systems, and behind-the-scenes work           |
@@ -131,7 +131,7 @@ src/
 │   ├── sections/        # Page sections
 │   └── ui/              # Buttons, cards, inputs, primitives
 ├── content/
-│   ├── blog/            # Publicly presented as Articles
+│   ├── articles/        # Public editorial articles
 │   ├── gallery/
 │   ├── grimoire/
 │   ├── projects/
@@ -161,13 +161,13 @@ Content files live in `src/content/` and use Markdown with YAML frontmatter.
 
 | Collection   | Public Role | Purpose                                                                              |
 | ------------ | ----------- | ------------------------------------------------------------------------------------ |
-| `blog/`      | Articles    | Editorial articles, features, research, satire, process posts, and recurring entries |
+| `articles/`  | Articles    | Editorial articles, features, research, satire, process posts, and recurring entries |
 | `gallery/`   | Gallery     | Visual archive for image sets, character sheets, experiments, and finished media     |
 | `projects/`  | Projects    | Recurring characters, tools, systems, series, worlds, and shipped output             |
 | `grimoire/`  | Grimoire    | Knowledge base and reference material                                                |
 | `changelog/` | Changelog   | Release notes and site updates                                                       |
 
-The internal `blog/` collection may remain named `blog` while the public site presents it as **Articles**. Rename the internal collection only when the routes, schema, imports, PagesCMS config, and redirects are handled cleanly.
+The internal collection is named `articles` and the public site presents it as **Articles**. Legacy `/blog/*` redirects remain for old URLs, but new code and content should use article naming.
 
 ---
 
@@ -525,7 +525,7 @@ Examples:
 ```text
 feat(articles): add latest feed to homepage
 fix(gallery): correct hero image metadata
-chore(content): rename blog labels to articles
+chore(content): rename article labels
 feat(sharing): add article share actions
 ```
 

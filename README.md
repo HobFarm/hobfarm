@@ -17,7 +17,7 @@ The site publishes articles, archives visual work, documents production systems,
 | Area     | Role                                                                             |
 | -------- | -------------------------------------------------------------------------------- |
 | Homepage | Front page, hero intro, latest articles, featured routes                         |
-| Articles | Main editorial feed, formerly blog                                               |
+| Articles | Main editorial feed                                                              |
 | Gallery  | Visual archive for image sets, character sheets, experiments, and finished media |
 | Projects | Recurring characters, series, tools, worlds, and formats                         |
 | Workshop | Process notes, systems, production experiments, and behind-the-scenes work       |
@@ -66,7 +66,7 @@ hobfarm/
 │   │   ├── sections/   # Composable page sections
 │   │   └── ui/         # Primitives (buttons, cards, inputs)
 │   ├── content/        # Content collections (Markdown + YAML frontmatter)
-│   │   ├── blog/       # Publicly presented as Articles
+│   │   ├── articles/   # Editorial articles
 │   │   ├── gallery/
 │   │   ├── grimoire/
 │   │   ├── projects/
@@ -144,13 +144,13 @@ Content lives in `src/content/` with schemas defined in `src/content.config.ts`.
 
 | Collection   | Public Role | Purpose                                                                                             |
 | ------------ | ----------- | --------------------------------------------------------------------------------------------------- |
-| `blog/`      | Articles    | Magazine-style articles, features, research, satire, process posts, and recurring editorial entries |
+| `articles/`  | Articles    | Magazine-style articles, features, research, satire, process posts, and recurring editorial entries |
 | `gallery/`   | Gallery     | Visual archive for finished media, character sheets, image sets, and experiments                    |
 | `projects/`  | Projects    | Recurring characters, tools, series, worlds, and shipped output                                     |
 | `grimoire/`  | Grimoire    | Knowledge base entries and internal reference material                                              |
 | `changelog/` | Changelog   | Release notes and site updates                                                                      |
 
-The `blog/` collection may remain named `blog` internally while being presented publicly as **Articles**. Rename the internal collection only if the route, schema, and migration work are handled cleanly.
+The internal collection is named `articles` and is presented publicly as **Articles**. Keep new editorial content in `src/content/articles/`; legacy `/blog/*` URLs redirect to canonical `/articles/*` routes.
 
 ---
 

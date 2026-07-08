@@ -53,7 +53,7 @@ The IR gets compiled into provider-specific prompts and sent to whatever generat
 
 Every step produces inspectable, diffable JSON. Nothing is a black box except the generation model itself. That transparency is what makes this study possible.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img src="https://cdn.hob.farm/pages/blog/invisible-variable-pipeline.png" alt="StyleFusion pipeline: reference images flow through extraction agents into an Intermediate Representation, then compile to provider-specific prompts" />
   <figcaption>The IR gets compiled into provider-specific prompts and sent to whatever generation model you choose.</figcaption>
 </figure>
@@ -70,7 +70,7 @@ The practical upside: I'm not starting from blank prompts. I feed in images that
 
 Three reference images. Each assigned a different role. Each chosen to stress the pipeline in specific ways.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img src="https://cdn.hob.farm/blog/invisible-variable/subject-style-composition-reference-grid.png" alt="Subject, style, and composition reference grid" />
   <figcaption>Subject: A 1920s theatrical performer in a butterfly costume. Style: A kaleidoscopic digital mandala of repeating eye motifs. Composition: A baroque-era optical diagram.</figcaption>
 </figure>
@@ -101,7 +101,7 @@ The generation grid reflects this precision. Outputs are structural, restrained,
 
 The outlier in the grid is a Bauhaus-influenced colorful panel where one generator interpreted "mathematical aesthetics" as constructivist design rather than digital fractal art. Different training data, different interpretation of the same vocabulary.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img src="https://cdn.hob.farm/blog/invisible-variable/grok-grid.png" alt="Grok 4.2 Reasoning generation grid" />
   <figcaption>Grok 4.2 Reasoning. Style anchors: "computational art, fractal visualization, generative mathematics, mathematical aesthetics, digital symmetry, chaos theory art."</figcaption>
 </figure>
@@ -114,7 +114,7 @@ Where Grok filed a technical report, Qwen wrote a creative brief. The subject de
 
 The grid is the most saturated of the five. Neon everywhere. The mandala palette made it into the wings, the bodysuit, the environment, everything. Several outputs show the composition reference surviving as geometric diagram elements scattered around the figure. The standout is the center monochrome line-art butterfly panel: one generation model heard "technical diagram" louder than "neon fractal" and went full composition-reference, dropping the psychedelic style entirely. That's a generation model making its own priority call from the same IR that produced neon explosions elsewhere in the grid.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img src="https://cdn.hob.farm/blog/invisible-variable/qwen-grid.png" alt="Qwen 3.5 Plus generation grid" />
   <figcaption>Qwen 3.5 Plus. Style anchors: "psychedelic art, visionary fractal, kaleidoscope symmetry, digital surrealism."</figcaption>
 </figure>
@@ -127,7 +127,7 @@ Gemini was the only extractor to pull an Art Nouveau reference from the eye mand
 
 This is also the widest-range grid. Same IR, and the outputs include vintage sepia, neon psychedelic, technical drawing, and earth-toned Art Nouveau. Gemini's balanced extraction didn't push hard in any single direction, which means the generation models had maximum interpretive latitude. What you're seeing in the Gemini grid isn't just Gemini's personality. It's every generation model's default personality revealed by a neutral extraction.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img src="https://cdn.hob.farm/blog/invisible-variable/gemini-grid.png" alt="Gemini 3.1 Pro generation grid" />
   <figcaption>Gemini 3.1 Pro. Style anchors: "psychedelic art, visionary art, kaleidoscope symmetry, Art Nouveau influence, digital surrealism."</figcaption>
 </figure>
@@ -140,12 +140,12 @@ The "1960s" specificity is unique to GLM. No other extractor dated the psychedel
 
 The bottom-right panel is one of the strongest three-way fusions in the entire dataset (image model is Qwen Image 2512 from [Fal.ai](https://fal.ai/)). An Art Nouveau fairy figure against aged parchment with geometric diagram elements. Subject preserved, style applied as illustrative design language, composition reference present as background texture and layout logic. All three references, all three integrated, none dominating. That's what clean fusion looks like.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img src="https://cdn.hob.farm/blog/invisible-variable/glm-grid.png" alt="GLM 4.6V generation grid" />
   <figcaption>GLM 4.6V. Style anchors: "psychedelic art, kaleidoscope symmetry, Art Nouveau-inspired, 1960s psychedelic, psychedelic poster art."</figcaption>
 </figure>
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img src="https://cdn.hob.farm/blog/invisible-variable/qwen-image-2512-fal.png" alt="Best fusion example: Qwen Image 2512 from Fal.ai" />
   <figcaption>Image model: Qwen Image 2512 from Fal.ai API.</figcaption>
 </figure>
@@ -160,7 +160,7 @@ The grid is the most elegant of the five. Warm gold and champagne tones dominate
 
 The sketch panel went fully illustrative in a direction no other IR produced. One generation model took GPT-5 Mini's restrained vocabulary and went full storybook. That interpretive freedom comes from the precision: when the IR doesn't over-specify, the generator fills in its own aesthetic.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <img src="https://cdn.hob.farm/blog/invisible-variable/chatgpt-grid.png" alt="GPT-5 Mini generation grid" />
   <figcaption>GPT-5 Mini. Style anchors: "psychedelic, visionary art, neo-psychedelia, ornamental symmetry, contemporary digital ornament."</figcaption>
 </figure>
@@ -265,7 +265,7 @@ That's what I built. These are the results. The data is open, the IRs are publis
 
 [StyleFusion](https://sf.hob.farm/) is live at sf.hob.farm. Built on Cloudflare Workers, AI Gateway, and D1. The Grimoire powers the vocabulary enrichment. HobFarm builds the invisible labor. The results speak for themselves.
 
-<figure class="blog-wide">
+<figure class="article-wide">
   <video controls autoplay muted loop playsinline>
     <source src="https://cdn.hob.farm/blog/invisible-variable/butterfly-dancer.mp4" type="video/mp4" />
   </video>
