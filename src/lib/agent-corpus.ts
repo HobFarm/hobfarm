@@ -64,7 +64,7 @@ export const CURATED_AGENT_LINKS: AgentLink[] = [
   {
     title: "StyleFusion",
     url: "https://hob.farm/projects/stylefusion/",
-    description: "The public tool and project page for structured visual extraction and prompt compilation.",
+    description: "The public project brief for structured visual extraction and prompt compilation. The unfinished workspace, account flows, and provider-key surfaces are excluded.",
   },
   {
     title: "Grimoire public page",

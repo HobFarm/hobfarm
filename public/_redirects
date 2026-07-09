@@ -1,6 +1,6 @@
 # Canonical redirects
-/stylefusion  https://sf.hob.farm  301
-/sf           https://sf.hob.farm  301
+/stylefusion  /projects/stylefusion/  301
+/sf           /projects/stylefusion/  301
 
 # Articles replaced the old public blog routes
 /blog                    /articles/                 301

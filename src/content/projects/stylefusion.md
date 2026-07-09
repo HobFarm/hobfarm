@@ -1,7 +1,7 @@
 ---
 order: 1
 tier: "1"
-status: "live"
+status: "active"
 category: "tool"
 type: "tool"
 title: "StyleFusion"
@@ -9,14 +9,12 @@ subtitle: "StyleFusion extracts the visual DNA from your images, builds structur
 description: "HobFarm's visual compiler for reference-driven AI image workflows."
 pubDate: 2026-02-15
 updatedDate: 2026-05-14
-liveUrl: "https://sf.hob.farm"
-repoUrl: "https://github.com/HobFarm/StyleFusion"
 primaryCta:
-  label: "Create free account"
-  href: "/login?next=https%3A%2F%2Fsf.hob.farm%2F"
+  label: "Follow StyleFusion updates"
+  href: "/contact/?subject=stylefusion"
 secondaryCta:
-  label: "Open StyleFusion"
-  href: "https://sf.hob.farm/"
+  label: "Read how it works"
+  href: "/articles/stylefusion-ir-extraction/"
 heroVideo: "https://cdn.hob.farm/pages/projects/images/stylefusion-banner-video.mp4"
 heroImage: "https://cdn.hob.farm/pages/projects/images/stylefusion-banner.jpg"
 logo:
@@ -48,10 +46,10 @@ features:
     description: "Turn structured profiles into provider-ready prompts, generation JSON, compact prompts, character sheets, and reusable creative metadata."
   - title: "Grimoire Enrichment"
     description: "Use HobFarm's visual vocabulary and correspondence system to add stronger language for materials, lighting, textures, movements, and relationships."
-  - title: "Account Access"
-    description: "Use a HobFarm account to enter gated tools, manage profile details, and manage provider keys from the account page."
+  - title: "Public Project Page"
+    description: "Use the public brief as the canonical source while workspace access, account flows, and provider-key handling are finished separately."
   - title: "BYOK Architecture"
     description: "Bring your own provider keys and choose the generation systems that fit each job."
 ---
 
-StyleFusion is HobFarm's visual compiler for reference-driven AI image workflows. This page uses a dedicated project layout so the first viewport can explain the tool, show the reference-to-image workflow, and route visitors toward account creation or the live workspace.
+StyleFusion is HobFarm's visual compiler for reference-driven AI image workflows. This page uses a dedicated project layout so the first viewport can explain the tool, show the reference-to-image workflow, and route visitors toward the public brief while the app is finished separately.

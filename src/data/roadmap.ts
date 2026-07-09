@@ -6,11 +6,6 @@ export interface RoadmapItem {
 
 export const live: RoadmapItem[] = [
   {
-    name: "StyleFusion",
-    description:
-      "Multi-provider image generation, free with a HobFarm account",
-  },
-  {
     name: "Grimoire",
     description: "The knowledge layer underneath the tools",
   },
@@ -33,6 +28,12 @@ export const live: RoadmapItem[] = [
 ];
 
 export const inDevelopment: RoadmapItem[] = [
+  {
+    name: "StyleFusion",
+    description:
+      "Public project brief is live; the visual compiler workspace is being finished",
+    href: "/projects/stylefusion/",
+  },
   {
     name: "HobFarm TV",
     description:

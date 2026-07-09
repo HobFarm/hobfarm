@@ -10,7 +10,7 @@ export async function GET() {
   return textResponse(
     await buildSectionLlms(
       "HobFarm Projects Agent Index",
-      "Recurring public tools, series, systems, worlds, and formats. Internal project memory and private build notes are excluded.",
+      "Recurring public projects, series, systems, worlds, and formats. Internal project memory and private build notes are excluded.",
       projects.map(projectToAgentLink),
     ),
   );

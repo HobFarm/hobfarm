@@ -13,9 +13,15 @@ interface Props {
 
 const { project } = Astro.props;
 
-const accountHref = project.data.primaryCta?.href ?? "/login?next=https%3A%2F%2Fsf.hob.farm%2F";
-const appHref = project.data.secondaryCta?.href ?? project.data.liveUrl ?? "https://sf.hob.farm/";
-const appIsExternal = appHref.startsWith("http");
+const primaryCta = project.data.primaryCta ?? {
+  label: "Follow StyleFusion updates",
+  href: "/contact/?subject=stylefusion",
+};
+const secondaryCta = project.data.secondaryCta ?? {
+  label: "Read how it works",
+  href: "/articles/stylefusion-ir-extraction/",
+};
+const secondaryIsExternal = secondaryCta.href.startsWith("http");
 
 const actions = [
   {
@@ -51,17 +57,17 @@ const workflow = [
 ];
 
 const accountBenefits = [
-  "Create or sign in with a one-time email code.",
-  "Open the gated StyleFusion workspace from the same HobFarm identity.",
-  "Manage profile details and provider API keys from the account page.",
-  "Keep saved provider keys encrypted at rest; plaintext is not returned by the API or shown in the UI.",
+  "Follow development notes as the workspace is finished.",
+  "See how StyleFusion connects to articles, galleries, Grimoire notes, and future lessons.",
+  "Use the public project page as the canonical source until the workspace is ready.",
+  "Keep API keys, account flows, and private workspace details out of public discovery until they are real.",
 ];
 
 const faqs = [
   {
     question: "Do I need API keys?",
     answer:
-      "StyleFusion is BYOK-first. You need a provider key for the work you want to run. Some providers can cover both reference extraction and image generation, so you do not always need multiple keys to begin.",
+      "StyleFusion is designed as a BYOK-first workflow. When the workspace is ready, provider setup will be documented from the public project page and help center.",
   },
   {
     question: "What does BYOK mean?",
@@ -84,9 +90,9 @@ const faqs = [
       "That depends on your rights to the references and the terms of the provider you use for generation. StyleFusion helps structure the workflow; it does not override provider licenses or copyright obligations.",
   },
   {
-    question: "Does HobFarm store my API keys?",
+    question: "Will HobFarm store my API keys?",
     answer:
-      "Saved account keys are encrypted at rest with a per-account key. Plaintext keys are not returned by the API or shown again in the account UI.",
+      "Private provider keys and account-managed workspace details should stay out of public discovery. If saved keys are enabled, the public documentation should explain the storage model before broad access opens.",
   },
   {
     question: "What is the Grimoire?",
@@ -168,21 +174,18 @@ const styleFusionJsonLd = {
             </p>
 
             <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <Button isLink size="lg" variant="green" href={accountHref}>
-                Create free account
+              <Button isLink size="lg" variant="green" href={primaryCta.href}>
+                {primaryCta.label}
               </Button>
               <Button
                 isLink
                 size="lg"
                 variant="muted"
-                href={appHref}
-                target={appIsExternal ? "_blank" : undefined}
-                rel={appIsExternal ? "noopener noreferrer" : undefined}
-                data-stylefusion-auth-cta
-                aria-hidden="true"
-                class="hidden"
+                href={secondaryCta.href}
+                target={secondaryIsExternal ? "_blank" : undefined}
+                rel={secondaryIsExternal ? "noopener noreferrer" : undefined}
               >
-                Open StyleFusion
+                {secondaryCta.label}
               </Button>
               <Button isLink size="lg" variant="link" href="#workflow" class="text-base-300 hover:text-white">
                 See how it works
@@ -290,10 +293,10 @@ const styleFusionJsonLd = {
 
         <div class="mt-16 grid gap-8 lg:grid-cols-3">
           <section class="lg:col-span-2 rounded-2xl border border-base-700 bg-base-900/80 p-6 sm:p-8">
-            <p class="font-mono text-xs uppercase tracking-widest text-accent-400">Why create an account</p>
-            <h2 class="mt-3 text-3xl font-medium text-white">Membership starts with a HobFarm account.</h2>
+            <p class="font-mono text-xs uppercase tracking-widest text-accent-400">Public status</p>
+            <h2 class="mt-3 text-3xl font-medium text-white">The public brief is live. The app is still being finished.</h2>
             <p class="mt-5 text-base leading-7 text-base-300">
-              There is no fake bundle of mystery perks here. A HobFarm account gives you the current access layer for StyleFusion and account-managed provider keys, then ties you into the wider Grimoire and HobFarm tool ecosystem as those surfaces grow.
+              This page describes the direction, workflow, and public-facing structure of StyleFusion. The workspace, API keys, and account-managed tool surfaces should not be advertised to agents or readers until the app is ready.
             </p>
             <ul class="mt-6 grid gap-3 sm:grid-cols-2">
               {accountBenefits.map((benefit) => (
@@ -303,8 +306,8 @@ const styleFusionJsonLd = {
               ))}
             </ul>
             <div class="mt-7">
-              <Button isLink size="base" variant="green" href={accountHref}>
-                Create free account
+              <Button isLink size="base" variant="green" href={primaryCta.href}>
+                {primaryCta.label}
               </Button>
             </div>
           </section>
@@ -337,10 +340,10 @@ const styleFusionJsonLd = {
           </section>
 
           <section class="rounded-2xl border border-base-700 bg-base-900/80 p-6 sm:p-8">
-            <p class="font-mono text-xs uppercase tracking-widest text-accent-400">Live lab, active development</p>
-            <h2 class="mt-3 text-3xl font-medium text-white">A working lab, not polished corporate AI.</h2>
+            <p class="font-mono text-xs uppercase tracking-widest text-accent-400">Active development</p>
+            <h2 class="mt-3 text-3xl font-medium text-white">A working lab being prepared for public use.</h2>
             <p class="mt-5 text-base leading-7 text-base-300">
-              StyleFusion is a live HobFarm lab tool under active development. Some provider errors come from upstream services, and some experimental features may change as the system improves. The goal is powerful creative control, visible progress, and tools that get sharper through use.
+              StyleFusion is under active development as a HobFarm lab tool. Some provider behavior, account flows, and experimental features may change as the system improves. The goal is powerful creative control, visible progress, and tools that get sharper before they are broadly advertised.
             </p>
           </section>
         </div>
@@ -366,26 +369,3 @@ const styleFusionJsonLd = {
     </ContentPanel>
   </section>
 </BaseLayout>
-
-<script>
-  async function revealStyleFusionCtaForSignedInUsers() {
-    const cta = document.querySelector("[data-stylefusion-auth-cta]");
-    if (!cta) return;
-
-    try {
-      const response = await fetch("/api/auth/me", {
-        credentials: "include",
-        headers: { Accept: "application/json" },
-      });
-
-      if (response.ok) {
-        cta.classList.remove("hidden");
-        cta.removeAttribute("aria-hidden");
-      }
-    } catch {
-      // Keep the workspace CTA hidden when auth state cannot be confirmed.
-    }
-  }
-
-  revealStyleFusionCtaForSignedInUsers();
-</script>

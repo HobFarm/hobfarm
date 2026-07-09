@@ -12,9 +12,9 @@ export interface WorkshopTeaser {
 export const workshopTeasers: WorkshopTeaser[] = [
   {
     title: "StyleFusion",
-    status: "Free Lab",
-    statusClass: "text-accent-green",
-    hook: "Multi-provider image generation. Swap the model, keep the character.",
+    status: "In Development",
+    statusClass: "text-accent-500",
+    hook: "A public brief for reference-driven visual systems while the workspace is being finished.",
     href: "/projects/stylefusion/",
   },
   {
