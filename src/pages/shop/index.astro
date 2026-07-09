@@ -8,12 +8,14 @@ import SectionHeader from "@/components/sections/SectionHeader.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import KofiCta from "@/components/KofiCta.astro";
 import DropCard from "@/components/shop/DropCard.astro";
-import { getPublicProducts } from "@/lib/products";
+import { previewImageUrl } from "@/lib/gallery";
+import { getPublicProducts, isBuyable, productSlug } from "@/lib/products";
 
 const ETSY = "https://www.etsy.com/shop/hobfarm";
 
 // Real/planned drops only (live, coming-soon, sold-out). No fake product cards.
 const drops = await getPublicProducts();
+const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
 
 type Family = { title: string; body: string };
 
@@ -43,11 +45,67 @@ const families: Family[] = [
     body: "Odd, useful, and collectible pieces found through local hunting, estate sales, and auctions. One-off shelf items in the wider HobFarm gift-shop.",
   },
 ];
+
+const productStructuredDescription = (product: (typeof drops)[number]) =>
+  product.data.paidAssetPolicy?.hasPaidAsset
+    ? "Public preview for a HobFarm product drop. Downloadable originals are excluded from machine-readable public metadata."
+    : product.data.shortDescription;
+
+const productStructuredImage = (product: (typeof drops)[number]) =>
+  product.data.paidAssetPolicy?.hasPaidAsset
+    ? undefined
+    : previewImageUrl(product.data.previewImage.folder, product.data.previewImage.file);
+
+const shopJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": `${siteOrigin}/shop/#collection`,
+      name: "Shop",
+      description:
+        "Usable objects from the HobFarm visual system: desk mats, digital sticker packs, drinkware, handmade clay oddities, and vintage finds.",
+      url: `${siteOrigin}/shop/`,
+      mainEntity: {
+        "@type": "ItemList",
+        itemListElement: drops.map((product, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          url: `${siteOrigin}/shop/#${productSlug(product)}`,
+          name: product.data.title,
+        })),
+      },
+    },
+    ...drops.map((product) => ({
+      "@type": "Product",
+      "@id": `${siteOrigin}/shop/#${productSlug(product)}`,
+      name: product.data.title,
+      description: productStructuredDescription(product),
+      ...(productStructuredImage(product) ? { image: productStructuredImage(product) } : {}),
+      category: product.data.productType,
+      brand: {
+        "@type": "Brand",
+        name: "HobFarm",
+      },
+      ...(isBuyable(product) && product.data.externalUrl
+        ? {
+            offers: {
+              "@type": "Offer",
+              url: product.data.externalUrl,
+              availability: "https://schema.org/InStock",
+            },
+          }
+        : {}),
+    })),
+  ],
+};
 ---
 
 <BaseLayout
   title="Shop | HobFarm"
   description="Usable objects from the HobFarm visual system: desk mats, digital sticker packs, drinkware, handmade clay oddities, and vintage finds. On Etsy and Ko-fi."
+  canonical="/shop/"
+  structuredData={shopJsonLd}
 >
   {/* ── Hero ── */}
   <section class="bg-noise border-b border-base-800/50">

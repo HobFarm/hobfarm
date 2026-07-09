@@ -5,13 +5,35 @@ import Text from "@/components/fundations/elements/Text.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import ContentPanel from "@/components/ContentPanel.astro";
-const { frontmatter } = Astro.props;
+const { frontmatter, slug } = Astro.props;
 const description = frontmatter.description || "Legal policies for HobFarm products, accounts, payments, privacy, refunds, and support.";
+const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
+const canonicalPath = `/legal/${slug}/`;
+const legalJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  name: frontmatter.title,
+  description,
+  url: `${siteOrigin}${canonicalPath}`,
+  datePublished: frontmatter.publishedAt ? new Date(frontmatter.publishedAt).toISOString() : undefined,
+  dateModified: frontmatter.updatedAt
+    ? new Date(frontmatter.updatedAt).toISOString()
+    : frontmatter.publishedAt
+      ? new Date(frontmatter.publishedAt).toISOString()
+      : undefined,
+  publisher: {
+    "@type": "Organization",
+    name: "HobFarm",
+    url: siteOrigin,
+  },
+};
 ---
 
 <BaseLayout
   title={`${frontmatter.title} | HobFarm`}
   description={description}
+  canonical={canonicalPath}
+  structuredData={legalJsonLd}
 >
   <section>
     <ContentPanel>

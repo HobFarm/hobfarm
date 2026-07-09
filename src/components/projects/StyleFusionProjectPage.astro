@@ -99,13 +99,49 @@ const faqs = [
       "Direct prompts are fragile. StyleFusion keeps references role-scoped, turns them into reusable structure, enriches that structure through the Grimoire, and compiles it for different providers without starting over.",
   },
 ];
+
+const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
+const styleFusionUrl = `${siteOrigin}/projects/stylefusion/`;
+const styleFusionJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CreativeWork",
+      "@id": `${styleFusionUrl}#creativework`,
+      name: "StyleFusion",
+      description: project.data.subtitle,
+      url: styleFusionUrl,
+      image: project.data.heroImage,
+      creator: {
+        "@type": "Organization",
+        name: "HobFarm",
+        url: siteOrigin,
+      },
+      keywords: ["visual systems", "prompt compilation", "reference extraction", "AI image workflows"],
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${styleFusionUrl}#faq`,
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
+    },
+  ],
+};
 ---
 
 <BaseLayout
   title="StyleFusion | HobFarm"
   description={project.data.subtitle}
+  canonical="/projects/stylefusion/"
   image={project.data.heroImage}
   palette="magenta-cyan"
+  structuredData={styleFusionJsonLd}
 >
   <section class="bg-noise overflow-hidden">
     <ContentPanel class="overflow-hidden">

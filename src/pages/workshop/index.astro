@@ -9,11 +9,12 @@ import VisualSystems from "@/components/home/VisualSystems.astro";
 import ApplicationsAcrossMedia from "@/components/home/ApplicationsAcrossMedia.astro";
 import WorkflowSection from "@/components/home/WorkflowSection.astro";
 import GrimoireSection from "@/components/home/GrimoireSection.astro";
-import { getArticleDepartment, getPublishedArticles } from "@/lib/articles";
+import { articlePath, getArticleDepartment, getPublishedArticles } from "@/lib/articles";
 
 const notes = (await getPublishedArticles())
   .filter((p) => getArticleDepartment(p.data) === "workshop-notes")
   .slice(0, 9);
+const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
 
 // Shop/Academy/Services are downstream of the workshop: what it produces, how to
 // learn it, and hiring it. They live here, not in the top nav.
@@ -34,12 +35,31 @@ const paths = [
     href: "/services/",
   },
 ];
+
+const workshopJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Workshop",
+  description:
+    "The HobFarm workshop: process, tools, AI workflows, prompt systems, image and video production, reusable looks, tests, failures, and build notes.",
+  url: `${siteOrigin}/workshop/`,
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: notes.map((note, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: note.data.title,
+      url: `${siteOrigin}${articlePath(note)}/`,
+    })),
+  },
+};
 ---
 
 <BaseLayout
   title="Workshop | HobFarm"
   description="The HobFarm workshop: process, tools, AI workflows, prompt systems, image and video production, reusable looks, tests, failures, and build notes."
   canonical="/workshop/"
+  structuredData={workshopJsonLd}
 >
   <section>
     <ContentPanel>

@@ -31,12 +31,40 @@
 # HTML pages: short cache, revalidate
 /*
   Cache-Control: public, max-age=0, must-revalidate
+  Link: </sitemap.xml>; rel="sitemap"; type="application/xml"
+  Link: </llms.txt>; rel="alternate"; type="text/plain"; title="HobFarm agent index"
+  Link: </.well-known/agent-skills/index.json>; rel="service-desc"; type="application/json"; title="HobFarm Agent Skills"
+  Content-Signal: ai-train=no, search=yes, ai-input=yes
   Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data: blob: https://hob.farm https://cdn.hob.farm; media-src 'self' https://cdn.hob.farm; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self'; connect-src 'self' https://grimoire.damp-violet-bf89.workers.dev https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com https://open.spotify.com https://www.youtube.com https://www.youtube-nocookie.com; form-action 'self'; manifest-src 'self'; upgrade-insecure-requests
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
+
+# Agent Skill discovery
+/.well-known/agent-skills/index.json
+  Cache-Control: public, max-age=300, s-maxage=3600, stale-while-revalidate=86400
+  Content-Type: application/json; charset=utf-8
+  X-Content-Type-Options: nosniff
+
+/.well-known/agent-skills/*/SKILL.md
+  Cache-Control: public, max-age=300, s-maxage=3600, stale-while-revalidate=86400
+  Content-Type: text/markdown; charset=utf-8
+  X-Content-Type-Options: nosniff
+
+# Protected or non-corpus paths
+/api/*
+  Content-Signal: ai-train=no, search=no, ai-input=no
+  X-Robots-Tag: noindex, nofollow
+
+/account*
+  Content-Signal: ai-train=no, search=no, ai-input=no
+  X-Robots-Tag: noindex, nofollow
+
+/login*
+  Content-Signal: ai-train=no, search=no, ai-input=no
+  X-Robots-Tag: noindex, nofollow
 
 # Prevent pages.dev from being indexed (keep hob.farm as canonical)
 https://:project.pages.dev/*

@@ -4,17 +4,18 @@ import LegalLayout from "@/layouts/LegalLayout.astro";
 export async function getStaticPaths() {
   const legal = await getCollection("legal");
   const paths = legal.map((page) => {
+    const slug = page.id.replace(/\.(md|mdx)$/, "");
     return {
-      params: { slug: page.id },
-      props: { page },
+      params: { slug },
+      props: { page, slug },
     };
   });
   return paths;
 }
-const { page } = Astro.props;
+const { page, slug } = Astro.props;
 const { Content } = await render(page);
 ---
 
-<LegalLayout frontmatter={page.data}>
+<LegalLayout frontmatter={page.data} slug={slug}>
   <Content />
 </LegalLayout>

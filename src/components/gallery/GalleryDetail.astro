@@ -56,12 +56,13 @@ const hasVisualSystem = (data.visualDNA && data.visualDNA.length > 0) || hasTrai
 
 const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
 const slugPath = entry.id.replace(/\.(md|mdx)$/, "");
-const canonicalUrl = `${siteOrigin}/gallery/${slugPath}`;
+const canonicalUrl = `${siteOrigin}/gallery/${slugPath}/`;
 // Capped preview for structured data, never the raw full-res original.
 const heroUrl = previewImageUrl(
   data.folder,
   data.hero.type === "image" ? data.hero.file : data.hero.poster
 );
+const primaryImageId = `${canonicalUrl}#primaryimage`;
 const keywords = Array.from(
   new Set([
     ...(data.tags ?? []),
@@ -73,19 +74,49 @@ const keywords = Array.from(
 ).filter(Boolean);
 const structuredData = {
   "@context": "https://schema.org",
-  "@type": "CreativeWork",
-  name: data.title,
-  description: data.summary,
-  url: canonicalUrl,
-  image: heroUrl,
-  genre: galleryTypeLabels[data.type as GalleryType],
-  ...(data.date && { dateCreated: new Date(data.date).toISOString() }),
-  ...(keywords.length > 0 && { keywords: keywords.join(", ") }),
-  ...(data.specimenSheet?.specimenId && { identifier: data.specimenSheet.specimenId }),
-  ...(data.specimenSheet?.creator && {
-    creator: { "@type": "Person", name: data.specimenSheet.creator },
-  }),
-  ...(data.specimenSheet?.license && { license: data.specimenSheet.license }),
+  "@graph": [
+    {
+      "@type": "CreativeWork",
+      "@id": `${canonicalUrl}#creativework`,
+      name: data.title,
+      description: data.summary,
+      url: canonicalUrl,
+      image: { "@id": primaryImageId },
+      genre: galleryTypeLabels[data.type as GalleryType],
+      ...(data.date && { dateCreated: new Date(data.date).toISOString() }),
+      ...(keywords.length > 0 && { keywords: keywords.join(", ") }),
+      ...(data.specimenSheet?.specimenId && { identifier: data.specimenSheet.specimenId }),
+      ...(data.specimenSheet?.creator && {
+        creator: { "@type": "Person", name: data.specimenSheet.creator },
+      }),
+      ...(data.specimenSheet?.license && { license: data.specimenSheet.license }),
+    },
+    {
+      "@type": "ImageObject",
+      "@id": primaryImageId,
+      contentUrl: heroUrl,
+      thumbnailUrl: heroUrl,
+      caption: data.hero.alt || data.title,
+      representativeOfPage: true,
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Gallery",
+          item: `${siteOrigin}/gallery/`,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: data.title,
+          item: canonicalUrl,
+        },
+      ],
+    },
+  ],
 };
 ---
 

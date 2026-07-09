@@ -78,6 +78,26 @@ const pubDate = new Date(project.data.pubDate).toLocaleDateString("en-US", {
   month: "long",
   day: "numeric",
 });
+
+const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
+const canonicalUrl = `${siteOrigin}/projects/${slug}/`;
+const projectJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  name: project.data.title,
+  description: project.data.subtitle || project.data.description,
+  url: canonicalUrl,
+  image: seoImage,
+  datePublished: project.data.pubDate.toISOString(),
+  dateModified: (project.data.updatedDate ?? project.data.pubDate).toISOString(),
+  genre: project.data.category,
+  keywords: [...(project.data.stack ?? []), ...(project.data.highlights ?? [])].join(", "),
+  creator: {
+    "@type": "Organization",
+    name: "HobFarm",
+    url: siteOrigin,
+  },
+};
 ---
 
 {isStyleFusion ? (
@@ -86,7 +106,9 @@ const pubDate = new Date(project.data.pubDate).toLocaleDateString("en-US", {
   <BaseLayout
     title={`${project.data.title} | HobFarm`}
     description={project.data.subtitle}
+    canonical={`/projects/${slug}/`}
     image={seoImage}
+    structuredData={projectJsonLd}
   >
     <section class="bg-noise">
       <ContentPanel>

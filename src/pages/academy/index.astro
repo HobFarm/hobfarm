@@ -37,11 +37,40 @@ const tracks: Track[] = [
     body: "Reusable character sheets and reference files that keep a character looking the same from one image to the next, across different models and projects.",
   },
 ];
+
+const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
+const academyJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Academy",
+  description:
+    "Practical AI training from HobFarm: avatar workflows, prompts, image systems, building apps, and selling your work.",
+  url: `${siteOrigin}/academy/`,
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: avatarCourse.productName,
+        url: `${siteOrigin}${avatarCourse.basePath}/`,
+      },
+      ...tracks.map((track, index) => ({
+        "@type": "ListItem",
+        position: index + 2,
+        name: track.title,
+        description: track.body,
+      })),
+    ],
+  },
+};
 ---
 
 <BaseLayout
   title="Academy | HobFarm"
   description="Practical AI training from HobFarm: avatar workflows, prompts, image systems, building apps, and selling your work. Built from the real work behind the site."
+  canonical="/academy/"
+  structuredData={academyJsonLd}
 >
   {/* ── Hero ── */}
   <section class="bg-noise border-b border-base-800/50">
