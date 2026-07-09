@@ -10,7 +10,6 @@ User-agent: Applebot-Extended
 User-agent: Bytespider
 User-agent: CCBot
 User-agent: ClaudeBot
-User-agent: Google-CloudVertexBot
 User-agent: Google-Extended
 User-agent: GPTBot
 User-agent: Meta-ExternalAgent

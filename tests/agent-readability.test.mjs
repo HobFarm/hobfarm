@@ -106,6 +106,20 @@ test("global headers advertise discovery and deliberate content signals", () => 
   assert.match(headers, /Content-Signal:\s*ai-train=no, search=no, ai-input=no/);
 });
 
+test("robots policy allows public agent reading while protecting private and training-only access", () => {
+  const robots = read("public/robots.txt");
+
+  assert.match(robots, /User-agent:\s*\*/);
+  assert.match(robots, /Content-signal:\s*search=yes, ai-input=yes, ai-train=no, use=reference/);
+  assert.match(robots, /Disallow:\s*\/login/);
+  assert.match(robots, /Disallow:\s*\/account/);
+  assert.match(robots, /Disallow:\s*\/api\//);
+  assert.match(robots, /User-agent:\s*GPTBot[\s\S]*Disallow:\s*\//);
+  assert.match(robots, /User-agent:\s*Google-Extended[\s\S]*Disallow:\s*\//);
+  assert.doesNotMatch(robots, /User-agent:\s*OAI-SearchBot/);
+  assert.doesNotMatch(robots, /User-agent:\s*Google-CloudVertexBot/);
+});
+
 test("markdown negotiation middleware serves markdown only for public content routes", () => {
   const middleware = read("functions/_middleware.ts");
 
