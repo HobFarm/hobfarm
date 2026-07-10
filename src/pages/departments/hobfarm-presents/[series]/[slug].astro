@@ -1,0 +1,324 @@
+---
+import { render } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import FunniesHero from "@/components/funnies/FunniesHero.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import ShareButtons from "@/components/articles/ShareButtons.astro";
+import { getStorySeriesTitle, storySeriesPath } from "@/data/story-series";
+import { readingTime } from "@/lib/reading-time";
+import {
+  adventurePath,
+  adventureSlug,
+  adventuresInSeries,
+  getAdjacentAdventures,
+  getPublishedAdventures,
+} from "@/lib/adventures";
+
+export async function getStaticPaths() {
+  const adventures = await getPublishedAdventures();
+  return adventures.map((adventure) => {
+    const seriesAdventures = adventuresInSeries(adventures, adventure.data.series);
+    const { previous, next } = getAdjacentAdventures(adventure, seriesAdventures);
+    return {
+      params: { series: adventure.data.series, slug: adventureSlug(adventure) },
+      props: { adventure, previous: previous ?? null, next: next ?? null },
+    };
+  });
+}
+
+const { adventure, previous, next } = Astro.props;
+const {
+  number,
+  title,
+  teaser,
+  summary,
+  series,
+  region,
+  cover,
+  coverAlt,
+  heroMedia,
+  mediaBadges,
+  mediaSections,
+  fieldNotes,
+  credits,
+  relatedArticle,
+  relatedArticleTitle,
+  relatedGallery,
+  relatedGalleryTitle,
+  nextAdventureTeaser,
+  tags,
+  date,
+} = adventure.data;
+
+const { Content } = await render(adventure);
+const stats = adventure.body ? readingTime(adventure.body) : null;
+const seriesTitle = getStorySeriesTitle(series);
+const seriesHref = storySeriesPath(series);
+const adventureLabel = `Adventure No. ${String(number).padStart(2, "0")}`;
+const formattedDate = date
+  ? new Date(date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" })
+  : null;
+
+const relatedLinks = [
+  relatedArticle && { label: relatedArticleTitle ?? "Related feature", href: relatedArticle },
+  relatedGallery && { label: relatedGalleryTitle ?? "Related visual", href: relatedGallery },
+].filter((link): link is { label: string; href: string } => Boolean(link));
+const canonicalUrl = new URL(adventurePath(adventure), "https://hob.farm").toString();
+const heroImage = heroMedia?.type === "image" ? heroMedia.file : cover;
+const heroImageAlt = heroMedia?.type === "image" ? heroMedia.alt : coverAlt || title;
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["Article", "ShortStory"],
+      "@id": `${canonicalUrl}#story`,
+      headline: title,
+      name: title,
+      description: summary ?? teaser,
+      url: canonicalUrl,
+      mainEntityOfPage: canonicalUrl,
+      datePublished: date ? new Date(date).toISOString() : undefined,
+      dateModified: date ? new Date(date).toISOString() : undefined,
+      image: heroImage,
+      author: credits.map((credit) => ({ "@type": "Person", name: credit.name })),
+      publisher: { "@id": "https://hob.farm/#organization" },
+      keywords: tags,
+      position: number,
+      isPartOf: {
+        "@type": "CreativeWorkSeries",
+        name: seriesTitle,
+        url: new URL(seriesHref, "https://hob.farm").toString(),
+      },
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "HobFarm Presents",
+          item: "https://hob.farm/departments/hobfarm-presents/",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: seriesTitle,
+          item: new URL(seriesHref, "https://hob.farm").toString(),
+        },
+        { "@type": "ListItem", position: 3, name: title, item: canonicalUrl },
+      ],
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title={`${title} | ${seriesTitle} | HobFarm Presents`}
+  description={summary ?? teaser}
+  canonical={adventurePath(adventure)}
+  image={heroImage}
+  imageAlt={heroImageAlt}
+  type="article"
+  publishedTime={date ? new Date(date).toISOString() : undefined}
+  tags={tags}
+  structuredData={structuredData}
+  feed={{ href: "/departments/hobfarm-presents/rss.xml", title: "HobFarm Presents" }}
+>
+  <section>
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-10 lg:py-14">
+        {/* 1 Series breadcrumb + 2 Adventure meta */}
+        <FunniesHero
+          title={title}
+          deck={teaser}
+          image={heroImage}
+          imageAlt={heroImageAlt}
+          eyebrow={adventureLabel}
+          backHref={seriesHref}
+          backLabel={`${seriesTitle} archive`}
+        >
+          <div slot="meta" class="mt-5 flex flex-wrap items-center gap-3 text-xs uppercase text-base-200">
+            <a href="/departments/hobfarm-presents/" class="font-mono text-accent-500 transition-colors hover:text-white">
+              HobFarm Presents
+            </a>
+            <span>&middot;</span>
+            <a href={seriesHref} class="font-mono text-accent-500 transition-colors hover:text-white">
+              {seriesTitle}
+            </a>
+            {formattedDate && (
+              <>
+                <span>&middot;</span>
+                <time datetime={new Date(date).toISOString()}>{formattedDate}</time>
+              </>
+            )}
+            {stats && (
+              <>
+                <span>&middot;</span>
+                <span>{stats.text}</span>
+              </>
+            )}
+            {region && (
+              <>
+                <span>&middot;</span>
+                <span>{region}</span>
+              </>
+            )}
+          </div>
+
+          {mediaBadges.length > 0 && (
+            <div class="mt-4 flex flex-wrap gap-2" slot="meta">
+              {mediaBadges.map((badge) => (
+                <span class="rounded-full border border-base-700 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-base-300">
+                  {badge}
+                </span>
+              ))}
+            </div>
+          )}
+        </FunniesHero>
+
+        {/* 4 Read-story anchor */}
+        <div class="mt-6">
+          <a href="#story" class="font-mono text-[11px] uppercase tracking-wider text-accent-500 transition-colors hover:text-white">
+            Start reading &darr;
+          </a>
+        </div>
+      </Wrapper>
+
+      {/* 3 Calm readable story column; the hero is the only cover placement. */}
+      <Wrapper variant="narrow" class="mt-10" id="story">
+        <Wrapper variant="prose">
+          <Content />
+        </Wrapper>
+      </Wrapper>
+
+      {/* 6 Full-width media blocks between story movements */}
+      {(mediaSections ?? []).map((mediaSection) => (
+        <Wrapper variant="standard" class="mt-12">
+          <div class="border-t border-base-800 pt-10">
+            <h2 class="font-display text-xl text-white">{mediaSection.title}</h2>
+            {mediaSection.text && (
+              <p class="mt-3 max-w-2xl text-sm leading-relaxed text-base-400">{mediaSection.text}</p>
+            )}
+            <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {mediaSection.media.map((item) =>
+                item.type === "video" ? (
+                  <video controls poster={item.poster} class="aspect-video w-full rounded-lg border border-base-800 object-cover">
+                    <source src={item.file} />
+                  </video>
+                ) : (
+                  <img src={item.file} alt={item.alt || mediaSection.title} class="rounded-lg border border-base-800 object-cover" loading="lazy" decoding="async" />
+                )
+              )}
+            </div>
+          </div>
+        </Wrapper>
+      ))}
+
+      <Wrapper variant="narrow" class="pb-12">
+        {/* 7 Optional artifact or field note */}
+        {(fieldNotes ?? []).length > 0 && (
+          <div class="mt-12 border-t border-base-800 pt-8">
+            <h2 class="font-display text-lg text-white">Field notes &amp; relics</h2>
+            <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {fieldNotes!.map((note) => (
+                <div class="rounded-lg border border-base-800 bg-base-900/50 p-5">
+                  <p class="font-mono text-[10px] uppercase tracking-widest text-accent-500">{note.label}</p>
+                  <p class="mt-2 text-sm leading-relaxed text-base-400">{note.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Share and follow */}
+        <div class="mt-12 border-t border-base-800 pt-8">
+          <h2 class="font-display text-lg text-white">Share this Adventure</h2>
+          <div class="mt-4">
+            <ShareButtons title={title} url={canonicalUrl} text={summary ?? teaser} tags={tags} />
+          </div>
+        </div>
+
+        {/* 8 Credits */}
+        {credits.length > 0 && (
+          <div class="mt-12 border-t border-base-800 pt-8">
+            <h2 class="font-display text-lg text-white">Credits</h2>
+            <div class="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+              {credits.map((credit) => (
+                <p class="text-sm text-base-400">
+                  <span class="text-base-200">{credit.name}</span> &mdash; {credit.role}
+                </p>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* 10 Related companion feature */}
+        {relatedLinks.length > 0 && (
+          <div class="mt-12 border-t border-base-800 pt-8">
+            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {relatedLinks.map((link) => (
+                <a
+                  href={link.href}
+                  class="rounded-md border border-base-800 bg-base-900/70 px-4 py-3 text-sm text-base-200 transition-colors hover:border-accent-500/50 hover:text-white"
+                >
+                  <span class="block font-mono text-[10px] uppercase tracking-wider text-accent-500">Related</span>
+                  <span class="mt-1 block">{link.label}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* 9 Previous / next adventure navigation */}
+        {(previous || next) && (
+          <div class="mt-12 grid grid-cols-2 gap-8 border-t border-base-800 pt-8">
+            {previous ? (
+              <a href={adventurePath(previous)} class="group text-base-400 transition-colors hover:text-base-100">
+                <p class="text-xs uppercase text-base-500">Previous</p>
+                <p class="mt-1 text-sm font-light">{previous.data.title}</p>
+              </a>
+            ) : <div />}
+            {next ? (
+              <a href={adventurePath(next)} class="group ml-auto text-right text-base-400 transition-colors hover:text-base-100">
+                <p class="text-xs uppercase text-base-500">Next</p>
+                <p class="mt-1 text-sm font-light">{next.data.title}</p>
+              </a>
+            ) : <div />}
+          </div>
+        )}
+
+        {!next && nextAdventureTeaser && (
+          <div class="mt-12 rounded-lg border border-accent-500/25 bg-accent-500/5 p-6">
+            <p class="font-mono text-[10px] uppercase tracking-widest text-accent-500">
+              {nextAdventureTeaser.status}
+            </p>
+            <h2 class="mt-2 font-display text-xl text-white">
+              Adventure No. {String(nextAdventureTeaser.number).padStart(2, "0")}: {nextAdventureTeaser.title}
+            </h2>
+            <p class="mt-3 text-sm leading-relaxed text-base-300">{nextAdventureTeaser.summary}</p>
+          </div>
+        )}
+
+        <div class="mt-12 border-t border-base-800 pt-8">
+          <h2 class="font-display text-xl text-white">Continue through the hole</h2>
+          <p class="mt-3 max-w-xl text-sm leading-relaxed text-base-400">
+            Follow new Adventures, character files, field notes, images, and moving fragments as the rabbit-hole network expands.
+          </p>
+          <div class="mt-5 flex flex-wrap gap-3">
+            <Button isLink size="base" variant="green" href={seriesHref}>Follow {seriesTitle}</Button>
+            <Button isLink size="base" variant="muted" href="/characters/alice/">Meet Other Alice</Button>
+          </div>
+        </div>
+
+        {/* 11 Return to series archive */}
+        <div class="mt-8">
+          <a href={seriesHref} class="font-mono text-[11px] uppercase tracking-wider text-base-400 transition-colors hover:text-white">
+            &larr; Return to {seriesTitle} archive
+          </a>
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+</BaseLayout>

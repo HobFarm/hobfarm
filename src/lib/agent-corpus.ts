@@ -8,13 +8,32 @@ import {
   getPublishedArticles,
 } from "@/lib/articles";
 import { galleryTypeLabels, previewImageUrl } from "@/lib/gallery";
-import { getPublicProducts, productSlug, type ProductEntry } from "@/lib/products";
+import {
+  getPublicProducts,
+  productSlug,
+  type ProductEntry,
+} from "@/lib/products";
+import {
+  adventurePath,
+  getPublishedAdventures,
+  type Adventure,
+} from "@/lib/adventures";
+import {
+  storySeries,
+  storySeriesPath,
+  type StorySeries,
+} from "@/data/story-series";
+import {
+  characters,
+  characterPath,
+  type CharacterEntry,
+} from "@/data/characters";
 
 export const SITE_ORIGIN = "https://hob.farm";
 
 export const PRIVATE_BOUNDARIES = [
   "Private Grimoire notes, admin workflows, chat logs, raw prompts, export files, drafts, paid downloads, high-resolution source files, account pages, login pages, API endpoints, and source files are not part of the public agent corpus.",
-  "Agents may read and cite canonical public pages, public Markdown alternates, public llms indexes, public gallery previews, and visible public article/project/workshop copy.",
+  "Agents may read and cite canonical public pages, public Markdown alternates, public llms indexes, public gallery previews, and visible public article, fiction, character, project, or workshop copy.",
   "Do not infer a license to train models from public availability. HobFarm public editorial pages signal ai-train=no, search=yes, ai-input=yes.",
 ];
 
@@ -59,32 +78,38 @@ export const CURATED_AGENT_LINKS: AgentLink[] = [
   {
     title: "About HobFarm",
     url: "https://hob.farm/about/",
-    description: "How the magazine, visual studio, workshop, shop, and support paths fit together.",
+    description:
+      "How the magazine, visual studio, workshop, shop, and support paths fit together.",
   },
   {
     title: "StyleFusion",
     url: "https://hob.farm/projects/stylefusion/",
-    description: "The public project brief for structured visual extraction and prompt compilation. The unfinished workspace, account flows, and provider-key surfaces are excluded.",
+    description:
+      "The public project brief for structured visual extraction and prompt compilation. The unfinished workspace, account flows, and provider-key surfaces are excluded.",
   },
   {
     title: "Grimoire public page",
     url: "https://hob.farm/grimoire/",
-    description: "Public explanation of the HobFarm knowledge layer. Private notes and raw material are excluded.",
+    description:
+      "Public explanation of the HobFarm knowledge layer. Private notes and raw material are excluded.",
   },
   {
     title: "Atomic Noir color system",
     url: "https://hob.farm/gallery/asset-lab/atomic-noir-color-system/",
-    description: "A public gallery entry documenting the Atomic Noir visual vocabulary and preview-safe media.",
+    description:
+      "A public gallery entry documenting the Atomic Noir visual vocabulary and preview-safe media.",
   },
   {
     title: "Visual vocabulary",
     url: "https://hob.farm/visual-systems/",
-    description: "Reusable visual systems, style anchors, and gallery-linked vocabulary.",
+    description:
+      "Reusable visual systems, style anchors, and gallery-linked vocabulary.",
   },
   {
     title: "Workshop",
     url: "https://hob.farm/workshop/",
-    description: "Process notes, methods, production decisions, and build notes.",
+    description:
+      "Process notes, methods, production decisions, and build notes.",
   },
   {
     title: "Usage and license",
@@ -94,7 +119,8 @@ export const CURATED_AGENT_LINKS: AgentLink[] = [
   {
     title: "Products / shop",
     url: "https://hob.farm/shop/",
-    description: "Public product previews and storefront routing. Downloadable paid originals are not exposed.",
+    description:
+      "Public product previews and storefront routing. Downloadable paid originals are not exposed.",
   },
   {
     title: "Articles",
@@ -105,6 +131,24 @@ export const CURATED_AGENT_LINKS: AgentLink[] = [
     title: "Gallery",
     url: "https://hob.farm/gallery/",
     description: "The public visual archive and preview-safe image sets.",
+  },
+  {
+    title: "HobFarm Presents",
+    url: "https://hob.farm/departments/hobfarm-presents/",
+    description:
+      "HobFarm's fiction imprint for illustrated serials, short stories, character files, and recurring story worlds.",
+  },
+  {
+    title: "Other Alice Adventures",
+    url: "https://hob.farm/departments/hobfarm-presents/other-alice-adventures/",
+    description:
+      "An original illustrated Alice in Wonderland serial about the Alice who stayed.",
+  },
+  {
+    title: "Other Alice character guide",
+    url: "https://hob.farm/characters/alice/",
+    description:
+      "Public character guide covering Alice's history, methods, flaws, equipment, and published appearances.",
   },
 ];
 
@@ -118,6 +162,12 @@ export const SECTION_INDEX_LINKS: AgentLink[] = [
     title: "Gallery llms index",
     url: "https://hob.farm/gallery/llms.txt",
     description: "Curated public gallery index with preview-safe entries.",
+  },
+  {
+    title: "HobFarm Presents llms index",
+    url: "https://hob.farm/departments/hobfarm-presents/llms.txt",
+    description:
+      "Published fiction series, Adventures, and principal character guides.",
   },
   {
     title: "Workshop llms index",
@@ -161,11 +211,16 @@ export function formatDate(value?: Date | string): string | undefined {
 
 function hasForbiddenAgentPattern(value: string): boolean {
   const lower = value.toLowerCase();
-  return forbiddenAgentPattern.some((pattern) => lower.includes(pattern.toLowerCase()));
+  return forbiddenAgentPattern.some((pattern) =>
+    lower.includes(pattern.toLowerCase()),
+  );
 }
 
 function normalizeWhitespace(value: string): string {
-  return value.replace(/[ \t]+$/gm, "").replace(/\n{3,}/g, "\n\n").trim();
+  return value
+    .replace(/[ \t]+$/gm, "")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
 }
 
 export function sanitizeInline(value?: string): string {
@@ -176,7 +231,9 @@ export function sanitizeInline(value?: string): string {
 export function sanitizeMarkdownBody(body = ""): string {
   const withoutFrontmatter = body.replace(/^---[\s\S]*?---\s*/, "");
   const withoutMediaTags = withoutFrontmatter
-    .replace(/!\[([^\]]*)\]\([^)]+\)/g, (_match, alt) => (alt ? `[Image omitted: ${alt}]` : "[Image omitted]"))
+    .replace(/!\[([^\]]*)\]\([^)]+\)/g, (_match, alt) =>
+      alt ? `[Image omitted: ${alt}]` : "[Image omitted]",
+    )
     .replace(/<(img|video|source|iframe|script)\b[^>]*>/gi, "[Media omitted]");
 
   const safeLines = withoutMediaTags
@@ -195,7 +252,8 @@ export function markdownResponse(body: string): Response {
   return new Response(`${normalizeWhitespace(body)}\n`, {
     headers: {
       "Content-Type": "text/markdown; charset=utf-8",
-      "Cache-Control": "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400",
+      "Cache-Control":
+        "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400",
       "Content-Signal": "ai-train=no, search=yes, ai-input=yes",
       Vary: "Accept",
       "X-Content-Type-Options": "nosniff",
@@ -207,16 +265,24 @@ export function textResponse(body: string): Response {
   return new Response(`${normalizeWhitespace(body)}\n`, {
     headers: {
       "Content-Type": "text/plain; charset=utf-8",
-      "Cache-Control": "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400",
+      "Cache-Control":
+        "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400",
       "Content-Signal": "ai-train=no, search=yes, ai-input=yes",
       "X-Content-Type-Options": "nosniff",
     },
   });
 }
 
-function metadataLines(metadata: MarkdownDocumentInput["metadata"] = {}): string[] {
+function metadataLines(
+  metadata: MarkdownDocumentInput["metadata"] = {},
+): string[] {
   return Object.entries(metadata)
-    .filter(([, value]) => value !== undefined && value !== "" && (!Array.isArray(value) || value.length > 0))
+    .filter(
+      ([, value]) =>
+        value !== undefined &&
+        value !== "" &&
+        (!Array.isArray(value) || value.length > 0),
+    )
     .map(([key, value]) => {
       const label = key
         .replace(/([A-Z])/g, " $1")
@@ -272,11 +338,31 @@ export function boundariesMarkdown(): string {
   ].join("\n");
 }
 
-export async function getPublicAgentArticles(): Promise<CollectionEntry<"articles">[]> {
+export async function getPublicAgentArticles(): Promise<
+  CollectionEntry<"articles">[]
+> {
   return getPublishedArticles();
 }
 
-export async function getPublicAgentGalleryEntries(): Promise<CollectionEntry<"gallery">[]> {
+export async function getPublicAgentAdventures(): Promise<Adventure[]> {
+  return getPublishedAdventures();
+}
+
+export function getPublicAgentStorySeries(): StorySeries[] {
+  return storySeries.filter((series) => series.status === "active");
+}
+
+export function getPublicAgentCharacters(): CharacterEntry[] {
+  return characters.filter((character) =>
+    character.relatedSeries.some((slug) =>
+      storySeries.some((series) => series.slug === slug),
+    ),
+  );
+}
+
+export async function getPublicAgentGalleryEntries(): Promise<
+  CollectionEntry<"gallery">[]
+> {
   const entries = await getCollection("gallery");
   return entries
     .filter((entry) => !entry.data.draft)
@@ -288,19 +374,25 @@ export async function getPublicAgentGalleryEntries(): Promise<CollectionEntry<"g
     });
 }
 
-export async function getPublicAgentProjects(): Promise<CollectionEntry<"projects">[]> {
+export async function getPublicAgentProjects(): Promise<
+  CollectionEntry<"projects">[]
+> {
   const entries = await getCollection("projects");
   return entries.sort((a, b) => a.data.order - b.data.order);
 }
 
-export async function getPublicAgentGrimoireEntries(): Promise<CollectionEntry<"grimoire">[]> {
+export async function getPublicAgentGrimoireEntries(): Promise<
+  CollectionEntry<"grimoire">[]
+> {
   const entries = await getCollection("grimoire");
   return entries
     .filter((entry) => !entry.data.draft)
     .sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
 }
 
-export function articleToAgentLink(article: CollectionEntry<"articles">): AgentLink {
+export function articleToAgentLink(
+  article: CollectionEntry<"articles">,
+): AgentLink {
   const path = canonicalPath(articlePath(article));
   return {
     title: article.data.title,
@@ -311,7 +403,39 @@ export function articleToAgentLink(article: CollectionEntry<"articles">): AgentL
   };
 }
 
-export function galleryToAgentLink(entry: CollectionEntry<"gallery">): AgentLink {
+export function adventureToAgentLink(adventure: Adventure): AgentLink {
+  return {
+    title: adventure.data.title,
+    url: absoluteUrl(canonicalPath(adventurePath(adventure))),
+    description: sanitizeInline(
+      adventure.data.summary ?? adventure.data.teaser,
+    ),
+    date: formatDate(adventure.data.date),
+    tags: adventure.data.tags,
+  };
+}
+
+export function storySeriesToAgentLink(series: StorySeries): AgentLink {
+  return {
+    title: series.title,
+    url: absoluteUrl(canonicalPath(storySeriesPath(series.slug))),
+    description: sanitizeInline(series.metaDescription ?? series.logline),
+    tags: ["HobFarm Presents", "illustrated serial"],
+  };
+}
+
+export function characterToAgentLink(character: CharacterEntry): AgentLink {
+  return {
+    title: character.displayName ?? character.name,
+    url: absoluteUrl(canonicalPath(characterPath(character.slug))),
+    description: sanitizeInline(character.metaDescription ?? character.bio),
+    tags: character.traits,
+  };
+}
+
+export function galleryToAgentLink(
+  entry: CollectionEntry<"gallery">,
+): AgentLink {
   const path = canonicalPath(`/gallery/${stripExt(entry.id)}`);
   return {
     title: entry.data.title,
@@ -322,7 +446,9 @@ export function galleryToAgentLink(entry: CollectionEntry<"gallery">): AgentLink
   };
 }
 
-export function projectPublicPath(project: CollectionEntry<"projects">): string {
+export function projectPublicPath(
+  project: CollectionEntry<"projects">,
+): string {
   const slug = stripExt(project.id);
   if (slug === "shop") return "/shop/";
   if (slug === "courses") return "/academy/";
@@ -330,11 +456,15 @@ export function projectPublicPath(project: CollectionEntry<"projects">): string 
   return canonicalPath(`/projects/${slug}`);
 }
 
-export function projectToAgentLink(project: CollectionEntry<"projects">): AgentLink {
+export function projectToAgentLink(
+  project: CollectionEntry<"projects">,
+): AgentLink {
   return {
     title: project.data.title,
     url: absoluteUrl(projectPublicPath(project)),
-    description: sanitizeInline(project.data.subtitle || project.data.description),
+    description: sanitizeInline(
+      project.data.subtitle || project.data.description,
+    ),
     date: formatDate(project.data.pubDate),
     tags: [project.data.category, project.data.status],
   };
@@ -350,7 +480,9 @@ export function productToAgentLink(product: ProductEntry): AgentLink {
   };
 }
 
-export function grimoireToAgentLink(entry: CollectionEntry<"grimoire">): AgentLink {
+export function grimoireToAgentLink(
+  entry: CollectionEntry<"grimoire">,
+): AgentLink {
   return {
     title: entry.data.title,
     url: absoluteUrl(canonicalPath(`/grimoire/${stripExt(entry.id)}`)),
@@ -380,8 +512,156 @@ export function articleMarkdown(article: CollectionEntry<"articles">): string {
   });
 }
 
+export function adventureMarkdown(adventure: Adventure): string {
+  return pageMarkdown({
+    title: adventure.data.title,
+    description: adventure.data.summary ?? adventure.data.teaser,
+    canonicalUrl: absoluteUrl(canonicalPath(adventurePath(adventure))),
+    date: adventure.data.date,
+    metadata: {
+      section: "HobFarm Presents",
+      series: adventure.data.series,
+      adventureNumber: adventure.data.number,
+      region: adventure.data.region,
+      tags: adventure.data.tags,
+      coverImage: adventure.data.cover,
+      relatedArticle: adventure.data.relatedArticle,
+      relatedGallery: adventure.data.relatedGallery,
+    },
+    body: adventure.body,
+  });
+}
+
+export function storySeriesMarkdown(series: StorySeries): string {
+  const body = [
+    ...(series.heroIntro ?? []),
+    series.explainer?.heading ? `## ${series.explainer.heading}` : "",
+    series.explainer?.lead ?? "",
+    ...(series.explainer?.paragraphs ?? []),
+    series.differentiation?.heading
+      ? `## ${series.differentiation.heading}`
+      : "",
+    ...(series.differentiation?.paragraphs ?? []),
+    ...(series.profile ?? []).map(
+      (item) => `### ${item.title}\n\n${item.text}`,
+    ),
+    series.worldAtlas
+      ? [
+          `## ${series.worldAtlas.heading}`,
+          ...series.worldAtlas.intro,
+          ...series.worldAtlas.concepts.map((concept) =>
+            [
+              `### ${concept.title}`,
+              `Realm: ${concept.realm}`,
+              `![${concept.imageAlt}](${concept.image})`,
+              `Image source: ${concept.image}`,
+              concept.description,
+            ].join("\n\n"),
+          ),
+        ].join("\n\n")
+      : "",
+    ...(series.worldStrip ?? []).map((world) =>
+      [
+        `## ${world.title}`,
+        ...world.paragraphs,
+        ...(world.details ?? []).map(
+          (detail) => `- ${detail.label}: ${detail.value}`,
+        ),
+      ].join("\n\n"),
+    ),
+    series.residents
+      ? [
+          `## ${series.residents.heading}`,
+          series.residents.intro ?? "",
+          ...series.residents.entries.map((resident) =>
+            [
+              `### ${resident.name}`,
+              `${resident.category === "faction" ? "Faction" : "Role"}: ${resident.role}`,
+              `![${resident.imageAlt}](${resident.image})`,
+              `Image source: ${resident.image}`,
+              ...resident.summary,
+              resident.href
+                ? `Character guide: ${absoluteUrl(canonicalPath(resident.href))}`
+                : "",
+            ]
+              .filter(Boolean)
+              .join("\n\n"),
+          ),
+        ]
+          .filter(Boolean)
+          .join("\n\n")
+      : "",
+    ...(series.loreSections ?? []).map((section) =>
+      [
+        `## ${section.heading}`,
+        ...(section.paragraphs ?? []),
+        ...(section.items ?? []).map((item) => `- ${item.title}: ${item.text}`),
+      ].join("\n\n"),
+    ),
+    ...(series.faq ?? []).map(
+      (item) => `### ${item.question}\n\n${item.answer}`,
+    ),
+    ...(series.endLine ?? []),
+  ]
+    .filter(Boolean)
+    .join("\n\n");
+
+  return pageMarkdown({
+    title: series.title,
+    description: series.metaDescription ?? series.logline,
+    canonicalUrl: absoluteUrl(canonicalPath(storySeriesPath(series.slug))),
+    metadata: {
+      section: "HobFarm Presents",
+      status: series.status,
+      tagline: series.tagline,
+      characters: series.characters,
+      residents: series.residents?.entries.map((resident) => resident.name),
+      worldConcepts: series.worldAtlas?.concepts.map(
+        (concept) => concept.title,
+      ),
+      coverImage: series.cover,
+    },
+    body,
+  });
+}
+
+export function characterMarkdown(character: CharacterEntry): string {
+  const body = [
+    ...(character.guideIntro ?? [character.bio]),
+    (character.dossier?.length ?? 0) > 0
+      ? `## Dossier\n\n${character.dossier!.map((item) => `- ${item.label}: ${item.value}`).join("\n")}`
+      : "",
+    ...(character.guideSections ?? []).map((section) =>
+      [
+        `## ${section.title}`,
+        ...(section.paragraphs ?? []),
+        ...(section.bullets ?? []).map((bullet) => `- ${bullet}`),
+      ].join("\n\n"),
+    ),
+  ]
+    .filter(Boolean)
+    .join("\n\n");
+
+  return pageMarkdown({
+    title: character.displayName ?? character.name,
+    description: character.metaDescription ?? character.bio,
+    canonicalUrl: absoluteUrl(canonicalPath(characterPath(character.slug))),
+    metadata: {
+      section: "Characters",
+      role: character.role,
+      traits: character.traits,
+      series: character.relatedSeries,
+      image: character.image,
+    },
+    body,
+  });
+}
+
 export function galleryMarkdown(entry: CollectionEntry<"gallery">): string {
-  const heroFile = entry.data.hero.type === "image" ? entry.data.hero.file : entry.data.hero.poster;
+  const heroFile =
+    entry.data.hero.type === "image"
+      ? entry.data.hero.file
+      : entry.data.hero.poster;
   const publicPreview = previewImageUrl(entry.data.folder, heroFile);
 
   const metadata: Record<string, string | string[] | undefined> = {
@@ -395,10 +675,12 @@ export function galleryMarkdown(entry: CollectionEntry<"gallery">): string {
   };
 
   const structuredNotes = [
-    entry.data.concept?.thesis && `Concept thesis: ${entry.data.concept.thesis}`,
+    entry.data.concept?.thesis &&
+      `Concept thesis: ${entry.data.concept.thesis}`,
     entry.data.concept?.method && `Method: ${entry.data.concept.method}`,
     entry.data.processNotes && `Process notes: ${entry.data.processNotes}`,
-    entry.data.comparison?.findings?.length && `Findings:\n${entry.data.comparison.findings.map((item) => `- ${item}`).join("\n")}`,
+    entry.data.comparison?.findings?.length &&
+      `Findings:\n${entry.data.comparison.findings.map((item) => `- ${item}`).join("\n")}`,
     entry.data.visualDNA?.length &&
       `Visual DNA:\n${entry.data.visualDNA.map((item) => `- ${item.label}: ${item.value}`).join("\n")}`,
     entry.data.fieldNotes?.length &&
@@ -446,7 +728,10 @@ export function projectMarkdown(project: CollectionEntry<"projects">): string {
 }
 
 function productPublicDescription(product: ProductEntry): string {
-  if (product.data.paidAssetPolicy?.hasPaidAsset || hasForbiddenAgentPattern(product.data.shortDescription)) {
+  if (
+    product.data.paidAssetPolicy?.hasPaidAsset ||
+    hasForbiddenAgentPattern(product.data.shortDescription)
+  ) {
     return "Public preview for a HobFarm product drop. Downloadable originals are excluded from the agent corpus.";
   }
 
@@ -470,8 +755,7 @@ export function productMarkdown(product: ProductEntry): string {
       relatedWorkshopNote: product.data.relatedWorkshopNote,
       visualSystem: product.data.visualSystem,
     },
-    body:
-      "This is a public product preview. Paid files, originals, and private downloads are excluded from the agent corpus.",
+    body: "This is a public product preview. Paid files, originals, and private downloads are excluded from the agent corpus.",
   });
 }
 
@@ -507,7 +791,7 @@ export async function buildRootLlms(): Promise<string> {
     "",
     "## Markdown Alternates",
     "- Important pages expose `/index.md` alternates, for example `https://hob.farm/index.md`, `https://hob.farm/about/index.md`, and `https://hob.farm/articles/index.md`.",
-    "- Public article, gallery, and project detail pages expose `/index.md` alternates next to their canonical HTML routes.",
+    "- Public article, fiction, character, gallery, and project detail pages expose `/index.md` alternates next to their canonical HTML routes.",
     "- Requests with `Accept: text/markdown` receive Markdown for public content routes when a Markdown alternate exists.",
     "",
     boundariesMarkdown(),
@@ -519,27 +803,43 @@ export async function buildRootLlms(): Promise<string> {
   ].join("\n");
 }
 
-export async function buildSectionLlms(title: string, description: string, links: AgentLink[]): Promise<string> {
+export async function buildSectionLlms(
+  title: string,
+  description: string,
+  links: AgentLink[],
+): Promise<string> {
   return [
     `# ${title}`,
     "",
     description,
     "",
     "## Public Entries",
-    links.length > 0 ? linkList(links) : "- No public entries are currently available.",
+    links.length > 0
+      ? linkList(links)
+      : "- No public entries are currently available.",
     "",
     boundariesMarkdown(),
   ].join("\n");
 }
 
 export async function buildFullLlms(): Promise<string> {
-  const [articles, galleryEntries, projects, products, grimoireEntries] = await Promise.all([
+  const [
+    articles,
+    adventures,
+    galleryEntries,
+    projects,
+    products,
+    grimoireEntries,
+  ] = await Promise.all([
     getPublicAgentArticles(),
+    getPublicAgentAdventures(),
     getPublicAgentGalleryEntries(),
     getPublicAgentProjects(),
     getPublicProducts(),
     getPublicAgentGrimoireEntries(),
   ]);
+  const series = getPublicAgentStorySeries();
+  const storyCharacters = getPublicAgentCharacters();
 
   return [
     "# HobFarm Public Corpus",
@@ -555,6 +855,21 @@ export async function buildFullLlms(): Promise<string> {
     linkList(articles.map(articleToAgentLink)),
     "",
     articles.map(articleMarkdown).join("\n\n---\n\n"),
+    "",
+    "## HobFarm Presents Series",
+    linkList(series.map(storySeriesToAgentLink)),
+    "",
+    series.map(storySeriesMarkdown).join("\n\n---\n\n"),
+    "",
+    "## Published Adventures",
+    linkList(adventures.map(adventureToAgentLink)),
+    "",
+    adventures.map(adventureMarkdown).join("\n\n---\n\n"),
+    "",
+    "## Principal Story Characters",
+    linkList(storyCharacters.map(characterToAgentLink)),
+    "",
+    storyCharacters.map(characterMarkdown).join("\n\n---\n\n"),
     "",
     "## Galleries",
     linkList(galleryEntries.map(galleryToAgentLink)),

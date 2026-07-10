@@ -6,7 +6,7 @@
       "type": "skill-md",
       "description": "Discover, read, cite, and respect HobFarm public content without exposing private Grimoire material, raw prompts, paid files, or admin paths.",
       "url": "/.well-known/agent-skills/read-hobfarm-corpus/SKILL.md",
-      "digest": "sha256:220d660e5bb6875295b6a6fa2851235452d302cf313f1036f7911f1ecd2cbee3"
+      "digest": "sha256:ca6b374ccdd8390ed599f44e6987c7190022809c22143864ee6abee2c75c5034"
     }
   ]
 }

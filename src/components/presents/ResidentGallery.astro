@@ -1,0 +1,85 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+import type { SeriesResident } from "@/data/story-series";
+
+interface Props {
+  heading: string;
+  intro?: string;
+  entries: SeriesResident[];
+}
+
+const { heading, intro, entries } = Astro.props;
+---
+
+{entries.length > 0 && (
+  <section
+    id="residents"
+    class="mt-16 scroll-mt-24 border-t border-base-800 pt-10"
+    aria-labelledby="series-residents-heading"
+  >
+    <header class="max-w-3xl">
+      <p class="font-mono text-[10px] uppercase tracking-[0.24em] text-accent-500">Character records</p>
+      <Text id="series-residents-heading" tag="h2" variant="displaySM" class="mt-3 font-display text-white">
+        {heading}
+      </Text>
+      {intro && <p class="mt-5 text-base leading-relaxed text-base-300 text-pretty">{intro}</p>}
+    </header>
+
+    <div class="mt-8 grid grid-cols-1 gap-x-6 gap-y-10 lg:grid-cols-2">
+      {entries.map((entry, index) => (
+        <article id={entry.id} class:list={[
+          "overflow-hidden border border-base-800 bg-base-950/55",
+          index === 0 && "lg:col-span-2 lg:grid lg:grid-cols-[minmax(320px,0.9fr)_minmax(0,1.1fr)] lg:items-center",
+        ]}>
+          <a
+            href={entry.image}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group block bg-[#090b0c] p-2 sm:p-3"
+            aria-label={`Open the full ${entry.name} portrait`}
+          >
+            <img
+              src={entry.image}
+              alt={entry.imageAlt}
+              width="1024"
+              height="1536"
+              loading="lazy"
+              decoding="async"
+              class="mx-auto h-auto max-h-[820px] w-full object-contain opacity-95 transition-opacity duration-300 group-hover:opacity-100"
+            />
+          </a>
+          <div class="border-t border-base-800 p-6 sm:p-8 lg:border-t-0">
+            <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
+              <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-500">{entry.role}</p>
+              {entry.category === "faction" && (
+                <span class="border border-[#957a42]/45 px-2 py-0.5 font-mono text-[9px] uppercase tracking-widest text-[#c4aa70]">
+                  Faction record
+                </span>
+              )}
+            </div>
+            <h3 class="mt-3 font-display text-2xl text-[#eee7d6]">
+              {entry.href ? (
+                <a href={entry.href} class="transition-colors hover:text-white">{entry.name}</a>
+              ) : (
+                entry.name
+              )}
+            </h3>
+            <div class="mt-5 space-y-4">
+              {entry.summary.map((paragraph) => (
+                <p class="text-sm leading-relaxed text-base-300 text-pretty">{paragraph}</p>
+              ))}
+            </div>
+            {entry.href && (
+              <a
+                href={entry.href}
+                class="mt-6 inline-flex font-mono text-[10px] uppercase tracking-widest text-base-500 transition-colors hover:text-white"
+              >
+                Open character guide &rarr;
+              </a>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+)}

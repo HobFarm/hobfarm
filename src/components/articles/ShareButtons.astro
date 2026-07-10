@@ -107,7 +107,7 @@ const links = [
           Copy post
         </button>
         <p class="text-xs text-base-500">
-          A short share draft built from the article title, description, link, and tags.
+          A short share draft built from the page title, description, link, and tags.
         </p>
       </div>
     </div>
@@ -157,7 +157,7 @@ const links = [
         const url = copyButton.getAttribute("data-url");
         if (!url) return;
 
-        await copyText(url, copyButton, "Article link", status);
+        await copyText(url, copyButton, "Link", status);
       });
 
       copySharePostButton?.addEventListener("click", async () => {

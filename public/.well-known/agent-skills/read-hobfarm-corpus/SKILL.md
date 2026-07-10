@@ -9,7 +9,7 @@ Use this skill when reading, summarizing, citing, or navigating public HobFarm c
 
 ## What HobFarm Is
 
-HobFarm is an online magazine and visual studio. Public content includes articles, gallery entries, project pages, workshop notes, academy overviews, product previews, public Grimoire explanations, and legal/support pages.
+HobFarm is an online magazine and visual studio. Public content includes articles, illustrated fiction and recurring story worlds, character guides, gallery entries, project pages, workshop notes, academy overviews, product previews, public Grimoire explanations, and legal/support pages.
 
 ## Discovery Order
 
@@ -21,12 +21,13 @@ HobFarm is an online magazine and visual studio. Public content includes article
    - `https://hob.farm/projects/llms.txt`
    - `https://hob.farm/products/llms.txt`
    - `https://hob.farm/academy/llms.txt`
+   - `https://hob.farm/departments/hobfarm-presents/llms.txt`
 3. Use `https://hob.farm/llms-full.txt` only when you need the expanded public text corpus.
 4. Prefer canonical HTML URLs for citations. Use `/index.md` alternates for extraction and text-first reading.
 
 ## Markdown Reading
 
-Public content routes support Markdown alternates. Important pages expose `/index.md`, and public article, gallery, and project detail pages expose an `index.md` next to the canonical route.
+Public content routes support Markdown alternates. Important pages expose `/index.md`, and public article, fiction, character, gallery, and project detail pages expose an `index.md` next to the canonical route.
 
 When requesting a public content route, send:
 
@@ -47,6 +48,8 @@ Vary: Accept
 - Include the page title and date when available.
 - For articles, cite the article route under `/articles/`.
 - For gallery entries, cite the gallery route under `/gallery/`.
+- For HobFarm Presents fiction, cite the canonical series or Adventure route under `/departments/hobfarm-presents/`.
+- For character guides, cite the canonical route under `/characters/`.
 - For product previews, cite `/shop/` or the public shop anchor when supplied by an index.
 - Do not cite omitted private, raw, paid, admin, account, or source-file material.
 

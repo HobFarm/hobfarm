@@ -142,14 +142,7 @@ const galleryMediaItem = z.object({
   title: z.string().optional(),
   tags: z.array(z.string()).optional(),
   role: z
-    .enum([
-      "primary",
-      "reference",
-      "variant",
-      "failure",
-      "preview",
-      "process",
-    ])
+    .enum(["primary", "reference", "variant", "failure", "preview", "process"])
     .optional(),
   provider: z.string().optional(),
   poster: z.string().optional(),
@@ -235,9 +228,7 @@ const gallery = defineCollection({
       })
       .optional(),
 
-    media: z
-      .array(galleryMediaItem)
-      .default([]),
+    media: z.array(galleryMediaItem).default([]),
 
     mediaSections: z
       .array(
@@ -245,7 +236,7 @@ const gallery = defineCollection({
           title: z.string(),
           text: z.string().optional(),
           media: z.array(galleryMediaItem),
-        })
+        }),
       )
       .optional(),
 
@@ -256,7 +247,7 @@ const gallery = defineCollection({
         z.object({
           label: z.string(),
           value: z.string(),
-        })
+        }),
       )
       .default([]),
 
@@ -304,7 +295,7 @@ const gallery = defineCollection({
         z.object({
           label: z.string(),
           text: z.string(),
-        })
+        }),
       )
       .optional(),
 
@@ -313,7 +304,7 @@ const gallery = defineCollection({
         z.object({
           label: z.string(),
           value: z.string(),
-        })
+        }),
       )
       .optional(),
 
@@ -322,7 +313,7 @@ const gallery = defineCollection({
         z.object({
           label: z.string(),
           text: z.string(),
-        })
+        }),
       )
       .optional(),
 
@@ -332,7 +323,7 @@ const gallery = defineCollection({
           label: z.string(),
           text: z.string(),
           kind: z.enum(["win", "lesson", "fail"]).optional(),
-        })
+        }),
       )
       .optional(),
 
@@ -363,7 +354,7 @@ const gallery = defineCollection({
               hex: z.string(),
               finish: z.string().optional(),
               role: z.string().optional(),
-            })
+            }),
           )
           .optional(),
         mood: z.string().optional(),
@@ -379,7 +370,7 @@ const gallery = defineCollection({
           materials: z.array(z.string()).optional(),
           colors: z.array(z.string()).optional(),
           notes: z.string().optional(),
-        })
+        }),
       )
       .optional(),
 
@@ -405,10 +396,20 @@ const projects = defineCollection({
   schema: ({ image }) =>
     z.object({
       order: z.number(),
-      tier: z.enum(['1', '2', '3']),
-      status: z.enum(['live', 'active', 'planned', 'paused']),
-      category: z.enum(['tool', 'content', 'service', 'collaboration', 'game', 'research', 'education']),
-      type: z.enum(['tool', 'game', 'content', 'service', 'research', 'education']).optional(),
+      tier: z.enum(["1", "2", "3"]),
+      status: z.enum(["live", "active", "planned", "paused"]),
+      category: z.enum([
+        "tool",
+        "content",
+        "service",
+        "collaboration",
+        "game",
+        "research",
+        "education",
+      ]),
+      type: z
+        .enum(["tool", "game", "content", "service", "research", "education"])
+        .optional(),
       title: z.string(),
       subtitle: z.string(),
       description: z.string(),
@@ -419,28 +420,36 @@ const projects = defineCollection({
       repoUrl: z.string().optional(),
       heroVideo: z.string().optional(),
       heroImage: z.string().optional(),
-      logo: z.object({
-        url: image(),
-        alt: z.string(),
-      }).optional(),
-      image: z.object({
-        url: image(),
-        alt: z.string(),
-      }).optional(),
-      images: z.array(
-        z.object({
+      logo: z
+        .object({
           url: image(),
           alt: z.string(),
         })
-      ).optional(),
+        .optional(),
+      image: z
+        .object({
+          url: image(),
+          alt: z.string(),
+        })
+        .optional(),
+      images: z
+        .array(
+          z.object({
+            url: image(),
+            alt: z.string(),
+          }),
+        )
+        .optional(),
       stack: z.array(z.string()).optional(),
       highlights: z.array(z.string()).optional(),
-      features: z.array(
-        z.object({
-          title: z.string(),
-          description: z.string(),
-        })
-      ).optional(),
+      features: z
+        .array(
+          z.object({
+            title: z.string(),
+            description: z.string(),
+          }),
+        )
+        .optional(),
       // Optional CTAs. When `ctas` is non-empty, or `primaryCta` is set,
       // the detail layout suppresses the auto-generated "Visit Project"
       // button (sourced from liveUrl) in favor of these. The repoUrl-driven
@@ -451,24 +460,30 @@ const projects = defineCollection({
       // buttons (first default-styled, the rest muted). `external: true`
       // opens in a new tab; internal paths like /gallery stay same-tab.
       // `primaryCta`/`secondaryCta` remain for the membership-gated funnel.
-      ctas: z.array(
-        z.object({
-          label: z.string(),
-          href: z.string(),
-          external: z.boolean().optional(),
-        })
-      ).optional(),
+      ctas: z
+        .array(
+          z.object({
+            label: z.string(),
+            href: z.string(),
+            external: z.boolean().optional(),
+          }),
+        )
+        .optional(),
       // Optional heading override for the features grid (defaults to
       // "System Features"). Lets the shop label its grid "Product Families".
       featuresTitle: z.string().optional(),
-      primaryCta: z.object({
-        label: z.string(),
-        href: z.string(),
-      }).optional(),
-      secondaryCta: z.object({
-        label: z.string(),
-        href: z.string(),
-      }).optional(),
+      primaryCta: z
+        .object({
+          label: z.string(),
+          href: z.string(),
+        })
+        .optional(),
+      secondaryCta: z
+        .object({
+          label: z.string(),
+          href: z.string(),
+        })
+        .optional(),
     }),
 });
 
@@ -500,8 +515,6 @@ const help = defineCollection({
   }),
 });
 
-
-
 const legal = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/legal" }),
   schema: z.object({
@@ -511,7 +524,6 @@ const legal = defineCollection({
     updatedAt: z.coerce.date().optional(),
   }),
 });
-
 
 const grimoire = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/grimoire" }),
@@ -596,6 +608,87 @@ const comics = defineCollection({
   }),
 });
 
+// Adventures are HobFarm Presents' fiction installments: long-form serial
+// story content (unlike comics, which are image-first). They live in their
+// own collection so they get clean /departments/hobfarm-presents/[series]/[slug]
+// URLs and stay out of /articles and RSS. `series` is a slug into
+// src/data/story-series.ts (a loose string, like comics.series, validated only
+// at the CMS layer). `region` is free text naming a world/zone within the
+// series (e.g. "Wonderland", "the Wasteland", "the holes between").
+const adventures = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/adventures" }),
+  schema: z.object({
+    series: z.string(),
+    number: z.number().int().positive(),
+    title: z.string(),
+    teaser: z.string(),
+    summary: z.string().optional(),
+    department: z
+      .enum([
+        "magazine-time-machine",
+        "wtfacts",
+        "satire",
+        "picture-stories",
+        "funnies",
+        "cute-corrupted",
+        "before-after-eras",
+        "critter-feed",
+        "hobfarm-presents",
+        "workshop-notes",
+        "essays-arguments",
+      ])
+      .default("hobfarm-presents"),
+    region: z.string().optional(),
+    cover: z.string(),
+    coverAlt: z.string().optional(),
+    heroMedia: z.discriminatedUnion("type", [heroImage, heroVideo]).optional(),
+    mediaBadges: z.array(z.string()).default([]),
+    mediaSections: z
+      .array(
+        z.object({
+          title: z.string(),
+          text: z.string().optional(),
+          media: z.array(galleryMediaItem),
+        }),
+      )
+      .optional(),
+    fieldNotes: z
+      .array(
+        z.object({
+          label: z.string(),
+          text: z.string(),
+        }),
+      )
+      .optional(),
+    credits: z
+      .array(
+        z.object({
+          name: z.string(),
+          role: z.string(),
+        }),
+      )
+      .default([]),
+    relatedArticle: z.string().optional(),
+    relatedArticleTitle: z.string().optional(),
+    relatedGallery: z.string().optional(),
+    relatedGalleryTitle: z.string().optional(),
+    nextAdventureTeaser: z
+      .object({
+        number: z.number().int().positive(),
+        title: z.string(),
+        summary: z.string(),
+        status: z.string().default("Coming next"),
+      })
+      .optional(),
+    tags: z.array(z.string()).default([]),
+    date: z.coerce.date(),
+    status: z
+      .enum(["draft", "scheduled", "published", "archived"])
+      .default("published"),
+    draft: z.boolean().default(false),
+  }),
+});
+
 // Products / drops. External-first: each product links OUT to a storefront
 // (DeviantArt first). previewImage is a {folder,file} pair rendered through the
 // capped helpers in src/lib/gallery.ts, so a public preview never exposes a
@@ -672,4 +765,5 @@ export const collections = {
   stack,
   comics,
   products,
+  adventures,
 };

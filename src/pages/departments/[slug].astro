@@ -27,9 +27,11 @@ export async function getStaticPaths() {
   const visuals = (await getCollection("gallery")).filter((e) => !e.data.draft);
   const comics = await getPublishedComics();
 
-  // Funnies has its own richer comics landing at /departments/funnies.astro.
+  // Funnies has its own richer comics landing at /departments/funnies.astro,
+  // and hobfarm-presents has its own fiction-imprint landing at
+  // /departments/hobfarm-presents/index.astro.
   return await Promise.all(departments
-    .filter((department) => department.slug !== "funnies")
+    .filter((department) => department.slug !== "funnies" && department.slug !== "hobfarm-presents")
     .map(async (department) => ({
       params: { slug: department.slug },
       props: {

@@ -34,6 +34,7 @@ const formattedDate = publishedAt.toLocaleDateString("en-US", {
   year: "numeric",
   month: "long",
   day: "2-digit",
+  timeZone: "UTC",
 });
 
 const department = getArticleDepartmentLabel(post.data);

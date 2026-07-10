@@ -45,6 +45,10 @@ export type Department = {
   showInNav?: boolean;
   /** Render a homepage strip even with zero published entries. Defaults false. */
   showWhenEmpty?: boolean;
+  /** Noun used in the hub card count ("N {countNoun}"). Defaults to "entries". */
+  countNoun?: string;
+  /** Label for the hub card's open-department link. Defaults to "Open →". */
+  actionLabel?: string;
 };
 
 export const departments: Department[] = [
@@ -61,7 +65,8 @@ export const departments: Department[] = [
     metaDescription:
       "Magazine Time Machine collects old magazine artifacts, vintage advertisements, dead futures, then-versus-now comparisons, and cultural research from the HobFarm archive.",
     accent: "#e0b13c",
-    heroImage: "https://cdn.hob.farm/hero-images/magazine-time-machine-hero.png",
+    heroImage:
+      "https://cdn.hob.farm/hero-images/magazine-time-machine-hero.png",
     navHub: "Articles",
   },
   {
@@ -104,7 +109,7 @@ export const departments: Department[] = [
     slug: "cute-corrupted",
     label: "Cute & Corrupted",
     blurb:
-      "Color-inspired transformations across characters, critters, and cakes, with a layer of \"cute\" and \"corrupted\" applied.",
+      'Color-inspired transformations across characters, critters, and cakes, with a layer of "cute" and "corrupted" applied.',
     intro: [
       "Cute & Corrupted starts with a simple question: what represents a color? Yellow can become honey, bees, taxis, rubber ducks, warning stripes, lemons, and sunlight. Green can become limes, parrots, peas, moss, gardens, venom, and greenhouse rot. The color becomes the design inspiration, not just the palette.",
       "Each set applies that idea into two related versions. Cute is polished, bright, charming, and built to look good on the shelf, cake stand, or character sheet. It is the corporate-friendly version. Corrupted is the alter ego of the same concept: darker, dirtier, riskier, and still fully in control.",
@@ -126,7 +131,8 @@ export const departments: Department[] = [
   {
     slug: "critter-feed",
     label: "Critter Feed",
-    blurb: "The ongoing critter character world and its running cast of small monsters.",
+    blurb:
+      "The ongoing critter character world and its running cast of small monsters.",
     accent: "#5cf0a6",
     navHub: "Characters",
     status: "planned",
@@ -135,10 +141,17 @@ export const departments: Department[] = [
     slug: "hobfarm-presents",
     label: "HobFarm Presents",
     blurb:
-      "Trailers, short videos, parody promos, avatar bits, animated posters, and story-world video features.",
+      "Original serial fiction, illustrated tales, recurring story worlds, and the films, artifacts, and field notes attached to them.",
+    intro: [
+      "Stories come first. Some arrive with painted covers, moving scenes, sound, field notes, or objects dragged back from somewhere they should not have survived.",
+    ],
+    metaDescription:
+      "HobFarm Presents is the imprint for original serial fiction, illustrated short stories, and mixed-media story worlds, starting with Other Alice Adventures.",
     accent: "#7b2ff7",
     heroImage: "https://cdn.hob.farm/hero-images/hobfarm-presents-hero.png",
     navHub: "Video",
+    countNoun: "title",
+    actionLabel: "Open the press →",
   },
   {
     slug: "workshop-notes",
@@ -207,13 +220,17 @@ export const departmentAliases: Record<string, string> = {
 const departmentBySlug = new Map(departments.map((d) => [d.slug, d]));
 
 /** Canonical department slug for any legacy or canonical input. */
-export function resolveDepartment(slug: string | undefined | null): string | undefined {
+export function resolveDepartment(
+  slug: string | undefined | null,
+): string | undefined {
   if (!slug) return undefined;
   if (departmentBySlug.has(slug)) return slug;
   return departmentAliases[slug] ?? slug;
 }
 
-export function getDepartment(slug: string | undefined | null): Department | undefined {
+export function getDepartment(
+  slug: string | undefined | null,
+): Department | undefined {
   const canonical = resolveDepartment(slug);
   return canonical ? departmentBySlug.get(canonical) : undefined;
 }
@@ -256,7 +273,9 @@ export function departmentShowsWhenEmpty(d: Department): boolean {
 /** Departments that may appear in the Departments hub + homepage grid. */
 export const hubDepartments = departments.filter(departmentShowsInHub);
 /** Departments allowed a homepage strip (still gated on content in the UI). */
-export const homepageStripDepartments = departments.filter(departmentShowsOnHomepage);
+export const homepageStripDepartments = departments.filter(
+  departmentShowsOnHomepage,
+);
 
 // Filter list for sidebar/chips: "All" plus the publicly visible departments.
 // Planned/hidden departments are kept out of public browsing here too.
@@ -271,9 +290,11 @@ export const departmentSlugs = departments.map((d) => d.slug);
 
 // Gallery `type` -> department fallback, used only when a gallery entry has no
 // explicit `department` set. Only types with a clear editorial home are mapped.
+// `video-workflow` is deliberately unmapped: it used to fall back into
+// hobfarm-presents (now the fiction imprint), which silently misfiled process/
+// tech-test clips as story content. File those explicitly going forward.
 export const galleryTypeToDepartment: Record<string, string> = {
   "before-and-after": "before-after-eras",
   "cute-corrupted": "cute-corrupted",
   "character-dev": "funnies",
-  "video-workflow": "hobfarm-presents",
 };

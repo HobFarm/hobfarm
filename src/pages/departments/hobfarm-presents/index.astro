@@ -1,0 +1,240 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import FunniesHero from "@/components/funnies/FunniesHero.astro";
+import AdventureCard from "@/components/presents/AdventureCard.astro";
+import ArticleCard from "@/components/articles/ArticleCard.astro";
+import Subscribe from "@/components/articles/Subscribe.astro";
+import { getDepartment, departmentPath } from "@/data/departments";
+import { storySeries, storySeriesPath } from "@/data/story-series";
+import { characterPath } from "@/data/characters";
+import { getPublishedAdventures, adventurePath } from "@/lib/adventures";
+import { getPublishedArticles } from "@/lib/articles";
+
+const department = getDepartment("hobfarm-presents")!;
+
+const seriesSorted = [...storySeries].sort(
+  (a, b) => (a.displayOrder ?? 999) - (b.displayOrder ?? 999)
+);
+const featuredSeries = seriesSorted[0];
+
+const allAdventures = await getPublishedAdventures(); // newest first
+const seriesAdventures = featuredSeries
+  ? allAdventures.filter((a) => a.data.series === featuredSeries.slug)
+  : [];
+const latestAdventure = seriesAdventures[0];
+const previousAdventures = seriesAdventures.slice(1);
+
+const otherActiveSeries = seriesSorted.slice(1).filter((s) => s.status === "active");
+
+// Adventures filed under a series slug not defined in story-series.ts read as
+// standalone tales -- future one-offs need no new data model to surface here.
+const knownSeriesSlugs = new Set(storySeries.map((s) => s.slug));
+const standaloneTales = allAdventures.filter((a) => !knownSeriesSlugs.has(a.data.series));
+
+const allArticles = await getPublishedArticles();
+const companionArticles = featuredSeries
+  ? allArticles.filter((a) => a.data.tags.includes(featuredSeries.slug)).slice(0, 4)
+  : [];
+---
+
+<BaseLayout
+  title="HobFarm Presents: Illustrated Fiction and Recurring Story Worlds"
+  description="HobFarm Presents is HobFarm's fiction imprint for illustrated serials, short stories, character files, moving scenes, and recurring story worlds. Start with Other Alice Adventures."
+  canonical={departmentPath(department.slug)}
+  image={department.heroImage}
+  imageAlt="HobFarm Presents illustrated-fiction imprint mark."
+  feed={{ href: "/departments/hobfarm-presents/rss.xml", title: "HobFarm Presents" }}
+>
+  <section>
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        {/* 1 Imprint masthead */}
+        <FunniesHero
+          title="HobFarm Presents"
+          deck="Illustrated serials, short stories, character files, moving scenes, and worlds built to continue."
+          image={department.heroImage}
+          imageAlt="HobFarm Presents imprint mark."
+          eyebrow="HobFarm's fiction imprint"
+        />
+
+        <div class="mt-10 max-w-3xl space-y-4">
+          <p class="text-base leading-relaxed text-base-300 text-pretty">
+            HobFarm Presents is the fiction side of HobFarm. Stories arrive with images, video, field notes, character guides, maps, artifacts, and whatever else the world requires.
+          </p>
+          <p class="text-base leading-relaxed text-base-400 text-pretty">
+            The releases are built for readers who like pulp magazines, speculative fiction, surreal animation, unusual ecology, dark comedy, and stories that leave room for the image to carry part of the plot.
+          </p>
+          <p class="text-base leading-relaxed text-base-400 text-pretty">
+            Some releases are complete short stories. Others are Adventures inside a continuing serial. Each recurring world has its own entry point, character guide, visual language, and release feed.
+          </p>
+        </div>
+
+        {featuredSeries && (
+          <div class="mt-16 border-t border-base-800 pt-10">
+            <Text tag="h2" variant="displaySM" class="font-display text-white">Start here</Text>
+            <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
+              <div class="flex flex-col rounded-lg border border-base-800 bg-base-900/50 p-5">
+                <h3 class="font-display text-lg text-white">Meet Other Alice</h3>
+                <p class="mt-3 flex-1 text-sm leading-relaxed text-base-400">
+                  Alice fell into Wonderland at seven and stayed. At eighteen, she knows the living labyrinth well enough to recognize when something arrives from outside it.
+                </p>
+                <a href={characterPath("alice")} class="mt-5 font-mono text-[10px] uppercase tracking-wider text-accent-500 hover:text-white">
+                  Open the character guide &rarr;
+                </a>
+              </div>
+              {latestAdventure ? (
+                <div class="flex flex-col rounded-lg border border-base-800 bg-base-900/50 p-5">
+                  <h3 class="font-display text-lg text-white">Read Adventure No. {String(latestAdventure.data.number).padStart(2, "0")}</h3>
+                  <p class="mt-3 flex-1 text-sm leading-relaxed text-base-400">{latestAdventure.data.teaser}</p>
+                  <a href={adventurePath(latestAdventure)} class="mt-5 font-mono text-[10px] uppercase tracking-wider text-accent-500 hover:text-white">
+                    Read {latestAdventure.data.title} &rarr;
+                  </a>
+                </div>
+              ) : (
+                <div class="flex flex-col rounded-lg border border-dashed border-base-800 bg-base-950/40 p-5">
+                  <h3 class="font-display text-lg text-white">Read Adventure No. 01</h3>
+                  <p class="mt-3 text-sm leading-relaxed text-base-400">The opening Adventure is in editorial review.</p>
+                </div>
+              )}
+              <div class="flex flex-col rounded-lg border border-base-800 bg-base-900/50 p-5">
+                <h3 class="font-display text-lg text-white">Explore the world</h3>
+                <p class="mt-3 flex-1 text-sm leading-relaxed text-base-400">
+                  Enter Wonderland, the Wasteland, the four suits, the boundary mountains, and the unstable holes between them.
+                </p>
+                <a href={storySeriesPath(featuredSeries.slug)} class="mt-5 font-mono text-[10px] uppercase tracking-wider text-accent-500 hover:text-white">
+                  Explore Other Alice Adventures &rarr;
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* 2 + 3 Featured serial hero + latest adventure */}
+        {featuredSeries && (
+          <div class="mt-12 border-t border-base-800 pt-10">
+            <FunniesHero
+              title={featuredSeries.title}
+              deck="An original illustrated Alice in Wonderland reimagining about the Alice who stayed."
+              image={featuredSeries.cover}
+              imageAlt={featuredSeries.coverAlt ?? featuredSeries.title}
+              eyebrow="Featured Serial"
+            >
+              <Fragment slot="meta">
+                <p class="mt-4 max-w-2xl text-base leading-relaxed text-base-300 text-pretty">
+                  {featuredSeries.logline}
+                </p>
+
+                {latestAdventure && (
+                  <div class="mt-8 border-t border-base-800 pt-6">
+                    <p class="font-mono text-[10px] uppercase tracking-widest text-accent-500">
+                      Adventure No. {String(latestAdventure.data.number).padStart(2, "0")}
+                    </p>
+                    <h3 class="mt-2 font-display text-xl text-white">{latestAdventure.data.title}</h3>
+                    <p class="mt-3 max-w-xl text-sm leading-relaxed text-base-400">
+                      {latestAdventure.data.teaser}
+                    </p>
+                    <div class="mt-6 flex flex-wrap gap-3">
+                      <Button isLink size="base" variant="green" href={adventurePath(latestAdventure)}>
+                        Read Adventure No. {String(latestAdventure.data.number).padStart(2, "0")}
+                      </Button>
+                      <Button isLink size="base" variant="muted" href={storySeriesPath(featuredSeries.slug)}>
+                        Enter the series
+                      </Button>
+                    </div>
+                  </div>
+                )}
+              </Fragment>
+            </FunniesHero>
+          </div>
+        )}
+
+        {/* 4 Previous adventure covers, when they exist */}
+        {previousAdventures.length > 0 && (
+          <div class="mt-16 border-t border-base-800 pt-10">
+            <Text tag="h2" variant="displaySM" class="mb-6 font-display text-white">
+              Previous adventures
+            </Text>
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {previousAdventures.map((adventure) => <AdventureCard adventure={adventure} />)}
+            </div>
+          </div>
+        )}
+
+        {/* 5 Other active series, when they exist */}
+        {otherActiveSeries.length > 0 && (
+          <div class="mt-16 border-t border-base-800 pt-10">
+            <Text tag="h2" variant="displaySM" class="mb-6 font-display text-white">
+              Other series
+            </Text>
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {otherActiveSeries.map((series) => (
+                <a
+                  href={storySeriesPath(series.slug)}
+                  class="group flex flex-col overflow-hidden rounded-lg border border-base-800 bg-base-900/50 p-5 transition-colors hover:border-accent-500/50"
+                >
+                  <h3 class="font-display text-lg text-white">{series.title}</h3>
+                  <p class="mt-3 flex-1 text-sm leading-relaxed text-base-400">{series.tagline}</p>
+                  <span class="mt-5 font-mono text-[10px] uppercase tracking-wider text-base-400 group-hover:text-white">
+                    Enter the series &rarr;
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* 6 Other Tales, when standalone fiction exists */}
+        {standaloneTales.length > 0 && (
+          <div class="mt-16 border-t border-base-800 pt-10">
+            <Text tag="h2" variant="displaySM" class="mb-6 font-display text-white">
+              Other tales
+            </Text>
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {standaloneTales.map((adventure) => <AdventureCard adventure={adventure} />)}
+            </div>
+          </div>
+        )}
+
+        {/* 7 From the Magazine: companion articles */}
+        {companionArticles.length > 0 && (
+          <div class="mt-16 border-t border-base-800 pt-10">
+            <Text tag="h2" variant="displaySM" class="mb-6 font-display text-white">
+              From the magazine
+            </Text>
+            <div class="grid grid-cols-1 gap-x-4 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+              {companionArticles.map((post) => <ArticleCard post={post} />)}
+            </div>
+          </div>
+        )}
+
+        {/* 8 About HobFarm Presents */}
+        <div class="mt-16 border-t border-base-800 pt-10">
+          <Text tag="h2" variant="displaySM" class="mb-4 font-display text-white">
+            About HobFarm Presents
+          </Text>
+          <div class="max-w-3xl space-y-4">
+            <p class="text-base leading-relaxed text-base-400 text-pretty">
+              HobFarm Presents publishes illustrated short fiction, serial Adventures, animated scene loops, character guides, field notes, maps, artifacts, posters, covers, and visual supplements.
+            </p>
+            <p class="text-base leading-relaxed text-base-400 text-pretty">
+              The story remains the center. The extra media opens side doors.
+            </p>
+            <p class="text-sm leading-relaxed text-base-500 text-pretty">
+              HobFarm Presents publishes fiction for adults and older readers. Releases may include horror, vice, violence, altered states, sexuality, surreal biology, and difficult people making interesting decisions.
+            </p>
+          </div>
+        </div>
+      </Wrapper>
+    </ContentPanel>
+
+    {/* 9 Imprint subscription CTA */}
+    <Subscribe
+      heading="Follow HobFarm Presents"
+      description="Subscribe for new fiction, serial updates, character files, and illustrated releases from every recurring story world."
+    />
+  </section>
+</BaseLayout>

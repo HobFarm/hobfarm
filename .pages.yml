@@ -134,6 +134,105 @@ content:
       - { name: draft, label: Draft, type: boolean }
 
   # ---------------------
+  # ADVENTURES (HobFarm Presents)
+  # ---------------------
+  - name: adventures
+    label: Adventures (HobFarm Presents)
+    type: collection
+    path: src/content/adventures
+    filename: "{primary}.md"
+    view:
+      primary: title
+      fields: [title, series, number, date, status]
+      sort: [number]
+      default:
+        sort: number
+        order: asc
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - name: series
+        label: Series
+        type: select
+        required: true
+        options: [other-alice-adventures]
+      - { name: number, label: Adventure Number, type: number, required: true }
+      - { name: teaser, label: Teaser, type: text, required: true }
+      - { name: summary, label: Summary, type: text }
+      - name: department
+        label: Department
+        type: select
+        options: [magazine-time-machine, wtfacts, satire, picture-stories, funnies, cute-corrupted, before-after-eras, critter-feed, hobfarm-presents, workshop-notes, essays-arguments]
+      - name: region
+        label: Region
+        type: select
+        options: [Wonderland, the Wasteland, the holes between]
+      - { name: cover, label: Cover Image URL, type: string, required: true }
+      - { name: coverAlt, label: Cover Alt Text, type: string }
+      - name: heroMedia
+        label: Hero Media
+        type: object
+        fields:
+          - name: type
+            label: Type
+            type: select
+            options: [image, video]
+          - { name: file, label: File, type: string }
+          - { name: alt, label: Alt text, type: string }
+          - { name: poster, label: Poster file (video only), type: string }
+      - { name: mediaBadges, label: Media Badges, type: string, list: true }
+      - name: mediaSections
+        label: Media Sections
+        type: object
+        list: true
+        fields:
+          - { name: title, label: Title, type: string }
+          - { name: text, label: Text, type: text }
+          - name: media
+            label: Media
+            type: object
+            list: true
+            fields:
+              - { name: type, label: Type, type: select, options: [image, video] }
+              - { name: file, label: File, type: string }
+              - { name: alt, label: Alt text, type: string }
+              - { name: caption, label: Caption, type: string }
+              - { name: poster, label: Poster file (video only), type: string }
+      - name: fieldNotes
+        label: Field Notes / Artifacts
+        type: object
+        list: true
+        fields:
+          - { name: label, label: Label, type: string }
+          - { name: text, label: Text, type: text }
+      - name: credits
+        label: Credits
+        type: object
+        list: true
+        fields:
+          - { name: name, label: Name, type: string }
+          - { name: role, label: Role, type: string }
+      - { name: relatedArticle, label: Related Article URL, type: string }
+      - { name: relatedArticleTitle, label: Related Article Title, type: string }
+      - { name: relatedGallery, label: Related Gallery URL, type: string }
+      - { name: relatedGalleryTitle, label: Related Gallery Title, type: string }
+      - name: nextAdventureTeaser
+        label: Next Adventure Teaser
+        type: object
+        fields:
+          - { name: number, label: Adventure Number, type: number }
+          - { name: title, label: Title, type: string }
+          - { name: summary, label: Summary, type: text }
+          - { name: status, label: Status Label, type: string }
+      - { name: tags, label: Tags, type: string, list: true }
+      - { name: date, label: Date, type: date, required: true }
+      - name: status
+        label: Status
+        type: select
+        options: [draft, scheduled, published, archived]
+      - { name: draft, label: Draft, type: boolean }
+      - { name: body, label: Body, type: rich-text }
+
+  # ---------------------
   # PRODUCTS / DROPS
   # ---------------------
   - name: products

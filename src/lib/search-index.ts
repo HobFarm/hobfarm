@@ -1,11 +1,32 @@
 import { getCollection } from "astro:content";
-import { getArticleDate, getArticleDescription, getPublishedArticles } from "@/lib/articles";
+import {
+  getArticleDate,
+  getArticleDescription,
+  getPublishedArticles,
+} from "@/lib/articles";
 import { comicPath, getComicDate, getPublishedComics } from "@/lib/comics";
+import {
+  adventurePath,
+  getAdventureDate,
+  getPublishedAdventures,
+} from "@/lib/adventures";
 import { galleryTypeLabels, type GalleryType } from "@/lib/gallery";
 import { resolveDepartment } from "@/data/departments";
+import { characters, characterPath } from "@/data/characters";
+import { storySeries, storySeriesPath } from "@/data/story-series";
 
 export type SearchItem = {
-  type: "article" | "comic" | "project" | "gallery" | "grimoire" | "help" | "changelog";
+  type:
+    | "article"
+    | "comic"
+    | "adventure"
+    | "series"
+    | "character"
+    | "project"
+    | "gallery"
+    | "grimoire"
+    | "help"
+    | "changelog";
   title: string;
   description: string;
   href: string;
@@ -23,9 +44,12 @@ function buildGalleryNotes(data: any): string {
   if (data.concept?.thesis) parts.push(data.concept.thesis);
   if (data.concept?.method) parts.push(data.concept.method);
   if (data.concept?.reusablePattern) parts.push(data.concept.reusablePattern);
-  if (Array.isArray(data.concept?.seedInputs)) parts.push(...data.concept.seedInputs);
-  if (Array.isArray(data.concept?.growthStages)) parts.push(...data.concept.growthStages);
-  if (Array.isArray(data.concept?.usefulFor)) parts.push(...data.concept.usefulFor);
+  if (Array.isArray(data.concept?.seedInputs))
+    parts.push(...data.concept.seedInputs);
+  if (Array.isArray(data.concept?.growthStages))
+    parts.push(...data.concept.growthStages);
+  if (Array.isArray(data.concept?.usefulFor))
+    parts.push(...data.concept.usefulFor);
   if (Array.isArray(data.methods)) parts.push(...data.methods);
   if (Array.isArray(data.visualDNA)) {
     for (const v of data.visualDNA) parts.push(`${v.label}: ${v.value}`);
@@ -92,25 +116,102 @@ function buildGalleryNotes(data: any): string {
 }
 
 export async function buildSearchIndex(): Promise<SearchItem[]> {
-  const articleItems: SearchItem[] = (await getPublishedArticles()).map((post) => ({
-    type: "article",
-    title: post.data.title,
-    description: getArticleDescription(post.data),
-    href: `/articles/${stripExt(post.id)}`,
-    tags: post.data.tags,
-    category: resolveDepartment(post.data.department ?? post.data.category),
-    date: getArticleDate(post).toISOString(),
-  }));
+  const articleItems: SearchItem[] = (await getPublishedArticles()).map(
+    (post) => ({
+      type: "article",
+      title: post.data.title,
+      description: getArticleDescription(post.data),
+      href: `/articles/${stripExt(post.id)}`,
+      tags: post.data.tags,
+      category: resolveDepartment(post.data.department ?? post.data.category),
+      date: getArticleDate(post).toISOString(),
+    }),
+  );
 
-  const comicItems: SearchItem[] = (await getPublishedComics()).map((comic) => ({
-    type: "comic",
-    title: comic.data.title,
-    description:
-      comic.data.caption ?? comic.data.socialCaption ?? "A published comic from HobFarm Funnies.",
-    href: comicPath(comic),
-    tags: comic.data.tags,
-    category: resolveDepartment(comic.data.department),
-    date: getComicDate(comic).toISOString(),
+  const comicItems: SearchItem[] = (await getPublishedComics()).map(
+    (comic) => ({
+      type: "comic",
+      title: comic.data.title,
+      description:
+        comic.data.caption ??
+        comic.data.socialCaption ??
+        "A published comic from HobFarm Funnies.",
+      href: comicPath(comic),
+      tags: comic.data.tags,
+      category: resolveDepartment(comic.data.department),
+      date: getComicDate(comic).toISOString(),
+    }),
+  );
+
+  const adventureItems: SearchItem[] = (await getPublishedAdventures()).map(
+    (adventure) => ({
+      type: "adventure",
+      title: adventure.data.title,
+      description: adventure.data.summary ?? adventure.data.teaser,
+      href: adventurePath(adventure),
+      tags: adventure.data.tags,
+      category: "HobFarm Presents",
+      date: getAdventureDate(adventure).toISOString(),
+      notes: [
+        `Adventure No. ${String(adventure.data.number).padStart(2, "0")}`,
+        adventure.data.series,
+        adventure.data.region,
+      ]
+        .filter(Boolean)
+        .join(" · "),
+    }),
+  );
+
+  const seriesItems: SearchItem[] = storySeries
+    .filter((series) => series.status === "active")
+    .map((series) => ({
+      type: "series",
+      title: series.title,
+      description: series.metaDescription ?? series.logline,
+      href: storySeriesPath(series.slug),
+      tags: [
+        "illustrated serial",
+        "Alice in Wonderland",
+        "Wonderland",
+        "Wasteland",
+      ],
+      category: "HobFarm Presents",
+      notes: [
+        series.tagline,
+        ...(series.heroIntro ?? []),
+        ...(series.explainer?.paragraphs ?? []),
+        ...(series.worldAtlas?.intro ?? []),
+        ...(series.worldAtlas?.concepts ?? []).flatMap((concept) => [
+          concept.title,
+          concept.realm,
+          concept.description,
+        ]),
+        ...(series.residents?.entries ?? []).flatMap((resident) => [
+          resident.name,
+          resident.role,
+          ...resident.summary,
+        ]),
+        ...(series.faq ?? []).flatMap((item) => [item.question, item.answer]),
+      ].join(" · "),
+    }));
+
+  const characterItems: SearchItem[] = characters.map((character) => ({
+    type: "character",
+    title: character.displayName ?? character.name,
+    description: character.metaDescription ?? character.bio,
+    href: characterPath(character.slug),
+    tags: character.traits,
+    category: character.role,
+    notes: [
+      character.name,
+      character.blurb,
+      ...(character.guideIntro ?? []),
+      ...(character.guideSections ?? []).flatMap((section) => [
+        section.title,
+        ...(section.paragraphs ?? []),
+        ...(section.bullets ?? []),
+      ]),
+    ].join(" · "),
   }));
 
   const projectHrefOverrides: Record<string, string> = {
@@ -118,17 +219,19 @@ export async function buildSearchIndex(): Promise<SearchItem[]> {
     courses: "/academy/",
     grimoire: "/grimoire/",
   };
-  const projectItems: SearchItem[] = (await getCollection("projects")).map((project) => {
-    const slug = stripExt(project.id);
-    return {
-      type: "project",
-      title: project.data.title,
-      description: project.data.description,
-      href: projectHrefOverrides[slug] ?? `/projects/${slug}`,
-      category: project.data.category,
-      date: toISO(project.data.pubDate),
-    };
-  });
+  const projectItems: SearchItem[] = (await getCollection("projects")).map(
+    (project) => {
+      const slug = stripExt(project.id);
+      return {
+        type: "project",
+        title: project.data.title,
+        description: project.data.description,
+        href: projectHrefOverrides[slug] ?? `/projects/${slug}`,
+        category: project.data.category,
+        date: toISO(project.data.pubDate),
+      };
+    },
+  );
 
   const servicesItem: SearchItem = {
     type: "project",
@@ -163,33 +266,40 @@ export async function buildSearchIndex(): Promise<SearchItem[]> {
       date: toISO(entry.data.date),
     }));
 
-  const helpItems: SearchItem[] = (await getCollection("help")).map((entry) => ({
-    type: "help",
-    title: entry.data.title,
-    description: entry.data.description,
-    href: `/helpcenter/${stripExt(entry.id)}`,
-    category: entry.data.section,
-    date: toISO(entry.data.publishedAt),
-  }));
-
-  const changelogItems: SearchItem[] = (await getCollection("changelog")).map((entry) => {
-    const parts: string[] = [];
-    if (entry.data.project) parts.push(entry.data.project);
-    if (entry.data.version) parts.push(`v${entry.data.version}`);
-    return {
-      type: "changelog",
+  const helpItems: SearchItem[] = (await getCollection("help")).map(
+    (entry) => ({
+      type: "help",
       title: entry.data.title,
-      description: parts.length ? parts.join(" · ") : "",
-      href: `/changelog/${stripExt(entry.id)}`,
-      tags: entry.data.tags,
-      category: entry.data.project,
+      description: entry.data.description,
+      href: `/helpcenter/${stripExt(entry.id)}`,
+      category: entry.data.section,
       date: toISO(entry.data.publishedAt),
-    };
-  });
+    }),
+  );
+
+  const changelogItems: SearchItem[] = (await getCollection("changelog")).map(
+    (entry) => {
+      const parts: string[] = [];
+      if (entry.data.project) parts.push(entry.data.project);
+      if (entry.data.version) parts.push(`v${entry.data.version}`);
+      return {
+        type: "changelog",
+        title: entry.data.title,
+        description: parts.length ? parts.join(" · ") : "",
+        href: `/changelog/${stripExt(entry.id)}`,
+        tags: entry.data.tags,
+        category: entry.data.project,
+        date: toISO(entry.data.publishedAt),
+      };
+    },
+  );
 
   return [
     ...articleItems,
     ...comicItems,
+    ...adventureItems,
+    ...seriesItems,
+    ...characterItems,
     ...projectItems,
     servicesItem,
     ...galleryItems,

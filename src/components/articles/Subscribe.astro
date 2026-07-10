@@ -1,5 +1,15 @@
 ---
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
+interface Props {
+  heading?: string;
+  description?: string;
+}
+
+const {
+  heading = "Get new articles and visual notes",
+  description = "Subscribe for new HobFarm features, gallery notes, studio updates, and work-in-progress dispatches.",
+} = Astro.props;
 ---
 
 <section>
@@ -14,10 +24,10 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
       <h2
         class="mt-12 text-3xl lg:text-4xl text-base-100 text-balance font-display"
       >
-        Get new articles and visual notes
+        {heading}
       </h2>
       <p class="text-base-300 mt-2 text-balance leading-relaxed">
-        Subscribe for new HobFarm features, gallery notes, studio updates, and work-in-progress dispatches.
+        {description}
       </p>
 
       <div data-success hidden class="mt-12">

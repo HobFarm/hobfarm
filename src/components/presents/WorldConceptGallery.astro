@@ -1,0 +1,104 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+import type { WorldConcept } from "@/data/story-series";
+
+interface Props {
+  heading: string;
+  intro: string[];
+  concepts: WorldConcept[];
+}
+
+const { heading, intro, concepts } = Astro.props;
+const [overview, ...regions] = concepts;
+---
+
+{overview && (
+  <section id="world-atlas" class="mt-16 border-t border-base-800 pt-10" aria-labelledby="world-atlas-heading">
+    <header class="max-w-3xl">
+      <p class="font-mono text-[10px] uppercase tracking-[0.24em] text-accent-500">
+        Illustrated world atlas
+      </p>
+      <Text id="world-atlas-heading" tag="h2" variant="displaySM" class="mt-3 font-display text-white">
+        {heading}
+      </Text>
+      <div class="mt-5 space-y-4">
+        {intro.map((paragraph) => (
+          <p class="text-base leading-relaxed text-base-300 text-pretty">{paragraph}</p>
+        ))}
+      </div>
+    </header>
+
+    <figure
+      id={overview.id}
+      class="mt-9 scroll-mt-24 overflow-hidden border border-base-700 bg-base-950 shadow-[0_28px_80px_rgba(0,0,0,0.28)]"
+    >
+      <a
+        href={overview.image}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group block border-b border-base-800 bg-[#090b0c] p-2 sm:p-3"
+        aria-label={`Open the full ${overview.title} concept image`}
+      >
+        <img
+          src={overview.image}
+          alt={overview.imageAlt}
+          width={overview.width}
+          height={overview.height}
+          loading="lazy"
+          decoding="async"
+          class="h-auto w-full opacity-95 transition-opacity duration-300 group-hover:opacity-100"
+        />
+      </a>
+      <figcaption class="grid gap-4 p-5 sm:p-7 lg:grid-cols-[minmax(0,0.34fr)_minmax(0,0.66fr)] lg:gap-10">
+        <div>
+          <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-500">{overview.realm}</p>
+          <h3 class="mt-2 font-display text-xl text-[#eee7d6]">{overview.title}</h3>
+        </div>
+        <p class="text-sm leading-relaxed text-base-300">{overview.description}</p>
+      </figcaption>
+    </figure>
+
+    <div class="mt-8 space-y-8 sm:mt-12 sm:space-y-12">
+      {regions.map((concept, index) => (
+        <article
+          id={concept.id}
+          class="grid scroll-mt-24 overflow-hidden border-y border-base-800 bg-base-950/45 lg:grid-cols-[minmax(0,1.18fr)_minmax(280px,0.82fr)] lg:items-center"
+        >
+          <a
+            href={concept.image}
+            target="_blank"
+            rel="noopener noreferrer"
+            class:list={[
+              "group block bg-[#090b0c] p-2 sm:p-3",
+              index % 2 === 1 && "lg:order-2",
+            ]}
+            aria-label={`Open the full ${concept.title} concept image`}
+          >
+            <img
+              src={concept.image}
+              alt={concept.imageAlt}
+              width={concept.width}
+              height={concept.height}
+              loading="lazy"
+              decoding="async"
+              class="mx-auto h-auto max-h-[860px] w-full object-contain opacity-95 transition-opacity duration-300 group-hover:opacity-100"
+            />
+          </a>
+          <div class:list={["p-6 sm:p-8 lg:p-10", index % 2 === 1 && "lg:order-1"]}>
+            <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-500">{concept.realm}</p>
+            <h3 class="mt-3 font-display text-2xl text-[#eee7d6]">{concept.title}</h3>
+            <p class="mt-5 text-base leading-relaxed text-base-300 text-pretty">{concept.description}</p>
+            <a
+              href={concept.image}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-6 inline-flex font-mono text-[10px] uppercase tracking-widest text-base-500 transition-colors hover:text-white"
+            >
+              Open full plate &nearr;
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+)}

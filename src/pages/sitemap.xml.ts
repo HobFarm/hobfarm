@@ -1,13 +1,23 @@
 import {
   absoluteUrl,
+  adventureToAgentLink,
+  characterToAgentLink,
   formatDate,
+  getPublicAgentAdventures,
   getPublicAgentArticles,
+  getPublicAgentCharacters,
   getPublicAgentGalleryEntries,
   getPublicAgentGrimoireEntries,
   getPublicAgentProjects,
+  getPublicAgentStorySeries,
   projectPublicPath,
+  storySeriesToAgentLink,
 } from "@/lib/agent-corpus";
-import { articlePath, getArticleDate, getArticleUpdatedDate } from "@/lib/articles";
+import {
+  articlePath,
+  getArticleDate,
+  getArticleUpdatedDate,
+} from "@/lib/articles";
 
 type SitemapEntry = {
   loc: string;
@@ -21,6 +31,11 @@ const staticEntries: SitemapEntry[] = [
   { loc: absoluteUrl("/about/"), changefreq: "monthly", priority: "0.7" },
   { loc: absoluteUrl("/articles/"), changefreq: "daily", priority: "0.9" },
   { loc: absoluteUrl("/gallery/"), changefreq: "weekly", priority: "0.9" },
+  {
+    loc: absoluteUrl("/departments/hobfarm-presents/"),
+    changefreq: "weekly",
+    priority: "0.9",
+  },
   { loc: absoluteUrl("/projects/"), changefreq: "monthly", priority: "0.8" },
   { loc: absoluteUrl("/workshop/"), changefreq: "weekly", priority: "0.8" },
   { loc: absoluteUrl("/academy/"), changefreq: "monthly", priority: "0.7" },
@@ -28,15 +43,35 @@ const staticEntries: SitemapEntry[] = [
   { loc: absoluteUrl("/support/"), changefreq: "monthly", priority: "0.5" },
   { loc: absoluteUrl("/contact/"), changefreq: "yearly", priority: "0.4" },
   { loc: absoluteUrl("/grimoire/"), changefreq: "monthly", priority: "0.7" },
-  { loc: absoluteUrl("/visual-systems/"), changefreq: "monthly", priority: "0.7" },
+  {
+    loc: absoluteUrl("/visual-systems/"),
+    changefreq: "monthly",
+    priority: "0.7",
+  },
   { loc: absoluteUrl("/services/"), changefreq: "monthly", priority: "0.5" },
   { loc: absoluteUrl("/legal/usage/"), changefreq: "yearly", priority: "0.3" },
-  { loc: absoluteUrl("/legal/privacy/"), changefreq: "yearly", priority: "0.3" },
+  {
+    loc: absoluteUrl("/legal/privacy/"),
+    changefreq: "yearly",
+    priority: "0.3",
+  },
   { loc: absoluteUrl("/legal/terms/"), changefreq: "yearly", priority: "0.3" },
-  { loc: absoluteUrl("/legal/refunds/"), changefreq: "yearly", priority: "0.3" },
-  { loc: absoluteUrl("/legal/cookies/"), changefreq: "yearly", priority: "0.3" },
+  {
+    loc: absoluteUrl("/legal/refunds/"),
+    changefreq: "yearly",
+    priority: "0.3",
+  },
+  {
+    loc: absoluteUrl("/legal/cookies/"),
+    changefreq: "yearly",
+    priority: "0.3",
+  },
   { loc: absoluteUrl("/legal/dpa/"), changefreq: "yearly", priority: "0.3" },
-  { loc: absoluteUrl("/legal/bug-bounty/"), changefreq: "yearly", priority: "0.3" },
+  {
+    loc: absoluteUrl("/legal/bug-bounty/"),
+    changefreq: "yearly",
+    priority: "0.3",
+  },
 ];
 
 const escapeXml = (value: string): string =>
@@ -61,19 +96,39 @@ function urlEntry(entry: SitemapEntry): string {
 }
 
 export async function GET() {
-  const [articles, galleryEntries, projects, grimoireEntries] = await Promise.all([
-    getPublicAgentArticles(),
-    getPublicAgentGalleryEntries(),
-    getPublicAgentProjects(),
-    getPublicAgentGrimoireEntries(),
-  ]);
+  const [articles, adventures, galleryEntries, projects, grimoireEntries] =
+    await Promise.all([
+      getPublicAgentArticles(),
+      getPublicAgentAdventures(),
+      getPublicAgentGalleryEntries(),
+      getPublicAgentProjects(),
+      getPublicAgentGrimoireEntries(),
+    ]);
 
   const dynamicEntries: SitemapEntry[] = [
     ...articles.map((article) => ({
       loc: absoluteUrl(`${articlePath(article)}/`),
-      lastmod: formatDate(getArticleUpdatedDate(article) ?? getArticleDate(article)),
+      lastmod: formatDate(
+        getArticleUpdatedDate(article) ?? getArticleDate(article),
+      ),
       changefreq: "monthly" as const,
       priority: "0.8",
+    })),
+    ...getPublicAgentStorySeries().map((series) => ({
+      loc: storySeriesToAgentLink(series).url,
+      changefreq: "weekly" as const,
+      priority: "0.9",
+    })),
+    ...adventures.map((adventure) => ({
+      loc: adventureToAgentLink(adventure).url,
+      lastmod: formatDate(adventure.data.date),
+      changefreq: "monthly" as const,
+      priority: "0.8",
+    })),
+    ...getPublicAgentCharacters().map((character) => ({
+      loc: characterToAgentLink(character).url,
+      changefreq: "monthly" as const,
+      priority: "0.7",
     })),
     ...galleryEntries.map((entry) => ({
       loc: absoluteUrl(`/gallery/${entry.id.replace(/\.(md|mdx)$/, "")}/`),
@@ -110,7 +165,8 @@ export async function GET() {
   return new Response(body, {
     headers: {
       "Content-Type": "application/xml; charset=utf-8",
-      "Cache-Control": "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400",
+      "Cache-Control":
+        "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400",
       "X-Content-Type-Options": "nosniff",
     },
   });

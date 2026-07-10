@@ -17,6 +17,8 @@ const MARKDOWN_PREFIXES = [
   "/academy/",
   "/grimoire/",
   "/legal/usage/",
+  "/departments/hobfarm-presents/",
+  "/characters/",
 ];
 
 const DISCOVERY_LINKS = [
@@ -26,7 +28,9 @@ const DISCOVERY_LINKS = [
 ].join(", ");
 
 function isPrivatePath(pathname: string): boolean {
-  return PRIVATE_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(prefix));
+  return PRIVATE_PREFIXES.some(
+    (prefix) => pathname === prefix || pathname.startsWith(prefix),
+  );
 }
 
 function hasFileExtension(pathname: string): boolean {
@@ -42,8 +46,11 @@ function acceptsMarkdown(request: Request): boolean {
 function markdownAssetPath(pathname: string): string | null {
   if (hasFileExtension(pathname) || isPrivatePath(pathname)) return null;
 
-  const normalized = pathname === "/" ? "/" : pathname.endsWith("/") ? pathname : `${pathname}/`;
-  const allowed = MARKDOWN_PREFIXES.some((prefix) => normalized === prefix || normalized.startsWith(prefix));
+  const normalized =
+    pathname === "/" ? "/" : pathname.endsWith("/") ? pathname : `${pathname}/`;
+  const allowed = MARKDOWN_PREFIXES.some(
+    (prefix) => normalized === prefix || normalized.startsWith(prefix),
+  );
   if (!allowed) return null;
 
   return normalized === "/" ? "/index.md" : `${normalized}index.md`;
@@ -74,7 +81,8 @@ export const onRequest: PagesFunction<Env> = async (context) => {
     statusText: assetResponse.statusText,
     headers: {
       "Content-Type": "text/markdown; charset=utf-8",
-      "Cache-Control": "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400",
+      "Cache-Control":
+        "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400",
       "Content-Signal": "ai-train=no, search=yes, ai-input=yes",
       Link: DISCOVERY_LINKS,
       "Vary": "Accept",

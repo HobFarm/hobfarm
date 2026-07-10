@@ -14,13 +14,16 @@ import {
 } from "@/data/departments";
 import { getArticleDepartment, getPublishedArticles } from "@/lib/articles";
 import { getPublishedComics } from "@/lib/comics";
+import { getPublishedAdventures } from "@/lib/adventures";
 
-// Count published articles + non-draft gallery entries + published comics filed
-// to each department, so the hub shows how full each section is. Only
-// hub-visible (active) departments are rendered; planned ones stay routable.
+// Count published articles + non-draft gallery entries + published comics +
+// published adventures filed to each department, so the hub shows how full
+// each section is. Only hub-visible (active) departments are rendered;
+// planned ones stay routable.
 const articles = await getPublishedArticles();
 const visuals = (await getCollection("gallery")).filter((e) => !e.data.draft);
 const comics = await getPublishedComics();
+const adventures = await getPublishedAdventures();
 
 const counts = new Map<string, number>(departments.map((d) => [d.slug, 0]));
 const bump = (slug: string | undefined) => {
@@ -30,6 +33,7 @@ for (const a of articles) bump(getArticleDepartment(a.data));
 for (const g of visuals)
   bump(resolveDepartment(g.data.department ?? galleryTypeToDepartment[g.data.type]));
 for (const c of comics) bump(resolveDepartment(c.data.department));
+for (const s of adventures) bump(resolveDepartment(s.data.department));
 
 const departmentDescription =
   "The recurring sections of HobFarm: cartoons, humor, visual experiments, old-media archaeology, production notes, arguments, videos, and mildly interesting projects.";
@@ -88,10 +92,10 @@ const departmentDescription =
                   <p class="mt-3 flex-1 text-sm leading-relaxed text-base-400">{dep.blurb}</p>
                   <div class="mt-5 flex items-center justify-between">
                     <span class="font-mono text-[10px] uppercase tracking-widest text-base-500">
-                      {count} {count === 1 ? "entry" : "entries"}
+                      {count} {dep.countNoun ? (count === 1 ? dep.countNoun : `${dep.countNoun}s`) : (count === 1 ? "entry" : "entries")}
                     </span>
                     <span class="font-mono text-[10px] uppercase tracking-wider text-base-400 group-hover:text-white">
-                      Open &rarr;
+                      {dep.actionLabel ?? "Open →"}
                     </span>
                   </div>
                 </div>
