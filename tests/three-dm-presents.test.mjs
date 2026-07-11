@@ -160,3 +160,23 @@ test("the McLuhan feature connects experimental television to the feed with R2 m
   assert.doesNotMatch(feature, /—/);
   assert.match(combined, /The medium ate the schedule/);
 });
+
+test("the Broadway Babies feature documents the pre-crash musical and its Miller route", () => {
+  const feature = read("src/content/articles/3dm/broadway-babies.md");
+  const layout = read("src/layouts/ThreeDMEntryLayout.astro");
+
+  assert.match(feature, /title: "Broadway Babies: The Last Summer Before the Money Vanished"/);
+  assert.match(feature, /degreeCount: 3/);
+  assert.match(feature, /Sally Eilers[\s\S]*Bela Lugosi[\s\S]*Boris Karloff[\s\S]*Dick Miller/);
+  assert.match(feature, /Sixteen hours is not a workday/);
+  assert.match(feature, /The Broadway Babies are gone/);
+  assert.match(feature, /dick-miller-the-terror\.jpg/);
+  assert.match(feature, /archive\.org\/embed\/musicals_202210/);
+  assert.match(feature, /1933-the-year-warner-bros-built-a-world/);
+  assert.match(feature, /the-mouse-in-the-cat-musical/);
+  assert.equal((feature.match(/https:\/\/cdn\.hob\.farm\/3dm\/broadway-babies\//g) ?? []).length, 7);
+  assert.equal((feature.match(/ loading="lazy"/g) ?? []).length, 7);
+  assert.equal((feature.match(/ alt="/g) ?? []).length, 6);
+  assert.match(layout, /article-archive-embed/);
+  assert.doesNotMatch(feature, /—/);
+});
