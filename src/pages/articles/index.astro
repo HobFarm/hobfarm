@@ -15,6 +15,7 @@ import {
   getPublishedArticles,
 } from "@/lib/articles";
 import { departmentFilters, departmentPath } from "@/data/departments";
+import { THREE_DM_LOGO } from "@/data/presents-titles";
 
 const allPosts = await getPublishedArticles();
 const tagCounts = getArticleTagCounts(allPosts);
@@ -23,7 +24,8 @@ const tagCounts = getArticleTagCounts(allPosts);
 const coverStory = allPosts[0];
 const latest = allPosts.slice(1, 10);
 const coverDate = coverStory ? getArticleDate(coverStory) : null;
-const coverHero = coverStory ? getArticleHero(coverStory.data) : undefined;
+const coverPreservesArtwork = coverStory?.data.presentsSeries === "3dm";
+const coverHero = coverStory ? (coverPreservesArtwork ? THREE_DM_LOGO : getArticleHero(coverStory.data)) : undefined;
 ---
 
 <BaseLayout
@@ -94,7 +96,7 @@ const coverHero = coverStory ? getArticleHero(coverStory.data) : undefined;
                   <img
                     src={coverHero}
                     alt={coverStory.data.heroAlt || coverStory.data.title}
-                    class="aspect-video h-full w-full object-cover"
+                    class:list={["aspect-video h-full w-full", coverPreservesArtwork ? "bg-[#07101b] object-contain p-4" : "object-cover"]}
                     loading="eager"
                     decoding="async"
                   />

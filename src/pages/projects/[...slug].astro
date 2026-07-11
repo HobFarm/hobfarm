@@ -45,7 +45,7 @@ export async function getStaticPaths() {
   // Slugs in this list are skipped from static generation so a public/_redirects
   // rule can take over. These project entries were promoted to top-level pages
   // (/shop/, /academy/, /grimoire/); the .md files stay as the data source.
-  const redirectedSlugs: string[] = ["shop", "courses", "grimoire"];
+  const redirectedSlugs: string[] = ["shop", "courses", "grimoire", "hobfarm-tv/3-degrees-of-dick-miller"];
   const projects = await getCollection("projects");
   return projects
     .filter((project) => !redirectedSlugs.includes(project.id.replace(/\.md$/, "")))

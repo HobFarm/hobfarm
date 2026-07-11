@@ -13,7 +13,7 @@ export async function GET() {
   return markdownResponse(
     await buildSectionLlms(
       "HobFarm Workshop",
-      "Public process notes, production methods, systems, tests, failures, and build notes.",
+      "Character development, visual-language design, production methods, camera and motion studies, systems, tests, failures, and build notes.",
       notes.map(articleToAgentLink),
     ),
   );

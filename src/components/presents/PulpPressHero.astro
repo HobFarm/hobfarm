@@ -1,0 +1,242 @@
+---
+import { imageSrcset, transformImageUrl } from "@/lib/media-transforms";
+
+interface Props {
+  mastheadImage: string;
+  cover: string;
+  coverAlt: string;
+  title: string;
+  deck: string;
+  issueLabel?: string;
+  primaryHref: string;
+  primaryLabel: string;
+  secondaryHref: string;
+  secondaryLabel: string;
+  contents?: string;
+  coverLabel?: string;
+  coverFit?: "cover" | "contain";
+}
+
+const {
+  mastheadImage,
+  cover,
+  coverAlt,
+  title,
+  deck,
+  issueLabel = "Vol. 01 / Fiction & moving pictures",
+  primaryHref,
+  primaryLabel,
+  secondaryHref,
+  secondaryLabel,
+  contents = "Illustrated fiction · film history · video essays · character files",
+  coverLabel = "Current title",
+  coverFit = "cover",
+} = Astro.props;
+
+const coverSrc = transformImageUrl(cover, { width: 1200, quality: 88, fit: coverFit });
+const coverSrcset = imageSrcset(cover, [640, 900, 1200, 1600], { quality: 88, fit: coverFit });
+---
+
+<section class="press-hero" aria-labelledby="press-hero-title">
+  <div class="press-hero__copy">
+    <div class="press-hero__masthead">
+      <img src={mastheadImage} alt="HobFarm Presents" width="720" height="270" decoding="async" />
+    </div>
+    <p class="press-hero__issue">{issueLabel}</p>
+    <h1 id="press-hero-title">{title}</h1>
+    <p class="press-hero__deck">{deck}</p>
+    <div class="press-hero__actions">
+      <a class="press-hero__primary" href={primaryHref}>{primaryLabel}</a>
+      <a class="press-hero__secondary" href={secondaryHref}>{secondaryLabel}</a>
+    </div>
+    <p class="press-hero__contents">{contents}</p>
+  </div>
+
+  <a href={primaryHref} class:list={["press-hero__cover", coverFit === "contain" && "press-hero__cover--contain"]} aria-label={primaryLabel}>
+    <img
+      src={coverSrc}
+      srcset={coverSrcset}
+      sizes="(min-width: 1024px) 48vw, 100vw"
+      alt={coverAlt}
+      width="1200"
+      height="1500"
+      decoding="async"
+      fetchpriority="high"
+    />
+    <span class="press-hero__cover-label">{coverLabel}</span>
+  </a>
+</section>
+
+<style>
+  .press-hero {
+    display: grid;
+    min-height: min(760px, calc(100svh - 5rem));
+    overflow: hidden;
+    border: 1px solid #433559;
+    background: #100b18;
+    box-shadow: 0 28px 80px rgb(0 0 0 / 38%);
+  }
+
+  .press-hero__copy {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(1.5rem, 5vw, 5rem);
+    border-bottom: 1px solid #433559;
+  }
+
+  .press-hero__masthead {
+    width: min(30rem, 82%);
+    padding-bottom: 1rem;
+    border-bottom: 4px solid #f0c96b;
+  }
+
+  .press-hero__masthead img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .press-hero__issue,
+  .press-hero__contents {
+    margin: 1rem 0 0;
+    color: #f0c96b;
+    font-family: var(--font-mono);
+    font-size: 0.67rem;
+    letter-spacing: 0.18em;
+    line-height: 1.45;
+    text-transform: uppercase;
+  }
+
+  .press-hero h1 {
+    max-width: 11ch;
+    margin: 0.75rem 0 0;
+    color: #f5f0df;
+    font-family: var(--font-display);
+    font-size: clamp(3.25rem, 9vw, 7.6rem);
+    font-weight: 820;
+    letter-spacing: -0.075em;
+    line-height: 0.82;
+    text-transform: uppercase;
+  }
+
+  .press-hero__deck {
+    max-width: 38rem;
+    margin: 1.5rem 0 0;
+    color: #d8d4e4;
+    font-size: clamp(1rem, 1.5vw, 1.22rem);
+    line-height: 1.62;
+  }
+
+  .press-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .press-hero__actions a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.85rem;
+    padding: 0.7rem 1rem;
+    border: 1px solid #6b6580;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .press-hero__primary {
+    border-color: #f0c96b !important;
+    background: #f0c96b;
+    color: #120d19;
+  }
+
+  .press-hero__primary:hover,
+  .press-hero__primary:focus-visible {
+    background: #fff2b5;
+  }
+
+  .press-hero__secondary {
+    color: #ece9f5;
+  }
+
+  .press-hero__secondary:hover,
+  .press-hero__secondary:focus-visible {
+    border-color: #ece9f5;
+  }
+
+  .press-hero__contents {
+    margin-top: 2rem;
+    color: #9b96ad;
+  }
+
+  .press-hero__cover {
+    position: relative;
+    display: block;
+    min-height: 33rem;
+    overflow: hidden;
+    background: #08060b;
+  }
+
+  .press-hero__cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 700ms cubic-bezier(.2,.8,.2,1), filter 300ms ease;
+  }
+
+  .press-hero__cover--contain img {
+    padding: clamp(1rem, 3vw, 2.5rem);
+    object-fit: contain;
+  }
+
+  .press-hero__cover:hover img {
+    transform: scale(1.025);
+    filter: saturate(1.08);
+  }
+
+  .press-hero__cover-label {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    padding: 0.55rem 0.7rem;
+    border: 1px solid #f0c96b;
+    background: #100b18;
+    color: #f0c96b;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 960px) {
+    .press-hero {
+      grid-template-columns: minmax(0, 1.05fr) minmax(26rem, 0.95fr);
+    }
+
+    .press-hero__copy {
+      border-right: 1px solid #433559;
+      border-bottom: 0;
+    }
+
+    .press-hero__cover {
+      min-height: 46rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .press-hero__cover img {
+      transition: none;
+    }
+
+    .press-hero__cover:hover img {
+      transform: none;
+    }
+  }
+</style>

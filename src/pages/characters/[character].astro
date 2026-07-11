@@ -11,6 +11,7 @@ import { getComicSeries, seriesPath } from "@/data/comic-series";
 import { getStorySeries, storySeriesPath } from "@/data/story-series";
 import { comicsForCharacter, getPublishedComics } from "@/lib/comics";
 import { getPublishedAdventures } from "@/lib/adventures";
+import { OTHER_ALICE_WORLD_GUIDE_PATH } from "@/data/other-alice-world-guide";
 
 export async function getStaticPaths() {
   const comics = await getPublishedComics();
@@ -34,6 +35,7 @@ const comicSeries = character.relatedSeries
 const fictionSeries = character.relatedSeries
   .map((slug) => getStorySeries(slug))
   .filter((s): s is NonNullable<typeof s> => Boolean(s));
+const belongsToOtherAlice = fictionSeries.some((series) => series.slug === "other-alice-adventures");
 const canonicalUrl = new URL(`/characters/${character.slug}/`, "https://hob.farm").toString();
 const characterStructuredData = character.image
   ? {
@@ -191,6 +193,14 @@ const characterStructuredData = character.image
                 </a>
               ))}
             </div>
+            {belongsToOtherAlice && (
+              <a
+                href={OTHER_ALICE_WORLD_GUIDE_PATH}
+                class="mt-4 inline-flex font-mono text-[10px] uppercase tracking-widest text-accent-cyan transition-colors hover:text-white"
+              >
+                Open the Other Alice World Guide &rarr;
+              </a>
+            )}
           </div>
         )}
 

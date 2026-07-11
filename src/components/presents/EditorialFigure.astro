@@ -1,0 +1,13 @@
+---
+interface Props { src:string; alt:string; caption:string; width:number; height:number; eager?:boolean; }
+const { src, alt, caption, width, height, eager = false } = Astro.props;
+---
+<figure class="editorial-figure">
+  <img src={src} alt={alt} width={width} height={height} loading={eager ? "eager" : "lazy"} decoding="async" />
+  <figcaption>{caption}</figcaption>
+</figure>
+<style>
+  .editorial-figure{margin:clamp(2rem,6vw,4rem) 50%;width:min(92vw,78rem);transform:translateX(-50%)}
+  .editorial-figure img{display:block;width:100%;height:auto;max-height:44rem;object-fit:contain;border:1px solid #5a4632;background:#03070c}
+  .editorial-figure figcaption{margin:.7rem auto 0;max-width:66rem;color:#8f8678;font-family:var(--font-mono);font-size:.63rem;line-height:1.5;text-align:center}
+</style>

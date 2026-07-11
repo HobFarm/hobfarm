@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import MagazineFrontPage from "@/components/home/MagazineFrontPage.astro";
+import SiteSections from "@/components/home/SiteSections.astro";
 import VisualSystemFeature from "@/components/home/VisualSystemFeature.astro";
 import RecentVideos from "@/components/home/RecentVideos.astro";
 import CuteCorruptedSection from "@/components/home/CuteCorruptedSection.astro";
@@ -11,13 +12,14 @@ import ExploreSupportFollow from "@/components/home/ExploreSupportFollow.astro";
 ---
 
 <BaseLayout
-  title="HobFarm | Online Humor Magazine and Visual Studio"
-  description="HobFarm is an online humor magazine and visual studio for cartoons, satirical magazine ads, archive dives, character worlds, style experiments, food/fashion mutations, Vegas logic, and backstage culture."
+  title="HobFarm | Original Series, Cartoons, and Visual Worlds"
+  description="HobFarm is an online magazine and visual studio for original series, cartoons, films, character worlds, visual art, production notes, courses, and finished media."
   palette="magenta-cyan"
 >
   {/* 1 Hero · 2 Cover story · 3 Latest articles · 4 Departments */}
   <MagazineFrontPage />
-  {/* 5 Featured visual system (the studio engine) */}
+  <SiteSections />
+  {/* 5 Workshop case study: taste → mannequin → character → camera → output */}
   <VisualSystemFeature />
   {/* 6 Gallery preview: a system in action + recent motion */}
   <CuteCorruptedSection />

@@ -136,7 +136,13 @@ export const CURATED_AGENT_LINKS: AgentLink[] = [
     title: "HobFarm Presents",
     url: "https://hob.farm/departments/hobfarm-presents/",
     description:
-      "HobFarm's fiction imprint for illustrated serials, short stories, character files, and recurring story worlds.",
+      "HobFarm's series imprint for recurring story worlds, film-history projects, illustrated fiction, video essays, and moving scenes.",
+  },
+  {
+    title: "3 Degrees of Dick Miller",
+    url: "https://hob.farm/departments/hobfarm-presents/3-degrees-of-dick-miller/",
+    description:
+      "A film-history media series following documented production connections to Dick Miller in three degrees or fewer.",
   },
   {
     title: "Other Alice Adventures",
@@ -453,6 +459,9 @@ export function projectPublicPath(
   if (slug === "shop") return "/shop/";
   if (slug === "courses") return "/academy/";
   if (slug === "grimoire") return "/grimoire/";
+  if (slug === "hobfarm-tv/3-degrees-of-dick-miller") {
+    return "/departments/hobfarm-presents/3-degrees-of-dick-miller/";
+  }
   return canonicalPath(`/projects/${slug}`);
 }
 

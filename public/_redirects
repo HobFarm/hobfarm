@@ -24,6 +24,14 @@
 /projects/magazine-time-machine   /projects/hobfarm-tv/magazine-time-machine/   301
 /projects/magazine-time-machine/  /projects/hobfarm-tv/magazine-time-machine/   301
 
+# 3DM is now a canonical HobFarm Presents title.
+/projects/hobfarm-tv/3-degrees-of-dick-miller   /departments/hobfarm-presents/3-degrees-of-dick-miller/   301
+/projects/hobfarm-tv/3-degrees-of-dick-miller/  /departments/hobfarm-presents/3-degrees-of-dick-miller/   301
+/departments/hobfarm-presents/3dm               /departments/hobfarm-presents/3-degrees-of-dick-miller/   301
+/departments/hobfarm-presents/3dm/              /departments/hobfarm-presents/3-degrees-of-dick-miller/   301
+/articles/3dm/enter-the-millerverse             /departments/hobfarm-presents/3-degrees-of-dick-miller/enter-the-millerverse/   301
+/articles/3dm/enter-the-millerverse/            /departments/hobfarm-presents/3-degrees-of-dick-miller/enter-the-millerverse/   301
+
 # Retired character sheet archive -> current Cute / Corrupted entry
 /gallery/character-dev/neon-ghoul   /gallery/cute-corrupted/kareena/   301
 /gallery/character-dev/neon-ghoul/  /gallery/cute-corrupted/kareena/   301

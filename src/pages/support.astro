@@ -4,6 +4,7 @@ import Button from "@/components/fundations/elements/Button.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import ContentPanel from "@/components/ContentPanel.astro";
+import SupportWays from "@/components/support/SupportWays.astro";
 
 const supportTopics = [
   "Account or membership access",
@@ -124,6 +125,13 @@ const detailsToInclude = [
               View status
             </a>
           </div>
+        </div>
+
+        <div class="mt-14" id="support-hobfarm">
+          <SupportWays
+            heading="Support HobFarm your way"
+            description="HobFarm membership, Ko-fi, and Patreon are separate systems. Use the path that matches the kind of support or community access you want."
+          />
         </div>
       </Wrapper>
     </ContentPanel>

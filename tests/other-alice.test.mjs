@@ -16,7 +16,8 @@ test("Other Alice pages explain the premise and distinguish the character", () =
   assert.match(series, /Lewis Carroll's public-domain Wonderland/);
   assert.match(characters, /Other Alice: Character Guide/);
   assert.match(characters, /curiosity without an adequate stopping mechanism/);
-  assert.match(hub, /HobFarm's fiction imprint/);
+  assert.match(hub, /HobFarm's series imprint/);
+  assert.match(hub, /Illustrated Fiction/);
   assert.doesNotMatch(hub, /Strange Recurring Worlds/);
 });
 

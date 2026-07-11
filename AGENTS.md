@@ -76,6 +76,16 @@ Validated fixes beat large speculative rewrites.
 
 ---
 
+## Writing and Formatting Rules
+
+Use [`docs/regular-prose-guidelines.md`](docs/regular-prose-guidelines.md) as the final style pass whenever creating or substantially rewriting public-facing copy. This includes articles, captions, World Guide entries, project and gallery descriptions, product copy, social text, comments, replies, summaries, and short explanations.
+
+Lead with the real claim. Use ordinary punctuation, varied sentence rhythm, concrete nouns, active verbs, and functional Markdown. Remove assistant-shaped contrast, generic setup, abstract corporate language, fake enthusiasm, and decorative formatting.
+
+The guide controls prose shape, not canon. Factual constraints, the user's current request, established character voice, and page-specific editorial briefs take priority. Preserve sharp, gothic, psychedelic, satirical, technical, or cinematic language when it carries actual meaning.
+
+---
+
 ## Stack
 
 | Layer     | Technology                                     |

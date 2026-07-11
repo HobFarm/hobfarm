@@ -1,0 +1,216 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Subscribe from "@/components/articles/Subscribe.astro";
+import ConnectionChain from "@/components/presents/ConnectionChain.astro";
+import ThreeDMEntryCard from "@/components/presents/ThreeDMEntryCard.astro";
+import { articlePath, getPublishedArticles } from "@/lib/articles";
+import { THREE_DM_GPT_URL, THREE_DM_LOGO, THREE_DM_PATH } from "@/data/presents-titles";
+
+const entries = (await getPublishedArticles()).filter((entry) => entry.data.presentsSeries === "3dm");
+const featured = entries.find((entry) => entry.data.featured) ?? entries[0];
+const firstRoute = entries.find((entry) => entry.id.endsWith("the-mouse-in-the-cat-musical"));
+const studioFeature = entries.find((entry) => entry.id.endsWith("1933-the-year-warner-bros-built-a-world"));
+const mediaTheoryFeature = entries.find((entry) => entry.id.endsWith("you-know-nothing-of-my-algorithm"));
+const latestRoutes = entries.filter((entry) => entry.id !== featured?.id && entry.id !== firstRoute?.id && entry.id !== studioFeature?.id && entry.id !== mediaTheoryFeature?.id).slice(0, 6);
+const videoEntries = entries.filter((entry) => Boolean(entry.data.video));
+const introHref = featured ? articlePath(featured) : "#how-it-works";
+const subjectFilters = ["Movies", "Actors", "Directors", "Writers", "Craftspeople", "Studios", "Horror", "Science fiction", "Comedy", "Exploitation", "Music", "Television", "Cultural detours"];
+const howItWorks = [
+  { name: "Pick a starting point", kind: "Step 1", note: "A movie, performer, director, studio, craftsperson, musician, historical figure, or cultural object." },
+  { name: "Follow real connections", kind: "Step 2", note: "Shared productions, credits, adaptations, crews, companies, documentaries, and other links that can be checked." },
+  { name: "Reach Dick Miller", kind: "Step 3", note: "Three connections or fewer, with the films, dates, credits, and evidence visible." },
+  { name: "Enter the Millerverse", kind: "Step 4", note: "Follow the route outward into production families, genres, studios, craftspeople, and cultural detours." },
+];
+const canonicalUrl = new URL(THREE_DM_PATH, Astro.site?.origin ?? "https://hob.farm").toString();
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": `${canonicalUrl}#webpage`,
+      url: canonicalUrl,
+      name: "3 Degrees of Dick Miller",
+      description: "A film-history media series following documented movie and production connections to Dick Miller in three degrees or fewer.",
+      image: THREE_DM_LOGO,
+      mainEntity: { "@id": `${canonicalUrl}#series` },
+      hasPart: entries.map((entry) => ({ "@type": "Article", name: entry.data.title, url: new URL(articlePath(entry), canonicalUrl).toString() })),
+    },
+    {
+      "@type": "CreativeWorkSeries",
+      "@id": `${canonicalUrl}#series`,
+      name: "3 Degrees of Dick Miller",
+      alternateName: "3DM",
+      description: "A movie-connection game, cult-cinema research project, and guided tour through the hidden wiring of Hollywood.",
+      url: canonicalUrl,
+      image: THREE_DM_LOGO,
+      genre: ["Film history", "Video essay", "Cultural criticism"],
+      publisher: { "@id": "https://hob.farm/#organization" },
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "HobFarm Presents", item: "https://hob.farm/departments/hobfarm-presents/" },
+        { "@type": "ListItem", position: 2, name: "3 Degrees of Dick Miller", item: canonicalUrl },
+      ],
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="3 Degrees of Dick Miller | Film History from HobFarm Presents"
+  description="Every movie leads somewhere. 3 Degrees of Dick Miller follows documented credits and production history into the hidden wiring of Hollywood."
+  canonical={THREE_DM_PATH}
+  image={THREE_DM_LOGO}
+  imageAlt="3 Degrees of Dick Miller vintage badge logo"
+  structuredData={structuredData}
+  feed={{ href: "/departments/hobfarm-presents/rss.xml", title: "HobFarm Presents" }}
+>
+  <section class="three-dm-hub">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-8 lg:py-12">
+        <header class="three-dm-hero">
+          <div class="three-dm-hero__art">
+            <img src={THREE_DM_LOGO} alt="3 Degrees of Dick Miller vintage badge logo" width="1200" height="1200" decoding="async" fetchpriority="high" />
+          </div>
+          <div class="three-dm-hero__copy">
+            <p class="three-dm-eyebrow">HobFarm Presents · Film History</p>
+            <h1>3 Degrees of Dick Miller</h1>
+            <p class="three-dm-hook">Every movie leads somewhere. The interesting ones lead to Dick Miller.</p>
+            <p class="three-dm-deck">Kevin Bacon is the mainstream party trick. Dick Miller is the underground film-history map.</p>
+            <p class="three-dm-intro">3DM is a movie-connection game, a cult-cinema research project, and a guided tour through the hidden wiring of Hollywood. Choose a starting point. Follow documented credits and production relationships until the route reaches Dick Miller in three degrees or fewer.</p>
+            <p class="three-dm-rule">Three degrees. Real connections. No vibes. Bring receipts.</p>
+            <div class="three-dm-actions">
+              <a class="three-dm-button three-dm-button--primary" href={introHref}>Enter the Millerverse</a>
+              <a class="three-dm-button" href="#connection-archive">Browse the routes</a>
+              <a class="three-dm-button" href={THREE_DM_GPT_URL} target="_blank" rel="noopener noreferrer">Try the 3DM GPT &nearr;</a>
+            </div>
+          </div>
+        </header>
+
+        <nav class="three-dm-index" aria-label="3DM sections">
+          <a href="#featured">Featured</a><a href="#film-room">Film Room</a><a href="#how-it-works">How it works</a><a href="#why-dick-miller">Why Miller?</a><a href="#connection-archive">Archive</a>
+        </nav>
+
+        <section id="featured" class="three-dm-section">
+          <div class="three-dm-heading"><p>Opening feature</p><h2>Enter the Millerverse</h2></div>
+          {featured ? <ThreeDMEntryCard entry={featured} featured /> : <div class="three-dm-empty"><strong>The first route is being documented.</strong><span>The rules and research record will appear here before any episode is called finished.</span></div>}
+        </section>
+
+        {firstRoute && (
+          <section class="three-dm-section">
+            <div class="three-dm-heading"><p>First connection file · three degrees</p><h2>Start with the cats. Follow the mouse.</h2></div>
+            <ThreeDMEntryCard entry={firstRoute} featured />
+          </section>
+        )}
+
+        {studioFeature && (
+          <section class="three-dm-section">
+            <div class="three-dm-heading"><p>The production system behind the route</p><h2>1933 is the hinge year</h2></div>
+            <ThreeDMEntryCard entry={studioFeature} featured />
+          </section>
+        )}
+
+        {mediaTheoryFeature && (
+          <section class="three-dm-section">
+            <div class="three-dm-heading"><p>Media systems file · two degrees</p><h2>The medium ate the schedule</h2></div>
+            <ThreeDMEntryCard entry={mediaTheoryFeature} featured />
+          </section>
+        )}
+
+        <section class="three-dm-section">
+          <div class="three-dm-heading"><p>Latest routes</p><h2>Follow the newest connections</h2></div>
+          {latestRoutes.length > 0 ? <div class="three-dm-grid">{latestRoutes.map((entry) => <ThreeDMEntryCard entry={entry} />)}</div> : <div class="three-dm-empty"><strong>The first connection files are in research.</strong><span>The introduction is live. Route articles, scene studies, and short investigations will enter the archive as their credits and sources are checked.</span></div>}
+        </section>
+
+        <section id="film-room" class="three-dm-section film-room">
+          <div>
+            <p class="three-dm-eyebrow">Self-hosted moving-image work</p>
+            <h2>The Film Room</h2>
+            <p>Some film history does not fit neatly inside a platform-approved upload. The Film Room keeps the video, article, transcript, source notes, and connection map together on HobFarm.</p>
+            <p>Video essays, scene breakdowns, trailer comparisons, alternate-version studies, archival criticism, and public-domain screenings can live here with the sourcing record still attached.</p>
+          </div>
+          {videoEntries.length > 0 ? <a href={articlePath(videoEntries[0])}>Watch the latest route &rarr;</a> : <div class="film-room__status"><strong>First screenings in production</strong><span>No fake episode cards. The room opens when the first finished video and its research record are ready.</span></div>}
+        </section>
+
+        <section id="how-it-works" class="three-dm-section">
+          <div class="three-dm-heading"><p>The connection engine</p><h2>How 3DM works</h2></div>
+          <ConnectionChain steps={howItWorks} label="Four moves into the Millerverse" />
+          <p class="three-dm-maxim">The shortest route proves the connection. The Millerverse reveals why it matters.</p>
+          <p class="three-dm-note">The strongest route is not always the shortest one. The useful route reveals how movies were actually connected, staffed, financed, copied, rebuilt, or carried into another era.</p>
+        </section>
+
+        <section class="three-dm-section">
+          <div class="three-dm-heading"><p>Start anywhere</p><h2>Choose an opening credit</h2></div>
+          <ul class="subject-filters" aria-label="Planned 3DM subject coverage">{subjectFilters.map((subject) => <li>{subject}</li>)}</ul>
+        </section>
+
+        <section id="why-dick-miller" class="three-dm-section why-miller">
+          <div><p class="three-dm-eyebrow">The man inside the machinery</p><h2>Why Dick Miller?</h2></div>
+          <div><p>Dick Miller was one of the great American character actors, the kind of performer who could appear for five minutes, deliver three lines, and become the person you remembered on the drive home.</p><p>His career crossed Roger Corman productions, horror, science fiction, comedy, television, animation, exploitation cinema, and studio blockbusters. He rarely occupied the center of the poster. He was something more useful: the connective tissue between cinematic worlds.</p><a href={introHref}>Read the full introduction &rarr;</a></div>
+        </section>
+
+        <section class="three-dm-section bacon-miller">
+          <div class="bacon-miller__panel"><span>Six degrees</span><h2>Kevin Bacon</h2><p>A recognizable star positioned at the center of the puzzle.</p><strong>Bacon routes demonstrate celebrity proximity.</strong></div>
+          <div class="bacon-miller__panel bacon-miller__panel--miller"><span>Three degrees</span><h2>Dick Miller</h2><p>A character actor hidden throughout the puzzle itself.</p><strong>Miller routes reveal filmmaking ecosystems.</strong></div>
+          <p>Six Degrees of Kevin Bacon maps who worked with whom. 3 Degrees of Miller maps how the movies became the movies.</p>
+        </section>
+
+        <section class="three-dm-section millerverse">
+          <div><p class="three-dm-eyebrow">The larger circuit</p><h2>The Millerverse</h2><p>The Millerverse is the larger network uncovered by 3DM: the films, filmmakers, actors, studios, genres, and cultural figures connected through Dick Miller’s career.</p></div>
+          <ol><li><span>Films</span><small>Shared credits, remakes, sequels, trailers, and recurring names.</small></li><li><span>People</span><small>Actors, directors, writers, editors, effects artists, and crews.</small></li><li><span>Systems</span><small>Studios, production companies, distribution networks, and training grounds.</small></li><li><span>Culture</span><small>Music, television, sports, literature, history, and the detours film absorbs.</small></li></ol>
+        </section>
+
+        <section id="connection-archive" class="three-dm-section">
+          <div class="three-dm-heading"><p>Complete record</p><h2>The connection archive</h2></div>
+          <div class="archive-order" aria-label="Archive grouping options"><span>Newest</span><span>Subject</span><span>Entry type</span><span>Degree count</span><span>Decade</span></div>
+          {entries.length > 0 ? <div class="three-dm-grid">{entries.map((entry) => <ThreeDMEntryCard entry={entry} />)}</div> : <div class="three-dm-empty"><strong>No published routes yet.</strong><span>Draft research stays out of the public archive until the chain and sources are ready.</span></div>}
+        </section>
+      </Wrapper>
+    </ContentPanel>
+
+    <Subscribe heading="Follow 3DM" description="Get new routes, film-history investigations, scene studies, videos, and other transmissions from the Millerverse." />
+  </section>
+</BaseLayout>
+
+<style>
+  .three-dm-hub { --miller-navy:#050c14; --miller-panel:#09121d; --miller-cream:#f5e6c8; --miller-orange:#e6762d; --miller-gold:#b88a49; background:var(--miller-navy); color:#c9bda9; }
+  .three-dm-hero { display:grid; overflow:hidden; border:1px solid #5a4632; background:linear-gradient(145deg,#0a1521,#07101b 62%,#15110d); box-shadow:0 30px 80px rgb(0 0 0 / 36%); }
+  .three-dm-hero__art { display:grid; min-height:24rem; place-items:center; padding:clamp(1.5rem,5vw,4rem); border-bottom:1px solid #5a4632; background:radial-gradient(circle,#263443 0,transparent 67%); }
+  .three-dm-hero__art img { width:100%; max-width:30rem; max-height:30rem; object-fit:contain; }
+  .three-dm-hero__copy { display:flex; flex-direction:column; justify-content:center; padding:clamp(1.5rem,5vw,4.5rem); }
+  .three-dm-eyebrow,.three-dm-heading p { margin:0; color:var(--miller-orange); font-family:var(--font-mono); font-size:.66rem; letter-spacing:.17em; text-transform:uppercase; }
+  .three-dm-hero h1 { max-width:11ch; margin:.8rem 0 0; color:var(--miller-cream); font-family:var(--font-display); font-size:clamp(3rem,8vw,7rem); font-weight:780; letter-spacing:-.075em; line-height:.82; }
+  .three-dm-hook { max-width:35rem; margin:1.45rem 0 0; color:#f1dfc0; font-family:var(--font-display); font-size:clamp(1.25rem,2.5vw,1.8rem); line-height:1.15; }
+  .three-dm-deck { max-width:36rem; margin:1rem 0 0; color:#d5c7b0; font-size:1.03rem; line-height:1.55; }
+  .three-dm-intro { max-width:38rem; margin:1rem 0 0; color:#a9a091; font-size:.9rem; line-height:1.7; }
+  .three-dm-rule { margin:1.2rem 0 0; color:var(--miller-gold); font-family:var(--font-mono); font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; }
+  .three-dm-actions { display:flex; flex-wrap:wrap; gap:.7rem; margin-top:1.7rem; }
+  .three-dm-button { display:inline-flex; min-height:2.8rem; align-items:center; padding:.7rem 1rem; border:1px solid #7e6951; color:var(--miller-cream); font-family:var(--font-mono); font-size:.68rem; letter-spacing:.08em; text-decoration:none; text-transform:uppercase; }
+  .three-dm-button--primary { border-color:var(--miller-orange); background:var(--miller-orange); color:#07101b; }
+  .three-dm-button:hover,.three-dm-button:focus-visible { border-color:var(--miller-cream); }
+  .three-dm-index { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); margin-top:1rem; border:1px solid #463a2c; background:#07101b; }
+  .three-dm-index a { padding:.85rem; border-right:1px solid #463a2c; border-bottom:1px solid #463a2c; color:#b9ae9c; font-family:var(--font-mono); font-size:.62rem; letter-spacing:.08em; text-align:center; text-decoration:none; text-transform:uppercase; }
+  .three-dm-index a:hover,.three-dm-index a:focus-visible { background:#111a23; color:var(--miller-cream); }
+  .three-dm-section { margin-top:clamp(3.5rem,8vw,7rem); scroll-margin-top:7rem; }
+  .three-dm-heading { margin-bottom:1.3rem; padding-bottom:1rem; border-bottom:3px solid var(--miller-orange); }
+  .three-dm-heading h2,.film-room h2,.why-miller h2,.millerverse h2 { margin:.55rem 0 0; color:var(--miller-cream); font-family:var(--font-display); font-size:clamp(2.2rem,5vw,4.5rem); font-weight:700; letter-spacing:-.055em; line-height:.9; }
+  .three-dm-grid { display:grid; gap:1rem; }
+  .three-dm-empty { display:flex; flex-direction:column; gap:.55rem; padding:1.6rem; border:1px dashed #5a4632; background:#07101b; }
+  .three-dm-empty strong { color:var(--miller-cream); font-family:var(--font-display); font-size:1.25rem; }
+  .three-dm-empty span { color:#9f9585; font-size:.85rem; line-height:1.55; }
+  .film-room { display:grid; gap:1.5rem; padding:clamp(1.4rem,4vw,3rem); border:1px solid #5a4632; border-left:6px solid var(--miller-orange); background:linear-gradient(120deg,#0b1723,#09121d); }
+  .film-room p:not(.three-dm-eyebrow),.why-miller p,.millerverse p { max-width:46rem; margin:1rem 0 0; color:#b9ae9c; line-height:1.7; }
+  .film-room>a,.why-miller a { color:var(--miller-orange); font-family:var(--font-mono); font-size:.7rem; text-transform:uppercase; }
+  .film-room__status { align-self:center; padding:1.2rem; border:1px solid #5a4632; background:#050c14; }
+  .film-room__status strong,.film-room__status span { display:block; }.film-room__status strong{color:var(--miller-cream)}.film-room__status span{margin-top:.5rem;color:#8f877c;font-size:.8rem;line-height:1.5}
+  .three-dm-maxim { margin:1.4rem 0 0; color:var(--miller-cream); font-family:var(--font-display); font-size:clamp(1.35rem,3vw,2.2rem); }.three-dm-note{max-width:52rem;margin:.8rem 0 0;color:#9f9585;line-height:1.65}
+  .subject-filters,.archive-order { display:flex; flex-wrap:wrap; gap:.6rem; }.subject-filters{margin:0;padding:0;list-style:none}.subject-filters li,.archive-order span{padding:.55rem .75rem;border:1px solid #5a4632;color:#c9bda9;font-family:var(--font-mono);font-size:.63rem;text-transform:uppercase}
+  .why-miller { display:grid; gap:1.5rem; padding:clamp(1.5rem,5vw,4rem); border-top:1px solid #5a4632; border-bottom:1px solid #5a4632; }
+  .bacon-miller { display:grid; gap:1rem; }.bacon-miller__panel{padding:clamp(1.4rem,4vw,3rem);border:1px solid #5a4632;background:#101821}.bacon-miller__panel--miller{border-color:#9b5f2f;background:#15110d}.bacon-miller__panel span{color:var(--miller-gold);font-family:var(--font-mono);font-size:.65rem;text-transform:uppercase}.bacon-miller__panel h2{margin:.6rem 0 0;color:var(--miller-cream);font-family:var(--font-display);font-size:clamp(2rem,5vw,4rem)}.bacon-miller__panel p{color:#b9ae9c}.bacon-miller__panel strong{display:block;margin-top:1.2rem;color:var(--miller-orange)}.bacon-miller>p{grid-column:1/-1;margin:.5rem 0 0;color:var(--miller-cream);font-family:var(--font-display);font-size:1.2rem}
+  .millerverse { display:grid; gap:1.5rem; }.millerverse ol{display:grid;margin:0;padding:0;list-style:none}.millerverse li{padding:1.1rem;border:1px solid #463a2c;background:#09121d}.millerverse li+li{border-top:0}.millerverse li span{color:var(--miller-cream);font-family:var(--font-display);font-size:1.2rem}.millerverse li small{display:block;margin-top:.45rem;color:#948b7f;line-height:1.5}
+  @media(min-width:760px){.three-dm-index{grid-template-columns:repeat(5,minmax(0,1fr))}.three-dm-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.bacon-miller{grid-template-columns:1fr 1fr}.millerverse ol{grid-template-columns:repeat(2,minmax(0,1fr))}.millerverse li+li{border-top:1px solid #463a2c}.why-miller,.film-room,.millerverse{grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr)}}
+  @media(min-width:1000px){.three-dm-hero{grid-template-columns:minmax(24rem,.85fr) minmax(0,1.15fr)}.three-dm-hero__art{min-height:48rem;border-right:1px solid #5a4632;border-bottom:0}.three-dm-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.millerverse ol{grid-template-columns:repeat(4,minmax(0,1fr))}}
+</style>

@@ -1,0 +1,32 @@
+---
+const steps = [
+  { label: "Filmography", title: "Frank McHugh", note: "One supporting-player credit opens a network experiment." },
+  { label: "Broadcast", title: "NBC Experiment in Television", note: "An anthology makes the television set itself part of the subject." },
+  { label: "Theory", title: "Marshall McLuhan", note: "The program carries a media theorist inside the medium he is describing." },
+  { label: "Present tense", title: "The infinite feed", note: "The schedule becomes a responsive system that studies the viewer back." },
+];
+---
+
+<aside class="discovery" aria-labelledby="discovery-heading">
+  <p class="discovery__eyebrow">The discovery path</p>
+  <h2 id="discovery-heading">One filmography tab becomes a theory of the feed</h2>
+  <ol>
+    {steps.map((step, index) => (
+      <li>
+        <span class="discovery__number">{String(index + 1).padStart(2, "0")}</span>
+        <div><small>{step.label}</small><strong>{step.title}</strong><p>{step.note}</p></div>
+      </li>
+    ))}
+  </ol>
+</aside>
+
+<style>
+  .discovery{margin:2.5rem 0;padding:clamp(1.2rem,4vw,2rem);border:1px solid #5a4632;background:linear-gradient(145deg,#0a1521,#11100e);color:#c9bda9}
+  .discovery__eyebrow{margin:0;color:#e6762d!important;font-family:var(--font-mono);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase}
+  .discovery h2{margin:.5rem 0 0!important;font-size:clamp(1.55rem,4vw,2.4rem)!important}
+  .discovery ol{display:grid;gap:.75rem;margin:1.5rem 0 0!important;padding:0!important;list-style:none!important;counter-reset:none}
+  .discovery li{display:grid;grid-template-columns:2.3rem minmax(0,1fr);gap:.8rem;padding:1rem;border:1px solid #293744;background:#07101b}
+  .discovery__number{color:#b88a49;font-family:var(--font-mono);font-size:.7rem}
+  .discovery small,.discovery strong{display:block}.discovery small{color:#7893a2;font-family:var(--font-mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase}.discovery strong{margin-top:.2rem;color:#f5e6c8}.discovery p{margin:.35rem 0 0!important;color:#a99f90!important;font-size:.78rem;line-height:1.5}
+  @media(min-width:760px){.discovery ol{grid-template-columns:repeat(4,minmax(0,1fr))}.discovery li{grid-template-columns:1fr;position:relative}.discovery li:not(:last-child)::after{position:absolute;top:1.2rem;right:-.63rem;z-index:2;width:1rem;color:#e6762d;content:'→';text-align:center}}
+</style>

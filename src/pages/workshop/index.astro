@@ -1,47 +1,51 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-import ContentPanel from "@/components/ContentPanel.astro";
-import Text from "@/components/fundations/elements/Text.astro";
-import Eyebrow from "@/components/sections/Eyebrow.astro";
+import Button from "@/components/fundations/elements/Button.astro";
 import ArticleCard from "@/components/articles/ArticleCard.astro";
-import VisualSystems from "@/components/home/VisualSystems.astro";
-import ApplicationsAcrossMedia from "@/components/home/ApplicationsAcrossMedia.astro";
-import WorkflowSection from "@/components/home/WorkflowSection.astro";
-import GrimoireSection from "@/components/home/GrimoireSection.astro";
+import { mediaImageUrl, mediaUrl } from "@/lib/gallery";
+import { getVisualSystem, visualSystemPath } from "@/data/visual-systems";
+import {
+  workshopBenches,
+  workshopLayers,
+  workshopMethod,
+  workshopResearch,
+} from "@/data/workshop-page";
 import { articlePath, getArticleDepartment, getPublishedArticles } from "@/lib/articles";
 
 const notes = (await getPublishedArticles())
-  .filter((p) => getArticleDepartment(p.data) === "workshop-notes")
+  .filter((post) => getArticleDepartment(post.data) === "workshop-notes")
   .slice(0, 9);
+
+const system = getVisualSystem("sophia-stella");
+const sophia = system?.variants.find((variant) => variant.key === "sophia");
+const stella = system?.variants.find((variant) => variant.key === "stella");
+
+const image = (folder: string, file: string, width: number, fit: "cover" | "scale-down" = "cover") =>
+  mediaImageUrl(folder, file, { width, quality: 84, fit });
+
+const sophiaHero = sophia?.hero ? image(sophia.hero.folder, sophia.hero.file, 1000) : null;
+const stellaHero = stella?.hero ? image(stella.hero.folder, stella.hero.file, 1000) : null;
+const sophiaSheet = sophia?.sheetPreviews[0]
+  ? image(sophia.sheetPreviews[0].folder, sophia.sheetPreviews[0].file, 900, "scale-down")
+  : null;
+const stellaSheet = stella?.sheetPreviews[0]
+  ? image(stella.sheetPreviews[0].folder, stella.sheetPreviews[0].file, 900, "scale-down")
+  : null;
+const pairPoster = system?.featuredAssets.poster
+  ? image(system.featuredAssets.poster.folder, system.featuredAssets.poster.file, 1100)
+  : null;
+const pairVideo = system?.featuredAssets.teaserVideo
+  ? mediaUrl(system.featuredAssets.teaserVideo.folder, system.featuredAssets.teaserVideo.file)
+  : null;
+
 const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
-
-// Shop/Academy/Services are downstream of the workshop: what it produces, how to
-// learn it, and hiring it. They live here, not in the top nav.
-const paths = [
-  {
-    title: "Shop",
-    body: "What the workflow produces, for sale.",
-    href: "/shop/",
-  },
-  {
-    title: "Academy",
-    body: "Learn the workflow: lessons, breakdowns, and courses.",
-    href: "/academy/",
-  },
-  {
-    title: "Services",
-    body: "Hire the workflow for video, image, and design work.",
-    href: "/services/",
-  },
-];
-
 const workshopJsonLd = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  name: "Workshop",
+  name: "HobFarm Workshop",
   description:
-    "The HobFarm workshop: process, tools, AI workflows, prompt systems, image and video production, reusable looks, tests, failures, and build notes.",
+    "The HobFarm Workshop documents how visual languages, character systems, scenes, motion, stories, and publishable media are developed.",
   url: `${siteOrigin}/workshop/`,
   mainEntity: {
     "@type": "ItemList",
@@ -56,61 +60,342 @@ const workshopJsonLd = {
 ---
 
 <BaseLayout
-  title="Workshop | HobFarm"
-  description="The HobFarm workshop: process, tools, AI workflows, prompt systems, image and video production, reusable looks, tests, failures, and build notes."
+  title="Workshop | Character Systems, Visual Development, and Production"
+  description="See how HobFarm develops visual languages, reusable characters, scenes, camera direction, motion, stories, products, and courses from one connected production method."
   canonical="/workshop/"
   structuredData={workshopJsonLd}
+  palette="blue-red"
 >
-  <section>
-    <ContentPanel>
-      <Wrapper variant="standard" class="py-12 lg:py-20">
-        <div class="max-w-2xl">
-          <Eyebrow text="HobFarm / Workshop" />
-          <Text tag="h1" variant="display2XL" class="mt-6 font-display text-white text-balance">
-            Workshop
-          </Text>
-          <Text tag="p" variant="textLG" class="mt-5 text-base-400 leading-relaxed text-pretty">
-            How the work gets made: process, tools, AI workflows, prompt systems, image and video production, reusable looks, tests, and the failures along the way.
-          </Text>
+  <main class="workshop-page">
+    <section class="workshop-hero border-b border-base-800/70">
+      <Wrapper variant="standard" class="py-16 lg:py-24">
+        <div class="grid gap-10 lg:grid-cols-[minmax(0,0.82fr)_minmax(24rem,0.58fr)] lg:items-center">
+          <div class="max-w-4xl">
+            <p class="font-mono text-[10px] uppercase tracking-[0.24em] text-accent-blue-bright">
+              HobFarm / Workshop
+            </p>
+            <h1 class="mt-5 font-display text-5xl font-light leading-[1.05] text-white text-balance lg:text-7xl">
+              Build the visual language before you build the image.
+            </h1>
+            <p class="mt-6 max-w-3xl text-base leading-relaxed text-base-300 lg:text-lg">
+              The Workshop follows an idea from taste and reference through character design, camera direction, motion, publishing, and the finished thing. Tools matter here, but they enter after the work has a point of view.
+            </p>
+            <blockquote class="mt-8 border-l-2 border-accent-blue pl-5 text-lg leading-relaxed text-base-100">
+              Specs preserve intent. Renders are snapshots. A strong system can keep producing after the first image is gone.
+            </blockquote>
+            <div class="mt-8 flex flex-wrap gap-2">
+              <Button isLink size="sm" variant="green" href="#sophia-stella">Study Sophia + Stella</Button>
+              <Button isLink size="sm" variant="muted" href="#method">See the method</Button>
+              <Button isLink size="sm" variant="muted" href="/academy/">Learn the process</Button>
+            </div>
+          </div>
+
+          <div class="hero-pair grid grid-cols-2 gap-3" aria-label="Sophia and Stella character study">
+            {sophiaHero && (
+              <figure class="relative overflow-hidden rounded-xl border border-base-800 bg-base-950">
+                <img src={sophiaHero} alt={sophia?.hero?.alt ?? "Sophia"} class="aspect-[3/4] size-full object-cover" loading="eager" decoding="async" />
+                <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-base-950 via-base-950/70 to-transparent p-4 pt-16">
+                  <span class="font-mono text-[10px] uppercase tracking-widest text-accent-cyan">Sophia / bright lane</span>
+                </figcaption>
+              </figure>
+            )}
+            {stellaHero && (
+              <figure class="relative mt-8 overflow-hidden rounded-xl border border-base-800 bg-base-950">
+                <img src={stellaHero} alt={stella?.hero?.alt ?? "Stella"} class="aspect-[3/4] size-full object-cover" loading="eager" decoding="async" />
+                <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-base-950 via-base-950/70 to-transparent p-4 pt-16">
+                  <span class="font-mono text-[10px] uppercase tracking-widest text-accent-red-bright">Stella / dark lane</span>
+                </figcaption>
+              </figure>
+            )}
+          </div>
+        </div>
+      </Wrapper>
+    </section>
+
+    <section class="border-b border-base-800/70" aria-labelledby="practice-heading">
+      <Wrapper variant="standard" class="py-14 lg:py-20">
+        <div class="grid gap-8 lg:grid-cols-[minmax(0,0.62fr)_minmax(0,1fr)] lg:items-start">
+          <div>
+            <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-base-500">Why the Workshop starts here</p>
+            <h2 id="practice-heading" class="mt-3 font-display text-3xl font-light text-white lg:text-4xl">
+              Art direction comes before production.
+            </h2>
+            <p class="mt-5 text-sm leading-relaxed text-base-300">
+              Artists have always learned by studying color, form, composition, materials, and the work that came before them. Animation studios call the early phase visual development: the point where characters, worlds, palettes, and composition begin serving the story.
+            </p>
+            <p class="mt-4 text-sm leading-relaxed text-base-300">
+              HobFarm uses computer tools inside that older practice. The software changes. The questions stay recognizable: What does this world value? How is it drawn? Which traits make the character herself? What should the camera make us feel?
+            </p>
+          </div>
+
+          <div class="grid gap-3 sm:grid-cols-3">
+            {workshopLayers.map((layer) => (
+              <article class="rounded-xl border border-base-800 bg-base-950/55 p-5" style={`--layer-accent:${layer.accent}`}>
+                <span class="layer-dot block size-2.5 rounded-full" aria-hidden="true"></span>
+                <h3 class="mt-6 font-display text-xl font-light text-white">{layer.label}</h3>
+                <p class="mt-3 text-sm leading-relaxed text-base-400">{layer.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </Wrapper>
+    </section>
+
+    {system && (
+      <section id="sophia-stella" class="case-study border-b border-base-800/70" aria-labelledby="case-study-heading">
+        <Wrapper variant="standard" class="py-16 lg:py-24">
+          <header class="grid gap-6 lg:grid-cols-[minmax(0,0.75fr)_minmax(20rem,0.45fr)] lg:items-end">
+            <div>
+              <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-magenta-bright">Lead case study / Sophia + Stella</p>
+              <h2 id="case-study-heading" class="mt-4 font-display text-4xl font-light text-white text-balance lg:text-6xl">
+                One mannequin. Two lives. A complete media system.
+              </h2>
+            </div>
+            <p class="max-w-xl text-sm leading-relaxed text-base-300 lg:justify-self-end">
+              Sophia and Stella began with an eye-first, spooky-cute illustration language. The same face, proportions, feline silhouette, and identity anchors move through two opposing palettes, wardrobes, attitudes, and worlds.
+            </p>
+          </header>
+
+          <div class="mt-10 grid gap-4 lg:grid-cols-2">
+            <article class="overflow-hidden rounded-xl border border-base-800 bg-base-950/65">
+              {sophiaHero && <img src={sophiaHero} alt={sophia?.hero?.alt ?? "Sophia hero"} class="aspect-[16/10] w-full object-cover object-top" loading="lazy" decoding="async" />}
+              <div class="p-6">
+                <p class="font-mono text-[10px] uppercase tracking-[0.18em] text-accent-cyan">Candy-rave / playful / luminous</p>
+                <h3 class="mt-3 font-display text-3xl font-light text-white">Sophia</h3>
+                <p class="mt-3 text-sm leading-relaxed text-base-300">Pastel club light, glossy materials, charm-heavy fashion, open body language, and a world designed to glow around her.</p>
+              </div>
+            </article>
+            <article class="overflow-hidden rounded-xl border border-base-800 bg-base-950/65">
+              {stellaHero && <img src={stellaHero} alt={stella?.hero?.alt ?? "Stella hero"} class="aspect-[16/10] w-full object-cover object-top" loading="lazy" decoding="async" />}
+              <div class="p-6">
+                <p class="font-mono text-[10px] uppercase tracking-[0.18em] text-accent-red-bright">Gothic club / dominant / nocturnal</p>
+                <h3 class="mt-3 font-display text-3xl font-light text-white">Stella</h3>
+                <p class="mt-3 text-sm leading-relaxed text-base-300">Dark surfaces, red and gold light, heavier hardware, low-angle authority, and an environment that turns the shared silhouette into a threat.</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="mt-4 grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.42fr)]">
+            <div class="grid gap-4 sm:grid-cols-2">
+              {sophiaSheet && <img src={sophiaSheet} alt={sophia?.sheetPreviews[0]?.alt ?? "Sophia character sheet preview"} class="w-full rounded-xl border border-base-800 bg-base-950 object-contain" loading="lazy" decoding="async" />}
+              {stellaSheet && <img src={stellaSheet} alt={stella?.sheetPreviews[0]?.alt ?? "Stella character sheet preview"} class="w-full rounded-xl border border-base-800 bg-base-950 object-contain" loading="lazy" decoding="async" />}
+            </div>
+            <aside class="rounded-xl border border-base-800 bg-base-900/55 p-6">
+              <p class="font-mono text-[10px] uppercase tracking-[0.18em] text-base-500">The production logic</p>
+              <ol class="mt-6 space-y-5">
+                {[
+                  ["Eyes first", "Test line, lashes, iris, catchlight, shading, finish, and palette in the densest part of the style."],
+                  ["Sheet locks", "Resolve front, back, three-quarter, silhouette, outfit, materials, and identity before adding scene drama."],
+                  ["Hero sells", "Use lens, pose, depth, lighting, and environment to make the character feel alive in her own world."],
+                  ["Poster connects", "Pair the two lives into one visual hook that can carry story, product, and promotional meaning."],
+                  ["Video moves", "Add one camera move, one character action, and one environmental motion without redesigning canon."],
+                ].map(([title, text], index) => (
+                  <li class="grid grid-cols-[1.75rem_1fr] gap-3">
+                    <span class="font-mono text-[10px] text-accent-blue-bright">{String(index + 1).padStart(2, "0")}</span>
+                    <div>
+                      <h3 class="text-sm text-white">{title}</h3>
+                      <p class="mt-1 text-xs leading-relaxed text-base-400">{text}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </aside>
+          </div>
+
+          <div class="mt-4 grid gap-4 md:grid-cols-2">
+            {pairPoster && (
+              <div class="media-frame media-frame--compact">
+                <img
+                  src={pairPoster}
+                  alt={system.featuredAssets.poster?.alt ?? "Sophia and Stella poster"}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            )}
+            {pairVideo && (
+              <div class="media-frame media-frame--compact">
+                <video
+                  src={pairVideo}
+                  poster={pairPoster ?? undefined}
+                  muted
+                  loop
+                  autoplay
+                  playsinline
+                  preload="metadata"
+                  aria-label={system.featuredAssets.teaserVideo?.alt ?? "Sophia and Stella video preview"}
+                ></video>
+              </div>
+            )}
+          </div>
+
+          <div class="mt-8 flex flex-wrap gap-2">
+            <Button isLink size="sm" variant="green" href={visualSystemPath(system.slug)}>Open the full visual system</Button>
+            <Button isLink size="sm" variant="muted" href="/shop/sophia-stella-sheet-pack/">View the character pack</Button>
+            <Button isLink size="sm" variant="muted" href="/academy/">Learn to build a system</Button>
+          </div>
+        </Wrapper>
+      </section>
+    )}
+
+    <section id="method" class="border-b border-base-800/70" aria-labelledby="method-heading">
+      <Wrapper variant="standard" class="py-16 lg:py-24">
+        <div class="max-w-3xl">
+          <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-blue-bright">The HobFarm method</p>
+          <h2 id="method-heading" class="mt-4 font-display text-4xl font-light text-white lg:text-5xl">
+            A repeatable path from influence to finished work.
+          </h2>
+          <p class="mt-5 text-sm leading-relaxed text-base-300">
+            Each stage produces something the next stage can use. The goal is a working chain of decisions, not one lucky generation.
+          </p>
         </div>
 
-        <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {paths.map((p) => (
-            <a
-              href={p.href}
-              class="group flex flex-col rounded-lg border border-base-800 bg-base-900/50 p-5 transition-colors hover:border-accent-blue/50"
-            >
-              <Text tag="h2" variant="textXL" class="font-display text-white">{p.title}</Text>
-              <p class="mt-2 flex-1 text-sm leading-relaxed text-base-400">{p.body}</p>
-              <span class="mt-5 font-mono text-[10px] uppercase tracking-wider text-base-400 group-hover:text-white">
-                Open &rarr;
-              </span>
+        <ol class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {workshopMethod.map((step) => (
+            <li class="method-card flex min-h-72 flex-col rounded-xl border border-base-800 bg-base-950/55 p-6">
+              <div class="flex items-center justify-between gap-4">
+                <span class="font-mono text-[10px] tracking-[0.2em] text-accent-blue-bright">{step.number}</span>
+                <span class="rounded-full border border-base-800 px-3 py-1 font-mono text-[9px] uppercase tracking-wider text-base-500">{step.output}</span>
+              </div>
+              <h3 class="mt-10 font-display text-2xl font-light text-white">{step.title}</h3>
+              <p class="mt-4 text-sm leading-relaxed text-base-400">{step.description}</p>
+            </li>
+          ))}
+        </ol>
+      </Wrapper>
+    </section>
+
+    <section class="border-b border-base-800/70" aria-labelledby="benches-heading">
+      <Wrapper variant="standard" class="py-16 lg:py-24">
+        <div class="max-w-3xl">
+          <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-cyan">Working benches</p>
+          <h2 id="benches-heading" class="mt-4 font-display text-4xl font-light text-white lg:text-5xl">
+            Follow the part of the process you need.
+          </h2>
+        </div>
+        <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {workshopBenches.map((bench) => (
+            <a href={bench.href} class="bench-card group flex min-h-64 flex-col rounded-xl border border-base-800 bg-base-900/45 p-6 transition duration-300 hover:-translate-y-1 hover:border-accent-cyan/40 motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+              <h3 class="font-display text-2xl font-light text-white">{bench.label}</h3>
+              <p class="mt-4 flex-1 text-sm leading-relaxed text-base-400">{bench.description}</p>
+              <span class="mt-8 font-mono text-[10px] uppercase tracking-[0.16em] text-base-300 group-hover:text-white">{bench.action} &rarr;</span>
             </a>
           ))}
         </div>
-
-        {notes.length > 0 && (
-          <div class="mt-16 border-t border-base-800 pt-10">
-            <div class="mb-6 flex items-end justify-between gap-4">
-              <Text tag="h2" variant="displaySM" class="font-display text-white">Workshop Notes</Text>
-              <a
-                href="/departments/workshop-notes/"
-                class="font-mono text-[10px] uppercase tracking-wider text-base-400 transition-colors hover:text-white"
-              >
-                All notes &rarr;
-              </a>
-            </div>
-            <div class="grid grid-cols-1 gap-x-4 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-              {notes.map((post) => <ArticleCard post={post} />)}
-            </div>
-          </div>
-        )}
       </Wrapper>
-    </ContentPanel>
+    </section>
 
-    <VisualSystems />
-    <ApplicationsAcrossMedia />
-    <WorkflowSection />
-    <GrimoireSection />
-  </section>
+    <section class="border-b border-base-800/70" aria-labelledby="circuit-heading">
+      <Wrapper variant="standard" class="py-16 lg:py-24">
+        <div class="grid gap-10 lg:grid-cols-[minmax(0,0.58fr)_minmax(0,1fr)] lg:items-start">
+          <div>
+            <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-magenta-bright">The full circuit</p>
+            <h2 id="circuit-heading" class="mt-4 font-display text-4xl font-light text-white lg:text-5xl">
+              The Workshop does not end at the tutorial.
+            </h2>
+            <p class="mt-5 text-sm leading-relaxed text-base-300">
+              A useful process should make something worth publishing. The finished work returns to the site as a story, gallery, video, lesson, product, or social fragment that brings people back to the original world.
+            </p>
+          </div>
+          <ol class="circuit-list grid gap-3 sm:grid-cols-2">
+            {[
+              ["Workshop", "Document the method and the decisions."],
+              ["Presents + Gallery", "Publish the story, image set, or film."],
+              ["Academy", "Package the repeatable parts for someone else."],
+              ["Shop", "Offer the finished asset to people who want the result."],
+              ["Social", "Cut platform-specific fragments with a clear return path."],
+              ["Next project", "Use what survived the process as the starting point."],
+            ].map(([label, text], index) => (
+              <li class="rounded-xl border border-base-800 bg-base-950/55 p-5">
+                <span class="font-mono text-[9px] text-base-600">{String(index + 1).padStart(2, "0")}</span>
+                <h3 class="mt-4 text-base text-white">{label}</h3>
+                <p class="mt-2 text-sm leading-relaxed text-base-400">{text}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </Wrapper>
+    </section>
+
+    {notes.length > 0 && (
+      <section class="border-b border-base-800/70" aria-labelledby="notes-heading">
+        <Wrapper variant="standard" class="py-16 lg:py-24">
+          <div class="flex flex-wrap items-end justify-between gap-5">
+            <div>
+              <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-blue-bright">Workshop notes</p>
+              <h2 id="notes-heading" class="mt-4 font-display text-4xl font-light text-white">Tests, methods, and build records.</h2>
+            </div>
+            <a href="/departments/workshop-notes/" class="text-sm text-base-400 transition-colors hover:text-white">All Workshop notes</a>
+          </div>
+          <div class="mt-10 grid grid-cols-1 gap-x-4 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+            {notes.map((post) => <ArticleCard post={post} />)}
+          </div>
+        </Wrapper>
+      </section>
+    )}
+
+    <section aria-labelledby="research-heading">
+      <Wrapper variant="standard" class="py-16 lg:py-24">
+        <div class="max-w-3xl">
+          <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-base-500">Research shelf</p>
+          <h2 id="research-heading" class="mt-4 font-display text-3xl font-light text-white lg:text-4xl">
+            The larger practice behind the HobFarm method.
+          </h2>
+          <p class="mt-4 text-sm leading-relaxed text-base-400">
+            These references connect the Workshop to established visual-development, animation, design-education, cinematography, and delivery practices.
+          </p>
+        </div>
+        <div class="mt-8 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+          {workshopResearch.map((item) => (
+            <a href={item.href} target="_blank" rel="noopener noreferrer" class="group rounded-xl border border-base-800 bg-base-950/45 p-5 transition-colors hover:border-base-600">
+              <p class="font-mono text-[9px] uppercase tracking-[0.16em] text-base-500">{item.source}</p>
+              <h3 class="mt-3 text-base text-white">{item.label}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-base-400">{item.description}</p>
+              <span class="mt-5 inline-block font-mono text-[9px] uppercase tracking-wider text-base-500 group-hover:text-white">Read source &nearr;</span>
+            </a>
+          ))}
+        </div>
+      </Wrapper>
+    </section>
+  </main>
 </BaseLayout>
+
+<style>
+  .workshop-page {
+    background:
+      radial-gradient(circle at 8% 8%, rgba(59, 111, 224, 0.1), transparent 34rem),
+      radial-gradient(circle at 92% 38%, rgba(226, 58, 78, 0.08), transparent 38rem),
+      #07060b;
+  }
+
+  .workshop-hero {
+    background:
+      linear-gradient(90deg, rgba(7, 6, 11, 0.25), rgba(7, 6, 11, 0.75)),
+      radial-gradient(circle at 78% 28%, rgba(123, 47, 247, 0.12), transparent 30rem);
+  }
+
+  .hero-pair figure:first-child {
+    box-shadow: 0 26px 80px rgba(25, 227, 227, 0.08);
+  }
+
+  .hero-pair figure:last-child {
+    box-shadow: 0 26px 80px rgba(226, 58, 78, 0.08);
+  }
+
+  .layer-dot {
+    background: var(--layer-accent);
+    box-shadow: 0 0 18px color-mix(in srgb, var(--layer-accent) 55%, transparent);
+  }
+
+  .case-study {
+    background:
+      radial-gradient(circle at 15% 40%, rgba(25, 227, 227, 0.07), transparent 30rem),
+      radial-gradient(circle at 85% 54%, rgba(226, 58, 78, 0.07), transparent 32rem),
+      rgba(14, 11, 22, 0.38);
+  }
+
+  .method-card,
+  .bench-card {
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.025);
+  }
+</style>

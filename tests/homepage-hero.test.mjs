@@ -9,9 +9,9 @@ const read = (file) => readFileSync(join(root, file), "utf8");
 test("homepage hero uses the animated HobFarm logo card instead of the instructional flow card", () => {
   const homepage = read("src/components/home/MagazineFrontPage.astro");
 
-  assert.match(homepage, /ONLINE HUMOR MAGAZINE \+ VISUAL STUDIO/);
-  assert.match(homepage, /Stop on the weird thing\. Follow it all the way down\./);
-  assert.match(homepage, /HobFarm turns cartoons, satirical ads, archive dives/);
+  assert.match(homepage, /ONLINE MAGAZINE \+ VISUAL STUDIO/);
+  assert.match(homepage, /Original series, cartoons, visual worlds, and the workshop behind them\./);
+  assert.match(homepage, /Watch the stories, read the cartoons, explore the art/);
 
   for (const label of ["Read the latest", "Enter the studio", "Browse galleries", "Support HobFarm"]) {
     assert.match(homepage, new RegExp(label));

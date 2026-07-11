@@ -59,6 +59,60 @@ const articles = defineCollection({
         ])
         .optional(),
       series: z.string().optional(),
+      presentsSeries: z.string().optional(),
+      entryType: z
+        .enum([
+          "feature",
+          "video-essay",
+          "article",
+          "short-investigation",
+          "scene-study",
+          "connection-map",
+          "archive-note",
+        ])
+        .optional(),
+      video: z
+        .object({
+          src: z.url(),
+          hls: z.url().optional(),
+          poster: z.url(),
+          captions: z.url().optional(),
+          duration: z.string().regex(/^P(?:(?:\d+)D)?T(?=\d)(?:(?:\d+)H)?(?:(?:\d+)M)?(?:(?:\d+(?:\.\d+)?)S)?$/),
+          aspectRatio: z.enum(["16:9", "4:3", "9:16"]).default("16:9"),
+        })
+        .optional(),
+      connection: z
+        .object({
+          origin: z.string(),
+          degreeCount: z.number().int().min(0).max(3).nullable(),
+          chain: z
+            .array(
+              z.object({
+                name: z.string(),
+                kind: z.enum(["person", "film", "production", "company", "studio", "craftsperson", "cultural-object"]),
+                note: z.string(),
+                year: z.union([z.number().int(), z.string()]).optional(),
+                evidence: z.string().optional(),
+                source: z.url().optional(),
+              }),
+            )
+            .default([]),
+        })
+        .optional(),
+      contentWarnings: z.array(z.string()).default([]),
+      rightsNote: z.string().optional(),
+      sourceNotes: z
+        .array(
+          z.object({
+            label: z.string(),
+            url: z.url(),
+            note: z.string(),
+            type: z
+              .enum(["documented-fact", "participant-recollection", "trade-report", "promotional-claim", "historical-interpretation", "open-question"])
+              .default("documented-fact"),
+          }),
+        )
+        .default([]),
       hero: z.string().optional(),
       heroImage: z.string().optional(),
       heroAlt: z.string().optional(),
@@ -697,6 +751,7 @@ const products = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/products" }),
   schema: z.object({
     title: z.string(),
+    sku: z.string().optional(),
     platform: z.enum([
       "deviantart",
       "kofi",
@@ -709,6 +764,24 @@ const products = defineCollection({
     // Storefront/listing URL. Optional so a planned/coming-soon drop can exist
     // before it goes live.
     externalUrl: z.url().optional(),
+    externalListingId: z.string().optional(),
+    fulfillment: z
+      .enum(["external", "lemon-squeezy", "stripe-direct", "printful", "manual"])
+      .default("external"),
+    printfulProductId: z.string().optional(),
+    variants: z
+      .array(
+        z.object({
+          sku: z.string(),
+          name: z.string(),
+          priceLabel: z.string().optional(),
+          currency: z.string().length(3).optional(),
+          printfulVariantId: z.string().optional(),
+          available: z.boolean().default(true),
+        }),
+      )
+      .default([]),
+    entitlementId: z.string().optional(),
     productType: z.enum([
       "premium-sheet-pack",
       "digital-download",
@@ -743,6 +816,9 @@ const products = defineCollection({
     visualSystem: z.string().optional(),
     relatedArticle: z.string().optional(),
     relatedWorkshopNote: z.string().optional(),
+    relatedContent: z
+      .array(z.object({ label: z.string(), href: z.string() }))
+      .default([]),
     priceLabel: z.string().optional(),
     paidAssetPolicy: paidAssetPolicySchema.optional(),
     status: z

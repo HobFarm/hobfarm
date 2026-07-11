@@ -13,7 +13,7 @@ export async function GET() {
   return textResponse(
     await buildSectionLlms(
       "HobFarm Workshop Agent Index",
-      "Process notes, production methods, tool notes, and public build/workflow writing.",
+      "Character systems, visual development, production methods, camera and motion studies, tool notes, and public build/workflow writing.",
       notes.map(articleToAgentLink),
     ),
   );

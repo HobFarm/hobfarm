@@ -306,6 +306,8 @@ When asked to create content for the website:
 
 Write public copy in plain, direct language. Describe what the page contains and what the reader can do next.
 
+Before finalizing any public-facing text (articles, captions, World Guide entries, project/gallery copy, product descriptions, social copy), run it through the style pass in [docs/regular-prose-guidelines.md](docs/regular-prose-guidelines.md). It governs sentence structure, punctuation, rhythm, and the assistant-tell patterns to cut.
+
 ---
 
 ## Visual and Layout Direction

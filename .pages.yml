@@ -51,6 +51,58 @@ content:
         type: select
         options: [draft, scheduled, published, archived]
       - { name: series, label: Series, type: string }
+      - { name: presentsSeries, label: Presents Series, type: string }
+      - name: entryType
+        label: Presents Entry Type
+        type: select
+        options: [feature, video-essay, article, short-investigation, scene-study, connection-map, archive-note]
+      - name: video
+        label: Self-hosted Video
+        type: object
+        fields:
+          - { name: src, label: MP4 URL, type: string }
+          - { name: hls, label: HLS URL, type: string }
+          - { name: poster, label: Poster URL, type: string }
+          - { name: captions, label: WebVTT Captions URL, type: string }
+          - { name: duration, label: ISO 8601 Duration, type: string }
+          - name: aspectRatio
+            label: Aspect Ratio
+            type: select
+            options: ["16:9", "4:3", "9:16"]
+      - name: connection
+        label: 3DM Connection
+        type: object
+        fields:
+          - { name: origin, label: Origin Subject, type: string }
+          - { name: degreeCount, label: Degree Count, type: number }
+          - name: chain
+            label: Connection Chain
+            type: object
+            list: true
+            fields:
+              - { name: name, label: Name, type: string }
+              - name: kind
+                label: Kind
+                type: select
+                options: [person, film, production, company, studio, craftsperson, cultural-object]
+              - { name: note, label: Connection Note, type: text }
+              - { name: year, label: Year or Period, type: string }
+              - { name: evidence, label: Evidence Note, type: text }
+              - { name: source, label: Source URL, type: string }
+      - { name: contentWarnings, label: Content Warnings, type: string, list: true }
+      - { name: rightsNote, label: Rights and Sourcing Note, type: text }
+      - name: sourceNotes
+        label: Source Notes
+        type: object
+        list: true
+        fields:
+          - { name: label, label: Source Label, type: string }
+          - { name: url, label: Source URL, type: string }
+          - { name: note, label: Evidence Note, type: text }
+          - name: type
+            label: Evidence Type
+            type: select
+            options: [documented-fact, participant-recollection, trade-report, promotional-claim, historical-interpretation, open-question]
       - { name: tags, label: Tags, type: string, list: true }
       - { name: hero, label: Hero Image URL, type: string }
       - { name: heroImage, label: Hero Image URL (new field), type: string }
@@ -249,12 +301,31 @@ content:
         order: desc
     fields:
       - { name: title, label: Title, type: string, required: true }
+      - { name: sku, label: Canonical SKU, type: string }
       - name: platform
         label: Platform
         type: select
         required: true
         options: [deviantart, kofi, etsy, ebay, lemon-squeezy, hobfarm-direct, patreon]
       - { name: externalUrl, label: Storefront URL (leave blank until live), type: string }
+      - { name: externalListingId, label: External Listing ID, type: string }
+      - name: fulfillment
+        label: Fulfillment
+        type: select
+        options: [external, lemon-squeezy, stripe-direct, printful, manual]
+      - { name: printfulProductId, label: Printful Product ID, type: string }
+      - name: variants
+        label: Variants
+        type: object
+        list: true
+        fields:
+          - { name: sku, label: SKU, type: string, required: true }
+          - { name: name, label: Name, type: string, required: true }
+          - { name: priceLabel, label: Price Label, type: string }
+          - { name: currency, label: Currency, type: string }
+          - { name: printfulVariantId, label: Printful Variant ID, type: string }
+          - { name: available, label: Available, type: boolean }
+      - { name: entitlementId, label: Digital/Course Entitlement ID, type: string }
       - name: productType
         label: Product Type
         type: select
@@ -276,6 +347,13 @@ content:
       - { name: visualSystem, label: Visual System id, type: string }
       - { name: relatedArticle, label: Related Article id, type: string }
       - { name: relatedWorkshopNote, label: Related Workshop Note id, type: string }
+      - name: relatedContent
+        label: Related Content
+        type: object
+        list: true
+        fields:
+          - { name: label, label: Label, type: string, required: true }
+          - { name: href, label: URL, type: string, required: true }
       - { name: priceLabel, label: Price Label, type: string }
       - name: paidAssetPolicy
         label: Paid Asset Policy

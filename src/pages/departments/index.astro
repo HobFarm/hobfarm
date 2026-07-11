@@ -15,6 +15,7 @@ import {
 import { getArticleDepartment, getPublishedArticles } from "@/lib/articles";
 import { getPublishedComics } from "@/lib/comics";
 import { getPublishedAdventures } from "@/lib/adventures";
+import { getActivePresentsTitles } from "@/data/presents-titles";
 
 // Count published articles + non-draft gallery entries + published comics +
 // published adventures filed to each department, so the hub shows how full
@@ -34,6 +35,7 @@ for (const g of visuals)
   bump(resolveDepartment(g.data.department ?? galleryTypeToDepartment[g.data.type]));
 for (const c of comics) bump(resolveDepartment(c.data.department));
 for (const s of adventures) bump(resolveDepartment(s.data.department));
+counts.set("hobfarm-presents", getActivePresentsTitles().length);
 
 const departmentDescription =
   "The recurring sections of HobFarm: cartoons, humor, visual experiments, old-media archaeology, production notes, arguments, videos, and mildly interesting projects.";

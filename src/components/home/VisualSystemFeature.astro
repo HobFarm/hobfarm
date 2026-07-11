@@ -1,11 +1,5 @@
 ---
-// Reusable homepage feature for a visual system. Defaults to the flagged
-// featured system but accepts any system, so it is not hardcoded to Sophia/
-// Stella. Self-suppresses when there is no active system to show.
-// Preview-safe: every still is capped via mediaImageUrl; sheet crops carry no
-// lightbox, and the full-resolution `-hd` originals are never emitted.
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-import Text from "@/components/fundations/elements/Text.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import { mediaImageUrl, mediaUrl } from "@/lib/gallery";
 import {
@@ -19,103 +13,338 @@ interface Props {
 }
 
 const { system = featuredVisualSystem } = Astro.props;
-
 const fa = system?.featuredAssets;
+
 const posterSrc = fa?.poster
-  ? mediaImageUrl(fa.poster.folder, fa.poster.file, { width: 1000, quality: 84, fit: "cover" })
+  ? mediaImageUrl(fa.poster.folder, fa.poster.file, { width: 1100, quality: 84, fit: "cover" })
   : null;
 const teaserSrc = fa?.teaserVideo ? mediaUrl(fa.teaserVideo.folder, fa.teaserVideo.file) : null;
 const teaserPoster = fa?.teaserVideo
-  ? mediaImageUrl(fa.teaserVideo.folder, fa.teaserVideo.poster, { width: 800, quality: 82, fit: "cover" })
+  ? mediaImageUrl(fa.teaserVideo.folder, fa.teaserVideo.poster, { width: 900, quality: 82, fit: "cover" })
   : null;
 
-// One capped sheet crop per variant for the showroom teaser.
-const crops = system
-  ? system.variants
-      .flatMap((v) => v.sheetPreviews.slice(0, 1))
-      .map((s) => ({
-        src: mediaImageUrl(s.folder, s.file, { width: 600, quality: 82, fit: "scale-down" }),
-        alt: s.alt,
-      }))
-  : [];
+const variants = system?.variants.map((variant) => ({
+  ...variant,
+  heroSrc: variant.hero
+    ? mediaImageUrl(variant.hero.folder, variant.hero.file, { width: 900, quality: 84, fit: "cover" })
+    : null,
+  sheetSrc: variant.sheetPreviews[0]
+    ? mediaImageUrl(variant.sheetPreviews[0].folder, variant.sheetPreviews[0].file, {
+        width: 900,
+        quality: 82,
+        fit: "scale-down",
+      })
+    : null,
+})) ?? [];
+
+const styleIngredients = [
+  ["Shape language", "Eye-first illustration, readable silhouettes, feline features"],
+  ["Animation roots", "Classic cartoon clarity with manga and anime influence"],
+  ["Emotional register", "Cute enough to invite you in, spooky enough to hold attention"],
+  ["World signal", "Club fashion, rave light, gothic hardware, nocturnal stage energy"],
+];
+
+const processSteps = [
+  {
+    number: "01",
+    title: "Define the taste",
+    text: "Collect the eras, art movements, fashion signals, animation languages, and moods worth carrying forward. The tools come after the point of view.",
+  },
+  {
+    number: "02",
+    title: "Build the mannequin",
+    text: "Lock the face, eyes, proportions, silhouette, ears, and body language. That shared structure gives later variations something stable to inherit.",
+  },
+  {
+    number: "03",
+    title: "Split the identity",
+    text: "Push one base into two strong directions. Sophia keeps the candy-rave light. Stella takes the same figure into gothic nightclub authority.",
+  },
+  {
+    number: "04",
+    title: "Direct the camera",
+    text: "Choose the lens, distance, angle, pose, foreground, and depth for the job. A reference sheet proves consistency; a hero frame creates motion and presence.",
+  },
+];
+
+const outputFrames = [
+  { ratio: "21:9", cssRatio: "21 / 9", orientation: "wide", use: "Cinema" },
+  { ratio: "16:9", cssRatio: "16 / 9", orientation: "wide", use: "Web video" },
+  { ratio: "9:16", cssRatio: "9 / 16", orientation: "tall", use: "Reels" },
+  { ratio: "2:3", cssRatio: "2 / 3", orientation: "tall", use: "Posters" },
+  { ratio: "3:4", cssRatio: "3 / 4", orientation: "tall", use: "Character art" },
+  { ratio: "4:5", cssRatio: "4 / 5", orientation: "tall", use: "Social feed" },
+  { ratio: "1:1", cssRatio: "1 / 1", orientation: "square", use: "Square" },
+];
 ---
 
 {system && (
-  <section id="visual-system-feature" class="border-b border-base-800/70">
-    <Wrapper variant="standard" class="py-14 lg:py-20">
-      <div class="max-w-2xl">
-        <p class="font-mono text-[10px] uppercase tracking-widest text-accent-magenta-bright">
-          Visual System
+  <section id="visual-system-feature" class="workshop-case border-b border-base-800/70" aria-labelledby="workshop-case-heading">
+    <Wrapper variant="standard" class="py-16 lg:py-24">
+      <header class="grid gap-7 lg:grid-cols-[minmax(0,0.8fr)_minmax(20rem,0.45fr)] lg:items-end">
+        <div class="max-w-4xl">
+          <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-blue-bright">
+            Workshop / Character development
+          </p>
+          <h2 id="workshop-case-heading" class="mt-4 font-display text-4xl font-light leading-tight text-white text-balance lg:text-6xl">
+            From a mannequin to a world.
+          </h2>
+        </div>
+        <p class="max-w-xl text-sm leading-relaxed text-base-300 lg:justify-self-end">
+          Sophia and Stella show the full character-design process: define the visual language, lock a reusable base, build two identities, then direct each image for the screen where it will live.
         </p>
-        <Text tag="h2" variant="displayLG" class="mt-3 font-display text-white">
-          {system.title}
-        </Text>
-        <p class="mt-4 text-base leading-relaxed text-base-300 text-pretty">
-          {system.shortDescription}
-        </p>
+      </header>
+
+      <div class="mt-10 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+        {processSteps.map((step) => (
+          <article class="process-card rounded-xl border border-base-800 bg-base-950/55 p-5">
+            <span class="font-mono text-[10px] tracking-[0.2em] text-accent-blue-bright">{step.number}</span>
+            <h3 class="mt-6 font-display text-xl font-light text-white">{step.title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-base-400">{step.text}</p>
+          </article>
+        ))}
       </div>
 
-      <div class="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
-        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          {posterSrc && (
-            <img
-              src={posterSrc}
-              alt={fa!.poster!.alt}
-              loading="lazy"
-              decoding="async"
-              class="aspect-[3/4] w-full max-h-[440px] border border-base-800 bg-base-950 object-contain sm:max-h-[560px]"
-            />
-          )}
-          {teaserSrc && (
-            <video
-              src={teaserSrc}
-              poster={teaserPoster ?? undefined}
-              muted
-              loop
-              autoplay
-              playsinline
-              preload="metadata"
-              aria-label={fa!.teaserVideo!.alt}
-              class="aspect-[3/4] w-full max-h-[440px] border border-base-800 bg-base-950 object-contain sm:max-h-[560px]"
-            ></video>
-          )}
-        </div>
-
-        <div class="flex flex-col gap-4">
-          <dl class="grid grid-cols-1 gap-2 sm:grid-cols-2">
-            {system.aestheticRules.slice(0, 4).map((rule) => (
-              <div class="rounded-md border border-base-800 bg-base-950/50 px-3 py-2">
-                <dt class="font-mono text-[10px] uppercase tracking-wider text-base-400">{rule.label}</dt>
-                <dd class="mt-0.5 text-xs leading-snug text-base-200">{rule.value}</dd>
-              </div>
-            ))}
-          </dl>
-          {crops.length > 0 && (
-            <div class="grid grid-cols-2 gap-2">
-              {crops.map((crop) => (
-                <img
-                  src={crop.src}
-                  alt={crop.alt}
-                  loading="lazy"
-                  decoding="async"
-                  class="w-full border border-base-800 bg-base-950 object-contain"
-                />
-              ))}
-            </div>
-          )}
-          <div class="flex flex-wrap gap-2">
-            <Button isLink size="sm" variant="green" href={visualSystemPath(system.slug)}>
-              See the full system
-            </Button>
-            <Button isLink size="sm" variant="muted" href="/visual-systems/">
-              Explore visual systems
-            </Button>
-          </div>
-          <p class="text-xs text-base-500">
-            The character sheet is the paid asset. The poster, hero, and video sell the world.
+      <section class="mt-16 grid gap-8 border-t border-base-800 pt-10 lg:grid-cols-[minmax(0,0.58fr)_minmax(0,1.42fr)] lg:items-start" aria-labelledby="visual-language-heading">
+        <div class="lg:sticky lg:top-24">
+          <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-base-500">Stage 01 / Visual language</p>
+          <h3 id="visual-language-heading" class="mt-3 font-display text-3xl font-light text-white">
+            Decide what belongs in the picture.
+          </h3>
+          <p class="mt-4 text-sm leading-relaxed text-base-300">
+            Style starts with taste. Choose the visual history, emotional tone, materials, and cultural signals before asking any tool to draw. That gives every later decision a reason.
           </p>
         </div>
-      </div>
+        <dl class="grid gap-3 sm:grid-cols-2">
+          {styleIngredients.map(([label, value]) => (
+            <div class="rounded-xl border border-base-800 bg-base-900/55 p-5">
+              <dt class="font-mono text-[10px] uppercase tracking-[0.16em] text-accent-magenta-bright">{label}</dt>
+              <dd class="mt-3 text-sm leading-relaxed text-base-200">{value}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
+      <section class="mt-16 border-t border-base-800 pt-10" aria-labelledby="identity-system-heading">
+        <div class="grid gap-6 lg:grid-cols-[minmax(0,0.55fr)_minmax(0,1fr)] lg:items-end">
+          <div>
+            <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-base-500">Stages 02–03 / Mannequin + identity</p>
+            <h3 id="identity-system-heading" class="mt-3 font-display text-3xl font-light text-white">
+              One structure. Two complete characters.
+            </h3>
+          </div>
+          <p class="max-w-2xl text-sm leading-relaxed text-base-300 lg:justify-self-end">
+            The shared mannequin holds the face, proportions, eyes, ears, and feline read. Palette, materials, styling, attitude, and world-building create the split.
+          </p>
+        </div>
+
+        <div class="mt-8 grid gap-5 lg:grid-cols-2">
+          {variants.map((variant) => (
+            <article class={`variant-card variant-card--${variant.key} overflow-hidden rounded-xl border border-base-800 bg-base-950/70`}>
+              {variant.heroSrc && (
+                <div class="variant-card__hero relative aspect-[3/4] overflow-hidden bg-base-950">
+                  <img
+                    src={variant.heroSrc}
+                    alt={variant.hero?.alt ?? `${variant.label} hero image`}
+                    loading="lazy"
+                    decoding="async"
+                    class="size-full object-cover transition duration-700 hover:scale-[1.025] motion-reduce:transition-none motion-reduce:hover:scale-100"
+                  />
+                  <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-base-950 via-base-950/75 to-transparent p-6 pt-24">
+                    <p class="font-mono text-[10px] uppercase tracking-[0.18em] text-base-300">Shared mannequin / {variant.key}</p>
+                    <h4 class="mt-2 font-display text-4xl font-light text-white">{variant.label}</h4>
+                    <p class="mt-3 max-w-lg text-sm leading-relaxed text-base-200">{variant.description}</p>
+                  </div>
+                </div>
+              )}
+              <div class="grid gap-4 p-5 sm:grid-cols-[minmax(0,0.9fr)_minmax(12rem,0.55fr)] sm:items-center">
+                <dl class="grid grid-cols-2 gap-4">
+                  <div>
+                    <dt class="font-mono text-[9px] uppercase tracking-wider text-base-500">Locked</dt>
+                    <dd class="mt-2 text-xs leading-relaxed text-base-300">{variant.lockedTraits?.join(", ")}</dd>
+                  </div>
+                  <div>
+                    <dt class="font-mono text-[9px] uppercase tracking-wider text-base-500">Changed</dt>
+                    <dd class="mt-2 text-xs leading-relaxed text-base-300">{variant.changedTraits?.join(", ")}</dd>
+                  </div>
+                </dl>
+                {variant.sheetSrc && (
+                  <img
+                    src={variant.sheetSrc}
+                    alt={variant.sheetPreviews[0]?.alt ?? `${variant.label} character sheet preview`}
+                    loading="lazy"
+                    decoding="async"
+                    class="w-full rounded-md border border-base-800 bg-base-950 object-contain"
+                  />
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="mt-16 border-t border-base-800 pt-10" aria-labelledby="camera-heading">
+        <div class="grid gap-6 lg:grid-cols-[minmax(0,0.58fr)_minmax(0,1.42fr)] lg:items-start">
+          <div>
+            <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-base-500">Stage 04 / Camera + pose</p>
+            <h3 id="camera-heading" class="mt-3 font-display text-3xl font-light text-white">
+              Direct the frame before you animate it.
+            </h3>
+            <p class="mt-4 text-sm leading-relaxed text-base-300">
+              Lens choice, distance, angle, pose, overlap, foreground objects, and lighting decide whether the character feels flat or present. A strong hero image already contains the beginning of a camera move.
+            </p>
+          </div>
+          <div class="grid gap-3 sm:grid-cols-3">
+            {[
+              ["Lens", "Wide for environment and depth. Longer for portraits and cleaner silhouettes."],
+              ["Angle", "Low angles add authority. High angles add vulnerability. A tilt adds instability."],
+              ["Pose", "Hands, hips, shoulders, and eye-line should create a readable path through the frame."],
+            ].map(([label, value]) => (
+              <div class="rounded-xl border border-base-800 bg-base-900/55 p-5">
+                <p class="font-mono text-[10px] uppercase tracking-[0.16em] text-accent-cyan">{label}</p>
+                <p class="mt-3 text-sm leading-relaxed text-base-300">{value}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-16 border-t border-base-800 pt-10" aria-labelledby="output-heading">
+        <div class="grid gap-6 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,0.7fr)] lg:items-end">
+          <div>
+            <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-base-500">Stage 05 / Output planning</p>
+            <h3 id="output-heading" class="mt-3 font-display text-3xl font-light text-white">
+              Compose for the screen that will show it.
+            </h3>
+          </div>
+          <p class="max-w-xl text-sm leading-relaxed text-base-300 lg:justify-self-end">
+            Aspect ratio changes the picture. It decides how much world fits around the character, where motion can travel, and whether the audience sees a scene, a portrait, or a thumbnail.
+          </p>
+        </div>
+
+        <div class="ratio-grid mt-8">
+          {outputFrames.map((frame) => (
+            <article class="ratio-card rounded-xl border border-base-800 bg-base-950/55 p-4">
+              <div class="grid h-28 place-items-center">
+                <span
+                  class={`ratio-shape ratio-shape--${frame.orientation}`}
+                  style={`aspect-ratio: ${frame.cssRatio}`}
+                  aria-hidden="true"
+                ></span>
+              </div>
+              <p class="font-mono text-sm text-white">{frame.ratio}</p>
+              <p class="mt-1 text-xs text-base-500">{frame.use}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="mt-16 grid gap-6 border-t border-base-800 pt-10 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,0.5fr)]" aria-labelledby="media-packet-heading">
+        <div>
+          <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-base-500">Stage 06 / Media packet</p>
+          <h3 id="media-packet-heading" class="mt-3 font-display text-3xl font-light text-white">
+            Turn the system into things people can watch, use, and collect.
+          </h3>
+          <p class="mt-4 max-w-2xl text-sm leading-relaxed text-base-300">
+            The reference sheets stabilize the characters. Hero images sell their presence. Posters pair the identities. Video gives the camera somewhere to move. The same system can feed stories, social clips, product art, and a course that explains how it was built.
+          </p>
+          <div class="mt-7 flex flex-wrap gap-2">
+            <Button isLink size="sm" variant="green" href={visualSystemPath(system.slug)}>
+              Study the full system
+            </Button>
+            <Button isLink size="sm" variant="muted" href="/workshop/">
+              Enter the Workshop
+            </Button>
+            <Button isLink size="sm" variant="muted" href="/academy/">
+              Learn the process
+            </Button>
+            <Button isLink size="sm" variant="muted" href="/shop/sophia-stella-sheet-pack/">
+              View the character pack
+            </Button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          {posterSrc && (
+            <div class="media-frame aspect-[3/4] max-h-[30rem]">
+              <img
+                src={posterSrc}
+                alt={fa!.poster!.alt}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          )}
+          {teaserSrc && (
+            <div class="media-frame aspect-[3/4] max-h-[30rem]">
+              <video
+                src={teaserSrc}
+                poster={teaserPoster ?? undefined}
+                muted
+                loop
+                autoplay
+                playsinline
+                preload="metadata"
+                aria-label={fa!.teaserVideo!.alt}
+              ></video>
+            </div>
+          )}
+        </div>
+      </section>
     </Wrapper>
   </section>
 )}
+
+<style>
+  .workshop-case {
+    background:
+      radial-gradient(circle at 8% 18%, rgba(59, 111, 224, 0.11), transparent 32rem),
+      radial-gradient(circle at 92% 42%, rgba(224, 33, 138, 0.09), transparent 38rem),
+      linear-gradient(180deg, #090711, #07060b 55%, #0a0710);
+  }
+
+  .process-card {
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.025);
+  }
+
+  .variant-card--sophia {
+    box-shadow: inset 0 0 0 1px rgba(92, 240, 240, 0.04), 0 22px 70px rgba(25, 227, 227, 0.04);
+  }
+
+  .variant-card--stella {
+    box-shadow: inset 0 0 0 1px rgba(242, 77, 166, 0.04), 0 22px 70px rgba(226, 58, 78, 0.05);
+  }
+
+  .ratio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+    gap: 0.75rem;
+  }
+
+  .ratio-shape {
+    display: block;
+    border: 1px solid rgba(92, 240, 240, 0.5);
+    background:
+      linear-gradient(135deg, rgba(25, 227, 227, 0.14), rgba(123, 47, 247, 0.12)),
+      #0e0b16;
+    box-shadow: inset 0 0 24px rgba(25, 227, 227, 0.06);
+  }
+
+  .ratio-shape--wide {
+    width: min(100%, 7rem);
+  }
+
+  .ratio-shape--tall {
+    height: 5.5rem;
+  }
+
+  .ratio-shape--square {
+    height: 4.5rem;
+  }
+
+  @media (max-width: 40rem) {
+    .ratio-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

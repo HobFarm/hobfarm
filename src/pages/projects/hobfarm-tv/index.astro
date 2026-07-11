@@ -62,7 +62,10 @@ type ContentImageMetadata = {
         <Text tag="h2" variant="displayLG" class="text-white font-display mb-8">The Shows</Text>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           {shows.map((show) => {
-            const href = `/projects/${show.id.replace(/\.md$/, "")}/`;
+            const showSlug = show.id.replace(/\.md$/, "");
+            const href = showSlug === "hobfarm-tv/3-degrees-of-dick-miller"
+              ? "/departments/hobfarm-presents/3-degrees-of-dick-miller/"
+              : `/projects/${showSlug}/`;
             return (
               <a
                 href={href}

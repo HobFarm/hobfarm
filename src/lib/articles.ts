@@ -6,6 +6,7 @@ import {
   getDepartmentLabel,
   resolveDepartment,
 } from "@/data/departments";
+import { getPresentsTitle } from "@/data/presents-titles";
 
 export type Article = CollectionEntry<"articles">;
 export type ArticleData = Article["data"];
@@ -25,6 +26,11 @@ export function stripArticleExt(id: string): string {
 }
 
 export function articlePath(articleOrId: Article | string): string {
+  if (typeof articleOrId !== "string" && articleOrId.data.presentsSeries) {
+    const title = getPresentsTitle(articleOrId.data.presentsSeries);
+    const slug = stripArticleExt(articleOrId.id).split("/").pop();
+    if (title && slug) return `${title.href}${slug}`;
+  }
   const id = typeof articleOrId === "string" ? articleOrId : articleOrId.id;
   return `/articles/${stripArticleExt(id)}`;
 }

@@ -1,0 +1,70 @@
+---
+interface Props {
+  title: string;
+  src: string;
+  hls?: string;
+  poster?: string;
+  captions?: string;
+  aspectRatio?: "16:9" | "4:3" | "9:16";
+  contentWarnings?: string[];
+}
+
+const {
+  title,
+  src,
+  hls,
+  poster,
+  captions,
+  aspectRatio = "16:9",
+  contentWarnings = [],
+} = Astro.props;
+const aspectClass = aspectRatio === "4:3" ? "aspect-[4/3]" : aspectRatio === "9:16" ? "aspect-[9/16] max-w-md mx-auto" : "aspect-video";
+const warningId = `media-warning-${title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`;
+---
+
+<div class:list={["media-player", aspectClass]} data-media-player>
+  <video
+    controls
+    playsinline
+    preload="metadata"
+    poster={poster}
+    aria-label={title}
+    data-media-element
+  >
+    <source src={src} type="video/mp4" />
+    {hls && <source src={hls} type="application/vnd.apple.mpegurl" />}
+    {captions && <track kind="captions" src={captions} srclang="en" label="English" default />}
+    <p>Your browser cannot play this video. <a href={src}>Open the video file directly.</a></p>
+  </video>
+
+  {contentWarnings.length > 0 && (
+    <div class="media-player__warning" id={warningId} data-media-warning>
+      <p>Content warning</p>
+      <span>{contentWarnings.join(" · ")}</span>
+      <button type="button" data-media-reveal>Continue to video</button>
+    </div>
+  )}
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-media-player]").forEach((player) => {
+    const warning = player.querySelector<HTMLElement>("[data-media-warning]");
+    const reveal = player.querySelector<HTMLButtonElement>("[data-media-reveal]");
+    if (!warning || !reveal) return;
+    reveal.addEventListener("click", () => {
+      warning.hidden = true;
+      player.querySelector<HTMLVideoElement>("[data-media-element]")?.focus();
+    });
+  });
+</script>
+
+<style>
+  .media-player { position: relative; overflow: hidden; width: 100%; border: 1px solid #5a4632; background: #03070c; }
+  .media-player video { width: 100%; height: 100%; object-fit: contain; }
+  .media-player__warning { position: absolute; inset: 0; display: grid; place-content: center; padding: 2rem; background: rgb(5 12 20 / 96%); text-align: center; }
+  .media-player__warning[hidden] { display: none; }
+  .media-player__warning p { margin: 0; color: #f5e6c8; font-family: var(--font-display); font-size: 1.5rem; }
+  .media-player__warning span { margin-top: 0.55rem; color: #c9bda9; font-size: 0.85rem; text-transform: capitalize; }
+  .media-player__warning button { margin: 1.25rem auto 0; padding: 0.7rem 1rem; border: 1px solid #e6762d; background: #e6762d; color: #07101b; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .media-player__warning button:focus-visible { outline: 2px solid #f5e6c8; outline-offset: 3px; }
+</style>

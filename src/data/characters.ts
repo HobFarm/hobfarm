@@ -138,7 +138,7 @@ export const characters: CharacterEntry[] = [
       "Meet Other Alice, the eighteen-year-old Alice who grew up in Wonderland. Learn about her history, abilities, flaws, relationship with Chester, and appearances in Other Alice Adventures.",
     role: "Wonderland explorer",
     blurb: "The girl who stayed down.",
-    bio: "Alice entered Wonderland at seven and stayed. Eleven Wonderland years later, she is eighteen, fully adapted to its living systems, and following evidence that the known world has an edge.",
+    bio: "Alice entered Wonderland at about eight and stayed. Ten Wonderland years later, she is eighteen, fully adapted to its living systems, and following evidence that the known world has an edge.",
     traits: [
       "Eighteen",
       "The Alice who stayed",
@@ -150,17 +150,17 @@ export const characters: CharacterEntry[] = [
     imageAlt:
       "Other Alice in the wet purple, green, and cyan growth of Wonderland.",
     heroDeck:
-      "She fell into Wonderland at seven. Eleven years later, she knows which rules are useful, which ones are local, and which holes should probably remain closed.",
+      "She fell into Wonderland at about eight. Ten Wonderland years later, she knows which rules are useful, which ones are local, and which holes should probably remain closed.",
     guideIntro: [
       "Other Alice is the girl who stayed down.",
-      "She entered Wonderland as a Victorian child with schoolroom facts, formal manners, and no idea what waited below the rabbit hole. Eleven Wonderland years later, she is fully adapted to a wet living world of fungal machinery, talking animals, card-suit castes, casino power, unstable portals, and ecological systems that treat nonsense as infrastructure.",
+      "She entered Wonderland as a Victorian child with schoolroom facts, formal manners, and no idea what waited below the rabbit hole. Ten Wonderland years later, she is fully adapted to a wet living world of fungal machinery, talking animals, card-suit castes, casino power, unstable portals, and ecological systems that treat nonsense as infrastructure.",
       "Alice is curious, analytical, self-possessed, and difficult to discourage. She watches how a system behaves, tests its rules, and follows contradictions until they lead somewhere useful or dangerous. Usually both.",
     ],
     dossier: [
       { label: "Age", value: "18" },
       {
         label: "Origin",
-        value: "Victorian England, roughly 150 outside-world years ago",
+        value: "Victorian England, roughly two hundred outside-world years ago",
       },
       { label: "Home", value: "Wonderland" },
       {
@@ -225,14 +225,14 @@ export const characters: CharacterEntry[] = [
       {
         title: "Chester",
         paragraphs: [
-          "Chester is the Cheshire Cat after eleven more years of knowing Alice: older, much fatter, lazier, and usually close by. He is not Alice's pet. He is her oldest companion, skeptical witness, occasional guide, and remaining connection to the child who first entered Wonderland.",
+          "Chester is the Cheshire Cat after ten more years of knowing Alice: older, much fatter, lazier, and usually close by. He is not Alice's pet. He is her oldest companion, skeptical witness, occasional guide, and remaining connection to the child who first entered Wonderland.",
           "Alice recognizes systems through observation. Chester senses when the system itself is lying. He also keeps her from turning every frightened person into a source of useful data.",
         ],
       },
       {
         title: "Time and memory",
         paragraphs: [
-          "Alice experienced eleven years in Wonderland while roughly 150 years passed outside it. Wonderland absorbed people, objects, media, technologies, and cultural fragments through unstable portals, so her worldview did not remain Victorian.",
+          "Alice experienced ten years in Wonderland while roughly two hundred years passed along her original route. The outside world is now around the 2060s. Wonderland absorbed people, objects, media, technologies, and cultural fragments through unstable portals, so her worldview did not remain Victorian.",
           "Small Victorian traces remain in her phrasing, manners, mental arithmetic, and expectation that rules should be embarrassed when they fail to make sense.",
         ],
       },
@@ -249,7 +249,7 @@ export const characters: CharacterEntry[] = [
     name: "Chester",
     role: "Alice's companion",
     blurb: "The older Cheshire Cat, mostly done performing for strangers.",
-    bio: "Chester is the Cheshire Cat after eleven more years of Wonderland: enormous, older, lazier, and usually near Alice. He recognizes when a system is lying and understands deeper Wonderland rules that he rarely explains cleanly.",
+    bio: "Chester is the Cheshire Cat after ten more years of Wonderland: enormous, older, lazier, and usually near Alice. He recognizes when a system is lying and understands deeper Wonderland rules that he rarely explains cleanly.",
     traits: [
       "Older Cheshire Cat",
       "Sarcastic grin",

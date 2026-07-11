@@ -13,6 +13,7 @@ import Subscribe from "@/components/articles/Subscribe.astro";
 import { storySeries, storySeriesPath } from "@/data/story-series";
 import { characterPath, getCharacter } from "@/data/characters";
 import { adventurePath, adventuresInSeries, getPublishedAdventures } from "@/lib/adventures";
+import { OTHER_ALICE_WORLD_GUIDE_PATH } from "@/data/other-alice-world-guide";
 
 export async function getStaticPaths() {
   const adventures = await getPublishedAdventures();
@@ -36,6 +37,8 @@ const alice = cast.find((character) => character.slug === "alice");
 const seriesImage = series.heroMedia?.type === "image" ? series.heroMedia.file : series.cover;
 const seriesImageAlt =
   series.heroMedia?.type === "image" ? series.heroMedia.alt : series.coverAlt ?? series.title;
+const worldGuideHref =
+  series.slug === "other-alice-adventures" ? OTHER_ALICE_WORLD_GUIDE_PATH : undefined;
 const canonicalUrl = new URL(storySeriesPath(series.slug), "https://hob.farm").toString();
 const structuredData = {
   "@context": "https://schema.org",
@@ -145,6 +148,11 @@ const structuredData = {
             <Button isLink size="base" variant="muted" href="#world-atlas">
               Explore the worlds
             </Button>
+            {worldGuideHref && (
+              <Button isLink size="base" variant="muted" href={worldGuideHref}>
+                Open the World Guide
+              </Button>
+            )}
           </div>
         </div>
 

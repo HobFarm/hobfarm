@@ -8,6 +8,7 @@ import SectionHeader from "@/components/sections/SectionHeader.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import KofiCta from "@/components/KofiCta.astro";
 import DropCard from "@/components/shop/DropCard.astro";
+import SupportWays from "@/components/support/SupportWays.astro";
 import { previewImageUrl } from "@/lib/gallery";
 import { getPublicProducts, isBuyable, productSlug } from "@/lib/products";
 
@@ -71,14 +72,14 @@ const shopJsonLd = {
         itemListElement: drops.map((product, index) => ({
           "@type": "ListItem",
           position: index + 1,
-          url: `${siteOrigin}/shop/#${productSlug(product)}`,
+          url: `${siteOrigin}/shop/${productSlug(product)}/`,
           name: product.data.title,
         })),
       },
     },
     ...drops.map((product) => ({
       "@type": "Product",
-      "@id": `${siteOrigin}/shop/#${productSlug(product)}`,
+      "@id": `${siteOrigin}/shop/${productSlug(product)}/#product`,
       name: product.data.title,
       description: productStructuredDescription(product),
       ...(productStructuredImage(product) ? { image: productStructuredImage(product) } : {}),
@@ -125,6 +126,18 @@ const shopJsonLd = {
         <Text tag="p" variant="textSM" class="text-base-500 mt-6 max-w-2xl text-pretty leading-relaxed">
           Etsy is the main storefront today. Ko-fi handles support and small drops. An on-site shop and eBay are later shelves, not open yet.
         </Text>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <SupportWays
+          compact
+          heading="Support beyond the shop"
+          description="Join directly through HobFarm, use Ko-fi for tips and commission requests, or visit Patreon as a separate membership community."
+        />
       </Wrapper>
     </ContentPanel>
   </section>

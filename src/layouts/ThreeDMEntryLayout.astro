@@ -1,0 +1,194 @@
+---
+import type { Article } from "@/lib/articles";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import ShareButtons from "@/components/articles/ShareButtons.astro";
+import MediaPlayer from "@/components/media/MediaPlayer.astro";
+import ConnectionChain from "@/components/presents/ConnectionChain.astro";
+import ThreeDMEntryCard from "@/components/presents/ThreeDMEntryCard.astro";
+import { articlePath, getArticleDate, getArticleDescription, getArticleHero, getArticleUpdatedDate } from "@/lib/articles";
+import { THREE_DM_GPT_URL, THREE_DM_LOGO, THREE_DM_PATH } from "@/data/presents-titles";
+
+interface Props {
+  article: Article;
+  readingTime: string;
+  related: Article[];
+}
+
+const { article, readingTime, related } = Astro.props;
+const data = article.data;
+const publishedAt = getArticleDate(article);
+const updatedAt = getArticleUpdatedDate(article) ?? publishedAt;
+const canonicalPath = data.canonical ?? `${articlePath(article)}/`;
+const canonicalUrl = new URL(canonicalPath, Astro.site?.origin ?? "https://hob.farm").toString();
+const image = getArticleHero(data) ?? THREE_DM_LOGO;
+const socialImage = data.socialImage ?? image;
+const usesSeriesLogo = image === THREE_DM_LOGO;
+const description = getArticleDescription(data);
+const entryType = (data.entryType ?? "article").replaceAll("-", " ");
+const videoObject = data.video
+  ? {
+      "@type": "VideoObject",
+      name: data.title,
+      description,
+      thumbnailUrl: [data.video.poster],
+      uploadDate: publishedAt.toISOString(),
+      duration: data.video.duration,
+      contentUrl: data.video.src,
+      caption: data.video.captions,
+    }
+  : undefined;
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      headline: data.title,
+      description,
+      image: [socialImage, image],
+      datePublished: publishedAt.toISOString(),
+      dateModified: updatedAt.toISOString(),
+      author: { "@type": "Person", name: data.author },
+      publisher: { "@id": "https://hob.farm/#organization" },
+      mainEntityOfPage: canonicalUrl,
+      isPartOf: { "@id": `${new URL(THREE_DM_PATH, "https://hob.farm")}#series` },
+      associatedMedia: videoObject,
+    },
+    ...(videoObject ? [videoObject] : []),
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "HobFarm Presents", item: "https://hob.farm/departments/hobfarm-presents/" },
+        { "@type": "ListItem", position: 2, name: "3 Degrees of Dick Miller", item: new URL(THREE_DM_PATH, "https://hob.farm").toString() },
+        { "@type": "ListItem", position: 3, name: data.title, item: canonicalUrl },
+      ],
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title={`${data.title} | 3 Degrees of Dick Miller`}
+  description={description}
+  canonical={canonicalPath}
+  image={socialImage}
+  imageAlt={data.heroAlt ?? data.title}
+  type="article"
+  publishedTime={publishedAt.toISOString()}
+  modifiedTime={updatedAt.toISOString()}
+  tags={data.tags}
+  structuredData={structuredData}
+>
+  <section class="three-dm-entry">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-8 lg:py-12">
+        <nav class="three-dm-breadcrumb" aria-label="Breadcrumb">
+          <a href="/departments/hobfarm-presents/">HobFarm Presents</a><span>/</span>
+          <a href={THREE_DM_PATH}>3DM</a><span>/</span><span>{entryType}</span>
+        </nav>
+
+        <header class="three-dm-entry__hero">
+          <div class:list={["three-dm-entry__logo", { "three-dm-entry__logo--art": !usesSeriesLogo }]}>
+            <img src={image} alt={data.heroAlt ?? data.title} width={usesSeriesLogo ? 900 : 1672} height={usesSeriesLogo ? 900 : 941} decoding="async" fetchpriority="high" />
+          </div>
+          <div>
+            <p class="three-dm-kicker">{entryType} · {publishedAt.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" })} · {readingTime}</p>
+            <h1>{data.title}</h1>
+            <p class="three-dm-entry__deck">{data.dek ?? data.excerpt}</p>
+          </div>
+        </header>
+
+        {data.video && (
+          <div class="three-dm-entry__media">
+            <MediaPlayer title={data.title} src={data.video.src} hls={data.video.hls} poster={data.video.poster} captions={data.video.captions} aspectRatio={data.video.aspectRatio} contentWarnings={data.contentWarnings} />
+          </div>
+        )}
+
+        {data.connection && data.connection.chain.length > 0 && (
+          <div class="three-dm-entry__route">
+            <ConnectionChain steps={data.connection.chain} label={data.connection.degreeCount == null ? "Production-system map" : "Connection record"} />
+          </div>
+        )}
+      </Wrapper>
+
+      <Wrapper variant="narrow" class="three-dm-entry__body">
+        <article class="prose prose-invert max-w-none prose-headings:font-display prose-headings:text-[#f5e6c8] prose-p:text-[#c9bda9] prose-a:text-[#e6762d] prose-strong:text-[#f5e6c8] prose-li:text-[#c9bda9] prose-blockquote:border-[#e6762d] prose-blockquote:text-[#e7d6b8]">
+          <slot />
+        </article>
+
+        {data.sourceNotes.length > 0 && (
+          <section class="source-notes" aria-labelledby="source-notes-heading">
+            <p class="three-dm-kicker">Research record</p>
+            <h2 id="source-notes-heading">Sources and evidence notes</h2>
+            <ol>
+              {data.sourceNotes.map((source) => (
+                <li>
+                  <p><span>{source.type.replaceAll("-", " ")}</span><a href={source.url} target="_blank" rel="noreferrer">{source.label} &nearr;</a></p>
+                  <small>{source.note}</small>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
+
+        {data.rightsNote && <aside class="rights-note"><strong>Rights and sourcing note</strong><p>{data.rightsNote}</p></aside>}
+
+        <aside class="three-dm-gpt">
+          <p class="three-dm-kicker">Interactive companion</p>
+          <h2>Test a connection with the 3DM GPT</h2>
+          <p>Choose a movie, performer, filmmaker, or cultural starting point and use the 3DM GPT to begin tracing a route toward Dick Miller.</p>
+          <a href={THREE_DM_GPT_URL} target="_blank" rel="noopener noreferrer">Open the 3DM GPT &nearr;</a>
+        </aside>
+
+        <section class="three-dm-share">
+          <h2>Share this route</h2>
+          <ShareButtons title={data.title} url={canonicalUrl} text={description} tags={data.tags} />
+        </section>
+
+        {related.length > 0 && (
+          <section class="three-dm-related">
+            <p class="three-dm-kicker">Keep following the credits</p>
+            <h2>Related 3DM routes</h2>
+            <div>{related.map((entry) => <ThreeDMEntryCard entry={entry} />)}</div>
+          </section>
+        )}
+
+        <a class="three-dm-return" href={THREE_DM_PATH}>&larr; Return to the 3DM archive</a>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+</BaseLayout>
+
+<style>
+  .three-dm-entry { --miller-cream:#f5e6c8; --miller-orange:#e6762d; --miller-gold:#b88a49; background:#050c14; }
+  .three-dm-breadcrumb { display:flex; flex-wrap:wrap; gap:.55rem; color:#7f776c; font-family:var(--font-mono); font-size:.65rem; letter-spacing:.1em; text-transform:uppercase; }
+  .three-dm-breadcrumb a { color:#c9bda9; text-decoration:none; }
+  .three-dm-entry__hero { display:grid; gap:2rem; margin-top:1.2rem; padding:clamp(1.2rem,4vw,3rem); border:1px solid #5a4632; background:linear-gradient(145deg,#0a1521,#07101b 62%,#11100e); }
+  .three-dm-entry__logo { display:grid; max-width:22rem; place-items:center; background:radial-gradient(circle,#223040,transparent 68%); }
+  .three-dm-entry__logo img { width:100%; max-height:22rem; object-fit:contain; }
+  .three-dm-entry__logo--art { max-width:38rem; background:#03070c; }
+  .three-dm-entry__logo--art img { max-height:28rem; padding:.45rem; }
+  .three-dm-kicker { margin:0; color:var(--miller-orange); font-family:var(--font-mono); font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; }
+  .three-dm-entry h1 { max-width:14ch; margin:.75rem 0 0; color:var(--miller-cream); font-family:var(--font-display); font-size:clamp(2.5rem,7vw,6rem); font-weight:760; letter-spacing:-.065em; line-height:.9; }
+  .three-dm-entry__deck { max-width:42rem; margin:1.2rem 0 0; color:#d8cab1; font-size:clamp(1.05rem,2vw,1.35rem); line-height:1.55; }
+  .three-dm-entry__media,.three-dm-entry__route { margin-top:1.5rem; }
+  .three-dm-entry__body { padding-top:clamp(2.5rem,6vw,5rem); padding-bottom:4rem; }
+  .source-notes,.three-dm-share,.three-dm-related { margin-top:3.5rem; padding-top:2rem; border-top:1px solid #5a4632; }
+  .source-notes h2,.three-dm-share h2,.three-dm-related h2,.three-dm-gpt h2 { margin:.55rem 0 0; color:var(--miller-cream); font-family:var(--font-display); font-size:1.8rem; }
+  .source-notes ol { margin:1.25rem 0 0; padding:0; list-style:none; }
+  .source-notes li { padding:1rem 0; border-top:1px solid #2d3640; }
+  .source-notes li p { display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:.5rem 1rem; margin:0; }
+  .source-notes li span { color:var(--miller-gold); font-family:var(--font-mono); font-size:.6rem; text-transform:uppercase; }
+  .source-notes li a { color:var(--miller-cream); font-size:.9rem; }
+  .source-notes small { display:block; margin-top:.5rem; color:#9f9585; line-height:1.55; }
+  .rights-note { margin-top:2rem; padding:1.2rem; border-left:4px solid var(--miller-orange); background:#0a1521; color:#b9ae9c; }
+  .rights-note p { margin:.45rem 0 0; }
+  .three-dm-gpt { margin-top:3rem; padding:1.5rem; border:1px solid #5a4632; background:linear-gradient(135deg,#0a1521,#11100e); color:#b9ae9c; }
+  .three-dm-gpt p:not(.three-dm-kicker) { margin:.75rem 0 0; line-height:1.65; }
+  .three-dm-gpt a { display:inline-flex; margin-top:1.2rem; padding:.7rem 1rem; border:1px solid var(--miller-orange); color:var(--miller-cream); font-family:var(--font-mono); font-size:.68rem; letter-spacing:.08em; text-decoration:none; text-transform:uppercase; }
+  .three-dm-gpt a:hover,.three-dm-gpt a:focus-visible { background:var(--miller-orange); color:#07101b; }
+  .three-dm-related > div { display:grid; gap:1rem; margin-top:1.25rem; }
+  .three-dm-return { display:inline-block; margin-top:2.5rem; color:var(--miller-orange); font-family:var(--font-mono); font-size:.7rem; text-transform:uppercase; }
+  @media(min-width:850px){.three-dm-entry__hero{grid-template-columns:minmax(16rem,.7fr) minmax(0,1.3fr);align-items:center}.three-dm-related>div{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>

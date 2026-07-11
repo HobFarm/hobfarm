@@ -1,5 +1,6 @@
 import { getCollection } from "astro:content";
 import {
+  articlePath,
   getArticleDate,
   getArticleDescription,
   getPublishedArticles,
@@ -121,7 +122,7 @@ export async function buildSearchIndex(): Promise<SearchItem[]> {
       type: "article",
       title: post.data.title,
       description: getArticleDescription(post.data),
-      href: `/articles/${stripExt(post.id)}`,
+      href: articlePath(post),
       tags: post.data.tags,
       category: resolveDepartment(post.data.department ?? post.data.category),
       date: getArticleDate(post).toISOString(),
@@ -218,6 +219,7 @@ export async function buildSearchIndex(): Promise<SearchItem[]> {
     shop: "/shop/",
     courses: "/academy/",
     grimoire: "/grimoire/",
+    "hobfarm-tv/3-degrees-of-dick-miller": "/departments/hobfarm-presents/3-degrees-of-dick-miller/",
   };
   const projectItems: SearchItem[] = (await getCollection("projects")).map(
     (project) => {

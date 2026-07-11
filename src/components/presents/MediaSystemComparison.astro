@@ -1,0 +1,26 @@
+---
+const systems = [
+  { era: "Broadcast", object: "Schedule", action: "Arrive", description: "A network chooses a time. The audience organizes itself around the transmission." },
+  { era: "Streaming", object: "Catalog", action: "Choose", description: "A service presents a library. The viewer searches, browses, and selects from available titles." },
+  { era: "Social", object: "Feed", action: "Scroll + react", description: "The sequence changes while the viewer watches. Every response becomes another signal." },
+];
+---
+
+<section class="systems" aria-labelledby="systems-heading">
+  <p class="systems__eyebrow">Three interfaces, three audience roles</p>
+  <h2 id="systems-heading">From appointment to feedback loop</h2>
+  <div class="systems__grid">
+    {systems.map((system, index) => (
+      <article>
+        <span>0{index + 1}</span><h3>{system.era}</h3>
+        <dl><div><dt>Object</dt><dd>{system.object}</dd></div><div><dt>Audience move</dt><dd>{system.action}</dd></div></dl>
+        <p>{system.description}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .systems{margin:2.8rem 0}.systems__eyebrow{margin:0;color:#e6762d!important;font-family:var(--font-mono);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase}.systems h2{margin:.5rem 0 0!important}.systems__grid{display:grid;gap:.8rem;margin-top:1.4rem}.systems article{padding:1.2rem;border:1px solid #40505d;background:#07101b}.systems article>span{color:#b88a49;font-family:var(--font-mono);font-size:.65rem}.systems h3{margin:.55rem 0 1rem!important;font-size:1.5rem!important}.systems dl{margin:0}.systems dl div{display:grid;grid-template-columns:6.5rem minmax(0,1fr);gap:.5rem;padding:.55rem 0;border-top:1px solid #293744}.systems dt{color:#7893a2;font-family:var(--font-mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase}.systems dd{margin:0;color:#f5e6c8;font-weight:700}.systems article p{margin:.85rem 0 0!important;color:#a99f90!important;font-size:.8rem;line-height:1.55}
+  @media(min-width:760px){.systems__grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+</style>

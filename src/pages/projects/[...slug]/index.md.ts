@@ -5,7 +5,7 @@ import {
 } from "@/lib/agent-corpus";
 
 const stripExt = (id: string) => id.replace(/\.(md|mdx)$/, "");
-const redirectedSlugs = new Set(["shop", "courses", "grimoire"]);
+const redirectedSlugs = new Set(["shop", "courses", "grimoire", "hobfarm-tv/3-degrees-of-dick-miller"]);
 
 export async function getStaticPaths() {
   const projects = await getPublicAgentProjects();

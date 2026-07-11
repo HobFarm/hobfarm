@@ -1,0 +1,50 @@
+---
+export type ConnectionStep = {
+  name: string;
+  kind?: string;
+  note: string;
+  year?: string | number;
+  evidence?: string;
+  source?: string;
+};
+
+interface Props {
+  steps: ConnectionStep[];
+  label?: string;
+}
+
+const { steps, label = "Route at a glance" } = Astro.props;
+---
+
+<section class="connection-chain" aria-labelledby="connection-chain-title">
+  <p id="connection-chain-title" class="connection-chain__label">{label}</p>
+  <ol>
+    {steps.map((step, index) => (
+      <li>
+        <span class="connection-chain__number">{String(index + 1).padStart(2, "0")}</span>
+        <div>
+          <p class="connection-chain__kind">{step.kind ?? "Connection"}{step.year ? ` · ${step.year}` : ""}</p>
+          <h3>{step.name}</h3>
+          <p class="connection-chain__note">{step.note}</p>
+          {step.evidence && <p class="connection-chain__evidence">Evidence: {step.evidence}</p>}
+          {step.source && <a href={step.source} target="_blank" rel="noreferrer">Open source &nearr;</a>}
+        </div>
+      </li>
+    ))}
+  </ol>
+</section>
+
+<style>
+  .connection-chain { border: 1px solid #5a4632; background: #08111c; }
+  .connection-chain__label { margin: 0; padding: 0.8rem 1rem; border-bottom: 1px solid #5a4632; color: #e6762d; font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; }
+  .connection-chain ol { display: grid; margin: 0; padding: 0; list-style: none; }
+  .connection-chain li { position: relative; display: grid; grid-template-columns: 2.5rem 1fr; gap: 0.75rem; padding: 1.15rem; border-bottom: 1px solid #2d3640; }
+  .connection-chain li:last-child { border-bottom: 0; }
+  .connection-chain__number { color: #b88a49; font-family: var(--font-mono); font-size: 0.7rem; }
+  .connection-chain__kind { margin: 0; color: #a59a88; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .connection-chain h3 { margin: 0.35rem 0 0; color: #f5e6c8; font-family: var(--font-display); font-size: 1.15rem; }
+  .connection-chain__note, .connection-chain__evidence { margin: 0.45rem 0 0; color: #c9bda9; font-size: 0.82rem; line-height: 1.55; }
+  .connection-chain__evidence { color: #9f9585; }
+  .connection-chain a { display: inline-block; margin-top: 0.55rem; color: #e6762d; font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; }
+  @media (min-width: 760px) { .connection-chain ol { grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); } .connection-chain li { border-right: 1px solid #2d3640; border-bottom: 0; } .connection-chain li:last-child { border-right: 0; } }
+</style>

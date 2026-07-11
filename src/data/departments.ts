@@ -141,12 +141,12 @@ export const departments: Department[] = [
     slug: "hobfarm-presents",
     label: "HobFarm Presents",
     blurb:
-      "Original serial fiction, illustrated tales, recurring story worlds, and the films, artifacts, and field notes attached to them.",
+      "Recurring story worlds, film-history series, illustrated fiction, video essays, moving scenes, and the artifacts attached to them.",
     intro: [
-      "Stories come first. Some arrive with painted covers, moving scenes, sound, field notes, or objects dragged back from somewhere they should not have survived.",
+      "Each Presents title gets its own archive, visual language, release feed, and media system. Some are fiction. Some are film history. All of them are designed to grow beyond a single post.",
     ],
     metaDescription:
-      "HobFarm Presents is the imprint for original serial fiction, illustrated short stories, and mixed-media story worlds, starting with Other Alice Adventures.",
+      "HobFarm Presents is the series imprint for illustrated fiction, film-history projects, video essays, character files, moving scenes, and recurring media titles.",
     accent: "#7b2ff7",
     heroImage: "https://cdn.hob.farm/hero-images/hobfarm-presents-hero.png",
     navHub: "Video",

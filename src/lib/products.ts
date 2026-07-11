@@ -16,7 +16,7 @@ export function productSlug(product: ProductEntry): string {
 }
 
 export function productPath(product: ProductEntry): string {
-  return `/shop/#${productSlug(product)}`;
+  return `/shop/${productSlug(product)}/`;
 }
 
 function byDropDateDesc(a: ProductEntry, b: ProductEntry): number {

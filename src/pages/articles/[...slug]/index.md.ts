@@ -6,7 +6,7 @@ import {
 import { stripArticleExt } from "@/lib/articles";
 
 export async function getStaticPaths() {
-  const articles = await getPublicAgentArticles();
+  const articles = (await getPublicAgentArticles()).filter((entry) => !entry.data.presentsSeries);
   return articles.map((entry) => ({
     params: { slug: stripArticleExt(entry.id) },
     props: { entry },

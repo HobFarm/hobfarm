@@ -137,11 +137,11 @@ export const storySeries: StorySeries[] = [
     eyebrow: "An illustrated Alice in Wonderland serial",
     tagline: "The girl who stayed down.",
     heroDeck:
-      "Alice stayed in Wonderland. Eleven years later, she finds the first hole leading out.",
+      "Alice stayed in Wonderland. Ten Wonderland years later, she finds the first hole leading out.",
     logline:
-      "Alice entered Wonderland at seven and stayed. Now eighteen, she follows the holes leading beyond its living labyrinth with Chester, the older Cheshire Cat.",
+      "Alice entered Wonderland at about eight and stayed. Ten Wonderland years later, she follows the holes leading beyond its living labyrinth with Chester, the older Cheshire Cat.",
     heroIntro: [
-      "Other Alice Adventures begins long after the fall. Alice is eighteen now and has lived below for more than a decade, long enough for Wonderland to alter her body, her habits, and her idea of home.",
+      "Other Alice Adventures begins long after the fall. Alice is eighteen now and has lived below for ten Wonderland years, long enough for Wonderland to alter her body, her habits, and her idea of home.",
       "She moves through a branching network of burrows, mirrors, doors, tunnels, and wormholes connecting wet organic Wonderland to the dry geometric Wasteland.",
       "The series starts with familiar public-domain mythology, then follows it into new territory: original characters, working communities, casino empires, living infrastructure, remote clans, failed districts, and paths that were never meant to be opened.",
     ],
@@ -149,7 +149,7 @@ export const storySeries: StorySeries[] = [
       heading: "What is Other Alice?",
       lead: "Other Alice Adventures is an original illustrated serial drawn from Lewis Carroll's public-domain Wonderland. It follows the Alice who stayed down.",
       paragraphs: [
-        "Alice entered Wonderland at seven and has lived there for eleven years. At eighteen, she is neither innocent nor evil. She is curious, analytical, practical, impatient with false explanations, and willing to test a world's rules when the official answers stop making sense.",
+        "Alice entered Wonderland at about eight and has lived there for ten Wonderland years. At eighteen, she is neither innocent nor evil. She is curious, analytical, practical, impatient with false explanations, and willing to test a world's rules when the official answers stop making sense.",
         "Wonderland changed while she grew up. It absorbed machines, media, commerce, fashion, vice, and other fragments from worlds connected by unstable holes. The result is a wet techno-surreal civilization built from living systems, card-suit castes, casino power, fungal infrastructure, and old nonsense that has learned modern habits.",
         "With Chester beside her, Alice begins following openings that lead beyond the known world. The first evidence points toward boundary mountains where Wonderland has an edge and something dry, hard, and geometric lies beyond it.",
       ],
@@ -487,19 +487,19 @@ export const storySeries: StorySeries[] = [
         items: [
           {
             title: "Hearts",
-            text: "Ruling class, landholding caste, court figures, elite hosts, diplomats, and powers closest to the Queen.",
+            text: "Central law, money, spectacle, information, diplomacy, engineered court bodies, clone houses, and the procedural power of the Queen's House.",
           },
           {
             title: "Diamonds",
-            text: "Casino operators, nightlife owners, financiers, dealers, entertainment brokers, accountants, creditors, and commercial syndicates.",
+            text: "Jungle waterways, medicine, biological cultivation, luxury trade, hydraulic infrastructure, and the living mountain palace of the tiger crowns.",
           },
           {
             title: "Clubs",
-            text: "Security, hired muscle, clan forces, palace guards, bouncers, arena fighters, raiders, and organized crime networks.",
+            text: "Frontier defense, salvage, fuel, construction, heavy machinery, transport, mountain citadels, and technology recovered from the outer ice.",
           },
           {
             title: "Spades",
-            text: "Gardeners, tunnel workers, growers, fungal tenders, water keepers, environmental maintenance crews, and biological infrastructure specialists.",
+            text: "Food, tunnels, cultivation, maps, archives, clocks, transit, ecological repair, and the older rabbit-hole routes beneath every other court.",
           },
         ],
       },
@@ -528,7 +528,7 @@ export const storySeries: StorySeries[] = [
       {
         question: "Is this a retelling of Alice's original trip?",
         answer:
-          "No. The story begins eleven Wonderland years after Alice first arrived. Her childhood visit is history; the series follows the person she became after Wonderland stopped being new.",
+          "No. The story begins ten Wonderland years after Alice first arrived. Her childhood visit is history; the series follows the person she became after Wonderland stopped being new.",
       },
       {
         question: "Is Other Alice evil?",
@@ -538,7 +538,7 @@ export const storySeries: StorySeries[] = [
       {
         question: "How old is Alice?",
         answer:
-          "Alice is eighteen. She entered Wonderland at seven and has lived there for eleven Wonderland years, while roughly 150 years passed in the outside world.",
+          "Alice is eighteen. She entered Wonderland at about eight and has lived there for ten Wonderland years, while roughly two hundred years passed along her original rabbit-hole route. The outside world is now around the 2060s.",
       },
       {
         question: "Is Chester the Cheshire Cat?",

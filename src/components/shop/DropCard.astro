@@ -2,7 +2,7 @@
 import { mediaImageUrl, mediaImageSrcset } from "@/lib/gallery";
 import { platformInfo } from "@/data/product-platforms";
 import { getDepartment, departmentPath } from "@/data/departments";
-import { isBuyable, productSlug } from "@/lib/products";
+import { isBuyable, productPath, productSlug } from "@/lib/products";
 import type { ProductEntry } from "@/lib/products";
 
 interface Props {
@@ -62,7 +62,9 @@ const statusLabel =
   </div>
 
   <div class="flex flex-1 flex-col gap-2 p-4">
-    <h3 class="font-display text-sm leading-snug text-white">{data.title}</h3>
+    <h3 class="font-display text-sm leading-snug text-white">
+      <a href={productPath(product)} class="transition-colors hover:text-accent-cyan">{data.title}</a>
+    </h3>
     <p class="text-xs leading-relaxed text-base-400 line-clamp-3">{data.shortDescription}</p>
 
     <div class="mt-auto flex items-center justify-between gap-2 pt-2">
@@ -82,18 +84,25 @@ const statusLabel =
       )}
     </div>
 
+    <a
+      href={productPath(product)}
+      class="mt-2 inline-flex items-center justify-center border border-base-700 px-3 py-2 text-xs font-mono uppercase tracking-wider text-base-200 transition-colors hover:border-white hover:text-white"
+    >
+      View details
+    </a>
+
     {buyable ? (
       <a
         href={data.externalUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="mt-2 inline-flex items-center justify-center border px-3 py-2 text-xs font-mono uppercase tracking-wider text-white transition-colors hover:bg-white/5"
+        class="inline-flex items-center justify-center border px-3 py-2 text-xs font-mono uppercase tracking-wider text-white transition-colors hover:bg-white/5"
         style={`border-color:${plat.color}66`}
       >
         {plat.ctaLabel}
       </a>
     ) : (
-      <span class="mt-2 inline-flex items-center justify-center border border-base-800 px-3 py-2 text-xs font-mono uppercase tracking-wider text-base-500">
+      <span class="inline-flex items-center justify-center border border-base-800 px-3 py-2 text-xs font-mono uppercase tracking-wider text-base-500">
         {data.status === "sold-out" ? "Sold out" : "Drop coming soon"}
       </span>
     )}

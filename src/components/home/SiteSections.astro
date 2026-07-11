@@ -1,0 +1,166 @@
+---
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import { formatLinks, siteSections } from "@/data/site-sections";
+
+const featuredSections = siteSections.filter((section) => section.featured);
+const workingSections = siteSections.filter((section) => !section.featured);
+---
+
+<section id="sections" class="section-directory border-b border-base-800/70" aria-labelledby="sections-heading">
+  <Wrapper variant="standard" class="py-14 lg:py-20">
+    <header class="grid gap-5 border-b border-base-800 pb-8 lg:grid-cols-[minmax(0,0.75fr)_minmax(20rem,0.45fr)] lg:items-end">
+      <div class="max-w-3xl">
+        <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-cyan">
+          Start here
+        </p>
+        <h2 id="sections-heading" class="mt-3 font-display text-3xl font-light leading-tight text-white text-balance lg:text-5xl">
+          Five doors into the same studio.
+        </h2>
+      </div>
+      <p class="max-w-xl text-sm leading-relaxed text-base-300 lg:justify-self-end">
+        Follow a story, read the cartoons, see how the work was made, learn the process, or pick up the finished piece.
+      </p>
+    </header>
+
+    <div class="mt-8 grid gap-4 lg:grid-cols-2">
+      {featuredSections.map((section) => (
+        <a
+          href={section.href}
+          class="section-card section-card--featured group relative isolate min-h-[28rem] overflow-hidden rounded-xl border border-base-800 bg-base-950"
+          style={`--section-accent: ${section.accent}`}
+        >
+          {section.image && (
+            <img
+              src={section.image}
+              alt={section.imageAlt ?? ""}
+              class="absolute inset-0 -z-20 size-full object-cover opacity-70 transition duration-700 ease-out group-hover:scale-[1.035] group-hover:opacity-80 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+              loading="lazy"
+              decoding="async"
+            />
+          )}
+          <span class="section-card__shade absolute inset-0 -z-10" aria-hidden="true"></span>
+          <div class="flex h-full min-h-[28rem] flex-col justify-between p-5 sm:p-7">
+            <div class="flex items-center justify-between gap-4 font-mono text-[10px] uppercase tracking-[0.2em]">
+              <span class="text-white/80">Section {section.number}</span>
+              <span class="rounded-full border border-white/20 bg-black/30 px-3 py-1.5 text-white/70 backdrop-blur-sm">
+                {section.kicker}
+              </span>
+            </div>
+            <div class="max-w-xl">
+              <h3 class="font-display text-3xl font-light leading-none text-white sm:text-4xl">
+                {section.label}
+              </h3>
+              <p class="mt-4 max-w-lg text-sm leading-relaxed text-base-100/90 sm:text-base">
+                {section.description}
+              </p>
+              <span class="mt-6 inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.18em] text-white">
+                {section.action}
+                <span class="section-card__arrow" aria-hidden="true">&rarr;</span>
+              </span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <div class="mt-4 grid gap-4 md:grid-cols-3">
+      {workingSections.map((section) => (
+        <a
+          href={section.href}
+          class="section-card group relative isolate flex min-h-72 flex-col justify-between overflow-hidden rounded-xl border border-base-800 bg-base-900/60 p-5 transition duration-300 hover:-translate-y-1 hover:border-base-600 sm:p-6 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+          style={`--section-accent: ${section.accent}`}
+        >
+          <span class="section-card__glow absolute -right-16 -top-20 -z-10 size-56 rounded-full opacity-20 blur-3xl transition-opacity duration-300 group-hover:opacity-35 motion-reduce:transition-none" aria-hidden="true"></span>
+          <div>
+            <div class="flex items-center justify-between gap-3">
+              <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-base-400">Section {section.number}</span>
+              <span class="section-card__dot size-2.5 rounded-full" aria-hidden="true"></span>
+            </div>
+            <p class="mt-8 font-mono text-[10px] uppercase leading-relaxed tracking-[0.16em] text-base-400">
+              {section.kicker}
+            </p>
+            <h3 class="mt-3 font-display text-3xl font-light text-white">{section.label}</h3>
+            <p class="mt-4 text-sm leading-relaxed text-base-300">{section.description}</p>
+          </div>
+          <span class="mt-8 inline-flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.16em] text-base-200 group-hover:text-white">
+            {section.action}
+            <span class="section-card__arrow" aria-hidden="true">&rarr;</span>
+          </span>
+        </a>
+      ))}
+    </div>
+
+    <nav class="mt-8 rounded-xl border border-base-800 bg-base-950/60 p-4 sm:flex sm:items-center sm:justify-between sm:gap-5" aria-label="Browse HobFarm by format">
+      <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-base-500">Browse by format</p>
+      <ul class="mt-3 flex flex-wrap gap-x-5 gap-y-2 sm:mt-0 sm:justify-end">
+        {formatLinks.map((link) => (
+          <li>
+            <a href={link.href} class="group inline-flex items-baseline gap-2 text-sm text-base-300 transition-colors hover:text-white">
+              <span class="font-mono text-[9px] uppercase tracking-wider text-base-600 group-hover:text-accent-cyan">{link.note}</span>
+              <span>{link.label}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </Wrapper>
+</section>
+
+<style>
+  .section-directory {
+    background:
+      radial-gradient(circle at 12% 12%, rgba(25, 227, 227, 0.08), transparent 30rem),
+      radial-gradient(circle at 86% 58%, rgba(224, 33, 138, 0.08), transparent 34rem),
+      #07060b;
+  }
+
+  .section-card {
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.025);
+  }
+
+  .section-card:focus-visible {
+    outline: 2px solid var(--section-accent);
+    outline-offset: 3px;
+  }
+
+  .section-card--featured {
+    transition: border-color 250ms ease, transform 300ms ease;
+  }
+
+  .section-card--featured:hover {
+    border-color: color-mix(in srgb, var(--section-accent) 58%, transparent);
+    transform: translateY(-0.2rem);
+  }
+
+  .section-card__shade {
+    background:
+      linear-gradient(180deg, rgba(7, 6, 11, 0.2), rgba(7, 6, 11, 0.35) 35%, rgba(7, 6, 11, 0.97) 100%),
+      linear-gradient(90deg, color-mix(in srgb, var(--section-accent) 16%, transparent), transparent 62%);
+  }
+
+  .section-card__glow,
+  .section-card__dot {
+    background: var(--section-accent);
+  }
+
+  .section-card__arrow {
+    display: inline-block;
+    transition: transform 200ms ease;
+  }
+
+  .section-card:hover .section-card__arrow {
+    transform: translateX(0.35rem);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .section-card--featured,
+    .section-card__arrow {
+      transition: none;
+    }
+
+    .section-card--featured:hover,
+    .section-card:hover .section-card__arrow {
+      transform: none;
+    }
+  }
+</style>

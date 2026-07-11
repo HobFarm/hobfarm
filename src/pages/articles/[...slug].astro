@@ -5,7 +5,9 @@ import { readingTime } from "@/lib/reading-time";
 import { byOldestArticle, getPublishedArticles, stripArticleExt } from "@/lib/articles";
 
 export async function getStaticPaths() {
-  const articles = (await getPublishedArticles()).sort(byOldestArticle);
+  const articles = (await getPublishedArticles())
+    .filter((entry) => !entry.data.presentsSeries)
+    .sort(byOldestArticle);
   return articles.map((entry, i) => ({
     params: { slug: stripArticleExt(entry.id) },
     props: {

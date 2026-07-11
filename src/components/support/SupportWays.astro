@@ -1,0 +1,162 @@
+---
+import { supportPlatforms } from "@/data/support-platforms";
+
+interface Props {
+  compact?: boolean;
+  heading?: string;
+  description?: string;
+}
+
+const {
+  compact = false,
+  heading = "Choose the support path that fits",
+  description = "HobFarm, Ko-fi, and Patreon are separate systems. Pick the one that matches how you want to participate.",
+} = Astro.props;
+---
+
+<section class:list={["support-ways", compact && "support-ways--compact"]} aria-labelledby="support-ways-heading">
+  <header class="support-ways__header">
+    <p class="support-ways__kicker">Support the next release</p>
+    <h2 id="support-ways-heading">{heading}</h2>
+    <p>{description}</p>
+  </header>
+
+  <div class="support-ways__grid">
+    {supportPlatforms.map((platform) => (
+      <article class="support-ways__card" style={`--support-accent:${platform.accent}`}>
+        <p class="support-ways__eyebrow">{platform.eyebrow}</p>
+        <h3>{platform.name}</h3>
+        <p class="support-ways__copy">{platform.description}</p>
+        <a
+          href={platform.href}
+          target={platform.external ? "_blank" : undefined}
+          rel={platform.external ? "noopener noreferrer" : undefined}
+          data-support-platform={platform.id}
+        >
+          {platform.cta}
+          {platform.external && <span aria-hidden="true"> &nearr;</span>}
+        </a>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .support-ways {
+    padding: clamp(2rem, 5vw, 4.5rem);
+    border: 1px solid var(--color-base-800);
+    background: var(--color-base-900);
+  }
+
+  .support-ways__header {
+    max-width: 46rem;
+  }
+
+  .support-ways__kicker,
+  .support-ways__eyebrow {
+    margin: 0;
+    color: var(--color-accent-cyan);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  .support-ways__header h2 {
+    margin: 0.7rem 0 0;
+    color: var(--color-white);
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, 3.5rem);
+    font-weight: 720;
+    letter-spacing: -0.04em;
+    line-height: 0.98;
+  }
+
+  .support-ways__header > p:last-child {
+    margin: 1rem 0 0;
+    color: var(--color-base-300);
+    line-height: 1.65;
+  }
+
+  .support-ways__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .support-ways__card {
+    display: flex;
+    min-height: 15rem;
+    flex-direction: column;
+    padding: 1.35rem;
+    border: 1px solid var(--color-base-700);
+    border-top: 3px solid var(--support-accent);
+    background: var(--color-base-950);
+    transition: transform 180ms ease, border-color 180ms ease;
+  }
+
+  .support-ways__card:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--support-accent) 60%, var(--color-base-700));
+  }
+
+  .support-ways__eyebrow {
+    color: var(--support-accent);
+  }
+
+  .support-ways__card h3 {
+    margin: 0.8rem 0 0;
+    color: var(--color-white);
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+  }
+
+  .support-ways__copy {
+    margin: 0.75rem 0 1.5rem;
+    color: var(--color-base-400);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .support-ways__card a {
+    width: fit-content;
+    margin-top: auto;
+    color: var(--color-white);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .support-ways__card a:hover,
+  .support-ways__card a:focus-visible {
+    color: var(--support-accent);
+  }
+
+  .support-ways--compact {
+    padding: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  @media (max-width: 780px) {
+    .support-ways__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .support-ways__card {
+      min-height: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .support-ways__card {
+      transition: none;
+    }
+
+    .support-ways__card:hover {
+      transform: none;
+    }
+  }
+</style>

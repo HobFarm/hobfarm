@@ -44,7 +44,7 @@ test("departments taxonomy and routes exist", () => {
 
 test("active department hero images are defined and rendered on department surfaces", () => {
   const departments = read("src/data/departments.ts");
-  const homepage = read("src/components/home/MagazineFrontPage.astro");
+  const homepage = read("src/components/home/SiteSections.astro");
   const departmentHub = read("src/pages/departments/index.astro");
   const departmentDetail = read("src/pages/departments/[slug].astro");
   const funnies = read("src/pages/departments/funnies.astro");
@@ -69,7 +69,7 @@ test("active department hero images are defined and rendered on department surfa
     );
   }
 
-  assert.match(homepage, /department\.heroImage/);
+  assert.match(homepage, /section\.image/);
   assert.match(departmentHub, /dep\.heroImage/);
   assert.match(departmentDetail, /department\.heroImage/);
   assert.match(funnies, /department\.heroImage/);
@@ -214,13 +214,13 @@ test("legacy funny-pages department redirects to funnies", () => {
   assert.match(redirects, /\/departments\/funny-pages\s+\/departments\/funnies\/\s+301/);
 });
 
-test("search and rss point article entries at /articles", () => {
+test("search and rss use the canonical article path helper", () => {
   const searchIndex = read("src/lib/search-index.ts");
   const rss = read("src/pages/rss.xml.js");
 
   assert.match(searchIndex, /type:\s*"article"/);
-  assert.match(searchIndex, /href:\s*`\/articles\/\$\{stripExt\(post\.id\)\}`/);
-  assert.match(rss, /link:\s*`\/articles\/\$\{post\.id\}\/`/);
+  assert.match(searchIndex, /href:\s*articlePath\(post\)/);
+  assert.match(rss, /link:\s*articlePath\(post\)/);
 });
 
 test("article share controls include a generated share post", () => {

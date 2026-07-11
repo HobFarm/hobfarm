@@ -36,6 +36,11 @@ const staticEntries: SitemapEntry[] = [
     changefreq: "weekly",
     priority: "0.9",
   },
+  {
+    loc: absoluteUrl("/departments/hobfarm-presents/3-degrees-of-dick-miller/"),
+    changefreq: "weekly",
+    priority: "0.9",
+  },
   { loc: absoluteUrl("/projects/"), changefreq: "monthly", priority: "0.8" },
   { loc: absoluteUrl("/workshop/"), changefreq: "weekly", priority: "0.8" },
   { loc: absoluteUrl("/academy/"), changefreq: "monthly", priority: "0.7" },
