@@ -1,6 +1,7 @@
 ---
 title: "Raccoon: Cute / Corrupted Critters"
 type: "cute-corrupted"
+workshopProgram: cute-and-corrupted
 summary: "The first entry in Cute and Corrupted Critters: a storybook raccoon in a lucky clover glade, then the same critter and the same pose pushed into a glowing toxic-waste version. Drag the compare or watch the short transition."
 date: 2026-06-24T12:00:00-07:00
 featured: true

@@ -1,6 +1,7 @@
 ---
 title: "Cute / Corrupted Cakes: Color Set"
 type: "cute-corrupted"
+workshopProgram: cute-and-corrupted
 summary: "A Cute and Corrupted Cakes color set: cake01 anchors the format, then red, orange, yellow, green, blue, and purple cakes extend the same bakery-display transformation into new pairs and short videos."
 date: 2026-06-24T13:00:00-07:00
 featured: true

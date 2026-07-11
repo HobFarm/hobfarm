@@ -4,6 +4,7 @@ excerpt: "Inside the Intermediate Representation: turning reference images into 
 author: d00d
 category: stylefusion
 department: workshop-notes
+workshopProgram: stylefusion
 format: workshop-note
 status: published
 tags:

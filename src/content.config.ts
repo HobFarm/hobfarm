@@ -60,6 +60,16 @@ const articles = defineCollection({
         .optional(),
       series: z.string().optional(),
       presentsSeries: z.string().optional(),
+      workshopProgram: z
+        .enum([
+          "before-and-after",
+          "alter-ego",
+          "cute-and-corrupted",
+          "character-mannequin",
+          "stylefusion",
+          "workshop-notes",
+        ])
+        .optional(),
       entryType: z
         .enum([
           "feature",
@@ -244,6 +254,16 @@ const gallery = defineCollection({
         "hobfarm-presents",
         "workshop-notes",
         "essays-arguments",
+      ])
+      .optional(),
+    workshopProgram: z
+      .enum([
+        "before-and-after",
+        "alter-ego",
+        "cute-and-corrupted",
+        "character-mannequin",
+        "stylefusion",
+        "workshop-notes",
       ])
       .optional(),
     format: z

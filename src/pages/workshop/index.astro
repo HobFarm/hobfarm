@@ -12,6 +12,9 @@ import {
   workshopResearch,
 } from "@/data/workshop-page";
 import { articlePath, getArticleDepartment, getPublishedArticles } from "@/lib/articles";
+import { workshopPrograms, siteSections } from "@/data/site-hierarchy";
+
+const workshopSection = siteSections.find((entry) => entry.id === "workshop")!;
 
 const notes = (await getPublishedArticles())
   .filter((post) => getArticleDepartment(post.data) === "workshop-notes")
@@ -67,7 +70,8 @@ const workshopJsonLd = {
   palette="blue-red"
 >
   <main class="workshop-page">
-    <section class="workshop-hero border-b border-base-800/70">
+    <section class="workshop-hero relative isolate overflow-hidden border-b border-base-800/70">
+      <img src={workshopSection.heroImage} alt={workshopSection.heroAlt} width="1600" height="900" class="absolute inset-0 -z-20 size-full object-cover opacity-45" loading="eager" fetchpriority="high" decoding="async" />
       <Wrapper variant="standard" class="py-16 lg:py-24">
         <div class="grid gap-10 lg:grid-cols-[minmax(0,0.82fr)_minmax(24rem,0.58fr)] lg:items-center">
           <div class="max-w-4xl">
@@ -84,7 +88,7 @@ const workshopJsonLd = {
               Specs preserve intent. Renders are snapshots. A strong system can keep producing after the first image is gone.
             </blockquote>
             <div class="mt-8 flex flex-wrap gap-2">
-              <Button isLink size="sm" variant="green" href="#sophia-stella">Study Sophia + Stella</Button>
+              <Button isLink size="sm" variant="green" href="#programs">Choose a program</Button>
               <Button isLink size="sm" variant="muted" href="#method">See the method</Button>
               <Button isLink size="sm" variant="muted" href="/academy/">Learn the process</Button>
             </div>
@@ -108,6 +112,23 @@ const workshopJsonLd = {
               </figure>
             )}
           </div>
+        </div>
+      </Wrapper>
+    </section>
+
+    <section id="programs" class="border-b border-base-800/70" aria-labelledby="programs-heading">
+      <Wrapper variant="standard" class="py-14 lg:py-20">
+        <div class="max-w-3xl">
+          <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-cyan">Workshop programs</p>
+          <h2 id="programs-heading" class="mt-4 font-display text-4xl font-light text-white lg:text-5xl">Six benches, each built for a different kind of work.</h2>
+          <p class="mt-5 text-sm leading-relaxed text-base-300">Programs organize finished experiments and process records without turning every technique into a top-level department.</p>
+        </div>
+        <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {workshopPrograms.map((program) => <a href={program.href} class="program-card group relative isolate min-h-72 overflow-hidden rounded-xl border border-base-800 bg-base-950/70 p-6 transition hover:-translate-y-1 hover:border-accent-cyan/50 motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+            {program.heroImage && <img src={program.heroImage} alt="" width="800" height="450" class="absolute inset-0 -z-20 size-full object-cover opacity-25 transition group-hover:opacity-35" loading="lazy" decoding="async" />}
+            <span class="absolute inset-0 -z-10 bg-gradient-to-t from-base-950 via-base-950/85 to-base-950/25"></span>
+            <div class="flex h-full flex-col justify-end"><p class="font-mono text-[9px] uppercase tracking-[0.18em] text-accent-cyan">Program {String(program.order).padStart(2,"0")}</p><h3 class="mt-3 font-display text-2xl font-light text-white">{program.name}</h3><p class="mt-3 text-sm leading-relaxed text-base-300">{program.description}</p><span class="mt-6 font-mono text-[10px] uppercase tracking-wider text-white">{program.ctaLabel} &rarr;</span></div>
+          </a>)}
         </div>
       </Wrapper>
     </section>
@@ -370,7 +391,7 @@ const workshopJsonLd = {
 
   .workshop-hero {
     background:
-      linear-gradient(90deg, rgba(7, 6, 11, 0.25), rgba(7, 6, 11, 0.75)),
+      linear-gradient(90deg, rgba(7, 6, 11, 0.95), rgba(7, 6, 11, 0.62)),
       radial-gradient(circle at 78% 28%, rgba(123, 47, 247, 0.12), transparent 30rem);
   }
 

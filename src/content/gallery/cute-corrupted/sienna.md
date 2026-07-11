@@ -1,6 +1,7 @@
 ---
 title: "Sienna: Cute / Corrupted"
 type: "cute-corrupted"
+workshopProgram: cute-and-corrupted
 summary: "Sienna is a red-earth Cute / Corrupted character study shaped by Tassili n'Ajjer, sandstone formations, dust, incense smoke, static electricity, and a supernatural desert encounter mood."
 date: 2026-06-18T12:00:00-07:00
 featured: true

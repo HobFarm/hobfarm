@@ -4,18 +4,20 @@ import test from "node:test";
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
 
-test("homepage presents the five broad HobFarm sections", () => {
+test("homepage presents the six final HobFarm sections", () => {
   const homepage = read("src/pages/index.astro");
   const component = read("src/components/home/SiteSections.astro");
-  const data = read("src/data/site-sections.ts");
+  const data = read("src/data/site-hierarchy.ts");
 
   assert.match(homepage, /<SiteSections \/>/);
-  assert.match(component, /Five doors into the same studio/);
+  assert.match(component, /Six doors into the same publication/);
   assert.match(component, /Browse by format/);
 
-  for (const label of ["HobFarm Presents", "Funnies", "Workshop", "Academy", "Shop"]) {
-    assert.match(data, new RegExp(`label: "${label}"`));
+  for (const label of ["Articles", "HobFarm Presents", "Workshop", "Academy", "Shop", "About & Support"]) {
+    assert.match(data, new RegExp(`name: "${label.replace("&", "&")}"`));
   }
+  assert.match(data, /parent: "presents"[\s\S]*name: "Funnies"|name: "Funnies"[\s\S]*parent: "presents"/);
+  assert.match(data, /parent: "workshop"[\s\S]*name: "Cute & Corrupted"|name: "Cute & Corrupted"[\s\S]*parent: "workshop"/);
 });
 
 test("homepage separates sections from content formats", () => {

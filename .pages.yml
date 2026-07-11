@@ -52,6 +52,10 @@ content:
         options: [draft, scheduled, published, archived]
       - { name: series, label: Series, type: string }
       - { name: presentsSeries, label: Presents Series, type: string }
+      - name: workshopProgram
+        label: Workshop Program
+        type: select
+        options: [before-and-after, alter-ego, cute-and-corrupted, character-mannequin, stylefusion, workshop-notes]
       - name: entryType
         label: Presents Entry Type
         type: select
@@ -403,6 +407,10 @@ content:
         label: Department
         type: select
         options: [magazine-time-machine, wtfacts, satire, picture-stories, funnies, cute-corrupted, before-after-eras, critter-feed, hobfarm-presents, workshop-notes, essays-arguments]
+      - name: workshopProgram
+        label: Workshop Program
+        type: select
+        options: [before-and-after, alter-ego, cute-and-corrupted, character-mannequin, stylefusion, workshop-notes]
       - name: format
         label: Format
         type: select

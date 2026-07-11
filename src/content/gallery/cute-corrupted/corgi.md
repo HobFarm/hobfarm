@@ -1,6 +1,7 @@
 ---
 title: "Corgi: Cute / Corrupted Critters"
 type: "cute-corrupted"
+workshopProgram: cute-and-corrupted
 summary: "A Cute and Corrupted Critters entry for a corgi: a clean cute still, a corrupted still, and a short transition video using the same animal-pair format."
 date: 2026-06-29T02:35:00-07:00
 featured: true

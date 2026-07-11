@@ -2,6 +2,16 @@
 /stylefusion  /projects/stylefusion/  301
 /sf           /projects/stylefusion/  301
 
+# Workshop program hubs now own these visual/process archives.
+/gallery/before-and-after   /workshop/before-and-after/    301
+/gallery/before-and-after/  /workshop/before-and-after/    301
+/gallery/cute-corrupted     /workshop/cute-and-corrupted/  301
+/gallery/cute-corrupted/    /workshop/cute-and-corrupted/  301
+/workshop/cute-corrupted    /workshop/cute-and-corrupted/  301
+/workshop/cute-corrupted/   /workshop/cute-and-corrupted/  301
+/departments/workshop-notes  /workshop/workshop-notes/     301
+/departments/workshop-notes/ /workshop/workshop-notes/     301
+
 # Articles replaced the old public blog routes
 /blog                    /articles/                 301
 /blog/                   /articles/                 301

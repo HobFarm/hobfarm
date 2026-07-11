@@ -3,11 +3,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import MagazineFrontPage from "@/components/home/MagazineFrontPage.astro";
 import SiteSections from "@/components/home/SiteSections.astro";
 import VisualSystemFeature from "@/components/home/VisualSystemFeature.astro";
-import RecentVideos from "@/components/home/RecentVideos.astro";
-import CuteCorruptedSection from "@/components/home/CuteCorruptedSection.astro";
 import LatestDrops from "@/components/home/LatestDrops.astro";
-import DepartmentStrip from "@/components/home/DepartmentStrip.astro";
-import FunniesStrip from "@/components/home/FunniesStrip.astro";
 import ExploreSupportFollow from "@/components/home/ExploreSupportFollow.astro";
 ---
 
@@ -19,17 +15,9 @@ import ExploreSupportFollow from "@/components/home/ExploreSupportFollow.astro";
   {/* 1 Hero · 2 Cover story · 3 Latest articles · 4 Departments */}
   <MagazineFrontPage />
   <SiteSections />
-  {/* 5 Workshop case study: taste → mannequin → character → camera → output */}
+  {/* Workshop case study sits beneath the shared six-section directory. */}
   <VisualSystemFeature />
-  {/* 6 Gallery preview: a system in action + recent motion */}
-  <CuteCorruptedSection />
-  <RecentVideos />
-  {/* 7 Funnies */}
-  <FunniesStrip />
-  {/* 8 Latest drops (real/planned products only; self-suppresses when empty) */}
+  {/* Finished releases; self-suppresses when empty. */}
   <LatestDrops />
-  {/* 9 Workshop Notes */}
-  <DepartmentStrip slug="workshop-notes" />
-  {/* 10 Explore · Support · Follow */}
   <ExploreSupportFollow />
 </BaseLayout>

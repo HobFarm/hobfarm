@@ -1,6 +1,7 @@
 ---
 title: "Kareena: Cute / Corrupted Character Sheet"
 type: "cute-corrupted"
+workshopProgram: cute-and-corrupted
 summary: "Kareena is a cute/corrupted character design study built from pastel fashion, candy-raver color, punk collage texture, and same-character transformation logic. View the video preview and character sheet breakdown."
 date: 2026-06-18T12:00:00-07:00
 featured: true

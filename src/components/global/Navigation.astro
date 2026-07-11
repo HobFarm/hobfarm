@@ -40,7 +40,20 @@ function isActive(href: string): boolean {
       <!-- Desktop Navigation -->
       <nav class="hidden md:flex items-center gap-6">
         {
-          navLinks.map((link) => (
+          navLinks.map((link) => link.children ? (
+            <div class="nav-group">
+              <a
+                title={link.label}
+                aria-label={link.label}
+                href={link.href}
+                aria-haspopup="true"
+                class:list={["text-sm transition-colors", isActive(link.href) ? "text-white border-b border-accent-500" : "text-base-400 hover:text-base-300"]}
+              >{link.label}</a>
+              <div class="nav-menu" role="menu">
+                {link.children.map((child) => <a role="menuitem" href={child.href}>{child.label}</a>)}
+              </div>
+            </div>
+          ) : (
             <a
               title={link.label}
               aria-label={link.label}
@@ -137,3 +150,12 @@ function isActive(href: string): boolean {
     })();
   });
 </script>
+
+<style>
+  .nav-group { position: relative; padding-block: .6rem; }
+  .nav-menu { position: absolute; top: 100%; left: 50%; display: grid; min-width: 16rem; padding: .65rem; border: 1px solid #2c2440; border-radius: .7rem; background: rgb(14 11 22 / 97%); box-shadow: 0 1rem 3rem rgb(0 0 0 / 35%); opacity: 0; pointer-events: none; transform: translate(-50%, -.35rem); transition: opacity 160ms ease, transform 160ms ease; }
+  .nav-menu a { padding: .62rem .7rem; border-radius: .4rem; color: #c8c6d4; font-size: .78rem; text-decoration: none; white-space: nowrap; }
+  .nav-menu a:hover, .nav-menu a:focus-visible { background: #221a33; color: white; outline: none; }
+  .nav-group:hover .nav-menu, .nav-group:focus-within .nav-menu { opacity: 1; pointer-events: auto; transform: translate(-50%, 0); }
+  @media (prefers-reduced-motion: reduce) { .nav-menu { transition: none; } }
+</style>

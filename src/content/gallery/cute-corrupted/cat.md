@@ -1,6 +1,7 @@
 ---
 title: "Cat: Cute / Corrupted Critters"
 type: "cute-corrupted"
+workshopProgram: cute-and-corrupted
 summary: "A Cute and Corrupted Critters entry for a cat: a clean cute still, a corrupted still, and a short transition video using the same animal-pair format."
 date: 2026-06-29T02:30:00-07:00
 featured: true

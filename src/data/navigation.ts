@@ -1,68 +1,69 @@
-// Single source of truth for site navigation.
-// `topNavLinks` is consumed by Navigation.astro, which passes it straight to
-// MobileNav (a dumb { label, href }[] consumer). `footerLinkGroups` is consumed
-// by Footer.astro. Social links stay in Footer (separate concern).
+import { presentsSeries, workshopPrograms } from "@/data/site-hierarchy";
 
-export type NavLink = { label: string; href: string };
+export type NavLink = { label: string; href: string; children?: NavLink[] };
 
-// Magazine front-of-book nav. Home is the logo. Search + Account are appended in
-// Navigation.astro (not links). Gallery/Video/Characters are demoted to archive
-// views reachable from the footer; the top bar routes to the durable buckets:
-// Articles, Departments, Workshop (the studio umbrella), Shop, Support.
 export const topNavLinks: NavLink[] = [
-  { label: "Articles", href: "/articles" },
-  { label: "Departments", href: "/departments" },
-  { label: "Workshop", href: "/workshop" },
-  { label: "Shop", href: "/shop" },
-  { label: "Support", href: "/support" },
+  { label: "Articles", href: "/articles/" },
+  {
+    label: "Presents",
+    href: "/departments/hobfarm-presents/",
+    children: [
+      ...presentsSeries.map((entry) => ({ label: entry.shortName ?? entry.name, href: entry.href })),
+      { label: "View all Presents", href: "/departments/hobfarm-presents/" },
+      { label: "Departments directory", href: "/departments/" },
+    ],
+  },
+  {
+    label: "Workshop",
+    href: "/workshop/",
+    children: [
+      ...workshopPrograms.map((entry) => ({ label: entry.name, href: entry.href })),
+      { label: "View all Workshop", href: "/workshop/" },
+      { label: "Departments directory", href: "/departments/" },
+    ],
+  },
+  { label: "Academy", href: "/academy/" },
+  { label: "Shop", href: "/shop/" },
+  { label: "About", href: "/about/" },
 ];
 
 export type FooterGroup = { title: string; links: NavLink[] };
 
 export const footerLinkGroups: FooterGroup[] = [
   {
-    title: "Explore",
+    title: "Read",
     links: [
-      { label: "Articles", href: "/articles" },
-      { label: "Departments", href: "/departments" },
-      { label: "Visual Systems", href: "/visual-systems" },
-      // Archive/index views: the work's real home is a department, visual
-      // system, project, or workshop note — these are filtered browse surfaces.
-      { label: "Gallery Archive", href: "/gallery" },
-      { label: "Video Archive", href: "/video" },
-      { label: "Character Index", href: "/characters" },
+      { label: "Articles", href: "/articles/" },
+      { label: "HobFarm Presents", href: "/departments/hobfarm-presents/" },
+      { label: "Magazine Time Machine", href: "/departments/magazine-time-machine/" },
+      { label: "3DM", href: "/departments/hobfarm-presents/3-degrees-of-dick-miller/" },
+      { label: "Other Alice", href: "/departments/hobfarm-presents/other-alice-adventures/" },
+      { label: "Funnies", href: "/departments/funnies/" },
     ],
   },
   {
-    title: "Workshop",
+    title: "Studio",
     links: [
-      { label: "Workshop Notes", href: "/workshop" },
-      { label: "Shop", href: "/shop/" },
+      { label: "Workshop", href: "/workshop/" },
+      ...workshopPrograms.slice(0, 5).map((entry) => ({ label: entry.name, href: entry.href })),
       { label: "Academy", href: "/academy/" },
-      { label: "Services", href: "/services/" },
-      { label: "Grimoire", href: "/grimoire" },
     ],
   },
   {
-    title: "Resources",
+    title: "Get involved",
     links: [
-      { label: "Support", href: "/support/" },
-      { label: "Help Center", href: "/helpcenter" },
-      { label: "Changelog", href: "/changelog" },
-      { label: "Whitepaper", href: "/whitepaper" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { label: "About", href: "/about" },
-      { label: "Membership", href: "/membership/" },
+      { label: "Shop", href: "/shop/" },
+      { label: "Support HobFarm", href: "/support/" },
+      { label: "Contribute", href: "/contact/?subject=contribute" },
       { label: "Contact", href: "/contact/" },
     ],
   },
   {
-    title: "Legal",
+    title: "Information",
     links: [
+      { label: "Departments", href: "/departments/" },
+      { label: "About", href: "/about/" },
+      { label: "Customer Support", href: "/helpcenter/" },
       { label: "Terms", href: "/legal/terms/" },
       { label: "Privacy", href: "/legal/privacy/" },
       { label: "Refunds", href: "/legal/refunds/" },

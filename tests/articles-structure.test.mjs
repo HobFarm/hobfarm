@@ -44,6 +44,7 @@ test("departments taxonomy and routes exist", () => {
 
 test("active department hero images are defined and rendered on department surfaces", () => {
   const departments = read("src/data/departments.ts");
+  const hierarchy = read("src/data/site-hierarchy.ts");
   const homepage = read("src/components/home/SiteSections.astro");
   const departmentHub = read("src/pages/departments/index.astro");
   const departmentDetail = read("src/pages/departments/[slug].astro");
@@ -69,8 +70,8 @@ test("active department hero images are defined and rendered on department surfa
     );
   }
 
-  assert.match(homepage, /section\.image/);
-  assert.match(departmentHub, /dep\.heroImage/);
+  assert.match(homepage, /section\.heroImage/);
+  assert.match(departmentHub, /entry\.heroImage/);
   assert.match(departmentDetail, /department\.heroImage/);
   assert.match(funnies, /department\.heroImage/);
 });
@@ -86,7 +87,7 @@ test("the retired articles category route is gone", () => {
 test("navigation prefers Articles over Blog", () => {
   const navigation = read("src/data/navigation.ts");
 
-  assert.match(navigation, /label:\s*"Articles",\s*href:\s*"\/articles"/);
+  assert.match(navigation, /label:\s*"Articles",\s*href:\s*"\/articles\/"/);
   assert.doesNotMatch(navigation, /label:\s*"Blog"/);
 });
 

@@ -4,16 +4,16 @@ import test from "node:test";
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
 
-test("HobFarm Presents exposes both active titles with visible type labels", () => {
-  const data = read("src/data/presents-titles.ts");
+test("HobFarm Presents exposes all five series from shared hierarchy data", () => {
+  const data = read("src/data/site-hierarchy.ts");
   const hub = read("src/pages/departments/hobfarm-presents/index.astro");
 
-  assert.match(data, /series\.slug === "other-alice-adventures"/);
-  assert.match(data, /typeLabel: "Illustrated Fiction"/);
-  assert.match(data, /3 Degrees of Dick Miller/);
-  assert.match(data, /typeLabel: "Film History"/);
-  assert.match(hub, /getActivePresentsTitles/);
-  assert.match(hub, /PresentsTitleCard/);
+  for (const title of ["3 Degrees of Dick Miller", "Magazine Time Machine", "Other Alice Adventures", "Funnies", "HobFarm TV"]) {
+    assert.match(data, new RegExp(title));
+  }
+  assert.match(hub, /presentsSeries/);
+  assert.match(hub, /theme-film/);
+  assert.match(hub, /theme-broadcast/);
 });
 
 test("3DM has one canonical hub and nested introductory article", () => {

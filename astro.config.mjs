@@ -11,6 +11,11 @@ const noindexDepartmentPaths = new Set(
     .filter((department) => departmentStatus(department) !== "active")
     .map((department) => `/departments/${department.slug}/`),
 );
+const redirectedPaths = new Set([
+  "/gallery/before-and-after/",
+  "/gallery/cute-corrupted/",
+  "/departments/workshop-notes/",
+]);
 
 // https://astro.build/config
 export default defineConfig({
@@ -55,7 +60,8 @@ export default defineConfig({
         return (
           !page.includes("/login") &&
           !page.includes("/account") &&
-          !noindexDepartmentPaths.has(pathname)
+          !noindexDepartmentPaths.has(pathname) &&
+          !redirectedPaths.has(pathname)
         );
       },
     }),

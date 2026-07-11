@@ -1,0 +1,101 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import SectionHero from "@/components/sections/SectionHero.astro";
+import ArticleCard from "@/components/articles/ArticleCard.astro";
+import GalleryCard from "@/components/gallery/GalleryCard.astro";
+import { workshopPrograms, type HierarchyEntry } from "@/data/site-hierarchy";
+import { getPublishedArticles, getArticleDepartment } from "@/lib/articles";
+import { getVisualSystem, visualSystemPath } from "@/data/visual-systems";
+import { mediaImageUrl } from "@/lib/gallery";
+
+export function getStaticPaths() {
+  return workshopPrograms.map((program) => ({ params: { program: program.slug }, props: { program } }));
+}
+
+interface Props { program: HierarchyEntry }
+const { program } = Astro.props;
+const articles = await getPublishedArticles();
+const gallery = (await getCollection("gallery")).filter((entry) => !entry.data.draft);
+const relatedArticles = articles.filter((article) => {
+  if (article.data.workshopProgram === program.slug) return true;
+  if (program.id === "stylefusion") return article.data.category === "stylefusion" || article.data.series?.toLowerCase() === "stylefusion";
+  if (program.id === "workshop-notes") return getArticleDepartment(article.data) === "workshop-notes";
+  return article.data.tags.some((tag) => tag.toLowerCase().replaceAll(" ", "-").includes(program.slug));
+}).slice(0, 6);
+const relatedGallery = gallery.filter((entry) => entry.data.workshopProgram === program.slug || entry.data.type === program.featuredQuery?.galleryType).slice(0, 6);
+
+const system = program.id === "alter-ego" ? getVisualSystem("sophia-stella") : undefined;
+const sophia = system?.variants.find((variant) => variant.key === "sophia");
+const stella = system?.variants.find((variant) => variant.key === "stella");
+const image = (folder: string, file: string, width = 900) => mediaImageUrl(folder, file, { width, quality: 82, fit: "scale-down" });
+const sophiaSheet = sophia?.sheetPreviews[0] ? image(sophia.sheetPreviews[0].folder, sophia.sheetPreviews[0].file) : undefined;
+const stellaSheet = stella?.sheetPreviews[0] ? image(stella.sheetPreviews[0].folder, stella.sheetPreviews[0].file) : undefined;
+const alterMediaRoot = "https://cdn.hob.farm/workshop/alter-ego";
+const alterHeroBright = `${alterMediaRoot}/hc-hd-hero-001_1.jpg`;
+const alterHeroDark = `${alterMediaRoot}/hc-hd-hero-001_2.jpg`;
+const alterPoster = `${alterMediaRoot}/hc-hd-poster-001.jpg`;
+const alterSheetBright = `${alterMediaRoot}/hc-hd-sheet-001_1.jpg`;
+const alterSheetDark = `${alterMediaRoot}/hc-hd-sheet-001_2.jpg`;
+const alterVideo = `${alterMediaRoot}/hc-video-001.mp4`;
+const processStages = program.id === "before-after"
+  ? ["Lock the subject", "Choose the new era or state", "Change styling and setting", "Compare what survived"]
+  : program.id === "stylefusion"
+    ? ["Collect references", "Extract visual ingredients", "Set the blend rules", "Test the resulting system"]
+    : program.id === "character-mannequin"
+      ? ["Number the base", "Lock proportions and face", "Build turnarounds", "Test wardrobe, pose, and camera"]
+      : ["Define the shared identity", "Separate the two lives", "Build each media packet", "Test the pair together"];
+const status = program.status === "coming-eventually" ? "Coming eventually" : undefined;
+const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
+const structuredData = { "@context":"https://schema.org", "@type":"CollectionPage", name:program.name, description:program.description, url:`${siteOrigin}${program.href}`, isPartOf:{"@type":"CollectionPage",name:"HobFarm Workshop",url:`${siteOrigin}/workshop/`} };
+---
+<BaseLayout title={`${program.name} | HobFarm Workshop`} description={program.description} canonical={program.href} image={program.heroImage} imageAlt={program.heroAlt} structuredData={structuredData} palette="blue-red">
+  <SectionHero eyebrow="HobFarm Workshop program" title={program.name} deck={program.description} image={program.heroImage} imageAlt={program.heroAlt} theme={program.theme} status={status} cta={{label:"See the work",href:"#work"}} breadcrumbs={[{label:"Home",href:"/"},{label:"Departments",href:"/departments/"},{label:"Workshop",href:"/workshop/"},{label:program.name}]} />
+
+  <section class="program-index border-b border-base-800/70">
+    <Wrapper variant="standard" class="py-12 lg:py-16">
+      <div class="grid gap-8 lg:grid-cols-[minmax(0,.6fr)_minmax(0,1fr)]">
+        <div>
+          <p class="label">Program method</p>
+          <h2>A working frame for the next pass.</h2>
+          <p>This page establishes the program, its route, and the content that belongs beneath it. Individual entries can carry more specific art direction without breaking the Workshop hierarchy.</p>
+        </div>
+        <ol class="stage-grid">
+          {processStages.map((stage, index) => <li><span>{String(index + 1).padStart(2,"0")}</span><strong>{stage}</strong></li>)}
+        </ol>
+      </div>
+    </Wrapper>
+  </section>
+
+  {program.id === "alter-ego" && <section id="work" class="alter-study border-b border-base-800/70">
+    <Wrapper variant="standard" class="py-14 lg:py-20">
+      <header class="max-w-3xl"><p class="label">Current identity studies</p><h2>One base, more than one life.</h2><p>The first set includes the complete paired hero, sheet, poster, and motion study, followed by Sophia and Stella, whose shared mannequin carries two distinct public identities.</p></header>
+      <div class="alter-grid">
+        <figure><img src={alterHeroBright} alt="Bright candy-pop Alter Ego portrait built from the shared character identity" width="1081" height="1920" loading="lazy" decoding="async" /><figcaption>Alter Ego / bright identity hero</figcaption></figure>
+        <figure><img src={alterHeroDark} alt="Dark gothic Alter Ego portrait built from the shared character identity" width="1081" height="1920" loading="lazy" decoding="async" /><figcaption>Alter Ego / dark identity hero</figcaption></figure>
+        <figure class="alter-sheet"><img src={alterSheetBright} alt="Bright Alter Ego character sheet showing the candy-pop identity and its production views" width="1920" height="1081" loading="lazy" decoding="async" /><figcaption>Alter Ego / bright identity sheet</figcaption></figure>
+        <figure class="alter-sheet"><img src={alterSheetDark} alt="Dark Alter Ego character sheet showing the gothic identity and its production views" width="1920" height="1081" loading="lazy" decoding="async" /><figcaption>Alter Ego / dark identity sheet</figcaption></figure>
+        <figure class="alter-poster"><img src={alterPoster} alt="Alter Ego paired-identity poster" width="1081" height="1920" loading="lazy" decoding="async" /><figcaption>Alter Ego / paired poster study</figcaption></figure>
+        <figure class="alter-video"><video src={alterVideo} poster={alterPoster} controls muted loop playsinline preload="metadata" aria-label="Alter Ego paired-identity motion study"></video><figcaption>Alter Ego / motion study</figcaption></figure>
+        {sophiaSheet && <figure><img src={sophiaSheet} alt={sophia?.sheetPreviews[0]?.alt ?? "Sophia character sheet"} width="900" height="1200" loading="lazy" decoding="async" /><figcaption>Sophia / public-facing bright lane</figcaption></figure>}
+        {stellaSheet && <figure><img src={stellaSheet} alt={stella?.sheetPreviews[0]?.alt ?? "Stella character sheet"} width="900" height="1200" loading="lazy" decoding="async" /><figcaption>Stella / alternate nocturnal lane</figcaption></figure>}
+      </div>
+      {system && <a class="text-link" href={visualSystemPath(system.slug)}>Open the full Sophia / Stella system &rarr;</a>}
+    </Wrapper>
+  </section>}
+
+  <section id={program.id === "alter-ego" ? "latest" : "work"} class="border-b border-base-800/70">
+    <Wrapper variant="standard" class="py-14 lg:py-20">
+      <header class="max-w-3xl"><p class="label">Indexed work</p><h2>{relatedGallery.length || relatedArticles.length ? "Current entries and process notes." : "The program is ready for its first entry."}</h2><p>{relatedGallery.length || relatedArticles.length ? "Entries appear here from their existing content metadata. The chronological Articles feed remains intact." : "The route and visual frame are live without inventing placeholder projects. New work will populate this page when it has matching metadata."}</p></header>
+      {relatedGallery.length > 0 && <div class="content-grid">{relatedGallery.map((entry) => <GalleryCard entry={entry} />)}</div>}
+      {relatedArticles.length > 0 && <div class="content-grid">{relatedArticles.map((post) => <ArticleCard post={post} />)}</div>}
+    </Wrapper>
+  </section>
+
+  <section><Wrapper variant="standard" class="py-12"><nav class="program-nav" aria-label="Workshop programs">{workshopPrograms.map((entry) => <a class:list={[entry.id===program.id&&"active"]} href={entry.href}>{entry.name}</a>)}</nav></Wrapper></section>
+</BaseLayout>
+
+<style>
+  .program-index,.alter-study{background:#0a0810}.label{margin:0;color:#5cf0f0;font-family:var(--font-mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase}h2{margin:.7rem 0 0;color:white;font-family:var(--font-display);font-size:clamp(2rem,5vw,4rem);font-weight:300;letter-spacing:-.04em;line-height:1}.program-index p:not(.label),header p:not(.label){max-width:46rem;margin:1rem 0 0;color:#9b96ad;line-height:1.7}.stage-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;margin:0;padding:0;list-style:none}.stage-grid li{min-height:8rem;padding:1rem;border:1px solid #2c2440;background:#0e0b16}.stage-grid span{display:block;color:#6b93ed;font-family:var(--font-mono);font-size:.65rem}.stage-grid strong{display:block;margin-top:2.5rem;color:#ece9f5;font-weight:500}.alter-grid{display:grid;gap:1rem;margin-top:2rem}.alter-grid figure{margin:0;overflow:hidden;border:1px solid #2c2440;background:#07060b}.alter-grid img,.alter-grid video{display:block;width:100%;height:100%;max-height:42rem;object-fit:contain}.alter-grid figcaption{padding:.8rem;color:#9b96ad;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase}.text-link{display:inline-block;margin-top:1.4rem;color:#ece9f5}.content-grid{display:grid;gap:1rem;margin-top:2rem}.program-nav{display:flex;flex-wrap:wrap;gap:.5rem}.program-nav a{padding:.55rem .75rem;border:1px solid #2c2440;color:#9b96ad;font-size:.75rem;text-decoration:none}.program-nav a:hover,.program-nav a.active{border-color:#19e3e3;color:white}@media(min-width:760px){.alter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.alter-sheet{grid-column:span 2}.content-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:600px){.stage-grid{grid-template-columns:1fr}}
+</style>

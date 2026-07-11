@@ -12,13 +12,13 @@ test("primary IA demotes archives while keeping search discoverable", () => {
   const mobile = read("src/components/global/MobileNav.astro");
   const search = read("src/components/global/Search.astro");
 
-  assert.match(navigation, /label:\s*"Shop",\s*href:\s*"\/shop"/);
+  assert.match(navigation, /label:\s*"Shop",\s*href:\s*"\/shop\/"/);
   assert.doesNotMatch(navigation, /topNavLinks[\s\S]*label:\s*"Gallery"/);
   assert.doesNotMatch(navigation, /topNavLinks[\s\S]*label:\s*"Video"/);
   assert.doesNotMatch(navigation, /topNavLinks[\s\S]*label:\s*"Characters"/);
-  assert.match(navigation, /label:\s*"Gallery Archive"/);
-  assert.match(navigation, /label:\s*"Video Archive"/);
-  assert.match(navigation, /label:\s*"Character Index"/);
+  assert.match(navigation, /label:\s*"Presents"[\s\S]*children:/);
+  assert.match(navigation, /label:\s*"Workshop"[\s\S]*children:/);
+  assert.match(navigation, /Departments directory/);
 
   assert.match(nav, /data-search-trigger/);
   assert.match(mobile, /data-search-trigger/);

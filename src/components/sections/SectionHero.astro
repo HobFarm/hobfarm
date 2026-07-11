@@ -1,0 +1,48 @@
+---
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Breadcrumbs, { type BreadcrumbItem } from "@/components/global/Breadcrumbs.astro";
+interface Props {
+  eyebrow: string; title: string; deck: string; image?: string; imageAlt?: string;
+  status?: string; cta?: { label: string; href: string }; secondaryCta?: { label: string; href: string };
+  breadcrumbs?: BreadcrumbItem[]; theme?: string; imagePosition?: string;
+}
+const { eyebrow, title, deck, image, imageAlt = "", status, cta, secondaryCta, breadcrumbs = [], theme = "editorial", imagePosition = "center" } = Astro.props;
+---
+<section class="section-hero" data-theme={theme}>
+  {image && <img class="section-hero__image" src={image} alt={imageAlt} width="1600" height="900" style={`object-position:${imagePosition}`} loading="eager" fetchpriority="high" decoding="async" />}
+  <div class="section-hero__shade" aria-hidden="true"></div>
+  <Wrapper variant="standard" class="relative z-10 py-10 lg:py-16">
+    {breadcrumbs.length > 0 && <Breadcrumbs items={breadcrumbs} />}
+    <div class="mt-12 max-w-4xl lg:mt-20">
+      <div class="flex flex-wrap items-center gap-3">
+        <p class="eyebrow">{eyebrow}</p>
+        {status && <span class="status">{status}</span>}
+      </div>
+      <h1>{title}</h1>
+      <p class="deck">{deck}</p>
+      {(cta || secondaryCta) && <div class="actions">
+        {cta && <a class="primary" href={cta.href}>{cta.label}</a>}
+        {secondaryCta && <a href={secondaryCta.href}>{secondaryCta.label}</a>}
+      </div>}
+    </div>
+  </Wrapper>
+</section>
+<style>
+  .section-hero { --hero-accent:#a06bff; position:relative; isolation:isolate; min-height:34rem; overflow:hidden; border-bottom:1px solid #2c2440; background:#07060b; }
+  .section-hero[data-theme="workshop"], .section-hero[data-theme="character-sheet"] { --hero-accent:#19e3e3; }
+  .section-hero[data-theme="comparison"], .section-hero[data-theme="alter-ego"] { --hero-accent:#f24da6; }
+  .section-hero[data-theme="broadcast"] { --hero-accent:#5cf0f0; }
+  .section-hero[data-theme="magazine"] { --hero-accent:#f0c96b; }
+  .section-hero[data-theme="film"] { --hero-accent:#79a9d6; }
+  .section-hero__image { position:absolute; inset:0; z-index:-3; width:100%; height:100%; object-fit:cover; }
+  .section-hero__shade { position:absolute; inset:0; z-index:-2; background:linear-gradient(90deg,rgba(7,6,11,.98) 0%,rgba(7,6,11,.78) 45%,rgba(7,6,11,.28) 100%),linear-gradient(0deg,rgba(7,6,11,.82),transparent 65%); }
+  .eyebrow { margin:0; color:var(--hero-accent); font-family:var(--font-mono); font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; }
+  .status { border:1px solid color-mix(in srgb,var(--hero-accent) 55%,transparent); border-radius:99px; padding:.3rem .6rem; color:#ece9f5; font-family:var(--font-mono); font-size:.6rem; letter-spacing:.1em; text-transform:uppercase; }
+  h1 { max-width:58rem; margin:1rem 0 0; color:white; font-family:var(--font-display); font-size:clamp(3rem,8vw,7rem); font-weight:300; letter-spacing:-.055em; line-height:.95; }
+  .deck { max-width:44rem; margin:1.5rem 0 0; color:#d8d4e4; font-size:clamp(1rem,2vw,1.2rem); line-height:1.7; }
+  .actions { display:flex; flex-wrap:wrap; gap:.7rem; margin-top:1.8rem; }
+  .actions a { display:inline-flex; min-height:2.8rem; align-items:center; padding:.65rem .9rem; border:1px solid #6b6580; color:white; font-family:var(--font-mono); font-size:.68rem; letter-spacing:.08em; text-decoration:none; text-transform:uppercase; }
+  .actions .primary { border-color:var(--hero-accent); background:var(--hero-accent); color:#07060b; }
+  .actions a:focus-visible { outline:2px solid white; outline-offset:3px; }
+  @media(max-width:700px){ .section-hero{min-height:31rem}.section-hero__shade{background:linear-gradient(0deg,rgba(7,6,11,.98) 20%,rgba(7,6,11,.5) 100%)} }
+</style>

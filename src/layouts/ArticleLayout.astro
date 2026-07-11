@@ -21,6 +21,7 @@ import ContentPanel from "@/components/ContentPanel.astro";
 import ShareButtons from "@/components/articles/ShareButtons.astro";
 import ArticleCard from "@/components/articles/ArticleCard.astro";
 import Lightbox from "@/components/gallery/Lightbox";
+import Breadcrumbs from "@/components/global/Breadcrumbs.astro";
 
 interface Props {
   article: Article;
@@ -40,6 +41,11 @@ const hero = getArticleHero(frontmatter);
 const seoImage = getArticleImage(frontmatter);
 const departmentLabel = getArticleDepartmentLabel(frontmatter);
 const department = getArticleDepartment(frontmatter);
+const departmentHref = department === "magazine-time-machine"
+  ? "/departments/magazine-time-machine/"
+  : department === "workshop-notes"
+    ? "/workshop/workshop-notes/"
+    : department ? departmentPath(department) : undefined;
 const formattedDate = publishedAt.toLocaleDateString("en-US", {
   year: "numeric",
   month: "long",
@@ -145,6 +151,9 @@ const articleJsonLd = {
 >
   <section>
     <ContentPanel>
+      <Wrapper variant="standard" class="pt-5">
+        <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Articles", href: "/articles/" }, { label: frontmatter.title }]} />
+      </Wrapper>
       {hero && (
         <div class="relative overflow-hidden rounded-t-lg aspect-[4/3] sm:aspect-21/9">
           <img
@@ -167,7 +176,7 @@ const articleJsonLd = {
                 <>
                   <span>&middot;</span>
                   <a
-                    href={departmentPath(department)}
+                    href={departmentHref}
                     class="font-mono text-accent-cyan hover:text-base-100 transition-colors"
                   >
                     {departmentLabel}
