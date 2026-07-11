@@ -88,6 +88,13 @@ test("the first 3DM connection feature documents the Billy Barty route", () => {
   assert.match(feature, /Footlight Parade[\s\S]*Billy Barty[\s\S]*The Undead[\s\S]*Dick Miller/);
   assert.match(feature, /the-mouse-in-the-cat-musical-hero\.webp/);
   assert.match(feature, /eight years old/);
+  assert.match(feature, /## The route reaches Dick Miller/);
+  assert.match(feature, /Barty and Miller do not appear together/);
+  assert.match(feature, /shared production credit, not an on-screen meeting/);
+  assert.match(feature, /They never occupy the same frame/);
+  assert.equal((feature.match(/https:\/\/cdn\.hob\.farm\/articles\/3dm-mouse-cat-musical\//g) ?? []).length, 9);
+  assert.doesNotMatch(feature, /billy-barty-compilation\.jpg/);
+  assert.doesNotMatch(feature, /No Footlight Parade[\s\S]*frames[\s\S]*are reproduced/);
   assert.match(hub, /Start with the cats\. Follow the mouse\./);
 });
 

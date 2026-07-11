@@ -192,3 +192,73 @@ const structuredData = {
   .three-dm-return { display:inline-block; margin-top:2.5rem; color:var(--miller-orange); font-family:var(--font-mono); font-size:.7rem; text-transform:uppercase; }
   @media(min-width:850px){.three-dm-entry__hero{grid-template-columns:minmax(16rem,.7fr) minmax(0,1.3fr);align-items:center}.three-dm-related>div{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
+
+<style is:global>
+  .three-dm-entry .article-wide,
+  .three-dm-entry .article-grid,
+  .three-dm-entry .article-grid-caption {
+    position: relative;
+    left: 50%;
+    width: 42rem;
+    max-width: 90vw;
+    transform: translateX(-50%);
+  }
+
+  .three-dm-entry .article-wide {
+    margin-block: 1.75rem;
+  }
+
+  .three-dm-entry .article-wide img,
+  .three-dm-entry .article-grid img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+
+  .three-dm-entry .article-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 1.25rem;
+    margin-block: 1.75rem .5rem;
+  }
+
+  .three-dm-entry .article-grid figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    text-align: center;
+  }
+
+  .three-dm-entry .article-wide figcaption,
+  .three-dm-entry .article-grid figcaption,
+  .three-dm-entry .article-grid-caption {
+    margin-top: .65rem;
+    color: #8f8678;
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    line-height: 1.55;
+    text-align: center;
+  }
+
+  .three-dm-entry .article-grid-caption {
+    margin-block: .75rem 2rem;
+  }
+
+  .three-dm-entry .undead-comparison {
+    gap: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .three-dm-entry .article-grid,
+    .three-dm-entry .undead-comparison {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .three-dm-entry .article-grid.cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

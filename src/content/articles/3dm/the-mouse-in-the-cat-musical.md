@@ -55,7 +55,7 @@ connection:
       evidence: "Barty and Miller both appear in The Undead."
       source: "https://catalog.afi.com/Film/52420-THE-UNDEAD"
 contentWarnings: []
-rightsNote: "The feature illustration is original HobFarm artwork created for this article. No Footlight Parade, The Undead, Legend, Willow, Cats, Warner Bros., Disney, or Lucasfilm frames, logos, or character designs are reproduced. External catalog records are linked for research and attribution."
+rightsNote: "Original HobFarm artwork is used for the feature illustration. Selected frames from Footlight Parade and The Undead are reproduced within the article for film criticism, historical commentary, performer identification, and visual comparison. The frames remain the property of their respective rights holders and are presented in direct relationship to the claims being discussed. External catalog records are linked for production credits and attribution."
 sourceNotes:
   - label: "Footlight Parade"
     url: "https://catalog.afi.com/Film/3881-FOOTLIGHT-PARADE"
@@ -115,15 +115,50 @@ The [AFI Catalog](https://catalog.afi.com/Film/3881-FOOTLIGHT-PARADE) describes 
 
 The movie's backstage comedy runs on exhaustion. Ideas become inventory. Performers move between rehearsal rooms and stages while Kent tries to feed an entertainment pipeline that cannot stop. The gigantic numbers grow out of that pressure. Spectacle is the product at the far end of an anxious workplace.
 
+<figure class="article-wide">
+  <img src="https://cdn.hob.farm/articles/3dm-mouse-cat-musical/exhausted-chester-kent.png" alt="James Cagney as Chester Kent reclines exhausted in an office while coworkers continue working around him in Footlight Parade." width="1424" height="1072" loading="lazy" decoding="async">
+  <figcaption>Chester Kent, played by James Cagney, runs out of steam inside the prologue factory.</figcaption>
+</figure>
+
 The wider studio system is mapped in [1933: The Year Warner Bros. Built a World](/departments/hobfarm-presents/3-degrees-of-dick-miller/1933-the-year-warner-bros-built-a-world/).
 
 ## Chester Kent invents *Cats*
 
 "Sittin' on a Backyard Fence" is a miniature cat musical. Performers wear feline costumes. Courtship becomes choreography. Ruby Keeler takes the center while the ensemble turns an alley fence into a stage.
 
+<figure class="article-wide">
+  <img src="https://cdn.hob.farm/articles/3dm-mouse-cat-musical/cats-backstage.png" alt="The Sittin' on a Backyard Fence musical number performed on an oversized city alley set while musicians and observers watch." width="1424" height="1072" loading="lazy" decoding="async">
+  <figcaption>The cat number seen from behind the orchestra, with the oversized alley set and feline chorus filling the stage.</figcaption>
+</figure>
+
+<div class="article-grid cols-3" role="group" aria-label="Cat costume gallery from Footlight Parade">
+  <figure>
+    <img src="https://cdn.hob.farm/articles/3dm-mouse-cat-musical/cats-performers.png" alt="A large chorus of women in matching cat costumes performs on multiple levels of a theatrical alley set." width="1424" height="1072" loading="lazy" decoding="async">
+    <figcaption>The chorus forms a vertical wall of cats across the alley scenery.</figcaption>
+  </figure>
+  <figure>
+    <img src="https://cdn.hob.farm/articles/3dm-mouse-cat-musical/cats-ruby-close-up.png" alt="Ruby Keeler performs in a light-colored cat costume with other cat-costumed dancers behind her." width="1424" height="1072" loading="lazy" decoding="async">
+    <figcaption>Ruby Keeler at the center of the feline chorus.</figcaption>
+  </figure>
+  <figure>
+    <img src="https://cdn.hob.farm/articles/3dm-mouse-cat-musical/cats-sittin.png" alt="Ruby Keeler and Dick Powell sit together in contrasting cat costumes during Sittin' on a Backyard Fence." width="1424" height="1072" loading="lazy" decoding="async">
+    <figcaption>Ruby Keeler and Dick Powell play the number's central pair of courting cats.</figcaption>
+  </figure>
+</div>
+
 Then the mouse arrives.
 
+<figure class="article-wide">
+  <img src="https://cdn.hob.farm/articles/3dm-mouse-cat-musical/mouse-wide.png" alt="A small mouse-costumed performer crosses the floor while dancers dressed as cats watch in Footlight Parade." width="1424" height="1072" loading="lazy" decoding="async">
+  <figcaption>The scale of the joke becomes visible when the mouse enters the world of the adult cat chorus.</figcaption>
+</figure>
+
 Billy Barty scampers into the number as a disruptive scale change, a child-sized performer puncturing the elegance of the adult chorus. AFI credits him as the "Mouse in 'Sittin' on a Backyard Fence'" and also as the little boy in "Honeymoon Hotel." The same record credits Larry Ceballos with dance direction on those two numbers while Busby Berkeley handled the movie's larger musical design.
+
+<figure class="article-wide">
+  <img src="https://cdn.hob.farm/articles/3dm-mouse-cat-musical/mouse-close-up.png" alt="Child performer Billy Barty in a dark mouse costume beside an oversized mousetrap and giant milk bottles." width="1424" height="1072" loading="lazy" decoding="async">
+  <figcaption>Billy Barty as the mouse, surrounded by the number's oversized scenery and props.</figcaption>
+</figure>
 
 To a modern viewer, the sequence looks uncannily like an ancestor of *Cats*: costumed felines, romantic types, ensemble movement, and a whole social order explained through dance. That resemblance is the joke. The documented connection begins when we stop looking at the cats and identify the mouse.
 
@@ -135,7 +170,21 @@ In *Footlight Parade*, he is inside Warner Bros.' early-sound musical machine. T
 
 That shared credit is the hinge.
 
-## The mouse meets Dick Miller
+## The route reaches Dick Miller
+
+Barty and Miller do not appear together. Miller's brief scene as the leper is followed by Barty's appearance as the Imp. The connection is a shared production credit, not an on-screen meeting.
+
+<div class="article-grid undead-comparison" role="group" aria-label="Separate appearances by Dick Miller and Billy Barty in The Undead">
+  <figure>
+    <img src="https://cdn.hob.farm/articles/3dm-mouse-cat-musical/dick-miller-undead-1957.jpg" alt="Close-up of Dick Miller in ragged medieval clothing as the leper in Roger Corman's The Undead." width="1015" height="766" loading="lazy" decoding="async">
+    <figcaption>Dick Miller appears briefly as the leper in <em>The Undead</em>.</figcaption>
+  </figure>
+  <figure>
+    <img src="https://cdn.hob.farm/articles/3dm-mouse-cat-musical/billy-barty-undead-1957.jpg" alt="Billy Barty as the Imp sits beside a woman in a medieval fantasy interior in The Undead." width="1007" height="758" loading="lazy" decoding="async">
+    <figcaption>Billy Barty appears in the following sequence as the Imp.</figcaption>
+  </figure>
+</div>
+<p class="article-grid-caption">They never occupy the same frame. Their nearby appearances and shared cast credit provide the documented 3DM connection.</p>
 
 *The Undead* has a hypnotist, a time-travel experiment, medieval France, witches, Satan, an Imp, and Dick Miller selling his soul as a leper. Roger Corman directed and produced it. Mel Welles and Bruno VeSota appear nearby, two more familiar faces in Corman's production network.
 
