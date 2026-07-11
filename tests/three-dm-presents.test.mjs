@@ -46,6 +46,25 @@ test("3DM launch uses the supplied editorial voice and honest media state", () =
   assert.doesNotMatch(hub, /fake latest episode/i);
 });
 
+test("the Millerverse introduction is the sourced central trunk article", () => {
+  const article = read("src/content/articles/3dm/enter-the-millerverse.md");
+  const layout = read("src/layouts/ThreeDMEntryLayout.astro");
+
+  assert.match(article, /dick-miller-bucket-of-blood\.jpg/);
+  assert.match(article, /The Undead<\/em> is where the reader enters/);
+  assert.match(article, /A Bucket of Blood[\s\S]*Dick Miller becomes the main character/);
+  assert.match(article, /## What 3DM is/);
+  assert.match(article, /## How a route works/);
+  assert.match(article, /## What the Millerverse contains/);
+  assert.match(article, /## The research rule/);
+  assert.match(article, /billy-barty-undead-1957\.jpg/);
+  assert.equal((article.match(/https:\/\/cdn\.hob\.farm\/3dm\/dick-miller\//g) ?? []).length, 18);
+  assert.equal((article.match(/ loading="lazy"/g) ?? []).length, 17);
+  assert.equal((article.match(/ alt="/g) ?? []).length, 17);
+  assert.match(layout, /article-filmstrip--six/);
+  assert.doesNotMatch(article, /—/);
+});
+
 test("3DM schema supports optional video, evidence chains, warnings, and sources", () => {
   const schema = read("src/content.config.ts");
   const article = read("src/content/articles/3dm/enter-the-millerverse.md");

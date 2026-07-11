@@ -8,7 +8,6 @@ import {
 } from "@/lib/articles";
 import { readingTime } from "@/lib/reading-time";
 import { imageSrcset, transformImageUrl } from "@/lib/media-transforms";
-import { THREE_DM_LOGO } from "@/data/presents-titles";
 
 interface Props {
   post: Article;
@@ -19,15 +18,14 @@ const { post, featured = false } = Astro.props;
 
 const url = articlePath(post);
 const { title, heroAlt } = post.data;
-const preserveArtwork = post.data.presentsSeries === "3dm";
-const hero = preserveArtwork ? THREE_DM_LOGO : getArticleHero(post.data);
+const hero = getArticleHero(post.data);
 const heroSrc = hero
-  ? transformImageUrl(hero, { width: featured ? 960 : 640, quality: 82, fit: preserveArtwork ? "contain" : "cover" })
+  ? transformImageUrl(hero, { width: featured ? 960 : 640, quality: 82, fit: "cover" })
   : undefined;
 const heroSrcset = hero
   ? imageSrcset(hero, featured ? [480, 720, 960, 1280] : [320, 480, 640, 960], {
       quality: 82,
-      fit: preserveArtwork ? "contain" : "cover",
+      fit: "cover",
     })
   : undefined;
 
@@ -63,7 +61,7 @@ const stats = post.body ? readingTime(post.body) : null;
           decoding="async"
           class:list={[
             "w-full object-center transition-transform duration-500 group-hover:scale-105",
-            preserveArtwork ? "object-contain bg-[#07101b] p-3" : "object-cover",
+            "object-cover",
             featured ? "aspect-[16/10]" : "aspect-video",
           ]}
         />

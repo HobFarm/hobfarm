@@ -33,3 +33,11 @@ test("homepage hero uses the animated HobFarm logo card instead of the instructi
   assert.match(homepage, /motion-reduce:block/);
   assert.match(homepage, /<noscript>[\s\S]*HobFarm drip logo[\s\S]*<\/noscript>/);
 });
+
+test("homepage article cards use each article's own hero image", () => {
+  const card = read("src/components/articles/ArticleCard.astro");
+
+  assert.match(card, /const hero = getArticleHero\(post\.data\)/);
+  assert.doesNotMatch(card, /THREE_DM_LOGO/);
+  assert.doesNotMatch(card, /presentsSeries === "3dm"/);
+});
