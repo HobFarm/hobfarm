@@ -247,6 +247,122 @@ const structuredData = {
     margin-block: .75rem 2rem;
   }
 
+  .three-dm-entry .article-sequence {
+    position: relative;
+    left: 50%;
+    width: min(94vw, 78rem);
+    margin: clamp(2rem, 6vw, 4rem) 0;
+    transform: translateX(-50%);
+  }
+
+  .three-dm-entry .article-sequence__frames {
+    display: grid;
+    gap: clamp(.35rem, .8vw, .75rem);
+    padding: clamp(.4rem, .8vw, .75rem);
+    overflow: hidden;
+    border: 1px solid #5a4632;
+    background: #03070c;
+    box-shadow: 0 1.5rem 4rem rgb(0 0 0 / .32);
+  }
+
+  .three-dm-entry .article-sequence__frames img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    border: 1px solid rgb(255 244 220 / .1);
+    background: #000;
+  }
+
+  .three-dm-entry .article-sequence figcaption {
+    max-width: 68rem;
+    margin: .8rem auto 0;
+    color: #9f9585;
+    font-family: var(--font-mono);
+    font-size: .68rem;
+    line-height: 1.55;
+    text-align: center;
+  }
+
+  .three-dm-entry .article-sequence--two .article-sequence__frames,
+  .three-dm-entry .article-sequence--three .article-sequence__frames {
+    grid-template-columns: 1fr;
+  }
+
+  .three-dm-entry .article-sequence--four .article-sequence__frames {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .three-dm-entry .article-filmstrip .article-sequence__frames {
+    display: flex;
+    gap: .55rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline mandatory;
+    scrollbar-color: var(--miller-orange) #11100e;
+  }
+
+  .three-dm-entry .article-filmstrip .article-sequence__frames img {
+    flex: 0 0 min(78vw, 22rem);
+    scroll-snap-align: start;
+  }
+
+  .three-dm-entry .article-filmstrip::before {
+    display: block;
+    margin-bottom: .45rem;
+    color: var(--miller-orange);
+    content: "Swipe through the scene →";
+    font-family: var(--font-mono);
+    font-size: .6rem;
+    letter-spacing: .08em;
+    text-align: right;
+    text-transform: uppercase;
+  }
+
+  .three-dm-entry .article-inset {
+    position: relative;
+    left: 50%;
+    width: min(86vw, 30rem);
+    margin: 2rem 0;
+    transform: translateX(-50%);
+  }
+
+  .three-dm-entry .article-inset img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    border: 1px solid #5a4632;
+    background: #03070c;
+  }
+
+  .three-dm-entry .article-inset figcaption {
+    margin-top: .65rem;
+    color: #9f9585;
+    font-family: var(--font-mono);
+    font-size: .68rem;
+    line-height: 1.55;
+    text-align: center;
+  }
+
+  .three-dm-entry .article-sidebar {
+    margin: 2rem 0;
+    padding: 1.25rem 1.35rem;
+    border: 1px solid #5a4632;
+    border-left: 4px solid var(--miller-gold);
+    background: linear-gradient(135deg, #11100e, #0a1521);
+    box-shadow: 0 1rem 2.5rem rgb(0 0 0 / .2);
+  }
+
+  .three-dm-entry .article-sidebar h2,
+  .three-dm-entry .article-sidebar h3 {
+    margin-top: 0;
+  }
+
+  .three-dm-entry .article-sidebar p:last-child {
+    margin-bottom: 0;
+  }
+
   .three-dm-entry .undead-comparison {
     gap: 1rem;
   }
@@ -259,6 +375,34 @@ const structuredData = {
 
     .three-dm-entry .article-grid.cols-3 {
       grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .three-dm-entry .article-sequence--two .article-sequence__frames {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .three-dm-entry .article-sequence--three .article-sequence__frames {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 900px) {
+    .three-dm-entry .article-sequence--four .article-sequence__frames {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .three-dm-entry .article-filmstrip .article-sequence__frames {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      overflow: hidden;
+    }
+
+    .three-dm-entry .article-filmstrip .article-sequence__frames img {
+      min-width: 0;
+    }
+
+    .three-dm-entry .article-filmstrip::before {
+      display: none;
     }
   }
 </style>

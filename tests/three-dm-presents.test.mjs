@@ -107,6 +107,18 @@ test("the 1933 Warner feature maps the production world behind the first route",
   assert.match(feature, /42nd Street[\s\S]*Gold Diggers of 1933[\s\S]*Footlight Parade/);
   assert.match(feature, /Warren William is the suspicious money man/);
   assert.match(feature, /William Powell is the charming fashion pirate/);
+  assert.match(feature, /## What pre-Code actually means/);
+  assert.match(feature, /written rules and consistent enforcement/);
+  assert.match(feature, /mandatory PCA approval/);
+  assert.match(feature, /There was no 1933 WAMPAS class/);
+  assert.match(feature, /Ruby Keeler, Glenda Farrell, Aline MacMahon, and Bette Davis were not WAMPAS selections/);
+  assert.match(feature, /## The crew built the impossible/);
+  assert.match(feature, /I work around stages, mostly concerts/);
+  assert.match(feature, /article-filmstrip/);
+  assert.equal((feature.match(/https:\/\/cdn\.hob\.farm\/articles\/3dm-1933-wb\//g) ?? []).length, 34);
+  assert.equal((feature.match(/ loading="lazy"/g) ?? []).length, 34);
+  assert.equal((feature.match(/ alt="/g) ?? []).length, 34);
+  assert.doesNotMatch(feature, /No Warner Bros\.[\s\S]*imagery is reproduced/);
   assert.doesNotMatch(feature, /—/);
   assert.match(mouseFeature, /1933: The Year Warner Bros\. Built a World/);
   assert.match(hub, /1933 is the hinge year/);
