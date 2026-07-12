@@ -171,6 +171,7 @@ test("the Broadway Babies feature documents the pre-crash musical and its Miller
   assert.match(feature, /Sixteen hours is not a workday/);
   assert.match(feature, /The Broadway Babies are gone/);
   assert.match(feature, /broadway-babies-hero\.png/);
+  assert.match(feature, /arrangement: horizontal-hero/);
   assert.match(feature, /broadway-babies-1929-lobby-card\.jpg/);
   assert.match(feature, /1929-broadway-babies-poster\.jpg/);
   assert.match(feature, /ad-for-broadway-babies-from-theatre-magazine-september-1929\.png/);
@@ -184,6 +185,7 @@ test("the Broadway Babies feature documents the pre-crash musical and its Miller
   assert.equal((feature.match(/ loading="lazy"/g) ?? []).length, 10);
   assert.equal((feature.match(/ alt="/g) ?? []).length, 10);
   assert.match(layout, /article-archive-embed/);
+  assert.match(layout, /three-dm-entry__hero--horizontal/);
   assert.match(read("public/_headers"), /media-src[^\n]*https:\/\/archive\.org/);
   assert.doesNotMatch(feature, /—/);
 });

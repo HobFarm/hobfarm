@@ -20,6 +20,7 @@ format: article
 series: 3dm
 presentsSeries: 3dm
 entryType: feature
+arrangement: horizontal-hero
 heroImage: "https://cdn.hob.farm/3dm/broadway-babies/broadway-babies-hero.png"
 socialImage: "https://cdn.hob.farm/3dm/broadway-babies/broadway-babies-hero.png"
 heroAlt: "Illustrated Broadway Babies feature art with Alice White, Marion Byron, and Sally Eilers against a Broadway nightscape"
