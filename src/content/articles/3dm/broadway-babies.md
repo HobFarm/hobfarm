@@ -20,9 +20,9 @@ format: article
 series: 3dm
 presentsSeries: 3dm
 entryType: feature
-heroImage: "https://cdn.hob.farm/3dm/broadway-babies/alice-white-1927.jpg"
-socialImage: "https://cdn.hob.farm/3dm/broadway-babies/alice-white-1927.jpg"
-heroAlt: "Alice White in a studio portrait made shortly before Broadway Babies"
+heroImage: "https://cdn.hob.farm/3dm/broadway-babies/broadway-babies-hero.png"
+socialImage: "https://cdn.hob.farm/3dm/broadway-babies/broadway-babies-hero.png"
+heroAlt: "Illustrated Broadway Babies feature art with Alice White, Marion Byron, and Sally Eilers against a Broadway nightscape"
 canonical: "/departments/hobfarm-presents/3-degrees-of-dick-miller/broadway-babies/"
 publishedAt: 2026-07-11
 featured: false
@@ -55,7 +55,7 @@ connection:
       source: "https://catalog.afi.com/Film/20526-THE-TERROR"
 contentWarnings:
   - "Brief discussion of gun violence"
-rightsNote: "The restored publicity portraits and film images are presented for performer identification, film criticism, production-history commentary, and visual comparison. The embedded Internet Archive player remains hosted by the Internet Archive. The images and film remain the property of their respective rights holders. External catalog, archive, and institutional records are linked for credits and historical attribution."
+rightsNote: "Original HobFarm feature art is used for the hero. The period poster, lobby card, advertisements, restored publicity portraits, and film images are presented for performer identification, film criticism, production-history commentary, and visual comparison. The embedded player and film remain hosted by the Internet Archive. External catalog, archive, and institutional records are linked for credits and historical attribution."
 sourceNotes:
   - label: "Broadway Babies"
     url: "https://catalog.afi.com/Film/3050-BROADWAY-BABIES"
@@ -87,7 +87,11 @@ sourceNotes:
     type: documented-fact
   - label: "Broadway Babies at the Internet Archive"
     url: "https://archive.org/details/musicals_202210"
-    note: "The Internet Archive hosts the surviving feature used in the embedded player. Print quality is rough and reflects the condition of the circulating copy."
+    note: "The Internet Archive hosts the surviving feature used in the embedded player. Item metadata identifies the selected original MP4 as a 636 by 480 file running 86 minutes and 4 seconds."
+    type: documented-fact
+  - label: "Broadway Babies archival media"
+    url: "https://commons.wikimedia.org/wiki/Category:Broadway_Babies"
+    note: "Wikimedia Commons records the period poster and magazine advertisements used in the article, including their publication context and source scans."
     type: documented-fact
   - label: "Steamboat Bill, Jr."
     url: "https://catalog.afi.com/Catalog/moviedetails/12403"
@@ -119,6 +123,11 @@ The film did not predict the Depression. It preserved the final months when Holl
 
 Four years later, the same director and cinematographer would make a musical in which the money disappeared before the first number had finished.
 
+<figure class="article-wide">
+  <img src="https://cdn.hob.farm/3dm/broadway-babies/broadway-babies-1929-lobby-card.jpg" alt="Broadway Babies lobby card showing Alice White embraced by Charles Delaney beside the film title" width="972" height="779" loading="lazy" decoding="async" />
+  <figcaption>A 1929 lobby card sells the romance first: Alice White and Charles Delaney occupy the image while the backstage money problem waits inside the film.</figcaption>
+</figure>
+
 ## On this page
 
 - [Watch Broadway Babies](#watch-broadway-babies)
@@ -135,15 +144,24 @@ Four years later, the same director and cinematographer would make a musical in 
 The surviving print is rough, but that is part of the evidence. The sound movie itself was being invented while these women were trying to perform inside it.
 
 <div class="article-archive-embed">
-  <iframe
-    title="Broadway Babies, 1929, at the Internet Archive"
-    src="https://archive.org/embed/musicals_202210/1929-06-30%20-%20Broadway%20Babies%20(1929).mp4"
-    allow="fullscreen"
-    loading="lazy">
-  </iframe>
+  <video
+    controls
+    preload="metadata"
+    poster="https://cdn.hob.farm/3dm/broadway-babies/broadway-babies-1929-lobby-card.jpg"
+    aria-label="Broadway Babies, 1929, hosted by the Internet Archive"
+    width="636"
+    height="480">
+    <source src="https://archive.org/download/musicals_202210/1929-06-30%20-%20Broadway%20Babies%20%281929%29.mp4" type="video/mp4" />
+    <p>Your browser cannot play this film. <a href="https://archive.org/download/musicals_202210/1929-06-30%20-%20Broadway%20Babies%20%281929%29.mp4">Watch it at the Internet Archive.</a></p>
+  </video>
 </div>
 
 The [Internet Archive collection](https://archive.org/details/musicals_202210) hosts the complete film. HobFarm can present it here without becoming a 616-megabyte download service.
+
+<figure class="article-inset">
+  <img src="https://cdn.hob.farm/3dm/broadway-babies/1929-broadway-babies-poster.jpg" alt="Illustrated 1929 Broadway Babies poster featuring Alice White above the film title" width="1200" height="1483" loading="lazy" decoding="async" />
+  <figcaption>The original poster makes the hierarchy plain. Alice White is the attraction; <em>Broadway Babies</em> is the vehicle.</figcaption>
+</figure>
 
 ## The Broadway Musketeers
 
@@ -175,6 +193,14 @@ Together, they make *Broadway Babies* more useful than its plot. The movie becom
 Alice White entered movies through secretarial and script work before moving in front of the camera. By 1928, *Show Girl* had made her a recognizable flapper personality. First National planned *Broadway Babies* as her talking debut and treated the production as a coordinated product launch.
 
 She was scheduled to sing material from the movie during a national radio broadcast alongside Warner and First National stars. Jantzen arranged to feature her in print advertising and window displays at more than 10,000 retailers. After the film succeeded, trade reports said she received a new Warner Bros.-First National contract, a substantial raise, and a luxury automobile.
+
+<figure class="article-sequence article-sequence--two">
+  <div class="article-sequence__frames">
+    <img src="https://cdn.hob.farm/3dm/broadway-babies/ad-for-broadway-babies-from-theatre-magazine-september-1929.png" alt="September 1929 Theatre Magazine advertisement placing Alice White inside a giant light bulb" width="906" height="1305" loading="lazy" decoding="async" />
+    <img src="https://cdn.hob.farm/3dm/broadway-babies/broadway-babies-ad-in-the-film-daily-jan-jun-1929-page-1330-crop-10183f.jpg" alt="1929 Film Daily advertisement for Broadway Babies built around a column of words beginning with G" width="2935" height="3910" loading="lazy" decoding="async" />
+  </div>
+  <figcaption>The trade campaign turned White into the electrical center of the picture. <em>Theatre Magazine</em> put her inside a light bulb; <em>The Film Daily</em> promised girls, gaiety, gags, gossip, gems, grandeur, and gamblers.</figcaption>
+</figure>
 
 The new talking star did not supply all the talking movie's sounds.
 
