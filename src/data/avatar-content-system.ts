@@ -1,3 +1,5 @@
+import type { ContentRelationships, ToolRoute } from "@/lib/content-relationships";
+
 export type TrackTag = "Voice/Phone" | "Text/Computer" | "Both";
 export type LessonAccess = "free" | "paid";
 
@@ -15,6 +17,8 @@ export interface LessonPreview {
   trackTags: TrackTag[];
   moduleTitle: string;
   preview: string;
+  relationships?: ContentRelationships;
+  toolRoute?: ToolRoute;
 }
 
 export interface FreeLesson extends LessonPreview {

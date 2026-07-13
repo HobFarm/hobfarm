@@ -15,6 +15,13 @@ includedItems:
   - "Sophia / Stella pairing poster"
 department: cute-corrupted
 visualSystem: sophia-stella
+relatedWorkshop:
+  - cute-and-corrupted
+  - character-mannequin
+relatedAcademy:
+  - avatar-content-system
+relatedVisualSystems:
+  - sophia-stella
 priceLabel: "Coming soon"
 paidAssetPolicy:
   hasPaidAsset: true

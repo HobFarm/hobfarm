@@ -2,6 +2,15 @@ import { defineCollection } from "astro:content";
 import { z } from "astro/zod";
 import { glob } from "astro/loaders";
 
+const contentRelationshipFields = {
+  relatedWorkshop: z.array(z.string()).optional(),
+  relatedAcademy: z.array(z.string()).optional(),
+  relatedProducts: z.array(z.string()).optional(),
+  relatedArticles: z.array(z.string()).optional(),
+  relatedCharacters: z.array(z.string()).optional(),
+  relatedVisualSystems: z.array(z.string()).optional(),
+};
+
 const articles = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/articles" }),
   schema: z
@@ -137,7 +146,7 @@ const articles = defineCollection({
       updatedDate: z.coerce.date().optional(),
       featured: z.boolean().default(false),
       coverStory: z.boolean().default(false),
-      relatedArticles: z.array(z.string()).optional(),
+      ...contentRelationshipFields,
       relatedGallery: z.string().optional(),
       relatedProject: z.string().optional(),
       relatedVideo: z.string().optional(),
@@ -462,6 +471,7 @@ const gallery = defineCollection({
         notes: z.string().optional(),
       })
       .optional(),
+    ...contentRelationshipFields,
   }),
 });
 
@@ -558,6 +568,7 @@ const projects = defineCollection({
           href: z.string(),
         })
         .optional(),
+      ...contentRelationshipFields,
     }),
 });
 
@@ -834,6 +845,7 @@ const products = defineCollection({
       ])
       .optional(),
     visualSystem: z.string().optional(),
+    ...contentRelationshipFields,
     relatedArticle: z.string().optional(),
     relatedWorkshopNote: z.string().optional(),
     relatedContent: z
@@ -846,6 +858,10 @@ const products = defineCollection({
       .default("planned"),
     dropDate: z.coerce.date().optional(),
     edition: z.string().optional(),
+    licenseVersion: z.string().optional(),
+    licenseType: z
+      .enum(["standard-non-exclusive", "exclusive", "custom"])
+      .optional(),
     featured: z.boolean().default(false),
   }),
 });

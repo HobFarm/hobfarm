@@ -125,6 +125,11 @@ content:
       - { name: relatedGallery, label: Related Gallery URL, type: string }
       - { name: relatedProject, label: Related Project URL, type: string }
       - { name: relatedVideo, label: Related Video URL, type: string }
+      - { name: relatedWorkshop, label: Related Workshop IDs, type: string, list: true }
+      - { name: relatedAcademy, label: Related Academy IDs, type: string, list: true }
+      - { name: relatedProducts, label: Related Product IDs, type: string, list: true }
+      - { name: relatedCharacters, label: Related Character IDs, type: string, list: true }
+      - { name: relatedVisualSystems, label: Related Visual System IDs, type: string, list: true }
       - name: workshopCTA
         label: Workshop CTA
         type: object
@@ -351,6 +356,12 @@ content:
       - { name: visualSystem, label: Visual System id, type: string }
       - { name: relatedArticle, label: Related Article id, type: string }
       - { name: relatedWorkshopNote, label: Related Workshop Note id, type: string }
+      - { name: relatedWorkshop, label: Related Workshop IDs, type: string, list: true }
+      - { name: relatedAcademy, label: Related Academy IDs, type: string, list: true }
+      - { name: relatedProducts, label: Related Product IDs, type: string, list: true }
+      - { name: relatedArticles, label: Related Article IDs, type: string, list: true }
+      - { name: relatedCharacters, label: Related Character IDs, type: string, list: true }
+      - { name: relatedVisualSystems, label: Related Visual System IDs, type: string, list: true }
       - name: relatedContent
         label: Related Content
         type: object
@@ -378,6 +389,11 @@ content:
         options: [live, planned, coming-soon, sold-out, archived]
       - { name: dropDate, label: Drop Date, type: date }
       - { name: edition, label: Edition, type: string }
+      - { name: licenseVersion, label: License Version, type: string }
+      - name: licenseType
+        label: License Type
+        type: select
+        options: [standard-non-exclusive, exclusive, custom]
       - { name: featured, label: Featured, type: boolean }
       - { name: body, label: Body, type: rich-text }
 
@@ -505,6 +521,12 @@ content:
           - { name: fullAssetHostedOnSite, label: Full asset hosted on site, type: boolean }
           - { name: notes, label: Notes, type: text }
       - { name: related, label: Related entry IDs (e.g. fashion/glamour-pin-up), type: string, list: true }
+      - { name: relatedWorkshop, label: Related Workshop IDs, type: string, list: true }
+      - { name: relatedAcademy, label: Related Academy IDs, type: string, list: true }
+      - { name: relatedProducts, label: Related Product IDs, type: string, list: true }
+      - { name: relatedArticles, label: Related Article IDs, type: string, list: true }
+      - { name: relatedCharacters, label: Related Character IDs, type: string, list: true }
+      - { name: relatedVisualSystems, label: Related Visual System IDs, type: string, list: true }
       - { name: methods, label: Methods (free-form labels), type: string, list: true }
       - { name: relatedProcess, label: Related Process (e.g. /process/fashion/), type: string }
       - name: concept
