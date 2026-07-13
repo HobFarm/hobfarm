@@ -17,6 +17,11 @@ const shows = (await getCollection("projects"))
   .filter((p) => p.id.startsWith("hobfarm-tv/"))
   .sort((a, b) => a.data.order - b.data.order);
 
+const showPath = (id: string) =>
+  id === "hobfarm-tv/3-degrees-of-dick-miller"
+    ? "/departments/hobfarm-presents/3-degrees-of-dick-miller/"
+    : `/projects/${id.replace(/\.md$/, "")}/`;
+
 // Any gallery piece whose hero is a video, or that lives in the motion lane.
 const clips = (await getCollection("gallery"))
   .filter((e) => !e.data.draft && (e.data.hero.type === "video" || e.data.type === "video-workflow"))
@@ -60,7 +65,7 @@ const videoArticles = (await getPublishedArticles()).filter((p) =>
             <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
               {shows.map((show) => (
                 <a
-                  href={`/projects/${show.id.replace(/\.md$/, "")}/`}
+                  href={showPath(show.id)}
                   class="group flex flex-col rounded-xl border border-base-800 bg-base-900/50 p-6 transition-colors hover:border-accent-violet/40"
                 >
                   <div class="mb-1.5"><StatusBadge status={show.data.status} /></div>

@@ -5,7 +5,13 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
-const scanRoots = ["src/content", "src/data"];
+const scanRoots = [
+  "src/content",
+  "src/data",
+  "src/pages",
+  "src/components",
+  "src/layouts",
+];
 const reportJson = join(root, "reports/media-inventory.json");
 const reportCsv = join(root, "reports/media-inventory.csv");
 const CDN_BASE = "https://cdn.hob.farm/";
@@ -53,6 +59,9 @@ function inferUsage(sourceFile) {
   if (sourceFile.startsWith("src/content/products/")) return "product";
   if (sourceFile === "src/data/visual-systems.ts") return "visual-system";
   if (sourceFile.startsWith("src/data/")) return "data";
+  if (sourceFile.startsWith("src/pages/")) return "page";
+  if (sourceFile.startsWith("src/components/")) return "component";
+  if (sourceFile.startsWith("src/layouts/")) return "layout";
   return "unknown";
 }
 
@@ -182,6 +191,9 @@ for (const scanRoot of scanRoots) {
 }
 
 rows.sort((a, b) => a.sourceFile.localeCompare(b.sourceFile) || a.publicUrl.localeCompare(b.publicUrl));
+rows.forEach((row, index) => {
+  row.id = String(index + 1);
+});
 
 mkdirSync(dirname(reportJson), { recursive: true });
 writeFileSync(
@@ -189,8 +201,9 @@ writeFileSync(
   `${JSON.stringify(
     {
       generatedAt: new Date().toISOString(),
+      scanRoots,
       scope:
-        "Referenced assets only. R2 bucket enumeration requires owner Cloudflare auth and is out of scope for this local report.",
+        "Referenced assets only, scanned across content, data, pages, components, and layouts. This report does not enumerate or mutate R2 objects.",
       rowCount: rows.length,
       rows,
     },
@@ -220,4 +233,4 @@ writeFileSync(reportCsv, `${csv}\n`);
 
 console.log(`Wrote reports/media-inventory.json (${rows.length} rows)`);
 console.log("Wrote reports/media-inventory.csv");
-console.log("Scope: referenced assets only; R2 bucket enumeration requires owner Cloudflare auth.");
+console.log(`Scope: referenced assets only across ${scanRoots.join(", ")}; R2 was not enumerated or changed.`);

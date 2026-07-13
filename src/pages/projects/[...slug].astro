@@ -241,14 +241,7 @@ const projectJsonLd = {
               class="w-full h-full object-cover rounded-2xl"
             />
           </div>
-        ) : (
-          <div class="relative w-full aspect-video rounded-2xl overflow-hidden border border-base-800 mb-12 bg-base-900 isolate">
-            <div class="absolute inset-0 bg-linear-to-b from-transparent to-base-950/80 mix-blend-multiply z-10"></div>
-            <video autoplay muted loop playsinline class="w-full h-full object-cover rounded-2xl">
-              <source src="https://cdn.hob.farm/pages/home/hero-bg-video.mp4" type="video/mp4" />
-            </video>
-          </div>
-        )}
+        ) : null}
 
         {/* Meta Row */}
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 py-8 border-y border-base-800/80">

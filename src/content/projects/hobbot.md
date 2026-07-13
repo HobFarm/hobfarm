@@ -9,7 +9,6 @@ subtitle: 'Multi-agent content orchestration connecting knowledge extraction, so
 description: 'HobBot is the automation layer behind HobFarm public presence. It manages content generation and scheduling for X/Twitter, ingests and scores RSS feeds for relevance, extracts knowledge from external sources into the Grimoire, and serves as the backend for the Grimoire chat interface.'
 oneLiner: 'Multi-agent orchestration connecting knowledge extraction from external sources, social publishing to @h0bbot, and conversational AI through the Grimoire chat interface.'
 pubDate: 2024-04-10
-heroVideo: 'https://cdn.hob.farm/pages/home/hero-bg-video.mp4'
 repoUrl: 'https://github.com/hobfarm/hobbot'
 logo:
   url: '../../images/projects/placeholder.svg'

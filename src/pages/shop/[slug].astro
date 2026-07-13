@@ -5,7 +5,7 @@ import ContentPanel from "@/components/ContentPanel.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import SupportWays from "@/components/support/SupportWays.astro";
 import { platformInfo } from "@/data/product-platforms";
-import { previewImageUrl, mediaImageSrcset } from "@/lib/gallery";
+import { mediaUrl, previewImageUrl, mediaImageSrcset } from "@/lib/gallery";
 import { getPublicProducts, isBuyable, productPath, type ProductEntry } from "@/lib/products";
 
 export async function getStaticPaths() {
@@ -26,6 +26,7 @@ const { data } = product;
 const platform = platformInfo[data.platform];
 const buyable = isBuyable(product);
 const preview = previewImageUrl(data.previewImage.folder, data.previewImage.file);
+const socialPreview = mediaUrl(data.previewImage.folder, data.previewImage.file);
 const previewSrcset = mediaImageSrcset(
   data.previewImage.folder,
   data.previewImage.file,
@@ -40,7 +41,7 @@ const structuredData = {
   "@id": `${siteOrigin}${canonical}#product`,
   name: data.title,
   description: data.shortDescription,
-  image: preview,
+  image: socialPreview,
   category: data.productType,
   sku: data.sku,
   brand: { "@type": "Brand", name: "HobFarm" },
@@ -60,7 +61,7 @@ const structuredData = {
   title={`${data.title} | HobFarm Shop`}
   description={data.shortDescription}
   canonical={canonical}
-  image={preview}
+  image={socialPreview}
   imageAlt={data.previewImage.alt}
   structuredData={structuredData}
 >

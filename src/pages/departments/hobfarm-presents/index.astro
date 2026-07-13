@@ -33,8 +33,8 @@ const features: Record<string, { title:string; description:string; href:string; 
       <div class:list={["series-layout", index % 2 === 1 && "series-layout--reverse"]}>
         <div class="series-copy">
           <div class="series-meta"><span>{String(index+1).padStart(2,"0")}</span><span>{entry.id === "other-alice" ? "Illustrated Fiction" : entry.status === "coming-eventually" ? "Coming eventually" : "Now showing"}</span></div>
+          <h2 class:list={[entry.logo && "sr-only"]}>{entry.name}</h2>
           {entry.logo && <img class="series-logo" src={entry.logo} alt={`${entry.name} logo`} width="640" height="360" loading="lazy" decoding="async" />}
-          {!entry.logo && <h2>{entry.name}</h2>}
           <p>{entry.description}</p>
           {entry.id === "hobfarm-tv" && <div class="tv-note"><p>HobFarm TV is planned as the video side of these sections. The same person is writing the articles, making the images, building the site, and supposedly producing the television network, so the programs are taking longer.</p><p>Contributors are welcome. There is no budget and almost no audience yet. Credit will be real; future revenue stays hypothetical unless a paid arrangement is made in writing.</p></div>}
           <a class="series-cta" href={entry.href}>{entry.ctaLabel} &rarr;</a>

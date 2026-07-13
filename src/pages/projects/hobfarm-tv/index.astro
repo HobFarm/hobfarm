@@ -8,6 +8,7 @@ import StatusBadge from "@/components/ui/StatusBadge.astro";
 import ContentPanel from "@/components/ContentPanel.astro";
 import Eyebrow from "@/components/sections/Eyebrow.astro";
 import { getCollection } from "astro:content";
+import { presentsSeries } from "@/data/site-hierarchy";
 
 // Shows live as nested project entries under projects/hobfarm-tv/. Querying the
 // collection keeps this hub in sync: any new show file added to the folder
@@ -15,6 +16,8 @@ import { getCollection } from "astro:content";
 const shows = (await getCollection("projects"))
   .filter((p) => p.id.startsWith("hobfarm-tv/"))
   .sort((a, b) => a.data.order - b.data.order);
+const tvSection = presentsSeries.find((entry) => entry.id === "hobfarm-tv")!;
+const tvHero = tvSection.heroImage!;
 
 type ContentImageMetadata = {
   src: string;
@@ -27,6 +30,9 @@ type ContentImageMetadata = {
 <BaseLayout
   title="HobFarm TV | HobFarm"
   description="HobFarm TV is the picture-show channel: cult-film archaeology, cultural analysis, and build logs. Home of 3 Degrees of Dick Miller and Magazine Time Machine."
+  canonical="/projects/hobfarm-tv/"
+  image={tvHero}
+  imageAlt={tvSection.heroAlt}
 >
   <section class="bg-noise">
     <ContentPanel>
@@ -53,9 +59,7 @@ type ContentImageMetadata = {
         {/* ── Hero ── */}
         <div class="relative w-full aspect-video rounded-2xl overflow-hidden border border-base-800 mb-16 bg-base-900 isolate">
           <div class="absolute inset-0 bg-linear-to-b from-transparent to-base-950/80 mix-blend-multiply z-10"></div>
-          <video autoplay muted loop playsinline preload="metadata" class="w-full h-full object-cover rounded-2xl">
-            <source src="https://cdn.hob.farm/pages/home/hero-bg-video.mp4" type="video/mp4" />
-          </video>
+          <img src={tvHero} alt={tvSection.heroAlt ?? "HobFarm TV test pattern"} width="1600" height="900" class="w-full h-full object-cover rounded-2xl" decoding="async" fetchpriority="high" />
         </div>
 
         {/* ── Shows ── */}

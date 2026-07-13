@@ -9,7 +9,6 @@ subtitle: 'The self-enriching vocabulary engine powering StyleFusion, Drifter, a
 description: 'Grimoire is the knowledge layer that powers everything HobFarm builds. It is a living vocabulary graph of visual atoms, arranged into thematic constellations, scored by harmonic profiles, and connected through semantic correspondences.'
 oneLiner: 'The self-enriching vocabulary engine powering StyleFusion, Drifter, and XKXXKX. Visual and narrative atoms scored by harmonic dimensions, organized into arrangements that shape every prompt and every story beat.'
 pubDate: 2024-03-01
-heroVideo: 'https://cdn.hob.farm/pages/home/hero-bg-video.mp4'
 liveUrl: '/grimoire'
 logo:
   url: '../../images/projects/placeholder.svg'
