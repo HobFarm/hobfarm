@@ -6,12 +6,14 @@ import Button from "@/components/fundations/elements/Button.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import StatusBadge from "@/components/ui/StatusBadge.astro";
+import { getProjectHeroMedia } from "@/data/media-registry";
 
 interface Props {
   project: CollectionEntry<"projects">;
 }
 
 const { project } = Astro.props;
+const registeredHero = getProjectHeroMedia("stylefusion")!;
 
 const primaryCta = project.data.primaryCta ?? {
   label: "Follow StyleFusion updates",
@@ -34,26 +36,26 @@ const actions = [
   },
   {
     title: "Compile for Generation",
-    body: "Turn the structured profile into provider-ready prompts, generation JSON, compact prompts, character sheets, or reusable creative metadata.",
+    body: "Turn the Intermediate Representation into image-generation JSON, compiled natural-language slots, and reusable diagnostic metadata.",
   },
 ];
 
 const outcomes = [
-  "Build repeatable characters instead of one-off images.",
-  "Turn one strong concept into a gallery, listing, character sheet, or style pack.",
-  "Compare multiple model interpretations from the same structured input.",
-  "Keep internal generation metadata separate from public-facing gallery metadata.",
-  "Reuse strong characters, styles, and prompts without rebuilding from scratch.",
+  "See which reference supplied each compiled slot.",
+  "Compare model interpretations from the same structured input.",
+  "Keep extraction confidence, routing, and inheritance attached to the run.",
+  "Reuse the IR and compiled document without rebuilding the reference analysis.",
+  "Hand the export to image generation or a later Character / Mannequin workflow.",
 ];
 
 const workflow = [
-  "Reference",
-  "Extraction",
+  "Approved references",
+  "Role assignment",
+  "Extraction agents",
   "Intermediate Representation",
-  "Grimoire Enrichment",
-  "Provider Compilation",
-  "Generation",
-  "Packaging",
+  "Compiled slots",
+  "Generation JSON",
+  "Complete Export",
 ];
 
 const accountBenefits = [
@@ -77,7 +79,7 @@ const faqs = [
   {
     question: "Can I use it for character consistency?",
     answer:
-      "Yes. The strongest use case is turning a reference into a structured character identity that can survive style changes, provider swaps, and repeated prompt compilation.",
+      "Yes. A run can preserve subject or character DNA inside the IR, then pass that document into image generation or a later Character / Mannequin workflow. The resulting Sheet, Hero, Poster, or product remains a downstream asset.",
   },
   {
     question: "Is this only for AI artists?",
@@ -117,7 +119,7 @@ const styleFusionJsonLd = {
       name: "StyleFusion",
       description: project.data.subtitle,
       url: styleFusionUrl,
-      image: project.data.heroImage,
+      image: registeredHero.image.src,
       creator: {
         "@type": "Organization",
         name: "HobFarm",
@@ -145,7 +147,7 @@ const styleFusionJsonLd = {
   title="StyleFusion | HobFarm"
   description={project.data.subtitle}
   canonical="/projects/stylefusion/"
-  image={project.data.heroImage}
+  image={registeredHero.image.src}
   palette="magenta-cyan"
   structuredData={styleFusionJsonLd}
 >
@@ -162,15 +164,15 @@ const styleFusionJsonLd = {
             </div>
 
             <Text tag="h1" variant="displayXL" class="text-white text-balance font-display leading-none">
-              Turn references into reusable visual systems.
+              Reference images become an inspectable generation system.
             </Text>
 
             <p class="mt-6 max-w-2xl text-base leading-7 text-base-300 sm:text-lg">
-              StyleFusion extracts the visual DNA from your images, builds structured character and style profiles, enriches them through the Grimoire, and helps you generate consistent results across providers without starting over every time.
+              StyleFusion assigns approved images to subject, style, and composition roles, extracts them through specialized agents, and compiles a model-ready document with source, confidence, weight, and inheritance data.
             </p>
 
             <p class="mt-4 max-w-xl font-mono text-sm text-base-500">
-              StyleFusion is HobFarm's visual compiler for reference-driven AI image workflows.
+              StyleFusion is HobFarm's reference-image application for inspectable generation workflows.
             </p>
 
             <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -194,21 +196,22 @@ const styleFusionJsonLd = {
           </div>
 
           <div class="relative min-h-[420px] overflow-hidden rounded-2xl border border-base-700 bg-base-950 shadow-dimensional">
-            {project.data.heroVideo ? (
+            {registeredHero.video ? (
               <video
                 autoplay
                 muted
                 loop
                 playsinline
-                poster={project.data.heroImage}
+                poster={registeredHero.video.poster ?? registeredHero.image.src}
+                preload="none"
                 class="absolute inset-0 h-full w-full object-cover opacity-55"
               >
-                <source src={project.data.heroVideo} type="video/mp4" />
+                <source src={registeredHero.video.src} type="video/mp4" />
               </video>
-            ) : project.data.heroImage && (
+            ) : registeredHero.image && (
               <img
-                src={project.data.heroImage}
-                alt="StyleFusion reference-to-image workspace"
+                src={registeredHero.image.src}
+                alt={registeredHero.image.alt}
                 width={960}
                 height={1080}
                 class="absolute inset-0 h-full w-full object-cover opacity-55"
@@ -231,8 +234,8 @@ const styleFusionJsonLd = {
                   <p class="mt-3 text-sm text-base-300">Traits, materials, lighting, identity locks.</p>
                 </div>
                 <div class="rounded-xl border border-white/10 bg-white/10 p-4 backdrop-blur">
-                  <p class="font-mono text-xs uppercase tracking-widest text-white">Compiled Result</p>
-                  <p class="mt-2 text-sm text-base-300">Provider-ready prompts and reusable creative metadata.</p>
+                  <p class="font-mono text-xs uppercase tracking-widest text-white">Compiled document</p>
+                  <p class="mt-2 text-sm text-base-300">Image-generation JSON, natural-language slots, and diagnostics.</p>
                 </div>
               </div>
             </div>
@@ -252,7 +255,7 @@ const styleFusionJsonLd = {
           <div class="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p class="font-mono text-xs uppercase tracking-widest text-accent-400">The workflow</p>
-              <h2 class="mt-2 text-2xl font-medium text-white">From reference to packaged system</h2>
+              <h2 class="mt-2 text-2xl font-medium text-white">From approved references to Complete Export</h2>
             </div>
             <p class="max-w-md text-sm text-base-400">
               The details can get deep. The core loop stays compact.
@@ -286,7 +289,7 @@ const styleFusionJsonLd = {
             <p class="font-mono text-xs uppercase tracking-widest text-accent-400">Creator fit</p>
             <h2 class="mt-3 text-3xl font-medium text-white">Built for creators who use AI seriously.</h2>
             <p class="mt-5 text-base leading-7 text-base-300">
-              Most AI image tools are built around single prompts. StyleFusion is built around reusable creative systems. It is for artists, worldbuilders, writers, game masters, character designers, visual researchers, and creators building their own image language one reference at a time.
+              Most AI image tools are built around single prompts. StyleFusion is built around reusable reference records, an inspectable IR, compiled slots, and a Complete Export. It is for artists, worldbuilders, writers, game masters, character designers, visual researchers, and small studios that need to know where each part of a generation document came from.
             </p>
           </section>
         </div>

@@ -1,0 +1,417 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import { getMedia } from "@/data/media-registry";
+
+const hobgalVideo = getMedia("avatar-host.hobgal.prototype.video");
+const hobgalTranscript = getMedia("avatar-host.hobgal.prototype.transcript");
+const amiHero = getMedia("workshop.ami-legacy.hero");
+const hostGraphic = getMedia("workshop.graphics.hillary");
+const presentsGraphic = getMedia("presents.graphics.avatar-system");
+const hillaryProfile = getMedia("avatar.identity.hillary");
+const amiProfile = getMedia("avatar.identity.ami");
+const emProfile = getMedia("avatar.identity.em");
+const ninaProfile = getMedia("avatar.identity.nina");
+const zimaProfile = getMedia("avatar.identity.zima");
+const hobgalProfile = getMedia("avatar.identity.hobgal");
+
+const identities = [
+  { id: "AV-HIL-001", name: "Hillary", role: "Editorial and Workshop guide", profile: hillaryProfile },
+  { id: "AV-AMI-001", name: "Ami", role: "Social and commercial presenter", profile: amiProfile },
+  { id: "AV-EM-001", name: "Em", role: "PsyGoth / green / growth", profile: emProfile },
+  { id: "AV-NIN-001", name: "Nina", role: "PsyGoth / red / pressure", profile: ninaProfile },
+  { id: "AV-ZIM-001", name: "Zima", role: "PsyGoth / blue / structure", profile: zimaProfile },
+  { id: "AV-HOB-001", name: "Hobgal", role: "Retired presenter prototype", profile: hobgalProfile, retired: true },
+];
+
+const productionChain = [
+  "Character identity",
+  "Avatar group",
+  "Role-specific look",
+  "Voice",
+  "Motion direction",
+  "Presenter clip",
+  "Recurring use",
+];
+
+const hillaryRoles = [
+  {
+    role: "Main HobFarm presenter",
+    look: "The Polished Witty Studio Host",
+    destination: "Site introductions, editorial openings, and general announcements",
+  },
+  {
+    role: "Workshop / technical editor",
+    look: "The Neon-Lit Goth Editor",
+    destination: "Production notes, tool explanations, and process breakdowns",
+  },
+  {
+    role: "HobFarm TV cinema host",
+    look: "The Velvet-Clad Hostess of the Warm-Lit Cinema",
+    destination: "Film introductions, archive essays, and channel continuity",
+  },
+];
+
+const systemSequence = [
+  {
+    number: "01",
+    title: "Character identity / early prototype",
+    body: "Hobgal proved that a presenter could explain the machinery behind HobFarm. The identity and several workflow counts are now retired, but the clip still records the point where the host system became visible.",
+  },
+  {
+    number: "02",
+    title: "Canonical face and voice / identity to group",
+    body: "A stable face and voice belong to one logical character. Looks stay inside that group so wardrobe and setting can change without replacing the person.",
+  },
+  {
+    number: "03",
+    title: "Look families / Hillary role system",
+    body: "One Hillary identity carries three editorial jobs: general presenter, Workshop editor, and cinema host. The role changes the room and delivery, not the face or voice.",
+  },
+  {
+    number: "04",
+    title: "Editorial role assignment / Ami's commercial lane",
+    body: "Ami fits polished social fragments and deliberate fake commercials. The Legacy carriage campaign gives that lane a subject instead of leaving the avatar as a detached demo.",
+  },
+  {
+    number: "05",
+    title: "Expression and motion direction / PsyGoth trio",
+    body: "Em, Nina, and Zima share a video format while their green, red, and blue identity signals stay distinct. Existing clips already support a complete Workshop feature.",
+  },
+  {
+    number: "06",
+    title: "Standardized host tests / transcript and voice direction",
+    body: "The transcript decides what the clip can support. Voice, expression, and motion then reinforce the argument without inventing a new story for footage that says something else.",
+  },
+  {
+    number: "07",
+    title: "Continuity comparison / existing outputs",
+    body: "A presenter video belongs to an article, Workshop note, social fragment, recurring series, or course. Files without a destination remain review material.",
+  },
+  {
+    number: "08",
+    title: "Final program destinations / status cards",
+    body: "Active, planned, and blocked states stay visible. A planned clip is not presented as finished media, and a retired prototype is not returned to the active cast.",
+  },
+  {
+    number: "09",
+    title: "HobFarm TV and Academy usage / durable reuse",
+    body: "The same identity can guide an article, open a program, introduce a Workshop study, or teach a continuity lesson without being redesigned for every destination.",
+  },
+];
+
+const destinations = [
+  {
+    status: "Active",
+    title: "PsyGoth Workshop feature",
+    body: "Three selected HeyGen clips, edited transcripts, source transcripts, and continuity notes.",
+    href: "/workshop/workshop-notes/psygoth/",
+    label: "Open the PsyGoth feature",
+  },
+  {
+    status: "Editorial system",
+    title: "Hillary modular site guide",
+    body: "Hillary carries the main site, Workshop, and cinema-host roles while staying recognizably the same person.",
+    href: "#hillary-guide",
+    label: "Review the Hillary role map",
+  },
+  {
+    status: "Campaign world",
+    title: "Ami / Legacy",
+    body: "Ami turns the Legacy future-wagon study into a polished commercial lane with room for deliberate satire.",
+    href: "#ami-legacy",
+    label: "Review the Ami campaign lane",
+  },
+];
+
+const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  headline: "From Character Design to On-Screen Host",
+  description: "A Character / Mannequin study of how HobFarm character identities become recurring editorial hosts.",
+  image: hostGraphic.src,
+  url: `${siteOrigin}/workshop/character-mannequin/avatar-host-system/`,
+  isPartOf: {
+    "@type": "CollectionPage",
+    name: "Character / Mannequin",
+    url: `${siteOrigin}/workshop/character-mannequin/`,
+  },
+};
+---
+
+<BaseLayout
+  title="From Character Design to On-Screen Host | HobFarm Workshop"
+  description="Hobgal, Hillary, Ami, Em, Nina, and Zima show how character identity becomes a repeatable HobFarm presenter system."
+  canonical="/workshop/character-mannequin/avatar-host-system/"
+  structuredData={structuredData}
+  image={hostGraphic.src}
+  imageAlt={hostGraphic.alt}
+  palette="blue-red"
+>
+  <article class="host-study">
+    <header class="hero">
+      <Wrapper variant="standard" class="py-16 lg:py-24">
+        <div class="hero-layout">
+          <div>
+            <p class="kicker">Character / Mannequin study</p>
+            <h1>From Character Design to On-Screen Host</h1>
+            <p class="deck">A HobFarm host is a stable character moving through controlled looks, voices, roles, and program destinations. The face holds. The editorial job changes.</p>
+            <div class="status-row" aria-label="Host system roles">
+              <span>Hillary / editorial guide</span>
+              <span>Ami / commercial presenter</span>
+              <span>PsyGoth / three-host system</span>
+              <span>Hobgal / retired prototype</span>
+            </div>
+          </div>
+          <img src={hostGraphic.src} alt={hostGraphic.alt} width={hostGraphic.width} height={hostGraphic.height} loading="eager" fetchpriority="high" decoding="async" />
+        </div>
+      </Wrapper>
+    </header>
+
+    <section class="chain-section">
+      <Wrapper variant="standard" class="py-12 lg:py-16">
+        <header class="section-heading">
+          <p class="kicker">Production chain</p>
+          <h2>Every recurring appearance follows the same chain.</h2>
+        </header>
+        <ol class="production-chain">
+          {productionChain.map((step, index) => (
+            <li><span>{String(index + 1).padStart(2, "0")}</span><strong>{step}</strong></li>
+          ))}
+        </ol>
+      </Wrapper>
+    </section>
+
+    <section class="prototype-section" id="hobgal-prototype">
+      <Wrapper variant="standard" class="py-14 lg:py-20">
+        <div class="prototype-grid">
+          <div>
+            <p class="kicker">01 / Retired prototype</p>
+            <h2>Hobgal made the system speak.</h2>
+            <img class="prototype-profile" src={hobgalProfile.src} alt={hobgalProfile.alt} width={hobgalProfile.width} height={hobgalProfile.height} loading="lazy" decoding="async" />
+            <p>Hobgal stays in the archive rather than the active cast. The surviving intro still matters because it explains the early idea: one input becomes analysis, prompts, generated options, and a finished video.</p>
+            <p>The clip says seven agents and nine models. Those were period-specific counts. The current system has changed, so the numbers are preserved as history rather than documentation.</p>
+            <details>
+              <summary>Open the recovered transcript</summary>
+              <p>People keep asking me how I make these. The honest answer is I built a system that does most of the work for me, which sounds lazy until you realize building the system took about a year. One image goes in. Seven agents extract everything about it. A compiler turns that into prompts. Nine AI models generate their own version. The best one gets animated into a video. So when someone says “you just type words into an AI,” I mean, technically yes. But also, no. Not even slightly.</p>
+              <a href={hobgalTranscript.src}>Plain-text transcript</a>
+            </details>
+          </div>
+          <video controls playsinline preload="none" poster={hobgalVideo.poster} aria-label="Retired Hobgal prototype clip">
+            <source src={hobgalVideo.src} type="video/mp4" />
+          </video>
+        </div>
+      </Wrapper>
+    </section>
+
+    <section class="identity-section">
+      <Wrapper variant="standard" class="py-14 lg:py-20">
+        <header class="section-heading">
+          <p class="kicker">02 / Identity to group</p>
+          <h2>The avatar group is the continuity boundary.</h2>
+          <p>Each logical HobFarm ID points to one character identity. Role-specific looks stay inside that HeyGen group and keep the current default voice. This prevents a wardrobe change from becoming a new person.</p>
+        </header>
+        <div class="identity-grid">
+          {identities.map((identity) => (
+            <article class:list={[identity.retired && "retired"]}>
+              <img src={identity.profile.src} alt={identity.profile.alt} width={identity.profile.width} height={identity.profile.height} loading="lazy" decoding="async" />
+              <div><strong>{identity.id}</strong><span>{identity.name}</span><small>{identity.role}</small></div>
+            </article>
+          ))}
+        </div>
+      </Wrapper>
+    </section>
+
+    <section class="role-section" id="hillary-guide">
+      <Wrapper variant="standard" class="py-14 lg:py-20">
+        <div class="role-intro">
+          <header class="section-heading">
+            <p class="kicker">03 / Hillary role system</p>
+            <h2>One Hillary, three editorial jobs.</h2>
+            <p>Hillary is the publication’s guide. Her main presenter, Workshop editor, and cinema-host looks stay inside one identity and keep one voice, so a new room or wardrobe never reads as a new person.</p>
+          </header>
+          <img src={hillaryProfile.src} alt={hillaryProfile.alt} width={hillaryProfile.width} height={hillaryProfile.height} loading="lazy" decoding="async" />
+        </div>
+        <div class="role-grid">
+          {hillaryRoles.map((item, index) => (
+            <article>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{item.role}</h3>
+              <p class="look">{item.look}</p>
+              <p>{item.destination}</p>
+            </article>
+          ))}
+        </div>
+      </Wrapper>
+    </section>
+
+    <section class="ami-section" id="ami-legacy">
+      <Wrapper variant="standard" class="py-14 lg:py-20">
+        <div class="ami-grid">
+          <div>
+            <p class="kicker">04 / Ami commercial lane</p>
+            <h2>Legacy gives Ami a product world to host.</h2>
+            <p>Two-wheel carriage forms keep their pull architecture and replace the horse with a robot. Four-wheel forms carry electric power and autonomous control. Ami belongs in the polished spokesperson frame: part car advertisement, part lifestyles-of-the-rich broadcast, with enough distance for a fake-commercial cut.</p>
+            <p>The campaign packet holds six future-wagon images and four historical references. That is enough to establish Ami’s lane before a presenter clip enters the mix: she has a product world, a visual tone, and a reason to speak.</p>
+          </div>
+          <div class="ami-visuals">
+            <img class="ami-profile" src={amiProfile.src} alt={amiProfile.alt} width={amiProfile.width} height={amiProfile.height} loading="lazy" decoding="async" />
+            <img src={amiHero.src} alt={amiHero.alt} width={amiHero.width} height={amiHero.height} loading="lazy" decoding="async" />
+          </div>
+        </div>
+      </Wrapper>
+    </section>
+
+    <section class="trio-section">
+      <Wrapper variant="standard" class="py-14 lg:py-20">
+        <header class="section-heading">
+          <p class="kicker">05 / Existing coordinated output</p>
+          <h2>PsyGoth already works as a three-host feature.</h2>
+          <p>Em, Nina, and Zima each have a short landscape clip with a clear transcript claim. Their longer portrait takes supply fuller identity language and continuity evidence. No new generation is needed for the Workshop feature.</p>
+        </header>
+        <div class="trio-portraits" aria-label="PsyGoth host portraits">
+          {[emProfile, ninaProfile, zimaProfile].map((profile) => <img src={profile.src} alt={profile.alt} width={profile.width} height={profile.height} loading="lazy" decoding="async" />)}
+        </div>
+        <a class="feature-link" href="/workshop/workshop-notes/psygoth/">
+          <span>Open the completed study</span>
+          <strong>PsyGoth: One Visual System, Three Identities</strong>
+        </a>
+      </Wrapper>
+    </section>
+
+    <section class="sequence-section">
+      <Wrapper variant="standard" class="py-14 lg:py-20">
+        <header class="section-heading">
+          <p class="kicker">Production system</p>
+          <h2>Nine checkpoints keep the cast tied to the publication.</h2>
+        </header>
+        <ol class="sequence-grid">
+          {systemSequence.map((item) => (
+            <li><span>{item.number}</span><div><h3>{item.title}</h3><p>{item.body}</p></div></li>
+          ))}
+        </ol>
+      </Wrapper>
+    </section>
+
+    <section class="destination-section">
+      <Wrapper variant="standard" class="py-14 lg:py-20">
+        <header class="section-heading">
+          <p class="kicker">Program destinations</p>
+          <h2>The host sends the viewer somewhere useful.</h2>
+        </header>
+        <div class="destination-grid">
+          {destinations.map((item) => (
+            <article>
+              <p class="status">{item.status}</p>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+              <a href={item.href}>{item.label}</a>
+            </article>
+          ))}
+        </div>
+        <div class="registry-panel">
+          <div>
+            <p class="kicker">Media registry</p>
+            <h2>Each appearance keeps its source and destination attached.</h2>
+            <p>Canonical portraits, public presenter clips, posters, and transcripts use durable HobFarm CDN paths. Temporary generation previews never become page dependencies.</p>
+          </div>
+          <ul>
+            <li><code>Identity portraits</code><span>Canonical</span></li>
+            <li><code>PsyGoth clips + transcripts</code><span>Active</span></li>
+            <li><code>Hobgal prototype record</code><span>Historical</span></li>
+            <li><code>Future presenter tests</code><span>Reserved</span></li>
+          </ul>
+        </div>
+        <a class="presents-bridge" href="/departments/hobfarm-presents/">
+          <img src={presentsGraphic.src} alt={presentsGraphic.alt} width={presentsGraphic.width} height={presentsGraphic.height} loading="lazy" decoding="async" />
+          <span>See where recurring hosts and programs meet in HobFarm Presents &rarr;</span>
+        </a>
+      </Wrapper>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  .host-study { background: #07060b; color: #aaa5b8; }
+  .hero { border-bottom: 1px solid #2c2440; background: radial-gradient(circle at 18% 8%, rgba(85, 215, 255, .12), transparent 28rem), radial-gradient(circle at 82% 18%, rgba(191, 45, 88, .12), transparent 30rem), #07060b; }
+  .hero-layout { display: grid; gap: 2rem; align-items: center; }
+  .hero-layout > img { display: block; width: 100%; border: 1px solid #3b3150; border-radius: .75rem; box-shadow: 0 30px 90px rgb(85 215 255 / .08); }
+  .kicker { margin: 0; color: #55d7ff; font-family: var(--font-mono); font-size: .63rem; letter-spacing: .16em; text-transform: uppercase; }
+  h1 { max-width: 70rem; margin: 1rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(3.5rem, 9vw, 8rem); font-weight: 300; letter-spacing: -.06em; line-height: .88; text-wrap: balance; }
+  .deck { max-width: 54rem; margin: 1.5rem 0 0; color: #c5c1d0; font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.75; }
+  .status-row { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 2rem; }
+  .status-row span { padding: .55rem .7rem; border: 1px solid #3a314c; border-radius: 999px; color: #b9b4c6; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .07em; text-transform: uppercase; }
+  section { border-bottom: 1px solid #2c2440; }
+  .prototype-section, .role-section, .trio-section, .destination-section { background: #0a0810; }
+  .section-heading { max-width: 60rem; }
+  .section-heading h2, .prototype-grid h2, .ami-grid h2, .registry-panel h2 { margin: .75rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(2.4rem, 6vw, 5rem); font-weight: 300; letter-spacing: -.045em; line-height: .96; }
+  .section-heading > p:last-child:not(.kicker), .prototype-grid > div > p, .ami-grid > div > p, .registry-panel > div > p:last-child { max-width: 50rem; margin: 1rem 0 0; color: #aaa5b8; line-height: 1.72; }
+  .production-chain { display: grid; gap: .65rem; margin: 2rem 0 0; padding: 0; list-style: none; }
+  .production-chain li { min-height: 7rem; padding: .9rem; border: 1px solid #2c2440; border-top: 2px solid #55d7ff; border-radius: .45rem; background: #0d0a13; }
+  .production-chain span { color: #817b91; font-family: var(--font-mono); font-size: .58rem; }
+  .production-chain strong { display: block; margin-top: 2.2rem; color: #fff; font-size: .82rem; font-weight: 500; }
+  .prototype-grid, .ami-grid { display: grid; gap: 1.5rem; align-items: start; }
+  .prototype-profile { float: left; width: 7rem; margin: 1.1rem 1rem .5rem 0; aspect-ratio: 2 / 3; border: 1px solid #433559; border-radius: .5rem; object-fit: cover; object-position: center top; }
+  video { display: block; width: 100%; max-height: 44rem; border: 1px solid #433559; border-radius: .7rem; background: #000; }
+  details { margin-top: 1.2rem; border-top: 1px solid #342b45; }
+  summary { padding: 1rem 0; color: #e7e2ef; cursor: pointer; font-family: var(--font-mono); font-size: .61rem; letter-spacing: .08em; text-transform: uppercase; }
+  details p { margin: 0; color: #aaa5b8; font-size: .82rem; line-height: 1.75; }
+  details a { display: inline-block; margin-top: .8rem; color: #55d7ff; font-family: var(--font-mono); font-size: .6rem; }
+  .identity-grid, .role-grid, .destination-grid { display: grid; gap: .8rem; margin-top: 2rem; }
+  .identity-grid article, .role-grid article, .destination-grid article { padding: 1.05rem; border: 1px solid #2c2440; border-radius: .55rem; background: #0e0b16; }
+  .identity-grid article { padding: 0; overflow: hidden; }
+  .identity-grid article > img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: center 24%; }
+  .identity-grid article > div { padding: 1rem; }
+  .identity-grid strong, .identity-grid span, .identity-grid small { display: block; }
+  .identity-grid strong { color: #55d7ff; font-family: var(--font-mono); font-size: .57rem; }
+  .identity-grid span { margin-top: 1rem; color: #fff; font-size: 1.15rem; }
+  .identity-grid small { margin-top: .45rem; color: #817b91; font-size: .7rem; }
+  .identity-grid .retired { opacity: .7; border-style: dashed; }
+  .role-grid article:nth-child(1) { border-top: 3px solid #d8c7b1; } .role-grid article:nth-child(2) { border-top: 3px solid #55d7ff; } .role-grid article:nth-child(3) { border-top: 3px solid #a54a5a; }
+  .role-intro { display: grid; gap: 1.5rem; align-items: end; }
+  .role-intro > img { display: block; width: 100%; max-height: 32rem; border: 1px solid #433559; border-radius: .7rem; object-fit: cover; object-position: center 22%; }
+  .role-grid article > span { color: #817b91; font-family: var(--font-mono); font-size: .58rem; }
+  .role-grid h3, .destination-grid h3 { margin: 2rem 0 0; color: #fff; font-size: 1.2rem; }
+  .role-grid .look { margin: .75rem 0 0; color: #e0c7a4; font-family: var(--font-mono); font-size: .67rem; line-height: 1.5; }
+  .role-grid article > p:last-child, .destination-grid article > p:not(.status) { margin: .7rem 0 0; color: #9f9aad; font-size: .82rem; line-height: 1.65; }
+  .ami-grid img { display: block; width: 100%; border: 1px solid #473b2b; border-radius: .7rem; }
+  .ami-visuals { display: grid; grid-template-columns: minmax(7rem, .28fr) minmax(0, 1fr); gap: .7rem; align-items: end; }
+  .ami-visuals .ami-profile { height: 100%; aspect-ratio: 2 / 3; object-fit: cover; object-position: center top; }
+  .ami-visuals img:last-child { aspect-ratio: 16 / 9; object-fit: cover; }
+  .trio-portraits { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .65rem; margin-top: 2rem; }
+  .trio-portraits img { display: block; width: 100%; aspect-ratio: 3 / 4; border: 1px solid #433559; border-radius: .55rem; object-fit: cover; object-position: center top; }
+  .feature-link { display: grid; gap: .8rem; margin-top: 2rem; padding: 1.2rem; border: 1px solid #433559; border-left: 4px solid #55d7ff; border-radius: .6rem; background: #0e0b16; text-decoration: none; }
+  .feature-link span { color: #55d7ff; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .08em; text-transform: uppercase; }
+  .feature-link strong { color: #fff; font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 3.4rem); font-weight: 300; line-height: 1.1; }
+  .feature-link:hover, .feature-link:focus-visible { border-color: #55d7ff; outline: none; }
+  .sequence-grid { display: grid; gap: .75rem; margin: 2rem 0 0; padding: 0; list-style: none; }
+  .sequence-grid > li { display: grid; grid-template-columns: 3.4rem 1fr; gap: .9rem; padding: 1rem; border: 1px solid #2c2440; border-radius: .6rem; background: #0d0a13; }
+  .sequence-grid > li > span { color: #55d7ff; font-family: var(--font-mono); font-size: .72rem; }
+  .sequence-grid h3 { margin: 0; color: #fff; font-size: 1.02rem; }
+  .sequence-grid p { margin: .65rem 0 0; color: #aaa5b8; font-size: .82rem; line-height: 1.65; }
+  .destination-grid .status { margin: 0; color: #d4ad63; font-family: var(--font-mono); font-size: .56rem; letter-spacing: .06em; text-transform: uppercase; }
+  .destination-grid h3 { margin-top: 1.2rem; }
+  .destination-grid a { display: inline-block; margin-top: 1rem; color: #55d7ff; font-family: var(--font-mono); font-size: .6rem; text-decoration-thickness: 1px; text-underline-offset: .25rem; }
+  .registry-panel { display: grid; gap: 2rem; margin-top: 1rem; padding: 1.25rem; border: 1px solid #2c2440; border-radius: .7rem; background: #07060b; }
+  .registry-panel ul { margin: 0; padding: 0; list-style: none; }
+  .registry-panel li { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .72rem 0; border-top: 1px solid #241d33; }
+  .registry-panel code { overflow-wrap: anywhere; color: #c9c4d4; font-size: .62rem; }
+  .registry-panel li span { color: #d4ad63; font-family: var(--font-mono); font-size: .55rem; text-transform: uppercase; }
+  .presents-bridge { position: relative; display: block; margin-top: 1rem; overflow: hidden; border: 1px solid #3b3150; border-radius: .7rem; color: #fff; text-decoration: none; }
+  .presents-bridge img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; transition: transform .4s ease, opacity .3s ease; }
+  .presents-bridge span { position: absolute; right: 0; bottom: 0; left: 0; padding: 5rem 1rem 1rem; background: linear-gradient(transparent, rgb(5 4 9 / .96)); font-family: var(--font-mono); font-size: .65rem; letter-spacing: .06em; text-transform: uppercase; }
+  .presents-bridge:hover img, .presents-bridge:focus-visible img { transform: scale(1.015); opacity: .9; }
+  .presents-bridge:focus-visible { outline: 2px solid #55d7ff; outline-offset: 3px; }
+  @media (min-width: 700px) {
+    .production-chain { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .identity-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .role-grid, .destination-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .prototype-grid { grid-template-columns: minmax(0, 1fr) minmax(17rem, .55fr); }
+    .ami-grid { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
+    .sequence-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .registry-panel { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); align-items: start; }
+    .role-intro { grid-template-columns: minmax(0, 1fr) minmax(14rem, .35fr); }
+  }
+  @media (min-width: 1080px) { .production-chain { grid-template-columns: repeat(7, minmax(0, 1fr)); } .hero-layout { grid-template-columns: minmax(0, .9fr) minmax(28rem, .72fr); } }
+</style>

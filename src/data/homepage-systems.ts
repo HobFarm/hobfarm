@@ -3,6 +3,8 @@
 // avoids machine-metaphor decoration ("pipeline", "engine", "output"); internal
 // keys may still use those words.
 
+import { getMedia } from "@/data/media-registry";
+
 export interface LabeledItem {
   label: string;
   value: string;
@@ -451,12 +453,12 @@ export const storyPanels: Record<string, StoryPanel> = {
         label: "Gallery",
       },
       {
-        src: "https://cdn.hob.farm/pages/projects/images/hobfarm-courses-banner.jpg",
+        src: getMedia("academy.banner.image").src,
         alt: "HobFarm courses banner image.",
         label: "Courses",
       },
       {
-        src: "https://cdn.hob.farm/pages/projects/images/stylefusion-banner.jpg",
+        src: getMedia("stylefusion.banner.image").src,
         alt: "StyleFusion project banner image.",
         label: "Services",
       },

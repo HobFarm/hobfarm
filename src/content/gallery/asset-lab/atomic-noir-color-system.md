@@ -185,7 +185,7 @@ fieldNotes:
   - label: "Glow is not decoration"
     text: "The bright colors work because they behave like local light. Eye glow, cyan practicals, water reflections, and magenta bloom should affect nearby edges instead of sitting flat on top of the image."
   - label: "Why this is an asset"
-    text: "A stable color system can be reused later for character sheets, motion clips, scene studies, packaging, or StyleFusion growth runs without rebuilding the palette from scratch."
+    text: "A stable color system can be reused later for character sheets, motion clips, scene studies, packaging, or an approved StyleFusion reference study without rebuilding the palette from scratch."
 processNotes: "Derived from two StyleFusion IR exports for related HobFarm color-design sets. Public copy keeps the emphasis on reusable visual DNA instead of model/provider mechanics."
 ---
 

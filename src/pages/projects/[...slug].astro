@@ -11,6 +11,7 @@ import type { CollectionEntry } from "astro:content";
 import ContentPanel from "@/components/ContentPanel.astro";
 import StyleFusionProjectPage from "@/components/projects/StyleFusionProjectPage.astro";
 import { imageSrcset, transformImageUrl } from "@/lib/media-transforms";
+import { getProjectHeroMedia } from "@/data/media-registry";
 
 interface Props {
   project: CollectionEntry<"projects">;
@@ -59,14 +60,17 @@ const { project } = Astro.props as Props;
 const { Content } = await render(project);
 const slug = project.id.replace(/\.md$/, "");
 const isStyleFusion = slug === "stylefusion";
-const seoImage = project.data.heroImage;
+const registeredHero = getProjectHeroMedia(slug);
+const heroImage = registeredHero?.image.src ?? project.data.heroImage;
+const heroVideo = registeredHero?.video.src ?? project.data.heroVideo;
+const seoImage = heroImage;
 const isKofiHref = (href: string) => href.includes("ko-fi.com");
 const logoIsSvg = project.data.logo?.url.src.endsWith(".svg") ?? false;
-const transformedHeroImage = project.data.heroImage
-  ? transformImageUrl(project.data.heroImage, { width: 1400, quality: 84, fit: "cover" })
+const transformedHeroImage = heroImage
+  ? transformImageUrl(heroImage, { width: 1400, quality: 84, fit: "cover" })
   : undefined;
-const heroSrcset = project.data.heroImage
-  ? imageSrcset(project.data.heroImage, [640, 960, 1400, 1920], {
+const heroSrcset = heroImage
+  ? imageSrcset(heroImage, [640, 960, 1400, 1920], {
       quality: 84,
       fit: "cover",
     })
@@ -201,7 +205,7 @@ const projectJsonLd = {
         </div>
 
         {/* Hero Media */}
-        {project.data.heroVideo ? (
+        {heroVideo ? (
           <div class="relative w-full aspect-video rounded-2xl overflow-hidden border border-base-800 mb-12 bg-base-900 isolate">
             <div class="absolute inset-0 bg-linear-to-b from-transparent to-base-950/80 mix-blend-multiply z-10"></div>
             <video
@@ -213,10 +217,10 @@ const projectJsonLd = {
               poster={transformedHeroImage}
               class="w-full h-full object-cover rounded-2xl"
             >
-              <source src={project.data.heroVideo} type="video/mp4" />
+              <source src={heroVideo} type="video/mp4" />
             </video>
           </div>
-        ) : project.data.heroImage ? (
+        ) : heroImage ? (
           <div class="relative w-full aspect-video rounded-2xl overflow-hidden border border-base-800 mb-12 bg-base-900 isolate">
             <div class="absolute inset-0 bg-linear-to-b from-transparent to-base-950/80 mix-blend-multiply z-10"></div>
             <img

@@ -16,7 +16,7 @@ const redirectedPaths = new Set([
   "/gallery/cute-corrupted/",
   "/departments/workshop-notes/",
 ]);
-const privatePrototypePaths = new Set(["/workshop/visual-lab/"]);
+const privatePrototypePaths = new Set(["/workshop/visual-lab/", "/workshop/stylefusion/prototype/"]);
 
 // https://astro.build/config
 export default defineConfig({

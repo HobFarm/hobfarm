@@ -10,7 +10,7 @@ tags: ["anime", "gothic", "art-history", "style-transfer", "visual-dna"]
 hero: https://cdn.hob.farm/pages/blog/anime_gothic_hero.png
 ---
 
-StyleFusion's gallery has a recurring pattern: gothic anime line art consistently produces some of the most striking outputs. That's not a coincidence. There's a deep structural connection between Japanese animation aesthetics and European gothic art that makes them unusually compatible for style transfer.
+HobFarm Gallery studies produced downstream from StyleFusion exports have a recurring pattern: gothic anime line art consistently produces some of the most striking outputs. That's not a coincidence. There's a deep structural connection between Japanese animation aesthetics and European gothic art that makes them unusually compatible for style transfer.
 
 ## Shared Visual DNA
 
@@ -24,7 +24,7 @@ Gothic art (12th through 16th century European, not the modern subculture) and a
 
 ## Why AI Models Handle This Well
 
-When StyleFusion generates a "goth anime" image, the AI model doesn't know about art history. But the training data contains both traditions, and because they share structural principles, the latent space between them is navigable.
+When a StyleFusion export is sent to image generation for a "goth anime" result, the AI model doesn't know about art history. But the training data contains both traditions, and because they share structural principles, the latent space between them is navigable.
 
 The visual atoms that define "gothic" (high contrast, vertical emphasis, ornate detail, dark palette) and the atoms that define "anime" (clean linework, expressive eyes, stylized proportions, flat color) don't conflict at the structural level. They reinforce.
 

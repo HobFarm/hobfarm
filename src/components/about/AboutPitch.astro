@@ -3,8 +3,9 @@ import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Eyebrow from "@/components/sections/Eyebrow.astro";
 import { transformVideoUrl } from "@/lib/media-transforms";
+import { getMedia } from "@/data/media-registry";
 
-const glowVideo = "https://cdn.hob.farm/pages/about/about-glow-vid.mp4";
+const glowVideo = getMedia("about.glow.video");
 ---
 
 <section class="border-t border-base-800/50">
@@ -71,7 +72,7 @@ const glowVideo = "https://cdn.hob.farm/pages/about/about-glow-vid.mp4";
           playsinline
           class="absolute inset-0 w-full h-full object-cover"
         >
-          <source src={transformVideoUrl(glowVideo, { width: 640 })} type="video/mp4" />
+          <source src={transformVideoUrl(glowVideo.src, { width: 640 })} type="video/mp4" />
         </video>
         <div class="absolute inset-0 bg-gradient-to-t from-base-950/60 to-transparent pointer-events-none"></div>
       </div>

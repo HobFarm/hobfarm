@@ -1,0 +1,45 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  study: CollectionEntry<"stylefusionStudies">;
+  eyebrow?: string;
+}
+
+const { study, eyebrow = "Complete Export case study" } = Astro.props;
+const exportData = study.data["export"];
+const seconds = exportData.durationMs ? (exportData.durationMs / 1000).toFixed(1) : undefined;
+---
+
+<article class="case-study">
+  <header>
+    <div>
+      <p>{eyebrow}</p>
+      <h2>{study.data.title}</h2>
+      <p class="case-study__summary">{study.data.summary}</p>
+    </div>
+    <dl>
+      <div><dt>IR</dt><dd>{exportData.irVersion ?? "n/a"}</dd></div>
+      <div><dt>Extraction</dt><dd>{exportData.extractionModel ?? "n/a"}</dd></div>
+      <div><dt>Mode</dt><dd>{exportData.executionMode ?? "n/a"}</dd></div>
+      <div><dt>Duration</dt><dd>{seconds ? `${seconds}s` : "n/a"}</dd></div>
+      <div><dt>Aspect</dt><dd>{study.data.compiled.aspectRatio ?? "n/a"}</dd></div>
+    </dl>
+  </header>
+  <div class="case-study__body"><slot /></div>
+</article>
+
+<style>
+  .case-study { border: 1px solid #2c2440; border-radius: 1rem; overflow: hidden; background: #07060b; }
+  .case-study > header { display: grid; gap: 1.5rem; padding: 1.25rem; border-bottom: 1px solid #2c2440; background: #0e0b16; }
+  header p:first-child { margin: 0; color: #55d7ff; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .15em; text-transform: uppercase; }
+  h2 { max-width: 48rem; margin: .7rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(2.3rem, 6vw, 4.8rem); font-weight: 300; letter-spacing: -.045em; line-height: .95; }
+  .case-study__summary { max-width: 48rem; margin: 1rem 0 0; color: #aaa5b8; line-height: 1.7; }
+  dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .55rem; margin: 0; }
+  dl > div { min-width: 0; padding: .75rem; border: 1px solid #2c2440; border-radius: .45rem; background: #0a0810; }
+  dt { color: #817b91; font-family: var(--font-mono); font-size: .55rem; letter-spacing: .08em; text-transform: uppercase; }
+  dd { margin: .35rem 0 0; overflow-wrap: anywhere; color: #ece9f5; font-family: var(--font-mono); font-size: .65rem; line-height: 1.4; }
+  .case-study__body { display: grid; gap: 1rem; padding: 1rem; }
+  @media (min-width: 760px) { dl { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+  @media (min-width: 1040px) { .case-study > header { grid-template-columns: minmax(0, 1.2fr) minmax(28rem, .8fr); align-items: end; padding: 2rem; } .case-study__body { padding: 1.5rem; } }
+</style>

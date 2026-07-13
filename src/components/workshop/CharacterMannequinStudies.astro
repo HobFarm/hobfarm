@@ -1,0 +1,145 @@
+---
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import { getMedia, type MediaId } from "@/data/media-registry";
+
+const media = (id: MediaId) => getMedia(id);
+const fashionVariants = ["v1", "v2", "v3", "v4"].map((key) =>
+  media(`character.fashion.${key}` as MediaId),
+);
+const fashionSheet = media("character.fashion.sheet");
+const fashionHero = media("character.fashion.hero");
+const fashionPoster = media("character.fashion.poster");
+const fashionVideo = media("character.fashion.video");
+const fashionExport = media("character.fashion.export");
+const genericSteps = [
+  ["Base", "character.generic-37.base"],
+  ["Face", "character.generic-37.face"],
+  ["Color", "character.generic-37.color"],
+  ["Texture", "character.generic-37.texture"],
+  ["Intent", "character.generic-37.intent"],
+  ["Exclusions", "character.generic-37.negative"],
+] as const;
+const genericResult = media("character.generic-37.result");
+const genericVideo = media("character.generic-37.video");
+---
+
+<section id="character-production" class="character-studies border-b border-base-800/70">
+  <Wrapper variant="standard" class="py-14 lg:py-20">
+    <article>
+      <header class="study-header">
+        <div>
+          <p class="label">Character production study</p>
+          <h2>A character becomes useful when the system can repeat her.</h2>
+        </div>
+        <p>The fashion study moves from broad visual proposals into the practical assets that hold a character together: a sheet, a hero, a poster, and a motion test.</p>
+      </header>
+
+      <div class="variant-grid">
+        {fashionVariants.map((asset, index) => (
+          <figure>
+            <img src={asset.src} alt={asset.alt} loading="lazy" decoding="async" />
+            <figcaption>Concept variant / {String(index + 1).padStart(2, "0")}</figcaption>
+          </figure>
+        ))}
+      </div>
+
+      <ol class="production-sequence" aria-label="Fashion character production sequence">
+        <li>
+          <span>01 / Sheet</span>
+          <figure><img src={fashionSheet.src} alt={fashionSheet.alt} loading="lazy" decoding="async" /></figure>
+          <p>Resolve views, proportions, wardrobe, and repeatable identity.</p>
+        </li>
+        <li>
+          <span>02 / Hero</span>
+          <figure><img src={fashionHero.src} alt={fashionHero.alt} loading="lazy" decoding="async" /></figure>
+          <p>Place the character in a finished scene without losing the sheet.</p>
+        </li>
+        <li>
+          <span>03 / Poster</span>
+          <figure><img src={fashionPoster.src} alt={fashionPoster.alt} loading="lazy" decoding="async" /></figure>
+          <p>Test the identity as a designed promotional object.</p>
+        </li>
+        <li>
+          <span>04 / Motion</span>
+          <figure><video src={fashionVideo.src} poster={fashionVideo.poster} controls muted playsinline preload="none" aria-label={fashionVideo.alt}></video></figure>
+          <p>Move the locked character without redesigning her.</p>
+        </li>
+      </ol>
+
+      <details class="record">
+        <summary>Production record</summary>
+        <p>The original export remains a factual source record. It supports the visible sequence without becoming the page’s main event.</p>
+        <a href={fashionExport.src} target="_blank" rel="noreferrer">Open the Complete Export text record &rarr;</a>
+      </details>
+    </article>
+
+    <article class="generic-study">
+      <header class="study-header">
+        <div>
+          <p class="label">Workshop character experiment</p>
+          <h2>From Generic Female #37 to a Designed Character</h2>
+        </div>
+        <p>This is a decision study, not a StyleFusion case. A generic base becomes specific through face, color, material, intent, and exclusion guidance.</p>
+      </header>
+
+      <ol class="decision-strip">
+        {genericSteps.map(([label, id], index) => {
+          const asset = media(id);
+          return (
+            <li>
+              <span>{String(index + 1).padStart(2, "0")} / {label}</span>
+              <img src={asset.src} alt={asset.alt} loading="lazy" decoding="async" />
+            </li>
+          );
+        })}
+      </ol>
+
+      <div class="generic-result">
+        <figure>
+          <img src={genericResult.src} alt={genericResult.alt} loading="lazy" decoding="async" />
+          <figcaption>07 / designed result</figcaption>
+        </figure>
+        <figure>
+          <video src={genericVideo.src} poster={genericVideo.poster} controls muted playsinline preload="none" aria-label={genericVideo.alt}></video>
+          <figcaption>08 / motion result</figcaption>
+        </figure>
+      </div>
+    </article>
+  </Wrapper>
+</section>
+
+<style>
+  .character-studies { background: radial-gradient(circle at 12% 34%, rgb(24 103 124 / .16), transparent 32rem), #08070c; }
+  .study-header { display: grid; gap: 1.25rem; margin-bottom: 2rem; }
+  .label { margin: 0; color: #55d7ff; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; }
+  h2 { max-width: 56rem; margin: .7rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(2.4rem, 6vw, 5rem); font-weight: 300; letter-spacing: -.045em; line-height: .96; }
+  .study-header > p { max-width: 42rem; margin: 0; color: #aaa5b8; line-height: 1.7; }
+  .variant-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; }
+  figure { margin: 0; overflow: hidden; border: 1px solid #2b293d; background: #060509; }
+  figure img, figure video { display: block; width: 100%; aspect-ratio: 2 / 3; object-fit: cover; }
+  figcaption { padding: .72rem; color: #aaa5b8; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .08em; text-transform: uppercase; }
+  .production-sequence { display: grid; gap: 1rem; margin: 2rem 0 0; padding: 0; list-style: none; }
+  .production-sequence li { min-width: 0; padding-top: .75rem; border-top: 1px solid #343047; }
+  .production-sequence li > span, .decision-strip span { color: #7bdde7; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; }
+  .production-sequence figure { margin-top: .75rem; }
+  .production-sequence li:nth-child(1) img { aspect-ratio: 16 / 10; object-fit: contain; }
+  .production-sequence p { margin: .7rem 0 0; color: #9f9aad; font-size: .78rem; line-height: 1.6; }
+  .record { margin-top: 1rem; border: 1px solid #343047; background: #0b0911; }
+  .record summary { min-height: 3rem; padding: 1rem; color: #ece9f5; cursor: pointer; font-family: var(--font-mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; }
+  .record p { margin: 0; padding: 0 1rem; color: #9f9aad; line-height: 1.6; }
+  .record a { display: inline-block; padding: 1rem; color: #7bdde7; font-size: .8rem; }
+  .generic-study { margin-top: 6rem; padding-top: 2rem; border-top: 1px solid #343047; }
+  .decision-strip { display: grid; grid-template-columns: 1fr; gap: .65rem; margin: 0; padding: 0; list-style: none; }
+  .decision-strip li { min-width: 0; padding: .75rem; border: 1px solid #2b293d; background: #0b0911; }
+  .decision-strip img { display: block; width: 100%; margin-top: .65rem; aspect-ratio: 4 / 3; object-fit: contain; background: #111b2e; }
+  .generic-result { display: grid; gap: .65rem; margin-top: .65rem; }
+  .generic-result figure img, .generic-result figure video { aspect-ratio: 16 / 10; }
+  @media (min-width: 760px) {
+    .study-header { grid-template-columns: minmax(0, 1fr) minmax(20rem, .7fr); align-items: end; }
+    .variant-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .production-sequence { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .decision-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .generic-result { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1120px) { .production-sequence { grid-template-columns: repeat(4, minmax(0, 1fr)); } .decision-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+</style>

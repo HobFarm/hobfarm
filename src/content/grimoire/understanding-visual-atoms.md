@@ -8,7 +8,7 @@ difficulty: "beginner"
 project: "grimoire"
 ---
 
-Visual atoms are the smallest meaningful units in the Grimoire knowledge graph. Think of them like vocabulary words in a language: individually simple, but powerful when combined into sentences. Every image StyleFusion generates starts with atoms.
+Visual atoms are the smallest meaningful units in the Grimoire knowledge graph. Think of them like vocabulary words in a language: individually simple, but powerful when combined into sentences. StyleFusion can use those atoms when it compiles a generation document; any image remains a downstream result.
 
 ## What Counts as an Atom
 

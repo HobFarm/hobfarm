@@ -1,0 +1,111 @@
+---
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import { getMedia } from "@/data/media-registry";
+
+const cathedral = getMedia("stylefusion.cathedral.hero");
+const hellcat = getMedia("stylefusion.hellcat.poster");
+const fashion = getMedia("character.fashion.sheet");
+const generic = getMedia("character.generic-37.result");
+const hostSystem = getMedia("workshop.graphics.hillary");
+const styleCards = [
+  getMedia("workshop.style-card.baseline.one"),
+  getMedia("workshop.style-card.anime.one"),
+  getMedia("workshop.style-card.baroque.one"),
+  getMedia("workshop.style-card.industrial.one"),
+];
+const academy = getMedia("academy.banner.video");
+---
+
+<section class="media-index border-b border-base-800/70" aria-labelledby="media-index-heading">
+  <Wrapper variant="standard" class="py-14 lg:py-20">
+    <header class="index-header">
+      <div>
+        <p class="label">Current visual index</p>
+        <h2 id="media-index-heading">Follow the work from application evidence to finished media.</h2>
+      </div>
+      <p>The archive now sits with the Workshop program that explains it. StyleFusion shows role-scoped generation. Character / Mannequin holds production systems. Workshop Notes keeps informal translation tests readable.</p>
+    </header>
+
+    <div class="feature-grid">
+      <a class="feature feature--lead" href="/workshop/stylefusion/#stylefusion-evidence">
+        <img src={cathedral.src} alt={cathedral.alt} loading="lazy" decoding="async" />
+        <div><p>SF-001 / StyleFusion</p><h3>Cathedral Cat</h3><span>References to result to book-world production &rarr;</span></div>
+      </a>
+      <a class="feature" href="/workshop/stylefusion/#stylefusion-evidence">
+        <img src={hellcat.src} alt={hellcat.alt} loading="lazy" decoding="async" />
+        <div><p>SF-002 / downstream production</p><h3>Hellcat of the Iron Wastes</h3><span>Variants, poster, and motion &rarr;</span></div>
+      </a>
+      <a class="feature feature--host" href="/workshop/character-mannequin/avatar-host-system/">
+        <img src={hostSystem.src} alt={hostSystem.alt} width={hostSystem.width} height={hostSystem.height} loading="lazy" decoding="async" />
+        <div><p>Character / Mannequin</p><h3>From character design to on-screen host</h3><span>Hillary, Ami, PsyGoth, and the retired Hobgal prototype &rarr;</span></div>
+      </a>
+      <a class="feature feature--wide" href="/workshop/character-mannequin/#character-production">
+        <img src={fashion.src} alt={fashion.alt} loading="lazy" decoding="async" />
+        <div><p>Character / Mannequin</p><h3>Fashion production study</h3><span>Concepts to sheet, hero, poster, and video &rarr;</span></div>
+      </a>
+      <a class="feature" href="/workshop/character-mannequin/#character-production">
+        <img src={generic.src} alt={generic.alt} loading="lazy" decoding="async" />
+        <div><p>Character decisions</p><h3>Generic Female #37</h3><span>Base to designed character &rarr;</span></div>
+      </a>
+      <a class="feature feature--style" href="/workshop/workshop-notes/#style-translation-archive">
+        <div class="style-thumbs">
+          {styleCards.map((asset) => <img src={asset.src} alt="" loading="lazy" decoding="async" />)}
+        </div>
+        <div><p>Workshop Notes</p><h3>Style-translation archive</h3><span>Four text, still, and motion records &rarr;</span></div>
+      </a>
+    </div>
+
+    <aside class="academy-bridge">
+      <video src={academy.src} poster={academy.poster} controls muted playsinline preload="none" aria-label={academy.alt}></video>
+      <div>
+        <p class="label">Workshop to Academy</p>
+        <h3>Turn a working method into something you can repeat.</h3>
+        <p>The Workshop shows the evidence and revision trail. Academy turns those production decisions into guided practice, templates, and structured learning paths.</p>
+        <a href="/academy/">Continue to Academy &rarr;</a>
+      </div>
+    </aside>
+  </Wrapper>
+</section>
+
+<style>
+  .media-index { background: radial-gradient(circle at 10% 18%, rgb(35 111 140 / .18), transparent 30rem), #07060b; }
+  .index-header { display: grid; gap: 1.25rem; }
+  .label { margin: 0; color: #55d7ff; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; }
+  h2 { max-width: 60rem; margin: .7rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(2.4rem, 6vw, 5rem); font-weight: 300; letter-spacing: -.045em; line-height: .96; }
+  .index-header > p { max-width: 42rem; margin: 0; color: #aaa5b8; line-height: 1.7; }
+  .feature-grid { display: grid; gap: .7rem; margin-top: 2rem; }
+  .feature { position: relative; min-height: 26rem; overflow: hidden; border: 1px solid #302741; background: #08060d; color: inherit; text-decoration: none; }
+  .feature > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .7; transition: opacity .25s ease, transform .4s ease; }
+  .feature:hover > img { opacity: .86; transform: scale(1.015); }
+  .feature > div:last-child { position: absolute; inset: auto 0 0; padding: 5.5rem 1.2rem 1.2rem; background: linear-gradient(transparent, rgb(5 4 9 / .96) 72%); }
+  .feature p { margin: 0; color: #7bdde7; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; }
+  .feature h3 { margin: .55rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 300; line-height: 1; }
+  .feature span { display: block; margin-top: .7rem; color: #d7d2df; font-size: .74rem; }
+  .feature--style { min-height: 22rem; }
+  .feature--host { min-height: 28rem; }
+  .style-thumbs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); height: 100%; }
+  .style-thumbs img { width: 100%; height: 100%; object-fit: cover; opacity: .64; }
+  .academy-bridge { display: grid; gap: 0; margin-top: 3rem; overflow: hidden; border: 1px solid #3b3150; background: #0c0912; }
+  .academy-bridge video { display: block; width: 100%; height: 100%; min-height: 18rem; object-fit: cover; }
+  .academy-bridge > div { align-self: center; padding: 1.4rem; }
+  .academy-bridge h3 { max-width: 42rem; margin: .7rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(2rem, 5vw, 4rem); font-weight: 300; line-height: 1; }
+  .academy-bridge > div > p:not(.label) { max-width: 40rem; margin: 1rem 0 0; color: #aaa5b8; line-height: 1.7; }
+  .academy-bridge a { display: inline-block; margin-top: 1.2rem; color: #7bdde7; }
+  @media (min-width: 760px) {
+    .index-header { grid-template-columns: minmax(0, 1fr) minmax(20rem, .7fr); align-items: end; }
+    .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .feature--lead, .feature--wide, .feature--host { grid-column: span 2; min-height: 34rem; }
+    .feature--lead > img, .feature--wide > img { object-position: center 32%; }
+    .feature--host > img { object-position: center; }
+    .academy-bridge { grid-template-columns: minmax(0, 1.15fr) minmax(24rem, .85fr); }
+    .academy-bridge > div { padding: 2rem; }
+  }
+  @media (min-width: 1080px) {
+    .feature-grid { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+    .feature--lead { grid-column: span 8; }
+    .feature--host { grid-column: span 12; min-height: 38rem; }
+    .feature:not(.feature--lead,.feature--wide,.feature--style) { grid-column: span 4; }
+    .feature--wide { grid-column: span 7; }
+    .feature--style { grid-column: span 5; }
+  }
+</style>

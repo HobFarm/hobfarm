@@ -1,0 +1,36 @@
+Hobgal — retired prototype transcript
+HeyGen video: bb7facfe222b467b9619b41e9765a6a7
+Duration: 00:30.537
+
+Historical note
+The counts in this clip describe an earlier HobFarm workflow. They are preserved as spoken history, not as current documentation.
+
+00:00
+People keep asking me how I make these.
+
+00:02
+The honest answer is I built a system that does most of the work for me, which sounds lazy until you realize building the system took about a year.
+
+00:10
+One image goes in.
+
+00:12
+Seven agents extract everything about it.
+
+00:15
+A compiler turns that into prompts.
+
+00:17
+Nine AI models generate their own version.
+
+00:21
+The best one gets animated into a video.
+
+00:23
+So when someone says “you just type words into an AI,” I mean, technically yes.
+
+00:28
+But also, no.
+
+00:29
+Not even slightly.

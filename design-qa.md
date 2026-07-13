@@ -45,3 +45,45 @@
 - [x] Console and broken-image checks passed.
 
 final result: passed
+
+---
+
+# Workshop media integration Design QA
+
+Result: passed
+
+## Scope
+
+- `/workshop/`
+- `/workshop/stylefusion/`
+- `/workshop/character-mannequin/`
+- `/workshop/workshop-notes/`
+- Desktop viewport: 1440 × 1000
+- Mobile viewport: 390 × 844
+
+## Source comparison
+
+The existing Workshop pages and the revised prototype were placed in the same comparison image at `reports/workshop-design-qa-comparison.png`. The revision keeps the current header, navigation, type hierarchy, dark palette, sharp borders, spacing rhythm, and route structure. The new media sections use the same editorial grid language instead of introducing a separate visual system.
+
+## Checks
+
+- Desktop and mobile layouts have no horizontal overflow.
+- Workshop navigation, program links, breadcrumbs, footer links, and indexed article links remain functional.
+- StyleFusion keeps private references visually distinct from generated results and downstream production assets.
+- Videos use real poster images, native controls, `preload="none"`, and do not transfer their MP4 files during the initial page load.
+- Expandable lineage and export records remain collapsed by default.
+- Media captions remain readable and image crops preserve the important subject matter at both viewports.
+- The final mobile Lighthouse audit for StyleFusion scored 100 for accessibility, best practices, SEO, and agentic browsing, with zero failed audits.
+
+## Findings resolved
+
+- Changed the Generic Female decision-record grid so mobile cards show the complete records instead of cropping them.
+- Increased the current breadcrumb label contrast to resolve the only initial accessibility finding.
+- Replaced prototype-oriented private-reference wording with public-page wording.
+
+## Non-blocking notes
+
+- The production build retains the repository's existing Vite warning for a JavaScript chunk larger than 500 kB.
+- The before trace used the deployed site and the after trace used the local production preview, so raw LCP values are directional rather than a controlled benchmark. Request behavior is directly comparable: the revised Workshop page starts no MP4 transfer.
+
+Final result: passed

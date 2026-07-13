@@ -82,6 +82,6 @@ fieldNotes:
     text: "New sheets can be added to this gallery as the character archive expands. The page is built as a living board: finished references first, deeper process notes only when a sheet turns into a larger project."
 ---
 
-This gallery collects character sheets built for reuse: full-body references, expression boards, outfit studies, palette tests, pose sheets, and style-world anchors. The sheets are less about one finished illustration and more about making a character stable enough to return to later - for galleries, motion tests, stories, product art, or future StyleFusion runs.
+This gallery collects character sheets built for reuse: full-body references, expression boards, outfit studies, palette tests, pose sheets, and style-world anchors. The sheets are less about one finished illustration and more about making a character stable enough to return to later - for galleries, motion tests, stories, product art, or an approved subject reference in a future StyleFusion run.
 
 The current crop leans into gothic school-punk and dark-fantasy character grammar: gray-blue skin, violet-black hair, emerald eye accents, lace, plaid, chains, bows, bat charms, palette chips, portrait panels, and detail studies arranged as reusable reference boards.

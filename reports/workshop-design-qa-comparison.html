@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Workshop design QA comparison</title>
+    <style>
+      * { box-sizing: border-box; }
+      body { margin: 0; padding: 24px; background: #07060b; color: #f5f3fa; font-family: Arial, sans-serif; }
+      h1 { margin: 0 0 18px; font-size: 24px; font-weight: 500; }
+      h2 { margin: 0 0 10px; color: #76e8f0; font-size: 14px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; }
+      section + section { margin-top: 28px; }
+      .pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+      figure { margin: 0; min-width: 0; border: 1px solid #362b49; background: #0c0912; }
+      img { display: block; width: 100%; height: auto; }
+      figcaption { padding: 10px 12px; color: #b9b3c5; font-size: 12px; }
+    </style>
+  </head>
+  <body>
+    <h1>HobFarm Workshop / design QA comparison</h1>
+    <section>
+      <h2>Workshop landing / 1440 × 1000</h2>
+      <div class="pair">
+        <figure><img src="workshop-before-desktop-top.png" alt="Workshop landing before" /><figcaption>Production reference / before</figcaption></figure>
+        <figure><img src="workshop-after-desktop-top.png" alt="Workshop landing after" /><figcaption>Local production build / after</figcaption></figure>
+      </div>
+    </section>
+    <section>
+      <h2>StyleFusion program / 1440 × 1000</h2>
+      <div class="pair">
+        <figure><img src="workshop-stylefusion-before-desktop-top.png" alt="StyleFusion before" /><figcaption>Production reference / before</figcaption></figure>
+        <figure><img src="workshop-stylefusion-after-desktop-top.png" alt="StyleFusion after" /><figcaption>Local production build / after</figcaption></figure>
+      </div>
+    </section>
+  </body>
+</html>

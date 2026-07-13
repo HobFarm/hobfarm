@@ -18,7 +18,7 @@ Develop theatrical pose cards, lens pairings, stage orientation, depth plans, an
 
 ### StyleFusion
 
-Combine two or more systems by assigning each source a specific design job.
+StyleFusion is a separate reference-image application. It assigns approved images to roles, extracts visual information through specialized agents, compiles an Intermediate Representation, and exports a model-ready image-generation document with routing and confidence diagnostics.
 
 ### Alter Ego
 
@@ -151,26 +151,35 @@ before_after:
 
 ## StyleFusion method
 
-Assign each source a job.
+Begin with approved references and give each image an explicit role. The application runs specialized agents, records the model and confidence for each extraction, compiles the IR, and produces generation-facing JSON plus natural-language prompt slots.
 
 ```yaml
 stylefusion:
-  source_a:
-  source_b:
-  silhouette_from:
-  face_logic_from:
-  wardrobe_from:
-  materials_from:
-  palette_from:
-  motif_from:
-  species_logic_from:
-  pose_language_from:
-  environment_from:
-  render_profile:
-  shared_bridge:
+  references:
+    - role: subject
+      image:
+      weight:
+    - role: style
+      image:
+      weight:
+    - role: composition
+      image:
+      weight:
+  extraction_agents:
+    - subject
+    - style
+    - composition
+    - color
+    - lighting
+    - texture
+    - exclusion_guidance
+  intermediate_representation:
+  compiled_slots:
+  image_generation_json:
+  diagnostic_export:
 ```
 
-The shared bridge is one feature that makes the fusion feel intentional: matching geometry, repeated material, linked color accent, mirrored motif, or common emotional temperature.
+The Complete Export is the StyleFusion artifact. Generated images and later Character / Mannequin work, Sheets, Heroes, Posters, videos, and products remain downstream production assets.
 
 ## Alter Ego study
 
@@ -238,7 +247,7 @@ A useful lesson produces a visible artifact: style profile, character DNA, turna
 6. Use theatrical poses
 7. Stage with lens and depth
 8. Preserve canon across outputs
-9. Build StyleFusion with assigned roles
+9. Run an approved StyleFusion reference study
 10. Design Alter Ego pairs
 11. Repair generic outputs with replacement method
 12. Translate one style across models

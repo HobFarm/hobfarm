@@ -81,8 +81,8 @@ export const workshopBenches = [
     action: "Open motion process",
   },
   {
-    label: "Style compilation",
-    description: "Translate a visual idea into structured rules that can survive different tools, providers, formats, and production passes.",
+    label: "StyleFusion application",
+    description: "Assign approved reference images to subject, style, and composition roles, extract them through specialized agents, and compile an Intermediate Representation plus a model-ready document.",
     href: "/projects/stylefusion/",
     action: "Explore StyleFusion",
   },

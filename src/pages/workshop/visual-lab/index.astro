@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import SheetToHero from "@/components/workshop/SheetToHero.astro";
-import StyleFusionMap from "@/components/workshop/StyleFusionMap.astro";
+import VisualSystemMap from "@/components/workshop/VisualSystemMap.astro";
 import ProductAssetStack from "@/components/workshop/ProductAssetStack.astro";
 import AssetManifest from "@/components/workshop/AssetManifest.astro";
 import ToolRouteNote from "@/components/workshop/ToolRouteNote.astro";
@@ -61,7 +61,7 @@ const relatedItems = await resolveRelatedContent(product.data);
         <h1>One identity, two visual systems, one readable production chain.</h1>
         <p class="deck">This lab uses the existing Sophia and Stella packet to test interactive editorial components without changing public navigation, character canon, store status, or R2 assets.</p>
         <nav aria-label="Visual lab sections">
-          <a href="#comparison">Compare</a><a href="#fusion">Map</a><a href="#stack">Assets</a><a href="#motion">Motion</a><a href="#connections">Connections</a>
+          <a href="#comparison">Compare</a><a href="#system-map">Map</a><a href="#stack">Assets</a><a href="#motion">Motion</a><a href="#connections">Connections</a>
         </nav>
       </Wrapper>
     </header>
@@ -75,9 +75,10 @@ const relatedItems = await resolveRelatedContent(product.data);
       </Wrapper>
     </section>
 
-    <section id="fusion" class="visual-lab__section visual-lab__section--tinted">
+    <section id="system-map" class="visual-lab__section visual-lab__section--tinted">
       <Wrapper variant="standard" class="py-16 lg:py-24">
-        <StyleFusionMap
+        <VisualSystemMap
+          title="Visual system source map"
           sources={[
             { label: "Shared mannequin", role: "Identity anchor", controls: ["face", "feline silhouette", "eyes", "proportions"], accent: "#55d7ff" },
             { label: "Sophia rules", role: "Bright variant", controls: ["neon pastel palette", "glossy fashion", "playful energy"], accent: "#ff4fc3" },

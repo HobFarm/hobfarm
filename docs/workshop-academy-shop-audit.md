@@ -282,7 +282,7 @@ Price, license, membership, and buyer-file changes remain approval-gated.
 | --- | --- | --- |
 | Workshop Sophia/Stella case study | `SheetToHero` wipe plus pose/camera labels | Explains how a fixed character becomes a staged scene |
 | Workshop Before & After | Existing comparison with diagnosis, replacement, and result steps | Turns the visual change into a reusable repair rule |
-| Workshop StyleFusion | Lightweight SVG source-role map | Shows which source controls silhouette, palette, wardrobe, pose, and environment |
+| Workshop StyleFusion | Reference-role deck, extraction pipeline, and IR inspector | Shows how the application assigns approved inputs, records agent confidence, compiles slots, and exports a diagnostic document |
 | Academy lesson | `AcademyPath` and one interactive worked example | Makes sequence and learner output visible without hiding lesson text |
 | Product detail | `ProductAssetStack` and `AssetManifest` | Explains value in one screen and separates previews from buyer files |
 | Gallery motion study | `AmbientVideoFrame` with poster, controls, lazy source, and reduced-motion behavior | Gives short motion a durable editorial frame |

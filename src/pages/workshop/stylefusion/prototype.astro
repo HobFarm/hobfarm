@@ -1,0 +1,256 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ReferenceRoleDeck from "@/components/workshop/stylefusion/ReferenceRoleDeck.astro";
+import FusionPipeline from "@/components/workshop/stylefusion/FusionPipeline.astro";
+import AgentConfidencePanel from "@/components/workshop/stylefusion/AgentConfidencePanel.astro";
+import IRInspector from "@/components/workshop/stylefusion/IRInspector.astro";
+import CompiledDocumentViewer from "@/components/workshop/stylefusion/CompiledDocumentViewer.astro";
+import StyleFusionCaseStudy from "@/components/workshop/stylefusion/StyleFusionCaseStudy.astro";
+import DownstreamAssetRail from "@/components/workshop/stylefusion/DownstreamAssetRail.astro";
+
+const studies = await getCollection("stylefusionStudies");
+const byId = (id: string) => studies.find((entry) => entry.id === id);
+const tuxedoStudy = byId("tuxedo-cat-fusion");
+const failedStudy = byId("failed-subject-extraction");
+const additionalStudies = [
+  byId("stitched-teal-horror-comic"),
+  byId("industrial-elf-neo-noir"),
+].filter((study) => study !== undefined);
+
+if (!tuxedoStudy || !failedStudy) {
+  throw new Error("The StyleFusion prototype requires the tuxedo-cat and failed-extraction study records.");
+}
+
+const pipeline = [
+  { label: "References", detail: "Approved images enter with subject, style, composition, or inherited-channel roles.", boundary: "input" as const },
+  { label: "Extraction agents", detail: "Specialized agents record actual models and confidence for each visual channel.", boundary: "input" as const },
+  { label: "Intermediate Representation", detail: "The IR keeps extracted data, weights, source lineage, inheritance, and diagnostics together.", boundary: "export" as const },
+  { label: "Compiled slots", detail: "Subject, scene, camera, render, color, texture, lighting, and exclusions become readable slots.", boundary: "export" as const },
+  { label: "Generation JSON", detail: "A smaller model-ready document carries the compiled direction into image generation.", boundary: "export" as const },
+  { label: "Downstream result", detail: "Generated media may later feed Character / Mannequin work, Sheets, Heroes, Posters, video, or products.", boundary: "downstream" as const },
+];
+
+const exportAnatomy = [
+  { label: "Style anchors", text: "The short visual vocabulary that identifies the compiled rendering system." },
+  { label: "Image-generation JSON", text: "The generation-facing subject, scene, camera, style, color, texture, lighting, and aspect-ratio document." },
+  { label: "Intermediate Representation", text: "The internal record of extracted information, blend sources, modifiers, character or subject DNA, and compiled slots." },
+  { label: "Character or subject DNA", text: "Identity anchors and flexible traits when the subject agent returns usable data." },
+  { label: "Compiled slots", text: "Natural-language slots prepared for adapters or direct generation workflows." },
+  { label: "Agent metadata", text: "Requested model, actual model, confidence, execution mode, and total duration." },
+  { label: "Slot metadata", text: "The source role, weight, inheritance, variant, and confidence behind each compiled slot." },
+];
+
+const boundaries = [
+  { code: "01", label: "Reference images", text: "Private inputs. Shown only after display approval." },
+  { code: "02", label: "Complete Export", text: "The StyleFusion artifact: IR, JSON, slots, routing, confidence, and diagnostics." },
+  { code: "03", label: "Generated results", text: "Images produced later from the compiled document." },
+  { code: "04", label: "Production assets", text: "Optional Character / Mannequin work, Sheets, Heroes, Posters, video, and products." },
+];
+---
+
+<BaseLayout
+  title="StyleFusion application prototype | HobFarm Workshop"
+  description="Private review prototype for the StyleFusion reference-image application, its Complete Export, and its downstream production boundary."
+  canonical="/workshop/stylefusion/prototype/"
+  palette="magenta-cyan"
+  noindex
+>
+  <article class="stylefusion-prototype" data-private-prototype>
+    <header class="prototype-hero">
+      <Wrapper variant="standard" class="py-16 lg:py-24">
+        <p class="kicker">Private review prototype / noindex</p>
+        <h1>Reference images become an inspectable generation system.</h1>
+        <p class="deck">StyleFusion assigns approved references to explicit roles, extracts them through specialized agents, compiles an Intermediate Representation, and exports a model-ready document with source, weight, inheritance, model, and confidence data.</p>
+        <nav aria-label="StyleFusion prototype sections">
+          <a href="#boundaries">Boundaries</a>
+          <a href="#roles">Roles</a>
+          <a href="#pipeline">Pipeline</a>
+          <a href="#case-study">Case study</a>
+          <a href="#diagnostic">Diagnostic</a>
+        </nav>
+      </Wrapper>
+    </header>
+
+    <section id="boundaries" class="prototype-section">
+      <Wrapper variant="standard" class="py-14 lg:py-20">
+        <header class="section-heading">
+          <p class="kicker">Four records, four jobs</p>
+          <h2>Inputs, exports, results, and production assets stay separate.</h2>
+          <p>The page never treats a reference image as a generated result, a Complete Export as a character Sheet, or a downstream product asset as part of the application document.</p>
+        </header>
+        <ol class="boundary-grid">
+          {boundaries.map((boundary) => (
+            <li>
+              <span>{boundary.code}</span>
+              <h3>{boundary.label}</h3>
+              <p>{boundary.text}</p>
+            </li>
+          ))}
+        </ol>
+      </Wrapper>
+    </section>
+
+    <section id="roles" class="prototype-section prototype-section--tinted">
+      <Wrapper variant="standard" class="py-14 lg:py-20">
+        <header class="section-heading">
+          <p class="kicker">Tuxedo cat / approved data only</p>
+          <h2>Every reference controls a named part of the document.</h2>
+        </header>
+        <div class="component-gap">
+          <ReferenceRoleDeck references={tuxedoStudy.data.references} title="The three reference roles in this run" />
+        </div>
+      </Wrapper>
+    </section>
+
+    <section id="pipeline" class="prototype-section">
+      <Wrapper variant="standard" class="py-14 lg:py-20">
+        <header class="section-heading">
+          <p class="kicker">Application boundary</p>
+          <h2>The Complete Export ends before image production begins.</h2>
+        </header>
+        <div class="component-gap"><FusionPipeline steps={pipeline} /></div>
+      </Wrapper>
+    </section>
+
+    <section class="prototype-section prototype-section--tinted">
+      <Wrapper variant="standard" class="py-14 lg:py-20">
+        <header class="section-heading">
+          <p class="kicker">Complete Export anatomy</p>
+          <h2>The document carries generation direction and the evidence behind it.</h2>
+        </header>
+        <div class="anatomy-grid">
+          {exportAnatomy.map((item) => (
+            <article>
+              <h3>{item.label}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </Wrapper>
+    </section>
+
+    <section id="case-study" class="prototype-section">
+      <Wrapper variant="standard" class="py-14 lg:py-20">
+        <StyleFusionCaseStudy study={tuxedoStudy}>
+          <div class="case-grid">
+            <AgentConfidencePanel agents={tuxedoStudy.data.agents} />
+            <IRInspector styleAnchors={tuxedoStudy.data.compiled.styleAnchors} slotSources={tuxedoStudy.data.diagnostics.slotSources} />
+          </div>
+          <CompiledDocumentViewer compiled={tuxedoStudy.data.compiled} sourceDocument={tuxedoStudy.data.sourceDocument} />
+          <DownstreamAssetRail results={tuxedoStudy.data.results} />
+        </StyleFusionCaseStudy>
+      </Wrapper>
+    </section>
+
+    <section class="prototype-section prototype-section--tinted">
+      <Wrapper variant="standard" class="py-14 lg:py-20">
+        <header class="section-heading">
+          <p class="kicker">Additional supplied exports</p>
+          <h2>More studies can reuse the same record shape.</h2>
+          <p>These cards contain export facts only. Their references and generated results are not attached to the prototype.</p>
+        </header>
+        <div class="study-grid">
+          {additionalStudies.map((study) => (
+            <article>
+              <p>{study.data["export"].irVersion} / {study.data["export"].extractionModel}</p>
+              <h3>{study.data.title}</h3>
+              <p>{study.data.summary}</p>
+              <dl>
+                <div><dt>References</dt><dd>{study.data.references.length}</dd></div>
+                <div><dt>Agents</dt><dd>{study.data.agents.length}</dd></div>
+                <div><dt>Aspect</dt><dd>{study.data.compiled.aspectRatio ?? "n/a"}</dd></div>
+              </dl>
+            </article>
+          ))}
+        </div>
+      </Wrapper>
+    </section>
+
+    <section id="diagnostic" class="prototype-section">
+      <Wrapper variant="standard" class="py-14 lg:py-20">
+        <StyleFusionCaseStudy study={failedStudy} eyebrow="Private failure diagnostic">
+          <div class="diagnostic-callout" role="note">
+            <p class="kicker">subject_extraction_failed: true</p>
+            <h3>Subject confidence is zero, but later slots still look complete.</h3>
+            <p>This is why confidence and slot lineage belong in the export. The document has scene, camera, render, style, color, texture, and lighting text, but it has no subject slot and its character DNA anchors are empty.</p>
+          </div>
+          <div class="case-grid">
+            <AgentConfidencePanel agents={failedStudy.data.agents} title="Failure-state agent record" />
+            <IRInspector styleAnchors={failedStudy.data.compiled.styleAnchors} slotSources={failedStudy.data.diagnostics.slotSources} />
+          </div>
+          <CompiledDocumentViewer compiled={failedStudy.data.compiled} sourceDocument={failedStudy.data.sourceDocument} />
+          <div class="next-test">
+            <h3>Next test</h3>
+            <ol>
+              {failedStudy.data.findings?.nextTest.map((item) => <li>{item}</li>)}
+            </ol>
+          </div>
+        </StyleFusionCaseStudy>
+      </Wrapper>
+    </section>
+
+    <section class="prototype-section prototype-section--tinted">
+      <Wrapper variant="standard" class="py-14 lg:py-20">
+        <header class="section-heading">
+          <p class="kicker">Public paths only</p>
+          <h2>Read the current brief or send review notes.</h2>
+          <p>The prototype does not link a private application URL, expose reference images, offer raw exports, or trigger generation.</p>
+        </header>
+        <div class="cta-row">
+          <a href="/projects/stylefusion/">Open the public project brief</a>
+          <a href="/articles/stylefusion-ir-extraction/">Read how image extraction works</a>
+          <a href="/contact/?subject=stylefusion">Send StyleFusion feedback</a>
+        </div>
+      </Wrapper>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  .stylefusion-prototype { background: #07060b; }
+  .prototype-hero { border-bottom: 1px solid #2c2440; background: radial-gradient(circle at 75% 18%, rgba(85, 215, 255, .12), transparent 28rem), radial-gradient(circle at 25% 4%, rgba(255, 79, 195, .1), transparent 30rem), #07060b; }
+  .kicker { margin: 0; color: #55d7ff; font-family: var(--font-mono); font-size: .63rem; letter-spacing: .16em; text-transform: uppercase; }
+  h1 { max-width: 68rem; margin: 1rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(3.4rem, 9vw, 8rem); font-weight: 300; letter-spacing: -.06em; line-height: .86; text-wrap: balance; }
+  .deck { max-width: 52rem; margin: 1.5rem 0 0; color: #c8c6d4; font-size: 1rem; line-height: 1.75; }
+  .prototype-hero nav { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 2rem; }
+  .prototype-hero nav a, .cta-row a { padding: .68rem .85rem; border: 1px solid #433559; border-radius: .25rem; color: #ece9f5; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; }
+  .prototype-hero nav a:hover, .prototype-hero nav a:focus-visible, .cta-row a:hover, .cta-row a:focus-visible { border-color: #55d7ff; outline: none; color: #fff; }
+  .prototype-section { scroll-margin-top: 6rem; border-bottom: 1px solid #2c2440; }
+  .prototype-section--tinted { background: #0a0810; }
+  .section-heading { max-width: 58rem; }
+  .section-heading h2 { margin: .75rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(2.4rem, 6vw, 5.2rem); font-weight: 300; letter-spacing: -.045em; line-height: .95; }
+  .section-heading > p:last-child:not(.kicker) { max-width: 48rem; margin: 1rem 0 0; color: #aaa5b8; line-height: 1.7; }
+  .component-gap { margin-top: 2.25rem; }
+  .boundary-grid { display: grid; gap: .8rem; margin: 2rem 0 0; padding: 0; list-style: none; }
+  .boundary-grid li { min-height: 12rem; padding: 1rem; border: 1px solid #2c2440; border-top: 3px solid #55d7ff; border-radius: .55rem; background: #0e0b16; }
+  .boundary-grid li:nth-child(2) { border-top-color: #b78cff; }
+  .boundary-grid li:nth-child(3) { border-top-color: #ff4fc3; }
+  .boundary-grid li:nth-child(4) { border-top-color: #e6c15c; }
+  .boundary-grid span { color: #817b91; font-family: var(--font-mono); font-size: .6rem; }
+  .boundary-grid h3 { margin: 2.4rem 0 0; color: #fff; font-size: 1rem; }
+  .boundary-grid p { margin: .55rem 0 0; color: #9b96ad; font-size: .78rem; line-height: 1.6; }
+  .anatomy-grid, .study-grid { display: grid; gap: .8rem; margin-top: 2rem; }
+  .anatomy-grid article, .study-grid article { min-width: 0; padding: 1rem; border: 1px solid #2c2440; border-radius: .55rem; background: #0e0b16; }
+  .anatomy-grid h3, .study-grid h3 { margin: 0; color: #fff; font-size: 1rem; }
+  .anatomy-grid p, .study-grid article > p:last-of-type { margin: .65rem 0 0; color: #9b96ad; font-size: .78rem; line-height: 1.6; }
+  .case-grid { display: grid; gap: 1rem; }
+  .study-grid article > p:first-child { margin: 0; color: #55d7ff; font-family: var(--font-mono); font-size: .58rem; text-transform: uppercase; }
+  .study-grid h3 { margin-top: .7rem; }
+  .study-grid dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .45rem; margin: 1rem 0 0; }
+  .study-grid dl div { padding: .6rem; border: 1px solid #241d33; border-radius: .35rem; }
+  .study-grid dt { color: #817b91; font-family: var(--font-mono); font-size: .52rem; text-transform: uppercase; }
+  .study-grid dd { margin: .3rem 0 0; color: #fff; font-family: var(--font-mono); font-size: .64rem; }
+  .diagnostic-callout { padding: 1.25rem; border: 1px solid #8c3242; border-radius: .8rem; background: #180b10; }
+  .diagnostic-callout h3 { margin: .7rem 0 0; color: #fff; font-size: 1.35rem; line-height: 1.3; }
+  .diagnostic-callout > p:last-child { max-width: 58rem; margin: .8rem 0 0; color: #c9a9af; line-height: 1.7; }
+  .next-test { padding: 1.25rem; border: 1px solid #4e4024; border-radius: .8rem; background: #100d08; }
+  .next-test h3 { margin: 0; color: #fff; font-size: 1.15rem; }
+  .next-test ol { margin: .8rem 0 0; padding-left: 1.25rem; color: #c2b79d; }
+  .next-test li { padding-left: .35rem; line-height: 1.7; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1.6rem; }
+  @media (min-width: 680px) { .boundary-grid, .anatomy-grid, .study-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1000px) { .boundary-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } .anatomy-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } .case-grid { grid-template-columns: minmax(20rem, .7fr) minmax(0, 1.3fr); } }
+  @media (prefers-reduced-motion: reduce) { :global(html) { scroll-behavior: auto; } }
+</style>

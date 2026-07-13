@@ -1,0 +1,57 @@
+---
+type Results = {
+  generatedImages: string[];
+  relatedCharacters: string[];
+  relatedSheets: string[];
+  relatedHeroes: string[];
+  relatedPosters: string[];
+  relatedVideos: string[];
+  relatedProducts: string[];
+};
+
+interface Props {
+  results: Results;
+}
+
+const { results } = Astro.props;
+const groups = [
+  ["Generated results", results.generatedImages],
+  ["Characters", results.relatedCharacters],
+  ["Sheets", results.relatedSheets],
+  ["Heroes", results.relatedHeroes],
+  ["Posters", results.relatedPosters],
+  ["Videos", results.relatedVideos],
+  ["Products", results.relatedProducts],
+] as const;
+---
+
+<section class="downstream" aria-labelledby="downstream-title">
+  <header>
+    <p>Outside the Complete Export</p>
+    <h3 id="downstream-title">Downstream production stays separate.</h3>
+    <p>Links appear here only after a generated result or production asset has been reviewed and connected to this export.</p>
+  </header>
+  <ul>
+    {groups.map(([label, items]) => (
+      <li>
+        <span>{label}</span>
+        <strong>{items.length}</strong>
+        <small>{items.length ? "linked records" : "none linked"}</small>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .downstream { padding: 1.25rem; border: 1px solid #4e4024; border-radius: .8rem; background: #100d08; }
+  header > p:first-child { margin: 0; color: #e6c15c; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .13em; text-transform: uppercase; }
+  h3 { margin: .6rem 0 0; color: #fff; font-size: 1.25rem; font-weight: 500; }
+  header > p:last-child { max-width: 48rem; margin: .7rem 0 0; color: #a9a08b; font-size: .8rem; line-height: 1.6; }
+  ul { display: grid; gap: .55rem; margin: 1.2rem 0 0; padding: 0; list-style: none; }
+  li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .3rem .8rem; padding: .75rem; border: 1px solid #3a311d; border-radius: .45rem; }
+  li span { color: #ddd4bf; font-size: .75rem; }
+  li strong { color: #fff; font-family: var(--font-mono); font-size: .72rem; }
+  li small { grid-column: 1 / -1; color: #766e5c; font-family: var(--font-mono); font-size: .55rem; text-transform: uppercase; }
+  @media (min-width: 620px) { ul { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1000px) { ul { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+</style>

@@ -1,0 +1,70 @@
+---
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import { getMedia, type MediaId } from "@/data/media-registry";
+
+const cards = [
+  { slug: "baseline", title: "Baseline", note: "The control pass: subject, materials, lighting, and camera before a stronger style translation is applied." },
+  { slug: "anime", title: "Dark Anime", note: "A hand-drawn dark-fantasy translation with heavier contour, cel shading, and a nocturnal environment." },
+  { slug: "baroque", title: "Baroque Matrix", note: "Rococo ornament, candlelight, velvet, and phosphor color pushed through the same underlying character study." },
+  { slug: "industrial", title: "Cyber-Industrial", note: "Cold machinery, hard rim light, brushed metal, and expressionist contrast shift the surrounding visual language." },
+] as const;
+const media = (id: MediaId) => getMedia(id);
+---
+
+<section id="style-translation-archive" class="style-archive border-b border-base-800/70">
+  <Wrapper variant="standard" class="py-14 lg:py-20">
+    <header class="archive-header">
+      <div>
+        <p class="label">Workshop Notes / style translation archive</p>
+        <h2>Four compact records from one changing visual language.</h2>
+      </div>
+      <p>These are informal style experiments. Each note keeps its text record, two stills, and motion result together without presenting the set as a StyleFusion application case study.</p>
+    </header>
+
+    <div class="archive-grid">
+      {cards.map((card, index) => {
+        const record = media(`workshop.style-card.${card.slug}.record` as MediaId);
+        const one = media(`workshop.style-card.${card.slug}.one` as MediaId);
+        const two = media(`workshop.style-card.${card.slug}.two` as MediaId);
+        const video = media(`workshop.style-card.${card.slug}.video` as MediaId);
+        return (
+          <article>
+            <header>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <div><h3>{card.title}</h3><p>{card.note}</p></div>
+            </header>
+            <div class="media-pair">
+              <img src={one.src} alt={one.alt} loading="lazy" decoding="async" />
+              <img src={two.src} alt={two.alt} loading="lazy" decoding="async" />
+            </div>
+            <video src={video.src} poster={video.poster} controls muted playsinline preload="none" aria-label={video.alt}></video>
+            <a href={record.src} target="_blank" rel="noreferrer">Open text record &rarr;</a>
+          </article>
+        );
+      })}
+    </div>
+  </Wrapper>
+</section>
+
+<style>
+  .style-archive { background: linear-gradient(135deg, #09070d, #0c0b15 58%, #08070c); }
+  .archive-header { display: grid; gap: 1.25rem; }
+  .label { margin: 0; color: #55d7ff; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; }
+  h2 { max-width: 56rem; margin: .7rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(2.4rem, 6vw, 5rem); font-weight: 300; letter-spacing: -.045em; line-height: .96; }
+  .archive-header > p { max-width: 42rem; margin: 0; color: #aaa5b8; line-height: 1.7; }
+  .archive-grid { display: grid; gap: 1rem; margin-top: 2rem; }
+  article { min-width: 0; padding: 1rem; border-top: 2px solid #514069; background: #09070e; box-shadow: inset 0 0 0 1px #272033; }
+  article > header { display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: .75rem; min-height: 8.5rem; }
+  article > header > span { color: #8c74b0; font-family: var(--font-mono); font-size: .62rem; }
+  h3 { margin: 0; color: #fff; font-family: var(--font-display); font-size: 1.8rem; font-weight: 300; }
+  article p { margin: .65rem 0 0; color: #9f9aad; font-size: .78rem; line-height: 1.55; }
+  .media-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .4rem; }
+  article img, article video { display: block; width: 100%; aspect-ratio: 2 / 3; object-fit: cover; background: #040305; }
+  article video { margin-top: .4rem; aspect-ratio: 16 / 9; }
+  article > a { display: inline-block; margin-top: .8rem; color: #7bdde7; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .06em; text-transform: uppercase; }
+  @media (min-width: 760px) {
+    .archive-header { grid-template-columns: minmax(0, 1fr) minmax(20rem, .7fr); align-items: end; }
+    .archive-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1160px) { .archive-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+</style>

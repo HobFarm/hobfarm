@@ -13,8 +13,11 @@ import {
 } from "@/data/workshop-page";
 import { articlePath, getArticleDepartment, getPublishedArticles } from "@/lib/articles";
 import { workshopPrograms, siteSections } from "@/data/site-hierarchy";
+import WorkshopMediaIndex from "@/components/workshop/WorkshopMediaIndex.astro";
+import { getMedia } from "@/data/media-registry";
 
 const workshopSection = siteSections.find((entry) => entry.id === "workshop")!;
+const workshopHostGraphic = getMedia("workshop.graphics.hillary");
 
 const notes = (await getPublishedArticles())
   .filter((post) => getArticleDepartment(post.data) === "workshop-notes")
@@ -94,24 +97,11 @@ const workshopJsonLd = {
             </div>
           </div>
 
-          <div class="hero-pair grid grid-cols-2 gap-3" aria-label="Sophia and Stella character study">
-            {sophiaHero && (
-              <figure class="relative overflow-hidden rounded-xl border border-base-800 bg-base-950">
-                <img src={sophiaHero} alt={sophia?.hero?.alt ?? "Sophia"} class="aspect-[3/4] size-full object-cover" loading="eager" decoding="async" />
-                <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-base-950 via-base-950/70 to-transparent p-4 pt-16">
-                  <span class="font-mono text-[10px] uppercase tracking-widest text-accent-cyan">Sophia / bright lane</span>
-                </figcaption>
-              </figure>
-            )}
-            {stellaHero && (
-              <figure class="relative mt-8 overflow-hidden rounded-xl border border-base-800 bg-base-950">
-                <img src={stellaHero} alt={stella?.hero?.alt ?? "Stella"} class="aspect-[3/4] size-full object-cover" loading="eager" decoding="async" />
-                <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-base-950 via-base-950/70 to-transparent p-4 pt-16">
-                  <span class="font-mono text-[10px] uppercase tracking-widest text-accent-red-bright">Stella / dark lane</span>
-                </figcaption>
-              </figure>
-            )}
-          </div>
+          <a class="hero-system-card" href="/workshop/character-mannequin/avatar-host-system/">
+            <img src={workshopHostGraphic.src} alt={workshopHostGraphic.alt} width={workshopHostGraphic.width} height={workshopHostGraphic.height} loading="eager" decoding="async" />
+            <span>Character / Mannequin study</span>
+            <strong>Meet the editorial host system</strong>
+          </a>
         </div>
       </Wrapper>
     </section>
@@ -132,6 +122,8 @@ const workshopJsonLd = {
         </div>
       </Wrapper>
     </section>
+
+    <WorkshopMediaIndex />
 
     <section class="border-b border-base-800/70" aria-labelledby="practice-heading">
       <Wrapper variant="standard" class="py-14 lg:py-20">
@@ -395,13 +387,14 @@ const workshopJsonLd = {
       radial-gradient(circle at 78% 28%, rgba(123, 47, 247, 0.12), transparent 30rem);
   }
 
-  .hero-pair figure:first-child {
-    box-shadow: 0 26px 80px rgba(25, 227, 227, 0.08);
-  }
-
-  .hero-pair figure:last-child {
-    box-shadow: 0 26px 80px rgba(226, 58, 78, 0.08);
-  }
+  .hero-system-card { position: relative; display: block; overflow: hidden; border: 1px solid rgb(85 215 255 / .3); border-radius: .75rem; background: #07060b; box-shadow: 0 26px 80px rgb(25 227 227 / .08); color: #fff; text-decoration: none; }
+  .hero-system-card img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; transition: transform .4s ease, opacity .3s ease; }
+  .hero-system-card span, .hero-system-card strong { position: absolute; left: 1rem; z-index: 1; }
+  .hero-system-card span { bottom: 3.2rem; color: #7bdde7; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; }
+  .hero-system-card strong { right: 1rem; bottom: 1.1rem; font-family: var(--font-display); font-size: clamp(1.35rem, 3vw, 2rem); font-weight: 300; line-height: 1; }
+  .hero-system-card::after { position: absolute; inset: 42% 0 0; content: ""; background: linear-gradient(transparent, rgb(5 4 9 / .94)); }
+  .hero-system-card:hover img, .hero-system-card:focus-visible img { transform: scale(1.015); opacity: .9; }
+  .hero-system-card:focus-visible { outline: 2px solid #55d7ff; outline-offset: 3px; }
 
   .layer-dot {
     background: var(--layer-accent);

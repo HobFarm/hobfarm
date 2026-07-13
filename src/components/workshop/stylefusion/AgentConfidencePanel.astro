@@ -1,0 +1,54 @@
+---
+type Agent = {
+  name: string;
+  actualModel?: string;
+  confidence?: number;
+};
+
+interface Props {
+  agents: Agent[];
+  title?: string;
+}
+
+const { agents, title = "Agent extraction record" } = Astro.props;
+---
+
+<section class="agent-panel" aria-labelledby="agent-panel-title">
+  <header>
+    <p>Model routing and confidence</p>
+    <h3 id="agent-panel-title">{title}</h3>
+  </header>
+  <ul>
+    {agents.map((agent) => (
+      <li class:list={[agent.confidence === 0 && "is-failed"]}>
+        <div>
+          <strong>{agent.name}</strong>
+          <span>{agent.actualModel ?? "model not recorded"}</span>
+        </div>
+        <div class="agent-panel__score">
+          <meter min="0" max="1" value={agent.confidence ?? 0} aria-label={`${agent.name} confidence`}>
+            {agent.confidence ?? 0}
+          </meter>
+          <span>{agent.confidence === undefined ? "n/a" : agent.confidence.toFixed(2)}</span>
+        </div>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .agent-panel { padding: 1.25rem; border: 1px solid #2c2440; border-radius: .8rem; background: #0a0810; }
+  header > p { margin: 0; color: #55d7ff; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .13em; text-transform: uppercase; }
+  h3 { margin: .6rem 0 0; color: #fff; font-size: 1.25rem; font-weight: 500; }
+  ul { display: grid; gap: .55rem; margin: 1.25rem 0 0; padding: 0; list-style: none; }
+  li { display: grid; gap: .75rem; padding: .8rem; border: 1px solid #241d33; border-radius: .5rem; background: #0e0b16; }
+  li.is-failed { border-color: #8c3242; background: #180b10; }
+  li > div:first-child { min-width: 0; }
+  strong { display: block; color: #fff; font-family: var(--font-mono); font-size: .72rem; text-transform: capitalize; }
+  li > div:first-child span { display: block; margin-top: .35rem; overflow-wrap: anywhere; color: #817b91; font-family: var(--font-mono); font-size: .58rem; }
+  .agent-panel__score { display: grid; grid-template-columns: minmax(0, 1fr) 2.4rem; gap: .6rem; align-items: center; }
+  meter { width: 100%; height: .6rem; accent-color: #55d7ff; }
+  .is-failed meter { accent-color: #e23a4e; }
+  .agent-panel__score span { color: #d6d2df; font-family: var(--font-mono); font-size: .65rem; text-align: right; }
+  @media (min-width: 620px) { li { grid-template-columns: minmax(0, 1fr) minmax(12rem, .8fr); align-items: center; } }
+</style>

@@ -3,8 +3,9 @@ import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Eyebrow from "@/components/sections/Eyebrow.astro";
 import { transformVideoUrl } from "@/lib/media-transforms";
+import { getMedia } from "@/data/media-registry";
 
-const octopusVideo = "https://cdn.hob.farm/pages/about/Fractal%20Octopus.mp4";
+const octopusVideo = getMedia("about.fractal-octopus.video");
 ---
 
 <section class="relative overflow-hidden">
@@ -16,7 +17,7 @@ const octopusVideo = "https://cdn.hob.farm/pages/about/Fractal%20Octopus.mp4";
     playsinline
     class="absolute inset-0 w-full h-full object-cover z-0"
   >
-    <source src={transformVideoUrl(octopusVideo, { width: 1280 })} type="video/mp4" />
+    <source src={transformVideoUrl(octopusVideo.src, { width: 1280 })} type="video/mp4" />
   </video>
   {/* Dark overlay for legibility */}
   <div class="absolute inset-0 z-1 bg-base-950/80"></div>

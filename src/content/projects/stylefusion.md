@@ -5,8 +5,8 @@ status: "active"
 category: "tool"
 type: "tool"
 title: "StyleFusion"
-subtitle: "StyleFusion extracts the visual DNA from your images, builds structured character and style profiles, enriches them through the Grimoire, and helps you generate consistent results across providers without starting over every time."
-description: "HobFarm's visual compiler for reference-driven AI image workflows."
+subtitle: "StyleFusion assigns approved reference images to explicit roles, runs specialized extraction agents, compiles an Intermediate Representation, and exports a model-ready generation document with diagnostic metadata."
+description: "HobFarm's reference-image application for inspectable generation workflows."
 pubDate: 2026-02-15
 updatedDate: 2026-05-14
 primaryCta:
@@ -43,7 +43,7 @@ features:
   - title: "Fuse Without Contamination"
     description: "Keep subject, style, and composition references in separate roles so one image does not leak into another."
   - title: "Compile for Generation"
-    description: "Turn structured profiles into provider-ready prompts, generation JSON, compact prompts, character sheets, and reusable creative metadata."
+    description: "Turn the Intermediate Representation into image-generation JSON, compiled natural-language slots, and reusable diagnostic metadata."
   - title: "Grimoire Enrichment"
     description: "Use HobFarm's visual vocabulary and correspondence system to add stronger language for materials, lighting, textures, movements, and relationships."
   - title: "Public Project Page"
@@ -52,4 +52,4 @@ features:
     description: "Bring your own provider keys and choose the generation systems that fit each job."
 ---
 
-StyleFusion is HobFarm's visual compiler for reference-driven AI image workflows. This page uses a dedicated project layout so the first viewport can explain the tool, show the reference-to-image workflow, and route visitors toward the public brief while the app is finished separately.
+StyleFusion is HobFarm's reference-image application for inspectable generation workflows. This page uses a dedicated project layout so the first viewport can explain the tool, show the reference-to-export workflow, and route visitors toward the public brief while the app is finished separately.

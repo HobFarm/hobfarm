@@ -1,0 +1,329 @@
+export type MediaType = "image" | "video" | "document";
+
+export type MediaStatus =
+  | "active"
+  | "reusable"
+  | "registered"
+  | "unused"
+  | "unknown"
+  | "duplicate-candidate"
+  | "safe-to-archive-later";
+
+export type MediaRecord = {
+  src: string;
+  poster?: string;
+  mediaType: MediaType;
+  width?: number;
+  height?: number;
+  destination: string;
+  role: string;
+  alt: string;
+  status: MediaStatus;
+  futureCanonicalKey?: string;
+};
+
+const cdn = (path: string) => `https://cdn.hob.farm/${path}`;
+
+/**
+ * Logical index for existing HobFarm CDN objects.
+ *
+ * The keys are stable page-facing identifiers. The source paths remain at their
+ * current R2 locations until a separate migration is reviewed and approved.
+ */
+export const mediaRegistry = {
+  "stylefusion.banner.image": {
+    src: cdn("pages/projects/images/stylefusion-banner.jpg"),
+    mediaType: "image",
+    destination: "/workshop/stylefusion/ and /projects/stylefusion/",
+    role: "hero-poster",
+    alt: "StyleFusion reference-analysis workspace banner",
+    status: "active",
+    futureCanonicalKey: "workshop/stylefusion/banner",
+  },
+  "stylefusion.banner.video": {
+    src: cdn("pages/projects/images/stylefusion-banner-video.mp4"),
+    poster: cdn("pages/projects/images/stylefusion-banner.jpg"),
+    mediaType: "video",
+    destination: "/workshop/stylefusion/ and /projects/stylefusion/",
+    role: "hero-motion",
+    alt: "StyleFusion workflow banner in motion",
+    status: "active",
+    futureCanonicalKey: "workshop/stylefusion/banner-video",
+  },
+
+  "stylefusion.cathedral.v1": processImage("book", "book-v1.jpg", "generated-variant", "Blue-eyed tuxedo cat in the first engraved Cathedral Cat landscape"),
+  "stylefusion.cathedral.v2": processImage("book", "book-v2.png", "generated-variant", "Blue-eyed tuxedo cat before a monumental skull in the second Cathedral Cat variant"),
+  "stylefusion.cathedral.v3": processImage("book", "book-v3.png", "generated-variant", "Blue-eyed tuxedo cat in the third Cathedral Cat engraved landscape"),
+  "stylefusion.cathedral.v4": processImage("book", "book-v4.png", "generated-variant", "Blue-eyed tuxedo cat and skull landscape in the fourth Cathedral Cat variant"),
+  "stylefusion.cathedral.cover": processImage("book", "book-cover.png", "downstream-cover", "The Star in the Skull downstream book-cover study"),
+  "stylefusion.cathedral.hero": processImage("book", "book-hero.png", "downstream-hero", "Cathedral Cat hero image with a tuxedo cat before a towering skull gate"),
+  "stylefusion.cathedral.video": processVideo("book", "book-video.mp4", "book-hero.png", "downstream-motion", "Cathedral Cat downstream motion study"),
+  "stylefusion.cathedral.export": processDocument("book", "ir-large-black-white-cat-1778847195673.txt", "complete-export", "Cathedral Cat Complete Export record"),
+
+  "stylefusion.hellcat.v1": processImage("motion", "motion-v1.png", "generated-variant", "Hellcat generated variant in a burning industrial complex"),
+  "stylefusion.hellcat.v2": processImage("motion", "motion-v2.png", "generated-variant", "Hellcat generated variant with green eyes and industrial firelight"),
+  "stylefusion.hellcat.v3": processImage("motion", "motion-v3.jpg", "generated-variant", "Hellcat generated anime-style industrial variant"),
+  "stylefusion.hellcat.v4": processImage("motion", "motion-v4.png", "generated-variant", "Hellcat generated variant in the Iron Wastes"),
+  "stylefusion.hellcat.hero": processImage("motion", "motion-hero.png", "downstream-hero", "Hellcat neon-industrial hero portrait"),
+  "stylefusion.hellcat.poster": processImage("motion", "motion-poster.png", "downstream-poster", "Hellcat of the Iron Wastes pulp poster"),
+  "stylefusion.hellcat.video-poster": processImage("motion", "motion-video-poster.jpg", "video-poster", "Hellcat promotional video poster"),
+  "stylefusion.hellcat.video": processVideo("motion", "motion-video.mp4", "motion-video-poster.jpg", "downstream-motion", "Hellcat of the Iron Wastes promotional motion study"),
+  "stylefusion.hellcat.export": processDocument("motion", "ir-primary-subject-elf-like-female-1778851549214.txt", "complete-export", "Hellcat Complete Export record"),
+
+  "character.fashion.v1": characterImage("fashion-v1.jpg", "generated-variant", "Fashion character study, variant one"),
+  "character.fashion.v2": characterImage("fashion-v2.png", "generated-variant", "Fashion character study, variant two"),
+  "character.fashion.v3": characterImage("fashion-v3.png", "generated-variant", "Fashion character study, variant three"),
+  "character.fashion.v4": characterImage("fashion-v4.jpg", "generated-variant", "Fashion character study, variant four"),
+  "character.fashion.sheet": characterImage("fashion-sheet.png", "character-sheet", "Fashion character production sheet"),
+  "character.fashion.hero": characterImage("fashion-hero.png", "hero", "Fashion character hero image"),
+  "character.fashion.poster": characterImage("fashion-poster.jpg", "poster", "Fashion character production poster"),
+  "character.fashion.og": characterImage("fashion-og.jpg", "social-preview", "Fashion character social preview"),
+  "character.fashion.video": characterVideo("fashion-video.mp4", "fashion-poster.jpg", "motion", "Fashion character motion study"),
+  "character.fashion.export": characterDocument("ir-stylized-female-figure-stands-1778822091644.txt", "complete-export", "Fashion character Complete Export record"),
+
+  "character.generic-37.base": conceptImage("stylefusion-concept1.jpg", "generic-base", "Generic Female number 37 base character"),
+  "character.generic-37.result": conceptImage("stylefusion-concept2.jpg", "designed-result", "Designed result developed from Generic Female number 37"),
+  "character.generic-37.face": conceptImage("stylefusion-face.jpg", "face-decision", "Face decisions for Generic Female number 37"),
+  "character.generic-37.color": conceptImage("stylefusion-color.jpg", "color-decision", "Color decisions for Generic Female number 37"),
+  "character.generic-37.texture": conceptImage("stylefusion-texture.jpg", "texture-decision", "Texture decisions for Generic Female number 37"),
+  "character.generic-37.intent": conceptImage("stylefusion-intent.jpg", "intent-record", "Intent decisions for Generic Female number 37"),
+  "character.generic-37.negative": conceptImage("stylefusion-negative.jpg", "exclusion-guidance", "Exclusion guidance for Generic Female number 37"),
+  "character.generic-37.video": conceptVideo("stylefusion-concept-vid.mp4", "stylefusion-concept2.jpg", "motion-result", "Generic Female number 37 motion result"),
+
+  "avatar.identity.hillary": workshopImage("images/hillary01.WEBP", "/workshop/character-mannequin/avatar-host-system/", "canonical-profile", "Hillary, the HobFarm editorial and Workshop host", 1280, 1920),
+  "avatar.identity.ami": workshopImage("images/ami01.WEBP", "/workshop/character-mannequin/avatar-host-system/", "canonical-profile", "Ami, the HobFarm social and commercial presenter", 1280, 1920),
+  "avatar.identity.em": workshopImage("images/em01.jpg", "/workshop/workshop-notes/psygoth/", "canonical-profile", "Em, the green growth lane of the PsyGoth presenter trio", 1792, 2368),
+  "avatar.identity.nina": workshopImage("images/nina01.jpg", "/workshop/workshop-notes/psygoth/", "canonical-profile", "Nina, the red pressure lane of the PsyGoth presenter trio", 1792, 2368),
+  "avatar.identity.zima": workshopImage("images/zima01.WEBP", "/workshop/workshop-notes/psygoth/", "canonical-profile", "Zima, the blue structure lane of the PsyGoth presenter trio", 1280, 1920),
+  "avatar.identity.hobgal": workshopImage("images/hobgal01.jpg", "/workshop/character-mannequin/avatar-host-system/", "historical-profile", "Hobgal, the retired early HobFarm presenter prototype", 1664, 2496, "safe-to-archive-later"),
+  "workshop.graphics.landing": workshopImage("images/workshop.png", "/workshop/", "section-hero", "The HobFarm Workshop host system, character sheet, process inspector, storyboards, media registry, and motion test", 1672, 941),
+  "workshop.graphics.hillary": workshopImage("images/workshop-hillary.png", "/workshop/ and /workshop/character-mannequin/avatar-host-system/", "editorial-host-system", "Hillary at the center of HobFarm articles, Presents, Workshop, and in-progress productions", 1672, 941),
+  "presents.graphics.avatar-system": workshopImage("images/presents-with-avatars.png", "/departments/hobfarm-presents/", "section-hero", "HobFarm Presents programs with Hillary, Ami, Em, Nina, and Zima as recurring editorial hosts", 1672, 941),
+
+  "avatar-host.hillary.main.video": avatarHostPlaceholder("video", "hillary-main-presenter.mp4", "standardized-host-test", "Hillary main HobFarm presenter standardized host test"),
+  "avatar-host.hillary.main.captions": avatarHostPlaceholder("document", "hillary-main-presenter.srt", "caption-sidecar", "SRT captions for Hillary's main HobFarm presenter test"),
+  "avatar-host.hillary.workshop.video": avatarHostPlaceholder("video", "hillary-workshop-editor.mp4", "standardized-host-test", "Hillary Workshop technical editor standardized host test"),
+  "avatar-host.hillary.workshop.captions": avatarHostPlaceholder("document", "hillary-workshop-editor.srt", "caption-sidecar", "SRT captions for Hillary's Workshop technical editor test"),
+  "avatar-host.hillary.cinema.video": avatarHostPlaceholder("video", "hillary-cinema-host.mp4", "standardized-host-test", "Hillary HobFarm TV cinema host standardized host test"),
+  "avatar-host.hillary.cinema.captions": avatarHostPlaceholder("document", "hillary-cinema-host.srt", "caption-sidecar", "SRT captions for Hillary's HobFarm TV cinema host test"),
+  "avatar-host.ami.social.video": avatarHostPlaceholder("video", "ami-social-presenter.mp4", "standardized-host-test", "Ami social presenter standardized host test"),
+  "avatar-host.ami.social.captions": avatarHostPlaceholder("document", "ami-social-presenter.srt", "caption-sidecar", "SRT captions for Ami's social presenter test"),
+  "avatar-host.em.trio.video": avatarHostPlaceholder("video", "em-trio-presenter.mp4", "standardized-host-test", "Em green-lane trio presenter standardized host test"),
+  "avatar-host.em.trio.captions": avatarHostPlaceholder("document", "em-trio-presenter.srt", "caption-sidecar", "SRT captions for Em's green-lane trio presenter test"),
+  "avatar-host.nina.trio.video": avatarHostPlaceholder("video", "nina-trio-presenter.mp4", "standardized-host-test", "Nina red-lane trio presenter standardized host test"),
+  "avatar-host.nina.trio.captions": avatarHostPlaceholder("document", "nina-trio-presenter.srt", "caption-sidecar", "SRT captions for Nina's red-lane trio presenter test"),
+  "avatar-host.zima.trio.video": avatarHostPlaceholder("video", "zima-trio-presenter.mp4", "standardized-host-test", "Zima blue-lane trio presenter standardized host test"),
+  "avatar-host.zima.trio.captions": avatarHostPlaceholder("document", "zima-trio-presenter.srt", "caption-sidecar", "SRT captions for Zima's blue-lane trio presenter test"),
+
+  "avatar-host.hobgal.prototype.video": workshopMedia("avatar-host-system/hobgal-prototype.mp4", "video", "/workshop/character-mannequin/avatar-host-system/", "retired-prototype", "Hobgal explains an early version of the HobFarm production system", "safe-to-archive-later", "avatar-host-system/hobgal-prototype.webp"),
+  "avatar-host.hobgal.prototype.poster": workshopMedia("avatar-host-system/hobgal-prototype.webp", "image", "/workshop/character-mannequin/avatar-host-system/", "retired-prototype-poster", "Hobgal retired prototype presenter frame", "safe-to-archive-later", undefined, 405, 720),
+  "avatar-host.hobgal.prototype.transcript": workshopMedia("avatar-host-system/transcripts/hobgal-prototype.txt", "document", "/workshop/character-mannequin/avatar-host-system/", "historical-transcript", "Transcript for the retired Hobgal prototype clip", "safe-to-archive-later"),
+
+  "workshop.psygoth.em.video": workshopMedia("psygoth/em-primary.mp4", "video", "/workshop/workshop-notes/psygoth/", "primary-character-chapter", "Em defines the green lane of the PsyGoth system", "active", "psygoth/em-primary.webp"),
+  "workshop.psygoth.em.poster": workshopMedia("psygoth/em-primary.webp", "image", "/workshop/workshop-notes/psygoth/", "video-poster", "Em in an illustrated green PsyGoth landscape", "active"),
+  "workshop.psygoth.em.transcript": workshopMedia("psygoth/transcripts/em-primary.txt", "document", "/workshop/workshop-notes/psygoth/", "source-transcript", "Transcript for Em's primary PsyGoth chapter", "active"),
+  "workshop.psygoth.nina.video": workshopMedia("psygoth/nina-primary.mp4", "video", "/workshop/workshop-notes/psygoth/", "primary-character-chapter", "Nina defines the red lane of the PsyGoth system", "active", "psygoth/nina-primary.webp"),
+  "workshop.psygoth.nina.poster": workshopMedia("psygoth/nina-primary.webp", "image", "/workshop/workshop-notes/psygoth/", "video-poster", "Nina in a volcanic red PsyGoth landscape", "active"),
+  "workshop.psygoth.nina.transcript": workshopMedia("psygoth/transcripts/nina-primary.txt", "document", "/workshop/workshop-notes/psygoth/", "source-transcript", "Transcript for Nina's primary PsyGoth chapter", "active"),
+  "workshop.psygoth.zima.video": workshopMedia("psygoth/zima-primary.mp4", "video", "/workshop/workshop-notes/psygoth/", "primary-character-chapter", "Zima defines the blue lane of the PsyGoth system", "active", "psygoth/zima-primary.webp"),
+  "workshop.psygoth.zima.poster": workshopMedia("psygoth/zima-primary.webp", "image", "/workshop/workshop-notes/psygoth/", "video-poster", "Zima in a blue ice-storm PsyGoth landscape", "active"),
+  "workshop.psygoth.zima.transcript": workshopMedia("psygoth/transcripts/zima-primary.txt", "document", "/workshop/workshop-notes/psygoth/", "source-transcript", "Transcript for Zima's primary PsyGoth chapter", "active"),
+
+  "workshop.ami-legacy.hero": workshopMedia("ami-legacy/legacy-ami-hero.webp", "image", "Ami Legacy campaign packet", "campaign-hero", "Ami presents the Legacy electric future wagon and robotic pulling system", "registered", undefined, 1672, 941),
+  "workshop.ami-legacy.model-3917.ami": workshopMedia("ami-legacy/model-3917-ami.webp", "image", "Ami Legacy campaign packet", "campaign-key-art", "Ami beside the robot-pulled Model 3917 two-wheel carriage", "registered", undefined, 1672, 941),
+  "workshop.ami-legacy.model-3917.vehicle": workshopMedia("ami-legacy/model-3917-vehicle.webp", "image", "Ami Legacy campaign packet", "vehicle-clean-plate", "Robot-pulled Model 3917 two-wheel carriage without a presenter", "registered", undefined, 1672, 941),
+  "workshop.ami-legacy.autonomous-coach": workshopMedia("ami-legacy/autonomous-coach.webp", "image", "Ami Legacy campaign packet", "four-wheel-vehicle", "Four-wheel enclosed electric autonomous coach concept", "registered", undefined, 1672, 941),
+  "workshop.ami-legacy.redwood-lifestyle": workshopMedia("ami-legacy/redwood-lifestyle.webp", "image", "Ami Legacy campaign packet", "lifestyle-scene", "Electric carriage traveling through a redwood forest", "registered", undefined, 1672, 941),
+  "workshop.ami-legacy.redwood-profile": workshopMedia("ami-legacy/redwood-profile.webp", "image", "Ami Legacy campaign packet", "vehicle-profile", "Electric four-wheel carriage in profile among redwoods", "registered", undefined, 1672, 941),
+  "workshop.ami-legacy.history.diligence": workshopMedia("ami-legacy/historical/diligence-coach.webp", "image", "Ami Legacy campaign packet", "historical-reference", "Historical diligence coach reference drawing", "reusable", undefined, 1920, 1235),
+  "workshop.ami-legacy.history.stanhope": workshopMedia("ami-legacy/historical/stanhope-gig-3915.webp", "image", "Ami Legacy campaign packet", "historical-reference", "Historical Stanhope gig number 3915 reference drawing", "reusable", undefined, 1920, 1423),
+  "workshop.ami-legacy.history.phaeton": workshopMedia("ami-legacy/historical/phaeton-651a.webp", "image", "Ami Legacy campaign packet", "historical-reference", "Historical phaeton number 651a reference drawing", "reusable", undefined, 1920, 1309),
+  "workshop.ami-legacy.history.vis-a-vis": workshopMedia("ami-legacy/historical/vis-a-vis-3049.webp", "image", "Ami Legacy campaign packet", "historical-reference", "Historical vis-à-vis number 3049 reference drawing", "reusable", undefined, 1920, 1384),
+
+  ...styleCardRecords("baseline"),
+  ...styleCardRecords("anime"),
+  ...styleCardRecords("baroque"),
+  ...styleCardRecords("industrial"),
+
+  "academy.banner.image": projectImage("hobfarm-courses-banner.jpg", "/academy/ and /projects/courses/", "academy-bridge", "HobFarm Academy courses banner"),
+  "academy.banner.video": projectVideo("hobfarm-courses-banner-video.mp4", "hobfarm-courses-banner.jpg", "/academy/ and /projects/courses/", "academy-bridge-motion", "HobFarm Academy courses banner in motion"),
+  "mtm.banner.image": projectImage("magazine-time-machine-banner.jpg", "/departments/magazine-time-machine/ and Presents indexes", "series-banner", "Magazine Time Machine archive banner"),
+  "mtm.banner.video": projectVideo("magazine-time-machine-banner-video.mp4", "magazine-time-machine-banner.jpg", "/departments/magazine-time-machine/ and Presents indexes", "series-banner-motion", "Magazine Time Machine archive banner in motion"),
+
+  "about.fractal-octopus.video": aboutVideo("Fractal%20Octopus.mp4", "supporting-philosophy", "Fractal octopus motion study", "active"),
+  "about.glow.video": aboutVideo("about-glow-vid.mp4", "supporting-pitch", "Luminous HobFarm studio motion study", "active"),
+  "about.hero.video": aboutVideo("about-hero-vid.mp4", "hero-candidate", "HobFarm About hero motion study", "unused"),
+
+  "home.composition-lighting.one": homeImage("comp-lighting-1.png", "home-visual-showcase", "Composition and lighting comparison, first example", "active"),
+  "home.composition-lighting.two": homeImage("comp-lighting-2.jpg", "home-visual-showcase", "Composition and lighting comparison, second example", "active"),
+  "home.composition-lighting.two-video": homeVideo("comp-lighting-2.mp4", "comp-lighting-2.jpg", "home-visual-showcase", "Composition and lighting comparison in motion", "active"),
+  "home.composition-lighting.three": homeImage("comp-lighting-3.png", "home-visual-showcase", "Composition and lighting comparison, third example", "active"),
+  "home.drifter.image": homeImage("drifter.jpg", "project-candidate", "Drifter visual study", "unknown"),
+  "home.drifter.video": homeVideo("drifter.mp4", "drifter.jpg", "project-candidate", "Drifter visual study in motion", "unknown"),
+  "home.grimoire.image": homeImage("grimoire.jpg", "grimoire-candidate", "Grimoire visual study", "reusable"),
+  "home.grimoire.video": homeVideo("grimoire.mp4", "grimoire.jpg", "grimoire-candidate", "Grimoire visual study in motion", "reusable"),
+  "home.hillary.hero": homeImage("hillary-hobfarm-hero.png", "article-or-project-candidate", "Hillary HobFarm hero study", "unknown"),
+  "home.hob-mascot": homeImage("hob-mascot.jpg", "home-and-about", "HobFarm mascot portrait", "active"),
+  "home.hobbot.image": homeImage("hobbot.jpg", "project-candidate", "Hobbot visual study", "unknown"),
+  "home.hobbot.video": homeVideo("hobbot.mp4", "hobbot.jpg", "project-candidate", "Hobbot visual study in motion", "unknown"),
+  "home.site-banner": homeImage("hobfarm-web-banner.png", "site-banner-candidate", "HobFarm website banner", "reusable"),
+  "home.hero.poster": homeImage("homepage-hero-poster.png", "article-media", "HobFarm homepage hero poster", "active"),
+  "home.hero.video": homeVideo("homepage-hero.mp4", "homepage-hero-poster.png", "article-media", "HobFarm homepage hero video", "active"),
+  "home.og-image": homeImage("og-image.jpg", "social-preview-candidate", "HobFarm social preview image", "duplicate-candidate"),
+  "home.provider-logo.z-ai": homeImage("overview-z-ai-developer-document-logo.svg", "home-provider-strip", "Z.AI provider logo", "active"),
+  "home.style-range.one": homeImage("style-range-1.png", "home-visual-showcase", "HobFarm style range example one", "active"),
+  "home.style-range.two": homeImage("style-range-2.png", "home-visual-showcase", "HobFarm style range example two", "active"),
+  "home.style-range.three": homeImage("style-range-3.png", "home-visual-showcase", "HobFarm style range example three", "active"),
+  "home.style-range.four": homeImage("style-range-4.jpg", "home-visual-showcase", "HobFarm style range example four", "active"),
+  "home.style-range.five": homeImage("style-range-5.jpeg", "home-visual-showcase", "HobFarm style range example five", "active"),
+  "home.legacy-stylefusion.image": homeImage("stylefusion.jpg", "workshop-notes-candidate", "Early style-translation study", "reusable"),
+  "home.legacy-stylefusion.video": homeVideo("stylefusion.mp4", "stylefusion.jpg", "workshop-notes-candidate", "Early style-translation study in motion", "reusable"),
+  "home.technique.flat": homeImage("technique-flat.webp", "home-visual-showcase", "Flat rendering technique study", "active"),
+  "home.technique.lineart": homeImage("technique-lineart.png", "home-visual-showcase", "Line-art rendering technique study", "active"),
+  "home.technique.painterly": homeImage("technique-painterly.jpg", "home-visual-showcase", "Painterly rendering technique study", "active"),
+  "home.technique.photo": homeImage("technique-photo.png", "home-visual-showcase", "Photographic rendering technique study", "active"),
+} as const satisfies Record<string, MediaRecord>;
+
+export type StyleCardMediaId = `workshop.style-card.${"baseline" | "anime" | "baroque" | "industrial"}.${"record" | "one" | "two" | "video"}`;
+export type MediaId = keyof typeof mediaRegistry | StyleCardMediaId;
+
+export function getMedia(id: MediaId): MediaRecord {
+  return (mediaRegistry as Record<string, MediaRecord>)[id];
+}
+
+export function getMediaGroup(prefix: string): Array<[MediaId, MediaRecord]> {
+  return (Object.entries(mediaRegistry) as Array<[MediaId, MediaRecord]>).filter(([id]) =>
+    id.startsWith(prefix),
+  );
+}
+
+export const projectHeroMedia = {
+  stylefusion: { image: "stylefusion.banner.image", video: "stylefusion.banner.video" },
+  courses: { image: "academy.banner.image", video: "academy.banner.video" },
+  "hobfarm-tv/magazine-time-machine": { image: "mtm.banner.image", video: "mtm.banner.video" },
+} as const satisfies Record<string, { image: MediaId; video: MediaId }>;
+
+export function getProjectHeroMedia(projectId: string) {
+  const ids = projectHeroMedia[projectId as keyof typeof projectHeroMedia];
+  return ids ? { image: getMedia(ids.image), video: getMedia(ids.video) } : undefined;
+}
+
+function processImage(folder: "book" | "motion", file: string, role: string, alt: string): MediaRecord {
+  return { src: cdn(`pages/process/${folder}/${file}`), mediaType: "image", destination: "/workshop/stylefusion/", role, alt, status: "active" };
+}
+
+function processVideo(folder: "book" | "motion", file: string, poster: string, role: string, alt: string): MediaRecord {
+  return { src: cdn(`pages/process/${folder}/${file}`), poster: cdn(`pages/process/${folder}/${poster}`), mediaType: "video", destination: "/workshop/stylefusion/", role, alt, status: "active" };
+}
+
+function processDocument(folder: "book" | "motion", file: string, role: string, alt: string): MediaRecord {
+  return { src: cdn(`pages/process/${folder}/${file}`), mediaType: "document", destination: "/workshop/stylefusion/", role, alt, status: "active" };
+}
+
+function characterImage(file: string, role: string, alt: string): MediaRecord {
+  return { src: cdn(`pages/process/fashion/${file}`), mediaType: "image", destination: "/workshop/character-mannequin/", role, alt, status: "active" };
+}
+
+function characterVideo(file: string, poster: string, role: string, alt: string): MediaRecord {
+  return { src: cdn(`pages/process/fashion/${file}`), poster: cdn(`pages/process/fashion/${poster}`), mediaType: "video", destination: "/workshop/character-mannequin/", role, alt, status: "active" };
+}
+
+function characterDocument(file: string, role: string, alt: string): MediaRecord {
+  return { src: cdn(`pages/process/fashion/${file}`), mediaType: "document", destination: "/workshop/character-mannequin/", role, alt, status: "active" };
+}
+
+function conceptImage(file: string, role: string, alt: string): MediaRecord {
+  return { src: cdn(`pages/home/concept/${file}`), mediaType: "image", destination: "/workshop/character-mannequin/", role, alt, status: "active", futureCanonicalKey: `workshop/character-mannequin/generic-37/${file}` };
+}
+
+function conceptVideo(file: string, poster: string, role: string, alt: string): MediaRecord {
+  return { src: cdn(`pages/home/concept/${file}`), poster: cdn(`pages/home/concept/${poster}`), mediaType: "video", destination: "/workshop/character-mannequin/", role, alt, status: "active", futureCanonicalKey: `workshop/character-mannequin/generic-37/${file}` };
+}
+
+function avatarHostPlaceholder(mediaType: "video" | "document", file: string, role: string, alt: string): MediaRecord {
+  return {
+    src: "",
+    mediaType,
+    destination: "/workshop/character-mannequin/avatar-host-system/",
+    role,
+    alt,
+    status: "registered",
+    futureCanonicalKey: `workshop/character-mannequin/avatar-host-system/${file}`,
+  };
+}
+
+function workshopMedia(
+  file: string,
+  mediaType: MediaType,
+  destination: string,
+  role: string,
+  alt: string,
+  status: MediaStatus,
+  poster?: string,
+  width?: number,
+  height?: number,
+): MediaRecord {
+  return {
+    src: cdn(`workshop/${file}`),
+    poster: poster ? cdn(`workshop/${poster}`) : undefined,
+    mediaType,
+    width,
+    height,
+    destination,
+    role,
+    alt,
+    status,
+    futureCanonicalKey: `workshop/${file}`,
+  };
+}
+
+function workshopImage(
+  file: string,
+  destination: string,
+  role: string,
+  alt: string,
+  width: number,
+  height: number,
+  status: MediaStatus = "active",
+): MediaRecord {
+  return {
+    src: cdn(`workshop/${file}`),
+    mediaType: "image",
+    width,
+    height,
+    destination,
+    role,
+    alt,
+    status,
+  };
+}
+
+function styleCardRecords(slug: "baseline" | "anime" | "baroque" | "industrial") {
+  const destination = "/workshop/workshop-notes/";
+  return {
+    [`workshop.style-card.${slug}.record`]: { src: cdn(`pages/home/style-card/${slug}.txt`), mediaType: "document", destination, role: "text-record", alt: `${slug} style-translation text record`, status: "active" },
+    [`workshop.style-card.${slug}.one`]: { src: cdn(`pages/home/style-card/${slug}1.jpg`), mediaType: "image", destination, role: "result", alt: `${slug} style-translation result one`, status: "active" },
+    [`workshop.style-card.${slug}.two`]: { src: cdn(`pages/home/style-card/${slug}2.jpg`), mediaType: "image", destination, role: "result", alt: `${slug} style-translation result two`, status: "active" },
+    [`workshop.style-card.${slug}.video`]: { src: cdn(`pages/home/style-card/${slug}-vid.mp4`), poster: cdn(`pages/home/style-card/${slug}1.jpg`), mediaType: "video", destination, role: "motion-result", alt: `${slug} style-translation motion result`, status: "active" },
+  } satisfies Record<string, MediaRecord>;
+}
+
+function projectImage(file: string, destination: string, role: string, alt: string): MediaRecord {
+  return { src: cdn(`pages/projects/images/${file}`), mediaType: "image", destination, role, alt, status: "registered" };
+}
+
+function projectVideo(file: string, poster: string, destination: string, role: string, alt: string): MediaRecord {
+  return { src: cdn(`pages/projects/images/${file}`), poster: cdn(`pages/projects/images/${poster}`), mediaType: "video", destination, role, alt, status: "registered" };
+}
+
+function aboutVideo(file: string, role: string, alt: string, status: MediaStatus): MediaRecord {
+  return { src: cdn(`pages/about/${file}`), mediaType: "video", destination: "/about/", role, alt, status };
+}
+
+function homeImage(file: string, role: string, alt: string, status: MediaStatus): MediaRecord {
+  return { src: cdn(`pages/home/${file}`), mediaType: "image", destination: "home archive", role, alt, status };
+}
+
+function homeVideo(file: string, poster: string, role: string, alt: string, status: MediaStatus): MediaRecord {
+  return { src: cdn(`pages/home/${file}`), poster: cdn(`pages/home/${poster}`), mediaType: "video", destination: "home archive", role, alt, status };
+}

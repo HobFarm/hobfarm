@@ -9,11 +9,12 @@ test("visual lab is noindex, outside the sitemap, and built from production comp
   const config = read("astro.config.mjs");
 
   assert.match(page, /noindex/);
-  assert.match(config, /privatePrototypePaths = new Set\(\["\/workshop\/visual-lab\/"\]\)/);
+  assert.match(config, /"\/workshop\/visual-lab\/"/);
+  assert.match(config, /"\/workshop\/stylefusion\/prototype\/"/);
   assert.match(config, /!privatePrototypePaths\.has\(pathname\)/);
   for (const component of [
     "SheetToHero",
-    "StyleFusionMap",
+    "VisualSystemMap",
     "ProductAssetStack",
     "AssetManifest",
     "ToolRouteNote",
@@ -33,6 +34,16 @@ test("visual lab uses existing Sophia and Stella data and capped previews", () =
   assert.match(page, /buyerFile: true/);
   assert.doesNotMatch(page, /J10\.webp/);
   assert.doesNotMatch(page, /ChatGPT Image Jul/);
+});
+
+test("Sophia and Stella are labeled as a visual system, not a StyleFusion run", () => {
+  const page = read("src/pages/workshop/visual-lab/index.astro");
+  const map = read("src/components/workshop/VisualSystemMap.astro");
+
+  assert.match(page, /VisualSystemMap/);
+  assert.match(page, /title="Visual system source map"/);
+  assert.doesNotMatch(page, /StyleFusionMap|StyleFusion source-role map/);
+  assert.doesNotMatch(map, /StyleFusion/);
 });
 
 test("comparison and video enhancements preserve keyboard, touch, reduced-motion, and lazy behavior", () => {

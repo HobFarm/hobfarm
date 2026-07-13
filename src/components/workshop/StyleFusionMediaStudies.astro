@@ -1,0 +1,190 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import IRInspector from "@/components/workshop/stylefusion/IRInspector.astro";
+import ReferenceRoleDeck from "@/components/workshop/stylefusion/ReferenceRoleDeck.astro";
+import { getMedia, type MediaId } from "@/data/media-registry";
+
+interface Props {
+  cathedral: CollectionEntry<"stylefusionStudies">;
+  hellcat: CollectionEntry<"stylefusionStudies">;
+}
+
+const { cathedral, hellcat } = Astro.props;
+const media = (id: MediaId) => getMedia(id);
+const cathedralVariants = ["v1", "v2", "v3", "v4"].map((key) =>
+  media(`stylefusion.cathedral.${key}` as MediaId),
+);
+const hellcatVariants = ["v1", "v2", "v3", "v4"].map((key) =>
+  media(`stylefusion.hellcat.${key}` as MediaId),
+);
+const banner = media("stylefusion.banner.video");
+const bannerPoster = media("stylefusion.banner.image");
+const cathedralCover = media("stylefusion.cathedral.cover");
+const cathedralHero = media("stylefusion.cathedral.hero");
+const cathedralVideo = media("stylefusion.cathedral.video");
+const cathedralExport = media("stylefusion.cathedral.export");
+const hellcatHero = media("stylefusion.hellcat.hero");
+const hellcatPoster = media("stylefusion.hellcat.poster");
+const hellcatVideo = media("stylefusion.hellcat.video");
+const hellcatExport = media("stylefusion.hellcat.export");
+---
+
+<section id="stylefusion-evidence" class="sf-evidence border-b border-base-800/70">
+  <Wrapper variant="standard" class="py-14 lg:py-20">
+    <div class="sf-banner">
+      <video
+        src={banner.src}
+        poster={banner.poster ?? bannerPoster.src}
+        controls
+        muted
+        playsinline
+        preload="none"
+        aria-label={banner.alt}
+      ></video>
+      <div class="sf-banner__copy">
+        <p class="label">The application / visual proof</p>
+        <h2>References enter with jobs. Results leave with their lineage intact.</h2>
+        <p>StyleFusion separates subject, style, and composition before extraction. The public studies below show the generated result first, then the covers, heroes, posters, and motion pieces made downstream.</p>
+      </div>
+    </div>
+
+    <article class="study">
+      <header class="study__header">
+        <div>
+          <p class="label">SF-001 / primary study</p>
+          <h2>Cathedral Cat</h2>
+        </div>
+        <p>{cathedral.data.summary}</p>
+      </header>
+
+      <ReferenceRoleDeck title="Three references, three explicit roles" references={cathedral.data.references} />
+
+      <div class="transition-label" aria-hidden="true"><span>role-scoped extraction</span><b>&darr;</b><span>generated results</span></div>
+      <div class="variant-grid">
+        {cathedralVariants.map((asset, index) => (
+          <figure>
+            <img src={asset.src} alt={asset.alt} loading="lazy" decoding="async" />
+            <figcaption>Generated result / {String(index + 1).padStart(2, "0")}</figcaption>
+          </figure>
+        ))}
+      </div>
+
+      <div class="downstream-grid">
+        <figure class="downstream-grid__cover">
+          <img src={cathedralCover.src} alt={cathedralCover.alt} loading="lazy" decoding="async" />
+          <figcaption>Downstream production / book cover</figcaption>
+        </figure>
+        <figure>
+          <img src={cathedralHero.src} alt={cathedralHero.alt} loading="lazy" decoding="async" />
+          <figcaption>Downstream production / hero</figcaption>
+        </figure>
+        <figure>
+          <video src={cathedralVideo.src} poster={cathedralVideo.poster} controls muted playsinline preload="none" aria-label={cathedralVideo.alt}></video>
+          <figcaption>Downstream production / motion</figcaption>
+        </figure>
+      </div>
+
+      <details class="inspector">
+        <summary>Inspect the compiled lineage</summary>
+        <div class="inspector__body">
+          <IRInspector styleAnchors={cathedral.data.compiled.styleAnchors} slotSources={cathedral.data.diagnostics.slotSources} />
+          <a href={cathedralExport.src} target="_blank" rel="noreferrer">Open the Complete Export text record &rarr;</a>
+        </div>
+      </details>
+    </article>
+
+    <article class="study study--secondary">
+      <header class="study__header">
+        <div>
+          <p class="label">SF-002 / production extension</p>
+          <h2>Hellcat of the Iron Wastes</h2>
+        </div>
+        <p>The generated character survives several render treatments before moving into a named hero, pulp poster, and promotional motion piece.</p>
+      </header>
+
+      <div class="feature-pair">
+        <figure>
+          <img src={hellcatHero.src} alt={hellcatHero.alt} loading="lazy" decoding="async" />
+          <figcaption>Selected StyleFusion result</figcaption>
+        </figure>
+        <div class="feature-pair__copy">
+          <p class="label">Preserved identity</p>
+          <ul>
+            {hellcat.data.findings?.preserved.map((finding) => <li>{finding}</li>)}
+          </ul>
+          <p>The industrial environment, render language, color, and materials come from the assigned style role. The character remains the subject.</p>
+        </div>
+      </div>
+
+      <div class="variant-grid">
+        {hellcatVariants.map((asset, index) => (
+          <figure>
+            <img src={asset.src} alt={asset.alt} loading="lazy" decoding="async" />
+            <figcaption>Selected variant / {String(index + 1).padStart(2, "0")}</figcaption>
+          </figure>
+        ))}
+      </div>
+
+      <div class="downstream-grid downstream-grid--hellcat">
+        <figure>
+          <img src={hellcatPoster.src} alt={hellcatPoster.alt} loading="lazy" decoding="async" />
+          <figcaption>Downstream production / poster</figcaption>
+        </figure>
+        <figure>
+          <video src={hellcatVideo.src} poster={hellcatVideo.poster} controls muted playsinline preload="none" aria-label={hellcatVideo.alt}></video>
+          <figcaption>Downstream production / promotional motion</figcaption>
+        </figure>
+      </div>
+
+      <details class="inspector">
+        <summary>Inspect the source roles and export record</summary>
+        <div class="inspector__body">
+          <ReferenceRoleDeck references={hellcat.data.references} />
+          <IRInspector styleAnchors={hellcat.data.compiled.styleAnchors} slotSources={hellcat.data.diagnostics.slotSources} />
+          <a href={hellcatExport.src} target="_blank" rel="noreferrer">Open the Complete Export text record &rarr;</a>
+        </div>
+      </details>
+    </article>
+  </Wrapper>
+</section>
+
+<style>
+  .sf-evidence { background: radial-gradient(circle at 84% 8%, rgb(31 34 72 / .48), transparent 30rem), #07060b; }
+  .sf-banner { position: relative; display: grid; min-height: 32rem; overflow: hidden; border: 1px solid #34284c; background: #050409; }
+  .sf-banner video { display: block; width: 100%; height: 100%; min-height: 24rem; object-fit: cover; opacity: .76; }
+  .sf-banner__copy { padding: 1.4rem; background: linear-gradient(135deg, #0a0810 15%, rgb(10 8 16 / .84)); }
+  .label { margin: 0; color: #55d7ff; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; }
+  h2 { margin: .7rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(2.4rem, 6vw, 5.2rem); font-weight: 300; letter-spacing: -.045em; line-height: .94; }
+  .sf-banner__copy > p:last-child, .study__header > p, .feature-pair__copy > p { margin: 1rem 0 0; color: #aaa5b8; line-height: 1.7; }
+  .study { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid #34284c; }
+  .study--secondary { margin-top: 6rem; }
+  .study__header { display: grid; gap: 1.25rem; margin-bottom: 2rem; }
+  .study__header > p { max-width: 43rem; }
+  .transition-label { display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 2rem 0 1rem; color: #7bdde7; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .13em; text-transform: uppercase; }
+  .transition-label b { color: #c69cff; font-size: 1.2rem; }
+  .variant-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; }
+  figure { margin: 0; overflow: hidden; border: 1px solid #2c2440; background: #08060c; }
+  figure img, figure video { display: block; width: 100%; aspect-ratio: 2 / 3; object-fit: cover; }
+  figcaption { padding: .72rem; color: #aaa5b8; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .08em; text-transform: uppercase; }
+  .downstream-grid { display: grid; gap: .65rem; margin-top: .65rem; }
+  .downstream-grid figure:not(.downstream-grid__cover) img, .downstream-grid video { aspect-ratio: 16 / 10; }
+  .feature-pair { display: grid; gap: 1.5rem; align-items: center; margin-bottom: 1.5rem; }
+  .feature-pair figure img { aspect-ratio: 16 / 10; }
+  .feature-pair__copy { padding: 1rem 0; }
+  .feature-pair__copy ul { display: flex; flex-wrap: wrap; gap: .45rem; margin: 1rem 0 0; padding: 0; list-style: none; }
+  .feature-pair__copy li { padding: .45rem .65rem; border: 1px solid #3f3156; color: #d7d2df; font-size: .72rem; }
+  .inspector { margin-top: 1rem; border: 1px solid #34284c; background: #0a0810; }
+  .inspector summary { min-height: 3rem; padding: 1rem; color: #ece9f5; cursor: pointer; font-family: var(--font-mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; }
+  .inspector__body { display: grid; gap: 1rem; padding: 0 1rem 1rem; }
+  .inspector__body > a { color: #7bdde7; font-size: .8rem; }
+  @media (min-width: 760px) {
+    .sf-banner { grid-template-columns: minmax(0, 1.2fr) minmax(22rem, .8fr); align-items: stretch; }
+    .sf-banner__copy { display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem; }
+    .study__header { grid-template-columns: minmax(0, 1fr) minmax(20rem, .7fr); align-items: end; }
+    .variant-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .downstream-grid { grid-template-columns: minmax(14rem, .45fr) repeat(2, minmax(0, 1fr)); }
+    .downstream-grid--hellcat { grid-template-columns: minmax(14rem, .45fr) minmax(0, 1fr); }
+    .feature-pair { grid-template-columns: minmax(0, 1.1fr) minmax(19rem, .7fr); }
+  }
+</style>

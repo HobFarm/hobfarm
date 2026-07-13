@@ -110,7 +110,7 @@ Those values are examples for schema and visual-lab work. They do not publish a 
 
 ## Visual-lab use
 
-The sheet hierarchy informs `ProductAssetStack`, `AssetManifest`, and `StyleFusionMap`:
+The sheet hierarchy informs `ProductAssetStack`, `AssetManifest`, and `VisualSystemMap`:
 
 - The four outfit columns become coordinated asset planes.
 - Garment rows become manifest groups.

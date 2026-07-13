@@ -6,7 +6,7 @@ Experimental module: not approved and not implemented
 
 ## Decision requested
 
-Approve Direction 2, the medium-depth interactive editorial system, as the next prototype. It extends the current Workshop design with a Sheet-to-Hero comparison, process markers, a lightweight StyleFusion map, a product asset stack, and lazy short video. Core content remains server-rendered.
+Approve Direction 2, the medium-depth interactive editorial system, as the next prototype. It extends the current Workshop design with a Sheet-to-Hero comparison, process markers, a lightweight visual system map, a product asset stack, and lazy short video. Core content remains server-rendered.
 
 Direction 3 should remain a separate approval-gated experiment. Do not place it on a production route, add Three.js to Workshop, generate paid motion, or upload assets until the review gate is cleared.
 
@@ -103,7 +103,7 @@ Build the smallest useful set first:
 9. `AcademyPath`
 10. `SocialReel`, implemented with the poster-first `AmbientVideoFrame`
 
-`CharacterAssetRail`, `WorkshopExperimentRail`, `PoseCardStage`, and a richer `StyleFusionMap` can follow when the pilot has real content for them.
+`CharacterAssetRail`, `WorkshopExperimentRail`, `PoseCardStage`, and a richer `VisualSystemMap` can follow when the pilot has real content for them.
 
 ### Analytics attributes
 
@@ -143,7 +143,7 @@ Use this direction if the priority is publishing speed and low maintenance. It i
 | Item | Proposal |
 | --- | --- |
 | Placement | Sophia/Stella Workshop case study, one Academy worked example, and the Sophia/Stella product page |
-| Adds | Sheet-to-Hero wipe, sticky process marker, CSS depth planes, SVG StyleFusion map, asset-stack preview, lazy poster-to-video transition |
+| Adds | Sheet-to-Hero wipe, sticky process marker, CSS depth planes, SVG visual system map, asset-stack preview, lazy poster-to-video transition |
 | Reuses | `BeforeAfterCompare`, gallery image helpers, visual-system data, media player patterns, existing poster/video assets |
 | Estimated implementation | 6–10 component days plus responsive, keyboard, reduced-motion, and performance QA |
 | Performance risk | Moderate; pointer and scroll effects can overwork mobile if not isolated |
@@ -203,7 +203,7 @@ The lab should show:
 
 1. Static fallback first.
 2. `SheetToHero` with pointer and keyboard control.
-3. `StyleFusionMap` as SVG.
+3. `VisualSystemMap` as SVG.
 4. `ProductAssetStack` with a buyer-file boundary.
 5. `AmbientVideoFrame` with poster, controls, captions slot, and reduced-motion behavior.
 6. A component-size and route-JavaScript readout in development only.
@@ -261,7 +261,7 @@ Integrate them into the visual lab and the Sophia/Stella slice before changing o
 ### Step 4: prototype Direction 2
 
 - Wrap `BeforeAfterCompare` as `SheetToHero`.
-- Build the SVG StyleFusion map.
+- Build the SVG visual system map.
 - Build the static-first product asset stack.
 - Add poster-first reel behavior.
 - Test pointer, keyboard, touch, reduced motion, JS-disabled content, and mobile layout.

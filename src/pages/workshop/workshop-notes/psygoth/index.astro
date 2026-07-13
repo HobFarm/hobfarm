@@ -1,0 +1,304 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import { getMedia } from "@/data/media-registry";
+
+const cdnBase = "https://cdn.hob.farm/articles/color-becomes-cast";
+const psygothGraphic = getMedia("workshop.graphics.landing");
+
+const chapters = [
+  {
+    number: "01",
+    name: "Em",
+    logicalId: "AV-EM-001",
+    lane: "Green",
+    accent: "#7ecf8a",
+    profile: getMedia("avatar.identity.em"),
+    video: getMedia("workshop.psygoth.em.video"),
+    transcript: getMedia("workshop.psygoth.em.transcript"),
+    thesis: "Growth gives the system a living surface.",
+    edited: "Em defines the organic lane through moss, stone, rot, and regrowth. Green is the part of the system that survives the storm and decides what can live after it.",
+    full: "I’m Em, the green lane: moss, stone, rot, growth, and everything that survives after the storm. Zima freezes, Nina burns, and I decide what gets to live. This version came out illustrated and I thought that was pretty cool.",
+    stills: [
+      { src: `${cdnBase}/em-green.jpg`, alt: "Em in the green PsyGoth identity lane" },
+      { src: `${cdnBase}/psygoth.png`, alt: "PsyGoth visual-system study" },
+    ],
+    continuity: "The green streak, dark wardrobe, direct address, and organic setting keep Em legible even when the rendering becomes illustrated.",
+  },
+  {
+    number: "02",
+    name: "Nina",
+    logicalId: "AV-NIN-001",
+    lane: "Red",
+    accent: "#f05c6d",
+    profile: getMedia("avatar.identity.nina"),
+    video: getMedia("workshop.psygoth.nina.video"),
+    transcript: getMedia("workshop.psygoth.nina.transcript"),
+    thesis: "Pressure makes the system move.",
+    edited: "Nina carries heat, glamour, danger, and refusal. Her red lane is not decoration. It creates the tension that turns a structured image into an active one.",
+    full: "I’m Nina, the red side: fire, pressure, glamour, danger, and the part of the image that refuses to behave. A style can have structure, sure, but tension is what makes it move.",
+    stills: [
+      { src: `${cdnBase}/nina-red.jpg`, alt: "Nina in the red PsyGoth identity lane" },
+      { src: `${cdnBase}/atomic-noir.png`, alt: "Atomic Noir supporting visual study" },
+    ],
+    continuity: "The red hair, hot landscape, sharp silhouette, and quicker verbal pressure separate Nina from the trio without changing the shared format.",
+  },
+  {
+    number: "03",
+    name: "Zima",
+    logicalId: "AV-ZIM-001",
+    lane: "Blue",
+    accent: "#66b9ff",
+    profile: getMedia("avatar.identity.zima"),
+    video: getMedia("workshop.psygoth.zima.video"),
+    transcript: getMedia("workshop.psygoth.zima.transcript"),
+    thesis: "Structure keeps variation coherent.",
+    edited: "Zima supplies the bones: ice, night, cold light, and controlled dreams. Blue turns atmosphere into a repeatable structure rather than a loose collection of effects.",
+    full: "I’m Zima, the blue side of the system: ice, night, structure, and controlled dreams. This is where PsyGoth gets its bones: cold light, sharp rhythm, and a storm that knows exactly where to stand.",
+    stills: [
+      { src: `${cdnBase}/zima-blue.jpg`, alt: "Zima in the blue PsyGoth identity lane" },
+      { src: `${cdnBase}/zima-em-nina.png`, alt: "Zima, Em, and Nina together as the PsyGoth trio" },
+    ],
+    continuity: "The blue hair, microphone, cold environment, and measured delivery make Zima the structural close of the three-part argument.",
+  },
+];
+
+const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  headline: "PsyGoth: One Visual System, Three Identities",
+  description: "A Workshop Notes feature on Em, Nina, and Zima as green, red, and blue identity lanes inside one reusable visual system.",
+  url: `${siteOrigin}/workshop/workshop-notes/psygoth/`,
+  isPartOf: {
+    "@type": "CollectionPage",
+    name: "Workshop Notes",
+    url: `${siteOrigin}/workshop/workshop-notes/`,
+  },
+};
+---
+
+<BaseLayout
+  title="PsyGoth: One Visual System, Three Identities | HobFarm Workshop"
+  description="Em, Nina, and Zima demonstrate how one PsyGoth visual system can hold three stable character identities."
+  canonical="/workshop/workshop-notes/psygoth/"
+  structuredData={structuredData}
+  image={psygothGraphic.src}
+  imageAlt={psygothGraphic.alt}
+  palette="blue-red"
+>
+  <article class="psygoth-study">
+    <header class="hero">
+      <Wrapper variant="standard" class="py-16 lg:py-24">
+        <div class="hero-layout">
+          <div>
+            <p class="kicker">Workshop Notes / Character systems</p>
+            <h1>PsyGoth: One Visual System, Three Identities</h1>
+            <p class="deck">Em, Nina, and Zima share one dark psychedelic grammar. Their colors assign three different jobs: green grows, red pushes, and blue holds the structure together.</p>
+            <div class="lane-key" aria-label="PsyGoth color lanes">
+              <span class="em">Em / green / growth</span>
+              <span class="nina">Nina / red / pressure</span>
+              <span class="zima">Zima / blue / structure</span>
+            </div>
+          </div>
+          <div class="hero-portraits" aria-label="Em, Nina, and Zima canonical profiles">
+            {chapters.map((chapter) => <img src={chapter.profile.src} alt={chapter.profile.alt} width={chapter.profile.width} height={chapter.profile.height} loading="eager" decoding="async" />)}
+          </div>
+        </div>
+      </Wrapper>
+    </header>
+
+    <section class="system-intro">
+      <Wrapper variant="standard" class="py-14 lg:py-20">
+        <div class="intro-grid">
+          <div>
+            <p class="kicker">Shared grammar</p>
+            <h2>The style stays recognizable without forcing one costume.</h2>
+          </div>
+          <div class="prose">
+            <p>PsyGoth combines gothic material, psychedelic color, hard silhouettes, and atmospheric environments. The characters do not need matching clothes or identical backgrounds. They need stable identity signals and a clear relationship to the shared system.</p>
+            <p>The three selected HeyGen clips already work as a sequence. Em explains survival and growth. Nina introduces heat and tension. Zima closes with structure and control. Their longer portrait takes remain useful continuity references, while these shorter landscape clips carry the public feature.</p>
+          </div>
+        </div>
+      </Wrapper>
+    </section>
+
+    {chapters.map((chapter) => (
+      <section class="character-chapter" style={`--accent:${chapter.accent}`}>
+        <Wrapper variant="standard" class="py-14 lg:py-24">
+          <header class="chapter-heading">
+            <div class="chapter-index">
+              <span>{chapter.number}</span>
+              <small>{chapter.logicalId}</small>
+            </div>
+            <div>
+              <p class="kicker">{chapter.lane} identity lane</p>
+              <h2>{chapter.name}</h2>
+              <p class="thesis">{chapter.thesis}</p>
+            </div>
+          </header>
+
+          <div class="chapter-grid">
+            <div class="video-column">
+              <video
+                controls
+                playsinline
+                preload="none"
+                poster={chapter.video.poster}
+                aria-label={`${chapter.name} PsyGoth presenter clip`}
+              >
+                <source src={chapter.video.src} type="video/mp4" />
+              </video>
+              <p class="media-note">Primary editorial clip. Playback is user-initiated; no background removal or automatic loading is used.</p>
+            </div>
+
+            <div class="transcript-column">
+              <div class="identity-tag">
+                <img src={chapter.profile.src} alt="" width={chapter.profile.width} height={chapter.profile.height} loading="lazy" decoding="async" />
+                <div><strong>{chapter.name}</strong><span>{chapter.logicalId} / {chapter.lane} lane</span></div>
+              </div>
+              <p class="kicker">Edited transcript</p>
+              <p class="edited-transcript">{chapter.edited}</p>
+              <p class="continuity"><strong>Continuity note:</strong> {chapter.continuity}</p>
+              <details>
+                <summary>Open long-form transcript source</summary>
+                <p>{chapter.full}</p>
+                <a href={chapter.transcript.src}>Plain-text transcript</a>
+              </details>
+            </div>
+          </div>
+
+          <div class="still-grid" aria-label={`${chapter.name} supporting stills`}>
+            {chapter.stills.map((still) => (
+              <figure>
+                <img src={still.src} alt={still.alt} loading="lazy" />
+              </figure>
+            ))}
+          </div>
+        </Wrapper>
+      </section>
+    ))}
+
+    <section class="comparison-section">
+      <Wrapper variant="standard" class="py-14 lg:py-20">
+        <header class="section-heading">
+          <p class="kicker">Continuity comparison</p>
+          <h2>One format, three kinds of signal.</h2>
+        </header>
+        <div class="comparison-table" role="table" aria-label="PsyGoth identity comparison">
+          <div role="row" class="table-head">
+            <span role="columnheader">Character</span>
+            <span role="columnheader">Stable identity</span>
+            <span role="columnheader">System job</span>
+            <span role="columnheader">Motion direction</span>
+          </div>
+          <div role="row">
+            <strong role="cell">Em / green</strong>
+            <span role="cell">Green streak, dark base, organic setting</span>
+            <span role="cell">Growth, rot, survival</span>
+            <span role="cell">Calm, grounded, observational</span>
+          </div>
+          <div role="row">
+            <strong role="cell">Nina / red</strong>
+            <span role="cell">Red hair, hard contrast, hot environment</span>
+            <span role="cell">Heat, pressure, tension</span>
+            <span role="cell">Direct, compressed, volatile</span>
+          </div>
+          <div role="row">
+            <strong role="cell">Zima / blue</strong>
+            <span role="cell">Blue hair, cold light, controlled scene</span>
+            <span role="cell">Structure, distance, atmosphere</span>
+            <span role="cell">Measured, precise, closing</span>
+          </div>
+        </div>
+      </Wrapper>
+    </section>
+
+    <section class="reuse-section">
+      <Wrapper variant="standard" class="py-14 lg:py-20">
+        <div class="intro-grid">
+          <div>
+            <p class="kicker">From Workshop to recurring use</p>
+            <h2>The character system becomes a publishing system.</h2>
+          </div>
+          <div class="prose">
+            <p>Each character can now return in articles, video intros, gallery notes, and Academy lessons without starting from a blank prompt. The color lane, voice, framing, and motion direction give every new appearance a continuity check.</p>
+            <p>HobFarm TV can use the trio for short interstitials and character-led explainers. Academy can use the same material to show how a visual rule becomes a repeatable production decision.</p>
+            <nav class="cta-row" aria-label="Related PsyGoth destinations">
+              <a href="/workshop/character-mannequin/avatar-host-system/">Avatar host system</a>
+              <a href="/projects/hobfarm-tv/">HobFarm TV</a>
+              <a href="/academy/avatar-content-system/">Avatar Content System</a>
+            </nav>
+          </div>
+        </div>
+      </Wrapper>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  .psygoth-study { background: #07070a; color: #c6c2cd; }
+  .hero { border-bottom: 1px solid #2b2931; background: radial-gradient(circle at 14% 4%, rgba(62, 180, 91, .16), transparent 28rem), radial-gradient(circle at 50% 0%, rgba(208, 42, 70, .14), transparent 30rem), radial-gradient(circle at 86% 3%, rgba(67, 137, 255, .18), transparent 28rem), #07070a; }
+  .hero-layout { display: grid; gap: 2rem; align-items: center; }
+  .hero-portraits { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; }
+  .hero-portraits img { display: block; width: 100%; aspect-ratio: 3 / 4; border: 1px solid #34313a; border-radius: .55rem; object-fit: cover; object-position: center top; }
+  .hero-portraits img:nth-child(1) { border-color: rgb(126 207 138 / .55); }
+  .hero-portraits img:nth-child(2) { border-color: rgb(240 92 109 / .55); transform: translateY(1rem); }
+  .hero-portraits img:nth-child(3) { border-color: rgb(102 185 255 / .55); }
+  .kicker { margin: 0; color: #a7a1af; font-family: var(--font-mono); font-size: .64rem; letter-spacing: .16em; text-transform: uppercase; }
+  h1 { max-width: 70rem; margin: 1rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(3.3rem, 8.5vw, 8rem); font-weight: 300; letter-spacing: -.06em; line-height: .9; text-wrap: balance; }
+  .deck { max-width: 55rem; margin: 1.5rem 0 0; color: #c6c2cd; font-size: clamp(1rem, 2vw, 1.25rem); line-height: 1.72; }
+  .lane-key { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: 2rem; }
+  .lane-key span { padding: .55rem .75rem; border: 1px solid currentColor; border-radius: 999px; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .08em; text-transform: uppercase; }
+  .lane-key .em { color: #7ecf8a; } .lane-key .nina { color: #f05c6d; } .lane-key .zima { color: #66b9ff; }
+  .system-intro, .comparison-section, .reuse-section { border-bottom: 1px solid #2b2931; }
+  .intro-grid { display: grid; gap: 2rem; }
+  .intro-grid h2, .section-heading h2 { max-width: 46rem; margin: .75rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 5.2rem); font-weight: 300; letter-spacing: -.045em; line-height: .96; }
+  .prose p { margin: 0; color: #aaa6b2; line-height: 1.8; }
+  .prose p + p { margin-top: 1rem; }
+  .character-chapter { border-bottom: 1px solid #2b2931; background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 8%, #09090d), #08080b 42%); }
+  .chapter-heading { display: grid; grid-template-columns: 4.2rem 1fr; gap: 1rem; align-items: end; }
+  .chapter-index { display: grid; gap: .35rem; color: var(--accent); font-family: var(--font-mono); }
+  .chapter-index span { font-size: 1rem; }
+  .chapter-index small { color: #77727e; font-size: .5rem; writing-mode: vertical-rl; transform: rotate(180deg); }
+  .chapter-heading .kicker { color: var(--accent); }
+  .chapter-heading h2 { margin: .35rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(4rem, 11vw, 9rem); font-weight: 300; letter-spacing: -.065em; line-height: .78; }
+  .thesis { margin: 1rem 0 0; color: #d7d3dc; font-size: 1.05rem; }
+  .chapter-grid { display: grid; gap: 1rem; margin-top: 2.2rem; }
+  video { display: block; width: 100%; border: 1px solid color-mix(in srgb, var(--accent) 45%, #2b2931); border-radius: .7rem; background: #000; aspect-ratio: 16 / 9; object-fit: contain; }
+  .media-note { margin: .7rem 0 0; color: #797580; font-family: var(--font-mono); font-size: .56rem; line-height: 1.6; }
+  .transcript-column { padding: 1.1rem; border: 1px solid #34313a; border-top: 3px solid var(--accent); border-radius: .7rem; background: rgba(8, 8, 11, .82); }
+  .identity-tag { display: flex; gap: .8rem; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #34313a; }
+  .identity-tag img { width: 3.7rem; height: 3.7rem; border: 1px solid color-mix(in srgb, var(--accent) 55%, #34313a); border-radius: 999px; object-fit: cover; object-position: center 24%; }
+  .identity-tag strong, .identity-tag span { display: block; }
+  .identity-tag strong { color: #fff; font-size: .92rem; }
+  .identity-tag span { margin-top: .25rem; color: var(--accent); font-family: var(--font-mono); font-size: .53rem; letter-spacing: .08em; text-transform: uppercase; }
+  .transcript-column .kicker { color: var(--accent); }
+  .edited-transcript { margin: 1.1rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(1.55rem, 3vw, 2.3rem); font-weight: 300; line-height: 1.25; }
+  .continuity { margin: 1.2rem 0 0; color: #aaa6b2; font-size: .84rem; line-height: 1.7; }
+  details { margin-top: 1.2rem; border-top: 1px solid #34313a; }
+  summary { padding: 1rem 0; color: #d9d5df; cursor: pointer; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; }
+  details p { margin: 0; color: #aaa6b2; font-size: .82rem; line-height: 1.75; }
+  details a { display: inline-block; margin-top: .8rem; color: var(--accent); font-family: var(--font-mono); font-size: .6rem; }
+  .still-grid { display: grid; gap: .8rem; margin-top: .8rem; }
+  .still-grid figure { overflow: hidden; margin: 0; border: 1px solid #2f2c34; border-radius: .55rem; background: #0d0c11; }
+  .still-grid img { display: block; width: 100%; height: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+  .comparison-table { margin-top: 2rem; border: 1px solid #34313a; border-radius: .6rem; overflow: hidden; }
+  .comparison-table > div { display: grid; grid-template-columns: 1fr; gap: .45rem; padding: 1rem; border-top: 1px solid #2d2a32; }
+  .comparison-table > div:first-child { border-top: 0; }
+  .comparison-table span, .comparison-table strong { color: #aaa6b2; font-size: .78rem; line-height: 1.55; }
+  .comparison-table strong { color: #fff; }
+  .comparison-table .table-head { display: none; background: #111017; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1.5rem; }
+  .cta-row a { padding: .72rem .9rem; border: 1px solid #46414d; border-radius: .3rem; color: #efebf3; font-family: var(--font-mono); font-size: .61rem; letter-spacing: .07em; text-decoration: none; text-transform: uppercase; }
+  .cta-row a:hover, .cta-row a:focus-visible { border-color: #fff; outline: none; }
+  @media (min-width: 760px) {
+    .hero-layout { grid-template-columns: minmax(0, 1fr) minmax(22rem, .52fr); }
+    .intro-grid { grid-template-columns: minmax(0, 1fr) minmax(0, .85fr); align-items: start; }
+    .chapter-grid { grid-template-columns: minmax(0, 1.35fr) minmax(18rem, .65fr); align-items: start; }
+    .still-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .comparison-table > div { grid-template-columns: .7fr 1.25fr 1fr 1fr; gap: 1rem; align-items: start; }
+    .comparison-table .table-head { display: grid; }
+    .comparison-table .table-head span { color: #77727e; font-family: var(--font-mono); font-size: .56rem; letter-spacing: .08em; text-transform: uppercase; }
+  }
+</style>

@@ -475,6 +475,105 @@ const gallery = defineCollection({
   }),
 });
 
+const stylefusionStudies = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/stylefusion-studies" }),
+  schema: z.object({
+    title: z.string(),
+    status: z.enum(["private-prototype", "draft", "approved"]).default("draft"),
+    summary: z.string(),
+    sourceDocument: z.string(),
+    draft: z.boolean().default(true),
+    export: z.object({
+      irVersion: z.string().optional(),
+      extractionModel: z.string().optional(),
+      utilityModel: z.string().optional(),
+      generatedAt: z.string().optional(),
+      durationMs: z.number().int().nonnegative().optional(),
+      executionMode: z.string().optional(),
+    }),
+    references: z
+      .array(
+        z.object({
+          id: z.string(),
+          role: z.enum(["subject", "style", "composition", "color", "lighting", "texture"]),
+          label: z.string(),
+          weight: z.number().nonnegative().optional(),
+          notes: z.string().optional(),
+          image: z.string().optional(),
+          approvedForPublicDisplay: z.boolean().default(false),
+        }),
+      )
+      .default([]),
+    agents: z
+      .array(
+        z.object({
+          name: z.string(),
+          actualModel: z.string().optional(),
+          confidence: z.number().min(0).max(1).optional(),
+        }),
+      )
+      .default([]),
+    compiled: z.object({
+      styleAnchors: z.array(z.string()).default([]),
+      subject: z.string().optional(),
+      scene: z.string().optional(),
+      camera: z.string().optional(),
+      render: z.string().optional(),
+      style: z.string().optional(),
+      color: z.string().optional(),
+      texture: z.string().optional(),
+      lighting: z.string().optional(),
+      aspectRatio: z.string().optional(),
+    }),
+    diagnostics: z
+      .object({
+        subjectExtractionFailed: z.boolean().default(false),
+        notes: z.array(z.string()).default([]),
+        slotSources: z
+          .array(
+            z.object({
+              slot: z.string(),
+              sourceReference: z.string(),
+              weight: z.number().nonnegative().optional(),
+              inheritance: z.string().optional(),
+              confidence: z.number().min(0).max(1).optional(),
+            }),
+          )
+          .default([]),
+      })
+      .default({ subjectExtractionFailed: false, notes: [], slotSources: [] }),
+    results: z
+      .object({
+        generatedImages: z.array(z.string()).default([]),
+        relatedCharacters: z.array(z.string()).default([]),
+        relatedSheets: z.array(z.string()).default([]),
+        relatedHeroes: z.array(z.string()).default([]),
+        relatedPosters: z.array(z.string()).default([]),
+        relatedVideos: z.array(z.string()).default([]),
+        relatedProducts: z.array(z.string()).default([]),
+      })
+      .default({
+        generatedImages: [],
+        relatedCharacters: [],
+        relatedSheets: [],
+        relatedHeroes: [],
+        relatedPosters: [],
+        relatedVideos: [],
+        relatedProducts: [],
+      }),
+    findings: z
+      .object({
+        preserved: z.array(z.string()).default([]),
+        inherited: z.array(z.string()).default([]),
+        transformed: z.array(z.string()).default([]),
+        failure: z.array(z.string()).default([]),
+        nextTest: z.array(z.string()).default([]),
+        reusableRule: z.string().optional(),
+      })
+      .optional(),
+  }),
+});
+
 const projects = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/projects" }),
   schema: ({ image }) =>
@@ -869,6 +968,7 @@ const products = defineCollection({
 export const collections = {
   articles,
   gallery,
+  stylefusionStudies,
   projects,
   changelog,
   help,

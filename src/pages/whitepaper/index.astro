@@ -367,7 +367,7 @@ const products: Product[] = [
           <div class="mt-1 mb-8 h-0.5 w-16 bg-accent-500"></div>
           <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed mb-6">
             To make the architecture concrete, here is a simplified trace of StyleFusion processing a reference image through
-            the Fusion Engine pipeline. StyleFusion is HobFarm's multi-provider image generation lab.
+            the Fusion Engine pipeline. StyleFusion is HobFarm's reference-image compiler and diagnostic export system.
           </Text>
           <div class="space-y-6">
             <div class="pl-4 border-l-2 border-base-700">
@@ -471,7 +471,7 @@ const products: Product[] = [
 
             <Text tag="h3" variant="displayXS" class="text-white font-display !mt-8">Cross-System Feedback</Text>
             <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed">
-              When StyleFusion produces image generations, the outcomes feed back into the Grimoire. Successful style
+              When a StyleFusion export feeds a downstream image-generation run, reviewed outcomes can return to the Grimoire. Successful style
               combinations strengthen the connections between related visual atoms. Prompt patterns that produce consistent
               results across providers get recorded as verified techniques. The knowledge graph grows not just from external
               ingestion but from the operational output of the tools themselves. The system learns from its own work.
@@ -544,7 +544,7 @@ const products: Product[] = [
 
           <Text tag="p" variant="textBase" class="text-base-400 text-pretty leading-relaxed mt-8">
             Every surface shares the same engine, the same provider abstraction layer, and the same knowledge layer. A style
-            combination discovered in StyleFusion enriches the Grimoire, which sharpens the next extraction and the next thing
+            combination compiled in a StyleFusion run enriches the Grimoire, which sharpens the next extraction and the next thing
             that ships out of the shop. The pieces are not isolated products; they are parts of one workshop feeding itself.
           </Text>
         </section>

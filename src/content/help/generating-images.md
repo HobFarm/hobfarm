@@ -31,7 +31,7 @@ The model dropdown on the right panel groups models by provider:
 
 Models without a configured API key show "(no key)" and are grayed out. Set up keys in Settings.
 
-Different models interpret the same prompt differently. Part of learning StyleFusion is developing a sense for which models handle which styles best. The History page helps here: generate the same IR across multiple models and compare.
+Different models interpret the same compiled document differently. Part of learning the full workflow is developing a sense for which downstream generation models handle which styles best. The History page helps here: send the same IR-derived prompt to multiple models and compare the resulting images without treating them as part of the Complete Export.
 
 ## Aspect Ratio
 

@@ -9,7 +9,7 @@ publishedAt: 2026-03-13
 
 ## The Refinement Loop
 
-Rarely does the first generation nail exactly what you want. StyleFusion is designed for iteration: generate, assess, adjust, regenerate. The IR sits in the middle as an editable blueprint that you refine until the output matches your vision.
+Rarely does the first downstream generation nail exactly what you want. The workflow is iterative: generate from the compiled document, assess the result, adjust the IR or slots, then generate again. The IR remains the editable blueprint between approved references and each downstream result.
 
 The basic loop:
 
