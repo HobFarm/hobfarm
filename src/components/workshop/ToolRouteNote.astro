@@ -1,0 +1,33 @@
+---
+import type { ToolRoute } from "@/lib/content-relationships";
+
+interface Props {
+  route: ToolRoute;
+  title?: string;
+}
+
+const { route, title = "Tool route" } = Astro.props;
+---
+
+<aside class="tool-route" aria-labelledby="tool-route-title">
+  <p>Production note</p>
+  <h2 id="tool-route-title">{title}</h2>
+  <div class="tool-route__grid">
+    <section><h3>Required</h3><ul>{route.required.map((item) => <li>{item}</li>)}</ul></section>
+    {route.optional && route.optional.length > 0 && <section><h3>Optional gain</h3><ul>{route.optional.map((item) => <li>{item}</li>)}</ul></section>}
+    <section><h3>Fallback</h3><ul>{route.fallback.map((item) => <li>{item}</li>)}</ul></section>
+  </div>
+  {route.note && <p class="tool-route__note">{route.note}</p>}
+</aside>
+
+<style>
+  .tool-route { padding: clamp(1.25rem, 4vw, 2rem); border-left: 3px solid #55d7ff; background: rgba(14, 11, 22, .72); }
+  .tool-route > p:first-child { margin: 0; color: #55d7ff; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; }
+  h2 { margin: .55rem 0 0; color: #fff; font-family: var(--font-display); font-size: 2rem; font-weight: 300; }
+  .tool-route__grid { display: grid; gap: 1rem; margin-top: 1.25rem; }
+  section { padding: 1rem; border: 1px solid #2c2440; }
+  h3 { margin: 0; color: #9b96ad; font-family: var(--font-mono); font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; }
+  ul { margin: .7rem 0 0; padding-left: 1.1rem; color: #ece9f5; font-size: .82rem; line-height: 1.65; }
+  .tool-route__note { margin: 1rem 0 0; color: #9b96ad; font-size: .8rem; line-height: 1.6; }
+  @media (min-width: 700px) { .tool-route__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+</style>

@@ -1,0 +1,77 @@
+---
+type SourceRole = {
+  label: string;
+  role: string;
+  controls: string[];
+  accent?: string;
+};
+
+interface Props {
+  title?: string;
+  sources: SourceRole[];
+  result: { label: string; description: string };
+}
+
+const { title = "StyleFusion source-role map", sources, result } = Astro.props;
+---
+
+<figure class="fusion-map" aria-labelledby="fusion-map-title">
+  <figcaption>
+    <p>Controlled translation</p>
+    <h2 id="fusion-map-title">{title}</h2>
+  </figcaption>
+  <div class="fusion-map__diagram" aria-hidden="true">
+    <svg viewBox="0 0 900 390" role="presentation">
+      <path d="M210 85 C360 85 350 195 470 195" />
+      <path d="M210 195 C350 195 350 195 470 195" />
+      <path d="M210 305 C360 305 350 195 470 195" />
+      {sources.slice(0, 3).map((source, index) => (
+        <g transform={`translate(20 ${30 + index * 110})`}>
+          <rect width="190" height="82" rx="12" style={`--node:${source.accent ?? "#55d7ff"}`} />
+          <text x="18" y="31" class="node-label">{source.label}</text>
+          <text x="18" y="55" class="node-role">{source.role}</text>
+        </g>
+      ))}
+      <g transform="translate(470 130)">
+        <rect class="result" width="400" height="130" rx="16" />
+        <text x="24" y="50" class="result-label">{result.label}</text>
+        <text x="24" y="80" class="result-role">Resolved character variant</text>
+      </g>
+    </svg>
+  </div>
+  <ol class="fusion-map__list">
+    {sources.map((source) => (
+      <li style={`--node:${source.accent ?? "#55d7ff"}`}>
+        <span>{source.role}</span>
+        <h3>{source.label}</h3>
+        <p>{source.controls.join(" / ")}</p>
+      </li>
+    ))}
+    <li class="fusion-map__result">
+      <span>Result</span>
+      <h3>{result.label}</h3>
+      <p>{result.description}</p>
+    </li>
+  </ol>
+</figure>
+
+<style>
+  .fusion-map { margin: 0; }
+  figcaption > p { margin: 0; color: #ff4fc3; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; }
+  figcaption h2 { margin: .65rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 300; }
+  .fusion-map__diagram { display: none; margin-top: 1.5rem; padding: 1rem; overflow: hidden; border: 1px solid #2c2440; border-radius: 1rem; background: #0e0b16; }
+  svg { display: block; width: 100%; height: auto; }
+  path { fill: none; stroke: #433559; stroke-width: 2; stroke-dasharray: 5 8; }
+  rect { fill: color-mix(in srgb, var(--node) 12%, #0e0b16); stroke: var(--node); stroke-width: 1.5; }
+  rect.result { fill: #171123; stroke: #b78cff; }
+  text { font-family: var(--font-mono); }
+  .node-label, .result-label { fill: #fff; font-size: 16px; }
+  .node-role, .result-role { fill: #9b96ad; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+  .result-label { font-family: var(--font-display); font-size: 25px; }
+  .fusion-map__list { display: grid; gap: .75rem; margin: 1.5rem 0 0; padding: 0; list-style: none; }
+  .fusion-map__list li { padding: 1.1rem; border: 1px solid color-mix(in srgb, var(--node, #b78cff) 55%, #2c2440); border-radius: .75rem; background: #0e0b16; }
+  .fusion-map__list span { color: var(--node, #b78cff); font-family: var(--font-mono); font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; }
+  .fusion-map__list h3 { margin: .55rem 0 0; color: #fff; font-size: 1rem; }
+  .fusion-map__list p { margin: .45rem 0 0; color: #9b96ad; font-size: .8rem; line-height: 1.55; }
+  @media (min-width: 760px) { .fusion-map__diagram { display: block; } .fusion-map__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+</style>

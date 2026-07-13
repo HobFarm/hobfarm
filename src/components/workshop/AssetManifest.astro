@@ -1,0 +1,37 @@
+---
+import type { AssetManifestRef } from "@/lib/content-relationships";
+
+interface Props {
+  items: AssetManifestRef[];
+  title?: string;
+}
+
+const { items, title = "Asset manifest" } = Astro.props;
+---
+
+<section class="asset-manifest" aria-labelledby="asset-manifest-title">
+  <header>
+    <p>Packet contents</p>
+    <h2 id="asset-manifest-title">{title}</h2>
+  </header>
+  <div class="asset-manifest__scroll">
+    <table>
+      <thead><tr><th scope="col">ID</th><th scope="col">Asset</th><th scope="col">Role</th><th scope="col">Format</th><th scope="col">Boundary</th></tr></thead>
+      <tbody>
+        {items.map((item) => <tr><td><code>{item.id}</code></td><th scope="row">{item.label}</th><td>{item.role}</td><td>{item.format ?? "—"}{item.dimensions ? ` / ${item.dimensions}` : ""}</td><td>{item.buyerFile ? "Buyer file — not public" : "Public preview"}</td></tr>)}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<style>
+  .asset-manifest { padding: clamp(1.25rem, 4vw, 2rem); border: 1px solid #2c2440; border-radius: 1rem; background: rgba(14, 11, 22, .72); }
+  header > p { margin: 0; color: #42e6a4; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; }
+  h2 { margin: .6rem 0 0; color: #fff; font-family: var(--font-display); font-size: 2rem; font-weight: 300; }
+  .asset-manifest__scroll { margin-top: 1.25rem; overflow-x: auto; }
+  table { width: 100%; min-width: 44rem; border-collapse: collapse; color: #c8c6d4; font-size: .78rem; }
+  th, td { padding: .8rem .75rem; border-bottom: 1px solid #2c2440; text-align: left; vertical-align: top; }
+  thead th { color: #6b6580; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; }
+  tbody th { color: #fff; font-weight: 500; }
+  code { color: #55d7ff; font-family: var(--font-mono); }
+</style>

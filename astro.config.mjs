@@ -16,6 +16,7 @@ const redirectedPaths = new Set([
   "/gallery/cute-corrupted/",
   "/departments/workshop-notes/",
 ]);
+const privatePrototypePaths = new Set(["/workshop/visual-lab/"]);
 
 // https://astro.build/config
 export default defineConfig({
@@ -60,6 +61,7 @@ export default defineConfig({
         return (
           !page.includes("/login") &&
           !page.includes("/account") &&
+          !privatePrototypePaths.has(pathname) &&
           !noindexDepartmentPaths.has(pathname) &&
           !redirectedPaths.has(pathname)
         );

@@ -1,0 +1,43 @@
+---
+import BeforeAfterCompare from "@/components/ui/BeforeAfterCompare.astro";
+
+interface Props {
+  sheet: { src: string; alt: string; label?: string };
+  hero: { src: string; alt: string; label?: string };
+  title?: string;
+  description?: string;
+  id?: string;
+}
+
+const {
+  sheet,
+  hero,
+  title = "Sheet to Hero",
+  description = "Compare the resolved character sheet with the staged image built from the same identity anchors.",
+  id = "sheet-to-hero",
+} = Astro.props;
+---
+
+<figure class="sheet-to-hero" aria-labelledby={`${id}-title`}>
+  <figcaption>
+    <p>Production transition</p>
+    <h2 id={`${id}-title`}>{title}</h2>
+    <span>{description}</span>
+  </figcaption>
+  <BeforeAfterCompare
+    before={{ src: sheet.src, alt: sheet.alt, label: sheet.label ?? "Sheet" }}
+    after={{ src: hero.src, alt: hero.alt, label: hero.label ?? "Hero" }}
+    aspect="aspect-[16/10]"
+    fit="contain"
+    ariaLabel={`${title}: character sheet and hero image comparison`}
+    id={`${id}-compare`}
+  />
+</figure>
+
+<style>
+  .sheet-to-hero { display: grid; gap: 1.5rem; margin: 0; }
+  figcaption > p { margin: 0; color: #55d7ff; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; }
+  figcaption h2 { margin: .65rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.8rem); font-weight: 300; line-height: .96; }
+  figcaption span { display: block; max-width: 42rem; margin-top: 1rem; color: #9b96ad; line-height: 1.65; }
+  @media (min-width: 1000px) { .sheet-to-hero { grid-template-columns: minmax(15rem, .38fr) minmax(0, 1fr); align-items: start; } figcaption { position: sticky; top: 7rem; } }
+</style>
