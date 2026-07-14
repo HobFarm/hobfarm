@@ -4,10 +4,10 @@ import { join } from "node:path";
 import test from "node:test";
 const root=process.cwd(); const read=(file)=>readFileSync(join(root,file),"utf8");
 
-test("Other Alice public navigation has four world-guide entries",()=>{
+test("Other Alice public navigation has five living-world entries",()=>{
  const nav=read("src/data/other-alice/navigation.ts");
- assert.deepEqual([...nav.matchAll(/label:\s*"([^"]+)"/g)].slice(0,4).map((match)=>match[1]),["Start Here","World Guide","Houses","Web of Wonderland"]);
- assert.doesNotMatch(nav,/Adventure|Atlas|Cast|Bestiary|Archive|Workshop/);
+ assert.deepEqual([...nav.matchAll(/label:\s*"([^"]+)"/g)].slice(0,5).map((match)=>match[1]),["Start Here","World Guide","Houses","Cast","Web of Wonderland"]);
+ assert.doesNotMatch(nav,/Adventure|Atlas|Bestiary|Archive|Workshop/);
 });
 
 test("Start Here uses the approved hero and chronology",()=>{

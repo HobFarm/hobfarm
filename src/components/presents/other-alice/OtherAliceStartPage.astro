@@ -7,8 +7,8 @@ import HousePowerStack from "./living-world/HousePowerStack.astro";
 import BoundaryRecord from "./living-world/BoundaryRecord.astro";
 import WorkshopContactSheet from "./living-world/WorkshopContactSheet.astro";
 import {
-  OTHER_ALICE_HOUSES_PATH, OTHER_ALICE_WEB_PATH, OTHER_ALICE_WORLD_GUIDE_PATH,
-  chronologyRail, otherAliceChronology, otherAliceResidents, archiveRecords, bestiaryRecords,
+  OTHER_ALICE_CAST_PATH, OTHER_ALICE_HOUSES_PATH, OTHER_ALICE_WEB_PATH, OTHER_ALICE_WORLD_GUIDE_PATH,
+  chronologyRail, otherAliceChronology, otherAliceCastPreview, archiveRecords, bestiaryRecords,
 } from "@/data/other-alice-world-guide";
 ---
 <div class="oaa-world">
@@ -23,6 +23,7 @@ import {
    <nav class="actions" aria-label="Explore Other Alice">
     <a href={OTHER_ALICE_WORLD_GUIDE_PATH}>Explore Wonderland</a>
     <a href={OTHER_ALICE_HOUSES_PATH}>See who holds power</a>
+    <a href={OTHER_ALICE_CAST_PATH}>Meet the cast</a>
     <a href={OTHER_ALICE_WEB_PATH}>Open the Web of Wonderland</a>
    </nav>
    <p class="chronology-line">{otherAliceChronology.rail}</p>
@@ -63,11 +64,12 @@ import {
  </section>
 
  <section class="section evidence-section" aria-labelledby="evidence-title">
-  <div class="section-heading"><p class="index">06 / Residents, ecology, evidence</p><h2 id="evidence-title">A world record needs people, work, organisms, and doubt.</h2></div>
-  <div class="evidence-layout">
-   <article class="alice-plate"><img src="https://cdn.hob.farm/pages/other-alice-adventures/other-alice-character-sheet.webp" width="1400" height="1050" loading="lazy" alt="Approved character sheet showing Other Alice in a purple dress, with field tools and multiple views."/><div><p class="index">Dominant resident record</p><h3>Other Alice</h3><p>{otherAliceResidents[0].summary.join(" ")}</p></div></article>
-   <div class="evidence-column">
-    {otherAliceResidents.slice(1,4).map((resident)=><article><p class="index">{resident.role}</p><h3>{resident.name}</h3><p>{resident.summary.join(" ")}</p></article>)}
+   <div class="section-heading"><p class="index">06 / Cast, ecology, evidence</p><h2 id="evidence-title">A world record needs people, work, organisms, and doubt.</h2></div>
+   <div class="evidence-layout">
+    <article class="alice-plate"><img src="https://cdn.hob.farm/pages/other-alice-adventures/other-alice-character-sheet.webp" width="1400" height="1050" loading="lazy" alt="Approved character sheet showing Other Alice in a purple dress, with field tools and multiple views."/><div><p class="index">Continuity record</p><h3>Other Alice</h3><p>{otherAliceCastPreview[0].summary.join(" ")}</p></div></article>
+    <div class="evidence-column">
+     {otherAliceCastPreview.slice(1).map((resident)=><article><p class="index">{resident.role}</p><h3>{resident.name}</h3><p>{resident.summary.join(" ")}</p></article>)}
+     <p class="section-link"><a href={OTHER_ALICE_CAST_PATH}>Open the cast dossiers →</a></p>
    </div>
    <div class="evidence-column narrow">
     <article><p class="index">Living infrastructure</p><h3>{bestiaryRecords[0].title}</h3><p>{bestiaryRecords[0].summary}</p></article>

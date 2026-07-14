@@ -82,10 +82,10 @@ export const otherAliceAssets: OtherAliceAsset[] = [
     regionIds: ["boundary-mountains"],
     canonLevel: "working",
     visibility: "public",
-    sourcePath: "https://cdn.hob.farm/pages/other-alice-adventures/other-alice-wonderland-wasteland-poster.webp",
-    publicPath: "https://cdn.hob.farm/pages/other-alice-adventures/other-alice-wonderland-wasteland-poster.webp",
+    sourcePath: "public/media/other-alice/oaa-poster-other-alice-two-worlds-v01-2x3.avif",
+    publicPath: "https://cdn.hob.farm/pages/other-alice-adventures/oaa-poster-other-alice-two-worlds-v01-2x3.avif",
     aspectRatio: "2:3",
-    cropNotes: "900 × 1350. Preserve the figure and the wet-to-geometric boundary split; display as a contained plate.",
+    cropNotes: "900 × 1350 AVIF. Preserve the figure and the wet-to-geometric boundary split; display as a contained plate.",
     altText: "Other Alice stands where wet Wonderland meets the first hard geometric boundary evidence.",
     status: "published",
     tool: "Approved existing HobFarm art; AVIF export with Sharp",
@@ -137,6 +137,22 @@ export const otherAliceAssets: OtherAliceAsset[] = [
     altText: "Working concept portrait associated with the disputed Hatter highlands record.",
     status: "published",
     tool: "Approved existing HobFarm concept art",
+    referenceImages: [],
+    identityLocked: true,
+  },
+  {
+    id: "oaa-evidence-ciryl-spade-portrait-v01-4x3",
+    assetClass: "evidence",
+    subjectIds: ["ciryl-spade"],
+    regionIds: ["root-forest"],
+    canonLevel: "locked",
+    visibility: "public",
+    publicPath: "https://cdn.hob.farm/pages/other-alice-adventures/oaa-ciryl-portrait-.png",
+    aspectRatio: "4:3",
+    cropNotes: "Keep Ciryl's practical maintenance clothing and work context visible.",
+    altText: "Ciryl Spade in practical maintenance clothing.",
+    status: "published",
+    tool: "Approved existing HobFarm art",
     referenceImages: [],
     identityLocked: true,
   },
@@ -450,3 +466,7 @@ export const otherAliceAssets: OtherAliceAsset[] = [
 ];
 
 export const publicOtherAliceAssets = otherAliceAssets.filter((asset) => asset.visibility === "public" && asset.status === "published");
+
+export function getOtherAliceAsset(id: string | null | undefined) {
+  return id ? otherAliceAssets.find((asset) => asset.id === id) : undefined;
+}

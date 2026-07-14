@@ -1,0 +1,127 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import OaaProjectNav from "@/components/presents/other-alice/OaaProjectNav.astro";
+import CastDossierFolio from "@/components/presents/other-alice/cast/CastDossierFolio.astro";
+import {
+  OTHER_ALICE_CAST_PATH,
+  otherAliceCastGroups,
+  publicOtherAliceCast,
+} from "@/data/other-alice-world-guide";
+
+const orderedRecords = otherAliceCastGroups.flatMap((group) =>
+  publicOtherAliceCast.filter((record) => record.castGroup === group.id),
+);
+const recordNumber = new Map(orderedRecords.map((record, index) => [record.id, index + 1]));
+const canonicalUrl = new URL(OTHER_ALICE_CAST_PATH, "https://hob.farm").toString();
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Cast of Wonderland",
+  description: "Public dossier records for the residents, workers, officeholders, institutions, and old witnesses shaping Other Alice Adventures.",
+  url: canonicalUrl,
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: orderedRecords.map((record, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: record.name,
+      url: `${canonicalUrl}#cast-${record.slug}`,
+    })),
+  },
+};
+---
+
+<BaseLayout
+  title="Cast of Wonderland | Other Alice Adventures"
+  description="Meet the residents, workers, officeholders, institutions, disputed identities, and old witnesses shaping the living Wonderland of Other Alice Adventures."
+  canonical={OTHER_ALICE_CAST_PATH}
+  image="https://cdn.hob.farm/pages/other-alice-adventures/oaa-map-wonderland-living-atlas-v01-16x9.webp"
+  imageAlt="Aerial atlas of circular Wonderland"
+  structuredData={structuredData}
+>
+  <div class="cast-page">
+    <OaaProjectNav current="cast" />
+    <header class="cast-hero">
+      <p class="eyebrow">Public character record</p>
+      <h1>Cast of Wonderland</h1>
+      <p>Wonderland's major figures are residents, officeholders, workers, animals, old witnesses, and disputed public identities. Their records show who keeps the world moving, who controls access, and where the evidence still breaks.</p>
+      <dl>
+        <div><dt>Public records</dt><dd>{orderedRecords.length}</dd></div>
+        <div><dt>Working groups</dt><dd>{otherAliceCastGroups.length}</dd></div>
+        <div><dt>Missing art</dt><dd>Intentional</dd></div>
+      </dl>
+    </header>
+
+    <nav class="folio-index" aria-label="Cast record groups">
+      {otherAliceCastGroups.map((group, index) => (
+        <a href={`#${group.id}`}><span>{String(index + 1).padStart(2, "0")}</span>{group.label}</a>
+      ))}
+    </nav>
+
+    <div class="cast-records">
+      {otherAliceCastGroups.map((group, groupIndex) => {
+        const records = publicOtherAliceCast.filter((record) => record.castGroup === group.id);
+        return (
+          <section id={group.id} class="cast-group" aria-labelledby={`${group.id}-title`}>
+            <header class="group-heading">
+              <p>{String(groupIndex + 1).padStart(2, "0")} / Working set</p>
+              <h2 id={`${group.id}-title`}>{group.label}</h2>
+              <span>{group.note}</span>
+            </header>
+            <div class="folio-stack">
+              {records.map((record) => (
+                <CastDossierFolio record={record} index={recordNumber.get(record.id) ?? 0} />
+              ))}
+            </div>
+          </section>
+        );
+      })}
+    </div>
+
+    <aside class="cast-note" aria-label="Cast record status">
+      <p class="eyebrow">Living records</p>
+      <p>Names, functions, evidence states, and visual designs can change as the serial develops. Design-pending records are complete text records, not empty portrait slots.</p>
+    </aside>
+  </div>
+</BaseLayout>
+
+<style>
+  .cast-page { min-height: 100vh; overflow: hidden; background: #080a11; color: #eee7d6; }
+  .cast-hero, .folio-index, .cast-group, .cast-note { max-width: 90rem; margin-inline: auto; }
+  .cast-hero { padding: clamp(4rem, 9vw, 9rem) clamp(1rem, 4vw, 4rem); }
+  .eyebrow, .group-heading > p { color: #a88cff; font: 600 0.68rem/1 ui-monospace, SFMono-Regular, monospace; letter-spacing: 0.15em; text-transform: uppercase; }
+  .cast-hero h1 { max-width: 11ch; margin: 0.75rem 0 1.5rem; font: 400 clamp(4rem, 10vw, 9rem)/0.82 Georgia, serif; letter-spacing: -0.065em; }
+  .cast-hero > p:not(.eyebrow) { max-width: 52rem; margin: 0; color: #c1c4cc; font-size: clamp(1.05rem, 2vw, 1.3rem); line-height: 1.65; }
+  .cast-hero dl { display: flex; flex-wrap: wrap; gap: 2rem; margin: 3rem 0 0; }
+  .cast-hero dl div { min-width: 8rem; border-top: 1px solid rgba(255, 255, 255, 0.16); padding-top: 0.8rem; }
+  .cast-hero dt { color: #818897; font: 600 0.6rem/1 ui-monospace, SFMono-Regular, monospace; letter-spacing: 0.12em; text-transform: uppercase; }
+  .cast-hero dd { margin: 0.6rem 0 0; color: #fff; font: 400 1.4rem/1 Georgia, serif; }
+  .folio-index { display: grid; grid-template-columns: repeat(5, 1fr); border: 1px solid rgba(255, 255, 255, 0.14); }
+  .folio-index a { display: flex; min-height: 8rem; flex-direction: column; justify-content: space-between; border-right: 1px solid rgba(255, 255, 255, 0.12); padding: 1rem; color: #d5d7dc; font: 600 0.7rem/1.35 ui-monospace, SFMono-Regular, monospace; text-decoration: none; text-transform: uppercase; }
+  .folio-index a:last-child { border-right: 0; }
+  .folio-index a span { color: #737b89; }
+  .folio-index a:hover, .folio-index a:focus-visible { background: #161a26; color: #fff; outline: 2px solid #a88cff; outline-offset: -2px; }
+  .cast-records { display: block; }
+  .cast-group { scroll-margin-top: 5rem; padding: clamp(5rem, 10vw, 10rem) clamp(1rem, 4vw, 4rem) 0; }
+  .group-heading { display: grid; grid-template-columns: minmax(9rem, 0.28fr) minmax(0, 0.72fr) minmax(18rem, 0.58fr); gap: 1rem 2rem; align-items: start; margin-bottom: 3rem; }
+  .group-heading h2 { margin: 0; color: #fff; font: 400 clamp(2.6rem, 5vw, 5.4rem)/0.92 Georgia, serif; letter-spacing: -0.04em; }
+  .group-heading span { color: #aeb3bf; line-height: 1.65; }
+  .folio-stack { box-shadow: 0 2.5rem 7rem rgba(0, 0, 0, 0.18); }
+  .cast-note { padding: clamp(6rem, 12vw, 12rem) clamp(1rem, 4vw, 4rem); }
+  .cast-note > p:last-child { max-width: 48rem; color: #aeb3bf; font-size: 1.05rem; line-height: 1.7; }
+  @media (max-width: 900px) {
+    .folio-index { grid-template-columns: 1fr 1fr; }
+    .folio-index a { min-height: 6rem; border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
+    .folio-index a:nth-child(2n) { border-right: 0; }
+    .group-heading { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 520px) {
+    .cast-hero h1 { font-size: 4rem; }
+    .folio-index { grid-template-columns: 1fr; }
+    .folio-index a { min-height: 5rem; border-right: 0; }
+    .cast-group { padding-top: 5rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :global(html) { scroll-behavior: auto; }
+  }
+</style>

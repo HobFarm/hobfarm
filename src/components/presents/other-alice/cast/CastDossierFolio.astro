@@ -1,0 +1,190 @@
+---
+import type { OtherAliceResidentRecord } from "@/data/other-alice-world-guide";
+import {
+  OTHER_ALICE_WEB_PATH,
+  OTHER_ALICE_WORLD_GUIDE_PATH,
+} from "@/data/other-alice-world-guide";
+
+interface Props {
+  record: OtherAliceResidentRecord;
+  index: number;
+}
+
+const { record, index } = Astro.props;
+const titleCase = (value: string) =>
+  value
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+const recordNumber = String(index).padStart(2, "0");
+const worldGuideHref = `${OTHER_ALICE_WORLD_GUIDE_PATH}#${record.guideAnchor}`;
+const webHref = `${OTHER_ALICE_WEB_PATH}#node-${record.id}`;
+const visualLabel =
+  record.visualState === "approved"
+    ? "Approved visual record"
+    : record.visualState === "provisional"
+      ? "Provisional visual record"
+      : "Visual design pending";
+---
+
+<article
+  id={`cast-${record.slug}`}
+  class="cast-dossier"
+  data-record-id={record.id}
+  data-display-group={record.displayGroupRef}
+>
+  <div class="folio-rail">
+    <span class="record-number">{recordNumber}</span>
+    <span>{titleCase(record.entityKind)}</span>
+    <span>{record.displayGroupRef ? `Group: ${titleCase(record.displayGroupRef)}` : "Individual record"}</span>
+  </div>
+
+  <div class="folio-body">
+    <header>
+      <p>{record.role}</p>
+      <h3>{record.name}</h3>
+    </header>
+    <div class="copy">
+      <p>{record.currentFunction}</p>
+      <p>{record.livingWorldConnection}</p>
+    </div>
+    <dl>
+      <div>
+        <dt>System touched</dt>
+        <dd>{record.systemTouchpoint}</dd>
+      </div>
+      <div>
+        <dt>Public record</dt>
+        <dd>{titleCase(record.publicState)}</dd>
+      </div>
+      <div>
+        <dt>Origin file</dt>
+        <dd>{titleCase(record.originDisclosure)}</dd>
+      </div>
+      <div>
+        <dt>Evidence</dt>
+        <dd>{record.evidence[0]?.label} · {record.evidence[0]?.certainty}</dd>
+      </div>
+    </dl>
+    <nav aria-label={`${record.name} record links`}>
+      <a href={worldGuideHref}>World Guide</a>
+      <a href={webHref}>Web connection</a>
+      {record.detailPageReady && record.href && <a href={record.href}>Character guide</a>}
+    </nav>
+  </div>
+
+  {record.image ? (
+    <figure class:list={["folio-visual", record.visualState === "provisional" && "is-provisional"]}>
+      <img
+        src={record.image}
+        alt={record.imageAlt ?? ""}
+        width="720"
+        height="720"
+        loading="lazy"
+        decoding="async"
+      />
+      <figcaption>{visualLabel}</figcaption>
+    </figure>
+  ) : (
+    <div class="folio-fallback">
+      <span>{visualLabel}</span>
+      <strong>{record.name}</strong>
+      <p>{titleCase(record.entityKind)} · {titleCase(record.publicState)}</p>
+      <i aria-hidden="true"></i>
+    </div>
+  )}
+</article>
+
+<style>
+  .cast-dossier {
+    display: grid;
+    grid-template-columns: 8rem minmax(0, 1fr) minmax(15rem, 0.42fr);
+    min-height: 25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    background: linear-gradient(110deg, rgba(20, 25, 37, 0.94), rgba(8, 10, 17, 0.96));
+  }
+  .cast-dossier:last-child { border-bottom: 1px solid rgba(255, 255, 255, 0.14); }
+  .cast-dossier:target { outline: 2px solid #a88cff; outline-offset: 4px; }
+  .folio-rail {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 1.25rem 1rem;
+    color: #858c9a;
+    font: 600 0.58rem/1.4 ui-monospace, SFMono-Regular, monospace;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .record-number { color: #a88cff; font-size: 0.78rem; }
+  .folio-body { display: flex; flex-direction: column; padding: clamp(1.5rem, 4vw, 3rem); }
+  header p {
+    margin: 0;
+    color: #8dbeaa;
+    font: 600 0.66rem/1 ui-monospace, SFMono-Regular, monospace;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  h3 { margin: 0.65rem 0 0; color: #fff; font: 400 clamp(2.1rem, 4vw, 4rem)/0.95 Georgia, serif; letter-spacing: -0.04em; }
+  .copy { max-width: 48rem; margin-top: 1.8rem; }
+  .copy p { margin: 0; color: #c2c5cd; font-size: 1rem; line-height: 1.65; }
+  .copy p + p { margin-top: 0.8rem; color: #9ea4b1; }
+  dl { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 2rem; margin: auto 0 0; padding-top: 2rem; }
+  dl div { border-top: 1px solid rgba(255, 255, 255, 0.12); padding-top: 0.7rem; }
+  dt { color: #777f8e; font: 600 0.58rem/1 ui-monospace, SFMono-Regular, monospace; letter-spacing: 0.12em; text-transform: uppercase; }
+  dd { margin: 0.42rem 0 0; color: #d2d4d9; font-size: 0.8rem; line-height: 1.45; }
+  nav { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+  nav a {
+    border: 1px solid #555d6d;
+    border-radius: 999px;
+    padding: 0.58rem 0.72rem;
+    color: #eef0f4;
+    font: 600 0.62rem/1 ui-monospace, SFMono-Regular, monospace;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  nav a:hover, nav a:focus-visible { border-color: #a88cff; outline: 2px solid #a88cff; outline-offset: 2px; }
+  .folio-visual, .folio-fallback { min-height: 100%; border-left: 1px solid rgba(255, 255, 255, 0.12); }
+  .folio-visual { position: relative; overflow: hidden; margin: 0; background: #0a0d13; }
+  .folio-visual::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 65%, rgba(7, 9, 14, 0.9)); pointer-events: none; }
+  .folio-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: saturate(0.9) contrast(1.04); }
+  .folio-visual.is-provisional img { filter: saturate(0.68) contrast(1.08); }
+  figcaption {
+    position: absolute;
+    z-index: 1;
+    inset: auto 1rem 1rem;
+    color: #fff;
+    font: 600 0.58rem/1 ui-monospace, SFMono-Regular, monospace;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .folio-fallback {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 1.4rem;
+    background: repeating-linear-gradient(135deg, rgba(159, 122, 234, 0.07) 0 1px, transparent 1px 14px), #0b0e16;
+  }
+  .folio-fallback span, .folio-fallback p { color: #868d9b; font: 600 0.58rem/1.4 ui-monospace, SFMono-Regular, monospace; letter-spacing: 0.12em; text-transform: uppercase; }
+  .folio-fallback strong { position: relative; z-index: 1; max-width: 8ch; color: #eee7d6; font: 400 clamp(2rem, 4vw, 3.6rem)/0.9 Georgia, serif; }
+  .folio-fallback p { position: relative; z-index: 1; margin: 0; }
+  .folio-fallback i { position: absolute; right: -4rem; bottom: -4rem; width: 13rem; height: 13rem; border: 1px solid rgba(168, 140, 255, 0.35); border-radius: 50%; box-shadow: 0 0 0 2rem rgba(168, 140, 255, 0.035), 0 0 0 4rem rgba(168, 140, 255, 0.025); }
+  @media (max-width: 920px) {
+    .cast-dossier { grid-template-columns: 5rem minmax(0, 1fr); }
+    .folio-visual, .folio-fallback { grid-column: 1 / -1; min-height: 21rem; border-top: 1px solid rgba(255, 255, 255, 0.12); border-left: 0; }
+    .folio-visual img { max-height: 34rem; object-position: center 25%; }
+  }
+  @media (max-width: 560px) {
+    .cast-dossier { grid-template-columns: 1fr; }
+    .folio-rail { flex-direction: row; flex-wrap: wrap; border-right: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
+    .folio-body { padding: 1.25rem; }
+    dl { grid-template-columns: 1fr; }
+    .folio-visual, .folio-fallback { grid-column: 1; min-height: 18rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cast-dossier:target { scroll-behavior: auto; }
+  }
+</style>

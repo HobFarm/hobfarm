@@ -2,6 +2,7 @@ export const OTHER_ALICE_ROOT_PATH =
   "/departments/hobfarm-presents/other-alice-adventures/";
 export const OTHER_ALICE_WORLD_GUIDE_PATH = `${OTHER_ALICE_ROOT_PATH}world-guide/`;
 export const OTHER_ALICE_HOUSES_PATH = `${OTHER_ALICE_ROOT_PATH}houses/`;
+export const OTHER_ALICE_CAST_PATH = `${OTHER_ALICE_ROOT_PATH}cast/`;
 export const OTHER_ALICE_WEB_PATH = `${OTHER_ALICE_ROOT_PATH}web-of-wonderland/`;
 export const OTHER_ALICE_WORLD_GUIDE_MEDIA_ROOT =
   "https://cdn.hob.farm/pages/other-alice-adventures/";

@@ -29,9 +29,9 @@ test("route, House, and relationship controls are keyboard and URL aware",async(
 
 test("every public relationship and map region has a text evidence path",async()=>{
  const relationships=await read("src/data/other-alice/relationships.ts");
- const edges=[...relationships.matchAll(/\{id:"e\d+"[^}]+\}/g)].map((match)=>match[0]);
+ const edges=[...relationships.matchAll(/\{ id: "[^"]+"[^}]+evidence: "[^"]+"[^}]+\}/g)].map((match)=>match[0]);
  assert.ok(edges.length>0);
- assert.equal(edges.every((edge)=>/evidence:"[^"]+"/.test(edge)),true);
+ assert.equal(edges.every((edge)=>/evidence:\s*"[^"]+"/.test(edge)),true);
  const atlas=await read("src/components/presents/other-alice/living-world/LivingAtlas.astro");
  assert.match(atlas,/atlas-fallback/);
  assert.match(atlas,/regions\.map/);
@@ -49,7 +49,7 @@ test("Hatter material is labeled as a disputed reconstruction",async()=>{
 test("private narrative modules are excluded from the public barrel",async()=>{
  const barrel=await read("src/data/other-alice/index.ts");
  assert.doesNotMatch(barrel,/\.\/private/);
- const publicImports=await Promise.all(["src/components/presents/other-alice/OtherAliceStartPage.astro","src/pages/departments/hobfarm-presents/[series]/world-guide.astro","src/pages/departments/hobfarm-presents/other-alice-adventures/houses/index.astro","src/pages/departments/hobfarm-presents/other-alice-adventures/web-of-wonderland/index.astro"].map(read));
+ const publicImports=await Promise.all(["src/components/presents/other-alice/OtherAliceStartPage.astro","src/pages/departments/hobfarm-presents/[series]/world-guide.astro","src/pages/departments/hobfarm-presents/other-alice-adventures/houses/index.astro","src/pages/departments/hobfarm-presents/other-alice-adventures/cast/index.astro","src/pages/departments/hobfarm-presents/other-alice-adventures/web-of-wonderland/index.astro"].map(read));
  assert.doesNotMatch(publicImports.join("\n"),/other-alice\/private|opening-cycle|causal-ledger|open-canon/);
 });
 

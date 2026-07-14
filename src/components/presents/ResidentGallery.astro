@@ -31,23 +31,30 @@ const { heading, intro, entries } = Astro.props;
           "overflow-hidden border border-base-800 bg-base-950/55",
           index === 0 && "lg:col-span-2 lg:grid lg:grid-cols-[minmax(320px,0.9fr)_minmax(0,1.1fr)] lg:items-center",
         ]}>
-          <a
-            href={entry.image}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group block bg-[#090b0c] p-2 sm:p-3"
-            aria-label={`Open the full ${entry.name} portrait`}
-          >
-            <img
-              src={entry.image}
-              alt={entry.imageAlt}
-              width="1024"
-              height="1536"
-              loading="lazy"
-              decoding="async"
-              class="mx-auto h-auto max-h-[820px] w-full object-contain opacity-95 transition-opacity duration-300 group-hover:opacity-100"
-            />
-          </a>
+          {entry.image ? (
+            <a
+              href={entry.image}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group block bg-[#090b0c] p-2 sm:p-3"
+              aria-label={`Open the full ${entry.name} portrait`}
+            >
+              <img
+                src={entry.image}
+                alt={entry.imageAlt ?? ""}
+                width="1024"
+                height="1536"
+                loading="lazy"
+                decoding="async"
+                class="mx-auto h-auto max-h-[820px] w-full object-contain opacity-95 transition-opacity duration-300 group-hover:opacity-100"
+              />
+            </a>
+          ) : (
+            <div class="grid min-h-64 content-between border-b border-base-800 bg-[#090b0c] p-6 font-mono uppercase tracking-widest text-base-500 lg:border-b-0 lg:border-r">
+              <span class="text-[10px]">Visual record</span>
+              <span class="text-sm text-base-300">Design pending</span>
+            </div>
+          )}
           <div class="border-t border-base-800 p-6 sm:p-8 lg:border-t-0">
             <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
               <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-500">{entry.role}</p>
