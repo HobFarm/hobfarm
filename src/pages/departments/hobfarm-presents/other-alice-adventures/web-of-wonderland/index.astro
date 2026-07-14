@@ -1,129 +1,15 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import ContentPanel from "@/components/ContentPanel.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import OaaProjectNav from "@/components/presents/other-alice/OaaProjectNav.astro";
 import OaaRelationshipWeb from "@/components/presents/other-alice/OaaRelationshipWeb.astro";
-import {
-  OTHER_ALICE_HOUSES_PATH,
-  OTHER_ALICE_WEB_PATH,
-  courtDossiers,
-  otherAliceCanon,
-  relationshipEdges,
-  relationshipNodes,
-} from "@/data/other-alice-world-guide";
-
-const portrait = "https://cdn.hob.farm/pages/other-alice-adventures/oaa-alice-portrait-01.png";
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "Dataset",
-  name: "Web of Wonderland",
-  description: "An evidence-backed relationship map for Other Alice Adventures, connecting characters, Houses, institutions, labor, routes, dependencies, and disputed testimony.",
-  url: new URL(OTHER_ALICE_WEB_PATH, Astro.site?.origin ?? "https://hob.farm").toString(),
-  creator: { "@type": "Organization", name: "HobFarm", url: "https://hob.farm/" },
-  variableMeasured: ["authority", "recognition", "labor", "maintenance", "water", "transport", "route access", "affection", "rivalry", "testimony"],
-};
+import { OTHER_ALICE_WEB_PATH, relationshipEdges, relationshipNodes } from "@/data/other-alice-world-guide";
+const structuredData={"@context":"https://schema.org","@type":"Dataset",name:"Web of Wonderland",description:"An evidence-backed map connecting people, Houses, institutions, regions, routes, artifacts, organisms, historical claims, and visitor imprints.",url:new URL(OTHER_ALICE_WEB_PATH,"https://hob.farm").toString(),variableMeasured:["body","knowledge","material","authority","ecology","echo"]};
 ---
-
-<BaseLayout
-  title="Web of Wonderland: Other Alice Characters, Houses, and Relationships"
-  description="Trace the evidence-backed relationships among Other Alice, Chester, the Queen, Ciryl Spade, and Wonderland's four political systems."
-  canonical={OTHER_ALICE_WEB_PATH}
-  image={portrait}
-  imageAlt="Other Alice in purple field clothes at the boundary between Wonderland records."
-  structuredData={structuredData}
->
-  <section class="web-page">
-    <ContentPanel>
-      <Wrapper variant="standard" class="py-8 lg:py-14">
-        <OaaProjectNav current="web" />
-
-        <header class="web-hero">
-          <div>
-            <p>Other Alice relationship record</p>
-            <h1>Web of Wonderland</h1>
-          </div>
-          <div>
-            <blockquote>{otherAliceCanon.politicalLine}</blockquote>
-            <p>The web shows why that line remains true. Hearts recognize ownership. Diamonds circulate value. Spades maintain continuity. Clubs give distant orders physical reach. Alice and the Unsuited keep crossing the boundaries between those systems.</p>
-          </div>
-        </header>
-
-        <div class="web-summary" aria-label="Relationship dataset summary">
-          <div><strong>{relationshipNodes.length}</strong><span>Known nodes</span></div>
-          <div><strong>{relationshipEdges.length}</strong><span>Open connections</span></div>
-          <div><strong>{relationshipEdges.filter((edge) => edge.status === "disputed").length}</strong><span>Disputed edges</span></div>
-          <div><strong>1+</strong><span>Evidence record per edge</span></div>
-        </div>
-
-        <OaaRelationshipWeb
-          heading="Characters, Houses, and the systems between them"
-          intro="Use the filters to isolate legal power, material dependence, personal ties, or disputed testimony. The text ledger carries the same information as the diagram."
-        />
-
-        <section class="web-principles" aria-labelledby="web-principles-heading">
-          <header>
-            <p>How to read the web</p>
-            <h2 id="web-principles-heading">A connection is a claim with a source.</h2>
-          </header>
-          <div>
-            <article><h3>Confirmed</h3><p>A published story, character record, map, or archive object supports the connection.</p></article>
-            <article><h3>Disputed</h3><p>The claim has a witness or object behind it, but the record remains incomplete or contradictory.</p></article>
-            <article><h3>Directional</h3><p>Authority, debt, labor, and testimony can flow one way even when dependence runs back in the other direction.</p></article>
-            <article><h3>Material</h3><p>Water, freight, maintenance, food, and roads matter as much as affection or rivalry.</p></article>
-          </div>
-        </section>
-
-        <section class="web-factions" aria-labelledby="web-factions-heading">
-          <header>
-            <p>Faction index</p>
-            <h2 id="web-factions-heading">The four power systems</h2>
-          </header>
-          <div>
-            {courtDossiers.map((house) => (
-              <a href={`${OTHER_ALICE_HOUSES_PATH}#${house.id}`} style={`--house-accent:${house.accent}`}>
-                <span>{house.sigil}</span>
-                <h3>{house.name}</h3>
-                <strong>{house.powerForm}</strong>
-                <p>{house.corePower}</p>
-              </a>
-            ))}
-          </div>
-        </section>
-      </Wrapper>
-    </ContentPanel>
-  </section>
+<BaseLayout title="Web of Wonderland | Other Alice Adventures" description="Trace evidence-backed relationships among Wonderland's people, Houses, institutions, regions, routes, artifacts, organisms, history, and visitor imprints." canonical={OTHER_ALICE_WEB_PATH} image="https://cdn.hob.farm/pages/other-alice-adventures/oaa-map-wonderland-living-atlas-v01-16x9.webp" imageAlt="Aerial atlas of circular Wonderland" structuredData={structuredData}>
+ <div class="web-page"><OaaProjectNav current="web" /><header><p class="eyebrow">Relationship record</p><h1>Web of Wonderland</h1><p>Power, maintenance, bodies, objects, routes, organisms, and inherited claims form one evidence-backed network. A connection is a claim with a source.</p><dl><div><dt>Nodes</dt><dd>{relationshipNodes.length}</dd></div><div><dt>Connections</dt><dd>{relationshipEdges.length}</dd></div><div><dt>Evidence</dt><dd>Every edge</dd></div></dl></header><section><OaaRelationshipWeb /></section>
+  <section class="reading"><h2>How to read the web</h2><div><article><h3>Confirmed</h3><p>Multiple public records support the connection.</p></article><article><h3>Recorded</h3><p>A material, map, observation, or testimony exists without closing every question.</p></article><article><h3>Inferred</h3><p>The pattern is useful and evidence-backed but remains a working reconstruction.</p></article><article><h3>Directional</h3><p>Authority or material can move one way while dependency runs back in the other direction.</p></article></div></section>
+ </div>
 </BaseLayout>
-
 <style>
-  .web-page { background: #07060a; }
-  .web-hero { display: grid; gap: 1.5rem; margin-top: .75rem; padding: clamp(1.5rem,5vw,4rem); border: 1px solid #41384d; background: #0d0a11; }
-  .web-hero > div:first-child > p, .web-principles header > p, .web-factions header > p { margin: 0; color: #d4b861; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; }
-  .web-hero h1 { max-width: 9ch; margin: .65rem 0 0; color: #f5f0df; font-family: var(--font-display); font-size: clamp(3.2rem,6vw,5.6rem); font-weight: 820; letter-spacing: -.075em; line-height: .82; }
-  .web-hero blockquote { margin: 0; padding-left: 1rem; border-left: 5px solid #e23a4e; color: #fff1d6; font-family: var(--font-display); font-size: clamp(1.2rem,2.5vw,2rem); line-height: 1.3; }
-  .web-hero > div:last-child > p { max-width: 43rem; margin: 1.2rem 0 0; color: #aaa4b2; line-height: 1.7; }
-  .web-summary { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1px; margin: 1rem 0 clamp(4rem,8vw,7rem); background: #41384d; border: 1px solid #41384d; }
-  .web-summary div { display: grid; gap: .2rem; padding: 1rem; background: #0d0a11; }
-  .web-summary strong { color: #f5f0df; font-family: var(--font-display); font-size: 1.7rem; }
-  .web-summary span { color: #7b7480; font-family: var(--font-mono); font-size: .56rem; letter-spacing: .08em; text-transform: uppercase; }
-  .web-principles, .web-factions { margin-top: clamp(4.5rem,9vw,8rem); }
-  .web-principles header, .web-factions header { padding-bottom: 1.1rem; border-bottom: 4px solid #d4b861; }
-  .web-principles h2, .web-factions h2 { max-width: 15ch; margin: .55rem 0 0; color: #f5f0df; font-family: var(--font-display); font-size: clamp(2.2rem,5vw,4.8rem); letter-spacing: -.055em; line-height: .92; }
-  .web-principles > div, .web-factions > div { display: grid; gap: 1px; margin-top: 1.4rem; background: #41384d; border: 1px solid #41384d; }
-  .web-principles article { padding: 1.2rem; background: #0d0a11; }
-  .web-principles h3, .web-factions h3 { margin: 0; color: #f5f0df; font-family: var(--font-display); font-size: 1.25rem; }
-  .web-principles p, .web-factions p { margin: .65rem 0 0; color: #aaa4b2; font-size: .84rem; line-height: 1.6; }
-  .web-factions a { display: grid; padding: 1.2rem; border-top: 5px solid var(--house-accent); background: #0d0a11; color: inherit; text-decoration: none; }
-  .web-factions a > span, .web-factions a > strong { color: var(--house-accent); font-family: var(--font-mono); font-size: .59rem; font-weight: 400; letter-spacing: .08em; text-transform: uppercase; }
-  .web-factions a h3 { margin-top: .6rem; }
-  .web-factions a > strong { margin-top: .25rem; }
-  .web-factions a:hover, .web-factions a:focus-visible { background: #19131b; outline: 2px solid var(--house-accent); outline-offset: -3px; }
-  @media (min-width: 760px) {
-    .web-summary { grid-template-columns: repeat(4,minmax(0,1fr)); }
-    .web-principles > div, .web-factions > div { grid-template-columns: repeat(2,minmax(0,1fr)); }
-  }
-  @media (min-width: 960px) {
-    .web-hero { grid-template-columns: minmax(0,.9fr) minmax(22rem,1.1fr); align-items: end; }
-    .web-factions > div { grid-template-columns: repeat(4,minmax(0,1fr)); }
-  }
+ .web-page{min-height:100vh;background:#080a11;color:#eee7d6}.web-page>header,.web-page>section{max-width:90rem;margin:auto;padding:clamp(3.5rem,8vw,8rem) clamp(1rem,4vw,4rem);border-top:1px solid rgba(255,255,255,.1)}.web-page>header{border:0}.eyebrow{color:#9f7aea;font:600 .68rem/1 ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase}h1{max-width:11ch;margin:.7rem 0;font:400 clamp(4rem,10vw,10rem)/.84 Georgia,serif;letter-spacing:-.06em}.web-page header>p:last-of-type{max-width:50rem;color:#b5bac5;font-size:1.1rem;line-height:1.7}.web-page header dl{display:flex;gap:2rem;margin-top:2rem}.web-page header dl div{border-left:2px solid #9f7aea;padding-left:.8rem}.web-page header dt{color:#868d9c;font:600 .62rem/1 ui-monospace,monospace;text-transform:uppercase}.web-page header dd{margin:.4rem 0 0;color:white;font-size:1.2rem}.reading h2{font:400 clamp(2rem,5vw,4.5rem)/1 Georgia,serif}.reading>div{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid rgba(255,255,255,.13)}.reading article{padding:1rem;border-right:1px solid rgba(255,255,255,.12)}.reading h3{color:white}.reading p{color:#adb2bd;line-height:1.55}@media(max-width:650px){h1{font-size:3.8rem}.web-page header dl{display:grid;grid-template-columns:1fr 1fr}.reading>div{grid-template-columns:1fr 1fr}}
 </style>

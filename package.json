@@ -8,6 +8,8 @@
     "dev:pages": "node scripts/dev-pages.mjs",
     "start": "astro dev",
     "test": "node --test tests/*.test.mjs",
+    "audit:oaa-public": "node scripts/audit-other-alice-public-bundle.mjs",
+    "qa:oaa-browser": "node scripts/qa-other-alice.mjs",
     "build": "astro build",
     "inventory": "node scripts/media-inventory.mjs",
     "preview": "astro preview",

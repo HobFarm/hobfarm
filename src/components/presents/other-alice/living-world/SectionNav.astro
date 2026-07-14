@@ -1,0 +1,11 @@
+---
+import { worldGuideSectionNav } from "@/data/other-alice-world-guide";
+---
+<nav class="section-nav" aria-label="World Guide sections">
+  {worldGuideSectionNav.map(([id,label]) => <a href={`#${id}`}>{label}</a>)}
+</nav>
+<style>
+ .section-nav{display:flex;gap:.4rem;overflow-x:auto;padding:.75rem 0;scrollbar-width:thin}
+ a{white-space:nowrap;border-bottom:1px solid rgba(255,255,255,.2);padding:.5rem .65rem;color:#c7cad4;font:.72rem/1 ui-monospace,SFMono-Regular,monospace;letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
+ a:hover,a:focus-visible{border-color:#9f7aea;color:white;outline:none}
+</style>

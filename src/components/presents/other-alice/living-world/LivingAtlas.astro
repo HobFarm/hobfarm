@@ -1,0 +1,40 @@
+---
+import { regions, otherAliceAssets } from "@/data/other-alice-world-guide";
+const atlas = otherAliceAssets.find((asset)=>asset.id==="oaa-map-wonderland-living-atlas-v01-16x9")!;
+interface Props { compact?: boolean }
+const { compact=false } = Astro.props;
+---
+<figure class:list={["living-atlas",compact&&"compact"]}>
+  <div class="plate">
+    <img src={atlas.publicPath} width="1920" height="1072" sizes="(max-width: 700px) calc(100vw - 2rem), (max-width: 1440px) calc(100vw - 8rem), 1312px" alt={atlas.altText} loading={compact?"lazy":"eager"} fetchpriority={compact?"auto":"high"} />
+    <svg viewBox="0 0 1000 560" role="img" aria-labelledby="atlas-title atlas-desc">
+      <title id="atlas-title">Wonderland from center to boundary</title>
+      <desc id="atlas-desc">Six labeled regions form a circular inhabited world. The only exterior label says the record is incomplete.</desc>
+      <g class="atlas-rings" fill="none">
+        <circle cx="500" cy="280" r="55"/><circle cx="500" cy="280" r="115"/><circle cx="500" cy="280" r="185"/><circle cx="500" cy="280" r="245"/>
+      </g>
+      <g class="labels">
+        <text x="500" y="270" text-anchor="middle">Queen's House</text>
+        <text x="500" y="350" text-anchor="middle">Labyrinth City</text>
+        <text x="680" y="205">Commercial highlands</text>
+        <text x="255" y="340">Forest belt</text>
+        <text x="705" y="445">Outer cold</text>
+        <text x="95" y="100">Boundary mountains</text>
+        <text x="805" y="80">Exterior record incomplete</text>
+      </g>
+    </svg>
+  </div>
+  {!compact && <figcaption>
+    <strong>The atlas is a working public record.</strong> Its labels describe position and use; House power overlaps the terrain instead of replacing it.
+  </figcaption>}
+</figure>
+<details class="atlas-fallback">
+  <summary>Read the atlas as text</summary>
+  <ol>{regions.map((region)=><li><strong>{region.title}:</strong> {region.summary}</li>)}</ol>
+</details>
+<style>
+ .living-atlas{margin:0}.plate{position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.14);border-radius:1.2rem;background:#dce7ee;box-shadow:0 28px 90px rgba(0,0,0,.42)}
+ img{display:block;width:100%;height:auto}.plate svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.atlas-rings{stroke:rgba(255,255,255,.55);stroke-width:1;stroke-dasharray:4 7}.labels text{paint-order:stroke;stroke:#071018;stroke-width:5;stroke-linejoin:round;fill:#fff;font:600 15px/1 ui-monospace,SFMono-Regular,monospace;letter-spacing:.02em}
+ figcaption{max-width:52rem;margin:.8rem 0 0;color:#adb2c0;font-size:.86rem;line-height:1.6}.atlas-fallback{margin-top:.8rem;border-left:2px solid #8c6dff;padding:.45rem .8rem;color:#c8cad2;font-size:.88rem}.atlas-fallback summary{cursor:pointer;color:white}.atlas-fallback ol{display:grid;gap:.55rem;padding-left:1.2rem}
+ @media(max-width:700px){.labels text{font-size:22px}.plate svg{display:none}.compact .plate{border-radius:.75rem}}
+</style>

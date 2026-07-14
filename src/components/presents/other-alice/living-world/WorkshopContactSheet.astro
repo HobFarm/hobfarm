@@ -1,0 +1,51 @@
+---
+import { otherAliceAssets } from "@/data/other-alice-world-guide";
+
+const records = otherAliceAssets.filter((asset) =>
+  asset.status === "published" &&
+  Boolean(asset.publicPath) &&
+  (asset.visibility === "public" || asset.visibility === "teaser") &&
+  [
+    "oaa-map-wonderland-living-atlas-v01-16x9",
+    "oaa-evidence-other-alice-character-sheet-v01-4x3",
+    "oaa-evidence-hatter-highlands-concept-v01-4x5",
+  ].includes(asset.id)
+);
+
+const labels: Record<string, string> = {
+  "oaa-map-wonderland-living-atlas-v01-16x9": "Atlas version",
+  "oaa-evidence-other-alice-character-sheet-v01-4x3": "Identity lock",
+  "oaa-evidence-hatter-highlands-concept-v01-4x5": "Working reconstruction",
+};
+const dimensions: Record<string, [number, number]> = {
+  "oaa-map-wonderland-living-atlas-v01-16x9": [1920, 1072],
+  "oaa-evidence-other-alice-character-sheet-v01-4x3": [1400, 1050],
+  "oaa-evidence-hatter-highlands-concept-v01-4x5": [1122, 1402],
+};
+---
+<div class="workshop-contact-sheet">
+  <div class="plates">
+    {records.map((asset) => (
+      <article>
+        <img src={asset.publicPath} alt={asset.altText} loading="lazy" width={dimensions[asset.id][0]} height={dimensions[asset.id][1]} />
+        <div>
+          <p>{labels[asset.id]}</p>
+          <h3>{asset.subjectIds.join(" · ")}</h3>
+          <span>{asset.canonLevel} · {asset.visibility}</span>
+        </div>
+      </article>
+    ))}
+  </div>
+  <ol aria-label="World-building production states">
+    <li><strong>Map versions</strong><span>One selected atlas carries HTML and SVG labels. Rejected generations remain outside the public root.</span></li>
+    <li><strong>Diagram geometry</strong><span>House, route, access, time, visitor, and relationship records remain selectable real text.</span></li>
+    <li><strong>Material tests</strong><span>Generated region studies require a canon and artifact review before they can become public plates.</span></li>
+    <li><strong>Motion review</strong><span>Silent studies exist privately. The public guide keeps static and reduced-motion behavior until delivery files are approved.</span></li>
+  </ol>
+  <a href="/workshop/">Open the HobFarm Workshop</a>
+</div>
+<style>
+  .workshop-contact-sheet{display:grid;gap:1.5rem}.plates{display:grid;grid-template-columns:1.2fr 1fr .8fr;gap:.75rem}.plates article{position:relative;overflow:hidden;min-height:24rem;border:1px solid rgba(255,255,255,.14);background:#11151f}.plates img{width:100%;height:100%;object-fit:cover}.plates article>div{position:absolute;inset:auto .75rem .75rem;padding:.8rem;background:rgba(8,10,17,.88);backdrop-filter:blur(8px)}.plates p,.plates h3{margin:0}.plates p,.plates span{color:#9f7aea;font:600 .62rem/1.4 ui-monospace,monospace;text-transform:uppercase}.plates h3{margin:.35rem 0;color:white;font:400 1.2rem/1.1 Georgia,serif;text-transform:capitalize}.plates span{color:#aeb4c0}.workshop-contact-sheet ol{display:grid;grid-template-columns:repeat(4,1fr);margin:0;padding:0;list-style:none;border:1px solid rgba(255,255,255,.14)}.workshop-contact-sheet li{padding:1rem;border-right:1px solid rgba(255,255,255,.12)}.workshop-contact-sheet li:last-child{border:0}.workshop-contact-sheet strong{display:block;color:white}.workshop-contact-sheet li span{display:block;margin-top:1.5rem;color:#aeb3bf;line-height:1.55}.workshop-contact-sheet>a{width:max-content;border:1px solid #5f6674;border-radius:999px;padding:.7rem 1rem;color:white;font:600 .72rem/1 ui-monospace,monospace;text-transform:uppercase;text-decoration:none}.workshop-contact-sheet>a:hover,.workshop-contact-sheet>a:focus-visible{outline:2px solid #9f7aea;outline-offset:3px}
+  @media(max-width:760px){.plates{grid-template-columns:1fr}.plates article{min-height:21rem}.workshop-contact-sheet ol{grid-template-columns:1fr 1fr}}
+  @media(max-width:480px){.workshop-contact-sheet ol{grid-template-columns:1fr}.workshop-contact-sheet li{border-right:0;border-bottom:1px solid rgba(255,255,255,.12)}.workshop-contact-sheet li:last-child{border-bottom:0}}
+</style>

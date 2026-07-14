@@ -8,6 +8,7 @@
 import {
   getOtherAliceResident,
   otherAliceCanon,
+  otherAliceChronology,
 } from "@/data/other-alice-world-guide";
 
 export type CharacterEntry = {
@@ -143,30 +144,29 @@ export const characters: CharacterEntry[] = [
     displayName: "Other Alice: Character Guide",
     seoTitle: "Other Alice Character Guide: The Alice Who Stayed in Wonderland",
     metaDescription:
-      "Meet Other Alice, the eighteen-year-old Alice who grew up in Wonderland. Learn about her history, abilities, flaws, relationship with Chester, and appearances in Other Alice Adventures.",
+      "Meet Other Alice, Wonderland's adult field observer. Read her public chronology, methods, equipment, and relationship with Chester.",
     role: "Wonderland explorer",
     blurb: "Boundary-tester and field observer.",
     bio: otherAliceCanon.premise,
     traits: [
-      "Eighteen",
+      String(otherAliceCanon.presentAge),
       "The Alice who stayed",
       "Boundary-testing problem solver",
     ],
     relatedSeries: ["other-alice-adventures"],
     image: otherAliceRecord?.image,
     imageAlt: otherAliceRecord?.imageAlt,
-    heroDeck:
-      "She entered Wonderland at eight. Ten Wonderland years and two outside centuries later, she knows which rules are useful, which ones are local, and which official maps are lying.",
+    heroDeck: otherAliceChronology.characterDeck,
     guideIntro: [
-      "Other Alice arrived at eight and grew up inside Wonderland.",
-      "Ten Wonderland years later, she is fully adapted to a wet living world of fungal machinery, talking animals, House systems, casino power, unstable portals, and ecology that treats nonsense as infrastructure.",
+      `${otherAliceChronology.arrival} She grew up inside Wonderland.`,
+      `${otherAliceCanon.wonderlandYears} Wonderland years later, she is fully adapted to a wet living world of fungal machinery, talking animals, House systems, casino power, unstable portals, and ecology that treats nonsense as infrastructure.`,
       "Alice is curious, analytical, self-possessed, and difficult to discourage. She watches how a system behaves, tests its rules, and follows contradictions until they lead somewhere useful or dangerous. Usually both.",
     ],
     dossier: [
-      { label: "Age", value: "18" },
+      { label: "Age", value: String(otherAliceCanon.presentAge) },
       {
         label: "Origin",
-        value: "An outside route now 200 years removed, roughly the 2070s",
+        value: `An outside route now ${otherAliceCanon.outsideYears} removed`,
       },
       { label: "Home", value: "Wonderland" },
       {
@@ -238,7 +238,7 @@ export const characters: CharacterEntry[] = [
       {
         title: "Time and memory",
         paragraphs: [
-          "Alice experienced ten years in Wonderland while 200 years passed along her original outside route. That exterior is now roughly in the 2070s. Wonderland absorbed people, objects, media, technologies, and cultural fragments through unstable portals, so her worldview did not remain Victorian.",
+          `Alice experienced ${otherAliceCanon.wonderlandYears} years in Wonderland while ${otherAliceCanon.outsideYears} passed along her original outside route. That interval does not establish a fixed conversion ratio or a confirmed outside calendar year.`,
           "Small Victorian traces remain in her phrasing, manners, mental arithmetic, and expectation that rules should be embarrassed when they fail to make sense.",
         ],
       },
@@ -268,7 +268,7 @@ export const characters: CharacterEntry[] = [
       "If Chester refuses a route, the refusal matters. Alice has learned to treat his silence as evidence.",
     guideIntro: [
       "Chester is old, round, heavy, plush, lazy, and unimpressed.",
-      "His strangeness comes from impossible placement, refusal, and the rare moment when he demonstrates a rule. He can vanish, appear, cross routes, remove impossible frost, and wait at the far end of a tunnel Alice has spent hours crawling through.",
+      "His strangeness comes from impossible placement, refusal, and the rare moment when he demonstrates a route rule. He can vanish, appear, cross a threshold, and wait at the far end of a tunnel Alice has spent hours crawling through.",
     ],
     dossier: [
       { label: "Lineage", value: "Cheshire cat" },
@@ -310,37 +310,36 @@ export const characters: CharacterEntry[] = [
   {
     slug: "the-hatter",
     name: "The Hatter",
-    displayName: "The Hatter: Character and Diamond Highlands Guide",
-    seoTitle: "The Hatter Character Guide: Diamond Highlands Tea Syndicate",
+    displayName: "The Hatter Highlands: Working Reconstruction",
+    seoTitle: "Hatter Highlands Working Reconstruction | Other Alice",
     metaDescription:
-      "Meet the Other Alice Hatter, a Diamond tea magnate, chemist, syndicate operator, and damaged host whose Mad Tea Party has become a real place.",
-    role: "Diamond tea magnate and syndicate operator",
-    blurb: "A commodity boss whose punishment turned etiquette, memory, and time into an unstable physical zone.",
+      "Review the disputed public evidence connecting a Hatter mark to hospitality and distribution in Wonderland's commercial highlands.",
+    role: "Disputed Diamond hospitality record",
+    blurb: "A working reconstruction built from route-house marks, tasting rooms, and protected distribution records.",
     bio:
-      "The Hatter controls tea formulas, brands, hotels, contracts, warehouses, and syndicate relationships across the Diamond Highlands. A punitive substance fractured his sense of time and social space, and Wonderland made the damage physically interactive.",
+      "Records associate a Hatter mark with highland hospitality and distribution, but they do not settle one person's identity, origin, authority, or present condition.",
     traits: [
-      "1930s Diamond gangster",
-      "Tea chemist and commodity broker",
-      "Host of an interactive hallucination field",
+      "Working reconstruction",
+      "Diamond hospitality mark",
+      "Origin and authority unresolved",
     ],
     relatedSeries: ["other-alice-adventures"],
-    image: "/media/other-alice/mad-hatter-diamond-highlands-concept.webp",
+    image: "https://cdn.hob.farm/pages/other-alice-adventures/mad-hatter-diamond-highlands-concept.webp",
     imageAlt:
       "Working concept portrait of the Hatter in a dark 1930s suit and structured hat, holding tea above the misty Diamond Highlands.",
     heroDeck:
-      "He owns no tea hill. He controls what the harvest becomes, who can buy it, and what accepting a cup will cost.",
+      "The highlands record is useful because its claims remain visible. It is not settled canon.",
     guideIntro: [
-      "The Hatter is a 1930s-style Diamond gangster, tea chemist, syndicate operator, and damaged survivor of a political punishment.",
-      "His identity comes from the Diamond Highlands, a cool, misty cultivation region of tea terraces, coffee groves, flower glasshouses, steep roads, wet markets, processing houses, hotels, and grown prestige architecture.",
-      "His madness is not private. The punishment fractured time, memory, etiquette, and social space around him. Wonderland turned those fractures into a real zone that Alice and other visitors can enter.",
+      "Confirmed highland evidence shows cultivation, processing, hospitality, markets, freight, estate claims, and road protection occupying the same terrain.",
+      "The Hatter connection is a disputed working reconstruction. It can organize questions without turning those questions into biography.",
     ],
     dossier: [
       { label: "House", value: "Diamonds" },
       { label: "Region", value: "The Diamond Highlands" },
-      { label: "Public role", value: "Tea magnate, commodity broker, hotel owner, and underworld negotiator" },
-      { label: "Condition", value: "Punitive temporal and social fracture; exact compound unresolved" },
-      { label: "Zone", value: "The Mad Tea Party" },
-      { label: "Canon state", value: "Working; formal name, species, saboteur, and cure remain open" },
+      { label: "Public record", value: "Hospitality marks, protected distribution, and tasting-house evidence" },
+      { label: "Identity", value: "Unresolved" },
+      { label: "Origin", value: "Unresolved" },
+      { label: "Canon state", value: "Disputed working reconstruction" },
     ],
     guideSections: [
       {
@@ -351,37 +350,18 @@ export const characters: CharacterEntry[] = [
         ],
       },
       {
-        title: "What the Hatter controls",
+        title: "What the evidence can support",
         bullets: [
-          "Crop contracts and processed tea rather than the plantation ground itself.",
-          "Formulas, brands, packaging, hotels, tea rooms, warehouses, and distribution routes.",
-          "Debt records, wholesalers, roadshows, court buyers, and syndicate relationships.",
-          "The point where agriculture becomes luxury, medicine, vice, and political hospitality.",
+          "Diamond businesses turn cultivated material into hospitality, processing, contracts, and distribution.",
+          "Heart titles, Spade labor and water, and Club roads remain necessary to that commerce.",
+          "A repeated Hatter mark appears useful as a research key, not proof of one founder or family line.",
         ],
       },
       {
-        title: "The failed consignment",
+        title: "What remains open",
         paragraphs: [
-          "A major ceremonial or political shipment was altered, replaced, removed, or contaminated during a job bearing the Hatter's contractual name. The system needed a responsible operator, so he became the visible target even if the sabotage began elsewhere.",
-          "Who framed him, who authorized the punishment, and who profits from keeping him impaired remain open questions.",
-        ],
-      },
-      {
-        title: "The Mad Tea Party",
-        bullets: [
-          "Sitting can mean accepting a negotiation.",
-          "Drinking can acknowledge a debt.",
-          "Changing seats can change allegiance.",
-          "Pouring for someone can place them under protection.",
-          "Breaking a cup can end a truce.",
-          "Wearing the wrong hat can assign an office.",
-        ],
-      },
-      {
-        title: "Alice and the Hatter",
-        paragraphs: [
-          "Alice can navigate his episodes because she already understands altered substances, Wonderland etiquette, unstable routes, scale changes, and boundary conditions.",
-          "She suspects his madness is also evidence. Each visit can reveal a missing name, wrong cup, impossible guest, repeated phrase, hidden ledger, or fragment of an antidote formula.",
+          "The Hatter's formal identity, origin, authority, and relationship to the current highlands remain unresolved.",
+          "No public record here confirms a founding narrative, personal biography, present conflict, or story sequence.",
         ],
       },
     ],

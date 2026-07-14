@@ -1,0 +1,10 @@
+---
+import { visitorImprintStages } from "@/data/other-alice-world-guide";
+interface Props { compact?: boolean } const { compact=false }=Astro.props;
+---
+<ol class:list={["imprint",compact&&"compact"]} aria-label="How visitor residue becomes local structure">
+ {visitorImprintStages.map((stage,index)=><li><span>{String(index+1).padStart(2,"0")}</span>{stage}</li>)}
+</ol>
+<style>
+ .imprint{display:flex;overflow-x:auto;margin:0;padding:.75rem 0;list-style:none;scroll-snap-type:x proximity}.imprint li{position:relative;flex:1 0 8rem;scroll-snap-align:start;border-top:1px solid #9f7aea;padding:1.8rem .7rem .5rem;color:#d7d9e0;font-size:.83rem}.imprint li:before{content:"";position:absolute;top:-.3rem;left:.7rem;width:.55rem;aspect-ratio:1;border-radius:50%;background:#9f7aea}.imprint span{display:block;margin-bottom:.5rem;color:#7f8797;font:600 .65rem/1 ui-monospace,monospace}.compact li{flex-basis:7rem}
+</style>

@@ -1,0 +1,37 @@
+---
+import { routeTypes } from "@/data/other-alice-world-guide";
+interface Props { compact?: boolean }
+const { compact=false } = Astro.props;
+---
+<div class:list={["route-atlas",compact&&"compact"]} data-route-atlas>
+ <div class="controls" role="toolbar" aria-label="Route family">
+  {routeTypes.map((route,index)=><button type="button" data-route={route.id} aria-pressed={index===0?"true":"false"}>{route.label}</button>)}
+ </div>
+ <div class="map-row">
+  <svg viewBox="0 0 640 440" role="img" aria-labelledby="route-title route-desc">
+   <title id="route-title">Radial, orbital, and burrow routes</title><desc id="route-desc">Three route families cross one circular map. Buttons select the highlighted family.</desc>
+   <circle class="terrain" cx="320" cy="220" r="185"/><circle class="terrain inner" cx="320" cy="220" r="65"/>
+   <g data-family="radial" class="family active"><path d="M320 220 L320 36 M320 220 L490 145 M320 220 L470 330 M320 220 L145 295 M320 220 L160 115"/></g>
+   <g data-family="orbital" class="family"><path d="M150 220a170 120 0 1 0 340 0a170 120 0 1 0-340 0M205 220a115 78 0 1 0 230 0a115 78 0 1 0-230 0"/></g>
+   <g data-family="burrow" class="family"><path d="M95 360 C210 300 170 125 320 160 S470 360 560 70"/><circle cx="95" cy="360" r="8"/><circle cx="560" cy="70" r="8"/></g>
+  </svg>
+  <div class="route-copy" aria-live="polite">
+   {routeTypes.map((route,index)=><article data-route-copy={route.id} hidden={index!==0}><p class="eyebrow">{route.label} route</p><p>{route.summary}</p><small>Evidence: {route.evidence}</small></article>)}
+  </div>
+ </div>
+</div>
+<script>
+ const valid = ["radial","orbital","burrow"];
+ document.querySelectorAll<HTMLElement>("[data-route-atlas]").forEach((root)=>{
+  const buttons=[...root.querySelectorAll<HTMLButtonElement>("[data-route]")];
+  const select=(id:string,write=true)=>{ if(!valid.includes(id)) id="radial"; buttons.forEach((b)=>b.setAttribute("aria-pressed",String(b.dataset.route===id))); root.querySelectorAll<SVGGElement>("[data-family]").forEach((g)=>g.classList.toggle("active",g.dataset.family===id)); root.querySelectorAll<HTMLElement>("[data-route-copy]").forEach((p)=>p.hidden=p.dataset.routeCopy!==id); if(write){const u=new URL(location.href);u.searchParams.set("route",id);history.replaceState({},"",u);} };
+  buttons.forEach((b,i)=>{b.addEventListener("click",()=>select(b.dataset.route||"radial"));b.addEventListener("keydown",(e)=>{if(e.key!=="ArrowRight"&&e.key!=="ArrowLeft")return;e.preventDefault();const d=e.key==="ArrowRight"?1:-1;const n=(i+d+buttons.length)%buttons.length;buttons[n].focus();select(buttons[n].dataset.route||"radial");});});
+  select(new URL(location.href).searchParams.get("route")||"radial",false);
+ });
+</script>
+<style>
+ .route-atlas{border:1px solid rgba(255,255,255,.14);border-radius:1rem;background:linear-gradient(145deg,#101522,#080b13);padding:1rem}.controls{display:flex;gap:.5rem;flex-wrap:wrap}.controls button{border:1px solid #3d4352;border-radius:999px;background:transparent;padding:.55rem .8rem;color:#cdd0da;font:600 .72rem/1 ui-monospace,monospace;text-transform:uppercase}.controls button[aria-pressed="true"]{border-color:#9f7aea;background:#9f7aea;color:#090a10}.controls button:focus-visible{outline:2px solid white;outline-offset:3px}
+ .map-row{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(14rem,.75fr);gap:1rem;align-items:center}.map-row svg{width:100%;height:auto}.terrain{fill:#162b28;stroke:#648a83;stroke-width:2}.terrain.inner{fill:#4a1925;stroke:#ef476f}.family{opacity:.14;fill:none;stroke:#697282;stroke-width:5;stroke-linecap:round;transition:opacity .2s,stroke .2s}.family.active{opacity:1}.family[data-family="radial"].active{stroke:#ef476f}.family[data-family="orbital"].active{stroke:#f7c948}.family[data-family="burrow"].active{stroke:#9f7aea;stroke-dasharray:10 9}.family circle{fill:#9f7aea;stroke:none}.route-copy{min-height:9rem}.route-copy p{color:#c6cad4;line-height:1.65}.route-copy .eyebrow{color:white;font:600 .72rem/1 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.14em}.route-copy small{color:#8f96a6}.compact .route-copy{min-height:auto}
+ @media(max-width:700px){.map-row{grid-template-columns:1fr}.map-row svg{max-height:22rem}.route-copy{min-height:10rem}}
+ @media(prefers-reduced-motion:reduce){.family{transition:none}}
+</style>

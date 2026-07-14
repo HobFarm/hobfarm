@@ -2,130 +2,41 @@ import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import test from "node:test";
+const root=process.cwd(); const read=(file)=>readFileSync(join(root,file),"utf8");
 
-const root = process.cwd();
-const read = (file) => readFileSync(join(root, file), "utf8");
-
-test("Other Alice pages explain the premise and distinguish the character", () => {
-  const series = read("src/data/story-series.ts");
-  const characters = read("src/data/characters.ts");
-  const hub = read("src/pages/departments/hobfarm-presents/index.astro");
-
-  assert.match(series, /What is Other Alice\?/);
-  assert.match(series, /Is Other Alice evil\?/);
-  assert.match(series, /Lewis Carroll's public-domain Wonderland/);
-  assert.match(characters, /Other Alice: Character Guide/);
-  assert.match(characters, /curiosity without an adequate stopping mechanism/);
-  assert.match(hub, /HobFarm's series imprint/);
-  assert.match(hub, /Illustrated Fiction/);
-  assert.doesNotMatch(hub, /Strange Recurring Worlds/);
+test("Other Alice public navigation has four world-guide entries",()=>{
+ const nav=read("src/data/other-alice/navigation.ts");
+ assert.deepEqual([...nav.matchAll(/label:\s*"([^"]+)"/g)].slice(0,4).map((match)=>match[1]),["Start Here","World Guide","Houses","Web of Wonderland"]);
+ assert.doesNotMatch(nav,/Adventure|Atlas|Cast|Bestiary|Archive|Workshop/);
 });
 
-test("Other Alice fiction is discoverable through search and structured pages", () => {
-  const searchIndex = read("src/lib/search-index.ts");
-  const seriesPage = read(
-    "src/pages/departments/hobfarm-presents/[series]/index.astro",
-  );
-  const characterPage = read("src/pages/characters/[character].astro");
-  const adventurePage = read(
-    "src/pages/departments/hobfarm-presents/[series]/[slug].astro",
-  );
-
-  assert.match(searchIndex, /type: "adventure"/);
-  assert.match(searchIndex, /type: "series"/);
-  assert.match(searchIndex, /type: "character"/);
-  assert.match(seriesPage, /CreativeWorkSeries/);
-  assert.match(characterPage, /ProfilePage/);
-  assert.match(adventurePage, /BreadcrumbList/);
-  assert.match(adventurePage, /ShareButtons/);
-  assert.equal(
-    existsSync(
-      join(root, "src/pages/departments/hobfarm-presents/[series]/index.md.ts"),
-    ),
-    true,
-  );
-  assert.equal(
-    existsSync(join(root, "src/pages/characters/[character]/index.md.ts")),
-    true,
-  );
+test("Start Here uses the approved hero and chronology",()=>{
+ const page=read("src/components/presents/other-alice/OtherAliceStartPage.astro");
+ const canon=read("src/data/other-alice/canon.ts");
+ const boundary=read("src/components/presents/other-alice/living-world/BoundaryRecord.astro");
+ assert.match(canon,/arrivedAge: 8/);
+ assert.match(canon,/presentAge: 18/);
+ assert.match(canon,/wonderlandYears: 10/);
+ assert.match(canon,/outsideYears: "about 200 years"/);
+ assert.match(page,/otherAliceChronology\.startDeck/);
+ assert.match(page,/A graphic novel that escaped the book and began using the whole website\./);
+ assert.match(page,/otherAliceChronology\.rail/);
+ assert.match(page,/Wonderland is inhabited, maintained, traded, taxed, and argued over\./);
+ assert.match(page,/The world does not wait for Alice\./);
+ assert.match(boundary,/Exterior record incomplete/);
+ assert.doesNotMatch(page,/Read Adventure|Adventure No\.|current fragment/i);
 });
 
-test("The Wrong Tunnel is preserved as an editorial draft", () => {
-  const path = "src/content/adventures/adventure-no-01-the-wrong-tunnel.md";
-  assert.equal(existsSync(join(root, path)), true);
-
-  const adventure = read(path);
-  assert.match(adventure, /series:\s*other-alice-adventures/);
-  assert.match(adventure, /number:\s*1/);
-  assert.match(adventure, /status:\s*draft/);
-  assert.match(adventure, /draft:\s*true/);
-  assert.match(adventure, /Ciryl Spade was smoking chive/);
-  assert.match(adventure, /This side makes the tunnel larger/);
+test("withdrawn story routes redirect and story files are outside public content",()=>{
+ assert.equal(existsSync(join(root,"src/content/adventures/adventure-no-01-the-boundary-table.md")),false);
+ assert.equal(existsSync(join(root,"src/content/adventures/adventure-no-01-the-wrong-tunnel.md")),false);
+ assert.equal(existsSync(join(root,"docs/other-alice/narrative-architecture/private/drafts/withdrawn-story-draft-01.md")),true);
+ const redirects=read("public/_redirects"); assert.match(redirects,/adventure-no-01-the-boundary-table.*other-alice-adventures\//);
 });
 
-test("Adventure pages use one cover placement and specific related labels", () => {
-  const adventurePage = read(
-    "src/pages/departments/hobfarm-presents/[series]/[slug].astro",
-  );
-  const boundaryTable = read(
-    "src/content/adventures/adventure-no-01-the-boundary-table.md",
-  );
-
-  assert.doesNotMatch(adventurePage, /Portrait cover \/ opening plate/);
-  assert.match(adventurePage, /the hero is the only cover placement/);
-  assert.match(adventurePage, /relatedArticleTitle/);
-  assert.match(
-    boundaryTable,
-    /relatedArticleTitle:\s*"How the Money Eats the Medium"/,
-  );
-});
-
-test("Other Alice world and resident galleries use the supplied R2 plates", () => {
-  const series = read("src/data/story-series.ts");
-  const worldGuide = read("src/data/other-alice-world-guide.ts");
-  const sourceData = `${series}\n${worldGuide}`;
-  const seriesPage = read(
-    "src/pages/departments/hobfarm-presents/[series]/index.astro",
-  );
-  const worldGallery = read(
-    "src/components/presents/WorldConceptGallery.astro",
-  );
-  const residentGallery = read("src/components/presents/ResidentGallery.astro");
-
-  for (const filename of [
-    "oaa-wonderland-wasteland-aerial.png",
-    "oaa-concept-landscape-city-center.png",
-    "oaa-concept-landscape-jungle.png",
-    "oaa-concept-landscape-forest.png",
-    "oaa-concept-landscape-boundary.png",
-    "oaa-concept-landscape-tundra.png",
-    "oaa-concept-landscape-wasteland.png",
-    "other-alice-character-sheet.webp",
-    "chester-character-portrait.webp",
-    "mad-hatter-diamond-highlands-concept.webp",
-    "wonderland-circular-world-concept.webp",
-    "oaa-ciryl-portrait-.png",
-    "oaa-club-bears-portrait-.png",
-    "oaa-queen-of-hearts-portrait-.png",
-  ]) {
-    assert.match(sourceData, new RegExp(filename.replaceAll(".", "\\.")));
-  }
-
-  assert.match(seriesPage, /OtherAliceStartPage/);
-  assert.match(seriesPage, /WorldConceptGallery/);
-  assert.match(seriesPage, /ResidentGallery/);
-  assert.match(worldGallery, /width=\{concept\.width\}/);
-  assert.match(worldGallery, /loading="lazy"/);
-  assert.match(residentGallery, /entry\.category === "faction"/);
-});
-
-test("agent-readable Other Alice copy includes the visual atlas and residents", () => {
-  const agentCorpus = read("src/lib/agent-corpus.ts");
-  const searchIndex = read("src/lib/search-index.ts");
-
-  assert.match(agentCorpus, /series\.worldAtlas\.concepts/);
-  assert.match(agentCorpus, /series\.residents\.entries/);
-  assert.match(agentCorpus, /Image source:/);
-  assert.match(searchIndex, /series\.worldAtlas\?\.concepts/);
-  assert.match(searchIndex, /series\.residents\?\.entries/);
+test("public chronology does not infer a fixed outside calendar",()=>{
+ const publicSources=[read("src/data/story-series.ts"),read("src/data/characters.ts"),read("src/data/other-alice/canon.ts")].join("\n");
+ assert.doesNotMatch(publicSources,/2070s|150\s*[–-]\s*200|eleven years|arrived at seven/i);
+ assert.match(publicSources,/outsideYears: "about 200 years"/);
+ assert.match(read("src/data/story-series.ts"),/otherAliceChronology\.startDeck/);
 });

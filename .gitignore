@@ -21,6 +21,15 @@ hf-*.png
 hobfarm-*.png
 homepage-*.png
 
+# Private Other Alice source packs and local generation review artifacts
+/docs/other-alice/narrative-architecture/
+/reports/other-alice-living-world/
+
+# Published through R2; local optimized derivatives are working copies only
+/public/media/other-alice/oaa-map-wonderland-living-atlas-v01-16x9.avif
+/public/media/other-alice/oaa-map-wonderland-living-atlas-v01-16x9.webp
+/public/media/other-alice/oaa-poster-other-alice-two-worlds-v01-2x3.avif
+
 # Environment variables
 .env
 .env.production

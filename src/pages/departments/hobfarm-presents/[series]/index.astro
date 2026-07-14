@@ -70,16 +70,16 @@ const structuredData = {
         name: contributor.name,
       })),
       publisher: { "@id": "https://hob.farm/#organization" },
-      associatedMedia: [
+      associatedMedia: (isOtherAlice ? [] : [
         ...(series.worldAtlas?.concepts ?? []),
         ...(series.residents?.entries ?? []),
-      ].map((media) => ({
+      ]).map((media) => ({
         "@type": "ImageObject",
         contentUrl: media.image,
         caption: "description" in media ? media.description : media.summary.join(" "),
         description: media.imageAlt,
       })),
-      hasPart: adventures.map((adventure) => ({
+      hasPart: (isOtherAlice ? [] : adventures).map((adventure) => ({
         "@type": "Article",
         name: adventure.data.title,
         url: new URL(adventurePath(adventure), "https://hob.farm").toString(),

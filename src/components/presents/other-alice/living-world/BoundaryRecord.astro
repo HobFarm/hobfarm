@@ -1,0 +1,11 @@
+---
+import { boundaryConversions } from "@/data/other-alice-world-guide";
+---
+<aside class="boundary-record">
+ <p class="label">Exterior record incomplete</p><h2>The official map ends at the mountains.</h2>
+ <p>Beyond the boundary, wet routes become hard lines, reflection becomes mirror, and the public record changes medium. Wonderland's atlas stops here for now.</p>
+ <dl>{boundaryConversions.map(([wet,dry])=><div><dt>{wet}</dt><dd>{dry}</dd></div>)}</dl>
+</aside>
+<style>
+ .boundary-record{position:relative;overflow:hidden;border:1px solid #576477;border-radius:1rem;padding:clamp(1.25rem,4vw,3rem);background:linear-gradient(110deg,#14251f 0 47%,#111824 53% 100%)}.boundary-record:after{content:"";position:absolute;inset:-20% 48%;width:2px;background:#eee7d6;transform:rotate(9deg)}.label{color:#9f7aea;font:600 .68rem/1 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.14em}h2{max-width:16ch;color:#fff;font:400 clamp(1.8rem,4vw,3.5rem)/1.05 Georgia,serif}.boundary-record>p:not(.label){max-width:60ch;color:#bcc0ca;line-height:1.65}dl{display:flex;gap:.5rem;flex-wrap:wrap}dl div{border:1px solid rgba(255,255,255,.14);padding:.6rem .8rem;background:rgba(0,0,0,.16)}dt{color:#77b899}dd{margin:.2rem 0 0;color:#9fb8d4;font-size:.84rem} @media(max-width:600px){.boundary-record:after{display:none}}
+</style>

@@ -1,4 +1,9 @@
 # Canonical redirects
+/departments/hobfarm-presents/other-alice-adventures/adventure-no-01-the-boundary-table   /departments/hobfarm-presents/other-alice-adventures/   301
+/departments/hobfarm-presents/other-alice-adventures/adventure-no-01-the-boundary-table/  /departments/hobfarm-presents/other-alice-adventures/   301
+/departments/hobfarm-presents/other-alice-adventures/adventure-no-01-the-wrong-tunnel   /departments/hobfarm-presents/other-alice-adventures/   301
+/departments/hobfarm-presents/other-alice-adventures/adventure-no-01-the-wrong-tunnel/  /departments/hobfarm-presents/other-alice-adventures/   301
+
 /stylefusion  /projects/stylefusion/  301
 /sf           /projects/stylefusion/  301
 

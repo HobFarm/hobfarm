@@ -1,0 +1,11 @@
+import { otherAliceChronology } from "./canon";
+
+export const otherAliceResidents = [
+ { id:"other-alice",name:"Other Alice",role:"Resident field observer",category:"character" as const,image:"https://cdn.hob.farm/pages/other-alice-adventures/other-alice-character-sheet.webp",imageAlt:"Approved character sheet showing Other Alice in a purple dress with field tools and multiple poses.",summary:[otherAliceChronology.residentSummary,"She reads routes, organisms, institutions, and contradictions as the structure of home."],href:"/characters/alice/" },
+ { id:"chester",name:"Chester",role:"Companion and route authority",category:"character" as const,image:"https://cdn.hob.farm/pages/other-alice-adventures/chester-character-portrait.webp",imageAlt:"Portrait of Chester, an old grey-blue British Blue Cheshire cat with amber eyes.",summary:["Chester's refusal is evidence.","He recognizes route behavior Alice cannot always observe directly."],href:"/characters/chester/" },
+ { id:"queen-of-hearts",name:"Queen of Hearts",role:"Sovereign of the central estate",category:"character" as const,image:"https://cdn.hob.farm/projects/other-alice/queen-of-hearts.webp",imageAlt:"The Queen of Hearts in her central court.",summary:["Her House owns the ground and the official map.","Court authority still depends on commerce, continuity, and force."] },
+ { id:"ciryl-spade",name:"Ciryl Spade",role:"Spade maintenance worker",category:"character" as const,image:"https://cdn.hob.farm/projects/other-alice/ciryl-spade.webp",imageAlt:"Ciryl Spade in practical maintenance clothing.",summary:["Ciryl records water, fungal, and repair conditions.","His public record does not disclose private story chronology."] },
+ { id:"club-road-crews",name:"Club road crews",role:"Outer transport and security",category:"faction" as const,image:"https://cdn.hob.farm/projects/other-alice/polar-bear-clubs.webp",imageAlt:"Club road crews working in the cold outer country.",summary:["Roads, depots, escorts, and settlements make the outer ring inhabited.","Their work reveals how force and transport share one system."] },
+] as const;
+
+export function getOtherAliceResident(id:string){ return otherAliceResidents.find((resident)=>resident.id===id); }

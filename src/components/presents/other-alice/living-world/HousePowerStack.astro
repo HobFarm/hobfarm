@@ -1,0 +1,27 @@
+---
+import { housePowerLayers, otherAliceCanon } from "@/data/other-alice-world-guide";
+---
+<div class="house-filter" data-house-filter>
+ <div class="controls" role="toolbar" aria-label="House power layer">
+  <button type="button" data-house="all" aria-pressed="true">All systems</button>
+  {housePowerLayers.map((layer)=><button type="button" data-house={layer.owner.toLowerCase()} aria-pressed="false">{layer.owner}</button>)}
+ </div>
+<figure class="power-stack">
+ <figcaption>{otherAliceCanon.mapRule}</figcaption>
+ <ol>{housePowerLayers.map((layer,index)=><li data-house-layer={layer.owner.toLowerCase()} style={`--i:${index}`}><span>{layer.label}</span><strong>{layer.owner}</strong><p>{layer.test}</p></li>)}</ol>
+</figure>
+</div>
+<script>
+ const valid=["all","hearts","diamonds","spades","clubs"];
+ document.querySelectorAll<HTMLElement>("[data-house-filter]").forEach((root)=>{
+  const buttons=[...root.querySelectorAll<HTMLButtonElement>("[data-house]")];
+  const select=(house:string,write=true)=>{if(!valid.includes(house))house="all";buttons.forEach((button)=>button.setAttribute("aria-pressed",String(button.dataset.house===house)));root.querySelectorAll<HTMLElement>("[data-house-layer]").forEach((layer)=>layer.classList.toggle("dim",house!=="all"&&layer.dataset.houseLayer!==house));if(write){const url=new URL(location.href);if(house==="all")url.searchParams.delete("house");else url.searchParams.set("house",house);history.replaceState({},"",url);}};
+  buttons.forEach((button,index)=>{button.addEventListener("click",()=>select(button.dataset.house||"all"));button.addEventListener("keydown",(event)=>{if(event.key!=="ArrowRight"&&event.key!=="ArrowLeft")return;event.preventDefault();const next=(index+(event.key==="ArrowRight"?1:-1)+buttons.length)%buttons.length;buttons[next].focus();select(buttons[next].dataset.house||"all");});});
+  select(new URL(location.href).searchParams.get("house")||"all",false);
+ });
+</script>
+<style>
+ .controls{display:flex;gap:.4rem;overflow-x:auto;margin-bottom:1rem;padding:.2rem}.controls button{border:1px solid #4b5261;border-radius:999px;background:transparent;padding:.55rem .75rem;color:#c9ccd4;font:600 .69rem/1 ui-monospace,monospace;text-transform:uppercase;white-space:nowrap}.controls button[aria-pressed="true"]{background:#eee7d6;color:#090b11}.controls button:focus-visible{outline:2px solid #9f7aea;outline-offset:2px}.power-stack{margin:0}.power-stack figcaption{margin-bottom:1rem;color:#eee7d6;font-family:Georgia,serif;font-size:clamp(1.35rem,3vw,2.4rem);line-height:1.15}.power-stack ol{display:grid;grid-template-columns:repeat(4,1fr);margin:0;padding:0;list-style:none;border:1px solid rgba(255,255,255,.15);background:radial-gradient(circle at 50% 120%,#223e36,#10131c 65%)}li{min-height:16rem;padding:1rem;border-right:1px solid rgba(255,255,255,.13);box-shadow:inset 0 calc(var(--i) * -10px) 0 rgba(159,122,234,.09);transition:opacity .2s}li.dim{opacity:.2}li:last-child{border:0}span{color:#8e95a4;font:600 .68rem/1 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.12em}strong{display:block;margin-top:4rem;color:#fff;font-size:1.3rem}p{color:#b6bac5;line-height:1.55}
+ @media(max-width:700px){.power-stack ol{grid-template-columns:1fr 1fr}li{min-height:12rem}strong{margin-top:2rem}}
+ @media(prefers-reduced-motion:reduce){li{transition:none}}
+</style>

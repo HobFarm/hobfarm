@@ -1,0 +1,20 @@
+export * from "./types";
+export * from "./canon";
+export * from "./navigation";
+export * from "./houses";
+export * from "./regions";
+export * from "./routes";
+export * from "./systems";
+export * from "./time";
+export * from "./visitors";
+export * from "./residents";
+export * from "./bestiary";
+export * from "./archive";
+export * from "./relationships";
+export * from "./assets";
+
+import { otherAliceChronology } from "./canon";
+export const aliceTimeline = otherAliceChronology.timeline;
+export const otherAliceConceptArt = [] as const;
+export const worldGuideTerms = ["estate","route","resonance","residue","microworld","boundary"] as const;
+export const hatterWorldFeature = { status:"disputed", visibility:"withheld", note:"Working reconstruction only; no public origin system is asserted." } as const;

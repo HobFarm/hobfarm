@@ -1,0 +1,11 @@
+---
+import { timeLayers, portalFamilies } from "@/data/other-alice-world-guide";
+---
+<div class="clocks">
+ <div class="clock-grid">{timeLayers.map((clock)=><article><div class="dial" aria-hidden="true"><i></i></div><h3>{clock.title}</h3><p>{clock.text}</p></article>)}</div>
+ <details><summary>Compare portal families</summary><ul>{portalFamilies.map((portal)=><li><strong>{portal.label}</strong> — {portal.rule}. <span>Typical cost: {portal.cost}.</span></li>)}</ul></details>
+</div>
+<style>
+ .clock-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}.clock-grid article{border-top:2px solid #9f7aea;padding:1rem;background:#0e121c}.dial{width:4rem;aspect-ratio:1;border:1px solid #6e7586;border-radius:50%;display:grid;place-items:center}.dial:before,.dial:after{content:"";position:absolute;width:1px;height:1.35rem;background:#eee7d6;transform-origin:bottom}.dial:before{transform:translateY(-.65rem) rotate(35deg)}.dial:after{transform:translateY(-.65rem) rotate(120deg)}.dial{position:relative}.dial i{width:.35rem;aspect-ratio:1;background:#ef476f;border-radius:50%}h3{color:#fff}p,li{color:#b3b8c4;line-height:1.6}details{margin-top:1rem;border:1px solid rgba(255,255,255,.13);padding:1rem}summary{color:#fff;cursor:pointer}li span{color:#8f96a6}
+ @media(max-width:650px){.clock-grid{grid-template-columns:1fr}}
+</style>
