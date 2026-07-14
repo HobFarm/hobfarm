@@ -45,6 +45,11 @@ try {
       });
       const consoleErrors = [];
       const failedRequests = [];
+      let sawAnonymousAuth401 = false;
+      page.on("response", (response) => {
+        const pathname = new URL(response.url()).pathname;
+        if (pathname === "/api/auth/me" && response.status() === 401) sawAnonymousAuth401 = true;
+      });
       page.on("console", (message) => {
         if (message.type() === "error") consoleErrors.push(message.text());
       });
@@ -123,7 +128,12 @@ try {
       const focusVisible = await page.evaluate(() => document.activeElement !== document.body);
       assert.equal(focusVisible, true, `${route.id} did not expose a keyboard focus target`);
 
-      assert.deepEqual(consoleErrors, [], `${route.id} logged console errors at ${viewport.width}px`);
+      const unexpectedConsoleErrors = consoleErrors.filter((message) => !(
+        sawAnonymousAuth401 &&
+        message.includes("Failed to load resource") &&
+        message.includes("401")
+      ));
+      assert.deepEqual(unexpectedConsoleErrors, [], `${route.id} logged console errors at ${viewport.width}px`);
       assert.deepEqual(failedRequests, [], `${route.id} had failed requests at ${viewport.width}px`);
 
       await page.screenshot({
