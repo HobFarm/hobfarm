@@ -6,6 +6,11 @@
 // membership, latest/previous covers, and counts are derived from the
 // adventures collection at build time, not stored here.
 
+import {
+  otherAliceCanon,
+  otherAliceResidents,
+} from "@/data/other-alice-world-guide";
+
 export type WorldConcept = {
   id: string;
   title: string;
@@ -135,22 +140,21 @@ export const storySeries: StorySeries[] = [
     metaDescription:
       "An original illustrated serial built from public-domain Alice mythology, following eighteen-year-old Alice through living Wonderland, the Wasteland, and new characters and factions.",
     eyebrow: "An illustrated Alice in Wonderland serial",
-    tagline: "The girl who stayed down.",
-    heroDeck:
-      "Alice stayed in Wonderland. Ten Wonderland years later, she finds the first hole leading out.",
+    tagline: otherAliceCanon.formatLine,
+    heroDeck: otherAliceCanon.premise,
     logline:
-      "Alice entered Wonderland at about eight and stayed. Ten Wonderland years later, she follows the holes leading beyond its living labyrinth with Chester, the older Cheshire Cat.",
+      "Alice entered Wonderland at eight and stayed. Ten Wonderland years and two outside centuries later, she follows evidence that the official map ends before the world does, with Chester beside her and several Houses invested in keeping the map intact.",
     heroIntro: [
-      "Other Alice Adventures begins long after the fall. Alice is eighteen now and has lived below for ten Wonderland years, long enough for Wonderland to alter her body, her habits, and her idea of home.",
-      "She moves through a branching network of burrows, mirrors, doors, tunnels, and wormholes connecting wet organic Wonderland to the dry geometric Wasteland.",
-      "The series starts with familiar public-domain mythology, then follows it into new territory: original characters, working communities, casino empires, living infrastructure, remote clans, failed districts, and paths that were never meant to be opened.",
+      "Other Alice Adventures begins after adaptation. Alice is eighteen, with a home, tools, relationships, secrets, and a reputation earned across ten Wonderland years.",
+      "Wonderland is a wet, inhabited circular realm whose official Heart map hides a patchwork of markets, water systems, work colonies, roads, courts, and unstable routes.",
+      "The early serial builds that world through stories, field records, maps, characters, creatures, and institutional evidence before the full exterior record is opened.",
     ],
     explainer: {
       heading: "What is Other Alice?",
-      lead: "Other Alice Adventures is an original illustrated serial drawn from Lewis Carroll's public-domain Wonderland. It follows the Alice who stayed down.",
+      lead: "Other Alice Adventures is an original illustrated serial drawn from Lewis Carroll's public-domain Wonderland. It follows an Alice who grew up inside Wonderland.",
       paragraphs: [
-        "Alice entered Wonderland at about eight and has lived there for ten Wonderland years. At eighteen, she is neither innocent nor evil. She is curious, analytical, practical, impatient with false explanations, and willing to test a world's rules when the official answers stop making sense.",
-        "Wonderland changed while she grew up. It absorbed machines, media, commerce, fashion, vice, and other fragments from worlds connected by unstable holes. The result is a wet techno-surreal civilization built from living systems, card-suit castes, casino power, fungal infrastructure, and old nonsense that has learned modern habits.",
+        "Alice entered Wonderland at eight and has lived there for ten Wonderland years. Outside, 200 years passed and the world advanced to roughly the 2070s. At eighteen, she is curious, analytical, practical, impatient with false explanations, and willing to test a world's rules when official answers stop matching visible evidence.",
+        "Wonderland changed while she grew up. It absorbed machines, media, commerce, fashion, vice, and other fragments from worlds connected by unstable holes. The result is a wet techno-surreal civilization built from living systems, card-suit castes, casino power, fungal infrastructure, and future systems translated through dream logic.",
         "With Chester beside her, Alice begins following openings that lead beyond the known world. The first evidence points toward boundary mountains where Wonderland has an edge and something dry, hard, and geometric lies beyond it.",
       ],
     },
@@ -282,85 +286,12 @@ export const storySeries: StorySeries[] = [
     residents: {
       heading: "Residents of the rabbit-hole world",
       intro:
-        "Some are inherited from Wonderland's shared mythology. Others belong entirely to this branch of the holes. Together they reveal who maintains the world, who profits from it, and who is allowed to cross its boundaries.",
-      entries: [
-        {
-          id: "other-alice",
-          name: "Other Alice",
-          role: "The girl who stayed down",
-          category: "character",
-          image:
-            "https://cdn.hob.farm/pages/other-alice-adventures/oaa-alice-portrait-01.png",
-          imageAlt:
-            "Other Alice in worn purple field clothes carrying softened symbols of all four suits at a mirror between Wonderland and Wasteland.",
-          summary: [
-            "Other Alice is eighteen and has spent most of her life inside Wonderland. She is a scavenger, tea ritualist, explorer, and boundary-walker. Her purple clothes carry the softened symbols of all four suits, marking an identity shaped by Wonderland but owned by no single faction.",
-            "She is not a generic warrior. Curiosity moves her through the world: she observes systems, tests explanations, and follows evidence farther than caution recommends.",
-          ],
-          href: "/characters/alice/",
-        },
-        {
-          id: "chester",
-          name: "Chester",
-          role: "Companion and route authority",
-          category: "character",
-          image:
-            "https://cdn.hob.farm/pages/other-alice-adventures/oaa-chester-portrait-.png",
-          imageAlt:
-            "Chester, an enormous gray British Blue cat with amber eyes and heavy paws, seated among wet fungal growth and card relics.",
-          summary: [
-            "Chester is an enormous British Blue cat with amber eyes, heavy paws, and very little interest in explaining himself.",
-            "He acts as companion, witness, judge, and occasional route authority. Chester rarely gives Alice a complete answer. When he refuses to cross a threshold, she pays attention.",
-          ],
-          href: "/characters/chester/",
-        },
-        {
-          id: "queen-of-hearts",
-          name: "The Queen of Hearts",
-          role: "Sovereign of the center",
-          category: "character",
-          image:
-            "https://cdn.hob.farm/pages/other-alice-adventures/oaa-queen-of-hearts-portrait-.png",
-          imageAlt:
-            "The Queen of Hearts seated in red glass and gold regalia before the casino-city she rules.",
-          summary: [
-            "The Queen rules from the House, a dark red glass and gold casino-castle at the center of Wonderland City.",
-            "She is sovereign, host, landholder, institutional power, and keeper of the central order: elegant, theatrical, politically powerful, and morally gray. Alice and the Queen are not simple enemies. The Queen controls the center. Alice moves through the boundaries.",
-          ],
-        },
-        {
-          id: "ciryl-spade",
-          name: "Ciryl Spade",
-          role: "Outer-forest topsoil worker",
-          category: "character",
-          image:
-            "https://cdn.hob.farm/pages/other-alice-adventures/oaa-ciryl-portrait-.png",
-          imageAlt:
-            "Ciryl Spade, a hedgehog topsoil worker with Spade field gear and a smoking pipe in the mycelium forest.",
-          summary: [
-            "Ciryl Spade is a hedgehog topsoil worker assigned to a living mycelium colony in the outer forest. Important suit-bearing characters use the suit as a surname.",
-            "He is practical, mildly stoned, and accidentally important. A wrong maintenance tunnel sends him through a portal to the boundary mountains during rare building weather, exposing a route Alice was never supposed to find.",
-          ],
-        },
-        {
-          id: "club-bears",
-          name: "The Club bears",
-          role: "Recurring faction",
-          category: "faction",
-          image:
-            "https://cdn.hob.farm/pages/other-alice-adventures/oaa-club-bears-portrait-.png",
-          imageAlt:
-            "A group of giant Club bears feeding in a tiny Spade mycelium work site while hedgehog workers scatter below them.",
-          summary: [
-            "These remote Club bears are giant mutant humanoids tuned for strength, durability, appetite, and seasonal fat storage.",
-            "They enter Ciryl's work site because they smell mushrooms, larvae, fermentation sacs, and stored lunches. They are not invading the colony. They are hungry, distracted, and so large that ordinary feeding becomes a natural disaster for the tiny Spade workers beneath them.",
-          ],
-        },
-      ],
+        "Workers, sovereigns, outliers, and inherited Wonderland figures reveal who keeps the realm alive, who profits from it, and who can cross its boundaries.",
+      entries: otherAliceResidents,
     },
     description: [
-      "Alice stayed in Wonderland long past when she should have left, and it changed her before it let her go. Now eighteen, she crosses the boundary with Chester and follows the holes that lead farther out, into the Wasteland and whatever sits between the two.",
-      "Each numbered Adventure stands on its own while opening another piece of the larger world. A story may arrive with a painted cover, interior illustrations, an atmospheric loop, a moving scene, a field note, or an artifact recovered during the journey.",
+      "Alice stayed in Wonderland and it became home. Now eighteen, she follows evidence through its courts, work sites, living infrastructure, and disputed boundary routes with Chester beside her.",
+      "Each numbered Adventure stands on its own while opening another piece of the larger world. A story may arrive with a painted cover, interior illustrations, an atmospheric loop, a moving scene, a field note, or an artifact recovered along the route.",
     ],
     cover:
       "https://cdn.hob.farm/pages/other-alice-adventures/other-alice-adventures-series-cover.png",
@@ -399,7 +330,7 @@ export const storySeries: StorySeries[] = [
           {
             label: "Who controls it",
             value:
-              "The Queen rules the center through the Hearts. Diamonds organize money and entertainment, Clubs organize force, and Spades maintain the living environment.",
+              "Hearts own the official map. Diamonds control circulation, Spades maintain continuity, and Clubs control reach across the outer territories.",
           },
           {
             label: "What remains unexplained",
@@ -479,10 +410,10 @@ export const storySeries: StorySeries[] = [
     ],
     loreSections: [
       {
-        heading: "The card suits",
+        heading: "The Houses and the suit system",
         paragraphs: [
-          "Wonderland's four suits are social names and functional castes. Named suit characters carry the suit as a surname, such as Ciryl Spade.",
-          "A suit is a social and functional identity, not a single species. Some animals can belong to different suits depending on their role and adaptation. Others are suit-bound. Hedgehogs are always Spades. Bears are always Clubs. Members of a suit do not all look alike or share one morality.",
+          otherAliceCanon.politicalRule,
+          "A House is a political, economic, ecological, occupational, and sometimes bodily system. Named suit citizens carry the suit as a surname, such as Ciryl Spade. Hedgehogs are always Spades and bears are always Clubs, while other species can cross House roles according to work and adaptation.",
         ],
         items: [
           {
@@ -528,7 +459,7 @@ export const storySeries: StorySeries[] = [
       {
         question: "Is this a retelling of Alice's original trip?",
         answer:
-          "No. The story begins ten Wonderland years after Alice first arrived. Her childhood visit is history; the series follows the person she became after Wonderland stopped being new.",
+          "No. The story begins ten Wonderland years after Alice arrived. Her childhood visit is history; the series follows the person she became after Wonderland became home.",
       },
       {
         question: "Is Other Alice evil?",
@@ -538,12 +469,12 @@ export const storySeries: StorySeries[] = [
       {
         question: "How old is Alice?",
         answer:
-          "Alice is eighteen. She entered Wonderland at about eight and has lived there for ten Wonderland years, while roughly two hundred years passed along her original rabbit-hole route. The outside world is now around the 2060s.",
+          "Alice is eighteen. She entered Wonderland at eight and has lived there for ten Wonderland years. Exactly 200 years passed along her original outside route, placing it roughly in the 2070s.",
       },
       {
         question: "Is Chester the Cheshire Cat?",
         answer:
-          "Yes. Chester is the older, fatter, lazier Cheshire Cat. He has mostly dropped the performance, but he still disappears, gives cryptic advice, provokes authority, and smiles when everyone else should be concerned.",
+          "Yes. Chester is an older, very fat British Blue Cheshire cat with a normal grey-blue coat, amber eyes, heavy paws, and a flat expression. He guides through refusal, impossible placement, and rare demonstrations instead of constant grinning.",
       },
       {
         question: "What kind of story is it?",
@@ -560,7 +491,7 @@ export const storySeries: StorySeries[] = [
       "Wonderland insists there is nothing beyond Wonderland.",
       "Alice has found a hole in that explanation.",
     ],
-    characters: ["alice", "chester"],
+    characters: ["alice", "chester", "the-hatter"],
     contributors: [{ name: "d00d", role: "Creator / Writer" }],
     relatedContent: [
       {

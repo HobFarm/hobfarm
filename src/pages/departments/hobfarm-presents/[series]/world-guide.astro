@@ -2,13 +2,20 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import ContentPanel from "@/components/ContentPanel.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import OaaProjectNav from "@/components/presents/other-alice/OaaProjectNav.astro";
 import { storySeries, storySeriesPath } from "@/data/story-series";
 import {
   OTHER_ALICE_WORLD_GUIDE_PATH,
+  OTHER_ALICE_HOUSES_PATH,
+  OTHER_ALICE_WEB_PATH,
   affiliationLayers,
   aliceTimeline,
+  archiveRecords,
+  bestiaryRecords,
   courtDossiers,
   currentWorldCrisis,
+  otherAliceCanon,
+  regionPowerRecords,
   unsuitedDossiers,
   worldGuideTerms,
 } from "@/data/other-alice-world-guide";
@@ -54,6 +61,20 @@ const indexEntries = [
     eyebrow: entry.domain,
     description: entry.summary[0],
   })),
+  ...bestiaryRecords.map((entry) => ({
+    id: entry.id,
+    category: "bestiary",
+    label: entry.name,
+    eyebrow: entry.kind,
+    description: entry.function,
+  })),
+  ...archiveRecords.map((entry) => ({
+    id: entry.id,
+    category: "archive",
+    label: entry.title,
+    eyebrow: `${entry.recordClass} / ${entry.certainty}`,
+    description: entry.summary,
+  })),
   ...worldGuideTerms.map((entry) => ({
     id: `term-${entry.term.toLowerCase().replaceAll(/[^a-z0-9]+/g, "-")}`,
     category: "systems",
@@ -68,7 +89,7 @@ const structuredData = {
   "@id": `${canonicalUrl}#world-guide`,
   name: "Other Alice World Guide",
   description:
-    "A public field guide to HobFarm's Other Alice Adventures: Wonderland, Wasteland, the four courts, the Unsuited, characters, factions, timeline, and portal systems.",
+    "A public field guide to Other Alice Adventures: regions, Houses, residents, living systems, evidence records, Unsuited beings, and the political map of Wonderland.",
   url: canonicalUrl,
   image: series.worldAtlas?.concepts[0]?.image ?? series.cover,
   isPartOf: {
@@ -80,8 +101,8 @@ const structuredData = {
 ---
 
 <BaseLayout
-  title="Other Alice World Guide: Wonderland, Wasteland, Courts, and Characters"
-  description="Explore the world of Other Alice Adventures: regions, courts, factions, Unsuited beings, characters, timeline, terminology, and the political ecology of Wonderland."
+  title="Other Alice World Guide: Regions, Houses, Cast, Bestiary, and Archive"
+  description="Explore Wonderland through its regions, Houses, cast, living systems, archive evidence, Unsuited beings, timeline, and political dependencies."
   canonical={OTHER_ALICE_WORLD_GUIDE_PATH}
   image={regions[0]?.image ?? series.cover}
   imageAlt={regions[0]?.imageAlt ?? series.coverAlt}
@@ -90,20 +111,20 @@ const structuredData = {
   <section class="world-guide">
     <ContentPanel>
       <Wrapper variant="standard" class="py-8 lg:py-14">
-        <a href={storySeriesPath(series.slug)} class="guide-back">&larr; Return to {series.title}</a>
+        <OaaProjectNav />
 
         <header class="guide-hero">
           <div class="guide-hero__copy">
             <p class="guide-kicker">HobFarm Presents / Series database 001</p>
             <h1>Other Alice<br />World Guide</h1>
             <p>
-              A field index for the Wonderland that kept changing after Alice stayed: its regions, courts,
-              political biology, Unsuited beings, characters, routes, time failures, and the Wasteland beyond.
+              A field index for the Wonderland that became home: its regions, Houses, residents, living
+              infrastructure, political records, Unsuited beings, evidence, routes, and disputed boundary.
             </p>
             <dl class="guide-hero__facts">
               <div><dt>Personal year</dt><dd>Alice, age 18</dd></div>
-              <div><dt>Outside era</dt><dd>Approximately the 2060s</dd></div>
-              <div><dt>Known powers</dt><dd>Four courts</dd></div>
+              <div><dt>Time below</dt><dd>Ten years</dd></div>
+              <div><dt>Known powers</dt><dd>Four Houses</dd></div>
               <div><dt>Outer condition</dt><dd>Cold advancing inward</dd></div>
             </dl>
           </div>
@@ -129,10 +150,13 @@ const structuredData = {
           <a href="#database">Database</a>
           <a href="#world-system">World system</a>
           <a href="#regions">Regions</a>
-          <a href="#courts">Courts</a>
+          <a href="#courts">Houses</a>
           <a href="#residents">Characters</a>
+          <a href="#bestiary">Bestiary</a>
+          <a href="#archive">Archive</a>
           <a href="#unsuited">The Unsuited</a>
           <a href="#terms">Terms</a>
+          <a href={OTHER_ALICE_WEB_PATH}>Relationship web</a>
         </nav>
 
         <section id="database" class="guide-section" aria-labelledby="database-heading">
@@ -149,6 +173,8 @@ const structuredData = {
               ["courts", "Courts"],
               ["characters", "Characters"],
               ["factions", "Factions"],
+              ["bestiary", "Bestiary"],
+              ["archive", "Archive"],
               ["unsuited", "Unsuited"],
               ["systems", "Systems"],
             ].map(([value, label], index) => (
@@ -187,6 +213,13 @@ const structuredData = {
             <span>A resident can answer to several systems before a scene even begins.</span>
           </header>
 
+          <aside class="guide-political-rule">
+            <p class="guide-kicker">Governing political rule</p>
+            <h3>{otherAliceCanon.politicalLine}</h3>
+            <p>{otherAliceCanon.politicalRule} Heart authority is direct at the center and increasingly dependent on regional cooperation toward the boundary.</p>
+            <div><a href={OTHER_ALICE_HOUSES_PATH}>Open the Houses and political maps</a><a href={OTHER_ALICE_WEB_PATH}>Trace the relationship web</a></div>
+          </aside>
+
           <div class="affiliation-grid">
             {affiliationLayers.map((layer, index) => (
               <article>
@@ -217,7 +250,7 @@ const structuredData = {
             ))}
           </div>
 
-          <aside class="crisis-card">
+          <aside id="current-crisis" class="crisis-card">
             <div>
               <p class="guide-kicker">Current world condition</p>
               <h3>{currentWorldCrisis.title}</h3>
@@ -247,13 +280,26 @@ const structuredData = {
               </article>
             ))}
           </div>
+
+          <div class="region-power-ledger" aria-label="Heart claim and actual regional power">
+            {regionPowerRecords.map((record) => (
+              <article id={`guide-${record.id}`}>
+                <p>{record.region}</p>
+                <dl>
+                  <div><dt>Heart claim</dt><dd>{record.heartClaim}</dd></div>
+                  <div><dt>Actual power</dt><dd>{record.actualPower}</dd></div>
+                  <div><dt>Active dispute</dt><dd>{record.activeDispute}</dd></div>
+                </dl>
+              </article>
+            ))}
+          </div>
         </section>
 
         <section id="courts" class="guide-section" aria-labelledby="courts-heading">
           <header class="guide-heading">
             <p>Political ecology</p>
-            <h2 id="courts-heading">The four courts</h2>
-            <span>Every court keeps Wonderland alive. Every court also abuses the thing it controls.</span>
+            <h2 id="courts-heading">The four Houses</h2>
+            <span>One sovereign claim depends on four different forms of practical power.</span>
           </header>
           <div class="court-grid">
             {courtDossiers.map((court) => (
@@ -261,18 +307,21 @@ const structuredData = {
                 <header>
                   <p>{court.territory}</p>
                   <h3>{court.name}</h3>
-                  <span>{court.ruler}</span>
+                  <span>{court.powerForm} / {court.formalStatus}</span>
                 </header>
                 <dl>
                   <div><dt>Core power</dt><dd>{court.corePower}</dd></div>
-                  <div><dt>Dominant bodies</dt><dd>{court.dominantBodies}</dd></div>
-                  <div><dt>Necessary service</dt><dd>{court.necessaryService}</dd></div>
-                  <div><dt>Political failure</dt><dd>{court.politicalFailure}</dd></div>
+                  <div><dt>Material control</dt><dd>{court.materialControl}</dd></div>
+                  <div><dt>Needs</dt><dd>{court.needs}</dd></div>
+                  <div><dt>Can withhold</dt><dd>{court.canWithhold}</dd></div>
+                  <div><dt>Failure test</dt><dd>{court.failureTest}</dd></div>
                 </dl>
                 <div class="court-card__copy">{court.summary.map((paragraph) => <p>{paragraph}</p>)}</div>
+                <aside><strong>Evidence object</strong><span>{court.evidenceObject}</span></aside>
               </article>
             ))}
           </div>
+          <a class="guide-section-link" href={OTHER_ALICE_HOUSES_PATH}>Open the complete Houses page &rarr;</a>
         </section>
 
         <section id="residents" class="guide-section" aria-labelledby="residents-heading">
@@ -292,6 +341,59 @@ const structuredData = {
                   <h3>{resident.name}</h3>
                   {resident.summary.map((paragraph) => <span>{paragraph}</span>)}
                   {resident.href && <a href={resident.href}>Open character guide &rarr;</a>}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="bestiary" class="guide-section" aria-labelledby="bestiary-heading">
+          <header class="guide-heading">
+            <p>Living systems</p>
+            <h2 id="bestiary-heading">Bestiary and social records</h2>
+            <span>Creatures enter the story through appetite, habitat, labor, reproduction, shelter, or mutual dependence.</span>
+          </header>
+          <div class="bestiary-grid">
+            {bestiaryRecords.map((record) => (
+              <article id={record.id}>
+                {record.image && <img src={record.image} alt={record.imageAlt} width="1024" height="1024" loading="lazy" decoding="async" />}
+                <div>
+                  <p>{record.kind}</p>
+                  <h3>{record.name}</h3>
+                  <dl>
+                    <div><dt>Suit relationship</dt><dd>{record.suitRelationship}</dd></div>
+                    <div><dt>Habitat</dt><dd>{record.habitat}</dd></div>
+                    <div><dt>Function</dt><dd>{record.function}</dd></div>
+                    <div><dt>Behavior</dt><dd>{record.behavior}</dd></div>
+                    <div><dt>Threat</dt><dd>{record.threat}</dd></div>
+                    <div><dt>Evidence</dt><dd>{record.evidence}</dd></div>
+                  </dl>
+                  <aside><strong>Unresolved question</strong><span>{record.question}</span></aside>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="archive" class="guide-section" aria-labelledby="archive-heading">
+          <header class="guide-heading">
+            <p>Evidence archive</p>
+            <h2 id="archive-heading">Records that prove or complicate the world.</h2>
+            <span>Each object carries provenance, condition, certainty, and a mystery it has not settled.</span>
+          </header>
+          <div class="archive-grid">
+            {archiveRecords.map((record) => (
+              <article id={record.id}>
+                {record.image && <img src={record.image} alt={record.imageAlt} width="1254" height="1254" loading="lazy" decoding="async" />}
+                <div>
+                  <p>{record.recordClass} / {record.certainty}</p>
+                  <h3>{record.title}</h3>
+                  <span>{record.summary}</span>
+                  <dl>
+                    <div><dt>Collector</dt><dd>{record.collector}</dd></div>
+                    <div><dt>Condition</dt><dd>{record.condition}</dd></div>
+                    <div><dt>Linked mystery</dt><dd>{record.linkedMystery}</dd></div>
+                  </dl>
                 </div>
               </article>
             ))}
@@ -416,11 +518,16 @@ const structuredData = {
   .guide-index__card h3 { margin: .75rem 0 0; color: #ece9f5; font-family: var(--font-display); font-size: 1.2rem; }
   .guide-index__card p { margin: .7rem 0 0; color: #9b96ad; font-size: .78rem; line-height: 1.55; }
   .guide-filter__empty { margin: 1rem 0 0; color: #9b96ad; }
-  .affiliation-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+  .affiliation-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin-top: 1.5rem; }
   .affiliation-grid article { padding: 1.4rem; border: 1px solid #2c2440; background: #0e0b16; }
   .affiliation-grid article > span { color: #f0c96b; font-family: var(--font-mono); font-size: .65rem; }
   .affiliation-grid h3 { margin: .7rem 0 0; color: #ece9f5; font-family: var(--font-display); font-size: 1.25rem; }
   .affiliation-grid p { margin: .7rem 0 0; color: #9b96ad; font-size: .85rem; line-height: 1.6; }
+  .guide-political-rule { margin-top: 1.5rem; padding: clamp(1.4rem, 4vw, 2.6rem); border: 1px solid #55313a; border-left: 6px solid #e23a4e; background: #160c11; }
+  .guide-political-rule h3 { max-width: 17ch; margin: .65rem 0 0; color: #f5f0df; font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 3.6rem); letter-spacing: -.04em; line-height: 1; }
+  .guide-political-rule > p:not(.guide-kicker) { max-width: 48rem; margin: 1rem 0 0; color: #c8c6d4; line-height: 1.7; }
+  .guide-political-rule > div { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.2rem; }
+  .guide-political-rule a, .guide-section-link { color: #8fd8ef; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .06em; text-transform: uppercase; }
   .guide-example { margin-top: 1rem; padding: clamp(1.4rem, 4vw, 2.5rem); border: 1px solid #433559; border-left: 5px solid #6b93ed; background: #15101f; }
   .guide-example h3, .crisis-card h3 { margin: .55rem 0 0; color: #ece9f5; font-family: var(--font-display); font-size: 1.7rem; }
   .guide-example ul, .crisis-card ul { margin: 1rem 0 0; padding-left: 1.2rem; color: #c8c6d4; line-height: 1.7; }
@@ -439,6 +546,13 @@ const structuredData = {
   .region-card > div { padding: 1.2rem; }
   .region-card h3 { margin: .55rem 0 0; color: #ece9f5; font-family: var(--font-display); font-size: 1.4rem; }
   .region-card > div > span { display: block; margin-top: .7rem; color: #9b96ad; font-size: .82rem; line-height: 1.6; }
+  .region-power-ledger { display: grid; gap: 1px; margin-top: 1rem; background: #2c2440; border: 1px solid #2c2440; }
+  .region-power-ledger article { padding: 1rem; background: #0e0b16; scroll-margin-top: 7rem; }
+  .region-power-ledger article > p { margin: 0; color: #f0c96b; font-family: var(--font-display); font-size: 1.05rem; }
+  .region-power-ledger dl { margin: .75rem 0 0; }
+  .region-power-ledger dl div { padding: .55rem 0; border-top: 1px solid #2c2440; }
+  .region-power-ledger dt, .bestiary-grid dt, .archive-grid dt { color: #6b6580; font-family: var(--font-mono); font-size: .56rem; letter-spacing: .08em; text-transform: uppercase; }
+  .region-power-ledger dd, .bestiary-grid dd, .archive-grid dd { margin: .25rem 0 0; color: #aaa4b2; font-size: .77rem; line-height: 1.5; }
   .court-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 1.5rem; }
   .court-card { padding: clamp(1.3rem, 3vw, 2rem); border: 1px solid #2c2440; border-top: 4px solid var(--court-accent); background: #0e0b16; scroll-margin-top: 7rem; }
   .court-card header > p { color: var(--court-accent); }
@@ -449,6 +563,10 @@ const structuredData = {
   .court-card dt { color: #6b6580; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .08em; text-transform: uppercase; }
   .court-card dd { margin: 0; color: #c8c6d4; font-size: .8rem; line-height: 1.5; }
   .court-card__copy p { margin: .9rem 0 0; color: #9b96ad; font-size: .84rem; line-height: 1.65; }
+  .court-card > aside { display: grid; gap: .4rem; margin-top: 1rem; padding: .9rem; border-left: 4px solid var(--court-accent); background: #15101f; }
+  .court-card > aside strong { color: var(--court-accent); font-family: var(--font-mono); font-size: .56rem; font-weight: 400; letter-spacing: .08em; text-transform: uppercase; }
+  .court-card > aside span { color: #c8c6d4; font-size: .8rem; line-height: 1.5; }
+  .guide-section-link { display: inline-flex; margin-top: 1.1rem; }
   .resident-grid, .unsuited-grid { display: grid; gap: 1rem; margin-top: 1.5rem; }
   .resident-card, .unsuited-card { display: grid; overflow: hidden; border: 1px solid #2c2440; background: #0e0b16; scroll-margin-top: 7rem; }
   .resident-card__image, .unsuited-card > img { min-height: 27rem; background: #07060b; }
@@ -461,6 +579,18 @@ const structuredData = {
   .unsuited-card small { display: block; margin-top: .35rem; color: #6b6580; }
   .unsuited-card h4 { margin: 1.3rem 0 0; color: #ece9f5; font-family: var(--font-mono); font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; }
   .unsuited-card ul { margin: .8rem 0 0; padding-left: 1.2rem; color: #c8c6d4; font-size: .84rem; line-height: 1.65; }
+  .bestiary-grid, .archive-grid { display: grid; gap: 1px; margin-top: 1.5rem; background: #2c2440; border: 1px solid #2c2440; }
+  .bestiary-grid article, .archive-grid article { display: grid; background: #0e0b16; scroll-margin-top: 7rem; }
+  .bestiary-grid img, .archive-grid img { width: 100%; height: 22rem; object-fit: cover; object-position: top center; background: #07060b; }
+  .bestiary-grid article > div, .archive-grid article > div { padding: 1.2rem; }
+  .bestiary-grid article > div > p, .archive-grid article > div > p { margin: 0; color: #f0c96b; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .08em; text-transform: uppercase; }
+  .bestiary-grid h3, .archive-grid h3 { margin: .6rem 0 0; color: #ece9f5; font-family: var(--font-display); font-size: 1.4rem; }
+  .bestiary-grid dl, .archive-grid dl { margin: 1rem 0 0; }
+  .bestiary-grid dl div, .archive-grid dl div { padding: .55rem 0; border-top: 1px solid #2c2440; }
+  .bestiary-grid aside { display: grid; gap: .35rem; margin-top: 1rem; padding: .85rem; border-left: 4px solid #2fe089; background: #15101f; }
+  .bestiary-grid aside strong { color: #2fe089; font-family: var(--font-mono); font-size: .56rem; font-weight: 400; text-transform: uppercase; }
+  .bestiary-grid aside span, .archive-grid article > div > span { color: #c8c6d4; font-size: .8rem; line-height: 1.55; }
+  .archive-grid article > div > span { display: block; margin-top: .8rem; }
   .term-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; margin: 1.5rem 0 0; border: 1px solid #2c2440; background: #2c2440; }
   .term-grid div { padding: 1.25rem; background: #0e0b16; scroll-margin-top: 7rem; }
   .term-grid dt { color: #f0c96b; font-family: var(--font-display); font-size: 1.1rem; }
@@ -472,13 +602,14 @@ const structuredData = {
     .guide-hero { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
     .resident-card, .unsuited-card { grid-template-columns: minmax(18rem, .7fr) minmax(0, 1.3fr); }
     .crisis-card { grid-template-columns: minmax(0, 1.2fr) minmax(18rem, .8fr); }
+    .bestiary-grid, .archive-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   }
   @media (max-width: 900px) {
     .guide-index, .region-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .affiliation-grid, .timeline-grid { grid-template-columns: 1fr 1fr; }
+    .affiliation-grid, .timeline-grid, .region-power-ledger { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 650px) {
-    .guide-hero__facts, .guide-index, .affiliation-grid, .timeline-grid, .region-grid, .court-grid, .term-grid { grid-template-columns: 1fr; }
+    .guide-hero__facts, .guide-index, .affiliation-grid, .timeline-grid, .region-grid, .region-power-ledger, .court-grid, .term-grid, .bestiary-grid, .archive-grid { grid-template-columns: 1fr; }
     .region-card--wide { grid-column: auto; }
     .region-card > a { height: 23rem; }
     .court-card dl div { grid-template-columns: 1fr; gap: .3rem; }

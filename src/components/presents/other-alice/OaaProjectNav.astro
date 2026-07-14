@@ -1,0 +1,164 @@
+---
+import { otherAliceProjectNav } from "@/data/other-alice-world-guide";
+
+interface Props {
+  current?: "start" | "atlas" | "houses" | "cast" | "bestiary" | "archive" | "workshop" | "web";
+}
+
+const { current } = Astro.props;
+const currentLabels: Record<NonNullable<Props["current"]>, string> = {
+  start: "Start here",
+  atlas: "Atlas",
+  houses: "Houses",
+  cast: "Cast",
+  bestiary: "Bestiary",
+  archive: "Archive",
+  workshop: "Workshop",
+  web: "Web of Wonderland",
+};
+---
+
+<nav class="oaa-nav" aria-label="Other Alice Adventures">
+  <a class="oaa-nav__mark" href="/departments/hobfarm-presents/other-alice-adventures/">
+    <img
+      src="/media/other-alice/melting-rabbit-project-mark.webp"
+      alt=""
+      width="512"
+      height="512"
+    />
+    <span>
+      <small>HobFarm Presents</small>
+      <strong>Other Alice Adventures</strong>
+    </span>
+  </a>
+  <div class="oaa-nav__routes">
+    {otherAliceProjectNav.map((item) => {
+      const active = current ? item.label === currentLabels[current] : false;
+      return (
+        <a href={item.href} aria-current={active ? "page" : undefined}>
+          {item.label}
+        </a>
+      );
+    })}
+    <a
+      href="/departments/hobfarm-presents/other-alice-adventures/web-of-wonderland/"
+      aria-current={current === "web" ? "page" : undefined}
+    >
+      Web
+    </a>
+  </div>
+</nav>
+
+<style>
+  .oaa-nav {
+    display: grid;
+    position: relative;
+    z-index: 20;
+    gap: 0;
+    border-bottom: 1px solid rgb(220 206 255 / 18%);
+    background: rgb(4 4 8 / 96%);
+    backdrop-filter: blur(18px);
+  }
+
+  .oaa-nav__mark {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.65rem clamp(1rem, 2.6vw, 2.5rem);
+    border-bottom: 1px solid rgb(220 206 255 / 14%);
+    color: #f4eeff;
+    text-decoration: none;
+  }
+
+  .oaa-nav__mark img {
+    width: 2.4rem;
+    height: 2.4rem;
+    flex: 0 0 auto;
+    object-fit: contain;
+  }
+
+  .oaa-nav__mark > span {
+    display: grid;
+    min-width: 0;
+    gap: 0.05rem;
+  }
+
+  .oaa-nav__mark small {
+    color: #bc82ff;
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .oaa-nav__mark strong {
+    overflow: hidden;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.94rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .oaa-nav__routes {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .oaa-nav__routes::-webkit-scrollbar {
+    display: none;
+  }
+
+  .oaa-nav__routes a {
+    flex: 0 0 auto;
+    position: relative;
+    padding: 0.9rem 0.82rem;
+    color: #958da3;
+    font-family: var(--font-mono);
+    font-size: 0.56rem;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .oaa-nav__routes a:hover,
+  .oaa-nav__routes a:focus-visible,
+  .oaa-nav__routes a[aria-current="page"] {
+    color: #f4eeff;
+  }
+
+  .oaa-nav__routes a[aria-current="page"]::after {
+    position: absolute;
+    right: 0.8rem;
+    bottom: 0.35rem;
+    left: 0.8rem;
+    height: 2px;
+    background: #bd74ff;
+    content: "";
+  }
+
+  .oaa-nav a:focus-visible {
+    outline: 2px solid #d4b861;
+    outline-offset: -3px;
+  }
+
+  @media (min-width: 980px) {
+    .oaa-nav {
+      grid-template-columns: minmax(17rem, 0.45fr) minmax(0, 1.55fr);
+      align-items: stretch;
+    }
+
+    .oaa-nav__mark {
+      border-right: 1px solid rgb(220 206 255 / 14%);
+      border-bottom: 0;
+    }
+
+    .oaa-nav__routes {
+      justify-content: flex-end;
+    }
+  }
+</style>

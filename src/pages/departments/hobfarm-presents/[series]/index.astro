@@ -10,6 +10,7 @@ import ResidentGallery from "@/components/presents/ResidentGallery.astro";
 import WorldConceptGallery from "@/components/presents/WorldConceptGallery.astro";
 import WorldStrip from "@/components/presents/WorldStrip.astro";
 import Subscribe from "@/components/articles/Subscribe.astro";
+import OtherAliceStartPage from "@/components/presents/other-alice/OtherAliceStartPage.astro";
 import { storySeries, storySeriesPath } from "@/data/story-series";
 import { characterPath, getCharacter } from "@/data/characters";
 import { adventurePath, adventuresInSeries, getPublishedAdventures } from "@/lib/adventures";
@@ -39,6 +40,7 @@ const seriesImageAlt =
   series.heroMedia?.type === "image" ? series.heroMedia.alt : series.coverAlt ?? series.title;
 const worldGuideHref =
   series.slug === "other-alice-adventures" ? OTHER_ALICE_WORLD_GUIDE_PATH : undefined;
+const isOtherAlice = series.slug === "other-alice-adventures";
 const canonicalUrl = new URL(storySeriesPath(series.slug), "https://hob.farm").toString();
 const structuredData = {
   "@context": "https://schema.org",
@@ -114,6 +116,9 @@ const structuredData = {
   structuredData={structuredData}
   feed={{ href: "/departments/hobfarm-presents/rss.xml", title: "HobFarm Presents" }}
 >
+  {isOtherAlice && <OtherAliceStartPage series={series} adventures={adventures} />}
+
+  {!isOtherAlice && (
   <section>
     <ContentPanel>
       <Wrapper variant="standard" class="py-12 lg:py-20">
@@ -375,4 +380,5 @@ const structuredData = {
       description="New Adventures, character files, field notes, images, and moving fragments arrive as the rabbit-hole network expands."
     />
   </section>
+  )}
 </BaseLayout>

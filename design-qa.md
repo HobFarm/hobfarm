@@ -1,89 +1,56 @@
-# HobFarm Presents Design QA
+# Other Alice Adventures design QA
 
-## Evidence
+## Comparison target
 
-- Source visual truth:
-  - `F:\Web-Stuff\HobFarm-web Project Files\Content and Files\Stock-Photos\dynamic-science-fiction-195401-0ba13c.jpg`
-  - `F:\Web-Stuff\HobFarm-web Project Files\Galleries\Characters\blue chick 1 web.jpg`
-  - Existing HobFarm Presents and Other Alice CDN artwork referenced by the page data.
-- Rendered implementation: `C:\Users\xkxxk\AppData\Local\Temp\hobfarm-first-release-qa\presents-desktop-hero.png`
-- Combined comparison: `C:\Users\xkxxk\AppData\Local\Temp\hobfarm-first-release-qa\design-comparison.png`
-- Focused captures:
-  - `C:\Users\xkxxk\AppData\Local\Temp\hobfarm-first-release-qa\presents-desktop-atlas.png`
-  - `C:\Users\xkxxk\AppData\Local\Temp\hobfarm-first-release-qa\presents-mobile-atlas.png`
-  - `C:\Users\xkxxk\AppData\Local\Temp\hobfarm-first-release-qa\presents-mobile-support.png`
-- Viewports: 1440 × 1000 desktop and 390 × 844 mobile.
-- State: public, dark theme, content loaded; reveal sections were scrolled into view.
+- Source visual truth: `C:/Users/xkxxk/.codex/generated_images/019f5d6b-72b0-73a1-8365-5f6ab300110b/exec-6a87c586-0e6d-4be8-8a5c-88499049786e.png`
+- Implementation URL: `http://127.0.0.1:4322/departments/hobfarm-presents/other-alice-adventures/`
+- Implementation screenshot: `C:/Users/xkxxk/.codex/visualizations/2026/07/13/019f5d6b-72b0-73a1-8365-5f6ab300110b/oaa-redesign-desktop-1440x1024-qa.png`
+- Viewport: 1440 × 1024 CSS pixels at device scale factor 1
+- State: dark theme, signed-out public route, top of page, Start Here active
+- Full-view comparison evidence: `C:/Users/xkxxk/.codex/visualizations/2026/07/13/019f5d6b-72b0-73a1-8365-5f6ab300110b/oaa-source-vs-implementation-final.png`
+- Mobile evidence: `C:/Users/xkxxk/.codex/visualizations/2026/07/13/019f5d6b-72b0-73a1-8365-5f6ab300110b/oaa-redesign-mobile-390x844-settled.png`
+
+No separate focused crop was needed. The source is a single first-viewport design, and the normalized 2880 × 1024 side-by-side comparison preserves the hero typography, project mark, navigation, buttons, chronology, Alice, Chester, and map at a readable native scale.
 
 ## Findings
 
-- No actionable P0, P1, or P2 differences remain.
-- Typography: the hero adopts the source covers' oversized stacked hierarchy and condensed visual rhythm while retaining HobFarm's existing IBM Plex family for licensed, readable HTML text. Display lettering within supplied cover artwork remains part of the source image.
-- Spacing and layout: the desktop split-cover composition, issue index, section rules, and mobile single-column sequence preserve a consistent magazine rhythm. Both tested viewports have equal `scrollWidth` and `innerWidth`, with no horizontal overflow.
-- Colors and tokens: parchment, yellow-gold, violet-black, cyan, green, and red platform accents connect the pulp references to the existing psychedelic-goth site palette without reducing body-text contrast.
-- Image quality: all visible imagery uses supplied CDN assets or supplied references; no placeholder, CSS-drawn, or approximate illustration replaces source art. No broken images were found.
-- Copy: headings and navigation explain the reader journey directly and connect fiction to the atlas, character files, shop, Academy, Club, Ko-fi, and Patreon.
-- Interaction and accessibility: anchor navigation, shop/support links, horizontal cover browsing, focus states, reduced-motion fallbacks, lazy loading, and reveal behavior were checked. No browser console errors were recorded.
+No actionable P0, P1, or P2 differences remain.
 
-## Comparison History
+- Fonts and typography: the implementation preserves the source's large high-contrast serif display face, restrained sans-serif body copy, and small mono navigation and metadata. Line lengths, wraps, weights, and hierarchy remain legible at desktop and mobile widths.
+- Spacing and layout rhythm: the two-level navigation, left hero copy column, right visual focus, button row, and chronology strip retain the source's proportions. Mobile collapses the composition into a readable vertical sequence without document overflow.
+- Colors and visual tokens: black, violet, cyan, muted magenta, and pale lavender match the target. The darker production hero keeps live copy contrast readable without flattening the map detail.
+- Image quality and asset fidelity: the hero uses a production raster asset with the correct eighteen-year-old Alice and a smaller, normal British Blue Chester. The user-supplied rabbit is a transparent raster project mark rather than a code approximation. Character, Hatter, map, poster, and Chester assets render at their natural dimensions without missing-image states.
+- Copy and content: the first viewport locks Alice at eighteen, arrival at eight, ten Wonderland years, and two hundred outside years. Lower sections connect the atlas, Hatter, Diamond Highlands, Houses, relationship web, concept art, and archive without adding unresolved Hatter questions to canon.
+- Responsiveness and accessibility: desktop and 390 × 844 mobile captures have no document-level horizontal overflow or broken visible images. Navigation remains horizontally available on mobile with its scrollbar hidden, controls use semantic links and buttons, the map tabs expose `aria-pressed`, and supplied images have descriptive alt text.
+- Interaction states: the Lived Map control changed the active heading to “Map used by people who keep the realm running” and reported `aria-pressed="true"`.
+- Console: zero browser warnings or errors in the final desktop pass.
 
-- Initial full-page capture showed unrevealed sections and unloaded lazy images because the automated capture did not scroll. This was capture-state evidence, not a product defect.
-- The page was retested by scrolling every reveal section at desktop and mobile sizes. Post-scroll evidence showed zero unrevealed sections, zero broken images, zero console errors, and no viewport overflow.
+## Comparison history
 
-## Follow-up Polish
+### Iteration 1
 
-- P3: when a dedicated licensed HobFarm display face is selected, it can replace IBM Plex only for large issue headlines while retaining the current body and interface typography.
-- P3: future short MP4/WebM loops can occupy the existing motion-ready editorial slots once production assets are approved and uploaded to the CDN.
+- Earlier P2 finding: the mobile project navigation exposed a native horizontal scrollbar, adding an unintended grey control between the project nav and hero.
+- Fix made: added `scrollbar-width: none` and a hidden WebKit scrollbar rule to `OaaProjectNav.astro` while preserving touch and wheel scrolling.
+- Post-fix evidence: `C:/Users/xkxxk/.codex/visualizations/2026/07/13/019f5d6b-72b0-73a1-8365-5f6ab300110b/oaa-redesign-mobile-390x844-settled.png`; computed `scrollbar-width` is `none`, the route strip remains scrollable, and no document overflow is present.
 
-## Implementation Checklist
+## Lower-page visual evidence
 
-- [x] Desktop composition and hierarchy checked.
-- [x] Mobile layout and overflow checked.
-- [x] Required typography, spacing, color, image, and copy surfaces checked.
-- [x] Motion reduction and reveal completion checked.
-- [x] Support and shop paths checked.
-- [x] Console and broken-image checks passed.
+- Hatter dossier: `C:/Users/xkxxk/.codex/visualizations/2026/07/13/019f5d6b-72b0-73a1-8365-5f6ab300110b/oaa-hatter-section-desktop.png`
+- House system: `C:/Users/xkxxk/.codex/visualizations/2026/07/13/019f5d6b-72b0-73a1-8365-5f6ab300110b/oaa-houses-section-desktop.png`
+- Character-system transition: `C:/Users/xkxxk/.codex/visualizations/2026/07/13/019f5d6b-72b0-73a1-8365-5f6ab300110b/oaa-cast-section-desktop.png`
+
+## Implementation checklist
+
+- [x] Match the selected hero composition and hierarchy.
+- [x] Use the melting rabbit as the project identity.
+- [x] Correct Alice, Chester, chronology, and future-bleed canon.
+- [x] Add the Hatter and Diamond Highlands as a full character/world-system example.
+- [x] Keep the living atlas tabs functional.
+- [x] Validate desktop and mobile rendering.
+- [x] Check browser console and visible image loading.
+
+## Follow-up polish
+
+No blocking polish remains. The production hero intentionally gives Chester less visual weight than the source concept because the user rejected the oversized-cat direction.
 
 final result: passed
-
----
-
-# Workshop media integration Design QA
-
-Result: passed
-
-## Scope
-
-- `/workshop/`
-- `/workshop/stylefusion/`
-- `/workshop/character-mannequin/`
-- `/workshop/workshop-notes/`
-- Desktop viewport: 1440 × 1000
-- Mobile viewport: 390 × 844
-
-## Source comparison
-
-The existing Workshop pages and the revised prototype were placed in the same comparison image at `reports/workshop-design-qa-comparison.png`. The revision keeps the current header, navigation, type hierarchy, dark palette, sharp borders, spacing rhythm, and route structure. The new media sections use the same editorial grid language instead of introducing a separate visual system.
-
-## Checks
-
-- Desktop and mobile layouts have no horizontal overflow.
-- Workshop navigation, program links, breadcrumbs, footer links, and indexed article links remain functional.
-- StyleFusion keeps private references visually distinct from generated results and downstream production assets.
-- Videos use real poster images, native controls, `preload="none"`, and do not transfer their MP4 files during the initial page load.
-- Expandable lineage and export records remain collapsed by default.
-- Media captions remain readable and image crops preserve the important subject matter at both viewports.
-- The final mobile Lighthouse audit for StyleFusion scored 100 for accessibility, best practices, SEO, and agentic browsing, with zero failed audits.
-
-## Findings resolved
-
-- Changed the Generic Female decision-record grid so mobile cards show the complete records instead of cropping them.
-- Increased the current breadcrumb label contrast to resolve the only initial accessibility finding.
-- Replaced prototype-oriented private-reference wording with public-page wording.
-
-## Non-blocking notes
-
-- The production build retains the repository's existing Vite warning for a JavaScript chunk larger than 500 kB.
-- The before trace used the deployed site and the after trace used the local production preview, so raw LCP values are directional rather than a controlled benchmark. Request behavior is directly comparable: the revised Workshop page starts no MP4 transfer.
-
-Final result: passed

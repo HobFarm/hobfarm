@@ -82,6 +82,8 @@ test("Adventure pages use one cover placement and specific related labels", () =
 
 test("Other Alice world and resident galleries use the supplied R2 plates", () => {
   const series = read("src/data/story-series.ts");
+  const worldGuide = read("src/data/other-alice-world-guide.ts");
+  const sourceData = `${series}\n${worldGuide}`;
   const seriesPage = read(
     "src/pages/departments/hobfarm-presents/[series]/index.astro",
   );
@@ -98,15 +100,18 @@ test("Other Alice world and resident galleries use the supplied R2 plates", () =
     "oaa-concept-landscape-boundary.png",
     "oaa-concept-landscape-tundra.png",
     "oaa-concept-landscape-wasteland.png",
-    "oaa-alice-portrait-01.png",
-    "oaa-chester-portrait-.png",
+    "other-alice-character-sheet.webp",
+    "chester-character-portrait.webp",
+    "mad-hatter-diamond-highlands-concept.webp",
+    "wonderland-circular-world-concept.webp",
     "oaa-ciryl-portrait-.png",
     "oaa-club-bears-portrait-.png",
     "oaa-queen-of-hearts-portrait-.png",
   ]) {
-    assert.match(series, new RegExp(filename.replaceAll(".", "\\.")));
+    assert.match(sourceData, new RegExp(filename.replaceAll(".", "\\.")));
   }
 
+  assert.match(seriesPage, /OtherAliceStartPage/);
   assert.match(seriesPage, /WorldConceptGallery/);
   assert.match(seriesPage, /ResidentGallery/);
   assert.match(worldGallery, /width=\{concept\.width\}/);
