@@ -33,6 +33,14 @@ test("Presents keeps an h2 for every series, including logo-led sections", () =>
   assert.doesNotMatch(page, /!entry\.logo && <h2>/);
 });
 
+test("Presents series calls to action keep explicit readable colors", () => {
+  const page = read("src/pages/departments/hobfarm-presents/index.astro");
+
+  assert.match(page, /\.series-cta\{[^}]*color:#ece9f5/);
+  assert.match(page, /\.series-cta:hover,\.series-cta:focus-visible\{[^}]*color:#07060b/);
+  assert.doesNotMatch(page, /\.series-cta\{[^}]*color:inherit/);
+});
+
 test("Workshop teaser is poster-first and user-controlled", () => {
   const page = read("src/pages/workshop/index.astro");
   const teaser = page.slice(page.indexOf("{pairVideo &&"), page.indexOf("</video>") + 8);
