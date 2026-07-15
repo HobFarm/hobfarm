@@ -1,0 +1,87 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import BeforeAfterArchive from "@/components/workshop/BeforeAfterArchive.astro";
+import { getMedia } from "@/data/media-registry";
+
+const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
+const canonical = "/workshop/before-and-after/";
+const canonicalUrl = `${siteOrigin}${canonical}`;
+const title = "Before & After: History, Restoration and Alternate Futures | HobFarm";
+const description = "Documentary comparisons, speculative restorations, alternate histories, and character transformations built around one recognizable subject.";
+const hero = getMedia("before-after.shit-to-shine.after");
+const laundryVideo = getMedia("before-after.shit-to-shine.video");
+const northShoreBefore = getMedia("before-after.north-shore.before");
+const northShoreAfter = getMedia("before-after.north-shore.after");
+const saltonVideo = getMedia("before-after.salton-city.video");
+const saltonAfter = getMedia("before-after.salton-city.after");
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": `${canonicalUrl}#page`,
+      name: "Before & After",
+      description,
+      url: canonicalUrl,
+      image: hero.src,
+      isPartOf: {
+        "@type": "CollectionPage",
+        name: "HobFarm Workshop",
+        url: `${siteOrigin}/workshop/`,
+      },
+      hasPart: [
+        { "@id": `${canonicalUrl}#shit-to-shine-video` },
+        { "@id": `${canonicalUrl}#north-shore-comparison` },
+        { "@id": `${canonicalUrl}#salton-city-video` },
+      ],
+    },
+    {
+      "@type": "VideoObject",
+      "@id": `${canonicalUrl}#shit-to-shine-video`,
+      name: "Shit to Shine 01: Abandoned Laundromat",
+      description: "A speculative restoration that carries an abandoned laundry into a repaired contemporary interior.",
+      thumbnailUrl: hero.src,
+      contentUrl: laundryVideo.src,
+      uploadDate: "2026-07-15",
+    },
+    {
+      "@type": "ImageObject",
+      "@id": `${canonicalUrl}#north-shore-comparison`,
+      name: "North Shore Beach & Yacht Club: 1960s / 2010s",
+      description: "A documentary comparison of the same Salton Sea marina across two real periods.",
+      contentUrl: northShoreAfter.src,
+      thumbnailUrl: northShoreBefore.src,
+    },
+    {
+      "@type": "VideoObject",
+      "@id": `${canonicalUrl}#salton-city-video`,
+      name: "Salton City: 1965 to Alternate 2065",
+      description: "A historical source image extended into an explicitly invented alternate future.",
+      thumbnailUrl: saltonAfter.src,
+      contentUrl: saltonVideo.src,
+      uploadDate: "2026-07-15",
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: `${siteOrigin}/` },
+        { "@type": "ListItem", position: 2, name: "Workshop", item: `${siteOrigin}/workshop/` },
+        { "@type": "ListItem", position: 3, name: "Before & After", item: canonicalUrl },
+      ],
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  image={hero.src}
+  imageAlt={hero.alt}
+  structuredData={structuredData}
+  palette="blue-red"
+>
+  <BeforeAfterArchive />
+</BaseLayout>

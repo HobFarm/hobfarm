@@ -303,6 +303,37 @@ const gallery = defineCollection({
     featured: z.boolean().default(false),
     draft: z.boolean().default(false),
     tags: z.array(z.string()).default([]),
+    series: z.string().optional(),
+    categories: z.array(z.string()).default([]),
+    editorialMode: z
+      .enum([
+        "documentary-comparison",
+        "historical-reconstruction",
+        "speculative-restoration",
+        "counterfactual-history",
+        "fictional-character-transformation",
+      ])
+      .optional(),
+    beforeDate: z.string().optional(),
+    afterDate: z.string().optional(),
+    location: z.string().optional(),
+    premise: z.string().optional(),
+    beforeImage: z.string().optional(),
+    afterImage: z.string().optional(),
+    video: z.string().optional(),
+    poster: z.string().optional(),
+    historicalContext: z.string().optional(),
+    alternatePremise: z.string().optional(),
+    sourceCredit: z
+      .object({
+        label: z.string(),
+        url: z.url().optional(),
+        note: z.string().optional(),
+        license: z.string().optional(),
+      })
+      .optional(),
+    toolCredit: z.string().optional(),
+    continuityNotes: z.string().optional(),
 
     thumb: z
       .object({

@@ -100,6 +100,16 @@ export const mediaRegistry = {
   "workshop.graphics.hillary": workshopImage("images/workshop-hillary.png", "/workshop/ and /workshop/character-mannequin/avatar-host-system/", "editorial-host-system", "Hillary at the center of HobFarm articles, Presents, Workshop, and in-progress productions", 1672, 941),
   "presents.graphics.avatar-system": workshopImage("images/presents-with-avatars.png", "/departments/hobfarm-presents/", "section-hero", "HobFarm Presents programs with Hillary, Ami, Em, Nina, and Zima as recurring editorial hosts", 1672, 941),
 
+  "before-after.shit-to-shine.source": beforeAfterMedia("abandoned-laundry.jpg", "image", "source-frame", "Abandoned laundry room with broken machines, standing water, exposed walls, and debris", undefined, 1920, 1440),
+  "before-after.shit-to-shine.after": beforeAfterMedia("abandoned-laundry-after.jpg", "image", "final-frame", "The same laundry room rebuilt as a bright near-future utility space with fitted storage and three machines", undefined, 1660, 1244),
+  "before-after.shit-to-shine.video": beforeAfterMedia("before-after-shit-to-shine.mp4", "video", "featured-transformation", "Locked-camera transformation from an abandoned laundry room to a rebuilt utility space", "abandoned-laundry-after.jpg", 1660, 1244),
+  "before-after.north-shore.before": beforeAfterMedia("california-north-shore-yacht-club-1965.jpg", "image", "documentary-before", "Black-and-white archive view of the active North Shore marina with boats, palms, and the yacht club", undefined, 1920, 1440),
+  "before-after.north-shore.after": beforeAfterMedia("california-north-shore-yacht-club-2010.jpg", "image", "documentary-after", "Later color view of the North Shore marina basin with the restored yacht club beyond the receded shoreline", undefined, 1920, 1440),
+  "before-after.north-shore.video": beforeAfterMedia("california-north-shore-yacht-club-time-lapse.mp4", "video", "documentary-transition", "Transformation study between two documented views of the North Shore marina", "california-north-shore-yacht-club-1965.jpg", 1660, 1244),
+  "before-after.salton-city.before": beforeAfterMedia("salton-city-1965.png", "image", "historical-source", "Black-and-white aerial source image of Salton City's street grid beside the Salton Sea", undefined, 6028, 4752),
+  "before-after.salton-city.after": beforeAfterMedia("salton-city-2065.png", "image", "alternate-future", "Imagined 2065 Salton City developed into a dense solar, wind, and geothermal desert city", undefined, 1448, 1086),
+  "before-after.salton-city.video": beforeAfterMedia("salton-city-1965-2065.mp4", "video", "counterfactual-transition", "Counterfactual transformation from the Salton City source frame to an imagined 2065 city", "salton-city-2065.png", 1620, 1276),
+
   "avatar-host.hillary.main.video": avatarHostPlaceholder("video", "hillary-main-presenter.mp4", "standardized-host-test", "Hillary main HobFarm presenter standardized host test"),
   "avatar-host.hillary.main.captions": avatarHostPlaceholder("document", "hillary-main-presenter.srt", "caption-sidecar", "SRT captions for Hillary's main HobFarm presenter test"),
   "avatar-host.hillary.workshop.video": avatarHostPlaceholder("video", "hillary-workshop-editor.mp4", "standardized-host-test", "Hillary Workshop technical editor standardized host test"),
@@ -295,6 +305,28 @@ function workshopImage(
     role,
     alt,
     status,
+  };
+}
+
+function beforeAfterMedia(
+  file: string,
+  mediaType: "image" | "video",
+  role: string,
+  alt: string,
+  poster?: string,
+  width?: number,
+  height?: number,
+): MediaRecord {
+  return {
+    src: cdn(`workshop/before-and-after/scene/${file}`),
+    poster: poster ? cdn(`workshop/before-and-after/scene/${poster}`) : undefined,
+    mediaType,
+    width,
+    height,
+    destination: "/workshop/before-and-after/",
+    role,
+    alt,
+    status: "active",
   };
 }
 

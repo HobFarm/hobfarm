@@ -450,6 +450,32 @@ content:
       - { name: featured, label: Featured, type: boolean }
       - { name: draft, label: Draft, type: boolean }
       - { name: tags, label: Tags, type: string, list: true }
+      - { name: series, label: Series, type: string }
+      - { name: categories, label: Categories, type: string, list: true }
+      - name: editorialMode
+        label: Editorial Mode
+        type: select
+        options: [documentary-comparison, historical-reconstruction, speculative-restoration, counterfactual-history, fictional-character-transformation]
+      - { name: beforeDate, label: Before Date or State, type: string }
+      - { name: afterDate, label: After Date or State, type: string }
+      - { name: location, label: Location, type: string }
+      - { name: premise, label: Premise, type: text }
+      - { name: beforeImage, label: Before Image, type: string }
+      - { name: afterImage, label: After Image, type: string }
+      - { name: video, label: Transformation Video, type: string }
+      - { name: poster, label: Video Poster, type: string }
+      - { name: historicalContext, label: Historical Context, type: text }
+      - { name: alternatePremise, label: Alternate Premise, type: text }
+      - name: sourceCredit
+        label: Source Credit
+        type: object
+        fields:
+          - { name: label, label: Label, type: string, required: true }
+          - { name: url, label: Source URL, type: string }
+          - { name: note, label: Source Note, type: text }
+          - { name: license, label: License or Reuse Terms, type: string }
+      - { name: toolCredit, label: Tool Credit, type: string }
+      - { name: continuityNotes, label: Continuity Notes, type: text }
       - name: thumb
         label: Thumbnail Override
         type: object

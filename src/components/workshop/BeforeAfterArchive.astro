@@ -1,0 +1,546 @@
+---
+import { getCollection } from "astro:content";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import AmbientVideoFrame from "@/components/media/AmbientVideoFrame.astro";
+import BeforeAfterCompare from "@/components/ui/BeforeAfterCompare.astro";
+import { getMedia } from "@/data/media-registry";
+import { mediaUrl } from "@/lib/gallery";
+
+const gallery = (await getCollection("gallery")).filter((entry) => !entry.data.draft);
+const findEntry = (id: string) => {
+  const entry = gallery.find((candidate) => candidate.id.replace(/\.(md|mdx)$/, "") === id);
+  if (!entry) throw new Error(`Missing Before & After gallery entry: ${id}`);
+  return entry;
+};
+const entryHref = (id: string) => `/gallery/${id.replace(/\.(md|mdx)$/, "")}/`;
+
+const laundryEntry = findEntry("before-and-after/shit-to-shine-01");
+const northShoreEntry = findEntry("before-and-after/north-shore-1960s-2010s");
+const saltonCityEntry = findEntry("before-and-after/salton-city-1965-alternate-2065");
+const characterEntry = findEntry("before-and-after/1926-now");
+
+const laundrySource = getMedia("before-after.shit-to-shine.source");
+const laundryAfter = getMedia("before-after.shit-to-shine.after");
+const laundryVideo = getMedia("before-after.shit-to-shine.video");
+const northShoreBefore = getMedia("before-after.north-shore.before");
+const northShoreAfter = getMedia("before-after.north-shore.after");
+const northShoreVideo = getMedia("before-after.north-shore.video");
+const saltonBefore = getMedia("before-after.salton-city.before");
+const saltonAfter = getMedia("before-after.salton-city.after");
+const saltonVideo = getMedia("before-after.salton-city.video");
+
+const characterPoster = mediaUrl(
+  characterEntry.data.folder,
+  characterEntry.data.hero.type === "video" ? characterEntry.data.hero.poster : characterEntry.data.hero.file,
+);
+
+const processSteps = [
+  "Find or create the starting frame",
+  "Lock the subject, perspective, and visual anchors",
+  "Define the change",
+  "Generate the transformation",
+  "Check continuity and failed frames",
+  "Publish factual and invented context separately",
+] as const;
+
+const archiveCategories: ReadonlyArray<{ label: string; href?: string; note: string }> = [
+  { label: "Then & Now", href: "#then-now", note: "Published" },
+  { label: "Shit to Shine", href: "#shit-to-shine", note: "Published" },
+  { label: "Ruin & Resurrection", href: "#shit-to-shine", note: "Published" },
+  { label: "Alternate Histories", href: "#alternate-histories", note: "Published" },
+  { label: "Character Changes", href: entryHref(characterEntry.id), note: "Published" },
+  { label: "Time Shifts", note: "Future direction" },
+];
+---
+
+<div class="before-after-page">
+  <section class="archive-hero" aria-labelledby="before-after-title">
+    <Wrapper variant="standard" class="archive-hero__inner">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span aria-hidden="true">/</span><a href="/workshop/">Workshop</a><span aria-hidden="true">/</span><span>Before &amp; After</span>
+      </nav>
+
+      <div class="archive-hero__copy">
+        <p class="archive-kicker">HobFarm Workshop / visual archive</p>
+        <h1 id="before-after-title">Before &amp; After</h1>
+        <p class="archive-hero__dek">One subject, another time, condition, or possible history.</p>
+        <p class="archive-hero__support">Some comparisons are documentary. Some are fabricated. Each entry says which is which. The starting point stays recognizable while time, damage, repair, development, fashion, or bad decisions take over.</p>
+        <div class="archive-actions">
+          <a class="archive-action archive-action--primary" href="#transformations">Explore the transformations</a>
+          <a class="archive-action" href="#process">How the process works</a>
+        </div>
+      </div>
+
+      <figure class="featured-transformation" data-featured-transformation>
+        <div class="featured-transformation__frame">
+          <video
+            poster={laundryAfter.src}
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            aria-label="Shit to Shine transformation from an abandoned laundry room to a rebuilt near-future utility space"
+            aria-describedby="featured-transformation-caption"
+            data-featured-player
+          >
+            <source src={laundryVideo.src} type="video/mp4" />
+            <p>Your browser cannot play this transformation. <a href={laundryVideo.src}>Open the video file.</a></p>
+          </video>
+        </div>
+        <figcaption id="featured-transformation-caption" class="featured-transformation__caption">
+          <div>
+            <span class="mode-badge mode-badge--speculative">Speculative restoration</span>
+            <p>Featured transformation / 10 seconds / locked camera</p>
+          </div>
+          <div class="featured-controls" role="group" aria-label="Featured transformation controls">
+            <button type="button" disabled data-featured-toggle>
+              <span aria-hidden="true" data-featured-toggle-icon>&#9654;</span>
+              <span data-featured-toggle-label>Play</span>
+            </button>
+            <button type="button" disabled data-featured-replay>
+              <span aria-hidden="true">&#8634;</span>
+              Replay
+            </button>
+            <span class="sr-status" aria-live="polite" data-featured-status>Video paused</span>
+          </div>
+        </figcaption>
+        <noscript><p class="video-fallback"><a href={laundryVideo.src}>Open the featured transformation video.</a></p></noscript>
+      </figure>
+    </Wrapper>
+  </section>
+
+  <section id="transformations" class="archive-section archive-section--wall" aria-labelledby="transformations-title">
+    <Wrapper variant="standard" class="archive-section__inner">
+      <header class="section-heading section-heading--split">
+        <div>
+          <p class="archive-kicker">Current transformations</p>
+          <h2 id="transformations-title">Four changes. Four kinds of evidence.</h2>
+        </div>
+        <p>The archive changes its shape to fit the work: a featured video, a documentary pair, a source-to-future sequence, and a character study.</p>
+      </header>
+
+      <div class="media-wall">
+        <article class="wall-item wall-item--lead">
+          <a class="wall-item__media" href="#shit-to-shine">
+            <img src={laundryAfter.src} alt={laundryAfter.alt} width={laundryAfter.width} height={laundryAfter.height} loading="lazy" decoding="async" />
+            <span class="media-indicator">Video / 00:10</span>
+          </a>
+          <div class="wall-item__body">
+            <div class="wall-meta"><span>Shit to Shine</span><span>Ruin &amp; Resurrection</span></div>
+            <h3>{laundryEntry.data.title}</h3>
+            <p>{laundryEntry.data.premise ?? laundryEntry.data.summary}</p>
+            <div class="wall-footer"><span class="mode-badge mode-badge--speculative">Speculative restoration</span><span>Abandoned state &rarr; near future</span></div>
+          </div>
+        </article>
+
+        <article class="wall-item wall-item--documentary">
+          <a class="wall-item__pair" href="#then-now" aria-label="Open the North Shore documentary comparison">
+            <figure><img src={northShoreBefore.src} alt={northShoreBefore.alt} width={northShoreBefore.width} height={northShoreBefore.height} loading="lazy" decoding="async" /><figcaption>1960s</figcaption></figure>
+            <figure><img src={northShoreAfter.src} alt={northShoreAfter.alt} width={northShoreAfter.width} height={northShoreAfter.height} loading="lazy" decoding="async" /><figcaption>2010s</figcaption></figure>
+          </a>
+          <div class="wall-item__body">
+            <div class="wall-meta"><span>Then &amp; Now</span><span>Salton Sea</span></div>
+            <h3>{northShoreEntry.data.title}</h3>
+            <p>{northShoreEntry.data.premise ?? northShoreEntry.data.summary}</p>
+            <div class="wall-footer"><span class="mode-badge mode-badge--documentary">Documentary comparison</span><span>Video study available</span></div>
+          </div>
+        </article>
+
+        <article class="wall-item wall-item--alternate">
+          <a class="wall-item__sequence" href="#alternate-histories" aria-label="Open the Salton City alternate history">
+            <figure><img src={saltonBefore.src} alt={saltonBefore.alt} width={saltonBefore.width} height={saltonBefore.height} loading="lazy" decoding="async" /><figcaption>Source / 1965 label</figcaption></figure>
+            <span aria-hidden="true">&#8594;</span>
+            <figure><img src={saltonAfter.src} alt={saltonAfter.alt} width={saltonAfter.width} height={saltonAfter.height} loading="lazy" decoding="async" /><figcaption>Alternate / 2065</figcaption></figure>
+            <span class="media-indicator">Video / 00:10</span>
+          </a>
+          <div class="wall-item__body">
+            <div class="wall-meta"><span>Alternate Histories</span><span>Salton Sea</span></div>
+            <h3>{saltonCityEntry.data.title}</h3>
+            <p>{saltonCityEntry.data.premise ?? saltonCityEntry.data.summary}</p>
+            <div class="wall-footer"><span class="mode-badge mode-badge--counterfactual">Counterfactual</span><span>1965 source label &rarr; alternate 2065</span></div>
+          </div>
+        </article>
+
+        <article class="wall-item wall-item--character">
+          <a class="wall-item__media wall-item__media--portrait" href={entryHref(characterEntry.id)}>
+            <img src={characterPoster} alt={characterEntry.data.thumb?.alt ?? characterEntry.data.hero.alt} width="1080" height="1920" loading="lazy" decoding="async" />
+            <span class="media-indicator">Character loop</span>
+          </a>
+          <div class="wall-item__body">
+            <div class="wall-meta"><span>Character Changes</span><span>1926 / Now</span></div>
+            <h3>Before &amp; After {characterEntry.data.title}</h3>
+            <p>{characterEntry.data.summary}</p>
+            <div class="wall-footer"><span class="mode-badge mode-badge--fictional">Fictional transformation</span><a href={entryHref(characterEntry.id)}>Open entry &rarr;</a></div>
+          </div>
+        </article>
+      </div>
+    </Wrapper>
+  </section>
+
+  <section id="shit-to-shine" class="archive-section archive-section--shine" aria-labelledby="shit-to-shine-title">
+    <Wrapper variant="standard" class="archive-section__inner">
+      <header class="section-heading section-heading--split">
+        <div>
+          <p class="archive-kicker">Recurring series / No. 01</p>
+          <h2 id="shit-to-shine-title">Shit to Shine</h2>
+        </div>
+        <p>Ruined rooms, broken buildings, and abandoned objects rebuilt in a locked-frame timelapse. The work should happen on screen: clearing, demolition, repair, installation, cleanup, and the final reveal. No unrelated luxury render pasted onto the end.</p>
+      </header>
+
+      <div class="shine-strip">
+        <figure class="archive-frame">
+          <div class="archive-frame__media"><img src={laundrySource.src} alt={laundrySource.alt} width={laundrySource.width} height={laundrySource.height} loading="lazy" decoding="async" /></div>
+          <figcaption><span>01</span><strong>Before</strong><small>Source frame</small></figcaption>
+        </figure>
+        <div class="shine-strip__video">
+          <AmbientVideoFrame src={laundryVideo.src} poster={laundryAfter.src} label="Play Shit to Shine No. 01" caption="The clearing, demolition, rebuilding, installation, and cleanup happen inside the original frame." />
+        </div>
+        <figure class="archive-frame">
+          <div class="archive-frame__media"><img src={laundryAfter.src} alt={laundryAfter.alt} width={laundryAfter.width} height={laundryAfter.height} loading="lazy" decoding="async" /></div>
+          <figcaption><span>02</span><strong>After</strong><small>Final video frame</small></figcaption>
+        </figure>
+      </div>
+      <div class="series-note">
+        <p><strong>Continuity check:</strong> {laundryEntry.data.continuityNotes}</p>
+        <a href={entryHref(laundryEntry.id)}>Open the complete entry &rarr;</a>
+      </div>
+    </Wrapper>
+  </section>
+
+  <section id="then-now" class="archive-section archive-section--documentary" aria-labelledby="then-now-title">
+    <Wrapper variant="standard" class="archive-section__inner">
+      <header class="section-heading section-heading--split">
+        <div>
+          <p class="archive-kicker">Then &amp; Now / North Shore</p>
+          <h2 id="then-now-title">Two photographs. One real place.</h2>
+        </div>
+        <p>Documentary comparisons use sourced images from different periods. The transition can help the eye follow the change, but it is not footage of the years between them.</p>
+      </header>
+
+      <div class="documentary-grid">
+        <BeforeAfterCompare
+          id="north-shore-comparison"
+          before={{ src: northShoreBefore.src, alt: northShoreBefore.alt, label: "1960s" }}
+          after={{ src: northShoreAfter.src, alt: northShoreAfter.alt, label: "2010s" }}
+          video={{ src: northShoreVideo.src, poster: northShoreBefore.src, alt: northShoreVideo.alt }}
+          aspect="aspect-[4/3]"
+          fit="cover"
+          startView="compare"
+          beforeAccent="#71d6e8"
+          afterAccent="#d9b35f"
+          ariaLabel="Compare the North Shore marina in the 1960s and 2010s"
+        />
+        <aside class="context-card context-card--documentary">
+          <span class="mode-badge mode-badge--documentary">Documentary comparison</span>
+          <h3>{northShoreEntry.data.title}</h3>
+          <p>{northShoreEntry.data.historicalContext}</p>
+          {northShoreEntry.data.sourceCredit && (
+            <div class="source-note">
+              <strong>Source note</strong>
+              <p>{northShoreEntry.data.sourceCredit.note}</p>
+              {northShoreEntry.data.sourceCredit.url && <a href={northShoreEntry.data.sourceCredit.url}>View the historical image record &rarr;</a>}
+            </div>
+          )}
+        </aside>
+      </div>
+    </Wrapper>
+  </section>
+
+  <section id="alternate-histories" class="archive-section archive-section--alternate" aria-labelledby="alternate-title">
+    <Wrapper variant="standard" class="archive-section__inner">
+      <header class="section-heading section-heading--split">
+        <div>
+          <p class="archive-kicker">Alternate Histories / Salton City</p>
+          <h2 id="alternate-title">The source is real. The destination is invented.</h2>
+        </div>
+        <p>{saltonCityEntry.data.premise}</p>
+      </header>
+
+      <div class="alternate-sequence">
+        <figure class="archive-frame archive-frame--source">
+          <div class="archive-frame__media"><img src={saltonBefore.src} alt={saltonBefore.alt} width={saltonBefore.width} height={saltonBefore.height} loading="lazy" decoding="async" /></div>
+          <figcaption><span>01</span><strong>Historical source</strong><small>File labeled 1965</small></figcaption>
+        </figure>
+        <div class="alternate-sequence__video">
+          <AmbientVideoFrame src={saltonVideo.src} poster={saltonAfter.src} label="Play Salton City 1965 to Alternate 2065" caption="A counterfactual transformation, not documentary footage or a forecast." />
+        </div>
+        <figure class="archive-frame archive-frame--alternate">
+          <div class="archive-frame__media"><img src={saltonAfter.src} alt={saltonAfter.alt} width={saltonAfter.width} height={saltonAfter.height} loading="lazy" decoding="async" /></div>
+          <figcaption><span>02</span><strong>Alternate future</strong><small>2065 / invented</small></figcaption>
+        </figure>
+      </div>
+
+      <div class="truth-split">
+        <article class="truth-card truth-card--real">
+          <p>Real history</p>
+          <h3>What the source can support</h3>
+          <p>{saltonCityEntry.data.historicalContext}</p>
+        </article>
+        <article class="truth-card truth-card--invented">
+          <p>Alternate premise</p>
+          <h3>What the project invents</h3>
+          <p>{saltonCityEntry.data.alternatePremise}</p>
+        </article>
+      </div>
+    </Wrapper>
+  </section>
+
+  <section id="process" class="archive-section archive-section--process" aria-labelledby="process-title">
+    <Wrapper variant="standard" class="archive-section__inner">
+      <header class="section-heading section-heading--split">
+        <div>
+          <p class="archive-kicker">How these are made</p>
+          <h2 id="process-title">Keep the subject. Change the condition.</h2>
+        </div>
+        <p>For many construction and restoration sequences, one strong first frame plus a precise process prompt works better than forcing a separate end frame. End frames remain useful when the final design must be tightly controlled.</p>
+      </header>
+
+      <ol class="process-strip">
+        {processSteps.map((step, index) => <li><span>{String(index + 1).padStart(2, "0")}</span><p>{step}</p></li>)}
+      </ol>
+    </Wrapper>
+  </section>
+
+  <section class="archive-section archive-section--directions" aria-labelledby="directions-title">
+    <Wrapper variant="standard" class="archive-section__inner">
+      <header class="section-heading section-heading--split">
+        <div>
+          <p class="archive-kicker">Archive direction</p>
+          <h2 id="directions-title">A program with several clocks running.</h2>
+        </div>
+        <p>Before &amp; After can hold real chronology, repairs, counterfactual development, long time shifts, and fictional character change. Categories become links only when published work exists.</p>
+      </header>
+
+      <div class="category-index">
+        {archiveCategories.map((category, index) => category.href ? (
+          <a href={category.href}><span>{String(index + 1).padStart(2, "0")}</span><strong>{category.label}</strong><small>{category.note}</small></a>
+        ) : (
+          <span class="category-index__future"><span>{String(index + 1).padStart(2, "0")}</span><strong>{category.label}</strong><small>{category.note}</small></span>
+        ))}
+      </div>
+
+      <aside class="sources-panel" aria-labelledby="sources-title">
+        <div><p class="archive-kicker">Historical sources</p><h3 id="sources-title">Records used for the documentary context</h3></div>
+        <ul>
+          <li><a href="https://npgallery.nps.gov/AssetDetail/NRIS/15000640">National Park Service: North Shore Yacht Club register record</a><span>Albert Frey, 1958 significant year, listed September 28, 2015.</span></li>
+          <li><a href="https://www.desertsun.com/picture-gallery/news/environment/2014/08/01/historic-photos-of-the-salton-sea-and-north-shore-yacht-club/13493163/">The Desert Sun: Salton Sea History Museum photographs</a><span>The historical marina image is credited to the museum and dated only to the 1960s.</span></li>
+          <li><a href="https://dbw.parks.ca.gov/BoatingFacilities/f/1090">California State Parks: North Shore facility record</a><span>Confirms the public North Shore boating-access site and location.</span></li>
+        </ul>
+      </aside>
+
+      <nav class="archive-nav" aria-label="Continue from Before and After">
+        <a href="/workshop/">Workshop</a><a href="/gallery/">Gallery</a><a href="/articles/">Articles</a><a href="/support/">Support</a>
+      </nav>
+    </Wrapper>
+  </section>
+</div>
+
+<script>
+  function initFeaturedTransformations() {
+    document.querySelectorAll<HTMLElement>("[data-featured-transformation]").forEach((root) => {
+      if (root.dataset.featuredBound === "true") return;
+      root.dataset.featuredBound = "true";
+
+      const video = root.querySelector<HTMLVideoElement>("[data-featured-player]");
+      const toggle = root.querySelector<HTMLButtonElement>("[data-featured-toggle]");
+      const replay = root.querySelector<HTMLButtonElement>("[data-featured-replay]");
+      const toggleLabel = root.querySelector<HTMLElement>("[data-featured-toggle-label]");
+      const toggleIcon = root.querySelector<HTMLElement>("[data-featured-toggle-icon]");
+      const status = root.querySelector<HTMLElement>("[data-featured-status]");
+      if (!video || !toggle || !replay || !toggleLabel || !toggleIcon || !status) return;
+
+      const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+      const update = () => {
+        const playing = !video.paused;
+        toggleLabel.textContent = playing ? "Pause" : "Play";
+        toggleIcon.innerHTML = playing ? "&#10074;&#10074;" : "&#9654;";
+        toggle.setAttribute("aria-pressed", String(playing));
+        status.textContent = playing ? "Video playing" : "Video paused";
+      };
+
+      toggle.disabled = false;
+      replay.disabled = false;
+      video.addEventListener("play", update);
+      video.addEventListener("pause", update);
+      toggle.addEventListener("click", async () => {
+        if (video.paused) {
+          try { await video.play(); } catch { update(); }
+        } else {
+          video.pause();
+        }
+      });
+      replay.addEventListener("click", async () => {
+        video.currentTime = 0;
+        try { await video.play(); } catch { update(); }
+      });
+      motion.addEventListener("change", (event) => {
+        if (event.matches) video.pause();
+      });
+
+      update();
+      if (!motion.matches && !connection?.saveData) video.play().catch(update);
+    });
+  }
+
+  initFeaturedTransformations();
+  document.addEventListener("astro:page-load", initFeaturedTransformations);
+</script>
+
+<style>
+  .before-after-page { --archive-cyan:#71d6e8; --archive-amber:#d9b35f; --archive-red:#ef6b57; --archive-ink:#080a0c; background:var(--archive-ink); color:#ece9f5; }
+  .archive-hero { overflow:hidden; border-bottom:1px solid #28313a; background:linear-gradient(90deg,rgba(113,214,232,.06) 1px,transparent 1px),linear-gradient(rgba(113,214,232,.045) 1px,transparent 1px),#080a0c; background-size:4rem 4rem; }
+  .archive-hero__inner { padding-top:2rem; padding-bottom:3rem; }
+  .breadcrumbs { display:flex; flex-wrap:wrap; gap:.5rem; color:#87919b; font-family:var(--font-mono); font-size:.64rem; letter-spacing:.08em; text-transform:uppercase; }
+  .breadcrumbs a { color:#b8c1c9; text-decoration:none; }
+  .breadcrumbs a:hover { color:#fff; }
+  .archive-hero__copy { display:grid; gap:1rem; max-width:74rem; margin-top:clamp(3rem,8vw,7rem); }
+  .archive-kicker { margin:0; color:var(--archive-cyan); font-family:var(--font-mono); font-size:.66rem; letter-spacing:.17em; text-transform:uppercase; }
+  .archive-hero h1 { margin:0; color:#fff; font-family:var(--font-display); font-size:clamp(4rem,14vw,10rem); font-weight:250; letter-spacing:-.07em; line-height:.78; }
+  .archive-hero__dek { max-width:64rem; margin:1rem 0 0; color:#fff; font-family:var(--font-display); font-size:clamp(1.75rem,4vw,3.8rem); font-weight:300; letter-spacing:-.035em; line-height:1.05; }
+  .archive-hero__support { max-width:52rem; margin:.25rem 0 0; color:#aeb6be; font-size:clamp(1rem,1.6vw,1.2rem); line-height:1.7; }
+  .archive-actions { display:flex; flex-wrap:wrap; gap:.7rem; margin-top:.7rem; }
+  .archive-action { display:inline-flex; align-items:center; min-height:2.9rem; padding:.7rem 1rem; border:1px solid #52606d; color:#e7edf0; font-family:var(--font-mono); font-size:.67rem; letter-spacing:.08em; text-decoration:none; text-transform:uppercase; }
+  .archive-action:hover,.archive-action:focus-visible { border-color:var(--archive-cyan); color:#fff; }
+  .archive-action--primary { border-color:var(--archive-cyan); background:var(--archive-cyan); color:#061014; }
+  .archive-action--primary:hover,.archive-action--primary:focus-visible { background:#9ee9f3; color:#061014; }
+  .featured-transformation { margin:clamp(2rem,5vw,4rem) 0 0; border:1px solid #37414b; background:#030405; }
+  .featured-transformation__frame { position:relative; display:grid; place-items:center; aspect-ratio:4/3; max-height:min(72vh,58rem); background:#020303; }
+  .featured-transformation video { display:block; width:100%; height:100%; object-fit:contain; }
+  .featured-transformation__caption { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.85rem 1rem; border-top:1px solid #37414b; background:#0c1013; }
+  .featured-transformation__caption p { margin:.45rem 0 0; color:#8f9aa4; font-family:var(--font-mono); font-size:.62rem; letter-spacing:.08em; text-transform:uppercase; }
+  .featured-controls { display:flex; align-items:center; gap:.45rem; }
+  .featured-controls button { display:inline-flex; align-items:center; gap:.45rem; min-height:2.5rem; padding:.6rem .8rem; border:1px solid #52606d; background:#080a0c; color:#fff; font-family:var(--font-mono); font-size:.64rem; letter-spacing:.07em; text-transform:uppercase; cursor:pointer; }
+  .featured-controls button:hover,.featured-controls button:focus-visible { border-color:var(--archive-cyan); }
+  .featured-controls button:disabled { cursor:not-allowed; opacity:.45; }
+  .sr-status { position:absolute; width:1px; height:1px; padding:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  .video-fallback { padding:0 1rem 1rem; }
+  .video-fallback a { color:var(--archive-cyan); }
+  .mode-badge { display:inline-flex; align-items:center; width:max-content; padding:.35rem .5rem; border:1px solid currentColor; font-family:var(--font-mono); font-size:.58rem; letter-spacing:.08em; line-height:1; text-transform:uppercase; }
+  .mode-badge--speculative { color:#f0bc73; }
+  .mode-badge--documentary { color:#80deee; }
+  .mode-badge--counterfactual { color:#ff826f; }
+  .mode-badge--fictional { color:#c5a2f3; }
+  .archive-section { border-bottom:1px solid #28313a; }
+  .archive-section__inner { padding-top:clamp(3.5rem,7vw,6rem); padding-bottom:clamp(3.5rem,7vw,6rem); }
+  .archive-section--wall { background:#0b0e11; }
+  .archive-section--shine { background:radial-gradient(circle at 86% 10%,rgba(217,179,95,.09),transparent 28rem),#080a0c; }
+  .archive-section--documentary { background:radial-gradient(circle at 5% 20%,rgba(113,214,232,.08),transparent 30rem),#0a0d10; }
+  .archive-section--alternate { background:radial-gradient(circle at 90% 10%,rgba(239,107,87,.09),transparent 32rem),#0d0a0b; }
+  .archive-section--process { background:#090c0f; }
+  .archive-section--directions { background:#07090a; }
+  .section-heading { max-width:75rem; }
+  .section-heading--split { display:grid; gap:1.5rem; }
+  .section-heading h2 { max-width:60rem; margin:.7rem 0 0; color:#fff; font-family:var(--font-display); font-size:clamp(2.4rem,6vw,5.6rem); font-weight:280; letter-spacing:-.055em; line-height:.92; }
+  .section-heading--split > p { max-width:44rem; margin:0; color:#aab3bb; line-height:1.75; }
+  .media-wall { display:grid; gap:.8rem; margin-top:2.5rem; }
+  .wall-item { min-width:0; border:1px solid #313b44; background:#0b0e11; }
+  .wall-item__media,.wall-item__pair,.wall-item__sequence { position:relative; display:block; overflow:hidden; border-bottom:1px solid #313b44; background:#020303; color:inherit; text-decoration:none; }
+  .wall-item__media { aspect-ratio:4/3; }
+  .wall-item__media img { width:100%; height:100%; object-fit:cover; transition:transform .4s ease; }
+  .wall-item__media:hover img { transform:scale(1.012); }
+  .wall-item__pair { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .wall-item__pair figure,.wall-item__sequence figure { position:relative; min-width:0; margin:0; }
+  .wall-item__pair img { display:block; width:100%; aspect-ratio:4/3; object-fit:cover; }
+  .wall-item__pair figcaption,.wall-item__sequence figcaption { position:absolute; inset:.65rem auto auto .65rem; padding:.3rem .45rem; background:rgba(4,7,9,.84); color:#fff; font-family:var(--font-mono); font-size:.55rem; letter-spacing:.08em; text-transform:uppercase; }
+  .wall-item__sequence { display:grid; grid-template-columns:minmax(0,1fr) auto minmax(0,1fr); align-items:center; }
+  .wall-item__sequence > span:not(.media-indicator) { padding:.4rem; color:var(--archive-red); font-size:1.4rem; }
+  .wall-item__sequence img { display:block; width:100%; aspect-ratio:4/3; object-fit:cover; }
+  .wall-item__media--portrait { aspect-ratio:4/5; }
+  .wall-item__media--portrait img { object-fit:contain; }
+  .media-indicator { position:absolute; inset:auto .65rem .65rem auto; z-index:2; padding:.35rem .5rem; border:1px solid #66737e; background:rgba(4,7,9,.88); color:#fff; font-family:var(--font-mono); font-size:.55rem; letter-spacing:.08em; text-transform:uppercase; }
+  .wall-item__body { padding:1.1rem; }
+  .wall-meta,.wall-footer { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:.6rem; color:#8d98a1; font-family:var(--font-mono); font-size:.58rem; letter-spacing:.07em; text-transform:uppercase; }
+  .wall-meta { justify-content:flex-start; }
+  .wall-item h3 { margin:.8rem 0 0; color:#fff; font-family:var(--font-display); font-size:clamp(1.6rem,3vw,2.8rem); font-weight:350; letter-spacing:-.035em; line-height:1; }
+  .wall-item__body > p { margin:.8rem 0 1.1rem; color:#aab3bb; line-height:1.65; }
+  .wall-footer a { color:var(--archive-cyan); }
+  .shine-strip,.alternate-sequence { display:grid; gap:.8rem; margin-top:2.5rem; align-items:start; }
+  .archive-frame { min-width:0; margin:0; border:1px solid #37414b; background:#07090a; }
+  .archive-frame__media { position:relative; display:grid; place-items:center; aspect-ratio:4/3; overflow:hidden; background:#020303; }
+  .archive-frame__media img { display:block; width:100%; height:100%; object-fit:cover; }
+  .archive-frame figcaption { display:grid; grid-template-columns:auto 1fr; gap:.15rem .7rem; padding:.8rem; border-top:1px solid #37414b; }
+  .archive-frame figcaption span { grid-row:span 2; color:#727e88; font-family:var(--font-mono); font-size:.58rem; }
+  .archive-frame figcaption strong { color:#fff; font-size:.82rem; font-weight:500; }
+  .archive-frame figcaption small { color:#87929c; font-family:var(--font-mono); font-size:.55rem; letter-spacing:.06em; text-transform:uppercase; }
+  .shine-strip__video,.alternate-sequence__video { min-width:0; }
+  .series-note { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem; margin-top:1rem; padding:1rem; border:1px solid #37414b; background:#0d1114; }
+  .series-note p { margin:0; color:#aab3bb; line-height:1.65; }
+  .series-note strong { color:#fff; }
+  .series-note a { color:var(--archive-cyan); }
+  .documentary-grid { display:grid; gap:1rem; margin-top:2.5rem; align-items:start; }
+  .context-card { padding:clamp(1.2rem,3vw,2rem); border:1px solid #3f4a54; background:#0c1115; }
+  .context-card h3 { margin:1rem 0 0; color:#fff; font-family:var(--font-display); font-size:clamp(1.8rem,4vw,3.2rem); font-weight:320; line-height:1; }
+  .context-card > p { margin:1rem 0 0; color:#adb6be; line-height:1.75; }
+  .source-note { margin-top:1.5rem; padding-top:1.2rem; border-top:1px solid #3b4650; }
+  .source-note strong { color:#fff; font-family:var(--font-mono); font-size:.62rem; letter-spacing:.08em; text-transform:uppercase; }
+  .source-note p { margin:.65rem 0 0; color:#8f9aa4; font-size:.8rem; line-height:1.6; }
+  .source-note a { display:inline-block; margin-top:.75rem; color:var(--archive-cyan); font-size:.8rem; }
+  .truth-split { display:grid; gap:.8rem; margin-top:1rem; }
+  .truth-card { padding:1.2rem; border:1px solid #3d454c; background:#0d1012; }
+  .truth-card > p:first-child { margin:0; font-family:var(--font-mono); font-size:.6rem; letter-spacing:.12em; text-transform:uppercase; }
+  .truth-card--real { border-top:3px solid var(--archive-cyan); }
+  .truth-card--real > p:first-child { color:var(--archive-cyan); }
+  .truth-card--invented { border-top:3px solid var(--archive-red); background:#130d0d; }
+  .truth-card--invented > p:first-child { color:#ff8d7c; }
+  .truth-card h3 { margin:.7rem 0 0; color:#fff; font-family:var(--font-display); font-size:clamp(1.5rem,3vw,2.5rem); font-weight:350; }
+  .truth-card h3 + p { margin:.8rem 0 0; color:#aab3bb; line-height:1.7; }
+  .process-strip { display:grid; gap:0; margin:2.5rem 0 0; padding:0; border-top:1px solid #39434c; border-left:1px solid #39434c; list-style:none; }
+  .process-strip li { min-height:10rem; padding:1rem; border-right:1px solid #39434c; border-bottom:1px solid #39434c; background:#0b0f12; }
+  .process-strip span { color:var(--archive-cyan); font-family:var(--font-mono); font-size:.62rem; }
+  .process-strip p { max-width:15rem; margin:3.5rem 0 0; color:#fff; font-size:.92rem; line-height:1.35; }
+  .category-index { display:grid; gap:.6rem; margin-top:2.5rem; }
+  .category-index > a,.category-index__future { display:grid; grid-template-columns:auto 1fr auto; gap:1rem; align-items:center; min-height:4.5rem; padding:.85rem 1rem; border:1px solid #35404a; background:#0b0e10; color:inherit; text-decoration:none; }
+  .category-index > a:hover,.category-index > a:focus-visible { border-color:var(--archive-cyan); }
+  .category-index span span,.category-index > a > span { color:#6e7a85; font-family:var(--font-mono); font-size:.58rem; }
+  .category-index strong { color:#fff; font-family:var(--font-display); font-size:clamp(1.1rem,2vw,1.5rem); font-weight:420; }
+  .category-index small { color:#7f8b95; font-family:var(--font-mono); font-size:.55rem; letter-spacing:.06em; text-transform:uppercase; }
+  .category-index__future { opacity:.55; }
+  .sources-panel { display:grid; gap:1.5rem; margin-top:3rem; padding:clamp(1.2rem,3vw,2rem); border:1px solid #35404a; background:#0b0e10; }
+  .sources-panel h3 { margin:.7rem 0 0; color:#fff; font-family:var(--font-display); font-size:clamp(1.7rem,4vw,3rem); font-weight:330; line-height:1; }
+  .sources-panel ul { display:grid; gap:1rem; margin:0; padding:0; list-style:none; }
+  .sources-panel li { display:grid; gap:.35rem; padding-bottom:1rem; border-bottom:1px solid #303942; }
+  .sources-panel li:last-child { padding-bottom:0; border-bottom:0; }
+  .sources-panel a { color:var(--archive-cyan); }
+  .sources-panel span { color:#88949e; font-size:.78rem; line-height:1.5; }
+  .archive-nav { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:2rem; }
+  .archive-nav a { padding:.6rem .8rem; border:1px solid #35404a; color:#aeb8c0; font-family:var(--font-mono); font-size:.62rem; letter-spacing:.07em; text-decoration:none; text-transform:uppercase; }
+  .archive-nav a:hover,.archive-nav a:focus-visible { border-color:var(--archive-cyan); color:#fff; }
+  @media (min-width:760px) {
+    .section-heading--split { grid-template-columns:minmax(0,1.25fr) minmax(20rem,.75fr); align-items:end; }
+    .media-wall { grid-template-columns:repeat(12,minmax(0,1fr)); }
+    .wall-item--lead { grid-column:span 7; }
+    .wall-item--documentary { grid-column:span 5; }
+    .wall-item--alternate { grid-column:span 8; }
+    .wall-item--character { grid-column:span 4; }
+    .shine-strip { grid-template-columns:repeat(12,minmax(0,1fr)); }
+    .shine-strip > .archive-frame { grid-column:span 3; }
+    .shine-strip__video { grid-column:span 6; }
+    .documentary-grid { grid-template-columns:minmax(0,1.4fr) minmax(20rem,.6fr); }
+    .alternate-sequence { grid-template-columns:repeat(12,minmax(0,1fr)); }
+    .alternate-sequence > .archive-frame { grid-column:span 3; }
+    .alternate-sequence__video { grid-column:span 6; }
+    .truth-split { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .process-strip { grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .category-index { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .sources-panel { grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr); }
+  }
+  @media (min-width:1100px) {
+    .process-strip { grid-template-columns:repeat(6,minmax(0,1fr)); }
+  }
+  @media (max-width:640px) {
+    .archive-hero__inner { padding-top:1.2rem; }
+    .archive-hero h1 { font-size:clamp(3.6rem,19vw,6rem); line-height:.84; }
+    .featured-transformation__caption { align-items:flex-start; flex-direction:column; }
+    .featured-controls { width:100%; }
+    .featured-controls button { flex:1; justify-content:center; }
+    .wall-item__sequence { grid-template-columns:1fr; }
+    .wall-item__sequence > span:not(.media-indicator) { text-align:center; transform:rotate(90deg); }
+    .category-index > a,.category-index__future { grid-template-columns:auto 1fr; }
+    .category-index small { grid-column:2; }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    * { scroll-behavior:auto !important; }
+    .wall-item__media img { transition:none; }
+  }
+</style>
