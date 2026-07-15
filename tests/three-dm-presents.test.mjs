@@ -164,6 +164,8 @@ test("the McLuhan feature connects experimental television to the feed with R2 m
 test("the Broadway Babies feature documents the pre-crash musical and its Miller route", () => {
   const feature = read("src/content/articles/3dm/broadway-babies.md");
   const layout = read("src/layouts/ThreeDMEntryLayout.astro");
+  const contentConfig = read("src/content.config.ts");
+  const pagesConfig = read(".pages.yml");
 
   assert.match(feature, /title: "Broadway Babies: The Last Summer Before the Money Vanished"/);
   assert.match(feature, /degreeCount: 3/);
@@ -189,6 +191,14 @@ test("the Broadway Babies feature documents the pre-crash musical and its Miller
   assert.match(layout, /three-dm-entry__hero--horizontal \.three-dm-entry__intro \{ order:1; \}/);
   assert.match(layout, /three-dm-entry__hero--horizontal \.three-dm-entry__logo \{ order:2;/);
   assert.doesNotMatch(layout, /three-dm-entry__hero--horizontal\{grid-template-columns:minmax/);
+  assert.match(layout, /heroArrangement = data\.arrangement === "horizontal-hero" \? "horizontal" : "vertical"/);
+  assert.match(layout, /three-dm-entry__hero--\$\{heroArrangement\}/);
+  assert.match(layout, /three-dm-entry__hero--horizontal h1 \{ width:100%; max-width:none;/);
+  assert.match(layout, /font-size:clamp\(2\.1rem,5vw,4\.75rem\)/);
+  assert.match(layout, /text-wrap:balance/);
+  assert.match(layout, /three-dm-entry__hero--vertical\{grid-template-columns:minmax/);
+  assert.match(contentConfig, /arrangement: z\.enum\(\["horizontal-hero", "vertical-hero"\]\)\.optional\(\)/);
+  assert.match(pagesConfig, /label: Article Hero Layout[\s\S]*options: \[horizontal-hero, vertical-hero\]/);
   assert.match(read("public/_headers"), /media-src[^\n]*https:\/\/archive\.org/);
   assert.doesNotMatch(feature, /—/);
 });

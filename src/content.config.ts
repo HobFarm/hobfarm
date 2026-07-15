@@ -138,7 +138,7 @@ const articles = defineCollection({
       socialImage: z.string().optional(),
       thumbnail: z.string().optional(),
       socialCaption: z.string().optional(),
-      arrangement: z.string().optional(),
+      arrangement: z.enum(["horizontal-hero", "vertical-hero"]).optional(),
       canonical: z.string().optional(),
       publishedAt: z.coerce.date().optional(),
       pubDate: z.coerce.date().optional(),

@@ -27,6 +27,7 @@ const socialImage = data.socialImage ?? image;
 const usesSeriesLogo = image === THREE_DM_LOGO;
 const description = getArticleDescription(data);
 const entryType = (data.entryType ?? "article").replaceAll("-", " ");
+const heroArrangement = data.arrangement === "horizontal-hero" ? "horizontal" : "vertical";
 const videoObject = data.video
   ? {
       "@type": "VideoObject",
@@ -88,7 +89,7 @@ const structuredData = {
           <a href={THREE_DM_PATH}>3DM</a><span>/</span><span>{entryType}</span>
         </nav>
 
-        <header class:list={["three-dm-entry__hero", { "three-dm-entry__hero--horizontal": data.arrangement === "horizontal-hero" }]}>
+        <header class:list={["three-dm-entry__hero", `three-dm-entry__hero--${heroArrangement}`]}>
           <div class:list={["three-dm-entry__logo", { "three-dm-entry__logo--art": !usesSeriesLogo }]}>
             <img src={image} alt={data.heroAlt ?? data.title} width={usesSeriesLogo ? 900 : 1672} height={usesSeriesLogo ? 900 : 941} decoding="async" fetchpriority="high" />
           </div>
@@ -169,14 +170,14 @@ const structuredData = {
   .three-dm-entry__logo img { width:100%; max-height:22rem; object-fit:contain; }
   .three-dm-entry__logo--art { max-width:38rem; background:#03070c; }
   .three-dm-entry__logo--art img { max-height:28rem; padding:.45rem; }
+  .three-dm-entry h1 { max-width:14ch; margin:.75rem 0 0; color:var(--miller-cream); font-family:var(--font-display); font-size:clamp(2.5rem,7vw,6rem); font-weight:760; letter-spacing:-.065em; line-height:.9; }
   .three-dm-entry__hero--horizontal { grid-template-columns:1fr; }
   .three-dm-entry__hero--horizontal .three-dm-entry__intro { order:1; }
   .three-dm-entry__hero--horizontal .three-dm-entry__logo { order:2; max-width:none; }
   .three-dm-entry__hero--horizontal .three-dm-entry__logo img { max-height:none; }
-  .three-dm-entry__hero--horizontal h1 { max-width:18ch; }
+  .three-dm-entry__hero--horizontal h1 { width:100%; max-width:none; font-size:clamp(2.1rem,5vw,4.75rem); letter-spacing:-.055em; line-height:.94; text-wrap:balance; }
   .three-dm-entry__hero--horizontal .three-dm-entry__deck { max-width:55rem; }
   .three-dm-kicker { margin:0; color:var(--miller-orange); font-family:var(--font-mono); font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; }
-  .three-dm-entry h1 { max-width:14ch; margin:.75rem 0 0; color:var(--miller-cream); font-family:var(--font-display); font-size:clamp(2.5rem,7vw,6rem); font-weight:760; letter-spacing:-.065em; line-height:.9; }
   .three-dm-entry__deck { max-width:42rem; margin:1.2rem 0 0; color:#d8cab1; font-size:clamp(1.05rem,2vw,1.35rem); line-height:1.55; }
   .three-dm-entry__media,.three-dm-entry__route { margin-top:1.5rem; }
   .three-dm-entry__body { padding-top:clamp(2.5rem,6vw,5rem); padding-bottom:4rem; }
@@ -196,7 +197,7 @@ const structuredData = {
   .three-dm-gpt a:hover,.three-dm-gpt a:focus-visible { background:var(--miller-orange); color:#07101b; }
   .three-dm-related > div { display:grid; gap:1rem; margin-top:1.25rem; }
   .three-dm-return { display:inline-block; margin-top:2.5rem; color:var(--miller-orange); font-family:var(--font-mono); font-size:.7rem; text-transform:uppercase; }
-  @media(min-width:850px){.three-dm-entry__hero{grid-template-columns:minmax(16rem,.7fr) minmax(0,1.3fr);align-items:center}.three-dm-entry__hero--horizontal{grid-template-columns:1fr;align-items:start}.three-dm-related>div{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(min-width:850px){.three-dm-entry__hero--vertical{grid-template-columns:minmax(16rem,.7fr) minmax(0,1.3fr);align-items:center}.three-dm-entry__hero--horizontal{grid-template-columns:1fr;align-items:start}.three-dm-related>div{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
 
 <style is:global>

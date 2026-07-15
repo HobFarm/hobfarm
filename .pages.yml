@@ -114,7 +114,10 @@ content:
       - { name: socialImage, label: Social Image URL, type: string }
       - { name: thumbnail, label: Thumbnail URL, type: string }
       - { name: socialCaption, label: Social Caption, type: text }
-      - { name: arrangement, label: Grimoire Arrangement, type: string }
+      - name: arrangement
+        label: Article Hero Layout
+        type: select
+        options: [horizontal-hero, vertical-hero]
       - { name: canonical, label: Canonical URL, type: string }
       - { name: publishedAt, label: Published At, type: date, required: true }
       - { name: pubDate, label: Publication Date (new field), type: date }
