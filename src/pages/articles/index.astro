@@ -24,8 +24,10 @@ const tagCounts = getArticleTagCounts(allPosts);
 const coverStory = allPosts[0];
 const latest = allPosts.slice(1, 10);
 const coverDate = coverStory ? getArticleDate(coverStory) : null;
-const coverPreservesArtwork = coverStory?.data.presentsSeries === "3dm";
-const coverHero = coverStory ? (coverPreservesArtwork ? THREE_DM_LOGO : getArticleHero(coverStory.data)) : undefined;
+const coverHero = coverStory
+  ? getArticleHero(coverStory.data) ?? (coverStory.data.presentsSeries === "3dm" ? THREE_DM_LOGO : undefined)
+  : undefined;
+const coverPreservesArtwork = coverHero === THREE_DM_LOGO;
 ---
 
 <BaseLayout
@@ -84,7 +86,7 @@ const coverHero = coverStory ? (coverPreservesArtwork ? THREE_DM_LOGO : getArtic
                 </div>
                 {coverDate && (
                   <time class="font-mono text-[10px] uppercase tracking-wider text-base-500" datetime={coverDate.toISOString()}>
-                    {coverDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+                    {coverDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" })}
                   </time>
                 )}
               </div>

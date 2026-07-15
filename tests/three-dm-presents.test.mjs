@@ -186,6 +186,9 @@ test("the Broadway Babies feature documents the pre-crash musical and its Miller
   assert.equal((feature.match(/ alt="/g) ?? []).length, 10);
   assert.match(layout, /article-archive-embed/);
   assert.match(layout, /three-dm-entry__hero--horizontal/);
+  assert.match(layout, /three-dm-entry__hero--horizontal \.three-dm-entry__intro \{ order:1; \}/);
+  assert.match(layout, /three-dm-entry__hero--horizontal \.three-dm-entry__logo \{ order:2;/);
+  assert.doesNotMatch(layout, /three-dm-entry__hero--horizontal\{grid-template-columns:minmax/);
   assert.match(read("public/_headers"), /media-src[^\n]*https:\/\/archive\.org/);
   assert.doesNotMatch(feature, /—/);
 });

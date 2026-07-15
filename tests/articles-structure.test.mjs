@@ -235,6 +235,18 @@ test("article share controls include a generated share post", () => {
   assert.match(articleLayout, /tags=\{frontmatter\.tags\}/);
 });
 
+test("the Articles cover story prefers each article's hero over a series logo", () => {
+  const articlesPage = read("src/pages/articles/index.astro");
+
+  assert.match(articlesPage, /getArticleHero\(coverStory\.data\)/);
+  assert.match(articlesPage, /coverHero === THREE_DM_LOGO/);
+  assert.match(articlesPage, /timeZone: "UTC"/);
+  assert.doesNotMatch(
+    articlesPage,
+    /coverPreservesArtwork\s*=\s*coverStory\?\.data\.presentsSeries\s*===\s*"3dm"/,
+  );
+});
+
 test("article embeds allow trusted media players through CSP", () => {
   const headers = read("public/_headers");
 
