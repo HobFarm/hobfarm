@@ -57,6 +57,105 @@ test("Alice chronology is derived from the centralized canon record", async () =
   assert.doesNotMatch(alice, /arrivedAge|presentAge|wonderlandYears|arrived at (?:eight|8)|is (?:eighteen|18) now/i);
 });
 
+test("Alice and Chester public guides carry the corrected resident history", async () => {
+  const characters = await read("src/data/characters.ts");
+  const alice = characters.slice(characters.indexOf('slug: "alice"'), characters.indexOf('slug: "chester"'));
+  const chester = characters.slice(characters.indexOf('slug: "chester"'), characters.indexOf('slug: "the-hatter"'));
+  for (const sharedField of [
+    "otherAliceChronology.characterDeck",
+    "otherAlicePublicCanon.choices",
+    "otherAlicePublicCanon.method.summary",
+    "otherAlicePublicCanon.firstHome",
+    "otherAlicePublicCanon.localImprint",
+  ]) assert.match(alice, new RegExp(sharedField.replaceAll(".", "\\.")));
+  assert.match(alice, /Size-changing access/);
+  assert.match(alice, /Preparation, evidence, persuasion, size change, and reciprocal help/);
+  assert.match(chester, /began calling the Cheshire Cat Chester/);
+  assert.match(chester, /He guided without choosing for her/);
+  assert.doesNotMatch(alice + chester, /pet or substitute parent|monster[- ]hunter|unlimited spells/i);
+});
+
+test("Alice representative media is separate from the contained character sheet", async () => {
+  const [assets, residents, characters, characterPage, folio] = await Promise.all([
+    read("src/data/other-alice/assets.ts"),
+    read("src/data/other-alice/residents.ts"),
+    read("src/data/characters.ts"),
+    read("src/pages/characters/[character].astro"),
+    read("src/components/presents/other-alice/cast/CastDossierFolio.astro"),
+  ]);
+  const aliceResident = residents.slice(residents.indexOf('id: "other-alice"'), residents.indexOf('id: "chester"'));
+  assert.match(aliceResident, /assetRef: "oaa-hero-other-alice-representative-portrait-v01-3x4"/);
+  assert.match(aliceResident, /landscapeAssetRef: "oaa-hero-other-alice-representative-landscape-v01-16x9"/);
+  for (const id of [
+    "oaa-hero-other-alice-representative-portrait-v01-3x4",
+    "oaa-hero-other-alice-representative-landscape-v01-16x9",
+    "oaa-region-plate-alice-workshop-local-effect-v01-16x9",
+    "oaa-region-plate-alice-size-change-access-v01-3x2",
+    "oaa-region-plate-alice-chester-first-home-v01-3x2",
+    "oaa-evidence-other-alice-character-sheet-v01-4x3",
+  ]) assert.match(assets, new RegExp(id));
+  assert.match(characters, /heroMedia: alicePortraitMedia/);
+  assert.match(characters, /media: aliceSheetMedia/);
+  assert.match(characterPage, /heroLandscape.*<source/s);
+  assert.match(characterPage, /section\.media\.fit === "contain"/);
+  assert.match(folio, /record\.landscapeImage/);
+});
+
+test("Alice's R2 motion records use matched posters and deferred supporting playback", async () => {
+  const [charactersSource, characterPageSource, motionSource, assetSource] = await Promise.all([
+    read("src/data/characters.ts"),
+    read("src/pages/characters/[character].astro"),
+    read("src/components/presents/other-alice/AliceMotionRecords.astro"),
+    read("src/data/other-alice/assets.ts"),
+  ]);
+
+  for (const filename of [
+    "alice-cast-hero.mp4",
+    "other-alice-adventures-intro-hero.png",
+    "other-alice-adventures-intro1.mp4",
+    "other-alice-adventures-intro1a.png",
+    "other-alice-adventures-intro1b.png",
+    "other-alice-adventures-intro2.mp4",
+    "other-alice-adventures-intro2a.png",
+    "other-alice-adventures-intro2b.png",
+  ]) assert.match(assetSource, new RegExp(filename.replaceAll(".", "\\.")));
+  assert.match(charactersSource, /heroMotion: aliceHeroMotion/);
+  assert.match(charactersSource, /motionMedia: \[aliceWorkshopMotion, aliceWorldMotion\]/);
+  assert.match(characterPageSource, /poster=\{character\.heroMotion\.poster\.src\}/);
+  assert.match(motionSource, /preload="none"/);
+  assert.match(motionSource, /Companion frame/);
+});
+
+test("Alice's adapted appearance is explained through the seven public trait plates", async () => {
+  const [canonSource, charactersSource, characterPageSource, appearanceSource, assetSource] = await Promise.all([
+    read("src/data/other-alice/canon.ts"),
+    read("src/data/characters.ts"),
+    read("src/pages/characters/[character].astro"),
+    read("src/components/presents/other-alice/AliceVisualDevelopment.astro"),
+    read("src/data/other-alice/assets.ts"),
+  ]);
+
+  for (const filename of [
+    "other-alice-adventures-world.png",
+    "other-alice-beauty.png",
+    "other-alice-contemplation.png",
+    "other-alice-hearing.png",
+    "other-alice-profile.png",
+    "other-alice-tool-pouch.png",
+    "other-alice-vision.png",
+  ]) assert.match(assetSource, new RegExp(filename.replaceAll(".", "\\.")));
+  assert.match(canonSource, /appearance: \{/);
+  assert.match(canonSource, /detect wavelengths ordinary human eyes cannot see/);
+  assert.match(canonSource, /part field naturalist, part potion-maker, part gothic Lolita witch/);
+  assert.match(canonSource, /tool pouch inside it can change size/);
+  assert.match(charactersSource, /visualDevelopment: \{/);
+  assert.match(charactersSource, /plates: aliceTraitPlates/);
+  assert.match(characterPageSource, /<AliceVisualDevelopment/);
+  assert.match(appearanceSource, /record\.plates\.map/);
+  assert.match(canonSource, /evolving mixed-media graphic novel series/);
+  assert.doesNotMatch(canonSource + charactersSource + appearanceSource, /eleven years|11 Wonderland years/i);
+});
+
 test("the Green Queen remains a withheld private development record", async () => {
   const origins = await read("src/data/other-alice/private/character-origins.ts");
   const publicBundle = await publicSourceBundle();
@@ -112,7 +211,8 @@ test("cast presentation is data-derived and complete without character art", asy
 test("public relationship output includes the safe cast edges only", async () => {
   const relationships = await read("src/data/other-alice/relationships.ts");
   for (const id of [
-    "alice-chester", "alice-queen", "alice-hatter", "rabbit-guild-membership",
+    "alice-white-rabbit", "alice-chester", "alice-workshop", "alice-mushroom-method",
+    "alice-queen", "alice-hatter", "rabbit-guild-membership",
     "hatter-tea-system", "caterpillar-mushroom", "tweedle-pair", "old-edge-witnesses",
   ]) assert.match(relationships, new RegExp(`id: "${id}"`));
   assert.doesNotMatch(relationships, /Green Queen|green-queen|Red Queen|red-queen/i);

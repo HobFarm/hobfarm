@@ -1,9 +1,10 @@
 import assert from "node:assert/strict";
-import { mkdir } from "node:fs/promises";
+import { mkdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import { chromium } from "@playwright/test";
 
 const baseUrl = process.env.OAA_PREVIEW_URL ?? "http://127.0.0.1:4321";
+const isLocalPreview = ["127.0.0.1", "localhost"].includes(new URL(baseUrl).hostname);
 const outputDir = path.resolve("reports/other-alice-cast-foundation/after");
 const routes = [
   { id: "start", path: "/departments/hobfarm-presents/other-alice-adventures/" },
@@ -62,12 +63,18 @@ try {
 
       const response = await page.goto(`${baseUrl}${route.path}`, { waitUntil: "networkidle" });
       assert.equal(response?.status(), 200, `${route.id} returned ${response?.status()} at ${viewport.width}px`);
-      const images = page.locator("img");
+      const images = page.locator("img:visible");
       for (let index = 0; index < await images.count(); index += 1) {
         await images.nth(index).scrollIntoViewIfNeeded();
         await page.waitForTimeout(60);
       }
-      await page.waitForFunction(() => [...document.images].every((image) => image.complete), null, { timeout: 15_000 });
+      await page.waitForFunction(
+        () => [...document.images]
+          .filter((image) => image.getClientRects().length > 0)
+          .every((image) => image.complete),
+        null,
+        { timeout: 15_000 },
+      );
       await page.evaluate(() => scrollTo(0, 0));
 
       const audit = await page.evaluate(() => {
@@ -83,6 +90,7 @@ try {
           .map((element) => element.id)
           .filter((id, index, ids) => ids.indexOf(id) !== index);
         const brokenImages = [...document.images]
+          .filter((image) => image.getClientRects().length > 0)
           .filter((image) => !image.complete || image.naturalWidth === 0)
           .map((image) => image.currentSrc || image.src);
         const unnamedControls = [...document.querySelectorAll("a[href],button,input,select,textarea")]
@@ -202,15 +210,23 @@ try {
     }
   }
 
-  for (const retired of ["adventure-no-01-the-boundary-table", "adventure-no-01-the-wrong-tunnel"]) {
-    await page.goto(`${baseUrl}${routes[0].path}${retired}/`, { waitUntil: "networkidle" });
-    assert.equal(new URL(page.url()).pathname, routes[0].path, `${retired} did not redirect to Start Here`);
+  const retiredRoutes = ["adventure-no-01-the-boundary-table", "adventure-no-01-the-wrong-tunnel"];
+  if (isLocalPreview) {
+    const redirects = await readFile(path.resolve("public/_redirects"), "utf8");
+    for (const retired of retiredRoutes) {
+      assert.match(redirects, new RegExp(`${routes[0].path}${retired}/\\s+${routes[0].path}`), `${retired} is missing its Start Here redirect rule`);
+    }
+  } else {
+    for (const retired of retiredRoutes) {
+      await page.goto(`${baseUrl}${routes[0].path}${retired}/`, { waitUntil: "networkidle" });
+      assert.equal(new URL(page.url()).pathname, routes[0].path, `${retired} did not redirect to Start Here`);
+    }
   }
   const sitemap = await (await context.request.get(`${baseUrl}/sitemap.xml`)).text();
   const searchIndex = await (await context.request.get(`${baseUrl}/search-index.json`)).text();
   assert.match(sitemap, /other-alice-adventures\/cast\//i, "Cast route is missing from the sitemap");
   assert.match(searchIndex, /Cast of Wonderland/i, "Cast route is missing from search");
-  for (const retired of ["adventure-no-01-the-boundary-table", "adventure-no-01-the-wrong-tunnel"]) {
+  for (const retired of retiredRoutes) {
     assert.doesNotMatch(sitemap, new RegExp(retired, "i"), `${retired} remains in the sitemap`);
     assert.doesNotMatch(searchIndex, new RegExp(retired, "i"), `${retired} remains in search`);
   }

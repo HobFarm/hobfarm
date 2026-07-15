@@ -1,0 +1,95 @@
+---
+import { OTHER_ALICE_WORLD_GUIDE_PATH } from "@/data/other-alice-world-guide";
+
+const systemRecords = [
+  {
+    id: "routes",
+    label: "Present routes",
+    title: "A route is already somebody's shift, delivery, toll, shortcut, or risk.",
+    text: "Alice enters networks that have users, schedules, maintenance problems, and unofficial workarounds. Following a line on the map means meeting the people who keep it open and the institutions that decide who may use it.",
+    href: `${OTHER_ALICE_WORLD_GUIDE_PATH}#routes`,
+    image: "https://cdn.hob.farm/pages/other-alice-adventures/systems-in-motion/other-alice-adventures-routes.png",
+    alt: "Alice studies a crowded wet market route already used by workers, animals, deliveries, and route markers.",
+  },
+  {
+    id: "life",
+    label: "Regional life",
+    title: "A place becomes real through the work required to keep living there.",
+    text: "Water, food, repairs, records, shelter, and exchange continue whether Alice is present or not. Regional life explains what a settlement needs, who supplies it, and what fails first when one system stops.",
+    href: `${OTHER_ALICE_WORLD_GUIDE_PATH}#regions`,
+    image: "https://cdn.hob.farm/pages/other-alice-adventures/systems-in-motion/other-alice-adventures-life.png",
+    alt: "Alice observes residents maintaining water, tools, food, ledgers, and public infrastructure in a wet settlement.",
+  },
+  {
+    id: "layers",
+    label: "Historical layers",
+    title: "Wonderland keeps useful methods, then changes who they belong to.",
+    text: "A visitor's object or technique survives only when local people adapt it to local materials and needs. After enough repair and reuse, the imported thing becomes part of Wonderland's own history instead of a monument to the person who brought it.",
+    href: `${OTHER_ALICE_WORLD_GUIDE_PATH}#visitors`,
+    image: "https://cdn.hob.farm/pages/other-alice-adventures/systems-in-motion/other-alice-adventures-layers.png",
+    alt: "Alice examines an old mechanism among repaired tools, revised field records, and reused visitor objects.",
+  },
+  {
+    id: "thresholds",
+    label: "Thresholds",
+    title: "Access is a condition that must be met, not a door waiting to be found.",
+    text: "Resonance can arrange an invitation, but the traveler still chooses whether to cross. The action carries a cost into a place with different physical and social rules, and the crossing leaves residue on the body, object, relationship, or route.",
+    href: `${OTHER_ALICE_WORLD_GUIDE_PATH}#access`,
+    image: "https://cdn.hob.farm/pages/other-alice-adventures/systems-in-motion/other-alice-adventures-thresholds.png",
+    alt: "Alice pauses at a wet circular threshold opening into a hard geometric place while access instruments register the crossing.",
+  },
+  {
+    id: "repeated-use",
+    label: "Repeated use",
+    title: "One useful change becomes a system when other hands can repeat it.",
+    text: "Repair extends the life of an object. Trade carries the method to another region. Ecology absorbs the residue. Repetition is how a private discovery becomes shared practice, infrastructure, or a new problem with its own workers.",
+    href: `${OTHER_ALICE_WORLD_GUIDE_PATH}#ecology`,
+    image: "https://cdn.hob.farm/pages/other-alice-adventures/systems-in-motion/other-alice-adventures-repeated-use.png",
+    alt: "Alice stands inside a circular exchange of repair, trade, cultivation, tools, and ecological reuse.",
+  },
+] as const;
+---
+
+<div class="system-records">
+  {systemRecords.map((record, index) => (
+    <article class:list={["system-record", index === 0 && "is-lead"]}>
+      <figure>
+        <img
+          src={record.image}
+          alt={record.alt}
+          width="1448"
+          height="1086"
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
+      <div class="record-copy">
+        <p>{record.label}</p>
+        <h3>{record.title}</h3>
+        <span>{record.text}</span>
+        <a href={record.href}>Open this system in the World Guide <b aria-hidden="true">→</b></a>
+      </div>
+    </article>
+  ))}
+</div>
+
+<style>
+  .system-records { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .system-record { overflow: hidden; border: 1px solid rgba(255,255,255,.14); background: #0c1019; }
+  .system-record.is-lead { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0,1.35fr) minmax(18rem,.65fr); }
+  figure { margin: 0; background: #060910; }
+  img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+  .record-copy { display: flex; flex-direction: column; padding: clamp(1.25rem,3vw,2rem); }
+  .record-copy p { margin: 0; color: #a88cff; font: 600 .66rem/1 ui-monospace,SFMono-Regular,monospace; letter-spacing: .14em; text-transform: uppercase; }
+  h3 { max-width: 21ch; margin: 1rem 0 0; color: #f2ecdd; font: 400 clamp(1.45rem,2.4vw,2.35rem)/1.08 Georgia,serif; letter-spacing: -.025em; }
+  .record-copy span { max-width: 42rem; margin-top: 1rem; color: #aeb4c0; font-size: .95rem; line-height: 1.7; }
+  a { align-self: flex-start; margin-top: auto; padding-top: 1.5rem; color: #e6e8ed; font: 600 .66rem/1.4 ui-monospace,SFMono-Regular,monospace; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; }
+  a:hover, a:focus-visible { color: #fff; text-decoration: underline; text-underline-offset: .3rem; }
+  a:focus-visible { outline: 2px solid #a88cff; outline-offset: 4px; }
+  b { color: #a88cff; }
+  @media (max-width: 960px) {
+    .system-records { grid-template-columns: 1fr; }
+    .system-record.is-lead { grid-column: auto; display: block; }
+    a { margin-top: 0; }
+  }
+</style>

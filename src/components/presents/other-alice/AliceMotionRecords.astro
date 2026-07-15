@@ -1,0 +1,76 @@
+---
+import type { CharacterMotionAsset } from "@/data/characters";
+
+interface Props {
+  records: CharacterMotionAsset[];
+}
+
+const { records } = Astro.props;
+---
+
+<section class="alice-motion" aria-labelledby="alice-motion-title">
+  <header>
+    <p>Field motion records</p>
+    <h2 id="alice-motion-title">The method continues after the still frame.</h2>
+    <span>These short records follow Alice from close preparation work into the routes and bodies that make Wonderland harder to map.</span>
+  </header>
+
+  <div class="motion-grid">
+    {records.map((record) => (
+      <article>
+        <div class="record-heading">
+          <p>{record.label}</p>
+          <h3>{record.title}</h3>
+        </div>
+        <video
+          src={record.src}
+          poster={record.poster.src}
+          controls
+          muted
+          loop
+          playsinline
+          preload="none"
+          width={record.width}
+          height={record.height}
+          aria-label={record.alt}
+        ></video>
+        <p class="caption">{record.caption}</p>
+        {record.companionStill && (
+          <figure>
+            <img
+              src={record.companionStill.src}
+              alt={record.companionStill.alt}
+              width={record.companionStill.width}
+              height={record.companionStill.height}
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>Companion frame</figcaption>
+          </figure>
+        )}
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .alice-motion { margin-top: 3rem; }
+  header { display: grid; grid-template-columns: minmax(10rem, 0.32fr) minmax(0, 1fr); gap: 0.8rem 2rem; margin-bottom: 1.5rem; }
+  header p, .record-heading p, figcaption { margin: 0; color: #a88cff; font: 600 0.64rem/1.4 ui-monospace, SFMono-Regular, monospace; letter-spacing: 0.13em; text-transform: uppercase; }
+  header p { grid-row: 1 / 3; }
+  header h2 { margin: 0; color: #fff; font: 400 clamp(1.8rem, 4vw, 3rem)/1 Georgia, serif; }
+  header span { max-width: 48rem; color: #9fa4b0; font-size: 0.95rem; line-height: 1.65; }
+  .motion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  article { overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.13); border-radius: 0.5rem; background: rgba(12, 15, 24, 0.92); }
+  .record-heading { padding: 1.1rem; }
+  .record-heading h3 { margin: 0.55rem 0 0; color: #eee7d6; font: 400 clamp(1.45rem, 2.5vw, 2rem)/1.05 Georgia, serif; }
+  video { display: block; width: 100%; height: auto; background: #05070c; object-fit: cover; }
+  .caption { margin: 0; padding: 1rem 1.1rem; color: #aeb3bf; font-size: 0.88rem; line-height: 1.6; }
+  figure { position: relative; margin: 0; border-top: 1px solid rgba(255, 255, 255, 0.12); }
+  figure img { display: block; width: 100%; height: auto; }
+  figcaption { position: absolute; right: 0.75rem; bottom: 0.75rem; padding: 0.45rem 0.55rem; background: rgba(5, 7, 12, 0.82); color: #fff; }
+  @media (max-width: 760px) {
+    header, .motion-grid { grid-template-columns: 1fr; }
+    header p { grid-row: auto; }
+  }
+</style>

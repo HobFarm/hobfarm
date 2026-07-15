@@ -68,8 +68,11 @@ export type OtherAliceResidentRecord = {
   originDisclosure: OtherAliceOriginDisclosure;
   visualState: OtherAliceVisualState;
   assetRef?: string | null;
+  landscapeAssetRef?: string | null;
   image?: string;
   imageAlt?: string;
+  landscapeImage?: string;
+  landscapeImageAlt?: string;
   detailPageReady?: boolean;
   href?: string;
   guideAnchor: string;

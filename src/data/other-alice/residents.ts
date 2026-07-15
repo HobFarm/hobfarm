@@ -1,4 +1,4 @@
-import { otherAliceChronology } from "./canon";
+import { otherAliceChronology, otherAlicePublicCanon } from "./canon";
 import { getOtherAliceAsset } from "./assets";
 import type {
   OtherAliceCastGroup,
@@ -40,30 +40,38 @@ const records: OtherAliceResidentRecord[] = [
     id: "other-alice",
     slug: "other-alice",
     name: "Other Alice",
-    role: "Adapted inhabitant and boundary-tester",
+    role: "Adapted resident, natural philosopher, and field observer",
     category: "character",
     entityKind: "resident",
     publicState: "established",
-    currentFunction: "Tests boundaries, keeps a workshop archive, and carries the present-tense route through the serial.",
-    livingWorldConnection: "Her field record joins routes, organisms, institutions, and contradictions without treating Wonderland as scenery.",
-    systemTouchpoint: "Boundary routes and the workshop archive",
+    currentFunction: "Prepares remedies, investigates routes, changes size for access, keeps a workshop archive, and solves local problems through evidence and alliances.",
+    livingWorldConnection: otherAlicePublicCanon.localImprint,
+    systemTouchpoint: "The cabin workshop, burrow routes, size-change method, and boundary record",
     castGroup: "present-continuity",
     regionRefs: ["root-forest", "boundary-ring"],
     houseRefs: [],
     routeRefs: ["burrow"],
-    systemRefs: ["workshop-archive", "boundary-record"],
-    relationshipRefs: ["alice-chester", "alice-queen", "alice-hatter"],
+    systemRefs: ["workshop-archive", "boundary-record", "size-change-mushroom"],
+    relationshipRefs: [
+      "alice-white-rabbit",
+      "alice-chester",
+      "alice-workshop",
+      "alice-mushroom-method",
+      "alice-queen",
+      "alice-hatter",
+    ],
     evidence: [{ label: "Workshop field archive", kind: "record", certainty: "recorded" }],
     originDisclosure: "incomplete",
     visualState: "approved",
-    assetRef: "oaa-evidence-other-alice-character-sheet-v01-4x3",
+    assetRef: "oaa-hero-other-alice-representative-portrait-v01-3x4",
+    landscapeAssetRef: "oaa-hero-other-alice-representative-landscape-v01-16x9",
     detailPageReady: true,
     href: "/characters/alice/",
     guideAnchor: "routes",
     visibility: "public",
     summary: [
       otherAliceChronology.residentSummary,
-      "She reads routes, organisms, institutions, and contradictions as the structure of home.",
+      "She prepares for local conditions, gathers evidence, negotiates access, and returns practical knowledge through the cabin workshop.",
     ],
   },
   {
@@ -74,8 +82,8 @@ const records: OtherAliceResidentRecord[] = [
     category: "character",
     entityKind: "resident",
     publicState: "established",
-    currentFunction: "Exposes route rules through refusal, discontinuous movement, weight, waiting, and physical action.",
-    livingWorldConnection: "Alice treats his refusal as evidence when a registered route and the ground disagree.",
+    currentFunction: "Exposes route rules through refusal, discontinuous movement, weight, waiting, and physical action. Constant guidance is less necessary now that Alice knows the ground.",
+    livingWorldConnection: "Alice began calling him Chester after choosing to stay. Their long companionship grew through dangerous routes, the first home, and the relationships around it.",
     systemTouchpoint: "Burrow routes, thresholds, and route refusal",
     castGroup: "present-continuity",
     regionRefs: ["root-forest", "boundary-ring"],
@@ -92,8 +100,8 @@ const records: OtherAliceResidentRecord[] = [
     guideAnchor: "routes",
     visibility: "public",
     summary: [
-      "Chester's refusal is evidence.",
-      "He recognizes route behavior Alice cannot always observe directly.",
+      "Chester is an independent companion, not a pet or parent.",
+      "His refusal is evidence, and he recognizes route behavior Alice cannot always observe directly.",
     ],
   },
   {
@@ -198,7 +206,7 @@ const records: OtherAliceResidentRecord[] = [
     houseRefs: [],
     routeRefs: ["burrow", "radial"],
     systemRefs: ["clock-exchange", "rabbit-guild"],
-    relationshipRefs: ["rabbit-guild-membership"],
+    relationshipRefs: ["alice-white-rabbit", "rabbit-guild-membership"],
     evidence: [{ label: "Clock-exchange route marks", kind: "record", certainty: "recorded" }],
     originDisclosure: "incomplete",
     visualState: "design-pending",
@@ -254,7 +262,7 @@ const records: OtherAliceResidentRecord[] = [
     houseRefs: ["spades"],
     routeRefs: ["burrow"],
     systemRefs: ["size-change-mushroom"],
-    relationshipRefs: ["caterpillar-mushroom"],
+    relationshipRefs: ["caterpillar-mushroom", "alice-mushroom-method"],
     evidence: [{ label: "Alice's separated mushroom samples", kind: "material", certainty: "recorded" }],
     originDisclosure: "incomplete",
     visualState: "design-pending",
@@ -440,10 +448,13 @@ const records: OtherAliceResidentRecord[] = [
 
 export const otherAliceResidents = records.map((record) => {
   const asset = getOtherAliceAsset(record.assetRef);
+  const landscapeAsset = getOtherAliceAsset(record.landscapeAssetRef);
   return {
     ...record,
     image: asset?.publicPath,
     imageAlt: asset?.altText,
+    landscapeImage: landscapeAsset?.publicPath,
+    landscapeImageAlt: landscapeAsset?.altText,
   };
 });
 

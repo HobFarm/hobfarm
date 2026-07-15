@@ -1,7 +1,7 @@
 import { otherAliceCanon } from "./canon";
 
 export const chronologyRail = [
- { label:"Arrival",value:`Age ${otherAliceCanon.arrivedAge}`,note:"Alice enters Wonderland." },
+ { label:"Arrival",value:`Age ${otherAliceCanon.arrivedAge}`,note:"Alice chooses to follow the White Rabbit into Wonderland." },
  { label:"Lived time",value:`${otherAliceCanon.wonderlandYears} years`,note:"Her body, skills, relationships, and home develop here." },
  { label:"Present",value:`Age ${otherAliceCanon.presentAge}`,note:"Alice reads Wonderland as an adult resident." },
  { label:"Outside",value:otherAliceCanon.outsideYears.replace(/^./,(letter)=>letter.toUpperCase()),note:"No stable conversion ratio should be inferred." },
