@@ -1,0 +1,75 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CharacterMannequinPage from "@/components/workshop/CharacterMannequinPage.astro";
+import {
+  characterLooks,
+  characterMannequinPage,
+  themedCharacter,
+} from "@/data/character-mannequin";
+import { getPublicProducts, productSlug } from "@/lib/products";
+import { transformImageUrl } from "@/lib/media-transforms";
+
+const page = characterMannequinPage;
+const products = (await getPublicProducts()).filter((product) =>
+  page.relatedProducts.includes(productSlug(product) as (typeof page.relatedProducts)[number]),
+);
+const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
+const canonical = "/workshop/character-mannequin/";
+const socialImage = transformImageUrl(page.heroGraphic.src, {
+  width: 1200,
+  quality: 82,
+  fit: "cover",
+});
+const looks = [...characterLooks, themedCharacter];
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": `${siteOrigin}${canonical}#page`,
+      name: "Character / Mannequin Workshop",
+      description: page.description,
+      url: `${siteOrigin}${canonical}`,
+      image: socialImage,
+      isPartOf: {
+        "@type": "CollectionPage",
+        name: "HobFarm Workshop",
+        url: `${siteOrigin}/workshop/`,
+      },
+      mainEntity: {
+        "@type": "ItemList",
+        itemListElement: looks.map((look, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: look.shortTitle,
+          url: `${siteOrigin}${canonical}#${look.id}`,
+        })),
+      },
+    },
+    ...looks.map((look) => ({
+      "@type": "VideoObject",
+      name: `${look.shortTitle} motion study`,
+      description: look.video.alt,
+      thumbnailUrl: transformImageUrl(look.sceneImage.src, {
+        width: 900,
+        quality: 82,
+        fit: "cover",
+      }),
+      contentUrl: look.video.src,
+      isPartOf: { "@id": `${siteOrigin}${canonical}#page` },
+    })),
+  ],
+};
+---
+
+<BaseLayout
+  title={page.title}
+  description={page.description}
+  canonical={canonical}
+  image={socialImage}
+  imageAlt={page.heroGraphic.alt}
+  structuredData={structuredData}
+  palette="blue-red"
+>
+  <CharacterMannequinPage relatedProducts={products} />
+</BaseLayout>

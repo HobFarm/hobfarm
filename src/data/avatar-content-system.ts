@@ -72,7 +72,7 @@ export const affiliateTools: ToolLink[] = [
   {
     name: "ElevenLabs",
     role: "Voice tests, sample direction, pacing notes, and reusable voice references.",
-    href: null,
+    href: "https://try.elevenlabs.io/xyeeptwpw4d6",
     affiliate: true,
   },
   {

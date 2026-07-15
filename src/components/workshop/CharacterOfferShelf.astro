@@ -1,0 +1,69 @@
+---
+import type { CharacterOffer } from "@/data/character-mannequin";
+import type { ProductEntry } from "@/lib/products";
+import DropCard from "@/components/shop/DropCard.astro";
+
+interface Props {
+  offers: CharacterOffer[];
+  products?: ProductEntry[];
+}
+
+const { offers, products = [] } = Astro.props;
+---
+
+<div class="offer-shelf">
+  <ol>
+    {offers.map((offer, index) => (
+      <li data-offer-id={offer.id}>
+        <span class="offer-number">{String(index + 1).padStart(2, "0")}</span>
+        <div>
+          <h3>{offer.label}</h3>
+          <p>{offer.description}</p>
+        </div>
+        {offer.status === "inquiry" ? (
+          <a
+            href={offer.href}
+            data-event="character_page_commission_cta"
+            data-offer-id={offer.id}
+          >{offer.action} &rarr;</a>
+        ) : (
+          <span class="offer-status">{offer.action}</span>
+        )}
+      </li>
+    ))}
+  </ol>
+
+  {products.length > 0 && (
+    <section class="verified-products" aria-labelledby="verified-products-heading">
+      <header>
+        <p>Existing product record</p>
+        <h3 id="verified-products-heading">Related character work already in the Shop</h3>
+      </header>
+      <div class="product-grid">
+        {products.map((product) => <DropCard product={product} />)}
+      </div>
+    </section>
+  )}
+</div>
+
+<style>
+  .offer-shelf { margin-top: 2rem; }
+  .offer-shelf > ol { margin: 0; padding: 0; border-top: 1px solid #312a3e; list-style: none; }
+  .offer-shelf > ol > li { display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); gap: .7rem 1rem; align-items: center; padding: 1.2rem 0; border-bottom: 1px solid #312a3e; }
+  .offer-number { align-self: start; padding-top: .25rem; color: #f0c96b; font-family: var(--font-mono); font-size: .6rem; }
+  .offer-shelf h3 { margin: 0; color: #ece9f5; font-family: var(--font-display); font-size: clamp(1.2rem, 2.5vw, 1.75rem); font-weight: 400; }
+  .offer-shelf li p { max-width: 48rem; margin: .35rem 0 0; color: #9f9aad; font-size: .82rem; line-height: 1.65; }
+  .offer-shelf li > a, .offer-status { grid-column: 2; width: fit-content; color: #65e1c2; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .09em; text-decoration: none; text-transform: uppercase; }
+  .offer-status { color: #6f697b; }
+  .offer-shelf li > a:hover { color: #fff; }
+  .offer-shelf li > a:focus-visible { outline: 2px solid #65e1c2; outline-offset: 4px; }
+  .verified-products { display: grid; gap: 1.5rem; margin-top: 3rem; padding: 1.25rem; border: 1px solid #312a3e; background: #0b0911; }
+  .verified-products header > p { margin: 0; color: #65e1c2; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; }
+  .verified-products header h3 { max-width: 34rem; margin: .65rem 0 0; font-size: clamp(1.5rem, 3vw, 2.3rem); }
+  .product-grid { width: min(100%, 21rem); }
+  @media (min-width: 760px) {
+    .offer-shelf > ol > li { grid-template-columns: 2.5rem minmax(0, 1fr) auto; gap: 1rem; }
+    .offer-shelf li > a, .offer-status { grid-column: 3; }
+    .verified-products { grid-template-columns: minmax(0, 1fr) minmax(16rem, 21rem); align-items: start; padding: 1.75rem; }
+  }
+</style>

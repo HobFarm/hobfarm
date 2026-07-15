@@ -37,21 +37,23 @@ test("StyleFusion keeps private references separate from public generated and do
 });
 
 test("Character and note studies stay outside the StyleFusion application evidence", () => {
-  const character = read("src/components/workshop/CharacterMannequinStudies.astro");
+  const character = read("src/components/workshop/CharacterMannequinPage.astro");
+  const characterRoute = read("src/pages/workshop/character-mannequin/index.astro");
   const notes = read("src/components/workshop/StyleCardArchive.astro");
   const route = read("src/pages/workshop/[program].astro");
 
-  assert.match(character, /From Generic Female #37 to a Designed Character/);
-  assert.match(character, /This is a decision study, not a StyleFusion case/);
+  assert.match(character, /The Character Assembly Line/);
+  assert.match(character, /The picture is the output\. The design record is the work\./);
+  assert.match(characterRoute, /CharacterMannequinPage/);
   assert.match(notes, /informal style experiments/);
-  assert.match(route, /program\.id === "character-mannequin"/);
+  assert.match(route, /program\.id !== "character-mannequin"/);
   assert.match(route, /program\.id === "workshop-notes"/);
 });
 
 test("every Workshop video declares a poster and defers loading", () => {
   const files = [
     read("src/components/workshop/StyleFusionMediaStudies.astro"),
-    read("src/components/workshop/CharacterMannequinStudies.astro"),
+    read("src/components/workshop/CharacterLookChapter.astro"),
     read("src/components/workshop/StyleCardArchive.astro"),
     read("src/components/workshop/WorkshopMediaIndex.astro"),
   ];

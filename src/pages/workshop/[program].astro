@@ -11,12 +11,11 @@ import { getVisualSystem, visualSystemPath } from "@/data/visual-systems";
 import { mediaImageUrl } from "@/lib/gallery";
 import { getMedia } from "@/data/media-registry";
 import StyleFusionMediaStudies from "@/components/workshop/StyleFusionMediaStudies.astro";
-import CharacterMannequinStudies from "@/components/workshop/CharacterMannequinStudies.astro";
 import StyleCardArchive from "@/components/workshop/StyleCardArchive.astro";
 
 export function getStaticPaths() {
   return workshopPrograms
-    .filter((program) => program.id !== "before-after")
+    .filter((program) => program.id !== "before-after" && program.id !== "character-mannequin")
     .map((program) => ({ params: { program: program.slug }, props: { program } }));
 }
 
@@ -52,17 +51,14 @@ const processStages = program.id === "before-after"
   ? ["Lock the subject", "Choose the new era or state", "Change styling and setting", "Compare what survived"]
   : program.id === "stylefusion"
     ? ["Assign approved reference roles", "Run specialized extraction agents", "Inspect the IR and compiled slots", "Export the diagnostic document"]
-    : program.id === "character-mannequin"
-      ? ["Number the base", "Lock proportions and face", "Build turnarounds", "Test wardrobe, pose, and camera"]
-      : program.id === "workshop-notes"
+    : program.id === "workshop-notes"
         ? ["Record the question", "Keep the source material", "Compare the visible outputs", "Write the reusable finding"]
       : ["Define the shared identity", "Separate the two lives", "Build each media packet", "Test the pair together"];
 const status = program.status === "coming-eventually" ? "Coming eventually" : undefined;
 const stylefusionHero = getMedia("stylefusion.banner.image");
-const characterHero = getMedia("character.fashion.hero");
-const pageHero = program.id === "stylefusion" ? stylefusionHero.src : program.id === "character-mannequin" ? characterHero.src : program.heroImage;
-const pageHeroAlt = program.id === "stylefusion" ? stylefusionHero.alt : program.id === "character-mannequin" ? characterHero.alt : program.heroAlt;
-const hasProgramFeature = program.id === "alter-ego" || program.id === "stylefusion" || program.id === "character-mannequin" || program.id === "workshop-notes";
+const pageHero = program.id === "stylefusion" ? stylefusionHero.src : program.heroImage;
+const pageHeroAlt = program.id === "stylefusion" ? stylefusionHero.alt : program.heroAlt;
+const hasProgramFeature = program.id === "alter-ego" || program.id === "stylefusion" || program.id === "workshop-notes";
 const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
 const structuredData = { "@context":"https://schema.org", "@type":"CollectionPage", name:program.name, description:program.description, url:`${siteOrigin}${program.href}`, isPartOf:{"@type":"CollectionPage",name:"HobFarm Workshop",url:`${siteOrigin}/workshop/`} };
 ---
@@ -102,7 +98,6 @@ const structuredData = { "@context":"https://schema.org", "@type":"CollectionPag
   </section>}
 
   {program.id === "stylefusion" && cathedralStudy && hellcatStudy && <div id="work"><StyleFusionMediaStudies cathedral={cathedralStudy} hellcat={hellcatStudy} /></div>}
-  {program.id === "character-mannequin" && <div id="work"><CharacterMannequinStudies /></div>}
   {program.id === "workshop-notes" && <div id="work"><StyleCardArchive /></div>}
 
   <section id={hasProgramFeature ? "latest" : "work"} class="border-b border-base-800/70">

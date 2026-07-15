@@ -11,6 +11,7 @@ const subjects = [
   { value: "grimoire", label: "Grimoire" },
   { value: "membership", label: "Membership" },
   { value: "business", label: "Business / Partnership" },
+  { value: "custom-character", label: "Custom Character" },
   { value: "bug", label: "Bug Report" },
   { value: "security", label: "Security Report" },
 ];
