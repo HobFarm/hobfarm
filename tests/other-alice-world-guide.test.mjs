@@ -9,6 +9,28 @@ test("World Guide publishes the eight required sections",async()=>{
  assert.match(page,/SectionNav/); assert.match(page,/LivingAtlas/); assert.match(page,/RouteAtlas/); assert.match(page,/AccessSequence/); assert.match(page,/ThreeClocks/); assert.match(page,/VisitorImprint/);
 });
 
+test("visitor routes establish choice before imprint and attach Alice's record",async()=>{
+ const [page,component,visitors,canon]=await Promise.all([
+  read("src/pages/departments/hobfarm-presents/[series]/world-guide.astro"),
+  read("src/components/presents/other-alice/living-world/VisitorImprint.astro"),
+  read("src/data/other-alice/visitors.ts"),
+  read("src/data/other-alice/canon.ts"),
+ ]);
+ assert.match(page,/05 \/ Visitors, choice, and time/);
+ assert.match(page,/Wonderland begins with a choice\./);
+ assert.match(page,/the final step belongs to the visitor/);
+ for(const stage of ["Invitation","Recognition","Choice","Crossing"]) assert.match(visitors,new RegExp(`title: "${stage}"`));
+ for(const stage of ["Contact","Residue","Uptake","Rejection or failure","Adaptation","Repetition","Institution or ecology","Myth or countereffect"]) assert.match(visitors,new RegExp(`title: "${stage}"`));
+ assert.match(component,/threshold-route/);
+ assert.match(component,/imprint-route/);
+ assert.match(component,/<ol>/);
+ assert.match(component,/aliceVisitorRecord/);
+ assert.match(component,/Two choices establish the resident\./);
+ assert.match(canon,/Followed the White Rabbit into Wonderland at age \$\{otherAliceCanon\.arrivedAge\}/);
+ assert.match(canon,/Chose to stay when a viable route home opened\./);
+ assert.doesNotMatch(page+component+visitors,/The Matrix|The Witcher|The Secret of NIMH/);
+});
+
 test("House assignments and sovereignty language match canon",async()=>{
  const houses=await read("src/data/other-alice/houses.ts"); const canon=await read("src/data/other-alice/canon.ts");
  assert.match(houses,/Diamonds.*Business, finance, processing, hospitality, markets, contracts, and distribution/s);
@@ -29,9 +51,9 @@ test("route, House, and relationship controls are keyboard and URL aware",async(
 
 test("every public relationship and map region has a text evidence path",async()=>{
  const relationships=await read("src/data/other-alice/relationships.ts");
- const edges=[...relationships.matchAll(/\{id:"e\d+"[^}]+\}/g)].map((match)=>match[0]);
+ const edges=[...relationships.matchAll(/\{ id: "[^"]+"[^}]+evidence: "[^"]+"[^}]+\}/g)].map((match)=>match[0]);
  assert.ok(edges.length>0);
- assert.equal(edges.every((edge)=>/evidence:"[^"]+"/.test(edge)),true);
+ assert.equal(edges.every((edge)=>/evidence:\s*"[^"]+"/.test(edge)),true);
  const atlas=await read("src/components/presents/other-alice/living-world/LivingAtlas.astro");
  assert.match(atlas,/atlas-fallback/);
  assert.match(atlas,/regions\.map/);
@@ -49,7 +71,7 @@ test("Hatter material is labeled as a disputed reconstruction",async()=>{
 test("private narrative modules are excluded from the public barrel",async()=>{
  const barrel=await read("src/data/other-alice/index.ts");
  assert.doesNotMatch(barrel,/\.\/private/);
- const publicImports=await Promise.all(["src/components/presents/other-alice/OtherAliceStartPage.astro","src/pages/departments/hobfarm-presents/[series]/world-guide.astro","src/pages/departments/hobfarm-presents/other-alice-adventures/houses/index.astro","src/pages/departments/hobfarm-presents/other-alice-adventures/web-of-wonderland/index.astro"].map(read));
+ const publicImports=await Promise.all(["src/components/presents/other-alice/OtherAliceStartPage.astro","src/pages/departments/hobfarm-presents/[series]/world-guide.astro","src/pages/departments/hobfarm-presents/other-alice-adventures/houses/index.astro","src/pages/departments/hobfarm-presents/other-alice-adventures/cast/index.astro","src/pages/departments/hobfarm-presents/other-alice-adventures/web-of-wonderland/index.astro"].map(read));
  assert.doesNotMatch(publicImports.join("\n"),/other-alice\/private|opening-cycle|causal-ledger|open-canon/);
 });
 

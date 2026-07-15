@@ -1,7 +1,7 @@
 import { otherAliceCanon, otherAliceChronology, otherAliceResidents } from "@/data/other-alice-world-guide";
 
 export type WorldConcept = { id:string; title:string; realm:string; image:string; imageAlt:string; description:string; width:number; height:number };
-export type SeriesResident = { id:string; name:string; role:string; category:"character"|"faction"; image:string; imageAlt:string; summary:string[]; href?:string };
+export type SeriesResident = { id:string; name:string; role:string; category:"character"|"faction"; image?:string; imageAlt?:string; summary:string[]; href?:string };
 export type StorySeries = {
  slug:string; title:string; status:"active"|"planned"|"complete"; seoTitle?:string; metaDescription?:string; eyebrow?:string; tagline:string; heroDeck?:string; logline:string; heroIntro?:string[];
  explainer?:{heading:string;lead:string;paragraphs:string[]}; differentiation?:{heading:string;paragraphs:string[]}; profile?:{title:string;text:string}[];

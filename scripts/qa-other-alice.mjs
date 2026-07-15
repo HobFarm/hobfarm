@@ -1,14 +1,16 @@
 import assert from "node:assert/strict";
-import { mkdir } from "node:fs/promises";
+import { mkdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import { chromium } from "@playwright/test";
 
 const baseUrl = process.env.OAA_PREVIEW_URL ?? "http://127.0.0.1:4321";
-const outputDir = path.resolve("reports/other-alice-living-world/after");
+const isLocalPreview = ["127.0.0.1", "localhost"].includes(new URL(baseUrl).hostname);
+const outputDir = path.resolve("reports/other-alice-cast-foundation/after");
 const routes = [
   { id: "start", path: "/departments/hobfarm-presents/other-alice-adventures/" },
   { id: "world-guide", path: "/departments/hobfarm-presents/other-alice-adventures/world-guide/" },
   { id: "houses", path: "/departments/hobfarm-presents/other-alice-adventures/houses/" },
+  { id: "cast", path: "/departments/hobfarm-presents/other-alice-adventures/cast/" },
   { id: "web", path: "/departments/hobfarm-presents/other-alice-adventures/web-of-wonderland/" },
 ];
 const viewports = [
@@ -17,7 +19,7 @@ const viewports = [
   { width: 768, height: 1024 },
   { width: 390, height: 844 },
 ];
-const expectedNav = ["Start Here", "World Guide", "Houses", "Web of Wonderland"];
+const expectedNav = ["Start Here", "World Guide", "Houses", "Cast", "Web of Wonderland"];
 
 await mkdir(outputDir, { recursive: true });
 const browser = await chromium.launch({ headless: true });
@@ -61,12 +63,18 @@ try {
 
       const response = await page.goto(`${baseUrl}${route.path}`, { waitUntil: "networkidle" });
       assert.equal(response?.status(), 200, `${route.id} returned ${response?.status()} at ${viewport.width}px`);
-      const images = page.locator("img");
+      const images = page.locator("img:visible");
       for (let index = 0; index < await images.count(); index += 1) {
         await images.nth(index).scrollIntoViewIfNeeded();
         await page.waitForTimeout(60);
       }
-      await page.waitForFunction(() => [...document.images].every((image) => image.complete), null, { timeout: 15_000 });
+      await page.waitForFunction(
+        () => [...document.images]
+          .filter((image) => image.getClientRects().length > 0)
+          .every((image) => image.complete),
+        null,
+        { timeout: 15_000 },
+      );
       await page.evaluate(() => scrollTo(0, 0));
 
       const audit = await page.evaluate(() => {
@@ -82,6 +90,7 @@ try {
           .map((element) => element.id)
           .filter((id, index, ids) => ids.indexOf(id) !== index);
         const brokenImages = [...document.images]
+          .filter((image) => image.getClientRects().length > 0)
           .filter((image) => !image.complete || image.naturalWidth === 0)
           .map((image) => image.currentSrc || image.src);
         const unnamedControls = [...document.querySelectorAll("a[href],button,input,select,textarea")]
@@ -165,7 +174,7 @@ try {
   await page.keyboard.press("ArrowRight");
   assert.match(page.url(), /[?&]house=spades(?:&|$)/, "House keyboard selection did not update the URL");
 
-  await page.goto(`${baseUrl}${routes[3].path}?relation=ecology`, { waitUntil: "networkidle" });
+  await page.goto(`${baseUrl}${routes[4].path}?relation=ecology`, { waitUntil: "networkidle" });
   const ecology = page.locator('[data-relation="ecology"]');
   assert.equal(await ecology.getAttribute("aria-pressed"), "true", "relationship query did not restore Ecology");
   const visibleEcology = await page.locator('[data-ledger-kind="ecology"]:visible').count();
@@ -176,13 +185,48 @@ try {
   await page.keyboard.press("ArrowLeft");
   assert.match(page.url(), /[?&]relation=authority(?:&|$)/, "relationship keyboard selection did not update the URL");
 
-  for (const retired of ["adventure-no-01-the-boundary-table", "adventure-no-01-the-wrong-tunnel"]) {
-    await page.goto(`${baseUrl}${routes[0].path}${retired}/`, { waitUntil: "networkidle" });
-    assert.equal(new URL(page.url()).pathname, routes[0].path, `${retired} did not redirect to Start Here`);
+  await page.goto(`${baseUrl}${routes[3].path}#cast-white-rabbit`, { waitUntil: "networkidle" });
+  assert.equal(await page.locator('[data-record-id="white-rabbit"]').count(), 1, "White Rabbit cast deep link is missing");
+  assert.ok(await page.locator(".folio-fallback").count() > 0, "Cast page needs intentional no-image fallbacks");
+  assert.equal(await page.locator('[data-record-id="tweedledum"]').getAttribute("data-display-group"), "tweedle-pair", "Tweedledum lost the shared display group");
+  assert.equal(await page.locator('[data-record-id="tweedledee"]').getAttribute("data-display-group"), "tweedle-pair", "Tweedledee lost the shared display group");
+
+  const castLinks = await page.locator(".cast-page a[href]").evaluateAll((links) =>
+    [...new Set(links.map((link) => link.href))],
+  );
+  for (const href of castLinks) {
+    const target = new URL(href);
+    assert.equal(target.origin, new URL(baseUrl).origin, `Cast link leaves the local site: ${href}`);
+    const targetResponse = await context.request.get(`${target.origin}${target.pathname}${target.search}`);
+    assert.equal(targetResponse.status(), 200, `Cast link returned ${targetResponse.status()}: ${href}`);
+    if (target.hash) {
+      await page.goto(href, { waitUntil: "networkidle" });
+      const targetId = decodeURIComponent(target.hash.slice(1));
+      assert.equal(
+        await page.evaluate((id) => Boolean(document.getElementById(id)), targetId),
+        true,
+        `Cast link target is missing: ${href}`,
+      );
+    }
+  }
+
+  const retiredRoutes = ["adventure-no-01-the-boundary-table", "adventure-no-01-the-wrong-tunnel"];
+  if (isLocalPreview) {
+    const redirects = await readFile(path.resolve("public/_redirects"), "utf8");
+    for (const retired of retiredRoutes) {
+      assert.match(redirects, new RegExp(`${routes[0].path}${retired}/\\s+${routes[0].path}`), `${retired} is missing its Start Here redirect rule`);
+    }
+  } else {
+    for (const retired of retiredRoutes) {
+      await page.goto(`${baseUrl}${routes[0].path}${retired}/`, { waitUntil: "networkidle" });
+      assert.equal(new URL(page.url()).pathname, routes[0].path, `${retired} did not redirect to Start Here`);
+    }
   }
   const sitemap = await (await context.request.get(`${baseUrl}/sitemap.xml`)).text();
   const searchIndex = await (await context.request.get(`${baseUrl}/search-index.json`)).text();
-  for (const retired of ["adventure-no-01-the-boundary-table", "adventure-no-01-the-wrong-tunnel"]) {
+  assert.match(sitemap, /other-alice-adventures\/cast\//i, "Cast route is missing from the sitemap");
+  assert.match(searchIndex, /Cast of Wonderland/i, "Cast route is missing from search");
+  for (const retired of retiredRoutes) {
     assert.doesNotMatch(sitemap, new RegExp(retired, "i"), `${retired} remains in the sitemap`);
     assert.doesNotMatch(searchIndex, new RegExp(retired, "i"), `${retired} remains in search`);
   }
@@ -193,7 +237,7 @@ try {
     cls: Math.max(current.cls, finding.audit.performance.cls),
     maxLongTask: Math.max(current.maxLongTask, finding.audit.performance.maxLongTask),
   }), { lcp: 0, cls: 0, maxLongTask: 0 });
-  console.log(`Other Alice browser QA passed: ${findings.length} route/viewport combinations, three filter systems, and retired-route checks.`);
+  console.log(`Other Alice browser QA passed: ${findings.length} route/viewport combinations, three filter systems, ${castLinks.length} cast links, cast deep links, and retired-route checks.`);
   console.log(`Local headless performance maxima: LCP ${worst.lcp.toFixed(1)}ms; CLS ${worst.cls.toFixed(4)}; long task ${worst.maxLongTask.toFixed(1)}ms.`);
 } finally {
   await browser.close();

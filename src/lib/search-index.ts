@@ -15,6 +15,10 @@ import { galleryTypeLabels, type GalleryType } from "@/lib/gallery";
 import { resolveDepartment } from "@/data/departments";
 import { characters, characterPath } from "@/data/characters";
 import { storySeries, storySeriesPath } from "@/data/story-series";
+import {
+  OTHER_ALICE_CAST_PATH,
+  publicOtherAliceCast,
+} from "@/data/other-alice-world-guide";
 
 export type SearchItem = {
   type:
@@ -215,6 +219,19 @@ export async function buildSearchIndex(): Promise<SearchItem[]> {
     ].join(" · "),
   }));
 
+  const otherAliceCastItem: SearchItem = {
+    type: "series",
+    title: "Cast of Wonderland",
+    description:
+      "Public dossier records for the residents, workers, officeholders, institutions, disputed identities, and old witnesses shaping Other Alice Adventures.",
+    href: OTHER_ALICE_CAST_PATH,
+    tags: ["Other Alice Adventures", "Wonderland", "cast", "characters"],
+    category: "HobFarm Presents",
+    notes: publicOtherAliceCast
+      .flatMap((record) => [record.name, record.role, record.currentFunction])
+      .join(" · "),
+  };
+
   const projectHrefOverrides: Record<string, string> = {
     shop: "/shop/",
     courses: "/academy/",
@@ -301,6 +318,7 @@ export async function buildSearchIndex(): Promise<SearchItem[]> {
     ...comicItems,
     ...adventureItems,
     ...seriesItems,
+    otherAliceCastItem,
     ...characterItems,
     ...projectItems,
     servicesItem,

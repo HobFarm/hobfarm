@@ -6,6 +6,8 @@ import Text from "@/components/fundations/elements/Text.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import ComicCard from "@/components/funnies/ComicCard.astro";
 import AdventureCard from "@/components/presents/AdventureCard.astro";
+import AliceMotionRecords from "@/components/presents/other-alice/AliceMotionRecords.astro";
+import AliceVisualDevelopment from "@/components/presents/other-alice/AliceVisualDevelopment.astro";
 import { characters } from "@/data/characters";
 import { getComicSeries, seriesPath } from "@/data/comic-series";
 import { getStorySeries, storySeriesPath } from "@/data/story-series";
@@ -37,7 +39,13 @@ const fictionSeries = character.relatedSeries
   .filter((s): s is NonNullable<typeof s> => Boolean(s));
 const belongsToOtherAlice = fictionSeries.some((series) => series.slug === "other-alice-adventures");
 const canonicalUrl = new URL(`/characters/${character.slug}/`, "https://hob.farm").toString();
-const characterStructuredData = character.image
+const heroPortrait = character.heroMedia?.portrait;
+const heroLandscape = character.heroMedia?.landscape;
+const displayImage = heroPortrait?.src ?? character.image;
+const displayImageAlt = heroPortrait?.alt ?? character.imageAlt ?? character.name;
+const socialImage = heroLandscape?.src ?? character.image;
+const socialImageAlt = heroLandscape?.alt ?? character.imageAlt;
+const characterStructuredData = socialImage
   ? {
       "@context": "https://schema.org",
       "@graph": [
@@ -47,7 +55,7 @@ const characterStructuredData = character.image
           url: canonicalUrl,
           name: character.seoTitle ?? `${character.name} | Characters | HobFarm`,
           description: character.metaDescription ?? character.bio,
-          image: character.image,
+          image: socialImage,
           mainEntity: { "@id": `${canonicalUrl}#character` },
         },
         {
@@ -56,7 +64,7 @@ const characterStructuredData = character.image
           name: character.name,
           alternateName: character.slug === "alice" ? "Other Alice" : undefined,
           description: character.bio,
-          image: character.image,
+          image: socialImage,
           knowsAbout: character.traits,
           subjectOf: fictionSeries.map((series) => ({
             "@type": "CreativeWorkSeries",
@@ -85,8 +93,8 @@ const characterStructuredData = character.image
   title={character.seoTitle ?? `${character.name} | Characters | HobFarm`}
   description={character.metaDescription ?? character.bio}
   canonical={`/characters/${character.slug}/`}
-  image={character.image}
-  imageAlt={character.imageAlt}
+  image={socialImage}
+  imageAlt={socialImageAlt}
   structuredData={characterStructuredData}
 >
   <section>
@@ -97,7 +105,7 @@ const characterStructuredData = character.image
         </a>
         <div class:list={[
           "mt-5 grid grid-cols-1 gap-8",
-          character.image && "lg:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)] lg:items-start",
+          displayImage && "lg:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)] lg:items-start",
         ]}>
           <div>
             <div class="flex flex-wrap items-baseline gap-x-4 gap-y-2">
@@ -119,15 +127,37 @@ const characterStructuredData = character.image
             )}
           </div>
 
-          {character.image && (
-            <figure class="overflow-hidden rounded-lg border border-base-800 bg-base-950">
-              <img
-                src={character.image}
-                alt={character.imageAlt ?? character.name}
-                class="aspect-[3/4] w-full object-cover"
-                loading="eager"
-                decoding="async"
-              />
+          {displayImage && (
+            <figure class="character-hero-media overflow-hidden rounded-lg border border-base-800 bg-base-950">
+              {character.heroMotion ? (
+                <video
+                  src={character.heroMotion.src}
+                  poster={character.heroMotion.poster.src}
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  controls
+                  preload="metadata"
+                  width={character.heroMotion.width}
+                  height={character.heroMotion.height}
+                  class="w-full object-cover"
+                  aria-label={character.heroMotion.alt}
+                ></video>
+              ) : (
+                <picture>
+                  {heroLandscape && <source media="(max-width: 1023px)" srcset={heroLandscape.src} />}
+                  <img
+                    src={displayImage}
+                    alt={displayImageAlt}
+                    width={heroPortrait?.width}
+                    height={heroPortrait?.height}
+                    class="w-full object-cover"
+                    loading="eager"
+                    decoding="async"
+                  />
+                </picture>
+              )}
             </figure>
           )}
         </div>
@@ -157,22 +187,58 @@ const characterStructuredData = character.image
           </div>
         )}
 
+        {character.visualDevelopment && <AliceVisualDevelopment record={character.visualDevelopment} />}
+
+        {character.featureMedia && (
+          <figure class="mt-12 overflow-hidden rounded-lg border border-base-800 bg-base-950">
+            <img
+              src={character.featureMedia.src}
+              alt={character.featureMedia.alt}
+              width={character.featureMedia.width}
+              height={character.featureMedia.height}
+              class="aspect-video w-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+            {character.featureMedia.caption && <figcaption class="border-t border-base-800 px-4 py-3 text-sm leading-relaxed text-base-400">{character.featureMedia.caption}</figcaption>}
+          </figure>
+        )}
+
+        {(character.motionMedia?.length ?? 0) > 0 && <AliceMotionRecords records={character.motionMedia!} />}
+
         {(character.guideSections?.length ?? 0) > 0 && (
           <div class="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-2">
             {character.guideSections!.map((section) => (
-              <section class="rounded-lg border border-base-800 bg-base-900/50 p-5 sm:p-6">
-                <h2 class="font-display text-xl text-white">{section.title}</h2>
-                {(section.paragraphs?.length ?? 0) > 0 && (
-                  <div class="mt-4 space-y-3">
-                    {section.paragraphs!.map((paragraph) => (
-                      <p class="text-sm leading-relaxed text-base-400">{paragraph}</p>
-                    ))}
-                  </div>
-                )}
-                {(section.bullets?.length ?? 0) > 0 && (
-                  <ul class="mt-4 space-y-2 text-sm leading-relaxed text-base-400">
-                    {section.bullets!.map((bullet) => <li class="flex gap-2"><span class="text-accent-500">&bull;</span><span>{bullet}</span></li>)}
-                  </ul>
+              <section class:list={["rounded-lg border border-base-800 bg-base-900/50 p-5 sm:p-6", section.media && "lg:col-span-2 lg:grid lg:grid-cols-[minmax(17rem,0.7fr)_minmax(0,1.3fr)] lg:gap-6"]}>
+                <div>
+                  <h2 class="font-display text-xl text-white">{section.title}</h2>
+                  {(section.paragraphs?.length ?? 0) > 0 && (
+                    <div class="mt-4 space-y-3">
+                      {section.paragraphs!.map((paragraph) => (
+                        <p class="text-sm leading-relaxed text-base-400">{paragraph}</p>
+                      ))}
+                    </div>
+                  )}
+                  {(section.bullets?.length ?? 0) > 0 && (
+                    <ul class="mt-4 space-y-2 text-sm leading-relaxed text-base-400">
+                      {section.bullets!.map((bullet) => <li class="flex gap-2"><span class="text-accent-500">&bull;</span><span>{bullet}</span></li>)}
+                    </ul>
+                  )}
+                </div>
+                {section.media && (
+                  <figure class="mt-5 overflow-hidden rounded-md border border-base-800 bg-base-950 lg:mt-0">
+                    <img
+                      src={section.media.src}
+                      alt={section.media.alt}
+                      width={section.media.width}
+                      height={section.media.height}
+                      style={`aspect-ratio:${section.media.width}/${section.media.height}`}
+                      class:list={["w-full", section.media.fit === "contain" ? "object-contain" : "object-cover"]}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    {section.media.caption && <figcaption class="border-t border-base-800 px-4 py-3 text-xs leading-relaxed text-base-400">{section.media.caption}</figcaption>}
+                  </figure>
                 )}
               </section>
             ))}
@@ -264,3 +330,10 @@ const characterStructuredData = character.image
     </ContentPanel>
   </section>
 </BaseLayout>
+
+<style>
+  .character-hero-media img { aspect-ratio: 3 / 4; }
+  @media (max-width: 1023px) {
+    .character-hero-media img { aspect-ratio: 16 / 9; }
+  }
+</style>

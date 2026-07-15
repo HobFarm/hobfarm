@@ -1,14 +1,21 @@
 ---
 import { housePowerLayers, otherAliceCanon } from "@/data/other-alice-world-guide";
+
+const houseImageAlts: Record<string, string> = {
+ hearts: "Heart estate card showing the Queen's central title, court, and mapped ground.",
+ diamonds: "Diamond estate card showing contracts, markets, processing, hospitality, and trade.",
+ spades: "Spade estate card showing water, cultivation, fungi, maintenance, and repair systems.",
+ clubs: "Club estate card showing guarded roads, freight, checkpoints, depots, and controlled reach.",
+};
 ---
 <div class="house-filter" data-house-filter>
  <div class="controls" role="toolbar" aria-label="House power layer">
   <button type="button" data-house="all" aria-pressed="true">All systems</button>
   {housePowerLayers.map((layer)=><button type="button" data-house={layer.owner.toLowerCase()} aria-pressed="false">{layer.owner}</button>)}
  </div>
-<figure class="power-stack">
- <figcaption>{otherAliceCanon.mapRule}</figcaption>
- <ol>{housePowerLayers.map((layer,index)=><li data-house-layer={layer.owner.toLowerCase()} style={`--i:${index}`}><span>{layer.label}</span><strong>{layer.owner}</strong><p>{layer.test}</p></li>)}</ol>
+<figure class="power-atlas">
+ <figcaption><strong>{otherAliceCanon.mapRule}</strong><span>Each card isolates one claim on the same inhabited estate. Read all four together to see why a single place can have four owners, four duties, and four ways to fail.</span></figcaption>
+ <ol>{housePowerLayers.map((layer)=><li data-house-layer={layer.owner.toLowerCase()} style={`--house:${layer.owner === "Hearts" ? "#ef476f" : layer.owner === "Diamonds" ? "#f7c948" : layer.owner === "Spades" ? "#56c271" : "#49c6d7"}`}><img src={`https://cdn.hob.farm/pages/other-alice-adventures/shared-estate-cards/other-alice-adventures-${layer.owner.toLowerCase()}.png`} alt={houseImageAlts[layer.owner.toLowerCase()]} width="1060" height="1484" loading="lazy" decoding="async"/><div><span>{layer.label}</span><strong>{layer.owner}</strong><p>{layer.test}</p></div></li>)}</ol>
 </figure>
 </div>
 <script>
@@ -21,7 +28,9 @@ import { housePowerLayers, otherAliceCanon } from "@/data/other-alice-world-guid
  });
 </script>
 <style>
- .controls{display:flex;gap:.4rem;overflow-x:auto;margin-bottom:1rem;padding:.2rem}.controls button{border:1px solid #4b5261;border-radius:999px;background:transparent;padding:.55rem .75rem;color:#c9ccd4;font:600 .69rem/1 ui-monospace,monospace;text-transform:uppercase;white-space:nowrap}.controls button[aria-pressed="true"]{background:#eee7d6;color:#090b11}.controls button:focus-visible{outline:2px solid #9f7aea;outline-offset:2px}.power-stack{margin:0}.power-stack figcaption{margin-bottom:1rem;color:#eee7d6;font-family:Georgia,serif;font-size:clamp(1.35rem,3vw,2.4rem);line-height:1.15}.power-stack ol{display:grid;grid-template-columns:repeat(4,1fr);margin:0;padding:0;list-style:none;border:1px solid rgba(255,255,255,.15);background:radial-gradient(circle at 50% 120%,#223e36,#10131c 65%)}li{min-height:16rem;padding:1rem;border-right:1px solid rgba(255,255,255,.13);box-shadow:inset 0 calc(var(--i) * -10px) 0 rgba(159,122,234,.09);transition:opacity .2s}li.dim{opacity:.2}li:last-child{border:0}span{color:#8e95a4;font:600 .68rem/1 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.12em}strong{display:block;margin-top:4rem;color:#fff;font-size:1.3rem}p{color:#b6bac5;line-height:1.55}
- @media(max-width:700px){.power-stack ol{grid-template-columns:1fr 1fr}li{min-height:12rem}strong{margin-top:2rem}}
+ .controls{display:flex;gap:.4rem;overflow-x:auto;margin-bottom:1rem;padding:.2rem}.controls button{border:1px solid #4b5261;border-radius:999px;background:transparent;padding:.55rem .75rem;color:#c9ccd4;font:600 .69rem/1 ui-monospace,monospace;text-transform:uppercase;white-space:nowrap}.controls button[aria-pressed="true"]{background:#eee7d6;color:#090b11}.controls button:focus-visible{outline:2px solid #9f7aea;outline-offset:2px}
+ .power-atlas{margin:0}.power-atlas figcaption{display:grid;grid-template-columns:minmax(0,.8fr) minmax(18rem,.55fr);gap:1.5rem;align-items:end;margin-bottom:1.5rem}.power-atlas figcaption strong{color:#eee7d6;font:400 clamp(1.45rem,3vw,2.6rem)/1.08 Georgia,serif}.power-atlas figcaption span{color:#9fa5b2;font-size:.92rem;line-height:1.65}.power-atlas ol{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.75rem;margin:0;padding:0;list-style:none}.power-atlas li{overflow:hidden;border:1px solid color-mix(in srgb,var(--house) 38%,rgba(255,255,255,.12));background:#0c1018;transition:opacity .2s,transform .2s}.power-atlas li.dim{opacity:.18}.power-atlas li:not(.dim):hover{transform:translateY(-.2rem)}.power-atlas img{display:block;width:100%;height:auto;aspect-ratio:5/7;object-fit:cover;background:#070a10}.power-atlas li div{padding:1rem;border-top:2px solid var(--house)}.power-atlas li span{color:#8e95a4;font:600 .66rem/1 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.12em}.power-atlas li strong{display:block;margin-top:.75rem;color:#fff;font-size:1.25rem}.power-atlas li p{margin:.55rem 0 0;color:#b6bac5;font-size:.86rem;line-height:1.55}
+ @media(max-width:950px){.power-atlas ol{grid-template-columns:1fr 1fr}.power-atlas figcaption{grid-template-columns:1fr}}
+ @media(max-width:560px){.controls{flex-wrap:wrap;overflow:visible}.power-atlas ol{grid-template-columns:1fr}.power-atlas li:not(.dim):hover{transform:none}}
  @media(prefers-reduced-motion:reduce){li{transition:none}}
 </style>

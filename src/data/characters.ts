@@ -7,9 +7,45 @@
 
 import {
   getOtherAliceResident,
+  getOtherAliceAsset,
   otherAliceCanon,
   otherAliceChronology,
+  otherAlicePublicCanon,
 } from "@/data/other-alice-world-guide";
+
+export type CharacterMediaAsset = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  caption?: string;
+  fit?: "cover" | "contain";
+};
+
+export type CharacterMotionAsset = {
+  title: string;
+  label: string;
+  src: string;
+  poster: CharacterMediaAsset;
+  alt: string;
+  width: number;
+  height: number;
+  caption: string;
+  companionStill?: CharacterMediaAsset;
+};
+
+export type CharacterTraitPlate = CharacterMediaAsset & {
+  label: string;
+  note: string;
+};
+
+export type CharacterVisualDevelopment = {
+  label: string;
+  title: string;
+  paragraphs: string[];
+  note: string;
+  plates: CharacterTraitPlate[];
+};
 
 export type CharacterEntry = {
   slug: string;
@@ -29,6 +65,14 @@ export type CharacterEntry = {
   image?: string;
   imageAlt?: string;
   heroDeck?: string;
+  heroMedia?: {
+    portrait: CharacterMediaAsset;
+    landscape?: CharacterMediaAsset;
+  };
+  heroMotion?: CharacterMotionAsset;
+  featureMedia?: CharacterMediaAsset;
+  motionMedia?: CharacterMotionAsset[];
+  visualDevelopment?: CharacterVisualDevelopment;
   guideIntro?: string[];
   dossier?: {
     label: string;
@@ -38,6 +82,7 @@ export type CharacterEntry = {
     title: string;
     paragraphs?: string[];
     bullets?: string[];
+    media?: CharacterMediaAsset;
   }[];
   primaryCta?: {
     label: string;
@@ -48,6 +93,142 @@ export type CharacterEntry = {
 
 const otherAliceRecord = getOtherAliceResident("other-alice");
 const chesterRecord = getOtherAliceResident("chester");
+const characterMedia = (
+  id: string,
+  width: number,
+  height: number,
+  caption?: string,
+  fit: CharacterMediaAsset["fit"] = "cover",
+): CharacterMediaAsset | undefined => {
+  const asset = getOtherAliceAsset(id);
+  return asset?.publicPath ? { src: asset.publicPath, alt: asset.altText, width, height, caption, fit } : undefined;
+};
+const characterMotion = (
+  videoId: string,
+  posterId: string,
+  title: string,
+  label: string,
+  width: number,
+  height: number,
+  caption: string,
+  companionStillId?: string,
+  companionWidth?: number,
+  companionHeight?: number,
+): CharacterMotionAsset | undefined => {
+  const video = getOtherAliceAsset(videoId);
+  const poster = characterMedia(posterId, width, height);
+  const companionStill = companionStillId && companionWidth && companionHeight
+    ? characterMedia(companionStillId, companionWidth, companionHeight)
+    : undefined;
+  return video?.publicPath && poster
+    ? { title, label, src: video.publicPath, poster, alt: video.altText, width, height, caption, companionStill }
+    : undefined;
+};
+const characterTrait = (
+  id: string,
+  label: string,
+  note: string,
+): CharacterTraitPlate | undefined => {
+  const media = characterMedia(id, 1250, 1250);
+  return media ? { ...media, label, note } : undefined;
+};
+const alicePortraitMedia = characterMedia("oaa-hero-other-alice-representative-portrait-v01-3x4", 1500, 2000);
+const aliceLandscapeMedia = characterMedia("oaa-hero-other-alice-representative-landscape-v01-16x9", 1920, 1080);
+const aliceHeroMotion = characterMotion(
+  "oaa-motion-alice-cast-hero-v01-3x4",
+  "oaa-poster-alice-cast-hero-v01-3x4",
+  "Alice at the workshop threshold",
+  "Representative motion record",
+  1244,
+  1660,
+  "Alice checks a measured remedy while the workshop and rain-soaked garden move around her.",
+);
+const aliceWorkshopMotion = characterMotion(
+  "oaa-motion-alice-workshop-intro-v01-16x9",
+  "oaa-poster-alice-workshop-intro-a-v01-16x9",
+  "A preparation becomes evidence",
+  "Workshop record",
+  1916,
+  1080,
+  "Alice checks the remedy at the threshold, then returns to the worktable to measure what changed.",
+  "oaa-poster-alice-workshop-intro-b-v01-16x9",
+  1672,
+  941,
+);
+const aliceWorldMotion = characterMotion(
+  "oaa-motion-alice-world-intro-v01-3x2",
+  "oaa-poster-alice-world-intro-a-v01-3x2",
+  "The world answers in routes",
+  "World record",
+  1764,
+  1176,
+  "Chester blocks one path while a hidden service route turns scale into access.",
+  "oaa-poster-alice-world-intro-b-v01-3x2",
+  1536,
+  1024,
+);
+const aliceWorkshopMedia = characterMedia(
+  "oaa-region-plate-alice-workshop-local-effect-v01-16x9",
+  1920,
+  1080,
+  "A working field station: one measured repair connects specimens, route records, tools, and materials borrowed from the surrounding community.",
+);
+const aliceSizeChangeMedia = characterMedia(
+  "oaa-region-plate-alice-size-change-access-v01-3x2",
+  1800,
+  1200,
+  "Reduced scale turns a hidden service route into navigable ground and exposes a leak larger bodies would miss.",
+);
+const aliceFirstHomeMedia = characterMedia(
+  "oaa-region-plate-alice-chester-first-home-v01-3x2",
+  1800,
+  1200,
+  "Chester blocks a route beside the established cabin and garden. Alice treats the refusal as evidence.",
+);
+const aliceSheetMedia = characterMedia(
+  "oaa-evidence-other-alice-character-sheet-v01-4x3",
+  1400,
+  1050,
+  "Identity and equipment reference. The complete sheet remains visible and uncropped.",
+  "contain",
+);
+const aliceTraitPlates = [
+  characterTrait(
+    "oaa-trait-alice-world-v01-1x1",
+    "Field silhouette",
+    "The current full-body design joins a modified dress, working apron, heavy shoes, and carried supplies.",
+  ),
+  characterTrait(
+    "oaa-trait-alice-profile-v01-1x1",
+    "Working profile",
+    "The bow, bob, pointed ears, lace, apron, and field equipment remain readable as one practical silhouette.",
+  ),
+  characterTrait(
+    "oaa-trait-alice-hearing-v01-1x1",
+    "Adapted hearing",
+    "Her lengthened ears pick up sounds and route activity that an ordinary human ear would miss.",
+  ),
+  characterTrait(
+    "oaa-trait-alice-vision-v01-1x1",
+    "Expanded vision",
+    "Her red eyes detect wavelengths of light outside ordinary human vision.",
+  ),
+  characterTrait(
+    "oaa-trait-alice-tool-pouch-v01-1x1",
+    "Variable tool pouch",
+    "The pouch changes size to carry measured supplies. It is a field kit, not an unlimited portable workshop.",
+  ),
+  characterTrait(
+    "oaa-trait-alice-beauty-v01-1x1",
+    "Practical grooming",
+    "Alice keeps her nearly black hair short because a field worker has to live with the design between scenes.",
+  ),
+  characterTrait(
+    "oaa-trait-alice-contemplation-v01-1x1",
+    "Observer at rest",
+    "The present design still leaves room for patience, doubt, and the quiet work of noticing.",
+  ),
+].filter((plate): plate is CharacterTraitPlate => Boolean(plate));
 
 export const characters: CharacterEntry[] = [
   {
@@ -145,8 +326,8 @@ export const characters: CharacterEntry[] = [
     seoTitle: "Other Alice Character Guide: The Alice Who Stayed in Wonderland",
     metaDescription:
       "Meet Other Alice, Wonderland's adult field observer. Read her public chronology, methods, equipment, and relationship with Chester.",
-    role: "Wonderland explorer",
-    blurb: "Boundary-tester and field observer.",
+    role: "Natural philosopher and field observer",
+    blurb: "The Alice who chose Wonderland, then learned how to work with it.",
     bio: otherAliceCanon.premise,
     traits: [
       String(otherAliceCanon.presentAge),
@@ -154,35 +335,50 @@ export const characters: CharacterEntry[] = [
       "Boundary-testing problem solver",
     ],
     relatedSeries: ["other-alice-adventures"],
-    image: otherAliceRecord?.image,
-    imageAlt: otherAliceRecord?.imageAlt,
+    image: aliceLandscapeMedia?.src ?? otherAliceRecord?.landscapeImage ?? otherAliceRecord?.image,
+    imageAlt: aliceLandscapeMedia?.alt ?? otherAliceRecord?.landscapeImageAlt ?? otherAliceRecord?.imageAlt,
     heroDeck: otherAliceChronology.characterDeck,
+    heroMedia: alicePortraitMedia ? { portrait: alicePortraitMedia, landscape: aliceLandscapeMedia } : undefined,
+    heroMotion: aliceHeroMotion,
+    featureMedia: aliceWorkshopMedia,
+    motionMedia: [aliceWorkshopMotion, aliceWorldMotion].filter((asset): asset is CharacterMotionAsset => Boolean(asset)),
+    visualDevelopment: {
+      label: "Appearance and adaptation",
+      title: "Wonderland changed her. Alice changed the rest herself.",
+      paragraphs: [
+        otherAlicePublicCanon.appearance.adaptation,
+        otherAlicePublicCanon.appearance.clothing,
+        otherAlicePublicCanon.appearance.toolPouch,
+      ],
+      note: otherAlicePublicCanon.appearance.developmentNote,
+      plates: aliceTraitPlates,
+    },
     guideIntro: [
-      `${otherAliceChronology.arrival} She grew up inside Wonderland.`,
-      `${otherAliceCanon.wonderlandYears} Wonderland years later, she is fully adapted to a wet living world of fungal machinery, talking animals, House systems, casino power, unstable portals, and ecology that treats nonsense as infrastructure.`,
+      otherAliceChronology.residentSummary,
+      `${otherAliceCanon.wonderlandYears} Wonderland years after arriving, she is fully adapted to a wet living world of fungal machinery, talking animals, House systems, unstable portals, and ecology that treats nonsense as infrastructure.`,
       "Alice is curious, analytical, self-possessed, and difficult to discourage. She watches how a system behaves, tests its rules, and follows contradictions until they lead somewhere useful or dangerous. Usually both.",
     ],
     dossier: [
       { label: "Age", value: String(otherAliceCanon.presentAge) },
       {
         label: "Origin",
-        value: `An outside route now ${otherAliceCanon.outsideYears} removed`,
+        value: `Her original outside route is now ${otherAliceCanon.outsideYears} removed`,
       },
-      { label: "Home", value: "Wonderland" },
+      { label: "Home", value: "A cabin and working garden in Wonderland" },
       {
         label: "Role",
         value:
-          "Forager, scavenger, explorer, tea ritualist, problem solver, boundary-walker",
+          "Natural philosopher, field observer, preparation maker, route investigator, problem solver",
       },
       { label: "Companion", value: "Chester, an Unsuited Cheshire cat" },
-      { label: "Public role", value: "Boundary-tester and field observer" },
+      { label: "Method", value: "Preparation, evidence, persuasion, size change, and reciprocal help" },
     ],
     guideSections: [
       {
-        title: "Is Other Alice evil?",
+        title: "The two choices",
         paragraphs: [
-          "No. Other Alice is not a horror inversion, corrupted villain, or generic dark warrior. Wonderland changed her, but it did not reduce her to cruelty.",
-          "Her weakness is not evil. It is curiosity without an adequate stopping mechanism.",
+          `${otherAlicePublicCanon.choices[0].summary} ${otherAlicePublicCanon.choices[1].summary}`,
+          otherAlicePublicCanon.agency,
         ],
       },
       {
@@ -192,15 +388,44 @@ export const characters: CharacterEntry[] = [
         ],
       },
       {
-        title: "Strengths",
-        bullets: [
-          "Reads living environments and notices when an ecosystem behaves incorrectly.",
-          "Knows which plants, fungi, animals, and fluids are useful, dangerous, edible, dishonest, or temporarily asleep.",
-          "Navigates tunnels, service routes, forests, city layers, and unstable openings.",
-          "Thinks in systems and tests claims against visible evidence.",
-          "Improvises practical tools from Wonderland organisms and discarded technology.",
-          "Uses manners as a tool, a weapon, or an insult depending on the room.",
+        title: "How Alice works",
+        paragraphs: [
+          otherAlicePublicCanon.method.summary,
+          `${otherAlicePublicCanon.method.materials} ${otherAlicePublicCanon.method.limits}`,
         ],
+        bullets: [...otherAlicePublicCanon.method.sequence],
+      },
+      {
+        title: "Size-changing access",
+        paragraphs: [
+          otherAlicePublicCanon.method.sizeChange,
+          "Scale is a field tool, not a measure of strength. It lets Alice retrieve what was lost, inspect hidden systems, and reach people or places that larger bodies overlook.",
+        ],
+        media: aliceSizeChangeMedia,
+      },
+      {
+        title: "Chester and the first home",
+        paragraphs: [
+          otherAlicePublicCanon.firstHome,
+        ],
+        media: aliceFirstHomeMedia,
+      },
+      {
+        title: "Local effect",
+        paragraphs: [
+          otherAlicePublicCanon.localImprint,
+          "The workshop makes one part of Wonderland better able to understand its own problems. Alice's influence remains local, practical, and tied to the favors and debts that keep it working.",
+        ],
+      },
+      {
+        title: "Field equipment",
+        bullets: [
+          "Dried fragments from opposite sides of the Caterpillar's size-changing mushroom, stored in separate compartments.",
+          "A fungal knife for trimming false gills, cutting roots, collecting samples, and necessary physical work.",
+          "Apron pockets holding vials, wrapped food, keys, samples, thread, tea, and undecided hazards.",
+          "Notes and maps recording routes, debts, door behavior, biological reactions, and contradictions.",
+        ],
+        media: aliceSheetMedia,
       },
       {
         title: "Flaws",
@@ -214,31 +439,9 @@ export const characters: CharacterEntry[] = [
         ],
       },
       {
-        title: "Methods",
-        paragraphs: [
-          "Observe what the system does rather than what people call it. Compare it with something familiar. Test one rule at a time. Keep a sample. Bargain for access. Break the rule only after learning what it protects.",
-        ],
-      },
-      {
-        title: "Field equipment",
-        bullets: [
-          "Dried fragments from opposite sides of the Caterpillar's size-changing mushroom, stored in separate compartments.",
-          "A fungal knife for trimming false gills, cutting roots, collecting samples, and physical corrections.",
-          "Apron pockets holding vials, wrapped food, keys, samples, thread, tea, and undecided hazards.",
-          "Notes and maps recording routes, debts, door behavior, biological reactions, and contradictions.",
-        ],
-      },
-      {
-        title: "Chester",
-        paragraphs: [
-          "Chester is an older, very fat British Blue Cheshire cat with a plain grey-blue coat, amber eyes, heavy paws, and a normal flat cat expression. He is not Alice's pet. He is her oldest companion, skeptical witness, occasional guide, and remaining connection to the child who first entered Wonderland.",
-          "Alice recognizes systems through observation. Chester senses when the system itself is lying. He also keeps her from turning every frightened person into a source of useful data.",
-        ],
-      },
-      {
         title: "Time and memory",
         paragraphs: [
-          `Alice experienced ${otherAliceCanon.wonderlandYears} years in Wonderland while ${otherAliceCanon.outsideYears} passed along her original outside route. That interval does not establish a fixed conversion ratio or a confirmed outside calendar year.`,
+          `Alice experienced ${otherAliceCanon.wonderlandYears} years in Wonderland while ${otherAliceCanon.outsideYears} passed along her original outside route. ${otherAliceChronology.outsideCaveat}`,
           "Small Victorian traces remain in her phrasing, manners, mental arithmetic, and expectation that rules should be embarrassed when they fail to make sense.",
         ],
       },
@@ -253,9 +456,9 @@ export const characters: CharacterEntry[] = [
   {
     slug: "chester",
     name: "Chester",
-    role: "Alice's companion",
+    role: "Alice's independent companion",
     blurb: "A very fat old British Blue route authority with no interest in performing for strangers.",
-    bio: `${otherAliceCanon.chester} Chester is Alice's companion, skeptical witness, and occasional route authority. He recognizes when a system is lying and exposes rules without explaining them cleanly.`,
+    bio: `${otherAliceCanon.chester} He is a skeptical witness and occasional route authority who recognizes when a system is lying without explaining it cleanly.`,
     traits: [
       "Very fat older British Blue Cheshire cat",
       "Flat, judgmental expression",
@@ -269,6 +472,7 @@ export const characters: CharacterEntry[] = [
     guideIntro: [
       "Chester is old, round, heavy, plush, lazy, and unimpressed.",
       "His strangeness comes from impossible placement, refusal, and the rare moment when he demonstrates a route rule. He can vanish, appear, cross a threshold, and wait at the far end of a tunnel Alice has spent hours crawling through.",
+      "Alice no longer needs constant guidance. Chester's present laziness partly reflects the knowledge, routes, and relationships she has built since childhood.",
     ],
     dossier: [
       { label: "Lineage", value: "Cheshire cat" },
@@ -297,6 +501,7 @@ export const characters: CharacterEntry[] = [
       {
         title: "Alice and Chester",
         paragraphs: [
+          "After Alice chose to remain in Wonderland, she began calling the Cheshire Cat Chester. He guided without choosing for her, recognized dangerous routes, and drew local helpers toward the first cabin and garden.",
           "Alice tests systems until they produce evidence. Chester senses when the system itself is dishonest. Their trust is old enough to survive argument and specific enough that a single refusal can stop her at a door.",
         ],
       },

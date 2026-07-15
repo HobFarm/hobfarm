@@ -18,6 +18,7 @@ import {
   getArticleDate,
   getArticleUpdatedDate,
 } from "@/lib/articles";
+import { otherAliceProjectNav } from "@/data/other-alice-world-guide";
 
 type SitemapEntry = {
   loc: string;
@@ -41,6 +42,11 @@ const staticEntries: SitemapEntry[] = [
     changefreq: "weekly",
     priority: "0.9",
   },
+  ...otherAliceProjectNav.map((item) => ({
+    loc: absoluteUrl(item.href),
+    changefreq: "weekly" as const,
+    priority: "0.8",
+  })),
   { loc: absoluteUrl("/projects/"), changefreq: "monthly", priority: "0.8" },
   { loc: absoluteUrl("/workshop/"), changefreq: "weekly", priority: "0.8" },
   { loc: absoluteUrl("/academy/"), changefreq: "monthly", priority: "0.7" },

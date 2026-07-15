@@ -1,7 +1,7 @@
 export const accessStages = [
  { n:"01",title:"Resonance",text:"An ordinary place repeats a pattern that belongs somewhere else." },
- { n:"02",title:"Lure",text:"A personal signal appears: a wrong clock, delayed reflection, rabbit mark, scent, or misplaced door." },
- { n:"03",title:"Choice",text:"The traveler follows, opens, drinks, signs, or steps. Access is not purely accidental." },
+ { n:"02",title:"Lure",text:"Wonderland arranges a personal invitation: a wrong clock, delayed reflection, rabbit, scent, song, or misplaced door." },
+ { n:"03",title:"Choice",text:"The traveler follows, opens, answers, drinks, descends, signs, or steps. Wonderland cannot take the final step for them." },
  { n:"04",title:"Local rule",text:"The action enters a system whose physical and social rules differ from the approach." },
  { n:"05",title:"Cost",text:"The crossing changes a body, object, relationship, debt, or route." },
  { n:"06",title:"Residue",text:"A stain, object, mark, habit, or altered reflection remains after passage." },

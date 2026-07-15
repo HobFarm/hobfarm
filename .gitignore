@@ -20,6 +20,7 @@ pnpm-debug.log*
 hf-*.png
 hobfarm-*.png
 homepage-*.png
+/reports/other-alice-cast-foundation/after/
 
 # Private Other Alice source packs and local generation review artifacts
 /docs/other-alice/narrative-architecture/
