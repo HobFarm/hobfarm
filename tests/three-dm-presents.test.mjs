@@ -200,5 +200,6 @@ test("the Broadway Babies feature documents the pre-crash musical and its Miller
   assert.match(contentConfig, /arrangement: z\.enum\(\["horizontal-hero", "vertical-hero"\]\)\.optional\(\)/);
   assert.match(pagesConfig, /label: Article Hero Layout[\s\S]*options: \[horizontal-hero, vertical-hero\]/);
   assert.match(read("public/_headers"), /media-src[^\n]*https:\/\/archive\.org/);
+  assert.match(read("public/_headers"), /media-src[^\n]*https:\/\/\*\.archive\.org/);
   assert.doesNotMatch(feature, /—/);
 });
