@@ -1,56 +1,48 @@
-# Other Alice Adventures design QA
+# Character Mannequin landscape hero design QA
 
 ## Comparison target
 
-- Source visual truth: `C:/Users/xkxxk/.codex/generated_images/019f5d6b-72b0-73a1-8365-5f6ab300110b/exec-6a87c586-0e6d-4be8-8a5c-88499049786e.png`
-- Implementation URL: `http://127.0.0.1:4322/departments/hobfarm-presents/other-alice-adventures/`
-- Implementation screenshot: `C:/Users/xkxxk/.codex/visualizations/2026/07/13/019f5d6b-72b0-73a1-8365-5f6ab300110b/oaa-redesign-desktop-1440x1024-qa.png`
-- Viewport: 1440 × 1024 CSS pixels at device scale factor 1
-- State: dark theme, signed-out public route, top of page, Start Here active
-- Full-view comparison evidence: `C:/Users/xkxxk/.codex/visualizations/2026/07/13/019f5d6b-72b0-73a1-8365-5f6ab300110b/oaa-source-vs-implementation-final.png`
-- Mobile evidence: `C:/Users/xkxxk/.codex/visualizations/2026/07/13/019f5d6b-72b0-73a1-8365-5f6ab300110b/oaa-redesign-mobile-390x844-settled.png`
+- Source visual truth: `C:/Users/xkxxk/AppData/Local/Temp/hobfarm-character-desktop-final.png` (pre-change 1440 × 900 capture matching the user-supplied current-state screenshot)
+- Implementation URL: `http://127.0.0.1:4321/workshop/character-mannequin/`
+- Implementation screenshot: `C:/Users/xkxxk/AppData/Local/Temp/hobfarm-character-desktop-stacked.png`
+- Mobile screenshot: `C:/Users/xkxxk/AppData/Local/Temp/hobfarm-character-mobile-stacked.png`
+- Viewport: 1440 × 900 CSS pixels at device scale factor 1; responsive check at 375 × 812
+- State: signed-out public route, top of page, default look tabs
+- Full-view comparison evidence: `C:/Users/xkxxk/AppData/Local/Temp/hobfarm-character-layout-comparison.png`
 
-No separate focused crop was needed. The source is a single first-viewport design, and the normalized 2880 × 1024 side-by-side comparison preserves the hero typography, project mark, navigation, buttons, chronology, Alice, Chester, and map at a readable native scale.
+No separate focused crop was needed. The full viewport contains the complete hero at readable native resolution, including the headline, deck, actions, and enough of the landscape artwork to verify its order, width, crop, and spacing.
 
 ## Findings
 
-No actionable P0, P1, or P2 differences remain.
+No actionable P0, P1, or P2 differences remain after the layout pass.
 
-- Fonts and typography: the implementation preserves the source's large high-contrast serif display face, restrained sans-serif body copy, and small mono navigation and metadata. Line lengths, wraps, weights, and hierarchy remain legible at desktop and mobile widths.
-- Spacing and layout rhythm: the two-level navigation, left hero copy column, right visual focus, button row, and chronology strip retain the source's proportions. Mobile collapses the composition into a readable vertical sequence without document overflow.
-- Colors and visual tokens: black, violet, cyan, muted magenta, and pale lavender match the target. The darker production hero keeps live copy contrast readable without flattening the map detail.
-- Image quality and asset fidelity: the hero uses a production raster asset with the correct eighteen-year-old Alice and a smaller, normal British Blue Chester. The user-supplied rabbit is a transparent raster project mark rather than a code approximation. Character, Hatter, map, poster, and Chester assets render at their natural dimensions without missing-image states.
-- Copy and content: the first viewport locks Alice at eighteen, arrival at eight, ten Wonderland years, and two hundred outside years. Lower sections connect the atlas, Hatter, Diamond Highlands, Houses, relationship web, concept art, and archive without adding unresolved Hatter questions to canon.
-- Responsiveness and accessibility: desktop and 390 × 844 mobile captures have no document-level horizontal overflow or broken visible images. Navigation remains horizontally available on mobile with its scrollbar hidden, controls use semantic links and buttons, the map tabs expose `aria-pressed`, and supplied images have descriptive alt text.
-- Interaction states: the Lived Map control changed the active heading to “Map used by people who keep the realm running” and reported `aria-pressed="true"`.
-- Console: zero browser warnings or errors in the final desktop pass.
+- Fonts and typography: the existing display and mono faces, weights, letter spacing, and hierarchy are preserved. The landscape layout gives the headline the full content width, producing a balanced two-line desktop wrap instead of the narrow five-line column.
+- Spacing and layout rhythm: the copy now occupies one full-width row and the artwork begins 56 pixels below it at 1440 pixels. The desktop grid resolves to one 1216-pixel column. Mobile retains the existing vertical flow with a 32-pixel gap and no horizontal overflow.
+- Colors and visual tokens: the black, violet, white, muted grey, and mint palette is unchanged. Existing borders, button treatments, and background lighting remain intact.
+- Image quality and asset fidelity: the same 1672 × 941 landscape source is rendered uncropped at full content width. No placeholder, generated replacement, or code-native approximation was introduced.
+- Copy and content: headline, deck, calls to action, caption, and lower-page content are unchanged.
+- Responsiveness and accessibility: desktop and 375 × 812 captures have no document overflow. Header and footer remain present. The hero keeps semantic heading and figure markup.
+- Interaction states: both hero CTA destinations remain correct. Four look tab groups retain one selected and visible panel each, and ArrowRight advances focus and selection.
+- Console and media: zero page console errors and zero failed image responses in the final Character Mannequin passes.
 
 ## Comparison history
 
 ### Iteration 1
 
-- Earlier P2 finding: the mobile project navigation exposed a native horizontal scrollbar, adding an unintended grey control between the project nav and hero.
-- Fix made: added `scrollbar-width: none` and a hidden WebKit scrollbar rule to `OaaProjectNav.astro` while preserving touch and wheel scrolling.
-- Post-fix evidence: `C:/Users/xkxxk/.codex/visualizations/2026/07/13/019f5d6b-72b0-73a1-8365-5f6ab300110b/oaa-redesign-mobile-390x844-settled.png`; computed `scrollbar-width` is `none`, the route strip remains scrollable, and no document overflow is present.
-
-## Lower-page visual evidence
-
-- Hatter dossier: `C:/Users/xkxxk/.codex/visualizations/2026/07/13/019f5d6b-72b0-73a1-8365-5f6ab300110b/oaa-hatter-section-desktop.png`
-- House system: `C:/Users/xkxxk/.codex/visualizations/2026/07/13/019f5d6b-72b0-73a1-8365-5f6ab300110b/oaa-houses-section-desktop.png`
-- Character-system transition: `C:/Users/xkxxk/.codex/visualizations/2026/07/13/019f5d6b-72b0-73a1-8365-5f6ab300110b/oaa-cast-section-desktop.png`
+- Earlier P1 finding: the landscape hero image shared a desktop row with the headline, forcing the title into a very tall narrow column and making the artwork compete with it.
+- Fix made: derive the hero arrangement from the media dimensions, use a full-width horizontal layout for landscape art, and preserve the two-column option for future portrait art.
+- Post-fix evidence: the 1440 × 900 implementation capture shows the complete copy block first and the landscape artwork beneath it; computed layout confirms the artwork begins below the copy and the grid uses one column.
 
 ## Implementation checklist
 
-- [x] Match the selected hero composition and hierarchy.
-- [x] Use the melting rabbit as the project identity.
-- [x] Correct Alice, Chester, chronology, and future-bleed canon.
-- [x] Add the Hatter and Diamond Highlands as a full character/world-system example.
-- [x] Keep the living atlas tabs functional.
-- [x] Validate desktop and mobile rendering.
-- [x] Check browser console and visible image loading.
+- [x] Detect landscape and portrait hero orientation from media dimensions.
+- [x] Stack landscape artwork below the complete headline block.
+- [x] Preserve a two-column desktop layout for portrait artwork.
+- [x] Keep the existing mobile stack, copy, assets, and interactions.
+- [x] Validate desktop and mobile overflow, console, images, CTAs, and tabs.
 
 ## Follow-up polish
 
-No blocking polish remains. The production hero intentionally gives Chester less visual weight than the source concept because the user rejected the oversized-cat direction.
+No blocking polish remains.
 
 final result: passed

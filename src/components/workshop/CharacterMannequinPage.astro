@@ -21,6 +21,7 @@ interface Props {
 
 const { relatedProducts = [] } = Astro.props;
 const page = characterMannequinPage;
+const heroArrangement = page.heroGraphic.width >= page.heroGraphic.height ? "horizontal" : "vertical";
 const preview = (media: MediaRef, width = 1200, fit: "cover" | "scale-down" = "scale-down") =>
   transformImageUrl(media.src, { width, quality: 82, fit });
 const srcset = (media: MediaRef, fit: "cover" | "scale-down" = "scale-down") =>
@@ -50,7 +51,7 @@ const relatedRoutes = [
         <a href="/workshop/">Workshop</a><span aria-hidden="true">/</span>
         <span>Character / Mannequin</span>
       </nav>
-      <div class="hero-grid">
+      <div class:list={["hero-grid", `hero-grid--${heroArrangement}`]}>
         <div class="hero-copy">
           <p class="eyebrow">Character / Mannequin Workshop</p>
           <h1 id="character-page-title">One mannequin. Three looks. Three worlds.</h1>
@@ -64,7 +65,7 @@ const relatedRoutes = [
           <img
             src={preview(page.heroGraphic, 1600)}
             srcset={srcset(page.heroGraphic)}
-            sizes="(min-width: 1000px) 56vw, 100vw"
+            sizes={heroArrangement === "horizontal" ? "(min-width: 1280px) 1216px, 100vw" : "(min-width: 1000px) 56vw, 100vw"}
             alt={page.heroGraphic.alt}
             width={page.heroGraphic.width}
             height={page.heroGraphic.height}
@@ -468,6 +469,10 @@ const relatedRoutes = [
   .breadcrumbs a:hover { color: #fff; }
   .hero-grid { position: relative; z-index: 1; display: grid; gap: 2rem; align-items: center; margin-top: 2rem; }
   .hero-copy { max-width: 52rem; }
+  .hero-grid--horizontal { align-items: start; gap: clamp(2rem, 4vw, 3.5rem); }
+  .hero-grid--horizontal .hero-copy { max-width: none; }
+  .hero-grid--horizontal .hero-copy h1 { width: 100%; max-width: none; font-size: clamp(3.4rem, 7.6vw, 7.5rem); line-height: .9; }
+  .hero-grid--horizontal .hero-deck { max-width: 52rem; }
   .eyebrow { margin: 0; color: #65e1c2; font-family: var(--font-mono); font-size: .63rem; letter-spacing: .16em; text-transform: uppercase; }
   .hero-copy h1 { max-width: 13ch; margin: 1rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(3.4rem, 8.2vw, 8.2rem); font-weight: 300; letter-spacing: -.065em; line-height: .86; text-wrap: balance; }
   .hero-deck { max-width: 46rem; margin: 1.5rem 0 0; color: #cbc7d3; font-size: clamp(1rem, 1.5vw, 1.18rem); line-height: 1.7; }
@@ -547,8 +552,8 @@ const relatedRoutes = [
     .relationship-rail { grid-auto-flow: initial; grid-auto-columns: auto; grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: visible; }
   }
   @media (min-width: 1040px) {
-    .hero-grid { grid-template-columns: minmax(28rem, .85fr) minmax(0, 1.15fr); }
-    .hero-art { margin-right: max(-3vw, -3rem); }
+    .hero-grid--vertical { grid-template-columns: minmax(28rem, .85fr) minmax(0, 1.15fr); }
+    .hero-grid--vertical .hero-art { margin-right: max(-3vw, -3rem); }
     .process-ribbon { grid-template-columns: repeat(5, minmax(0, 1fr)); }
     .assembly-grid { grid-template-columns: minmax(17rem, .36fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
     .identity-rail { position: sticky; top: 6.5rem; display: block; }

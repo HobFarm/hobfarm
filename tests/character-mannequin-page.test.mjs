@@ -29,6 +29,16 @@ test("Character / Mannequin has a dedicated process-led route", () => {
   }
 });
 
+test("Character hero stacks landscape artwork beneath the headline", () => {
+  const page = read("src/components/workshop/CharacterMannequinPage.astro");
+
+  assert.match(page, /heroGraphic\.width >= page\.heroGraphic\.height \? "horizontal" : "vertical"/);
+  assert.match(page, /`hero-grid--\$\{heroArrangement\}`/);
+  assert.match(page, /hero-grid--horizontal \.hero-copy h1 \{ width: 100%; max-width: none;/);
+  assert.match(page, /hero-grid--vertical \{ grid-template-columns:/);
+  assert.doesNotMatch(page, /\.hero-grid \{ grid-template-columns:/);
+});
+
 test("Character / Mannequin manifest covers the verified production media", () => {
   const data = read("src/data/character-mannequin.ts");
 
