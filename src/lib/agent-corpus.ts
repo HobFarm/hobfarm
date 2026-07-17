@@ -28,6 +28,7 @@ import {
   characterPath,
   type CharacterEntry,
 } from "@/data/characters";
+import { PUBLIC_GRIMOIRE_ARCHIVE_ENABLED } from "@/data/public-features";
 
 export const SITE_ORIGIN = "https://hob.farm";
 
@@ -390,6 +391,8 @@ export async function getPublicAgentProjects(): Promise<
 export async function getPublicAgentGrimoireEntries(): Promise<
   CollectionEntry<"grimoire">[]
 > {
+  if (!PUBLIC_GRIMOIRE_ARCHIVE_ENABLED) return [];
+
   const entries = await getCollection("grimoire");
   return entries
     .filter((entry) => !entry.data.draft)
@@ -894,10 +897,14 @@ export async function buildFullLlms(): Promise<string> {
     linkList(products.map(productToAgentLink)),
     "",
     products.map(productMarkdown).join("\n\n---\n\n"),
-    "",
-    "## Public Grimoire Entries",
-    linkList(grimoireEntries.map(grimoireToAgentLink)),
-    "",
-    grimoireEntries.map(grimoireMarkdown).join("\n\n---\n\n"),
+    ...(PUBLIC_GRIMOIRE_ARCHIVE_ENABLED
+      ? [
+          "",
+          "## Public Grimoire Entries",
+          linkList(grimoireEntries.map(grimoireToAgentLink)),
+          "",
+          grimoireEntries.map(grimoireMarkdown).join("\n\n---\n\n"),
+        ]
+      : []),
   ].join("\n");
 }

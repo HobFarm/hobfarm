@@ -5,6 +5,7 @@ import GrimoireBreadcrumb from "@/components/grimoire/GrimoireBreadcrumb.astro";
 import GrimoireTOC from "@/components/grimoire/GrimoireTOC.astro";
 import GrimoireRelated from "@/components/grimoire/GrimoireRelated.astro";
 import { type CollectionEntry, getCollection, render } from "astro:content";
+import { PUBLIC_GRIMOIRE_ARCHIVE_ENABLED } from "@/data/public-features";
 
 export async function getStaticPaths() {
   const docs = await getCollection("grimoire", ({ data }) => !data.draft);
@@ -32,6 +33,11 @@ type Props = {
 };
 
 const { doc, prevDoc, nextDoc } = Astro.props;
+
+if (!PUBLIC_GRIMOIRE_ARCHIVE_ENABLED) {
+  return Astro.redirect("/grimoire/", 302);
+}
+
 const { Content, headings } = await render(doc);
 
 const formatDate = (date: Date) =>

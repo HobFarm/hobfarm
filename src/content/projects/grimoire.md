@@ -1,13 +1,13 @@
 ---
 order: 8
 tier: '3'
-status: 'live'
+status: 'active'
 category: 'tool'
 type: 'tool'
 title: 'Grimoire'
-subtitle: 'The self-enriching vocabulary engine powering StyleFusion, Drifter, and XKXXKX.'
-description: 'Grimoire is the knowledge layer that powers everything HobFarm builds. It is a living vocabulary graph of visual atoms, arranged into thematic constellations, scored by harmonic profiles, and connected through semantic correspondences.'
-oneLiner: 'The self-enriching vocabulary engine powering StyleFusion, Drifter, and XKXXKX. Visual and narrative atoms scored by harmonic dimensions, organized into arrangements that shape every prompt and every story beat.'
+subtitle: 'A knowledge graph becoming the game engine behind Other Alice Adventures.'
+description: "The Grimoire is being rebuilt to connect Other Alice characters, places, routes, rules, evidence, choices, and consequences while remaining HobFarm's durable memory layer."
+oneLiner: 'The knowledge graph behind HobFarm is becoming a state-and-rules engine for Other Alice Adventures, with connected world records that can remember choices and consequences.'
 pubDate: 2024-03-01
 liveUrl: '/grimoire'
 logo:
@@ -24,16 +24,16 @@ stack:
   - Gemini
   - TypeScript
 highlights:
-  - Self-enriching atom corpus that grows from every image generated
-  - Harmonic scoring system matches vocabulary to creative intent
-  - Arrangement profiles organize atoms into thematic constellations
+  - Connected records for characters, regions, Houses, routes, objects, and events
+  - Evidence and canon status kept separate from guesses and unfinished ideas
+  - Reusable context for the Other Alice game, Workshop notes, and future HobFarm tools
 features:
-  - title: 'Arrangement System'
-    description: 'Visual themes organized as scored profiles. Each arrangement defines a creative direction through weighted vocabulary categories.'
-  - title: 'Atom Corpus'
-    description: 'The atomic unit of visual vocabulary. Every term is classified, tagged, and vectorized so it can be discovered by meaning, not just keyword matching.'
-  - title: 'Harmonic Scoring'
-    description: 'Continuous 0-1 values across dimensions like hardness, temperature, and formality.'
+  - title: 'World State'
+    description: 'Structured records hold the people, places, objects, institutions, and current conditions that make Wonderland playable.'
+  - title: 'Rules and Relationships'
+    description: 'Routes, ownership, access, ecology, dependency, and local rules connect each record to the systems around it.'
+  - title: 'Choice Ledger'
+    description: 'Player actions can change relationships, debts, bodies, objects, routes, and evidence, then carry those changes into later encounters.'
 ---
 
-The Grimoire is not just a standard LLM wrapper. It is a targeted, edge-deployed agent designed specifically to understand the HobFarm philosophy, providing direct answers constructed from curated markdown source documents without hallucinating standard internet boilerplate.
+The former public documentation and cross-pollination archive are offline while their useful parts are reviewed. The replacement will read structured world records, test actions against local conditions, write back consequences, and flag uncertain changes for human canon review.

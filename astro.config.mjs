@@ -5,6 +5,7 @@ import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import cloudflare from "@astrojs/cloudflare";
 import { departments, departmentStatus } from "./src/data/departments.ts";
+import { PUBLIC_GRIMOIRE_ARCHIVE_ENABLED } from "./src/data/public-features.ts";
 
 const noindexDepartmentPaths = new Set(
   departments
@@ -61,6 +62,9 @@ export default defineConfig({
         return (
           !page.includes("/login") &&
           !page.includes("/account") &&
+          (PUBLIC_GRIMOIRE_ARCHIVE_ENABLED ||
+            pathname === "/grimoire/" ||
+            !pathname.startsWith("/grimoire/")) &&
           !privatePrototypePaths.has(pathname) &&
           !noindexDepartmentPaths.has(pathname) &&
           !redirectedPaths.has(pathname)

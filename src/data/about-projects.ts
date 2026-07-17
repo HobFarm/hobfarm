@@ -19,10 +19,10 @@ export const workshopTeasers: WorkshopTeaser[] = [
   },
   {
     title: "Grimoire",
-    status: "Engine Room",
+    status: "Being Rebuilt",
     statusClass: "text-accent-500",
-    hook: "The knowledge layer underneath everything. A living database, not a chatbot.",
-    href: "/grimoire",
+    hook: "The knowledge graph is becoming the game engine behind Other Alice Adventures.",
+    href: "/grimoire/",
   },
   {
     title: "Visuals",

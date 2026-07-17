@@ -19,6 +19,7 @@ import {
   OTHER_ALICE_CAST_PATH,
   publicOtherAliceCast,
 } from "@/data/other-alice-world-guide";
+import { PUBLIC_GRIMOIRE_ARCHIVE_ENABLED } from "@/data/public-features";
 
 export type SearchItem = {
   type:
@@ -273,17 +274,19 @@ export async function buildSearchIndex(): Promise<SearchItem[]> {
       notes: buildGalleryNotes(entry.data),
     }));
 
-  const grimoireItems: SearchItem[] = (await getCollection("grimoire"))
-    .filter((entry) => !entry.data.draft)
-    .map((entry) => ({
-      type: "grimoire",
-      title: entry.data.title,
-      description: entry.data.description,
-      href: `/grimoire/${stripExt(entry.id)}`,
-      tags: entry.data.tags,
-      category: entry.data.category,
-      date: toISO(entry.data.date),
-    }));
+  const grimoireItems: SearchItem[] = PUBLIC_GRIMOIRE_ARCHIVE_ENABLED
+    ? (await getCollection("grimoire"))
+        .filter((entry) => !entry.data.draft)
+        .map((entry) => ({
+          type: "grimoire",
+          title: entry.data.title,
+          description: entry.data.description,
+          href: `/grimoire/${stripExt(entry.id)}`,
+          tags: entry.data.tags,
+          category: entry.data.category,
+          date: toISO(entry.data.date),
+        }))
+    : [];
 
   const helpItems: SearchItem[] = (await getCollection("help")).map(
     (entry) => ({

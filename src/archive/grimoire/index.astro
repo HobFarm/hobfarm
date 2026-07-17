@@ -1,0 +1,52 @@
+---
+// Archived July 2026 while the public Grimoire is redeveloped around the
+// Other Alice Adventures game engine and the wider HobFarm knowledge graph.
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+import GrimoireHero from "@/components/grimoire/sections/GrimoireHero.astro";
+import GrimoireSignalsStrip from "@/components/grimoire/sections/GrimoireSignalsStrip.astro";
+import GrimoirePipeline from "@/components/grimoire/sections/GrimoirePipeline.astro";
+import GrimoireWhyItMatters from "@/components/grimoire/sections/GrimoireWhyItMatters.astro";
+import GrimoireSystem from "@/components/grimoire/sections/GrimoireSystem.astro";
+import GrimoireEngineRoom from "@/components/grimoire/sections/GrimoireEngineRoom.astro";
+import GrimoireChatSection from "@/components/grimoire/sections/GrimoireChatSection.astro";
+import GrimoireArticles from "@/components/grimoire/sections/GrimoireArticles.astro";
+import GrimoireCTA from "@/components/grimoire/sections/GrimoireCTA.astro";
+
+const title = "Grimoire: structured knowledge substrate";
+const description =
+  "HobFarm's structured knowledge substrate for data-grounded AI workflows. Atoms, composites, correspondences, validation traces. Models change. The substrate persists.";
+
+const docs = await getCollection("grimoire", ({ data }) => !data.draft);
+const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
+const grimoireJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: title,
+  description,
+  url: `${siteOrigin}/grimoire/`,
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: docs.map((doc, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: doc.data.title,
+      description: doc.data.description,
+      url: `${siteOrigin}/grimoire/${doc.id.replace(/\.(md|mdx)$/, "")}/`,
+    })),
+  },
+};
+---
+
+<BaseLayout title={title} description={description} canonical="/grimoire/" structuredData={grimoireJsonLd}>
+  <GrimoireHero />
+  <GrimoireSignalsStrip />
+  <GrimoirePipeline />
+  <GrimoireWhyItMatters />
+  <GrimoireSystem />
+  <GrimoireEngineRoom />
+  <GrimoireChatSection />
+  <GrimoireArticles docs={docs} />
+  <GrimoireCTA />
+</BaseLayout>

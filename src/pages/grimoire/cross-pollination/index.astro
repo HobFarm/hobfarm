@@ -4,6 +4,11 @@ import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import CrossPollinationArchive from "@/components/grimoire/CrossPollinationArchive";
 import { CROSS_POLLINATION_FRAMING } from "@/lib/grimoire/display";
+import { PUBLIC_GRIMOIRE_ARCHIVE_ENABLED } from "@/data/public-features";
+
+if (!PUBLIC_GRIMOIRE_ARCHIVE_ENABLED) {
+  return Astro.redirect("/grimoire/", 302);
+}
 
 const title = "Cross-Pollination Archive | Grimoire";
 const description =
