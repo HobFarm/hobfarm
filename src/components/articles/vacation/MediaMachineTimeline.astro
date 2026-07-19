@@ -1,0 +1,213 @@
+---
+import VacationVisualShell from "./VacationVisualShell.astro";
+
+const eras = [
+  { year: "1790s", name: "Party press", description: "Newspapers openly operate as political machinery.", mechanic: "Patronage, persuasion, faction.", change: "The side is printed on the masthead." },
+  { year: "1898", name: "Yellow press", description: "The USS Maine becomes a circulation war.", mechanic: "Huge headlines, villains, urgency.", change: "Uncertainty is packaged as certainty." },
+  { year: "1900s", name: "Wire speed", description: "Telegraph and telephone compress delay.", mechanic: "Syndication, central desks, rapid updates.", change: "The wrong account now travels faster." },
+  { year: "1920s", name: "Broadcast", description: "One voice reaches a mass audience at once.", mechanic: "Sponsors, schedules, authority of sound.", change: "The editor disappears behind the microphone." },
+  { year: "1954", name: "Moral panic", description: "Comic books become a national threat.", mechanic: "Children, hearings, lurid examples.", change: "A cultural preference becomes an emergency." },
+  { year: "1968", name: "Two chairs", description: "Buckley and Vidal turn conflict into programming.", mechanic: "Teams, insults, recurring opposition.", change: "The argument becomes the product." },
+  { year: "1974", name: "Receipts", description: "Watergate reporting meets courts and investigations.", mechanic: "Documents, tapes, testimony, method.", change: "Evidence can still constrain an agenda." },
+  { year: "1980", name: "24 hours", description: "CNN creates permanent news space.", mechanic: "Breaking, recap, panels, advertising.", change: "The rectangle must always be filled." },
+  { year: "1985", name: "Protect them again", description: "The PMRC puts music on trial.", mechanic: "Lists, hearings, parental warnings.", change: "Labels become policy and marketing." },
+  { year: "1996", name: "Segmentation", description: "Cable news expands while web directories list visible categories.", mechanic: "Audience identity versus visible navigation.", change: "News becomes a team, but the web still has exits." },
+  { year: "2000", name: "Call it now", description: "Election coverage declares reality before counting ends.", mechanic: "Live urgency, decision desks, team suspicion.", change: "Uncertainty looks like reversal." },
+  { year: "2004", name: "Outfoxing", description: "Media criticism becomes its own political product.", mechanic: "Counter-networks, documentaries, house parties.", change: "Every machine explains why the other machine lies." },
+  { year: "2011", name: "Gateways", description: "Link boards and social sites still send readers across the web.", mechanic: "Discovery plus visible exits.", change: "The open web is still nearby." },
+  { year: "2026", name: "The feed", description: "Platforms rank everything by predicted attention.", mechanic: "Retention, rage, copying, translation, AI volume.", change: "You do not enter News. News enters everything." },
+];
+---
+
+<VacationVisualShell
+  id="media-machine-timeline"
+  kicker="Interactive historical spine"
+  title="The media machine"
+  dek="The problem is old. Each new medium increased speed, reach, enclosure, or production volume."
+  footer="Use the arrow keys, buttons, or horizontal scrolling. Every era remains available in the page without JavaScript."
+>
+  <div class="vtn-controls">
+    <button class="vtn-control" type="button" data-vtn-previous>Previous era</button>
+    <button class="vtn-control" type="button" data-vtn-next>Next era</button>
+    <output class="vtn-stamp" data-vtn-counter aria-live="polite">1 / {eras.length}</output>
+  </div>
+
+  <div
+    class="timeline-scroll"
+    data-vtn-timeline
+    tabindex="0"
+    aria-label="Media history timeline"
+  >
+    <div class="timeline-track">
+      {eras.map((era, index) => (
+        <article class:list={["vtn-card", "timeline-era", index === 0 && "is-active"]} data-vtn-era>
+          <p class="timeline-year">{era.year}</p>
+          <h3>{era.name}</h3>
+          <p>{era.description}</p>
+          <dl>
+            <div>
+              <dt>Attention mechanic</dt>
+              <dd>{era.mechanic}</dd>
+            </div>
+            <div>
+              <dt>What changed</dt>
+              <dd>{era.change}</dd>
+            </div>
+          </dl>
+        </article>
+      ))}
+    </div>
+  </div>
+
+  <p class="timeline-summary" data-vtn-summary aria-live="polite">
+    {eras[0].year}: {eras[0].change}
+  </p>
+</VacationVisualShell>
+
+<style>
+  .timeline-scroll {
+    overflow-x: auto;
+    padding: 0.65rem 0.5rem 1.5rem;
+    scroll-padding-inline: 0.5rem;
+    scroll-snap-type: x mandatory;
+  }
+
+  .timeline-scroll:focus-visible {
+    outline: 3px solid var(--vtn-red);
+    outline-offset: 3px;
+  }
+
+  .timeline-track {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    gap: 1rem;
+    width: max-content;
+  }
+
+  .timeline-track::before {
+    position: absolute;
+    top: 1.85rem;
+    right: 0;
+    left: 0;
+    height: 0.45rem;
+    background: var(--vtn-ink);
+    content: "";
+  }
+
+  .timeline-era {
+    width: min(19rem, 76vw);
+    min-height: 20rem;
+    padding: 4.2rem 1rem 1rem;
+    scroll-snap-align: center;
+  }
+
+  .timeline-era::before {
+    position: absolute;
+    top: 1.2rem;
+    left: 1.55rem;
+    z-index: 1;
+    width: 1.7rem;
+    height: 1.7rem;
+    border: 0.3rem solid var(--vtn-ink);
+    border-radius: 50%;
+    background: var(--vtn-yellow);
+    content: "";
+  }
+
+  .timeline-era.is-active::before {
+    background: var(--vtn-green);
+    box-shadow: 0 0 0 0.45rem rgb(139 212 80 / 0.35);
+  }
+
+  .timeline-year {
+    margin: 0 !important;
+    color: var(--vtn-red) !important;
+    font: 900 2.65rem/1 Georgia, "Times New Roman", serif;
+  }
+
+  .timeline-era h3 {
+    margin: 0.45rem 0 0.6rem !important;
+    font: 900 1.25rem/1 Arial, Helvetica, sans-serif !important;
+    text-transform: uppercase;
+  }
+
+  .timeline-era > p:last-of-type {
+    min-height: 4.2rem;
+    color: var(--vtn-ink) !important;
+    font-size: 0.9rem;
+  }
+
+  .timeline-era dl,
+  .timeline-era dd {
+    margin: 0;
+  }
+
+  .timeline-era dl {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .timeline-era dl div {
+    border-top: 2px solid var(--vtn-ink);
+    padding-top: 0.45rem;
+  }
+
+  .timeline-era dt {
+    color: var(--vtn-red);
+    font-size: 0.62rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .timeline-era dd {
+    margin-top: 0.2rem;
+    font-size: 0.82rem;
+    line-height: 1.35;
+  }
+
+  .timeline-summary {
+    margin: 1.15rem 0 0 !important;
+    background: var(--vtn-ink);
+    color: var(--vtn-paper) !important;
+    font: 700 1.05rem/1.35 Georgia, "Times New Roman", serif;
+    padding: 1rem;
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-vtn-timeline]").forEach((timeline) => {
+    const root = timeline.closest<HTMLElement>(".vtn-visual");
+    if (!root || root.dataset.timelineReady === "true") return;
+    root.dataset.timelineReady = "true";
+
+    const cards = Array.from(root.querySelectorAll<HTMLElement>("[data-vtn-era]"));
+    const counter = root.querySelector<HTMLOutputElement>("[data-vtn-counter]");
+    const summary = root.querySelector<HTMLElement>("[data-vtn-summary]");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let index = 0;
+
+    const go = (nextIndex: number) => {
+      index = (nextIndex + cards.length) % cards.length;
+      cards.forEach((card, cardIndex) => card.classList.toggle("is-active", cardIndex === index));
+      cards[index]?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "nearest", inline: "center" });
+      if (counter) counter.textContent = `${index + 1} / ${cards.length}`;
+      const year = cards[index]?.querySelector(".timeline-year")?.textContent ?? "";
+      const change = cards[index]?.querySelector("dl div:last-child dd")?.textContent ?? "";
+      if (summary) summary.textContent = `${year}: ${change}`;
+    };
+
+    root.querySelector("[data-vtn-previous]")?.addEventListener("click", () => go(index - 1));
+    root.querySelector("[data-vtn-next]")?.addEventListener("click", () => go(index + 1));
+    timeline.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        go(index + 1);
+      } else if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        go(index - 1);
+      }
+    });
+  });
+</script>

@@ -1,0 +1,25 @@
+---
+import "@/styles/vacation-into-nothing.css";
+
+interface Props {
+  id: string;
+  kicker: string;
+  title: string;
+  dek: string;
+  footer?: string;
+  class?: string;
+}
+
+const { id, kicker, title, dek, footer, class: className } = Astro.props;
+const titleId = `${id}-title`;
+---
+
+<section id={id} class:list={["vtn-visual not-prose", className]} aria-labelledby={titleId}>
+  <header>
+    <p class="vtn-kicker">{kicker}</p>
+    <h2 id={titleId} class="vtn-title">{title}</h2>
+    <p class="vtn-dek">{dek}</p>
+  </header>
+  <slot />
+  {footer && <p class="vtn-footer">{footer}</p>}
+</section>

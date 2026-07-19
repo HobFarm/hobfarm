@@ -1,0 +1,125 @@
+---
+interface ImageItem {
+  src: string;
+  alt: string;
+  caption: string;
+  credit: string;
+  sourceUrl: string;
+  width: number;
+  height: number;
+}
+
+interface Props {
+  items: ImageItem[];
+  label?: string;
+}
+
+const { items, label = "Archival image group" } = Astro.props;
+---
+
+<section class="vacation-image-grid not-prose" aria-label={label}>
+  {items.map((item) => (
+    <figure>
+      <button
+        type="button"
+        data-lightbox={item.src}
+        data-lightbox-group="vacation-into-nothing"
+        data-lightbox-caption={item.caption}
+        data-lightbox-alt={item.alt}
+        aria-label={`Open full-size image: ${item.alt}`}
+      >
+        <img src={item.src} alt={item.alt} width={item.width} height={item.height} loading="lazy" decoding="async" />
+      </button>
+      <figcaption>
+        <span>{item.caption}</span>
+        <a href={item.sourceUrl}>Source: {item.credit}</a>
+      </figcaption>
+    </figure>
+  ))}
+</section>
+
+<style>
+  .vacation-image-grid {
+    position: relative;
+    left: 50%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.7rem;
+    width: min(74rem, calc(100vw - 2rem));
+    max-width: calc(100vw - 2rem);
+    margin: clamp(2.25rem, 6vw, 4.5rem) 0;
+    transform: translateX(-50%);
+  }
+
+  figure {
+    display: grid !important;
+    grid-template-rows: 1fr auto;
+    min-width: 0;
+    margin: 0 !important;
+    overflow: hidden;
+    border: 1px solid #5a4632;
+    border-radius: 0.25rem;
+    background: #03070c;
+  }
+
+  button {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    min-height: 22rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: #f2e5c4;
+    cursor: zoom-in;
+  }
+
+  button:focus-visible {
+    outline: 3px solid #dfb73f;
+    outline-offset: -4px;
+  }
+
+  img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 32rem;
+    margin: 0 !important;
+    object-fit: contain;
+  }
+
+  figcaption {
+    display: grid;
+    gap: 0.35rem;
+    min-height: 8rem;
+    margin: 0 !important;
+    background: #15130f;
+    color: #d8d0c1 !important;
+    font-family: var(--font-mono), monospace !important;
+    font-size: 0.64rem !important;
+    line-height: 1.5 !important;
+    padding: 0.75rem;
+    text-align: left !important;
+  }
+
+  figcaption a {
+    align-self: end;
+    color: #8f8678 !important;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  @media (max-width: 850px) {
+    .vacation-image-grid { grid-template-columns: 1fr; }
+    button { min-height: 0; }
+    img { height: auto !important; max-height: 38rem; }
+    figcaption { min-height: 0; }
+  }
+
+  @media (max-width: 700px) {
+    .vacation-image-grid {
+      width: calc(100vw - 1rem);
+      max-width: calc(100vw - 1rem);
+    }
+  }
+</style>

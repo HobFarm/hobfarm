@@ -1,0 +1,266 @@
+---
+import VacationVisualShell from "./VacationVisualShell.astro";
+
+const steps = [
+  ["Claims", "Extracting factual claims from the caption and visible media."],
+  ["Source", "Searching for the earliest discoverable version."],
+  ["Language", "Detecting Portuguese source audio and Spanish repost text."],
+  ["Context", "Looking for the full recording and events outside the clip."],
+  ["Compare", "Comparing local, official, mainstream, independent, and archival sources."],
+  ["Incentives", "Checking account behavior, monetization, and repost network."],
+  ["Report", "Building a receipt report with unresolved questions exposed."],
+];
+---
+
+<VacationVisualShell
+  id="bullshit-meter"
+  kicker="Independent verification layer"
+  title="The bullshit meter"
+  dek="The dial is the joke. The actual product is a transparent evidence report that follows the user across platforms."
+  footer="The production tool must never hide uncertainty behind a single percentage. Every conclusion needs a visible path back to evidence."
+>
+  <div class="meter-dashboard" data-meter-root data-steps={JSON.stringify(steps)}>
+    <section>
+      <div class="meter-gauge" aria-hidden="true">
+        <div class="meter-needle" data-meter-needle></div>
+        <div class="meter-hub"></div>
+        <span class="meter-label meter-label--low">Supported</span>
+        <span class="meter-label meter-label--mid">Messy</span>
+        <span class="meter-label meter-label--high">Bullshit</span>
+      </div>
+      <div class="vtn-controls">
+        <button class="vtn-control" type="button" data-meter-run>Run receipts</button>
+        <button class="vtn-control" type="button" data-meter-reset>Reset</button>
+      </div>
+    </section>
+
+    <section>
+      <article class="vtn-card meter-target">
+        <span class="vtn-label">Post under inspection</span>
+        <h3>“The mayor admits the city does not care about working people.”</h3>
+        <p>Attached media: authentic 45-second excerpt, cropped source, translated caption, full meeting omitted.</p>
+      </article>
+      <pre class="meter-log" data-meter-log aria-live="polite">READY. CLICK RUN RECEIPTS.</pre>
+      <div class="meter-status" data-meter-status>
+        <span>Source: unknown</span>
+        <span>Caption: unchecked</span>
+        <span>Translation: unknown</span>
+      </div>
+    </section>
+
+    <section class="meter-report" data-meter-report aria-label="Evidence report">
+      <article class="meter-finding is-good"><span class="vtn-label">Original source</span><h3>Probable local source found</h3><p>Complete public-meeting recording found in the municipal archive.</p></article>
+      <article class="meter-finding is-bad"><span class="vtn-label">Caption</span><h3>Major claims contradicted</h3><p>The full answer contradicts the motive and conclusion added by later accounts.</p></article>
+      <article class="meter-finding is-warning"><span class="vtn-label">Translation path</span><h3>Portuguese → Spanish → English</h3><p>The subject, tone, and implied admission changed across captions. Translation alone cannot restore the omitted answer.</p></article>
+      <article class="meter-finding is-warning"><span class="vtn-label">Unknowns</span><h3>Claim remains unresolved</h3><p>The excerpt does not establish the claimed policy or intent. Do not convert a clipped phrase into a complete position.</p></article>
+      <article class="meter-finding is-good"><span class="vtn-label">Receipts</span><h3>Show the chain</h3><p>Complete meeting, transcript, translated excerpts, timestamps, repost history, and archive links.</p></article>
+      <article class="meter-finding is-bad"><span class="vtn-label">Incentive</span><h3>Engagement account</h3><p>Repeated political clips, removed sources, dramatic captions, and monetized link routing.</p></article>
+    </section>
+  </div>
+
+  <details class="vtn-ledger">
+    <summary>What the receipt run checks</summary>
+    <ol>{steps.map(([name, description]) => <li><strong>{name}:</strong> {description}</li>)}</ol>
+  </details>
+</VacationVisualShell>
+
+<style>
+  .meter-dashboard {
+    display: grid;
+    grid-template-columns: minmax(17rem, 0.76fr) minmax(0, 1.24fr);
+    gap: 1.25rem;
+    align-items: start;
+  }
+
+  .meter-gauge {
+    position: relative;
+    aspect-ratio: 1;
+    border: 0.75rem solid var(--vtn-ink);
+    border-radius: 50%;
+    background: conic-gradient(var(--vtn-green) 0 28%, var(--vtn-yellow) 28% 62%, var(--vtn-red) 62%);
+    box-shadow: inset 0 0 0 1rem var(--vtn-paper), 0.45rem 0.45rem 0 rgb(21 19 15 / 0.25);
+  }
+
+  .meter-gauge::after {
+    position: absolute;
+    inset: 25%;
+    border-radius: 50%;
+    background: var(--vtn-ink);
+    content: "";
+  }
+
+  .meter-needle {
+    position: absolute;
+    bottom: calc(50% - 0.3rem);
+    left: 50%;
+    z-index: 3;
+    width: 42%;
+    height: 0.65rem;
+    border: 3px solid var(--vtn-ink);
+    background: #fff;
+    transform: rotate(-120deg);
+    transform-origin: left center;
+    transition: transform 0.4s ease;
+  }
+
+  .meter-hub {
+    position: absolute;
+    top: 46%;
+    left: 46%;
+    z-index: 4;
+    width: 8%;
+    height: 8%;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    background: var(--vtn-red);
+  }
+
+  .meter-label {
+    position: absolute;
+    z-index: 5;
+    border: 2px solid var(--vtn-ink);
+    background: var(--vtn-paper);
+    font-size: clamp(0.48rem, 1.5vw, 0.68rem);
+    font-weight: 900;
+    padding: 0.25rem;
+    text-transform: uppercase;
+  }
+
+  .meter-label--low { bottom: 14%; left: 1%; }
+  .meter-label--mid { top: 1%; left: 43%; }
+  .meter-label--high { right: -1%; bottom: 14%; }
+
+  .meter-target { padding: 1rem; }
+
+  .meter-target h3 {
+    margin: 0.45rem 0 0.65rem !important;
+    font: 900 clamp(1.45rem, 3.5vw, 2rem) / 1.05 Georgia, "Times New Roman", serif !important;
+  }
+
+  .meter-target p {
+    margin: 0 !important;
+    color: var(--vtn-ink) !important;
+    font: 0.73rem/1.45 "Courier New", monospace;
+  }
+
+  .meter-log {
+    height: 13.5rem;
+    margin: 1rem 0 0 !important;
+    overflow: auto;
+    border: 4px solid var(--vtn-ink);
+    background: #101310;
+    color: #9df46e;
+    font: 700 0.75rem/1.5 "Courier New", monospace;
+    padding: 0.85rem;
+    white-space: pre-wrap;
+  }
+
+  .meter-status {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 0.8rem;
+  }
+
+  .meter-status span {
+    border: 3px solid var(--vtn-ink);
+    background: #fff;
+    color: var(--vtn-ink);
+    font-size: 0.64rem;
+    font-weight: 900;
+    padding: 0.45rem 0.55rem;
+    text-transform: uppercase;
+  }
+
+  .meter-report {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  [data-meter-root][data-enhanced="true"] .meter-report:not(.is-complete) { display: none; }
+
+  .meter-finding {
+    min-height: 9.5rem;
+    border-top: 0.5rem solid var(--vtn-ink);
+    background: #fff8e6;
+    color: var(--vtn-ink);
+    padding: 0.8rem;
+  }
+
+  .meter-finding.is-good { border-color: #4c8926; }
+  .meter-finding.is-warning { border-color: var(--vtn-yellow); }
+  .meter-finding.is-bad { border-color: var(--vtn-red); }
+
+  .meter-finding h3 {
+    margin: 0.35rem 0 0.45rem !important;
+    font: 900 1.05rem/1 Arial, Helvetica, sans-serif !important;
+  }
+
+  .meter-finding p {
+    margin: 0 !important;
+    color: var(--vtn-ink) !important;
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 850px) {
+    .meter-dashboard { grid-template-columns: 1fr; }
+    .meter-gauge { max-width: 23rem; margin-inline: auto; }
+    .meter-report { grid-column: 1; }
+  }
+
+  @media (max-width: 520px) {
+    .meter-report { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-meter-root]").forEach((root) => {
+    if (root.dataset.enhanced === "true") return;
+    root.dataset.enhanced = "true";
+    const steps = JSON.parse(root.dataset.steps ?? "[]") as [string, string][];
+    const log = root.querySelector<HTMLElement>("[data-meter-log]");
+    const needle = root.querySelector<HTMLElement>("[data-meter-needle]");
+    const report = root.querySelector<HTMLElement>("[data-meter-report]");
+    const status = root.querySelector<HTMLElement>("[data-meter-status]");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let runToken = 0;
+    let running = false;
+
+    const wait = (milliseconds: number) => new Promise((resolve) => window.setTimeout(resolve, milliseconds));
+    const reset = () => {
+      runToken += 1;
+      running = false;
+      if (log) log.textContent = "READY. CLICK RUN RECEIPTS.";
+      if (needle) needle.style.transform = "rotate(-120deg)";
+      if (status) status.innerHTML = "<span>Source: unknown</span><span>Caption: unchecked</span><span>Translation: unknown</span>";
+      report?.classList.remove("is-complete");
+    };
+
+    root.querySelector("[data-meter-run]")?.addEventListener("click", async () => {
+      if (running) return;
+      running = true;
+      const token = ++runToken;
+      report?.classList.remove("is-complete");
+      if (log) log.textContent = "";
+
+      for (let index = 0; index < steps.length; index += 1) {
+        if (token !== runToken) return;
+        const [name, description] = steps[index];
+        if (log) {
+          log.textContent += `> ${name.toUpperCase()}: ${description}\n`;
+          log.scrollTop = log.scrollHeight;
+        }
+        if (needle) needle.style.transform = `rotate(${-120 + index * 34}deg)`;
+        if (!reduceMotion) await wait(360);
+      }
+
+      if (token !== runToken) return;
+      if (status) status.innerHTML = "<span>Source: probable match</span><span>Caption: contradicted</span><span>Translation: drift found</span>";
+      report?.classList.add("is-complete");
+      running = false;
+    });
+    root.querySelector("[data-meter-reset]")?.addEventListener("click", reset);
+  });
+</script>

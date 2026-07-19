@@ -1,0 +1,127 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption: string;
+  credit?: string;
+  sourceUrl?: string;
+  width: number;
+  height: number;
+  compact?: boolean;
+  eager?: boolean;
+}
+
+const {
+  src,
+  alt,
+  caption,
+  credit,
+  sourceUrl,
+  width,
+  height,
+  compact = false,
+  eager = false,
+} = Astro.props;
+---
+
+<figure class:list={["vacation-figure not-prose", compact && "vacation-figure--compact"]}>
+  <button
+    class="vacation-figure__open"
+    type="button"
+    data-lightbox={src}
+    data-lightbox-group="vacation-into-nothing"
+    data-lightbox-caption={caption}
+    data-lightbox-alt={alt}
+    aria-label={`Open full-size image: ${alt}`}
+  >
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={eager ? "eager" : "lazy"}
+      decoding="async"
+      fetchpriority={eager ? "high" : "auto"}
+    />
+  </button>
+  <figcaption>
+    <span>{caption}</span>
+    {credit && (
+      <span class="vacation-figure__credit">
+        {sourceUrl ? <a href={sourceUrl}>Source: {credit}</a> : <>Source: {credit}</>}
+      </span>
+    )}
+  </figcaption>
+</figure>
+
+<style>
+  .vacation-figure {
+    position: relative !important;
+    left: 50% !important;
+    width: min(74rem, calc(100vw - 2rem)) !important;
+    max-width: calc(100vw - 2rem) !important;
+    margin: clamp(2.25rem, 6vw, 4.5rem) 0 !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .vacation-figure--compact {
+    width: min(38rem, calc(100vw - 2rem)) !important;
+  }
+
+  .vacation-figure__open {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #5a4632;
+    border-radius: 0.25rem;
+    background: #03070c;
+    color: inherit;
+    cursor: zoom-in;
+  }
+
+  .vacation-figure__open:focus-visible {
+    outline: 3px solid #dfb73f;
+    outline-offset: 4px;
+  }
+
+  .vacation-figure img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 54rem;
+    margin: 0 !important;
+    object-fit: contain;
+  }
+
+  .vacation-figure figcaption {
+    display: grid;
+    gap: 0.35rem;
+    max-width: 68rem;
+    margin: 0.7rem auto 0 !important;
+    color: var(--color-base-400, #a0a0a0) !important;
+    font-family: var(--font-mono), monospace !important;
+    font-size: 0.68rem !important;
+    line-height: 1.55 !important;
+    text-align: center !important;
+  }
+
+  .vacation-figure__credit {
+    color: var(--color-base-500, #777) !important;
+  }
+
+  .vacation-figure__credit a {
+    color: inherit !important;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  @media (max-width: 700px) {
+    .vacation-figure,
+    .vacation-figure--compact {
+      width: calc(100vw - 1rem) !important;
+      max-width: calc(100vw - 1rem) !important;
+    }
+  }
+</style>

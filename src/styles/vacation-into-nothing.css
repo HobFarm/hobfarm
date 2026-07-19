@@ -1,0 +1,195 @@
+.vtn-visual {
+  --vtn-paper: #f2e5c4;
+  --vtn-paper-2: #e4d2aa;
+  --vtn-ink: #15130f;
+  --vtn-red: #b62018;
+  --vtn-yellow: #dfb73f;
+  --vtn-blue: #507b8c;
+  --vtn-green: #8bd450;
+  --vtn-muted: #6e6656;
+  --vtn-white: #fffaf0;
+  position: relative;
+  left: 50%;
+  width: min(74rem, calc(100vw - 2rem));
+  max-width: calc(100vw - 2rem);
+  margin: clamp(2.5rem, 7vw, 5rem) 0;
+  padding: clamp(1rem, 3vw, 2.5rem);
+  transform: translateX(-50%);
+  overflow: hidden;
+  border: 3px solid var(--vtn-ink);
+  background:
+    repeating-linear-gradient(0deg, transparent 0 3px, rgb(21 19 15 / 0.025) 4px),
+    radial-gradient(circle at 30% 40%, rgb(255 255 255 / 0.7) 0 1px, transparent 2px),
+    var(--vtn-paper);
+  background-size: auto, 11px 11px, auto;
+  box-shadow: 0.65rem 0.65rem 0 #000;
+  color: var(--vtn-ink);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.45;
+  isolation: isolate;
+}
+
+.vtn-visual *,
+.vtn-visual *::before,
+.vtn-visual *::after {
+  box-sizing: border-box;
+}
+
+.vtn-visual :where(h2, h3, h4, p, ol, ul, figure) {
+  margin-top: 0;
+}
+
+.vtn-visual :where(h2, h3, h4) {
+  color: var(--vtn-ink);
+}
+
+.vtn-kicker,
+.vtn-label {
+  color: var(--vtn-red);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.vtn-title {
+  max-width: 62rem;
+  margin: 0.55rem 0 0.85rem !important;
+  color: var(--vtn-ink) !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: clamp(2.15rem, 6vw, 4.9rem) !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.045em !important;
+  line-height: 0.94 !important;
+}
+
+.vtn-dek {
+  max-width: 54rem;
+  margin-bottom: 1.6rem !important;
+  color: var(--vtn-ink) !important;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.vtn-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.vtn-card {
+  position: relative;
+  border: 3px solid var(--vtn-ink);
+  background: rgb(255 250 240 / 0.82);
+  box-shadow: 0.45rem 0.45rem 0 rgb(21 19 15 / 0.25);
+}
+
+.vtn-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 1rem 0 1.4rem;
+}
+
+.vtn-control {
+  min-height: 2.7rem;
+  border: 3px solid var(--vtn-ink);
+  background: var(--vtn-white);
+  box-shadow: 0.25rem 0.25rem 0 var(--vtn-ink);
+  color: var(--vtn-ink);
+  cursor: pointer;
+  font: 900 0.76rem/1 Arial, Helvetica, sans-serif;
+  letter-spacing: 0.05em;
+  padding: 0.7rem 0.9rem;
+  text-transform: uppercase;
+}
+
+.vtn-control:hover,
+.vtn-control[aria-selected="true"],
+.vtn-control[aria-pressed="true"] {
+  background: var(--vtn-yellow);
+}
+
+.vtn-control:focus-visible,
+.vtn-visual :where(a, button, summary):focus-visible {
+  outline: 3px solid var(--vtn-red);
+  outline-offset: 3px;
+}
+
+.vtn-control:active {
+  transform: translate(0.2rem, 0.2rem);
+  box-shadow: 0.08rem 0.08rem 0 var(--vtn-ink);
+}
+
+.vtn-stamp {
+  display: inline-block;
+  border: 3px solid currentColor;
+  background: var(--vtn-yellow);
+  color: var(--vtn-ink);
+  font: 900 0.72rem/1 Arial, Helvetica, sans-serif;
+  letter-spacing: 0.08em;
+  padding: 0.55rem 0.65rem;
+  transform: rotate(-2deg);
+  text-transform: uppercase;
+}
+
+.vtn-footer {
+  margin: 1.35rem 0 0 !important;
+  color: var(--vtn-muted) !important;
+  font: 700 0.74rem/1.45 Arial, Helvetica, sans-serif;
+}
+
+.vtn-ledger {
+  margin-top: 1rem;
+  border: 2px solid var(--vtn-ink);
+  background: rgb(255 250 240 / 0.62);
+  padding: 0.65rem 0.8rem;
+}
+
+.vtn-ledger summary {
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.vtn-ledger ol,
+.vtn-ledger ul {
+  margin: 0.75rem 0 0 !important;
+  padding-left: 1.3rem !important;
+}
+
+.vtn-ledger li {
+  margin: 0.4rem 0 !important;
+  color: var(--vtn-ink) !important;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 700px) {
+  .vtn-visual {
+    width: calc(100vw - 1rem);
+    max-width: calc(100vw - 1rem);
+    padding: 1rem;
+    box-shadow: 0.35rem 0.35rem 0 #000;
+  }
+
+  .vtn-card {
+    box-shadow: 0.3rem 0.3rem 0 rgb(21 19 15 / 0.25);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vtn-visual *,
+  .vtn-visual *::before,
+  .vtn-visual *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

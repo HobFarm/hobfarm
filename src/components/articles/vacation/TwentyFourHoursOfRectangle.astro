@@ -1,0 +1,222 @@
+---
+import VacationVisualShell from "./VacationVisualShell.astro";
+
+const schedule = [
+  { time: "00:00", kind: "Breaking", text: "Verified event occurs." },
+  { time: "00:22", kind: "Live", text: "Reporter repeats confirmed facts from outside a closed building." },
+  { time: "01:00", kind: "Panel", text: "Four people speculate about what the facts will eventually mean." },
+  { time: "02:00", kind: "Exclusive", text: "A former official says the event is concerning." },
+  { time: "03:00", kind: "Recap", text: "The breaking banner becomes a package." },
+  { time: "05:00", kind: "Morning", text: "Hosts ask whether this changes everything." },
+  { time: "07:00", kind: "Reaction", text: "Politicians react to the panel reacting to the event." },
+  { time: "09:00", kind: "Explainer", text: "Seven minutes of facts, thirteen minutes of animation." },
+  { time: "12:00", kind: "Developing", text: "No major development. The banner remains red." },
+  { time: "14:00", kind: "Debate", text: "Two chairs are deployed." },
+  { time: "16:00", kind: "Social", text: "Posts about the broadcast become part of the broadcast." },
+  { time: "18:00", kind: "Prime time", text: "The event is assigned to teams." },
+  { time: "20:00", kind: "Opinion", text: "Certainty rises as new evidence declines." },
+  { time: "22:00", kind: "What next", text: "Tomorrow's speculation begins." },
+  { time: "23:55", kind: "Recap", text: "A full day of content returns to the original three facts." },
+];
+---
+
+<VacationVisualShell
+  id="twenty-four-hours-of-rectangle"
+  kicker="Cable-news expansion engine"
+  title="Twenty-four hours of rectangle"
+  dek="One verified event enters. A complete programming day has to come out."
+  footer="The joke is structural: a permanent channel has a permanent need for material, even when verified information remains scarce."
+>
+  <div class="rectangle-stats" aria-live="polite">
+    <span>Verified facts: <b>3</b></span>
+    <span>Minutes filled: <b data-rectangle-minutes>0</b></span>
+    <span>Speculation index: <b data-rectangle-speculation>0</b>%</span>
+  </div>
+
+  <div class="rectangle-tv" data-rectangle-root>
+    <div class="rectangle-screen">
+      <span class="rectangle-bug" data-rectangle-bug>Breaking</span>
+      <p class="rectangle-headline" data-rectangle-headline>Verified event occurs.</p>
+      <p class="rectangle-subhead">The initial report contains three confirmed facts and several unknowns.</p>
+      <p class="rectangle-ticker">Stay with us for coverage, reaction, analysis, reaction to the analysis, and trousers.</p>
+    </div>
+  </div>
+
+  <div class="vtn-controls">
+    <button class="vtn-control" type="button" data-rectangle-advance>Advance schedule</button>
+    <button class="vtn-control" type="button" data-rectangle-reset>Reset day</button>
+  </div>
+
+  <ol class="rectangle-schedule" data-rectangle-schedule>
+    {schedule.map((slot) => (
+      <li class="rectangle-slot" data-rectangle-slot data-kind={slot.kind} data-text={slot.text}>
+        <time>{slot.time}</time>
+        <span class="vtn-label">{slot.kind}</span>
+        <p>{slot.text}</p>
+      </li>
+    ))}
+  </ol>
+</VacationVisualShell>
+
+<style>
+  .rectangle-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+  }
+
+  .rectangle-stats span {
+    background: var(--vtn-ink);
+    color: var(--vtn-paper);
+    font-size: 0.72rem;
+    font-weight: 900;
+    padding: 0.65rem 0.8rem;
+    text-transform: uppercase;
+  }
+
+  .rectangle-tv {
+    border: clamp(0.7rem, 2vw, 1rem) solid #2c2b26;
+    border-radius: 1.4rem;
+    background: #101312;
+    box-shadow: inset 0 0 0 0.25rem #070707, 0.6rem 0.75rem 0 #000;
+    padding: clamp(0.55rem, 2vw, 1rem);
+  }
+
+  .rectangle-screen {
+    position: relative;
+    min-height: clamp(20rem, 46vw, 31rem);
+    overflow: hidden;
+    border: 0.3rem solid #000;
+    background: linear-gradient(145deg, #e7e0c4, #a7c5c8);
+    padding: clamp(1rem, 3vw, 2rem);
+  }
+
+  .rectangle-screen::after {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(0deg, rgb(0 0 0 / 0.13) 0 1px, transparent 2px 5px);
+    content: "";
+  }
+
+  .rectangle-bug {
+    display: inline-block;
+    background: var(--vtn-red);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    padding: 0.55rem;
+    text-transform: uppercase;
+  }
+
+  .rectangle-headline {
+    max-width: 52rem;
+    margin: clamp(1.4rem, 4vw, 2.5rem) 0 0.75rem !important;
+    color: var(--vtn-ink) !important;
+    font: 900 clamp(2rem, 6vw, 4.25rem) / 0.95 Arial, Helvetica, sans-serif;
+  }
+
+  .rectangle-subhead {
+    max-width: 44rem;
+    color: var(--vtn-ink) !important;
+  }
+
+  .rectangle-ticker {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    margin: 0 !important;
+    overflow: hidden;
+    background: var(--vtn-ink);
+    color: #fff !important;
+    font-size: 0.72rem;
+    font-weight: 900;
+    padding: 0.8rem 1rem;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .rectangle-schedule {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: 0.75rem;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+  }
+
+  .rectangle-slot {
+    min-height: 8.7rem;
+    margin: 0 !important;
+    border-top: 0.5rem solid var(--vtn-ink);
+    background: #fff7df;
+    color: var(--vtn-ink) !important;
+    padding: 0.75rem;
+  }
+
+  .rectangle-slot.is-current {
+    border-color: var(--vtn-red);
+    background: var(--vtn-yellow);
+    transform: rotate(-1deg);
+  }
+
+  .rectangle-slot time {
+    display: block;
+    font: 900 1.55rem/1 Georgia, "Times New Roman", serif;
+  }
+
+  .rectangle-slot p {
+    margin: 0.45rem 0 0 !important;
+    color: var(--vtn-ink) !important;
+    font-size: 0.78rem;
+    line-height: 1.35;
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-rectangle-root]").forEach((tv) => {
+    const root = tv.closest<HTMLElement>(".vtn-visual");
+    if (!root || root.dataset.rectangleReady === "true") return;
+    root.dataset.rectangleReady = "true";
+
+    const slots = Array.from(root.querySelectorAll<HTMLElement>("[data-rectangle-slot]"));
+    const headline = root.querySelector<HTMLElement>("[data-rectangle-headline]");
+    const bug = root.querySelector<HTMLElement>("[data-rectangle-bug]");
+    const minutes = root.querySelector<HTMLElement>("[data-rectangle-minutes]");
+    const speculation = root.querySelector<HTMLElement>("[data-rectangle-speculation]");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let index = -1;
+
+    const render = () => {
+      slots.forEach((slot, slotIndex) => slot.classList.toggle("is-current", slotIndex === index));
+      if (index < 0) {
+        if (headline) headline.textContent = "Verified event occurs.";
+        if (bug) bug.textContent = "Breaking";
+        if (minutes) minutes.textContent = "0";
+        if (speculation) speculation.textContent = "0";
+        return;
+      }
+
+      const slot = slots[index];
+      if (headline) headline.textContent = slot.dataset.text ?? "";
+      if (bug) bug.textContent = slot.dataset.kind ?? "Update";
+      if (minutes) minutes.textContent = String(Math.min(1440, Math.round((index + 1) * (1440 / slots.length))));
+      if (speculation) speculation.textContent = String(Math.round((index / (slots.length - 1)) * 92));
+      slot.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "nearest" });
+    };
+
+    root.querySelector("[data-rectangle-advance]")?.addEventListener("click", () => {
+      index = Math.min(slots.length - 1, index + 1);
+      render();
+    });
+    root.querySelector("[data-rectangle-reset]")?.addEventListener("click", () => {
+      index = -1;
+      render();
+    });
+  });
+</script>

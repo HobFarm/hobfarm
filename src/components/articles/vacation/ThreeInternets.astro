@@ -1,0 +1,339 @@
+---
+import VacationVisualShell from "./VacationVisualShell.astro";
+
+const panels = [
+  { key: "1996", label: "1996 directory", address: "http://directory.example/music/" },
+  { key: "2011", label: "2011 gateway", address: "https://link-board.example/" },
+  { key: "2026", label: "2026 feed", address: "app://for-you" },
+];
+---
+
+<VacationVisualShell
+  id="three-internets"
+  kicker="Navigation comparison"
+  title="Three internets"
+  dek="The systems were never neutral. The difference is whether the destination, category, and exit remain visible."
+  footer="These are neutral editorial mockups, not replicas of Yahoo, Reddit, or any current platform interface."
+>
+  <div class="vtn-controls internet-tabs" role="tablist" aria-label="Choose an internet era">
+    {panels.map((panel, index) => (
+      <button
+        class="vtn-control"
+        type="button"
+        id={`internet-tab-${panel.key}`}
+        role="tab"
+        aria-controls={`internet-panel-${panel.key}`}
+        aria-selected={index === 0 ? "true" : "false"}
+        data-internet-tab={panel.key}
+        data-address={panel.address}
+      >
+        {panel.label}
+      </button>
+    ))}
+  </div>
+
+  <div class="internet-browser" data-internets-root>
+    <div class="internet-chrome" aria-hidden="true">
+      <span></span><span></span><span></span>
+      <output data-internet-address>http://directory.example/music/</output>
+    </div>
+
+    <div class="internet-views">
+      <section
+        id="internet-panel-1996"
+        class="internet-panel internet-directory is-active"
+        role="tabpanel"
+        aria-labelledby="internet-tab-1996"
+        data-internet-panel="1996"
+        tabindex="0"
+      >
+        <p class="internet-wordmark">DIRECTORY!</p>
+        <p class="internet-note"><strong>Choose a subject.</strong> The categories are visible. The news department stays where you left it.</p>
+        <p class="internet-rubric">Arts and Humanities | Business | Computers | Entertainment | News | Recreation</p>
+        <div class="internet-categories">
+          {[
+            "Music", "Concerts and events", "Alternative and punk", "Festivals",
+            "Independent labels", "Fan pages", "Games", "Movies", "Photography",
+            "Travel", "Science", "Odd personal homepages",
+          ].map((category) => <span>{category}</span>)}
+        </div>
+        <p class="internet-exit">Visible exit: leave for a website</p>
+      </section>
+
+      <section
+        id="internet-panel-2011"
+        class="internet-panel internet-gateway"
+        role="tabpanel"
+        aria-labelledby="internet-tab-2011"
+        data-internet-panel="2011"
+        tabindex="0"
+      >
+        <article>
+          <p class="internet-score">842 ▲</p>
+          <div><h3>A complete oral history of a forgotten music festival</h3><small>independent-site.example</small><p>Comments discuss the linked work. The destination exists elsewhere.</p><span>External link</span></div>
+        </article>
+        <article>
+          <p class="internet-score">391 ▲</p>
+          <div><h3>A strange game somebody built in a browser</h3><small>personal-page.example</small><p>The community acts as a gateway and a bulletin board.</p><span>External link</span></div>
+        </article>
+        <article>
+          <p class="internet-score">126 ▲</p>
+          <div><h3>Stumble onto something you did not search for</h3><small>the-wide-web.example</small><p>Recommendation exists, but the recommendation is an exit.</p><span>Visible exit</span></div>
+        </article>
+      </section>
+
+      <section
+        id="internet-panel-2026"
+        class="internet-panel internet-feed"
+        role="tabpanel"
+        aria-labelledby="internet-tab-2026"
+        data-internet-panel="2026"
+        tabindex="0"
+      >
+        <article>
+          <div class="internet-media internet-media--red">You will not believe<br />what this person did</div>
+          <p>Authentic clip. Missing date. Added motive. 18,492 comments.</p>
+          <span>Keep watching</span>
+        </article>
+        <article>
+          <div class="internet-media internet-media--blue">The other team<br />has gone too far</div>
+          <p>A 42-second reaction to a 31-second clip from a 47-minute speech.</p>
+          <span>Keep watching</span>
+        </article>
+        <p class="internet-ad">These trousers understand your values.</p>
+        <article>
+          <div class="internet-media internet-media--green">AI explains why<br />everything ends Thursday</div>
+          <p>Sources available somewhere under the fold.</p>
+          <span>Keep watching</span>
+        </article>
+      </section>
+    </div>
+  </div>
+</VacationVisualShell>
+
+<style>
+  .internet-browser {
+    overflow: hidden;
+    border: 4px solid var(--vtn-ink);
+    background: #d4d0c8;
+    box-shadow: 0.45rem 0.45rem 0 rgb(21 19 15 / 0.25);
+  }
+
+  .internet-chrome {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: 2.75rem;
+    border-bottom: 3px solid var(--vtn-ink);
+    padding: 0.45rem;
+  }
+
+  .internet-chrome > span {
+    width: 1rem;
+    height: 1rem;
+    flex: 0 0 auto;
+    border: 2px solid var(--vtn-ink);
+    border-radius: 50%;
+    background: var(--vtn-red);
+  }
+
+  .internet-chrome > span:nth-child(2) { background: var(--vtn-yellow); }
+  .internet-chrome > span:nth-child(3) { background: var(--vtn-green); }
+
+  .internet-chrome output {
+    min-width: 0;
+    flex: 1;
+    overflow: hidden;
+    border: 2px inset #888;
+    background: #fff;
+    font: 0.72rem/1.2 "Courier New", monospace;
+    padding: 0.35rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .internet-views {
+    background: #fff;
+  }
+
+  .internet-panel {
+    min-height: 31rem;
+    border-bottom: 3px solid var(--vtn-ink);
+    padding: clamp(1rem, 3vw, 1.5rem);
+  }
+
+  .internet-panel:last-child { border-bottom: 0; }
+
+  [data-internets-root][data-enhanced="true"] .internet-panel:not(.is-active) {
+    display: none;
+  }
+
+  [data-internets-root][data-enhanced="true"] .internet-panel {
+    border-bottom: 0;
+  }
+
+  .internet-directory {
+    color: #000;
+    font-family: "Times New Roman", serif;
+  }
+
+  .internet-wordmark {
+    margin: 0 0 0.4rem !important;
+    color: #4d1594 !important;
+    font-size: clamp(2.1rem, 6vw, 3rem);
+    font-weight: 900;
+  }
+
+  .internet-note {
+    border: 1px solid #000;
+    background: #ffffaa;
+    color: #000 !important;
+    padding: 0.5rem;
+  }
+
+  .internet-rubric {
+    color: #000 !important;
+    font-weight: 700;
+  }
+
+  .internet-categories {
+    columns: 3;
+    column-gap: 1.8rem;
+  }
+
+  .internet-categories span {
+    display: block;
+    margin: 0 0 0.5rem;
+    color: #0000cc;
+    font-weight: 700;
+    text-decoration: underline;
+  }
+
+  .internet-exit,
+  .internet-gateway article span {
+    display: inline-block;
+    margin-top: 0.55rem !important;
+    background: var(--vtn-green);
+    color: #111 !important;
+    font-size: 0.68rem;
+    font-weight: 900;
+    padding: 0.4rem 0.5rem;
+    text-transform: uppercase;
+  }
+
+  .internet-gateway {
+    background: #f6f6f6;
+    color: #111;
+  }
+
+  .internet-gateway article {
+    display: grid;
+    grid-template-columns: 3.25rem 1fr;
+    gap: 0.75rem;
+    margin: 0 !important;
+    border-bottom: 1px solid #bbb;
+    padding: 0.85rem;
+  }
+
+  .internet-score {
+    color: #777 !important;
+    font: 700 0.85rem/1.2 monospace;
+    text-align: center;
+  }
+
+  .internet-gateway h3 {
+    margin: 0 !important;
+    color: #0000aa !important;
+    font: 700 1rem/1.25 Arial, Helvetica, sans-serif !important;
+  }
+
+  .internet-gateway small { color: #777; }
+  .internet-gateway p { color: #111 !important; font-size: 0.84rem; }
+
+  .internet-feed {
+    background: #111;
+    color: #eee;
+    padding: 0;
+  }
+
+  .internet-feed article {
+    margin: 0 !important;
+    border-bottom: 1px solid #444;
+    background: #181818;
+    padding: 1.15rem;
+  }
+
+  .internet-feed article p { color: #eee !important; font-size: 0.85rem; }
+
+  .internet-media {
+    min-height: 10rem;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-size: clamp(1.45rem, 4vw, 2.15rem);
+    font-weight: 900;
+    line-height: 1;
+    padding: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .internet-media--red { background: linear-gradient(135deg, #5f1e1e, #222); }
+  .internet-media--blue { background: linear-gradient(135deg, #17445e, #222); }
+  .internet-media--green { background: linear-gradient(135deg, #4e5220, #222); }
+
+  .internet-feed article span {
+    display: inline-block;
+    background: var(--vtn-red);
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 900;
+    padding: 0.4rem 0.5rem;
+    text-transform: uppercase;
+  }
+
+  .internet-ad {
+    margin: 0 !important;
+    background: #f4e7b5;
+    color: #111 !important;
+    font-weight: 700;
+    padding: 0.9rem;
+  }
+
+  @media (max-width: 700px) {
+    .internet-categories { columns: 1; }
+    .internet-panel { min-height: 0; }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-internets-root]").forEach((root) => {
+    if (root.dataset.enhanced === "true") return;
+    root.dataset.enhanced = "true";
+    const visual = root.closest<HTMLElement>(".vtn-visual");
+    const tabs = Array.from(visual?.querySelectorAll<HTMLButtonElement>("[data-internet-tab]") ?? []);
+    const panels = Array.from(root.querySelectorAll<HTMLElement>("[data-internet-panel]"));
+    const address = root.querySelector<HTMLOutputElement>("[data-internet-address]");
+
+    const show = (key: string, focusPanel = false) => {
+      tabs.forEach((tab) => tab.setAttribute("aria-selected", String(tab.dataset.internetTab === key)));
+      panels.forEach((panel) => panel.classList.toggle("is-active", panel.dataset.internetPanel === key));
+      const activeTab = tabs.find((tab) => tab.dataset.internetTab === key);
+      if (address) address.textContent = activeTab?.dataset.address ?? "";
+      if (focusPanel) panels.find((panel) => panel.dataset.internetPanel === key)?.focus();
+    };
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => show(tab.dataset.internetTab ?? "1996"));
+      tab.addEventListener("keydown", (event) => {
+        if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+        event.preventDefault();
+        const direction = event.key === "ArrowRight" ? 1 : -1;
+        const next = tabs[(index + direction + tabs.length) % tabs.length];
+        next?.focus();
+        show(next?.dataset.internetTab ?? "1996");
+      });
+    });
+    show("1996");
+  });
+</script>

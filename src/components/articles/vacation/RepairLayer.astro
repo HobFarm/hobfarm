@@ -1,0 +1,306 @@
+---
+import VacationVisualShell from "./VacationVisualShell.astro";
+
+const modes = [
+  { key: "raw", label: "Raw post" },
+  { key: "note", label: "Crowd context" },
+  { key: "ai", label: "Platform AI" },
+  { key: "independent", label: "Independent check" },
+];
+---
+
+<VacationVisualShell
+  id="repair-layer"
+  kicker="Platform repair attempts"
+  title="Note it, ask it, check it"
+  dek="A crowd can add context. An assistant can search. An independent layer still has to inspect the platform, the crowd, and the assistant."
+  footer="This fictional example demonstrates capabilities and limits. It does not reproduce a current platform interface or treat any one system as a final authority."
+>
+  <div class="repair-grid">
+    <article class="repair-post" aria-label="Fictional post under inspection">
+      <div class="repair-avatar" aria-hidden="true"></div>
+      <p class="repair-handle">Very Certain Account</p>
+      <p class="repair-meta">posted 11 minutes ago</p>
+      <p class="repair-claim">“The mayor admits the city does not care about working people.”</p>
+      <div class="repair-video">Authentic 45-second clip<small>full 48-minute meeting omitted</small></div>
+      <p class="repair-metrics">18K reactions · 9K reposts · 4K replies</p>
+    </article>
+
+    <section>
+      <div class="vtn-controls repair-tabs" role="tablist" aria-label="Compare repair methods">
+        {modes.map((mode, index) => (
+          <button
+            class="vtn-control"
+            id={`repair-tab-${mode.key}`}
+            type="button"
+            role="tab"
+            aria-controls={`repair-panel-${mode.key}`}
+            aria-selected={index === 0 ? "true" : "false"}
+            data-repair-tab={mode.key}
+          >
+            {mode.label}
+          </button>
+        ))}
+      </div>
+
+      <div class="repair-panels" data-repair-root>
+        <article id="repair-panel-raw" class="vtn-card repair-panel is-active" role="tabpanel" aria-labelledby="repair-tab-raw" data-repair-panel="raw" tabindex="0">
+          <span class="vtn-label">Distribution layer</span>
+          <h3>The caption wins the first round</h3>
+          <p>The clip is authentic, emotionally legible, and already moving. The platform has enough behavioral evidence to keep distributing it before any correction exists.</p>
+          <dl>
+            <div><dt>Source</dt><dd>Not shown</dd></div>
+            <div><dt>Context</dt><dd>Full meeting omitted</dd></div>
+            <div><dt>Claim status</dt><dd><mark>Unchecked</mark></dd></div>
+          </dl>
+          <p class="repair-limit">Limit: Engagement arrives immediately. Verification arrives on another clock.</p>
+        </article>
+
+        <article id="repair-panel-note" class="vtn-card repair-panel" role="tabpanel" aria-labelledby="repair-tab-note" data-repair-panel="note" tabindex="0">
+          <span class="vtn-label">Crowd context</span>
+          <h3>A note adds the missing meeting</h3>
+          <p>Contributors attach the complete municipal recording and explain that the quoted sentence answered a different question. The note becomes visible only after raters with different prior viewpoints agree that it is useful.</p>
+          <dl>
+            <div><dt>Useful receipt</dt><dd>Full recording, timestamp 31:42</dd></div>
+            <div><dt>Correction</dt><dd>The mayor described a criticism, then rejected it.</dd></div>
+            <div><dt>Claim status</dt><dd><mark>Misleading clip</mark></dd></div>
+          </dl>
+          <p class="repair-limit">Limit: The note can be good and still arrive after the viral peak.</p>
+        </article>
+
+        <article id="repair-panel-ai" class="vtn-card repair-panel" role="tabpanel" aria-labelledby="repair-tab-ai" data-repair-panel="ai" tabindex="0">
+          <span class="vtn-label">Platform assistant</span>
+          <h3>Search across the live conversation</h3>
+          <p class="repair-loading">Searching public posts…<br />Locating complete video…<br />Comparing transcripts…</p>
+          <p>An integrated assistant can find the longer recording, summarize disagreement, translate captions, and expose sources without making the user leave the post.</p>
+          <p class="repair-chips"><span>Full video</span><span>Transcript</span><span>Local report</span></p>
+          <dl><div><dt>Answer</dt><dd>The clip is real. The attached conclusion is not supported by the full response.</dd></div></dl>
+          <p class="repair-limit">Limit: The platform owns the feed, the interface, and the assistant. Citations remain essential.</p>
+        </article>
+
+        <article id="repair-panel-independent" class="vtn-card repair-panel" role="tabpanel" aria-labelledby="repair-tab-independent" data-repair-panel="independent" tabindex="0">
+          <span class="vtn-label">User-controlled layer</span>
+          <h3>Check all three machines</h3>
+          <p>The independent layer inspects the original post, the crowd note, and the assistant answer. It reconstructs source history and exposes where each conclusion came from.</p>
+          <dl>
+            <div><dt>Original source</dt><dd><mark class="is-good">Found</mark></dd></div>
+            <div><dt>Clip integrity</dt><dd>Authentic excerpt, materially incomplete</dd></div>
+            <div><dt>Caption</dt><dd><mark>Contradicted</mark></dd></div>
+            <div><dt>Note quality</dt><dd>Receipts match the public record</dd></div>
+            <div><dt>AI answer</dt><dd>Supported, with one unresolved translation detail</dd></div>
+          </dl>
+          <p class="repair-limit">Limit: This is still a method, not an oracle. Show receipts, uncertainty, and conflicting evidence.</p>
+        </article>
+      </div>
+    </section>
+  </div>
+
+  <p class="repair-sources">
+    Product documentation:
+    <a href="https://help.x.com/en/using-x/community-notes">X Community Notes</a>,
+    <a href="https://help.x.com/en/using-x/about-grok">Grok</a>, and
+    <a href="https://about.fb.com/news/2025/03/testing-begins-community-notes-facebook-instagram-threads/">Meta Community Notes</a>.
+  </p>
+</VacationVisualShell>
+
+<style>
+  .repair-grid {
+    display: grid;
+    grid-template-columns: minmax(17rem, 0.88fr) minmax(0, 1.12fr);
+    gap: 1.25rem;
+    align-items: start;
+  }
+
+  .repair-post {
+    position: sticky;
+    top: 1rem;
+    border: 4px solid var(--vtn-ink);
+    background: #151718;
+    box-shadow: 0.45rem 0.45rem 0 rgb(21 19 15 / 0.25);
+    color: #f5f1e7;
+    padding: 1.15rem;
+  }
+
+  .repair-avatar {
+    float: left;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-right: 0.7rem;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--vtn-red), var(--vtn-yellow));
+  }
+
+  .repair-handle {
+    margin: 0 !important;
+    color: #fff !important;
+    font-size: 0.78rem;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  .repair-meta {
+    margin: 0 !important;
+    color: #aab0af !important;
+    font-size: 0.7rem;
+  }
+
+  .repair-claim {
+    clear: both;
+    margin: 1.5rem 0 1rem !important;
+    color: #fff !important;
+    font: 900 clamp(1.65rem, 4vw, 2.65rem) / 1.02 Georgia, "Times New Roman", serif;
+  }
+
+  .repair-video {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 16 / 9;
+    border: 3px solid #fff;
+    background: linear-gradient(145deg, #28586a, #111);
+    color: #fff;
+    font-size: clamp(1.25rem, 3vw, 1.85rem);
+    font-weight: 900;
+    line-height: 1;
+    padding: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .repair-video small {
+    display: block;
+    font-size: 0.7rem;
+    line-height: 1.3;
+    text-transform: none;
+  }
+
+  .repair-metrics {
+    margin: 0.75rem 0 0 !important;
+    color: #c8cfcd !important;
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+
+  .repair-tabs { margin-top: 0; }
+
+  .repair-panels[data-enhanced="true"] .repair-panel:not(.is-active) { display: none; }
+
+  .repair-panel {
+    min-height: 30rem;
+    margin-bottom: 1rem;
+    padding: 1.15rem;
+  }
+
+  .repair-panel h3 {
+    margin: 0.45rem 0 0.85rem !important;
+    font: 900 clamp(1.65rem, 3.5vw, 2.15rem) / 1 Georgia, "Times New Roman", serif !important;
+  }
+
+  .repair-panel p { color: var(--vtn-ink) !important; }
+  .repair-panel dl, .repair-panel dd { margin: 0; }
+
+  .repair-panel dl div {
+    display: grid;
+    grid-template-columns: minmax(6.5rem, 8rem) 1fr;
+    gap: 0.65rem;
+    border-top: 2px solid var(--vtn-ink);
+    padding: 0.55rem 0;
+  }
+
+  .repair-panel dt {
+    font-size: 0.68rem;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  .repair-panel dd { font-size: 0.82rem; }
+
+  .repair-panel mark {
+    display: inline-block;
+    border: 2px solid var(--vtn-ink);
+    background: #ef8c7f;
+    color: var(--vtn-ink);
+    font-size: 0.68rem;
+    font-weight: 900;
+    padding: 0.3rem 0.4rem;
+    text-transform: uppercase;
+  }
+
+  .repair-panel mark.is-good { background: var(--vtn-green); }
+
+  .repair-limit {
+    margin: 1rem 0 0 !important;
+    background: var(--vtn-ink);
+    color: var(--vtn-paper) !important;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.8rem;
+  }
+
+  .repair-loading {
+    color: #386c16 !important;
+    font: 900 0.9rem/1.55 "Courier New", monospace;
+    text-transform: uppercase;
+  }
+
+  .repair-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .repair-chips span {
+    background: var(--vtn-blue);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 900;
+    padding: 0.38rem 0.5rem;
+    text-transform: uppercase;
+  }
+
+  .repair-sources {
+    margin: 1rem 0 0 !important;
+    color: var(--vtn-muted) !important;
+    font-size: 0.72rem;
+  }
+
+  .repair-sources a { color: #315b68 !important; font-weight: 700; }
+
+  @media (max-width: 850px) {
+    .repair-grid { grid-template-columns: 1fr; }
+    .repair-post { position: relative; top: auto; }
+    .repair-panel { min-height: 0; }
+  }
+
+  @media (max-width: 430px) {
+    .repair-panel dl div { grid-template-columns: 1fr; gap: 0.15rem; }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-repair-root]").forEach((root) => {
+    if (root.dataset.enhanced === "true") return;
+    root.dataset.enhanced = "true";
+    const visual = root.closest<HTMLElement>(".vtn-visual");
+    const tabs = Array.from(visual?.querySelectorAll<HTMLButtonElement>("[data-repair-tab]") ?? []);
+    const panels = Array.from(root.querySelectorAll<HTMLElement>("[data-repair-panel]"));
+
+    const show = (key: string) => {
+      tabs.forEach((tab) => tab.setAttribute("aria-selected", String(tab.dataset.repairTab === key)));
+      panels.forEach((panel) => panel.classList.toggle("is-active", panel.dataset.repairPanel === key));
+    };
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => show(tab.dataset.repairTab ?? "raw"));
+      tab.addEventListener("keydown", (event) => {
+        if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+        event.preventDefault();
+        const direction = event.key === "ArrowRight" ? 1 : -1;
+        const next = tabs[(index + direction + tabs.length) % tabs.length];
+        next?.focus();
+        show(next?.dataset.repairTab ?? "raw");
+      });
+    });
+    show("raw");
+  });
+</script>

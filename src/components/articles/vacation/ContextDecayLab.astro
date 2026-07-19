@@ -1,0 +1,273 @@
+---
+import VacationVisualShell from "./VacationVisualShell.astro";
+
+const stages = [
+  { name: "Source", language: "English", uploader: "City archive", duration: "42:08", caption: "Mayor presents the complete transit budget and answers questions.", evidence: "Primary recording", drift: 0, warning: "The source is still recoverable." },
+  { name: "Clip", language: "English", uploader: "Anonymous account", duration: "00:45", caption: "Mayor says the city 'does not care' about commuters.", evidence: "Edited excerpt", drift: 22, warning: "The source is still recoverable." },
+  { name: "Reaction", language: "English", uploader: "Commentary channel", duration: "01:31", caption: "This proves the entire transit plan is a deliberate attack.", evidence: "Interpretation", drift: 43, warning: "Commentary is now carrying more meaning than the clip." },
+  { name: "Translation", language: "Spanish", uploader: "Regional aggregator", duration: "00:37", caption: "Alcalde admite que no le importan los trabajadores.", evidence: "Translated repost", drift: 61, warning: "Translation and commentary are now carrying more meaning than the clip." },
+  { name: "Recycled", language: "English", uploader: "Engagement network", duration: "00:29", caption: "BREAKING: Foreign mayor caught insulting all working people.", evidence: "Wrong location added", drift: 79, warning: "The social version is more portable than the original event." },
+  { name: "Coworker", language: "Spoken summary", uploader: "Break room", duration: "00:12", caption: "Did you see that asshole say workers do not matter?", evidence: "Everybody knows", drift: 94, warning: "The social version is more portable than the original event." },
+];
+---
+
+<VacationVisualShell
+  id="context-decay-lab"
+  kicker="Decontextualization simulator"
+  title="Context decay lab"
+  dek="The footage remains real. The sentence attached to it walks away."
+  footer="Every person and claim in this demonstration is fictional. The sequence illustrates a transformation chain without using a real victim or disputed event."
+>
+  <div class="context-grid" data-context-root data-stages={JSON.stringify(stages)}>
+    <section>
+      <div class="context-video" aria-label="Stylized public-record video frame">
+        <div class="context-speaker" aria-hidden="true"></div>
+        <span>Public record</span>
+        <div class="context-clip"><span data-context-clipbar></span></div>
+      </div>
+
+      <ol class="context-trail" aria-label="Copy and repost stages">
+        {stages.map((stage, index) => (
+          <li class:list={[index === 0 && "is-on"]} data-context-stage aria-current={index === 0 ? "step" : undefined}>{stage.name}</li>
+        ))}
+      </ol>
+
+      <div class="vtn-controls">
+        <button class="vtn-control" type="button" data-context-back>Previous copy</button>
+        <button class="vtn-control" type="button" data-context-copy>Copy and repost</button>
+        <button class="vtn-control" type="button" data-context-reset>Original source</button>
+      </div>
+    </section>
+
+    <section class="vtn-card context-report" aria-live="polite">
+      <span class="vtn-label" data-context-name>{stages[0].name}</span>
+      <h3 data-context-caption>{stages[0].caption}</h3>
+      <dl>
+        <div><dt>Language</dt><dd data-context-language>{stages[0].language}</dd></div>
+        <div><dt>Uploader</dt><dd data-context-uploader>{stages[0].uploader}</dd></div>
+        <div><dt>Clip length</dt><dd data-context-duration>{stages[0].duration}</dd></div>
+        <div><dt>Evidence status</dt><dd data-context-evidence>{stages[0].evidence}</dd></div>
+      </dl>
+      <p class="vtn-label context-drift-label">Context drift</p>
+      <div class="context-meter" aria-hidden="true"><span data-context-meter></span></div>
+      <p class="context-warning" data-context-warning>{stages[0].warning}</p>
+    </section>
+  </div>
+
+  <details class="vtn-ledger">
+    <summary>Read the complete transformation ledger</summary>
+    <ol>
+      {stages.map((stage) => (
+        <li><strong>{stage.name}:</strong> {stage.caption} ({stage.evidence}; {stage.duration})</li>
+      ))}
+    </ol>
+  </details>
+</VacationVisualShell>
+
+<style>
+  .context-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(18rem, 0.92fr);
+    gap: 1.25rem;
+    align-items: start;
+  }
+
+  .context-video {
+    position: relative;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border: 0.5rem solid var(--vtn-ink);
+    background: linear-gradient(145deg, #4f6d75, #111);
+    color: #fff;
+  }
+
+  .context-video > span {
+    position: absolute;
+    bottom: 2.1rem;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .context-speaker {
+    position: relative;
+    width: clamp(4rem, 11vw, 6.6rem);
+    height: clamp(5.5rem, 15vw, 9.5rem);
+    border: 4px solid #111;
+    border-radius: 46% 46% 20% 20%;
+    background: #d2b48c;
+  }
+
+  .context-speaker::before {
+    position: absolute;
+    top: -2.6rem;
+    left: 15%;
+    width: 70%;
+    aspect-ratio: 1;
+    border: 4px solid #111;
+    border-radius: 50%;
+    background: #c89f7c;
+    content: "";
+  }
+
+  .context-clip {
+    position: absolute;
+    right: 7%;
+    bottom: 0.65rem;
+    left: 7%;
+    height: 0.85rem;
+    border: 2px solid #fff;
+    background: #111;
+  }
+
+  .context-clip span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: var(--vtn-red);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+
+  .context-trail {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin: 0.85rem 0 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+  }
+
+  .context-trail li {
+    margin: 0 !important;
+    border: 2px solid var(--vtn-ink);
+    background: var(--vtn-white);
+    color: var(--vtn-ink) !important;
+    font-size: 0.65rem;
+    font-weight: 900;
+    padding: 0.38rem 0.48rem;
+    text-transform: uppercase;
+  }
+
+  .context-trail li.is-on { background: var(--vtn-yellow); }
+
+  .context-report {
+    padding: clamp(1rem, 3vw, 1.25rem);
+  }
+
+  .context-report h3 {
+    margin: 0.45rem 0 1rem !important;
+    font: 900 clamp(1.55rem, 3.5vw, 2.15rem) / 1 Georgia, "Times New Roman", serif !important;
+  }
+
+  .context-report dl,
+  .context-report dd { margin: 0; }
+
+  .context-report dl div {
+    display: grid;
+    grid-template-columns: minmax(6.5rem, 8rem) 1fr;
+    gap: 0.6rem;
+    border-top: 2px solid var(--vtn-ink);
+    padding: 0.5rem 0;
+  }
+
+  .context-report dt {
+    font-size: 0.75rem;
+    font-weight: 900;
+  }
+
+  .context-report dd { font-size: 0.8rem; }
+
+  .context-drift-label { margin: 1rem 0 0.35rem !important; }
+
+  .context-meter {
+    height: 1.9rem;
+    border: 3px solid var(--vtn-ink);
+    background: #fff;
+  }
+
+  .context-meter span {
+    display: block;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, var(--vtn-green), var(--vtn-yellow), var(--vtn-red));
+    transition: width 0.35s ease;
+  }
+
+  .context-warning {
+    margin: 0.75rem 0 0 !important;
+    color: #386c16 !important;
+    font: 700 0.74rem/1.4 "Courier New", monospace;
+  }
+
+  @media (max-width: 850px) {
+    .context-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 430px) {
+    .context-report dl div { grid-template-columns: 1fr; gap: 0.15rem; }
+  }
+</style>
+
+<script>
+  type ContextStage = {
+    name: string;
+    language: string;
+    uploader: string;
+    duration: string;
+    caption: string;
+    evidence: string;
+    drift: number;
+    warning: string;
+  };
+
+  document.querySelectorAll<HTMLElement>("[data-context-root]").forEach((root) => {
+    if (root.dataset.contextReady === "true") return;
+    root.dataset.contextReady = "true";
+    const stages = JSON.parse(root.dataset.stages ?? "[]") as ContextStage[];
+    const trail = Array.from(root.querySelectorAll<HTMLElement>("[data-context-stage]"));
+    let index = 0;
+
+    const setText = (selector: string, value: string) => {
+      const element = root.querySelector<HTMLElement>(selector);
+      if (element) element.textContent = value;
+    };
+
+    const render = () => {
+      const stage = stages[index];
+      if (!stage) return;
+      setText("[data-context-name]", stage.name);
+      setText("[data-context-caption]", stage.caption);
+      setText("[data-context-language]", stage.language);
+      setText("[data-context-uploader]", stage.uploader);
+      setText("[data-context-duration]", stage.duration);
+      setText("[data-context-evidence]", stage.evidence);
+      setText("[data-context-warning]", stage.warning);
+      const meter = root.querySelector<HTMLElement>("[data-context-meter]");
+      const clipbar = root.querySelector<HTMLElement>("[data-context-clipbar]");
+      if (meter) meter.style.width = `${stage.drift}%`;
+      if (clipbar) clipbar.style.transform = `scaleX(${Math.max(0.12, 1 - index * 0.16)})`;
+      trail.forEach((item, itemIndex) => {
+        item.classList.toggle("is-on", itemIndex <= index);
+        if (itemIndex === index) item.setAttribute("aria-current", "step");
+        else item.removeAttribute("aria-current");
+      });
+    };
+
+    root.querySelector("[data-context-copy]")?.addEventListener("click", () => {
+      index = Math.min(stages.length - 1, index + 1);
+      render();
+    });
+    root.querySelector("[data-context-back]")?.addEventListener("click", () => {
+      index = Math.max(0, index - 1);
+      render();
+    });
+    root.querySelector("[data-context-reset]")?.addEventListener("click", () => {
+      index = 0;
+      render();
+    });
+  });
+</script>
