@@ -3,7 +3,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import ArticleCard from "@/components/articles/ArticleCard.astro";
-import { mediaImageUrl, mediaUrl } from "@/lib/gallery";
+import { mediaImageUrl } from "@/lib/gallery";
 import { getVisualSystem, visualSystemPath } from "@/data/visual-systems";
 import {
   workshopBenches,
@@ -14,6 +14,10 @@ import {
 import { articlePath, getArticleDepartment, getPublishedArticles } from "@/lib/articles";
 import { workshopPrograms, siteSections } from "@/data/site-hierarchy";
 import WorkshopMediaIndex from "@/components/workshop/WorkshopMediaIndex.astro";
+import WorkshopProcessFilm from "@/components/workshop/WorkshopProcessFilm.astro";
+import WorkshopPsyGothLanes from "@/components/workshop/WorkshopPsyGothLanes.astro";
+import WorkshopPhotographySource from "@/components/workshop/WorkshopPhotographySource.astro";
+import { workshopProcessFilm } from "@/data/workshop-process-film";
 import { getMedia } from "@/data/media-registry";
 
 const workshopSection = siteSections.find((entry) => entry.id === "workshop")!;
@@ -41,9 +45,7 @@ const stellaSheet = stella?.sheetPreviews[0]
 const pairPoster = system?.featuredAssets.poster
   ? image(system.featuredAssets.poster.folder, system.featuredAssets.poster.file, 1100)
   : null;
-const pairVideo = system?.featuredAssets.teaserVideo
-  ? mediaUrl(system.featuredAssets.teaserVideo.folder, system.featuredAssets.teaserVideo.file)
-  : null;
+const pairVideo = null;
 
 const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
 const workshopJsonLd = {
@@ -123,6 +125,46 @@ const workshopJsonLd = {
       </Wrapper>
     </section>
 
+    <section id="process-film" class="process-film-section border-b border-base-800/70" aria-labelledby="process-film-heading">
+      <Wrapper variant="standard" class="py-16 lg:py-24">
+        <header class="process-film-section__header">
+          <div>
+            <p>Process Film 01 / Zima</p>
+            <h2 id="process-film-heading">Follow the decisions, not just the finished frame.</h2>
+          </div>
+          <div>
+            <p>
+              One PsyGoth identity moves from a written brief into a neutral mannequin, visual-language rules, wardrobe, a directed scene, and the published avatar performance. The source strip stays visible so every change has something to answer to.
+            </p>
+            <nav aria-label="Related process routes">
+              <a href="/workshop/character-mannequin/" data-event="workshop_character_mannequin_clicked">Character / Mannequin</a>
+              <a href="/workshop/stylefusion/" data-event="workshop_stylefusion_clicked">StyleFusion</a>
+              <a href="/workshop/workshop-notes/psygoth/">PsyGoth note</a>
+            </nav>
+          </div>
+        </header>
+
+        <div class="mt-10">
+          <WorkshopProcessFilm
+            manifest={workshopProcessFilm}
+            variant="wide"
+            id="workshop-process-film"
+            showNavigator={true}
+            showReferenceStrip={true}
+            showTranscript={true}
+            showNotes={true}
+            transcriptOpen={false}
+            autoplay={false}
+            loop={false}
+          />
+        </div>
+      </Wrapper>
+    </section>
+
+    <WorkshopPsyGothLanes />
+
+    <WorkshopPhotographySource />
+
     <WorkshopMediaIndex />
 
     <section class="border-b border-base-800/70" aria-labelledby="practice-heading">
@@ -156,20 +198,20 @@ const workshopJsonLd = {
 
     {system && (
       <section id="sophia-stella" class="case-study border-b border-base-800/70" aria-labelledby="case-study-heading">
-        <Wrapper variant="standard" class="py-16 lg:py-24">
+        <Wrapper variant="standard" class="py-12 lg:py-16">
           <header class="grid gap-6 lg:grid-cols-[minmax(0,0.75fr)_minmax(20rem,0.45fr)] lg:items-end">
             <div>
-              <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-magenta-bright">Lead case study / Sophia + Stella</p>
-              <h2 id="case-study-heading" class="mt-4 font-display text-4xl font-light text-white text-balance lg:text-6xl">
-                One mannequin. Two lives. A complete media system.
+              <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-magenta-bright">Compact case study / Sophia + Stella</p>
+              <h2 id="case-study-heading" class="mt-4 font-display text-4xl font-light text-white text-balance lg:text-5xl">
+                One base can still lead two lives.
               </h2>
             </div>
             <p class="max-w-xl text-sm leading-relaxed text-base-300 lg:justify-self-end">
-              Sophia and Stella began with an eye-first, spooky-cute illustration language. The same face, proportions, feline silhouette, and identity anchors move through two opposing palettes, wardrobes, attitudes, and worlds.
+              Sophia and Stella remain one complete example inside the larger Workshop. Their shared face, proportions, and feline silhouette survive two opposing palettes, wardrobes, attitudes, and worlds.
             </p>
           </header>
 
-          <div class="mt-10 grid gap-4 lg:grid-cols-2">
+          <div class="case-study__detail mt-10 grid gap-4 lg:grid-cols-2">
             <article class="overflow-hidden rounded-xl border border-base-800 bg-base-950/65">
               {sophiaHero && <img src={sophiaHero} alt={sophia?.hero?.alt ?? "Sophia hero"} class="aspect-[16/10] w-full object-cover object-top" loading="lazy" decoding="async" />}
               <div class="p-6">
@@ -188,7 +230,7 @@ const workshopJsonLd = {
             </article>
           </div>
 
-          <div class="mt-4 grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.42fr)]">
+          <div class="case-study__detail mt-4 grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.42fr)]">
             <div class="grid gap-4 sm:grid-cols-2">
               {sophiaSheet && <img src={sophiaSheet} alt={sophia?.sheetPreviews[0]?.alt ?? "Sophia character sheet preview"} class="w-full rounded-xl border border-base-800 bg-base-950 object-contain" loading="lazy" decoding="async" />}
               {stellaSheet && <img src={stellaSheet} alt={stella?.sheetPreviews[0]?.alt ?? "Stella character sheet preview"} class="w-full rounded-xl border border-base-800 bg-base-950 object-contain" loading="lazy" decoding="async" />}
@@ -215,7 +257,7 @@ const workshopJsonLd = {
             </aside>
           </div>
 
-          <div class="mt-4 grid gap-4 md:grid-cols-2">
+          <div class="case-study__compact-media mt-6 grid gap-4 md:grid-cols-[minmax(0,0.6fr)_minmax(18rem,0.4fr)]">
             {pairPoster && (
               <div class="media-frame media-frame--compact">
                 <img
@@ -243,7 +285,7 @@ const workshopJsonLd = {
           </div>
 
           <div class="mt-8 flex flex-wrap gap-2">
-            <Button isLink size="sm" variant="green" href={visualSystemPath(system.slug)}>Open the full visual system</Button>
+            <Button isLink size="sm" variant="green" href={visualSystemPath(system.slug)}>Open the Sophia / Stella system</Button>
             <Button isLink size="sm" variant="muted" href="/shop/sophia-stella-sheet-pack/">View the character pack</Button>
             <Button isLink size="sm" variant="muted" href="/academy/">Learn to build a system</Button>
           </div>
@@ -406,6 +448,87 @@ const workshopJsonLd = {
       radial-gradient(circle at 15% 40%, rgba(25, 227, 227, 0.07), transparent 30rem),
       radial-gradient(circle at 85% 54%, rgba(226, 58, 78, 0.07), transparent 32rem),
       rgba(14, 11, 22, 0.38);
+  }
+
+  .case-study__detail {
+    display: none;
+  }
+
+  .case-study__compact-media {
+    max-width: 44rem;
+  }
+
+  .process-film-section {
+    background:
+      radial-gradient(circle at 12% 16%, rgb(59 111 224 / 0.15), rgb(7 6 11 / 0) 32rem),
+      radial-gradient(circle at 88% 68%, rgb(160 107 255 / 0.1), rgb(7 6 11 / 0) 30rem),
+      #07060b;
+  }
+
+  .process-film-section__header {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .process-film-section__header > div:first-child > p {
+    margin: 0;
+    color: #6b93ed;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+  }
+
+  .process-film-section__header h2 {
+    max-width: 58rem;
+    margin: 0.75rem 0 0;
+    color: #ece9f5;
+    font-family: var(--font-display);
+    font-size: clamp(2.7rem, 7vw, 5.5rem);
+    font-weight: 300;
+    letter-spacing: -0.045em;
+    line-height: 0.96;
+  }
+
+  .process-film-section__header > div:last-child > p {
+    max-width: 42rem;
+    margin: 0;
+    color: var(--color-base-300);
+    font-size: 0.9rem;
+    line-height: 1.75;
+  }
+
+  .process-film-section__header nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 1rem;
+  }
+
+  .process-film-section__header nav a {
+    padding: 0.45rem 0.65rem;
+    border: 1px solid var(--color-base-700);
+    border-radius: 0.35rem;
+    color: var(--color-base-200);
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .process-film-section__header nav a:hover,
+  .process-film-section__header nav a:focus-visible {
+    border-color: #55d7ff;
+    color: #ece9f5;
+    outline: 2px solid rgb(85 215 255 / 0.65);
+    outline-offset: 2px;
+  }
+
+  @media (min-width: 64rem) {
+    .process-film-section__header {
+      grid-template-columns: minmax(0, 1.12fr) minmax(24rem, 0.62fr);
+      align-items: end;
+    }
   }
 
   .method-card,

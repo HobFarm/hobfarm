@@ -1,0 +1,262 @@
+---
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import { getMedia } from "@/data/media-registry";
+
+const lanes = [
+  {
+    name: "Zima",
+    label: "Blue / structure",
+    description: "Ice, distance, astral geometry, and cold light give the system its architecture.",
+    media: getMedia("workshop.psygoth.zima.design-v2"),
+    accent: "#5cf0f0",
+  },
+  {
+    name: "Nina",
+    label: "Red / pressure",
+    description: "Fire, glamour, hard contrast, and metallic heat keep the shared format under tension.",
+    media: getMedia("workshop.psygoth.nina.design-v2"),
+    accent: "#ff603f",
+  },
+  {
+    name: "Em",
+    label: "Green / survival",
+    description: "Moss, stone, crystal, insects, and regrowth turn the same gothic structure toward what survives.",
+    media: getMedia("workshop.psygoth.em.design-v2"),
+    accent: "#8faf4f",
+  },
+];
+---
+
+<section class="psygoth-lanes border-b border-base-800/70" aria-labelledby="psygoth-lanes-heading">
+  <Wrapper variant="standard" class="py-14 lg:py-20">
+    <header class="psygoth-lanes__header">
+      <div>
+        <p>Visual-language comparison / PsyGoth</p>
+        <h2 id="psygoth-lanes-heading">One structure, three elemental lanes.</h2>
+      </div>
+      <div>
+        <p>
+          Zima, Nina, and Em share an ornate portrait frame, gothic wardrobe logic, symbolic diagrams, and direct eye contact. Color changes the job of the world around them without flattening them into one character.
+        </p>
+        <a href="/workshop/workshop-notes/psygoth/">Open the PsyGoth production note &rarr;</a>
+      </div>
+    </header>
+
+    <div class="psygoth-lanes__grid">
+      {lanes.map((lane, index) => (
+        <article class="psygoth-lane" style={`--lane-accent:${lane.accent}`}>
+          <div class="psygoth-lane__image">
+            <img
+              src={lane.media.src}
+              alt={lane.media.alt}
+              width={lane.media.width}
+              height={lane.media.height}
+              loading="lazy"
+              decoding="async"
+            />
+            <span>{String(index + 1).padStart(2, "0")}</span>
+          </div>
+          <div class="psygoth-lane__copy">
+            <p>{lane.label}</p>
+            <h3>{lane.name}</h3>
+            <span>{lane.description}</span>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="psygoth-lanes__rules">
+      <p><strong>Locked</strong> Portrait scale / ornamental frame / black gothic base / symbolic field / direct address</p>
+      <p><strong>Variable</strong> Element / palette / hair / material response / emblem set / environmental pressure</p>
+    </div>
+  </Wrapper>
+</section>
+
+<style>
+  .psygoth-lanes {
+    background:
+      radial-gradient(circle at 12% 35%, rgb(59 111 224 / 0.12), transparent 34rem),
+      radial-gradient(circle at 88% 60%, rgb(122 150 61 / 0.08), transparent 30rem),
+      #07060b;
+  }
+
+  .psygoth-lanes__header {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .psygoth-lanes__header > div:first-child > p,
+  .psygoth-lane__copy p {
+    margin: 0;
+    color: #5cf0f0;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .psygoth-lanes__header h2 {
+    max-width: 50rem;
+    margin: 0.8rem 0 0;
+    color: #ece9f5;
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 5.4rem);
+    font-weight: 300;
+    letter-spacing: -0.05em;
+    line-height: 0.95;
+  }
+
+  .psygoth-lanes__header > div:last-child > p {
+    max-width: 42rem;
+    margin: 0;
+    color: #c8c6d4;
+    font-size: 0.96rem;
+    line-height: 1.75;
+  }
+
+  .psygoth-lanes__header a {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #ece9f5;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .psygoth-lanes__grid {
+    display: grid;
+    gap: 0.9rem;
+    margin-top: 2.5rem;
+  }
+
+  .psygoth-lane {
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--lane-accent) 34%, #2c2440);
+    border-radius: 0.75rem;
+    background: #0e0b16;
+  }
+
+  .psygoth-lane__image {
+    position: relative;
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+    background: #07060b;
+  }
+
+  .psygoth-lane__image::after {
+    position: absolute;
+    inset: auto 0 0;
+    height: 28%;
+    background: linear-gradient(to top, #0e0b16, transparent);
+    content: "";
+  }
+
+  .psygoth-lane__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 700ms ease;
+  }
+
+  .psygoth-lane:hover .psygoth-lane__image img {
+    transform: scale(1.025);
+  }
+
+  .psygoth-lane__image span {
+    position: absolute;
+    z-index: 1;
+    top: 0.8rem;
+    right: 0.8rem;
+    display: grid;
+    width: 2.15rem;
+    height: 2.15rem;
+    place-items: center;
+    border: 1px solid var(--lane-accent);
+    background: rgb(7 6 11 / 0.82);
+    color: var(--lane-accent);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+  }
+
+  .psygoth-lane__copy {
+    padding: 1.25rem;
+    border-top: 2px solid var(--lane-accent);
+  }
+
+  .psygoth-lane__copy p {
+    color: var(--lane-accent);
+  }
+
+  .psygoth-lane__copy h3 {
+    margin: 0.55rem 0 0;
+    color: #ece9f5;
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 300;
+  }
+
+  .psygoth-lane__copy span {
+    display: block;
+    margin-top: 0.65rem;
+    color: #b4b0c1;
+    font-size: 0.82rem;
+    line-height: 1.65;
+  }
+
+  .psygoth-lanes__rules {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    padding: 1.15rem;
+    border: 1px solid #2c2440;
+    background: #0e0b16;
+  }
+
+  .psygoth-lanes__rules p {
+    margin: 0;
+    color: #9b96ad;
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.04em;
+    line-height: 1.65;
+    text-transform: uppercase;
+  }
+
+  .psygoth-lanes__rules strong {
+    margin-right: 0.6rem;
+    color: #5cf0f0;
+    font-weight: 500;
+  }
+
+  @media (min-width: 48rem) {
+    .psygoth-lanes__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .psygoth-lanes__rules {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .psygoth-lanes__header {
+      grid-template-columns: minmax(0, 0.86fr) minmax(22rem, 0.44fr);
+      align-items: end;
+    }
+
+    .psygoth-lanes__header > div:last-child {
+      justify-self: end;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .psygoth-lane__image img {
+      transition: none;
+    }
+
+    .psygoth-lane:hover .psygoth-lane__image img {
+      transform: none;
+    }
+  }
+</style>

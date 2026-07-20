@@ -2,7 +2,7 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import MagazineFrontPage from "@/components/home/MagazineFrontPage.astro";
 import SiteSections from "@/components/home/SiteSections.astro";
-import VisualSystemFeature from "@/components/home/VisualSystemFeature.astro";
+import HomeWorkshop from "@/components/home/HomeWorkshop.astro";
 import LatestDrops from "@/components/home/LatestDrops.astro";
 import ExploreSupportFollow from "@/components/home/ExploreSupportFollow.astro";
 ---
@@ -15,8 +15,8 @@ import ExploreSupportFollow from "@/components/home/ExploreSupportFollow.astro";
   {/* 1 Hero · 2 Cover story · 3 Latest articles · 4 Departments */}
   <MagazineFrontPage />
   <SiteSections />
-  {/* Workshop case study sits beneath the shared six-section directory. */}
-  <VisualSystemFeature />
+  {/* Workshop overview sits beneath the shared six-section directory. */}
+  <HomeWorkshop />
   {/* Finished releases; self-suppresses when empty. */}
   <LatestDrops />
   <ExploreSupportFollow />

@@ -16,6 +16,9 @@ test("Workshop media is addressed through the central registry", () => {
     "character.generic-37.result",
     "academy.banner.video",
     "mtm.banner.video",
+    "workshop.psygoth.zima.design-v2",
+    "workshop.psygoth.nina.design-v2",
+    "workshop.psygoth.em.design-v2",
   ]) {
     assert.match(registry, new RegExp(id.replaceAll(".", "\\.")));
   }
@@ -56,6 +59,7 @@ test("every Workshop video declares a poster and defers loading", () => {
     read("src/components/workshop/CharacterLookChapter.astro"),
     read("src/components/workshop/StyleCardArchive.astro"),
     read("src/components/workshop/WorkshopMediaIndex.astro"),
+    read("src/components/workshop/WorkshopProcessFilm.astro"),
   ];
 
   for (const source of files) {

@@ -1,0 +1,206 @@
+---
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import BeforeAfterCompare from "@/components/ui/BeforeAfterCompare.astro";
+import { getMedia } from "@/data/media-registry";
+const source = getMedia("before-after.shit-to-shine.source");
+const restored = getMedia("before-after.shit-to-shine.after");
+const transition = getMedia("before-after.shit-to-shine.video");
+const documentary = getMedia("before-after.north-shore.before");
+const documentaryLater = getMedia("before-after.north-shore.after");
+const alternate = getMedia("before-after.salton-city.after");
+---
+
+<section class="photo-source-section border-b border-base-800/70" aria-label="Photography as source material">
+  <Wrapper variant="standard" class="py-16 lg:py-24">
+    <div class="photo-source">
+    <header class="photo-source__header">
+      <div>
+        <p>Photography as source material</p>
+        <h2>Put the photograph to work.</h2>
+      </div>
+      <p>
+        A HobFarm photograph can hold evidence, anchor a comparison, or set the geometry for a new frame. The camera position stays useful while restoration, decay, collage, alternate history, and motion test different claims against it.
+      </p>
+    </header>
+
+    <div class="photo-source__grid">
+      <BeforeAfterCompare
+        before={{ src: source.src, alt: source.alt, label: "Source photograph" }}
+        after={{ src: restored.src, alt: restored.alt, label: "Rebuilt frame" }}
+        video={{ src: transition.src, poster: transition.poster!, alt: transition.alt }}
+        aspect="aspect-[4/3]"
+        fit="cover"
+        ariaLabel="Compare the abandoned laundry source photograph with its rebuilt scene"
+        id="workshop-photo-source-compare"
+      />
+
+      <div class="photo-source__uses">
+        <article class="photo-source__use photo-source__use--documentary">
+          <div>
+            <img src={documentary.src} alt={documentary.alt} loading="lazy" decoding="async" />
+            <img src={documentaryLater.src} alt={documentaryLater.alt} loading="lazy" decoding="async" />
+          </div>
+          <p>Documentary comparison</p>
+          <h3>Let two real dates disagree.</h3>
+        </article>
+        <article class="photo-source__use photo-source__use--alternate">
+          <img src={alternate.src} alt={alternate.alt} loading="lazy" decoding="async" />
+          <div>
+            <p>Alternate history</p>
+            <h3>Keep the evidence visible when the future becomes invented.</h3>
+          </div>
+        </article>
+        <ul>
+          <li>restore damage without erasing the record</li>
+          <li>compare the same place across time</li>
+          <li>build collage from actual visual evidence</li>
+          <li>use the still as the first or final frame of motion</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="photo-source__actions">
+      <Button isLink size="sm" variant="green" href="/workshop/before-and-after/" data-event="workshop_before_after_clicked">
+        Open Before & After
+      </Button>
+      <Button isLink size="sm" variant="muted" href="/workshop/workshop-notes/" data-event="workshop_notes_clicked">
+        Read Workshop Notes
+      </Button>
+    </div>
+    </div>
+  </Wrapper>
+</section>
+
+<style>
+  .photo-source-section {
+    background:
+      radial-gradient(circle at 88% 20%, rgb(226 58 78 / 0.08), rgb(7 6 11 / 0) 30rem),
+      #07060b;
+  }
+
+  .photo-source__header {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .photo-source__header > div > p,
+  .photo-source__use p {
+    margin: 0;
+    color: #ed6675;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .photo-source__header h2 {
+    max-width: 52rem;
+    margin: 0.7rem 0 0;
+    color: #ece9f5;
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 7vw, 5.5rem);
+    font-weight: 300;
+    letter-spacing: -0.045em;
+    line-height: 0.96;
+  }
+
+  .photo-source__header > p {
+    max-width: 42rem;
+    margin: 0;
+    color: var(--color-base-300);
+    font-size: 0.95rem;
+    line-height: 1.75;
+  }
+
+  .photo-source__grid {
+    display: grid;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .photo-source__uses {
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  .photo-source__use {
+    overflow: hidden;
+    border: 1px solid var(--color-base-800);
+    background: var(--color-base-900);
+  }
+
+  .photo-source__use img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .photo-source__use--documentary > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    aspect-ratio: 16 / 7;
+  }
+
+  .photo-source__use--documentary > p,
+  .photo-source__use--documentary h3,
+  .photo-source__use--alternate > div {
+    margin-inline: 1rem;
+  }
+
+  .photo-source__use--documentary > p {
+    margin-top: 1rem;
+  }
+
+  .photo-source__use h3 {
+    margin-top: 0.45rem;
+    margin-bottom: 1rem;
+    color: #ece9f5;
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 3vw, 2rem);
+    font-weight: 350;
+    line-height: 1.05;
+  }
+
+  .photo-source__use--alternate {
+    display: grid;
+    grid-template-columns: minmax(8rem, 0.42fr) minmax(0, 1fr);
+    min-height: 12rem;
+  }
+
+  .photo-source__use--alternate > div {
+    align-self: center;
+  }
+
+  .photo-source__uses ul {
+    display: grid;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 1rem 1rem 1rem 2rem;
+    border-left: 2px solid #e23a4e;
+    background: rgb(14 11 22 / 0.62);
+    color: var(--color-base-300);
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+
+  .photo-source__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+  }
+
+  @media (min-width: 60rem) {
+    .photo-source__header {
+      grid-template-columns: minmax(0, 1fr) minmax(22rem, 0.65fr);
+      align-items: end;
+    }
+
+    .photo-source__grid {
+      grid-template-columns: minmax(0, 1.15fr) minmax(22rem, 0.68fr);
+      align-items: start;
+    }
+  }
+</style>

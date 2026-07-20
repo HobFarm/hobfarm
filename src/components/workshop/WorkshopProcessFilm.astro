@@ -1,0 +1,763 @@
+---
+import {
+  workshopProcessFilm,
+  type WorkshopProcessManifest,
+  type WorkshopProcessVariant,
+} from "@/data/workshop-process-film";
+
+interface Props {
+  manifest?: WorkshopProcessManifest;
+  variant?: WorkshopProcessVariant;
+  id?: string;
+  showNavigator?: boolean;
+  showTranscript?: boolean;
+  showReferenceStrip?: boolean;
+  showNotes?: boolean;
+  transcriptOpen?: boolean;
+  autoplay?: boolean;
+  loop?: boolean;
+  compact?: boolean;
+}
+
+const {
+  manifest = workshopProcessFilm,
+  variant = "wide",
+  id = `workshop-process-${variant}`,
+  showNavigator = true,
+  showTranscript = true,
+  showReferenceStrip = true,
+  showNotes = true,
+  transcriptOpen = false,
+  autoplay = false,
+  loop = false,
+  compact = false,
+} = Astro.props;
+
+const film = manifest.variants[variant];
+const initialStage = manifest.stages[0];
+const initialStatic =
+  initialStage.media.find((item) => item.role === "main") ?? initialStage.media[0];
+const transcriptId = `${id}-transcript`;
+const stageData = manifest.stages.map((stage) => ({
+  id: stage.id,
+  label: stage.label,
+  headline: stage.headline,
+  start: stage.timing[variant].start,
+  duration: stage.timing[variant].duration,
+  staticSrc:
+    stage.media.find((item) => item.role === "main")?.src ??
+    stage.media.find((item) => item.role === "reference")?.src,
+  staticAlt:
+    stage.media.find((item) => item.role === "main")?.alt ??
+    stage.media.find((item) => item.role === "reference")?.alt ??
+    stage.headline,
+}));
+---
+
+<section
+  class:list={["process-film", `process-film--${variant}`, compact && "process-film--compact"]}
+  id={id}
+  data-process-film
+  data-variant={variant}
+  data-autoplay={String(autoplay)}
+  data-loop={String(loop)}
+  aria-label={film.label}
+>
+  <div class="process-film__player-shell">
+    <div class="process-film__player" style={`aspect-ratio:${film.width}/${film.height}`}>
+      <video
+        data-process-video
+        data-src={film.videoSrc}
+        poster={film.posterSrc}
+        muted
+        playsinline
+        preload="none"
+        controls
+        loop={loop}
+        aria-describedby={showTranscript ? transcriptId : undefined}
+        aria-label={`${manifest.title}. ${film.label}.`}
+      ></video>
+      <img
+        class="process-film__static"
+        data-process-static
+        src={initialStatic?.src ?? film.posterSrc}
+        alt={initialStatic?.alt ?? manifest.title}
+        width={film.width}
+        height={film.height}
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="process-film__loading" data-process-loading aria-hidden="true">
+        <span></span>
+        Poster loaded. Film waits until this section enters the viewport.
+      </div>
+    </div>
+
+    <div class="process-film__status" aria-live="polite" aria-atomic="true">
+      <div>
+        <p data-process-stage-label>
+          {String(initialStage.order).padStart(2, "0")} / {initialStage.label}
+        </p>
+        <strong data-process-stage-headline>{initialStage.headline}</strong>
+      </div>
+      <progress data-process-progress max={film.duration} value="0">
+        0 of {film.duration} seconds
+      </progress>
+    </div>
+
+    <div class="process-film__controls" aria-label="Process film controls">
+      <button type="button" data-process-action="play" data-event="workshop_process_film_play">
+        Play film
+      </button>
+      <button type="button" data-process-action="replay" data-event="workshop_process_film_replay">
+        Replay
+      </button>
+      <span>{film.width} × {film.height} / {film.duration.toFixed(1)} sec / muted</span>
+    </div>
+  </div>
+
+  {showNavigator && (
+    <nav class="process-film__navigator" aria-label="Process film stages">
+      {manifest.stages.map((stage, index) => (
+        <button
+          type="button"
+          data-process-stage={stage.id}
+          data-stage-index={index}
+          data-stage-start={stage.timing[variant].start}
+          data-event="workshop_process_stage_selected"
+          aria-pressed={index === 0 ? "true" : "false"}
+        >
+          <span>{String(stage.order).padStart(2, "0")}</span>
+          {stage.label}
+        </button>
+      ))}
+    </nav>
+  )}
+
+  {showReferenceStrip && (
+    <div class="process-film__references" aria-label="Process source strip">
+      {manifest.stages.map((stage, index) => {
+        const source =
+          stage.media.find((item) => item.role === "main") ??
+          stage.media.find((item) => item.role === "reference");
+        return source ? (
+          <button
+            type="button"
+            data-process-reference={stage.id}
+            data-stage-index={index}
+            aria-label={`Show ${stage.label}`}
+          >
+            <img src={source.src} alt="" loading="lazy" decoding="async" />
+            <span>{String(stage.order).padStart(2, "0")}</span>
+          </button>
+        ) : null;
+      })}
+    </div>
+  )}
+
+  {showTranscript && (
+    <details class="process-film__transcript" id={transcriptId} open={transcriptOpen}>
+      <summary>Read the complete stage transcript</summary>
+      <ol>
+        {manifest.stages.map((stage) => (
+          <li id={`${id}-${stage.id}`}>
+            <header>
+              <span>{String(stage.order).padStart(2, "0")}</span>
+              <div>
+                <p>{stage.label}</p>
+                <h3>{stage.headline}</h3>
+              </div>
+            </header>
+            <p>{stage.explanation}</p>
+            <p><strong>Shot direction:</strong> {stage.shotDirection}</p>
+            {showNotes && (
+              <dl>
+                <div>
+                  <dt>Locked</dt>
+                  <dd>{stage.locked?.join(" · ")}</dd>
+                </div>
+                <div>
+                  <dt>Variable</dt>
+                  <dd>{stage.variable?.join(" · ")}</dd>
+                </div>
+              </dl>
+            )}
+          </li>
+        ))}
+      </ol>
+      <p class="process-film__end-message">{manifest.endMessage}</p>
+    </details>
+  )}
+
+  <script is:inline type="application/json" data-process-stage-data set:html={JSON.stringify(stageData)}></script>
+</section>
+
+<style>
+  .process-film {
+    --film-accent: #55d7ff;
+    --film-accent-2: #a06bff;
+    color: var(--color-base-100);
+  }
+
+  .process-film__player-shell {
+    overflow: hidden;
+    border: 1px solid var(--color-base-700);
+    border-radius: 0.9rem;
+    background: #07060b;
+    box-shadow: 0 28px 90px rgb(25 227 227 / 0.08);
+  }
+
+  .process-film__player {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    background:
+      radial-gradient(circle at 50% 20%, rgb(59 111 224 / 0.24), rgb(7 6 11 / 0) 48%),
+      #07060b;
+  }
+
+  .process-film--vertical .process-film__player-shell {
+    width: min(100%, 34rem);
+    margin-inline: auto;
+  }
+
+  .process-film__player :where(video, .process-film__static) {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .process-film__static {
+    display: none;
+  }
+
+  .process-film__loading {
+    position: absolute;
+    inset: auto 1rem 1rem;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.65rem 0.75rem;
+    border: 1px solid rgb(85 215 255 / 0.24);
+    border-radius: 0.45rem;
+    background: rgb(7 6 11 / 0.84);
+    color: var(--color-base-300);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    line-height: 1.45;
+    backdrop-filter: blur(10px);
+  }
+
+  .process-film__loading span {
+    width: 0.5rem;
+    height: 0.5rem;
+    flex: 0 0 auto;
+    border-radius: 999px;
+    background: var(--film-accent);
+    box-shadow: 0 0 16px rgb(85 215 255 / 0.7);
+  }
+
+  .process-film[data-loaded="true"] .process-film__loading {
+    display: none;
+  }
+
+  .process-film__status {
+    display: grid;
+    gap: 0.8rem;
+    padding: 1rem;
+    border-top: 1px solid var(--color-base-800);
+    background: rgb(14 11 22 / 0.92);
+  }
+
+  .process-film__status p {
+    margin: 0;
+    color: var(--film-accent);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .process-film__status strong {
+    display: block;
+    margin-top: 0.3rem;
+    color: #ece9f5;
+    font-family: var(--font-display);
+    font-size: clamp(1.1rem, 3vw, 1.55rem);
+    font-weight: 350;
+    line-height: 1.1;
+  }
+
+  .process-film__status progress {
+    width: 100%;
+    height: 0.35rem;
+    overflow: hidden;
+    border: 0;
+    border-radius: 999px;
+    background: var(--color-base-800);
+    color: var(--film-accent);
+  }
+
+  .process-film__status progress::-webkit-progress-bar {
+    background: var(--color-base-800);
+  }
+
+  .process-film__status progress::-webkit-progress-value {
+    background: linear-gradient(90deg, var(--film-accent), var(--film-accent-2));
+  }
+
+  .process-film__status progress::-moz-progress-bar {
+    background: var(--film-accent);
+  }
+
+  .process-film__controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 1rem 1rem;
+    background: rgb(14 11 22 / 0.92);
+  }
+
+  .process-film__controls button,
+  .process-film__navigator button {
+    border: 1px solid var(--color-base-700);
+    background: var(--color-base-950);
+    color: var(--color-base-200);
+    font-family: var(--font-mono);
+    cursor: pointer;
+  }
+
+  .process-film__controls button {
+    padding: 0.55rem 0.8rem;
+    border-radius: 0.45rem;
+    font-size: 0.64rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .process-film__controls button:hover,
+  .process-film__controls button:focus-visible,
+  .process-film__navigator button:hover,
+  .process-film__navigator button:focus-visible {
+    border-color: var(--film-accent);
+    color: #ece9f5;
+    outline: 2px solid rgb(85 215 255 / 0.7);
+    outline-offset: 2px;
+  }
+
+  .process-film__controls span {
+    margin-left: auto;
+    color: var(--color-base-500);
+    font-family: var(--font-mono);
+    font-size: 0.56rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .process-film__navigator {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.45rem;
+    margin-top: 0.7rem;
+  }
+
+  .process-film__navigator button {
+    min-height: 3.25rem;
+    padding: 0.75rem;
+    text-align: left;
+    border-radius: 0.45rem;
+    font-size: 0.62rem;
+    line-height: 1.3;
+  }
+
+  .process-film__navigator button[aria-pressed="true"] {
+    border-color: rgb(85 215 255 / 0.7);
+    background: rgb(59 111 224 / 0.14);
+    color: #ece9f5;
+  }
+
+  .process-film__navigator span {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: var(--film-accent);
+    font-size: 0.56rem;
+  }
+
+  .process-film__references {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 0.35rem;
+    margin-top: 0.7rem;
+  }
+
+  .process-film__references button {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    padding: 0;
+    border: 1px solid var(--color-base-800);
+    border-radius: 0.35rem;
+    background: var(--color-base-950);
+    cursor: pointer;
+  }
+
+  .process-film__references button:focus-visible {
+    outline: 2px solid var(--film-accent);
+    outline-offset: 2px;
+  }
+
+  .process-film__references img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.72;
+    transition: opacity 0.2s ease, transform 0.25s ease;
+  }
+
+  .process-film__references button:hover img,
+  .process-film__references button:focus-visible img {
+    opacity: 1;
+    transform: scale(1.025);
+  }
+
+  .process-film__references span {
+    position: absolute;
+    right: 0.35rem;
+    bottom: 0.3rem;
+    padding: 0.15rem 0.25rem;
+    border-radius: 0.2rem;
+    background: rgb(7 6 11 / 0.84);
+    color: #ece9f5;
+    font-family: var(--font-mono);
+    font-size: 0.52rem;
+  }
+
+  .process-film__transcript {
+    margin-top: 1rem;
+    border: 1px solid var(--color-base-800);
+    border-radius: 0.75rem;
+    background: rgb(14 11 22 / 0.62);
+  }
+
+  .process-film__transcript summary {
+    padding: 1rem;
+    color: var(--color-base-100);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .process-film__transcript summary:focus-visible {
+    outline: 2px solid var(--film-accent);
+    outline-offset: 3px;
+  }
+
+  .process-film__transcript ol {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .process-film__transcript li {
+    padding: 1.15rem;
+    border-top: 1px solid var(--color-base-800);
+  }
+
+  .process-film__transcript header {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 0.65rem;
+    align-items: start;
+  }
+
+  .process-film__transcript header > span,
+  .process-film__transcript header p {
+    color: var(--film-accent);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .process-film__transcript h3 {
+    margin: 0.25rem 0 0;
+    color: #ece9f5;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 350;
+  }
+
+  .process-film__transcript li > p {
+    margin: 0.8rem 0 0 2.65rem;
+    color: var(--color-base-300);
+    font-size: 0.82rem;
+    line-height: 1.65;
+  }
+
+  .process-film__transcript li > p strong {
+    color: var(--color-base-100);
+    font-weight: 500;
+  }
+
+  .process-film__transcript dl {
+    display: grid;
+    gap: 0.5rem;
+    margin: 0.9rem 0 0 2.65rem;
+  }
+
+  .process-film__transcript dl div {
+    display: grid;
+    grid-template-columns: 4.2rem 1fr;
+    gap: 0.6rem;
+  }
+
+  .process-film__transcript dt {
+    color: var(--film-accent);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .process-film__transcript dd {
+    margin: 0;
+    color: var(--color-base-400);
+    font-size: 0.72rem;
+    line-height: 1.5;
+  }
+
+  .process-film__end-message {
+    margin: 0;
+    padding: 1.25rem;
+    border-top: 1px solid var(--color-base-800);
+    color: #ece9f5;
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 3vw, 1.8rem);
+    line-height: 1.2;
+  }
+
+  @media (min-width: 48rem) {
+    .process-film__status {
+      grid-template-columns: minmax(0, 1fr) minmax(12rem, 0.42fr);
+      align-items: center;
+    }
+
+    .process-film__navigator {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .process-film__transcript ol {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .process-film__transcript li:nth-child(even) {
+      border-left: 1px solid var(--color-base-800);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .process-film__player video,
+    .process-film__loading {
+      display: none;
+    }
+
+    .process-film__static {
+      display: block;
+      object-fit: contain;
+      background: #07060b;
+    }
+
+    .process-film__references img {
+      transition: none;
+    }
+
+    .process-film__references button:hover img,
+    .process-film__references button:focus-visible img {
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  type StageData = {
+    id: string;
+    label: string;
+    headline: string;
+    start: number;
+    duration: number;
+    staticSrc?: string;
+    staticAlt?: string;
+  };
+
+  function initProcessFilm(root: HTMLElement) {
+    if (root.dataset.processBound === "true") return;
+    root.dataset.processBound = "true";
+
+    const video = root.querySelector<HTMLVideoElement>("[data-process-video]");
+    const staticImage = root.querySelector<HTMLImageElement>("[data-process-static]");
+    const stageLabel = root.querySelector<HTMLElement>("[data-process-stage-label]");
+    const stageHeadline = root.querySelector<HTMLElement>("[data-process-stage-headline]");
+    const progress = root.querySelector<HTMLProgressElement>("[data-process-progress]");
+    const playButton = root.querySelector<HTMLButtonElement>('[data-process-action="play"]');
+    const replayButton = root.querySelector<HTMLButtonElement>('[data-process-action="replay"]');
+    const stageButtons = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-process-stage]"));
+    const referenceButtons = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-process-reference]"));
+    const dataNode = root.querySelector<HTMLScriptElement>("[data-process-stage-data]");
+    const stages: StageData[] = dataNode?.textContent ? JSON.parse(dataNode.textContent) : [];
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const wantsAutoplay = root.dataset.autoplay === "true";
+    let loaded = false;
+    let visible = false;
+    let userPaused = false;
+    let activeIndex = 0;
+    let entered = false;
+    let suppressPauseEvent = false;
+
+    const emit = (event: string, detail: Record<string, unknown> = {}) => {
+      root.dispatchEvent(
+        new CustomEvent("hobfarm:analytics", {
+          bubbles: true,
+          detail: { event, film: root.id, variant: root.dataset.variant, ...detail },
+        }),
+      );
+      root.dataset.lastEvent = event;
+    };
+
+    const loadVideo = () => {
+      if (!video || loaded || reduceMotion || !video.dataset.src) return;
+      video.src = video.dataset.src;
+      video.load();
+      loaded = true;
+      root.dataset.loaded = "true";
+    };
+
+    const setActiveStage = (index: number, seek = false) => {
+      const stage = stages[index];
+      if (!stage) return;
+      activeIndex = index;
+      stageButtons.forEach((button, buttonIndex) =>
+        button.setAttribute("aria-pressed", String(buttonIndex === index)),
+      );
+      if (stageLabel) stageLabel.textContent = `${String(index + 1).padStart(2, "0")} / ${stage.label}`;
+      if (stageHeadline) stageHeadline.textContent = stage.headline;
+      if (reduceMotion && staticImage && stage.staticSrc) {
+        staticImage.src = stage.staticSrc;
+        staticImage.alt = stage.staticAlt ?? stage.headline;
+      }
+      if (seek && video) {
+        loadVideo();
+        video.currentTime = stage.start;
+      }
+    };
+
+    const selectStage = (index: number) => {
+      setActiveStage(index, !reduceMotion);
+      emit("workshop_process_stage_selected", { stage: stages[index]?.id, index });
+    };
+
+    stageButtons.forEach((button) => {
+      button.addEventListener("click", () => selectStage(Number(button.dataset.stageIndex ?? 0)));
+    });
+    referenceButtons.forEach((button) => {
+      button.addEventListener("click", () => selectStage(Number(button.dataset.stageIndex ?? 0)));
+    });
+
+    playButton?.addEventListener("click", () => {
+      if (!video || reduceMotion) return;
+      loadVideo();
+      if (video.paused) {
+        userPaused = false;
+        video.play().catch(() => {});
+      } else {
+        userPaused = true;
+        video.pause();
+      }
+    });
+
+    replayButton?.addEventListener("click", () => {
+      if (!video || reduceMotion) {
+        setActiveStage(0);
+        emit("workshop_process_film_replay", { static: true });
+        return;
+      }
+      loadVideo();
+      video.currentTime = 0;
+      userPaused = false;
+      video.play().catch(() => {});
+      emit("workshop_process_film_replay");
+    });
+
+    video?.addEventListener("play", () => {
+      if (playButton) playButton.textContent = "Pause film";
+      emit("workshop_process_film_play", { time: video.currentTime });
+    });
+    video?.addEventListener("pause", () => {
+      if (playButton) playButton.textContent = "Play film";
+      if (!suppressPauseEvent && video.currentTime > 0 && !video.ended) {
+        emit("workshop_process_film_pause", { time: video.currentTime });
+      }
+      suppressPauseEvent = false;
+    });
+    video?.addEventListener("timeupdate", () => {
+      if (progress) progress.value = video.currentTime;
+      const index = stages.findLastIndex((stage) => video.currentTime >= stage.start);
+      if (index >= 0 && index !== activeIndex) setActiveStage(index);
+    });
+    video?.addEventListener("ended", () => {
+      if (playButton) playButton.textContent = "Replay film";
+    });
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            visible = entry.isIntersecting;
+            if (visible) {
+              if (!entered) {
+                entered = true;
+                emit("workshop_process_film_entered_viewport");
+              }
+              loadVideo();
+              if (wantsAutoplay && !reduceMotion && !userPaused) {
+                video?.play().catch(() => {});
+              }
+            } else if (video && !video.paused) {
+              suppressPauseEvent = true;
+              video.pause();
+            }
+          }
+        },
+        { threshold: 0.45, rootMargin: "120px 0px" },
+      );
+      observer.observe(root);
+    } else {
+      loadVideo();
+    }
+
+    document.addEventListener("visibilitychange", () => {
+      if (!video) return;
+      if (document.hidden && !video.paused) {
+        suppressPauseEvent = true;
+        video.pause();
+      } else if (visible && wantsAutoplay && !userPaused && !reduceMotion) {
+        video.play().catch(() => {});
+      }
+    });
+  }
+
+  function initProcessFilms() {
+    document.querySelectorAll<HTMLElement>("[data-process-film]").forEach(initProcessFilm);
+  }
+
+  initProcessFilms();
+  document.addEventListener("astro:page-load", initProcessFilms);
+</script>

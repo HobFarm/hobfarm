@@ -7,7 +7,9 @@ const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf
 test("Workshop is organized around visual development and the HobFarm method", () => {
   const page = read("src/pages/workshop/index.astro");
   const data = read("src/data/workshop-page.ts");
-  const combined = `${page}\n${data}`;
+  const photography = read("src/components/workshop/WorkshopPhotographySource.astro");
+  const psygoth = read("src/components/workshop/WorkshopPsyGothLanes.astro");
+  const combined = `${page}\n${data}\n${photography}\n${psygoth}`;
 
   for (const phrase of [
     "Build the visual language before you build the image",
@@ -15,7 +17,10 @@ test("Workshop is organized around visual development and the HobFarm method", (
     "Style DNA",
     "Character DNA",
     "Lane DNA",
-    "One mannequin. Two lives. A complete media system",
+    "Follow the decisions, not just the finished frame",
+    "Put the photograph to work",
+    "One base can still lead two lives",
+    "One structure, three elemental lanes",
     "A repeatable path from influence to finished work",
     "The Workshop does not end at the tutorial",
   ]) {
@@ -53,6 +58,20 @@ test("Workshop preserves complete poster and video artwork in compact frames", (
 
   assert.match(page, /class="media-frame media-frame--compact"/);
   assert.doesNotMatch(page, /pairPoster[\s\S]{0,500}object-cover object-top/);
+});
+
+test("Workshop exposes the wide Process Film, stage transcript, and source routes", () => {
+  const page = read("src/pages/workshop/index.astro");
+  const component = read("src/components/workshop/WorkshopProcessFilm.astro");
+
+  assert.match(page, /variant="wide"/);
+  assert.match(page, /id="process-film"/);
+  assert.match(page, /WorkshopPhotographySource/);
+  assert.match(page, /WorkshopPsyGothLanes/);
+  assert.match(component, /Read the complete stage transcript/);
+  assert.match(component, /data-process-stage/);
+  assert.match(component, /Locked/);
+  assert.match(component, /Variable/);
 });
 
 test("Workshop research shelf uses authoritative sources", () => {

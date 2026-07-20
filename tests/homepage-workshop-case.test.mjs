@@ -4,37 +4,62 @@ import test from "node:test";
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
 
-test("homepage workshop case study explains the full character-development path", () => {
-  const component = read("src/components/home/VisualSystemFeature.astro");
+test("homepage replaces the long Sophia and Stella feature with a broad Workshop overview", () => {
+  const homepage = read("src/pages/index.astro");
+  const component = read("src/components/home/HomeWorkshop.astro");
+
+  assert.match(homepage, /<HomeWorkshop \/>/);
+  assert.doesNotMatch(homepage, /<VisualSystemFeature \/>/);
 
   for (const phrase of [
-    "From a mannequin to a world",
-    "Define the taste",
-    "Build the mannequin",
-    "Split the identity",
-    "Direct the camera",
-    "Compose for the screen that will show it",
-    "Turn the system into things people can watch, use, and collect",
+    "Start with an idea. Build the rules that make it work",
+    "Build a character",
+    "Put a photograph to work",
+    "Give every reference a job",
+    "Build the tool",
+    "The latest Workshop Notes",
+    "Compact case study",
   ]) {
     assert.match(component, new RegExp(phrase));
   }
 });
 
-test("homepage workshop case study covers target aspect ratios", () => {
-  const component = read("src/components/home/VisualSystemFeature.astro");
+test("homepage Process Film is poster-first and pauses outside the viewport", () => {
+  const component = read("src/components/workshop/WorkshopProcessFilm.astro");
+  const homepage = read("src/components/home/HomeWorkshop.astro");
 
-  for (const ratio of ["21:9", "16:9", "9:16", "2:3", "3:4", "4:5", "1:1"]) {
-    assert.match(component, new RegExp(`ratio: "${ratio.replace(":", "\\:")}"`));
-  }
+  assert.match(homepage, /variant="vertical"/);
+  assert.match(homepage, /autoplay=\{true\}/);
+  assert.match(component, /data-src=\{film\.videoSrc\}/);
+  assert.match(component, /preload="none"/);
+  assert.match(component, /IntersectionObserver/);
+  assert.match(component, /video\.pause\(\)/);
+  assert.match(component, /prefers-reduced-motion: reduce/);
+  assert.match(component, /process-film__static/);
 });
 
-test("homepage workshop case study keeps paid sheets capped and links the full path", () => {
-  const component = read("src/components/home/VisualSystemFeature.astro");
+test("homepage Workshop paths use diverse media and real routes", () => {
+  const component = read("src/components/home/HomeWorkshop.astro");
 
-  assert.match(component, /mediaImageUrl\(variant\.sheetPreviews\[0\]\.folder/);
-  assert.match(component, /width: 900/);
-  assert.match(component, /href="\/workshop\/"/);
-  assert.match(component, /href="\/academy\/"/);
-  assert.match(component, /href="\/shop\/sophia-stella-sheet-pack\/"/);
-  assert.match(component, /class="media-frame aspect-\[3\/4\] max-h-\[30rem\]"/);
+  for (const href of [
+    "/workshop/character-mannequin/",
+    "/workshop/before-and-after/",
+    "/workshop/stylefusion/",
+    "/workshop/workshop-notes/",
+    "/workshop/#process-film",
+  ]) {
+    assert.match(component, new RegExp(href.replaceAll("/", "\\/")));
+  }
+
+  for (const token of [
+    "photoSource",
+    "photoAfter",
+    "neutral",
+    "zima",
+    "styleFusion",
+    "cuteCorrupted",
+    "recentHero",
+  ]) {
+    assert.match(component, new RegExp(token));
+  }
 });
