@@ -35,8 +35,6 @@ const {
 
 const film = manifest.variants[variant];
 const initialStage = manifest.stages[0];
-const initialStatic =
-  initialStage.media.find((item) => item.role === "main") ?? initialStage.media[0];
 const transcriptId = `${id}-transcript`;
 const stageData = manifest.stages.map((stage) => ({
   id: stage.id,
@@ -80,8 +78,8 @@ const stageData = manifest.stages.map((stage) => ({
       <img
         class="process-film__static"
         data-process-static
-        src={initialStatic?.src ?? film.posterSrc}
-        alt={initialStatic?.alt ?? manifest.title}
+        src={film.posterSrc}
+        alt={`${manifest.title}. ${film.label} poster.`}
         width={film.width}
         height={film.height}
         loading="lazy"
@@ -224,14 +222,19 @@ const stageData = manifest.stages.map((stage) => ({
   .process-film__player :where(video, .process-film__static) {
     position: absolute;
     inset: 0;
-    display: block;
     width: 100%;
     height: 100%;
+  }
+
+  .process-film__player video {
+    display: block;
     object-fit: cover;
   }
 
-  .process-film__static {
+  .process-film__player .process-film__static {
     display: none;
+    object-fit: contain;
+    background: #07060b;
   }
 
   .process-film__loading {
@@ -565,15 +568,13 @@ const stageData = manifest.stages.map((stage) => ({
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .process-film__player video,
-    .process-film__loading {
+    .process-film:not([data-manual-playback="true"]) .process-film__player video,
+    .process-film:not([data-manual-playback="true"]) .process-film__loading {
       display: none;
     }
 
-    .process-film__static {
+    .process-film:not([data-manual-playback="true"]) .process-film__player .process-film__static {
       display: block;
-      object-fit: contain;
-      background: #07060b;
     }
 
     .process-film__references img {
@@ -618,6 +619,7 @@ const stageData = manifest.stages.map((stage) => ({
     let loaded = false;
     let visible = false;
     let userPaused = false;
+    let manualPlayback = false;
     let activeIndex = 0;
     let entered = false;
     let suppressPauseEvent = false;
@@ -632,12 +634,28 @@ const stageData = manifest.stages.map((stage) => ({
       root.dataset.lastEvent = event;
     };
 
-    const loadVideo = () => {
-      if (!video || loaded || reduceMotion || !video.dataset.src) return;
+    const loadVideo = (allowReducedMotion = false) => {
+      if (!video || loaded || (reduceMotion && !allowReducedMotion) || !video.dataset.src) return;
       video.src = video.dataset.src;
       video.load();
       loaded = true;
       root.dataset.loaded = "true";
+    };
+
+    const playVideo = () => {
+      if (!video) return;
+      if (reduceMotion) {
+        manualPlayback = true;
+        root.dataset.manualPlayback = "true";
+      }
+      loadVideo(manualPlayback);
+      userPaused = false;
+      video.play().catch(() => {
+        if (reduceMotion) {
+          manualPlayback = false;
+          delete root.dataset.manualPlayback;
+        }
+      });
     };
 
     const setActiveStage = (index: number, seek = false) => {
@@ -649,18 +667,18 @@ const stageData = manifest.stages.map((stage) => ({
       );
       if (stageLabel) stageLabel.textContent = `${String(index + 1).padStart(2, "0")} / ${stage.label}`;
       if (stageHeadline) stageHeadline.textContent = stage.headline;
-      if (reduceMotion && staticImage && stage.staticSrc) {
+      if (reduceMotion && !manualPlayback && staticImage && stage.staticSrc) {
         staticImage.src = stage.staticSrc;
         staticImage.alt = stage.staticAlt ?? stage.headline;
       }
       if (seek && video) {
-        loadVideo();
-        video.currentTime = stage.start;
+        loadVideo(manualPlayback);
+        if (loaded) video.currentTime = stage.start;
       }
     };
 
     const selectStage = (index: number) => {
-      setActiveStage(index, !reduceMotion);
+      setActiveStage(index, !reduceMotion || manualPlayback);
       emit("workshop_process_stage_selected", { stage: stages[index]?.id, index });
     };
 
@@ -672,11 +690,9 @@ const stageData = manifest.stages.map((stage) => ({
     });
 
     playButton?.addEventListener("click", () => {
-      if (!video || reduceMotion) return;
-      loadVideo();
+      if (!video) return;
       if (video.paused) {
-        userPaused = false;
-        video.play().catch(() => {});
+        playVideo();
       } else {
         userPaused = true;
         video.pause();
@@ -684,15 +700,14 @@ const stageData = manifest.stages.map((stage) => ({
     });
 
     replayButton?.addEventListener("click", () => {
-      if (!video || reduceMotion) {
-        setActiveStage(0);
-        emit("workshop_process_film_replay", { static: true });
-        return;
+      if (!video) return;
+      if (reduceMotion) {
+        manualPlayback = true;
+        root.dataset.manualPlayback = "true";
       }
-      loadVideo();
+      loadVideo(manualPlayback);
       video.currentTime = 0;
-      userPaused = false;
-      video.play().catch(() => {});
+      playVideo();
       emit("workshop_process_film_replay");
     });
 

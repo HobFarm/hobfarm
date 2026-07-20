@@ -36,6 +36,10 @@ test("homepage Process Film is poster-first and pauses outside the viewport", ()
   assert.match(component, /video\.pause\(\)/);
   assert.match(component, /prefers-reduced-motion: reduce/);
   assert.match(component, /process-film__static/);
+  assert.match(component, /src=\{film\.posterSrc\}/);
+  assert.match(component, /data-manual-playback="true"/);
+  assert.match(component, /loadVideo\(manualPlayback\)/);
+  assert.doesNotMatch(component, /if \(!video \|\| reduceMotion\) return;/);
 });
 
 test("homepage Workshop paths use diverse media and real routes", () => {
