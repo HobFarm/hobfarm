@@ -1,0 +1,76 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import ComicCard from "@/components/funnies/ComicCard.astro";
+import {
+  comicTagPath,
+  comicsWithTag,
+  getComicTagCounts,
+  getPublishedComics,
+} from "@/lib/comics";
+
+export async function getStaticPaths() {
+  const allComics = await getPublishedComics();
+  const tagCounts = getComicTagCounts(allComics);
+
+  return tagCounts.map(({ tag }) => ({
+    params: { tag },
+    props: {
+      comics: comicsWithTag(allComics, tag),
+      tagCounts,
+    },
+  }));
+}
+
+const { tag } = Astro.params;
+const { comics, tagCounts } = Astro.props;
+const description = `${comics.length} ${comics.length === 1 ? "comic" : "comics"} tagged "${tag}" in HobFarm Funnies.`;
+---
+
+<BaseLayout
+  title={`${tag} Comics | Funnies | HobFarm`}
+  description={description}
+  canonical={`${comicTagPath(tag!)}/`}
+>
+  <section>
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-16">
+        <a
+          href="/departments/funnies/"
+          class="font-mono text-xs text-base-400 transition-colors hover:text-white"
+        >
+          &larr; All Funnies
+        </a>
+
+        <h1 class="mt-6 font-display text-3xl font-light capitalize text-white text-balance lg:text-5xl">
+          Funnies tagged: {tag}
+        </h1>
+        <p class="mt-3 text-sm text-base-400">
+          {comics.length} {comics.length === 1 ? "comic" : "comics"}
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-2 border-y border-base-800 py-6">
+          {tagCounts.map(({ tag: availableTag, count }) => (
+            <a
+              href={comicTagPath(availableTag)}
+              aria-current={availableTag === tag ? "page" : undefined}
+              class:list={[
+                "border px-2 py-1 font-mono text-xs capitalize transition-colors",
+                availableTag === tag
+                  ? "border-accent-green/60 text-white"
+                  : "border-base-700 text-base-400 hover:border-base-500 hover:text-base-100",
+              ]}
+            >
+              {availableTag} ({count})
+            </a>
+          ))}
+        </div>
+
+        <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {comics.map((comic) => <ComicCard comic={comic} />)}
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+</BaseLayout>

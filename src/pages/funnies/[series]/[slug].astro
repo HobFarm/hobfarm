@@ -5,7 +5,13 @@ import ContentPanel from "@/components/ContentPanel.astro";
 import FunniesHero from "@/components/funnies/FunniesHero.astro";
 import { getSeriesTitle, seriesPath } from "@/data/comic-series";
 import { characters, characterPath, getCharacterName } from "@/data/characters";
-import { comicPath, comicSlug, comicsInSeries, getPublishedComics } from "@/lib/comics";
+import {
+  comicPath,
+  comicSlug,
+  comicsInSeries,
+  comicTagPath,
+  getPublishedComics,
+} from "@/lib/comics";
 
 export async function getStaticPaths() {
   const comics = await getPublishedComics();
@@ -103,7 +109,7 @@ const formattedDate = date
           <div class="mt-4 flex flex-wrap gap-2">
             {tags.map((tag) => (
               <a
-                href={`/articles/tags/${encodeURIComponent(tag)}`}
+                href={comicTagPath(tag)}
                 class="border border-base-700 px-2 py-1 font-mono text-xs capitalize text-base-400 transition-colors hover:border-base-500 hover:text-base-100"
               >
                 {tag}
