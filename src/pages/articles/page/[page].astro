@@ -1,0 +1,124 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ArticleCard from "@/components/articles/ArticleCard.astro";
+import ArticlePagination from "@/components/articles/ArticlePagination.astro";
+import ArticleTagCloud from "@/components/articles/ArticleTagCloud.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Subscribe from "@/components/articles/Subscribe.astro";
+import { getArticleTagCounts, getPublishedArticles } from "@/lib/articles";
+import {
+  articleArchivePagePath,
+  getArticleArchivePage,
+  getArticleArchivePageCount,
+} from "@/lib/article-pagination";
+import { departmentFilters, departmentPath } from "@/data/departments";
+
+export async function getStaticPaths() {
+  const allPosts = await getPublishedArticles();
+  const totalPages = getArticleArchivePageCount(allPosts.length);
+  const tagCounts = getArticleTagCounts(allPosts);
+
+  return Array.from({ length: Math.max(0, totalPages - 1) }, (_, index) => {
+    const page = index + 2;
+    return {
+      params: { page: String(page) },
+      props: {
+        posts: getArticleArchivePage(allPosts, page),
+        publishedCount: allPosts.length,
+        tagCounts,
+        totalPages,
+      },
+    };
+  });
+}
+
+const currentPage = Number(Astro.params.page);
+const { posts, publishedCount, tagCounts, totalPages } = Astro.props;
+---
+
+<BaseLayout
+  title={`Articles, Page ${currentPage} | HobFarm`}
+  description={`Browse page ${currentPage} of the HobFarm article archive, with features, visual research, media history, and production notes.`}
+  canonical={articleArchivePagePath(currentPage)}
+>
+  <section>
+    <ContentPanel>
+      <Wrapper
+        variant="standard"
+        class="grid grid-cols-1 py-10 gap-y-10 lg:gap-x-10 lg:grid-cols-4"
+      >
+        <aside class="order-2 lg:order-1">
+          <div class="lg:sticky lg:top-24 lg:pr-8">
+            <p class="font-mono text-xs uppercase tracking-widest text-accent-cyan">
+              HobFarm Magazine
+            </p>
+            <h1 class="mt-4 text-3xl lg:text-4xl font-light text-base-100 text-balance font-display">
+              Articles
+            </h1>
+            <p class="mt-4 text-sm leading-relaxed text-base-400">
+              Features, departments, series notes, visual research, character systems, media-history trails, and production writeups.
+            </p>
+
+            <div class="mt-8 flex flex-wrap gap-2 lg:flex-col">
+              {departmentFilters.map((cat) => (
+                <a
+                  href={cat.value === "all" ? "/articles/" : departmentPath(cat.value)}
+                  class:list={[
+                    "text-xs font-mono px-3 py-1.5 border transition-colors",
+                    cat.value === "all"
+                      ? "border-base-100 text-base-100"
+                      : "border-base-700 text-base-400 hover:border-base-100 hover:text-base-100",
+                  ]}
+                >
+                  {cat.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        </aside>
+
+        <div class="order-1 lg:order-2 lg:col-span-3">
+          <section aria-labelledby="article-archive-heading">
+            <div class="mb-5 flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <a
+                  href="/articles/"
+                  class="font-mono text-[10px] uppercase tracking-wider text-base-500 transition-colors hover:text-base-100"
+                >
+                  &larr; Cover story and latest
+                </a>
+                <h2 id="article-archive-heading" class="mt-3 text-xl font-light text-base-100">
+                  Article archive
+                </h2>
+              </div>
+              <span class="font-mono text-[10px] uppercase tracking-wider text-base-500">
+                Page {currentPage} of {totalPages} &middot; {publishedCount} published
+              </span>
+            </div>
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {posts.map((post) => <ArticleCard post={post} />)}
+            </div>
+            <ArticlePagination currentPage={currentPage} totalPages={totalPages} />
+          </section>
+
+          <section class="mt-12" aria-labelledby="article-tags-heading">
+            <div class="mb-5 flex flex-wrap items-end justify-between gap-4">
+              <h2 id="article-tags-heading" class="text-xl font-light text-base-100">
+                Article tags
+              </h2>
+              <a
+                href="/articles/tags/"
+                class="font-mono text-[10px] uppercase tracking-wider text-base-500 transition-colors hover:text-base-100"
+              >
+                All tags
+              </a>
+            </div>
+            <ArticleTagCloud tags={tagCounts} />
+          </section>
+        </div>
+      </Wrapper>
+    </ContentPanel>
+    <Subscribe />
+  </section>
+</BaseLayout>

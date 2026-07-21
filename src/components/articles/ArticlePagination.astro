@@ -1,0 +1,93 @@
+---
+import { articleArchivePagePath } from "@/lib/article-pagination";
+
+interface Props {
+  currentPage: number;
+  totalPages: number;
+}
+
+type PaginationItem = number | "ellipsis";
+
+const { currentPage, totalPages } = Astro.props;
+const visiblePages = new Set(
+  totalPages <= 7
+    ? Array.from({ length: totalPages }, (_, index) => index + 1)
+    : [1, totalPages, currentPage - 1, currentPage, currentPage + 1].filter(
+        (page) => page >= 1 && page <= totalPages,
+      ),
+);
+const sortedPages = [...visiblePages].sort((a, b) => a - b);
+const paginationItems: PaginationItem[] = [];
+
+for (const page of sortedPages) {
+  const previous = paginationItems.at(-1);
+  if (typeof previous === "number" && page - previous > 1) paginationItems.push("ellipsis");
+  paginationItems.push(page);
+}
+---
+
+{totalPages > 1 && (
+  <nav
+    aria-label="Article archive pages"
+    class="mt-8 grid grid-cols-2 items-center gap-4 border-t border-base-800 pt-6 sm:grid-cols-[auto_1fr_auto]"
+  >
+    {currentPage > 1 ? (
+      <a
+        href={articleArchivePagePath(currentPage - 1)}
+        rel="prev"
+        class="font-mono text-xs uppercase tracking-wider text-base-300 transition-colors hover:text-accent-cyan focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/70"
+      >
+        &larr; Newer
+      </a>
+    ) : (
+      <span class="font-mono text-xs uppercase tracking-wider text-base-700" aria-hidden="true">
+        &larr; Newer
+      </span>
+    )}
+
+    <ol
+      class="order-first col-span-2 flex flex-wrap items-center justify-center gap-1 sm:order-none sm:col-span-1"
+      role="list"
+    >
+      {paginationItems.map((item) => (
+        <li>
+          {item === "ellipsis" ? (
+            <span class="inline-flex size-8 items-center justify-center text-xs text-base-600" aria-hidden="true">
+              &hellip;
+            </span>
+          ) : item === currentPage ? (
+            <span
+              aria-current="page"
+              aria-label={`Page ${item}, current page`}
+              class="inline-flex size-8 items-center justify-center rounded border border-base-100 bg-base-100 font-mono text-xs text-base-950"
+            >
+              {item}
+            </span>
+          ) : (
+            <a
+              href={articleArchivePagePath(item)}
+              aria-label={`Go to article page ${item}`}
+              class="inline-flex size-8 items-center justify-center rounded border border-base-700 font-mono text-xs text-base-400 transition-colors hover:border-base-100 hover:text-base-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/70"
+            >
+              {item}
+            </a>
+          )}
+        </li>
+      ))}
+    </ol>
+
+    {currentPage < totalPages ? (
+      <a
+        href={articleArchivePagePath(currentPage + 1)}
+        rel="next"
+        class="justify-self-end font-mono text-xs uppercase tracking-wider text-base-300 transition-colors hover:text-accent-cyan focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/70"
+      >
+        Older &rarr;
+      </a>
+    ) : (
+      <span class="justify-self-end font-mono text-xs uppercase tracking-wider text-base-700" aria-hidden="true">
+        Older &rarr;
+      </span>
+    )}
+  </nav>
+)}

@@ -3,6 +3,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import ArticleCard from "@/components/articles/ArticleCard.astro";
 import ArticleTagCloud from "@/components/articles/ArticleTagCloud.astro";
+import ArticlePagination from "@/components/articles/ArticlePagination.astro";
 import ContentPanel from "@/components/ContentPanel.astro";
 import Subscribe from "@/components/articles/Subscribe.astro";
 import {
@@ -14,6 +15,10 @@ import {
   getArticleTagCounts,
   getPublishedArticles,
 } from "@/lib/articles";
+import {
+  getArticleArchivePage,
+  getArticleArchivePageCount,
+} from "@/lib/article-pagination";
 import { departmentFilters, departmentPath } from "@/data/departments";
 import { THREE_DM_LOGO } from "@/data/presents-titles";
 
@@ -22,7 +27,8 @@ const tagCounts = getArticleTagCounts(allPosts);
 // The lead slot is always the newest published article. Frontmatter flags can
 // still describe content elsewhere, but publishing something new promotes it.
 const coverStory = allPosts[0];
-const latest = allPosts.slice(1, 10);
+const latest = getArticleArchivePage(allPosts, 1);
+const totalPages = getArticleArchivePageCount(allPosts.length);
 const coverDate = coverStory ? getArticleDate(coverStory) : null;
 const coverHero = coverStory
   ? getArticleHero(coverStory.data) ?? (coverStory.data.presentsSeries === "3dm" ? THREE_DM_LOGO : undefined)
@@ -124,12 +130,13 @@ const coverPreservesArtwork = coverHero === THREE_DM_LOGO;
                 Latest articles
               </h2>
               <span class="font-mono text-[10px] uppercase tracking-wider text-base-500">
-                {allPosts.length} published
+                Page 1 of {totalPages} &middot; {allPosts.length} published
               </span>
             </div>
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {latest.map((post) => <ArticleCard post={post} />)}
             </div>
+            <ArticlePagination currentPage={1} totalPages={totalPages} />
           </section>
 
           <section class="mt-12" aria-labelledby="article-tags-heading">

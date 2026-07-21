@@ -9,6 +9,7 @@ const read = (file) => readFileSync(join(root, file), "utf8");
 test("articles route and collection layer exist without exposing public blog routes", () => {
   const routeFiles = [
     "src/pages/articles/index.astro",
+    "src/pages/articles/page/[page].astro",
     "src/pages/articles/[...slug].astro",
     "src/pages/articles/tags/index.astro",
     "src/pages/articles/tags/[tag].astro",
@@ -29,6 +30,19 @@ test("articles route and collection layer exist without exposing public blog rou
   assert.match(pagesConfig, /name:\s*articles/);
   assert.match(pagesConfig, /path:\s*src\/content\/articles/);
   assert.doesNotMatch(pagesConfig, /name:\s*blog/);
+});
+
+test("the Articles index links every archive page without repeating the cover story", () => {
+  const articlesPage = read("src/pages/articles/index.astro");
+  const archivePage = read("src/pages/articles/page/[page].astro");
+  const pagination = read("src/lib/article-pagination.ts");
+
+  assert.match(articlesPage, /getArticleArchivePage\(allPosts, 1\)/);
+  assert.match(articlesPage, /<ArticlePagination currentPage=\{1\} totalPages=\{totalPages\}/);
+  assert.match(archivePage, /Array\.from\(\{ length: Math\.max\(0, totalPages - 1\) \}/);
+  assert.match(archivePage, /getArticleArchivePage\(allPosts, page\)/);
+  assert.match(pagination, /const start = 1 \+ \(safePage - 1\) \* ARTICLE_CARDS_PER_PAGE/);
+  assert.match(pagination, /return articles\.slice\(start, start \+ ARTICLE_CARDS_PER_PAGE\)/);
 });
 
 test("departments taxonomy and routes exist", () => {
