@@ -5,14 +5,26 @@ interface Props {
   caption: string;
   description?: string;
   compact?: boolean;
+  width?: number;
+  height?: number;
+  loading?: "eager" | "lazy";
 }
 
-const { src, alt, caption, description, compact = false } = Astro.props;
+const {
+  src,
+  alt,
+  caption,
+  description,
+  compact = false,
+  width,
+  height,
+  loading = "lazy",
+} = Astro.props;
 ---
 
 <figure class:list={["academy-figure", { "academy-figure--compact": compact }] }>
   <a href={src} target="_blank" rel="noreferrer" aria-label={`${alt} Open the full-size figure.`}>
-    <img src={src} alt={alt} loading="lazy" decoding="async" />
+    <img src={src} alt={alt} width={width} height={height} loading={loading} decoding="async" />
   </a>
   <figcaption>{caption}</figcaption>
   {description && <p class="academy-figure__description">{description}</p>}
@@ -28,7 +40,7 @@ const { src, alt, caption, description, compact = false } = Astro.props;
     background: #07060b;
   }
   .academy-figure--compact { width: min(100%, 44rem); }
-  .academy-figure a { display: block; }
+  .academy-figure a { display: block; width: 100%; }
   .academy-figure img { display: block; width: 100%; height: auto; margin: 0; }
   .academy-figure figcaption {
     padding: .9rem 1rem .25rem;

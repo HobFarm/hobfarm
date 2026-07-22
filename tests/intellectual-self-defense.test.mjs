@@ -46,6 +46,19 @@ test("the feature and course form a verified two-way relationship", () => {
   assert.match(layout, /RelatedContentRail/);
 });
 
+test("the article diagrams reserve space and load without a zero-height lazy trap", () => {
+  const article = read("src/content/articles/the-card-catalog-started-talking-back.mdx");
+  const figure = read("src/components/academy/AcademyFigure.astro");
+
+  assert.equal(article.match(/loading="eager"/g)?.length, 3);
+  assert.equal(article.match(/width=\{1600\}/g)?.length, 3);
+  assert.equal(article.match(/height=\{900\}/g)?.length, 3);
+  assert.match(figure, /width=\{width\}/);
+  assert.match(figure, /height=\{height\}/);
+  assert.match(figure, /loading=\{loading\}/);
+  assert.match(figure, /\.academy-figure a \{ display: block; width: 100%; \}/);
+});
+
 test("the article separates the free course from the paid avatar follow-on", () => {
   const articleCta = read("src/components/articles/self-defense/SelfDefenseCourseCta.astro");
   const avatarData = read("src/data/avatar-content-system.ts");
