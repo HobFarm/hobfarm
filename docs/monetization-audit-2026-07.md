@@ -6,9 +6,15 @@ Scope: audit and architecture only
 
 Production changes: none
 
+### Positioning used in this audit
+
+**HobFarm is the parent publishing entity. Its public positioning is “independent publisher and creative studio.”** Magazine describes the Editorial publication layer, not the entire business.
+
+The five primary divisions are **Editorial**, **HobFarm Presents**, **Workshop**, **Shop**, and **Support**. Gallery is a visual archive and presentation format that can serve several divisions. Academy is a learning program, not a primary division. Customer Help, Account, About, Contact, and legal pages are utilities.
+
 ## 1. Executive diagnosis
 
-HobFarm has most of the pieces of a credible one-person publishing business, but they do not yet form one legible buying path. The free publication is strong: articles, galleries, Workshop studies, Academy material, project pages, sharing, metadata, and agent-readable versions are already live. The recent *Vacation Into Nothing* response is useful evidence that the editorial work can create trust and demand without turning every article into a pitch.
+HobFarm has most of the pieces of a credible one-person publishing business, but they do not yet form one legible buying path. The parent entity is best described as an independent publisher and creative studio. Its Editorial magazine layer is strong: articles, visual features, sharing, metadata, and agent-readable versions are already live. HobFarm Presents carries named series and worlds; Workshop shows the process and systems behind the work. The recent *Vacation Into Nothing* response is useful evidence that Editorial can create trust and demand without turning every article into a pitch.
 
 The commercial layer is earlier. Stripe membership has a serious implementation: authenticated Checkout, a customer portal, verified webhooks, and subscription synchronization are present. Its production secrets are configured, but this audit did not make a real charge, so end-to-end payment remains unverified. The public benefit is also vague and mostly planned. The Shop says Etsy is the main storefront, but the repository has only one product record, Sophia/Stella, marked `coming-soon` with no checkout URL. Ko-fi, Patreon, Etsy, DeviantArt, Lemon Squeezy, eBay, Printful, and direct fulfillment appear in different parts of the site or schema without one declared division of labor. `/support/` is customer service even though “Support HobFarm” links lead there, while `/helpcenter/` already exists for customer help.
 
@@ -21,9 +27,24 @@ The main decision should be:
 - Ko-fi is the lowest-friction one-time support path and does not need an account.
 - DeviantArt carries collector/personal-use art editions, Etsy carries designed physical or print-ready craft editions, and eBay carries one-off physical, vintage, prototype, or collectible inventory.
 
-This gives each processor one job. It lets HobFarm sell finished value first, keeps most editorial work free, and makes patronage an honest second path rather than a substitute for products. The first release should be the already-modeled Sophia/Stella sheet pack. The first site change should split financial support from customer help and put one permanent, compact funding notice beneath the homepage hero.
+This gives each processor one job. It lets HobFarm sell finished value first, keeps most Editorial work free, and makes patronage an honest second path rather than a substitute for products. The first release should be the already-modeled Sophia/Stella sheet pack. The first site change should split the Support division from Customer Help and put one permanent, compact funding notice beneath the homepage hero.
 
 ## 2. Current monetization map
+
+### Parent and division model
+
+| Level | Public name | Job | Primary destinations |
+| --- | --- | --- | --- |
+| Parent | HobFarm | Independent publisher and creative studio; owns the brand, catalog, customer relationships, archive, and operating systems | `/` and `/about/` |
+| Primary division | Editorial | The magazine/publication layer: articles, essays, reporting, research, editorial visual features, and departments | `/articles/` and editorial department routes |
+| Primary division | HobFarm Presents | Recurring stories, cartoons, film/media series, characters, and named entertainment worlds | `/departments/hobfarm-presents/` |
+| Primary division | Workshop | Process, production methods, experiments, tools, systems, and learning paths built from the work | `/workshop/`; Academy remains a secondary learning program |
+| Primary division | Shop | Canonical catalog for finished products, editions, courses, commissions, and licensable work | `/shop/` |
+| Primary division | Support | Patronage and funding: support once, membership, and a clear account of what the money sustains | `/support/` and `/membership/` |
+| Shared format | Gallery | Visual archive used by Editorial, Presents, Workshop, and Shop product context | `/gallery/` |
+| Utility | Customer Help | Billing, refunds, account access, downloads, and technical assistance | `/helpcenter/` |
+
+This hierarchy should control the main navigation and homepage directory. Gallery and Academy can remain important destinations without being presented as peer business divisions. Commissions and licensing are Shop/Workshop offer lanes; they do not need a sixth division.
 
 ### Active application verification
 
@@ -60,7 +81,9 @@ This gives each processor one job. It lets HobFarm sell finished value first, ke
 
 | Surface or offer | Provider | Route and implementation | Current status | Main problem |
 | --- | --- | --- | --- | --- |
-| Free publication | HobFarm | `/`, `/articles/`, `/gallery/`, `/projects/`, `/workshop/`, `/academy/` | Live | Strong audience layer, but contextual commerce is not consistently rendered. |
+| Editorial magazine layer | HobFarm Editorial | `/articles/` and editorial departments, with Gallery as a shared visual format | Live | Strong audience layer, but contextual commerce is not consistently rendered. |
+| Recurring series and worlds | HobFarm Presents | `/departments/hobfarm-presents/` | Live | Strong identity, but its relationship to products and support is not yet systematic. |
+| Process and learning | Workshop | `/workshop/`, with Academy as a secondary program | Live | Strong proof of work; paid packs, courses, and commissions are still mostly planned. |
 | Homepage hero support CTA | HobFarm | `MagazineFrontPage.astro` → `/support/` | Live link | “Support HobFarm” lands on customer service. |
 | Homepage system support links | HobFarm | `homepage-systems.ts`: Join the Lab, Premium galleries, Support HobFarm | Live links | Three labels imply benefits or destinations that do not match the current membership/support system. |
 | Homepage support panel | HobFarm plus external providers | `ExploreSupportFollow.astro` | Live | Repeats membership, Ko-fi, and support choices instead of presenting one clear hierarchy. |
@@ -168,13 +191,29 @@ Minimum fields should be `productId`, stable `sku`, source item IDs, offer ID, e
 
 ## 4. Proposed monetization architecture
 
+### Business hierarchy
+
+```text
+HobFarm
+Independent publisher and creative studio
+
+├─ Editorial             magazine and public editorial work
+├─ HobFarm Presents      recurring stories, series, characters, and worlds
+├─ Workshop              process, systems, tools, and learning programs
+├─ Shop                  products, editions, courses, commissions, and licenses
+└─ Support               one-time patronage and monthly membership
+
+Shared formats: Gallery, Projects, Academy
+Utilities: About, Contact, Customer Help, Account, Legal
+```
+
 ### The customer path
 
 ```text
-free article, gallery, project, or Workshop study
+Editorial article, Presents release, Gallery entry, or Workshop study
   ├─ related finished product → canonical HobFarm product page → one checkout provider
-  ├─ support the publication → /support/ → Ko-fi once or Stripe monthly
-  ├─ learn the method → Academy → Lemon Squeezy course or workflow pack
+  ├─ support HobFarm → /support/ → Ko-fi once or Stripe monthly
+  ├─ learn the method → Workshop/Academy → Lemon Squeezy course or workflow pack
   └─ commission/license work → scoped inquiry → proposal → Stripe invoice
 
 purchase or support
@@ -187,7 +226,7 @@ The product must stand on its own. A course teaches transferable judgment and sk
 
 | Provider | One job | Use now | Do not use for |
 | --- | --- | --- | --- |
-| HobFarm site | Canonical catalog, editorial context, previews, relationships, support explanation | A durable page for every offer, regardless of checkout host | Public storage of paid originals or signed download URLs |
+| HobFarm site | Parent publisher, canonical catalog, editorial context, previews, relationships, and support explanation | A durable page for every offer, regardless of checkout host | Public storage of paid originals or signed download URLs |
 | `hobfarm-live` | Internal source of truth | Assets, approvals, rights, product/offer/SKU records, listings, buyer manifests, stock, handoffs | Customer checkout or public delivery |
 | Lemon Squeezy | Direct digital store | Asset packs, documents, templates, zines, and one-time courses; use variants for license editions when needed | Physical goods, bespoke services, tips, or a second membership |
 | Stripe | Account-linked relationship and negotiated work | Existing monthly supporter membership, Customer Portal, service/licensing invoices | The first digital product catalog, which would duplicate Lemon Squeezy tax and delivery work |
@@ -243,7 +282,7 @@ From this rabbit hole
 Related article         one editorial continuation
 Related visual project  one gallery/project/workshop continuation
 Related product         zero or one verified contextual product
-Support HobFarm         consistent publication-support action
+Support HobFarm         consistent parent-level support action
 ```
 
 Rules:
@@ -256,7 +295,7 @@ Rules:
 
 ### Minimal service and licensing offer
 
-Publish four inquiry lanes, not a general agency catalog:
+Publish four inquiry lanes under Shop and Workshop, not as another primary division or a general agency catalog:
 
 1. **Character and visual-system direction:** design logic, continuity, wardrobe, scene, and presentation systems.
 2. **Custom visual and media development:** a scoped image, short motion, or content package based on an approved brief.
@@ -289,7 +328,7 @@ Every event should include only stable internal identifiers such as `source_path
 
 - Public articles, galleries, projects, Workshop notes, product descriptions, capped previews, prices, licenses, availability, and support destinations are intended for human and legitimate agent discovery.
 - `robots.txt` permits search and AI input/reference but opts out named large-scale training crawlers. That does not prevent ordinary article discovery.
-- `llms.txt`, Markdown alternatives, JSON-LD, canonical URLs, sitemaps, and agent-skill documents make the publication unusually machine-readable. Preserve source attribution and canonical HobFarm links in those outputs.
+- `llms.txt`, Markdown alternatives, JSON-LD, canonical URLs, sitemaps, and agent-skill documents make the Editorial archive and the wider HobFarm catalog unusually machine-readable. Preserve division labels, source attribution, and canonical HobFarm links in those outputs.
 - Product structured data is safe when it contains a public description, a direct capped preview, one canonical URL, and a real offer only for a live product.
 - Buyer files, source/layered originals, private manifests, customer/account data, signed download URLs, webhook payloads, and private product endpoints must be excluded from public HTML, feeds, JSON-LD, sitemaps, agent documents, and analytics.
 - Add Shop and Support destinations to machine-readable site navigation. Product alternates should carry the canonical product page and checkout provider, not a raw paid-file URL.
@@ -298,6 +337,11 @@ Every event should include only stable internal identifiers such as `source_path
 
 | Current route or label | Proposed route or label | Redirect or link migration | Reason |
 | --- | --- | --- | --- |
+| `/` | HobFarm: **Independent publisher and creative studio** | No redirect; update positioning and division directory | Establishes HobFarm as the parent rather than calling the whole operation a magazine. |
+| `/articles/` = Articles | Primary division label **Editorial**; content type remains **Articles** | Keep route; use Editorial in hierarchy/navigation and Articles for the feed | Separates the publication division from its main content object. |
+| `/departments/hobfarm-presents/` | **HobFarm Presents** | No redirect | Already a distinct primary division with its own series and worlds. |
+| `/workshop/` | **Workshop** | No redirect; present Academy as a learning program linked from Workshop | Keeps production, process, and education connected without adding another primary division. |
+| `/gallery/` | **Gallery**, a shared visual archive | No redirect; remove from any primary-division list | Gallery remains prominent as a format serving several divisions. |
 | `/support/` = customer service | `/support/` = **Support HobFarm** funding/patronage page | Reuse route; move its current help material and update incoming customer-help links | “Support HobFarm” is the natural public funding phrase and already has prominent links. |
 | `/helpcenter/` = help index | `/helpcenter/` = **Customer Help** canonical route | No redirect; merge the useful billing/access/refund material from old `/support/` | A working help center already exists, so a third support route is unnecessary. |
 | No `/help/` | `/help/` → `/helpcenter/` | Add a permanent redirect only as a short, memorable alias | Preserves a predictable help URL without splitting content. |
@@ -316,6 +360,9 @@ Before changing `/support/`, inventory external links and search results that us
 Plain-language vocabulary:
 
 ```text
+Editorial
+HobFarm Presents
+Workshop
 Shop
 Support HobFarm
 Membership
@@ -408,22 +455,22 @@ Use `/support/`. Its only job is to explain why HobFarm accepts support, show wh
 
 > Everyone on social media is selling something. HobFarm has the decency to show you the funnel.
 >
-> The joke is that this is a funding page. The serious part is that HobFarm already publishes articles, visual archives, character systems, production notes, and free workflow education. Most of that work will remain open. If it helps you see your own work differently, you can support the next round once, join monthly, or buy a finished thing that saves you the work of making it yourself.
+> The joke is that this is a funding page. The serious part is that HobFarm is an independent publisher and creative studio. Editorial publishes the magazine work. HobFarm Presents develops recurring series and worlds. Workshop documents the systems behind them. Most of that public work will remain open. If it helps you see your own work differently, you can support the next round once, join monthly, or buy a finished thing that saves you the work of making it yourself.
 
 The page should sound like a working studio explaining its books, not a launch campaign pretending an emergency.
 
 ### Information architecture and copy direction
 
 1. **Satirical opener:** the two lines above, followed immediately by the real proposition.
-2. **What already exists:** count only published articles, galleries, Workshop studies, Academy lessons, and maintained tools that can be verified at build time.
-3. **Why most work remains free:** public work builds a useful archive, lets readers judge the work before paying, and keeps the publication shareable.
+2. **What already exists:** organize verifiable output under Editorial, HobFarm Presents, Workshop, Shop, and Support. Gallery and Academy counts can appear beneath the divisions they serve.
+3. **Why most Editorial work remains free:** public work builds a useful archive, lets readers judge the work before paying, and keeps articles and visual features shareable.
 4. **What operating HobFarm involves:** publishing infrastructure, storage/delivery, software and generation tools, research access, equipment, editing, and the operator's production time. No invented totals.
 5. **What one-time support funds:** the next concrete research, production, storage, or publishing expense. Button: “Support once on Ko-fi.”
 6. **What monthly support funds:** predictable baseline operation and a sustainable publishing cadence. Promise only one durable benefit at launch, such as a monthly production note or supporter update, plus account billing control. Button: “View membership.”
 7. **What buying funds:** finished assets and publications pay for the labor that made them and the next iteration. Button: “Shop finished work.”
 8. **What more funding unlocks:** research access, travel/museum work, specialist review, editing/fact checking, production services, software development, and eventually paid contributors.
 9. **Current limit:** one person rotates between publication, visual production, software, admin, and support. Funding reduces the forced rotation; it does not create instant capacity.
-10. **Long-term vision:** a small publication and studio that can pay specialists and international contributors for defined assignments. State clearly that this is not a current hiring program.
+10. **Long-term vision:** an independent publisher and creative studio that can pay specialists and international contributors for defined assignments. State clearly that this is not a current hiring program.
 11. **Payment choices:** once, monthly, buy, or commission/license. Each button names its destination/provider.
 12. **Plain financial/legal note:** contributions are optional; products and services have separate terms; show last-updated date and links to Customer Help, refunds, terms, and privacy.
 
@@ -481,11 +528,11 @@ Use a descriptive heading such as “Fund the next round,” not visually hidden
 
 ### Option 2: satire with a clearer business explanation
 
-**Everyone online is selling something. HobFarm shows you the funnel.** The magazine stays mostly free; products pay for finished production work, and direct support helps fund the next article, gallery, or tool.
+**Everyone online is selling something. HobFarm shows you the funnel.** Editorial stays mostly free; products pay for finished studio work, and direct support helps fund the next article, series, gallery, or tool.
 
 ### Option 3: mostly straight, with one joke
 
-**Help fund the next HobFarm release.** Buy finished work or support the publication once or monthly. You can also see where the money goes, because the funnel has windows.
+**Help fund the next HobFarm release.** Buy finished work or support the publisher and studio once or monthly. You can also see where the money goes, because the funnel has windows.
 
 Option 2 is the best default. It establishes the joke, explains the business in one sentence, and does not imply that every visitor arrived intending to pay.
 
@@ -495,8 +542,8 @@ No phase should begin by creating remote products or changing provider settings.
 
 ### Phase 0: naming and route decisions
 
-- **Files affected:** `src/data/support-platforms.ts`, `src/data/homepage-systems.ts`, global header/footer data or components, `src/pages/support.astro`, `/helpcenter/` data/pages, legal content links, redirects, and relevant tests.
-- **Dependencies:** owner approval of the provider split; confirmation whether Patreon has active members; inventory of incoming `/support/` customer-help links; confirmation that `hobfarm-web` has no unique deployment.
+- **Files affected:** `src/data/site-hierarchy.ts`, `src/data/support-platforms.ts`, `src/data/homepage-systems.ts`, global header/footer data or components, `src/pages/support.astro`, `/helpcenter/` data/pages, legal content links, redirects, and relevant tests.
+- **Dependencies:** the approved parent positioning and five-division model; owner approval of the provider split; confirmation whether Patreon has active members; inventory of incoming `/support/` customer-help links; confirmation that `hobfarm-web` has no unique deployment.
 - **Risks:** breaking bookmarked help links, stranding Patreon members, or renaming a benefit before its promise is settled.
 - **Tests:** build, structural route/link tests, redirect tests, desktop/mobile navigation, keyboard focus, screen-reader names, no-JS content.
 - **Migration concerns:** keep `/support/` live with a new job; move help content to `/helpcenter/`; add `/help/` redirect; update legal/account/footer links; mark or archive the legacy repository separately.
@@ -549,7 +596,7 @@ No phase should begin by creating remote products or changing provider settings.
 
 ## 10. Immediate action list
 
-1. Approve the provider and route split, then turn `/support/` into a page with one working Ko-fi **Support once** action and one Stripe **Support monthly** action; make `/helpcenter/` the unambiguous Customer Help destination.
+1. Apply the approved parent positioning and five-division vocabulary, then turn `/support/` into a page with one working Ko-fi **Support once** action and one Stripe **Support monthly** action; make `/helpcenter/` the unambiguous Customer Help destination.
 2. Approve one truthful recurring membership benefit and remove product, course, and marketplace promises that are not membership entitlements.
 3. Finalize the Sophia/Stella buyer files, personal-use license, price, and DeviantArt listing; perform a controlled download test.
 4. Change the Sophia/Stella product record to `live` only after its exact listing URL is verified, then make it the first real Shop and Latest Drops offer.
