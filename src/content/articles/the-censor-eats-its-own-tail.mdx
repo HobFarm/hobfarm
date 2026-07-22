@@ -1,0 +1,636 @@
+---
+title: "The Censor Eats Its Own Tail"
+excerpt: "From Hollywood's moral inspectors to the yellow dollar sign and the chatbot in the writing room, a century of gatekeepers taught creators to predict the punishment."
+dek: "From Hollywood's moral inspectors to the yellow dollar sign and the chatbot in the writing room, a century of gatekeepers taught creators to predict the punishment."
+description: "A film-centered history of censorship moving from formal bans and approval seals into blacklists, advertisers, recommendation systems, and AI policy environments."
+author: "d00d"
+tags:
+  - censorship
+  - media history
+  - Production Code
+  - comics
+  - music
+  - social media
+  - artificial intelligence
+  - independent publishing
+department: essays-arguments
+format: article
+entryType: feature
+heroImage: "https://cdn.hob.farm/articles/the-censor-eats-its-own-tail/hero/censor-ouroboros-hero.webp"
+socialImage: "https://cdn.hob.farm/articles/the-censor-eats-its-own-tail/hero/censor-ouroboros-hero-social-1200x630.jpg"
+thumbnail: "https://cdn.hob.farm/articles/the-censor-eats-its-own-tail/hero/censor-ouroboros-hero.webp"
+heroAlt: "A paper-collage ouroboros made from film, approval marks, media hardware, recommendation symbols, and an AI cursor loops around an independent creator's desk."
+canonical: "/articles/the-censor-eats-its-own-tail/"
+publishedAt: 2026-07-22T05:25:57-07:00
+status: published
+featured: false
+draft: false
+relatedArticles:
+  - vacation-into-nothing
+  - how-the-money-eats-the-medium
+  - mad-trump-and-the-magazine-time-machine
+  - you-do-not-own-the-ai-you-pay-for
+rightsNote: "The hero and diagrams are original HobFarm editorial art. Public-domain government and institutional documents are credited at the point of use. The PCA certificate and cropped process screenshots are reproduced in limited form for historical identification, criticism, and commentary; source records and rights decisions are preserved in the article report."
+supportCTA:
+  label: "Support independent publishing"
+  href: "/support/"
+sourceNotes:
+  - label: "Library of Congress: When Pre- Met Code"
+    url: "https://blogs.loc.gov/now-see-hear/2014/07/when-pre-met-code-eighty-years-ago-today/"
+    note: "Used for the pre-enforcement definition, July 15, 1934 PCA enforcement date, fines, and first PCA certificate."
+    type: documented-fact
+  - label: "AFI Catalog: Psycho"
+    url: "https://catalog.afi.com/Film/53260-PSYCHO"
+    note: "Used for the PCA and Legion objections, revision history, and March 1960 seal."
+    type: documented-fact
+  - label: "Library of Congress: Suppression of The Masses"
+    url: "https://www.loc.gov/exhibitions/world-war-i-american-experiences/about-this-exhibition/over-here/surveillance-and-censorship/suppression-of-the-masses/"
+    note: "Used for the Post Office decision that made the August 1917 issue unmailable."
+    type: documented-fact
+  - label: "Library of Congress: Senate Comic Book Hearings of 1954"
+    url: "https://blogs.loc.gov/law/2022/10/the-senate-comic-book-hearings-of-1954/"
+    note: "Used for the hearing chronology, Gaines exchange, Comics Code, and documented drawing alterations."
+    type: documented-fact
+  - label: "National Archives: Remembering the Hollywood 10"
+    url: "https://visit.archives.gov/whats-on/explore-exhibits/remembering-hollywood-10-screenwriter-ring-lardner-jr"
+    note: "Used for Ring Lardner Jr.'s testimony, conviction, prison term, and blacklisting."
+    type: documented-fact
+  - label: "YouTube advertiser-friendly content guidelines"
+    url: "https://support.google.com/youtube/answer/6162278"
+    note: "Rechecked July 22, 2026 for limited/no-ad states, automated review, appeals, and contextual exceptions."
+    type: documented-fact
+  - label: "YouTube age-restricted content"
+    url: "https://support.google.com/youtube/answer/2802167"
+    note: "Rechecked July 22, 2026 for signed-out access, third-party embeds, and monetization effects."
+    type: documented-fact
+  - label: "Reddit: Quarantined Communities"
+    url: "https://support.reddithelp.com/hc/en-us/articles/360043069012-Quarantined-Communities"
+    note: "Rechecked July 22, 2026 for opt-in, revenue, search, feed, and recommendation restrictions."
+    type: documented-fact
+  - label: "Rumble moderation proposal"
+    url: "https://www.rum.group/blog/rumble-proposes-an-open-source-content-moderation-policy-process-to-improve-transparency-put-creators-first/"
+    note: "Rechecked July 22, 2026 for Rumble's free-expression positioning and stated platform rules."
+    type: promotional-claim
+  - label: "Google Gemma Prohibited Use Policy"
+    url: "https://ai.google.dev/gemma/prohibited_use_policy"
+    note: "Rechecked July 22, 2026 for the scientific, educational, documentary, and artistic exception to the sexual-content rule."
+    type: documented-fact
+  - label: "Anthropic: Content moderation"
+    url: "https://platform.claude.com/docs/en/about-claude/use-case-guides/content-moderation"
+    note: "Rechecked July 22, 2026 for the warning that Claude may flag explicit material despite an application developer's preference."
+    type: documented-fact
+  - label: "Alibaba Cloud Model Studio error codes"
+    url: "https://www.alibabacloud.com/help/en/model-studio/error-code"
+    note: "Rechecked July 22, 2026 for DataInspectionFailed and pre-inference content checks."
+    type: documented-fact
+  - label: "Science Advances: generative AI, creativity, and diversity"
+    url: "https://www.science.org/doi/10.1126/sciadv.adn5290"
+    note: "Used for the finding that AI ideas improved individual story evaluations while increasing similarity across stories."
+    type: documented-fact
+---
+
+import VacationFigure from "@/components/articles/vacation/VacationFigure.astro";
+import VacationImageGrid from "@/components/articles/vacation/VacationImageGrid.astro";
+import GateLadder from "@/components/articles/censor/GateLadder.astro";
+import CensorOuroboros from "@/components/articles/censor/CensorOuroboros.astro";
+import TransatlanticFilmLoop from "@/components/articles/censor/TransatlanticFilmLoop.astro";
+import InvisibleSeals from "@/components/articles/censor/InvisibleSeals.astro";
+import MoralEmergencyTable from "@/components/articles/censor/MoralEmergencyTable.astro";
+import ArticleSourceList from "@/components/articles/censor/ArticleSourceList.astro";
+import CensorArticleStyles from "@/components/articles/censor/CensorArticleStyles.astro";
+
+<CensorArticleStyles />
+
+I was trying to remember the name of the other video site.
+
+Not Vimeo. Not Twitch. The one people mention whenever YouTube becomes intolerable.
+
+Eventually I remembered: Rumble.
+
+I opened it looking for somewhere to put creative video and found politics waiting in the lobby.
+
+YouTube feels like Nannyville. It has the audience, the infrastructure, the embeds, and an enormous corporate nervous system built around advertisers, safety rules, automated review, child-access assumptions, and the possibility that a legal video can remain online while becoming financially useless.
+
+Rumble offered the opposite sales pitch. It talks about free expression, creator control, and resistance to censorship. The homepage I opened still did not look like a neutral workshop for filmmakers, animators, artists, and assorted weirdos. It looked like Political Shitville: news, grievance, ideology, counter-ideology, and people producing more media about the media produced by the people they hate.
+
+Rumble had not rejected anything I made. It had already programmed the lobby.
+
+That left my website. HobFarm is the only place where nobody outside the publication gets to approve the article, soften the image, flatten the joke, or tell me that an adult creative idea presents a brand-safety concern. I can publish the work. People can find it or fail to find it. Sovereignty does not come with distribution.
+
+While writing a history of censorship, I had managed to reenact the final chapter before finishing the first paragraph.
+
+The twentieth-century censor had an office. Then it had a seal, a blacklist, a sponsor, a warning sticker, and a ratings board. The platform era split the old seal into several invisible ones: permission to remain, permission to earn, permission to embed, permission to appear in recommendations. AI moved the gate one step earlier. The machine can now enter during the idea.
+
+The durable lesson has remained remarkably consistent.
+
+Make whatever you want, provided you can mail it, approve it, finance it, distribute it, advertise it, recommend it, and persuade the machine to help you make it.
+
+<GateLadder />
+
+## Hollywood becomes a moral emergency
+
+The film industry learned the pattern early because movies were unusually visible, unusually popular, and easy to describe as a threat entering every town in America.
+
+Silent Hollywood had sex, drugs, alcohol, money, ambitious young people, publicity departments, gossip columns, and a new kind of celebrity whose face could be recognized everywhere. It also had newspapers learning how profitable a celebrity scandal could become.
+
+The Roscoe “Fatty” Arbuckle case supplied the era with its perfect moral emergency. Actress Virginia Rappe became gravely ill after a 1921 party hosted by Arbuckle and died days later. Arbuckle endured three manslaughter trials. The first two juries deadlocked. The third acquitted him and issued an extraordinary apology for the injustice done to him. His legal victory did not restore his career. The accusation and the newspaper spectacle had already done their work.<sup className="source-ref"><a href="#source-1" aria-label="Source 1">1</a></sup>
+
+The case belongs here because it demonstrates the difference between a verdict and a reputation. It does not belong here as the single cause of the Production Code. Hollywood’s self-regulation developed through several pressures: scandal coverage, the unsolved murder of director William Desmond Taylor, drug-related deaths, local and state censor boards, religious organizations, civic reformers, and the threat of federal action. Arbuckle became the face that made the larger anxiety easy to print.
+
+The studios hired Will H. Hays in 1922 to improve Hollywood’s public standing and coordinate industry self-regulation. Hays had been postmaster general and chairman of the Republican National Committee. He was also a Presbyterian elder, which was useful branding for an industry being described as a western outpost of sin.
+
+The job was partly moral management and partly logistics. A national film business could not comfortably obey a patchwork of local boards, each cutting different material according to local standards. Centralized self-policing promised a cleaner route through the country. The industry could claim responsibility and avoid a more intrusive government system.
+
+The first controls were weak. Hays shepherded a 1924 “Formula” and a 1927 list known as the “Don’ts and Be Carefuls.” The Motion Picture Production Code followed in 1930. The four years before strict enforcement are now called the pre-Code era, although the Code already existed. The real freedom came from the absence of a reliable enforcement mechanism.<sup className="source-ref"><a href="#source-2" aria-label="Source 2">2</a></sup>
+
+That gap produced some of the fastest, funniest, ugliest, most candid studio movies ever made. Warner Bros. could fill the screen with gangsters, labor trouble, sexual bargaining, corruption, unemployment, aggressive women, collapsing institutions, and people surviving the Depression with whatever tools were available. The movies did not all share one politics or style. They shared room to move.
+
+The [Warner Bros. 1933 feature](/departments/hobfarm-presents/3-degrees-of-dick-miller/1933-the-year-warner-bros-built-a-world/) follows that studio factory at full speed. [Broadway Babies](/departments/hobfarm-presents/3-degrees-of-dick-miller/broadway-babies/) catches the same machinery converting to sound just before the Depression took hold.
+
+The room closed in 1934.
+
+Catholic activists had been organizing against what they considered immoral films. The Legion of Decency asked Catholics to pledge that they would avoid movies that offended decency and Christian morality. Martin Quigley, a Catholic trade publisher, and Jesuit priest Daniel A. Lord had been central to writing the Code. Joseph Breen, a forceful Catholic moralist, took charge of the new Production Code Administration. Beginning July 15, 1934, every film produced by an MPPDA member needed PCA approval before release or the studio faced heavy fines.<sup className="source-ref"><a href="#source-3" aria-label="Source 3">3</a></sup>
+
+<VacationFigure src="https://cdn.hob.farm/articles/the-censor-eats-its-own-tail/archival/1934-pca-certificate.webp" alt="The first Production Code Administration certificate, numbered one for The World Moves On." caption="Beginning July 15, 1934, films from MPPDA members needed PCA approval before release. The moral argument became a document in the pipeline." credit="Library of Congress, Now See Hear" sourceUrl="https://blogs.loc.gov/now-see-hear/2014/07/when-pre-met-code-eighty-years-ago-today/" width={300} height={230} compact />
+
+This is the part where the religious influence needs to be named directly. It is in the documents. The Production Code prohibited ridicule of religious faith, required respectful treatment of clergy, restricted the use of religious names, banned interracial romance under its “miscegenation” rule, and used phrases such as “sex perversion” to close whole categories of representation. The Catholic Legion of Decency supplied organized economic pressure through pledges, ratings, condemnation, and threatened boycotts.<sup className="source-ref"><a href="#source-4" aria-label="Source 4">4</a></sup>
+
+Jesus appears in this chapter because the institution put him in the operating rules. Other censorship campaigns used different authorities. The recurring character is the symbolic child, who can be summoned whenever adults want emergency control over other adults’ culture.
+
+## The seal writes the movie before the camera
+
+The Production Code worked because it reached the film before the audience did.
+
+A government ban creates a visible collision. The PCA created a workflow. Studios submitted stories, scripts, revisions, and completed films. Approval decisions moved through production. A forbidden project might be abandoned before a set was built. A scene might be rewritten before an actor learned it. The seal turned censorship into routine administration.
+
+The public saw the approved movie. It could not see the versions that died in meetings.
+
+That makes the Code’s creative legacy complicated. Filmmakers developed extraordinary methods for suggestion. Desire moved into glances, doors, shadows, costume, double meanings, and the space between two cuts. Murder moved into sound and reaction. Queer characters became coded. Adultery became a hotel room with carefully arranged clothing. Crime could appear, but authority and punishment had to be handled in approved ways. Clergy and institutions received protections that ordinary characters did not.
+
+Restriction sharpened some techniques. It also erased subjects, identities, relationships, and endings. The clever workaround survives on the screen. The abandoned project leaves no artifact.
+
+Censorship fails loudly and succeeds quietly. We remember the artist who fought back. We cannot count the work that was never attempted.
+
+## The censors saw the knife
+
+By 1960, filmmakers working inside the American studio system had spent roughly twenty-six years learning how to place forbidden material inside the viewer’s head.
+
+Alfred Hitchcock was an ideal person to expose the system. He was a British filmmaker with two decades of European work behind him before Hollywood. He understood the studio factory, the American Code, publicity, audience psychology, and the difference between an image on the film and an image assembled by the person watching it.
+
+*Psycho* went through a long Code negotiation. The PCA objected to the opening hotel-room scene, sexually suggestive dialogue, Norman Bates watching Marion Crane undress, apparent nudity in the shower, suggestions of incest, discussion of what the office called “transvestitism,” and even the appearance of a flushing toilet. The completed film was rejected in February 1960. Paramount received a seal in March after revised material was screened. The National Catholic Legion of Decency demanded separate reductions involving bra removal, Norman washing blood from his hands, and the number of times Detective Arbogast was stabbed.<sup className="source-ref"><a href="#source-5" aria-label="Source 5">5</a></sup>
+
+There are stories about Hitchcock loading the cut with sacrificial material so the censors could remove obvious offenses while he preserved the real film. He certainly knew how to bargain and misdirect. The surviving record does not establish one flawless master plan behind every extreme detail.
+
+The documented achievement is better.
+
+The shower murder lasts less than a minute and is built from dozens of fragments. Knife, skin, water, blood, sound, motion, Marion’s face, the drain, the curtain, the body. The knife appears to enter her. It does not. One apparent contact was created by filming the knife against the body and reversing the motion. The viewer supplies the wound.<sup className="source-ref"><a href="#source-6" aria-label="Source 6">6</a></sup>
+
+The censors became the first audience to prove the scene worked.
+
+They inspected frames for prohibited objects. Hitchcock built the offense between the frames.
+
+*Psycho* did not kill the Production Code by itself. The Code was already losing authority. Otto Preminger released *The Man with the Golden Arm* without a seal in 1955 after the PCA rejected its treatment of drug addiction. United Artists distributed it. Major theater circuits played it. The success of unapproved films weakened the seal’s commercial power and helped force a 1956 revision of the Code.<sup className="source-ref"><a href="#source-7" aria-label="Source 7">7</a></sup>
+
+*Psycho* delivered a different blow. It passed through the official gate and still felt more sexual, violent, unstable, and modern than the gate understood. It looked like exploitation cinema wearing a Paramount suit. It also made money.
+
+The Code could count stabbings. It could not measure what montage made an audience imagine.
+
+## The Code had a border problem
+
+Hollywood’s moral system could govern association studios and pressure American distribution. It could not supervise world cinema.
+
+Europe did not offer a censorship-free paradise. France, Britain, Italy, Sweden, and other countries had their own boards, political pressure, religious pressure, obscenity laws, and state interests. The useful difference was plurality. No single certificate governed the entire medium.
+
+Foreign films arrived in the United States as completed objects. They could be denied licenses, condemned, cut, or pushed into specialized theaters. They could also create court cases and attract paying audiences.
+
+Roberto Rossellini’s Italian film *The Miracle* became the center of *Joseph Burstyn, Inc. v. Wilson* after New York revoked its exhibition license for being “sacrilegious.” In 1952, the Supreme Court reversed the ban and recognized motion pictures as protected expression. Other imported films, including adaptations of *Lady Chatterley’s Lover* and Louis Malle’s *The Lovers*, kept forcing American authorities to explain why adults could not see stories that treated sex, adultery, or desire outside Hollywood’s approved moral frame.<sup className="source-ref"><a href="#source-8" aria-label="Source 8">8</a></sup>
+
+The audience was learning the same lesson through art houses.
+
+Bergman, Fellini, Antonioni, Godard, Truffaut, Varda, Resnais, Malle, Italian neorealism, the French New Wave, British kitchen-sink films, and a much wider international field showed that movies could use streets, silence, rough surfaces, adult relationships, moral uncertainty, fractured chronology, unresolved endings, and directors with recognizable personalities.
+
+Hollywood had exported much of the grammar. French critics treated studio directors such as Hitchcock and Howard Hawks as artists working inside a factory. Those critics became filmmakers. They took American crime pictures, melodramas, B movies, and thrillers apart, then sent the machinery back with the casing removed.
+
+American filmmakers watched the result.
+
+*Bonnie and Clyde* makes the loop visible. Its writers wanted François Truffaut and also considered Jean-Luc Godard. The finished film carried the energy of the French New Wave into an American crime story and became one of the decisive commercial and cultural shocks of 1967.<sup className="source-ref"><a href="#source-9" aria-label="Source 9">9</a></sup>
+
+Hollywood exported its grammar. Europe sent it back outside the Code. Hollywood called it New Hollywood.
+
+The Code’s border problem became a market problem. In 1966, MGM released Michelangelo Antonioni’s British production *Blow-Up* without a Production Code seal. It became a major hit. Once a large studio could profit by routing around the certificate, the certificate no longer controlled the market.
+
+The Code had spent decades protecting Hollywood from dangerous movies.
+
+By the middle of the 1960s, it was protecting Hollywood from the audience.
+
+<TransatlanticFilmLoop />
+
+## The margins build another road
+
+Respectable studio cinema was only one route through the period.
+
+Drive-ins, grindhouses, regional theaters, independent distributors, and exploitation producers served audiences the major studios misunderstood or considered improper. Nudie cuties used comic framing and thin plots to exhibit nudity. Roughies added violence, threat, and harsher melodrama. Mondo films packaged shock, taboo, travel, alleged anthropology, staged material, and documentary claims into a format built to promise that the viewer was seeing something ordinary movies would not show. Low-budget horror and gore pushed in another direction.
+
+This material deserves more than a roll call of disreputable genres. The margins were a research laboratory.
+
+Cheap production let filmmakers test subjects, styles, talent, marketing, and audiences without asking a major studio to understand the idea first. The work could be crude, cynical, exploitative, formally inventive, or all four in the same reel. It also revealed demand. The official system described adult material as a moral danger while the side market sold tickets to adults who wanted to see it.
+
+The studios had a moral code. The margins had a market.
+
+Roger Corman connected the side road to the coming mainstream. His films and production system treated young audiences as a real public. He worked quickly, kept budgets low, tested horror, biker culture, drugs, racial conflict, sex, and youth rebellion, and gave early opportunities to filmmakers and actors who would later become central to American cinema.
+
+*The Trip* makes the transition almost embarrassingly tidy. Corman directed it in 1967. Jack Nicholson wrote it. Peter Fonda starred. Dennis Hopper appeared. The film treated LSD as a contemporary subject and a visual problem. Television stations rejected some advertisements after broadcast-industry authorities invoked good taste, community attitudes, and responsibility to children. The movie existed. The new gate appeared around its promotion.<sup className="source-ref"><a href="#source-10" aria-label="Source 10">10</a></sup>
+
+Fonda and Hopper carried part of that network into *Easy Rider*. The film cost little by studio standards and earned enough to become proof that a young countercultural audience could produce serious returns. Bob Rafelson and Bert Schneider used that leverage to build BBS Productions and secure a Columbia deal with unusual creative control. *Five Easy Pieces* emerged from that opening, along with a small body of personal, adult, formally loose American films the old studio machinery would have struggled to authorize.<sup className="source-ref"><a href="#source-11" aria-label="Source 11">11</a></sup>
+
+New Hollywood did not come from one cause. The Code had lost authority. Foreign films expanded the audience’s vocabulary. Exploitation producers found the youth market. Television had weakened the old theatrical monopoly. The classical studio system was breaking apart. A generation of filmmakers had absorbed art cinema, B movies, documentary texture, and the political atmosphere around them.
+
+The ratings system arrived in 1968 because one moral certificate could no longer govern the whole business.
+
+The original G, M, R, and X ratings organized audiences into rooms. The Code had asked whether a film was acceptable for general circulation. The rating told viewers and parents which audience the film was intended to reach. The Motion Picture Association presented the system as self-regulation that could preserve creative freedom while answering demands for censorship and government intervention.<sup className="source-ref"><a href="#source-12" aria-label="Source 12">12</a></sup>
+
+The rating said who could enter. The Code decided what could be built.
+
+That was real progress. It also preserved the industry’s basic instinct: build a private system before the government builds one for you.
+
+## The studio buys the side road
+
+Freedom inside the ratings era did not last in one pure form. It became another market structure.
+
+*Easy Rider*, *Five Easy Pieces*, *The Last Picture Show*, *The Godfather*, *Mean Streets*, *McCabe & Mrs. Miller*, *Nashville*, *The Conversation*, and the wider New Hollywood period showed studios that personal filmmaking and adult ambiguity could reach a large audience. The same industrial openness also produced the conditions for a different discovery.
+
+*Jaws* and *Star Wars* did not invent spectacle, sequels, franchises, merchandising, or popular serial storytelling. *Star Wars* gathered those systems into an unusually powerful package. It borrowed from old chapter serials, space opera, westerns, war movies, samurai films, mythology, comics, model work, and the same international circulation of ideas that had fed New Hollywood. The numbered episodes and expanding world made continuation part of the design.
+
+The lesson studios carried forward concerned risk.
+
+A hit could be more than a film. It could become sequels, toys, books, records, games, television, licenses, and a durable world. Over time, the blockbuster became the tentpole and the tentpole became the franchise plan. The side road had been discovered, financed, and eventually converted into a highway with toll booths.
+
+This is the argument developed more fully in [*How the Money Eats the Medium*](/articles/how-the-money-eats-the-medium/): production systems shape which art forms can support working artists. Television helped destroy the mass-market magazine business that bought short stories. Cheap film production could function as a talent laboratory. Expensive franchise production concentrates decisions because too much money depends on each release.<sup className="source-ref"><a href="#source-13" aria-label="Source 13">13</a></sup>
+
+Censorship and economics overlap here. A studio can avoid a subject because a censor forbids it. It can also avoid the subject because the audience is considered too small, the foreign market too uncertain, the sponsor too nervous, or the franchise plan too valuable to disturb. The artist experiences all of those decisions as the narrowing of the possible.
+
+## Before the yellow dollar sign, there was second-class postage
+
+Film offers the cleanest spine because its control systems were visible. Other media developed versions of the same machinery.
+
+In 1917, Postmaster General Albert Burleson declared an issue of the socialist magazine *The Masses* unmailable under the Espionage Act. The government did not need to burn every copy. Blocking the mail attacked circulation.<sup className="source-ref"><a href="#source-14" aria-label="Source 14">14</a></sup>
+
+<VacationFigure src="https://cdn.hob.farm/articles/the-censor-eats-its-own-tail/archival/1917-the-masses-mail-censorship.webp" alt="A 1917 typewritten letter from The Masses editor Max Eastman to President Woodrow Wilson." caption="The Post Office did not need to ban every copy of The Masses. Declaring the issue unmailable cut the magazine off from national distribution." credit="Max Eastman letter, Woodrow Wilson Papers, Library of Congress" sourceUrl="https://www.loc.gov/exhibitions/world-war-i-american-experiences/about-this-exhibition/over-here/surveillance-and-censorship/suppression-of-the-masses/" width={519} height={660} compact />
+
+Decades later, the Post Office tried to revoke *Esquire* magazine’s valuable second-class mailing privileges because officials considered parts of the magazine morally improper, even though the material was not legally obscene. The Supreme Court rejected that effort in *Hannegan v. Esquire* in 1946. The opinion said the postmaster had no power to prescribe standards for literature or art and turn a mailing permit into a general certificate of public worth.<sup className="source-ref"><a href="#source-15" aria-label="Source 15">15</a></sup>
+
+The principle sounds modern because the economic mechanism sounds modern.
+
+The magazine may exist. It may remain legal. It may simply lose the distribution condition that makes publication viable.
+
+Before the yellow dollar sign, there was second-class postage.
+
+Newspapers carried a different form of control. Owners, editors, advertisers, party alliances, government pressure, access to officials, libel law, wartime rules, postal power, and the physical limits of print all shaped the published world. Newspapers also helped manufacture moral emergencies around rival media.
+
+The 1938 *War of the Worlds* broadcast remains the perfect example because the legend became larger than the documented panic.
+
+Orson Welles and the Mercury Theatre used the sound and rhythm of breaking radio news to dramatize an alien invasion. Some listeners were frightened or confused. Calls reached police, newspapers, and radio stations. The familiar story of a nation running into the streets was heavily exaggerated. Historian A. Brad Schwartz found a smaller, stranger event followed by a large public argument about truth, fiction, media responsibility, and possible regulation.<sup className="source-ref"><a href="#source-16" aria-label="Source 16">16</a></sup>
+
+The response created another voluntary code. No major law was passed. Network leaders agreed to avoid using news-broadcast language in fiction in the same way again. The industry silenced part of its own experimental vocabulary to prevent government action.
+
+The pattern should look familiar by now.
+
+A creative work imitates the authority of a medium. The public reaction becomes a story. The story produces pressure. The industry installs a rule. The rule outlives the panic.
+
+Thirty years later, WKBW in Buffalo produced a modernized local version for Halloween 1968, using the station’s own news style and geography.<sup className="source-ref"><a href="#source-17" aria-label="Source 17">17</a></sup> My mother and her friends heard a version of *War of the Worlds* in the 1960s and thought it was real until their parents told them it was a drama. That is a family memory, not proof of which station they heard or how many other listeners reacted the same way. It matters because it shows how well the form could still work when it entered an ordinary room without the archival label attached.
+
+The broadcast was fiction. The fear was real. The newspaper legend about the fear became another kind of fiction. Each layer changed the public understanding of the one before it.
+
+## The Child returns with a comic book
+
+The comic-book panic of 1954 compressed the film story into a faster cycle.
+
+Crime and horror comics supplied grotesque images that could be held up in a hearing. Psychiatrist Fredric Wertham connected comics to juvenile delinquency with claims that other experts disputed. The Senate Subcommittee to Investigate Juvenile Delinquency held hearings in April and June. Publisher William Gaines defended EC Comics and found himself debating Senator Estes Kefauver over whether a cover showing a woman’s severed head was in good taste.<sup className="source-ref"><a href="#source-18" aria-label="Source 18">18</a></sup>
+
+Gaines’s answer depended on context. It was in good taste for a horror comic.
+
+That argument still has not gone away.
+
+A horror cover, an adult gallery, a fashion editorial, a medical diagram, a satire, a children’s homepage, and an advertisement are different rooms. Scalable censorship wants one answer. Art keeps producing contextual answers.
+
+The Senate stopped short of creating a federal comics censor. The industry did the work itself. Publishers formed the Comics Magazine Association of America and adopted the Comics Code in October 1954. The rules banned horror, excessive bloodshed, gory crime, vampires, werewolves, disrespect toward established authority, and other material. The seal became essential to ordinary distribution. A comic could remain legal and still disappear from the rack.
+
+The changes were immediate. The Library of Congress cites a December 1954 report saying the Code administrator had already required alterations to 5,656 drawings, including changes intended to reduce feminine curves.<sup className="source-ref"><a href="#source-18" aria-label="Source 18">18</a></sup>
+
+<VacationImageGrid
+  label="Documents from the comics distribution and censorship fight"
+  items={[
+    {
+      src: "https://cdn.hob.farm/articles/the-censor-eats-its-own-tail/archival/1954-comics-hearing-transcript.webp",
+      alt: "A 1954 Senate hearing transcript excerpt showing questions to publisher William Gaines about a horror-comic cover.",
+      caption: "William Gaines argued that the challenged cover fit the standards of a horror comic. The hearing wanted one answer to good taste.",
+      credit: "U.S. Senate hearing transcript via the Library of Congress",
+      sourceUrl: "https://blogs.loc.gov/law/2022/10/the-senate-comic-book-hearings-of-1954/",
+      width: 936,
+      height: 777,
+    },
+    {
+      src: "https://cdn.hob.farm/articles/the-censor-eats-its-own-tail/archival/1939-comics-newsstand.webp",
+      alt: "A 1939 black-and-white photograph of magazines and comic books packed onto a St. Louis newsstand.",
+      caption: "The Comics Code did not make disapproved books illegal. It made ordinary racks much harder to reach.",
+      credit: "Arthur Rothstein, FSA, Library of Congress",
+      sourceUrl: "https://blogs.loc.gov/law/2022/10/the-senate-comic-book-hearings-of-1954/",
+      width: 517,
+      height: 708,
+    },
+  ]}
+/>
+
+EC’s horror line collapsed. Gaines moved *MAD* from comic-book format into magazine format, outside the Code’s jurisdiction. Harvey Kurtzman also had an important personal reason for wanting the magazine upgrade: he wanted Gaines to keep him from leaving. Censorship supplied the fence. Talent, business, and ambition determined the route around it.
+
+The workaround became the identity.
+
+As a magazine, *MAD* could attack movies, television, advertising, celebrity, consumer goods, patriotic seriousness, and the entire official sales pitch of American life. Its refusal of ordinary advertising gave it another layer of freedom. The institution created to make comics safe helped produce a magazine that taught generations of readers to distrust the clean version.
+
+That history already runs through HobFarm’s [*MAD, TRUMP, and the Magazine Time Machine*](/articles/mad-trump-and-the-magazine-time-machine/). It belongs here as the clearest comic-book example of the ouroboros: a censorship system creates the mutation that becomes better at mocking censorship.<sup className="source-ref"><a href="#source-19" aria-label="Source 19">19</a></sup>
+
+## The sponsor owns the air
+
+Radio and television added two forms of authority: the federal broadcast license and the sponsor.
+
+A broadcaster entered the home. Regulators and networks treated that reach, along with children’s access, as grounds for stricter standards than books, magazines, theaters, or later cable. Sponsors added a quieter control. The program could remain lawful and still become commercially impossible if advertisers refused to support it.
+
+The blacklist showed how government pressure and private employment could combine.
+
+In 1947, the House Un-American Activities Committee called film workers to testify about alleged Communist influence. Members of the Hollywood Ten were convicted of contempt of Congress and blacklisted by the industry. Screenwriter Ring Lardner Jr. served nearly ten months in federal prison. Writers worked under pseudonyms or through fronts. Careers stopped. Accusations became warnings to everybody else in the room.<sup className="source-ref"><a href="#source-20" aria-label="Source 20">20</a></sup>
+
+<VacationFigure src="https://cdn.hob.farm/articles/the-censor-eats-its-own-tail/archival/1947-hollywood-ten-statement.webp" alt="Ring Lardner Jr.'s typed 1947 statement to the House Un-American Activities Committee." caption="HUAC removed Ring Lardner Jr. before he could read this statement. Government punishment and studio blacklisting then reinforced each other." credit="National Archives, Records of the U.S. House of Representatives" sourceUrl="https://visit.archives.gov/whats-on/explore-exhibits/remembering-hollywood-10-screenwriter-ring-lardner-jr" width={1600} height={1313} />
+
+This is the strongest historical comparison to modern cancellation, and it also shows why the comparison needs limits. An angry thread is not automatically HUAC. The blacklist joined subpoenas, criminal punishment, ideology tests, studio coordination, and long-term employment exclusion.
+
+The useful continuity is simpler.
+
+Public accusation becomes institutional action. Institutional action teaches the surrounding population what to avoid.
+
+“Cancel culture” is a disputed name for networked attempts to convert speech or behavior into reputational, employment, commercial, distribution, or platform consequences. Some campaigns expose real abuse and force institutions to act. Others remove context, confuse accusation with proof, or demand a punishment larger than the conduct. The mechanism needs concrete questions: What happened? What evidence exists? Who has power? What consequence is being demanded? Is there an appeal? Can the correction travel as far as the accusation?
+
+The crowd does not need formal authority if it can reach the employer, sponsor, retailer, distributor, or platform.
+
+Television also changed the economics beneath magazines. In 1980, Kurt Vonnegut told writing students that they were learning a living craft inside a dying business. He blamed “practical television”: advertising agencies found television more useful, advertising money left the large magazines, and a mass market that had paid for short fiction contracted.
+
+Television did not kill the short story. It helped destroy the mass-market business that bought short stories.<sup className="source-ref"><a href="#source-13" aria-label="Source 13">13</a></sup>
+
+That belongs in a censorship article because lost markets produce their own silence. The writer may remain legally free to write a short story. Fewer institutions can pay for it, distribute it, place it before a mass public, or support a career around it.
+
+The missing work is not always prohibited.
+
+Sometimes nobody can afford to buy it.
+
+## A private interpretation arrives at the Senate
+
+The Parents Music Resource Center repeated the old structure with better hair.
+
+The PMRC formed in 1985 among politically connected Washington women concerned about sexual, violent, drug-related, and occult themes in popular music. “Senators’ wives” is a satisfying insult and an inaccurate description of the whole group. Tipper Gore was married to Senator Al Gore. Susan Baker was married to Treasury Secretary James Baker. The relevant fact was their access to political machinery.
+
+A private interpretation arrived at the Senate wearing official stationery.
+
+At the September 1985 hearing, Dee Snider entered looking like every adult fear about heavy metal and then explained his work more carefully than the people accusing it.
+
+Snider told the committee he was married, a father, raised Christian, and did not drink or use drugs. He said “Under the Blade” concerned fear of surgery. The PMRC had interpreted it as sadomasochism, bondage, and rape. Snider’s point was not that listeners could never find other meanings. His point was that an interpretation had been promoted as evidence about his character and intentions.<sup className="source-ref"><a href="#source-21" aria-label="Source 21">21</a></sup>
+
+John Denver understood the problem from another direction. “Rocky Mountain High” had been misread as a drug song. He warned against self-appointed guardians deciding what art meant for everyone else. Frank Zappa attacked the proposal as a coercive and badly designed response to parental anxiety.<sup className="source-ref"><a href="#source-22" aria-label="Source 22">22</a></sup>
+
+The record industry adopted parental-advisory labeling. The sticker could restrict retail access and reassure parents. It could also become a badge, a genre marker, and an advertisement that danger was inside. Claims that warning labels universally increased sales need more evidence than cultural memory usually supplies. The safer conclusion is obvious enough: the warning had two audiences.
+
+It warned one group and invited another.
+
+The PMRC hearing also shows how moral panics backfire in public. Snider, Denver, and Zappa received a national stage. The respectable room looked less prepared than the dangerous artists. The accusation created its own rebuttal content.
+
+Then the rebuttal became a product too.
+
+The snake had found its tail.
+
+<MoralEmergencyTable />
+
+## The platform invents limbo
+
+The 2017 YouTube adpocalypse did not invent advertiser pressure. It automated and globalized an old control at creator scale.
+
+Major advertisers withdrew after reports that their ads had appeared beside extremist and objectionable videos. YouTube tightened controls, review, monetization rules, and advertiser protections. The action was understandable from the advertisers’ position. A company does not want its logo financing a recruitment video or appearing beside material that creates obvious brand risk.
+
+The resulting system reached much farther than the original offenders.
+
+YouTube now separates Community Guidelines from advertiser-friendly rules. A video can remain on the platform while receiving limited or no ad revenue. Age restriction creates another layer: signed-out viewers and minors cannot watch, most third-party embeds stop working normally, and the video may attract fewer advertisers. YouTube acknowledges that automated systems make mistakes and provides appeals. It also recognizes artistic, documentary, and educational context in parts of its policy.<sup className="source-ref"><a href="#source-23" aria-label="Source 23">23</a></sup>
+
+The practical lesson still reaches creators before publication.
+
+A platform can host the work while starving its reach and revenue.
+
+The yellow dollar sign is more efficient than a ban. A ban produces a visible event. Demonetization leaves the video where it was and transfers the problem to the person who made it. The platform can say the work remains available. The advertiser can say it did not fund the work. The viewer may never know the decision occurred.
+
+The creator receives the lesson.
+
+Reddit developed its own version through quarantine. Quarantined communities remain accessible behind a warning and deliberate opt-in, while losing ordinary discovery and revenue benefits. Reddit’s quarantine system predates the 2017 YouTube crisis, so the honest history is not that every platform copied YouTube. Several companies converged on the same architecture.<sup className="source-ref"><a href="#source-24" aria-label="Source 24">24</a></sup>
+
+The architecture is limbo.
+
+Hosted, but not recommended. Legal, but not advertiser-friendly. Searchable, but not surfaced. Available, but wrapped in enough friction to change behavior.
+
+The old seal has been divided into several invisible seals.
+
+<InvisibleSeals />
+
+
+The old seal has been divided into several invisible seals.
+
+## The counter-platform becomes the genre
+
+A platform built in opposition to censorship does not arrive as neutral territory.
+
+It attracts people who share the grievance that created it. The grievance becomes an audience identity. The audience identity shapes programming. The programming attracts more of the same audience. Soon the argument against another platform becomes the platform’s most reliable genre.
+
+Rumble openly markets itself around a freer and more creator-controlled internet. It also has moderation policies. “Less restrictive” never meant “no rules.” Its current homepage and promotional language emphasize a mix that includes news, politics, podcasts, gaming, sports, and culture.<sup className="source-ref"><a href="#source-25" aria-label="Source 25">25</a></sup>
+
+My screenshot records one visit, not a statistical survey of every Rumble user. It still records the exact product problem I encountered. I wanted a creative-video home. I entered a political lobby.
+
+<VacationFigure src="https://cdn.hob.farm/articles/the-censor-eats-its-own-tail/process/rumble-homepage-visit.webp" alt="A dated Rumble homepage crop showing political commentary, news, podcasts, gaming, and other category rows." caption="One homepage visit, not a platform census. I opened Rumble looking for a creative-video home and found a political lobby." credit="HobFarm process capture" sourceUrl="https://rumble.com/" width={397} height={720} compact />
+
+An anti-censorship platform is not automatically a creative platform.
+
+Creative culture needs useful tools, stable archives, thoughtful categories, reliable creator pages, decent embeds, export, subscriptions, audience control, and people who arrived looking for creative work. A loose speech boundary supplies only one of those conditions.
+
+This is the ouroboros:
+
+**offense → campaign → pressure → rule → self-censorship → migration → counter-platform → grievance content → counter-campaign → stronger rule**
+
+<CensorOuroboros />
+
+One group identifies dangerous material and pressures the gatekeeper. The gatekeeper installs a rule. Creators sanitize their work or leave. The migrants gather somewhere else. Their resentment becomes content. The original group points to the counter-platform’s worst material as proof that stronger rules were necessary.
+
+Each side manufactures receipts for the other.
+
+The censor and the anti-censor become co-producers.
+
+The algorithm does not need to believe either side. It needs the fight to retain attention.
+
+## The factoid is the second cut
+
+While I was writing this article, Instagram handed me a twenty-two-second history of *Psycho*.
+
+The caption claimed that Hitchcock deliberately stuffed an early cut with extreme angles, blood, and graphic details he expected the censors to reject. He gave them obvious material to destroy, let them feel powerful, and protected the subtler film underneath. The shower scene survived because rapid editing fooled them.
+
+It ended with a question designed to produce comments.
+
+It was a perfect story. That was the problem.
+
+The surviving record gives us a better, messier history: script objections, visual objections, separate Catholic demands, disputed perceptions of nudity, revisions, bargaining, and a film whose editing made trained reviewers see images that were barely there. Hitchcock appears to have played games with the process. The archive does not prove the clean legend in which every offensive detail was planted as part of one flawless scheme.
+
+<VacationFigure src="https://cdn.hob.farm/articles/the-censor-eats-its-own-tail/process/psycho-factoid-specimen.webp" alt="An Instagram caption describing a simplified story about Hitchcock, Psycho, and the censors; the account identity is blurred." caption="The factoid version turns a documented negotiation into one genius, one room of fools, and one secret trick." credit="User-supplied process screenshot" width={518} height={447} compact />
+
+The old censor cut material from films.
+
+The feed cuts uncertainty from history.
+
+A person, a model, or some mixture of both may have written the caption. The screenshot cannot tell us. Calling the account a bot would create another unsupported factoid.
+
+The uncertainty is part of the point. The feed had what it needed: a famous director, foolish authorities, a secret trick, a heroic reversal, and a question at the bottom.
+
+Human creators learned this shape before generative AI became cheap. Research on social media has found that positive feedback for moral-outrage posts increases the likelihood of more outrage expression, and that people adapt to the expressive norms around them.<sup className="source-ref"><a href="#source-26" aria-label="Source 26">26</a></sup> The system trains the user.
+
+AI found an existing assembly line.
+
+This is where the anti-censorship story eats its own tail. A distorted post about defeating censors becomes engagement slop. The slop contributes to a general collapse of trust. The collapse of trust gives platforms another reason to moderate, label, reduce, verify, and control. Creators adapt to the controls and make material more legible to the system. The system fills with more of the same shapes.
+
+If nothing is real, censorship becomes the strangest hobby on Earth. Put a clown nose on the warning label, admit that nobody knows who made anything, and let us enjoy ourselves.
+
+The joke fails for one reason.
+
+Nothing has to be true before it becomes expensive.
+
+A false or flattened post can move money, damage a reputation, trigger advertiser anxiety, inspire a pressure campaign, or become evidence for another rule. The fake atmosphere does not free the culture from control. It gives control a permanent emergency.
+
+## The censor joins the creative meeting
+
+The twentieth-century censor usually waited for a work.
+
+The chatbot can enter during the premise.
+
+A model can refuse the request, redirect the subject, soften the language, replace a specific image with a safe approximation, route the request through another classifier, or produce something bland enough to pass while removing the reason the user wanted to make it.
+
+Some refusals protect people from real harm. Some restrictions are required by law. Every provider has to define product boundaries. “Safety” is not automatically a lie.
+
+The useful criticism concerns the stack.
+
+Every commercial model operates inside a policy environment built from law, market, region, deployment channel, system prompts, classifiers, training, product design, investors, customers, and business risk. The forbidden zone moves. It does not disappear.
+
+This is why the easy line about Western models censoring sex and Chinese models censoring politics is too crude.
+
+Google’s Gemma policy prohibits sexually explicit generation intended for pornography or sexual gratification while expressly excluding scientific, educational, documentary, and artistic uses from that particular rule. Google’s broader design guidance says safety policies should reflect the application and may need artistic or documentary exceptions.<sup className="source-ref"><a href="#source-27" aria-label="Source 27">27</a></sup>
+
+Anthropic’s documentation has explained that Claude may flag explicit sexual material even when an application developer would prefer a different boundary. Alibaba Cloud documents a `DataInspectionFailed` response when input or output is suspected of containing sensitive material. China’s public-facing generative-AI rules include political and national-security restrictions along with violence, obscenity, pornography, discrimination, terrorism, and harmful false information.<sup className="source-ref"><a href="#source-28" aria-label="Source 28">28</a></sup>
+
+The providers differ. Their products differ. APIs differ from hosted chat applications. Policies change. Regions and account layers matter. A national scoreboard would flatten the same context this article is arguing for.
+
+I use Western and Chinese systems. I am an Alibaba Cloud customer. I am not looking for a national winner. I am trying to make legal adult creative work and determine which part of the stack keeps converting genre into risk.
+
+My material is not pornography. It often works near the line between my idea of good taste and a provider’s idea of a safe default. Horror, grotesque satire, adult fashion, vintage pin-up language, mature romance, body horror, pulp illustration, and historical restoration can all contain bodies, threat, sexuality, or discomfort without serving the same purpose.
+
+William Gaines’s question returns.
+
+Good taste for what?
+
+A scalable classifier wants a universal answer. The work has a genre.
+
+The customer often cannot tell whether a refusal came from the model, a separate input filter, an output classifier, a system prompt, an application wrapper, a regional rule, or an account setting. [*You Do Not Own the AI You Pay For*](/articles/you-do-not-own-the-ai-you-pay-for/) follows that permission stack. [*A World of Geniuses Needs a System*](/articles/a-world-of-geniuses-needs-a-system/) follows the user trying to keep agency while tools, defaults, and averaged taste pull toward the middle.<sup className="source-ref"><a href="#source-29" aria-label="Source 29">29</a></sup>
+
+The historical movement is now complete.
+
+The Production Code judged the script and the film.
+
+The platform judges distribution.
+
+The chatbot joins the creative meeting.
+
+After enough refusals, warnings, euphemistic lectures, silent substitutions, and unpredictable results, the user starts writing for an imagined classifier. The tool teaches the maker what not to ask.
+
+The model does not have to ban the work. It can exhaust the idea until the user accepts the approved version.
+
+Generative AI can help people produce stronger work. A 2024 *Science Advances* study found that access to AI-generated ideas improved individual story evaluations, especially for less creative writers. The same experiment found that AI-assisted stories became more similar to one another.<sup className="source-ref"><a href="#source-30" aria-label="Source 30">30</a></sup>
+
+That distinction matters. Local improvement can coexist with collective sameness.
+
+AI did not create conformity. It makes the safest recognizable pattern cheap to reproduce.
+
+Then readers learn the accent.
+
+While I was posting about [*Vacation Into Nothing*](/articles/vacation-into-nothing/), I searched the `#aislop` hashtag. The first result complained about sentences built around “Not X, but Y.” I keep a prose guide that flags the same construction because repeated balanced reversals have become one of the recognizable sounds of generated writing.
+
+<VacationFigure src="https://cdn.hob.farm/articles/the-censor-eats-its-own-tail/process/ai-accent-specimen.webp" alt="A short social post complaining about sentences shaped as Not X but Y; the account identity is blurred." caption="The post proves that readers recognize an AI-associated cadence. It does not prove every sentence using the pattern was generated." credit="User-supplied process screenshot" width={598} height={163} compact />
+
+The machine developed an accent. Readers learned to hear it. Human writers began editing around the accent so nobody would mistake them for a machine.
+
+The argument reached syntax.
+
+## The website is the press
+
+My version of censorship hell is easier than Hitchcock’s in one important way.
+
+Hitchcock faced a formal office, a written Code, a studio, distributors, exhibitors, and a religious organization capable of demanding changes to the movie itself. Smaller filmmakers had even less bargaining power.
+
+I can publish the complete article on HobFarm.
+
+No platform employee gets final edit. No advertiser approves the image. No AI company controls the page. My censors do not own the press.
+
+They own many of the roads leading to it.
+
+A video host can limit revenue, embedding, or discovery. A social feed can show the link to a small fraction of followers. A search engine can answer the question without delivering the reader. An AI assistant can summarize the article without sending anyone to the publication. A creative tool can resist helping make the promotional image.
+
+His censors had names.
+
+Mine have confidence scores.
+
+The answer is not to pretend the roads do not matter. HobFarm needs social posts, clips, captions, images, links, newsletters, and funnels. I finished an article about platform control and immediately began cutting it into platform-sized fragments so somebody might encounter it.
+
+The snake ate its own tail.
+
+Then I cropped the snake to 9:16.
+
+The website is the press. The platforms are rented roads. I will use the roads where they help, complain about the tolls when they deserve it, and keep the full work somewhere that still belongs to the publication.
+
+People can find it or not.
+
+At least the idea arrives intact.
+
+---
+
+## Sources and further reading
+
+<ArticleSourceList
+  items={[
+    "Mark M. Hull, “The Many Trials of Fatty Arbuckle,” San Francisco Attorney, 2018: https://www.sfbar.org/wp-content/uploads/2021/06/2018-SFAM-Q4_fatty-arbuckle.pdf ; Michael Schulman, “Fatty Arbuckle and the Birth of the Celebrity Scandal,” *The New Yorker*, 2021: https://www.newyorker.com/magazine/2021/10/11/fatty-arbuckle-and-the-birth-of-the-celebrity-scandal",
+    "Library of Congress, “When ‘Pre-’ Met ‘Code’ — Eighty Years Ago Today”: https://blogs.loc.gov/now-see-hear/2014/07/when-pre-met-code-eighty-years-ago-today/ ; Library of Congress National Film Registry essays: https://www.loc.gov/programs/national-film-preservation-board/film-registry/descriptions-and-essays/",
+    "Library of Congress, “When ‘Pre-’ Met ‘Code’”; PBS, “Hollywood Censored: The Production Code”: https://www.pbs.org/wgbh/cultureshock/beyond/hollywood.html ; Georgetown University, Martin J. Quigley Papers: https://findingaids.library.georgetown.edu/repositories/15/resources/10040",
+    "“The Motion Picture Production Code of 1930”: https://www.umsl.edu/~gradyf/theory/1930code.pdf ; Georgetown University finding aid for Daniel A. Lord/Production Code material: https://findingaids.library.georgetown.edu/repositories/15/archival_objects/1171268",
+    "American Film Institute Catalog, *Psycho*: https://catalog.afi.com/Film/53260-PSYCHO",
+    "British Film Institute, “The *Psycho* shower scene”: https://www.bfi.org.uk/interviews/psycho-shower-scene-alfred-hitchcock ; AFI Catalog, *Psycho*.",
+    "American Film Institute Catalog, *The Man with the Golden Arm*: https://catalog.afi.com/Film/51583-THE-MAN-WITH-THE-GOLDEN-ARM",
+    "First Amendment Encyclopedia, “Burstyn v. Wilson”: https://firstamendment.mtsu.edu/article/burstyn-v-wilson/ ; Oyez, *Kingsley International Pictures Corp. v. Regents*: https://www.oyez.org/cases/1958/394 ; Oyez, *Jacobellis v. Ohio*: https://www.oyez.org/cases/1963/11",
+    "British Film Institute, “*Bonnie and Clyde*: influences”: https://www.bfi.org.uk/lists/bonnie-clyde-influences-warren-beatty-faye-dunaway ; Cambridge University Press, “The New Hollywood Cinema and After”: https://resolve.cambridge.org/core/services/aop-cambridge-core/content/view/9FC947CF126A64F95C472140B21E54AF/9781316492697c12_p214-229_CBO.pdf",
+    "American Film Institute Catalog, *The Trip*: https://catalog.afi.com/Film/21511-THE-TRIP ; Elena Gorfinkel interview on sexploitation history: https://www.wuwm.com/podcast/lake-effect-segments/2017-12-19/lewd-looks-frames-salacious-1960s-films-as-meaningful-history",
+    "Criterion, “One Big Real Place: BBS from *Head* to *Hearts*”: https://www.criterion.com/current/posts/1671-one-big-real-place-bbs-from-head-to-hearts ; Criterion, “Roger Corman: Hectic, Maddening, but Fun”: https://www.criterion.com/current/posts/8472-roger-corman-hectic-maddening-but-fun",
+    "Motion Picture Association, film-ratings history: https://www.motionpictures.org/film-ratings/ ; MPA, “The Film Rating System at 50”: https://50th.filmratings.com/core/",
+    "HobFarm, “How the Money Eats the Medium”: https://hob.farm/articles/how-the-money-eats-the-medium/",
+    "Library of Congress, “Suppression of *The Masses*”: https://www.loc.gov/exhibitions/world-war-i-american-experiences/about-this-exhibition/over-here/surveillance-and-censorship/suppression-of-the-masses/",
+    "*Hannegan v. Esquire, Inc.*, 327 U.S. 146 (1946): https://supreme.justia.com/cases/federal/us/327/146/",
+    "Library of Congress interview with A. Brad Schwartz on *War of the Worlds*: https://www.loc.gov/static/programs/national-recording-preservation-plan/tools-and-resources/documents/Interview_Brad-Schwartz.pdf",
+    "Buffalo Broadcasters Association, “WKBW’s *War of the Worlds*”: https://bbabflo.com/archives-history/wkbws-war-of-the-worlds/",
+    "Library of Congress, “The Senate Comic Book Hearings of 1954”: https://blogs.loc.gov/law/2022/10/the-senate-comic-book-hearings-of-1954/",
+    "HobFarm, “MAD, TRUMP, and the Magazine Time Machine”: https://hob.farm/articles/mad-trump-and-the-magazine-time-machine/",
+    "National Archives, “Remembering the Hollywood 10: Screenwriter Ring Lardner Jr.”: https://visit.archives.gov/whats-on/explore-exhibits/remembering-hollywood-10-screenwriter-ring-lardner-jr",
+    "U.S. Senate record-labeling hearing, Dee Snider testimony transcript: https://joesapt.net/superlink/shrg99-529/p73.html ; C-SPAN hearing clip: https://www.c-span.org/clip/senate-committee/user-clip-dee-snider-senate-testimony/5026946",
+    "John Denver testimony transcript: https://www.americanrhetoric.com/speeches/johndenverrockmusiclyrics.htm ; Frank Zappa testimony transcript: https://www.americanrhetoric.com/speeches/frankzapparockmusiclyrics.htm ; Ohio State source packet linking the congressional hearing record: https://origins.osu.edu/media/6155/download?attachment=",
+    "YouTube, advertiser-friendly content and policy system: https://support.google.com/youtube/answer/6162278 ; YouTube, age-restricted content: https://support.google.com/youtube/answer/2802167 ; *Wired*, “YouTube’s Ad Problems Finally Blow Up in Google’s Face”: https://www.wired.com/2017/03/youtubes-ad-problems-finally-blow-googles-face/ ; Internet Policy Review, “YouTube’s monetisation policy after the adpocalypse”: https://policyreview.info/articles/analysis/algorithmic-dance-youtubes-adpocalypse-and-gatekeeping-cultural-content-digital",
+    "Reddit Help, “Quarantined communities”: https://support.reddithelp.com/hc/en-us/articles/360043069012-Quarantined-Communities ; Reddit, “Revamping the quarantine function”: https://www.reddit.com/r/announcements/comments/9jf8nh/revamping_the_quarantine_function/",
+    "Rumble homepage: https://rumble.com/ ; Rumble corporate statement on moderation transparency: https://corp.rumble.com/blog/rumble-proposes-an-open-source-content-moderation-policy-process-to-improve-transparency-put-creators-first/",
+    "William J. Brady et al., “How social learning amplifies moral outrage expression in online social networks,” *Science Advances* 2021: https://pmc.ncbi.nlm.nih.gov/articles/PMC8363141/",
+    "Google AI, Gemma Prohibited Use Policy: https://ai.google.dev/gemma/prohibited_use_policy ; Google AI, “Design a responsible approach”: https://ai.google.dev/responsible/docs/design",
+    "Anthropic documentation, content moderation: https://docs.anthropic.com/en/docs/about-claude/use-case-guides/content-moderation ; Alibaba Cloud Model Studio error codes: https://www.alibabacloud.com/help/en/model-studio/error-code ; China Law Translate, “Interim Measures for Generative Artificial Intelligence Service Management”: https://www.chinalawtranslate.com/en/generative-ai-interim/",
+    "HobFarm, “You Do Not Own the AI You Pay For”: https://hob.farm/articles/you-do-not-own-the-ai-you-pay-for/ ; HobFarm, “A World of Geniuses Needs a System”: https://hob.farm/articles/a-world-of-geniuses-needs-a-system/",
+    "Anil R. Doshi and Oliver P. Hauser, “Generative AI enhances individual creativity but reduces the collective diversity of novel content,” *Science Advances* 2024: https://www.science.org/doi/10.1126/sciadv.adn5290",
+  ]}
+/>

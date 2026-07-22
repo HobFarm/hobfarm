@@ -1,0 +1,39 @@
+---
+const rows = [
+  ["1917 · magazines", "disloyalty", "the nation", "mail", "postal power"],
+  ["1934 · film", "immorality", "family / child", "seal / distribution", "Code workflow"],
+  ["1947 · film / radio", "subversion", "the nation", "employment", "blacklist"],
+  ["1954 · comics", "delinquency", "child", "distributor seal", "Comics Code"],
+  ["1985 · music", "sex / violence", "child", "label / retail", "advisory system"],
+  ["2017 · video", "brand adjacency", "advertiser / public", "monetization", "advertiser-safe layer"],
+  ["Social media", "harm / accountability", "community / target", "crowd / institution", "reputational forecast"],
+  ["AI", "safety / liability", "user / public / company", "model stack", "pre-creative control"],
+];
+---
+
+<section class="emergency-table not-prose" aria-labelledby="emergency-title">
+  <header><p>Comparative table</p><h2 id="emergency-title">The moral emergency changes costume</h2></header>
+  <div class="scroll" tabindex="0" role="region" aria-label="Scrollable comparison table">
+    <table>
+      <thead><tr><th>Year / medium</th><th>Stated danger</th><th>Symbolic victim</th><th>Actual gate</th><th>What remained</th></tr></thead>
+      <tbody>{rows.map((row) => <tr>{row.map((cell) => <td>{cell}</td>)}</tr>)}</tbody>
+    </table>
+  </div>
+</section>
+
+<style>
+  .emergency-table { position:relative; left:50%; width:min(76rem,calc(100vw - 2rem)); max-width:100%; margin:clamp(2.5rem,7vw,5rem) 0; transform:translateX(-50%); overflow:clip; contain:inline-size; border:1px solid #5a4632; border-radius:.35rem; background:#0a0c0d; color:#eee4cb; }
+  header { padding:1.15rem 1.3rem; border-bottom:1px solid #5a4632; }
+  header p { margin:0 0 .35rem !important; color:#d7523c !important; font:700 .66rem/1.2 var(--font-mono),monospace; letter-spacing:.15em; text-transform:uppercase; }
+  h2 { margin:0 !important; color:#f3ead3 !important; font-size:clamp(1.2rem,3vw,1.9rem) !important; font-weight:500 !important; }
+  .scroll { max-width:100%; overflow-x:auto; overscroll-behavior-inline:contain; contain:inline-size paint; }
+  .scroll:focus-visible { outline:3px solid #d8b52f; outline-offset:-3px; }
+  table { width:100%; min-width:54rem; margin:0 !important; border-collapse:collapse; font:500 .68rem/1.4 var(--font-mono),monospace !important; }
+  th,td { padding:.8rem .75rem; border-right:1px solid #3d372f; border-bottom:1px solid #3d372f; text-align:left; vertical-align:top; }
+  th { color:#e5c450; background:#18150f; letter-spacing:.04em; text-transform:uppercase; }
+  td { color:#b9b0a0; }
+  tr:nth-child(even) td { background:#101412; }
+  th:last-child,td:last-child { border-right:0; }
+  tbody tr:last-child td { border-bottom:0; }
+  @media(max-width:520px){ .emergency-table{width:calc(100vw - 1rem)} }
+</style>

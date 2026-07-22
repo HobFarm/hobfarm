@@ -1,0 +1,62 @@
+---
+interface Props {
+  items: string[];
+}
+
+const { items } = Astro.props;
+
+const escapeHtml = (value: string) =>
+  value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+
+const renderSource = (value: string) => {
+  const escaped = escapeHtml(value);
+  const withLinks = escaped.replace(/https:\/\/[^\s;]+/g, (url) => {
+    const label = new URL(url.replaceAll("&amp;", "&")).hostname.replace(/^www\./, "");
+    return `<a href="${url}" rel="noreferrer">${label}</a>`;
+  });
+
+  return withLinks.replace(/\*([^*]+)\*/g, "<cite>$1</cite>");
+};
+---
+
+<ol class="source-list not-prose" aria-label="Sources and further reading">
+  {items.map((item, index) => (
+    <li id={`source-${index + 1}`}>
+      <span set:html={renderSource(item)} />
+    </li>
+  ))}
+</ol>
+
+<style>
+  .source-list {
+    display: grid;
+    gap: 0.9rem;
+    margin: 1.5rem 0 0;
+    padding-left: 1.45rem;
+    color: var(--color-base-400);
+    font-size: 0.86rem;
+    line-height: 1.6;
+  }
+
+  .source-list li {
+    padding-left: 0.35rem;
+    overflow-wrap: anywhere;
+    scroll-margin-top: 7rem;
+  }
+
+  .source-list a {
+    color: white;
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, white 35%, transparent);
+    text-underline-offset: 0.16em;
+  }
+
+  .source-list a:hover {
+    text-decoration-color: white;
+  }
+</style>

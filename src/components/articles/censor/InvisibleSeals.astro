@@ -1,0 +1,30 @@
+---
+const seals = [
+  ["May remain", "The file stays online"],
+  ["May earn", "Advertisers accept the context"],
+  ["May embed", "The work travels beyond the host"],
+  ["May reach", "Search and recommendations surface it"],
+  ["May be generated", "The gate enters the premise"],
+];
+---
+
+<section class="seals not-prose" aria-labelledby="seals-title">
+  <header><p>Modern invisible seals</p><h2 id="seals-title">Approval split into permissions the audience cannot see</h2></header>
+  <div class="cards">{seals.map(([label, detail], index) => <article><span aria-hidden="true">{index === 0 ? "✓" : index === 4 ? "?" : "!"}</span><h3>{label}</h3><p>{detail}</p></article>)}</div>
+</section>
+
+<style>
+  .seals { position:relative; left:50%; width:min(72rem,calc(100vw - 2rem)); margin:clamp(2.5rem,7vw,5rem) 0; transform:translateX(-50%); border:1px solid #5a4632; border-radius:.35rem; background:#080b0d; color:#eee4cb; }
+  header { padding:1.15rem 1.3rem; border-bottom:1px solid #5a4632; }
+  header p { margin:0 0 .35rem !important; color:#d8b52f !important; font:700 .66rem/1.2 var(--font-mono),monospace; letter-spacing:.15em; text-transform:uppercase; }
+  h2 { margin:0 !important; color:#f3ead3 !important; font-size:clamp(1.2rem,3vw,1.9rem) !important; font-weight:500 !important; }
+  .cards { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); }
+  article { min-height:11rem; padding:1rem; border-right:1px solid #3e382f; background:linear-gradient(180deg,rgb(213 178 47 / .1),transparent 55%); }
+  article:last-child { border-right:0; background:linear-gradient(180deg,rgb(122 165 89 / .18),transparent 55%); }
+  article > span { display:grid; place-items:center; width:2rem; height:2rem; margin-bottom:1.3rem; border:1px solid currentColor; border-radius:50%; color:#d8b52f; font:700 1rem/1 var(--font-mono),monospace; }
+  article:last-child > span { color:#7da55c; }
+  h3 { margin:0 !important; color:#f0e5cb !important; font:700 .78rem/1.2 var(--font-mono),monospace !important; letter-spacing:.05em; text-transform:uppercase; }
+  article p { margin:.6rem 0 0 !important; color:#9e9687 !important; font:500 .67rem/1.45 var(--font-mono),monospace !important; }
+  @media(max-width:760px){ .cards{grid-template-columns:1fr} article{min-height:0;border-right:0;border-bottom:1px solid #3e382f} article:last-child{border-bottom:0} }
+  @media(max-width:520px){ .seals{width:calc(100vw - 1rem)} }
+</style>

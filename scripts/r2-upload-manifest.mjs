@@ -21,6 +21,11 @@ if (!manifest.policy?.new_keys_only || manifest.policy?.overwrite_existing !== f
 }
 
 const expectedMime = {
+  ".avif": "image/avif",
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".json": "application/json; charset=utf-8",
+  ".png": "image/png",
   ".webp": "image/webp",
   ".svg": "image/svg+xml",
   ".md": "text/markdown; charset=utf-8",
@@ -36,19 +41,50 @@ function wrangler(parts, binary = false) {
   });
 }
 
-function objectExists(bucket, key) {
-  const result = wrangler(["r2", "object", "get", `${bucket}/${key}`, "--remote", "--pipe"], true);
-  if (result.status === 0) return true;
-  const stderr = Buffer.isBuffer(result.stderr) ? result.stderr.toString("utf8") : String(result.stderr ?? "");
-  if (stderr.includes("specified key does not exist")) return false;
-  throw new Error(`Could not check ${bucket}/${key}: ${result.error?.message ?? stderr.trim() ?? `exit ${result.status}`}`);
+async function readPublicObject(item) {
+  const response = await fetch(`${item.public_url}?r2-fallback=${Date.now()}`, {
+    cache: "no-store",
+    headers: { "cache-control": "no-cache" },
+  });
+  if (response.status === 404) return null;
+  if (!response.ok) {
+    throw new Error(`Could not check public fallback ${item.public_url}: HTTP ${response.status}`);
+  }
+  return Buffer.from(await response.arrayBuffer());
 }
 
-function existingObjectMatches(item) {
+async function objectExists(item) {
+  const result = wrangler(["r2", "object", "get", `${manifest.bucket}/${item.destination_key}`, "--remote", "--pipe"], true);
+  if (result.status === 0) return true;
+  const stderr = Buffer.isBuffer(result.stderr) ? result.stderr.toString("utf8") : String(result.stderr ?? "");
+  if (!stderr.includes("specified key does not exist")) {
+    throw new Error(`Could not check ${manifest.bucket}/${item.destination_key}: ${result.error?.message ?? stderr.trim() ?? `exit ${result.status}`}`);
+  }
+  const publicBytes = await readPublicObject(item);
+  if (!publicBytes) return false;
+  const publicSha256 = createHash("sha256").update(publicBytes).digest("hex");
+  if (publicSha256 !== item.sha256) {
+    throw new Error(`Public key exists with a different checksum; refusing to overwrite: ${item.destination_key}`);
+  }
+  return true;
+}
+
+async function existingObjectMatches(item) {
   const result = wrangler(["r2", "object", "get", `${manifest.bucket}/${item.destination_key}`, "--remote", "--pipe"], true);
   if (result.status !== 0) {
     const stderr = Buffer.isBuffer(result.stderr) ? result.stderr.toString("utf8") : String(result.stderr ?? "");
-    throw new Error(`Could not read existing object ${item.destination_key}: ${stderr.trim()}`);
+    if (!stderr.includes("specified key does not exist")) {
+      throw new Error(`Could not read existing object ${item.destination_key}: ${stderr.trim()}`);
+    }
+    const publicBytes = await readPublicObject(item);
+    if (!publicBytes) {
+      throw new Error(`Could not read existing object ${item.destination_key} from R2 or the public fallback.`);
+    }
+    const publicSha256 = createHash("sha256").update(publicBytes).digest("hex");
+    if (publicSha256 !== item.sha256) {
+      throw new Error(`Existing public key has a different checksum; refusing to overwrite: ${item.destination_key}`);
+    }
+    return publicSha256;
   }
   const remoteSha256 = createHash("sha256").update(result.stdout).digest("hex");
   if (remoteSha256 !== item.sha256) {
@@ -91,7 +127,7 @@ async function fetchVerifiedObject(item) {
           return {
             head,
             responseType,
-            remoteSha256: existingObjectMatches(item),
+            remoteSha256: await existingObjectMatches(item),
             publicResponseSha256: createHash("sha256").update(publicBytes).digest("hex"),
             edgeTransformed: true,
           };
@@ -140,9 +176,9 @@ console.log(`${upload ? resume ? "RESUME" : "UPLOAD" : "DRY RUN"}: ${manifest.as
 
 for (const item of manifest.assets) {
   await validateItem(item);
-  if (objectExists(manifest.bucket, item.destination_key)) {
+  if (await objectExists(item)) {
     if (resume) {
-      item.remote_sha256 = existingObjectMatches(item);
+      item.remote_sha256 = await existingObjectMatches(item);
       item.upload_status = "uploaded";
       if (item.verification_status !== "verified") {
         item.verification_status = "r2-checksum-matched";
@@ -169,11 +205,11 @@ if (!upload) {
 }
 
 for (const item of manifest.assets) {
-  if (objectExists(manifest.bucket, item.destination_key)) {
+  if (await objectExists(item)) {
     if (!resume) {
       throw new Error(`Key appeared after dry run; refusing upload: ${item.destination_key}`);
     }
-    item.remote_sha256 = existingObjectMatches(item);
+    item.remote_sha256 = await existingObjectMatches(item);
     item.upload_status = "uploaded";
     if (item.verification_status === "verified") {
       console.log(`PRESERVED ${item.public_url}`);
@@ -200,7 +236,7 @@ for (const item of manifest.assets) {
       throw new Error(`Upload failed for ${item.destination_key}: ${put.stderr}`);
     }
     item.upload_status = "uploaded";
-    item.remote_sha256 = existingObjectMatches(item);
+    item.remote_sha256 = await existingObjectMatches(item);
   }
   await writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
 

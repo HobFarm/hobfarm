@@ -1,0 +1,45 @@
+---
+const gates = [
+  ["Legal", "law"],
+  ["Mailable", "post office"],
+  ["Approved", "PCA seal"],
+  ["Employable", "blacklist"],
+  ["Broadcastable", "network / sponsor"],
+  ["Sellable", "retailer / rating"],
+  ["Monetizable", "advertiser"],
+  ["Recommendable", "algorithm"],
+  ["Creatable", "model / classifier"],
+];
+---
+
+<section class="censor-panel not-prose" aria-labelledby="gate-ladder-title">
+  <header>
+    <p>The gate ladder</p>
+    <h2 id="gate-ladder-title">The work can exist and still fail every gate</h2>
+  </header>
+  <ol>
+    {gates.map(([gate, system], index) => (
+      <li>
+        <span class="gate-index">{String(index + 1).padStart(2, "0")}</span>
+        <strong>{gate}</strong>
+        <span>{system}</span>
+      </li>
+    ))}
+  </ol>
+</section>
+
+<style>
+  .censor-panel { position:relative; left:50%; width:min(76rem,calc(100vw - 2rem)); margin:clamp(2.5rem,7vw,5rem) 0; transform:translateX(-50%); overflow:hidden; border:1px solid #5a4632; border-radius:.35rem; background:#090b0d; color:#eee4cb; box-shadow:0 1.5rem 4rem rgb(0 0 0 / .22); }
+  header { padding:1.2rem 1.25rem; border-bottom:1px solid #5a4632; background:linear-gradient(135deg,#21120f,#0b1110 62%); }
+  header p { margin:0 0 .35rem !important; color:#d7523c !important; font:700 .66rem/1.2 var(--font-mono),monospace; letter-spacing:.15em; text-transform:uppercase; }
+  h2 { margin:0 !important; color:#f3ead3 !important; font-size:clamp(1.25rem,3vw,2rem) !important; font-weight:500 !important; line-height:1.1 !important; }
+  ol { display:grid; grid-template-columns:repeat(9,minmax(0,1fr)); margin:0 !important; padding:0 !important; list-style:none !important; }
+  li { position:relative; display:grid; align-content:start; gap:.45rem; min-height:10rem; padding:1rem .8rem; border-right:1px solid #3b352d; background:linear-gradient(180deg,rgb(215 82 60 / .08),transparent 45%); }
+  li:last-child { border-right:0; background:linear-gradient(180deg,rgb(118 166 88 / .18),transparent 50%); }
+  li:not(:last-child)::after { content:"→"; position:absolute; top:50%; right:-.55rem; z-index:1; display:grid; place-items:center; width:1.1rem; height:1.1rem; color:#d7523c; background:#090b0d; font-weight:700; }
+  .gate-index { color:#70675a; font:600 .62rem/1 var(--font-mono),monospace; }
+  strong { color:#f3ead3; font:700 clamp(.65rem,1vw,.8rem)/1.1 var(--font-mono),monospace; letter-spacing:.04em; text-transform:uppercase; overflow-wrap:anywhere; }
+  li > span:last-child { color:#9f9788; font:500 .67rem/1.35 var(--font-mono),monospace; }
+  @media (max-width:900px) { ol { grid-template-columns:repeat(3,minmax(0,1fr)); } li { min-height:8.5rem; border-bottom:1px solid #3b352d; } li:nth-child(3n) { border-right:0; } li:nth-child(3n)::after { content:"↓"; top:auto; right:50%; bottom:-.55rem; } }
+  @media (max-width:520px) { .censor-panel { width:calc(100vw - 1rem); } ol { grid-template-columns:1fr; } li { min-height:0; grid-template-columns:2.2rem 1fr; align-items:center; padding:.9rem 1rem; border-right:0; } li > span:last-child { grid-column:2; } li:not(:last-child)::after, li:nth-child(3n)::after { content:"↓"; top:auto; right:1.15rem; bottom:-.55rem; } }
+</style>

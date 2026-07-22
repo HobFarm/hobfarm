@@ -1,0 +1,30 @@
+---
+const flow = ["Hollywood genres and B movies", "French criticism / auteur theory", "European art cinema / New Wave", "Bonnie and Clyde / New Hollywood", "Blockbuster and franchise system"];
+const inputs = ["court defeats for film censorship", "art-house audiences", "exploitation and drive-ins", "television competition", "collapsing studio system"];
+---
+
+<section class="film-loop not-prose" aria-labelledby="film-loop-title">
+  <header><p>Transatlantic film loop</p><h2 id="film-loop-title">The grammar crossed the ocean twice</h2></header>
+  <div class="layout">
+    <ol>{flow.map((step) => <li>{step}</li>)}</ol>
+    <aside aria-label="Other forces shaping the loop"><strong>Lateral inputs</strong><ul>{inputs.map((input) => <li>{input}</li>)}</ul></aside>
+  </div>
+</section>
+
+<style>
+  .film-loop { position:relative; left:50%; width:min(72rem,calc(100vw - 2rem)); margin:clamp(2.5rem,7vw,5rem) 0; transform:translateX(-50%); overflow:hidden; border:1px solid #5a4632; border-radius:.35rem; background:#0a0c0c; color:#eee4cb; }
+  header { padding:1.15rem 1.3rem; border-bottom:1px solid #5a4632; background:linear-gradient(100deg,#172015,#17100e); }
+  header p { margin:0 0 .35rem !important; color:#86aa65 !important; font:700 .66rem/1.2 var(--font-mono),monospace; letter-spacing:.15em; text-transform:uppercase; }
+  h2 { margin:0 !important; color:#f3ead3 !important; font-size:clamp(1.2rem,3vw,1.9rem) !important; font-weight:500 !important; }
+  .layout { display:grid; grid-template-columns:minmax(0,2fr) minmax(14rem,.8fr); gap:1rem; padding:1.2rem; }
+  ol { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:.8rem; margin:0 !important; padding:0 !important; list-style:none !important; }
+  ol li { position:relative; display:grid; place-items:center; min-height:8rem; padding:.75rem; border:1px solid #4a4034; background:linear-gradient(145deg,#21130f,#101512); color:#ede2c9; font:700 .7rem/1.35 var(--font-mono),monospace; text-align:center; text-transform:uppercase; }
+  ol li:not(:last-child)::after { content:"→"; position:absolute; right:-.7rem; z-index:2; color:#d7523c; }
+  ol li:last-child::after { content:"↶"; position:absolute; right:.4rem; bottom:.2rem; color:#7da55c; font-size:1.3rem; }
+  aside { padding:1rem; border:1px solid #3d4a37; background:#111712; }
+  aside strong { color:#91b66d; font:700 .68rem/1 var(--font-mono),monospace; letter-spacing:.1em; text-transform:uppercase; }
+  aside ul { display:grid; gap:.55rem; margin:.8rem 0 0 !important; padding:0 !important; list-style:none !important; }
+  aside li { color:#aaa292; font:500 .67rem/1.35 var(--font-mono),monospace; }
+  @media(max-width:860px){ .layout{grid-template-columns:1fr} ol{grid-template-columns:1fr} ol li{min-height:0;place-items:start;padding:1rem;text-align:left} ol li:not(:last-child)::after{content:"↓";right:1rem;bottom:-.7rem} }
+  @media(max-width:520px){ .film-loop{width:calc(100vw - 1rem)} }
+</style>
