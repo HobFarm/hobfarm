@@ -7,6 +7,7 @@ const hellcat = getMedia("stylefusion.hellcat.poster");
 const fashion = getMedia("character.fashion.sheet");
 const generic = getMedia("character.generic-37.result");
 const hostSystem = getMedia("workshop.graphics.hillary");
+const amiLegacy = getMedia("workshop.ami-legacy.hero");
 const styleCards = [
   getMedia("workshop.style-card.baseline.one"),
   getMedia("workshop.style-card.anime.one"),
@@ -38,6 +39,10 @@ const academy = getMedia("academy.banner.video");
       <a class="feature feature--host" href="/workshop/character-mannequin/avatar-host-system/">
         <img src={hostSystem.src} alt={hostSystem.alt} width={hostSystem.width} height={hostSystem.height} loading="lazy" decoding="async" />
         <div><p>Character / Mannequin</p><h3>From character design to on-screen host</h3><span>Hillary, Ami, PsyGoth, and the retired Hobgal prototype &rarr;</span></div>
+      </a>
+      <a class="feature feature--legacy" href="/workshop/ami-legacy/">
+        <img src={amiLegacy.src} alt={amiLegacy.alt} width={amiLegacy.width} height={amiLegacy.height} loading="lazy" decoding="async" />
+        <div><p>Workshop / Ami / Legacy</p><h3>The Electric Future Wagon</h3><span>Ami, historical carriage drawings, and the rules for a recurring future-buggy series &rarr;</span></div>
       </a>
       <a class="feature feature--wide" href="/workshop/character-mannequin/#character-production">
         <img src={fashion.src} alt={fashion.alt} loading="lazy" decoding="async" />
@@ -83,6 +88,7 @@ const academy = getMedia("academy.banner.video");
   .feature span { display: block; margin-top: .7rem; color: #d7d2df; font-size: .74rem; }
   .feature--style { min-height: 22rem; }
   .feature--host { min-height: 28rem; }
+  .feature--legacy { min-height: 28rem; }
   .style-thumbs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); height: 100%; }
   .style-thumbs img { width: 100%; height: 100%; object-fit: cover; opacity: .64; }
   .academy-bridge { display: grid; gap: 0; margin-top: 3rem; overflow: hidden; border: 1px solid #3b3150; background: #0c0912; }
@@ -94,17 +100,17 @@ const academy = getMedia("academy.banner.video");
   @media (min-width: 760px) {
     .index-header { grid-template-columns: minmax(0, 1fr) minmax(20rem, .7fr); align-items: end; }
     .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .feature--lead, .feature--wide, .feature--host { grid-column: span 2; min-height: 34rem; }
+    .feature--lead, .feature--wide, .feature--host, .feature--legacy { grid-column: span 2; min-height: 34rem; }
     .feature--lead > img, .feature--wide > img { object-position: center 32%; }
-    .feature--host > img { object-position: center; }
+    .feature--host > img, .feature--legacy > img { object-position: center; }
     .academy-bridge { grid-template-columns: minmax(0, 1.15fr) minmax(24rem, .85fr); }
     .academy-bridge > div { padding: 2rem; }
   }
   @media (min-width: 1080px) {
     .feature-grid { grid-template-columns: repeat(12, minmax(0, 1fr)); }
     .feature--lead { grid-column: span 8; }
-    .feature--host { grid-column: span 12; min-height: 38rem; }
-    .feature:not(.feature--lead,.feature--wide,.feature--style) { grid-column: span 4; }
+    .feature--host, .feature--legacy { grid-column: span 6; min-height: 32rem; }
+    .feature:not(.feature--lead,.feature--wide,.feature--style,.feature--host,.feature--legacy) { grid-column: span 4; }
     .feature--wide { grid-column: span 7; }
     .feature--style { grid-column: span 5; }
   }

@@ -1,0 +1,287 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import { getMedia } from "@/data/media-registry";
+
+const introVideo = getMedia("workshop.ami-legacy.intro.video");
+const hero = getMedia("workshop.ami-legacy.hero");
+const modelWithAmi = getMedia("workshop.ami-legacy.model-3917.ami");
+const modelVehicle = getMedia("workshop.ami-legacy.model-3917.vehicle");
+const autonomousCoach = getMedia("workshop.ami-legacy.autonomous-coach");
+const redwoodLifestyle = getMedia("workshop.ami-legacy.redwood-lifestyle");
+const redwoodProfile = getMedia("workshop.ami-legacy.redwood-profile");
+
+const historicalReferences = [
+  {
+    label: "Stanhope gig / No. 3915",
+    media: getMedia("workshop.ami-legacy.history.stanhope"),
+  },
+  {
+    label: "Diligence coach",
+    media: getMedia("workshop.ami-legacy.history.diligence"),
+  },
+  {
+    label: "Phaeton / No. 651a",
+    media: getMedia("workshop.ami-legacy.history.phaeton"),
+  },
+  {
+    label: "Vis-à-vis / No. 3049",
+    media: getMedia("workshop.ami-legacy.history.vis-a-vis"),
+  },
+];
+
+const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  headline: "Legacy: The Electric Future Wagon",
+  description:
+    "A HobFarm Workshop study that turns 1800s carriage drawings into electric autonomous vehicles while preserving their original design logic.",
+  image: hero.src,
+  url: `${siteOrigin}/workshop/ami-legacy/`,
+  video: {
+    "@type": "VideoObject",
+    name: "Meet Ami",
+    description: introVideo.alt,
+    thumbnailUrl: introVideo.poster,
+    contentUrl: introVideo.src,
+    duration: "PT36S",
+  },
+  isPartOf: {
+    "@type": "CollectionPage",
+    name: "HobFarm Workshop",
+    url: `${siteOrigin}/workshop/`,
+  },
+};
+---
+
+<BaseLayout
+  title="Legacy: The Electric Future Wagon | HobFarm Workshop"
+  description="Ami's general introduction leads into Legacy, a future-buggy study that turns 1800s carriage drawings into electric, autonomous heritage vehicles."
+  canonical="/workshop/ami-legacy/"
+  structuredData={structuredData}
+  image={hero.src}
+  imageAlt={hero.alt}
+  palette="magenta-cyan"
+>
+  <article class="legacy-study">
+    <header class="hero">
+      <Wrapper variant="standard" class="py-14 lg:py-24">
+        <div class="hero-copy">
+          <p class="kicker">Workshop / Ami / Future buggy studies</p>
+          <h1>Legacy: The Electric Future Wagon</h1>
+          <p class="deck">
+            Start with an 1800s carriage drawing. Keep its wheels, silhouette, seating, lamps, and pull geometry. Then ask what changes when the horse disappears.
+          </p>
+          <div class="rule-row" aria-label="Legacy design rules">
+            <span>No horses</span>
+            <span>Keep the carriage</span>
+            <span>Electric or robot-pulled</span>
+          </div>
+        </div>
+        <img
+          src={hero.src}
+          alt={hero.alt}
+          width={hero.width}
+          height={hero.height}
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </Wrapper>
+    </header>
+
+    <section class="intro-section" aria-labelledby="meet-ami-heading">
+      <Wrapper variant="standard" class="py-14 lg:py-20">
+        <div class="intro-grid">
+          <div class="video-column">
+            <video
+              controls
+              playsinline
+              preload="none"
+              poster={introVideo.poster}
+              aria-label="Ami's captioned HobFarm introduction"
+              aria-describedby="ami-video-note"
+            >
+              <source src={introVideo.src} type="video/mp4" />
+            </video>
+            <p id="ami-video-note" class="media-note">Captioned vertical master / 36 seconds / playback starts only when requested</p>
+          </div>
+          <div class="intro-copy">
+            <p class="kicker">Meet the host</p>
+            <h2 id="meet-ami-heading">Ami opens the door. Legacy gives her somewhere to go next.</h2>
+            <p>
+              Ami's introduction stays general on purpose. It works on Ko-fi, social media, and HobFarm without pretending every viewer arrived the same way. The follow-up can be specific: this is one of the project worlds she can return to and host.
+            </p>
+            <p>
+              That turns the avatar into a recurring character instead of a one-off demo. Ami can introduce a carriage model, explain the design rule behind it, appear in a luxury campaign frame, and come back for the next historical drawing.
+            </p>
+            <div class="cta-row">
+              <Button isLink size="md" variant="green" href="/academy/avatar-content-system/">
+                Build an avatar content system
+              </Button>
+              <Button isLink size="md" variant="muted" href="/workshop/character-mannequin/avatar-host-system/">
+                See the host system
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Wrapper>
+    </section>
+
+    <section class="rules-section" aria-labelledby="system-heading">
+      <Wrapper variant="standard" class="py-14 lg:py-20">
+        <header class="section-heading">
+          <p class="kicker">The vehicle system</p>
+          <h2 id="system-heading">The wheel count decides how the future moves.</h2>
+          <p>These are carriages with new propulsion and control systems. They are not old bodies pasted onto ordinary cars.</p>
+        </header>
+        <div class="rule-grid">
+          <article>
+            <span>Two wheels</span>
+            <h3>Keep the pulling logic.</h3>
+            <p>A purpose-built robot replaces the horse and balances or pulls the carriage. The robot supports the design; the carriage remains the subject.</p>
+          </article>
+          <article>
+            <span>Four wheels</span>
+            <h3>Let the carriage drive itself.</h3>
+            <p>Electric motors, batteries, sensors, and autonomous controls fit into the historical form as a quiet sightseeing or hospitality vehicle.</p>
+          </article>
+          <article>
+            <span>Every model</span>
+            <h3>Preserve the source drawing.</h3>
+            <p>Wheel scale, canopy, lamps, rails, seating, suspension lines, and decorative curves should survive. When the historical number is legible, it becomes the model name.</p>
+          </article>
+        </div>
+      </Wrapper>
+    </section>
+
+    <section class="model-section" aria-labelledby="model-heading">
+      <Wrapper variant="standard" class="py-14 lg:py-24">
+        <header class="section-heading">
+          <p class="kicker">Two-wheel branch / Model 3917</p>
+          <h2 id="model-heading">A robot takes the traces.</h2>
+          <p>Model 3917 keeps the tall wheels, exposed seat, long shafts, and compact body of a two-wheel carriage. The mechanical draft unit explains how the old geometry still moves without a horse.</p>
+        </header>
+        <div class="model-grid">
+          <figure>
+            <img src={modelVehicle.src} alt={modelVehicle.alt} width={modelVehicle.width} height={modelVehicle.height} loading="lazy" decoding="async" />
+            <figcaption>Clean vehicle plate. The robot and carriage stay visible as one system.</figcaption>
+          </figure>
+          <figure>
+            <img src={modelWithAmi.src} alt={modelWithAmi.alt} width={modelWithAmi.width} height={modelWithAmi.height} loading="lazy" decoding="async" />
+            <figcaption>Ami enters as the presenter, not as a replacement for the vehicle.</figcaption>
+          </figure>
+        </div>
+      </Wrapper>
+    </section>
+
+    <section class="history-section" aria-labelledby="history-heading">
+      <Wrapper variant="standard" class="py-14 lg:py-20">
+        <header class="section-heading">
+          <p class="kicker">Historical source library</p>
+          <h2 id="history-heading">The drawing comes before the reveal.</h2>
+          <p>The source plate sets the wheelbase, body, seating, canopy, and use. A future version should answer those decisions instead of treating history as surface decoration.</p>
+        </header>
+        <div class="history-grid">
+          {historicalReferences.map(({ label, media }) => (
+            <figure>
+              <img src={media.src} alt={media.alt} width={media.width} height={media.height} loading="lazy" decoding="async" />
+              <figcaption>{label}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </Wrapper>
+    </section>
+
+    <section class="autonomous-section" aria-labelledby="autonomous-heading">
+      <Wrapper variant="standard" class="py-14 lg:py-24">
+        <header class="section-heading">
+          <p class="kicker">Four-wheel branch</p>
+          <h2 id="autonomous-heading">An autonomous carriage still needs a reason to travel.</h2>
+          <p>Showroom light proves the object. A road, resort, park, or scenic route proves the experience: quiet electric cruising with the carriage silhouette intact.</p>
+        </header>
+        <div class="travel-grid">
+          <figure class="travel-grid__lead">
+            <img src={autonomousCoach.src} alt={autonomousCoach.alt} width={autonomousCoach.width} height={autonomousCoach.height} loading="lazy" decoding="async" />
+            <figcaption>Enclosed autonomous coach / product reveal</figcaption>
+          </figure>
+          <figure>
+            <img src={redwoodLifestyle.src} alt={redwoodLifestyle.alt} width={redwoodLifestyle.width} height={redwoodLifestyle.height} loading="lazy" decoding="async" />
+            <figcaption>Scenic passenger route / redwood road</figcaption>
+          </figure>
+          <figure>
+            <img src={redwoodProfile.src} alt={redwoodProfile.alt} width={redwoodProfile.width} height={redwoodProfile.height} loading="lazy" decoding="async" />
+            <figcaption>Quiet profile study / carriage in use</figcaption>
+          </figure>
+        </div>
+      </Wrapper>
+    </section>
+
+    <section class="next-section" aria-labelledby="next-heading">
+      <Wrapper variant="standard" class="py-14 lg:py-20">
+        <div class="next-grid">
+          <div>
+            <p class="kicker">The next episode</p>
+            <h2 id="next-heading">One introduction can lead into a whole series.</h2>
+          </div>
+          <div>
+            <p>Ami's first video says who she is. Legacy gives the next post a subject: one historical drawing, the rule it establishes, the future model that answers it, and Ami's short introduction to the result.</p>
+            <p>The format can repeat without repeating the same video. The avatar stays recognizable while the carriage, setting, and design problem change.</p>
+            <nav class="text-links" aria-label="Related Ami and Legacy destinations">
+              <a href="/academy/avatar-content-system/">Open the Avatar Content System</a>
+              <a href="/workshop/character-mannequin/avatar-host-system/">Read the avatar host study</a>
+              <a href="/workshop/">Return to Workshop</a>
+            </nav>
+          </div>
+        </div>
+      </Wrapper>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  .legacy-study { background: #080808; color: #b9b2aa; }
+  .hero { border-bottom: 1px solid #3b3028; background: radial-gradient(circle at 18% 10%, rgb(197 147 75 / .15), transparent 30rem), #080808; }
+  .hero-copy { max-width: 66rem; }
+  .hero img { display: block; width: 100%; margin-top: 2.5rem; border: 1px solid #4a3b30; border-radius: .75rem; box-shadow: 0 32px 90px rgb(0 0 0 / .45); }
+  .kicker { margin: 0; color: #d6ad72; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; }
+  h1 { max-width: 68rem; margin: 1rem 0 0; color: #fffaf2; font-family: var(--font-display); font-size: clamp(3.4rem, 9vw, 8rem); font-weight: 300; letter-spacing: -.06em; line-height: .88; text-wrap: balance; }
+  .deck { max-width: 54rem; margin: 1.5rem 0 0; color: #d4cec5; font-size: clamp(1rem, 2vw, 1.25rem); line-height: 1.75; }
+  .rule-row { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.8rem; }
+  .rule-row span { padding: .55rem .75rem; border: 1px solid #665344; border-radius: 999px; color: #e3c9a6; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .08em; text-transform: uppercase; }
+  section { border-bottom: 1px solid #2f2924; }
+  .intro-section, .history-section, .next-section { background: #0b0a09; }
+  .intro-grid, .next-grid { display: grid; gap: 2rem; }
+  .video-column { max-width: 24rem; margin-inline: auto; }
+  video { display: block; width: 100%; aspect-ratio: 9 / 16; border: 1px solid #5b4634; border-radius: .75rem; background: #000; object-fit: cover; }
+  .media-note { margin: .7rem 0 0; color: #7f7770; font-family: var(--font-mono); font-size: .56rem; line-height: 1.6; }
+  .intro-copy h2, .section-heading h2, .next-grid h2 { max-width: 58rem; margin: .75rem 0 0; color: #fffaf2; font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 5.2rem); font-weight: 300; letter-spacing: -.045em; line-height: .96; }
+  .intro-copy > p:not(.kicker), .section-heading > p:last-child, .next-grid > div:last-child > p { max-width: 50rem; margin: 1rem 0 0; color: #aaa29b; line-height: 1.78; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1.6rem; }
+  .section-heading { max-width: 68rem; }
+  .rule-grid { display: grid; gap: .8rem; margin-top: 2rem; }
+  .rule-grid article { min-height: 18rem; padding: 1.2rem; border: 1px solid #3a3028; border-top: 2px solid #bd8f52; border-radius: .55rem; background: #0e0c0a; }
+  .rule-grid span { color: #d6ad72; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; }
+  .rule-grid h3 { margin: 4rem 0 0; color: #fffaf2; font-family: var(--font-display); font-size: 2rem; font-weight: 300; line-height: 1; }
+  .rule-grid p { margin: 1rem 0 0; color: #9f9790; font-size: .84rem; line-height: 1.7; }
+  .model-grid, .history-grid, .travel-grid { display: grid; gap: .8rem; margin-top: 2rem; }
+  figure { overflow: hidden; margin: 0; border: 1px solid #3a3028; border-radius: .55rem; background: #0d0b09; }
+  figure img { display: block; width: 100%; height: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+  figcaption { padding: .8rem 1rem; color: #c9b18e; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .05em; line-height: 1.6; text-transform: uppercase; }
+  .history-grid figure img { aspect-ratio: 4 / 3; object-fit: contain; background: #f2eee4; }
+  .next-grid > div:last-child > p:first-child { margin-top: 0; }
+  .text-links { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1.5rem; }
+  .text-links a { display: inline-flex; min-height: 2.75rem; align-items: center; padding: .65rem .8rem; border: 1px solid #4a3b30; border-radius: .3rem; color: #ead4b6; font-family: var(--font-mono); font-size: .59rem; letter-spacing: .06em; text-decoration: none; text-transform: uppercase; }
+  .text-links a:hover, .text-links a:focus-visible { border-color: #fffaf2; color: #fffaf2; outline: none; }
+  @media (min-width: 760px) {
+    .intro-grid { grid-template-columns: minmax(17rem, .38fr) minmax(0, 1fr); align-items: center; }
+    .next-grid { grid-template-columns: minmax(0, 1fr) minmax(22rem, .7fr); align-items: start; }
+    .rule-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .model-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .history-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .travel-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .travel-grid__lead { grid-column: span 2; }
+  }
+</style>

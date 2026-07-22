@@ -1,7 +1,7 @@
 ---
 // Fundations
 import Text from "@/components/fundations/elements/Text.astro";
-import KofiCta from "@/components/KofiCta.astro";
+import KofiTipCard from "@/components/support/KofiTipCard.astro";
 import { footerLinkGroups as links } from "@/data/navigation";
 
 const currentYear = new Date().getFullYear();
@@ -61,85 +61,88 @@ const socials = [
 ---
 
 <footer class="overflow-hidden relative">
-  <div class="bg-gradient-up pt-10 pb-16 px-4 sm:px-6 lg:px-8">
-    <!-- Link columns -->
-    <div
-      class="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 text-base-400 text-xs"
-    >
-      <!-- Logo -->
-      <div class="col-span-2 sm:col-span-1">
-        <a href="/" aria-label="HobFarm homepage">
-          <img
-            src="https://cdn.hob.farm/brand/hobfarm-logo-white.svg"
-            alt="HobFarm"
-            class="h-6 opacity-70 hover:opacity-100 transition-opacity"
-          />
-        </a>
-      </div>
-      <!-- Link Columns -->
-      {
-        links.map((section) => (
-          <div>
-            <div class="px-4 relative before:absolute before:bg-white before:top-0 before:left-0 before:h-6 before:w-px after:absolute after:top-8 after:bottom-0 after:left-0 after:w-px">
-              <Text tag="h3" variant="textBase" class="text-white">
-                {section.title}
-              </Text>
-              <nav role="navigation" class="mt-3">
-                <ul role="list" class="space-y-1.5">
-                  {section.links.map((link) => (
-                    <li>
-                      <Text
-                        tag="a"
-                        variant="textSM"
-                        title={`link to ${link.label}`}
-                        aria-label={link.label}
-                        href={link.href}
-                        class="hover:text-white"
-                      >
-                        {link.label}
-                      </Text>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            </div>
-          </div>
-        ))
-      }
-    </div>
+  <div class="bg-gradient-up pb-16">
+    <KofiTipCard variant="footer" placement="site-footer" />
 
-    <!-- Bottom bar: socials + copyright in one row -->
-    <div
-      class="max-w-7xl mx-auto mt-10 pt-6 border-t border-base-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-base-500 text-xs"
-    >
-      <div class="flex flex-wrap items-center justify-center gap-4 sm:justify-start">
+    <div class="px-4 pt-10 sm:px-6 lg:px-8">
+      <!-- Link columns -->
+      <div
+        class="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 text-base-400 text-xs"
+      >
+        <!-- Logo -->
+        <div class="col-span-2 sm:col-span-1">
+          <a href="/" aria-label="HobFarm homepage">
+            <img
+              src="https://cdn.hob.farm/brand/hobfarm-logo-white.svg"
+              alt="HobFarm"
+              class="h-6 opacity-70 hover:opacity-100 transition-opacity"
+            />
+          </a>
+        </div>
+        <!-- Link Columns -->
         {
-          socials.map((social) => (
-            <a
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={social.label}
-              title={social.label}
-              class="text-base-500 hover:text-white transition-colors"
-            >
-              <svg
-                class="size-4"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                set:html={social.icon}
-              />
-            </a>
+          links.map((section) => (
+            <div>
+              <div class="px-4 relative before:absolute before:bg-white before:top-0 before:left-0 before:h-6 before:w-px after:absolute after:top-8 after:bottom-0 after:left-0 after:w-px">
+                <Text tag="h3" variant="textBase" class="text-white">
+                  {section.title}
+                </Text>
+                <nav role="navigation" class="mt-3">
+                  <ul role="list" class="space-y-1.5">
+                    {section.links.map((link) => (
+                      <li>
+                        <Text
+                          tag="a"
+                          variant="textSM"
+                          title={`link to ${link.label}`}
+                          aria-label={link.label}
+                          href={link.href}
+                          class="hover:text-white"
+                        >
+                          {link.label}
+                        </Text>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              </div>
+            </div>
           ))
         }
-        <KofiCta variant="symbol" text="Ko-fi" class="opacity-80 transition-opacity hover:opacity-100" />
       </div>
-      <div class="flex items-center gap-4 sm:gap-6">
-        <span>&copy; {currentYear} HobFarm</span>
-        <span>Las Vegas, NV</span>
-        <a href="/contact/" class="hover:text-white transition-colors" aria-label="Contact us">
-          Contact
-        </a>
+
+      <!-- Bottom bar: socials + copyright in one row -->
+      <div
+        class="max-w-7xl mx-auto mt-10 pt-6 border-t border-base-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-base-500 text-xs"
+      >
+        <div class="flex flex-wrap items-center justify-center gap-4 sm:justify-start">
+          {
+            socials.map((social) => (
+              <a
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.label}
+                title={social.label}
+                class="text-base-500 hover:text-white transition-colors"
+              >
+                <svg
+                  class="size-4"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  set:html={social.icon}
+                />
+              </a>
+            ))
+          }
+        </div>
+        <div class="flex items-center gap-4 sm:gap-6">
+          <span>&copy; {currentYear} HobFarm</span>
+          <span>Las Vegas, NV</span>
+          <a href="/contact/" class="hover:text-white transition-colors" aria-label="Contact us">
+            Contact
+          </a>
+        </div>
       </div>
     </div>
   </div>

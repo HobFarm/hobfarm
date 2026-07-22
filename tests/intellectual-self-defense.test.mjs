@@ -38,11 +38,27 @@ test("the feature and course form a verified two-way relationship", () => {
   const layout = read("src/layouts/ArticleLayout.astro");
 
   assert.match(article, /relatedAcademy:\s+\- intellectual-self-defense/);
+  assert.match(article, /relatedAcademy:[\s\S]*\- avatar-content-system/);
   assert.match(article, /https:\/\/cdn\.hob\.farm\/articles\/the-card-catalog-started-talking-back\/hero-card-catalog-talks-back-v1-og\.webp/);
   assert.match(article, /<SelfDefenseCourseCta \/>/);
   assert.match(registry, /articleHref: "\/articles\/the-card-catalog-started-talking-back\/"/);
   assert.match(resolver, /getAcademyCourse/);
   assert.match(layout, /RelatedContentRail/);
+});
+
+test("the article separates the free course from the paid avatar follow-on", () => {
+  const articleCta = read("src/components/articles/self-defense/SelfDefenseCourseCta.astro");
+  const avatarData = read("src/data/avatar-content-system.ts");
+  const membership = read("src/components/membership/OnboardingView.tsx");
+
+  assert.match(articleCta, /Free HobFarm Academy course/);
+  assert.match(articleCta, /Paid follow-on/);
+  assert.match(articleCta, /Preview the paid avatar course/);
+  assert.match(avatarData, /priceLabel: "\$5\/month"/);
+  assert.match(avatarData, /freeLessonCount: 4/);
+  assert.match(avatarData, /paidLessonCount: 12/);
+  assert.match(membership, /Intellectual Self-Defense for Ordinary People remains free and public/);
+  assert.doesNotMatch(membership, /title: "Digital Asset Packs"/);
 });
 
 test("the manifest is new-key-only and complete for both approved prefixes", () => {

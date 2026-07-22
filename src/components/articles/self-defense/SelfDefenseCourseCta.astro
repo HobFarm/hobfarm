@@ -1,14 +1,39 @@
 ---
+import { avatarCourse } from "@/data/avatar-content-system";
+
 const courseHref = "/academy/intellectual-self-defense/";
 ---
 
 <aside class="article-wide course-cta">
-  <p class="eyebrow">Free HobFarm Academy course</p>
-  <h2>Build your own intellectual self-defense protocol.</h2>
-  <p>
-    Nine public lessons cover research contracts, source receipts, creative source files, scope drift, tool routing, mixed-origin media, and the personal rules you will revise after use.
-  </p>
-  <a href={courseHref}>Start the free course</a>
+  <div class="course-cta__free">
+    <p class="eyebrow">Free HobFarm Academy course</p>
+    <h2>Build your own intellectual self-defense protocol.</h2>
+    <p>
+      Nine public lessons cover research contracts, source receipts, creative source files, scope drift, tool routing, mixed-origin media, and the personal rules you will revise after use.
+    </p>
+    <a href={courseHref} data-course-id="intellectual-self-defense" data-course-access="free">
+      Start the free course
+    </a>
+  </div>
+
+  <div class="course-cta__paid">
+    <div>
+      <p class="eyebrow eyebrow--paid">Paid follow-on</p>
+      <h3>Build the production loop next.</h3>
+      <p>
+        The Avatar Content System Starter Kit begins with four public setup lessons. Supporter beta access unlocks twelve paid lessons on source files, scripting, voice tests, avatar clips, exports, scheduling, and review.
+      </p>
+      <p class="access-note">$5/month while membership is active. Preview the course before opening checkout.</p>
+    </div>
+    <a
+      class="paid-link"
+      href={`${avatarCourse.basePath}/`}
+      data-course-id={avatarCourse.slug}
+      data-course-access={avatarCourse.accessModel}
+    >
+      Preview the paid avatar course
+    </a>
+  </div>
 </aside>
 
 <style>
@@ -21,6 +46,21 @@ const courseHref = "/academy/intellectual-self-defense/";
     padding: clamp(1.25rem, 4vw, 2rem);
   }
 
+  .course-cta__free,
+  .course-cta__paid {
+    width: 100%;
+  }
+
+  .course-cta__paid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 1.25rem;
+    margin-top: 1.75rem;
+    border-top: 1px solid var(--color-base-700);
+    padding-top: 1.5rem;
+  }
+
   .eyebrow {
     margin: 0 !important;
     color: var(--color-accent-green-bright);
@@ -28,6 +68,10 @@ const courseHref = "/academy/intellectual-self-defense/";
     font-size: 0.7rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
+  }
+
+  .eyebrow--paid {
+    color: var(--color-accent-magenta-bright);
   }
 
   h2 {
@@ -38,11 +82,25 @@ const courseHref = "/academy/intellectual-self-defense/";
     line-height: 1.1;
   }
 
+  h3 {
+    margin: 0.65rem 0 0 !important;
+    color: white;
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 3vw, 1.75rem) !important;
+    line-height: 1.15;
+  }
+
   p:not(.eyebrow) {
     max-width: 42rem;
     margin: 0.85rem 0 0 !important;
     color: var(--color-base-300);
     line-height: 1.7;
+  }
+
+  .access-note {
+    color: var(--color-base-400) !important;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
   }
 
   a {
@@ -60,5 +118,27 @@ const courseHref = "/academy/intellectual-self-defense/";
   a:hover {
     background: var(--color-accent-green);
     color: var(--color-base-950);
+  }
+
+  .paid-link {
+    border-color: var(--color-accent-magenta);
+    color: var(--color-accent-magenta-bright);
+    white-space: nowrap;
+  }
+
+  .paid-link:hover {
+    background: var(--color-accent-magenta);
+    color: white;
+  }
+
+  @media (max-width: 719px) {
+    .course-cta__paid {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+
+    .paid-link {
+      white-space: normal;
+    }
   }
 </style>

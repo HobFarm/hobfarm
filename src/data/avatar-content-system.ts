@@ -46,10 +46,16 @@ export const avatarCourse = {
   freePath: "/academy/avatar-content-system/free",
   checkoutPath: "/membership",
   loginPath: "/login?next=/academy/avatar-content-system/course",
-  betaCta: "Supporter beta access, $5/mo while this starter kit is in beta.",
+  accessModel: "membership-beta" as const,
+  priceLabel: "$5/month",
+  freeLessonCount: 4,
+  paidLessonCount: 12,
+  betaCta:
+    "Supporter beta access is $5/month and unlocks all 12 paid lessons while your membership is active.",
+  standaloneNote: "A standalone one-time purchase is not available yet.",
   frameLabel: "A beginner course inside Aesthetic Systems Lab",
   summary:
-    "A beginner course inside Aesthetic Systems Lab for building a repeatable avatar content system: one short avatar video from rough idea to script, export, caption, scheduled post, and review note.",
+    "A beginner course inside Aesthetic Systems Lab for building a repeatable avatar content system: one reusable introduction video from rough idea to script, export, platform-specific captions, published posts, and review note.",
   thesis:
     "This is still the starter kit. It teaches the smallest complete loop first, then shows how that loop can grow into broader aesthetic systems work without turning the beginner course into a full lab.",
   affiliateDisclosure:
@@ -77,7 +83,7 @@ export const affiliateTools: ToolLink[] = [
   },
   {
     name: "Meta Business Suite",
-    role: "Scheduling and reviewing finished posts after the files are exported.",
+    role: "Scheduling and reviewing social placements after the master video is exported.",
     href: "https://business.facebook.com/",
     affiliate: false,
   },
@@ -94,7 +100,7 @@ export const workflowPaths = [
     title: "Text/Computer",
     body:
       "For people who type, organize folders, write scripts, edit files, and want the work to live primarily on a laptop or desktop.",
-    steps: ["Type", "Organize", "Draft", "Export files", "Schedule"],
+    steps: ["Type", "Organize", "Draft", "Export files", "Publish"],
   },
 ];
 
@@ -106,7 +112,7 @@ export const mergedWorkflow = [
   "Avatar",
   "Export",
   "Edit",
-  "Schedule",
+  "Publish",
   "Review",
 ];
 
@@ -129,7 +135,7 @@ export const castMethod = [
   {
     term: "Task",
     body:
-      "Give ChatGPT or the next tool one clear job: write, test, export, schedule, review, or reset for the next post.",
+      "Give ChatGPT or the next tool one clear job: write, test, export, publish, review, or reset for the next post.",
   },
 ];
 
@@ -137,7 +143,7 @@ export const whereThisFits = [
   {
     title: "This starter kit",
     body:
-      "The first outcome stays beginner-sized: one short avatar video, one saved source file, one script, one export, one caption, one scheduled post, and one review note.",
+      "The first outcome stays beginner-sized: one platform-neutral avatar introduction, one saved source file, one script, one master export, placement-specific captions, and one review note.",
     href: avatarCourse.basePath,
     cta: "You are here",
   },
@@ -165,7 +171,7 @@ export const projectFolderSetup = [
   "avatar-content-system/04-voice-tests/",
   "avatar-content-system/05-avatar-clips/",
   "avatar-content-system/06-exports/",
-  "avatar-content-system/07-scheduled-posts/",
+  "avatar-content-system/07-publishing/",
   "avatar-content-system/08-review-notes/",
 ];
 
@@ -178,7 +184,7 @@ export const starterPrompts: Snippet[] = [
   {
     title: "Rewrite for a natural avatar voice",
     body:
-      "Rewrite this as a 45 to 60 second avatar script. Keep it direct, conversational, and useful. Remove filler, fake excitement, and anything that sounds like a course ad. Script: [paste draft]",
+      "Rewrite this as a 35 to 60 second avatar script. Keep it direct, conversational, and useful. Remove filler, fake excitement, and anything that sounds like a course ad. Script: [paste draft]",
   },
   {
     title: "Screenshot rescue",
@@ -190,13 +196,69 @@ export const starterPrompts: Snippet[] = [
     body:
       "Review this finished avatar post plan like a practical editor. Tell me what is clear, what is confusing, what can be cut, and what the next video should test. Keep the notes short enough to use today.",
   },
+  {
+    title: "Write a reusable avatar introduction",
+    body:
+      "Write a 35 to 45 second introduction video for [avatar name]. The avatar should clearly say that they are an avatar, credit the human creator who writes and directs the work, welcome people into [project or world], and end with a broad invitation to look around. Keep the video platform-neutral. Do not mention Ko-fi, a specific social network, or a payment request in the spoken script.",
+    note: "Keep the master video general. Put the Ko-fi, course, follow, or support action in the caption for each placement.",
+  },
+  {
+    title: "Turn one master video into placement captions",
+    body:
+      "Create two short captions for the same avatar introduction video. Version 1 is for a Ko-fi profile: welcome visitors, explain what HobFarm makes, and point interested viewers to https://hob.farm/academy/avatar-content-system/. Version 2 is for social media: introduce the avatar-building series and point to the same course page. Do not rewrite the video script. Return only the two captions and one clear call to action for each.",
+  },
 ];
+
+export const avatarIntroPrompts = starterPrompts.slice(-2);
+
+export const avatarIntroProject = {
+  status: "Rendered",
+  title: "Ami's reusable avatar introduction",
+  duration: "36 seconds",
+  format: "Vertical master video",
+  productionTool: "HeyGen",
+  summary:
+    "Ami introduces herself as an avatar, credits the human creator behind the work, and welcomes people into HobFarm. The spoken video stays general so the same master export can work on HobFarm, Ko-fi, and social media.",
+  currentBuild: [
+    "Six short scenes with several Ami looks.",
+    "Performance notes such as excited, curious, thoughtful, and chuckles.",
+    "A self-aware introduction that does not pretend the avatar is a real person.",
+    "One general welcome ending, with the destination-specific action moved into the caption.",
+  ],
+  placements: [
+    {
+      name: "Ko-fi intro",
+      body: "Welcome profile visitors, explain what HobFarm is, and let the surrounding Ko-fi page handle the support action.",
+    },
+    {
+      name: "Social introduction",
+      body: "Introduce Ami and the avatar-building series, then use the caption to send interested viewers to the course.",
+    },
+    {
+      name: "Course field project",
+      body: "Use the script, look selection, HeyGen preview, master export, placement captions, and review note as the starter kit's worked example.",
+    },
+    {
+      name: "Workshop follow-up",
+      body: "Let the general introduction open the door, then send viewers into Legacy to see Ami host a recurring project world.",
+    },
+  ],
+  lessonLinks: [
+    { label: "Build the avatar concept", slug: "build-your-avatar-concept" },
+    { label: "Write the introduction", slug: "write-or-speak-your-first-script" },
+    { label: "Create the HeyGen clip", slug: "create-an-avatar-clip-in-heygen" },
+    { label: "Publish each placement", slug: "schedule-in-meta-business-suite" },
+    { label: "Review and make the next one", slug: "review-the-post-and-make-the-next-one" },
+  ],
+  kofiHref: "https://ko-fi.com/hobfarm",
+  workshopHref: "/workshop/ami-legacy/",
+};
 
 export const landingSections = {
   helpsMake: [
-    "Short avatar videos for Instagram, Facebook, TikTok, YouTube Shorts, or LinkedIn.",
+    "A platform-neutral avatar introduction you can use on Ko-fi, social media, and project pages.",
     "A small source file that keeps the idea, avatar role, visual lane, voice, boundaries, current output, and next task together.",
-    "A repeatable file setup so scripts, voice tests, clips, captions, and scheduled posts do not vanish into random downloads.",
+    "A repeatable file setup so scripts, voice tests, clips, captions, and published posts do not vanish into random downloads.",
     "A first reusable content process that is realistic for beginners and small solo projects.",
   ],
   freeIncludes: [
@@ -218,7 +280,7 @@ export const faqItems = [
   {
     question: "Is this a get-rich-with-AI course?",
     answer:
-      "No. It is a workflow course. The point is to get one useful avatar video made, saved, scheduled, and reviewed without pretending the tool stack is magic.",
+      "No. It is a workflow course. The point is to get one useful avatar video made, saved, published, and reviewed without pretending the tool stack is magic.",
   },
   {
     question: "Do I need all four tools on day one?",
@@ -251,13 +313,13 @@ const freeLessonData: FreeLesson[] = [
     trackTags: ["Both"],
     moduleTitle: "Free setup",
     preview:
-      "Define the finished thing: one short avatar video, a saved script, reusable files, and a review note for the next post.",
+      "Define the finished thing: one reusable avatar introduction, a saved script, a master export, placement captions, and a review note for the next post.",
     goal:
       "Understand the starter system before touching every tool at once.",
     whatYouNeed: ["A phone or laptop.", "A place to save files.", "One topic you can explain simply."],
     steps: [
       "Pick one useful topic, not a whole content empire.",
-      "Define the finished post as a short avatar video with a script, voice direction, export file, caption, and review note.",
+      "Define the finished post as a platform-neutral avatar introduction with a script, voice direction, master export, placement captions, and review note.",
       "Write down where your rough ideas usually start: phone notes, screenshots, voice mode, desktop docs, or chat threads.",
       "Choose one place where the finished files will live before you start generating anything.",
     ],
@@ -265,7 +327,7 @@ const freeLessonData: FreeLesson[] = [
       {
         title: "Finished-post definition",
         body:
-          "For this course, a finished post means: one short avatar video, one saved script, one exported clip, one caption draft, one scheduled post, and one review note for the next version.",
+          "For this course, a finished project means: one platform-neutral avatar introduction, one saved script, one master export, one caption for each placement, one published or scheduled post, and one review note for the next version.",
       },
     ],
     checklist: [
@@ -324,7 +386,7 @@ const freeLessonData: FreeLesson[] = [
     preview:
       "Set up a boring folder structure that saves you from hunting through downloads, camera roll, and chat history later.",
     goal:
-      "Create a project folder that can hold ideas, screenshots, scripts, voice tests, avatar clips, exports, scheduled posts, and review notes.",
+      "Create a project folder that can hold ideas, screenshots, scripts, voice tests, avatar clips, exports, publishing notes, and review notes.",
     whatYouNeed: ["A laptop or desktop if possible.", "A synced drive if you work from phone and computer."],
     steps: [
       "Create a folder named avatar-content-system.",
@@ -487,12 +549,12 @@ const paidLessonPreviews: LessonPreview[] = [
   {
     number: 15,
     slug: "schedule-in-meta-business-suite",
-    title: "Schedule in Meta Business Suite",
+    title: "Publish the Intro and Schedule the Social Cut",
     access: "paid",
     trackTags: ["Both"],
     moduleTitle: "Publish and review",
     preview:
-      "Schedule the finished video with caption, thumbnail check, and account sanity check before it goes out.",
+      "Keep one master video, then publish a Ko-fi intro or schedule a social placement with the right caption and account checks.",
   },
   {
     number: 16,

@@ -12,8 +12,8 @@ test("avatar starter kit is framed inside Aesthetic Systems Lab without losing t
 
   assert.match(data, /A beginner course inside Aesthetic Systems Lab/);
   assert.match(data, /repeatable avatar content system/);
-  assert.match(data, /one short avatar video/);
-  assert.match(data, /script, export, caption, scheduled post, and review note/);
+  assert.match(data, /one reusable introduction video/);
+  assert.match(data, /platform-specific captions, published posts, and review note/);
 
   for (const castTerm of ["Collect", "Arrange", "Set", "Task"]) {
     assert.match(data, new RegExp(`\\b${castTerm}\\b`), `${castTerm} should be part of the light CAST framing`);

@@ -8,16 +8,21 @@ import Eyebrow from "@/components/sections/Eyebrow.astro";
 import SectionHeader from "@/components/sections/SectionHeader.astro";
 import CourseDiagram from "@/components/academy/CourseDiagram.astro";
 import LessonCard from "@/components/academy/LessonCard.astro";
+import { getMedia } from "@/data/media-registry";
 import {
   affiliateTools,
   avatarCourse,
+  avatarIntroProject,
   castMethod,
   courseModules,
   landingSections,
   faqItems,
+  lessonHref,
   whereThisFits,
   workflowPaths,
 } from "@/data/avatar-content-system";
+
+const amiIntroVideo = getMedia("workshop.ami-legacy.intro.video");
 ---
 
 <BaseLayout
@@ -54,6 +59,92 @@ import {
             <p class="mt-4 text-xs font-mono text-base-500">{avatarCourse.betaCta}</p>
           </div>
           <CourseDiagram variant="workflow" />
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section id="ami-intro-project" class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <SectionHeader
+          eyebrow="Field project"
+          heading={avatarIntroProject.title}
+          note="One master video, several useful placements."
+        />
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(16rem,0.58fr)_minmax(0,1.42fr)] lg:items-start">
+          <div>
+            <video
+              controls
+              playsinline
+              preload="none"
+              poster={amiIntroVideo.poster}
+              aria-label="Ami's captioned HobFarm introduction"
+              class="mx-auto aspect-[9/16] w-full max-w-sm border border-accent-violet/50 bg-black object-cover"
+            >
+              <source src={amiIntroVideo.src} type="video/mp4" />
+            </video>
+            <p class="mt-3 text-center text-[10px] font-mono uppercase tracking-wider text-base-500">
+              Captioned master / {avatarIntroProject.duration}
+            </p>
+          </div>
+
+          <div>
+            <article class="border border-accent-violet/40 bg-base-900/50 p-6">
+              <div class="flex flex-wrap gap-2 text-[10px] font-mono uppercase tracking-wider">
+                <span class="border border-accent-green/40 px-3 py-2 text-accent-green-bright">
+                  {avatarIntroProject.status}
+                </span>
+                <span class="border border-base-700 px-3 py-2 text-base-300">{avatarIntroProject.duration}</span>
+                <span class="border border-base-700 px-3 py-2 text-base-300">{avatarIntroProject.productionTool}</span>
+              </div>
+              <p class="mt-5 text-base leading-relaxed text-base-300">{avatarIntroProject.summary}</p>
+              <h3 class="mt-7 text-lg font-display text-white">Current build</h3>
+              <ul class="mt-4 space-y-3">
+                {avatarIntroProject.currentBuild.map((item) => (
+                  <li class="border-l border-l-accent-cyan px-4 text-sm leading-relaxed text-base-400">{item}</li>
+                ))}
+              </ul>
+              <div class="mt-7 flex flex-wrap gap-3">
+                <Button isLink size="md" variant="green" href={`${avatarCourse.freePath}#intro-project`}>
+                  Use the project brief
+                </Button>
+                <Button isLink size="md" variant="muted" href={avatarIntroProject.workshopHref}>
+                  See what Ami introduces next
+                </Button>
+                <a
+                  href={avatarIntroProject.kofiHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open HobFarm on Ko-fi (opens in a new tab)"
+                  class="inline-flex min-h-11 items-center justify-center rounded-full border border-base-700 px-5 py-3 text-sm font-semibold text-base-200 transition-colors hover:border-white hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-green-bright motion-reduce:transition-none"
+                >
+                  Open HobFarm on Ko-fi
+                </a>
+              </div>
+            </article>
+
+            <h3 class="mt-8 text-xl font-display text-white">Placement map</h3>
+            <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {avatarIntroProject.placements.map((placement) => (
+                <article class="border border-base-800 bg-base-950/50 p-5">
+                  <h4 class="text-base font-display text-white">{placement.name}</h4>
+                  <p class="mt-3 text-sm leading-relaxed text-base-400">{placement.body}</p>
+                </article>
+              ))}
+            </div>
+            <h3 class="mt-8 text-xl font-display text-white">Where it enters the course</h3>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {avatarIntroProject.lessonLinks.map((lesson) => (
+                <a
+                  href={lessonHref(lesson.slug)}
+                  class="inline-flex min-h-11 items-center border border-base-700 px-4 py-2 text-xs font-mono text-base-300 transition-colors hover:border-accent-violet hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-violet-bright"
+                >
+                  {lesson.label}
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </Wrapper>
     </ContentPanel>
@@ -234,13 +325,16 @@ import {
       <Wrapper variant="standard" class="py-12 lg:py-20">
         <div class="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-start">
           <div>
-            <SectionHeader eyebrow="10" heading="Beta price" note="Simple access while the kit is new." />
+            <SectionHeader eyebrow="10" heading="Supporter beta access" note="Simple access while the kit is new." />
             <p class="max-w-2xl text-base leading-relaxed text-base-300">
-              {avatarCourse.betaCta} The course-specific one-time product can be added later when the separate entitlement system exists.
+              {avatarCourse.betaCta} The four setup lessons remain public, so you can inspect the workflow before joining.
+            </p>
+            <p class="mt-3 max-w-2xl text-sm leading-relaxed text-base-500">
+              {avatarCourse.standaloneNote}
             </p>
             <div class="mt-6 flex flex-wrap gap-3">
               <Button isLink size="sm" variant="green" href={avatarCourse.checkoutPath}>
-                Get supporter access
+                Join for beta access
               </Button>
               <Button isLink size="sm" variant="muted" href={avatarCourse.coursePath}>
                 See lesson previews

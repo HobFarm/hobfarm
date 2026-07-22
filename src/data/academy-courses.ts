@@ -40,6 +40,7 @@ export interface AcademyCourse {
   deck: string;
   statusLabel: string;
   accessLabel: string;
+  priceLabel: string;
   duration: string;
   cover: string;
   coverImage?: string;
@@ -69,6 +70,7 @@ export const intellectualSelfDefenseCourse: AcademyCourse = {
     "Learn how to turn chatbots into research tools, guide creative work with source files, inspect mixed human-and-AI media, and build a personal method for deciding what deserves your belief, attention, and action.",
   statusLabel: "Available now",
   accessLabel: "Free and public",
+  priceLabel: "Free",
   duration: "About 2 hours, plus exercises",
   cover: `${cdn}/shared/course-cover-v1-16x9.webp`,
   coverImage: `${cdn}/shared/course-cover-v1-16x9.webp`,
@@ -185,18 +187,19 @@ export const intellectualSelfDefenseCourse: AcademyCourse = {
   ],
 };
 
-const avatarCourseRecord: AcademyCourse = {
+export const avatarCourseRecord: AcademyCourse = {
   slug: avatarCourse.slug,
   source: "legacy",
   title: avatarCourse.productName,
   shortTitle: avatarCourse.productName,
   href: `${avatarCourse.basePath}/`,
   startHref: avatarCourse.freePath,
-  ctaLabel: "View course",
+  ctaLabel: "Preview course",
   description: avatarCourse.summary,
   deck: avatarCourse.thesis,
-  statusLabel: "Beta access",
-  accessLabel: "Free overview + paid lessons",
+  statusLabel: "Available through membership",
+  accessLabel: "4 free lessons + 12 paid beta lessons",
+  priceLabel: "$5/month supporter beta",
   duration: "Self-paced",
   cover: "https://cdn.hob.farm/pages/projects/images/hobfarm-courses-banner.jpg",
   coverAlt: "HobFarm course banner for practical AI production workflows.",

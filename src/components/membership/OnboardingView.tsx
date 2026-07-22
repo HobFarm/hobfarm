@@ -18,29 +18,25 @@ const MUTED_LINK_BTN =
 
 const offerings = [
   {
-    title: "Supporter Membership",
+    title: "Avatar Content System beta",
     description:
-      "$5/month. Optional. Funds infrastructure, API costs, and tool work. Member-only updates and experiments where applicable. Cancel any time.",
+      "Active supporters can open all 12 paid Avatar Content System lessons. Four setup lessons remain public so you can inspect the workflow first.",
+    href: "/academy/avatar-content-system/",
+    cta: "Preview the course",
   },
   {
-    title: "Digital Asset Packs",
+    title: "The free course stays free",
     description:
-      "Downloadable gallery packs, process files, prompt packs, character concepts, cover concepts, templates, and other visual assets for creator workflows.",
+      "Intellectual Self-Defense for Ordinary People remains free and public. Membership does not gate the course or its downloads.",
+    href: "/academy/intellectual-self-defense/",
+    cta: "Open the free course",
   },
   {
-    title: "Courses and Process Files",
+    title: "Membership is not the Shop",
     description:
-      "Educational material covering AI-assisted character art, visual systems, prompt compilation, media pipelines, and creative production workflows.",
-  },
-  {
-    title: "Custom Creative Work",
-    description:
-      "Commissioned concept development, cover exploration, visual direction, workflow consulting, or AI-assisted production support when capacity allows.",
-  },
-  {
-    title: "Marketplace Products",
-    description:
-      "Physical products, print-on-demand items, and external marketplace listings may be offered through third-party platforms with their own checkout and fulfillment rules.",
+      "Standalone courses, downloads, commissions, and marketplace products use their own price, receipt, delivery, license, and support terms when they launch.",
+    href: "/shop/",
+    cta: "Visit the Shop",
   },
 ];
 
@@ -106,7 +102,8 @@ export default function OnboardingView({ user, subscription }: Props) {
           </h1>
           <p className="mt-4 max-w-3xl text-base text-base-400 leading-relaxed text-balance">
             HobFarm is free to use. Supporter membership is optional, $5 a month, and helps cover
-            the infrastructure, API costs, and tool work that keep the projects running.
+            the infrastructure, API costs, and tool work that keep the projects running. Active
+            supporters currently receive beta access to the 12 paid Avatar Content System lessons.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#subscribe" className={PRIMARY_GREEN}>
@@ -123,8 +120,8 @@ export default function OnboardingView({ user, subscription }: Props) {
             Supporter Membership
           </h2>
           <p className="mt-4 text-sm text-base-400 leading-relaxed">
-            $5/month, optional, cancel any time. Supports the project. Stripe handles payment
-            collection, receipts, and billing.
+            $5/month, optional, cancel any time. Includes Avatar Content System beta access while
+            the membership is active. Stripe handles payment collection, receipts, and billing.
           </p>
           <div className="mt-5">
             <SubscribeCta user={user} subscription={subscription} />
@@ -139,6 +136,12 @@ export default function OnboardingView({ user, subscription }: Props) {
               {offering.title}
             </h2>
             <p className="mt-3 text-sm text-base-400 leading-relaxed">{offering.description}</p>
+            <a
+              href={offering.href}
+              className="mt-4 inline-block text-xs font-mono uppercase tracking-wider text-accent-500 underline decoration-base-600 underline-offset-4 hover:text-white"
+            >
+              {offering.cta}
+            </a>
           </section>
         ))}
       </div>

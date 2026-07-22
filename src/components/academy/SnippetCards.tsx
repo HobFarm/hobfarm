@@ -53,7 +53,7 @@ export default function SnippetCards({ snippets }: Props) {
             <button
               type="button"
               onClick={() => copySnippet(snippet)}
-              className="inline-flex h-8 shrink-0 items-center justify-center rounded-full border border-base-700 px-3 text-xs font-medium text-base-300 transition-colors hover:border-white hover:text-white"
+              className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-full border border-base-700 px-4 text-xs font-medium text-base-300 transition-colors hover:border-white hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-green-bright motion-reduce:transition-none"
             >
               {copied === snippet.title ? "Copied" : failed === snippet.title ? "Copy failed" : "Copy"}
             </button>

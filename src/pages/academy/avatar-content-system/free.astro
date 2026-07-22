@@ -12,6 +12,8 @@ import SnippetCards from "@/components/academy/SnippetCards";
 import {
   affiliateTools,
   avatarCourse,
+  avatarIntroProject,
+  avatarIntroPrompts,
   paidLessons,
   projectFolderSetup,
   starterPrompts,
@@ -51,6 +53,47 @@ import {
     </ContentPanel>
   </section>
 
+  <section id="intro-project" class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <SectionHeader
+          eyebrow="Field project"
+          heading={avatarIntroProject.title}
+          note="A general welcome video with Ko-fi and social wrappers."
+        />
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+          <article class="border border-accent-violet/40 bg-base-900/50 p-6">
+            <div class="flex flex-wrap gap-2 text-[10px] font-mono uppercase tracking-wider">
+              <span class="border border-accent-green/40 px-3 py-2 text-accent-green-bright">
+                {avatarIntroProject.status}
+              </span>
+              <span class="border border-base-700 px-3 py-2 text-base-300">{avatarIntroProject.duration}</span>
+              <span class="border border-base-700 px-3 py-2 text-base-300">{avatarIntroProject.format}</span>
+            </div>
+            <p class="mt-5 text-base leading-relaxed text-base-300">{avatarIntroProject.summary}</p>
+            <ul class="mt-6 space-y-3">
+              {avatarIntroProject.currentBuild.map((item) => (
+                <li class="border-l border-l-accent-cyan px-4 text-sm leading-relaxed text-base-400">{item}</li>
+              ))}
+            </ul>
+          </article>
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-1">
+            {avatarIntroProject.placements.map((placement) => (
+              <article class="border border-base-800 bg-base-950/50 p-5">
+                <h3 class="text-lg font-display text-white">{placement.name}</h3>
+                <p class="mt-3 text-sm leading-relaxed text-base-400">{placement.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+        <div class="mt-10">
+          <h3 class="mb-4 text-xl font-display text-white">Copy the master-video and caption prompts</h3>
+          <SnippetCards snippets={avatarIntroPrompts} client:visible />
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
   <section class="border-t border-base-800/50">
     <ContentPanel>
       <Wrapper variant="standard" class="py-12 lg:py-20">
@@ -58,10 +101,10 @@ import {
         <div class="grid grid-cols-1 gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
           <div>
             <p class="text-base leading-relaxed text-base-300">
-              You are building one short avatar video and the folder system around it: rough idea, cleaned script, voice test, avatar clip, final export, scheduled post, and review note.
+              You are building one reusable avatar introduction and the folder system around it: rough idea, cleaned script, voice test, avatar clip, master export, placement captions, published posts, and review note.
             </p>
             <p class="mt-4 text-sm leading-relaxed text-base-400">
-              The win is not a perfect first post. The win is a repeatable path from capture to scheduled post without losing half the work in screenshots, downloads, and half-finished chats.
+              The win is a repeatable path from capture to publication without losing half the work in screenshots, downloads, and half-finished chats. Keep the video general, then change the caption and call to action for Ko-fi, social media, or another destination.
             </p>
           </div>
           <CourseDiagram variant="checklist" />
@@ -157,13 +200,13 @@ import {
       <Wrapper variant="standard" class="py-12 lg:py-20">
         <div class="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_0.8fr]">
           <div>
-            <SectionHeader eyebrow="07" heading="Buy the full starter kit" />
+            <SectionHeader eyebrow="07" heading="Unlock the paid lessons" />
             <p class="max-w-2xl text-base leading-relaxed text-base-300">
-              {avatarCourse.betaCta} Paid lessons unlock detailed setup, screenshots slots, tool walkthroughs, copyable snippets, and checklists.
+              {avatarCourse.betaCta} The paid lessons add detailed setup, tool walkthroughs, copyable snippets, and checklists.
             </p>
             <div class="mt-6 flex flex-wrap gap-3">
               <Button isLink size="sm" variant="green" href={avatarCourse.checkoutPath}>
-                Get supporter access
+                Join for beta access
               </Button>
               <Button isLink size="sm" variant="muted" href={avatarCourse.coursePath}>
                 Open course index

@@ -116,11 +116,11 @@ const destinations = [
     label: "Review the Hillary role map",
   },
   {
-    status: "Campaign world",
+    status: "Active case study",
     title: "Ami / Legacy",
-    body: "Ami turns the Legacy future-wagon study into a polished commercial lane with room for deliberate satire.",
-    href: "#ami-legacy",
-    label: "Review the Ami campaign lane",
+    body: "Ami's reusable introduction now leads into a complete Legacy future-wagon study with historical sources and six campaign images.",
+    href: "/workshop/ami-legacy/",
+    label: "Open the Ami / Legacy study",
   },
 ];
 
@@ -253,7 +253,8 @@ const structuredData = {
             <p class="kicker">04 / Ami commercial lane</p>
             <h2>Legacy gives Ami a product world to host.</h2>
             <p>Two-wheel carriage forms keep their pull architecture and replace the horse with a robot. Four-wheel forms carry electric power and autonomous control. Ami belongs in the polished spokesperson frame: part car advertisement, part lifestyles-of-the-rich broadcast, with enough distance for a fake-commercial cut.</p>
-            <p>The campaign packet holds six future-wagon images and four historical references. That is enough to establish Ami’s lane before a presenter clip enters the mix: she has a product world, a visual tone, and a reason to speak.</p>
+            <p>Her 36-second HobFarm introduction is now the front door. The full Legacy case study follows it with six future-wagon images, four historical references, and a repeatable rule for the next model.</p>
+            <a class="ami-link" href="/workshop/ami-legacy/">Open the full Ami / Legacy study &rarr;</a>
           </div>
           <div class="ami-visuals">
             <img class="ami-profile" src={amiProfile.src} alt={amiProfile.alt} width={amiProfile.width} height={amiProfile.height} loading="lazy" decoding="async" />
@@ -347,6 +348,8 @@ const structuredData = {
   .section-heading { max-width: 60rem; }
   .section-heading h2, .prototype-grid h2, .ami-grid h2, .registry-panel h2 { margin: .75rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(2.4rem, 6vw, 5rem); font-weight: 300; letter-spacing: -.045em; line-height: .96; }
   .section-heading > p:last-child:not(.kicker), .prototype-grid > div > p, .ami-grid > div > p, .registry-panel > div > p:last-child { max-width: 50rem; margin: 1rem 0 0; color: #aaa5b8; line-height: 1.72; }
+  .ami-link { display: inline-flex; min-height: 2.75rem; align-items: center; margin-top: 1.4rem; padding: .7rem .85rem; border: 1px solid #4b3d60; border-radius: .3rem; color: #7bdde7; font-family: var(--font-mono); font-size: .6rem; letter-spacing: .07em; text-decoration: none; text-transform: uppercase; }
+  .ami-link:hover, .ami-link:focus-visible { border-color: #7bdde7; color: #fff; outline: none; }
   .production-chain { display: grid; gap: .65rem; margin: 2rem 0 0; padding: 0; list-style: none; }
   .production-chain li { min-height: 7rem; padding: .9rem; border: 1px solid #2c2440; border-top: 2px solid #55d7ff; border-radius: .45rem; background: #0d0a13; }
   .production-chain span { color: #817b91; font-family: var(--font-mono); font-size: .58rem; }

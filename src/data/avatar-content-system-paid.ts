@@ -58,7 +58,7 @@ const lessons: PaidLesson[] = [
       {
         title: "Fill the source file from a rough idea",
         body:
-          "Use my rough avatar idea to fill this starter source file. Keep unknowns visible. Do not write the script yet. The file should help me make one short avatar video with a script, export, caption, scheduled post, and review note.\n\nTemplate:\nProject:\nGoal:\nAudience/use:\nAvatar role:\nVisual lane:\nVoice:\nBoundaries:\nForbidden drift:\nCurrent output:\nNext task:\n\nRough idea: [paste idea]",
+          "Use my rough avatar idea to fill this starter source file. Keep unknowns visible. Do not write the script yet. The file should help me make one reusable avatar introduction with a script, master export, placement captions, published posts, and review note.\n\nTemplate:\nProject:\nGoal:\nAudience/use:\nAvatar role:\nVisual lane:\nVoice:\nBoundaries:\nForbidden drift:\nCurrent output:\nNext task:\n\nRough idea: [paste idea]",
       },
     ],
     checklist: [
@@ -148,7 +148,7 @@ const lessons: PaidLesson[] = [
       {
         title: "Project instructions",
         body:
-          "This project helps me make short avatar videos. Use the workflow: Idea -> ChatGPT -> Script -> Voice -> Avatar -> Export -> Edit -> Schedule -> Review. Support both Voice/Phone and Text/Computer workflows. Keep scripts direct, conversational, and anti-hype. When I paste screenshots or rough notes, organize them before drafting.",
+          "This project helps me make short avatar videos. Use the workflow: Idea -> ChatGPT -> Script -> Voice -> Avatar -> Export -> Edit -> Publish -> Review. Support both Voice/Phone and Text/Computer workflows. Keep scripts direct, conversational, and anti-hype. When I paste screenshots or rough notes, organize them before drafting.",
       },
       {
         title: "First thread starter",
@@ -272,12 +272,12 @@ const lessons: PaidLesson[] = [
     title: "Write or Speak Your First Script",
     trackTags: ["Voice/Phone", "Text/Computer"],
     goal:
-      "Create a 45 to 60 second script through either spoken rough drafting or typed drafting.",
+      "Create a 35 to 60 second script through either spoken rough drafting or typed drafting.",
     whatYouNeed: ["Your avatar concept.", "Your first video idea.", "ChatGPT voice mode or a text editor."],
     steps: [
       "If you use Voice/Phone, talk through the point in plain language and ask ChatGPT to summarize it.",
       "If you use Text/Computer, write a messy bullet list first.",
-      "Ask ChatGPT for a 45 to 60 second script with one point, one example, and one clean ending.",
+      "Ask ChatGPT for a 35 to 60 second script with one point, one example, and one clean ending.",
       "Read it out loud once. Cut anything that sounds like an ad for being alive.",
       "Save the script as 03-scripts/001-first-avatar-script.txt.",
     ],
@@ -295,19 +295,25 @@ const lessons: PaidLesson[] = [
       {
         title: "Voice/Phone script prompt",
         body:
-          "I am going to explain this out loud. After I stop, summarize the point, ask any missing questions, then turn it into a 45 to 60 second avatar script. Keep it conversational and remove rambling.",
+          "I am going to explain this out loud. After I stop, summarize the point, ask any missing questions, then turn it into a 35 to 60 second avatar script. Keep it conversational and remove rambling.",
       },
       {
         title: "Text/Computer script prompt",
         body:
-          "Turn these rough bullets into a 45 to 60 second avatar script. Use one clear point, one concrete example, and one clean ending. Remove hype, vague motivation, and filler. Bullets: [paste bullets]",
+          "Turn these rough bullets into a 35 to 60 second avatar script. Use one clear point, one concrete example, and one clean ending. Remove hype, vague motivation, and filler. Bullets: [paste bullets]",
+      },
+      {
+        title: "Reusable introduction prompt",
+        body:
+          "Write a 35 to 45 second introduction for [avatar name]. Clearly say that the speaker is an avatar, credit the human creator who writes and directs the work, welcome viewers into [project or world], and end with a broad invitation to look around. Keep the spoken script platform-neutral so the same video can work on Ko-fi, social media, and a project page. Leave support, follow, and course links for the caption.",
       },
     ],
     checklist: [
-      "The script is 45 to 60 seconds when read aloud.",
+      "The script is 35 to 60 seconds when read aloud.",
       "The script has one clear point.",
       "The script is saved in 03-scripts.",
       "The script does not promise fake outcomes.",
+      "The spoken script still works when the destination changes.",
     ],
     doneWhen: [
       "You can read the script out loud without apologizing to yourself.",
@@ -381,7 +387,7 @@ const lessons: PaidLesson[] = [
     screenshotSlots: [
       {
         target: "HeyGen editor before export",
-        caption: "Show avatar, script, and clip setup before generating the final file.",
+        caption: "Show the scene list, avatar looks, script, and performance notes before generating the reusable master video.",
       },
       {
         target: "Exported avatar clip in project folder",
@@ -393,6 +399,11 @@ const lessons: PaidLesson[] = [
         title: "Avatar clip review checklist",
         body:
           "Before export, check: words match script, mouth timing is acceptable, pauses are not strange, avatar fits the topic, and the clip does not feel like a fake guru ad.",
+      },
+      {
+        title: "Multi-scene continuity check",
+        body:
+          "Review these scene notes as one avatar introduction. Check that the avatar still feels like the same character across different looks, each performance cue fits the sentence, the scene changes support the welcome, and no line depends on a specific platform. Scene notes: [paste notes]",
       },
     ],
     checklist: [
@@ -454,14 +465,14 @@ const lessons: PaidLesson[] = [
     title: "Save and Name Your Exports",
     trackTags: ["Text/Computer", "Both"],
     goal:
-      "Use a basic naming pattern so scripts, voice tests, avatar clips, and scheduled posts remain traceable.",
+      "Use a basic naming pattern so scripts, voice tests, avatar clips, placement captions, and published posts remain traceable.",
     whatYouNeed: ["Your project folder.", "At least one script or clip file."],
     steps: [
       "Choose a short project code for the first video, such as av001.",
       "Use the pattern code-stage-version.ext for every main file.",
       "Save scripts, voice tests, avatar clips, edits, captions, and final exports with the same code.",
       "Use v01, v02, and v03 for versions instead of final, final2, and realfinal.",
-      "Put the final scheduled version in 06-exports.",
+      "Put the platform-neutral master video and any placement-specific exports in 06-exports.",
     ],
     screenshotSlots: [
       {
@@ -489,7 +500,7 @@ const lessons: PaidLesson[] = [
       "The first video has a code.",
       "Related files share the code.",
       "Versions use v01, v02, v03.",
-      "The scheduled file is clearly named.",
+      "The master export and any placement variants are clearly named.",
     ],
     doneWhen: [
       "A stranger could open the folder and identify the current final export.",
@@ -498,27 +509,27 @@ const lessons: PaidLesson[] = [
   },
   {
     slug: "schedule-in-meta-business-suite",
-    title: "Schedule in Meta Business Suite",
+    title: "Publish the Intro and Schedule the Social Cut",
     trackTags: ["Both"],
     goal:
-      "Schedule the first avatar video with a checked caption, correct account, and saved posting note.",
-    whatYouNeed: ["A Meta Business Suite account.", "A final export.", "A caption draft."],
+      "Use one platform-neutral master video for Ko-fi and social media, with a checked caption and call to action for each placement.",
+    whatYouNeed: ["A final master export.", "A Ko-fi or social account.", "A caption draft for each placement."],
     steps: [
-      "Open Meta Business Suite and confirm you are in the correct account.",
-      "Create a new post or reel using the final export from 06-exports.",
-      "Paste the caption draft and remove anything that sounds like fake urgency.",
-      "Check the preview, thumbnail, account, date, and time.",
-      "Schedule the post.",
-      "Save the scheduled date, platform, and caption into 07-scheduled-posts.",
+      "Keep the spoken master video platform-neutral. Do not regenerate it just to change the destination.",
+      "For Ko-fi, add the master video as the profile introduction and use the surrounding page or caption for the support action.",
+      "For social media, create a post or reel with the same master export and a caption that introduces the avatar-building series.",
+      "Check the media preview, crop, thumbnail, account, caption, link, and publish or scheduled time.",
+      "Publish the Ko-fi placement or schedule the social placement.",
+      "Save the destination, date, caption, link, and export name in 07-publishing.",
     ],
     screenshotSlots: [
       {
-        target: "Meta Business Suite composer before scheduling",
-        caption: "Show account, media preview, caption, and scheduled time before confirming.",
+        target: "Ko-fi intro slot or social composer before publishing",
+        caption: "Show the correct account, master video, placement caption, link, and timing before confirming.",
       },
       {
-        target: "Scheduled post confirmation",
-        caption: "Show the post exists in scheduled content.",
+        target: "Published or scheduled placement confirmation",
+        caption: "Show that the Ko-fi intro or social post exists at the intended destination.",
       },
     ],
     snippets: [
@@ -528,20 +539,25 @@ const lessons: PaidLesson[] = [
           "Clean up this caption for a short avatar video. Keep it clear and useful. Remove fake urgency, income claims, hype, and empty motivational language. Caption: [paste caption]",
       },
       {
-        title: "Scheduled post note",
+        title: "Placement caption prompt",
         body:
-          "Video code: [av001]\nScheduled platform: [platform]\nScheduled date/time: [date/time]\nCaption file: [filename]\nFinal export: [filename]",
+          "Create two captions for this one avatar introduction video. Ko-fi version: welcome visitors, explain what the project makes, and point curious viewers to the Avatar Content System course. Social version: introduce the avatar-building series and invite people into the same course. Keep each caption short. Do not rewrite the master video. Script summary: [paste summary]",
+      },
+      {
+        title: "Publishing note",
+        body:
+          "Video code: [av001]\nDestination: [Ko-fi, Instagram, Facebook, TikTok, YouTube, or other]\nPublished or scheduled date/time: [date/time]\nCaption file: [filename]\nMaster export: [filename]\nPublic link: [URL]",
       },
     ],
     checklist: [
-      "Correct Meta account is selected.",
-      "Final export is attached.",
-      "Caption is checked.",
-      "Date and time are checked.",
-      "Scheduled note is saved.",
+      "The master video stays platform-neutral.",
+      "The correct destination account is selected.",
+      "The correct export and placement caption are attached.",
+      "Crop, thumbnail, link, and timing are checked.",
+      "The publishing note is saved.",
     ],
     doneWhen: [
-      "The post is scheduled and the project folder records what was scheduled.",
+      "At least one placement is published or scheduled and 07-publishing records where it went.",
     ],
     nextLessonSlug: "review-the-post-and-make-the-next-one",
   },
