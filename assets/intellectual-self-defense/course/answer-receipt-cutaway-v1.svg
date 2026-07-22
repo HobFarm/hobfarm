@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Open the receipt</title>
+  <desc id="desc">A polished answer unfolds into claims, sources, excerpts, inference, and unknowns that must be inspected separately.</desc>
+  <defs>
+    <pattern id="paper" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M0 35.5H36" stroke="#f3e6c8" stroke-opacity=".035"/></pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="context-stroke"/></marker>
+    <filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"/></filter>
+  </defs>
+  <style>
+    text { font-family: "IBM Plex Sans", Arial, sans-serif; }
+    .kicker { fill: #56e5ee; font-family: "IBM Plex Mono", monospace; font-size: 20px; font-weight: 700; letter-spacing: 3px; }
+    .title { fill: #f3e6c8; font-size: 52px; font-weight: 700; }
+    .subtitle { fill: #b9aeca; font-size: 22px; }
+    .heading { fill: #f3e6c8; font-size: 28px; font-weight: 700; }
+    .body { fill: #b9aeca; font-size: 21px; }
+    .small { fill: #b9aeca; font-family: "IBM Plex Mono", monospace; font-size: 17px; }
+    .box-label { fill: #f3e6c8; font-size: 20px; font-weight: 700; }
+    .chip { font-family: "IBM Plex Mono", monospace; font-size: 15px; font-weight: 700; letter-spacing: 1px; }
+    .panel { fill: #2b1839; fill-opacity: .9; stroke: var(--accent); stroke-width: 2; filter: url(#shadow); }
+  </style>
+  <rect width="1600" height="900" fill="#0b0711"/>
+  <rect width="1600" height="900" fill="url(#paper)"/>
+  <rect x="54" y="46" width="1492" height="808" rx="28" fill="none" stroke="#f3e6c8" stroke-opacity=".18" stroke-width="2"/>
+  <text x="86" y="96" class="kicker" text-anchor="start"><tspan x="86" dy="0">HOBFARM FIELD DIAGRAM</tspan></text>
+  <text x="86" y="160" class="title" text-anchor="start"><tspan x="86" dy="0">Open the receipt</tspan></text>
+  <text x="86" y="202" class="subtitle" text-anchor="start"><tspan x="86" dy="0">Typography cannot tell you whether a citation supports the claim.</tspan></text>
+  
+      <rect x="86" y="342" width="252" height="120" rx="18" class="panel" style="--accent:#f45fc5" /><text x="212" y="410" class="box-label" text-anchor="middle"><tspan x="212" dy="0">Polished answer</tspan><tspan x="212" dy="26">looks complete</tspan></text>
+      <path d="M 338 402 L 434 402" fill="none" stroke="#f3e6c8" stroke-width="4"  marker-end="url(#arrow)"/>
+      <rect x="434" y="292" width="184" height="122" rx="18" class="panel" style="--accent:#f3e6c8" /><text x="526" y="348" class="box-label" text-anchor="middle"><tspan x="526" dy="0">CLAIMS</tspan></text><text x="526" y="382" class="small" text-anchor="middle"><tspan x="526" dy="0">inspect</tspan></text><rect x="644" y="346" width="184" height="122" rx="18" class="panel" style="--accent:#56e5ee" /><text x="736" y="402" class="box-label" text-anchor="middle"><tspan x="736" dy="0">SOURCES</tspan></text><text x="736" y="436" class="small" text-anchor="middle"><tspan x="736" dy="0">open it</tspan></text><rect x="854" y="400" width="184" height="122" rx="18" class="panel" style="--accent:#73df9a" /><text x="946" y="456" class="box-label" text-anchor="middle"><tspan x="946" dy="0">EXCERPTS</tspan></text><text x="946" y="490" class="small" text-anchor="middle"><tspan x="946" dy="0">inspect</tspan></text><rect x="1064" y="454" width="184" height="122" rx="18" class="panel" style="--accent:#f45fc5" /><text x="1156" y="510" class="box-label" text-anchor="middle"><tspan x="1156" dy="0">INFERENCE</tspan></text><text x="1156" y="544" class="small" text-anchor="middle"><tspan x="1156" dy="0">inspect</tspan></text><rect x="1274" y="508" width="184" height="122" rx="18" class="panel" style="--accent:#ffd34d" /><text x="1366" y="564" class="box-label" text-anchor="middle"><tspan x="1366" dy="0">UNKNOWNS</tspan></text><text x="1366" y="598" class="small" text-anchor="middle"><tspan x="1366" dy="0">keep open</tspan></text>
+      <g><rect x="434" y="664" width="328" height="38" rx="19" fill="#56e5ee" fill-opacity=".13" stroke="#56e5ee"/><text x="598" y="689" class="chip" text-anchor="middle" fill="#56e5ee">SOURCE EXISTS?</text></g>
+      <g><rect x="784" y="664" width="360" height="38" rx="19" fill="#73df9a" fill-opacity=".13" stroke="#73df9a"/><text x="964" y="689" class="chip" text-anchor="middle" fill="#73df9a">SOURCE SUPPORTS CLAIM?</text></g>
+      <g><rect x="1166" y="664" width="310" height="38" rx="19" fill="#ffd34d" fill-opacity=".13" stroke="#ffd34d"/><text x="1321" y="689" class="chip" text-anchor="middle" fill="#ffd34d">WHAT IS MISSING?</text></g>
+    
+</svg>

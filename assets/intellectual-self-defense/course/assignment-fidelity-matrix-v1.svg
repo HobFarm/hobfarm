@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Assignment fidelity × output quality</title>
+  <desc id="desc">A matrix separates output quality from whether the tool followed the assignment.</desc>
+  <defs>
+    <pattern id="paper" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M0 35.5H36" stroke="#f3e6c8" stroke-opacity=".035"/></pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="context-stroke"/></marker>
+    <filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"/></filter>
+  </defs>
+  <style>
+    text { font-family: "IBM Plex Sans", Arial, sans-serif; }
+    .kicker { fill: #56e5ee; font-family: "IBM Plex Mono", monospace; font-size: 20px; font-weight: 700; letter-spacing: 3px; }
+    .title { fill: #f3e6c8; font-size: 52px; font-weight: 700; }
+    .subtitle { fill: #b9aeca; font-size: 22px; }
+    .heading { fill: #f3e6c8; font-size: 28px; font-weight: 700; }
+    .body { fill: #b9aeca; font-size: 21px; }
+    .small { fill: #b9aeca; font-family: "IBM Plex Mono", monospace; font-size: 17px; }
+    .box-label { fill: #f3e6c8; font-size: 20px; font-weight: 700; }
+    .chip { font-family: "IBM Plex Mono", monospace; font-size: 15px; font-weight: 700; letter-spacing: 1px; }
+    .panel { fill: #2b1839; fill-opacity: .9; stroke: var(--accent); stroke-width: 2; filter: url(#shadow); }
+  </style>
+  <rect width="1600" height="900" fill="#0b0711"/>
+  <rect width="1600" height="900" fill="url(#paper)"/>
+  <rect x="54" y="46" width="1492" height="808" rx="28" fill="none" stroke="#f3e6c8" stroke-opacity=".18" stroke-width="2"/>
+  <text x="86" y="96" class="kicker" text-anchor="start"><tspan x="86" dy="0">HOBFARM FIELD DIAGRAM</tspan></text>
+  <text x="86" y="160" class="title" text-anchor="start"><tspan x="86" dy="0">Assignment fidelity × output quality</tspan></text>
+  <text x="86" y="202" class="subtitle" text-anchor="start"><tspan x="86" dy="0">A beautiful result can still be a failed response.</tspan></text>
+  
+      <text x="112" y="494" class="kicker" text-anchor="start"><tspan x="112" dy="0">OUTPUT QUALITY</tspan></text>
+      <g transform="translate(120 700) rotate(-90)"><text x="0" y="0" class="small" text-anchor="start"><tspan x="0" dy="0">LOW → HIGH</tspan></text></g>
+      <rect x="328" y="300" width="500" height="190" rx="18" class="panel" style="--accent:#f45fc5" />
+      <text x="578" y="365" class="heading" text-anchor="middle"><tspan x="578" dy="0">SALVAGE</tspan></text>
+      <text x="578" y="405" class="body" text-anchor="middle"><tspan x="578" dy="0">Strong output</tspan><tspan x="578" dy="30">Ignored assignment</tspan></text>
+      <rect x="850" y="300" width="500" height="190" rx="18" class="panel" style="--accent:#73df9a" />
+      <text x="1100" y="365" class="heading" text-anchor="middle"><tspan x="1100" dy="0">KEEP</tspan></text>
+      <text x="1100" y="405" class="body" text-anchor="middle"><tspan x="1100" dy="0">Strong output</tspan><tspan x="1100" dy="30">Followed assignment</tspan></text>
+      <rect x="328" y="512" width="500" height="190" rx="18" class="panel" style="--accent:#ffd34d" />
+      <text x="578" y="577" class="heading" text-anchor="middle"><tspan x="578" dy="0">DUMP</tspan></text>
+      <text x="578" y="617" class="body" text-anchor="middle"><tspan x="578" dy="0">Weak output</tspan><tspan x="578" dy="30">Ignored assignment</tspan></text>
+      <rect x="850" y="512" width="500" height="190" rx="18" class="panel" style="--accent:#56e5ee" />
+      <text x="1100" y="577" class="heading" text-anchor="middle"><tspan x="1100" dy="0">ITERATE</tspan></text>
+      <text x="1100" y="617" class="body" text-anchor="middle"><tspan x="1100" dy="0">Weak output</tspan><tspan x="1100" dy="30">Followed assignment</tspan></text>
+      <text x="838" y="760" class="kicker" text-anchor="middle"><tspan x="838" dy="0">ASSIGNMENT FIDELITY  LOW → HIGH</tspan></text>
+    
+</svg>

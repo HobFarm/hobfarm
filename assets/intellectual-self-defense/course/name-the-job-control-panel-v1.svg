@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Give the chatbot a job</title>
+  <desc id="desc">A control panel names the role, question, source standard, evidence labels, scope, output, and stop condition.</desc>
+  <defs>
+    <pattern id="paper" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M0 35.5H36" stroke="#f3e6c8" stroke-opacity=".035"/></pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="context-stroke"/></marker>
+    <filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"/></filter>
+  </defs>
+  <style>
+    text { font-family: "IBM Plex Sans", Arial, sans-serif; }
+    .kicker { fill: #56e5ee; font-family: "IBM Plex Mono", monospace; font-size: 20px; font-weight: 700; letter-spacing: 3px; }
+    .title { fill: #f3e6c8; font-size: 52px; font-weight: 700; }
+    .subtitle { fill: #b9aeca; font-size: 22px; }
+    .heading { fill: #f3e6c8; font-size: 28px; font-weight: 700; }
+    .body { fill: #b9aeca; font-size: 21px; }
+    .small { fill: #b9aeca; font-family: "IBM Plex Mono", monospace; font-size: 17px; }
+    .box-label { fill: #f3e6c8; font-size: 20px; font-weight: 700; }
+    .chip { font-family: "IBM Plex Mono", monospace; font-size: 15px; font-weight: 700; letter-spacing: 1px; }
+    .panel { fill: #2b1839; fill-opacity: .9; stroke: var(--accent); stroke-width: 2; filter: url(#shadow); }
+  </style>
+  <rect width="1600" height="900" fill="#0b0711"/>
+  <rect width="1600" height="900" fill="url(#paper)"/>
+  <rect x="54" y="46" width="1492" height="808" rx="28" fill="none" stroke="#f3e6c8" stroke-opacity=".18" stroke-width="2"/>
+  <text x="86" y="96" class="kicker" text-anchor="start"><tspan x="86" dy="0">HOBFARM FIELD DIAGRAM</tspan></text>
+  <text x="86" y="160" class="title" text-anchor="start"><tspan x="86" dy="0">Give the chatbot a job</tspan></text>
+  <text x="86" y="202" class="subtitle" text-anchor="start"><tspan x="86" dy="0">A reusable research contract makes the assignment inspectable.</tspan></text>
+  
+      <rect x="86" y="268" width="1428" height="478" rx="18" class="panel" style="--accent:#56e5ee" />
+      <text x="120" y="320" class="kicker" text-anchor="start"><tspan x="120" dy="0">RESEARCH ASSISTANT CONTRACT</tspan></text>
+      <rect x="120" y="356" width="300" height="106" rx="18" class="panel" style="--accent:#56e5ee" /><text x="145" y="395" class="heading" text-anchor="start"><tspan x="145" dy="0">Role</tspan></text><text x="145" y="430" class="small" text-anchor="start"><tspan x="145" dy="0">Write the rule here</tspan></text><rect x="460" y="356" width="300" height="106" rx="18" class="panel" style="--accent:#56e5ee" /><text x="485" y="395" class="heading" text-anchor="start"><tspan x="485" dy="0">Question</tspan></text><text x="485" y="430" class="small" text-anchor="start"><tspan x="485" dy="0">Write the rule here</tspan></text><rect x="800" y="356" width="300" height="106" rx="18" class="panel" style="--accent:#56e5ee" /><text x="825" y="395" class="heading" text-anchor="start"><tspan x="825" dy="0">Freshness</tspan></text><text x="825" y="430" class="small" text-anchor="start"><tspan x="825" dy="0">Write the rule here</tspan></text><rect x="1140" y="356" width="300" height="106" rx="18" class="panel" style="--accent:#56e5ee" /><text x="1165" y="395" class="heading" text-anchor="start"><tspan x="1165" dy="0">Source priority</tspan></text><text x="1165" y="430" class="small" text-anchor="start"><tspan x="1165" dy="0">Write the rule here</tspan></text><rect x="120" y="494" width="300" height="106" rx="18" class="panel" style="--accent:#56e5ee" /><text x="145" y="533" class="heading" text-anchor="start"><tspan x="145" dy="0">Evidence labels</tspan></text><text x="145" y="568" class="small" text-anchor="start"><tspan x="145" dy="0">Write the rule here</tspan></text><rect x="460" y="494" width="300" height="106" rx="18" class="panel" style="--accent:#56e5ee" /><text x="485" y="533" class="heading" text-anchor="start"><tspan x="485" dy="0">Scope</tspan></text><text x="485" y="568" class="small" text-anchor="start"><tspan x="485" dy="0">Write the rule here</tspan></text><rect x="800" y="494" width="300" height="106" rx="18" class="panel" style="--accent:#56e5ee" /><text x="825" y="533" class="heading" text-anchor="start"><tspan x="825" dy="0">Output format</tspan></text><text x="825" y="568" class="small" text-anchor="start"><tspan x="825" dy="0">Write the rule here</tspan></text><rect x="1140" y="494" width="300" height="106" rx="18" class="panel" style="--accent:#ff5d64" /><text x="1165" y="533" class="heading" text-anchor="start"><tspan x="1165" dy="0">Stop condition</tspan></text><text x="1165" y="568" class="small" text-anchor="start"><tspan x="1165" dy="0">Insufficient evidence = stop</tspan></text>
+      <g><rect x="120" y="666" width="470" height="38" rx="19" fill="#ffd34d" fill-opacity=".13" stroke="#ffd34d"/><text x="355" y="691" class="chip" text-anchor="middle" fill="#ffd34d">ASK BEFORE EXPANDING THE ASSIGNMENT</text></g>
+      <g><rect x="612" y="666" width="460" height="38" rx="19" fill="#73df9a" fill-opacity=".13" stroke="#73df9a"/><text x="842" y="691" class="chip" text-anchor="middle" fill="#73df9a">SOURCE MAP BEFORE CONCLUSION</text></g>
+      <g><rect x="1094" y="666" width="386" height="38" rx="19" fill="#ff5d64" fill-opacity=".13" stroke="#ff5d64"/><text x="1287" y="691" class="chip" text-anchor="middle" fill="#ff5d64">NEVER FABRICATE A RECEIPT</text></g>
+    
+</svg>

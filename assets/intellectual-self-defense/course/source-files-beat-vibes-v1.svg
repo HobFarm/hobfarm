@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Source files beat vibes</title>
+  <desc id="desc">A Markdown source file supplies constraints to a model output that a human reviews before approving an asset.</desc>
+  <defs>
+    <pattern id="paper" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M0 35.5H36" stroke="#f3e6c8" stroke-opacity=".035"/></pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="context-stroke"/></marker>
+    <filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"/></filter>
+  </defs>
+  <style>
+    text { font-family: "IBM Plex Sans", Arial, sans-serif; }
+    .kicker { fill: #56e5ee; font-family: "IBM Plex Mono", monospace; font-size: 20px; font-weight: 700; letter-spacing: 3px; }
+    .title { fill: #f3e6c8; font-size: 52px; font-weight: 700; }
+    .subtitle { fill: #b9aeca; font-size: 22px; }
+    .heading { fill: #f3e6c8; font-size: 28px; font-weight: 700; }
+    .body { fill: #b9aeca; font-size: 21px; }
+    .small { fill: #b9aeca; font-family: "IBM Plex Mono", monospace; font-size: 17px; }
+    .box-label { fill: #f3e6c8; font-size: 20px; font-weight: 700; }
+    .chip { font-family: "IBM Plex Mono", monospace; font-size: 15px; font-weight: 700; letter-spacing: 1px; }
+    .panel { fill: #2b1839; fill-opacity: .9; stroke: var(--accent); stroke-width: 2; filter: url(#shadow); }
+  </style>
+  <rect width="1600" height="900" fill="#0b0711"/>
+  <rect width="1600" height="900" fill="url(#paper)"/>
+  <rect x="54" y="46" width="1492" height="808" rx="28" fill="none" stroke="#f3e6c8" stroke-opacity=".18" stroke-width="2"/>
+  <text x="86" y="96" class="kicker" text-anchor="start"><tspan x="86" dy="0">HOBFARM FIELD DIAGRAM</tspan></text>
+  <text x="86" y="160" class="title" text-anchor="start"><tspan x="86" dy="0">Source files beat vibes</tspan></text>
+  <text x="86" y="202" class="subtitle" text-anchor="start"><tspan x="86" dy="0">Visible decisions travel farther than another pile of adjectives.</tspan></text>
+  
+      <rect x="86" y="332" width="270" height="188" rx="18" class="panel" style="--accent:#56e5ee" /><text x="221" y="434" class="box-label" text-anchor="middle"><tspan x="221" dy="0">MARKDOWN SOURCE</tspan><tspan x="221" dy="26">purpose</tspan><tspan x="221" dy="26">invariants</tspan><tspan x="221" dy="26">permissions</tspan></text>
+      <path d="M 356 426 L 448 426" fill="none" stroke="#56e5ee" stroke-width="4"  marker-end="url(#arrow)"/>
+      <rect x="448" y="332" width="270" height="188" rx="18" class="panel" style="--accent:#ffd34d" /><text x="583" y="434" class="box-label" text-anchor="middle"><tspan x="583" dy="0">CONSTRAINTS</tspan><tspan x="583" dy="26">locked</tspan><tspan x="583" dy="26">flexible</tspan><tspan x="583" dy="26">ask first</tspan></text>
+      <path d="M 718 426 L 810 426" fill="none" stroke="#ffd34d" stroke-width="4"  marker-end="url(#arrow)"/>
+      <rect x="810" y="332" width="270" height="188" rx="18" class="panel" style="--accent:#f45fc5" /><text x="945" y="434" class="box-label" text-anchor="middle"><tspan x="945" dy="0">MODEL OUTPUT</tspan><tspan x="945" dy="26">one assigned</tspan><tspan x="945" dy="26">deliverable</tspan></text>
+      <path d="M 1080 426 L 1172 426" fill="none" stroke="#f45fc5" stroke-width="4"  marker-end="url(#arrow)"/>
+      <rect x="1172" y="332" width="342" height="188" rx="18" class="panel" style="--accent:#73df9a" /><text x="1343" y="434" class="box-label" text-anchor="middle"><tspan x="1343" dy="0">HUMAN REVIEW</tspan><tspan x="1343" dy="26">keep / salvage</tspan><tspan x="1343" dy="26">iterate / dump</tspan></text>
+      <rect x="86" y="596" width="1428" height="120" rx="18" class="panel" style="--accent:#ff5d64" />
+      <text x="120" y="644" class="kicker" text-anchor="start"><tspan x="120" dy="0">DECISIONS RESERVED FOR THE HUMAN</tspan></text>
+      <text x="120" y="686" class="body" text-anchor="start"><tspan x="120" dy="0">Names · canon changes · final argument · public claims · publishing · upload</tspan></text>
+    
+</svg>

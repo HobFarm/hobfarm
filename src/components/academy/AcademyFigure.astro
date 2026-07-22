@@ -1,0 +1,48 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption: string;
+  description?: string;
+  compact?: boolean;
+}
+
+const { src, alt, caption, description, compact = false } = Astro.props;
+---
+
+<figure class:list={["academy-figure", { "academy-figure--compact": compact }] }>
+  <a href={src} target="_blank" rel="noreferrer" aria-label={`${alt} Open the full-size figure.`}>
+    <img src={src} alt={alt} loading="lazy" decoding="async" />
+  </a>
+  <figcaption>{caption}</figcaption>
+  {description && <p class="academy-figure__description">{description}</p>}
+</figure>
+
+<style>
+  .academy-figure {
+    width: min(100%, 72rem);
+    margin: 2rem auto;
+    border: 1px solid #2c2440;
+    border-radius: .85rem;
+    overflow: hidden;
+    background: #07060b;
+  }
+  .academy-figure--compact { width: min(100%, 44rem); }
+  .academy-figure a { display: block; }
+  .academy-figure img { display: block; width: 100%; height: auto; margin: 0; }
+  .academy-figure figcaption {
+    padding: .9rem 1rem .25rem;
+    color: #c8c6d4;
+    font-family: var(--font-mono);
+    font-size: .75rem;
+    line-height: 1.55;
+    text-align: left;
+  }
+  .academy-figure__description {
+    margin: 0;
+    padding: .25rem 1rem 1rem;
+    color: #9b96ad;
+    font-size: .82rem;
+    line-height: 1.65;
+  }
+</style>

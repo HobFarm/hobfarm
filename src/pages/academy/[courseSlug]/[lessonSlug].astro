@@ -1,0 +1,204 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import AcademyDownloadCard from "@/components/academy/AcademyDownloadCard.astro";
+import AcademyFigure from "@/components/academy/AcademyFigure.astro";
+import Breadcrumbs from "@/components/global/Breadcrumbs.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import { contentAcademyCourses, getAcademyCourse, type AcademyCourse } from "@/data/academy-courses";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const lessons = await getCollection("academy", ({ data }) => !data.draft);
+  const courseSlugs = new Set(contentAcademyCourses.map((course) => course.slug));
+  return lessons
+    .filter((lesson) => courseSlugs.has(lesson.data.courseSlug))
+    .map((lesson) => ({
+      params: { courseSlug: lesson.data.courseSlug, lessonSlug: lesson.data.slug },
+      props: { lesson },
+    }));
+}
+
+interface Props {
+  lesson: CollectionEntry<"academy">;
+}
+
+const { lesson } = Astro.props as Props;
+const course = getAcademyCourse(lesson.data.courseSlug) as AcademyCourse;
+const lessons = (await getCollection("academy", ({ data }) => data.courseSlug === course.slug && !data.draft))
+  .sort((a, b) => a.data.order - b.data.order);
+const index = lessons.findIndex((entry) => entry.id === lesson.id);
+const previous = index > 0 ? lessons[index - 1] : undefined;
+const next = index < lessons.length - 1 ? lessons[index + 1] : undefined;
+const { Content } = await render(lesson);
+const lessonDownloads = course.downloads?.filter((download) =>
+  lesson.data.downloads.some((entry) => entry.href === download.href),
+);
+const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
+const lessonJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  name: lesson.data.title,
+  description: lesson.data.deck,
+  url: `${siteOrigin}${course.href}${lesson.data.slug}/`,
+  isAccessibleForFree: true,
+  timeRequired: lesson.data.duration,
+  learningResourceType: "lesson",
+  educationalUse: "self-study",
+  teaches: lesson.data.skill,
+  isPartOf: {
+    "@type": "Course",
+    name: course.title,
+    url: `${siteOrigin}${course.href}`,
+  },
+};
+---
+
+<BaseLayout
+  title={`${lesson.data.title} | ${course.title}`}
+  description={lesson.data.deck}
+  canonical={`${course.href}${lesson.data.slug}/`}
+  image={course.socialImage}
+  imageAlt={course.coverAlt}
+  structuredData={lessonJsonLd}
+  palette="magenta-cyan"
+>
+  <ContentPanel>
+    <Wrapper variant="standard" class="pt-5">
+      <Breadcrumbs items={[{ label: "Academy", href: "/academy/" }, { label: course.shortTitle, href: course.href }, { label: lesson.data.title }]} />
+    </Wrapper>
+  </ContentPanel>
+
+  <article class="lesson-shell">
+    <header class="lesson-header">
+      <ContentPanel>
+        <Wrapper variant="standard" class="py-12 lg:py-18">
+          <div class="lesson-header__grid">
+            <div>
+              <p class="lesson-position">Lesson {String(lesson.data.order + 1).padStart(2, "0")} of {lessons.length} / {lesson.data.moduleTitle}</p>
+              <h1>{lesson.data.title}</h1>
+              <p class="lesson-deck">{lesson.data.deck}</p>
+              <div class="lesson-meta">
+                <span>{lesson.data.duration}</span>
+                <span>Free and public</span>
+              </div>
+            </div>
+            <aside>
+              <p>Skill</p>
+              <strong>{lesson.data.skill}</strong>
+              <p>Learner output</p>
+              <strong>{lesson.data.learnerOutput}</strong>
+            </aside>
+          </div>
+        </Wrapper>
+      </ContentPanel>
+    </header>
+
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-10 lg:py-16">
+        <AcademyFigure
+          src={lesson.data.figure.src}
+          alt={lesson.data.figure.alt}
+          caption={lesson.data.figure.caption}
+          description="The figure is followed by a text explanation in the lesson. Open it at full size for closer inspection."
+        />
+
+        <div class="lesson-prose">
+          <Content />
+        </div>
+
+        <section class="field-rule" aria-labelledby="field-rule-heading">
+          <p id="field-rule-heading">Field rule</p>
+          <blockquote>{lesson.data.fieldRule}</blockquote>
+        </section>
+
+        <section class="default-replacement" aria-labelledby="replacement-heading">
+          <h2 id="replacement-heading">Default and replacement</h2>
+          <div>
+            <article><span>Common default</span><p>{lesson.data.commonDefault}</p></article>
+            <article><span>Replacement method</span><p>{lesson.data.replacementMethod}</p></article>
+          </div>
+        </section>
+
+        {lessonDownloads && lessonDownloads.length > 0 && (
+          <section class="lesson-downloads" aria-labelledby="lesson-download-heading">
+            <h2 id="lesson-download-heading">Download the working file</h2>
+            <div>{lessonDownloads.map((download) => <AcademyDownloadCard download={download} coursePath={course.href} />)}</div>
+          </section>
+        )}
+
+        <section class="lesson-sources" aria-labelledby="lesson-sources-heading">
+          <h2 id="lesson-sources-heading">Sources and receipts</h2>
+          <ul>
+            {lesson.data.sourceNotes.map((source) => (
+              <li><a href={source.url} target="_blank" rel="noreferrer">{source.label}</a><span>{source.note}</span></li>
+            ))}
+          </ul>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Course lesson navigation">
+          {previous ? <a href={`${course.href}${previous.data.slug}/`}><span>Previous</span>{previous.data.title}</a> : <a href={course.href}><span>Course</span>Course overview</a>}
+          {next ? <a href={`${course.href}${next.data.slug}/`}><span>Next</span>{next.data.title}</a> : <a href={course.href}><span>Complete</span>Return to the course</a>}
+        </nav>
+
+        {course.articleHref && (
+          <p class="why-link"><a href={course.articleHref}>{course.articleLabel} &rarr;</a></p>
+        )}
+      </Wrapper>
+    </ContentPanel>
+  </article>
+</BaseLayout>
+
+<style>
+  .lesson-header { border-bottom: 1px solid #2c2440; background: radial-gradient(circle at 18% 15%, rgba(25,227,227,.09), transparent 34%), #07060b; }
+  .lesson-header__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+  .lesson-position { margin: 0; color: #5cf0f0; font-family: var(--font-mono); font-size: .67rem; letter-spacing: .1em; text-transform: uppercase; }
+  h1 { max-width: 52rem; margin: 1rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(2.6rem, 7vw, 5rem); font-weight: 300; line-height: .96; letter-spacing: -.04em; }
+  .lesson-deck { max-width: 48rem; margin: 1.3rem 0 0; color: #c8c6d4; font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.65; }
+  .lesson-meta { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.25rem; }
+  .lesson-meta span { padding: .5rem .7rem; border: 1px solid #2c2440; color: #9b96ad; font-family: var(--font-mono); font-size: .62rem; text-transform: uppercase; }
+  .lesson-header aside { padding: 1.2rem; border: 1px solid #2c2440; border-radius: .75rem; background: rgba(14,11,22,.78); }
+  .lesson-header aside p { margin: 0; color: #f24da6; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; }
+  .lesson-header aside p:not(:first-child) { margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid #221a33; }
+  .lesson-header aside strong { display: block; margin-top: .45rem; color: #ece9f5; font-size: .82rem; font-weight: 450; line-height: 1.55; }
+  .lesson-prose { width: min(100%, 46rem); margin: 2.5rem auto 0; }
+  .field-rule, .default-replacement, .lesson-downloads, .lesson-sources, .lesson-nav, .why-link { width: min(100%, 52rem); margin: 3rem auto 0; }
+  .field-rule { padding: 1.35rem; border: 1px solid #f0c96b; border-radius: .75rem; background: rgba(240,201,107,.06); }
+  .field-rule > p { margin: 0; color: #f0c96b; font-family: var(--font-mono); font-size: .63rem; letter-spacing: .12em; text-transform: uppercase; }
+  .field-rule blockquote { margin: .75rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(1.45rem, 4vw, 2.2rem); font-weight: 350; line-height: 1.12; }
+  .default-replacement h2, .lesson-downloads h2, .lesson-sources h2 { margin: 0; color: #fff; font-family: var(--font-display); font-size: 2rem; font-weight: 350; }
+  .default-replacement > div, .lesson-downloads > div { display: grid; grid-template-columns: 1fr; gap: .75rem; margin-top: 1rem; }
+  .default-replacement article { padding: 1.1rem; border: 1px solid #2c2440; background: #0e0b16; }
+  .default-replacement span { color: #5cf0f0; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; }
+  .default-replacement p { margin: .55rem 0 0; color: #c8c6d4; font-size: .84rem; line-height: 1.62; }
+  .lesson-sources ul { display: grid; gap: .75rem; margin: 1rem 0 0; padding: 0; list-style: none; }
+  .lesson-sources li { padding: 1rem; border: 1px solid #2c2440; background: #0e0b16; }
+  .lesson-sources a { color: #5cf0f0; font-size: .8rem; }
+  .lesson-sources span { display: block; margin-top: .4rem; color: #9b96ad; font-size: .75rem; line-height: 1.58; }
+  .lesson-nav { display: grid; grid-template-columns: 1fr; gap: .75rem; padding-top: 1.5rem; border-top: 1px solid #2c2440; }
+  .lesson-nav a { display: flex; min-height: 6rem; flex-direction: column; justify-content: center; padding: 1rem; border: 1px solid #2c2440; border-radius: .65rem; color: #ece9f5; font-size: .85rem; line-height: 1.4; text-decoration: none; }
+  .lesson-nav a:hover { border-color: #5cf0a6; color: #fff; }
+  .lesson-nav span { margin-bottom: .45rem; color: #6b6580; font-family: var(--font-mono); font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; }
+  .why-link { text-align: center; }
+  .why-link a { color: #5cf0a6; font-family: var(--font-mono); font-size: .7rem; text-transform: uppercase; text-underline-offset: .25rem; }
+  @media (min-width: 760px) {
+    .lesson-header__grid { grid-template-columns: minmax(0, 1fr) minmax(17rem, .42fr); align-items: end; }
+    .default-replacement > div, .lesson-downloads > div, .lesson-nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+</style>
+
+<style is:global>
+  .lesson-prose { color: #c8c6d4; font-size: 1rem; line-height: 1.8; }
+  .lesson-prose h2 { margin: 2.8rem 0 1rem; color: #fff; font-family: var(--font-display); font-size: clamp(1.9rem, 5vw, 2.8rem); font-weight: 350; line-height: 1.05; }
+  .lesson-prose h3 { margin: 2rem 0 .8rem; color: #ece9f5; font-family: var(--font-display); font-size: 1.45rem; font-weight: 500; }
+  .lesson-prose p { margin: 1rem 0; }
+  .lesson-prose ul, .lesson-prose ol { margin: 1rem 0; padding-left: 1.4rem; }
+  .lesson-prose li { margin: .55rem 0; }
+  .lesson-prose blockquote { margin: 1.5rem 0; padding: 1rem 1.2rem; border-left: 3px solid #f24da6; background: #0e0b16; color: #ece9f5; }
+  .lesson-prose code { color: #5cf0f0; }
+  .lesson-prose pre { max-width: 100%; overflow-x: auto; padding: 1rem; border: 1px solid #2c2440; background: #07060b; color: #c8c6d4; font-size: .78rem; }
+  .lesson-prose table { display: block; width: 100%; overflow-x: auto; border-collapse: collapse; font-size: .8rem; }
+  .lesson-prose th, .lesson-prose td { min-width: 8rem; padding: .7rem; border: 1px solid #2c2440; text-align: left; vertical-align: top; }
+  .lesson-prose th { color: #5cf0f0; font-family: var(--font-mono); }
+  .lesson-prose a { color: #5cf0f0; text-underline-offset: .2rem; }
+</style>

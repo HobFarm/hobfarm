@@ -22,6 +22,8 @@ import ShareButtons from "@/components/articles/ShareButtons.astro";
 import ArticleCard from "@/components/articles/ArticleCard.astro";
 import Lightbox from "@/components/gallery/Lightbox";
 import Breadcrumbs from "@/components/global/Breadcrumbs.astro";
+import RelatedContentRail from "@/components/relationships/RelatedContentRail.astro";
+import { resolveRelatedContent } from "@/lib/content-relationships";
 
 interface Props {
   article: Article;
@@ -82,6 +84,13 @@ const heroSrcset = hero ? getCdnImageSrcset(hero, [640, 960, 1280, 1600]) : unde
 
 const allArticles = await getPublishedArticles();
 const relatedArticles = getRelatedArticles(article, allArticles, 4);
+const relationshipItems = await resolveRelatedContent({
+  relatedWorkshop: frontmatter.relatedWorkshop,
+  relatedAcademy: frontmatter.relatedAcademy,
+  relatedProducts: frontmatter.relatedProducts,
+  relatedCharacters: frontmatter.relatedCharacters,
+  relatedVisualSystems: frontmatter.relatedVisualSystems,
+});
 
 const relatedLinks = [
   frontmatter.relatedGallery && {
@@ -242,6 +251,12 @@ const articleJsonLd = {
           <slot />
         </Wrapper>
       </Wrapper>
+
+      {relationshipItems.length > 0 && (
+        <Wrapper variant="narrow">
+          <RelatedContentRail items={relationshipItems} heading="Continue through the connected work" />
+        </Wrapper>
+      )}
 
       {(relatedLinks.length > 0 || contextualCtas.length > 0) && (
         <Wrapper variant="narrow" class="mt-12">

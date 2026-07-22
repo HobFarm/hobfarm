@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Ask, audit, rebuild</title>
+  <desc id="desc">A six-stage workflow moves from a provisional question through claim audit, source opening, comparison, rebuilding, and a human decision.</desc>
+  <defs>
+    <pattern id="paper" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M0 35.5H36" stroke="#f3e6c8" stroke-opacity=".035"/></pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="context-stroke"/></marker>
+    <filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"/></filter>
+  </defs>
+  <style>
+    text { font-family: "IBM Plex Sans", Arial, sans-serif; }
+    .kicker { fill: #56e5ee; font-family: "IBM Plex Mono", monospace; font-size: 20px; font-weight: 700; letter-spacing: 3px; }
+    .title { fill: #f3e6c8; font-size: 52px; font-weight: 700; }
+    .subtitle { fill: #b9aeca; font-size: 22px; }
+    .heading { fill: #f3e6c8; font-size: 28px; font-weight: 700; }
+    .body { fill: #b9aeca; font-size: 21px; }
+    .small { fill: #b9aeca; font-family: "IBM Plex Mono", monospace; font-size: 17px; }
+    .box-label { fill: #f3e6c8; font-size: 20px; font-weight: 700; }
+    .chip { font-family: "IBM Plex Mono", monospace; font-size: 15px; font-weight: 700; letter-spacing: 1px; }
+    .panel { fill: #2b1839; fill-opacity: .9; stroke: var(--accent); stroke-width: 2; filter: url(#shadow); }
+  </style>
+  <rect width="1600" height="900" fill="#0b0711"/>
+  <rect width="1600" height="900" fill="url(#paper)"/>
+  <rect x="54" y="46" width="1492" height="808" rx="28" fill="none" stroke="#f3e6c8" stroke-opacity=".18" stroke-width="2"/>
+  <text x="86" y="96" class="kicker" text-anchor="start"><tspan x="86" dy="0">HOBFARM FIELD DIAGRAM</tspan></text>
+  <text x="86" y="160" class="title" text-anchor="start"><tspan x="86" dy="0">Ask, audit, rebuild</tspan></text>
+  <text x="86" y="202" class="subtitle" text-anchor="start"><tspan x="86" dy="0">Use the first answer as a map, not a verdict.</tspan></text>
+  
+      <rect x="86" y="350" width="198" height="146" rx="18" class="panel" style="--accent:#56e5ee" /><text x="185" y="431" class="box-label" text-anchor="middle"><tspan x="185" dy="0">ASK</tspan><tspan x="185" dy="26">Provisional map</tspan></text><path d="M 284 423 L 322 423" fill="none" stroke="#f3e6c8" stroke-width="4"  marker-end="url(#arrow)"/><rect x="330" y="350" width="198" height="146" rx="18" class="panel" style="--accent:#f45fc5" /><text x="429" y="431" class="box-label" text-anchor="middle"><tspan x="429" dy="0">AUDIT</tspan><tspan x="429" dy="26">Extract claims</tspan></text><path d="M 528 423 L 566 423" fill="none" stroke="#f3e6c8" stroke-width="4"  marker-end="url(#arrow)"/><rect x="574" y="350" width="198" height="146" rx="18" class="panel" style="--accent:#56e5ee" /><text x="673" y="431" class="box-label" text-anchor="middle"><tspan x="673" dy="0">OPEN</tspan><tspan x="673" dy="26">Read sources</tspan></text><path d="M 772 423 L 810 423" fill="none" stroke="#f3e6c8" stroke-width="4"  marker-end="url(#arrow)"/><rect x="818" y="350" width="198" height="146" rx="18" class="panel" style="--accent:#56e5ee" /><text x="917" y="431" class="box-label" text-anchor="middle"><tspan x="917" dy="0">COMPARE</tspan><tspan x="917" dy="26">Support + contrary</tspan></text><path d="M 1016 423 L 1054 423" fill="none" stroke="#f3e6c8" stroke-width="4"  marker-end="url(#arrow)"/><rect x="1062" y="350" width="198" height="146" rx="18" class="panel" style="--accent:#56e5ee" /><text x="1161" y="431" class="box-label" text-anchor="middle"><tspan x="1161" dy="0">REBUILD</tspan><tspan x="1161" dy="26">Evidence carries</tspan></text><path d="M 1260 423 L 1298 423" fill="none" stroke="#f3e6c8" stroke-width="4"  marker-end="url(#arrow)"/><rect x="1306" y="350" width="198" height="146" rx="18" class="panel" style="--accent:#73df9a" /><text x="1405" y="431" class="box-label" text-anchor="middle"><tspan x="1405" dy="0">DECIDE</tspan><tspan x="1405" dy="26">State confidence</tspan></text>
+      <rect x="86" y="570" width="1428" height="138" rx="18" class="panel" style="--accent:#ffd34d" />
+      <text x="120" y="620" class="kicker" text-anchor="start"><tspan x="120" dy="0">RECEIPT REPORT</tspan></text>
+      <text x="120" y="663" class="body" text-anchor="start"><tspan x="120" dy="0">Question · sources opened · direct support · inference · uncertainty · confidence · next check</tspan></text>
+    
+</svg>

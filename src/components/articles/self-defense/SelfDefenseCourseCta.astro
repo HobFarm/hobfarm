@@ -1,0 +1,64 @@
+---
+const courseHref = "/academy/intellectual-self-defense/";
+---
+
+<aside class="article-wide course-cta">
+  <p class="eyebrow">Free HobFarm Academy course</p>
+  <h2>Build your own intellectual self-defense protocol.</h2>
+  <p>
+    Nine public lessons cover research contracts, source receipts, creative source files, scope drift, tool routing, mixed-origin media, and the personal rules you will revise after use.
+  </p>
+  <a href={courseHref}>Start the free course</a>
+</aside>
+
+<style>
+  .course-cta {
+    border: 1px solid color-mix(in srgb, var(--color-accent-green) 60%, var(--color-base-700));
+    border-radius: 0.55rem;
+    background:
+      linear-gradient(135deg, rgba(86, 229, 238, 0.08), rgba(244, 95, 197, 0.08)),
+      var(--color-base-950);
+    padding: clamp(1.25rem, 4vw, 2rem);
+  }
+
+  .eyebrow {
+    margin: 0 !important;
+    color: var(--color-accent-green-bright);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0.75rem 0 0 !important;
+    color: white;
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 4vw, 2.3rem) !important;
+    line-height: 1.1;
+  }
+
+  p:not(.eyebrow) {
+    max-width: 42rem;
+    margin: 0.85rem 0 0 !important;
+    color: var(--color-base-300);
+    line-height: 1.7;
+  }
+
+  a {
+    display: inline-flex;
+    margin-top: 1.25rem;
+    border: 1px solid var(--color-accent-green);
+    border-radius: 0.3rem;
+    padding: 0.65rem 0.9rem;
+    color: var(--color-accent-green-bright);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    text-decoration: none;
+  }
+
+  a:hover {
+    background: var(--color-accent-green);
+    color: var(--color-base-950);
+  }
+</style>

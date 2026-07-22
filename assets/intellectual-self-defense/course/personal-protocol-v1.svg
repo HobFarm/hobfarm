@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">My Intellectual Self-Defense Protocol — Version 1</title>
+  <desc id="desc">A printable personal protocol records pause signals, source thresholds, gap rules, approval gates, sharing rules, uncertainty, and what changes the learner's mind.</desc>
+  <defs>
+    <pattern id="paper" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M0 35.5H36" stroke="#f3e6c8" stroke-opacity=".035"/></pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="context-stroke"/></marker>
+    <filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"/></filter>
+  </defs>
+  <style>
+    text { font-family: "IBM Plex Sans", Arial, sans-serif; }
+    .kicker { fill: #56e5ee; font-family: "IBM Plex Mono", monospace; font-size: 20px; font-weight: 700; letter-spacing: 3px; }
+    .title { fill: #f3e6c8; font-size: 52px; font-weight: 700; }
+    .subtitle { fill: #b9aeca; font-size: 22px; }
+    .heading { fill: #f3e6c8; font-size: 28px; font-weight: 700; }
+    .body { fill: #b9aeca; font-size: 21px; }
+    .small { fill: #b9aeca; font-family: "IBM Plex Mono", monospace; font-size: 17px; }
+    .box-label { fill: #f3e6c8; font-size: 20px; font-weight: 700; }
+    .chip { font-family: "IBM Plex Mono", monospace; font-size: 15px; font-weight: 700; letter-spacing: 1px; }
+    .panel { fill: #2b1839; fill-opacity: .9; stroke: var(--accent); stroke-width: 2; filter: url(#shadow); }
+  </style>
+  <rect width="1600" height="900" fill="#0b0711"/>
+  <rect width="1600" height="900" fill="url(#paper)"/>
+  <rect x="54" y="46" width="1492" height="808" rx="28" fill="none" stroke="#f3e6c8" stroke-opacity=".18" stroke-width="2"/>
+  <text x="86" y="96" class="kicker" text-anchor="start"><tspan x="86" dy="0">HOBFARM FIELD DIAGRAM</tspan></text>
+  <text x="86" y="160" class="title" text-anchor="start"><tspan x="86" dy="0">My Intellectual Self-Defense Protocol — Version 1</tspan></text>
+  <text x="86" y="202" class="subtitle" text-anchor="start"><tspan x="86" dy="0">An independent mind is maintained, not completed.</tspan></text>
+  
+      <rect x="86" y="258" width="1428" height="510" rx="18" class="panel" style="--accent:#73df9a" />
+      <text x="120" y="306" class="kicker" text-anchor="start"><tspan x="120" dy="0">PAUSE SIGNALS</tspan></text><text x="120" y="344" class="body" text-anchor="start"><tspan x="120" dy="0">What makes me slow down?</tspan></text><text x="120" y="374" class="small" text-anchor="start"><tspan x="120" dy="0">________________________________________</tspan></text><text x="820" y="306" class="kicker" text-anchor="start"><tspan x="820" dy="0">SOURCE THRESHOLD</tspan></text><text x="820" y="344" class="body" text-anchor="start"><tspan x="820" dy="0">What requires the original?</tspan></text><text x="820" y="374" class="small" text-anchor="start"><tspan x="820" dy="0">________________________________________</tspan></text><text x="120" y="410" class="kicker" text-anchor="start"><tspan x="120" dy="0">GAP RULES</tspan></text><text x="120" y="448" class="body" text-anchor="start"><tspan x="120" dy="0">Evidence, invention, permission</tspan></text><text x="120" y="478" class="small" text-anchor="start"><tspan x="120" dy="0">________________________________________</tspan></text><text x="820" y="410" class="kicker" text-anchor="start"><tspan x="820" dy="0">APPROVAL GATES</tspan></text><text x="820" y="448" class="body" text-anchor="start"><tspan x="820" dy="0">What stays mine to decide?</tspan></text><text x="820" y="478" class="small" text-anchor="start"><tspan x="820" dy="0">________________________________________</tspan></text><text x="120" y="514" class="kicker" text-anchor="start"><tspan x="120" dy="0">SCOPE DRIFT</tspan></text><text x="120" y="552" class="body" text-anchor="start"><tspan x="120" dy="0">Salvage, restart, or stop?</tspan></text><text x="120" y="582" class="small" text-anchor="start"><tspan x="120" dy="0">________________________________________</tspan></text><text x="820" y="514" class="kicker" text-anchor="start"><tspan x="820" dy="0">SHARING RULE</tspan></text><text x="820" y="552" class="body" text-anchor="start"><tspan x="820" dy="0">What must I check first?</tspan></text><text x="820" y="582" class="small" text-anchor="start"><tspan x="820" dy="0">________________________________________</tspan></text><text x="120" y="618" class="kicker" text-anchor="start"><tspan x="120" dy="0">UNCERTAINTY</tspan></text><text x="120" y="656" class="body" text-anchor="start"><tspan x="120" dy="0">How will I say I do not know?</tspan></text><text x="120" y="686" class="small" text-anchor="start"><tspan x="120" dy="0">________________________________________</tspan></text><text x="820" y="618" class="kicker" text-anchor="start"><tspan x="820" dy="0">CHANGE MY MIND</tspan></text><text x="820" y="656" class="body" text-anchor="start"><tspan x="820" dy="0">Which evidence would count?</tspan></text><text x="820" y="686" class="small" text-anchor="start"><tspan x="820" dy="0">________________________________________</tspan></text>
+      <g><rect x="120" y="716" width="284" height="38" rx="19" fill="#56e5ee" fill-opacity=".13" stroke="#56e5ee"/><text x="262" y="741" class="chip" text-anchor="middle" fill="#56e5ee">VERSION / DATE</text></g>
+      <g><rect x="426" y="716" width="390" height="38" rx="19" fill="#ffd34d" fill-opacity=".13" stroke="#ffd34d"/><text x="621" y="741" class="chip" text-anchor="middle" fill="#ffd34d">NEXT REVIEW DATE</text></g>
+      <g><rect x="838" y="716" width="450" height="38" rx="19" fill="#73df9a" fill-opacity=".13" stroke="#73df9a"/><text x="1063" y="741" class="chip" text-anchor="middle" fill="#73df9a">READY TO BE REVISED</text></g>
+    
+</svg>

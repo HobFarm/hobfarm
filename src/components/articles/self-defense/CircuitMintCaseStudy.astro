@@ -1,0 +1,150 @@
+---
+const portrait = "https://cdn.hob.farm/self-defense/lessons/05-circuit-mint/circuit-mint-portrait-v1.webp";
+const sheet = "https://cdn.hob.farm/self-defense/lessons/05-circuit-mint/circuit-mint-character-sheet-v1.webp";
+---
+
+<figure class="article-wide circuit-case">
+  <div class="case-grid">
+    <div class="case-media portrait">
+      <span class="stamp stamp--green">Useful artifact</span>
+      <img
+        src={portrait}
+        alt="Mint-cyan gothic character portrait with amber-and-teal eyes, black lacquer tear makeup, black hair, and crescent earrings."
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+    <div class="case-receipt" aria-label="Scope drift receipt">
+      <p class="receipt-title">The response also supplied</p>
+      <ul>
+        <li><span>Invented</span> a name</li>
+        <li><span>Locked</span> an anchor</li>
+        <li><span>Numbered</span> a set</li>
+        <li><span>Assigned</span> production uses</li>
+        <li><span>Proposed</span> future expansion</li>
+      </ul>
+      <p class="decision">Decision not delegated</p>
+    </div>
+    <div class="case-media sheet">
+      <span class="stamp stamp--cyan">Clean next job</span>
+      <img
+        src={sheet}
+        alt="Multiview character sheet showing the mint-cyan gothic character from the front, back, and three-quarter angle in black and purple clothing."
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  </div>
+  <figcaption>
+    The first tool produced a useful portrait and an unauthorized system. The portrait moved into a second, bounded character-sheet job; the model-created name and locks did not become canon.
+  </figcaption>
+</figure>
+
+<style>
+  .circuit-case {
+    border: 1px solid var(--color-base-700);
+    border-radius: 0.5rem;
+    background: #0b0711;
+    padding: 0.8rem;
+  }
+
+  .case-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(10rem, 0.55fr) minmax(0, 1.6fr);
+    align-items: stretch;
+    gap: 0.7rem;
+  }
+
+  .case-media {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid var(--color-base-700);
+    border-radius: 0.35rem;
+    background: #16101f;
+  }
+
+  .case-media img {
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    object-fit: cover;
+  }
+
+  .portrait img {
+    aspect-ratio: 1;
+  }
+
+  .sheet img {
+    object-position: center;
+  }
+
+  .stamp {
+    position: absolute;
+    z-index: 2;
+    top: 0.65rem;
+    left: 0.65rem;
+    border: 1px solid currentColor;
+    background: rgba(11, 7, 17, 0.88);
+    padding: 0.35rem 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .stamp--green { color: var(--color-accent-green-bright); }
+  .stamp--cyan { color: var(--color-accent-cyan-bright); }
+
+  .case-receipt {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px dashed var(--color-accent-magenta);
+    border-radius: 0.35rem;
+    padding: 1rem;
+    background: rgba(44, 21, 58, 0.78);
+    text-align: left;
+  }
+
+  .receipt-title,
+  .decision {
+    margin: 0 !important;
+    color: var(--color-accent-magenta-bright);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .case-receipt ul {
+    margin: 0.8rem 0 !important;
+    padding-left: 1rem !important;
+    color: var(--color-base-300);
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+
+  .case-receipt span {
+    color: white;
+  }
+
+  .decision {
+    border-top: 1px solid var(--color-base-700);
+    padding-top: 0.65rem;
+    color: var(--color-accent-yellow-bright, #ffd34d);
+  }
+
+  figcaption {
+    padding: 0.75rem 0.45rem 0.25rem;
+  }
+
+  @media (max-width: 719px) {
+    .case-grid {
+      grid-template-columns: 1fr;
+    }
+    .case-media img {
+      height: auto !important;
+    }
+  }
+</style>

@@ -1,0 +1,41 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  lesson: CollectionEntry<"academy">;
+  coursePath: string;
+}
+
+const { lesson, coursePath } = Astro.props;
+---
+
+<article class="lesson-card">
+  <div class="lesson-card__meta">
+    <span>{String(lesson.data.order + 1).padStart(2, "0")}</span>
+    <span>{lesson.data.duration}</span>
+  </div>
+  <h3><a href={`${coursePath}${lesson.data.slug}/`}>{lesson.data.title}</a></h3>
+  <p>{lesson.data.deck}</p>
+  <dl>
+    <div>
+      <dt>Build</dt>
+      <dd>{lesson.data.learnerOutput}</dd>
+    </div>
+  </dl>
+  <a class="lesson-card__cta" href={`${coursePath}${lesson.data.slug}/`}>Open lesson &rarr;</a>
+</article>
+
+<style>
+  .lesson-card { display: flex; min-height: 22rem; flex-direction: column; padding: 1.35rem; border: 1px solid #2c2440; border-radius: .75rem; background: rgba(14, 11, 22, .72); }
+  .lesson-card:hover { border-color: #6b6580; }
+  .lesson-card__meta { display: flex; justify-content: space-between; gap: 1rem; color: #5cf0f0; font-family: var(--font-mono); font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; }
+  h3 { margin: 1rem 0 0; font-family: var(--font-display); font-size: 1.45rem; font-weight: 450; line-height: 1.12; }
+  h3 a { color: #fff; text-decoration: none; }
+  h3 a:hover { color: #5cf0a6; }
+  p { margin: .8rem 0 0; color: #9b96ad; font-size: .86rem; line-height: 1.65; }
+  dl { margin: 1.1rem 0 0; }
+  dl div { padding-top: .9rem; border-top: 1px solid #221a33; }
+  dt { color: #f24da6; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; }
+  dd { margin: .45rem 0 0; color: #c8c6d4; font-size: .78rem; line-height: 1.55; }
+  .lesson-card__cta { margin-top: auto; padding-top: 1.4rem; color: #ece9f5; font-family: var(--font-mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; }
+</style>

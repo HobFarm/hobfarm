@@ -1,4 +1,5 @@
 import { allLessons, avatarCourse } from "@/data/avatar-content-system";
+import { getAcademyCourse } from "@/data/academy-courses";
 import { characters } from "@/data/characters";
 import { workshopPrograms } from "@/data/site-hierarchy";
 import { visualSystems, visualSystemPath } from "@/data/visual-systems";
@@ -94,13 +95,15 @@ export async function resolveRelatedContent(
 
   for (const reference of relationships.relatedAcademy ?? []) {
     const id = normalizeRef(reference).replace(/^academy\//, "");
-    if (id === avatarCourse.slug) {
+    const courseSlug = id.split("/")[0];
+    const course = getAcademyCourse(courseSlug);
+    if (course && !id.includes("/")) {
       add({
-        id,
+        id: course.slug,
         kind: "academy",
-        label: avatarCourse.productName,
-        href: `${avatarCourse.basePath}/`,
-        description: avatarCourse.summary,
+        label: course.title,
+        href: course.href,
+        description: course.description,
       });
       continue;
     }

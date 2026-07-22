@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">The friction moved</title>
+  <desc id="desc">The old library route is compared with a chatbot route whose hidden stages still require human verification.</desc>
+  <defs>
+    <pattern id="paper" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M0 35.5H36" stroke="#f3e6c8" stroke-opacity=".035"/></pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="context-stroke"/></marker>
+    <filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"/></filter>
+  </defs>
+  <style>
+    text { font-family: "IBM Plex Sans", Arial, sans-serif; }
+    .kicker { fill: #56e5ee; font-family: "IBM Plex Mono", monospace; font-size: 20px; font-weight: 700; letter-spacing: 3px; }
+    .title { fill: #f3e6c8; font-size: 52px; font-weight: 700; }
+    .subtitle { fill: #b9aeca; font-size: 22px; }
+    .heading { fill: #f3e6c8; font-size: 28px; font-weight: 700; }
+    .body { fill: #b9aeca; font-size: 21px; }
+    .small { fill: #b9aeca; font-family: "IBM Plex Mono", monospace; font-size: 17px; }
+    .box-label { fill: #f3e6c8; font-size: 20px; font-weight: 700; }
+    .chip { font-family: "IBM Plex Mono", monospace; font-size: 15px; font-weight: 700; letter-spacing: 1px; }
+    .panel { fill: #2b1839; fill-opacity: .9; stroke: var(--accent); stroke-width: 2; filter: url(#shadow); }
+  </style>
+  <rect width="1600" height="900" fill="#0b0711"/>
+  <rect width="1600" height="900" fill="url(#paper)"/>
+  <rect x="54" y="46" width="1492" height="808" rx="28" fill="none" stroke="#f3e6c8" stroke-opacity=".18" stroke-width="2"/>
+  <text x="86" y="96" class="kicker" text-anchor="start"><tspan x="86" dy="0">HOBFARM FIELD DIAGRAM</tspan></text>
+  <text x="86" y="160" class="title" text-anchor="start"><tspan x="86" dy="0">The friction moved</tspan></text>
+  <text x="86" y="202" class="subtitle" text-anchor="start"><tspan x="86" dy="0">A faster interface hides more handoffs.</tspan></text>
+  
+      <rect x="86" y="258" width="680" height="500" rx="18" class="panel" style="--accent:#56e5ee" />
+      <text x="120" y="306" class="kicker" text-anchor="start"><tspan x="120" dy="0">VISIBLE RESEARCH ROUTE</tspan></text>
+      <rect x="120" y="345" width="170" height="70" rx="18" class="panel" style="--accent:#56e5ee" /><text x="205" y="388" class="box-label" text-anchor="middle"><tspan x="205" dy="0">Question</tspan></text><rect x="325" y="345" width="170" height="70" rx="18" class="panel" style="--accent:#56e5ee" /><text x="410" y="388" class="box-label" text-anchor="middle"><tspan x="410" dy="0">Catalog</tspan></text><rect x="530" y="345" width="170" height="70" rx="18" class="panel" style="--accent:#56e5ee" /><text x="615" y="388" class="box-label" text-anchor="middle"><tspan x="615" dy="0">Call number</tspan></text><rect x="120" y="455" width="170" height="70" rx="18" class="panel" style="--accent:#56e5ee" /><text x="205" y="498" class="box-label" text-anchor="middle"><tspan x="205" dy="0">Shelf</tspan></text><rect x="325" y="455" width="170" height="70" rx="18" class="panel" style="--accent:#56e5ee" /><text x="410" y="498" class="box-label" text-anchor="middle"><tspan x="410" dy="0">Book</tspan></text><rect x="530" y="455" width="170" height="70" rx="18" class="panel" style="--accent:#56e5ee" /><text x="615" y="498" class="box-label" text-anchor="middle"><tspan x="615" dy="0">Index</tspan></text><rect x="120" y="565" width="170" height="70" rx="18" class="panel" style="--accent:#56e5ee" /><text x="205" y="608" class="box-label" text-anchor="middle"><tspan x="205" dy="0">Notes</tspan></text><rect x="325" y="565" width="170" height="70" rx="18" class="panel" style="--accent:#56e5ee" /><text x="410" y="608" class="box-label" text-anchor="middle"><tspan x="410" dy="0">Compare</tspan></text><rect x="530" y="565" width="170" height="70" rx="18" class="panel" style="--accent:#56e5ee" /><text x="615" y="608" class="box-label" text-anchor="middle"><tspan x="615" dy="0">Paper</tspan></text>
+      <rect x="812" y="258" width="702" height="500" rx="18" class="panel" style="--accent:#f45fc5" />
+      <text x="846" y="306" class="kicker" text-anchor="start"><tspan x="846" dy="0">COMPRESSED ANSWER ROUTE</tspan></text>
+      <rect x="846" y="348" width="180" height="74" rx="18" class="panel" style="--accent:#f45fc5" /><text x="936" y="393" class="box-label" text-anchor="middle"><tspan x="936" dy="0">Question</tspan></text>
+      <path d="M 1026 385 L 1100 385" fill="none" stroke="#f45fc5" stroke-width="4"  marker-end="url(#arrow)"/>
+      <rect x="1100" y="338" width="370" height="94" rx="18" class="panel" style="--accent:#f45fc5" /><text x="1285" y="393" class="box-label" text-anchor="middle"><tspan x="1285" dy="0">Answer box</tspan><tspan x="1285" dy="26">one polished surface</tspan></text>
+      <text x="846" y="486" class="heading" text-anchor="start"><tspan x="846" dy="0">Open the box</tspan></text>
+      <text x="846" y="528" class="body" text-anchor="start"><tspan x="846" dy="0">Instructions → retrieval or model memory → source selection</tspan><tspan x="846" dy="38">→ compression → inference → generated connective language</tspan><tspan x="846" dy="38">→ formatted answer → human verification</tspan></text>
+      <g><rect x="846" y="676" width="244" height="38" rx="19" fill="#73df9a" fill-opacity=".13" stroke="#73df9a"/><text x="968" y="701" class="chip" text-anchor="middle" fill="#73df9a">ACCESS: FASTER</text></g>
+      <g><rect x="1108" y="676" width="362" height="38" rx="19" fill="#ffd34d" fill-opacity=".13" stroke="#ffd34d"/><text x="1289" y="701" class="chip" text-anchor="middle" fill="#ffd34d">VERIFICATION: STILL YOUR JOB</text></g>
+    
+</svg>

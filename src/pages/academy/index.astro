@@ -7,7 +7,10 @@ import Eyebrow from "@/components/sections/Eyebrow.astro";
 import SectionHeader from "@/components/sections/SectionHeader.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import KofiCta from "@/components/KofiCta.astro";
-import { avatarCourse } from "@/data/avatar-content-system";
+import {
+  academyCourses,
+  intellectualSelfDefenseCourse,
+} from "@/data/academy-courses";
 
 type Track = { title: string; body: string };
 
@@ -44,7 +47,7 @@ const academyJsonLd = {
   "@type": "CollectionPage",
   name: "Academy",
   description:
-    "Practical AI training from HobFarm: avatar workflows, prompts, image systems, building apps, and selling your work.",
+    "Practical HobFarm courses for research, creative production, media judgment, and repeatable AI workflows.",
   url: `${siteOrigin}/academy/`,
   mainEntity: {
     "@type": "ItemList",
@@ -52,12 +55,18 @@ const academyJsonLd = {
       {
         "@type": "ListItem",
         position: 1,
-        name: avatarCourse.productName,
-        url: `${siteOrigin}${avatarCourse.basePath}/`,
+        name: intellectualSelfDefenseCourse.title,
+        url: `${siteOrigin}${intellectualSelfDefenseCourse.href}`,
       },
-      ...tracks.map((track, index) => ({
+      ...academyCourses.slice(1).map((course, index) => ({
         "@type": "ListItem",
         position: index + 2,
+        name: course.title,
+        url: `${siteOrigin}${course.href}`,
+      })),
+      ...tracks.map((track, index) => ({
+        "@type": "ListItem",
+        position: index + academyCourses.length + 1,
         name: track.title,
         description: track.body,
       })),
@@ -68,7 +77,7 @@ const academyJsonLd = {
 
 <BaseLayout
   title="Academy | HobFarm"
-  description="Practical AI training from HobFarm: avatar workflows, prompts, image systems, building apps, and selling your work. Built from the real work behind the site."
+  description="Practical HobFarm courses for research, creative production, media judgment, and repeatable AI workflows."
   canonical="/academy/"
   structuredData={academyJsonLd}
 >
@@ -81,14 +90,14 @@ const academyJsonLd = {
           Academy
         </Text>
         <Text tag="p" variant="textBase" class="text-base-300 mt-6 max-w-2xl text-pretty leading-relaxed">
-          Practical AI training built from the work behind this site: avatar workflows, writing prompts, comparing models, setting up files, and turning rough ideas into finished work.
+          Practical courses built from the work behind this site. Start with a public field guide to research, creative scope, and media judgment, or enter the avatar production course.
         </Text>
         <div class="mt-8 flex flex-wrap gap-3">
-          <Button isLink size="sm" variant="green" href={avatarCourse.basePath}>
-            Open first course
+          <Button isLink size="sm" variant="green" href={intellectualSelfDefenseCourse.startHref}>
+            Start the free course
           </Button>
-          <Button isLink size="sm" variant="muted" href={avatarCourse.freePath}>
-            Start free overview
+          <Button isLink size="sm" variant="muted" href={intellectualSelfDefenseCourse.href}>
+            View the course map
           </Button>
           <KofiCta variant="symbol" text="Ko-fi" />
         </div>
@@ -96,48 +105,28 @@ const academyJsonLd = {
     </ContentPanel>
   </section>
 
-  {/* ── First course ── */}
+  {/* ── Available courses ── */}
   <section class="border-t border-base-800/50">
     <ContentPanel>
       <Wrapper variant="standard" class="py-12 lg:py-20">
-        <SectionHeader eyebrow="01" heading="First course" note="Beta access is open." />
-        <div class="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_0.8fr]">
-          <div class="border border-base-800 bg-base-900/40 p-6">
-            <Text tag="h2" variant="displaySM" class="text-white font-display text-balance">
-              {avatarCourse.productName}
-            </Text>
-            <p class="mt-4 max-w-2xl text-sm leading-relaxed text-base-400">
-              A beginner workflow for making avatar videos with ChatGPT, HeyGen, ElevenLabs, and Meta Business Suite. It starts with the real problem: moving between phone, laptop, screenshots, voice notes, scripts, exports, and scheduled posts without turning the whole thing into a junk drawer.
-            </p>
-            <p class="mt-4 text-xs font-mono text-base-500">{avatarCourse.betaCta}</p>
-            <div class="mt-6 flex flex-wrap gap-3">
-              <Button isLink size="sm" variant="green" href={avatarCourse.basePath}>
-                View course
-              </Button>
-              <Button isLink size="sm" variant="muted" href={avatarCourse.coursePath}>
-                See modules
-              </Button>
-            </div>
-          </div>
-          <aside class="border border-base-800 bg-base-950/60 p-6">
-            <p class="text-xs font-mono uppercase tracking-wider text-accent-violet-bright">
-              Free + paid
-            </p>
-            <dl class="mt-5 space-y-4">
-              <div>
-                <dt class="text-sm text-white">Free overview</dt>
-                <dd class="mt-1 text-sm leading-relaxed text-base-400">
-                  System map, workflow choice, folder setup, and starter prompts.
-                </dd>
+        <SectionHeader eyebrow="01" heading="Available courses" note="Start with the job in front of you." />
+        <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          {academyCourses.map((course) => (
+            <article class="overflow-hidden border border-base-800 bg-base-900/40">
+              <img src={course.cover} alt={course.coverAlt} class="aspect-video w-full object-cover" loading="lazy" decoding="async" />
+              <div class="p-6">
+                <p class="text-xs font-mono uppercase tracking-wider text-accent-green-bright">{course.accessLabel}</p>
+                <Text tag="h2" variant="displaySM" class="mt-3 text-white font-display text-balance">
+                  {course.title}
+                </Text>
+                <p class="mt-4 max-w-2xl text-sm leading-relaxed text-base-400">{course.description}</p>
+                <div class="mt-6 flex flex-wrap gap-3">
+                  <Button isLink size="sm" variant="green" href={course.href}>{course.ctaLabel}</Button>
+                  <Button isLink size="sm" variant="muted" href={course.startHref}>Start here</Button>
+                </div>
               </div>
-              <div>
-                <dt class="text-sm text-white">Paid starter kit</dt>
-                <dd class="mt-1 text-sm leading-relaxed text-base-400">
-                  Modular walkthroughs, screenshot slots, snippets, prompts, and checklists.
-                </dd>
-              </div>
-            </dl>
-          </aside>
+            </article>
+          ))}
         </div>
       </Wrapper>
     </ContentPanel>

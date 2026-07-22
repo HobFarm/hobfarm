@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Route the work</title>
+  <desc id="desc">Research and creative routes separate jobs, tool handoffs, and human approval points.</desc>
+  <defs>
+    <pattern id="paper" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M0 35.5H36" stroke="#f3e6c8" stroke-opacity=".035"/></pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="context-stroke"/></marker>
+    <filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"/></filter>
+  </defs>
+  <style>
+    text { font-family: "IBM Plex Sans", Arial, sans-serif; }
+    .kicker { fill: #56e5ee; font-family: "IBM Plex Mono", monospace; font-size: 20px; font-weight: 700; letter-spacing: 3px; }
+    .title { fill: #f3e6c8; font-size: 52px; font-weight: 700; }
+    .subtitle { fill: #b9aeca; font-size: 22px; }
+    .heading { fill: #f3e6c8; font-size: 28px; font-weight: 700; }
+    .body { fill: #b9aeca; font-size: 21px; }
+    .small { fill: #b9aeca; font-family: "IBM Plex Mono", monospace; font-size: 17px; }
+    .box-label { fill: #f3e6c8; font-size: 20px; font-weight: 700; }
+    .chip { font-family: "IBM Plex Mono", monospace; font-size: 15px; font-weight: 700; letter-spacing: 1px; }
+    .panel { fill: #2b1839; fill-opacity: .9; stroke: var(--accent); stroke-width: 2; filter: url(#shadow); }
+  </style>
+  <rect width="1600" height="900" fill="#0b0711"/>
+  <rect width="1600" height="900" fill="url(#paper)"/>
+  <rect x="54" y="46" width="1492" height="808" rx="28" fill="none" stroke="#f3e6c8" stroke-opacity=".18" stroke-width="2"/>
+  <text x="86" y="96" class="kicker" text-anchor="start"><tspan x="86" dy="0">HOBFARM FIELD DIAGRAM</tspan></text>
+  <text x="86" y="160" class="title" text-anchor="start"><tspan x="86" dy="0">Route the work</tspan></text>
+  <text x="86" y="202" class="subtitle" text-anchor="start"><tspan x="86" dy="0">Output is something a machine gives you. Workflow is a sequence of decisions.</tspan></text>
+  
+      <text x="86" y="294" class="kicker" text-anchor="start"><tspan x="86" dy="0">RESEARCH ROUTE</tspan></text>
+      <rect x="86" y="324" width="196" height="96" rx="18" class="panel" style="--accent:#56e5ee" /><text x="184" y="380" class="box-label" text-anchor="middle"><tspan x="184" dy="0">Discover</tspan></text><path d="M 282 372 L 322 372" fill="none" stroke="#56e5ee" stroke-width="4"  marker-end="url(#arrow)"/><rect x="330" y="324" width="196" height="96" rx="18" class="panel" style="--accent:#56e5ee" /><text x="428" y="380" class="box-label" text-anchor="middle"><tspan x="428" dy="0">Read</tspan></text><path d="M 526 372 L 566 372" fill="none" stroke="#56e5ee" stroke-width="4"  marker-end="url(#arrow)"/><rect x="574" y="324" width="196" height="96" rx="18" class="panel" style="--accent:#56e5ee" /><text x="672" y="380" class="box-label" text-anchor="middle"><tspan x="672" dy="0">Organize</tspan></text><path d="M 770 372 L 810 372" fill="none" stroke="#56e5ee" stroke-width="4"  marker-end="url(#arrow)"/><rect x="818" y="324" width="196" height="96" rx="18" class="panel" style="--accent:#73df9a" /><text x="916" y="380" class="box-label" text-anchor="middle"><tspan x="916" dy="0">Human decision</tspan></text><path d="M 1014 372 L 1054 372" fill="none" stroke="#56e5ee" stroke-width="4"  marker-end="url(#arrow)"/><rect x="1062" y="324" width="196" height="96" rx="18" class="panel" style="--accent:#56e5ee" /><text x="1160" y="380" class="box-label" text-anchor="middle"><tspan x="1160" dy="0">Draft</tspan></text><path d="M 1258 372 L 1298 372" fill="none" stroke="#56e5ee" stroke-width="4"  marker-end="url(#arrow)"/><rect x="1306" y="324" width="196" height="96" rx="18" class="panel" style="--accent:#56e5ee" /><text x="1404" y="380" class="box-label" text-anchor="middle"><tspan x="1404" dy="0">Verify</tspan></text>
+      <text x="86" y="500" class="kicker" text-anchor="start"><tspan x="86" dy="0">CREATIVE ROUTE</tspan></text>
+      <rect x="86" y="530" width="196" height="96" rx="18" class="panel" style="--accent:#f45fc5" /><text x="184" y="586" class="box-label" text-anchor="middle"><tspan x="184" dy="0">Source file</tspan></text><path d="M 282 578 L 322 578" fill="none" stroke="#f45fc5" stroke-width="4"  marker-end="url(#arrow)"/><rect x="330" y="530" width="196" height="96" rx="18" class="panel" style="--accent:#f45fc5" /><text x="428" y="586" class="box-label" text-anchor="middle"><tspan x="428" dy="0">Portrait</tspan></text><path d="M 526 578 L 566 578" fill="none" stroke="#f45fc5" stroke-width="4"  marker-end="url(#arrow)"/><rect x="574" y="530" width="196" height="96" rx="18" class="panel" style="--accent:#73df9a" /><text x="672" y="586" class="box-label" text-anchor="middle"><tspan x="672" dy="0">Human select</tspan></text><path d="M 770 578 L 810 578" fill="none" stroke="#f45fc5" stroke-width="4"  marker-end="url(#arrow)"/><rect x="818" y="530" width="196" height="96" rx="18" class="panel" style="--accent:#f45fc5" /><text x="916" y="586" class="box-label" text-anchor="middle"><tspan x="916" dy="0">Character sheet</tspan></text><path d="M 1014 578 L 1054 578" fill="none" stroke="#f45fc5" stroke-width="4"  marker-end="url(#arrow)"/><rect x="1062" y="530" width="196" height="96" rx="18" class="panel" style="--accent:#73df9a" /><text x="1160" y="586" class="box-label" text-anchor="middle"><tspan x="1160" dy="0">Canon check</tspan></text><path d="M 1258 578 L 1298 578" fill="none" stroke="#f45fc5" stroke-width="4"  marker-end="url(#arrow)"/><rect x="1306" y="530" width="196" height="96" rx="18" class="panel" style="--accent:#f45fc5" /><text x="1404" y="586" class="box-label" text-anchor="middle"><tspan x="1404" dy="0">Publish</tspan></text>
+      <rect x="86" y="684" width="1428" height="82" rx="18" class="panel" style="--accent:#ffd34d" />
+      <text x="800" y="735" class="body" text-anchor="middle"><tspan x="800" dy="0">Input contract · output contract · human check · next job · stop condition</tspan></text>
+    
+</svg>

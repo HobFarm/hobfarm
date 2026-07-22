@@ -181,6 +181,52 @@ const articles = defineCollection({
     }),
 });
 
+const academy = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/academy" }),
+  schema: z.object({
+    courseSlug: z.string(),
+    slug: z.string(),
+    title: z.string(),
+    deck: z.string(),
+    order: z.number().int().nonnegative(),
+    moduleTitle: z.string(),
+    moduleOrder: z.number().int().nonnegative(),
+    duration: z.string(),
+    skill: z.string(),
+    learnerOutput: z.string(),
+    prerequisites: z.array(z.string()).default([]),
+    inputs: z.array(z.string()).default([]),
+    figure: z.object({
+      src: z.url(),
+      alt: z.string(),
+      caption: z.string(),
+    }),
+    downloads: z
+      .array(
+        z.object({
+          label: z.string(),
+          href: z.url(),
+          format: z.string().default("Markdown"),
+        }),
+      )
+      .default([]),
+    sourceNotes: z
+      .array(
+        z.object({
+          label: z.string(),
+          url: z.url(),
+          note: z.string(),
+        }),
+      )
+      .default([]),
+    fieldRule: z.string(),
+    commonDefault: z.string(),
+    replacementMethod: z.string(),
+    relatedArticle: z.string().optional(),
+    draft: z.boolean().default(false),
+  }),
+});
+
 export const GALLERY_TYPES = [
   "fashion",
   "character-dev",
@@ -998,6 +1044,7 @@ const products = defineCollection({
 
 export const collections = {
   articles,
+  academy,
   gallery,
   stylefusionStudies,
   projects,

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">The machine made an asset and a bureaucracy</title>
+  <desc id="desc">The Circuit Mint case moves from source files and a portrait request through unsolicited naming and locks to human scope review and a separate character-sheet tool.</desc>
+  <defs>
+    <pattern id="paper" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M0 35.5H36" stroke="#f3e6c8" stroke-opacity=".035"/></pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="context-stroke"/></marker>
+    <filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"/></filter>
+  </defs>
+  <style>
+    text { font-family: "IBM Plex Sans", Arial, sans-serif; }
+    .kicker { fill: #56e5ee; font-family: "IBM Plex Mono", monospace; font-size: 20px; font-weight: 700; letter-spacing: 3px; }
+    .title { fill: #f3e6c8; font-size: 52px; font-weight: 700; }
+    .subtitle { fill: #b9aeca; font-size: 22px; }
+    .heading { fill: #f3e6c8; font-size: 28px; font-weight: 700; }
+    .body { fill: #b9aeca; font-size: 21px; }
+    .small { fill: #b9aeca; font-family: "IBM Plex Mono", monospace; font-size: 17px; }
+    .box-label { fill: #f3e6c8; font-size: 20px; font-weight: 700; }
+    .chip { font-family: "IBM Plex Mono", monospace; font-size: 15px; font-weight: 700; letter-spacing: 1px; }
+    .panel { fill: #2b1839; fill-opacity: .9; stroke: var(--accent); stroke-width: 2; filter: url(#shadow); }
+  </style>
+  <rect width="1600" height="900" fill="#0b0711"/>
+  <rect width="1600" height="900" fill="url(#paper)"/>
+  <rect x="54" y="46" width="1492" height="808" rx="28" fill="none" stroke="#f3e6c8" stroke-opacity=".18" stroke-width="2"/>
+  <text x="86" y="96" class="kicker" text-anchor="start"><tspan x="86" dy="0">HOBFARM FIELD DIAGRAM</tspan></text>
+  <text x="86" y="160" class="title" text-anchor="start"><tspan x="86" dy="0">The machine made an asset and a bureaucracy</tspan></text>
+  <text x="86" y="202" class="subtitle" text-anchor="start"><tspan x="86" dy="0">The useful portrait survived. The unauthorized system did not become canon.</tspan></text>
+  
+      <rect x="86" y="344" width="210" height="144" rx="18" class="panel" style="--accent:#56e5ee" /><text x="191" y="424" class="box-label" text-anchor="middle"><tspan x="191" dy="0">Source files</tspan><tspan x="191" dy="26">+ picture job</tspan></text>
+      <path d="M 296 416 L 350 416" fill="none" stroke="#56e5ee" stroke-width="4"  marker-end="url(#arrow)"/>
+      <rect x="350" y="344" width="210" height="144" rx="18" class="panel" style="--accent:#73df9a" /><text x="455" y="424" class="box-label" text-anchor="middle"><tspan x="455" dy="0">Portrait</tspan><tspan x="455" dy="26">useful asset</tspan></text>
+      <path d="M 560 416 L 614 416" fill="none" stroke="#f45fc5" stroke-width="4"  marker-end="url(#arrow)"/>
+      <rect x="614" y="286" width="330" height="260" rx="18" class="panel" style="--accent:#ff5d64" />
+      <text x="644" y="332" class="kicker" text-anchor="start"><tspan x="644" dy="0">UNSOLICITED SYSTEM</tspan></text>
+      <text x="644" y="378" class="body" text-anchor="start"><tspan x="644" dy="0">Name chosen</tspan><tspan x="644" dy="36">Anchor locked</tspan><tspan x="644" dy="36">Set numbered</tspan><tspan x="644" dy="36">Uses assigned</tspan><tspan x="644" dy="36">Expansion proposed</tspan></text>
+      <path d="M 944 416 L 998 416" fill="none" stroke="#ffd34d" stroke-width="4"  marker-end="url(#arrow)"/>
+      <rect x="998" y="286" width="250" height="260" rx="18" class="panel" style="--accent:#ffd34d" />
+      <text x="1028" y="332" class="kicker" text-anchor="start"><tspan x="1028" dy="0">HUMAN CHECK</tspan></text>
+      <text x="1028" y="380" class="body" text-anchor="start"><tspan x="1028" dy="0">Keep portrait</tspan><tspan x="1028" dy="42">Reject canon</tspan><tspan x="1028" dy="42">Define next job</tspan></text>
+      <path d="M 1248 416 L 1302 416" fill="none" stroke="#73df9a" stroke-width="4"  marker-end="url(#arrow)"/>
+      <rect x="1302" y="344" width="212" height="144" rx="18" class="panel" style="--accent:#73df9a" /><text x="1408" y="424" class="box-label" text-anchor="middle"><tspan x="1408" dy="0">Second tool</tspan><tspan x="1408" dy="26">multiview sheet</tspan></text>
+      <g><rect x="350" y="628" width="300" height="38" rx="19" fill="#73df9a" fill-opacity=".13" stroke="#73df9a"/><text x="500" y="653" class="chip" text-anchor="middle" fill="#73df9a">SAFE TO SALVAGE</text></g>
+      <g><rect x="674" y="628" width="356" height="38" rx="19" fill="#ff5d64" fill-opacity=".13" stroke="#ff5d64"/><text x="852" y="653" class="chip" text-anchor="middle" fill="#ff5d64">SCOPE DRIFT DETECTED</text></g>
+      <g><rect x="1054" y="628" width="352" height="38" rx="19" fill="#ffd34d" fill-opacity=".13" stroke="#ffd34d"/><text x="1230" y="653" class="chip" text-anchor="middle" fill="#ffd34d">DECISION NOT DELEGATED</text></g>
+    
+</svg>

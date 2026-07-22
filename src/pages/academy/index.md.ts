@@ -1,18 +1,20 @@
 import { absoluteUrl, markdownResponse, pageMarkdown } from "@/lib/agent-corpus";
-import { avatarCourse } from "@/data/avatar-content-system";
+import { academyCourses, intellectualSelfDefenseCourse } from "@/data/academy-courses";
 
 export function GET() {
   return markdownResponse(
     pageMarkdown({
       title: "Academy",
-      description: "Practical AI training from HobFarm: avatar workflows, prompts, image systems, building apps, and selling your work.",
+      description: "Practical HobFarm courses for research, creative production, media judgment, and repeatable AI workflows.",
       canonicalUrl: absoluteUrl("/academy/"),
       metadata: {
-        firstCourse: avatarCourse.productName,
-        freeOverview: avatarCourse.freePath,
-        coursePath: avatarCourse.coursePath,
+        availableCourses: academyCourses.map((course) => course.title).join("; "),
+        freeCourse: intellectualSelfDefenseCourse.href,
+        freeCourseStart: intellectualSelfDefenseCourse.startHref,
       },
-      body: "Academy pages collect workflow education and public course entry points. Paid lesson files, account-gated downloads, and private source material are not included in Markdown alternates.",
+      body: academyCourses
+        .map((course) => `- [${course.title}](${absoluteUrl(course.href)}): ${course.description}`)
+        .join("\n"),
     }),
   );
 }

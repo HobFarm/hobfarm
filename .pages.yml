@@ -155,6 +155,61 @@ content:
       - { name: body, label: Body, type: rich-text }
 
   # ---------------------
+  # ACADEMY LESSONS
+  # ---------------------
+  - name: academy
+    label: Academy Lessons
+    type: collection
+    path: src/content/academy
+    filename: "{primary}.md"
+    view:
+      primary: title
+      fields: [title, courseSlug, moduleTitle, order]
+      sort: [courseSlug, order]
+    fields:
+      - { name: courseSlug, label: Course Slug, type: string, required: true }
+      - { name: slug, label: Lesson Slug, type: string, required: true }
+      - { name: title, label: Title, type: string, required: true }
+      - { name: deck, label: Deck, type: text, required: true }
+      - { name: order, label: Lesson Order, type: number, required: true }
+      - { name: moduleTitle, label: Module Title, type: string, required: true }
+      - { name: moduleOrder, label: Module Order, type: number, required: true }
+      - { name: duration, label: Duration, type: string, required: true }
+      - { name: skill, label: Skill, type: text, required: true }
+      - { name: learnerOutput, label: Learner Output, type: string, required: true }
+      - { name: prerequisites, label: Prerequisites, type: string, list: true }
+      - { name: inputs, label: Inputs, type: string, list: true }
+      - name: figure
+        label: Primary Figure
+        type: object
+        fields:
+          - { name: src, label: Image URL, type: string, required: true }
+          - { name: alt, label: Alt Text, type: text, required: true }
+          - { name: caption, label: Caption, type: text, required: true }
+      - name: downloads
+        label: Downloads
+        type: object
+        list: true
+        fields:
+          - { name: label, label: Label, type: string }
+          - { name: href, label: URL, type: string }
+          - { name: format, label: Format, type: string }
+      - name: sourceNotes
+        label: Source Notes
+        type: object
+        list: true
+        fields:
+          - { name: label, label: Label, type: string }
+          - { name: url, label: URL, type: string }
+          - { name: note, label: Evidence Note, type: text }
+      - { name: fieldRule, label: Field Rule, type: text, required: true }
+      - { name: commonDefault, label: Common Default, type: text, required: true }
+      - { name: replacementMethod, label: Replacement Method, type: text, required: true }
+      - { name: relatedArticle, label: Related Article URL, type: string }
+      - { name: draft, label: Draft, type: boolean }
+      - { name: body, label: Body, type: rich-text }
+
+  # ---------------------
   # COMICS (Funnies)
   # ---------------------
   - name: comics

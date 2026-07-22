@@ -1,0 +1,273 @@
+---
+import { getCollection } from "astro:content";
+import AcademyDownloadCard from "@/components/academy/AcademyDownloadCard.astro";
+import AcademyFigure from "@/components/academy/AcademyFigure.astro";
+import AcademyLessonCard from "@/components/academy/AcademyLessonCard.astro";
+import Breadcrumbs from "@/components/global/Breadcrumbs.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import { contentAcademyCourses, type AcademyCourse } from "@/data/academy-courses";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+export function getStaticPaths() {
+  return contentAcademyCourses.map((course) => ({
+    params: { courseSlug: course.slug },
+    props: { course },
+  }));
+}
+
+interface Props {
+  course: AcademyCourse;
+}
+
+const { course } = Astro.props;
+const lessons = (await getCollection("academy", ({ data }) => data.courseSlug === course.slug && !data.draft))
+  .sort((a, b) => a.data.order - b.data.order);
+const firstLesson = lessons[0];
+const modules = Array.from(
+  lessons.reduce((map, lesson) => {
+    const existing = map.get(lesson.data.moduleTitle) ?? [];
+    existing.push(lesson);
+    map.set(lesson.data.moduleTitle, existing);
+    return map;
+  }, new Map<string, typeof lessons>()),
+).map(([title, moduleLessons]) => ({ title, lessons: moduleLessons }));
+
+const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
+const courseJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Course",
+  name: course.title,
+  description: course.deck,
+  url: `${siteOrigin}${course.href}`,
+  image: course.socialImage,
+  isAccessibleForFree: true,
+  provider: {
+    "@type": "Organization",
+    name: "HobFarm",
+    sameAs: siteOrigin,
+  },
+  numberOfCredits: 0,
+  hasCourseInstance: {
+    "@type": "CourseInstance",
+    courseMode: "online",
+    courseWorkload: course.duration,
+  },
+};
+---
+
+<BaseLayout
+  title={`${course.title} | HobFarm Academy`}
+  description={course.description}
+  canonical={course.href}
+  image={course.socialImage}
+  imageAlt={course.coverAlt}
+  structuredData={courseJsonLd}
+  palette="magenta-cyan"
+>
+  <ContentPanel>
+    <Wrapper variant="standard" class="pt-5">
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Academy", href: "/academy/" }, { label: course.shortTitle }]} />
+    </Wrapper>
+  </ContentPanel>
+
+  <section class="course-hero">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <div class="course-hero__grid">
+          <div>
+            <p class="course-kicker">HobFarm Academy / {course.accessLabel}</p>
+            <h1>{course.title}</h1>
+            <p class="course-deck">{course.description}</p>
+            <p class="course-summary">{course.deck}</p>
+            {firstLesson && (
+              <div class="course-actions">
+                <Button isLink size="sm" variant="green" href={`${course.href}${firstLesson.data.slug}/`}>
+                  Start the free course
+                </Button>
+              </div>
+            )}
+            <dl class="course-facts">
+              <div><dt>Access</dt><dd>{course.accessLabel}</dd></div>
+              <div><dt>Time</dt><dd>{course.duration}</dd></div>
+              <div><dt>Lessons</dt><dd>{lessons.length}</dd></div>
+            </dl>
+          </div>
+          {course.coverImage && (
+            <figure>
+              <img src={course.coverImage} alt={course.coverAlt ?? ""} width="2400" height="1350" loading="eager" decoding="async" fetchpriority="high" />
+              <figcaption>The operator controls the handoffs between research, creative work, and the media environment.</figcaption>
+            </figure>
+          )}
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section class="course-section">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-18">
+        <div class="section-heading">
+          <p>Three lanes</p>
+          <h2>Learn the machine by using it on purpose.</h2>
+        </div>
+        <div class="lane-grid">
+          {course.lanes?.map((lane) => (
+            <article data-accent={lane.accent}>
+              <h3>{lane.title}</h3>
+              <p>{lane.description}</p>
+            </article>
+          ))}
+        </div>
+        <AcademyFigure
+          src="https://cdn.hob.farm/self-defense/shared/three-lanes-learn-make-live-v1.svg"
+          alt="A course map with Learn, Make, and Live Around AI stations connected through a human operator."
+          caption="The lanes share one control point: the person who defines the job, checks the handoff, and decides what to keep."
+          description="Each lane returns to a human decision point rather than feeding directly into the next stage."
+        />
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section class="course-section">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-18">
+        <div class="section-heading">
+          <p>What you will build</p>
+          <h2>Four working files, including your own protocol.</h2>
+        </div>
+        <div class="artifact-grid">
+          {course.artifacts?.map((artifact, index) => (
+            <article>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{artifact.title}</h3>
+              <p>{artifact.description}</p>
+            </article>
+          ))}
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section class="course-section" id="course-map">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-18">
+        <div class="section-heading">
+          <p>Course map</p>
+          <h2>Orientation, three modules, one protocol.</h2>
+        </div>
+        <div class="module-stack">
+          {modules.map((module) => (
+            <section>
+              <div class="module-heading">
+                <h3>{module.title}</h3>
+                <span>{module.lessons.length} {module.lessons.length === 1 ? "lesson" : "lessons"}</span>
+              </div>
+              <div class="lesson-grid">
+                {module.lessons.map((lesson) => <AcademyLessonCard lesson={lesson} coursePath={course.href} />)}
+              </div>
+            </section>
+          ))}
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section class="course-section" id="downloads">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-18">
+        <div class="section-heading">
+          <p>Source files and worksheets</p>
+          <h2>Copy them. Rewrite them. Date the next version.</h2>
+        </div>
+        <div class="download-grid">
+          {course.downloads?.map((download) => <AcademyDownloadCard download={download} coursePath={course.href} />)}
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section class="course-section">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-18">
+        <div class="lineage-grid">
+          <div>
+            <div class="section-heading">
+              <p>Lineage, not doctrine</p>
+              <h2>The method belongs to the person using it.</h2>
+            </div>
+            <p>
+              Chomsky supplies part of the phrase's lineage. Normand Baillargeon built a broader predecessor around logic, language, numbers, science, politics, and media. This HobFarm course stays narrower: AI research practice, AI production practice, mixed-origin media, scope control, and a learner-built protocol.
+            </p>
+            {course.articleHref && (
+              <a class="article-link" href={course.articleHref}>{course.articleLabel} &rarr;</a>
+            )}
+          </div>
+          <aside>
+            <p>No approved opinions.</p>
+            <strong>The opinion comes last.</strong>
+          </aside>
+        </div>
+        <details class="source-notes">
+          <summary>Course sources and research notes</summary>
+          <ul>
+            {course.sourceNotes?.map((source) => (
+              <li><a href={source.url} target="_blank" rel="noreferrer">{source.label}</a><span>{source.note}</span></li>
+            ))}
+          </ul>
+        </details>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+</BaseLayout>
+
+<style>
+  .course-hero { border-bottom: 1px solid #2c2440; background: radial-gradient(circle at 25% 20%, rgba(123,47,247,.15), transparent 38%), #07060b; }
+  .course-hero__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2rem; align-items: center; }
+  .course-kicker, .section-heading > p { margin: 0; color: #5cf0f0; font-family: var(--font-mono); font-size: .68rem; letter-spacing: .13em; text-transform: uppercase; }
+  h1 { max-width: 50rem; margin: 1rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(2.7rem, 7vw, 5.6rem); font-weight: 300; line-height: .94; letter-spacing: -.045em; }
+  .course-deck { max-width: 45rem; margin: 1.5rem 0 0; color: #ece9f5; font-size: clamp(1.05rem, 2vw, 1.3rem); line-height: 1.55; }
+  .course-summary { max-width: 43rem; margin: 1rem 0 0; color: #9b96ad; font-size: .94rem; line-height: 1.7; }
+  .course-actions { margin-top: 1.6rem; }
+  .course-facts { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1.5rem 0 0; }
+  .course-facts div { min-width: 9rem; padding: .8rem; border: 1px solid #2c2440; background: rgba(14,11,22,.7); }
+  .course-facts dt { color: #6b6580; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; }
+  .course-facts dd { margin: .3rem 0 0; color: #c8c6d4; font-size: .78rem; }
+  .course-hero figure { margin: 0; overflow: hidden; border: 1px solid #2c2440; border-radius: .85rem; background: #0e0b16; }
+  .course-hero img { display: block; width: 100%; height: auto; }
+  .course-hero figcaption { padding: .75rem; color: #9b96ad; font-family: var(--font-mono); font-size: .65rem; line-height: 1.5; }
+  .course-section { border-bottom: 1px solid #221a33; }
+  .section-heading h2 { max-width: 52rem; margin: .7rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 300; line-height: 1.02; }
+  .lane-grid, .artifact-grid, .download-grid, .lesson-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: .75rem; margin-top: 1.5rem; }
+  .lane-grid article, .artifact-grid article { padding: 1.25rem; border: 1px solid #2c2440; border-radius: .75rem; background: rgba(14,11,22,.72); }
+  .lane-grid article[data-accent="cyan"] { border-top-color: #5cf0f0; }
+  .lane-grid article[data-accent="magenta"] { border-top-color: #f24da6; }
+  .lane-grid article[data-accent="yellow"] { border-top-color: #f0c96b; }
+  .lane-grid h3, .artifact-grid h3, .module-heading h3 { margin: 0; color: #fff; font-family: var(--font-display); font-size: 1.35rem; font-weight: 500; }
+  .lane-grid p, .artifact-grid p, .lineage-grid > div > p { margin: .65rem 0 0; color: #9b96ad; font-size: .86rem; line-height: 1.68; }
+  .artifact-grid span { color: #f24da6; font-family: var(--font-mono); font-size: .65rem; }
+  .artifact-grid h3 { margin-top: .75rem; }
+  .module-stack { display: grid; gap: 2.5rem; margin-top: 2rem; }
+  .module-heading { display: flex; align-items: end; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+  .module-heading span { color: #6b6580; font-family: var(--font-mono); font-size: .65rem; text-transform: uppercase; }
+  .lineage-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+  .lineage-grid aside { padding: 1.5rem; border: 1px solid #f0c96b; border-radius: .75rem; background: rgba(240,201,107,.07); }
+  .lineage-grid aside p { margin: 0; color: #f0c96b; font-family: var(--font-mono); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; }
+  .lineage-grid aside strong { display: block; margin-top: .9rem; color: #fff; font-family: var(--font-display); font-size: 2rem; font-weight: 350; line-height: 1.05; }
+  .article-link { display: inline-flex; margin-top: 1rem; color: #5cf0a6; font-family: var(--font-mono); font-size: .72rem; text-transform: uppercase; text-underline-offset: .25rem; }
+  .source-notes { margin-top: 2rem; border: 1px solid #2c2440; border-radius: .75rem; background: #0e0b16; }
+  .source-notes summary { padding: 1rem; color: #c8c6d4; cursor: pointer; font-family: var(--font-mono); font-size: .72rem; text-transform: uppercase; }
+  .source-notes ul { display: grid; gap: .75rem; margin: 0; padding: 0 1rem 1rem; list-style: none; }
+  .source-notes li { padding-top: .75rem; border-top: 1px solid #221a33; }
+  .source-notes a { color: #5cf0f0; font-size: .78rem; }
+  .source-notes span { display: block; margin-top: .35rem; color: #9b96ad; font-size: .75rem; line-height: 1.55; }
+  @media (min-width: 720px) {
+    .course-hero__grid { grid-template-columns: minmax(0, 1.05fr) minmax(22rem, .95fr); }
+    .lane-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .artifact-grid, .download-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .lesson-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .lineage-grid { grid-template-columns: minmax(0, 1.2fr) minmax(16rem, .8fr); }
+  }
+  @media (min-width: 1080px) { .lesson-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+</style>

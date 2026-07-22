@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">AI Output Receipt</title>
+  <desc id="desc">A printable receipt lists what was asked, retrieved, inferred, invented, decided, kept, verified, discarded, and approved.</desc>
+  <defs>
+    <pattern id="paper" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M0 35.5H36" stroke="#f3e6c8" stroke-opacity=".035"/></pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="context-stroke"/></marker>
+    <filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"/></filter>
+  </defs>
+  <style>
+    text { font-family: "IBM Plex Sans", Arial, sans-serif; }
+    .kicker { fill: #56e5ee; font-family: "IBM Plex Mono", monospace; font-size: 20px; font-weight: 700; letter-spacing: 3px; }
+    .title { fill: #f3e6c8; font-size: 52px; font-weight: 700; }
+    .subtitle { fill: #b9aeca; font-size: 22px; }
+    .heading { fill: #f3e6c8; font-size: 28px; font-weight: 700; }
+    .body { fill: #b9aeca; font-size: 21px; }
+    .small { fill: #b9aeca; font-family: "IBM Plex Mono", monospace; font-size: 17px; }
+    .box-label { fill: #f3e6c8; font-size: 20px; font-weight: 700; }
+    .chip { font-family: "IBM Plex Mono", monospace; font-size: 15px; font-weight: 700; letter-spacing: 1px; }
+    .panel { fill: #2b1839; fill-opacity: .9; stroke: var(--accent); stroke-width: 2; filter: url(#shadow); }
+  </style>
+  <rect width="1600" height="900" fill="#0b0711"/>
+  <rect width="1600" height="900" fill="url(#paper)"/>
+  <rect x="54" y="46" width="1492" height="808" rx="28" fill="none" stroke="#f3e6c8" stroke-opacity=".18" stroke-width="2"/>
+  <text x="86" y="96" class="kicker" text-anchor="start"><tspan x="86" dy="0">HOBFARM FIELD DIAGRAM</tspan></text>
+  <text x="86" y="160" class="title" text-anchor="start"><tspan x="86" dy="0">AI Output Receipt</tspan></text>
+  <text x="86" y="202" class="subtitle" text-anchor="start"><tspan x="86" dy="0">Record the assignment before the useful parts blur into the unauthorized ones.</tspan></text>
+  
+      <rect x="86" y="262" width="1428" height="500" rx="18" class="panel" style="--accent:#f3e6c8" />
+      <text x="120" y="314" class="kicker" text-anchor="start"><tspan x="120" dy="0">OUTPUT INSPECTION</tspan></text>
+      <text x="120" y="350" class="heading" text-anchor="start"><tspan x="120" dy="0">What I asked for</tspan></text><text x="120" y="383" class="small" text-anchor="start"><tspan x="120" dy="0">________________________________</tspan></text><text x="576" y="350" class="heading" text-anchor="start"><tspan x="576" dy="0">What the tool did</tspan></text><text x="576" y="383" class="small" text-anchor="start"><tspan x="576" dy="0">________________________________</tspan></text><text x="1032" y="350" class="heading" text-anchor="start"><tspan x="1032" dy="0">Retrieved or quoted</tspan></text><text x="1032" y="383" class="small" text-anchor="start"><tspan x="1032" dy="0">________________________________</tspan></text><text x="120" y="442" class="heading" text-anchor="start"><tspan x="120" dy="0">Inferred</tspan></text><text x="120" y="475" class="small" text-anchor="start"><tspan x="120" dy="0">________________________________</tspan></text><text x="576" y="442" class="heading" text-anchor="start"><tspan x="576" dy="0">Invented</tspan></text><text x="576" y="475" class="small" text-anchor="start"><tspan x="576" dy="0">________________________________</tspan></text><text x="1032" y="442" class="heading" text-anchor="start"><tspan x="1032" dy="0">Decided without permission</tspan></text><text x="1032" y="475" class="small" text-anchor="start"><tspan x="1032" dy="0">________________________________</tspan></text><text x="120" y="534" class="heading" text-anchor="start"><tspan x="120" dy="0">Useful</tspan></text><text x="120" y="567" class="small" text-anchor="start"><tspan x="120" dy="0">________________________________</tspan></text><text x="576" y="534" class="heading" text-anchor="start"><tspan x="576" dy="0">Needs verification</tspan></text><text x="576" y="567" class="small" text-anchor="start"><tspan x="576" dy="0">________________________________</tspan></text><text x="1032" y="534" class="heading" text-anchor="start"><tspan x="1032" dy="0">Discarding</tspan></text><text x="1032" y="567" class="small" text-anchor="start"><tspan x="1032" dy="0">________________________________</tspan></text><text x="120" y="626" class="heading" text-anchor="start"><tspan x="120" dy="0">Approving</tspan></text><text x="120" y="659" class="small" text-anchor="start"><tspan x="120" dy="0">________________________________</tspan></text><text x="576" y="626" class="heading" text-anchor="start"><tspan x="576" dy="0">Next action</tspan></text><text x="576" y="659" class="small" text-anchor="start"><tspan x="576" dy="0">________________________________</tspan></text><text x="1032" y="626" class="heading" text-anchor="start"><tspan x="1032" dy="0">Stop condition</tspan></text><text x="1032" y="659" class="small" text-anchor="start"><tspan x="1032" dy="0">________________________________</tspan></text>
+      <g><rect x="120" y="708" width="316" height="38" rx="19" fill="#56e5ee" fill-opacity=".13" stroke="#56e5ee"/><text x="278" y="733" class="chip" text-anchor="middle" fill="#56e5ee">FIDELITY: LOW / MED / HIGH</text></g>
+      <g><rect x="458" y="708" width="318" height="38" rx="19" fill="#f45fc5" fill-opacity=".13" stroke="#f45fc5"/><text x="617" y="733" class="chip" text-anchor="middle" fill="#f45fc5">QUALITY: LOW / MED / HIGH</text></g>
+      <g><rect x="798" y="708" width="598" height="38" rx="19" fill="#73df9a" fill-opacity=".13" stroke="#73df9a"/><text x="1097" y="733" class="chip" text-anchor="middle" fill="#73df9a">KEEP / SALVAGE / ITERATE / DUMP</text></g>
+    
+</svg>
