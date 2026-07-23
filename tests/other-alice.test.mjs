@@ -10,19 +10,19 @@ test("Other Alice public navigation has five living-world entries",()=>{
  assert.doesNotMatch(nav,/Adventure|Atlas|Bestiary|Archive|Workshop/);
 });
 
-test("Start Here uses the approved hero and chronology",()=>{
+test("Start Here presents the project without landing-page chronology",()=>{
  const page=read("src/components/presents/other-alice/OtherAliceStartPage.astro");
- const canon=read("src/data/other-alice/canon.ts");
+ const series=read("src/data/story-series.ts");
  const boundary=read("src/components/presents/other-alice/living-world/BoundaryRecord.astro");
- assert.match(canon,/arrivedAge: 8/);
- assert.match(canon,/presentAge: 18/);
- assert.match(canon,/wonderlandYears: 10/);
- assert.match(canon,/outsideYears: "about 200 years"/);
- assert.match(page,/otherAliceChronology\.startDeck/);
- assert.match(page,/A graphic novel that escaped the book and began using the whole website\./);
- assert.match(page,/otherAliceChronology\.rail/);
+ assert.match(page,/Wonderland is already alive\. Alice is only one person inside it\./);
+ assert.match(page,/Why Other Alice\?/);
+ assert.match(page,/A web-native surreal fantasy serial and illustrated world archive\./);
+ assert.match(page,/The familiar story is the entrance\. The larger world is Other Alice\./);
  assert.match(page,/Wonderland is inhabited, maintained, traded, taxed, and argued over\./);
  assert.match(page,/The world does not wait for Alice\./);
+ assert.doesNotMatch(page,/otherAliceChronology|chronologyRail|VisitorImprint|Age \d+|Wonderland time|Outside route/);
+ assert.match(series,/Other Alice Adventures \| A Living Illustrated Wonderland/);
+ assert.match(series,/A web-native surreal fantasy serial and illustrated world archive about the Alice who chose to stay/);
  assert.match(boundary,/Exterior record incomplete/);
  assert.doesNotMatch(page,/Read Adventure|Adventure No\.|current fragment/i);
 });
@@ -46,7 +46,7 @@ test("public chronology does not infer a fixed outside calendar",()=>{
  ].join("\n");
  assert.doesNotMatch(publicSources,/2070s|150\s*[–-]\s*200|eleven years|arrived at seven|age 7\b/i);
  assert.match(publicSources,/outsideYears: "about 200 years"/);
- assert.match(read("src/data/story-series.ts"),/otherAliceChronology\.startDeck/);
+ assert.doesNotMatch(read("src/data/story-series.ts"),/otherAliceChronology|otherAliceCanon/);
 });
 
 test("Alice's choices, method, and first home resolve from shared canon",()=>{

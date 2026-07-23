@@ -1,4 +1,4 @@
-import { otherAliceChronology, otherAlicePublicCanon } from "./canon";
+import { otherAlicePublicCanon } from "./canon";
 import { getOtherAliceAsset } from "./assets";
 import type {
   OtherAliceCastGroup,
@@ -70,8 +70,9 @@ const records: OtherAliceResidentRecord[] = [
     guideAnchor: "routes",
     visibility: "public",
     summary: [
-      otherAliceChronology.residentSummary,
-      "She prepares for local conditions, gathers evidence, negotiates access, and returns practical knowledge through the cabin workshop.",
+      "Alice entered Wonderland by choice and later chose to remain there. She now works as a field observer, remedy maker, route investigator, and practical intermediary between people and systems that do not always share the same rules.",
+      "She gathers evidence, studies local materials, negotiates access, changes her size when ordinary routes fail, and returns useful knowledge through her cabin workshop.",
+      "Wonderland changed Alice. Alice also leaves changes behind.",
     ],
   },
   {

@@ -50,11 +50,12 @@ test("paired and institutional records remain distinct", async () => {
   assert.match(residents, /id: "rabbit-guild"[\s\S]*?entityKind: "institution"/);
 });
 
-test("Alice chronology is derived from the centralized canon record", async () => {
+test("Alice cast summary describes her present role without chronology", async () => {
   const residents = await read("src/data/other-alice/residents.ts");
   const alice = residents.slice(residents.indexOf('id: "other-alice"'), residents.indexOf('id: "chester"'));
-  assert.match(alice, /otherAliceChronology\.residentSummary/);
-  assert.doesNotMatch(alice, /arrivedAge|presentAge|wonderlandYears|arrived at (?:eight|8)|is (?:eighteen|18) now/i);
+  assert.match(alice, /field observer, remedy maker, route investigator, and practical intermediary/);
+  assert.match(alice, /Wonderland changed Alice\. Alice also leaves changes behind\./);
+  assert.doesNotMatch(alice, /otherAliceChronology|arrivedAge|presentAge|wonderlandYears|arrived at (?:eight|8)|is (?:eighteen|18) now/i);
 });
 
 test("Alice and Chester public guides carry the corrected resident history", async () => {

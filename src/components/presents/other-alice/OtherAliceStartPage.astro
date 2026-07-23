@@ -2,14 +2,13 @@
 import OaaProjectNav from "./OaaProjectNav.astro";
 import LivingAtlas from "./living-world/LivingAtlas.astro";
 import RouteAtlas from "./living-world/RouteAtlas.astro";
-import VisitorImprint from "./living-world/VisitorImprint.astro";
 import HousePowerStack from "./living-world/HousePowerStack.astro";
 import BoundaryRecord from "./living-world/BoundaryRecord.astro";
 import WorkshopContactSheet from "./living-world/WorkshopContactSheet.astro";
 import SystemsInMotion from "./living-world/SystemsInMotion.astro";
 import {
   OTHER_ALICE_CAST_PATH, OTHER_ALICE_HOUSES_PATH, OTHER_ALICE_WEB_PATH, OTHER_ALICE_WORLD_GUIDE_PATH,
-  chronologyRail, otherAliceChronology, otherAliceCastPreview, archiveRecords, bestiaryRecords,
+  otherAliceCastPreview, archiveRecords, bestiaryRecords,
 } from "@/data/other-alice-world-guide";
 const alicePreview = otherAliceCastPreview[0];
 ---
@@ -20,17 +19,38 @@ const alicePreview = otherAliceCastPreview[0];
   <div class="hero-copy">
    <p class="eyebrow">HobFarm Presents</p>
    <h1>Other Alice Adventures</h1>
-   <p class="deck">{otherAliceChronology.startDeck}</p>
-   <p class="format">A graphic novel that escaped the book and began using the whole website.</p>
+   <p class="deck">Wonderland is already alive. Alice is only one person inside it.</p>
+   <div class="hero-intro">
+    <p>Alice followed the White Rabbit into Wonderland. Later, she chose to stay. Other Alice Adventures begins there.</p>
+    <p>Wonderland is a living country with its own ecology, politics, trade, labor, creatures, routes, settlements, and unfinished borders. Its people maintain roads, grow food, move goods, argue over land, repair damage, adapt foreign objects, and keep going when Alice is somewhere else.</p>
+    <p>Alice studies local conditions, gathers materials, prepares remedies, negotiates access, changes her size to reach restricted places, and follows problems through systems that rarely explain themselves.</p>
+    <p>Stories, character dossiers, maps, bestiary records, artifacts, diagrams, and visual studies reveal different parts of the same Wonderland.</p>
+   </div>
+   <p class="format">A web-native surreal fantasy serial and illustrated world archive.</p>
    <nav class="actions" aria-label="Explore Other Alice">
     <a href={OTHER_ALICE_WORLD_GUIDE_PATH}>Explore Wonderland</a>
+    <a href={alicePreview.href ?? OTHER_ALICE_CAST_PATH}>Meet Other Alice</a>
     <a href={OTHER_ALICE_HOUSES_PATH}>See who holds power</a>
-    <a href={OTHER_ALICE_CAST_PATH}>Meet the cast</a>
     <a href={OTHER_ALICE_WEB_PATH}>Open the Web of Wonderland</a>
    </nav>
-   <p class="chronology-line">{otherAliceChronology.rail}</p>
+   <p class="project-index">Illustrated stories · World guide · Characters · Bestiary · Maps and records</p>
+   <p class="thesis">The familiar story is the entrance. The larger world is Other Alice.</p>
   </div>
  </header>
+
+ <section class="section why-section" aria-labelledby="why-title">
+  <div class="section-heading">
+   <p class="index">Project concept</p>
+   <h2 id="why-title">Why Other Alice?</h2>
+   <div class="section-copy">
+    <p>Wonderland is usually remembered through a small collection of symbols: a rabbit, a tea party, playing cards, mushrooms, mirrors, riddles, and doors that lead somewhere impossible.</p>
+    <p>Other Alice treats those symbols as fragments of a much larger world.</p>
+    <p>Who maintains the roads between the famous places? Who owns the ground beneath them? Where does the food come from? What happens to objects brought in by visitors? Which creatures are ordinary wildlife, which are citizens, and which are part of the infrastructure? What exists beyond the regions controlled by the Queen?</p>
+    <p>Alice gives us a way into those questions because she already knows the old Wonderland. This version follows what happened when she kept living there, became part of its communities, learned how its materials behave, and started seeing the systems hidden behind its nonsense.</p>
+    <p>The project builds a new illustrated world outward from the choice that began it: Alice followed the rabbit.</p>
+   </div>
+  </div>
+ </section>
 
  <section class="section atlas-section" aria-labelledby="glance-title">
   <div class="section-heading"><p class="index">01 / The inhabited world</p><h2 id="glance-title">Wonderland is inhabited, maintained, traded, taxed, and argued over.</h2><p>The Queen's court claims one circular realm. Daily power follows land, companies, water, labor, roads, appetite, and the people who can keep a place working.</p></div>
@@ -53,14 +73,8 @@ const alicePreview = otherAliceCastPreview[0];
   <RouteAtlas compact />
  </section>
 
- <section class="section visitor-section" aria-labelledby="visitor-title">
-  <div class="section-heading"><p class="index">05 / Visitors, choice, and time</p><h2 id="visitor-title">Wonderland begins with a choice.</h2><div class="section-copy"><p>No one reaches Wonderland without following something. A rabbit runs ahead. A door appears in the wrong wall. A reflection waits. The invitation changes, but the final step belongs to the visitor.</p><p>Crossing is only the first decision. Visitors bring objects, methods, organisms, appetites, fears, and rules. Some improve what they touch. Some exploit it. Wonderland's people decide what survives, and repetition turns residue into custom, infrastructure, ecology, law, or myth.</p></div></div>
-  <VisitorImprint compact />
-  <div class="chronology">{chronologyRail.map((item)=><article><span>{item.label}</span><strong>{item.value}</strong><p>{item.note}</p></article>)}</div>
- </section>
-
  <section class="section evidence-section" aria-labelledby="evidence-title">
-   <div class="section-heading"><p class="index">06 / Cast, ecology, evidence</p><h2 id="evidence-title">A world record needs people, work, organisms, and doubt.</h2></div>
+   <div class="section-heading"><p class="index">05 / Cast, ecology, evidence</p><h2 id="evidence-title">A world record needs people, work, organisms, and doubt.</h2></div>
    <div class="evidence-layout">
     <article class="alice-plate"><picture>{alicePreview.landscapeImage && <source media="(max-width: 900px)" srcset={alicePreview.landscapeImage}/>}<img src={alicePreview.image} width="1500" height="2000" loading="lazy" decoding="async" alt={alicePreview.imageAlt ?? "Adult Other Alice at her cabin-workshop threshold."}/></picture><div><p class="index">Continuity record</p><h3>Other Alice</h3><p>{alicePreview.summary.join(" ")}</p></div></article>
     <div class="evidence-column">
@@ -76,12 +90,12 @@ const alicePreview = otherAliceCastPreview[0];
  </section>
 
  <section class="section" aria-labelledby="workshop-title">
-  <div class="section-heading"><p class="index">07 / Public Workshop</p><h2 id="workshop-title">The world guide shows its working parts.</h2><p>Maps, identity locks, diagrams, material studies, and canon labels make the construction record visible without exposing private story development.</p></div>
+  <div class="section-heading"><p class="index">06 / Public Workshop</p><h2 id="workshop-title">The world guide shows its working parts.</h2><p>Maps, identity locks, diagrams, material studies, and canon labels make the construction record visible without exposing private story development.</p></div>
   <WorkshopContactSheet />
  </section>
 
  <section class="section" aria-labelledby="companion-title">
-  <div class="section-heading"><p class="index">08 / Companion reading</p><h2 id="companion-title">Where Other Alice came from.</h2><p>The first Wasteland tea party began as a forgotten image experiment. The process note follows the blood, the Salton Sea photographs, and the question that turned one picture into a world.</p></div>
+  <div class="section-heading"><p class="index">07 / Companion reading</p><h2 id="companion-title">Where Other Alice came from.</h2><p>The first Wasteland tea party began as a forgotten image experiment. The process note follows the blood, the Salton Sea photographs, and the question that turned one picture into a world.</p></div>
   <a class="companion-card" href="/articles/other-alice-origin/">
    <span>Origin story and process note</span>
    <strong>Bloody Tea at the Salton Sea</strong>
@@ -93,10 +107,10 @@ const alicePreview = otherAliceCastPreview[0];
 </div>
 <style>
  .oaa-world{--paper:#eee7d6;--ink:#090b12;--muted:#acb1bd;overflow:hidden;background:#080a11;color:var(--paper)}
- .hero{display:grid;grid-template-columns:minmax(20rem,.75fr) minmax(0,1.25fr);min-height:clamp(42rem,78vh,62rem);max-width:100rem;margin:auto;border-inline:1px solid rgba(255,255,255,.1)}.hero-art{position:relative;overflow:hidden;background:#14121e}.hero-art:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 60%,#080a11)}.hero-art img{width:100%;height:100%;object-fit:cover;object-position:center}.hero-copy{display:flex;flex-direction:column;justify-content:center;padding:clamp(2rem,7vw,7rem)}.eyebrow,.index{color:#a88cff;font:600 .68rem/1 ui-monospace,SFMono-Regular,monospace;letter-spacing:.16em;text-transform:uppercase}.hero h1{max-width:11ch;margin:.7rem 0 1.5rem;font:400 clamp(3.7rem,8vw,8.6rem)/.83 Georgia,serif;letter-spacing:-.065em}.deck{max-width:43rem;margin:0;color:#d6d7db;font-size:clamp(1.15rem,2vw,1.65rem);line-height:1.45}.format{margin:1.4rem 0;color:#9ea4b2;font-style:italic}.actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem}.actions a,.section-link a{border:1px solid #5f6674;border-radius:999px;padding:.7rem 1rem;color:#fff;font:600 .72rem/1 ui-monospace,monospace;text-transform:uppercase;text-decoration:none}.actions a:first-child{background:var(--paper);color:#0a0b10}.actions a:hover,.actions a:focus-visible,.section-link a:hover,.section-link a:focus-visible{outline:2px solid #9f7aea;outline-offset:3px}.chronology-line{margin-top:2rem;color:#8f95a4;font:600 .69rem/1.6 ui-monospace,monospace;text-transform:uppercase}.chronology-line i{padding:.3rem;color:#9f7aea;font-style:normal}
- .section{max-width:90rem;margin:auto;padding:clamp(4rem,9vw,9rem) clamp(1rem,4vw,4rem);border-top:1px solid rgba(255,255,255,.1)}.section-heading{display:grid;grid-template-columns:minmax(10rem,.3fr) minmax(0,1fr);gap:1rem 3rem;margin-bottom:clamp(2rem,5vw,4rem)}.section-heading .index{grid-row:1/3}.section-heading h2{max-width:23ch;margin:0;font:400 clamp(2.25rem,5vw,5rem)/.98 Georgia,serif;letter-spacing:-.035em}.section-heading>p:not(.index),.section-heading>.section-copy{max-width:48rem;margin:0;color:var(--muted);font-size:1rem;line-height:1.7}.section-copy p{margin:0}.section-copy p+p{margin-top:1rem}.section-link{margin-top:1.5rem}.chronology{display:grid;grid-template-columns:repeat(4,1fr);margin-top:2rem;border:1px solid rgba(255,255,255,.13)}.chronology article{padding:1rem;border-right:1px solid rgba(255,255,255,.12)}.chronology span{color:#8f95a4;font:600 .65rem/1 ui-monospace,monospace;text-transform:uppercase}.chronology strong{display:block;margin:2rem 0 .7rem;font-size:1.25rem}.chronology p{color:#aeb3bf;font-size:.86rem;line-height:1.55}
+ .hero{display:grid;grid-template-columns:minmax(20rem,.75fr) minmax(0,1.25fr);min-height:clamp(42rem,78vh,62rem);max-width:100rem;margin:auto;border-inline:1px solid rgba(255,255,255,.1)}.hero-art{position:relative;overflow:hidden;background:#14121e}.hero-art:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 60%,#080a11)}.hero-art img{width:100%;height:100%;object-fit:cover;object-position:center}.hero-copy{display:flex;flex-direction:column;justify-content:center;padding:clamp(2rem,7vw,7rem)}.eyebrow,.index{color:#a88cff;font:600 .68rem/1 ui-monospace,SFMono-Regular,monospace;letter-spacing:.16em;text-transform:uppercase}.hero h1{max-width:11ch;margin:.7rem 0 1.5rem;font:400 clamp(3.7rem,8vw,8.6rem)/.83 Georgia,serif;letter-spacing:-.065em}.deck{max-width:43rem;margin:0;color:#d6d7db;font-size:clamp(1.15rem,2vw,1.65rem);line-height:1.45}.format{margin:1.4rem 0;color:#9ea4b2;font-style:italic}.actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem}.actions a,.section-link a{border:1px solid #5f6674;border-radius:999px;padding:.7rem 1rem;color:#fff;font:600 .72rem/1 ui-monospace,monospace;text-transform:uppercase;text-decoration:none}.actions a:first-child{background:var(--paper);color:#0a0b10}.actions a:hover,.actions a:focus-visible,.section-link a:hover,.section-link a:focus-visible{outline:2px solid #9f7aea;outline-offset:3px}
+ .hero-intro{max-width:48rem;margin-top:1.5rem;color:#aeb3bf;font-size:.98rem;line-height:1.65}.hero-intro p{margin:0}.hero-intro p+p{margin-top:.8rem}.project-index{margin:1.6rem 0 0;color:#8f95a4;font:600 .68rem/1.7 ui-monospace,monospace;text-transform:uppercase}.thesis{max-width:38rem;margin:1rem 0 0;color:#eee7d6;font:400 1.1rem/1.5 Georgia,serif}.section{max-width:90rem;margin:auto;padding:clamp(4rem,9vw,9rem) clamp(1rem,4vw,4rem);border-top:1px solid rgba(255,255,255,.1)}.section-heading{display:grid;grid-template-columns:minmax(10rem,.3fr) minmax(0,1fr);gap:1rem 3rem;margin-bottom:clamp(2rem,5vw,4rem)}.section-heading .index{grid-row:1/3}.section-heading h2{max-width:23ch;margin:0;font:400 clamp(2.25rem,5vw,5rem)/.98 Georgia,serif;letter-spacing:-.035em}.section-heading>p:not(.index),.section-heading>.section-copy{max-width:48rem;margin:0;color:var(--muted);font-size:1rem;line-height:1.7}.section-copy p{margin:0}.section-copy p+p{margin-top:1rem}.section-link{margin-top:1.5rem}
  .companion-card{display:block;max-width:48rem;padding:clamp(1.25rem,3vw,2rem);border:1px solid rgba(168,140,255,.45);background:linear-gradient(135deg,rgba(168,140,255,.12),rgba(14,18,28,.8));color:var(--paper);text-decoration:none}.companion-card span{display:block;color:#a88cff;font:600 .68rem/1 ui-monospace,monospace;letter-spacing:.16em;text-transform:uppercase}.companion-card strong{display:block;margin:.75rem 0;font:400 clamp(1.5rem,3vw,2.5rem)/1.05 Georgia,serif}.companion-card p{margin:0;color:#b5bac5}.companion-card:hover,.companion-card:focus-visible{border-color:#c5afff;outline:2px solid #9f7aea;outline-offset:4px}
  .evidence-layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(13rem,.7fr) minmax(12rem,.55fr);gap:1rem}.alice-plate{position:relative;overflow:hidden;min-height:40rem;background:#090c13}.alice-plate picture{display:block;width:100%;height:100%}.alice-plate img{width:100%;height:100%;object-fit:cover}.alice-plate div{position:absolute;inset:auto 1rem 1rem;padding:1rem;background:rgba(8,10,17,.9);backdrop-filter:blur(10px)}.alice-plate h3,.evidence-column h3{margin:.5rem 0;color:#fff;font:400 1.5rem/1.1 Georgia,serif}.alice-plate p,.evidence-column p{color:#b5bac5;line-height:1.55}.evidence-column{display:grid;gap:1rem}.evidence-column article{padding:1rem;border:1px solid rgba(255,255,255,.13);background:#0e121c}.evidence-column.narrow article:nth-child(2){border-color:#557c70}.evidence-column.narrow article:nth-child(3){border-style:dashed;border-color:#9f7aea}
- @media(max-width:900px){.hero{grid-template-columns:1fr;min-height:auto}.hero-art{height:32rem}.hero-art:after{background:linear-gradient(0deg,#080a11,transparent 55%)}.hero-copy{margin-top:-8rem;position:relative}.section-heading{grid-template-columns:1fr}.section-heading .index{grid-row:auto}.chronology{grid-template-columns:1fr 1fr}.evidence-layout{grid-template-columns:1fr 1fr}.alice-plate{grid-column:1/-1;min-height:0;aspect-ratio:16/9}}
- @media(max-width:560px){.hero-art{height:27rem}.hero-copy{padding:1rem}.hero h1{font-size:3.7rem}.actions{display:grid}.actions a{text-align:center}.section{padding-block:4rem}.chronology,.evidence-layout{grid-template-columns:1fr}.chronology article{border-right:0;border-bottom:1px solid rgba(255,255,255,.12)}.alice-plate{aspect-ratio:4/3}.evidence-column{grid-column:1}.section-heading h2{font-size:2.35rem}}
+ @media(max-width:900px){.hero{grid-template-columns:1fr;min-height:auto}.hero-art{height:32rem}.hero-art:after{background:linear-gradient(0deg,#080a11,transparent 55%)}.hero-copy{margin-top:-8rem;position:relative}.section-heading{grid-template-columns:1fr}.section-heading .index{grid-row:auto}.evidence-layout{grid-template-columns:1fr 1fr}.alice-plate{grid-column:1/-1;min-height:0;aspect-ratio:16/9}}
+ @media(max-width:560px){.hero-art{height:27rem}.hero-copy{padding:1rem}.hero h1{font-size:3.7rem}.actions{display:grid}.actions a{text-align:center}.section{padding-block:4rem}.evidence-layout{grid-template-columns:1fr}.alice-plate{aspect-ratio:4/3}.evidence-column{grid-column:1}.section-heading h2{font-size:2.35rem}}
 </style>
