@@ -16,6 +16,8 @@ test("Start Here presents the project without landing-page chronology",()=>{
  const boundary=read("src/components/presents/other-alice/living-world/BoundaryRecord.astro");
  assert.match(page,/Wonderland is already alive\. Alice is only one person inside it\./);
  assert.match(page,/Why Other Alice\?/);
+ assert.match(page,/How an Adventure begins/);
+ assert.match(page,/Each Adventure begins with something small\. Wonderland supplies the rest\./);
  assert.match(page,/A web-native surreal fantasy serial and illustrated world archive\./);
  assert.match(page,/The familiar story is the entrance\. The larger world is Other Alice\./);
  assert.match(page,/Wonderland is inhabited, maintained, traded, taxed, and argued over\./);
