@@ -22,15 +22,15 @@ relatedAcademy:
   - avatar-content-system
 relatedVisualSystems:
   - sophia-stella
-priceLabel: "Coming soon"
+priceLabel: "Archived"
 paidAssetPolicy:
   hasPaidAsset: true
   publicPreviewOnly: true
   allowedPublicPreviewTypes: ["poster", "web-preview", "video-preview"]
   fullAssetHostedOnSite: false
   notes: "Full-resolution sheets will sell on DeviantArt. Public pages show capped previews only."
-status: coming-soon
-featured: true
+status: archived
+featured: false
 ---
 
-Sophia and Stella share one base mannequin and split into two aesthetic systems: the bright candy-rave black cat and the corrupted nightclub queen. The full-resolution character sheets are the paid asset; the poster, hero images, and teaser video sell the world.
+Sophia and Stella share one base mannequin and split into two aesthetic systems: the bright candy-rave black cat and the corrupted nightclub queen. This archived record is retained for Workshop references and the old public URL. It is not an active or coming-soon Shop product.

@@ -4,7 +4,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import ArticleCard from "@/components/articles/ArticleCard.astro";
 import { mediaImageUrl } from "@/lib/gallery";
-import { getVisualSystem, visualSystemPath } from "@/data/visual-systems";
+import { getVisualSystem } from "@/data/visual-systems";
 import {
   workshopBenches,
   workshopLayers,
@@ -16,6 +16,7 @@ import { workshopPrograms, siteSections } from "@/data/site-hierarchy";
 import WorkshopMediaIndex from "@/components/workshop/WorkshopMediaIndex.astro";
 import WorkshopProcessFilm from "@/components/workshop/WorkshopProcessFilm.astro";
 import WorkshopPsyGothLanes from "@/components/workshop/WorkshopPsyGothLanes.astro";
+import WorkshopOfferRail from "@/components/relationships/WorkshopOfferRail.astro";
 import WorkshopPhotographySource from "@/components/workshop/WorkshopPhotographySource.astro";
 import { workshopProcessFilm } from "@/data/workshop-process-film";
 import { getMedia } from "@/data/media-registry";
@@ -284,11 +285,24 @@ const workshopJsonLd = {
             )}
           </div>
 
-          <div class="mt-8 flex flex-wrap gap-2">
-            <Button isLink size="sm" variant="green" href={visualSystemPath(system.slug)}>Open the Sophia / Stella system</Button>
-            <Button isLink size="sm" variant="muted" href="/shop/sophia-stella-sheet-pack/">View the character pack</Button>
-            <Button isLink size="sm" variant="muted" href="/academy/">Learn to build a system</Button>
-          </div>
+          <WorkshopOfferRail
+            method={{
+              label: "Learn the character system",
+              href: "/academy/avatar-content-system/",
+              description: "Follow the repeatable workflow behind character production.",
+            }}
+            assets={{
+              label: "Browse character assets on DeviantArt",
+              href: "https://www.deviantart.com/hobfarm",
+              description: "Open the verified HobFarm profile. Individual purchase links appear only on live listings.",
+            }}
+            support={{
+              label: "Support the next character project",
+              href: "/support/",
+              description: "Choose a one-time contribution, membership, Shop purchase, or course.",
+            }}
+            heading="Continue from the Sophia and Stella case study"
+          />
         </Wrapper>
       </section>
     )}

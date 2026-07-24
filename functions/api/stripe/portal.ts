@@ -48,7 +48,7 @@ function pageError(title: string, message: string, status: number): Response {
         <p style="margin:0 0 1.5rem;color:#b5b5b5;line-height:1.6;">${message}</p>
         <p style="margin:0;display:flex;gap:1rem;flex-wrap:wrap;">
           <a href="/membership/" style="color:#86efac;">Return to membership</a>
-          <a href="/support/" style="color:#f5f5f5;">Contact support</a>
+          <a href="/helpcenter/" style="color:#f5f5f5;">Customer Help</a>
         </p>
       </section>
     </main>

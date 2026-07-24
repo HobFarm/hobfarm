@@ -43,7 +43,7 @@ export default function DangerZone() {
     const ok = await deleteAccount();
     if (!ok) {
       setBusy(false);
-      setError("Delete failed. Try again or contact support.");
+      setError("Delete failed. Try again or visit Customer Help.");
       return;
     }
     window.location.href = "/?deleted=1";

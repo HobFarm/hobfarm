@@ -33,7 +33,7 @@ The DOs
 *   Abide by the Program Terms.
 *   Respect privacy and make a good faith effort not to access, process, or destroy personal data.
 *   Be patient and provide clarifications in good faith to any questions we may have about your report.
-*   Interact respectfully with our team, and we will reciprocate.
+*   Interact respectfully with HobFarm, and you will receive the same consideration.
 *   Conduct testing only using your own personal/test accounts.
 *   Exercise caution during testing to avoid any negative impact on customers or the services they rely on.
 *   Stop testing whenever unsure. If you believe testing a vulnerability may cause or has caused damage, report your initial findings and request authorization to continue testing.

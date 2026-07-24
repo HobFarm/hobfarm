@@ -9,6 +9,7 @@ import SectionHeader from "@/components/sections/SectionHeader.astro";
 import CourseDiagram from "@/components/academy/CourseDiagram.astro";
 import LessonCard from "@/components/academy/LessonCard.astro";
 import SnippetCards from "@/components/academy/SnippetCards";
+import AffiliateDisclosure from "@/components/legal/AffiliateDisclosure.astro";
 import {
   affiliateTools,
   avatarCourse,
@@ -120,15 +121,27 @@ import {
         <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
           {affiliateTools.map((tool) => (
             <article class="border border-base-800 bg-base-900/40 p-5">
-              <h3 class="text-lg font-display text-white">{tool.name}</h3>
+              <h3 class="text-lg font-display text-white">
+                {tool.href ? (
+                  <a
+                    href={tool.href}
+                    class="hover:text-accent-green-bright"
+                    target="_blank"
+                    rel={tool.affiliate ? "sponsored nofollow noopener noreferrer" : "noopener noreferrer"}
+                  >
+                    {tool.name}
+                  </a>
+                ) : (
+                  tool.name
+                )}
+              </h3>
               <p class="mt-3 text-sm leading-relaxed text-base-400">{tool.role}</p>
-              {tool.affiliate && (
-                <p class="mt-4 text-xs font-mono text-base-500">Affiliate link slot</p>
+              {tool.href && tool.affiliate && (
+                <AffiliateDisclosure class="mt-4" />
               )}
             </article>
           ))}
         </div>
-        <p class="mt-6 max-w-3xl text-xs leading-relaxed text-base-500">{avatarCourse.affiliateDisclosure}</p>
       </Wrapper>
     </ContentPanel>
   </section>

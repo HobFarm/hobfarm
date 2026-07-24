@@ -1,0 +1,62 @@
+export const MELTING_RABBIT_HOLE_DAD_HAT = Object.freeze({
+  productCode: "melting-rabbit-hole-dad-hat",
+  targetStoreName: "HobFarm Shop",
+  templateTitle: "Melting Rabbit Hole Dad Hat",
+  catalogProductName: "Classic Dad Hat | Yupoong 6245CM",
+  productType: "pod",
+  printful: Object.freeze({
+    storeId: 18510634,
+    syncProductId: 451053848,
+    externalProductId: "6a62b8350f3ed8",
+    catalogProductId: 206,
+    artworkFileId: 1026860006,
+    artworkUrl:
+      "https://cdn.hob.farm/products/melting-rabbit-hole-dad-hat/melting-rabbit-icon-light.png",
+    placement: "front_dtf_hat",
+    technique: "dtfilm",
+    variants: Object.freeze([
+      Object.freeze({
+        variantCode: "black",
+        name: "Black",
+        syncVariantId: 5410564851,
+        externalVariantId: "6a62b8350f3f39",
+        catalogVariantId: 7854,
+        sku: "6A62B8350EE53_Black",
+        retailAmount: 2499,
+        currency: "USD",
+        availabilityStatus: "active",
+      }),
+      Object.freeze({
+        variantCode: "dark-grey",
+        name: "Dark Grey",
+        syncVariantId: 5410564852,
+        externalVariantId: "6a62b8350f3f66",
+        catalogVariantId: 12736,
+        sku: "6A62B8350EE53_Dark-Grey",
+        retailAmount: 2499,
+        currency: "USD",
+        availabilityStatus: "active",
+      }),
+    ]),
+  }),
+  suppliedSpecification: Object.freeze({
+    colors: Object.freeze(["Black", "Dark Grey"]),
+    size: "One size",
+    technique: "DTF printing",
+    placement: "Front print",
+    suppliedBaseCostAmount: 1375,
+    suppliedBaseCostCurrency: "USD",
+  }),
+  launch: Object.freeze({
+    enabled: false,
+    reason:
+      "Waiting for sample approval and a payment-to-fulfillment rehearsal.",
+  }),
+  shipping: Object.freeze({
+    destinationCountries: Object.freeze(["US"]),
+    service: "STANDARD",
+    freeShippingThresholdAmount: 4900,
+    standardShippingAmount: 449,
+    currency: "USD",
+  }),
+});

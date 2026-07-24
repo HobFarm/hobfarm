@@ -120,8 +120,8 @@ export default function PaidLessonView({ slug, preview }: Props) {
     return (
       <section className="border border-base-800 bg-base-900/50 p-6">
         <p className="text-sm text-white">{state.message}</p>
-        <a href="/support/" className="mt-4 inline-block text-sm text-base-300 underline decoration-base-700 underline-offset-4 hover:text-white">
-          Contact support
+        <a href="/helpcenter/" className="mt-4 inline-block text-sm text-base-300 underline decoration-base-700 underline-offset-4 hover:text-white">
+          Customer Help
         </a>
       </section>
     );

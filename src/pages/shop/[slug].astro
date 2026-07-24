@@ -4,7 +4,9 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import ContentPanel from "@/components/ContentPanel.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import SupportWays from "@/components/support/SupportWays.astro";
+import DirectProductCart from "@/components/shop/DirectProductCart";
 import { platformInfo } from "@/data/product-platforms";
+import { DIRECT_SHOP_POLICY } from "@/data/direct-shop";
 import { mediaUrl, previewImageUrl, mediaImageSrcset } from "@/lib/gallery";
 import { getPublicProducts, isBuyable, productPath, type ProductEntry } from "@/lib/products";
 
@@ -35,6 +37,25 @@ const previewSrcset = mediaImageSrcset(
 );
 const canonical = productPath(product);
 const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
+const isDirectProduct =
+  data.platform === "hobfarm-direct" && data.fulfillment === "printful";
+const directCheckoutEnabled =
+  isDirectProduct &&
+  data.status === "live" &&
+  import.meta.env.PUBLIC_DIRECT_SHOP_CHECKOUT_ENABLED === "true";
+const directVariants = data.variants.flatMap((variant) => {
+  if (!variant.available || !variant.code || !variant.unitAmount) return [];
+  const variantImage = variant.previewImage;
+  return [{
+    code: variant.code,
+    name: variant.name,
+    unitAmount: variant.unitAmount,
+    imageUrl: variantImage
+      ? previewImageUrl(variantImage.folder, variantImage.file, 160)
+      : undefined,
+    imageAlt: variantImage?.alt,
+  }];
+});
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "Product",
@@ -45,11 +66,15 @@ const structuredData = {
   category: data.productType,
   sku: data.sku,
   brand: { "@type": "Brand", name: "HobFarm" },
-  ...(buyable && data.externalUrl
+  ...((buyable && data.externalUrl) || directCheckoutEnabled
     ? {
         offers: {
           "@type": "Offer",
-          url: data.externalUrl,
+          url: data.externalUrl ?? `${siteOrigin}${canonical}`,
+          priceCurrency: DIRECT_SHOP_POLICY.currency,
+          ...(isDirectProduct && data.variants[0]?.unitAmount
+            ? { price: (data.variants[0].unitAmount / 100).toFixed(2) }
+            : {}),
           availability: "https://schema.org/InStock",
         },
       }
@@ -111,7 +136,19 @@ const structuredData = {
               </div>
             )}
 
-            {buyable ? (
+            {isDirectProduct && directVariants.length > 0 ? (
+              <DirectProductCart
+                client:idle
+                productCode="melting-rabbit-hole-dad-hat"
+                productName={data.title}
+                productPath={canonical}
+                variants={directVariants}
+                currency={DIRECT_SHOP_POLICY.currency}
+                standardShippingAmount={DIRECT_SHOP_POLICY.standardShippingAmount}
+                freeShippingThresholdAmount={DIRECT_SHOP_POLICY.freeShippingThresholdAmount}
+                checkoutEnabled={directCheckoutEnabled}
+              />
+            ) : buyable ? (
               <a
                 class="product-page__buy"
                 href={data.externalUrl}
@@ -145,9 +182,15 @@ const structuredData = {
         <div class="product-support">
           <SupportWays
             compact
-            heading="Not ready to buy? Follow the work"
-            description="Join HobFarm, support a release on Ko-fi, or follow the separate Patreon community."
+            heading="Help fund the next release"
+            description="Contribute once, become a monthly supporter, buy from another shelf, or take a course."
           />
+          <p class="mt-4 text-sm leading-relaxed text-base-500">
+            Payment, access, delivery, download, or refund problem?
+            <a class="text-white underline decoration-base-600 underline-offset-4 hover:decoration-white" href="/helpcenter/">
+              Go to Customer Help.
+            </a>
+          </p>
         </div>
       </Wrapper>
     </ContentPanel>
@@ -159,8 +202,8 @@ const structuredData = {
   .product-page__back { color: #9b96ad; font-family: var(--font-mono); font-size: .7rem; letter-spacing: .1em; text-decoration: none; text-transform: uppercase; }
   .product-page__back:hover { color: #fff; }
   .product-hero { display: grid; overflow: hidden; margin-top: 1.5rem; border: 1px solid #2c2440; background: #0e0b16; }
-  .product-hero__media { min-height: 30rem; background: #07060b; }
-  .product-hero__media img { width: 100%; height: 100%; object-fit: cover; }
+  .product-hero__media { width: 100%; aspect-ratio: 1; align-self: start; background: #fff; }
+  .product-hero__media img { width: 100%; height: 100%; object-fit: contain; }
   .product-hero__copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(1.5rem, 5vw, 4rem); }
   .product-page__platform { margin: 0; color: var(--platform); font-family: var(--font-mono); font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; }
   .product-hero h1 { margin: .75rem 0 0; color: #ece9f5; font-family: var(--font-display); font-size: clamp(2.4rem, 6vw, 5.2rem); font-weight: 780; letter-spacing: -.06em; line-height: .92; }

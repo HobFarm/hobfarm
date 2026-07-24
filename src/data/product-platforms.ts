@@ -9,7 +9,6 @@ export const PRODUCT_PLATFORMS = [
   "ebay",
   "lemon-squeezy",
   "hobfarm-direct",
-  "patreon",
 ] as const;
 
 export type ProductPlatform = (typeof PRODUCT_PLATFORMS)[number];
@@ -27,7 +26,6 @@ export const platformInfo: Record<ProductPlatform, PlatformInfo> = {
   ebay: { label: "eBay", color: "#e53238", ctaLabel: "Find on eBay" },
   "lemon-squeezy": { label: "Lemon Squeezy", color: "#ffc233", ctaLabel: "Buy now" },
   "hobfarm-direct": { label: "HobFarm Direct", color: "#f24da6", ctaLabel: "Buy direct" },
-  patreon: { label: "Patreon", color: "#ff424d", ctaLabel: "Unlock on Patreon" },
 };
 
 export function getPlatformInfo(platform: ProductPlatform): PlatformInfo {

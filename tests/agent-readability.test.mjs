@@ -241,7 +241,9 @@ test("agent-readable public surfaces expose appropriate structured data", () => 
   assert.match(styleFusion, /FAQPage/);
   assert.match(styleFusion, /mainEntity/);
   assert.match(shop, /shopJsonLd/);
-  assert.match(shop, /"@type": "Product"/);
+  assert.match(shop, /"@type": "CollectionPage"/);
+  assert.match(shop, /"@type": "ItemList"/);
+  assert.doesNotMatch(shop, /"@type": "Product"/);
   assert.match(workshop, /workshopJsonLd/);
   assert.match(workshop, /CollectionPage/);
   assert.match(academy, /academyJsonLd/);

@@ -1,0 +1,45 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+---
+
+<BaseLayout
+  title="Sophia and Stella moved to the Workshop | HobFarm"
+  description="The former Sophia and Stella Shop preview now points to the Workshop character-system case study and HobFarm's DeviantArt character archive."
+  canonical="/shop/sophia-stella-sheet-pack/"
+>
+  <section class="bg-noise">
+    <ContentPanel>
+      <Wrapper variant="narrow" class="py-20 lg:py-28">
+        <p class="font-mono text-xs uppercase tracking-widest text-accent-magenta-bright">Shop handoff</p>
+        <Text tag="h1" variant="displayXL" class="mt-6 text-balance font-display text-white">
+          Sophia and Stella live in the Workshop.
+        </Text>
+        <Text tag="p" variant="textLG" class="mt-6 text-pretty leading-relaxed text-base-300">
+          This URL used to preview a possible character-sheet pack. That product is not for sale. The full public case study remains available in the Workshop, where it explains how one base mannequin became two visual systems.
+        </Text>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <Button isLink size="sm" variant="green" href="/workshop/#sophia-stella">
+            Learn the character system
+          </Button>
+          <Button
+            isLink
+            size="sm"
+            variant="muted"
+            href="https://www.deviantart.com/hobfarm"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Browse character assets on DeviantArt ↗
+          </Button>
+        </div>
+        <p class="mt-8 text-sm leading-relaxed text-base-500">
+          A purchase link will only appear when a specific asset has a verified live listing.
+        </p>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+</BaseLayout>

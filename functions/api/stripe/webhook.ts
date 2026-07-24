@@ -7,8 +7,12 @@ import {
   type AdminSubscriptionRecord,
   type SubscriptionStatus,
 } from "./internal";
+import {
+  fetchCommerceJson,
+  type CommerceServiceEnv,
+} from "../shop/internal";
 
-interface Env {
+interface Env extends CommerceServiceEnv {
   STRIPE_API_KEY: string;
   STRIPE_WEBHOOK_SECRET: string;
   AUTH_WORKER_URL: string;
@@ -83,6 +87,139 @@ async function postUpsert(env: Env, payload: AdminSubscriptionUpsert): Promise<v
   }
 }
 
+function isDirectShopSession(session: Stripe.Checkout.Session): boolean {
+  return (
+    session.mode === "payment" &&
+    session.metadata?.surface === "hobfarm-direct-shop"
+  );
+}
+
+async function postDirectPayment(
+  env: Env,
+  stripe: Stripe,
+  event: Stripe.Event,
+  session: Stripe.Checkout.Session,
+): Promise<{ skipped?: string }> {
+  if (!isDirectShopSession(session)) return { skipped: "other_payment_session" };
+  if (session.payment_status !== "paid") {
+    return { skipped: "payment_not_paid" };
+  }
+  const full = await stripe.checkout.sessions.retrieve(session.id);
+  const shipping = full.collected_information?.shipping_details;
+  const address = shipping?.address;
+  const paymentIntentId = extractStripeId(full.payment_intent);
+  const orderId = full.client_reference_id;
+  const email = full.customer_details?.email ?? full.customer_email;
+  if (
+    !env.COMMERCE ||
+    !shipping ||
+    !address ||
+    !paymentIntentId ||
+    !orderId ||
+    !email ||
+    !full.currency ||
+    typeof full.amount_subtotal !== "number" ||
+    typeof full.amount_total !== "number"
+  ) {
+    throw new Error("direct_checkout_missing_required_fields");
+  }
+
+  const response = await fetchCommerceJson<{ duplicate?: boolean; error?: string }>(
+    env,
+    "POST",
+    "/internal/stripe/paid",
+    {
+      eventId: event.id,
+      eventType: event.type,
+      eventCreated: event.created,
+      orderId,
+      stripeSessionId: full.id,
+      paymentIntentId,
+      stripeCustomerId: extractStripeId(full.customer),
+      currency: full.currency,
+      cartFingerprint: full.metadata?.cart,
+      catalogRevision: full.metadata?.catalog_revision,
+      merchandiseSubtotalAmount: full.amount_subtotal,
+      shippingAmount: full.total_details?.amount_shipping ?? 0,
+      taxAmount: full.total_details?.amount_tax ?? 0,
+      totalAmount: full.amount_total,
+      recipient: {
+        name: shipping.name,
+        company: null,
+        address1: address.line1,
+        address2: address.line2,
+        city: address.city,
+        stateCode: address.state,
+        countryCode: address.country,
+        postalCode: address.postal_code,
+        email,
+        phone: full.customer_details?.phone ?? null,
+      },
+    },
+  );
+  if (response.status < 200 || response.status >= 300) {
+    throw new Error(
+      `commerce_paid_record_failed status=${response.status} code=${response.data?.error ?? "unknown"}`,
+    );
+  }
+  return {};
+}
+
+async function postDirectPaymentFailure(
+  env: Env,
+  event: Stripe.Event,
+  session: Stripe.Checkout.Session,
+): Promise<{ skipped?: string }> {
+  if (!isDirectShopSession(session)) return { skipped: "other_payment_session" };
+  const orderId = session.client_reference_id;
+  if (!env.COMMERCE || !orderId) {
+    throw new Error("direct_checkout_missing_order");
+  }
+  const response = await fetchCommerceJson(
+    env,
+    "POST",
+    "/internal/stripe/failed",
+    {
+      eventId: event.id,
+      eventType: event.type,
+      orderId,
+      stripeSessionId: session.id,
+    },
+  );
+  if (response.status < 200 || response.status >= 300) {
+    throw new Error(`commerce_failure_record_failed status=${response.status}`);
+  }
+  return {};
+}
+
+async function postDirectRefund(
+  env: Env,
+  event: Stripe.Event,
+  refund: Stripe.Refund,
+): Promise<{ skipped?: string }> {
+  const paymentIntentId = extractStripeId(refund.payment_intent);
+  if (!paymentIntentId) return { skipped: "refund_without_payment_intent" };
+  if (!env.COMMERCE) throw new Error("commerce_service_not_configured");
+  const response = await fetchCommerceJson<{ matched?: boolean }>(
+    env,
+    "POST",
+    "/internal/stripe/refund",
+    {
+      stripeEventId: event.id,
+      stripeRefundId: refund.id,
+      paymentIntentId,
+      amount: refund.amount,
+      currency: refund.currency.toUpperCase(),
+      status: refund.status ?? "unknown",
+      reason: refund.reason ?? null,
+    },
+  );
+  if (response.status < 200 || response.status >= 300) {
+    throw new Error(`commerce_refund_record_failed status=${response.status}`);
+  }
+  return response.data?.matched ? {} : { skipped: "unmatched_refund" };
+}
+
 // Pull invoice → subscription id from current Stripe SDK shape. The 2026
 // shape moved subscription off invoice and onto parent.subscription_details.
 function invoiceSubscriptionId(invoice: Stripe.Invoice): string | null {
@@ -142,6 +279,10 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     switch (event.type) {
       case "checkout.session.completed": {
         const session = event.data.object as Stripe.Checkout.Session;
+        if (isDirectShopSession(session)) {
+          const result = await postDirectPayment(env, stripe, event, session);
+          return ok(result);
+        }
         if (session.mode !== "subscription") {
           console.log(`[stripe/webhook] skip non-subscription session=${session.id}`);
           return ok({ skipped: "non_subscription_mode" });
@@ -165,6 +306,26 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
         }
         await postUpsert(env, buildUpsert(sub, userId, event));
         return ok();
+      }
+
+      case "checkout.session.async_payment_succeeded": {
+        const session = event.data.object as Stripe.Checkout.Session;
+        const result = await postDirectPayment(env, stripe, event, session);
+        return ok(result);
+      }
+
+      case "checkout.session.async_payment_failed": {
+        const session = event.data.object as Stripe.Checkout.Session;
+        const result = await postDirectPaymentFailure(env, event, session);
+        return ok(result);
+      }
+
+      case "refund.created":
+      case "refund.updated":
+      case "refund.failed": {
+        const refund = event.data.object as Stripe.Refund;
+        const result = await postDirectRefund(env, event, refund);
+        return ok(result);
       }
 
       case "customer.subscription.created":

@@ -1,0 +1,150 @@
+---
+export interface WorkshopOfferLink {
+  label: string;
+  href: string;
+  description?: string;
+}
+
+interface Props {
+  method?: WorkshopOfferLink;
+  assets?: WorkshopOfferLink;
+  support?: WorkshopOfferLink;
+  heading?: string;
+  class?: string;
+}
+
+const {
+  method,
+  assets,
+  support,
+  heading = "Continue with the work",
+  class: className,
+} = Astro.props;
+
+const offers = [
+  method && {
+    kind: "Learn the method",
+    accent: "var(--color-accent-cyan)",
+    ...method,
+  },
+  assets && {
+    kind: "Get the assets",
+    accent: "var(--color-accent-magenta-bright)",
+    ...assets,
+  },
+  support && {
+    kind: "Support the next project",
+    accent: "var(--color-accent-green-bright)",
+    ...support,
+  },
+].filter((offer): offer is NonNullable<typeof offer> => Boolean(offer));
+
+const isExternal = (href: string) => /^https?:\/\//i.test(href);
+---
+
+{offers.length > 0 && (
+  <section class:list={["workshop-offer-rail", className]} aria-labelledby="workshop-offer-heading">
+    <p class="workshop-offer-rail__eyebrow">From the same work</p>
+    <h2 id="workshop-offer-heading">{heading}</h2>
+    <div class="workshop-offer-rail__grid">
+      {offers.map((offer) => (
+        <a
+          href={offer.href}
+          target={isExternal(offer.href) ? "_blank" : undefined}
+          rel={isExternal(offer.href) ? "noopener noreferrer" : undefined}
+          style={`--offer-accent:${offer.accent}`}
+        >
+          <span>{offer.kind}</span>
+          <strong>{offer.label}{isExternal(offer.href) ? " ↗" : ""}</strong>
+          {offer.description && <small>{offer.description}</small>}
+        </a>
+      ))}
+    </div>
+  </section>
+)}
+
+<style>
+  .workshop-offer-rail {
+    margin-top: 3rem;
+    padding: clamp(1.25rem, 4vw, 2rem);
+    border: 1px solid var(--color-base-800);
+    background: color-mix(in srgb, var(--color-base-950) 82%, transparent);
+  }
+
+  .workshop-offer-rail__eyebrow {
+    margin: 0;
+    color: var(--color-base-500);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .workshop-offer-rail h2 {
+    margin: 0.6rem 0 0;
+    color: var(--color-white);
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2.35rem);
+    font-weight: 650;
+    letter-spacing: -0.035em;
+  }
+
+  .workshop-offer-rail__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: 0.75rem;
+    margin-top: 1.4rem;
+  }
+
+  .workshop-offer-rail__grid a {
+    display: flex;
+    min-height: 8rem;
+    flex-direction: column;
+    padding: 1rem;
+    border: 1px solid var(--color-base-800);
+    border-top: 2px solid var(--offer-accent);
+    background: var(--color-base-900);
+    color: var(--color-base-200);
+    text-decoration: none;
+    transition: border-color 160ms ease, transform 160ms ease;
+  }
+
+  .workshop-offer-rail__grid a:hover,
+  .workshop-offer-rail__grid a:focus-visible {
+    border-color: var(--offer-accent);
+    transform: translateY(-2px);
+  }
+
+  .workshop-offer-rail__grid span {
+    color: var(--offer-accent);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .workshop-offer-rail__grid strong {
+    margin-top: 0.65rem;
+    color: var(--color-white);
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .workshop-offer-rail__grid small {
+    margin-top: 0.5rem;
+    color: var(--color-base-400);
+    font-size: 0.75rem;
+    line-height: 1.55;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .workshop-offer-rail__grid a {
+      transition: none;
+    }
+
+    .workshop-offer-rail__grid a:hover,
+    .workshop-offer-rail__grid a:focus-visible {
+      transform: none;
+    }
+  }
+</style>

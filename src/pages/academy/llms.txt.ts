@@ -5,12 +5,12 @@ export async function GET() {
   return textResponse(
     await buildSectionLlms(
       "HobFarm Academy Agent Index",
-      "Public learning paths and course entry points. Paid lesson files and account-gated material are excluded.",
+      "Free and affordable one-time course entry points. Paid lesson files and account-gated material are excluded.",
       [
         {
           title: "Academy",
           url: absoluteUrl("/academy/"),
-          description: "Public overview of HobFarm learning paths.",
+          description: "Public catalog of HobFarm courses and one-time pricing bands.",
         },
         ...academyCourses.map((course) => ({
           title: course.title,

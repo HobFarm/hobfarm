@@ -48,9 +48,10 @@ test("Workshop uses capped Sophia and Stella media and real downstream paths", (
 
   assert.match(page, /mediaImageUrl/);
   assert.match(page, /width, quality: 84/);
-  assert.match(page, /visualSystemPath\(system\.slug\)/);
-  assert.match(page, /\/shop\/sophia-stella-sheet-pack\//);
-  assert.match(page, /\/academy\//);
+  assert.match(page, /getVisualSystem\("sophia-stella"\)/);
+  assert.match(page, /Learn the character system/);
+  assert.match(page, /Browse character assets on DeviantArt/);
+  assert.doesNotMatch(page, /View the character pack/);
 });
 
 test("Workshop preserves complete poster and video artwork in compact frames", () => {

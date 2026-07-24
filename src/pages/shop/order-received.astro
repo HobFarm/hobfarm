@@ -1,0 +1,37 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import OrderReceiptStatus from "@/components/shop/OrderReceiptStatus";
+---
+
+<BaseLayout
+  title="Order received | HobFarm Shop"
+  description="Return page for HobFarm direct shop checkout."
+  canonical="/shop/order-received/"
+  noindex
+>
+  <ContentPanel>
+    <Wrapper variant="narrow" class="py-20 lg:py-28">
+      <p class="font-mono text-[10px] uppercase tracking-[0.18em] text-accent-green">
+        HobFarm direct shop
+      </p>
+      <Text tag="h1" variant="displayLG" class="mt-4 font-display text-white">
+        Your payment is being checked.
+      </Text>
+      <Text tag="p" variant="textBase" class="mt-6 max-w-2xl text-pretty leading-relaxed text-base-300">
+        HobFarm verifies the Stripe payment before the order moves into production. Keep the receipt sent to your email.
+      </Text>
+      <Text tag="p" variant="textSM" class="mt-4 max-w-2xl leading-relaxed text-base-500">
+        If the receipt does not arrive or the result is unclear, use Customer Help. Wait for the first payment to appear below before submitting the cart again.
+      </Text>
+      <OrderReceiptStatus client:load />
+      <div class="mt-8 flex flex-wrap gap-3">
+        <Button isLink variant="green" size="sm" href="/shop/">Return to Shop</Button>
+        <Button isLink variant="muted" size="sm" href="/helpcenter/">Customer Help</Button>
+      </div>
+    </Wrapper>
+  </ContentPanel>
+</BaseLayout>

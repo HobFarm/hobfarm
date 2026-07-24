@@ -1,0 +1,26 @@
+name = "hobfarm-commerce"
+main = "src/index.ts"
+compatibility_date = "2026-07-23"
+
+# This Worker has no public route. It is intended for remote inspection during
+# setup and, later, a service binding from the HobFarm Pages project.
+workers_dev = false
+
+[[secrets_store_secrets]]
+binding = "PRINTFUL_API_TOKEN"
+store_id = "e1efb254fa9e40359b0b3bdeab02b082"
+secret_name = "printful"
+
+[vars]
+# All fulfillment mutations stay off until a sample is approved and the
+# Stripe-to-ledger rehearsal has passed in the deployed environment.
+FULFILLMENT_EXECUTION_ENABLED = "false"
+PRINTFUL_DRAFT_CREATION_ENABLED = "false"
+PRINTFUL_CONFIRMATION_ENABLED = "false"
+PRINTFUL_MAX_ORDER_COST_AMOUNT = "0"
+
+[triggers]
+crons = ["*/15 * * * *"]
+
+[observability]
+enabled = false

@@ -68,9 +68,17 @@ Revision limits, delivery windows, rights, and refund terms for custom work shou
 
 Physical products, print-on-demand products, merch, books, prints, and marketplace items may be fulfilled by third-party platforms. Returns, replacements, shipping issues, taxes, customs, and delivery timelines may be governed by the platform or print provider.
 
-For damaged, defective, missing, or incorrect physical products, contact HobFarm or the marketplace support path with photos and order details as soon as possible. HobFarm will review the issue and work through the applicable provider process when practical.
+For damaged, defective, missing, or incorrect physical products, contact [Customer Help](/helpcenter/) or the marketplace help path with photos and order details as soon as possible. HobFarm will review the issue and work through the applicable provider process when practical.
 
 Refunds are generally not available for buyer's remorse, wrong size selection, incorrect shipping information provided by the buyer, customs delays, or carrier delays outside HobFarm's control unless the applicable platform policy requires otherwise.
+
+### Direct HobFarm Print-on-Demand Orders
+
+Products bought through the HobFarm checkout are made after payment. Contact [Customer Help](/helpcenter/) immediately if an address or color is wrong. HobFarm may be able to stop or correct an order before production starts, but cancellation is not guaranteed after the order reaches the print provider.
+
+Report a damaged, misprinted, missing, or incorrect item promptly. Include the HobFarm order number, a description of the problem, and clear photos when the item arrived damaged or incorrect. Do not mail an item to HobFarm or the print provider unless Customer Help gives you return instructions.
+
+Approved refunds go back to the original payment method. Approved replacements may be sent without requiring a return when the provider can verify the production or shipping problem. Delivery estimates are estimates, not guaranteed arrival dates.
 
 ## Payment Platform Rules
 
@@ -88,4 +96,4 @@ HobFarm may provide the payment provider with order records, access logs, refund
 
 Refund and billing questions: [contact HobFarm](/contact/)
 
-General support: [Support](/support/)
+Customer Help: [payments, access, delivery, and refund help](/helpcenter/)

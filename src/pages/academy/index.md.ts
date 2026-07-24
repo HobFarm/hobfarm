@@ -5,15 +5,16 @@ export function GET() {
   return markdownResponse(
     pageMarkdown({
       title: "Academy",
-      description: "Practical HobFarm courses for research, creative production, media judgment, and repeatable AI workflows.",
+      description: "A catalog of practical free and affordable one-time HobFarm courses.",
       canonicalUrl: absoluteUrl("/academy/"),
       metadata: {
         availableCourses: academyCourses.map((course) => course.title).join("; "),
+        priceLabels: "Free; $5; $7; $9; clearly labeled one-time bundles",
         freeCourse: intellectualSelfDefenseCourse.href,
         freeCourseStart: intellectualSelfDefenseCourse.startHref,
       },
       body: academyCourses
-        .map((course) => `- [${course.title}](${absoluteUrl(course.href)}): ${course.description}`)
+        .map((course) => `- [${course.title}](${absoluteUrl(course.href)}): ${course.priceLabel}. ${course.description}`)
         .join("\n"),
     }),
   );

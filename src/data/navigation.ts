@@ -63,7 +63,7 @@ export const footerLinkGroups: FooterGroup[] = [
     links: [
       { label: "Departments", href: "/departments/" },
       { label: "About", href: "/about/" },
-      { label: "Customer Support", href: "/helpcenter/" },
+      { label: "Customer Help", href: "/helpcenter/" },
       { label: "Terms", href: "/legal/terms/" },
       { label: "Privacy", href: "/legal/privacy/" },
       { label: "Refunds", href: "/legal/refunds/" },

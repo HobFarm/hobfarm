@@ -429,7 +429,6 @@ const gallery = defineCollection({
         deviantArt: z.url().optional(),
         deviantArtPremium: z.url().optional(),
         kofi: z.url().optional(),
-        patreon: z.url().optional(),
         course: z.url().optional(),
       })
       .optional(),
@@ -966,7 +965,6 @@ const products = defineCollection({
       "ebay",
       "lemon-squeezy",
       "hobfarm-direct",
-      "patreon",
     ]),
     // Storefront/listing URL. Optional so a planned/coming-soon drop can exist
     // before it goes live.
@@ -979,11 +977,20 @@ const products = defineCollection({
     variants: z
       .array(
         z.object({
+          code: z.string().optional(),
           sku: z.string(),
           name: z.string(),
+          unitAmount: z.number().int().positive().optional(),
           priceLabel: z.string().optional(),
           currency: z.string().length(3).optional(),
           printfulVariantId: z.string().optional(),
+          previewImage: z
+            .object({
+              folder: z.string(),
+              file: z.string(),
+              alt: z.string(),
+            })
+            .optional(),
           available: z.boolean().default(true),
         }),
       )

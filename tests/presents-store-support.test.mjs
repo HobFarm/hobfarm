@@ -12,11 +12,13 @@ test("Presents exposes the new editorial journey", async () => {
   assert.match(page, /prefers-reduced-motion/);
 });
 
-test("support platforms remain explicit and separate", async () => {
+test("support platforms have one funding job each", async () => {
   const platforms = await read("src/data/support-platforms.ts");
   assert.match(platforms, /https:\/\/ko-fi\.com\/hobfarm\//);
-  assert.match(platforms, /https:\/\/www\.patreon\.com\/hobfarm/);
-  assert.match(platforms, /separate from HobFarm accounts/);
+  for (const id of ["kofi", "hobfarm", "shop", "academy"]) {
+    assert.match(platforms, new RegExp(`id: "${id}"`));
+  }
+  assert.doesNotMatch(platforms, /patreon/i);
 });
 
 test("shop products use durable detail routes", async () => {

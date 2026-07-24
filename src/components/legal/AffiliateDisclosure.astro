@@ -1,0 +1,17 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<p
+  class:list={[
+    "border-l-2 border-accent-cyan/60 pl-3 text-xs leading-relaxed text-base-500",
+    className,
+  ]}
+  role="note"
+>
+  Affiliate link: HobFarm may earn a commission if you buy through this link. It does not change your price.
+</p>

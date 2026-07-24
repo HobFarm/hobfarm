@@ -1,16 +1,21 @@
-import { buildSectionLlms, markdownResponse, productMarkdown, productToAgentLink } from "@/lib/agent-corpus";
-import { getPublicProducts } from "@/lib/products";
+import { absoluteUrl, buildSectionLlms, markdownResponse } from "@/lib/agent-corpus";
+import { storefronts } from "@/data/storefronts";
 
 export async function GET() {
-  const products = await getPublicProducts();
   return markdownResponse(
     [
       await buildSectionLlms(
-        "HobFarm Products / Shop",
-        "Public product previews and storefront routes. Paid downloads and source files are excluded.",
-        products.map(productToAgentLink),
+        "HobFarm Shop",
+        "A stable directory for direct merchandise, marketplace shelves, courses, and one-time reader support. It does not mirror marketplace listings or advertise unavailable products.",
+        storefronts.map((storefront) => ({
+          title: storefront.name,
+          url: storefront.href
+            ? absoluteUrl(storefront.href)
+            : absoluteUrl(`/shop/#${storefront.id}`),
+          description: `${storefront.status}. ${storefront.description}`,
+        })),
       ),
-      products.map(productMarkdown).join("\n\n---\n\n"),
+      "Customer problems belong in [Customer Help](https://hob.farm/helpcenter/). Reader funding belongs on [Support HobFarm](https://hob.farm/support/).",
     ].join("\n\n"),
   );
 }

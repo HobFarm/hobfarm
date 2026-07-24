@@ -4,209 +4,162 @@ import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import ContentPanel from "@/components/ContentPanel.astro";
 import Eyebrow from "@/components/sections/Eyebrow.astro";
-import SectionHeader from "@/components/sections/SectionHeader.astro";
 import Button from "@/components/fundations/elements/Button.astro";
-import KofiCta from "@/components/KofiCta.astro";
 import DropCard from "@/components/shop/DropCard.astro";
-import SupportWays from "@/components/support/SupportWays.astro";
-import { previewImageUrl } from "@/lib/gallery";
-import { getPublicProducts, isBuyable, productSlug } from "@/lib/products";
+import { storefronts } from "@/data/storefronts";
+import { getPublicProducts } from "@/lib/products";
 
-const ETSY = "https://www.etsy.com/shop/hobfarm";
-
-// Real/planned drops only (live, coming-soon, sold-out). No fake product cards.
-const drops = await getPublicProducts();
 const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
-
-type Family = { title: string; body: string };
-
-const families: Family[] = [
-  {
-    title: "Surreal desk mats",
-    body: "Wide-format desk worlds: portal surfaces, cracked-wall illusions, haunted villages, and psychedelic office landscapes for desks that should not look like a supply catalog.",
-  },
-  {
-    title: "Digital sticker + clip-art packs",
-    body: "Low-cost downloadable sets: Halloween monsters, haunted objects, fictional warning labels, ravens, pumpkins, ghosts, and portal fragments for stickers, journals, and collage.",
-  },
-  {
-    title: "Drinkware",
-    body: "Mugs, tumblers, and pint glasses using simplified graphics, wrap concepts, haunted labels, and fictional souvenir-shop marks pulled from larger HobFarm worlds.",
-  },
-  {
-    title: "Bags + laptop sleeves",
-    body: "Totes, sleeves, and duffles with bold central graphics, pattern crops, fictional brand marks, and design fragments from larger collections.",
-  },
-  {
-    title: "Handmade clay oddities",
-    body: "Small polymer clay pieces: magnets, charms, ghost blobs, portal drips, signposts, relics, and ornaments. The handmade layer beyond print-on-demand.",
-  },
-  {
-    title: "Vintage finds",
-    body: "Odd, useful, and collectible pieces found through local hunting, estate sales, and auctions. One-off shelf items in the wider HobFarm gift-shop.",
-  },
-];
-
-const productStructuredDescription = (product: (typeof drops)[number]) =>
-  product.data.paidAssetPolicy?.hasPaidAsset
-    ? "Public preview for a HobFarm product drop. Downloadable originals are excluded from machine-readable public metadata."
-    : product.data.shortDescription;
-
-const productStructuredImage = (product: (typeof drops)[number]) =>
-  product.data.paidAssetPolicy?.hasPaidAsset
-    ? undefined
-    : previewImageUrl(product.data.previewImage.folder, product.data.previewImage.file);
-
+const directProducts = (await getPublicProducts()).filter(
+  (product) => product.data.platform === "hobfarm-direct",
+);
 const shopJsonLd = {
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "CollectionPage",
-      "@id": `${siteOrigin}/shop/#collection`,
-      name: "Shop",
-      description:
-        "Usable objects from the HobFarm visual system: desk mats, digital sticker packs, drinkware, handmade clay oddities, and vintage finds.",
-      url: `${siteOrigin}/shop/`,
-      mainEntity: {
-        "@type": "ItemList",
-        itemListElement: drops.map((product, index) => ({
-          "@type": "ListItem",
-          position: index + 1,
-          url: `${siteOrigin}/shop/${productSlug(product)}/`,
-          name: product.data.title,
-        })),
-      },
-    },
-    ...drops.map((product) => ({
-      "@type": "Product",
-      "@id": `${siteOrigin}/shop/${productSlug(product)}/#product`,
-      name: product.data.title,
-      description: productStructuredDescription(product),
-      ...(productStructuredImage(product) ? { image: productStructuredImage(product) } : {}),
-      category: product.data.productType,
-      brand: {
-        "@type": "Brand",
-        name: "HobFarm",
-      },
-      ...(isBuyable(product) && product.data.externalUrl
-        ? {
-            offers: {
-              "@type": "Offer",
-              url: product.data.externalUrl,
-              availability: "https://schema.org/InStock",
-            },
-          }
+  "@type": "CollectionPage",
+  "@id": `${siteOrigin}/shop/#directory`,
+  name: "HobFarm Shop",
+  description:
+    "A directory for HobFarm merchandise, marketplace shelves, courses, and one-time reader support.",
+  url: `${siteOrigin}/shop/`,
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: storefronts.map((storefront, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: storefront.name,
+      description: storefront.description,
+      ...(storefront.href
+        ? { url: new URL(storefront.href, siteOrigin).toString() }
         : {}),
     })),
-  ],
+  },
 };
 ---
 
 <BaseLayout
   title="Shop | HobFarm"
-  description="Usable objects from the HobFarm visual system: desk mats, digital sticker packs, drinkware, handmade clay oddities, and vintage finds. On Etsy and Ko-fi."
+  description="Find the right HobFarm storefront for direct merchandise, craft files, character assets, one-off objects, courses, or one-time support."
   canonical="/shop/"
   structuredData={shopJsonLd}
 >
-  {/* ── Hero ── */}
   <section class="bg-noise border-b border-base-800/50">
     <ContentPanel>
       <Wrapper variant="standard" class="py-20 lg:py-28">
         <Eyebrow text="HobFarm / Shop" />
-        <Text tag="h1" variant="display2XL" class="mt-6 text-white font-display max-w-4xl text-balance">
-          Shop
+        <Text tag="h1" variant="display2XL" class="mt-6 max-w-4xl text-balance font-display text-white">
+          One clear shelf for each kind of work.
         </Text>
-        <Text tag="p" variant="textBase" class="text-base-300 mt-6 max-w-2xl text-pretty leading-relaxed">
-          The shop is where the visual experiments become things you can use, collect, download, or gift. Visual-system objects, built into small product worlds rather than random merch.
-        </Text>
-        <div class="mt-8 flex flex-wrap items-center gap-3">
-          <Button isLink size="sm" variant="green" href={ETSY} target="_blank" rel="noopener noreferrer">Shop on Etsy</Button>
-          <KofiCta variant="button" />
-        </div>
-        <Text tag="p" variant="textSM" class="text-base-500 mt-6 max-w-2xl text-pretty leading-relaxed">
-          Etsy is the main storefront today. Ko-fi handles support and small drops. An on-site shop and eBay are later shelves, not open yet.
+        <Text tag="p" variant="textBase" class="mt-6 max-w-2xl text-pretty leading-relaxed text-base-300">
+          HobFarm uses several storefronts because they do different jobs. Direct HobFarm merchandise appears here. Marketplace listings stay on the platform that handles the sale.
         </Text>
       </Wrapper>
     </ContentPanel>
   </section>
 
-  <section class="border-t border-base-800/50">
-    <ContentPanel>
-      <Wrapper variant="standard" class="py-12 lg:py-20">
-        <SupportWays
-          compact
-          heading="Support beyond the shop"
-          description="Join directly through HobFarm, use Ko-fi for tips and commission requests, or visit Patreon as a separate membership community."
-        />
-      </Wrapper>
-    </ContentPanel>
-  </section>
-
-  {/* ── Drops (real/planned products only) ── */}
-  {drops.length > 0 && (
-    <section class="border-t border-base-800/50">
+  {directProducts.length > 0 && (
+    <section aria-labelledby="direct-products-heading" class="border-b border-base-800/50">
       <ContentPanel>
         <Wrapper variant="standard" class="py-12 lg:py-20">
-          <SectionHeader
-            eyebrow="Drops"
-            heading="Character packs & drops"
-            note="Preview the system here; full-resolution paid files live on the storefront."
-          />
-          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {drops.map((product) => <DropCard product={product} />)}
+          <div class="max-w-3xl">
+            <p class="font-mono text-[10px] uppercase tracking-widest text-accent-magenta-bright">Made by HobFarm</p>
+            <Text id="direct-products-heading" tag="h2" variant="displaySM" class="mt-3 font-display text-white">
+              Direct merchandise
+            </Text>
+            <Text tag="p" variant="textBase" class="mt-4 text-pretty leading-relaxed text-base-400">
+              These items belong to the HobFarm checkout. A coming-soon page shows verified variants and shipping without opening payment early.
+            </Text>
+          </div>
+          <div class="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:max-w-3xl">
+            {directProducts.map((product) => <DropCard product={product} />)}
           </div>
         </Wrapper>
       </ContentPanel>
     </section>
   )}
 
-  {/* ── Product families ── */}
-  <section class="border-t border-base-800/50">
+  <section aria-labelledby="storefront-directory-heading">
     <ContentPanel>
       <Wrapper variant="standard" class="py-12 lg:py-20">
-        <SectionHeader eyebrow="01" heading="Product families" note="Built to become several useful things." />
-        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {families.map((family) => (
-            <div class="rounded-lg border border-base-800 bg-base-900/40 p-6">
-              <Text tag="h3" variant="textLG" class="text-white font-display">
-                {family.title}
+        <div class="max-w-3xl">
+          <p class="font-mono text-[10px] uppercase tracking-widest text-accent-cyan">Storefront directory</p>
+          <Text id="storefront-directory-heading" tag="h2" variant="displaySM" class="mt-3 font-display text-white">
+            Choose by what you want.
+          </Text>
+          <Text tag="p" variant="textBase" class="mt-4 text-pretty leading-relaxed text-base-400">
+            External links open the storefront itself. Each marketplace listing stays where its transaction is handled.
+          </Text>
+        </div>
+
+        <div class="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-2">
+          {storefronts.map((storefront) => (
+            <article
+              id={storefront.id}
+              class="flex min-h-full flex-col border border-base-800 bg-base-900/45 p-6 lg:p-7"
+              style={`--storefront-accent:${storefront.accent}`}
+            >
+              <p class="font-mono text-[10px] uppercase tracking-[0.18em]" style="color:var(--storefront-accent)">
+                {storefront.eyebrow}
+              </p>
+              <div class="mt-3 flex flex-wrap items-start justify-between gap-3">
+                <Text tag="h3" variant="displayXS" class="font-display text-white">
+                  {storefront.name}
+                </Text>
+                <span class="border border-base-700 px-2 py-1 font-mono text-[10px] uppercase tracking-wider text-base-400">
+                  {storefront.status}
+                </span>
+              </div>
+              <Text tag="p" variant="textSM" class="mt-4 text-pretty leading-relaxed text-base-400">
+                {storefront.description}
               </Text>
-              <Text tag="p" variant="textSM" class="text-base-400 mt-3 text-pretty leading-relaxed">
-                {family.body}
-              </Text>
-            </div>
+              <ul class="mt-5 grid gap-2 border-t border-base-800 pt-5 text-sm text-base-300 sm:grid-cols-2">
+                {storefront.inventory.map((item) => (
+                  <li class="flex gap-2">
+                    <span aria-hidden="true" style="color:var(--storefront-accent)">+</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <div class="mt-auto pt-6">
+                {storefront.href && storefront.cta ? (
+                  <Button
+                    isLink
+                    size="sm"
+                    variant={storefront.external ? "muted" : "green"}
+                    href={storefront.href}
+                    target={storefront.external ? "_blank" : undefined}
+                    rel={storefront.external ? "noopener noreferrer" : undefined}
+                  >
+                    {storefront.cta}{storefront.external ? " ↗" : ""}
+                  </Button>
+                ) : (
+                  <p class="font-mono text-xs leading-relaxed text-base-500">
+                    No purchase link appears until the inventory and checkout path are verified.
+                  </p>
+                )}
+              </div>
+            </article>
           ))}
         </div>
       </Wrapper>
     </ContentPanel>
   </section>
 
-  {/* ── Corrupted Craft Village feature ── */}
   <section class="border-t border-base-800/50">
     <ContentPanel>
       <Wrapper variant="standard" class="py-12 lg:py-20">
-        <SectionHeader eyebrow="02" heading="Corrupted Craft Village" note="Dark, tactile, product-focused." />
-        <Text tag="p" variant="textBase" class="text-base-400 max-w-2xl text-pretty leading-relaxed">
-          A product world built from souvenir-house nostalgia, antique shops, New England roads, ghost villages, and haunted windows, run through ooze, portals, and supernatural gift-shop logic. Call it corrupted cottagecore if you need a label. It shows up as desk mats, mugs, posters, sticker packs, digital art, and handmade clay add-ons.
-        </Text>
-      </Wrapper>
-    </ContentPanel>
-  </section>
-
-  {/* ── CTA ── */}
-  <section class="border-t border-base-800/50">
-    <ContentPanel>
-      <Wrapper variant="standard" class="py-12 lg:py-20">
-        <Text tag="h2" variant="displaySM" class="text-white font-display">
-          Want something specific?
-        </Text>
-        <Text tag="p" variant="textBase" class="text-base-400 mt-4 max-w-2xl text-pretty leading-relaxed">
-          See where the designs come from in the visuals, or ask for a custom piece.
-        </Text>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <Button isLink size="sm" variant="green" href={ETSY} target="_blank" rel="noopener noreferrer">Shop on Etsy</Button>
-          <Button isLink size="sm" variant="muted" href="/gallery">See the visuals</Button>
-          <Button isLink size="sm" variant="muted" href="/contact/">Custom request</Button>
+        <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+          <div class="max-w-2xl">
+            <Text tag="h2" variant="displaySM" class="font-display text-white">
+              Need help with an order?
+            </Text>
+            <Text tag="p" variant="textBase" class="mt-4 text-pretty leading-relaxed text-base-400">
+              Customer Help handles payments, access, downloads, refunds, accounts, courses, and marketplace order questions. Funding HobFarm is a separate path.
+            </Text>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <Button isLink size="sm" variant="green" href="/helpcenter/">Customer Help</Button>
+            <Button isLink size="sm" variant="muted" href="/support/">Support HobFarm</Button>
+          </div>
         </div>
       </Wrapper>
     </ContentPanel>

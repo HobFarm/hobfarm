@@ -39,13 +39,19 @@ test("department pages can surface related systems, drops, workshop notes, and c
   assert.match(department, /Comics/);
 });
 
-test("about page is recomposed as magazine, studio, workshop, shop, and contact paths", () => {
+test("about page presents the independent publisher and its operating paths", () => {
   const about = read("src/pages/about/index.astro");
 
-  for (const id of ["about-magazine", "about-studio", "about-workshop", "about-shop", "about-contact"]) {
-    assert.match(about, new RegExp(`id:\\s*"${id}"`), `${id} section should exist`);
+  for (const phrase of [
+    "independent publisher of articles, media, games, and creative systems",
+    "Articles are the editorial center",
+    "Workshop shows how the work is made",
+    "Academy teaches practical workflows",
+    "HobFarm is currently run by one person",
+    "not currently hiring",
+  ]) {
+    assert.match(about, new RegExp(phrase));
   }
-  assert.match(about, /id=\{section\.id\}/);
 
   assert.doesNotMatch(about, /import AboutMedia/);
   assert.doesNotMatch(about, /import AboutPitch/);

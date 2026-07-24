@@ -373,7 +373,7 @@ content:
         label: Platform
         type: select
         required: true
-        options: [deviantart, kofi, etsy, ebay, lemon-squeezy, hobfarm-direct, patreon]
+        options: [deviantart, kofi, etsy, ebay, lemon-squeezy, hobfarm-direct]
       - { name: externalUrl, label: Storefront URL (leave blank until live), type: string }
       - { name: externalListingId, label: External Listing ID, type: string }
       - name: fulfillment
@@ -386,11 +386,20 @@ content:
         type: object
         list: true
         fields:
+          - { name: code, label: Checkout Variant Code, type: string }
           - { name: sku, label: SKU, type: string, required: true }
           - { name: name, label: Name, type: string, required: true }
+          - { name: unitAmount, label: Unit Price in Cents, type: number }
           - { name: priceLabel, label: Price Label, type: string }
           - { name: currency, label: Currency, type: string }
           - { name: printfulVariantId, label: Printful Variant ID, type: string }
+          - name: previewImage
+            label: Variant Preview Image
+            type: object
+            fields:
+              - { name: folder, label: R2 Folder, type: string, required: true }
+              - { name: file, label: Preview file, type: string, required: true }
+              - { name: alt, label: Alt text, type: string, required: true }
           - { name: available, label: Available, type: boolean }
       - { name: entitlementId, label: Digital/Course Entitlement ID, type: string }
       - name: productType
@@ -589,7 +598,6 @@ content:
           - { name: deviantArt, label: DeviantArt URL, type: string }
           - { name: deviantArtPremium, label: DA Premium URL, type: string }
           - { name: kofi, label: Ko-fi URL, type: string }
-          - { name: patreon, label: Patreon URL, type: string }
           - { name: course, label: Course URL, type: string }
       - name: paidAssetPolicy
         label: Paid Asset Policy (preview-only safety)

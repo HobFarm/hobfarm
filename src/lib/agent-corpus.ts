@@ -80,7 +80,7 @@ export const CURATED_AGENT_LINKS: AgentLink[] = [
     title: "About HobFarm",
     url: "https://hob.farm/about/",
     description:
-      "How the magazine, visual studio, workshop, shop, and support paths fit together.",
+      "How the independent publication, media, games, creative systems, Workshop, Academy, Shop, and funding paths fit together.",
   },
   {
     title: "StyleFusion",

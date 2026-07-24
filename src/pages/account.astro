@@ -7,6 +7,7 @@ import ProfileCard from "@/components/auth/ProfileCard";
 import ApiKeysSection from "@/components/auth/ApiKeysSection";
 import DangerZone from "@/components/auth/DangerZone";
 import AccountMembershipCard from "@/components/auth/AccountMembershipCard";
+import AccountOrdersCard from "@/components/auth/AccountOrdersCard";
 ---
 
 <BaseLayout
@@ -32,6 +33,7 @@ import AccountMembershipCard from "@/components/auth/AccountMembershipCard";
           <div class="mt-12 space-y-6 max-w-3xl">
             <ProfileCard client:load />
             <AccountMembershipCard client:load />
+            <AccountOrdersCard client:visible />
             <ApiKeysSection client:load />
             <DangerZone client:load />
           </div>

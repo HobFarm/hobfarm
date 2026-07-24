@@ -3,6 +3,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import CharacterLookChapter from "@/components/workshop/CharacterLookChapter.astro";
 import CharacterOfferShelf from "@/components/workshop/CharacterOfferShelf.astro";
 import DesignDecisionMatrix from "@/components/workshop/DesignDecisionMatrix.astro";
+import AffiliateDisclosure from "@/components/legal/AffiliateDisclosure.astro";
 import {
   characterLooks,
   characterMannequinPage,
@@ -316,7 +317,7 @@ const relatedRoutes = [
             <a href={page.elevenLabsAssemblyWorkflowUrl} target="_blank" rel="noopener noreferrer">Open the character workflow</a>
             <a href={page.elevenLabsAffiliateUrl} target="_blank" rel="sponsored nofollow noopener noreferrer">Try ElevenLabs (affiliate)</a>
           </div>
-          <p class="affiliate-disclosure">The final link is an affiliate link. HobFarm may earn a commission if you sign up through it.</p>
+          <AffiliateDisclosure class="affiliate-disclosure" />
         </div>
       </div>
     </Wrapper>

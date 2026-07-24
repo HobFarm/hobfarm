@@ -8,55 +8,61 @@ import Eyebrow from "@/components/sections/Eyebrow.astro";
 
 const sections = [
   {
-    id: "about-magazine",
-    eyebrow: "Magazine",
-    heading: "The publication layer",
+    eyebrow: "Publication",
+    heading: "Articles are the editorial center.",
     body:
-      "HobFarm publishes articles, cartoons, archive dives, visual essays, gallery notes, and recurring departments. Articles are the source; social posts are fragments that point readers back to the full piece.",
+      "HobFarm publishes reported pieces, arguments, satire, cartoons, archive dives, visual essays, and recurring departments. Social posts carry fragments into other feeds; the complete work and its sources stay on hob.farm.",
     links: [
       { label: "Read articles", href: "/articles/" },
       { label: "Browse departments", href: "/departments/" },
     ],
   },
   {
-    id: "about-studio",
-    eyebrow: "Studio",
-    heading: "The visual-system layer",
+    eyebrow: "Media and projects",
+    heading: "Recurring work gets a durable home.",
     body:
-      "The studio side builds reusable character and style systems: base mannequins, aesthetic rules, posters, videos, previews, and shop-ready asset packs. The goal is not a pile of images; it is a repeatable set that can keep producing.",
+      "Character worlds, visual systems, video formats, galleries, and ongoing series live as projects that can grow across several releases. A project page connects the finished media to the articles, Workshop notes, and later work built from the same system.",
     links: [
-      { label: "Explore visual systems", href: "/visual-systems/" },
-      { label: "Open the gallery archive", href: "/gallery/" },
+      { label: "Explore projects", href: "/projects/" },
+      { label: "Open the gallery", href: "/gallery/" },
     ],
   },
   {
-    id: "about-workshop",
+    eyebrow: "Games and applications",
+    heading: "Software is part of the publishing work.",
+    body:
+      "HobFarm builds games, creative applications, research tools, and small interactive experiments. Some are public projects. Others remain prototypes until they are useful, secure, and ready to maintain.",
+    links: [{ label: "See current projects", href: "/projects/" }],
+  },
+  {
     eyebrow: "Workshop",
-    heading: "How the work is made",
+    heading: "Workshop shows how the work is made.",
     body:
-      "Workshop notes explain the production method: character locks, prompt structure, image tests, motion experiments, publishing decisions, and the failures that make the next pass better.",
-    links: [
-      { label: "Visit workshop", href: "/workshop/" },
-      { label: "See academy", href: "/academy/" },
-    ],
+      "Workshop pages record production methods, character locks, prompts, image tests, motion studies, publishing decisions, revisions, and failures. They preserve the method behind a release without turning every case study into a generic tutorial.",
+    links: [{ label: "Visit Workshop", href: "/workshop/" }],
   },
   {
-    id: "about-shop",
-    eyebrow: "Shop",
-    heading: "Where finished systems become drops",
+    eyebrow: "Academy",
+    heading: "Academy teaches practical workflows.",
     body:
-      "Shop paths collect paid assets, digital packs, print-on-demand ideas, handmade objects, and external storefront routes. Public pages show capped previews; full-resolution paid files live on the storefront.",
+      "Academy is a catalog of free and affordable one-time courses. Lessons come from working HobFarm systems and lead to a clear result, file, checklist, or repeatable production habit.",
+    links: [{ label: "Browse Academy", href: "/academy/" }],
+  },
+  {
+    eyebrow: "Shop and support",
+    heading: "Sales and reader funding pay for the next release.",
+    body:
+      "The Shop directory sends each kind of item to the right shelf. Ko-fi handles one-time reader support. HobFarm membership handles recurring support. Academy sells courses, and direct merchandise will open only after its products and fulfillment are approved.",
     links: [
-      { label: "Visit shop", href: "/shop/" },
+      { label: "Visit the Shop", href: "/shop/" },
       { label: "Support HobFarm", href: "/support/" },
     ],
   },
   {
-    id: "about-contact",
-    eyebrow: "Contact",
-    heading: "Questions, collaborations, and support",
+    eyebrow: "Operation",
+    heading: "HobFarm is currently run by one person.",
     body:
-      "Use contact for support questions, collaboration ideas, custom work, security reports, or anything that needs a direct reply.",
+      "The operation is solo today. More reliable revenue can eventually pay contributors and specialists for defined work. HobFarm is not currently hiring; any future paid openings will be posted only when the budget and job are real.",
     links: [{ label: "Contact HobFarm", href: "/contact/" }],
   },
 ];
@@ -64,27 +70,25 @@ const sections = [
 
 <BaseLayout
   title="About | HobFarm"
-  description="HobFarm is an online magazine and visual studio. The site connects articles, visual systems, workshop notes, shop drops, support paths, and contact routes."
+  description="HobFarm is an independent publisher of articles, media, games, and creative systems."
+  canonical="/about/"
 >
   <section class="bg-noise border-b border-base-800/50">
     <ContentPanel>
       <Wrapper variant="standard" class="py-16 lg:py-24">
         <Eyebrow text="HobFarm / About" />
-        <Text tag="h1" variant="display2XL" class="mt-6 max-w-4xl text-white font-display text-balance">
-          HobFarm is an online magazine and visual studio.
+        <Text tag="h1" variant="display2XL" class="mt-6 max-w-5xl text-balance font-display text-white">
+          HobFarm is an independent publisher of articles, media, games, and creative systems.
         </Text>
-        <Text tag="p" variant="textLG" class="mt-6 max-w-3xl text-base-300 leading-relaxed text-pretty">
-          The site publishes full articles, visual archives, recurring projects, process notes,
-          workflow education, and support paths. The public loop is simple: publish on hob.farm,
-          share fragments elsewhere, bring readers back to the full work, then connect them to
-          related galleries, systems, drops, lessons, or support.
+        <Text tag="p" variant="textLG" class="mt-6 max-w-3xl text-pretty leading-relaxed text-base-300">
+          The publication, projects, software, Workshop, Academy, and Shop share one job: make the work easy to find, follow, learn from, and fund.
         </Text>
       </Wrapper>
     </ContentPanel>
   </section>
 
   {sections.map((section, index) => (
-    <section id={section.id} class="border-b border-base-800/50">
+    <section class="border-b border-base-800/50">
       <ContentPanel>
         <Wrapper variant="standard" class="py-12 lg:py-18">
           <div class="grid grid-cols-1 gap-6 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-10">
@@ -92,10 +96,10 @@ const sections = [
               {String(index + 1).padStart(2, "0")} / {section.eyebrow}
             </p>
             <div class="max-w-3xl">
-              <Text tag="h2" variant="displaySM" class="text-white font-display text-balance">
+              <Text tag="h2" variant="displaySM" class="text-balance font-display text-white">
                 {section.heading}
               </Text>
-              <Text tag="p" variant="textBase" class="mt-4 text-base-400 leading-relaxed text-pretty">
+              <Text tag="p" variant="textBase" class="mt-4 text-pretty leading-relaxed text-base-400">
                 {section.body}
               </Text>
               <div class="mt-6 flex flex-wrap gap-3">

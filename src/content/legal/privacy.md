@@ -40,7 +40,7 @@ HobFarm may receive and store payment-related records such as:
 
 - Customer name, email, billing country or region, tax status, and order identifiers.
 - Product purchased, amount, currency, payment status, invoice or receipt links, refund status, dispute status, and subscription status.
-- Limited payment metadata from the provider, such as last four digits or card brand when made available for customer support.
+- Limited payment metadata from the provider, such as last four digits or card brand when made available for Customer Help.
 
 HobFarm does not store full card numbers, bank account credentials, or card security codes on hob.farm.
 
@@ -74,7 +74,7 @@ We use information to:
 - Process orders, receipts, renewals, cancellations, refunds, taxes, fraud checks, and disputes.
 - Enforce terms, rate limits, acceptable use rules, and safety policies.
 - Understand aggregate website usage and service performance.
-- Communicate with you about your account, purchases, support requests, and service changes.
+- Communicate with you about your account, purchases, Customer Help requests, and service changes.
 - Comply with legal, tax, accounting, payment network, marketplace, and regulatory obligations.
 
 ## Payment Providers
@@ -102,6 +102,8 @@ We may share information with:
 - Print-on-demand, shipping, or marketplace providers when a product requires physical fulfillment.
 - Professional advisers, authorities, payment networks, or courts when needed for legal, tax, dispute, safety, or compliance reasons.
 - A successor organization if HobFarm is involved in a merger, acquisition, reorganization, or asset transfer.
+
+For direct print-on-demand orders, HobFarm sends the recipient name, shipping address, email, phone number when supplied, ordered item, and retail shipping details to the print provider. HobFarm keeps an order ledger for payment, production, shipment, refund, and support status. Shipping details stored in that ledger are encrypted and are not shown in the public website.
 
 ## How Data Is Stored
 

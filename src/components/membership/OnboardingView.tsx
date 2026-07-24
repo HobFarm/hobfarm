@@ -162,15 +162,15 @@ export default function OnboardingView({ user, subscription }: Props) {
           </p>
         </div>
         <div>
-          <h3 className="text-sm text-white font-mono uppercase tracking-widest">Support</h3>
+          <h3 className="text-sm text-white font-mono uppercase tracking-widest">Customer Help</h3>
           <p className="mt-3 text-sm text-base-400 leading-relaxed">
-            Payment, access, refund, and product questions go through the HobFarm support path.
+            Payment, access, refund, and product questions go through Customer Help.
           </p>
           <a
-            href="/support/"
+            href="/helpcenter/"
             className="mt-3 inline-block text-sm text-white underline decoration-base-600 underline-offset-4 hover:decoration-white"
           >
-            Visit support
+            Visit Customer Help
           </a>
         </div>
       </div>

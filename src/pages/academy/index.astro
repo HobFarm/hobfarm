@@ -6,7 +6,6 @@ import ContentPanel from "@/components/ContentPanel.astro";
 import Eyebrow from "@/components/sections/Eyebrow.astro";
 import SectionHeader from "@/components/sections/SectionHeader.astro";
 import Button from "@/components/fundations/elements/Button.astro";
-import KofiCta from "@/components/KofiCta.astro";
 import {
   academyCourses,
   intellectualSelfDefenseCourse,
@@ -38,6 +37,21 @@ const tracks: Track[] = [
   {
     title: "Character sheets",
     body: "Reusable character sheets and reference files that keep a character looking the same from one image to the next, across different models and projects.",
+  },
+];
+
+const priceBands = [
+  {
+    label: "Free",
+    body: "Public courses and onboarding material stay open without checkout.",
+  },
+  {
+    label: "$5 / $7 / $9",
+    body: "Paid courses use a one-time price chosen for the size of the course.",
+  },
+  {
+    label: "Bundle price",
+    body: "A bundle gets one clearly labeled one-time price when several courses belong together.",
   },
 ];
 
@@ -90,7 +104,7 @@ const academyJsonLd = {
           Academy
         </Text>
         <Text tag="p" variant="textBase" class="text-base-300 mt-6 max-w-2xl text-pretty leading-relaxed">
-          Practical courses built from the work behind this site. Start with a public field guide to research, creative scope, and media judgment, or enter the avatar production course.
+          A catalog of practical free and affordable one-time courses built from HobFarm's working methods. Start with the free media-literacy course or preview the Avatar Content System while its current supporter access remains in place.
         </Text>
         <div class="mt-8 flex flex-wrap gap-3">
           <Button isLink size="sm" variant="green" href={intellectualSelfDefenseCourse.startHref}>
@@ -99,7 +113,6 @@ const academyJsonLd = {
           <Button isLink size="sm" variant="muted" href={intellectualSelfDefenseCourse.href}>
             View the course map
           </Button>
-          <KofiCta variant="symbol" text="Ko-fi" />
         </div>
       </Wrapper>
     </ContentPanel>
@@ -125,6 +138,11 @@ const academyJsonLd = {
                   <span>{course.priceLabel}</span>
                   <span>{course.duration}</span>
                 </div>
+                {course.accessType === "active-membership" && (
+                  <p class="mt-4 border-l-2 border-accent-cyan/50 pl-3 text-xs leading-relaxed text-base-500">
+                    Existing supporter entitlement remains active. A one-time purchase migration has not been approved or applied.
+                  </p>
+                )}
                 <div class="mt-6 flex flex-wrap gap-3">
                   <Button isLink size="sm" variant="green" href={course.href}>{course.ctaLabel}</Button>
                   <Button isLink size="sm" variant="muted" href={course.startHref}>Start here</Button>
@@ -137,11 +155,27 @@ const academyJsonLd = {
     </ContentPanel>
   </section>
 
+  <section class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-20">
+        <SectionHeader eyebrow="02" heading="Simple one-time pricing" note="The price appears before checkout." />
+        <div class="grid grid-cols-1 gap-5 md:grid-cols-3">
+          {priceBands.map((band) => (
+            <article class="border border-base-800 bg-base-900/40 p-6">
+              <p class="font-mono text-lg text-accent-green-bright">{band.label}</p>
+              <p class="mt-3 text-sm leading-relaxed text-base-400">{band.body}</p>
+            </article>
+          ))}
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
   {/* ── What's coming ── */}
   <section class="border-t border-base-800/50">
     <ContentPanel>
       <Wrapper variant="standard" class="py-12 lg:py-20">
-        <SectionHeader eyebrow="02" heading="What's coming" note="More tracks in production." />
+        <SectionHeader eyebrow="03" heading="What's coming" note="More tracks in production." />
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
           {tracks.map((track) => (
             <div class="rounded-lg border border-base-800 bg-base-900/40 p-6">
@@ -162,7 +196,7 @@ const academyJsonLd = {
   <section class="border-t border-base-800/50">
     <ContentPanel>
       <Wrapper variant="standard" class="py-12 lg:py-20">
-        <SectionHeader eyebrow="03" heading="Built from real work" note="Nothing here is theory." />
+        <SectionHeader eyebrow="04" heading="Built from real work" note="Nothing here is theory." />
         <Text tag="p" variant="textBase" class="text-base-400 max-w-2xl text-pretty leading-relaxed">
           These courses come from the same work behind StyleFusion, Grimoire, and the rest of HobFarm. When a lesson covers a prompt change, it shows the results side by side. When it covers a platform quirk, it explains where the issue came up and how it was handled.
         </Text>

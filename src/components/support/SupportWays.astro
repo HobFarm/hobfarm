@@ -9,8 +9,8 @@ interface Props {
 
 const {
   compact = false,
-  heading = "Choose the support path that fits",
-  description = "HobFarm, Ko-fi, and Patreon are separate systems. Pick the one that matches how you want to participate.",
+  heading = "Choose how you want to support the work",
+  description = "Contribute once, become a monthly supporter, buy something, or take a course.",
 } = Astro.props;
 ---
 
@@ -81,7 +81,7 @@ const {
 
   .support-ways__grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
     margin-top: 2rem;
   }

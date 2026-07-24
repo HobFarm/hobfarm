@@ -23,6 +23,7 @@ import ArticleCard from "@/components/articles/ArticleCard.astro";
 import Lightbox from "@/components/gallery/Lightbox";
 import Breadcrumbs from "@/components/global/Breadcrumbs.astro";
 import RelatedContentRail from "@/components/relationships/RelatedContentRail.astro";
+import WorkshopOfferRail from "@/components/relationships/WorkshopOfferRail.astro";
 import { resolveRelatedContent } from "@/lib/content-relationships";
 
 interface Props {
@@ -107,19 +108,32 @@ const relatedLinks = [
   },
 ].filter((link): link is { label: string; href: string } => Boolean(link));
 
-const contextualCtas = [
-  frontmatter.workshopCTA,
-  frontmatter.academyCTA,
-  frontmatter.supportCTA,
-].filter((link): link is { label: string; href: string } => Boolean(link));
-
-if (contextualCtas.length === 0) {
-  if (department === "workshop-notes") {
-    contextualCtas.push({ label: "Learn the workflow", href: "/academy/" });
-  } else if (department === "magazine-time-machine") {
-    contextualCtas.push({ label: "Support the magazine", href: "/support/" });
-  }
-}
+const relatedMethod = relationshipItems.find(
+  (item) => item.kind === "academy" || item.kind === "workshop",
+);
+const relatedAsset = relationshipItems.find((item) => item.kind === "product");
+const methodOffer =
+  frontmatter.academyCTA ??
+  frontmatter.workshopCTA ??
+  (relatedMethod && {
+    label: relatedMethod.label,
+    href: relatedMethod.href,
+    description: relatedMethod.description,
+  }) ??
+  (department === "workshop-notes"
+    ? { label: "Learn the workflow", href: "/academy/" }
+    : undefined);
+const assetOffer =
+  relatedAsset && {
+    label: relatedAsset.label,
+    href: relatedAsset.href,
+    description: relatedAsset.description,
+  };
+const supportOffer =
+  frontmatter.supportCTA ??
+  (department === "magazine-time-machine"
+    ? { label: "Support independent publishing", href: "/support/" }
+    : undefined);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -258,7 +272,7 @@ const articleJsonLd = {
         </Wrapper>
       )}
 
-      {(relatedLinks.length > 0 || contextualCtas.length > 0) && (
+      {relatedLinks.length > 0 && (
         <Wrapper variant="narrow" class="mt-12">
           <div class="grid grid-cols-1 gap-3 border border-base-800 bg-base-950/60 p-4 sm:grid-cols-2">
             {relatedLinks.map((link) => (
@@ -270,16 +284,18 @@ const articleJsonLd = {
                 <span class="mt-1 block">{link.label}</span>
               </a>
             ))}
-            {contextualCtas.map((link) => (
-              <a
-                href={link.href}
-                class="rounded-md border border-base-800 bg-base-900/70 px-4 py-3 text-sm text-base-200 transition-colors hover:border-accent-magenta/50 hover:text-white"
-              >
-                <span class="block font-mono text-[10px] uppercase tracking-wider text-accent-magenta-bright">Next</span>
-                <span class="mt-1 block">{link.label}</span>
-              </a>
-            ))}
           </div>
+        </Wrapper>
+      )}
+
+      {(methodOffer || assetOffer || supportOffer) && (
+        <Wrapper variant="narrow">
+          <WorkshopOfferRail
+            method={methodOffer}
+            assets={assetOffer}
+            support={supportOffer}
+            heading="Read, learn, or help make the next piece"
+          />
         </Wrapper>
       )}
 

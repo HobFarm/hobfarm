@@ -1,6 +1,16 @@
 import { avatarCourse } from "@/data/avatar-content-system";
 
 export type AcademyCourseSource = "legacy" | "content";
+export type AcademyCheckoutProvider = "none" | "stripe" | "external" | "membership-legacy";
+export type AcademyAccessType = "public" | "one-time" | "bundle" | "active-membership";
+export type AcademyCourseStatus = "available" | "beta" | "planned";
+export type AcademyPriceLabel =
+  | "Free"
+  | "$5"
+  | "$7"
+  | "$9"
+  | `Bundle: ${string}`
+  | "$5/month supporter beta";
 
 export interface AcademyCourseLane {
   title: string;
@@ -40,7 +50,13 @@ export interface AcademyCourse {
   deck: string;
   statusLabel: string;
   accessLabel: string;
-  priceLabel: string;
+  priceLabel: AcademyPriceLabel;
+  checkoutProvider: AcademyCheckoutProvider;
+  accessType: AcademyAccessType;
+  courseStatus: AcademyCourseStatus;
+  relatedWorkshop?: string;
+  relatedAssetPack?: string;
+  affiliateDisclosure?: string;
   duration: string;
   cover: string;
   coverImage?: string;
@@ -71,6 +87,10 @@ export const intellectualSelfDefenseCourse: AcademyCourse = {
   statusLabel: "Available now",
   accessLabel: "Free and public",
   priceLabel: "Free",
+  checkoutProvider: "none",
+  accessType: "public",
+  courseStatus: "available",
+  relatedWorkshop: "/workshop/",
   duration: "About 2 hours, plus exercises",
   cover: `${cdn}/shared/course-cover-v1-16x9.webp`,
   coverImage: `${cdn}/shared/course-cover-v1-16x9.webp`,
@@ -200,6 +220,12 @@ export const avatarCourseRecord: AcademyCourse = {
   statusLabel: "Available through membership",
   accessLabel: "4 free lessons + 12 paid beta lessons",
   priceLabel: "$5/month supporter beta",
+  checkoutProvider: "membership-legacy",
+  accessType: "active-membership",
+  courseStatus: "beta",
+  relatedWorkshop: "/workshop/ami-legacy/",
+  affiliateDisclosure:
+    "Affiliate link: HobFarm may earn a commission if you buy through this link. It does not change your price.",
   duration: "Self-paced",
   cover: "https://cdn.hob.farm/pages/projects/images/hobfarm-courses-banner.jpg",
   coverAlt: "HobFarm course banner for practical AI production workflows.",

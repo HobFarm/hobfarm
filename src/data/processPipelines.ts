@@ -489,7 +489,7 @@ export const processPipelines: ProcessPipeline[] = [
         "Cover art for a finished story package",
         "Chapter plates and interior illustration direction",
         "Promo motion for trailers and social posts",
-        "KDP, zines, RPG/worldbuilding, and Patreon fiction",
+        "KDP, zines, RPG/worldbuilding, and serialized fiction",
       ],
     },
     visualDna: {

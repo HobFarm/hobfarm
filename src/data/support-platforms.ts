@@ -1,5 +1,5 @@
 export type SupportPlatform = {
-  id: "hobfarm" | "kofi" | "patreon";
+  id: "kofi" | "hobfarm" | "shop" | "academy";
   name: string;
   eyebrow: string;
   description: string;
@@ -11,36 +11,47 @@ export type SupportPlatform = {
 
 export const supportPlatforms: SupportPlatform[] = [
   {
-    id: "hobfarm",
-    name: "HobFarm Club",
-    eyebrow: "On-site membership",
-    description:
-      "Join through HobFarm for account-based access, member updates, and the paid learning paths that will live here.",
-    href: "/membership/",
-    cta: "Join on HobFarm",
-    external: false,
-    accent: "#2fe089",
-  },
-  {
     id: "kofi",
-    name: "Ko-fi",
-    eyebrow: "Tips, commissions, and small drops",
+    name: "Support once on Ko-fi",
+    eyebrow: "One-time support",
     description:
-      "Use Ko-fi for one-time support, commission requests, and selected digital or creative drops.",
+      "Make a one-time contribution without starting a recurring membership.",
     href: "https://ko-fi.com/hobfarm/",
-    cta: "Support on Ko-fi",
+    cta: "Support once",
     external: true,
     accent: "#ff5e5b",
   },
   {
-    id: "patreon",
-    name: "Patreon",
-    eyebrow: "External membership community",
+    id: "hobfarm",
+    name: "Become a HobFarm supporter",
+    eyebrow: "$5 monthly membership",
     description:
-      "Follow or support HobFarm on Patreon as an alternate community path. Patreon access remains separate from HobFarm accounts.",
-    href: "https://www.patreon.com/hobfarm",
-    cta: "Visit Patreon",
-    external: true,
-    accent: "#ff424d",
+      "Use the on-site membership to contribute $5 a month. Current Avatar course access remains in place while its migration is reviewed.",
+    href: "/membership/",
+    cta: "Become a supporter",
+    external: false,
+    accent: "#2fe089",
+  },
+  {
+    id: "shop",
+    name: "Buy something from the Shop",
+    eyebrow: "Storefront directory",
+    description:
+      "Choose the right shelf for merchandise, character assets, craft files, or one-off physical objects.",
+    href: "/shop/",
+    cta: "Browse the Shop",
+    external: false,
+    accent: "#f24da6",
+  },
+  {
+    id: "academy",
+    name: "Take a course",
+    eyebrow: "Free and one-time courses",
+    description:
+      "Learn a practical workflow through the Academy catalog. Courses are free or priced as affordable one-time purchases.",
+    href: "/academy/",
+    cta: "Browse Academy",
+    external: false,
+    accent: "#19e3e3",
   },
 ];
