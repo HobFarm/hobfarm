@@ -2,9 +2,9 @@
 
 ## Purpose
 
-This repository contains the HobFarm website.
+This repository contains the HobFarm publishing website, public catalog, and supporting applications.
 
-HobFarm is an online magazine and visual studio. The site publishes articles, visual galleries, recurring projects, production notes, workflow education, and support paths.
+HobFarm is an independent publisher and creative studio. It publishes articles, recurring stories and media titles, visual work, games, creative applications, production notes, courses, merchandise, and digital releases.
 
 Agents working in this repo should help build, fix, organize, validate, and improve the website. Work should be practical, scoped, and validated before handoff.
 
@@ -31,30 +31,41 @@ Do not focus on outdated brand systems, seasonal scaffolds, or old style languag
 
 ---
 
-## Current Site Model
+## Current Project Model
+
+HobFarm is the parent publisher. Magazine describes the Editorial layer, not the entire business.
 
 Use this model when making site decisions:
 
-| Area     | Role                                                                                       |
-| -------- | ------------------------------------------------------------------------------------------ |
-| Homepage | Front page, hero intro, featured routes, latest articles                                   |
-| Articles | Main editorial feed                                                                         |
-| Gallery  | Visual archive for image sets, character sheets, experiments, and finished media           |
-| Projects | Recurring characters, series, tools, worlds, and formats                                   |
-| Workshop | Process notes, production methods, systems, and behind-the-scenes work                     |
-| Academy  | Workflow education, onboarding, courses, and paid learning paths                           |
-| Support  | Ko-fi, Patreon, sponsor paths, contact, and collaboration routes                           |
-| Grimoire | Knowledge and structure layer for notes, references, content planning, and admin workflows |
+| Layer | Area | Role |
+| --- | --- | --- |
+| Parent | HobFarm | Owns the publication, catalog, recurring titles, customer relationships, archive, and operating systems |
+| Division | Editorial | Articles, essays, reporting, research, satire, cartoons, visual features, and departments |
+| Division | HobFarm Presents | Recurring stories, characters, film and media series, entertainment formats, and developed worlds |
+| Division | Workshop | Process, production methods, experiments, tools, systems, and the learning paths built from them |
+| Division | Shop | Official commercial directory and direct merchandise store; maps visitors to the correct HobFarm or marketplace shelf |
+| Division | Support | One-time reader funding through Ko-fi, the $5 monthly HobFarm Club, and a clear account of what support sustains |
+| Published work | Games and applications | Browser games, interactive fiction, creative software, research tools, and prototypes such as Other Alice, StyleFusion, and Grimoire |
+| Shared format | Gallery | Visual archive used by Editorial, Presents, Workshop, Projects, and Shop |
+| Program | Academy | Free and affordable one-time courses built from practical HobFarm workflows |
+| Catalog | Projects | Public index for tools, games, applications, systems, experiments, and ongoing work |
+| Knowledge layer | Grimoire | Notes, references, project memory, content planning, structured knowledge, and selected game or application data |
+| Utilities | About, Account, Contact, Customer Help, Legal | Publisher information, customer access, assistance, and policies |
 
-The website should support this loop:
+Do not force every release through an article. Choose the primary object that fits the work: article, Presents entry, comic, adventure, game, application, gallery entry, Workshop note, course, product, or project page.
+
+Use this publishing and commerce model:
 
 ```text
-publish on hob.farm
-share fragments on social media
-bring readers back to the article, gallery, project, workshop note, or academy page
-connect them to related content
-make sharing, following, supporting, or learning the obvious next action
+the publication creates interest
+Workshop shows the work and establishes credibility
+Academy teaches the repeatable method
+Commerce sells useful finished outcomes
+Support funds the next article, project, game, or release
+the site keeps every route and relationship understandable
 ```
+
+Each published object still needs a durable primary route and useful relationships to other HobFarm work. Social media is a distribution option. It is not the source of truth, the site architecture, or a required step for every piece.
 
 ---
 
@@ -98,6 +109,7 @@ The guide controls prose shape, not canon. Factual constraints, the user's curre
 | Hosting   | Cloudflare Pages                               |
 | Functions | Cloudflare Pages Functions in `functions/api/` |
 | CDN       | Cloudflare R2 at `https://cdn.hob.farm`        |
+| Commerce  | Stripe for account-linked membership and approved direct checkout; external storefronts where documented |
 
 Tailwind 4 uses CSS-first configuration. Inspect `src/styles/` before changing styling architecture. Do not create a Tailwind 3-style config unless the repo has clearly migrated to one.
 
@@ -108,18 +120,28 @@ Tailwind 4 uses CSS-first configuration. Inspect `src/styles/` before changing s
 ```text
 src/
 ├── components/
+│   ├── auth/            # Account and customer state
+│   ├── games/           # Interactive games and simulations
 │   ├── global/          # Header, footer, nav
 │   ├── gallery/         # Gallery-specific components
 │   ├── grimoire/        # Grimoire-specific components
 │   ├── projects/        # Project cards and detail views
 │   ├── sections/        # Page sections
+│   ├── shop/            # Product, cart, and order components
+│   ├── support/         # Funding and membership presentation
 │   └── ui/              # Buttons, cards, inputs, primitives
 ├── content/
-│   ├── articles/        # Public editorial articles
-│   ├── gallery/
-│   ├── grimoire/
-│   ├── projects/
-│   ├── changelog/
+│   ├── academy/         # Courses and lessons
+│   ├── adventures/      # Interactive or serialized adventure entries
+│   ├── articles/        # Public Editorial articles
+│   ├── comics/          # Comic entries outside the article feed
+│   ├── gallery/         # Visual archive records
+│   ├── grimoire/        # Knowledge and reference records
+│   ├── products/        # Canonical Shop records
+│   ├── projects/        # Tools, games, systems, and ongoing work
+│   ├── help/            # Customer Help content
+│   ├── legal/           # Public policies
+│   ├── changelog/       # Site and project changes
 │   └── ...
 ├── layouts/
 ├── lib/
@@ -224,19 +246,26 @@ unless the user explicitly requests that exact kind of cleanup and understands t
 
 ## Website Direction
 
-The site should read as an online magazine and visual studio.
+The site should read as the home of an independent publisher and creative studio.
 
-Use clear public labels:
+Use these terms consistently:
 
-* Articles
-* Gallery
-* Projects
-* Workshop
-* Academy
-* Support
-* Grimoire, only where it is useful as a knowledge or admin system
+* **HobFarm** for the parent publisher and studio.
+* **Editorial** for the publication division; **Articles** for its main public feed and content type.
+* **HobFarm Presents** or **Presents** for recurring stories, characters, entertainment series, and developed worlds.
+* **Workshop** for production methods, experiments, tools, and systems.
+* **Shop** for the commercial directory and HobFarm-controlled direct merchandise.
+* **Support HobFarm** for one-time Ko-fi funding and the monthly HobFarm Club.
+* **Games and applications** for playable work and public software. Give released work a direct route and associate it with Presents, Projects, or Workshop according to its actual role.
+* **Gallery** for the shared visual archive.
+* **Academy** for free and affordable one-time workflow courses. Membership is not the default course checkout.
+* **Projects** for the catalog of tools, games, applications, systems, and work in progress.
+* **Customer Help** for billing, orders, downloads, account access, refunds, and technical assistance.
+* **Grimoire** only where it is useful as a knowledge system, project memory, application data layer, or reviewed public reference.
 
-The public editorial feed is **Articles**. New editorial entries live in `src/content/articles/`; do not introduce new `blog` collection or helper naming.
+New Editorial entries live in `src/content/articles/`; do not introduce a `blog` collection or new helper naming.
+
+Do not describe all of HobFarm as a magazine, an AI tool company, a gallery, or a store. Those are parts of the publisher, not the parent identity.
 
 Use plain descriptive copy. Say what the thing is, what it contains, and what the reader can do next.
 
@@ -246,31 +275,33 @@ Let the content establish the tone. Do not label the work as strange, weird, unu
 
 ## Homepage Rules
 
-When working on the homepage, treat it as the front page of the publication.
+When working on the homepage, treat it as the front door to the publisher.
 
 Preferred order:
 
-1. Hero intro explaining HobFarm as an online magazine and visual studio.
-2. Featured article or current lead feature.
-3. Latest Articles feed.
-4. Project or series cards.
-5. Gallery preview.
-6. Workshop or Academy CTA.
-7. Support, sponsor, contact, or follow CTA.
+1. Hero intro identifying HobFarm as an independent publisher of articles, media, games, and creative systems.
+2. Current lead release. This can be an article, Presents title, game, application, visual feature, course, or Shop release.
+3. Latest Articles or Editorial highlights.
+4. HobFarm Presents titles, characters, games, or recurring media.
+5. Workshop work and useful Gallery evidence.
+6. Academy or Projects when there is a real public path.
+7. Current Shop releases.
+8. Support HobFarm, About, or another clear publisher-level next action.
 
 The homepage should quickly answer:
 
 1. What is HobFarm?
-2. What can I read?
-3. What can I look at?
-4. What recurring work exists here?
-5. Where should I go next?
+2. What is new or worth opening now?
+3. What can I read, watch, play, or explore?
+4. Which recurring titles and projects exist?
+5. What can I learn or buy?
+6. How can I support the next release or contact the publisher?
 
 ---
 
 ## Article Rules
 
-Articles are the main editorial objects.
+Articles are the main Editorial objects. They are not wrappers for every game, product, comic, course, or Presents release.
 
 Article pages should include:
 
@@ -282,26 +313,71 @@ Article pages should include:
 6. Share actions.
 7. Related articles.
 8. Related gallery or project links when relevant.
-9. Workshop, Academy, Support, or follow CTA when relevant.
+9. Related products, Workshop, Academy, Support, or follow actions when relevant.
 10. Good metadata for social previews.
 
 Recommended article metadata where the schema supports it:
 
 ```ts
 title: string;
-description: string;
-pubDate: Date | string;
+excerpt: string;
+dek?: string;
+description?: string;
+publishedAt?: Date | string;
+pubDate?: Date | string;
 updatedDate?: Date | string;
 heroImage?: string;
 tags?: string[];
+format?: string;
 series?: string;
 department?: string;
 relatedGallery?: string;
 relatedProject?: string;
-ctaType?: "share" | "gallery" | "academy" | "support" | "project" | "workshop";
+relatedArticles?: string[];
+relatedWorkshop?: string[];
+relatedAcademy?: string[];
+relatedProducts?: string[];
 ```
 
+Every article needs `publishedAt` or `pubDate`. Inspect `src/content.config.ts` for current enums and relationship fields before creating frontmatter.
+
 Keep optional fields optional unless the user explicitly requests a schema migration.
+
+---
+
+## HobFarm Presents Rules
+
+HobFarm Presents holds recurring entertainment titles: stories, illustrated fiction, cartoons, film and media series, characters, and developed worlds.
+
+A Presents title should explain:
+
+1. What the title is.
+2. Which entries or releases exist now.
+3. Where a new reader should start.
+4. Which characters, articles, videos, games, galleries, or products belong to it.
+5. Whether the work is released, serialized, in production, or still a prototype.
+
+Use the dedicated `comics` or `adventures` collection when the schema and route already support that object. Do not force a comic, episode, or interactive entry into Articles only to make it publishable.
+
+---
+
+## Games and Applications Rules
+
+Games and applications are published HobFarm work.
+
+Current examples include Other Alice as interactive story/game work, StyleFusion as a creative application, Grimoire as a knowledge system and developing game engine, and smaller browser experiments such as the craps simulator.
+
+Use these rules:
+
+1. Give a released game or public application a durable direct route.
+2. Use Projects for its catalog record, status, related work, and development context.
+3. Associate entertainment games and interactive stories with HobFarm Presents when they belong to a recurring title or world.
+4. Associate production tools and research applications with Workshop when the method is part of their public value.
+5. Keep prototypes labeled honestly. Do not imply a complete game, supported service, multiplayer system, or maintained application when only an experiment exists.
+6. Document controls, accessibility, persistence, data use, browser support, and failure states when they affect play or use.
+7. Keep secrets, privileged model calls, customer data, and paid assets out of client-only code.
+
+Games do not need an article to justify their existence. Add an article only when there is a real editorial story, investigation, release note, or design analysis to publish.
 
 ---
 
@@ -336,7 +412,7 @@ Keep share controls visible, clean, and secondary to the article.
 
 ## Gallery Rules
 
-Gallery pages are the visual archive.
+Gallery is a shared visual archive. Its entries can support Editorial, HobFarm Presents, Workshop, Projects, games, and Shop without becoming a separate business division.
 
 They should prioritize:
 
@@ -362,17 +438,17 @@ Do not add large media files to the repo unless explicitly instructed.
 
 ## Projects Rules
 
-Project pages should describe recurring work, systems, tools, characters, worlds, or formats.
+Projects is the public catalog for games, applications, systems, tools, experiments, and ongoing work. Recurring entertainment titles and worlds should use HobFarm Presents as their primary public home when that structure fits.
 
 A project page should explain:
 
 1. What it is.
-2. What exists now.
+2. What exists now and its honest status.
 3. Where to see examples.
-4. How it connects to articles, galleries, workshop notes, or academy material.
+4. How it connects to Articles, Presents, Gallery, Workshop, Academy, games, or Shop.
 5. What the reader can do next.
 
-Do not call HobFarm tools or recurring creative systems “products” unless the page is specifically about physical goods, store items, or product design work.
+Do not call a tool, game prototype, recurring title, or creative system a product unless there is a defined Shop offer, buyer, deliverable, price, license, and fulfillment path.
 
 ---
 
@@ -398,19 +474,113 @@ Workshop content should help readers understand the method without becoming a ge
 
 ## Academy Rules
 
-Academy pages are for workflow education.
+Academy is the structured learning program connected to Workshop. It is important, but it is not the parent identity or a peer to every publishing division.
 
 Use Academy for:
 
 * free onboarding material
-* paid courses
+* affordable one-time courses
 * workflow packs
 * structured learning paths
 * tool literacy
 * production systems
 * templates or reusable methods
 
-Academy content should connect naturally from Articles, Gallery, Projects, and Workshop pages.
+Academy content should connect naturally from Workshop, Articles, Presents, Gallery, Projects, and Shop pages when the course grows from that work.
+
+Use the approved course lanes unless the user supplies a different price:
+
+| Course type | Price |
+| --- | --- |
+| Quick lesson, checklist, or focused fix | $5 |
+| Standard short workflow course | $7 |
+| Workflow with templates or source files | $9 |
+| Multi-part course bundle | $24 to $35 |
+
+Seven dollars is the default for a standard short course. Do not turn HobFarm Club into an all-purpose subscription for courses, products, and downloads.
+
+The Avatar Content System has a legacy membership entitlement. Inspect active access before changing it. Grandfather existing members or provide a clear transition; do not silently remove access.
+
+---
+
+## Shop and Product Rules
+
+Shop is a map, not an inventory aggregator. It is the official commercial directory and the direct store for HobFarm-controlled merchandise.
+
+Use this channel structure:
+
+| Surface | Job | Main offers |
+| --- | --- | --- |
+| HobFarm Shop | Commercial directory and direct merchandise store | Approved Printful merchandise, publication products, and clear links to the correct external shelf |
+| Academy | Teach repeatable methods | Free lessons, affordable one-time workflow courses, modular courses, and larger bundles |
+| Etsy | Craft and search-oriented digital products | Clip art, scrapbook assets, seasonal packs, printable ephemera, decorative scenes, and clearly labeled archive collections |
+| DeviantArt | Character and visual-development assets | Mannequins, outfits, sheets, wallpapers, premium packs, adoptables, and exclusives |
+| eBay | Actual old or counted physical objects | DVDs, magazines, books, antiques, collectibles, decor, media, and one-off finds |
+| Ko-fi | One-time reader support | Tips and project funding |
+| HobFarm Club | Ongoing support | $5 monthly supporter membership with one small durable benefit |
+| Patreon | Paused | Preserve the account and history, but do not surface Patreon publicly unless a distinct future community is approved |
+
+The Shop should explain what each shelf contains and send people to the correct storefront. Do not copy every Etsy, DeviantArt, or eBay listing into HobFarm. Marketplace listings expire, move, and sell out; aggregating them creates stale inventory and maintenance work.
+
+HobFarm-controlled direct products may have permanent Shop pages and on-site checkout. External shelves should normally use clear category descriptions and storefront links. Add an individual marketplace listing only when its relationship to an article or release is useful enough to maintain manually.
+
+Every Shop product page should state:
+
+1. What the buyer receives.
+2. Current status and availability.
+3. Price and currency when approved.
+4. Product variants or editions.
+5. License or usage terms.
+6. Fulfillment and checkout provider.
+7. Shipping or delivery expectations.
+8. Refund and Customer Help paths.
+9. Related free work when the relationship is real.
+
+Keep public previews separate from buyer files. Do not expose full-resolution paid originals, private manifests, signed download URLs, order data, or customer details in HTML, feeds, JSON-LD, sitemaps, agent-readable routes, or client code.
+
+Do not invent products, prices, listings, stock, marketplace availability, course access, shipping promises, or licenses. A buy action appears only when the product is live and its checkout destination has been verified.
+
+When Workshop needs commercial links, use one shared relationship component with up to three paths:
+
+1. **Learn the method:** the related Academy course, price, time, and expected result.
+2. **Use the finished assets:** the related Etsy or DeviantArt collection.
+3. **Support more work:** Ko-fi or HobFarm Club.
+
+Reuse `relatedWorkshop`, `relatedAcademy`, `relatedProducts`, `workshopCTA`, `academyCTA`, and `supportCTA`. Do not write a new custom sales block into every Workshop page or force every page into a funnel.
+
+---
+
+## Support and Customer Help Rules
+
+`/support/` funds the publisher. Use it for one-time Ko-fi support, HobFarm Club membership, buying products or courses as another way to fund the work, and a plain account of what greater revenue could make possible.
+
+`/helpcenter/` serves customers. Use it for billing, orders, downloads, course access, refunds, accounts, and technical help.
+
+Do not mix patronage with customer service. Do not describe support as a purchase, donation, or tax-deductible contribution unless the legal and tax status explicitly permits that language.
+
+Use `/membership/` for HobFarm Club, the account-linked $5 monthly support program. Keep Shop purchases and new Academy courses separate from membership. Promise one small durable supporter benefit, not a broad subscription to products and downloads.
+
+The accurate advertising and funding claim is:
+
+> No third-party display ads, sponsored posts, or paid editorial placement.
+
+House ads, Shop links, course promotion, clearly labeled affiliate links, and support requests may still appear. Do not flatten that claim into “ad-free.”
+
+Patreon is paused. Remove it from public funding copy, Shop, Support, navigation, components, and structured metadata. Preserve the account and historical records; this is a public-site cleanup, not account deletion.
+
+Do not add a Jobs page. The existing Contribute path should state that unsolicited employment applications are not accepted. Publish future paid assignments only when the budget, scope, and role are real.
+
+---
+
+## Affiliate Link Rules
+
+Affiliate links belong near relevant tool demonstrations in Workshop and Academy. Do not turn Editorial articles into disguised product funnels.
+
+Every affiliate recommendation needs a nearby disclosure:
+
+> Affiliate link: HobFarm may earn a commission if you buy through this link. It does not change your price.
+
+A footer or legal-page disclosure alone is not enough. Keep the disclosure close to the endorsement or recommendation.
 
 ---
 
@@ -487,14 +657,14 @@ For Cloudflare Workers AI, use a binding named `AI` when implemented.
 
 When creating website content:
 
-1. Identify the right content type: article, gallery entry, project page, workshop note, academy page, support page, changelog entry, or Grimoire entry.
+1. Identify the primary published object: article, Presents entry, comic, adventure, game or application route, gallery entry, project page, Workshop note, Academy lesson, product, support page, changelog entry, or Grimoire entry.
 2. Inspect the matching collection schema.
 3. Create valid YAML frontmatter.
 4. Use kebab-case filenames.
 5. Write clear titles and descriptions.
 6. Add useful tags.
 7. Use CDN image URLs when supplied.
-8. Link related articles, galleries, projects, or workshop notes when relevant.
+8. Link related Articles, Presents titles, galleries, projects, games, Workshop notes, courses, or products when relevant.
 9. Run validation.
 
 Do not invent missing facts, routes, image URLs, or product details.
@@ -770,17 +940,17 @@ Do not claim deployment unless a deploy command was approved and run.
 
 ## Operating Principle
 
-Make HobFarm easier to publish, browse, share, and maintain.
+Make HobFarm easier to publish, read, watch, play, learn from, buy from, support, and maintain.
 
-Improve the loop:
+Keep the business legible:
 
 ```text
-site content
-social fragments
-reader returns
-related content
-share or support
-new content
+HobFarm publishes articles, media, games, applications, and recurring titles
+Workshop shows how selected work was made
+Academy teaches a repeatable method
+Shop and external shelves sell useful finished outcomes
+Ko-fi and HobFarm Club fund the next round
+Customer Help handles orders, access, accounts, and problems
 ```
 
-Keep the work scoped. Make the site clearer. Validate before handoff.
+Connect these areas only when the relationship is real. Keep the work scoped. Make the site clearer. Validate before handoff.
