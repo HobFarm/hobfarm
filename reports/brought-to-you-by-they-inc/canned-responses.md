@@ -66,7 +66,7 @@ The article does not call the events equivalent. It compares how teams select wo
 
 ## Lettuce
 
-The 2006 Taco Bell outbreak was real. The CDC identified shredded lettuce as the most likely source in restaurants across five eastern states. The warning I received in Las Vegas had lost the restaurant, product, states, dates, and mechanism while preserving a conclusion about the president. That transformation is the whole article.
+The July 2026 Cyclospora outbreak was real and serious. The official investigation concerned recalled Taylor Farms de Mexico iceberg lettuce, Taco Bell exposure in nine states, and food-service distribution in 27 states. I was not eating at Taco Bell, and Nevada appeared on neither official state list. The warning I received had lost the supplier, product, recall, dates, geography, and unresolved laboratory evidence while preserving a conclusion about the president. That transformation is the whole article.
 
 ## Friendship
 

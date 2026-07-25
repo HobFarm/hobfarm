@@ -34,9 +34,17 @@ supportCTA:
   label: "Support independent publishing"
   href: "/support/"
 sourceNotes:
-  - label: "CDC: 2006 Taco Bell E. coli outbreak"
-    url: "https://stacks.cdc.gov/view/cdc/25166"
-    note: "Used for the affected states, case count, and conclusion that shredded lettuce was the most likely source."
+  - label: "CDC: 2026 Cyclospora outbreak linked to iceberg lettuce"
+    url: "https://www.cdc.gov/cyclosporiasis/outbreaks/07-26/index.html"
+    note: "Used for the July 24 case count, hospitalizations, affected states, symptoms, and recall status."
+    type: documented-fact
+  - label: "FDA: 2026 nine-state Cyclospora outbreak investigation"
+    url: "https://www.fda.gov/food/outbreaks-foodborne-illness/investigation-9-state-outbreak-cyclospora-illnesses-iceberg-lettuce-july-2026"
+    note: "Used for the traceback to Taylor Farms de Mexico, food-service distribution states, recall dates, and false-positive sample correction."
+    type: documented-fact
+  - label: "Associated Press: 2026 outbreak expands to nine states"
+    url: "https://apnews.com/article/cyclospora-outbreak-fda-diarrhea-lettuce-4aa41a7eea5246bf7a3510f667c11bde"
+    note: "Used as the independent account of the July 24 federal update and the continuing limits of the investigation."
     type: documented-fact
   - label: "NBER: What Drives Media Slant?"
     url: "https://www.nber.org/papers/w12707"
@@ -154,13 +162,19 @@ sourceNotes:
 
 The lettuce was going to make me shit my pants.
 
-This news arrived in a work lunchroom in Las Vegas. I was about to eat something with lettuce on it when a coworker warned me that people were getting sick. The president had screwed something up. Lettuce was dangerous now.
+This news arrived in a work lunchroom in Las Vegas in July 2026. I was about to eat something with lettuce on it when a coworker warned me that people were getting sick. The president had screwed something up. Lettuce was dangerous now.
 
 “That’s bullshit,” I said.
 
-There had been an actual outbreak. In November and December 2006, people became sick after eating at Taco Bell restaurants. The [Centers for Disease Control and Prevention](https://stacks.cdc.gov/view/cdc/25166) identified shredded lettuce as the most likely source. Seventy-one illnesses were reported across New Jersey, New York, Pennsylvania, Delaware, and South Carolina. Fifty-three people were hospitalized. That was real.
+There was an actual outbreak, and it was serious. On July 24, the [Centers for Disease Control and Prevention](https://www.cdc.gov/cyclosporiasis/outbreaks/07-26/index.html) reported at least 1,947 Cyclospora infections linked to iceberg lettuce across nine states. Ninety-eight people had been hospitalized. No deaths had been reported. The affected states were Illinois, Indiana, Kansas, Kentucky, Michigan, Ohio, Oklahoma, Pennsylvania, and West Virginia.
 
-I was not eating at Taco Bell. I was not in one of those five states. My coworker did not know which supplier, product, dates, restaurants, or states were involved. He could not tell me what the president had done to the lettuce.
+The investigation was still open. The [Food and Drug Administration](https://www.fda.gov/food/outbreaks-foodborne-illness/investigation-9-state-outbreak-cyclospora-illnesses-iceberg-lettuce-july-2026) said epidemiological evidence and supply-chain traceback converged on shredded iceberg lettuce from Taylor Farms de Mexico and growers in central Mexico. Taylor Farms recalled the implicated iceberg products. Taco Bell stopped using lettuce from that supplier on July 17.
+
+The evidence also had a complication. FDA reexamined a border sample initially reported as positive and classified it as a false positive. As of July 19, no product sample had produced a confirmed positive result for Cyclospora. The agency said that correction did not erase the epidemiology or traceback supporting the recall.
+
+I was not eating at Taco Bell. I had no reason to think the lettuce in front of me came from Taylor Farms de Mexico or a recalled lot. Nevada appeared on neither the nine-state Taco Bell case list nor the 27-state food-service distribution list.
+
+My coworker did not know the supplier, product, lot, dates, restaurants, states, recall, or status of the investigation. He could not tell me what the president had done to the lettuce.
 
 He knew the conclusion.
 

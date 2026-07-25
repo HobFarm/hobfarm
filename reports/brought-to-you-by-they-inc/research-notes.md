@@ -57,15 +57,27 @@ These findings establish a boundary on the article's metaphor. The article does 
 
 ## High-confidence factual checks
 
-### 2006 lettuce outbreak
+### 2026 Taco Bell lettuce and Cyclospora outbreak
 
-The CDC’s December 14, 2006 update reported 71 illnesses associated with Taco Bell restaurants in five states: New Jersey, New York, Pennsylvania, Delaware, and South Carolina. It identified shredded lettuce as the most likely source. Nevada was not among the reported states.
+The published opening refers to the active July 2026 outbreak, not the separate 2006 Taco Bell E. coli outbreak.
 
-Source:
+As of July 24, CDC reported at least 1,947 Cyclospora infections linked to iceberg lettuce in nine states: Illinois, Indiana, Kansas, Kentucky, Michigan, Ohio, Oklahoma, Pennsylvania, and West Virginia. Ninety-eight people had been hospitalized and no deaths had been reported. The investigation remained open.
 
-- [CDC Stacks: Multi-state Outbreak of E. coli O157 Infections, November–December 2006](https://stacks.cdc.gov/view/cdc/25166)
+FDA said its epidemiological evidence and traceback continued to converge on shredded iceberg lettuce supplied by Taylor Farms de Mexico and sourced from growers in central Mexico. Taylor Farms recalled all iceberg lettuce sourced from central Mexico on July 17. Taco Bell told FDA it had stopped using lettuce from the supplier on the same date.
 
-The narrator’s lunchroom exchange is personal recollection. The exact coworker wording and the political conclusion are not presented as a transcript.
+FDA also corrected an initially positive border sample after laboratory review and classified it as a false positive. As of July 19, no product sample had produced a confirmed positive Cyclospora result. FDA stated that this correction did not change the epidemiological and traceback basis for the recall. This distinction matters: the outbreak link rested on epidemiology and supply-chain convergence, not on a confirmed positive product sample.
+
+The recalled food-service products were distributed from June 29 through July 16 in 27 states. Nevada was not on that list and was not one of the nine states reporting Taco Bell exposure cases. The narrator was not eating at Taco Bell and had no reason to identify the lettuce in the Las Vegas lunchroom as a recalled product.
+
+Sources:
+
+- [CDC: Cyclospora outbreak linked to iceberg lettuce in nine states](https://www.cdc.gov/cyclosporiasis/outbreaks/07-26/index.html)
+- [FDA: Investigation of nine-state outbreak of Cyclospora illnesses](https://www.fda.gov/food/outbreaks-foodborne-illness/investigation-9-state-outbreak-cyclospora-illnesses-iceberg-lettuce-july-2026)
+- [FDA: Taylor Fresh Foods recall announcement](https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts/taylor-fresh-foods-recalls-iceberg-lettuce-central-mexico-because-possible-health-risk)
+- [Taco Bell: July 17 removal statement](https://www.tacobell.com/newsroom/taco-bell-statement)
+- [Associated Press: Outbreak expands to nine states](https://apnews.com/article/cyclospora-outbreak-fda-diarrhea-lettuce-4aa41a7eea5246bf7a3510f667c11bde)
+
+The narrator’s lunchroom exchange is a personal recollection. The exact coworker wording and the political conclusion are not presented as a transcript. The practical relevance check is documented: the narrator was not at Taco Bell, Nevada was absent from both official state lists, and the coworker’s warning had expanded a specific recall into a claim about lettuce in general.
 
 ### Audience demand and outlet slant
 
