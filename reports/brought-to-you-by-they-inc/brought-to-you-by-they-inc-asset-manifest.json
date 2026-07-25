@@ -1,0 +1,338 @@
+{
+  "content_id": "brought-to-you-by-they-inc",
+  "generated_at": "2026-07-24T22:22:02.888Z",
+  "bucket": "hobfarm-cdn",
+  "public_hostname": "https://cdn.hob.farm",
+  "policy": {
+    "new_keys_only": true,
+    "overwrite_existing": false,
+    "delete_or_rename_existing": false,
+    "dry_run_before_upload": true,
+    "allowed_prefixes": [
+      "articles/brought-to-you-by-they-inc/"
+    ]
+  },
+  "assets": [
+    {
+      "source_file": "assets/brought-to-you-by-they-inc/hero-brought-to-you-by-they-inc.png",
+      "destination_bucket": "hobfarm-cdn",
+      "destination_key": "articles/brought-to-you-by-they-inc/hero-brought-to-you-by-they-inc.png",
+      "public_url": "https://cdn.hob.farm/articles/brought-to-you-by-they-inc/hero-brought-to-you-by-they-inc.png",
+      "classification": "public-editorial",
+      "related_content": [
+        "article:brought-to-you-by-they-inc"
+      ],
+      "purpose": "Article hero and social image",
+      "alt_text": "Mid-century editorial illustration of a cheerful corporate presenter standing before an information factory that packages flags, headlines, phones, lettuce, and public certainty.",
+      "content_type": "image/png",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      },
+      "bytes": 3821685,
+      "sha256": "f32455fc1475aa215fdcc1653a2fe1d8f80238a16b9ca2c6a97e1e2ccc283362",
+      "replacement_policy": "new-key-only; version filename on conflict; never overwrite",
+      "upload_status": "uploaded",
+      "verification_status": "verified",
+      "remote_sha256": "f32455fc1475aa215fdcc1653a2fe1d8f80238a16b9ca2c6a97e1e2ccc283362",
+      "http_status": 200,
+      "verified_content_type": "image/png",
+      "verified_cache_control": "public, max-age=31536000, immutable",
+      "public_response_sha256": "f32455fc1475aa215fdcc1653a2fe1d8f80238a16b9ca2c6a97e1e2ccc283362",
+      "edge_transformed": false,
+      "verified_at": "2026-07-24T22:23:03.257Z"
+    },
+    {
+      "source_file": "assets/brought-to-you-by-they-inc/they-inc-information-supply-chain.png",
+      "destination_bucket": "hobfarm-cdn",
+      "destination_key": "articles/brought-to-you-by-they-inc/they-inc-information-supply-chain.png",
+      "public_url": "https://cdn.hob.farm/articles/brought-to-you-by-they-inc/they-inc-information-supply-chain.png",
+      "classification": "public-editorial",
+      "related_content": [
+        "article:brought-to-you-by-they-inc"
+      ],
+      "purpose": "Information supply-chain diagram",
+      "alt_text": "An event moves through source statement, reporting, commentary, clips, audience interpretation, memory, group talking point, and finally the phrase they say.",
+      "content_type": "image/png",
+      "dimensions": {
+        "width": 1800,
+        "height": 1160
+      },
+      "bytes": 158734,
+      "sha256": "430076891648f12968cc63c19cdb965afbc23b636ec800ddc1adc7ee7a3d5357",
+      "replacement_policy": "new-key-only; version filename on conflict; never overwrite",
+      "upload_status": "uploaded",
+      "verification_status": "verified",
+      "remote_sha256": "430076891648f12968cc63c19cdb965afbc23b636ec800ddc1adc7ee7a3d5357",
+      "http_status": 200,
+      "verified_content_type": "image/png",
+      "verified_cache_control": "public, max-age=31536000, immutable",
+      "public_response_sha256": "430076891648f12968cc63c19cdb965afbc23b636ec800ddc1adc7ee7a3d5357",
+      "edge_transformed": false,
+      "verified_at": "2026-07-24T22:23:08.918Z"
+    },
+    {
+      "source_file": "assets/brought-to-you-by-they-inc/thirty-years-of-they-inc.png",
+      "destination_bucket": "hobfarm-cdn",
+      "destination_key": "articles/brought-to-you-by-they-inc/thirty-years-of-they-inc.png",
+      "public_url": "https://cdn.hob.farm/articles/brought-to-you-by-they-inc/thirty-years-of-they-inc.png",
+      "classification": "public-editorial",
+      "related_content": [
+        "article:brought-to-you-by-they-inc"
+      ],
+      "purpose": "Thirty-year capability timeline",
+      "alt_text": "Timeline from 1998 through 2026 showing each new capability acquired by They, Inc.",
+      "content_type": "image/png",
+      "dimensions": {
+        "width": 1800,
+        "height": 1325
+      },
+      "bytes": 204258,
+      "sha256": "b5258374738f85c10e4c9086d5adf4dc74d270b5aa8be2de65248a2d10be82a8",
+      "replacement_policy": "new-key-only; version filename on conflict; never overwrite",
+      "upload_status": "uploaded",
+      "verification_status": "verified",
+      "remote_sha256": "b5258374738f85c10e4c9086d5adf4dc74d270b5aa8be2de65248a2d10be82a8",
+      "http_status": 200,
+      "verified_content_type": "image/png",
+      "verified_cache_control": "public, max-age=31536000, immutable",
+      "public_response_sha256": "b5258374738f85c10e4c9086d5adf4dc74d270b5aa8be2de65248a2d10be82a8",
+      "edge_transformed": false,
+      "verified_at": "2026-07-24T22:23:14.514Z"
+    },
+    {
+      "source_file": "assets/brought-to-you-by-they-inc/same-event-different-packages.png",
+      "destination_bucket": "hobfarm-cdn",
+      "destination_key": "articles/brought-to-you-by-they-inc/same-event-different-packages.png",
+      "public_url": "https://cdn.hob.farm/articles/brought-to-you-by-they-inc/same-event-different-packages.png",
+      "classification": "public-editorial",
+      "related_content": [
+        "article:brought-to-you-by-they-inc"
+      ],
+      "purpose": "Audience-package branching diagram",
+      "alt_text": "One press conference branches into establishment, opposition, corporate, foreign, influencer, and lunchroom editions.",
+      "content_type": "image/png",
+      "dimensions": {
+        "width": 1800,
+        "height": 1285
+      },
+      "bytes": 202474,
+      "sha256": "f0a4d7668a7a284cd2e631a52f4d073dd60eee856c6b7544aefba386758f421d",
+      "replacement_policy": "new-key-only; version filename on conflict; never overwrite",
+      "upload_status": "uploaded",
+      "verification_status": "verified",
+      "remote_sha256": "f0a4d7668a7a284cd2e631a52f4d073dd60eee856c6b7544aefba386758f421d",
+      "http_status": 200,
+      "verified_content_type": "image/png",
+      "verified_cache_control": "public, max-age=31536000, immutable",
+      "public_response_sha256": "f0a4d7668a7a284cd2e631a52f4d073dd60eee856c6b7544aefba386758f421d",
+      "edge_transformed": false,
+      "verified_at": "2026-07-24T22:23:20.378Z"
+    },
+    {
+      "source_file": "assets/brought-to-you-by-they-inc/identity-badge-department.png",
+      "destination_bucket": "hobfarm-cdn",
+      "destination_key": "articles/brought-to-you-by-they-inc/identity-badge-department.png",
+      "public_url": "https://cdn.hob.farm/articles/brought-to-you-by-they-inc/identity-badge-department.png",
+      "classification": "public-editorial",
+      "related_content": [
+        "article:brought-to-you-by-they-inc"
+      ],
+      "purpose": "Political identity retail display",
+      "alt_text": "Flags, masks, celebrities, food, brands, and slogans are displayed as packaged political identity badges.",
+      "content_type": "image/png",
+      "dimensions": {
+        "width": 1800,
+        "height": 1190
+      },
+      "bytes": 185448,
+      "sha256": "33b387cc38330cec27b17cfe9bceb3a9858ed9ee198899db91b4b13133366626",
+      "replacement_policy": "new-key-only; version filename on conflict; never overwrite",
+      "upload_status": "uploaded",
+      "verification_status": "verified",
+      "remote_sha256": "33b387cc38330cec27b17cfe9bceb3a9858ed9ee198899db91b4b13133366626",
+      "http_status": 200,
+      "verified_content_type": "image/png",
+      "verified_cache_control": "public, max-age=31536000, immutable",
+      "public_response_sha256": "33b387cc38330cec27b17cfe9bceb3a9858ed9ee198899db91b4b13133366626",
+      "edge_transformed": false,
+      "verified_at": "2026-07-24T22:23:26.417Z"
+    },
+    {
+      "source_file": "assets/brought-to-you-by-they-inc/iran-vs-djibouti.png",
+      "destination_bucket": "hobfarm-cdn",
+      "destination_key": "articles/brought-to-you-by-they-inc/iran-vs-djibouti.png",
+      "public_url": "https://cdn.hob.farm/articles/brought-to-you-by-they-inc/iran-vs-djibouti.png",
+      "classification": "public-editorial",
+      "related_content": [
+        "article:brought-to-you-by-they-inc"
+      ],
+      "purpose": "Dated search-result and infrastructure comparison",
+      "alt_text": "Google News results for Iran and Djibouti on July 24, 2026 appear above a schematic map of Djibouti, the Bab el-Mandeb strait, and Camp Lemonnier.",
+      "content_type": "image/png",
+      "dimensions": {
+        "width": 2000,
+        "height": 1410
+      },
+      "bytes": 554753,
+      "sha256": "9a13c6586bd543689b6780aa3fe886a786af4b6980d0bbbc5c80f0b2cf770bf4",
+      "replacement_policy": "new-key-only; version filename on conflict; never overwrite",
+      "upload_status": "uploaded",
+      "verification_status": "verified",
+      "remote_sha256": "9a13c6586bd543689b6780aa3fe886a786af4b6980d0bbbc5c80f0b2cf770bf4",
+      "http_status": 200,
+      "verified_content_type": "image/png",
+      "verified_cache_control": "public, max-age=31536000, immutable",
+      "public_response_sha256": "9a13c6586bd543689b6780aa3fe886a786af4b6980d0bbbc5c80f0b2cf770bf4",
+      "edge_transformed": false,
+      "verified_at": "2026-07-24T22:23:32.506Z"
+    },
+    {
+      "source_file": "assets/brought-to-you-by-they-inc/factoid-factory.png",
+      "destination_bucket": "hobfarm-cdn",
+      "destination_key": "articles/brought-to-you-by-they-inc/factoid-factory.png",
+      "public_url": "https://cdn.hob.farm/articles/brought-to-you-by-they-inc/factoid-factory.png",
+      "classification": "public-editorial",
+      "related_content": [
+        "article:brought-to-you-by-they-inc"
+      ],
+      "purpose": "Context-compression diagram",
+      "alt_text": "A complex event enters a factory where scope, location, comparison, uncertainty, and causal detail are removed before a factoid is packaged.",
+      "content_type": "image/png",
+      "dimensions": {
+        "width": 1800,
+        "height": 1250
+      },
+      "bytes": 165910,
+      "sha256": "1aa966199ee6a25e5cf6793dd30435fa57863efc7cfb98ea4ec2ae47aaf7260e",
+      "replacement_policy": "new-key-only; version filename on conflict; never overwrite",
+      "upload_status": "uploaded",
+      "verification_status": "verified",
+      "remote_sha256": "1aa966199ee6a25e5cf6793dd30435fa57863efc7cfb98ea4ec2ae47aaf7260e",
+      "http_status": 200,
+      "verified_content_type": "image/png",
+      "verified_cache_control": "public, max-age=31536000, immutable",
+      "public_response_sha256": "1aa966199ee6a25e5cf6793dd30435fa57863efc7cfb98ea4ec2ae47aaf7260e",
+      "edge_transformed": false,
+      "verified_at": "2026-07-24T22:23:38.286Z"
+    },
+    {
+      "source_file": "assets/brought-to-you-by-they-inc/some-people-llc.png",
+      "destination_bucket": "hobfarm-cdn",
+      "destination_key": "articles/brought-to-you-by-they-inc/some-people-llc.png",
+      "public_url": "https://cdn.hob.farm/articles/brought-to-you-by-they-inc/some-people-llc.png",
+      "classification": "public-editorial",
+      "related_content": [
+        "article:brought-to-you-by-they-inc"
+      ],
+      "purpose": "Synthetic-consensus illustration",
+      "alt_text": "A television pundit pulls a Some People Say lever and produces an anonymous crowd.",
+      "content_type": "image/png",
+      "dimensions": {
+        "width": 1800,
+        "height": 1190
+      },
+      "bytes": 142757,
+      "sha256": "3989ffc419ebf0e6eb631646294bf95da51a3dc04e1d360f58b49156af350025",
+      "replacement_policy": "new-key-only; version filename on conflict; never overwrite",
+      "upload_status": "uploaded",
+      "verification_status": "verified",
+      "remote_sha256": "3989ffc419ebf0e6eb631646294bf95da51a3dc04e1d360f58b49156af350025",
+      "http_status": 200,
+      "verified_content_type": "image/png",
+      "verified_cache_control": "public, max-age=31536000, immutable",
+      "public_response_sha256": "3989ffc419ebf0e6eb631646294bf95da51a3dc04e1d360f58b49156af350025",
+      "edge_transformed": false,
+      "verified_at": "2026-07-24T22:23:44.197Z"
+    },
+    {
+      "source_file": "assets/brought-to-you-by-they-inc/i-dont-care-thats-bullshit-flowchart.png",
+      "destination_bucket": "hobfarm-cdn",
+      "destination_key": "articles/brought-to-you-by-they-inc/i-dont-care-thats-bullshit-flowchart.png",
+      "public_url": "https://cdn.hob.farm/articles/brought-to-you-by-they-inc/i-dont-care-thats-bullshit-flowchart.png",
+      "classification": "public-editorial",
+      "related_content": [
+        "article:brought-to-you-by-they-inc"
+      ],
+      "purpose": "Narrator claim-inspection flowchart",
+      "alt_text": "A decision tree asks who they are, what they said, whether the source is recoverable, whether it applies, and whether the conclusion survives without team packaging.",
+      "content_type": "image/png",
+      "dimensions": {
+        "width": 1800,
+        "height": 1325
+      },
+      "bytes": 191125,
+      "sha256": "f8c79d48ea6b42d1bd5072452612c276d0dff494bce0057784c6aa2a491ab753",
+      "replacement_policy": "new-key-only; version filename on conflict; never overwrite",
+      "upload_status": "uploaded",
+      "verification_status": "verified",
+      "remote_sha256": "f8c79d48ea6b42d1bd5072452612c276d0dff494bce0057784c6aa2a491ab753",
+      "http_status": 200,
+      "verified_content_type": "image/png",
+      "verified_cache_control": "public, max-age=31536000, immutable",
+      "public_response_sha256": "f8c79d48ea6b42d1bd5072452612c276d0dff494bce0057784c6aa2a491ab753",
+      "edge_transformed": false,
+      "verified_at": "2026-07-24T22:23:50.246Z"
+    },
+    {
+      "source_file": "assets/brought-to-you-by-they-inc/sources/google-news-iran-2026-07-24-public.png",
+      "destination_bucket": "hobfarm-cdn",
+      "destination_key": "articles/brought-to-you-by-they-inc/sources/google-news-iran-2026-07-24.png",
+      "public_url": "https://cdn.hob.farm/articles/brought-to-you-by-they-inc/sources/google-news-iran-2026-07-24.png",
+      "classification": "public-editorial",
+      "related_content": [
+        "article:brought-to-you-by-they-inc"
+      ],
+      "purpose": "Cropped analytical source capture",
+      "alt_text": "Cropped Google News results page for the search term Iran, captured July 24, 2026.",
+      "content_type": "image/png",
+      "dimensions": {
+        "width": 1680,
+        "height": 900
+      },
+      "bytes": 617306,
+      "sha256": "90aa72ad08adf5cf24a05d4187638b08f030540f069910d08e1eb0d11b1bd91f",
+      "replacement_policy": "new-key-only; version filename on conflict; never overwrite",
+      "upload_status": "uploaded",
+      "verification_status": "verified",
+      "remote_sha256": "90aa72ad08adf5cf24a05d4187638b08f030540f069910d08e1eb0d11b1bd91f",
+      "http_status": 200,
+      "verified_content_type": "image/png",
+      "verified_cache_control": "public, max-age=31536000, immutable",
+      "public_response_sha256": "90aa72ad08adf5cf24a05d4187638b08f030540f069910d08e1eb0d11b1bd91f",
+      "edge_transformed": false,
+      "verified_at": "2026-07-24T22:23:56.391Z"
+    },
+    {
+      "source_file": "assets/brought-to-you-by-they-inc/sources/google-news-djibouti-2026-07-24-public.png",
+      "destination_bucket": "hobfarm-cdn",
+      "destination_key": "articles/brought-to-you-by-they-inc/sources/google-news-djibouti-2026-07-24.png",
+      "public_url": "https://cdn.hob.farm/articles/brought-to-you-by-they-inc/sources/google-news-djibouti-2026-07-24.png",
+      "classification": "public-editorial",
+      "related_content": [
+        "article:brought-to-you-by-they-inc"
+      ],
+      "purpose": "Cropped analytical source capture",
+      "alt_text": "Cropped Google News results page for the search term Djibouti, captured July 24, 2026.",
+      "content_type": "image/png",
+      "dimensions": {
+        "width": 1680,
+        "height": 900
+      },
+      "bytes": 491953,
+      "sha256": "fc94da0749b19e0bc3b8c9b3827c1080c83a0a64833feec34da68a1a80d1a733",
+      "replacement_policy": "new-key-only; version filename on conflict; never overwrite",
+      "upload_status": "uploaded",
+      "verification_status": "verified",
+      "remote_sha256": "fc94da0749b19e0bc3b8c9b3827c1080c83a0a64833feec34da68a1a80d1a733",
+      "http_status": 200,
+      "verified_content_type": "image/png",
+      "verified_cache_control": "public, max-age=31536000, immutable",
+      "public_response_sha256": "fc94da0749b19e0bc3b8c9b3827c1080c83a0a64833feec34da68a1a80d1a733",
+      "edge_transformed": false,
+      "verified_at": "2026-07-24T22:24:02.521Z"
+    }
+  ],
+  "dry_run_at": "2026-07-24T22:22:52.733Z",
+  "upload_completed_at": "2026-07-24T22:24:02.522Z"
+}

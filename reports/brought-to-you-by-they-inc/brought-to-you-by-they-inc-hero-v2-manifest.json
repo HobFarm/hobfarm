@@ -1,0 +1,48 @@
+{
+  "content_id": "brought-to-you-by-they-inc-hero-v2",
+  "generated_at": "2026-07-24T22:40:09.349Z",
+  "bucket": "hobfarm-cdn",
+  "public_hostname": "https://cdn.hob.farm",
+  "policy": {
+    "new_keys_only": true,
+    "overwrite_existing": false,
+    "delete_or_rename_existing": false,
+    "dry_run_before_upload": true,
+    "allowed_prefixes": [
+      "articles/brought-to-you-by-they-inc/"
+    ]
+  },
+  "assets": [
+    {
+      "source_file": "assets/brought-to-you-by-they-inc/hero-brought-to-you-by-they-inc-v2.png",
+      "destination_bucket": "hobfarm-cdn",
+      "destination_key": "articles/brought-to-you-by-they-inc/hero-brought-to-you-by-they-inc-v2.png",
+      "public_url": "https://cdn.hob.farm/articles/brought-to-you-by-they-inc/hero-brought-to-you-by-they-inc-v2.png",
+      "classification": "public-editorial",
+      "related_content": [
+        "article:brought-to-you-by-they-inc"
+      ],
+      "purpose": "Corrected article hero and social image",
+      "alt_text": "Mid-century editorial illustration of a two-armed corporate presenter standing before an information factory that packages flags, headlines, phones, lettuce, and public certainty.",
+      "content_type": "image/png",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      },
+      "bytes": 3783161,
+      "sha256": "8fadd9ed3038cb4fcd763b9c7a1d8471df5ff78417500ef6993b0ecfb3c13fdf",
+      "replacement_policy": "new-key-only; version filename on conflict; never overwrite",
+      "upload_status": "uploaded",
+      "verification_status": "verified",
+      "remote_sha256": "8fadd9ed3038cb4fcd763b9c7a1d8471df5ff78417500ef6993b0ecfb3c13fdf",
+      "http_status": 200,
+      "verified_content_type": "image/png",
+      "verified_cache_control": "public, max-age=31536000, immutable",
+      "public_response_sha256": "8fadd9ed3038cb4fcd763b9c7a1d8471df5ff78417500ef6993b0ecfb3c13fdf",
+      "edge_transformed": false,
+      "verified_at": "2026-07-24T22:40:42.465Z"
+    }
+  ],
+  "dry_run_at": "2026-07-24T22:40:33.476Z",
+  "upload_completed_at": "2026-07-24T22:40:42.466Z"
+}
