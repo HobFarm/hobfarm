@@ -170,9 +170,10 @@ For every task:
 5. Make focused edits.
 6. Run the correct validation command.
 7. Fix validation errors caused by the task.
-8. Commit validated work to `main` and push `origin/main` unless the user asked
-   for local-only or draft work.
-9. Summarize files changed, commands run, and results.
+8. Leave validated work in the shared `main` worktree for user review.
+9. Commit or push only when the user explicitly asks for that Git action in the
+   current task.
+10. Summarize files changed, commands run, and results.
 
 If uncommitted changes exist in files you need to edit, inspect them first. Do not overwrite them blindly.
 
@@ -188,18 +189,21 @@ Use these rules for every task:
 1. Work directly on `main`.
 2. Do not create feature branches, preview branches, alternate branches, or Git
    worktrees.
-3. Do not leave finished work in a detached HEAD, an unpushed commit, or another
-   branch.
+3. Do not leave work in a detached HEAD or another branch. Finished files may
+   remain as uncommitted changes in the shared `main` worktree.
 4. Use `npm run dev`, `npm run preview`, Chrome, or local Playwright for review.
    Do not create a branch to obtain a preview deployment.
-5. Keep incomplete work on `main` as uncommitted files or clearly labeled draft
-   content. Do not use a branch as a holding area.
+5. Keep both complete and incomplete work on `main` as uncommitted files when
+   the user has not requested a commit. Clearly label actual draft content; do
+   not treat every uncommitted file as a draft or use a branch as a holding area.
 6. When several agents are active, coordinate file ownership in the same
    worktree and preserve each other's changes.
-7. After validation, commit the scoped change to `main` and push `origin/main`
-   unless the user explicitly requested local-only work.
-8. Before handoff, verify that `main` is checked out, the working tree is clean
-   when a commit was requested, and `main` matches `origin/main`.
+7. Do not create a commit or push merely because the work is complete. Commit
+   to `main` only when the user explicitly asks for a commit, and push
+   `origin/main` only when the user explicitly asks for a push or publication.
+8. Before handoff, verify that `main` is checked out. Require a clean working
+   tree only when the user requested a commit, and require `main` to match
+   `origin/main` only when the user requested a push.
 
 If the repository is not on `main`, safely move the existing work onto `main`
 before continuing. Preserve all uncommitted work and unmerged commits. Do not
@@ -796,10 +800,11 @@ Cloudflare Pages deploys from `main`.
 Use local development and preview commands for review. Do not create
 non-production branches for Cloudflare preview deployments.
 
-Pushing a validated commit to `origin/main` is the normal HobFarm publishing
-workflow and is authorized by the single-branch policy. Direct Wrangler
-deployments and Cloudflare configuration changes still require explicit
-approval.
+Pushing a validated commit to `origin/main` triggers the normal HobFarm
+publishing workflow, but the single-branch policy does not authorize an
+automatic push. Push only when the user explicitly requests publication or a
+push. Direct Wrangler deployments and Cloudflare configuration changes also
+require explicit approval.
 
 Cloudflare Pages Functions live in:
 
@@ -950,9 +955,11 @@ feat(grimoire): add resolve endpoint
 style(home): tighten article card spacing
 ```
 
-Commit validated website work directly to `main` and push `origin/main` unless
-the user requested local-only work. Do not create a pull request, PR branch, or
-review branch for the normal HobFarm workflow.
+When the user explicitly requests a commit, commit validated website work
+directly to `main`. Push `origin/main` only when the user explicitly requests a
+push or publication. Otherwise, leave the reviewed changes uncommitted in the
+shared `main` worktree. Do not create a pull request, PR branch, review branch,
+or separate worktree for the normal HobFarm workflow.
 
 ---
 
@@ -965,7 +972,7 @@ At the end of a task, report:
 * build/check result
 * visual QA result if applicable
 * skipped validation and why
-* `main` push status and observed deployment status when available
+* `main` push status and observed deployment status when a push was requested
 
 Do not claim that Cloudflare finished deploying unless its status was actually
 checked. Distinguish a successful `main` push from a confirmed production
