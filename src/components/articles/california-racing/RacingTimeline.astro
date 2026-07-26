@@ -1,0 +1,111 @@
+---
+const events = [
+  ["1910", "Los Angeles Motordrome opens at Playa del Rey."],
+  ["1915", "The first Plank Road crosses the Imperial Sand Dunes."],
+  ["1920", "Beverly Hills Speedway opens."],
+  ["1924", "Racing shifts to the Culver City board track."],
+  ["1934", "Farmers Market and Gilmore Stadium open."],
+  ["1937", "Southern California Timing Association forms."],
+  ["1948", "Hot Rod begins publication; the first SCTA hot-rod show fills the Los Angeles Armory."],
+  ["1951", "Gilmore is gone; NHRA is founded."],
+  ["1953", "Willow Springs opens."],
+  ["1955", "Lions Drag Strip opens."],
+  ["1957", "Riverside and Ascot begin their long runs; Paramount Raceway closes."],
+  ["1969", "The Love Bug and Pit Stop put very different racetrack worlds on screen."],
+  ["1972", "Lions closes."],
+  ["1975", "Long Beach holds its first Grand Prix."],
+  ["1980s", "Ontario, OCIR, and Riverside disappear in succession."],
+  ["1990", "Ascot holds its final race."],
+  ["2024", "Irwindale Speedway closes after its final season."],
+];
+---
+
+<figure class="racing-timeline article-wide" aria-labelledby="timeline-title">
+  <figcaption>
+    <strong id="timeline-title">A century of motion and removal</strong>
+    <span>The dates track venues, institutions, and cultural handoffs discussed in the article.</span>
+  </figcaption>
+  <ol>
+    {
+      events.map(([year, event]) => (
+        <li>
+          <time>{year}</time>
+          <span>{event}</span>
+        </li>
+      ))
+    }
+  </ol>
+</figure>
+
+<style>
+  .racing-timeline {
+    margin-block: 2.75rem;
+    padding: clamp(1rem, 3vw, 1.7rem);
+    border-radius: 0.85rem;
+    background: #141b20;
+    color: #f0ece5;
+  }
+
+  figcaption {
+    display: grid;
+    gap: 0.35rem;
+    margin-bottom: 1.2rem;
+  }
+
+  figcaption strong {
+    font-size: 1.15rem;
+  }
+
+  figcaption span {
+    color: #bac2c7;
+    font-size: 0.84rem;
+  }
+
+  ol {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    position: relative;
+    display: grid;
+    grid-template-columns: 4.7rem 1fr;
+    gap: 0.65rem;
+    min-width: 0;
+    padding: 0.6rem 0.8rem 0.6rem 1rem;
+    border-left: 2px solid #c76f35;
+  }
+
+  li::before {
+    content: "";
+    position: absolute;
+    top: 0.92rem;
+    left: -0.34rem;
+    width: 0.55rem;
+    height: 0.55rem;
+    border: 2px solid #141b20;
+    border-radius: 50%;
+    background: #e3a15e;
+  }
+
+  time {
+    color: #e3a15e;
+    font: 700 0.75rem/1.45 var(--font-mono, monospace);
+  }
+
+  li span {
+    color: #d9dfe2;
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+
+  @media (max-width: 720px) {
+    ol {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

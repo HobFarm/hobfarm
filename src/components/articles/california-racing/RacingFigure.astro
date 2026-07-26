@@ -1,0 +1,90 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption: string;
+  credit: string;
+  sourceUrl?: string;
+  width?: number;
+  height?: number;
+  wide?: boolean;
+  archive?: boolean;
+  eager?: boolean;
+}
+
+const {
+  src,
+  alt,
+  caption,
+  credit,
+  sourceUrl,
+  width,
+  height,
+  wide = false,
+  archive = false,
+  eager = false,
+} = Astro.props;
+---
+
+<figure
+  class:list={[
+    "racing-figure",
+    wide && "article-wide",
+    archive && "article-archive-viewer",
+  ]}
+>
+  <img
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={eager ? "eager" : "lazy"}
+    decoding="async"
+    data-lightbox
+  />
+  <figcaption>
+    <span>{caption}</span>
+    <span class="racing-credit">
+      {
+        sourceUrl ? (
+          <a href={sourceUrl} rel="noreferrer">{credit}</a>
+        ) : (
+          credit
+        )
+      }
+    </span>
+  </figcaption>
+</figure>
+
+<style>
+  .racing-figure {
+    margin-block: 2.25rem;
+  }
+
+  .racing-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0.55rem;
+  }
+
+  .racing-figure figcaption {
+    display: grid;
+    gap: 0.35rem;
+    margin-top: 0.7rem;
+    color: var(--color-text-muted, #5b6674);
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  .racing-credit {
+    font-size: 0.78rem;
+    letter-spacing: 0.015em;
+  }
+
+  .racing-credit a {
+    color: inherit;
+    text-decoration-color: currentColor;
+    text-underline-offset: 0.16em;
+  }
+</style>

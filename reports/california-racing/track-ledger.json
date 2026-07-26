@@ -1,0 +1,379 @@
+{
+  "schema_version": "1.0",
+  "article": "california-used-to-race-here",
+  "tracks": [
+    {
+      "id": "playa-del-rey-motordrome",
+      "name": "Los Angeles Motordrome",
+      "alternate_names": [
+        "Playa del Rey Motordrome"
+      ],
+      "place": "Playa del Rey, Los Angeles",
+      "type": [
+        "board track",
+        "automobile",
+        "motorcycle"
+      ],
+      "opened": 1910,
+      "closed": 1913,
+      "status": "demolished",
+      "current_use": "Developed coastal neighborhood; exact footprint overlay required",
+      "film_connections": [],
+      "key_sources": [
+        "S04",
+        "S32",
+        "S33"
+      ],
+      "article_role": "First giant wood speedway and start of the board-track chapter",
+      "confidence": "high"
+    },
+    {
+      "id": "beverly-hills-speedway",
+      "name": "Beverly Hills Speedway",
+      "alternate_names": [],
+      "place": "Beverly Hills",
+      "type": [
+        "board track",
+        "automobile",
+        "motorcycle"
+      ],
+      "opened": 1920,
+      "closed": 1924,
+      "status": "demolished",
+      "current_use": "Commercial and hotel development, including part of the Beverly Wilshire area",
+      "film_connections": [
+        "Beverly Hills Board Track Racing (1921)"
+      ],
+      "key_sources": [
+        "S05",
+        "S06",
+        "S31"
+      ],
+      "article_role": "The most cinematic board-track example and clearest land-value cycle",
+      "confidence": "high"
+    },
+    {
+      "id": "culver-city-speedway",
+      "name": "Culver City Speedway",
+      "alternate_names": [
+        "Culver City board track"
+      ],
+      "place": "Culver City",
+      "type": [
+        "board track",
+        "automobile"
+      ],
+      "opened": 1924,
+      "closed": 1927,
+      "status": "demolished",
+      "current_use": "Housing and Victory Park area; precise parcel map required",
+      "film_connections": [],
+      "key_sources": [
+        "S06"
+      ],
+      "article_role": "Shows racing moving outward and being consumed again by development",
+      "confidence": "medium-high"
+    },
+    {
+      "id": "gilmore-stadium",
+      "name": "Gilmore Stadium",
+      "alternate_names": [],
+      "place": "Third and Fairfax, Los Angeles",
+      "type": [
+        "dirt oval",
+        "midget racing",
+        "motorcycle",
+        "multi-use stadium"
+      ],
+      "opened": 1934,
+      "closed": 1950,
+      "status": "demolished",
+      "current_use": "Television City",
+      "film_connections": [
+        "Three Little Pigskins (1934)"
+      ],
+      "key_sources": [
+        "S01",
+        "S02",
+        "S27",
+        "S28",
+        "S37",
+        "S38",
+        "S39"
+      ],
+      "article_role": "Primary case study and geographic foundation",
+      "confidence": "high"
+    },
+    {
+      "id": "culver-city-stadium",
+      "name": "Culver City Stadium",
+      "alternate_names": [
+        "Culver City Speedway, second site"
+      ],
+      "place": "Lincoln and Washington Boulevards, Culver City",
+      "type": [
+        "dirt oval",
+        "paved oval",
+        "figure eight",
+        "midget racing",
+        "motorcycle"
+      ],
+      "opened": 1932,
+      "closed": 1954,
+      "status": "demolished",
+      "current_use": "Costco and adjacent commercial development, verify exact footprint",
+      "film_connections": [
+        "The Big Wheel"
+      ],
+      "key_sources": [
+        "S06"
+      ],
+      "article_role": "Secondary bridge between racing, film studios, and machine shops",
+      "confidence": "medium"
+    },
+    {
+      "id": "el-mirage",
+      "name": "El Mirage Dry Lake",
+      "alternate_names": [],
+      "place": "San Bernardino County high desert",
+      "type": [
+        "dry lake",
+        "land-speed racing"
+      ],
+      "opened": 1930,
+      "closed": null,
+      "status": "active",
+      "current_use": "Public dry lake and organized land-speed venue",
+      "film_connections": [],
+      "key_sources": [
+        "S13",
+        "S14"
+      ],
+      "article_role": "Foundation for organized hot rodding and safety culture",
+      "confidence": "high"
+    },
+    {
+      "id": "willow-springs",
+      "name": "Willow Springs International Raceway",
+      "alternate_names": [],
+      "place": "Rosamond, Kern County",
+      "type": [
+        "permanent road course"
+      ],
+      "opened": 1953,
+      "closed": null,
+      "status": "active",
+      "current_use": "Active motorsports complex",
+      "film_connections": [
+        "The Love Bug"
+      ],
+      "key_sources": [
+        "S07",
+        "S11"
+      ],
+      "article_role": "Survivor and counterexample to total erasure",
+      "confidence": "high"
+    },
+    {
+      "id": "lions-drag-strip",
+      "name": "Lions Drag Strip",
+      "alternate_names": [
+        "Lions Associated Drag Strip"
+      ],
+      "place": "Wilmington, Los Angeles",
+      "type": [
+        "drag strip"
+      ],
+      "opened": 1955,
+      "closed": 1972,
+      "status": "demolished",
+      "current_use": "Port and industrial logistics landscape; exact parcel verification required",
+      "film_connections": [
+        "The Munsters: Hot Rod Herman"
+      ],
+      "key_sources": [
+        "S16"
+      ],
+      "article_role": "Legalized drag racing, community institution, and noise-pressure example",
+      "confidence": "medium-high"
+    },
+    {
+      "id": "paramount-raceway",
+      "name": "Paramount Raceway",
+      "alternate_names": [
+        "Paramount Sportsman’s Ranch Raceway"
+      ],
+      "place": "Paramount Ranch, Santa Monica Mountains",
+      "type": [
+        "road course"
+      ],
+      "opened": 1956,
+      "closed": 1957,
+      "status": "archaeological-survivor",
+      "current_use": "National Park Service land with much of course trace surviving",
+      "film_connections": [
+        "The Devil’s Hairpin",
+        "The Love Bug"
+      ],
+      "key_sources": [
+        "S08"
+      ],
+      "article_role": "Movie-ranch and racetrack overlap preserved in landscape",
+      "confidence": "high"
+    },
+    {
+      "id": "ascot-park",
+      "name": "Ascot Park",
+      "alternate_names": [
+        "Los Angeles Speedway",
+        "New Ascot Stadium"
+      ],
+      "place": "Near Gardena",
+      "type": [
+        "dirt oval",
+        "figure eight",
+        "midget racing",
+        "sprint cars",
+        "motorcycles"
+      ],
+      "opened": 1957,
+      "closed": 1990,
+      "status": "demolished",
+      "current_use": "Industrial and vehicle-auction/storage uses; verify current parcel",
+      "film_connections": [
+        "Pit Stop",
+        "Gone in 60 Seconds",
+        "CHiPs"
+      ],
+      "key_sources": [
+        "S09",
+        "S29",
+        "S34"
+      ],
+      "article_role": "Pit Stop location and rough public face of late-1960s racing",
+      "confidence": "high"
+    },
+    {
+      "id": "riverside",
+      "name": "Riverside International Raceway",
+      "alternate_names": [
+        "RIR"
+      ],
+      "place": "Moreno Valley",
+      "type": [
+        "road course",
+        "NASCAR",
+        "Formula One",
+        "sports cars",
+        "off-road"
+      ],
+      "opened": 1957,
+      "closed": 1989,
+      "status": "demolished",
+      "current_use": "Moreno Valley Mall, retail, hotels, housing, schools, parks and offices",
+      "film_connections": [
+        "The Love Bug",
+        "Grand Prix",
+        "Winning",
+        "The Killers",
+        "On the Beach"
+      ],
+      "key_sources": [
+        "S07",
+        "S30",
+        "S35"
+      ],
+      "article_role": "Major lost road course and strongest mall-replacement example",
+      "confidence": "medium-high"
+    },
+    {
+      "id": "ocir",
+      "name": "Orange County International Raceway",
+      "alternate_names": [
+        "OCIR"
+      ],
+      "place": "Irvine",
+      "type": [
+        "drag strip",
+        "road course"
+      ],
+      "opened": 1967,
+      "closed": 1983,
+      "status": "demolished",
+      "current_use": "Irvine commercial and business development; exact overlay required",
+      "film_connections": [],
+      "key_sources": [
+        "S17"
+      ],
+      "article_role": "Orange County super-track built on land already slated for future development",
+      "confidence": "high"
+    },
+    {
+      "id": "ontario",
+      "name": "Ontario Motor Speedway",
+      "alternate_names": [],
+      "place": "Ontario",
+      "type": [
+        "superspeedway",
+        "road course",
+        "drag racing"
+      ],
+      "opened": 1970,
+      "closed": 1980,
+      "status": "demolished",
+      "current_use": "Chevron Center, offices, retail, housing, arena district and Ontario Motor Speedway Park",
+      "film_connections": [],
+      "key_sources": [
+        "S18"
+      ],
+      "article_role": "Spectacularly short-lived Indianapolis-scale facility",
+      "confidence": "high"
+    },
+    {
+      "id": "long-beach",
+      "name": "Grand Prix of Long Beach",
+      "alternate_names": [],
+      "place": "Downtown Long Beach",
+      "type": [
+        "temporary street circuit",
+        "Formula 5000",
+        "Formula One",
+        "CART",
+        "IndyCar"
+      ],
+      "opened": 1975,
+      "closed": null,
+      "status": "active",
+      "current_use": "City streets temporarily converted into a race circuit",
+      "film_connections": [],
+      "key_sources": [
+        "S10"
+      ],
+      "article_role": "The adaptable survivor that borrows the city rather than owning permanent land",
+      "confidence": "high"
+    },
+    {
+      "id": "irwindale",
+      "name": "Irwindale Speedway and Dragstrip",
+      "alternate_names": [
+        "House of Drift"
+      ],
+      "place": "Irwindale",
+      "type": [
+        "paved oval",
+        "drag strip",
+        "drifting"
+      ],
+      "opened": 1999,
+      "closed": 2024,
+      "status": "closed",
+      "current_use": "Redevelopment pending or underway; verify before publication",
+      "film_connections": [],
+      "key_sources": [
+        "S12"
+      ],
+      "article_role": "Recent proof that the land-pressure cycle never ended",
+      "confidence": "high"
+    }
+  ]
+}

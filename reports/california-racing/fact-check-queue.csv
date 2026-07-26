@@ -1,0 +1,16 @@
+id,item,priority,action,status
+F01,Love Bug scene-to-track audit,high,"Watch a legal copy and log timestamps, track geometry, landmarks, reused footage, and confidence. D23 only establishes broad locations.",open
+F02,Pit Stop sequence audit,high,"Log Ascot figure-eight scenes, street-racing locations, and any stock/reused footage.",open
+F03,Third and Fairfax parcel overlay,high,"Build decade layers for Gilmore Stadium, Gilmore Field, Farmers Market, Gilmore Drive-In, Pan-Pacific, Television City, and The Grove using parcel maps and aerials.",open
+F04,Gilmore demolition chronology,medium,"Resolve sale in 1950, demolition work in 1951, and Television City opening in 1952 into one clean caption.",partially resolved
+F05,Gilmore Field current footprint,medium,Confirm which portions became Television City parking and which remain outside the studio parcel.,open
+F06,Xanadu poster use,high,"Identify exact poster edition, verify that the Pan-Pacific facade is represented, and decide whether a small editorial reproduction is necessary.",open
+F07,Solar Midget production details,high,"Replace secondary receipt with museum, manufacturer, or period source for Elmer Ross design, 1945-1946 dates, and production total.",open
+F08,Board-track physical hazard language,medium,"Source oil mist, smoke, fire, rot, splinter, and rider-protection details before using specific sensory claims as fact.",open
+F09,La Muerte owner biography and label,high,Confirm whether the car owner wants her name and personal story reproduced. Use the car images without the biography until cleared.,open
+F10,Big 3 event identification,low,Photo dates and 2013 event notices support Big 3 Parts Exchange at Qualcomm Stadium. Confirm no other car event shared the venue that day.,likely resolved
+F11,Track replacement land uses,high,Verify current parcel use for every What Is There Now card immediately before publication.,open
+F12,Riverside film matrix,medium,Cross-check each film claimed to use Riverside against production records or location research.,open
+F13,Long Beach Formula One image rights,medium,Request one licensed 1976 or 1977 historical image from the race organization or locate a suitable CC image.,open
+F14,Original Farmers Market historical sign photos,low,"Search author archive by date/location; if absent, request official historical images or photograph surviving displays later.",open
+F15,Personal narration approval,medium,Confirm final first-person details about living across Southern California from 2006 to 2014 and visiting the relevant sites.,open

@@ -1,0 +1,115 @@
+---
+const cards = [
+  ["Gilmore Stadium", "1934–1950", "Television City", "verified"],
+  ["Gilmore Drive-In", "1948–1970s", "The Grove area", "verified"],
+  ["Beverly Hills Speedway", "1920–1924", "Commercial and hotel district", "verified"],
+  ["Culver City Speedway", "1924–1927", "Housing and park uses", "approximate footprint"],
+  ["Riverside International Raceway", "1957–1989", "Mall, housing, schools, parks, and offices", "verified by parcel history"],
+  ["Ontario Motor Speedway", "1970–1980", "Offices, retail, housing, arena district, school, and park", "verified"],
+  ["Orange County International Raceway", "1967–1983", "Irvine business and commercial development", "verified"],
+  ["Ascot Park", "1957–1990", "Industrial and vehicle-related parcels", "boundary needs care"],
+  ["Irwindale Speedway", "1999–2024", "Closed site", "future use still developing"],
+];
+---
+
+<figure class="replacement-cards article-wide" aria-labelledby="replacement-title">
+  <figcaption>
+    <strong id="replacement-title">What replaced the tracks</strong>
+    <span>
+      Present-day labels describe the broader former site or district. They are not
+      claims that every current parcel sat inside a racing surface.
+    </span>
+  </figcaption>
+  <div class="card-grid">
+    {
+      cards.map(([name, years, replacement, confidence]) => (
+        <article>
+          <p class="years">{years}</p>
+          <h3>{name}</h3>
+          <span class="arrow" aria-hidden="true">↓</span>
+          <p class="replacement">{replacement}</p>
+          <p class="confidence">{confidence}</p>
+        </article>
+      ))
+    }
+  </div>
+</figure>
+
+<style>
+  .replacement-cards {
+    margin-block: 2.75rem;
+  }
+
+  figcaption {
+    display: grid;
+    gap: 0.35rem;
+    margin-bottom: 1rem;
+  }
+
+  figcaption strong {
+    font-size: 1.15rem;
+  }
+
+  figcaption span {
+    color: var(--color-text-muted, #5b6674);
+    font-size: 0.86rem;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.8rem;
+  }
+
+  article {
+    display: grid;
+    grid-template-rows: auto auto auto 1fr auto;
+    gap: 0.3rem;
+    min-width: 0;
+    padding: 1rem;
+    border: 1px solid color-mix(in srgb, currentColor 17%, transparent);
+    border-radius: 0.65rem;
+    background: color-mix(in srgb, var(--color-surface, #fff) 96%, #c36b30);
+  }
+
+  .years,
+  .confidence {
+    margin: 0;
+    color: var(--color-text-muted, #5b6674);
+    font: 0.7rem/1.4 var(--font-mono, monospace);
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.25;
+  }
+
+  .arrow {
+    color: #b75b28;
+    font-size: 1.2rem;
+  }
+
+  .replacement {
+    margin: 0;
+    font-size: 0.84rem;
+    line-height: 1.4;
+  }
+
+  .confidence {
+    padding-top: 0.5rem;
+    border-top: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+  }
+
+  @media (max-width: 820px) {
+    .card-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 540px) {
+    .card-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

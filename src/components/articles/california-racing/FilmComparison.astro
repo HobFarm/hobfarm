@@ -1,0 +1,114 @@
+---
+const rows = [
+  {
+    film: "The Love Bug",
+    year: "1969",
+    mode: "Family fantasy",
+    track: "Willow Springs and Riverside were among its Southern California locations.",
+    effect: "The race course becomes a bright stage for a car with a personality.",
+  },
+  {
+    film: "Pit Stop",
+    year: "1969",
+    mode: "Exploitation drama",
+    track: "Southern California short-track and figure-eight culture supplies the atmosphere.",
+    effect: "The track is work, danger, class pressure, and public spectacle.",
+  },
+];
+---
+
+<figure class="film-comparison article-wide" aria-labelledby="film-title">
+  <figcaption>
+    <strong id="film-title">Two 1969 movies, two uses of the racetrack</strong>
+    <span>
+      This comparison stays at the production-history level. It does not assign an
+      unverified circuit to a specific shot.
+    </span>
+  </figcaption>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Film</th>
+          <th scope="col">Mode</th>
+          <th scope="col">Location record</th>
+          <th scope="col">What the track does</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          rows.map((row) => (
+            <tr>
+              <th scope="row"><cite>{row.film}</cite> <span>{row.year}</span></th>
+              <td>{row.mode}</td>
+              <td>{row.track}</td>
+              <td>{row.effect}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+</figure>
+
+<style>
+  .film-comparison {
+    margin-block: 2.75rem;
+    padding: clamp(1rem, 3vw, 1.6rem);
+    border-radius: 0.85rem;
+    background: #17191e;
+    color: #f5f0e7;
+  }
+
+  figcaption {
+    display: grid;
+    gap: 0.35rem;
+    margin-bottom: 1rem;
+  }
+
+  figcaption strong {
+    font-size: 1.15rem;
+  }
+
+  figcaption span {
+    color: #bfc4cc;
+    font-size: 0.86rem;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    min-width: 44rem;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+  }
+
+  th,
+  td {
+    padding: 0.8rem;
+    border: 1px solid rgb(255 255 255 / 18%);
+    text-align: left;
+    vertical-align: top;
+  }
+
+  thead th {
+    color: #f0b566;
+    font-size: 0.72rem;
+    letter-spacing: 0.055em;
+    text-transform: uppercase;
+  }
+
+  tbody th {
+    min-width: 8rem;
+  }
+
+  tbody th span {
+    display: block;
+    margin-top: 0.15rem;
+    color: #aeb4bd;
+    font: 400 0.7rem/1.4 var(--font-mono, monospace);
+  }
+</style>

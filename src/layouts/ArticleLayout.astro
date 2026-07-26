@@ -360,6 +360,12 @@ const articleJsonLd = {
     .prose {
       overflow: visible !important;
     }
+    .prose p,
+    .prose li,
+    .prose a {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
     .article-wide {
       position: relative !important;
       left: 50% !important;
@@ -515,6 +521,10 @@ const articleJsonLd = {
       margin-left: auto !important;
       margin-right: auto !important;
     }
+    .prose figure.article-wide,
+    article figure.article-wide {
+      align-items: stretch !important;
+    }
     .prose img,
     article figure img {
       display: block !important;
@@ -585,6 +595,34 @@ const articleJsonLd = {
     }
     .article-media-stack figure {
       margin: 0 !important;
+    }
+    .article-archive-viewer {
+      position: relative !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      width: 46rem !important;
+      max-width: 90vw !important;
+      margin: 2rem auto !important;
+      padding: clamp(0.5rem, 1.5vw, 0.75rem);
+      overflow: hidden;
+      border: 1px solid color-mix(in srgb, currentColor 16%, transparent);
+      border-radius: 0.5rem;
+      background: var(--color-base-950, #07060b);
+      scroll-margin-top: 5rem;
+    }
+    .article-archive-viewer img {
+      display: block !important;
+      width: 100% !important;
+      height: clamp(18rem, 62vw, 36rem) !important;
+      margin: 0 !important;
+      object-fit: contain;
+      object-position: center;
+      border-radius: 0.25rem;
+      background: #030303;
+    }
+    .article-archive-viewer figcaption {
+      margin: 0.75rem 0 0 !important;
+      padding: 0 0.25rem 0.125rem;
     }
     .article-connection-map,
     .article-source-list {

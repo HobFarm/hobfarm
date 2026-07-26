@@ -1,0 +1,20 @@
+id,needed_image,source_targets,rights_path,notes
+I01,"Third and Fairfax historical aerial showing Gilmore Stadium, Gilmore Field, Farmers Market and Pan-Pacific","Los Angeles Public Library, USC Digital Library, Water and Power Associates, Original Farmers Market archive",permission or public-domain verification,essential for parcel map
+I02,Gilmore Stadium opening-era exterior or overhead view,"Wikimedia Commons category, California Digital Newspaper Collection, Farmers Market archive",public domain or permission,use with 1941 night race and demolition sequence
+I03,Gilmore Field and Hollywood Stars crowd,"Baseball Reliquary, LAPL, California Digital Newspaper Collection",permission or public domain,supports broader entertainment district
+I04,Plank Road under construction or automobiles using the 1915 wheel paths,"BLM, San Diego Automotive Museum, California State Archives",federal public domain or permission,keep prologue compact
+I05,Beverly Hills Speedway wide exterior and banking construction,"Library of Congress, NFPF film frames, Wikimedia Commons",public domain; film-frame review,embed NFPF film rather than host a copy
+I06,Culver City Speedway overhead or race-day crowd,Culver City Historical Society,permission request,adds clear build-over comparison
+I07,Lions Drag Strip opening or final-night photograph,Lions Automobilia Foundation,permission request,one image plus museum link
+I08,Orange County International Raceway timing tower and opening day,NHRA archive,permission request,NHRA page contains a strong image sequence
+I09,Ontario Motor Speedway aerial or 1970 opening,"Ontario Museum of History and Art, city archive, motorsport archive",permission request,pair with City of Ontario replacement card
+I10,Long Beach 1975 Formula 5000 or 1977 Andretti victory,Grand Prix Association of Long Beach,permission request,shows street-circuit counterexample
+I11,Willow Springs 1953 opening or early racing,Willow Springs archive,permission request,pair with current survivor status
+I12,Paramount Raceway historic action and current track trace,National Park Service,public-domain check or NPS permission,ideal then-and-now pair
+I13,The Love Bug racing frames,Disney film,editorial fair-use review,use only a few frames directly analyzed in copy
+I14,Pit Stop figure-eight and Ascot frames,film rights holder,editorial fair-use review,use only frames tied to location commentary
+I15,Xanadu Pan-Pacific transformation frame or poster,Universal film/poster rights holder,editorial fair-use review,public-domain Pan-Pacific photos can carry section if omitted
+I16,Riverside track outline and current parcel,historic track map plus OpenStreetMap data,recreate as original SVG,do not use unlicensed Google imagery
+I17,Author’s Third and Fairfax photographs,author archive search,author-owned,optional personal-memory layer
+I18,Author’s 2013 Big 3 swap-meet photographs,included in package,author-owned,definite use
+I19,"Author’s lowrider, Solar Midget, Fonzie Triumph and Plank Road museum photographs",included in package,author-owned,definite use with caption review

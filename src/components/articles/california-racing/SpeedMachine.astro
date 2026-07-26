@@ -1,0 +1,122 @@
+---
+const inputs = [
+  "Dry lakes and open desert",
+  "Aerospace machine shops",
+  "War-surplus parts and engines",
+  "Cheap peripheral land",
+  "Magazines and speed clubs",
+];
+
+const practices = [
+  "Timing and record keeping",
+  "Home fabrication",
+  "Engine swapping",
+  "Streamlining",
+  "Track and strip safety rules",
+];
+
+const outcomes = [
+  "Land-speed racing",
+  "Hot rods",
+  "Drag racing",
+  "Midget and sprint cars",
+  "Stunt and screen vehicles",
+];
+---
+
+<figure class="speed-machine article-wide" aria-labelledby="speed-machine-title">
+  <figcaption>
+    <strong id="speed-machine-title">The postwar Southern California speed machine</strong>
+    <span>No single inventor made the culture. A regional system made it repeatable.</span>
+  </figcaption>
+  <div class="machine-grid">
+    <section>
+      <h3>Conditions</h3>
+      <ul>{inputs.map((item) => <li>{item}</li>)}</ul>
+    </section>
+    <span class="machine-arrow" aria-hidden="true">→</span>
+    <section>
+      <h3>Shared practices</h3>
+      <ul>{practices.map((item) => <li>{item}</li>)}</ul>
+    </section>
+    <span class="machine-arrow" aria-hidden="true">→</span>
+    <section>
+      <h3>Public forms</h3>
+      <ul>{outcomes.map((item) => <li>{item}</li>)}</ul>
+    </section>
+  </div>
+</figure>
+
+<style>
+  .speed-machine {
+    margin-block: 2.75rem;
+    padding: clamp(1.1rem, 3vw, 1.8rem);
+    border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+    border-radius: 0.85rem;
+    background: color-mix(in srgb, var(--color-surface, #fff) 95%, #da4329);
+  }
+
+  figcaption {
+    display: grid;
+    gap: 0.35rem;
+    margin-bottom: 1.1rem;
+  }
+
+  figcaption strong {
+    font-size: 1.15rem;
+  }
+
+  figcaption span {
+    color: var(--color-text-muted, #5b6674);
+  }
+
+  .machine-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  section {
+    align-self: stretch;
+    padding: 1rem;
+    border-radius: 0.55rem;
+    background: color-mix(in srgb, var(--color-surface, #fff) 92%, #26313a);
+  }
+
+  h3 {
+    margin: 0 0 0.65rem;
+    color: #b83525;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 1.1rem;
+  }
+
+  li {
+    margin: 0.3rem 0;
+    font-size: 0.84rem;
+    line-height: 1.4;
+  }
+
+  .machine-arrow {
+    color: #b83525;
+    font-size: 1.65rem;
+    font-weight: 800;
+  }
+
+  @media (max-width: 760px) {
+    .machine-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .machine-arrow {
+      justify-self: center;
+      transform: rotate(90deg);
+    }
+  }
+</style>

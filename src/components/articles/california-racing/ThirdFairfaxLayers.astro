@@ -1,0 +1,174 @@
+---
+const layers = [
+  ["1934", "Farmers Market opens; Gilmore Stadium follows on the same oil-field landscape."],
+  ["1939", "Gilmore Field adds professional baseball north of the market."],
+  ["1948", "Gilmore Drive-In opens near the future Grove parcel."],
+  ["1950–52", "CBS buys the stadium parcel and builds Television City."],
+  ["2002", "The Grove opens beside the Farmers Market."],
+];
+---
+
+<figure class="fairfax-layers article-wide" aria-labelledby="fairfax-title">
+  <div class="parcel-diagram" aria-hidden="true">
+    <div class="parcel parcel-studio">
+      <span>Gilmore Stadium</span>
+      <strong>Television City</strong>
+    </div>
+    <div class="parcel parcel-market">
+      <strong>Farmers Market</strong>
+      <span>opened 1934</span>
+    </div>
+    <div class="parcel parcel-field">
+      <span>Gilmore Field</span>
+      <strong>later development</strong>
+    </div>
+    <div class="parcel parcel-grove">
+      <span>Gilmore Drive-In area</span>
+      <strong>The Grove</strong>
+    </div>
+    <div class="road road-third">Third Street</div>
+    <div class="road road-fairfax">Fairfax Avenue</div>
+  </div>
+  <figcaption>
+    <strong id="fairfax-title">Third and Fairfax, built over in layers</strong>
+    <span>
+      A diagrammatic orientation, not a surveyed parcel map. The labels summarize the
+      Farmers Market history and the Television City historic assessment.
+    </span>
+  </figcaption>
+  <ol>
+    {
+      layers.map(([year, event]) => (
+        <li><strong>{year}</strong><span>{event}</span></li>
+      ))
+    }
+  </ol>
+</figure>
+
+<style>
+  .fairfax-layers {
+    margin-block: 2.75rem;
+    padding: clamp(1rem, 3vw, 1.8rem);
+    border-radius: 0.85rem;
+    background: #14202a;
+    color: #f2eadf;
+  }
+
+  .parcel-diagram {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-rows: 1fr 1fr;
+    min-height: 25rem;
+    padding: 2rem 0 0 2.2rem;
+    gap: 0.45rem;
+  }
+
+  .parcel {
+    display: grid;
+    place-content: center;
+    gap: 0.3rem;
+    padding: 1rem;
+    border: 1px solid rgb(255 255 255 / 22%);
+    border-radius: 0.45rem;
+    text-align: center;
+  }
+
+  .parcel span {
+    color: #e7b46d;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .parcel strong {
+    font-size: clamp(1rem, 2vw, 1.35rem);
+  }
+
+  .parcel-studio { background: #223a49; }
+  .parcel-market { background: #5f3f28; }
+  .parcel-field { background: #253f33; }
+  .parcel-grove { background: #4d354f; }
+
+  .road {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    background: #eee5d7;
+    color: #26313a;
+    font: 700 0.7rem/1 var(--font-mono, monospace);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .road-third {
+    left: 2.2rem;
+    right: 0;
+    bottom: 0;
+    height: 1.55rem;
+  }
+
+  .road-fairfax {
+    top: 2rem;
+    bottom: 0;
+    left: 0;
+    width: 1.7rem;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+
+  figcaption {
+    display: grid;
+    gap: 0.35rem;
+    margin-top: 1.1rem;
+  }
+
+  figcaption strong {
+    font-size: 1.15rem;
+  }
+
+  figcaption span {
+    color: #c5cdd3;
+    font-size: 0.84rem;
+    line-height: 1.5;
+  }
+
+  ol {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.65rem;
+    margin: 1.2rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: grid;
+    gap: 0.3rem;
+    align-content: start;
+    padding-top: 0.65rem;
+    border-top: 2px solid #e7b46d;
+  }
+
+  li strong {
+    color: #e7b46d;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.76rem;
+  }
+
+  li span {
+    color: #d5dde2;
+    font-size: 0.76rem;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 760px) {
+    .parcel-diagram {
+      min-height: 21rem;
+    }
+
+    ol {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

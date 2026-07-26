@@ -1,0 +1,199 @@
+---
+const tracks = [
+  ["Playa del Rey", "1910–1913", 17, 36],
+  ["Beverly Hills", "1920–1924", 32, 31],
+  ["Culver City", "1924–1927", 28, 43],
+  ["Gilmore", "1934–1950", 38, 36],
+  ["Lions", "1955–1972", 39, 68],
+  ["Paramount", "1956–1957", 22, 27],
+  ["Ascot", "1957–1990", 43, 55],
+  ["Riverside", "1957–1989", 75, 49],
+  ["OCIR", "1967–1983", 59, 61],
+  ["Ontario", "1970–1980", 66, 36],
+  ["Long Beach", "1975–present", 44, 75],
+  ["Irwindale", "1999–2024", 56, 30],
+  ["Willow Springs", "1953–present", 49, 8],
+  ["El Mirage", "active dry lake", 66, 10],
+];
+---
+
+<figure class="track-map article-wide" aria-labelledby="track-map-title">
+  <figcaption>
+    <strong id="track-map-title">The culture kept moving outward</strong>
+    <span>
+      Schematic regional map. Point positions are approximate and intended to show
+      relationships, not property boundaries or driving directions.
+    </span>
+  </figcaption>
+  <div class="map-field" role="img" aria-label="Schematic map of Southern California racing sites">
+    <span class="coast" aria-hidden="true"></span>
+    <span class="desert" aria-hidden="true">desert</span>
+    <span class="ocean" aria-hidden="true">Pacific</span>
+    {
+      tracks.map(([name, years, x, y], index) => (
+        <span
+          class:list={["map-point", String(years).includes("present") && "map-point--active"]}
+          style={`--x:${x}%;--y:${y}%`}
+          title={`${name}, ${years}`}
+        >
+          <b>{index + 1}</b>
+          <span>{name}</span>
+        </span>
+      ))
+    }
+  </div>
+  <ol>
+    {
+      tracks.map(([name, years], index) => (
+        <li><b>{index + 1}</b><span>{name}</span><small>{years}</small></li>
+      ))
+    }
+  </ol>
+</figure>
+
+<style>
+  .track-map {
+    margin-block: 2.75rem;
+    padding: clamp(1rem, 3vw, 1.7rem);
+    border-radius: 0.85rem;
+    background: #e7d9bf;
+    color: #27313a;
+  }
+
+  figcaption {
+    display: grid;
+    gap: 0.35rem;
+    margin-bottom: 1rem;
+  }
+
+  figcaption strong {
+    font-size: 1.15rem;
+  }
+
+  figcaption span {
+    color: #586169;
+    font-size: 0.84rem;
+  }
+
+  .map-field {
+    position: relative;
+    min-height: 33rem;
+    overflow: hidden;
+    border: 1px solid rgb(39 49 58 / 22%);
+    border-radius: 0.6rem;
+    background:
+      radial-gradient(circle at 66% 16%, rgb(193 150 83 / 35%), transparent 24%),
+      linear-gradient(150deg, #d0b886, #efdfbe 55%, #d7c18f);
+  }
+
+  .coast {
+    position: absolute;
+    top: -8%;
+    bottom: -5%;
+    left: -14%;
+    width: 41%;
+    border-right: 5px solid rgb(50 95 119 / 64%);
+    border-radius: 45%;
+    background: #9fc2ce;
+    transform: rotate(8deg);
+  }
+
+  .ocean,
+  .desert {
+    position: absolute;
+    color: rgb(39 49 58 / 44%);
+    font: 700 0.68rem/1 var(--font-mono, monospace);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .ocean {
+    left: 3%;
+    bottom: 8%;
+    transform: rotate(-78deg);
+  }
+
+  .desert {
+    top: 11%;
+    right: 7%;
+  }
+
+  .map-point {
+    position: absolute;
+    top: var(--y);
+    left: var(--x);
+    display: flex;
+    gap: 0.35rem;
+    align-items: center;
+    transform: translate(-50%, -50%);
+  }
+
+  .map-point b {
+    display: grid;
+    place-items: center;
+    width: 1.4rem;
+    height: 1.4rem;
+    flex: 0 0 auto;
+    border: 2px solid #f5ead5;
+    border-radius: 50%;
+    background: #a63827;
+    color: white;
+    box-shadow: 0 1px 5px rgb(0 0 0 / 25%);
+    font: 700 0.65rem/1 var(--font-mono, monospace);
+  }
+
+  .map-point--active b {
+    background: #276943;
+  }
+
+  .map-point span {
+    max-width: 7rem;
+    padding: 0.18rem 0.3rem;
+    background: rgb(239 223 190 / 86%);
+    font-size: 0.62rem;
+    font-weight: 700;
+    line-height: 1.15;
+  }
+
+  ol {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.45rem 0.9rem;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.1rem 0.4rem;
+    align-items: baseline;
+    font-size: 0.76rem;
+  }
+
+  li b {
+    grid-row: 1 / 3;
+    color: #a63827;
+    font-family: var(--font-mono, monospace);
+  }
+
+  li small {
+    color: #60676b;
+    font-size: 0.68rem;
+  }
+
+  @media (max-width: 760px) {
+    .map-field {
+      min-height: 29rem;
+    }
+
+    .map-point span {
+      display: none;
+    }
+
+    ol {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

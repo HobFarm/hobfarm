@@ -1,0 +1,133 @@
+---
+const stages = [
+  {
+    label: "Cheap edge land",
+    detail: "A promoter finds open ground beyond the dense city.",
+  },
+  {
+    label: "Timber spectacle",
+    detail: "A fast wooden bowl draws racers, spectators, and press.",
+  },
+  {
+    label: "City catches up",
+    detail: "Housing, hotels, shops, and traffic reach the track.",
+  },
+  {
+    label: "Land wins",
+    detail: "Repairs rise, neighbors complain, and the parcel is redeveloped.",
+  },
+  {
+    label: "Racing moves",
+    detail: "A new venue opens farther from the center and the cycle begins again.",
+  },
+];
+---
+
+<figure class="board-cycle article-wide" aria-labelledby="board-cycle-title">
+  <figcaption>
+    <strong id="board-cycle-title">The board-track land cycle</strong>
+    <span>The early speedways established a pattern Southern California repeated for decades.</span>
+  </figcaption>
+  <ol>
+    {
+      stages.map((stage, index) => (
+        <li>
+          <span class="stage-number">{String(index + 1).padStart(2, "0")}</span>
+          <strong>{stage.label}</strong>
+          <span>{stage.detail}</span>
+        </li>
+      ))
+    }
+  </ol>
+</figure>
+
+<style>
+  .board-cycle {
+    margin-block: 2.75rem;
+    padding: clamp(1.1rem, 3vw, 2rem);
+    border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+    border-radius: 0.8rem;
+    background:
+      linear-gradient(135deg, color-mix(in srgb, #9a5f32 12%, transparent), transparent 52%),
+      color-mix(in srgb, var(--color-surface, #fff) 94%, #d6b28a);
+  }
+
+  figcaption {
+    display: grid;
+    gap: 0.35rem;
+    margin-bottom: 1.15rem;
+  }
+
+  figcaption strong {
+    font-size: 1.2rem;
+  }
+
+  figcaption span {
+    color: var(--color-text-muted, #5b6674);
+  }
+
+  ol {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: cycle;
+  }
+
+  li {
+    position: relative;
+    display: grid;
+    gap: 0.35rem;
+    align-content: start;
+    min-width: 0;
+    padding: 0.95rem 1.25rem 0.95rem 0.95rem;
+    border-left: 2px solid color-mix(in srgb, #9a5f32 55%, transparent);
+  }
+
+  li:not(:last-child)::after {
+    content: "→";
+    position: absolute;
+    top: 1rem;
+    right: 0.15rem;
+    color: #9a5f32;
+    font-weight: 800;
+  }
+
+  .stage-number {
+    color: #9a5f32;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.75rem;
+  }
+
+  li strong {
+    font-size: 0.95rem;
+    line-height: 1.2;
+  }
+
+  li span:last-child {
+    color: var(--color-text-muted, #5b6674);
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 860px) {
+    ol {
+      grid-template-columns: 1fr;
+    }
+
+    li {
+      padding-right: 0.75rem;
+      padding-bottom: 1.15rem;
+    }
+
+    li:not(:last-child)::after {
+      content: "↓";
+      top: auto;
+      right: auto;
+      bottom: -0.15rem;
+      left: 0.9rem;
+    }
+  }
+</style>

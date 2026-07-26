@@ -1,0 +1,291 @@
+{
+  "schema_version": "1.0",
+  "entries": [
+    {
+      "year": 1880,
+      "event": "A. F. Gilmore acquires the dairy property that later becomes the Third and Fairfax entertainment district",
+      "sources": [
+        "S01"
+      ]
+    },
+    {
+      "year": 1900,
+      "event": "Oil discovery transforms the Gilmore dairy land into an oil field and automobile-economy asset",
+      "sources": [
+        "S01"
+      ]
+    },
+    {
+      "year": 1910,
+      "event": "Los Angeles Motordrome opens at Playa del Rey, a one-mile wooden speedway",
+      "sources": [
+        "S04"
+      ]
+    },
+    {
+      "year": 1912,
+      "event": "Ed Fletcher stages the promotional road race that helps sell the San Diego to Yuma route",
+      "sources": [
+        "S03"
+      ]
+    },
+    {
+      "year": 1915,
+      "event": "The first plank tracks are laid across the Imperial Sand Dunes",
+      "sources": [
+        "S03"
+      ]
+    },
+    {
+      "year": 1916,
+      "event": "California replaces the narrow wheel paths with an eight-foot sectional plank road",
+      "sources": [
+        "S03"
+      ]
+    },
+    {
+      "year": 1920,
+      "event": "Beverly Hills Speedway opens",
+      "sources": [
+        "S05",
+        "S06"
+      ]
+    },
+    {
+      "year": 1924,
+      "event": "Beverly Hills Speedway closes as the land becomes more valuable; Culver City Speedway opens",
+      "sources": [
+        "S05",
+        "S06"
+      ]
+    },
+    {
+      "year": 1926,
+      "event": "A paved road replaces the Plank Road corridor across the dunes",
+      "sources": [
+        "S03"
+      ]
+    },
+    {
+      "year": 1927,
+      "event": "Culver City board-track racing ends and the land is platted for housing and a park",
+      "sources": [
+        "S06"
+      ]
+    },
+    {
+      "year": 1934,
+      "event": "Gilmore Stadium and Original Farmers Market open at Third and Fairfax",
+      "sources": [
+        "S01"
+      ]
+    },
+    {
+      "year": 1935,
+      "event": "Pan-Pacific Auditorium opens near the Gilmore complex",
+      "sources": [
+        "S24"
+      ]
+    },
+    {
+      "year": 1937,
+      "event": "Southern California Timing Association forms to organize dry-lake speed trials",
+      "sources": [
+        "S14"
+      ]
+    },
+    {
+      "year": 1939,
+      "event": "Gilmore Field opens for the Hollywood Stars",
+      "sources": [
+        "S01"
+      ]
+    },
+    {
+      "year": 1945,
+      "event": "Solar Aircraft begins building midget racers in San Diego, pending final production receipt",
+      "sources": [
+        "S36"
+      ]
+    },
+    {
+      "year": 1948,
+      "event": "Hot Rod publishes its first issue; Gilmore Drive-In opens on the future Grove parcel",
+      "sources": [
+        "S01",
+        "S14"
+      ]
+    },
+    {
+      "year": 1950,
+      "event": "Gilmore Stadium holds its final midget season and the property is sold for television development",
+      "sources": [
+        "S02"
+      ]
+    },
+    {
+      "year": 1951,
+      "event": "Gilmore grandstands come down while Television City rises",
+      "sources": [
+        "S27",
+        "S37"
+      ]
+    },
+    {
+      "year": 1952,
+      "event": "Television City opens on the former Gilmore Stadium parcel",
+      "sources": [
+        "S02"
+      ]
+    },
+    {
+      "year": 1953,
+      "event": "Willow Springs opens in the high desert",
+      "sources": [
+        "S11"
+      ]
+    },
+    {
+      "year": 1955,
+      "event": "Lions Drag Strip opens in Wilmington",
+      "sources": [
+        "S16"
+      ]
+    },
+    {
+      "year": 1956,
+      "event": "Paramount Raceway opens at the movie ranch",
+      "sources": [
+        "S08"
+      ]
+    },
+    {
+      "year": 1957,
+      "event": "Paramount Raceway closes; Riverside and the Gardena Ascot Park open",
+      "sources": [
+        "S08",
+        "S34",
+        "S35"
+      ]
+    },
+    {
+      "year": 1967,
+      "event": "Orange County International Raceway opens; Pit Stop is photographed around Los Angeles and Ascot",
+      "sources": [
+        "S09",
+        "S17"
+      ]
+    },
+    {
+      "year": 1968,
+      "event": "The Love Bug photographs racing material at several California locations",
+      "sources": [
+        "S07",
+        "S08"
+      ]
+    },
+    {
+      "year": 1970,
+      "event": "Ontario Motor Speedway opens",
+      "sources": [
+        "S18"
+      ]
+    },
+    {
+      "year": 1972,
+      "event": "Lions Drag Strip closes; Pan-Pacific Auditorium closes",
+      "sources": [
+        "S16",
+        "S24"
+      ]
+    },
+    {
+      "year": 1975,
+      "event": "Long Beach stages its first Grand Prix as a Formula 5000 race",
+      "sources": [
+        "S10"
+      ]
+    },
+    {
+      "year": 1976,
+      "event": "Formula One arrives at Long Beach",
+      "sources": [
+        "S10"
+      ]
+    },
+    {
+      "year": 1980,
+      "event": "Ontario Motor Speedway closes; Xanadu turns the derelict Pan-Pacific facade into a fantasy roller disco",
+      "sources": [
+        "S18",
+        "S24"
+      ]
+    },
+    {
+      "year": 1983,
+      "event": "Orange County International Raceway closes",
+      "sources": [
+        "S17"
+      ]
+    },
+    {
+      "year": 1984,
+      "event": "Long Beach switches from Formula One to CART",
+      "sources": [
+        "S10"
+      ]
+    },
+    {
+      "year": 1988,
+      "event": "Riverside holds its final major NASCAR weekend",
+      "sources": [
+        "S30",
+        "S35"
+      ]
+    },
+    {
+      "year": 1989,
+      "event": "Riverside closes completely and the Pan-Pacific Auditorium burns",
+      "sources": [
+        "S24",
+        "S35"
+      ]
+    },
+    {
+      "year": 1990,
+      "event": "Ascot Park holds its final events",
+      "sources": [
+        "S34"
+      ]
+    },
+    {
+      "year": 1999,
+      "event": "Irwindale Speedway opens",
+      "sources": [
+        "S12"
+      ]
+    },
+    {
+      "year": 2013,
+      "event": "The author photographs the Big 3 Parts Exchange at Qualcomm Stadium",
+      "sources": [
+        "S23"
+      ]
+    },
+    {
+      "year": 2024,
+      "event": "Irwindale Speedway closes after its final December event",
+      "sources": [
+        "S12"
+      ]
+    },
+    {
+      "year": 2026,
+      "event": "Willow Springs and the Long Beach street race remain active counterexamples to complete erasure",
+      "sources": [
+        "S10",
+        "S11"
+      ]
+    }
+  ]
+}
