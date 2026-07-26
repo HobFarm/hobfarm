@@ -4,10 +4,11 @@ Completed locally on July 25, 2026.
 
 ## Branch and publication status
 
-- Branch: `feat/california-racing-article`
-- Commit: no commit created.
-- Merge: not run.
-- Production deployment: not run.
+- Branch: `main`
+- Article commit: `cac6643`
+- Integration: fast-forwarded to `main` and pushed to `origin/main`.
+- Production deployment command: not run. The repository's normal hosting
+  automation may build from the updated `main` branch.
 - Article file:
   `src/content/articles/california-used-to-race-here.mdx`
 - Local route:
@@ -107,5 +108,5 @@ public-response checksums. Existing R2 objects were not overwritten.
 
 ## Final state
 
-The article is ready for local editorial review. No merge, commit, production
-deployment, Cloudflare Pages change, or DNS change was performed.
+The article is committed on `main` and synced to GitHub. No direct Cloudflare
+deployment command, Pages setting change, or DNS change was performed.
