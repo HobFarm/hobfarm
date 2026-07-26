@@ -1,0 +1,84 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption: string;
+  credit: string;
+  sourceUrl?: string;
+  width: number;
+  height: number;
+  wide?: boolean;
+  archive?: boolean;
+  eager?: boolean;
+}
+
+const {
+  src,
+  alt,
+  caption,
+  credit,
+  sourceUrl,
+  width,
+  height,
+  wide = false,
+  archive = false,
+  eager = false,
+} = Astro.props;
+---
+
+<figure
+  class:list={[
+    "doll-figure",
+    wide && "article-wide",
+    archive && "article-archive-viewer",
+  ]}
+>
+  <img
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={eager ? "eager" : "lazy"}
+    decoding="async"
+    data-lightbox
+  />
+  <figcaption>
+    <span>{caption}</span>
+    <span class="doll-credit">
+      {sourceUrl ? <a href={sourceUrl} rel="noreferrer">{credit}</a> : credit}
+    </span>
+  </figcaption>
+</figure>
+
+<style>
+  .doll-figure {
+    margin-block: 2.25rem;
+  }
+
+  .doll-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0.45rem;
+  }
+
+  .doll-figure figcaption {
+    display: grid;
+    gap: 0.35rem;
+    margin-top: 0.7rem;
+    color: var(--color-base-400, #a0a0a0);
+    font-size: 0.86rem;
+    line-height: 1.5;
+  }
+
+  .doll-credit {
+    font-size: 0.75rem;
+    letter-spacing: 0.015em;
+  }
+
+  .doll-credit a {
+    color: inherit;
+    text-decoration-color: currentColor;
+    text-underline-offset: 0.16em;
+  }
+</style>

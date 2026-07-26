@@ -1,0 +1,201 @@
+---
+const events = [
+  {
+    date: "1899–1914",
+    confidence: "reported",
+    text: "Frieda, Kurt, Hilda, and Elly Schneider are born in Stolpen. Tiny’s 1914 birth is confirmed by her obituary; original-record checks remain open for the three older siblings.",
+  },
+  {
+    date: "1910s–1920s",
+    confidence: "disputed",
+    text: "The siblings reach the United States in stages. Passenger dates, Bert Earles’s exact role, and the first wild-west employer still conflict across later biographies.",
+  },
+  {
+    date: "1925 / 1930",
+    confidence: "verified",
+    text: "Harry plays Tweedledee in both versions of The Unholy Three.",
+  },
+  {
+    date: "1931–1932",
+    confidence: "verified",
+    text: "Harry and Daisy play Hans and Frieda in Freaks.",
+  },
+  {
+    date: "By 1934–1936",
+    confidence: "verified",
+    text: "Tiny is in Sarasota by 1934; a 1936 account places the family with Ringling and at a Sarasota winter bungalow.",
+  },
+  {
+    date: "1938–1939",
+    confidence: "verified",
+    text: "All four work on The Wizard of Oz. The screen credits name the Munchkin ensemble collectively.",
+  },
+  {
+    date: "March 29, 1948",
+    confidence: "verified",
+    text: "Florida Memory photographs the Doll Family near the circus train leaving Sarasota’s winter quarters.",
+  },
+  {
+    date: "1959–1960",
+    confidence: "verified",
+    text: "Ringling’s Sarasota winter quarters close and the circus moves the winter base to Venice.",
+  },
+  {
+    date: "1970–2004",
+    confidence: "reported",
+    text: "Gracie, Daisy, Harry, and finally Tiny die. Tiny lives to 90 and dies in Sarasota in 2004.",
+  },
+];
+---
+
+<section class="doll-timeline not-prose article-wide" aria-labelledby="doll-timeline-title">
+  <header>
+    <p>Stolpen to Sarasota</p>
+    <h2 id="doll-timeline-title">A route with gaps left visible</h2>
+  </header>
+
+  <ol>
+    {
+      events.map((event) => (
+        <li data-confidence={event.confidence}>
+          <div>
+            <time>{event.date}</time>
+            <span>{event.confidence}</span>
+          </div>
+          <p>{event.text}</p>
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<style>
+  .doll-timeline {
+    margin-block: 2.75rem;
+    padding: clamp(1rem, 3vw, 1.75rem);
+    border: 1px solid #514a43;
+    border-radius: 0.65rem;
+    background: #151311;
+    color: #ece4d9;
+  }
+
+  header > p {
+    margin: 0;
+    color: #d8a356;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0.35rem 0 0;
+    color: #fff9ef;
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 4vw, 2.45rem);
+    font-weight: 400;
+  }
+
+  ol {
+    position: relative;
+    display: grid;
+    gap: 0;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  ol::before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 8.4rem;
+    width: 1px;
+    background: #4b433a;
+    content: "";
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: 7.2rem 1fr;
+    gap: 2.4rem;
+    padding: 0.8rem 0;
+  }
+
+  li > div {
+    display: grid;
+    gap: 0.28rem;
+    align-content: start;
+    text-align: right;
+  }
+
+  time {
+    color: #fff9ef;
+    font-weight: 700;
+  }
+
+  li span {
+    color: #8bb8bc;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  li[data-confidence="disputed"] span {
+    color: #d27a65;
+  }
+
+  li[data-confidence="reported"] span {
+    color: #c7a86f;
+  }
+
+  li p {
+    position: relative;
+    margin: 0;
+    color: #c9beb1;
+    line-height: 1.55;
+  }
+
+  li p::before {
+    position: absolute;
+    top: 0.45rem;
+    left: -2.8rem;
+    width: 0.72rem;
+    height: 0.72rem;
+    border: 2px solid #151311;
+    border-radius: 50%;
+    background: #5f9ca2;
+    box-shadow: 0 0 0 1px #4b433a;
+    content: "";
+  }
+
+  li[data-confidence="disputed"] p::before {
+    background: transparent;
+    border-color: #d27a65;
+  }
+
+  li[data-confidence="reported"] p::before {
+    background: #c7a86f;
+  }
+
+  @media (max-width: 650px) {
+    ol::before {
+      left: 0.35rem;
+    }
+
+    li {
+      grid-template-columns: 1fr;
+      gap: 0.4rem;
+      padding-left: 1.8rem;
+    }
+
+    li > div {
+      text-align: left;
+    }
+
+    li p::before {
+      left: -1.8rem;
+    }
+  }
+</style>

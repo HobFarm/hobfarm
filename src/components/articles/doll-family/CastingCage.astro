@@ -1,0 +1,155 @@
+---
+const repeated = [
+  "fantasy dwarf",
+  "elf or goblin",
+  "Munchkin",
+  "circus attraction",
+  "child disguise",
+  "dream symbol",
+  "visual gag",
+];
+
+const scarce = [
+  "romantic lead",
+  "parent",
+  "lawyer or doctor",
+  "neighbor",
+  "detective",
+  "politician",
+  "worker whose plot is not about stature",
+];
+---
+
+<section class="casting-cage not-prose article-wide" aria-labelledby="casting-cage-title">
+  <header>
+    <p>Historical pattern</p>
+    <h2 id="casting-cage-title">The casting cage</h2>
+    <p class="intro">
+      The recurring problem is range: a small group of body-first roles remains
+      easy to imagine while ordinary dramatic roles stay harder to enter.
+    </p>
+  </header>
+
+  <div class="actor">Working actor with dwarfism</div>
+
+  <div class="doors">
+    <section aria-labelledby="repeated-title">
+      <h3 id="repeated-title">Doors offered repeatedly</h3>
+      <ul>
+        {repeated.map((role) => <li>{role}</li>)}
+      </ul>
+    </section>
+    <section aria-labelledby="scarce-title">
+      <h3 id="scarce-title">Doors offered less often</h3>
+      <ul>
+        {scarce.map((role) => <li>{role}</li>)}
+      </ul>
+    </section>
+  </div>
+
+  <p class="note">
+    This is a documented pattern in actor interviews, not a universal casting
+    database. Fantasy roles can still be substantial, welcome work.
+  </p>
+</section>
+
+<style>
+  .casting-cage {
+    margin-block: 2.75rem;
+    padding: clamp(1rem, 3vw, 1.75rem);
+    border: 1px solid #475560;
+    border-radius: 0.65rem;
+    background:
+      linear-gradient(180deg, rgba(37, 73, 82, 0.3), transparent 58%),
+      #10161a;
+    color: #edf3f4;
+  }
+
+  header > p:first-child {
+    margin: 0;
+    color: #81c6cc;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0.35rem 0 0;
+    color: white;
+    font-family: var(--font-display);
+    font-size: clamp(1.7rem, 4vw, 2.7rem);
+    font-weight: 400;
+  }
+
+  .intro {
+    max-width: 44rem;
+    margin: 0.75rem 0 0;
+    color: #b8c5c8;
+    line-height: 1.6;
+  }
+
+  .actor {
+    width: fit-content;
+    margin: 1.4rem auto;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid #d9a956;
+    background: #1e1b17;
+    color: #f6dfb5;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .doors {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .doors section {
+    padding: 1rem;
+    border: 1px solid #334047;
+    background: rgba(8, 12, 14, 0.55);
+  }
+
+  h3 {
+    margin: 0;
+    color: #f5f2ec;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  ul {
+    display: grid;
+    gap: 0.45rem;
+    margin: 0.85rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    padding: 0.45rem 0.55rem;
+    border-left: 2px solid #a85242;
+    background: #181d20;
+    color: #cdd5d7;
+  }
+
+  .doors section:last-child li {
+    border-left-color: #4d8990;
+  }
+
+  .note {
+    margin: 1rem 0 0;
+    color: #8fa0a4;
+    font-size: 0.78rem;
+    line-height: 1.55;
+  }
+
+  @media (max-width: 680px) {
+    .doors {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

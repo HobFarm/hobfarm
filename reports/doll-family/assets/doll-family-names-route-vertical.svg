@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+    <defs>
+    <filter id="paper-noise" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="3" seed="7" result="noise"/>
+      <feColorMatrix in="noise" type="saturate" values="0" result="gray"/>
+      <feComponentTransfer in="gray" result="faded">
+        <feFuncA type="table" tableValues="0 .13"/>
+      </feComponentTransfer>
+      <feBlend in="SourceGraphic" in2="faded" mode="multiply"/>
+    </filter>
+    <pattern id="rule-lines" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M0 47.5H48" stroke="#c8b99d" stroke-opacity=".18"/>
+    </pattern>
+  </defs>
+    <rect width="1080" height="1920" fill="#090806"/>
+    <rect x="45" y="42" width="990" height="1836" rx="10" fill="#171411" stroke="#c8b99d" stroke-width="3"/>
+    <rect x="45" y="42" width="990" height="1836" fill="url(#rule-lines)" opacity=".5"/>
+    <text x="86" y="115" fill="#d4a354" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" letter-spacing="5">MAGAZINE TIME MACHINE</text>
+    <text x="86" y="265" fill="#eadfc9" font-family="Georgia, serif" font-size="106" font-weight="700">THEY HAD</text>
+    <text x="86" y="365" fill="#eadfc9" font-family="Georgia, serif" font-size="106" font-weight="700">NAMES</text>
+    <text x="90" y="424" fill="#c8b99d" font-family="Arial, Helvetica, sans-serif" font-size="23" letter-spacing="3">THE DOLL FAMILY FROM FREAKS TO SARASOTA</text>
+
+
+    <g transform="translate(88 500) rotate(-0.4 452 105)" filter="url(#paper-noise)">
+      <rect width="904" height="210" rx="7" fill="#eadfc9"/>
+      <rect x="0" y="0" width="17" height="210" fill="#a23e32"/>
+      <path d="M42 64H870M42 137H870" stroke="#c8b99d" stroke-width="2"/>
+      <text x="42" y="45" fill="#8a7b68" font-family="Arial, Helvetica, sans-serif" font-size="24" letter-spacing="3">BIRTH RECORD</text>
+      <text x="42" y="111" fill="#171411" font-family="Georgia, serif" font-size="38" font-weight="700">FRIEDA A. SCHNEIDER</text>
+      <text x="42" y="180" fill="#a23e32" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="800" letter-spacing="1.4">GRACIE DOLL</text>
+    </g>
+
+    <g transform="translate(88 735) rotate(0.4 452 105)" filter="url(#paper-noise)">
+      <rect width="904" height="210" rx="7" fill="#eadfc9"/>
+      <rect x="0" y="0" width="17" height="210" fill="#315c6a"/>
+      <path d="M42 64H870M42 137H870" stroke="#c8b99d" stroke-width="2"/>
+      <text x="42" y="45" fill="#8a7b68" font-family="Arial, Helvetica, sans-serif" font-size="24" letter-spacing="3">BIRTH RECORD</text>
+      <text x="42" y="111" fill="#171411" font-family="Georgia, serif" font-size="38" font-weight="700">KURT F. SCHNEIDER</text>
+      <text x="42" y="180" fill="#315c6a" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="800" letter-spacing="1.4">HARRY EARLES</text>
+    </g>
+
+    <g transform="translate(88 970) rotate(-0.4 452 105)" filter="url(#paper-noise)">
+      <rect width="904" height="210" rx="7" fill="#eadfc9"/>
+      <rect x="0" y="0" width="17" height="210" fill="#a23e32"/>
+      <path d="M42 64H870M42 137H870" stroke="#c8b99d" stroke-width="2"/>
+      <text x="42" y="45" fill="#8a7b68" font-family="Arial, Helvetica, sans-serif" font-size="24" letter-spacing="3">BIRTH RECORD</text>
+      <text x="42" y="111" fill="#171411" font-family="Georgia, serif" font-size="38" font-weight="700">HILDA E. SCHNEIDER</text>
+      <text x="42" y="180" fill="#a23e32" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="800" letter-spacing="1.4">DAISY EARLES</text>
+    </g>
+
+    <g transform="translate(88 1205) rotate(0.4 452 105)" filter="url(#paper-noise)">
+      <rect width="904" height="210" rx="7" fill="#eadfc9"/>
+      <rect x="0" y="0" width="17" height="210" fill="#315c6a"/>
+      <path d="M42 64H870M42 137H870" stroke="#c8b99d" stroke-width="2"/>
+      <text x="42" y="45" fill="#8a7b68" font-family="Arial, Helvetica, sans-serif" font-size="24" letter-spacing="3">BIRTH RECORD</text>
+      <text x="42" y="111" fill="#171411" font-family="Georgia, serif" font-size="38" font-weight="700">ELLY A. SCHNEIDER</text>
+      <text x="42" y="180" fill="#315c6a" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="800" letter-spacing="1.4">TINY DOLL</text>
+    </g>
+
+
+
+    <g>
+      <path d="M110 1585H970" fill="none" stroke="#c8b99d" stroke-width="5" stroke-dasharray="17 14"/>
+
+        <circle cx="110" cy="1585" r="10" fill="#a23e32" stroke="#eadfc9" stroke-width="4"/>
+        <text x="110" y="1555" fill="#eadfc9" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" letter-spacing="1.7">STOLPEN</text>
+
+        <circle cx="282" cy="1585" r="10" fill="#d4a354" stroke="#eadfc9" stroke-width="4"/>
+        <text x="282" y="1633" fill="#eadfc9" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" letter-spacing="1.7">FILM</text>
+
+        <circle cx="454" cy="1585" r="10" fill="#d4a354" stroke="#eadfc9" stroke-width="4"/>
+        <text x="454" y="1555" fill="#eadfc9" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" letter-spacing="1.7">FREAKS</text>
+
+        <circle cx="626" cy="1585" r="10" fill="#d4a354" stroke="#eadfc9" stroke-width="4"/>
+        <text x="626" y="1633" fill="#eadfc9" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" letter-spacing="1.7">RINGLING</text>
+
+        <circle cx="798" cy="1585" r="10" fill="#d4a354" stroke="#eadfc9" stroke-width="4"/>
+        <text x="798" y="1555" fill="#eadfc9" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" letter-spacing="1.7">OZ</text>
+
+        <circle cx="970" cy="1585" r="10" fill="#315c6a" stroke="#eadfc9" stroke-width="4"/>
+        <text x="970" y="1633" fill="#eadfc9" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" letter-spacing="1.7">SARASOTA</text>
+
+    </g>
+
+    <text x="86" y="1785" fill="#c8b99d" font-family="Arial, Helvetica, sans-serif" font-size="23" letter-spacing="2.6">FOUR WORKERS INSIDE A CENTURY OF LABELS</text>
+    <text x="994" y="1840" fill="#d4a354" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" text-anchor="end" letter-spacing="4">HOB.FARM</text>
+  </svg>

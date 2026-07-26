@@ -1,0 +1,111 @@
+---
+interface ImageItem {
+  src: string;
+  alt: string;
+  caption: string;
+  credit: string;
+  sourceUrl?: string;
+  width: number;
+  height: number;
+}
+
+interface Props {
+  items: [ImageItem, ImageItem];
+  label: string;
+  archive?: boolean;
+}
+
+const { items, label, archive = false } = Astro.props;
+---
+
+<section
+  class:list={[
+    "doll-image-pair",
+    "article-wide",
+    archive && "doll-image-pair--archive",
+  ]}
+  aria-label={label}
+>
+  {
+    items.map((item) => (
+      <figure>
+        <img
+          src={item.src}
+          alt={item.alt}
+          width={item.width}
+          height={item.height}
+          loading="lazy"
+          decoding="async"
+          data-lightbox
+        />
+        <figcaption>
+          <span>{item.caption}</span>
+          <span class="doll-credit">
+            {item.sourceUrl ? (
+              <a href={item.sourceUrl} rel="noreferrer">{item.credit}</a>
+            ) : (
+              item.credit
+            )}
+          </span>
+        </figcaption>
+      </figure>
+    ))
+  }
+</section>
+
+<style>
+  .doll-image-pair {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    align-items: start;
+    margin-block: 2.5rem;
+  }
+
+  figure {
+    min-width: 0;
+    margin: 0;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0.45rem;
+  }
+
+  .doll-image-pair--archive img {
+    height: clamp(22rem, 55vw, 40rem);
+    object-fit: contain;
+    background: #050505;
+  }
+
+  figcaption {
+    display: grid;
+    gap: 0.35rem;
+    margin-top: 0.65rem;
+    color: var(--color-base-400, #a0a0a0);
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  .doll-credit {
+    font-size: 0.74rem;
+  }
+
+  .doll-credit a {
+    color: inherit;
+    text-underline-offset: 0.16em;
+  }
+
+  @media (max-width: 720px) {
+    .doll-image-pair {
+      grid-template-columns: 1fr;
+    }
+
+    .doll-image-pair--archive img {
+      height: auto;
+      max-height: 38rem;
+    }
+  }
+</style>

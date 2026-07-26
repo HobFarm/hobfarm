@@ -1,0 +1,31 @@
+---
+interface Props {
+  n: number;
+}
+
+const { n } = Astro.props;
+---
+
+<sup class="source-ref">
+  <a href={`#source-${n}`} aria-label={`Source ${n}`}>{n}</a>
+</sup>
+
+<style>
+  .source-ref {
+    margin-left: 0.12em;
+    font-family: var(--font-mono);
+    font-size: 0.68em;
+    line-height: 0;
+  }
+
+  .source-ref a {
+    color: var(--color-accent-cyan);
+    text-decoration: none;
+  }
+
+  .source-ref a:hover,
+  .source-ref a:focus-visible {
+    color: var(--color-base-100);
+    text-decoration: underline;
+  }
+</style>

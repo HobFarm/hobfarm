@@ -1,0 +1,177 @@
+---
+const people = [
+  {
+    civil: "Frieda A. Schneider",
+    stage: ["Gracie Earles", "Gracie Doll"],
+    roles: [],
+  },
+  {
+    civil: "Kurt Fritz Schneider",
+    stage: ["Harry Earles", "Harry Doll"],
+    roles: ["Tweedledee", "Hans"],
+  },
+  {
+    civil: "Hilda Emma Schneider",
+    stage: ["Daisy Earles", "Daisy Doll"],
+    roles: ["Frieda"],
+  },
+  {
+    civil: "Elly Annie Schneider",
+    stage: ["Tiny Earles", "Tiny Doll"],
+    roles: [],
+  },
+];
+
+const collectiveLabels = [
+  "The Dancing Dolls",
+  "The Doll Family",
+  "Ringling sideshow rosters",
+  "The Singer Midgets",
+  "The Munchkins",
+];
+---
+
+<section class="name-ledger not-prose article-wide" aria-labelledby="name-ledger-title">
+  <header>
+    <p>Four people, many billings</p>
+    <h2 id="name-ledger-title">The names changed with the job.</h2>
+  </header>
+
+  <ol>
+    {
+      people.map((person) => (
+        <li>
+          <span class="civil">{person.civil}</span>
+          <span class="arrow" aria-hidden="true">→</span>
+          <span class="stage">{person.stage.join(" → ")}</span>
+          {person.roles.length > 0 && (
+            <>
+              <span class="arrow" aria-hidden="true">→</span>
+              <span class="roles">{person.roles.join(" → ")}</span>
+            </>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+
+  <div class="collective" aria-label="Collective labels used for the family and its work">
+    <strong>Collective labels</strong>
+    <ul>
+      {collectiveLabels.map((label) => <li>{label}</li>)}
+    </ul>
+  </div>
+
+  <p class="note">
+    Civil-name spellings follow the current biographical record. Original-record
+    verification remains open for the three older siblings.
+  </p>
+</section>
+
+<style>
+  .name-ledger {
+    margin-block: 2.75rem;
+    padding: clamp(1rem, 3vw, 1.75rem);
+    border: 1px solid #5c5145;
+    border-radius: 0.65rem;
+    background:
+      linear-gradient(135deg, rgba(112, 38, 28, 0.2), transparent 45%),
+      #171411;
+    color: #eee5d8;
+  }
+
+  header p,
+  .collective strong {
+    margin: 0;
+    color: #d8a356;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0.4rem 0 0;
+    color: #fff9ef;
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 4vw, 2.55rem);
+    font-weight: 400;
+    line-height: 1.08;
+  }
+
+  ol {
+    display: grid;
+    gap: 0;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid #403930;
+  }
+
+  ol li {
+    display: grid;
+    grid-template-columns: minmax(11rem, 1.2fr) auto minmax(9rem, 1fr) auto minmax(7rem, 0.8fr);
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid #403930;
+  }
+
+  .civil {
+    color: #fff9ef;
+    font-weight: 650;
+  }
+
+  .stage {
+    color: #d8cbbb;
+  }
+
+  .roles {
+    color: #82b9bd;
+    font-style: italic;
+  }
+
+  .arrow {
+    color: #8d7b68;
+  }
+
+  .collective {
+    margin-top: 1.4rem;
+  }
+
+  .collective ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.7rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .collective li {
+    padding: 0.4rem 0.6rem;
+    border: 1px solid #4c433a;
+    background: #201b17;
+    color: #d8cbbb;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+  }
+
+  .note {
+    margin: 1.2rem 0 0;
+    color: #9e9283;
+    font-size: 0.78rem;
+    line-height: 1.55;
+  }
+
+  @media (max-width: 760px) {
+    ol li {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+
+    .arrow {
+      display: none;
+    }
+  }
+</style>
