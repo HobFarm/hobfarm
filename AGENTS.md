@@ -163,16 +163,47 @@ Do not hand-edit generated output in `.astro/` or `dist/`.
 
 For every task:
 
-1. Run or inspect `git status --short`.
+1. Confirm the repository is on `main`, then run or inspect `git status --short`.
 2. Identify existing uncommitted changes.
 3. Avoid overwriting unrelated user or agent changes.
 4. Inspect relevant files before editing.
 5. Make focused edits.
 6. Run the correct validation command.
 7. Fix validation errors caused by the task.
-8. Summarize files changed, commands run, and results.
+8. Commit validated work to `main` and push `origin/main` unless the user asked
+   for local-only or draft work.
+9. Summarize files changed, commands run, and results.
 
 If uncommitted changes exist in files you need to edit, inspect them first. Do not overwrite them blindly.
+
+---
+
+## Single-Branch Workflow
+
+HobFarm is maintained by one person using AI tools. `main` is the only working,
+publishing, and deployment branch.
+
+Use these rules for every task:
+
+1. Work directly on `main`.
+2. Do not create feature branches, preview branches, alternate branches, or Git
+   worktrees.
+3. Do not leave finished work in a detached HEAD, an unpushed commit, or another
+   branch.
+4. Use `npm run dev`, `npm run preview`, Chrome, or local Playwright for review.
+   Do not create a branch to obtain a preview deployment.
+5. Keep incomplete work on `main` as uncommitted files or clearly labeled draft
+   content. Do not use a branch as a holding area.
+6. When several agents are active, coordinate file ownership in the same
+   worktree and preserve each other's changes.
+7. After validation, commit the scoped change to `main` and push `origin/main`
+   unless the user explicitly requested local-only work.
+8. Before handoff, verify that `main` is checked out, the working tree is clean
+   when a commit was requested, and `main` matches `origin/main`.
+
+If the repository is not on `main`, safely move the existing work onto `main`
+before continuing. Preserve all uncommitted work and unmerged commits. Do not
+solve the problem by creating another branch.
 
 ---
 
@@ -221,7 +252,8 @@ git status --short
 
 If there are unrelated changes, preserve them.
 
-If parallel work is needed, use separate branches or worktrees.
+Do not create branches or worktrees for parallel work. Coordinate changes in
+the shared `main` worktree and avoid editing the same files concurrently.
 
 Keep changes scoped to the requested task.
 
@@ -761,7 +793,13 @@ Use local `public/` assets only for files intentionally served from the repo.
 
 Cloudflare Pages deploys from `main`.
 
-Preview deployments come from non-production branches.
+Use local development and preview commands for review. Do not create
+non-production branches for Cloudflare preview deployments.
+
+Pushing a validated commit to `origin/main` is the normal HobFarm publishing
+workflow and is authorized by the single-branch policy. Direct Wrangler
+deployments and Cloudflare configuration changes still require explicit
+approval.
 
 Cloudflare Pages Functions live in:
 
@@ -898,7 +936,7 @@ Summarize what was checked. Do not dump raw screenshots unless requested.
 
 ---
 
-## Commit and PR Rules
+## Commit Rules
 
 Use short imperative commit messages.
 
@@ -912,14 +950,9 @@ feat(grimoire): add resolve endpoint
 style(home): tighten article card spacing
 ```
 
-Pull requests should include:
-
-1. User-facing summary.
-2. Main files changed.
-3. Routes changed.
-4. Validation performed.
-5. Screenshots for UI changes when practical.
-6. Known follow-up work.
+Commit validated website work directly to `main` and push `origin/main` unless
+the user requested local-only work. Do not create a pull request, PR branch, or
+review branch for the normal HobFarm workflow.
 
 ---
 
@@ -932,9 +965,11 @@ At the end of a task, report:
 * build/check result
 * visual QA result if applicable
 * skipped validation and why
-* deploy status, skipped unless explicitly approved
+* `main` push status and observed deployment status when available
 
-Do not claim deployment unless a deploy command was approved and run.
+Do not claim that Cloudflare finished deploying unless its status was actually
+checked. Distinguish a successful `main` push from a confirmed production
+deployment.
 
 ---
 

@@ -1,5 +1,9 @@
 # Codex build specification: California Used to Race Here
 
+> Workflow update: HobFarm now uses `main` as its only working and publishing
+> branch. Any older branch language in this completed task record is superseded
+> by `AGENTS.md`.
+
 ## Status
 
 This is the approved second-round implementation task for the HobFarm article package begun under `reports/california-racing/`.
@@ -64,19 +68,19 @@ The article draft contains media-slot comments and publication receipts. Adapt i
 You are authorized to:
 
 - inspect the repository and current HobFarm instructions;
-- create a feature branch if the current worktree allows it safely;
+- work directly on `main`;
 - create the article in the existing article collection;
 - create original SVG, HTML, CSS, and local raster collage assets described below;
 - perform the remaining research and fact checks;
 - upload a small second set of approved publication assets under the existing `articles/california-racing/` R2 prefix;
 - add article-specific components or styles when the existing system cannot express a required visual cleanly;
 - run local tests, builds, link checks, media checks, and browser QA;
-- commit local work on the feature branch.
+- commit validated work to `main` and push `origin/main`.
 
 Do not:
 
-- merge into the default branch;
-- deploy the website;
+- create or leave work on another branch;
+- run a direct Cloudflare deployment command;
 - delete or overwrite existing R2 objects;
 - upload the *Xanadu* poster, metadata scans, private notes, raw prompts, or unverified advertisement;
 - treat a search-engine thumbnail as an image source;
@@ -86,7 +90,9 @@ Do not:
 - make the article’s visual identity depend on AI-generated cars, people, or fake historical scenes;
 - turn the piece into a partisan California-politics argument.
 
-If the worktree contains unrelated changes that make safe branching or editing impossible, stop and report the exact conflict.
+If the `main` worktree contains unrelated changes that make safe editing
+impossible, preserve them and report the exact conflict. Do not create another
+branch or worktree.
 
 ## Editorial thesis
 
@@ -584,7 +590,7 @@ The task is complete when:
 Stop the affected path and report when:
 
 - repository instructions conflict with this task;
-- the worktree cannot be safely branched or edited;
+- the `main` worktree cannot be safely edited without overwriting existing work;
 - a source contradicts a material premise;
 - a required image lacks a defensible rights basis;
 - a film scene cannot be confidently assigned to a location;
@@ -621,5 +627,5 @@ Return:
 13. remaining manual approvals or future enhancements;
 14. exact merge and deployment actions that were not run.
 
-Do not merge or deploy.
-
+Work on `main` and push the validated commit. Do not run a direct Cloudflare
+deployment command.

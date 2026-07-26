@@ -119,7 +119,7 @@ Do not describe HobFarm support as a donation or tax-deductible contribution unl
 
 For every task:
 
-1. Run `git status --short`.
+1. Confirm the repository is on `main`, then run `git status --short`.
 2. Identify unrelated modified and untracked files.
 3. Inspect the relevant routes, data, schemas, components, tests, and current diffs.
 4. Confirm the page or system's primary job.
@@ -127,9 +127,15 @@ For every task:
 6. Make focused edits.
 7. Run the validation appropriate to the change.
 8. Fix errors caused by the task.
-9. Summarize the completed scope and remaining review.
+9. Commit validated work to `main` and push `origin/main` unless the user asked
+   for local-only or draft work.
+10. Summarize the completed scope and remaining review.
 
 Do not normalize unrelated files or overwrite another workstream's changes.
+
+HobFarm uses one branch. Work directly on `main`. Do not create feature
+branches, preview branches, pull-request branches, alternate worktrees, or
+detached working copies. Use local preview tools for review.
 
 ---
 
