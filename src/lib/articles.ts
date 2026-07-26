@@ -85,8 +85,13 @@ export function isPublishedArticle(article: Article, now: Date = new Date()): bo
   if (article.data.draft) return false;
   const status = article.data.status ?? "published";
   if (status === "draft" || status === "archived") return false;
-  // `scheduled` (and everything else) still respects the publish date below.
-  return getArticleDate(article).getTime() <= now.getTime();
+  // A scheduled entry may use `pubDate` as its reader-facing calendar date while
+  // `publishedAt` preserves the exact release instant.
+  const releaseDate =
+    status === "scheduled" && article.data.publishedAt
+      ? article.data.publishedAt
+      : getArticleDate(article);
+  return releaseDate.getTime() <= now.getTime();
 }
 
 export function byNewestArticle(a: Article, b: Article): number {

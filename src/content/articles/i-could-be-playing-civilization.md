@@ -24,6 +24,7 @@ socialImage: "https://cdn.hob.farm/articles/could-be-playing-civ/i-could-be-play
 heroAlt: "A tired creator eats lunch at 2:45 a.m. over a paper strategy map built from folders, files, cables, subscription costs, and a small purple gothic Other Alice figure, while an unused game waits nearby and a plane descends beyond the window."
 socialCaption: "The old game consumed years. The new one leaves files behind and keeps changing the rules."
 canonical: "/articles/i-could-be-playing-civilization/"
+pubDate: 2026-07-28
 publishedAt: 2026-07-28T17:20:00-07:00
 status: scheduled
 featured: false
@@ -107,7 +108,10 @@ The new game has rules and mechanics, except they are model behaviors and instru
     decoding="async"
     alt="A two-column comparison maps computer-game systems to AI-assisted HobFarm work: mechanics to model instructions, patches to provider changes, save files to repositories, mods to skills and scripts, and side quests to creative project branches."
   />
-  <figcaption>The interface changed. The reward loop did not.</figcaption>
+  <figcaption>
+    The interface changed. The reward loop did not.
+    <a href="https://cdn.hob.farm/articles/could-be-playing-civ/same-brain-different-game.png" target="_blank" rel="noreferrer">Open the full-size diagram.</a>
+  </figcaption>
 </figure>
 
 The transfer is strong enough to be useful and weak enough to keep me trapped. Experience carries over; mastery does not. A model update changes the terrain. A wrapper changes how instructions reach it. A moderation layer shifts. A tool that followed a boring rule yesterday decides today that it has a better idea.
@@ -157,7 +161,10 @@ The audit also found the next layer of debt: copied source-like files, consumer-
     decoding="async"
     alt="A source-of-truth diagram routes global guidance through a project-routing skill to Grimoire's canonical source, then to a generated release-pin artifact consumed by StyleFusion and verified by tests. A faded side channel rejects copied source folders, hardcoded versions, and temporary builders."
   />
-  <figcaption>The repair restored direction: the source generates what the consumer needs; the consumer does not quietly become a second source.</figcaption>
+  <figcaption>
+    The repair restored direction: the source generates what the consumer needs; the consumer does not quietly become a second source.
+    <a href="https://cdn.hob.farm/articles/could-be-playing-civ/source-of-truth-architecture.png" target="_blank" rel="noreferrer">Open the full-size diagram.</a>
+  </figcaption>
 </figure>
 
 Codex did not wake up one morning, inspect the rules it had accumulated, notice the retired skill, infer the real boundaries among several projects, and repair them. I found the stale reference. I recognized the risk. I explained the architecture, rejected the wrong assumptions, evaluated the result, and supplied the next correction.
@@ -175,7 +182,10 @@ That is not self-correction. It is human-directed externalized correction.
     decoding="async"
     alt="A loop begins when a human notices a failure, continues through model explanation, human verification, an agent-written rule or script, passing tests, and an improved workflow, then returns when changed projects or models make the correction stale or conflicting."
   />
-  <figcaption>The machine can help write the correction. The human still has to notice when the correction becomes the next bug.</figcaption>
+  <figcaption>
+    The machine can help write the correction. The human still has to notice when the correction becomes the next bug.
+    <a href="https://cdn.hob.farm/articles/could-be-playing-civ/agentic-correction-loop.png" target="_blank" rel="noreferrer">Open the full-size diagram.</a>
+  </figcaption>
 </figure>
 
 [A World of Geniuses Needs a System](/articles/a-world-of-geniuses-needs-a-system/) argued that the filing cabinet preserves agency. I still believe that. The Grimoire, scoped agents, structured data, and project maps keep me in the chair.

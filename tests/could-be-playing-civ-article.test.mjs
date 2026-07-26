@@ -32,8 +32,10 @@ test("Civilization article preserves the brief, evidence links, and 60-hour sche
   ]);
 
   const publication = article.match(/^publishedAt:\s*(.+)$/m)?.[1].trim();
+  const displayDate = article.match(/^pubDate:\s*(.+)$/m)?.[1].trim();
   const status = article.match(/^status:\s*(.+)$/m)?.[1].trim();
   assert.ok(publication);
+  assert.equal(displayDate, "2026-07-28");
   assert.ok(["scheduled", "published"].includes(status));
   assert.match(
     scheduleScript,
@@ -64,6 +66,11 @@ test("Civilization article preserves the brief, evidence links, and 60-hour sche
   assert.match(article, /learn\.chatgpt\.com\/docs\/agent-configuration\/agents-md/);
   assert.match(article, /learn\.chatgpt\.com\/docs\/build-skills/);
   assert.match(article, /status\.claude\.com/);
+  assert.equal(
+    article.match(/Open the full-size diagram\./g)?.length,
+    3,
+    "Each dense diagram needs a mobile-friendly full-size link.",
+  );
 
   const words = articleWordCount(article);
   assert.ok(words >= 1800 && words <= 2800, `Article word count ${words} is outside the brief.`);
