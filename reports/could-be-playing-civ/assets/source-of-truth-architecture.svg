@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1125" viewBox="0 0 1800 1125" role="img" aria-labelledby="title desc">
+  <title id="title">THE SYSTEM NEEDS A SYSTEM</title>
+  <desc id="desc">One source generates the consumer artifact. The consumer does not become a second source.</desc>
+  <defs>
+    <filter id="paper-noise" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="2" seed="14" result="noise"/>
+      <feColorMatrix in="noise" type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 0.07"/>
+      </feComponentTransfer>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#a95a3f"/>
+    </marker>
+    <marker id="arrow-faded" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#81786a"/>
+    </marker>
+  </defs>
+  <rect width="1800" height="1125" fill="#171b21"/>
+  <rect x="28" y="28" width="1744" height="1069" rx="24" fill="none" stroke="#c7b58e" stroke-width="3"/>
+  <rect width="1800" height="1125" filter="url(#paper-noise)" opacity="0.55"/>
+  <text x="90" y="102" fill="#e6d7b7" font-family="Georgia, serif" font-size="56" font-weight="700" letter-spacing="2">THE SYSTEM NEEDS A SYSTEM</text>
+  <text x="92" y="146" fill="#c7b58e" font-family="Arial, sans-serif" font-size="25">One source generates the consumer artifact. The consumer does not become a second source.</text>
+
+  <path d="M465 325 H500" stroke="#a95a3f" stroke-width="5" marker-end="url(#arrow)"/>
+  <path d="M900 325 H935" stroke="#a95a3f" stroke-width="5" marker-end="url(#arrow)"/>
+  <path d="M1335 325 C1580 325 1580 455 1528 490" fill="none" stroke="#a95a3f" stroke-width="5" marker-end="url(#arrow)"/>
+  <path d="M1335 580 C1190 580 1115 685 1090 744" fill="none" stroke="#a95a3f" stroke-width="5" marker-end="url(#arrow)"/>
+  <path d="M900 835 H865" stroke="#a95a3f" stroke-width="5" marker-end="url(#arrow)"/>
+
+    <rect x="80" y="250" width="385" height="150" rx="12" fill="#25272a" stroke="#c7b58e" stroke-width="5"/>
+    <rect x="80" y="250" width="385" height="18" rx="8" fill="#c7b58e"/>
+    <text x="106" y="323" fill="#f3ead6" font-family="Arial, sans-serif" font-size="28" font-weight="700">GLOBAL AGENTS.md</text>
+    <text x="106" y="361" fill="#c7b58e" font-family="Arial, sans-serif" font-size="22">personal defaults and boundaries</text>
+    <rect x="515" y="250" width="385" height="150" rx="12" fill="#25272a" stroke="#a95a3f" stroke-width="5"/>
+    <rect x="515" y="250" width="385" height="18" rx="8" fill="#a95a3f"/>
+    <text x="541" y="323" fill="#f3ead6" font-family="Arial, sans-serif" font-size="28" font-weight="700">ROUTING SKILL</text>
+    <text x="541" y="361" fill="#c7b58e" font-family="Arial, sans-serif" font-size="22">route-project-source-of-truth</text>
+    <rect x="950" y="250" width="385" height="150" rx="12" fill="#25272a" stroke="#457d79" stroke-width="5"/>
+    <rect x="950" y="250" width="385" height="18" rx="8" fill="#457d79"/>
+    <text x="976" y="323" fill="#f3ead6" font-family="Arial, sans-serif" font-size="28" font-weight="700">GRIMOIRE</text>
+    <text x="976" y="361" fill="#c7b58e" font-family="Arial, sans-serif" font-size="22">canonical source</text>
+    <rect x="1335" y="505" width="385" height="150" rx="12" fill="#25272a" stroke="#6e8461" stroke-width="5"/>
+    <rect x="1335" y="505" width="385" height="18" rx="8" fill="#6e8461"/>
+    <text x="1361" y="578" fill="#f3ead6" font-family="Arial, sans-serif" font-size="28" font-weight="700">GENERATED PIN</text>
+    <text x="1361" y="616" fill="#c7b58e" font-family="Arial, sans-serif" font-size="22">versioned consumer artifact</text>
+    <rect x="900" y="760" width="385" height="150" rx="12" fill="#25272a" stroke="#765477" stroke-width="5"/>
+    <rect x="900" y="760" width="385" height="18" rx="8" fill="#765477"/>
+    <text x="926" y="833" fill="#f3ead6" font-family="Arial, sans-serif" font-size="28" font-weight="700">STYLEFUSION</text>
+    <text x="926" y="871" fill="#c7b58e" font-family="Arial, sans-serif" font-size="22">reads the generated pin</text>
+    <rect x="465" y="760" width="385" height="150" rx="12" fill="#25272a" stroke="#a95a3f" stroke-width="5"/>
+    <rect x="465" y="760" width="385" height="18" rx="8" fill="#a95a3f"/>
+    <text x="491" y="833" fill="#f3ead6" font-family="Arial, sans-serif" font-size="28" font-weight="700">TESTS + BUILD</text>
+    <text x="491" y="871" fill="#c7b58e" font-family="Arial, sans-serif" font-size="22">verify the boundary</text>
+  <g opacity="0.52">
+    <rect x="84" y="494" width="1080" height="154" rx="12" fill="#211d1b" stroke="#81786a" stroke-width="3" stroke-dasharray="12 10"/>
+    <text x="112" y="535" fill="#c7b58e" font-family="Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="2">REJECTED SIDE CHANNEL</text>
+    <text x="112" y="579" fill="#e6d7b7" font-family="Arial, sans-serif" font-size="25">Copied Grimoire folders inside StyleFusion</text>
+    <text x="112" y="616" fill="#e6d7b7" font-family="Arial, sans-serif" font-size="25">+ hardcoded versions and hashes + temporary builders</text>
+    <path d="M1164 571 H1288" stroke="#81786a" stroke-width="4" stroke-dasharray="10 8" marker-end="url(#arrow-faded)"/>
+  </g>
+  <text x="90" y="1047" fill="#c7b58e" font-family="Georgia, serif" font-size="27" font-style="italic">Direction is an architecture, not a folder copied until the error disappears.</text>
+  </svg>
