@@ -2,64 +2,110 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Button from "@/components/fundations/elements/Button.astro";
-import {
-  OTHER_ALICE_ROOT_PATH,
-  OTHER_ALICE_WEB_PATH,
-  OTHER_ALICE_WORLD_GUIDE_PATH,
-} from "@/data/other-alice/canon";
+import { OTHER_ALICE_ROOT_PATH } from "@/data/other-alice/canon";
 
-const title = "The Grimoire is being rebuilt | HobFarm";
+const title = "The Grimoire authors the world | HobFarm";
 const description =
-  "The Grimoire is becoming the game engine behind Other Alice Adventures and a durable knowledge graph for HobFarm.";
+  "The Grimoire is HobFarm's private source of authored knowledge. It compiles reviewed characters, places, styles, rules, relationships, and evidence into bounded packs for Wonder Machine and StyleFusion.";
 const heroImage =
   "https://cdn.hob.farm/pages/other-alice-adventures/oaa-map-wonderland-living-atlas-v01-16x9.webp";
 const heroAlt =
   "Aerial atlas of circular Wonderland with inhabited regions, roads, forests, farms, and a mountain boundary.";
 const canonicalUrl = "https://hob.farm/grimoire/";
+const styleFusionPath = "/projects/stylefusion/";
 
-const engineRecords = [
-  {
-    label: "World state",
-    text: "Characters, places, objects, routes, institutions, and current conditions become connected records instead of loose notes.",
-  },
-  {
-    label: "Local rules",
-    text: "Wonderland's systems can describe what a place permits, what a route costs, and which physical or social rules apply there.",
-  },
-  {
-    label: "Choice and consequence",
-    text: "A decision can change a relationship, debt, body, object, route, or piece of evidence, then carry that change into the next encounter.",
-  },
-  {
-    label: "Continuity",
-    text: "The engine can remember what happened, which facts are confirmed, and which parts of the world still need review.",
-  },
-];
-
-const graphRecords = [
+const sourceRecords = [
   {
     label: "Entities",
-    text: "People, creatures, regions, Houses, materials, works, tools, and ideas get stable identities.",
+    text: "A character, place, faction, material, style, work, rule, or idea receives a stable identity that other records can reference.",
   },
   {
-    label: "Correspondences",
-    text: "Relationships connect those identities through place, influence, ownership, sequence, resemblance, evidence, and use.",
+    label: "Typed attributes",
+    text: "A location can carry geography and access rules. A style can carry visual definitions. An object can carry explicit affordances.",
   },
   {
-    label: "Evidence",
-    text: "Sources, observations, canon status, and revision history keep facts separate from guesses and unfinished ideas.",
+    label: "Relationships",
+    text: "Records describe ownership, influence, sequence, dependence, resemblance, access, evidence, conflict, geography, and use.",
   },
   {
-    label: "Reusable context",
-    text: "Workshop notes, story systems, visual direction, and future tools can read the same records without rebuilding the world each time.",
+    label: "Authority and status",
+    text: "Canon, reviewed material, drafts, fixtures, source records, interpretations, and unresolved ideas remain distinguishable.",
+  },
+  {
+    label: "Provenance",
+    text: "A definition retains its source, revision history, evidence, and consumer applicability.",
+  },
+  {
+    label: "Bounded context",
+    text: "A consumer requests the relevant pack instead of searching the entire library or rebuilding a project from scattered notes.",
   },
 ];
 
-const flow = [
-  { number: "01", label: "Record the world", text: "Add a person, place, route, rule, object, or event with its evidence and current status." },
-  { number: "02", label: "Connect the parts", text: "Describe who owns it, who depends on it, what it changes, and where it leads." },
-  { number: "03", label: "Run the choice", text: "Test a player action against local rules, relationships, inventory, access, and prior consequences." },
-  { number: "04", label: "Write back the result", text: "Keep the new state, record the cost, and flag anything that needs a human canon decision." },
+const architecture = [
+  {
+    label: "Grimoire",
+    title: "Private authored source",
+    detail: "Entities, rules, relations, provenance, visual identity",
+  },
+  {
+    label: "Validation and compilation",
+    title: "Checked selection",
+    detail: "Schemas, graph checks, release selection, manifest",
+  },
+  {
+    label: "Immutable consumer pack",
+    title: "Bounded release",
+    detail: "Small, named, versioned, reproducible",
+  },
+  {
+    label: "Wonder Machine or StyleFusion",
+    title: "Consumer",
+    detail: "Mutable session or production workflow",
+  },
+  {
+    label: "AI and media adapters",
+    title: "Expression layer",
+    detail: "Interpret grounded input and express resolved output",
+  },
+];
+
+const workingLoop = [
+  {
+    number: "01",
+    title: "Author the source",
+    text: "Add or revise a character, place, rule, relationship, style definition, object, condition, opportunity, or source record.",
+  },
+  {
+    number: "02",
+    title: "Validate the graph",
+    text: "Check the entry's schema, relationships, references, status, specialized attributes, and pack eligibility.",
+  },
+  {
+    number: "03",
+    title: "Compile a named pack",
+    text: "Select the records required by a specific consumer, close the necessary relationships, and produce deterministic bytes, a content identity, and a manifest.",
+  },
+  {
+    number: "04",
+    title: "Run the consumer",
+    text: "StyleFusion uses its visual pack during production. Wonder Machine uses its world pack during a player session. Neither modifies the authored pack.",
+  },
+  {
+    number: "05",
+    title: "Review the gaps",
+    text: "A real failure can identify a missing source, a broken entry, a schema change, a rejected inference, or no change at all. Nothing becomes approved knowledge automatically.",
+  },
+];
+
+const currentMachinery = [
+  "Authored entries",
+  "Typed attributes",
+  "Explicit relationships",
+  "Schemas",
+  "Deterministic validation",
+  "Provenance",
+  "Consumer-specific packs",
+  "Immutable releases",
 ];
 
 const grimoireJsonLd = {
@@ -71,8 +117,9 @@ const grimoireJsonLd = {
   image: heroImage,
   about: [
     { "@type": "CreativeWorkSeries", name: "Other Alice Adventures", url: `https://hob.farm${OTHER_ALICE_ROOT_PATH}` },
-    { "@type": "Thing", name: "Knowledge graph" },
-    { "@type": "Thing", name: "Narrative game engine" },
+    { "@type": "SoftwareApplication", name: "StyleFusion", url: `https://hob.farm${styleFusionPath}` },
+    { "@type": "Thing", name: "Authored knowledge system" },
+    { "@type": "Thing", name: "Wonder Machine runtime" },
   ],
 };
 ---
@@ -93,30 +140,30 @@ const grimoireJsonLd = {
     </div>
 
     <Wrapper variant="standard" class="relative py-16 lg:py-24">
-      <div class="grid items-center gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(28rem,1.1fr)] lg:gap-14">
+      <div class="grid items-center gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(28rem,1.05fr)] lg:gap-14">
         <div>
           <div class="inline-flex items-center gap-2 rounded-full border border-accent-500/35 bg-accent-500/10 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-accent-300">
             <span class="size-2 rounded-full bg-accent-400"></span>
             Under redevelopment
           </div>
           <p class="mt-7 font-mono text-xs uppercase tracking-[0.22em] text-spot-green">
-            Grimoire / next form
+            Grimoire / current form
           </p>
-          <h1 class="mt-4 max-w-3xl font-display text-4xl font-light leading-[1.03] text-white text-balance sm:text-5xl lg:text-7xl">
-            The Grimoire is becoming Wonderland's game engine.
+          <h1 class="mt-4 max-w-4xl font-display text-4xl font-light leading-[1.02] text-white text-balance sm:text-5xl lg:text-6xl">
+            The Grimoire authors the world. Wonder Machine runs the session.
           </h1>
           <p class="mt-6 max-w-2xl text-base leading-relaxed text-base-300 sm:text-lg">
-            The public Grimoire is being rebuilt around Other Alice Adventures. Its next form will connect the world guide to playable state: characters, places, routes, rules, evidence, choices, and consequences held in one knowledge graph.
+            The Grimoire is HobFarm's private source of authored knowledge. It gives characters, places, styles, rules, relationships, and evidence stable forms, then compiles the smallest verified pack each consumer needs.
           </p>
           <p class="mt-4 max-w-2xl text-sm leading-relaxed text-base-400 sm:text-base">
-            The larger HobFarm role stays intact. The same graph can hold visual vocabulary, project memory, workshop research, and agent-readable context without tying the work to one model or provider.
+            Other Alice gives it a world to describe. Wonder Machine gives that world time, choices, consequences, and memory. StyleFusion uses the same architecture to turn vague visual language into specific production instructions.
           </p>
           <div class="mt-8 flex flex-wrap gap-3">
             <Button isLink size="base" variant="green" href={OTHER_ALICE_ROOT_PATH}>
               Enter Other Alice Adventures
             </Button>
-            <Button isLink size="base" variant="muted" href="/workshop/">
-              Open the Workshop
+            <Button isLink size="base" variant="muted" href={styleFusionPath}>
+              Open StyleFusion
             </Button>
           </div>
         </div>
@@ -132,13 +179,13 @@ const grimoireJsonLd = {
               decoding="async"
               class="size-full object-cover"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-base-950 via-transparent to-transparent"></div>
-            <div class="absolute inset-x-0 bottom-0 p-5 sm:p-6">
-              <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-spot-green">Live world record</p>
+            <div class="absolute inset-0 bg-gradient-to-t from-base-950 via-base-950/10 to-transparent"></div>
+            <figcaption class="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+              <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-spot-green">Working world map</p>
               <p class="mt-2 max-w-xl text-sm leading-relaxed text-base-200">
-                Wonderland already has regions, Houses, routes, ecology, residents, and evidence. The rebuild turns those records into a world that can remember change.
+                The Grimoire records what Wonderland's places are, how they connect, and which rules apply. Wonder Machine determines what happens when somebody enters.
               </p>
-            </div>
+            </figcaption>
           </div>
         </figure>
       </div>
@@ -147,99 +194,266 @@ const grimoireJsonLd = {
 
   <section class="border-b border-base-800/70">
     <Wrapper variant="standard" class="py-14 lg:py-20">
-      <div class="max-w-3xl">
-        <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-400">Two jobs, one structure</p>
-        <h2 class="mt-4 font-display text-3xl font-light text-white text-balance sm:text-5xl">
-          Story engine and knowledge graph.
-        </h2>
-        <p class="mt-5 text-base leading-relaxed text-base-400">
-          Other Alice gives the system a demanding first world. It needs geography, institutions, ecology, access rules, relationships, inventory, time, and consequences. Building those parts as durable records also gives the rest of HobFarm a stronger memory layer.
-        </p>
-      </div>
-
-      <div class="mt-10 grid gap-5 lg:grid-cols-2">
-        <article class="rounded-xl border border-spot-purple/30 bg-spot-purple/5 p-6 sm:p-8">
-          <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-spot-purple">Other Alice Adventures</p>
-          <h3 class="mt-3 font-display text-3xl font-light text-white">The game engine</h3>
-          <div class="mt-6 grid gap-3 sm:grid-cols-2">
-            {engineRecords.map((record) => (
-              <div class="rounded-lg border border-base-800 bg-base-950/60 p-4">
-                <h4 class="text-sm font-medium text-white">{record.label}</h4>
-                <p class="mt-2 text-xs leading-relaxed text-base-400">{record.text}</p>
-              </div>
-            ))}
-          </div>
-        </article>
-
-        <article class="rounded-xl border border-spot-green/30 bg-spot-green/5 p-6 sm:p-8">
-          <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-spot-green">HobFarm memory layer</p>
-          <h3 class="mt-3 font-display text-3xl font-light text-white">The knowledge graph</h3>
-          <div class="mt-6 grid gap-3 sm:grid-cols-2">
-            {graphRecords.map((record) => (
-              <div class="rounded-lg border border-base-800 bg-base-950/60 p-4">
-                <h4 class="text-sm font-medium text-white">{record.label}</h4>
-                <p class="mt-2 text-xs leading-relaxed text-base-400">{record.text}</p>
-              </div>
-            ))}
-          </div>
-        </article>
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] lg:gap-16">
+        <div>
+          <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-400">The source library</p>
+          <h2 class="mt-4 font-display text-3xl font-light text-white text-balance sm:text-5xl">
+            Meaning lives in authored files.
+          </h2>
+        </div>
+        <div class="space-y-5 text-base leading-relaxed text-base-400">
+          <p>The Grimoire began as an attempt to make creative language more specific.</p>
+          <p>
+            A term such as "psychedelic art" can cause an image model to reach automatically for mushrooms, eyes, rainbow liquid, and the same inherited pile of visual shorthand. A structured entry can describe the actual geometry, color relationships, rhythm, materials, historical references, permitted variation, and unwanted defaults.
+          </p>
+          <p>
+            That method now extends to characters, factions, locations, objects, routes, institutions, physical and social rules, conditions, opportunities, contracts, visual identities, and provenance.
+          </p>
+          <p>
+            Markdown and JSON own the meaning. Schemas define the allowed structures. Validation catches broken references, invalid relationships, and incomplete records before they reach another system.
+          </p>
+          <p>
+            Models can help research, extract, compare, draft, and propose. A generated answer does not become source truth by quietly writing itself into the library.
+          </p>
+        </div>
       </div>
     </Wrapper>
   </section>
 
   <section class="border-b border-base-800/70 bg-base-900/25">
     <Wrapper variant="standard" class="py-14 lg:py-20">
-      <div class="grid gap-10 lg:grid-cols-[minmax(0,0.65fr)_minmax(0,1.35fr)] lg:gap-16">
+      <div class="max-w-3xl">
+        <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-spot-green">Two consumers</p>
+        <h2 class="mt-4 font-display text-3xl font-light text-white text-balance sm:text-5xl">
+          One source can serve different machines.
+        </h2>
+      </div>
+
+      <div class="mt-10 grid gap-5 lg:grid-cols-2">
+        <article class="flex flex-col rounded-xl border border-spot-cyan/25 bg-spot-cyan/5 p-6 sm:p-8">
+          <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-spot-cyan">Visual production</p>
+          <h3 class="mt-3 font-display text-3xl font-light text-white">StyleFusion</h3>
+          <div class="mt-5 grow space-y-4 text-sm leading-relaxed text-base-400 sm:text-base">
+            <p>StyleFusion uses the Grimoire as a reviewed visual vocabulary.</p>
+            <p>
+              Each uploaded reference receives a specific job. One image may define the subject. Another may supply rendering style, color, or texture. Another may establish the scene, composition, or camera.
+            </p>
+            <p>
+              Specialized extraction describes visible evidence. StyleFusion compiles that evidence into a structured visual document with reference roles, weighting, provenance, and explicit decisions.
+            </p>
+            <p>
+              A bounded Grimoire pack can provide approved terms, profiles, constraints, and definitions where they apply. StyleFusion performs the visual operation. It does not need a copy of the entire private library.
+            </p>
+          </div>
+          <a href={styleFusionPath} class="mt-7 inline-flex w-fit items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-spot-cyan hover:text-white">
+            Open StyleFusion <span aria-hidden="true">→</span>
+          </a>
+        </article>
+
+        <article class="flex flex-col rounded-xl border border-spot-purple/30 bg-spot-purple/5 p-6 sm:p-8">
+          <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-accent-300">Interactive world</p>
+          <h3 class="mt-3 font-display text-3xl font-light text-white">Wonder Machine</h3>
+          <div class="mt-5 grow space-y-4 text-sm leading-relaxed text-base-400 sm:text-base">
+            <p>Wonder Machine uses the Grimoire as an authored world substrate.</p>
+            <p>
+              The Grimoire owns characters, locations, factions, relationships, routes, rules, affordances, condition definitions, opportunity definitions, visual identity, and canon status.
+            </p>
+            <p>It compiles a named, immutable world pack.</p>
+            <p>
+              Wonder Machine consumes that pack and owns the changing session: player setup, current location, time, inventory, active conditions, available actions, eligibility checks, seeded decisions, consequences, saves, and replay.
+            </p>
+            <p>The world resolves before an AI system describes what happened.</p>
+          </div>
+          <a href={OTHER_ALICE_ROOT_PATH} class="mt-7 inline-flex w-fit items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-accent-300 hover:text-white">
+            Enter Other Alice Adventures <span aria-hidden="true">→</span>
+          </a>
+        </article>
+      </div>
+    </Wrapper>
+  </section>
+
+  <section class="border-b border-base-800/70">
+    <Wrapper variant="standard" class="py-14 lg:py-20">
+      <div class="max-w-3xl">
+        <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-400">The boundary</p>
+        <h2 class="mt-4 font-display text-3xl font-light text-white text-balance sm:text-5xl">
+          Authored knowledge and lived state are different things.
+        </h2>
+      </div>
+
+      <ol class="mt-10 grid gap-3 lg:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr_auto_1fr]" aria-label="Grimoire consumer architecture">
+        {architecture.map((node, index) => (
+          <>
+            <li class="rounded-xl border border-base-700 bg-base-900/70 p-5">
+              <p class="font-mono text-[9px] uppercase tracking-[0.18em] text-spot-green">{node.label}</p>
+              <h3 class="mt-3 text-sm font-medium text-white">{node.title}</h3>
+              <p class="mt-2 text-xs leading-relaxed text-base-400">{node.detail}</p>
+            </li>
+            {index < architecture.length - 1 && (
+              <li class="flex items-center justify-center font-mono text-lg text-base-500" aria-hidden="true">
+                <span class="lg:hidden">↓</span>
+                <span class="hidden lg:inline">→</span>
+              </li>
+            )}
+          </>
+        ))}
+      </ol>
+
+      <div class="mt-8 grid gap-4 md:grid-cols-3">
+        <p class="rounded-lg border border-base-800 bg-base-950/60 p-5 text-sm leading-relaxed text-base-300">
+          The Grimoire does not contain the player's save.
+        </p>
+        <p class="rounded-lg border border-base-800 bg-base-950/60 p-5 text-sm leading-relaxed text-base-300">
+          Wonder Machine does not rewrite Other Alice canon.
+        </p>
+        <p class="rounded-lg border border-base-800 bg-base-950/60 p-5 text-sm leading-relaxed text-base-300">
+          StyleFusion does not absorb the whole Grimoire into its own repository.
+        </p>
+      </div>
+
+      <p class="mt-8 max-w-4xl text-base leading-relaxed text-base-400">
+        Each consumer receives a deliberate projection of the source material. The pack carries enough context to perform its job without exposing unrelated projects or allowing runtime output to become authored knowledge.
+      </p>
+    </Wrapper>
+  </section>
+
+  <section class="border-b border-base-800/70 bg-base-900/25">
+    <Wrapper variant="standard" class="py-14 lg:py-20">
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,0.62fr)_minmax(0,1.38fr)] lg:gap-16">
         <div>
-          <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-400">Planned loop</p>
-          <h2 class="mt-4 font-display text-3xl font-light text-white sm:text-4xl">How the pieces will move.</h2>
-          <p class="mt-5 text-sm leading-relaxed text-base-400">
-            The engine will read structured world records, test an action against the local situation, and return a change that can be inspected before it becomes canon.
-          </p>
+          <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-spot-green">What the Grimoire keeps straight</p>
+          <h2 class="mt-4 font-display text-3xl font-light text-white text-balance sm:text-5xl">
+            Stable identities instead of loose references.
+          </h2>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2">
+          {sourceRecords.map((record) => (
+            <article class="rounded-xl border border-base-800 bg-base-950/60 p-5">
+              <h3 class="text-base font-medium text-white">{record.label}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-base-400">{record.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+
+  <section class="border-b border-base-800/70">
+    <Wrapper variant="standard" class="py-14 lg:py-20">
+      <div class="max-w-3xl">
+        <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-400">The working loop</p>
+        <h2 class="mt-4 font-display text-3xl font-light text-white text-balance sm:text-5xl">
+          How a change moves through the system.
+        </h2>
+      </div>
+
+      <ol class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+        {workingLoop.map((step) => (
+          <li class="rounded-xl border border-base-800 bg-base-900/60 p-5">
+            <span class="font-mono text-[10px] tracking-[0.2em] text-base-500">{step.number}</span>
+            <h3 class="mt-3 text-base font-medium text-white">{step.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-base-400">{step.text}</p>
+          </li>
+        ))}
+      </ol>
+    </Wrapper>
+  </section>
+
+  <section class="border-b border-base-800/70 bg-base-900/25">
+    <Wrapper variant="standard" class="py-14 lg:py-20">
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(22rem,0.7fr)] lg:gap-16">
+        <div>
+          <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-spot-green">Project evolution</p>
+          <h2 class="mt-4 font-display text-3xl font-light text-white text-balance sm:text-5xl">
+            The first system taught the second system what it needed.
+          </h2>
+          <div class="mt-6 space-y-5 text-base leading-relaxed text-base-400">
+            <p>
+              The original Grimoire used atoms, composites, correspondences, automated extraction, background workflows, and several other mechanisms intended to make an archive discover new relationships.
+            </p>
+            <p>That version produced useful experiments. It also became more elaborate than the job required.</p>
+            <p>
+              The atom metaphor helped explain how visual properties could be separated and recombined. It became less useful when the metaphor began determining the architecture. Atoms led to molecules, harmonics, engrams, decay systems, autonomous correspondences, queues, and scheduled processes.
+            </p>
+            <p>
+              Cross-pollination still happens. It happens inside a defined operation with a known output type and a consumer that understands why the information is being combined.
+            </p>
+            <p>The old system was not wasted work. It exposed the requirements.</p>
+          </div>
+          <a href="/articles/a-false-recipe-a-real-image/" class="mt-7 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-spot-green hover:text-white">
+            Read "A False Recipe, a Real Image" <span aria-hidden="true">→</span>
+          </a>
         </div>
 
-        <ol class="grid gap-3 sm:grid-cols-2">
-          {flow.map((step) => (
-            <li class="rounded-lg border border-base-800 bg-base-950/70 p-5">
-              <span class="font-mono text-[10px] tracking-[0.2em] text-base-500">{step.number}</span>
-              <h3 class="mt-3 text-base font-medium text-white">{step.label}</h3>
-              <p class="mt-2 text-sm leading-relaxed text-base-400">{step.text}</p>
-            </li>
-          ))}
-        </ol>
+        <aside class="rounded-xl border border-spot-green/25 bg-spot-green/5 p-6 sm:p-8">
+          <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-spot-green">The current Grimoire</p>
+          <p class="mt-4 text-sm leading-relaxed text-base-300">The current system uses plainer machinery:</p>
+          <ul class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+            {currentMachinery.map((item) => (
+              <li class="flex items-center gap-3 text-sm text-base-300">
+                <span class="size-1.5 rounded-full bg-spot-green" aria-hidden="true"></span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </aside>
+      </div>
+    </Wrapper>
+  </section>
+
+  <section class="border-b border-base-800/70">
+    <Wrapper variant="standard" class="py-14 lg:py-20">
+      <div class="rounded-xl border border-accent-500/25 bg-accent-500/5 p-6 sm:p-8 lg:p-10">
+        <div class="grid gap-8 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] lg:gap-14">
+          <div>
+            <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-300">Current state</p>
+            <h2 class="mt-4 font-display text-3xl font-light text-white text-balance sm:text-5xl">
+              The first Wonderland substrate is running locally.
+            </h2>
+          </div>
+          <div class="space-y-5 text-base leading-relaxed text-base-300">
+            <p>
+              The Grimoire currently authors a reusable Other Alice world pack. The separate Wonder Machine runtime can consume that pack, create a player setup, accept or refuse entry, resolve local interactions, apply temporary conditions, surface bounded opportunities, advance time, save state, and replay deterministic sessions.
+            </p>
+            <p>This is still a local development system.</p>
+            <p>
+              The public game does not exist yet. Several locations, forms, political structures, objects, and opportunities remain draft fixtures rather than locked Other Alice canon. Release promotion and public distribution still need deliberate rules.
+            </p>
+            <p class="font-medium text-white">
+              The authored world can remain stable while a player changes what happens inside a particular visit.
+            </p>
+          </div>
+        </div>
       </div>
     </Wrapper>
   </section>
 
   <section>
     <Wrapper variant="standard" class="py-14 lg:py-20">
-      <div class="rounded-xl border border-base-800 bg-base-900/60 p-6 sm:p-8 lg:p-10">
-        <div class="grid gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-end">
-          <div>
-            <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-spot-green">Public work in progress</p>
-            <h2 class="mt-4 font-display text-3xl font-light text-white sm:text-4xl">The old library is offline. The working ideas remain visible.</h2>
-            <p class="mt-5 text-sm leading-relaxed text-base-400">
-              The former documentation and cross-pollination archive are out of public circulation while their useful parts are reviewed. Workshop pages still explain the production methods. The Other Alice guides show the world records the new engine will use.
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,0.68fr)_minmax(0,1.32fr)] lg:gap-16">
+        <div>
+          <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-spot-green">The larger role</p>
+          <h2 class="mt-4 font-display text-3xl font-light text-white text-balance sm:text-5xl">
+            The Grimoire is HobFarm's source layer.
+          </h2>
+        </div>
+        <div>
+          <div class="space-y-5 text-base leading-relaxed text-base-400">
+            <p>Other Alice is the first demanding world, but the architecture is not limited to one story.</p>
+            <p>
+              The same library can preserve visual systems for StyleFusion, project definitions for HobFarm, research records for articles, character identities, workshop methods, source provenance, and context for future tools.
             </p>
+            <p>
+              Each project keeps its own job. The Grimoire supplies authored meaning. Consumers perform operations. AI adapters provide replaceable capabilities. Human review controls what becomes source truth.
+            </p>
+            <p class="text-lg text-white">The machine can change. The source remains legible.</p>
           </div>
 
-          <nav class="grid gap-3 sm:grid-cols-2" aria-label="Follow the Grimoire redevelopment">
-            <a href={OTHER_ALICE_WORLD_GUIDE_PATH} class="rounded-lg border border-base-700 bg-base-950/70 p-4 transition-colors hover:border-accent-500/60">
-              <span class="font-mono text-[10px] uppercase tracking-[0.18em] text-accent-400">World records</span>
-              <span class="mt-2 block text-base text-white">Open the World Guide</span>
-            </a>
-            <a href={OTHER_ALICE_WEB_PATH} class="rounded-lg border border-base-700 bg-base-950/70 p-4 transition-colors hover:border-accent-500/60">
-              <span class="font-mono text-[10px] uppercase tracking-[0.18em] text-accent-400">Relationships</span>
-              <span class="mt-2 block text-base text-white">See the Web of Wonderland</span>
-            </a>
-            <a href="/workshop/" class="rounded-lg border border-base-700 bg-base-950/70 p-4 transition-colors hover:border-accent-500/60">
-              <span class="font-mono text-[10px] uppercase tracking-[0.18em] text-accent-400">Methods</span>
-              <span class="mt-2 block text-base text-white">Read the Workshop</span>
-            </a>
-            <a href="/articles/" class="rounded-lg border border-base-700 bg-base-950/70 p-4 transition-colors hover:border-accent-500/60">
-              <span class="font-mono text-[10px] uppercase tracking-[0.18em] text-accent-400">Updates</span>
-              <span class="mt-2 block text-base text-white">Follow through Articles</span>
-            </a>
+          <nav class="mt-8 flex flex-wrap gap-3" aria-label="Continue from the Grimoire">
+            <Button isLink size="base" variant="green" href={OTHER_ALICE_ROOT_PATH}>Enter Other Alice Adventures</Button>
+            <Button isLink size="base" variant="muted" href={styleFusionPath}>Open StyleFusion</Button>
+            <Button isLink size="base" variant="muted" href="/articles/">Read the development articles</Button>
+            <Button isLink size="base" variant="muted" href="/workshop/">Open the Workshop</Button>
           </nav>
         </div>
       </div>

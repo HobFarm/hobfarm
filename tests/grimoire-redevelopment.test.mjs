@@ -6,12 +6,15 @@ import test from "node:test";
 const root = process.cwd();
 const read = (file) => readFileSync(join(root, file), "utf8");
 
-test("Grimoire publishes the redevelopment page and preserves the old landing as source", () => {
+test("Grimoire publishes the current authored-source boundary and preserves the old landing as source", () => {
   const landing = read("src/pages/grimoire/index.astro");
   const archivedLanding = "src/archive/grimoire/index.astro";
 
-  assert.match(landing, /becoming Wonderland's game engine/);
-  assert.match(landing, /The knowledge graph/);
+  assert.match(landing, /The Grimoire authors the world\. Wonder Machine runs the session\./);
+  assert.match(landing, /Meaning lives in authored files\./);
+  assert.match(landing, /Immutable consumer pack/);
+  assert.match(landing, /The first Wonderland substrate is running locally\./);
+  assert.match(landing, /Open StyleFusion/);
   assert.match(landing, /Under redevelopment/);
   assert.ok(existsSync(join(root, archivedLanding)));
   assert.match(read(archivedLanding), /GrimoireHero/);
