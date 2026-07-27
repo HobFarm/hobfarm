@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "generated_at": "2026-07-27T04:10:13.581Z",
+  "source_packet": "too-big-for-box-codex-task.zip",
+  "editorial_treatment": "Only the combined montage is public. Crops emphasize claim text, remove account handles, and substantially reduce faces while retaining enough interface context to identify public social posts.",
+  "rights_record": {
+    "source_class": "author-supplied screenshots of public promotional posts",
+    "intended_use": "criticism, commentary, media analysis",
+    "publication_scale": "low-traffic independent editorial site",
+    "restrictions": [
+      "no standalone resale",
+      "no implication of endorsement",
+      "no private-person identification beyond the public post",
+      "no unsupported accusation of fraud"
+    ]
+  },
+  "references": [
+    {
+      "source_file": "assets/too-big-for-box/sources/instagram-01-automated-business-15000-month.jpg",
+      "packet_filename": "01-automated-business-15000-month.jpg",
+      "sha256": "3aef3b82e22cc608dadd932b024d06f80b9df06e5e98dcb5fbc439bed1dcfb12",
+      "bytes": 102135,
+      "width": 492,
+      "height": 696,
+      "platform": "Instagram",
+      "source_class": "author-supplied screenshot of a public promotional post",
+      "intended_use": "criticism, commentary, media analysis, and documentary montage",
+      "claim_summary": "One automated business generating $500 a day or $15,000 a month.",
+      "evidence_limit": "Documents the public claim and its packaging; does not establish truth, falsity, typicality, attribution, or repeatability.",
+      "published_individually": false
+    },
+    {
+      "source_file": "assets/too-big-for-box/sources/instagram-02-claude-audit-million-reach.jpg",
+      "packet_filename": "02-claude-instagram-audit-million-reach.jpg",
+      "sha256": "788953a40a922ad6caf91436f16122d9e80d319276cb3e63ab9cc66bd1e21962",
+      "bytes": 91371,
+      "width": 495,
+      "height": 719,
+      "platform": "Instagram",
+      "source_class": "author-supplied screenshot of a public promotional post",
+      "intended_use": "criticism, commentary, media analysis, and documentary montage",
+      "claim_summary": "Claude audit associated with one million reach and 7,000 followers.",
+      "evidence_limit": "Documents the public claim and its packaging; does not establish truth, falsity, typicality, attribution, or repeatability.",
+      "published_individually": false
+    },
+    {
+      "source_file": "assets/too-big-for-box/sources/instagram-03-trained-claude-194k-followers.jpg",
+      "packet_filename": "03-trained-claude-194k-followers.jpg",
+      "sha256": "7e751d22f7f6a6cb9c02d219b8f2f4e06ce20d1a9d567864c59b48e14b8cf79a",
+      "bytes": 87933,
+      "width": 486,
+      "height": 688,
+      "platform": "Instagram",
+      "source_class": "author-supplied screenshot of a public promotional post",
+      "intended_use": "criticism, commentary, media analysis, and documentary montage",
+      "claim_summary": "Claude content associated with 194,000 followers and seven prompts.",
+      "evidence_limit": "Documents the public claim and its packaging; does not establish truth, falsity, typicality, attribution, or repeatability.",
+      "published_individually": false
+    },
+    {
+      "source_file": "assets/too-big-for-box/sources/instagram-04-pinterest-2000-day-faceless.jpg",
+      "packet_filename": "04-pinterest-2000-day-faceless.jpg",
+      "sha256": "d9f2321c0d4671fc6ae3a25cc97e3935fc3f5a33852983c48b9fd2aa0e7746a2",
+      "bytes": 95040,
+      "width": 507,
+      "height": 709,
+      "platform": "Instagram",
+      "source_class": "author-supplied screenshot of a public promotional post",
+      "intended_use": "criticism, commentary, media analysis, and documentary montage",
+      "claim_summary": "Faceless Pinterest strategy associated with up to $2,000 a day.",
+      "evidence_limit": "Documents the public claim and its packaging; does not establish truth, falsity, typicality, attribution, or repeatability.",
+      "published_individually": false
+    },
+    {
+      "source_file": "assets/too-big-for-box/sources/instagram-05-claude-instagram-5767-month.jpg",
+      "packet_filename": "05-claude-instagram-5767-month.jpg",
+      "sha256": "6d87216ea381f75f74383a16c5e547126e3dd7a22b00ecde2256bd1748f1a009",
+      "bytes": 69233,
+      "width": 489,
+      "height": 696,
+      "platform": "Instagram",
+      "source_class": "author-supplied screenshot of a public promotional post",
+      "intended_use": "criticism, commentary, media analysis, and documentary montage",
+      "claim_summary": "Claude plus Instagram associated with $5,767 per month.",
+      "evidence_limit": "Documents the public claim and its packaging; does not establish truth, falsity, typicality, attribution, or repeatability.",
+      "published_individually": false
+    },
+    {
+      "source_file": "assets/too-big-for-box/sources/instagram-06-duplicate-reels-unlimited-reach.jpg",
+      "packet_filename": "06-duplicate-reels-unlimited-reach.jpg",
+      "sha256": "6e0e35c91db03d2131471741d470db2bc04609eb21d3f30dbf3e41b37351255e",
+      "bytes": 93661,
+      "width": 486,
+      "height": 683,
+      "platform": "Instagram",
+      "source_class": "author-supplied screenshot of a public promotional post",
+      "intended_use": "criticism, commentary, media analysis, and documentary montage",
+      "claim_summary": "Duplicate reels associated with unlimited non-follower reach.",
+      "evidence_limit": "Documents the public claim and its packaging; does not establish truth, falsity, typicality, attribution, or repeatability.",
+      "published_individually": false
+    },
+    {
+      "source_file": "assets/too-big-for-box/sources/instagram-07-five-prompts-25m-views.jpg",
+      "packet_filename": "07-five-prompts-25m-views.jpg",
+      "sha256": "19f5c4a6f9b8ccf978cc1b48d2f900dddd74f788b6f7ee24eaa0bc5cf586e8d6",
+      "bytes": 92236,
+      "width": 492,
+      "height": 698,
+      "platform": "Instagram",
+      "source_class": "author-supplied screenshot of a public promotional post",
+      "intended_use": "criticism, commentary, media analysis, and documentary montage",
+      "claim_summary": "Five prompts associated with 2.5 million views in 28 days.",
+      "evidence_limit": "Documents the public claim and its packaging; does not establish truth, falsity, typicality, attribution, or repeatability.",
+      "published_individually": false
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1050" role="img" aria-labelledby="title desc">
+  <title id="title">The Bounded Wonder Machine</title>
+  <desc id="desc">The Grimoire compiler produces an immutable world pack. Wonder Machine code creates mutable sessions and owns state, time, seeded outcomes, saves, replay, and route eligibility. AI may map grounded language or describe a result, but cannot invent effects or write the pack.</desc>
+  <defs>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse"><path d="M42 0H0V42" fill="none" stroke="#f4ead4" stroke-opacity=".035"/></pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="context-stroke"/></marker>
+    <filter id="shadow"><feDropShadow dx="0" dy="12" stdDeviation="15" flood-color="#000" flood-opacity=".3"/></filter>
+  </defs>
+  <style>
+    text { font-family: "IBM Plex Sans", Arial, sans-serif; }
+    .kicker { fill: #4bd4d8; font-family: "IBM Plex Mono", monospace; font-size: 20px; font-weight: 700; letter-spacing: 3px; }
+    .title { fill: #f4ead4; font-size: 58px; font-weight: 700; }
+    .subtitle { fill: #aeb8c5; font-size: 24px; }
+    .heading { fill: #f4ead4; font-size: 30px; font-weight: 700; }
+    .body { fill: #aeb8c5; font-size: 22px; }
+    .small { fill: #aeb8c5; font-family: "IBM Plex Mono", monospace; font-size: 17px; }
+    .big { fill: #f4ead4; font-size: 38px; font-weight: 700; }
+    .chip { font-family: "IBM Plex Mono", monospace; font-size: 15px; font-weight: 700; letter-spacing: 1px; }
+  </style>
+  <rect width="1800" height="1050" fill="#090b12"/>
+  <rect width="1800" height="1050" fill="url(#grid)"/>
+  <rect x="48" y="42" width="1704" height="966" rx="30" fill="none" stroke="#f4ead4" stroke-opacity=".16" stroke-width="2"/>
+  <text x="84" y="98" class="kicker" text-anchor="start"><tspan x="84" dy="0">HOBFARM FIELD DIAGRAM</tspan></text>
+  <text x="84" y="172" class="title" text-anchor="start"><tspan x="84" dy="0">The Bounded Wonder Machine</tspan></text>
+  <text x="84" y="216" class="subtitle" text-anchor="start"><tspan x="84" dy="0">Authored material is compiled once. Deterministic code owns the running world.</tspan></text>
+  
+      <rect x="84" y="286" width="412" height="610" rx="22" fill="#131925" fill-opacity="0.94" stroke="#9d82f5" stroke-width="2"/>
+      <text x="120" y="338" class="kicker" text-anchor="start"><tspan x="120" dy="0">GRIMOIRE</tspan></text>
+      <text x="120" y="392" class="heading" text-anchor="start"><tspan x="120" dy="0">Authored sources</tspan></text>
+      <text x="120" y="438" class="body" text-anchor="start"><tspan x="120" dy="0">Places and objects</tspan><tspan x="120" dy="39">Rules and routes</tspan><tspan x="120" dy="39">Opportunities</tspan><tspan x="120" dy="39">Narrative references</tspan></text>
+      <path d="M134 650h312M134 692h252M134 734h286" stroke="#9d82f5" stroke-opacity=".55" stroke-width="10"/>
+      <g><rect x="120" y="806" width="334" height="40" rx="20" fill="#9d82f5" fill-opacity=".12" stroke="#9d82f5"/><text x="287" y="832" class="chip" text-anchor="middle" fill="#9d82f5">PRIVATE AUTHORING BOUNDARY</text></g>
+
+      <path d="M 496 554 L 612 554" fill="none" stroke="#9d82f5" stroke-width="4"  marker-end="url(#arrow)"/>
+      <rect x="612" y="354" width="286" height="394" rx="22" fill="#131925" fill-opacity="0.94" stroke="#f1b84b" stroke-width="2"/>
+      <text x="755" y="416" class="kicker" text-anchor="middle"><tspan x="755" dy="0">COMPILE</tspan></text>
+      <path d="M684 474h142l28 40-28 40H684l-28-40Z" fill="#f1b84b" fill-opacity=".14" stroke="#f1b84b" stroke-width="3"/>
+      <text x="755" y="523" class="heading" text-anchor="middle"><tspan x="755" dy="0">validate</tspan></text>
+      <text x="755" y="608" class="big" text-anchor="middle"><tspan x="755" dy="0">One explicit</tspan><tspan x="755" dy="44">world pack</tspan></text>
+      <g><rect x="658" y="676" width="194" height="40" rx="20" fill="#f1b84b" fill-opacity=".12" stroke="#f1b84b"/><text x="755" y="702" class="chip" text-anchor="middle" fill="#f1b84b">IMMUTABLE</text></g>
+
+      <path d="M 898 554 L 1012 554" fill="none" stroke="#f1b84b" stroke-width="4"  marker-end="url(#arrow)"/>
+      <rect x="1012" y="286" width="704" height="610" rx="22" fill="#131925" fill-opacity="0.94" stroke="#4bd4d8" stroke-width="2"/>
+      <text x="1048" y="338" class="kicker" text-anchor="start"><tspan x="1048" dy="0">WONDER MACHINE RUNTIME</tspan></text>
+      <text x="1048" y="390" class="heading" text-anchor="start"><tspan x="1048" dy="0">Mutable session, deterministic rules</tspan></text>
+      <rect x="1048" y="430" width="300" height="184" rx="22" fill="#131925" fill-opacity="0.8" stroke="#74d39a" stroke-width="2"/>
+      <text x="1076" y="474" class="kicker" text-anchor="start"><tspan x="1076" dy="0">CODE OWNS</tspan></text>
+      <text x="1076" y="516" class="body" text-anchor="start"><tspan x="1076" dy="0">state transitions</tspan><tspan x="1076" dy="34">time + seeded outcomes</tspan><tspan x="1076" dy="34">route eligibility</tspan></text>
+      <rect x="1380" y="430" width="300" height="184" rx="22" fill="#131925" fill-opacity="0.8" stroke="#74d39a" stroke-width="2"/>
+      <text x="1408" y="474" class="kicker" text-anchor="start"><tspan x="1408" dy="0">PERSISTENCE</tspan></text>
+      <text x="1408" y="516" class="body" text-anchor="start"><tspan x="1408" dy="0">save + restore</tspan><tspan x="1408" dy="34">event log + replay</tspan><tspan x="1408" dy="34">same seed, same outcome</tspan></text>
+      <rect x="1048" y="648" width="632" height="178" rx="22" fill="#131925" fill-opacity="0.8" stroke="#e667a9" stroke-width="2"/>
+      <text x="1076" y="692" class="kicker" text-anchor="start"><tspan x="1076" dy="0">AI IS AN ADAPTER, NOT THE REFEREE</tspan></text>
+      <text x="1076" y="734" class="body" text-anchor="start"><tspan x="1076" dy="0">May map grounded language and describe code-owned results.</tspan><tspan x="1076" dy="34">Cannot invent effects, destinations, state, or pack changes.</tspan></text>
+
+      <g><rect x="1070" y="842" width="264" height="40" rx="20" fill="#ff6b6b" fill-opacity=".12" stroke="#ff6b6b"/><text x="1202" y="868" class="chip" text-anchor="middle" fill="#ff6b6b">BLANK INPUT: NO ACTION</text></g>
+      <g><rect x="1350" y="842" width="302" height="40" rx="20" fill="#74d39a" fill-opacity=".12" stroke="#74d39a"/><text x="1501" y="868" class="chip" text-anchor="middle" fill="#74d39a">WAIT: EXPLICIT ACTION</text></g>
+      <text x="900" y="966" class="small" text-anchor="middle"><tspan x="900" dy="0">A session may change. The compiled pack does not.</tspan></text>
+    
+</svg>

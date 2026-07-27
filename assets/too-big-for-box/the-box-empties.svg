@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1050" role="img" aria-labelledby="title desc">
+  <title id="title">The Box Empties</title>
+  <desc id="desc">A timeline shows Civilization V requiring Steamworks in 2010, Grand Theft Auto VI physical packaging containing a download code but no disc in 2026, and PlayStation ending new physical disc production in January 2028.</desc>
+  <defs>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse"><path d="M42 0H0V42" fill="none" stroke="#f4ead4" stroke-opacity=".035"/></pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="context-stroke"/></marker>
+    <filter id="shadow"><feDropShadow dx="0" dy="12" stdDeviation="15" flood-color="#000" flood-opacity=".3"/></filter>
+  </defs>
+  <style>
+    text { font-family: "IBM Plex Sans", Arial, sans-serif; }
+    .kicker { fill: #4bd4d8; font-family: "IBM Plex Mono", monospace; font-size: 20px; font-weight: 700; letter-spacing: 3px; }
+    .title { fill: #f4ead4; font-size: 58px; font-weight: 700; }
+    .subtitle { fill: #aeb8c5; font-size: 24px; }
+    .heading { fill: #f4ead4; font-size: 30px; font-weight: 700; }
+    .body { fill: #aeb8c5; font-size: 22px; }
+    .small { fill: #aeb8c5; font-family: "IBM Plex Mono", monospace; font-size: 17px; }
+    .big { fill: #f4ead4; font-size: 38px; font-weight: 700; }
+    .chip { font-family: "IBM Plex Mono", monospace; font-size: 15px; font-weight: 700; letter-spacing: 1px; }
+  </style>
+  <rect width="1800" height="1050" fill="#090b12"/>
+  <rect width="1800" height="1050" fill="url(#grid)"/>
+  <rect x="48" y="42" width="1704" height="966" rx="30" fill="none" stroke="#f4ead4" stroke-opacity=".16" stroke-width="2"/>
+  <text x="84" y="98" class="kicker" text-anchor="start"><tspan x="84" dy="0">HOBFARM FIELD DIAGRAM</tspan></text>
+  <text x="84" y="172" class="title" text-anchor="start"><tspan x="84" dy="0">The Box Empties</tspan></text>
+  <text x="84" y="216" class="subtitle" text-anchor="start"><tspan x="84" dy="0">Three specific receipts show the package losing its old job. They do not prove a universal law.</tspan></text>
+  
+      <path d="M180 550H1618" stroke="#f4ead4" stroke-opacity=".3" stroke-width="8"/>
+      <circle cx="300" cy="550" r="24" fill="#f1b84b"/>
+      <circle cx="900" cy="550" r="24" fill="#4bd4d8"/>
+      <circle cx="1500" cy="550" r="24" fill="#e667a9"/>
+
+      <rect x="114" y="294" width="520" height="208" rx="22" fill="#131925" fill-opacity="0.94" stroke="#f1b84b" stroke-width="2"/>
+      <text x="148" y="344" class="big" text-anchor="start"><tspan x="148" dy="0">2010</tspan></text>
+      <text x="148" y="392" class="heading" text-anchor="start"><tspan x="148" dy="0">Civilization V retail PC</tspan></text>
+      <text x="148" y="432" class="body" text-anchor="start"><tspan x="148" dy="0">Steam said every PC version would use</tspan><tspan x="148" dy="32">Steamworks for activation, updates, DLC,</tspan><tspan x="148" dy="32">achievements, and multiplayer.</tspan></text>
+      <path d="M 300 502 L 300 526" fill="none" stroke="#f1b84b" stroke-width="4"  marker-end="url(#arrow)"/>
+
+      <rect x="640" y="596" width="520" height="208" rx="22" fill="#131925" fill-opacity="0.94" stroke="#4bd4d8" stroke-width="2"/>
+      <text x="674" y="646" class="big" text-anchor="start"><tspan x="674" dy="0">2026</tspan></text>
+      <text x="674" y="694" class="heading" text-anchor="start"><tspan x="674" dy="0">Grand Theft Auto VI package</tspan></text>
+      <text x="674" y="734" class="body" text-anchor="start"><tspan x="674" dy="0">Rockstar says the physical version</tspan><tspan x="674" dy="32">contains a download code and no disc.</tspan><tspan x="674" dy="32">That is a code in a box, not cloud rendering.</tspan></text>
+      <path d="M 900 574 L 900 596" fill="none" stroke="#4bd4d8" stroke-width="4"  marker-end="url(#arrow)"/>
+
+      <rect x="1166" y="294" width="520" height="208" rx="22" fill="#131925" fill-opacity="0.94" stroke="#e667a9" stroke-width="2"/>
+      <text x="1200" y="344" class="big" text-anchor="start"><tspan x="1200" dy="0">JANUARY 2028</tspan></text>
+      <text x="1200" y="392" class="heading" text-anchor="start"><tspan x="1200" dy="0">New PlayStation releases</tspan></text>
+      <text x="1200" y="432" class="body" text-anchor="start"><tspan x="1200" dy="0">Sony says disc production ends for new</tspan><tspan x="1200" dy="32">PlayStation-console games. Previously</tspan><tspan x="1200" dy="32">released physical games are unaffected.</tspan></text>
+      <path d="M 1500 502 L 1500 526" fill="none" stroke="#e667a9" stroke-width="4"  marker-end="url(#arrow)"/>
+
+      <g transform="translate(264 840)">
+        <rect width="228" height="104" rx="12" fill="#1c2432" stroke="#f1b84b" stroke-width="3"/>
+        <path d="M30 32h168M30 52h168M30 72h106" stroke="#f1b84b" stroke-width="6"/>
+      </g>
+      <path d="M 506 892 L 720 892" fill="none" stroke="#f4ead4" stroke-width="4" stroke-dasharray="11 10" marker-end="url(#arrow)"/>
+      <g transform="translate(740 840)">
+        <rect width="228" height="104" rx="12" fill="#1c2432" stroke="#4bd4d8" stroke-width="3"/>
+        <path d="M66 22h96v60H66zM88 40h52M88 58h34" stroke="#4bd4d8" stroke-width="6" fill="none"/>
+      </g>
+      <path d="M 982 892 L 1196 892" fill="none" stroke="#f4ead4" stroke-width="4" stroke-dasharray="11 10" marker-end="url(#arrow)"/>
+      <g transform="translate(1216 840)">
+        <rect width="320" height="104" rx="12" fill="#1c2432" stroke="#e667a9" stroke-width="3"/>
+        <text x="160" y="44" class="chip" text-anchor="middle"><tspan x="160" dy="0">THE ACCOUNT + NETWORK</tspan></text>
+        <text x="160" y="74" class="small" text-anchor="middle"><tspan x="160" dy="0">become part of the medium</tspan></text>
+      </g>
+    
+</svg>

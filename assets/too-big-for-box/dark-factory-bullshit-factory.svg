@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1050" role="img" aria-labelledby="title desc">
+  <title id="title">Dark Factory / Bullshit Factory</title>
+  <desc id="desc">A dark software factory begins with explicit intent, external scenarios, a test environment, and observable behavior. A bullshit factory begins with an income claim and a reusable prompt, then routes attention toward a funnel without independent receipts.</desc>
+  <defs>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse"><path d="M42 0H0V42" fill="none" stroke="#f4ead4" stroke-opacity=".035"/></pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="context-stroke"/></marker>
+    <filter id="shadow"><feDropShadow dx="0" dy="12" stdDeviation="15" flood-color="#000" flood-opacity=".3"/></filter>
+  </defs>
+  <style>
+    text { font-family: "IBM Plex Sans", Arial, sans-serif; }
+    .kicker { fill: #4bd4d8; font-family: "IBM Plex Mono", monospace; font-size: 20px; font-weight: 700; letter-spacing: 3px; }
+    .title { fill: #f4ead4; font-size: 58px; font-weight: 700; }
+    .subtitle { fill: #aeb8c5; font-size: 24px; }
+    .heading { fill: #f4ead4; font-size: 30px; font-weight: 700; }
+    .body { fill: #aeb8c5; font-size: 22px; }
+    .small { fill: #aeb8c5; font-family: "IBM Plex Mono", monospace; font-size: 17px; }
+    .big { fill: #f4ead4; font-size: 38px; font-weight: 700; }
+    .chip { font-family: "IBM Plex Mono", monospace; font-size: 15px; font-weight: 700; letter-spacing: 1px; }
+  </style>
+  <rect width="1800" height="1050" fill="#090b12"/>
+  <rect width="1800" height="1050" fill="url(#grid)"/>
+  <rect x="48" y="42" width="1704" height="966" rx="30" fill="none" stroke="#f4ead4" stroke-opacity=".16" stroke-width="2"/>
+  <text x="84" y="98" class="kicker" text-anchor="start"><tspan x="84" dy="0">HOBFARM FIELD DIAGRAM</tspan></text>
+  <text x="84" y="172" class="title" text-anchor="start"><tspan x="84" dy="0">Dark Factory / Bullshit Factory</tspan></text>
+  <text x="84" y="216" class="subtitle" text-anchor="start"><tspan x="84" dy="0">Both hide labor. Only one builds a system that can argue with its own promises.</tspan></text>
+  
+      <rect x="84" y="278" width="788" height="632" rx="22" fill="#131925" fill-opacity="0.94" stroke="#74d39a" stroke-width="2"/>
+      <text x="120" y="332" class="kicker" text-anchor="start"><tspan x="120" dy="0">DARK SOFTWARE FACTORY</tspan></text>
+      <text x="120" y="382" class="heading" text-anchor="start"><tspan x="120" dy="0">Automation under pressure</tspan></text>
+      <text x="120" y="432" class="body" text-anchor="start"><tspan x="120" dy="0">Human intent + constraints</tspan><tspan x="120" dy="42">Scenarios kept outside the implementation</tspan><tspan x="120" dy="42">A test universe with observable behavior</tspan><tspan x="120" dy="42">Iteration until the scenarios are satisfied</tspan></text>
+      <path d="M 188 646 L 722 646" fill="none" stroke="#74d39a" stroke-width="4"  marker-end="url(#arrow)"/>
+      <g transform="translate(120 686)">
+        <g><rect x="0" y="0" width="178" height="40" rx="20" fill="#74d39a" fill-opacity=".12" stroke="#74d39a"/><text x="89" y="26" class="chip" text-anchor="middle" fill="#74d39a">SPECIFY</text></g>
+        <g><rect x="198" y="0" width="178" height="40" rx="20" fill="#74d39a" fill-opacity=".12" stroke="#74d39a"/><text x="287" y="26" class="chip" text-anchor="middle" fill="#74d39a">GENERATE</text></g>
+        <g><rect x="396" y="0" width="178" height="40" rx="20" fill="#74d39a" fill-opacity=".12" stroke="#74d39a"/><text x="485" y="26" class="chip" text-anchor="middle" fill="#74d39a">VALIDATE</text></g>
+        <g><rect x="594" y="0" width="158" height="40" rx="20" fill="#74d39a" fill-opacity=".12" stroke="#74d39a"/><text x="673" y="26" class="chip" text-anchor="middle" fill="#74d39a">REPEAT</text></g>
+      </g>
+      <text x="120" y="790" class="body" text-anchor="start"><tspan x="120" dy="0">Receipt: scenarios, tests, observed trajectories,</tspan><tspan x="120" dy="36">cost, failures, and behavior someone can inspect.</tspan></text>
+      <g><rect x="120" y="852" width="450" height="40" rx="20" fill="#74d39a" fill-opacity=".12" stroke="#74d39a"/><text x="345" y="878" class="chip" text-anchor="middle" fill="#74d39a">OUTPUT MUST SURVIVE CONTACT WITH EVIDENCE</text></g>
+
+      <rect x="928" y="278" width="788" height="632" rx="22" fill="#131925" fill-opacity="0.94" stroke="#ff6b6b" stroke-width="2"/>
+      <text x="964" y="332" class="kicker" text-anchor="start"><tspan x="964" dy="0">BULLSHIT FACTORY</tspan></text>
+      <text x="964" y="382" class="heading" text-anchor="start"><tspan x="964" dy="0">Automation as a promise</tspan></text>
+      <text x="964" y="432" class="body" text-anchor="start"><tspan x="964" dy="0">Income or reach claim</tspan><tspan x="964" dy="42">A handful of prompts or a copied template</tspan><tspan x="964" dy="42">Missing baseline, costs, denominator, and failures</tspan><tspan x="964" dy="42">Attention routed into a kit, course, or funnel</tspan></text>
+      <path d="M 1032 646 L 1566 646" fill="none" stroke="#ff6b6b" stroke-width="4"  marker-end="url(#arrow)"/>
+      <g transform="translate(964 686)">
+        <g><rect x="0" y="0" width="178" height="40" rx="20" fill="#ff6b6b" fill-opacity=".12" stroke="#ff6b6b"/><text x="89" y="26" class="chip" text-anchor="middle" fill="#ff6b6b">CLAIM</text></g>
+        <g><rect x="198" y="0" width="178" height="40" rx="20" fill="#ff6b6b" fill-opacity=".12" stroke="#ff6b6b"/><text x="287" y="26" class="chip" text-anchor="middle" fill="#ff6b6b">PROMPT</text></g>
+        <g><rect x="396" y="0" width="178" height="40" rx="20" fill="#ff6b6b" fill-opacity=".12" stroke="#ff6b6b"/><text x="485" y="26" class="chip" text-anchor="middle" fill="#ff6b6b">POST</text></g>
+        <g><rect x="594" y="0" width="158" height="40" rx="20" fill="#ff6b6b" fill-opacity=".12" stroke="#ff6b6b"/><text x="673" y="26" class="chip" text-anchor="middle" fill="#ff6b6b">FUNNEL</text></g>
+      </g>
+      <text x="964" y="790" class="body" text-anchor="start"><tspan x="964" dy="0">Receipt needed: attributable business, time window,</tspan><tspan x="964" dy="36">revenue basis, costs, audience history, and replicable method.</tspan></text>
+      <g><rect x="964" y="852" width="436" height="40" rx="20" fill="#ff6b6b" fill-opacity=".12" stroke="#ff6b6b"/><text x="1182" y="878" class="chip" text-anchor="middle" fill="#ff6b6b">OUTPUT SURVIVES AS LONG AS ATTENTION</text></g>
+
+      <text x="900" y="976" class="small" text-anchor="middle"><tspan x="900" dy="0">The diagram distinguishes evidence structures. It does not declare that every public income claim is false.</tspan></text>
+    
+</svg>

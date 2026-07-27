@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1050" role="img" aria-labelledby="title desc">
+  <title id="title">Where the Game Lives</title>
+  <desc id="desc">Three common game arrangements compare a timeshared mainframe and terminal, a local computer installed from disc, and a thin client connected to distributed infrastructure.</desc>
+  <defs>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse"><path d="M42 0H0V42" fill="none" stroke="#f4ead4" stroke-opacity=".035"/></pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="context-stroke"/></marker>
+    <filter id="shadow"><feDropShadow dx="0" dy="12" stdDeviation="15" flood-color="#000" flood-opacity=".3"/></filter>
+  </defs>
+  <style>
+    text { font-family: "IBM Plex Sans", Arial, sans-serif; }
+    .kicker { fill: #4bd4d8; font-family: "IBM Plex Mono", monospace; font-size: 20px; font-weight: 700; letter-spacing: 3px; }
+    .title { fill: #f4ead4; font-size: 58px; font-weight: 700; }
+    .subtitle { fill: #aeb8c5; font-size: 24px; }
+    .heading { fill: #f4ead4; font-size: 30px; font-weight: 700; }
+    .body { fill: #aeb8c5; font-size: 22px; }
+    .small { fill: #aeb8c5; font-family: "IBM Plex Mono", monospace; font-size: 17px; }
+    .big { fill: #f4ead4; font-size: 38px; font-weight: 700; }
+    .chip { font-family: "IBM Plex Mono", monospace; font-size: 15px; font-weight: 700; letter-spacing: 1px; }
+  </style>
+  <rect width="1800" height="1050" fill="#090b12"/>
+  <rect width="1800" height="1050" fill="url(#grid)"/>
+  <rect x="48" y="42" width="1704" height="966" rx="30" fill="none" stroke="#f4ead4" stroke-opacity=".16" stroke-width="2"/>
+  <text x="84" y="98" class="kicker" text-anchor="start"><tspan x="84" dy="0">HOBFARM FIELD DIAGRAM</tspan></text>
+  <text x="84" y="172" class="title" text-anchor="start"><tspan x="84" dy="0">Where the Game Lives</tspan></text>
+  <text x="84" y="216" class="subtitle" text-anchor="start"><tspan x="84" dy="0">The terminal in front of you and the machine running the world are not always the same thing.</tspan></text>
+  
+      <rect x="84" y="278" width="514" height="594" rx="22" fill="#131925" fill-opacity="0.94" stroke="#f1b84b" stroke-width="2"/>
+      <text x="120" y="330" class="kicker" text-anchor="start"><tspan x="120" dy="0">01 / TIMESHARING</tspan></text>
+      <text x="120" y="382" class="heading" text-anchor="start"><tspan x="120" dy="0">Terminal + mainframe</tspan></text>
+      <text x="120" y="428" class="body" text-anchor="start"><tspan x="120" dy="0">The screen and keyboard are local.</tspan><tspan x="120" dy="34">The running world, state, and</tspan><tspan x="120" dy="34">computation live on the host.</tspan></text>
+      <g transform="translate(120 566)">
+        <rect width="160" height="108" rx="9" fill="#1c2432" stroke="#f1b84b" stroke-width="3"/>
+        <rect x="16" y="16" width="128" height="64" rx="4" fill="#f1b84b" fill-opacity=".12"/>
+        <path d="M36 44h60M36 58h82M36 72h48" stroke="#f1b84b" stroke-width="5"/>
+        <path d="M30 108v34h100v-34M12 150h136" stroke="#f4ead4" stroke-width="6"/>
+      </g>
+      <path d="M 294 632 L 398 632" fill="none" stroke="#f1b84b" stroke-width="4"  marker-end="url(#arrow)"/>
+      <g transform="translate(414 548)">
+        <rect width="136" height="190" rx="12" fill="#1c2432" stroke="#f1b84b" stroke-width="3"/>
+        <circle cx="34" cy="42" r="9" fill="#74d39a"/>
+        <path d="M60 42h48M26 78h84M26 106h84M26 134h84M26 162h84" stroke="#aeb8c5" stroke-width="7"/>
+      </g>
+      <g><rect x="120" y="782" width="194" height="40" rx="20" fill="#f1b84b" fill-opacity=".12" stroke="#f1b84b"/><text x="217" y="808" class="chip" text-anchor="middle" fill="#f1b84b">LOCAL: TERMINAL</text></g>
+      <g><rect x="326" y="782" width="224" height="40" rx="20" fill="#f1b84b" fill-opacity=".12" stroke="#f1b84b"/><text x="438" y="808" class="chip" text-anchor="middle" fill="#f1b84b">REMOTE: WORLD</text></g>
+
+      <rect x="643" y="278" width="514" height="594" rx="22" fill="#131925" fill-opacity="0.94" stroke="#4bd4d8" stroke-width="2"/>
+      <text x="679" y="330" class="kicker" text-anchor="start"><tspan x="679" dy="0">02 / INSTALLED</tspan></text>
+      <text x="679" y="382" class="heading" text-anchor="start"><tspan x="679" dy="0">Disc + home computer</tspan></text>
+      <text x="679" y="428" class="body" text-anchor="start"><tspan x="679" dy="0">The package carries installation data.</tspan><tspan x="679" dy="34">The local machine runs the world</tspan><tspan x="679" dy="34">and usually stores the save.</tspan></text>
+      <g transform="translate(700 550)">
+        <circle cx="92" cy="92" r="82" fill="#f4ead4" fill-opacity=".12" stroke="#4bd4d8" stroke-width="4"/>
+        <circle cx="92" cy="92" r="18" fill="#090b12" stroke="#4bd4d8" stroke-width="4"/>
+        <path d="M92 10A82 82 0 0 1 170 70" stroke="#e667a9" stroke-width="7" fill="none"/>
+      </g>
+      <path d="M 892 642 L 988 642" fill="none" stroke="#4bd4d8" stroke-width="4"  marker-end="url(#arrow)"/>
+      <g transform="translate(1000 552)">
+        <rect width="116" height="170" rx="12" fill="#1c2432" stroke="#4bd4d8" stroke-width="3"/>
+        <path d="M24 42h68M24 74h68M24 106h68M24 138h48" stroke="#aeb8c5" stroke-width="8"/>
+        <circle cx="90" cy="140" r="8" fill="#74d39a"/>
+      </g>
+      <g><rect x="679" y="782" width="430" height="40" rx="20" fill="#4bd4d8" fill-opacity=".12" stroke="#4bd4d8"/><text x="894" y="808" class="chip" text-anchor="middle" fill="#4bd4d8">LOCAL: WORLD + STATE + COMPUTE</text></g>
+
+      <rect x="1202" y="278" width="514" height="594" rx="22" fill="#131925" fill-opacity="0.94" stroke="#e667a9" stroke-width="2"/>
+      <text x="1238" y="330" class="kicker" text-anchor="start"><tspan x="1238" dy="0">03 / SERVICE</tspan></text>
+      <text x="1238" y="382" class="heading" text-anchor="start"><tspan x="1238" dy="0">Thin client + network</tspan></text>
+      <text x="1238" y="428" class="body" text-anchor="start"><tspan x="1238" dy="0">The local device sends input and</tspan><tspan x="1238" dy="34">shows output. A remote service may</tspan><tspan x="1238" dy="34">own the running state and compute.</tspan></text>
+      <g transform="translate(1244 570)">
+        <path d="M20 34h146l-14 92H36Z" fill="#1c2432" stroke="#e667a9" stroke-width="4"/>
+        <path d="M52 126h84M66 148h56" stroke="#f4ead4" stroke-width="6"/>
+      </g>
+      <path d="M 1420 636 L 1510 636" fill="none" stroke="#e667a9" stroke-width="4"  marker-end="url(#arrow)"/>
+      <g transform="translate(1528 560)">
+        <rect width="130" height="176" rx="14" fill="#1c2432" stroke="#e667a9" stroke-width="3"/>
+        <path d="M24 40h82M24 72h82M24 104h82M24 136h82" stroke="#aeb8c5" stroke-width="8"/>
+      </g>
+      <g><rect x="1238" y="782" width="198" height="40" rx="20" fill="#e667a9" fill-opacity=".12" stroke="#e667a9"/><text x="1337" y="808" class="chip" text-anchor="middle" fill="#e667a9">LOCAL: CLIENT</text></g>
+      <g><rect x="1448" y="782" width="220" height="40" rx="20" fill="#e667a9" fill-opacity=".12" stroke="#e667a9"/><text x="1558" y="808" class="chip" text-anchor="middle" fill="#e667a9">REMOTE: SERVICE</text></g>
+
+      <text x="900" y="946" class="small" text-anchor="middle"><tspan x="900" dy="0">These are common arrangements, not a claim that every game in an era worked the same way.</tspan></text>
+    
+</svg>
