@@ -21,6 +21,32 @@ function resolveProvider(slug?: string): ProviderInfo | undefined {
   return providers[slug] || undefined;
 }
 
+function findTargetMedia(
+  target: HTMLElement
+): HTMLImageElement | HTMLVideoElement | null {
+  if (target instanceof HTMLImageElement || target instanceof HTMLVideoElement) {
+    return target;
+  }
+
+  return target.querySelector<HTMLImageElement | HTMLVideoElement>("img, video");
+}
+
+function resolveTargetSource(target: HTMLElement): string {
+  const explicitSource = target.dataset.lightbox?.trim();
+  if (explicitSource) return explicitSource;
+
+  const media = findTargetMedia(target);
+  return media?.currentSrc || media?.src || "";
+}
+
+function resolveTargetAlt(target: HTMLElement): string | undefined {
+  const explicitAlt = target.dataset.lightboxAlt?.trim();
+  if (explicitAlt) return explicitAlt;
+
+  const media = findTargetMedia(target);
+  return media instanceof HTMLImageElement ? media.alt : undefined;
+}
+
 export default function Lightbox() {
   const [data, setData] = useState<LightboxState | null>(null);
   const allTargets = useRef<HTMLElement[]>([]);
@@ -53,12 +79,15 @@ export default function Lightbox() {
       videoRef.current.pause();
       videoRef.current.src = "";
     }
+    const src = resolveTargetSource(el);
+    if (!src) return;
+
     setData({
-      src: el.dataset.lightbox || "",
+      src,
       type: (el.dataset.lightboxType as MediaType) || "image",
       providerSlug: el.dataset.lightboxProvider,
       caption: el.dataset.lightboxCaption,
-      alt: el.dataset.lightboxAlt,
+      alt: resolveTargetAlt(el),
       group,
       index: idx,
       total: targets.length,
