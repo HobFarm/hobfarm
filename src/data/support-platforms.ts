@@ -37,7 +37,7 @@ export const supportPlatforms: SupportPlatform[] = [
     name: "Buy something from the Shop",
     eyebrow: "Storefront directory",
     description:
-      "Choose the right shelf for merchandise, character assets, craft files, or one-off physical objects.",
+      "Choose the right shelf for digital packs, character releases, or one-off physical finds.",
     href: "/shop/",
     cta: "Browse the Shop",
     external: false,

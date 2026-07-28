@@ -47,8 +47,8 @@ relatedContent:
   - label: "Avatar Content System"
     href: "/academy/avatar-content-system/"
 priceLabel: "$24.99"
-status: coming-soon
-featured: true
+status: archived
+featured: false
 ---
 
 The Melting Rabbit Hole mark is printed in white on a low-profile, unstructured dad hat. The first listing has two colors, Black and Dark Grey, at $24.99 each.

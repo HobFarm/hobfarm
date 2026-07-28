@@ -5,21 +5,17 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import ContentPanel from "@/components/ContentPanel.astro";
 import Eyebrow from "@/components/sections/Eyebrow.astro";
 import Button from "@/components/fundations/elements/Button.astro";
-import DropCard from "@/components/shop/DropCard.astro";
-import { storefronts } from "@/data/storefronts";
-import { getPublicProducts } from "@/lib/products";
+import { storefrontHasCta, storefronts } from "@/data/storefronts";
 
 const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
-const directProducts = (await getPublicProducts()).filter(
-  (product) => product.data.platform === "hobfarm-direct",
-);
+const shopDescription =
+  "Find the right HobFarm storefront for digital packs, character assets, visual-world releases, and one-off physical finds.";
 const shopJsonLd = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   "@id": `${siteOrigin}/shop/#directory`,
   name: "HobFarm Shop",
-  description:
-    "A directory for HobFarm merchandise, marketplace shelves, courses, and one-time reader support.",
+  description: shopDescription,
   url: `${siteOrigin}/shop/`,
   mainEntity: {
     "@type": "ItemList",
@@ -38,59 +34,28 @@ const shopJsonLd = {
 
 <BaseLayout
   title="Shop | HobFarm"
-  description="Find the right HobFarm storefront for direct merchandise, craft files, character assets, one-off objects, courses, or one-time support."
+  description={shopDescription}
   canonical="/shop/"
   structuredData={shopJsonLd}
 >
   <section class="bg-noise border-b border-base-800/50">
     <ContentPanel>
       <Wrapper variant="standard" class="py-20 lg:py-28">
-        <Eyebrow text="HobFarm / Shop" />
+        <Eyebrow text="HobFarm Shop" />
         <Text tag="h1" variant="display2XL" class="mt-6 max-w-4xl text-balance font-display text-white">
           One clear shelf for each kind of work.
         </Text>
         <Text tag="p" variant="textBase" class="mt-6 max-w-2xl text-pretty leading-relaxed text-base-300">
-          HobFarm uses several storefronts because they do different jobs. Direct HobFarm merchandise appears here. Marketplace listings stay on the platform that handles the sale.
+          HobFarm sells different kinds of work in different places. Use this page to find digital packs, character and visual-world releases, and one-off physical inventory.
         </Text>
       </Wrapper>
     </ContentPanel>
   </section>
 
-  {directProducts.length > 0 && (
-    <section aria-labelledby="direct-products-heading" class="border-b border-base-800/50">
-      <ContentPanel>
-        <Wrapper variant="standard" class="py-12 lg:py-20">
-          <div class="max-w-3xl">
-            <p class="font-mono text-[10px] uppercase tracking-widest text-accent-magenta-bright">Made by HobFarm</p>
-            <Text id="direct-products-heading" tag="h2" variant="displaySM" class="mt-3 font-display text-white">
-              Direct merchandise
-            </Text>
-            <Text tag="p" variant="textBase" class="mt-4 text-pretty leading-relaxed text-base-400">
-              These items belong to the HobFarm checkout. A coming-soon page shows verified variants and shipping without opening payment early.
-            </Text>
-          </div>
-          <div class="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:max-w-3xl">
-            {directProducts.map((product) => <DropCard product={product} />)}
-          </div>
-        </Wrapper>
-      </ContentPanel>
-    </section>
-  )}
-
-  <section aria-labelledby="storefront-directory-heading">
+  <section aria-label="Marketplace storefronts">
     <ContentPanel>
       <Wrapper variant="standard" class="py-12 lg:py-20">
-        <div class="max-w-3xl">
-          <p class="font-mono text-[10px] uppercase tracking-widest text-accent-cyan">Storefront directory</p>
-          <Text id="storefront-directory-heading" tag="h2" variant="displaySM" class="mt-3 font-display text-white">
-            Choose by what you want.
-          </Text>
-          <Text tag="p" variant="textBase" class="mt-4 text-pretty leading-relaxed text-base-400">
-            External links open the storefront itself. Each marketplace listing stays where its transaction is handled.
-          </Text>
-        </div>
-
-        <div class="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-2">
+        <div class="grid grid-cols-1 gap-5 lg:grid-cols-3">
           {storefronts.map((storefront) => (
             <article
               id={storefront.id}
@@ -98,42 +63,35 @@ const shopJsonLd = {
               style={`--storefront-accent:${storefront.accent}`}
             >
               <p class="font-mono text-[10px] uppercase tracking-[0.18em]" style="color:var(--storefront-accent)">
-                {storefront.eyebrow}
+                {storefront.label}
               </p>
-              <div class="mt-3 flex flex-wrap items-start justify-between gap-3">
-                <Text tag="h3" variant="displayXS" class="font-display text-white">
+              <div class="mt-3 flex flex-col items-start gap-3 sm:flex-row sm:justify-between">
+                <Text tag="h2" variant="displayXS" class="font-display text-white">
                   {storefront.name}
                 </Text>
                 <span class="border border-base-700 px-2 py-1 font-mono text-[10px] uppercase tracking-wider text-base-400">
-                  {storefront.status}
+                  <span class="sr-only">Status: </span>{storefront.statusLabel}
                 </span>
               </div>
               <Text tag="p" variant="textSM" class="mt-4 text-pretty leading-relaxed text-base-400">
                 {storefront.description}
               </Text>
-              <ul class="mt-5 grid gap-2 border-t border-base-800 pt-5 text-sm text-base-300 sm:grid-cols-2">
-                {storefront.inventory.map((item) => (
-                  <li class="flex gap-2">
-                    <span aria-hidden="true" style="color:var(--storefront-accent)">+</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
               <div class="mt-auto pt-6">
-                {storefront.href && storefront.cta ? (
+                {storefrontHasCta(storefront) ? (
                   <Button
                     isLink
                     size="sm"
-                    variant={storefront.external ? "muted" : "green"}
+                    variant="muted"
                     href={storefront.href}
-                    target={storefront.external ? "_blank" : undefined}
-                    rel={storefront.external ? "noopener noreferrer" : undefined}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    {storefront.cta}{storefront.external ? " ↗" : ""}
+                    {storefront.cta} ↗
+                    <span class="sr-only"> (opens in a new tab)</span>
                   </Button>
                 ) : (
                   <p class="font-mono text-xs leading-relaxed text-base-500">
-                    No purchase link appears until the inventory and checkout path are verified.
+                    A storefront link will appear after the seller destination is verified.
                   </p>
                 )}
               </div>
@@ -144,22 +102,45 @@ const shopJsonLd = {
     </ContentPanel>
   </section>
 
-  <section class="border-t border-base-800/50">
+  <section aria-labelledby="shop-secondary-heading" class="border-t border-base-800/50">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-16">
+        <Text id="shop-secondary-heading" tag="h2" variant="displaySM" class="font-display text-white">
+          Looking for something else?
+        </Text>
+        <div class="mt-8 grid gap-5 md:grid-cols-2">
+          <article class="border border-base-800 bg-base-900/30 p-6">
+            <Text tag="h3" variant="displayXS" class="font-display text-white">Academy</Text>
+            <Text tag="p" variant="textSM" class="mt-3 leading-relaxed text-base-400">
+              Learn the methods behind the work.
+            </Text>
+            <Button isLink size="sm" variant="muted" href="/academy/" class="mt-5">Browse Academy</Button>
+          </article>
+          <article class="border border-base-800 bg-base-900/30 p-6">
+            <Text tag="h3" variant="displayXS" class="font-display text-white">Support HobFarm</Text>
+            <Text tag="p" variant="textSM" class="mt-3 leading-relaxed text-base-400">
+              Fund the next article, experiment, or release.
+            </Text>
+            <Button isLink size="sm" variant="muted" href="/support/" class="mt-5">See support options</Button>
+          </article>
+        </div>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <section aria-labelledby="shop-help-heading" class="border-t border-base-800/50">
     <ContentPanel>
       <Wrapper variant="standard" class="py-12 lg:py-20">
         <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
           <div class="max-w-2xl">
-            <Text tag="h2" variant="displaySM" class="font-display text-white">
+            <Text id="shop-help-heading" tag="h2" variant="displaySM" class="font-display text-white">
               Need help with an order?
             </Text>
             <Text tag="p" variant="textBase" class="mt-4 text-pretty leading-relaxed text-base-400">
-              Customer Help handles payments, access, downloads, refunds, accounts, courses, and marketplace order questions. Funding HobFarm is a separate path.
+              Customer Help handles order, download, account, refund, and marketplace questions.
             </Text>
           </div>
-          <div class="flex flex-wrap gap-3">
-            <Button isLink size="sm" variant="green" href="/helpcenter/">Customer Help</Button>
-            <Button isLink size="sm" variant="muted" href="/support/">Support HobFarm</Button>
-          </div>
+          <Button isLink size="sm" variant="green" href="/helpcenter/">Customer Help</Button>
         </div>
       </Wrapper>
     </ContentPanel>

@@ -12,7 +12,7 @@ const section = siteSections.find((entry) => entry.id === "presents")!;
 const articles = await getPublishedArticles();
 const adventures = await getPublishedAdventures();
 const comics = await getPublishedComics();
-const latest3dm = articles.find((article) => article.data.presentsSeries === "3-degrees-of-dick-miller" || article.id.startsWith("3dm/"));
+const latest3dm = articles.find((article) => article.data.presentsSeries === "3dm" || article.id.startsWith("3dm/"));
 const latestMagazine = articles.find((article) => getArticleDepartment(article.data) === "magazine-time-machine");
 const latestAlice = adventures.find((entry) => entry.data.series === "other-alice-adventures");
 const latestComic = comics[0];

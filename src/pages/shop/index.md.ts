@@ -6,16 +6,16 @@ export async function GET() {
     [
       await buildSectionLlms(
         "HobFarm Shop",
-        "A stable directory for direct merchandise, marketplace shelves, courses, and one-time reader support. It does not mirror marketplace listings or advertise unavailable products.",
+        "Find the right HobFarm storefront for digital packs, character assets, visual-world releases, and one-off physical finds.",
         storefronts.map((storefront) => ({
           title: storefront.name,
           url: storefront.href
             ? absoluteUrl(storefront.href)
             : absoluteUrl(`/shop/#${storefront.id}`),
-          description: `${storefront.status}. ${storefront.description}`,
+          description: `${storefront.statusLabel}. ${storefront.description}`,
         })),
       ),
-      "Customer problems belong in [Customer Help](https://hob.farm/helpcenter/). Reader funding belongs on [Support HobFarm](https://hob.farm/support/).",
+      "Courses belong in [Academy](https://hob.farm/academy/). Reader funding belongs on [Support HobFarm](https://hob.farm/support/). Customer problems belong in [Customer Help](https://hob.farm/helpcenter/).",
     ].join("\n\n"),
   );
 }

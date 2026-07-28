@@ -2,16 +2,17 @@
 title: "Topless Party in Outer Space"
 excerpt: "Italian library funk, space-age lounge, Muppet nonsense, Bob Crewe brass, and Leonard Nimoy's novelty records all start crossing wires."
 dek: "Italian soundtrack funk, library music, space-age lounge, Muppet nonsense, Bob Crewe brass, and the part where Spock sings about hobbits."
-description: "A Magazine Time Machine listening-room trail through Giuliano Sorgini, Piero Umiliani, Mah Na Mah Na, The Bob Crewe Generation, Leonard Nimoy, and the background music that became the main event."
+description: "A listening-room trail through Giuliano Sorgini, Piero Umiliani, Mah Na Mah Na, The Bob Crewe Generation, Leonard Nimoy, and the background music that became the main event."
 author: d00d
 publishedAt: 2026-07-08T00:00:00-07:00
-category: magazine-time-machine
-department: magazine-time-machine
+category: cultural-thread
+department: hobfarm-presents
 format: article
-series: "Magazine Time Machine"
+series: 3dm
+presentsSeries: 3dm
 status: published
 tags:
-  - magazine-time-machine
+  - 3dm
   - italian-soundtracks
   - library-music
   - piero-umiliani
@@ -23,6 +24,7 @@ tags:
 heroImage: https://cdn.hob.farm/articles/topless-party/topless-party-hero.png
 socialImage: https://cdn.hob.farm/articles/topless-party/topless-party-hero.png
 heroAlt: "Retro magazine-style illustration of a space-age cocktail lounge in orbit, filled with reel-to-reel machines, vinyl records, monitors, musicians, and labeled library-music file drawers."
+canonical: "/departments/hobfarm-presents/3-degrees-of-dick-miller/topless-party-in-outer-space/"
 relatedArticles:
   - mad-trump-and-the-magazine-time-machine
   - 1956-automation

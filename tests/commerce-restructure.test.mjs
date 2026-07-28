@@ -14,24 +14,43 @@ function publicSourceFiles(directory) {
   });
 }
 
-test("Shop keeps clear storefront jobs and stages the verified direct hat", () => {
+test("Shop is a three-lane marketplace directory with secondary learning and support", () => {
   const shop = read("src/pages/shop/index.astro");
   const storefronts = read("src/data/storefronts.ts");
+  const homepageShop = read("src/components/home/LatestDrops.astro");
   const product = read("src/content/products/melting-rabbit-hole-dad-hat.md");
 
-  for (const name of ["Made by HobFarm", "Etsy", "DeviantArt", "eBay", "Academy", "Ko-fi"]) {
+  for (const name of ["Etsy", "DeviantArt", "eBay"]) {
     assert.match(storefronts, new RegExp(name.replace(/[+]/g, "\\+")));
   }
-  assert.match(storefronts, /Melting Rabbit Hole Dad Hat is the first direct Printful product/);
-  assert.match(storefronts, /two colors, \$24\.99 price, and U\.S\. shipping rule are verified/);
-  assert.match(shop, /Marketplace listings stay on the platform that handles the sale/);
-  assert.match(shop, /getPublicProducts/);
-  assert.match(shop, /DropCard/);
-  assert.match(product, /status: coming-soon/);
+  for (const status of ['"active"', '"rebuilding"', '"pending"', '"hidden"']) {
+    assert.match(storefronts, new RegExp(status));
+  }
+  assert.doesNotMatch(storefronts, /Made by HobFarm|Ko-fi|Academy/);
+  assert.match(storefronts, /status: "rebuilding"[\s\S]*https:\/\/www\.etsy\.com\/shop\/hobfarm/);
+  assert.match(storefronts, /status: "active"[\s\S]*https:\/\/www\.deviantart\.com\/hobfarm/);
+  assert.match(storefronts, /id: "ebay"[\s\S]*status: "pending"/);
+  assert.doesNotMatch(storefronts.match(/id: "ebay"[\s\S]*?(?=\n  },|\n];)/)?.[0] ?? "", /href:/);
+
+  assert.match(shop, /One clear shelf for each kind of work/);
+  assert.match(shop, /Looking for something else/);
+  assert.match(shop, /Learn the methods behind the work/);
+  assert.match(shop, /Fund the next article, experiment, or release/);
+  assert.match(shop, /href="\/helpcenter\/"/);
+  assert.doesNotMatch(shop, /getPublicProducts|DropCard|Direct merchandise|Printful|POD/);
+  assert.doesNotMatch(shop, /"@type": "Product"/);
+
+  assert.match(homepageShop, /Different work, different shelves/);
+  assert.match(homepageShop, /Find the right shop/);
+  assert.match(homepageShop, /href="\/shop\/"/);
+  assert.doesNotMatch(homepageShop, /getLatestDrops|DropCard|Melting Rabbit Hole Dad Hat/);
+
+  assert.match(product, /status: archived/);
+  assert.match(product, /featured: false/);
+  assert.match(product, /fulfillment: printful/);
   assert.match(product, /unitAmount: 2499/g);
   assert.match(product, /code: black/);
   assert.match(product, /code: dark-grey/);
-  assert.doesNotMatch(shop, /"@type": "Product"/);
 });
 
 test("Sophia and Stella are archived from drops and the old URL has a Workshop handoff", () => {

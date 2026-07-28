@@ -29,6 +29,43 @@ test("3DM has one canonical hub and nested introductory article", () => {
   assert.match(redirects, /\/departments\/hobfarm-presents\/3dm\/\s+\/departments\/hobfarm-presents\/3-degrees-of-dick-miller\/\s+301/);
 });
 
+test("film-centered features use the 3DM group and preserve their former URLs", () => {
+  const articlePaths = [
+    "src/content/articles/they-had-names-doll-family.mdx",
+    "src/content/articles/topless-party-in-outer-space.md",
+    "src/content/articles/the-censor-eats-its-own-tail.mdx",
+  ];
+  const redirects = read("public/_redirects");
+  const layout = read("src/layouts/ThreeDMEntryLayout.astro");
+  const presentsHub = read("src/pages/departments/hobfarm-presents/index.astro");
+
+  for (const path of articlePaths) {
+    const article = read(path);
+    const slug = path.split("/").pop().replace(/\.(md|mdx)$/, "");
+
+    assert.match(article, /^department: hobfarm-presents$/m);
+    assert.match(article, /^series: 3dm$/m);
+    assert.match(article, /^presentsSeries: 3dm$/m);
+    assert.match(
+      article,
+      new RegExp(
+        `^canonical: "/departments/hobfarm-presents/3-degrees-of-dick-miller/${slug}/"$`,
+        "m",
+      ),
+    );
+    assert.match(
+      redirects,
+      new RegExp(
+        `/articles/${slug}/?\\s+/departments/hobfarm-presents/3-degrees-of-dick-miller/${slug}/\\s+301`,
+      ),
+    );
+  }
+
+  assert.match(layout, /import Lightbox from "@\/components\/gallery\/Lightbox"/);
+  assert.match(layout, /<Lightbox client:only="react" \/>/);
+  assert.match(presentsHub, /presentsSeries === "3dm"/);
+});
+
 test("3DM launch uses the supplied editorial voice and honest media state", () => {
   const hub = read("src/pages/departments/hobfarm-presents/3-degrees-of-dick-miller/index.astro");
   const article = read("src/content/articles/3dm/enter-the-millerverse.md");

@@ -7,6 +7,7 @@ import ShareButtons from "@/components/articles/ShareButtons.astro";
 import MediaPlayer from "@/components/media/MediaPlayer.astro";
 import ConnectionChain from "@/components/presents/ConnectionChain.astro";
 import ThreeDMEntryCard from "@/components/presents/ThreeDMEntryCard.astro";
+import Lightbox from "@/components/gallery/Lightbox";
 import { articlePath, getArticleDate, getArticleDescription, getArticleHero, getArticleUpdatedDate } from "@/lib/articles";
 import { THREE_DM_GPT_URL, THREE_DM_LOGO, THREE_DM_PATH } from "@/data/presents-titles";
 
@@ -159,6 +160,7 @@ const structuredData = {
       </Wrapper>
     </ContentPanel>
   </section>
+  <Lightbox client:only="react" />
 </BaseLayout>
 
 <style>
@@ -201,6 +203,10 @@ const structuredData = {
 </style>
 
 <style is:global>
+  .three-dm-entry [data-lightbox] {
+    cursor: zoom-in;
+  }
+
   .three-dm-entry .article-wide,
   .three-dm-entry .article-grid,
   .three-dm-entry .article-grid-caption {
