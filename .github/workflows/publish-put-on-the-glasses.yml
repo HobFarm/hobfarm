@@ -1,0 +1,36 @@
+name: Publish Put On the Glasses
+
+on:
+  schedule:
+    - cron: "25 0 31 7 *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-put-on-the-glasses
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Publish when the scheduled time has arrived
+        id: article
+        run: node scripts/publish-scheduled-put-on-the-glasses.mjs
+
+      - name: Remove the one-time schedule and trigger the production build
+        if: steps.article.outputs.published == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/publish-put-on-the-glasses.yml
+          git add src/content/articles/put-on-the-glasses.md
+          git commit -m "Publish Put On the Glasses article"
+          git push origin main
