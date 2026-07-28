@@ -1,0 +1,307 @@
+---
+import { selectedWorkshopProjects } from "@/data/workshop-projects";
+
+interface Props {
+  surface?: "home" | "workshop";
+}
+
+const { surface = "workshop" } = Astro.props;
+const positionKey = surface === "home" ? "homepagePosition" : "featuredPosition";
+const projects = [...selectedWorkshopProjects]
+  .filter((project) => surface !== "home" || project.homepagePosition)
+  .sort((a, b) => (a[positionKey] ?? 99) - (b[positionKey] ?? 99));
+---
+
+<div class:list={["workshop-project-grid", `workshop-project-grid--${surface}`]}>
+  {projects.map((project) => (
+    <a
+      class:list={["workshop-project-card", `workshop-project-card--${project.id}`]}
+      href={project.destination}
+      data-workshop-project={project.id}
+    >
+      <div class:list={["workshop-project-card__media", project.secondaryMedia && "workshop-project-card__media--pair"]}>
+        {project.secondaryMedia && (
+          <figure>
+            <img
+              src={project.secondaryMedia.src}
+              alt={project.secondaryMedia.alt}
+              width={project.secondaryMedia.width}
+              height={project.secondaryMedia.height}
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>{project.sourceLabel ?? "Source"}</figcaption>
+          </figure>
+        )}
+        <figure>
+          <img
+            src={project.media.src}
+            alt={project.media.alt}
+            width={project.media.width}
+            height={project.media.height}
+            loading="lazy"
+            decoding="async"
+          />
+          {project.secondaryMedia && <figcaption>{project.resultLabel ?? "Result"}</figcaption>}
+        </figure>
+      </div>
+      <div class="workshop-project-card__copy">
+        <div class="workshop-project-card__meta">
+          <span>{project.projectType}</span>
+          <span>{project.status}</span>
+        </div>
+        <h3>{project.title}</h3>
+        <p>{project.brief}</p>
+        <ul aria-label={`${project.title} capabilities`}>
+          {project.capabilities.map((capability) => <li>{capability}</li>)}
+        </ul>
+        <strong>Open project <span aria-hidden="true">&rarr;</span></strong>
+      </div>
+    </a>
+  ))}
+</div>
+
+<style>
+  .workshop-project-grid {
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  .workshop-project-card {
+    display: grid;
+    overflow: hidden;
+    border: 1px solid #2c2440;
+    border-radius: 0.75rem;
+    background: rgb(14 11 22 / 0.78);
+    color: inherit;
+    text-decoration: none;
+    transition: border-color 180ms ease, transform 180ms ease;
+  }
+
+  .workshop-project-card:hover {
+    border-color: rgb(85 215 255 / 0.6);
+    transform: translateY(-0.2rem);
+  }
+
+  .workshop-project-card:focus-visible {
+    border-color: #55d7ff;
+    outline: 2px solid #55d7ff;
+    outline-offset: 3px;
+  }
+
+  .workshop-project-card__media {
+    min-height: 14rem;
+    background: #060509;
+  }
+
+  .workshop-project-card__media figure {
+    position: relative;
+    min-width: 0;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  .workshop-project-card__media--pair {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .workshop-project-card__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 14rem;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    transition: opacity 180ms ease, transform 300ms ease;
+  }
+
+  .workshop-project-card--future-carriage .workshop-project-card__media img {
+    object-fit: contain;
+  }
+
+  .workshop-project-card--future-carriage .workshop-project-card__media figure:first-child img {
+    background: #eee8db;
+  }
+
+  .workshop-project-card--future-carriage .workshop-project-card__media figure:last-child img {
+    background: #07060b;
+  }
+
+  .workshop-project-card--character-mannequin .workshop-project-card__media figure:first-child img {
+    object-fit: contain;
+  }
+
+  .workshop-project-card:hover .workshop-project-card__media img {
+    opacity: 0.9;
+    transform: scale(1.012);
+  }
+
+  .workshop-project-card__media figcaption {
+    position: absolute;
+    right: 0.55rem;
+    bottom: 0.55rem;
+    left: 0.55rem;
+    padding: 0.42rem 0.5rem;
+    background: rgb(7 6 11 / 0.86);
+    color: #e9e5ef;
+    font-family: var(--font-mono);
+    font-size: 0.52rem;
+    letter-spacing: 0.08em;
+    line-height: 1.35;
+    text-transform: uppercase;
+  }
+
+  .workshop-project-card__copy {
+    display: flex;
+    flex-direction: column;
+    padding: 1.15rem;
+  }
+
+  .workshop-project-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    color: #55d7ff;
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.09em;
+    line-height: 1.45;
+    text-transform: uppercase;
+  }
+
+  .workshop-project-card__meta span:last-child {
+    color: #8f899e;
+  }
+
+  h3 {
+    margin: 1rem 0 0;
+    color: #f2eff7;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    font-weight: 300;
+    letter-spacing: -0.04em;
+    line-height: 0.98;
+  }
+
+  p {
+    margin: 0.85rem 0 0;
+    color: #b5b0bf;
+    font-size: 0.84rem;
+    line-height: 1.65;
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    padding: 0.34rem 0.5rem;
+    border: 1px solid #332a43;
+    border-radius: 999px;
+    color: #938da0;
+    font-family: var(--font-mono);
+    font-size: 0.52rem;
+    letter-spacing: 0.05em;
+  }
+
+  strong {
+    display: inline-block;
+    margin-top: auto;
+    padding-top: 1.3rem;
+    color: #f2eff7;
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 48rem) {
+    .workshop-project-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .workshop-project-card--future-carriage,
+    .workshop-project-card--other-alice-world {
+      grid-column: span 2;
+      grid-template-columns: minmax(0, 1.25fr) minmax(18rem, 0.75fr);
+    }
+
+    .workshop-project-card--other-alice-world {
+      grid-template-columns: minmax(18rem, 0.75fr) minmax(0, 1.25fr);
+    }
+
+    .workshop-project-card--other-alice-world .workshop-project-card__media {
+      order: 2;
+    }
+
+    .workshop-project-grid--home .workshop-project-card--future-carriage {
+      grid-column: auto;
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (min-width: 70rem) {
+    .workshop-project-grid--home,
+    .workshop-project-grid--workshop {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+
+    .workshop-project-card {
+      grid-column: span 3;
+    }
+
+    .workshop-project-card--future-carriage {
+      grid-column: span 4;
+      grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
+    }
+
+    .workshop-project-card--before-after {
+      grid-column: span 2;
+    }
+
+    .workshop-project-card--stylefusion,
+    .workshop-project-card--character-mannequin {
+      grid-column: span 3;
+    }
+
+    .workshop-project-card--other-alice-world {
+      grid-column: span 6;
+    }
+
+    .workshop-project-card--before-after .workshop-project-card__media--pair {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(2, minmax(10rem, 1fr));
+    }
+
+    .workshop-project-card--before-after .workshop-project-card__media img {
+      min-height: 10rem;
+      aspect-ratio: 4 / 3;
+    }
+
+    .workshop-project-grid--home .workshop-project-card--future-carriage,
+    .workshop-project-grid--home .workshop-project-card--before-after {
+      grid-column: span 3;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .workshop-project-card,
+    .workshop-project-card__media img {
+      transition: none;
+    }
+
+    .workshop-project-card:hover,
+    .workshop-project-card:hover .workshop-project-card__media img {
+      transform: none;
+    }
+  }
+</style>

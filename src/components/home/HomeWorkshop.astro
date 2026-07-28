@@ -1,180 +1,86 @@
 ---
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Button from "@/components/fundations/elements/Button.astro";
-import ArticleCard from "@/components/articles/ArticleCard.astro";
+import WorkshopProjectGrid from "@/components/workshop/WorkshopProjectGrid.astro";
+import WorkshopMethodStrip from "@/components/workshop/WorkshopMethodStrip.astro";
 import WorkshopProcessFilm from "@/components/workshop/WorkshopProcessFilm.astro";
 import { workshopProcessFilm } from "@/data/workshop-process-film";
-import { getMedia } from "@/data/media-registry";
-import { getVisualSystem, visualSystemPath } from "@/data/visual-systems";
-import { getWorkshopProgram } from "@/data/site-hierarchy";
-import { mediaImageUrl } from "@/lib/gallery";
-import { getArticleDepartment, getPublishedArticles } from "@/lib/articles";
-
-const notes = (await getPublishedArticles())
-  .filter((post) => getArticleDepartment(post.data) === "workshop-notes")
-  .slice(0, 3);
-
-const neutral = workshopProcessFilm.stages[1].media.find((item) => item.role === "main")!;
-const wardrobe = workshopProcessFilm.stages[3].media.find((item) => item.role === "main")!;
-const zima = getMedia("workshop.psygoth.zima.design-v2");
-const photoSource = getMedia("before-after.shit-to-shine.source");
-const photoAfter = getMedia("before-after.shit-to-shine.after");
-const styleFusion = getMedia("stylefusion.banner.image");
-const styleFusionResult = getMedia("stylefusion.cathedral.hero");
-const cuteCorrupted = getWorkshopProgram("cute-and-corrupted")!;
-const recentHero = notes[0]?.data.heroImage ?? getMedia("workshop.graphics.landing").src;
-const recentHeroAlt = notes[0]?.data.title ?? "Recent HobFarm Workshop note";
-const sophiaStella = getVisualSystem("sophia-stella");
-const sophiaPoster = sophiaStella?.featuredAssets.poster
-  ? mediaImageUrl(sophiaStella.featuredAssets.poster.folder, sophiaStella.featuredAssets.poster.file, {
-      width: 900,
-      quality: 82,
-      fit: "cover",
-    })
-  : null;
 ---
 
-<section id="home-workshop" class="home-workshop border-b border-base-800/70" aria-labelledby="home-workshop-heading">
+<section
+  id="home-workshop"
+  class="home-workshop border-b border-base-800/70"
+  aria-labelledby="home-workshop-heading"
+>
   <Wrapper variant="standard" class="py-16 lg:py-24">
     <header class="home-workshop__header">
       <div>
-        <p>Workshop</p>
-        <h2 id="home-workshop-heading">Start with an idea. Build the rules that make it work.</h2>
+        <p class="home-workshop__label">Workshop</p>
+        <h2 id="home-workshop-heading">Start with an idea. Build the visual system that makes it work.</h2>
       </div>
       <p>
-        Characters, photographs, visual languages, software, and moving images all pass through the Workshop. The finished render is one stage. The useful part is the chain of decisions that can make the next one better.
+        Products, photographs, archives, characters, stories, and software all pass through the Workshop. Each project develops its own references, rules, production material, and finished media.
       </p>
     </header>
 
-    <div class="home-workshop__feature">
-      <div class="home-workshop__film">
-        <WorkshopProcessFilm
-          manifest={workshopProcessFilm}
-          variant="vertical"
-          id="homepage-workshop-process"
-          showTranscript={false}
-          showReferenceStrip={true}
-          showNavigator={true}
-          autoplay={true}
-          loop={true}
-          compact={true}
-        />
-        <div class="home-workshop__film-copy">
-          <p>Process Film 01 / Zima</p>
-          <h3>Watch one identity survive the whole build.</h3>
-          <p>The portrait, neutral sheet, style rules, wardrobe, directed frame, and published avatar clip stay visible as the work changes.</p>
-          <a href="/workshop/#process-film" data-event="workshop_full_process_opened">Watch the full process &rarr;</a>
+    <section class="home-workshop__projects" aria-labelledby="home-workshop-projects-heading">
+      <div class="home-workshop__section-heading">
+        <p class="home-workshop__label">Selected work</p>
+        <h3 id="home-workshop-projects-heading">Five projects. Five different production problems.</h3>
+      </div>
+      <WorkshopProjectGrid surface="home" />
+
+      <div class="home-workshop__process">
+        <div class="home-workshop__process-film">
+          <WorkshopProcessFilm
+            manifest={workshopProcessFilm}
+            variant="vertical"
+            id="homepage-workshop-process"
+            showTranscript={false}
+            showReferenceStrip={false}
+            showNavigator={false}
+            autoplay={true}
+            loop={true}
+            compact={true}
+          />
         </div>
-      </div>
-
-      <div class="home-workshop__paths" aria-label="Workshop paths">
-        <a class="workshop-path workshop-path--character" href="/workshop/character-mannequin/" data-event="workshop_character_mannequin_clicked">
-          <img src={neutral.src} alt={neutral.alt} loading="lazy" decoding="async" />
-          <div>
-            <p>01 / Character + mannequin</p>
-            <h3>Build a character</h3>
-            <span>Identity locks, sheets, outfits, scenes, and avatars.</span>
-          </div>
-        </a>
-
-        <a class="workshop-path workshop-path--photo" href="/workshop/before-and-after/" data-event="workshop_before_after_clicked">
-          <div class="workshop-path__split">
-            <img src={photoSource.src} alt={photoSource.alt} loading="lazy" decoding="async" />
-            <img src={photoAfter.src} alt={photoAfter.alt} loading="lazy" decoding="async" />
-          </div>
-          <div>
-            <p>02 / Source photography</p>
-            <h3>Put a photograph to work</h3>
-            <span>Restoration, decay, comparison, collage, alternate history, and timelapse.</span>
-          </div>
-        </a>
-
-        <a class="workshop-path workshop-path--language" href="/workshop/stylefusion/" data-event="workshop_stylefusion_clicked">
-          <img src={wardrobe.src} alt={wardrobe.alt} loading="lazy" decoding="async" />
-          <div>
-            <p>03 / Visual language</p>
-            <h3>Give every reference a job</h3>
-            <span>Shape, color, line, surface, exclusions, and the parts that stay fixed.</span>
-          </div>
-        </a>
-
-        <a class="workshop-path workshop-path--tool" href="/workshop/stylefusion/" data-event="workshop_stylefusion_clicked">
-          <div class="workshop-path__tool-images">
-            <img src={styleFusion.src} alt={styleFusion.alt} loading="lazy" decoding="async" />
-            <img src={styleFusionResult.src} alt={styleFusionResult.alt} loading="lazy" decoding="async" />
-          </div>
-          <div>
-            <p>04 / Software systems</p>
-            <h3>Build the tool</h3>
-            <span>Reference roles become structured data, diagnostics, and a usable production document.</span>
-          </div>
-        </a>
-      </div>
-    </div>
-
-    <section class="home-workshop__strip" aria-labelledby="workshop-strip-heading">
-      <header>
-        <p>Across the benches</p>
-        <h3 id="workshop-strip-heading">One Workshop, several kinds of evidence.</h3>
-      </header>
-      <div class="home-workshop__strip-grid">
-        <a class="strip-item strip-item--photo" href="/workshop/before-and-after/">
-          <div><img src={photoSource.src} alt="" loading="lazy" decoding="async" /><img src={photoAfter.src} alt="" loading="lazy" decoding="async" /></div>
-          <span>Photo → transformed frame</span>
-        </a>
-        <a class="strip-item strip-item--sheet" href="/workshop/character-mannequin/">
-          <img src={neutral.src} alt={neutral.alt} loading="lazy" decoding="async" />
-          <span>Character sheet</span>
-        </a>
-        <a class="strip-item strip-item--motion" href="/workshop/workshop-notes/psygoth/">
-          <img src={zima.src} alt={zima.alt} loading="lazy" decoding="async" />
-          <span>Avatar motion</span>
-        </a>
-        <a class="strip-item strip-item--software" href="/workshop/stylefusion/">
-          <img src={styleFusion.src} alt={styleFusion.alt} loading="lazy" decoding="async" />
-          <span>StyleFusion</span>
-        </a>
-        <a class="strip-item strip-item--comparison" href={cuteCorrupted.href}>
-          <img src={cuteCorrupted.heroImage} alt={cuteCorrupted.heroAlt} loading="lazy" decoding="async" />
-          <span>Cute / Corrupted</span>
-        </a>
-        <a class="strip-item strip-item--notes" href="/workshop/workshop-notes/" data-event="workshop_notes_clicked">
-          <img src={recentHero} alt={recentHeroAlt} loading="lazy" decoding="async" />
-          <span>Latest build note</span>
-        </a>
+        <div class="home-workshop__process-copy">
+          <p class="home-workshop__label">Character process / Zima</p>
+          <h3>One identity, from brief to motion.</h3>
+          <p>
+            The Zima film follows a written brief through a neutral mannequin, visual-language rules, wardrobe, camera direction, and a published avatar clip. It remains one character-production example inside the wider Workshop.
+          </p>
+          <a href="/workshop/#process-film" data-event="workshop_full_process_opened">
+            Watch the full process and read the transcript <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
       </div>
     </section>
 
-    {sophiaStella && sophiaPoster && (
-      <a class="home-workshop__case" href={visualSystemPath(sophiaStella.slug)}>
-        <img src={sophiaPoster} alt={sophiaStella.featuredAssets.poster?.alt} loading="lazy" decoding="async" />
+    <section class="home-workshop__method" aria-labelledby="home-workshop-method-heading">
+      <div class="home-workshop__method-heading">
         <div>
-          <p>Compact case study / Sophia + Stella</p>
-          <h3>One base, two complete lives.</h3>
-          <span>See how palette, wardrobe, attitude, and world split a shared mannequin without erasing it. &rarr;</span>
+          <p class="home-workshop__label">Compact method</p>
+          <h3 id="home-workshop-method-heading">Research. Define. Build. Direct. Finish.</h3>
         </div>
-      </a>
-    )}
-
-    {notes.length > 0 && (
-      <section class="home-workshop__notes" aria-labelledby="home-workshop-notes-heading">
-        <header>
-          <div>
-            <p>Current work</p>
-            <h3 id="home-workshop-notes-heading">The latest Workshop Notes.</h3>
-          </div>
-          <a href="/workshop/workshop-notes/" data-event="workshop_notes_clicked">All build notes &rarr;</a>
-        </header>
-        <div>
-          {notes.map((post) => <ArticleCard post={post} />)}
-        </div>
-      </section>
-    )}
+        <p>
+          AI tools can enter at several points. The durable work is the source record, brief, continuity rules, camera plan, edit, and delivery packet that keep the project usable.
+        </p>
+      </div>
+      <WorkshopMethodStrip compact={true} />
+    </section>
 
     <div class="home-workshop__actions">
-      <Button isLink size="sm" variant="green" href="/workshop/">Enter the Workshop</Button>
-      <Button isLink size="sm" variant="muted" href="/workshop/#process-film" data-event="workshop_full_process_opened">Watch the full process</Button>
-      <Button isLink size="sm" variant="muted" href="/workshop/workshop-notes/" data-event="workshop_notes_clicked">Read the latest build notes</Button>
+      <Button isLink size="md" variant="green" href="/workshop/">Enter the Workshop</Button>
+      <Button
+        isLink
+        size="md"
+        variant="muted"
+        href="/contact/?subject=creative-project"
+        data-event="workshop_project_inquiry_clicked"
+      >
+        Start a project
+      </Button>
     </div>
   </Wrapper>
 </section>
@@ -182,22 +88,18 @@ const sophiaPoster = sophiaStella?.featuredAssets.poster
 <style>
   .home-workshop {
     background:
-      radial-gradient(circle at 12% 10%, rgb(59 111 224 / 0.13), rgb(7 6 11 / 0) 34rem),
-      radial-gradient(circle at 88% 46%, rgb(224 33 138 / 0.09), rgb(7 6 11 / 0) 38rem),
+      radial-gradient(circle at 10% 8%, rgb(59 111 224 / 0.14), transparent 34rem),
+      radial-gradient(circle at 92% 54%, rgb(224 33 138 / 0.08), transparent 38rem),
       #07060b;
   }
 
-  .home-workshop__header {
+  .home-workshop__header,
+  .home-workshop__method-heading {
     display: grid;
     gap: 1.5rem;
   }
 
-  .home-workshop__header > div > p,
-  .home-workshop__film-copy > p:first-child,
-  .workshop-path p,
-  .home-workshop__strip header p,
-  .home-workshop__case p,
-  .home-workshop__notes header p {
+  .home-workshop__label {
     margin: 0;
     color: #55d7ff;
     font-family: var(--font-mono);
@@ -207,388 +109,118 @@ const sophiaPoster = sophiaStella?.featuredAssets.poster
   }
 
   .home-workshop__header h2 {
-    max-width: 58rem;
-    margin: 0.75rem 0 0;
-    color: #ece9f5;
+    max-width: 64rem;
+    margin: 0.8rem 0 0;
+    color: #f0edf6;
     font-family: var(--font-display);
-    font-size: clamp(2.7rem, 7.5vw, 6rem);
+    font-size: clamp(2.8rem, 7.5vw, 6.2rem);
     font-weight: 300;
-    letter-spacing: -0.05em;
-    line-height: 0.94;
+    letter-spacing: -0.055em;
+    line-height: 0.93;
+    text-wrap: balance;
   }
 
-  .home-workshop__header > p {
+  .home-workshop__header > p,
+  .home-workshop__method-heading > p {
     max-width: 44rem;
     margin: 0;
-    color: var(--color-base-300);
+    color: #b4afbc;
     line-height: 1.75;
   }
 
-  .home-workshop__feature {
-    display: grid;
-    gap: 1.25rem;
-    margin-top: 2.5rem;
+  .home-workshop__projects {
+    margin-top: 4rem;
   }
 
-  .home-workshop__film {
+  .home-workshop__section-heading {
+    max-width: 54rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .home-workshop__section-heading h3,
+  .home-workshop__process-copy h3,
+  .home-workshop__method-heading h3 {
+    margin: 0.65rem 0 0;
+    color: #f0edf6;
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 5vw, 4.2rem);
+    font-weight: 300;
+    letter-spacing: -0.045em;
+    line-height: 0.98;
+  }
+
+  .home-workshop__process {
     display: grid;
     gap: 1rem;
-    align-items: start;
-  }
-
-  .home-workshop__film-copy {
-    padding: 1.25rem;
-    border-top: 2px solid #3b6fe0;
+    align-items: center;
+    max-width: 62rem;
+    margin: 1.5rem auto 0;
+    padding: 1rem;
+    border: 1px solid #2c2440;
+    border-left: 3px solid #3b6fe0;
+    border-radius: 0.75rem;
     background: rgb(14 11 22 / 0.72);
   }
 
-  .home-workshop__film-copy h3,
-  .workshop-path h3,
-  .home-workshop__strip h3,
-  .home-workshop__case h3,
-  .home-workshop__notes h3 {
-    margin: 0.55rem 0 0;
-    color: #ece9f5;
-    font-family: var(--font-display);
-    font-weight: 350;
-    line-height: 1.02;
+  .home-workshop__process-film {
+    width: min(100%, 17rem);
+    margin-inline: auto;
   }
 
-  .home-workshop__film-copy h3 {
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
+  .home-workshop__process-copy > p:not(.home-workshop__label) {
+    max-width: 42rem;
+    margin: 1rem 0 0;
+    color: #aaa5b3;
+    font-size: 0.86rem;
+    line-height: 1.7;
   }
 
-  .home-workshop__film-copy > p:not(:first-child) {
-    margin: 0.9rem 0 0;
-    color: var(--color-base-300);
-    font-size: 0.84rem;
-    line-height: 1.65;
-  }
-
-  .home-workshop__film-copy a {
-    display: inline-block;
-    margin-top: 1rem;
+  .home-workshop__process-copy a {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    margin-top: 1.2rem;
     color: #7bdde7;
-    font-size: 0.78rem;
-  }
-
-  .home-workshop__paths {
-    display: grid;
-    gap: 0.65rem;
-  }
-
-  .workshop-path {
-    position: relative;
-    display: grid;
-    overflow: hidden;
-    min-height: 18rem;
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .workshop-path > img,
-  .workshop-path__split,
-  .workshop-path__tool-images {
-    position: absolute;
-    inset: 0;
-  }
-
-  .workshop-path > img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.62;
-    transition: opacity 0.25s ease, transform 0.4s ease;
-  }
-
-  .workshop-path:hover > img,
-  .workshop-path:focus-visible > img {
-    opacity: 0.8;
-    transform: scale(1.015);
-  }
-
-  .workshop-path > div:last-child {
-    position: relative;
-    z-index: 2;
-    align-self: end;
-    padding: 5rem 1.2rem 1.2rem;
-    background: linear-gradient(rgb(7 6 11 / 0), rgb(7 6 11 / 0.96) 72%);
-  }
-
-  .workshop-path h3 {
-    font-size: clamp(1.8rem, 4vw, 3rem);
-  }
-
-  .workshop-path span {
-    display: block;
-    margin-top: 0.65rem;
-    color: var(--color-base-200);
-    font-size: 0.75rem;
-    line-height: 1.5;
-  }
-
-  .workshop-path--character {
-    border: 1px solid rgb(85 215 255 / 0.35);
-    background: #0b1017;
-  }
-
-  .workshop-path--character > img,
-  .workshop-path--language > img {
-    object-fit: contain;
-  }
-
-  .workshop-path--photo {
-    min-height: 15rem;
-    border: 0;
-    border-radius: 0.9rem 0 0.9rem 0;
-    background: #110a0c;
-  }
-
-  .workshop-path__split {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .workshop-path__split img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.62;
-  }
-
-  .workshop-path--language {
-    min-height: 22rem;
-    border: 1px solid rgb(160 107 255 / 0.34);
-    background: #090d16;
-  }
-
-  .workshop-path--tool {
-    min-height: 16rem;
-    border-top: 3px solid #a06bff;
-    background: #0e0b16;
-  }
-
-  .workshop-path__tool-images {
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-  }
-
-  .workshop-path__tool-images img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.55;
-  }
-
-  .workshop-path:focus-visible {
-    outline: 2px solid #55d7ff;
-    outline-offset: 3px;
-  }
-
-  .home-workshop__strip,
-  .home-workshop__case,
-  .home-workshop__notes {
-    margin-top: 4rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--color-base-800);
-  }
-
-  .home-workshop__strip h3,
-  .home-workshop__notes h3 {
-    font-size: clamp(2rem, 5vw, 3.8rem);
-  }
-
-  .home-workshop__strip-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.45rem;
-    margin-top: 1.25rem;
-  }
-
-  .strip-item {
-    position: relative;
-    overflow: hidden;
-    min-height: 11rem;
-    border: 1px solid var(--color-base-800);
-    background: var(--color-base-900);
-    color: inherit;
-  }
-
-  .strip-item > img,
-  .strip-item--photo > div {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .strip-item > img {
-    object-fit: cover;
-    opacity: 0.72;
-  }
-
-  .strip-item--sheet > img,
-  .strip-item--software > img {
-    object-fit: contain;
-  }
-
-  .strip-item--photo > div {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .strip-item--photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.72;
-  }
-
-  .strip-item span {
-    position: absolute;
-    inset: auto 0 0;
-    z-index: 1;
-    padding: 2.6rem 0.75rem 0.7rem;
-    background: linear-gradient(rgb(7 6 11 / 0), rgb(7 6 11 / 0.94));
-    color: #ece9f5;
     font-family: var(--font-mono);
-    font-size: 0.58rem;
-    letter-spacing: 0.08em;
+    font-size: 0.62rem;
+    letter-spacing: 0.07em;
     text-transform: uppercase;
   }
 
-  .strip-item:focus-visible {
+  .home-workshop__process-copy a:focus-visible {
     outline: 2px solid #55d7ff;
-    outline-offset: 2px;
+    outline-offset: 4px;
   }
 
-  .home-workshop__case {
-    display: grid;
-    gap: 0;
-    padding-top: 0;
-    overflow: hidden;
-    border: 1px solid rgb(242 77 166 / 0.28);
-    background: #0e0b16;
-    color: inherit;
-    text-decoration: none;
+  .home-workshop__method {
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid #2c2440;
   }
 
-  .home-workshop__case img {
-    display: block;
-    width: 100%;
-    max-height: 20rem;
-    object-fit: cover;
-    object-position: center 30%;
-  }
-
-  .home-workshop__case > div {
-    align-self: center;
-    padding: 1.35rem;
-  }
-
-  .home-workshop__case p {
-    color: #f24da6;
-  }
-
-  .home-workshop__case h3 {
-    font-size: clamp(1.8rem, 4vw, 3rem);
-  }
-
-  .home-workshop__case span {
-    display: block;
-    margin-top: 0.8rem;
-    color: var(--color-base-300);
-    font-size: 0.78rem;
-    line-height: 1.55;
-  }
-
-  .home-workshop__case:focus-visible {
-    outline: 2px solid #f24da6;
-    outline-offset: 3px;
-  }
-
-  .home-workshop__notes > header {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: end;
-    justify-content: space-between;
-    gap: 1rem;
-  }
-
-  .home-workshop__notes > header > a {
-    color: var(--color-base-300);
-    font-size: 0.78rem;
-  }
-
-  .home-workshop__notes > div {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2.5rem 1rem;
+  .home-workshop__method :global(.workshop-method-strip) {
     margin-top: 1.5rem;
   }
 
   .home-workshop__actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.65rem;
     margin-top: 2rem;
   }
 
   @media (min-width: 48rem) {
-    .home-workshop__strip-grid {
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-    }
-
-    .strip-item--photo,
-    .strip-item--sheet {
-      grid-column: span 2;
-    }
-
-    .strip-item--motion,
-    .strip-item--software,
-    .strip-item--comparison,
-    .strip-item--notes {
-      grid-column: span 1;
-    }
-
-    .home-workshop__case {
-      grid-template-columns: minmax(0, 0.7fr) minmax(20rem, 1fr);
-    }
-
-    .home-workshop__notes > div {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+    .home-workshop__process {
+      grid-template-columns: minmax(12rem, 0.32fr) minmax(0, 1fr);
+      padding: 1.25rem;
     }
   }
 
   @media (min-width: 64rem) {
-    .home-workshop__header {
+    .home-workshop__header,
+    .home-workshop__method-heading {
       grid-template-columns: minmax(0, 1.2fr) minmax(24rem, 0.62fr);
       align-items: end;
-    }
-
-    .home-workshop__feature {
-      grid-template-columns: minmax(24rem, 0.82fr) minmax(0, 1.18fr);
-      align-items: start;
-    }
-
-    .home-workshop__paths {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .workshop-path--character,
-    .workshop-path--language {
-      grid-row: span 2;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .workshop-path > img {
-      transition: none;
-    }
-
-    .workshop-path:hover > img,
-    .workshop-path:focus-visible > img {
-      transform: none;
     }
   }
 </style>

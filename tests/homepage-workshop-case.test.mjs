@@ -12,13 +12,12 @@ test("homepage replaces the long Sophia and Stella feature with a broad Workshop
   assert.doesNotMatch(homepage, /<VisualSystemFeature \/>/);
 
   for (const phrase of [
-    "Start with an idea. Build the rules that make it work",
-    "Build a character",
-    "Put a photograph to work",
-    "Give every reference a job",
-    "Build the tool",
-    "The latest Workshop Notes",
-    "Compact case study",
+    "Start with an idea. Build the visual system that makes it work",
+    "Five projects. Five different production problems",
+    "One identity, from brief to motion",
+    "Research. Define. Build. Direct. Finish",
+    "Enter the Workshop",
+    "Start a project",
   ]) {
     assert.match(component, new RegExp(phrase));
   }
@@ -44,26 +43,27 @@ test("homepage Process Film is poster-first and pauses outside the viewport", ()
 
 test("homepage Workshop paths use diverse media and real routes", () => {
   const component = read("src/components/home/HomeWorkshop.astro");
+  const projects = read("src/data/workshop-projects.ts");
+  const combined = `${component}\n${projects}`;
 
   for (const href of [
     "/workshop/character-mannequin/",
     "/workshop/before-and-after/",
     "/workshop/stylefusion/",
-    "/workshop/workshop-notes/",
+    "/workshop/ami-legacy/",
+    "/departments/hobfarm-presents/other-alice-adventures/world-guide/",
     "/workshop/#process-film",
   ]) {
-    assert.match(component, new RegExp(href.replaceAll("/", "\\/")));
+    assert.match(combined, new RegExp(href.replaceAll("/", "\\/")));
   }
 
   for (const token of [
-    "photoSource",
-    "photoAfter",
-    "neutral",
-    "zima",
-    "styleFusion",
-    "cuteCorrupted",
-    "recentHero",
+    "workshop.ami-legacy.model-3917.vehicle",
+    "before-after.shit-to-shine.source",
+    "workshop.process.zima.mannequin",
+    "stylefusion.banner.image",
+    "oaa-map-wonderland-living-atlas",
   ]) {
-    assert.match(component, new RegExp(token));
+    assert.match(combined, new RegExp(token));
   }
 });

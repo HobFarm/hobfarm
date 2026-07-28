@@ -10,6 +10,7 @@ const subjects = [
   { value: "stylefusion", label: "StyleFusion" },
   { value: "grimoire", label: "Grimoire" },
   { value: "membership", label: "Membership" },
+  { value: "creative-project", label: "Creative Project / Commission" },
   { value: "business", label: "Business / Partnership" },
   { value: "custom-character", label: "Custom Character" },
   { value: "bug", label: "Bug Report" },

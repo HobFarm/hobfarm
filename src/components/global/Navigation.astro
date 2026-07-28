@@ -10,7 +10,8 @@ const currentPath = Astro.url.pathname;
 
 function isActive(href: string): boolean {
   if (href === "/") return currentPath === "/";
-  return currentPath === href || currentPath.startsWith(href + "/");
+  const sectionPath = href.endsWith("/") ? href : `${href}/`;
+  return currentPath === href || currentPath.startsWith(sectionPath);
 }
 ---
 
@@ -80,28 +81,15 @@ function isActive(href: string): boolean {
         >
           <SearchIcon size="sm" />
         </button>
-        <!-- Auth-state-dependent CTA. Both rendered; JS shows the right one
-             based on /api/auth/me. Default visible = anonymous "Account" CTA
-             pointing at /login?next=/account. Once /api/auth/me returns 200
-             the JS swaps to the authenticated "Account" CTA pointing at
-             /account directly. Both share the label so users see only an
-             href change, not a label flicker. -->
+        <!-- One auth-aware CTA per responsive navigation. The default href
+             sends signed-out visitors through login; JS updates it in place
+             when an authenticated session is present. -->
         <Button
           isLink
           size="sm"
           variant="green"
           href="/login?next=/account"
-          data-auth-cta="anonymous"
-        >
-          Account
-        </Button>
-        <Button
-          isLink
-          size="sm"
-          variant="green"
-          href="/account"
-          data-auth-cta="authenticated"
-          class="hidden"
+          data-account-cta
         >
           Account
         </Button>
@@ -130,22 +118,16 @@ function isActive(href: string): boolean {
     window.addEventListener("scroll", handleScroll);
     handleScroll();
 
-    // Swap the auth-aware Account CTA based on session state. Default HTML
-    // shows the anonymous Account CTA (-> /login?next=/account); if
-    // /api/auth/me returns 200 we hide it and reveal the authenticated
-    // Account CTA (-> /account). Both share the label, only href differs.
+    // Update the existing Account links in place when the session is active.
     (async () => {
       try {
         const res = await fetch("/api/auth/me", { credentials: "include" });
         if (res.status !== 200) return;
         document
-          .querySelectorAll('[data-auth-cta="anonymous"]')
-          .forEach((el) => el.classList.add("hidden"));
-        document
-          .querySelectorAll('[data-auth-cta="authenticated"]')
-          .forEach((el) => el.classList.remove("hidden"));
+          .querySelectorAll<HTMLAnchorElement>("[data-account-cta]")
+          .forEach((el) => el.setAttribute("href", "/account"));
       } catch {
-        // network failure: leave default Membership visible
+        // Network failure: keep the signed-out login destination.
       }
     })();
   });

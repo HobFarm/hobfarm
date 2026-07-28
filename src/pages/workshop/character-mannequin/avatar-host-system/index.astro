@@ -328,6 +328,12 @@ const structuredData = {
           <img src={presentsGraphic.src} alt={presentsGraphic.alt} width={presentsGraphic.width} height={presentsGraphic.height} loading="lazy" decoding="async" />
           <span>See where recurring hosts and programs meet in HobFarm Presents &rarr;</span>
         </a>
+        <nav class="host-next" aria-label="Avatar host system related routes">
+          <a href="/workshop/character-mannequin/">Return to Character / Mannequin</a>
+          <a href="/workshop/ami-legacy/">View the Future Carriage campaign</a>
+          <a href="/workshop/">Browse the Workshop</a>
+          <a href="/contact/?subject=creative-project">Start a project</a>
+        </nav>
       </Wrapper>
     </section>
   </article>
@@ -406,6 +412,9 @@ const structuredData = {
   .presents-bridge span { position: absolute; right: 0; bottom: 0; left: 0; padding: 5rem 1rem 1rem; background: linear-gradient(transparent, rgb(5 4 9 / .96)); font-family: var(--font-mono); font-size: .65rem; letter-spacing: .06em; text-transform: uppercase; }
   .presents-bridge:hover img, .presents-bridge:focus-visible img { transform: scale(1.015); opacity: .9; }
   .presents-bridge:focus-visible { outline: 2px solid #55d7ff; outline-offset: 3px; }
+  .host-next { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: 1rem; }
+  .host-next a { display: inline-flex; min-height: 2.75rem; align-items: center; padding: .65rem .8rem; border: 1px solid #3b3150; border-radius: .35rem; color: #b9b4c6; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .06em; text-decoration: none; text-transform: uppercase; }
+  .host-next a:hover, .host-next a:focus-visible { border-color: #55d7ff; color: #fff; outline: 2px solid rgb(85 215 255 / .5); outline-offset: 2px; }
   @media (min-width: 700px) {
     .production-chain { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     .identity-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }

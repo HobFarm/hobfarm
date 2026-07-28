@@ -4,16 +4,19 @@ import test from "node:test";
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
 
-test("Workshop is organized around visual development and the HobFarm method", () => {
+test("Workshop leads with selected outcomes before method and program depth", () => {
   const page = read("src/pages/workshop/index.astro");
   const data = read("src/data/workshop-page.ts");
+  const projects = read("src/data/workshop-projects.ts");
   const photography = read("src/components/workshop/WorkshopPhotographySource.astro");
   const psygoth = read("src/components/workshop/WorkshopPsyGothLanes.astro");
-  const combined = `${page}\n${data}\n${photography}\n${psygoth}`;
+  const combined = `${page}\n${data}\n${projects}\n${photography}\n${psygoth}`;
 
   for (const phrase of [
-    "Build the visual language before you build the image",
-    "Specs preserve intent. Renders are snapshots",
+    "Bring the idea. Build the visual system",
+    "Start with the outcome, then open the production record",
+    "What can be built here",
+    "A historical drawing becomes a product campaign",
     "Style DNA",
     "Character DNA",
     "Lane DNA",
@@ -21,25 +24,46 @@ test("Workshop is organized around visual development and the HobFarm method", (
     "Put the photograph to work",
     "One base can still lead two lives",
     "One structure, three elemental lanes",
-    "A repeatable path from influence to finished work",
+    "One production method. Five useful stages",
     "The Workshop does not end at the tutorial",
   ]) {
     assert.match(combined, new RegExp(phrase.replace(/[+]/g, "\\+")));
   }
+
+  assert.ok(page.indexOf('id="selected-projects"') < page.indexOf('id="programs"'));
+  assert.ok(page.indexOf('id="method"') < page.indexOf('id="programs"'));
 });
 
-test("Workshop method follows six durable production stages", () => {
+test("Workshop method follows five concise production stages", () => {
   const data = read("src/data/workshop-page.ts");
 
   for (const title of [
-    "Collect the taste",
-    "Define the style DNA",
-    "Lock the character",
-    "Create meaningful variation",
-    "Direct the frame",
-    "Build the media packet",
+    "Research",
+    "Define",
+    "Build",
+    "Direct",
+    "Finish and deliver",
   ]) {
     assert.match(data, new RegExp(`title: "${title}"`));
+  }
+});
+
+test("Workshop homepage and landing page share one selected-project source", () => {
+  const page = read("src/pages/workshop/index.astro");
+  const home = read("src/components/home/HomeWorkshop.astro");
+  const projects = read("src/data/workshop-projects.ts");
+
+  assert.match(page, /WorkshopProjectGrid surface="workshop"/);
+  assert.match(home, /WorkshopProjectGrid surface="home"/);
+
+  for (const id of [
+    "future-carriage",
+    "before-after",
+    "stylefusion",
+    "character-mannequin",
+    "other-alice-world",
+  ]) {
+    assert.match(projects, new RegExp(`id: "${id}"`));
   }
 });
 

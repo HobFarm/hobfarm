@@ -30,7 +30,7 @@ test("Legacy has a complete Workshop case study with the intro, design rules, an
     assert.match(page, new RegExp(id.replaceAll(".", "\\.")));
   }
 
-  assert.match(page, /Legacy: The Electric Future Wagon/);
+  assert.match(page, /Future Carriage: A Concept Campaign from Historical Carriage Design/);
   assert.match(page, /No horses/);
   assert.match(page, /Two wheels/);
   assert.match(page, /Four wheels/);
@@ -40,7 +40,14 @@ test("Legacy has a complete Workshop case study with the intro, design rules, an
   assert.match(page, /preload="none"/);
   assert.doesNotMatch(page.match(/<video[\s\S]*?>/)?.[0] ?? "", /autoplay/);
   assert.match(page, /duration: "PT36S"/);
-  assert.match(page, /href="\/academy\/avatar-content-system\/"/);
+  assert.match(page, /Historical source/);
+  assert.match(page, /Product study/);
+  assert.match(page, /Campaign deliverables/);
+  assert.match(page, /Production record/);
+  assert.match(page, /href="https:\/\/picryl\.com\/"/);
+  assert.match(page, /PICRYL source \/ Public domain \/ CC0 1\.0/);
+  assert.doesNotMatch(page, /attribution pending/i);
+  assert.match(page, /href="\/contact\/\?subject=creative-project"/);
 });
 
 test("Workshop and the avatar host study lead readers into Ami's Legacy follow-up", () => {

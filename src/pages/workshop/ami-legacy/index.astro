@@ -15,34 +15,125 @@ const redwoodProfile = getMedia("workshop.ami-legacy.redwood-profile");
 const historicalReferences = [
   {
     label: "Stanhope gig / No. 3915",
+    answer: "Robot-pulled Model 3917 family",
     media: getMedia("workshop.ami-legacy.history.stanhope"),
   },
   {
     label: "Diligence coach",
+    answer: "Enclosed electric autonomous coach",
     media: getMedia("workshop.ami-legacy.history.diligence"),
   },
   {
     label: "Phaeton / No. 651a",
+    answer: "Open four-wheel electric study",
     media: getMedia("workshop.ami-legacy.history.phaeton"),
   },
   {
     label: "Vis-à-vis / No. 3049",
+    answer: "Social carriage with facing seats",
     media: getMedia("workshop.ami-legacy.history.vis-a-vis"),
+  },
+];
+
+const preserved = [
+  "Wheel count and scale",
+  "Passenger arrangement",
+  "Body silhouette",
+  "Canopy and lamps",
+  "Suspension and pulling geometry",
+  "Visible historical model identity",
+];
+
+const developed = [
+  "Propulsion",
+  "Control system",
+  "Materials and finish",
+  "Camera and environment",
+  "Campaign typography",
+  "Presenter and motion treatment",
+];
+
+const campaignDirections = [
+  {
+    title: "Product reveal",
+    description: "A clean vehicle plate keeps the robot, both wheels, shafts, and carriage body legible as one system.",
+    media: modelVehicle,
+  },
+  {
+    title: "Scenic tourism",
+    description: "The redwood road places the carriage in a believable passenger route without losing the full silhouette.",
+    media: redwoodLifestyle,
+  },
+  {
+    title: "Luxury hospitality",
+    description: "The enclosed coach supports resort, hotel, park-route, or heritage-district advertising as a self-directed concept.",
+    media: autonomousCoach,
+  },
+  {
+    title: "Fake commercial",
+    description: "A sincere luxury-vehicle frame can turn satirical in the edit. The project packet keeps that direction separate from any real client claim.",
+    media: modelWithAmi,
+  },
+];
+
+const deliverables = [
+  "Hero image",
+  "Historical source comparison",
+  "Clean product plate",
+  "Campaign poster",
+  "Vertical social cut",
+  "Landscape film",
+  "Presenter segment",
+  "Landing-page case study",
+  "Production and continuity record",
+];
+
+const productionRecord = [
+  {
+    title: "Historical reference selection",
+    description:
+      "Four carriage plates were selected for distinct wheelbases, cabins, seating arrangements, and pulling geometry.",
+  },
+  {
+    title: "Concept and branch rules",
+    description:
+      "Two-wheel forms keep a visible pulling system and use a robotic draft unit. Four-wheel forms carry electric propulsion and autonomous control.",
+  },
+  {
+    title: "Generated product studies",
+    description:
+      "Future-vehicle images were developed against the source constraints, then selected into a six-image campaign packet with clean plates, presenter frames, and environmental studies.",
+  },
+  {
+    title: "Continuity and crop direction",
+    description:
+      "The packet records what must stay visible in each frame. Wide carriage compositions use letterbox, split-screen, or presenter-panel layouts instead of destructive center crops.",
+  },
+  {
+    title: "Camera, setting, and edit planning",
+    description:
+      "Showroom frames prove the object. Roads and scenic routes prove use. The production plan specifies 9:16, 16:9, carousel, caption, and short-film treatments.",
+  },
+  {
+    title: "Finishing and delivery record",
+    description:
+      "The supplied images were converted to optimized WebP derivatives without overwriting the originals. The current record does not name an Adobe application, so this case study does not claim one.",
   },
 ];
 
 const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
 const structuredData = {
   "@context": "https://schema.org",
-  "@type": "TechArticle",
-  headline: "Legacy: The Electric Future Wagon",
+  "@type": "CreativeWork",
+  headline: "Future Carriage: A Concept Campaign from Historical Carriage Design",
   description:
-    "A HobFarm Workshop study that turns 1800s carriage drawings into electric autonomous vehicles while preserving their original design logic.",
-  image: hero.src,
+    "A self-directed HobFarm concept campaign that turns 19th-century carriage drawings into electric, robotic, and autonomous product studies.",
+  image: [hero.src, modelVehicle.src, autonomousCoach.src],
   url: `${siteOrigin}/workshop/ami-legacy/`,
+  creativeWorkStatus: "Concept study",
   video: {
     "@type": "VideoObject",
-    name: "Meet Ami",
+    name: "Ami campaign-host introduction",
     description: introVideo.alt,
     thumbnailUrl: introVideo.poster,
     contentUrl: introVideo.src,
@@ -57,45 +148,215 @@ const structuredData = {
 ---
 
 <BaseLayout
-  title="Legacy: The Electric Future Wagon | HobFarm Workshop"
-  description="Ami's general introduction leads into Legacy, a future-buggy study that turns 1800s carriage drawings into electric, autonomous heritage vehicles."
+  title="Future Carriage: Historical Design to Concept Campaign | HobFarm"
+  description="A self-directed product-visualization case study that develops 19th-century carriage drawings into electric, robotic, and autonomous campaign studies."
   canonical="/workshop/ami-legacy/"
   structuredData={structuredData}
   image={hero.src}
   imageAlt={hero.alt}
   palette="magenta-cyan"
 >
-  <article class="legacy-study">
-    <header class="hero">
+  <article class="carriage-study">
+    <header class="campaign-reveal">
       <Wrapper variant="standard" class="py-14 lg:py-24">
-        <div class="hero-copy">
-          <p class="kicker">Workshop / Ami / Future buggy studies</p>
-          <h1>Legacy: The Electric Future Wagon</h1>
+        <div class="campaign-reveal__copy">
+          <p class="kicker">Independent concept campaign / Product visualization</p>
+          <h1>Future Carriage: A Concept Campaign from Historical Carriage Design</h1>
           <p class="deck">
-            Start with an 1800s carriage drawing. Keep its wheels, silhouette, seating, lamps, and pull geometry. Then ask what changes when the horse disappears.
+            Start with an 1800s carriage drawing. Keep the wheels, silhouette, seating, lamps, suspension, and pulling geometry. Then replace horse power with an electric, robotic, or autonomous system.
           </p>
-          <div class="rule-row" aria-label="Legacy design rules">
+          <div class="tag-row" aria-label="Case-study categories">
             <span>No horses</span>
-            <span>Keep the carriage</span>
-            <span>Electric or robot-pulled</span>
+            <span>Historical source study</span>
+            <span>Advertising and motion</span>
+            <span>Self-directed concept</span>
           </div>
         </div>
-        <img
-          src={hero.src}
-          alt={hero.alt}
-          width={hero.width}
-          height={hero.height}
-          loading="eager"
-          fetchpriority="high"
-          decoding="async"
-        />
+        <figure class="campaign-reveal__media">
+          <img
+            src={hero.src}
+            alt={hero.alt}
+            width={hero.width}
+            height={hero.height}
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
+          <figcaption>Campaign reveal / directed still image / Legacy product family</figcaption>
+        </figure>
       </Wrapper>
     </header>
 
-    <section class="intro-section" aria-labelledby="meet-ami-heading">
+    <section class="brief-section" aria-labelledby="brief-heading">
+      <Wrapper variant="standard" class="py-12 lg:py-16">
+        <div class="brief-card">
+          <div>
+            <p class="kicker">The brief</p>
+            <h2 id="brief-heading">Build a future mobility campaign from historical carriage design.</h2>
+          </div>
+          <div>
+            <p>
+              Preserve the identity and operating logic of each carriage while replacing horse power with electric, robotic, or autonomous propulsion.
+            </p>
+            <p>
+              This is a self-directed HobFarm concept study. The images demonstrate a campaign direction; they do not represent a commissioned vehicle or a real transport service.
+            </p>
+          </div>
+        </div>
+      </Wrapper>
+    </section>
+
+    <section class="source-concept-section" aria-labelledby="source-concept-heading">
+      <Wrapper variant="standard" class="py-14 lg:py-24">
+        <header class="section-heading">
+          <p class="kicker">Source to concept</p>
+          <h2 id="source-concept-heading">The drawing creates the constraints.</h2>
+          <p>
+            The Stanhope plate establishes two wheels, exposed seating, long shafts, tall wheel scale, and visible pulling geometry. The future study answers those decisions instead of using the carriage as surface decoration.
+          </p>
+        </header>
+        <div class="source-concept-grid">
+          <figure class="historical-figure">
+            <img
+              src={historicalReferences[0].media.src}
+              alt={historicalReferences[0].media.alt}
+              width={historicalReferences[0].media.width}
+              height={historicalReferences[0].media.height}
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption><strong>Historical source</strong> Stanhope gig / No. 3915</figcaption>
+          </figure>
+          <div class="constraint-card">
+            <p class="kicker">Design constraints</p>
+            <ul>
+              <li>Keep the two-wheel pull architecture</li>
+              <li>Preserve the tall wheels and compact body</li>
+              <li>Keep the shafts visible</li>
+              <li>Replace the horse with a purpose-built draft unit</li>
+            </ul>
+          </div>
+          <figure>
+            <img src={modelVehicle.src} alt={modelVehicle.alt} width={modelVehicle.width} height={modelVehicle.height} loading="lazy" decoding="async" />
+            <figcaption><strong>Product study</strong> Robot-pulled Model 3917 family</figcaption>
+          </figure>
+          <figure>
+            <img src={modelWithAmi.src} alt={modelWithAmi.alt} width={modelWithAmi.width} height={modelWithAmi.height} loading="lazy" decoding="async" />
+            <figcaption><strong>Campaign frame</strong> Vehicle and presenter share the frame without hiding the mechanism</figcaption>
+          </figure>
+        </div>
+      </Wrapper>
+    </section>
+
+    <section class="preserved-section" aria-labelledby="preserved-heading">
       <Wrapper variant="standard" class="py-14 lg:py-20">
-        <div class="intro-grid">
-          <div class="video-column">
+        <header class="section-heading">
+          <p class="kicker">Preserved and developed</p>
+          <h2 id="preserved-heading">The source stays legible while the product moves forward.</h2>
+        </header>
+        <div class="preserved-grid">
+          <article>
+            <h3>Preserved</h3>
+            <ul>{preserved.map((item) => <li>{item}</li>)}</ul>
+          </article>
+          <article>
+            <h3>Developed</h3>
+            <ul>{developed.map((item) => <li>{item}</li>)}</ul>
+          </article>
+        </div>
+      </Wrapper>
+    </section>
+
+    <section class="branches-section" aria-labelledby="branches-heading">
+      <Wrapper variant="standard" class="py-14 lg:py-24">
+        <header class="section-heading">
+          <p class="kicker">Product branches</p>
+          <h2 id="branches-heading">The wheel count decides how the future moves.</h2>
+          <p>
+            These are carriages with new propulsion and control systems. When the historical number is legible, it becomes the model name.
+          </p>
+        </header>
+        <div class="branch-grid">
+          <article>
+            <span>Two wheels</span>
+            <h3>Keep the pulling logic.</h3>
+            <p>A robotic draft unit replaces the horse and keeps the old balance and trace geometry visible. This branch suits short ceremonial, park, and novelty routes where the mechanism is part of the experience.</p>
+          </article>
+          <article>
+            <span>Four wheels</span>
+            <h3>Integrate electric and autonomous control.</h3>
+            <p>Motors, batteries, sensors, and navigation fit into the historical body. This branch supports quiet resort, hotel, heritage-district, and sightseeing transport as a concept direction.</p>
+          </article>
+        </div>
+        <div class="branch-media">
+          <figure>
+            <img src={modelVehicle.src} alt={modelVehicle.alt} width={modelVehicle.width} height={modelVehicle.height} loading="lazy" decoding="async" />
+            <figcaption>Two-wheel branch / visible robotic draft unit</figcaption>
+          </figure>
+          <figure>
+            <img src={autonomousCoach.src} alt={autonomousCoach.alt} width={autonomousCoach.width} height={autonomousCoach.height} loading="lazy" decoding="async" />
+            <figcaption>Four-wheel branch / enclosed autonomous coach</figcaption>
+          </figure>
+        </div>
+      </Wrapper>
+    </section>
+
+    <section class="directions-section" aria-labelledby="directions-heading">
+      <Wrapper variant="standard" class="py-14 lg:py-24">
+        <header class="section-heading">
+          <p class="kicker">Campaign directions</p>
+          <h2 id="directions-heading">One product rule can support several advertising contexts.</h2>
+          <p>
+            The current image packet covers reveal, travel, hospitality, and deliberate fake-commercial treatments. Each remains a proposed use for a self-directed concept.
+          </p>
+        </header>
+        <div class="direction-grid">
+          {campaignDirections.map((direction) => (
+            <article>
+              <img src={direction.media.src} alt={direction.media.alt} width={direction.media.width} height={direction.media.height} loading="lazy" decoding="async" />
+              <div>
+                <h3>{direction.title}</h3>
+                <p>{direction.description}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+        <div class="landscape-pair">
+          <figure>
+            <img src={redwoodLifestyle.src} alt={redwoodLifestyle.alt} width={redwoodLifestyle.width} height={redwoodLifestyle.height} loading="lazy" decoding="async" />
+            <figcaption>Scenic tourism / directed environmental frame</figcaption>
+          </figure>
+          <figure>
+            <img src={redwoodProfile.src} alt={redwoodProfile.alt} width={redwoodProfile.width} height={redwoodProfile.height} loading="lazy" decoding="async" />
+            <figcaption>Luxury hospitality / quiet profile study</figcaption>
+          </figure>
+        </div>
+      </Wrapper>
+    </section>
+
+    <section class="deliverables-section" aria-labelledby="deliverables-heading">
+      <Wrapper variant="standard" class="py-14 lg:py-20">
+        <div class="deliverables-layout">
+          <div>
+            <p class="kicker">Campaign deliverables</p>
+            <h2 id="deliverables-heading">What the campaign can produce.</h2>
+            <p>
+              This case study shows how the concept can extend into still, motion, social, web, presenter, and documentation formats.
+            </p>
+          </div>
+          <ul>
+            {deliverables.map((deliverable, index) => (
+              <li><span>{String(index + 1).padStart(2, "0")}</span><strong>{deliverable}</strong></li>
+            ))}
+          </ul>
+        </div>
+      </Wrapper>
+    </section>
+
+    <section class="ami-section" aria-labelledby="ami-heading">
+      <Wrapper variant="standard" class="py-14 lg:py-24">
+        <div class="ami-grid">
+          <div class="ami-video">
             <video
               controls
               playsinline
@@ -106,115 +367,69 @@ const structuredData = {
             >
               <source src={introVideo.src} type="video/mp4" />
             </video>
-            <p id="ami-video-note" class="media-note">Captioned vertical master / 36 seconds / playback starts only when requested</p>
+            <p id="ami-video-note">Captioned vertical presenter master / 36 seconds / playback starts only when requested</p>
           </div>
-          <div class="intro-copy">
-            <p class="kicker">Meet the host</p>
-            <h2 id="meet-ami-heading">Ami opens the door. Legacy gives her somewhere to go next.</h2>
+          <div>
+            <p class="kicker">Ami as presenter</p>
+            <h2 id="ami-heading">The campaign host arrives after the product idea.</h2>
             <p>
-              Ami's introduction stays general on purpose. It works on Ko-fi, social media, and HobFarm without pretending every viewer arrived the same way. The follow-up can be specific: this is one of the project worlds she can return to and host.
+              Ami can introduce a model, explain its design rule, appear in advertising frames, and carry the format into later episodes. Her current 36-second clip is a general HobFarm introduction, not a completed Future Carriage commercial.
             </p>
             <p>
-              That turns the avatar into a recurring character instead of a one-off demo. Ami can introduce a carriage model, explain the design rule behind it, appear in a luxury campaign frame, and come back for the next historical drawing.
+              The campaign packet records a future presenter direction, but no dedicated Ami commercial clip has been completed. Image-led reels, comparisons, carousels, and this case study do not depend on one.
             </p>
-            <div class="cta-row">
-              <Button isLink size="md" variant="green" href="/academy/avatar-content-system/">
-                Build an avatar content system
-              </Button>
-              <Button isLink size="md" variant="muted" href="/workshop/character-mannequin/avatar-host-system/">
-                See the host system
-              </Button>
-            </div>
+            <Button isLink size="md" variant="muted" href="/workshop/character-mannequin/avatar-host-system/">
+              View the avatar host system
+            </Button>
           </div>
         </div>
       </Wrapper>
     </section>
 
-    <section class="rules-section" aria-labelledby="system-heading">
-      <Wrapper variant="standard" class="py-14 lg:py-20">
-        <header class="section-heading">
-          <p class="kicker">The vehicle system</p>
-          <h2 id="system-heading">The wheel count decides how the future moves.</h2>
-          <p>These are carriages with new propulsion and control systems. They are not old bodies pasted onto ordinary cars.</p>
-        </header>
-        <div class="rule-grid">
-          <article>
-            <span>Two wheels</span>
-            <h3>Keep the pulling logic.</h3>
-            <p>A purpose-built robot replaces the horse and balances or pulls the carriage. The robot supports the design; the carriage remains the subject.</p>
-          </article>
-          <article>
-            <span>Four wheels</span>
-            <h3>Let the carriage drive itself.</h3>
-            <p>Electric motors, batteries, sensors, and autonomous controls fit into the historical form as a quiet sightseeing or hospitality vehicle.</p>
-          </article>
-          <article>
-            <span>Every model</span>
-            <h3>Preserve the source drawing.</h3>
-            <p>Wheel scale, canopy, lamps, rails, seating, suspension lines, and decorative curves should survive. When the historical number is legible, it becomes the model name.</p>
-          </article>
-        </div>
-      </Wrapper>
-    </section>
-
-    <section class="model-section" aria-labelledby="model-heading">
+    <section class="production-section" aria-labelledby="production-heading">
       <Wrapper variant="standard" class="py-14 lg:py-24">
         <header class="section-heading">
-          <p class="kicker">Two-wheel branch / Model 3917</p>
-          <h2 id="model-heading">A robot takes the traces.</h2>
-          <p>Model 3917 keeps the tall wheels, exposed seat, long shafts, and compact body of a two-wheel carriage. The mechanical draft unit explains how the old geometry still moves without a horse.</p>
+          <p class="kicker">Production record</p>
+          <h2 id="production-heading">What the current project files verify.</h2>
+          <p>
+            The record covers source selection, concept rules, generated studies, continuity, camera and crop direction, edit planning, captions, delivery formats, and media optimization.
+          </p>
         </header>
-        <div class="model-grid">
-          <figure>
-            <img src={modelVehicle.src} alt={modelVehicle.alt} width={modelVehicle.width} height={modelVehicle.height} loading="lazy" decoding="async" />
-            <figcaption>Clean vehicle plate. The robot and carriage stay visible as one system.</figcaption>
-          </figure>
-          <figure>
-            <img src={modelWithAmi.src} alt={modelWithAmi.alt} width={modelWithAmi.width} height={modelWithAmi.height} loading="lazy" decoding="async" />
-            <figcaption>Ami enters as the presenter, not as a replacement for the vehicle.</figcaption>
-          </figure>
-        </div>
+        <ol class="production-grid">
+          {productionRecord.map((item, index) => (
+            <li>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </li>
+          ))}
+        </ol>
       </Wrapper>
     </section>
 
-    <section class="history-section" aria-labelledby="history-heading">
-      <Wrapper variant="standard" class="py-14 lg:py-20">
+    <section class="sources-section" aria-labelledby="sources-heading">
+      <Wrapper variant="standard" class="py-14 lg:py-24">
         <header class="section-heading">
-          <p class="kicker">Historical source library</p>
-          <h2 id="history-heading">The drawing comes before the reveal.</h2>
-          <p>The source plate sets the wheelbase, body, seating, canopy, and use. A future version should answer those decisions instead of treating history as surface decoration.</p>
+          <p class="kicker">Historical sources</p>
+          <h2 id="sources-heading">Four source plates anchor the current model families.</h2>
+          <p>
+            The carriage plates were found through <a href="https://picryl.com/" target="_blank" rel="noreferrer">PICRYL</a>.
+            PICRYL describes them as public-domain material, free to use without copyright restrictions; the item record
+            supplied for this review lists CC0 1.0. The labels preserve the carriage names and model numbers recorded in
+            the project files.
+          </p>
         </header>
-        <div class="history-grid">
-          {historicalReferences.map(({ label, media }) => (
+        <div class="source-grid">
+          {historicalReferences.map(({ label, answer, media }) => (
             <figure>
               <img src={media.src} alt={media.alt} width={media.width} height={media.height} loading="lazy" decoding="async" />
-              <figcaption>{label}</figcaption>
+              <figcaption>
+                <strong>Historical source / {label}</strong>
+                <span>Current concept answer / {answer}</span>
+                <small>PICRYL source / Public domain / CC0 1.0</small>
+              </figcaption>
             </figure>
           ))}
-        </div>
-      </Wrapper>
-    </section>
-
-    <section class="autonomous-section" aria-labelledby="autonomous-heading">
-      <Wrapper variant="standard" class="py-14 lg:py-24">
-        <header class="section-heading">
-          <p class="kicker">Four-wheel branch</p>
-          <h2 id="autonomous-heading">An autonomous carriage still needs a reason to travel.</h2>
-          <p>Showroom light proves the object. A road, resort, park, or scenic route proves the experience: quiet electric cruising with the carriage silhouette intact.</p>
-        </header>
-        <div class="travel-grid">
-          <figure class="travel-grid__lead">
-            <img src={autonomousCoach.src} alt={autonomousCoach.alt} width={autonomousCoach.width} height={autonomousCoach.height} loading="lazy" decoding="async" />
-            <figcaption>Enclosed autonomous coach / product reveal</figcaption>
-          </figure>
-          <figure>
-            <img src={redwoodLifestyle.src} alt={redwoodLifestyle.alt} width={redwoodLifestyle.width} height={redwoodLifestyle.height} loading="lazy" decoding="async" />
-            <figcaption>Scenic passenger route / redwood road</figcaption>
-          </figure>
-          <figure>
-            <img src={redwoodProfile.src} alt={redwoodProfile.alt} width={redwoodProfile.width} height={redwoodProfile.height} loading="lazy" decoding="async" />
-            <figcaption>Quiet profile study / carriage in use</figcaption>
-          </figure>
         </div>
       </Wrapper>
     </section>
@@ -223,18 +438,15 @@ const structuredData = {
       <Wrapper variant="standard" class="py-14 lg:py-20">
         <div class="next-grid">
           <div>
-            <p class="kicker">The next episode</p>
-            <h2 id="next-heading">One introduction can lead into a whole series.</h2>
+            <p class="kicker">Related routes</p>
+            <h2 id="next-heading">Continue through the Workshop.</h2>
           </div>
-          <div>
-            <p>Ami's first video says who she is. Legacy gives the next post a subject: one historical drawing, the rule it establishes, the future model that answers it, and Ami's short introduction to the result.</p>
-            <p>The format can repeat without repeating the same video. The avatar stays recognizable while the carriage, setting, and design problem change.</p>
-            <nav class="text-links" aria-label="Related Ami and Legacy destinations">
-              <a href="/academy/avatar-content-system/">Open the Avatar Content System</a>
-              <a href="/workshop/character-mannequin/avatar-host-system/">Read the avatar host study</a>
-              <a href="/workshop/">Return to Workshop</a>
-            </nav>
-          </div>
+          <nav aria-label="Future Carriage related routes">
+            <a href="/workshop/">Return to Workshop</a>
+            <a href="/workshop/character-mannequin/avatar-host-system/">View the avatar host system</a>
+            <a href="/workshop/before-and-after/">View Before &amp; After</a>
+            <a href="/contact/?subject=creative-project">Start a project</a>
+          </nav>
         </div>
       </Wrapper>
     </section>
@@ -242,46 +454,496 @@ const structuredData = {
 </BaseLayout>
 
 <style>
-  .legacy-study { background: #080808; color: #b9b2aa; }
-  .hero { border-bottom: 1px solid #3b3028; background: radial-gradient(circle at 18% 10%, rgb(197 147 75 / .15), transparent 30rem), #080808; }
-  .hero-copy { max-width: 66rem; }
-  .hero img { display: block; width: 100%; margin-top: 2.5rem; border: 1px solid #4a3b30; border-radius: .75rem; box-shadow: 0 32px 90px rgb(0 0 0 / .45); }
-  .kicker { margin: 0; color: #d6ad72; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; }
-  h1 { max-width: 68rem; margin: 1rem 0 0; color: #fffaf2; font-family: var(--font-display); font-size: clamp(3.4rem, 9vw, 8rem); font-weight: 300; letter-spacing: -.06em; line-height: .88; text-wrap: balance; }
-  .deck { max-width: 54rem; margin: 1.5rem 0 0; color: #d4cec5; font-size: clamp(1rem, 2vw, 1.25rem); line-height: 1.75; }
-  .rule-row { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.8rem; }
-  .rule-row span { padding: .55rem .75rem; border: 1px solid #665344; border-radius: 999px; color: #e3c9a6; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .08em; text-transform: uppercase; }
-  section { border-bottom: 1px solid #2f2924; }
-  .intro-section, .history-section, .next-section { background: #0b0a09; }
-  .intro-grid, .next-grid { display: grid; gap: 2rem; }
-  .video-column { max-width: 24rem; margin-inline: auto; }
-  video { display: block; width: 100%; aspect-ratio: 9 / 16; border: 1px solid #5b4634; border-radius: .75rem; background: #000; object-fit: cover; }
-  .media-note { margin: .7rem 0 0; color: #7f7770; font-family: var(--font-mono); font-size: .56rem; line-height: 1.6; }
-  .intro-copy h2, .section-heading h2, .next-grid h2 { max-width: 58rem; margin: .75rem 0 0; color: #fffaf2; font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 5.2rem); font-weight: 300; letter-spacing: -.045em; line-height: .96; }
-  .intro-copy > p:not(.kicker), .section-heading > p:last-child, .next-grid > div:last-child > p { max-width: 50rem; margin: 1rem 0 0; color: #aaa29b; line-height: 1.78; }
-  .cta-row { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1.6rem; }
-  .section-heading { max-width: 68rem; }
-  .rule-grid { display: grid; gap: .8rem; margin-top: 2rem; }
-  .rule-grid article { min-height: 18rem; padding: 1.2rem; border: 1px solid #3a3028; border-top: 2px solid #bd8f52; border-radius: .55rem; background: #0e0c0a; }
-  .rule-grid span { color: #d6ad72; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; }
-  .rule-grid h3 { margin: 4rem 0 0; color: #fffaf2; font-family: var(--font-display); font-size: 2rem; font-weight: 300; line-height: 1; }
-  .rule-grid p { margin: 1rem 0 0; color: #9f9790; font-size: .84rem; line-height: 1.7; }
-  .model-grid, .history-grid, .travel-grid { display: grid; gap: .8rem; margin-top: 2rem; }
-  figure { overflow: hidden; margin: 0; border: 1px solid #3a3028; border-radius: .55rem; background: #0d0b09; }
-  figure img { display: block; width: 100%; height: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
-  figcaption { padding: .8rem 1rem; color: #c9b18e; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .05em; line-height: 1.6; text-transform: uppercase; }
-  .history-grid figure img { aspect-ratio: 4 / 3; object-fit: contain; background: #f2eee4; }
-  .next-grid > div:last-child > p:first-child { margin-top: 0; }
-  .text-links { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1.5rem; }
-  .text-links a { display: inline-flex; min-height: 2.75rem; align-items: center; padding: .65rem .8rem; border: 1px solid #4a3b30; border-radius: .3rem; color: #ead4b6; font-family: var(--font-mono); font-size: .59rem; letter-spacing: .06em; text-decoration: none; text-transform: uppercase; }
-  .text-links a:hover, .text-links a:focus-visible { border-color: #fffaf2; color: #fffaf2; outline: none; }
-  @media (min-width: 760px) {
-    .intro-grid { grid-template-columns: minmax(17rem, .38fr) minmax(0, 1fr); align-items: center; }
-    .next-grid { grid-template-columns: minmax(0, 1fr) minmax(22rem, .7fr); align-items: start; }
-    .rule-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .model-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .history-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .travel-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .travel-grid__lead { grid-column: span 2; }
+  .carriage-study {
+    background:
+      radial-gradient(circle at 12% 8%, rgb(197 147 75 / 0.09), transparent 34rem),
+      #080808;
+    color: #b9b2aa;
+  }
+
+  section,
+  .campaign-reveal {
+    border-bottom: 1px solid #302922;
+  }
+
+  .campaign-reveal {
+    background:
+      radial-gradient(circle at 18% 10%, rgb(197 147 75 / 0.15), transparent 30rem),
+      radial-gradient(circle at 84% 36%, rgb(96 55 130 / 0.1), transparent 34rem),
+      #080808;
+  }
+
+  .campaign-reveal__copy {
+    max-width: 74rem;
+  }
+
+  .kicker {
+    margin: 0;
+    color: #d6ad72;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    max-width: 76rem;
+    margin: 1rem 0 0;
+    color: #fffaf2;
+    font-family: var(--font-display);
+    font-size: clamp(3.2rem, 8.5vw, 7.8rem);
+    font-weight: 300;
+    letter-spacing: -0.06em;
+    line-height: 0.9;
+    text-wrap: balance;
+  }
+
+  .deck {
+    max-width: 58rem;
+    margin: 1.5rem 0 0;
+    color: #d4cec5;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 1.75;
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.8rem;
+  }
+
+  .tag-row span {
+    padding: 0.55rem 0.75rem;
+    border: 1px solid #665344;
+    border-radius: 999px;
+    color: #e3c9a6;
+    font-family: var(--font-mono);
+    font-size: 0.57rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  figure {
+    margin: 0;
+  }
+
+  .campaign-reveal__media {
+    overflow: hidden;
+    margin-top: 2.5rem;
+    border: 1px solid #4a3b30;
+    border-radius: 0.75rem;
+    background: #0d0b09;
+    box-shadow: 0 32px 90px rgb(0 0 0 / 0.45);
+  }
+
+  .campaign-reveal__media img,
+  .source-concept-grid img,
+  .branch-media img,
+  .direction-grid img,
+  .landscape-pair img,
+  .source-grid img {
+    display: block;
+    width: 100%;
+  }
+
+  figcaption {
+    padding: 0.8rem 1rem;
+    color: #c9b18e;
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.05em;
+    line-height: 1.6;
+    text-transform: uppercase;
+  }
+
+  .brief-section,
+  .preserved-section,
+  .directions-section,
+  .ami-section,
+  .sources-section {
+    background: #0b0a09;
+  }
+
+  .brief-card,
+  .deliverables-layout,
+  .next-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .brief-card {
+    padding: 1.25rem;
+    border: 1px solid #4a3b30;
+    border-left: 4px solid #bd8f52;
+    border-radius: 0.65rem;
+    background: #0e0c0a;
+  }
+
+  .brief-card h2,
+  .section-heading h2,
+  .deliverables-layout h2,
+  .ami-grid h2,
+  .next-grid h2 {
+    max-width: 64rem;
+    margin: 0.75rem 0 0;
+    color: #fffaf2;
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 5.2rem);
+    font-weight: 300;
+    letter-spacing: -0.045em;
+    line-height: 0.96;
+  }
+
+  .brief-card > div:last-child > p,
+  .section-heading > p:last-child,
+  .deliverables-layout > div > p:last-child,
+  .ami-grid > div:last-child > p,
+  .production-grid p {
+    max-width: 52rem;
+    margin: 1rem 0 0;
+    color: #aaa29b;
+    line-height: 1.75;
+  }
+
+  .brief-card > div:last-child > p:first-child {
+    margin-top: 0;
+    color: #ddd5ca;
+    font-size: 1.05rem;
+  }
+
+  .section-heading {
+    max-width: 72rem;
+  }
+
+  .source-concept-grid,
+  .branch-media,
+  .direction-grid,
+  .landscape-pair,
+  .source-grid {
+    display: grid;
+    gap: 0.8rem;
+    margin-top: 2rem;
+  }
+
+  .source-concept-grid figure,
+  .branch-media figure,
+  .landscape-pair figure,
+  .source-grid figure {
+    overflow: hidden;
+    border: 1px solid #3a3028;
+    border-radius: 0.55rem;
+    background: #0d0b09;
+  }
+
+  .source-concept-grid img,
+  .branch-media img,
+  .landscape-pair img {
+    height: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+
+  .source-concept-grid .historical-figure img,
+  .source-grid img {
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+    background: #eee8db;
+  }
+
+  .source-concept-grid figcaption strong {
+    display: block;
+    color: #fff1dc;
+  }
+
+  .constraint-card {
+    padding: 1.1rem;
+    border: 1px solid #3a3028;
+    border-top: 2px solid #bd8f52;
+    border-radius: 0.55rem;
+    background: #0e0c0a;
+  }
+
+  .constraint-card ul,
+  .preserved-grid ul {
+    margin: 1.4rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .constraint-card li,
+  .preserved-grid li {
+    padding: 0.72rem 0;
+    border-top: 1px solid #332b25;
+    color: #c4bbb1;
+    font-size: 0.82rem;
+  }
+
+  .preserved-grid,
+  .branch-grid {
+    display: grid;
+    gap: 0.8rem;
+    margin-top: 2rem;
+  }
+
+  .preserved-grid article,
+  .branch-grid article {
+    padding: 1.2rem;
+    border: 1px solid #3a3028;
+    border-top: 2px solid #bd8f52;
+    border-radius: 0.55rem;
+    background: #0e0c0a;
+  }
+
+  .preserved-grid h3,
+  .branch-grid h3,
+  .direction-grid h3,
+  .production-grid h3 {
+    margin: 0;
+    color: #fffaf2;
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1;
+  }
+
+  .branch-grid article {
+    min-height: 20rem;
+  }
+
+  .branch-grid span {
+    color: #d6ad72;
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .branch-grid h3 {
+    margin-top: 4rem;
+  }
+
+  .branch-grid p,
+  .direction-grid p {
+    margin: 1rem 0 0;
+    color: #9f9790;
+    font-size: 0.84rem;
+    line-height: 1.7;
+  }
+
+  .direction-grid article {
+    overflow: hidden;
+    border: 1px solid #3a3028;
+    border-radius: 0.55rem;
+    background: #0e0c0a;
+  }
+
+  .direction-grid img {
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+
+  .direction-grid article > div {
+    padding: 1rem;
+  }
+
+  .direction-grid h3 {
+    font-size: 1.7rem;
+  }
+
+  .deliverables-section {
+    background:
+      radial-gradient(circle at 84% 30%, rgb(197 147 75 / 0.1), transparent 28rem),
+      #090807;
+  }
+
+  .deliverables-layout > ul {
+    display: grid;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .deliverables-layout > ul li {
+    display: flex;
+    min-height: 3.6rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid #3a3028;
+    background: #0e0c0a;
+  }
+
+  .deliverables-layout li span,
+  .production-grid > li > span {
+    color: #8d7960;
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+  }
+
+  .deliverables-layout li strong {
+    color: #eee5d8;
+    font-size: 0.82rem;
+    font-weight: 500;
+  }
+
+  .ami-grid {
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .ami-video {
+    width: min(100%, 24rem);
+    margin-inline: auto;
+  }
+
+  .ami-video video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    border: 1px solid #5b4634;
+    border-radius: 0.75rem;
+    background: #000;
+    object-fit: cover;
+  }
+
+  .ami-video > p {
+    margin: 0.7rem 0 0;
+    color: #7f7770;
+    font-family: var(--font-mono);
+    font-size: 0.56rem;
+    line-height: 1.6;
+  }
+
+  .ami-grid :global(a) {
+    width: fit-content;
+    margin-top: 1.5rem;
+  }
+
+  .production-grid {
+    display: grid;
+    gap: 0.7rem;
+    margin: 2rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .production-grid > li {
+    padding: 1rem;
+    border: 1px solid #3a3028;
+    border-radius: 0.55rem;
+    background: #0e0c0a;
+  }
+
+  .production-grid h3 {
+    margin-top: 1.6rem;
+    font-size: 1.65rem;
+  }
+
+  .production-grid p {
+    font-size: 0.82rem;
+  }
+
+  .source-grid figcaption strong,
+  .source-grid figcaption span,
+  .source-grid figcaption small {
+    display: block;
+  }
+
+  .source-grid figcaption strong {
+    color: #fff1dc;
+  }
+
+  .source-grid figcaption span {
+    margin-top: 0.35rem;
+    color: #c9b18e;
+  }
+
+  .source-grid figcaption small {
+    margin-top: 0.6rem;
+    color: #867b70;
+    font-size: 0.52rem;
+  }
+
+  .next-section {
+    border-bottom: 0;
+    background:
+      radial-gradient(circle at 16% 42%, rgb(197 147 75 / 0.1), transparent 25rem),
+      #090807;
+  }
+
+  .next-grid nav {
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  .next-grid nav a {
+    display: flex;
+    min-height: 3.25rem;
+    align-items: center;
+    padding: 0.7rem 0.85rem;
+    border: 1px solid #4a3b30;
+    border-radius: 0.35rem;
+    color: #ead4b6;
+    font-family: var(--font-mono);
+    font-size: 0.59rem;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .next-grid nav a:hover,
+  .next-grid nav a:focus-visible {
+    border-color: #fffaf2;
+    color: #fffaf2;
+    outline: 2px solid rgb(214 173 114 / 0.6);
+    outline-offset: 2px;
+  }
+
+  @media (min-width: 48rem) {
+    .brief-card,
+    .deliverables-layout,
+    .next-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.72fr);
+      align-items: start;
+    }
+
+    .source-concept-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .preserved-grid,
+    .branch-grid,
+    .branch-media,
+    .landscape-pair,
+    .source-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .direction-grid,
+    .production-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ami-grid {
+      grid-template-columns: minmax(17rem, 0.38fr) minmax(0, 1fr);
+    }
+  }
+
+  @media (min-width: 70rem) {
+    .source-concept-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(15rem, 0.45fr);
+    }
+
+    .direction-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .production-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
   }
 </style>

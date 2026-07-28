@@ -1,45 +1,38 @@
 export const workshopMethod = [
   {
     number: "01",
-    title: "Collect the taste",
+    title: "Research",
     description:
-      "Start with the eras, art movements, animation languages, fashion, materials, moods, and stories you want to carry into the work.",
-    output: "Reference field",
+      "Find the useful history, references, materials, visual languages, and constraints.",
+    output: "Source record",
   },
   {
     number: "02",
-    title: "Define the style DNA",
+    title: "Define",
     description:
-      "Name the line, shape, eye construction, shading, palette logic, surface finish, motif rules, and the defaults the style must refuse.",
-    output: "Style specification",
+      "Write the brief, identify what stays fixed, and establish the visual and render rules.",
+    output: "Project brief",
   },
   {
     number: "03",
-    title: "Lock the character",
+    title: "Build",
     description:
-      "Build the mannequin, canonical eye test, silhouette, face key, proportions, species traits, and character sheet that future images must inherit.",
-    output: "Canonical plate",
+      "Create the product, character, environment, reference sheets, and production assets.",
+    output: "Production assets",
   },
   {
     number: "04",
-    title: "Create meaningful variation",
+    title: "Direct",
     description:
-      "Change palette, wardrobe, attitude, material language, and world while the identity anchors remain stable. Contrast should reveal the character, not erase her.",
-    output: "Variant system",
+      "Choose composition, camera, lighting, typography, motion, and delivery format.",
+    output: "Directed frames",
   },
   {
     number: "05",
-    title: "Direct the frame",
+    title: "Finish and deliver",
     description:
-      "Choose one clear camera idea, then set the lens, angle, shot size, pose, foreground action, depth, lighting, and target aspect ratio.",
-    output: "Shot plan",
-  },
-  {
-    number: "06",
-    title: "Build the media packet",
-    description:
-      "Turn the stable system into sheets, heroes, posters, scenes, motion tests, social cuts, stories, product previews, and teaching material.",
-    output: "Publishable set",
+      "Composite, edit, correct, export, package, document, and prepare the next revision.",
+    output: "Delivery packet",
   },
 ] as const;
 

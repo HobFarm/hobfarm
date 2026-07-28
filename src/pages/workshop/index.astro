@@ -8,21 +8,34 @@ import { getVisualSystem } from "@/data/visual-systems";
 import {
   workshopBenches,
   workshopLayers,
-  workshopMethod,
   workshopResearch,
 } from "@/data/workshop-page";
 import { articlePath, getArticleDepartment, getPublishedArticles } from "@/lib/articles";
-import { workshopPrograms, siteSections } from "@/data/site-hierarchy";
+import { workshopPrograms } from "@/data/site-hierarchy";
 import WorkshopMediaIndex from "@/components/workshop/WorkshopMediaIndex.astro";
 import WorkshopProcessFilm from "@/components/workshop/WorkshopProcessFilm.astro";
 import WorkshopPsyGothLanes from "@/components/workshop/WorkshopPsyGothLanes.astro";
 import WorkshopOfferRail from "@/components/relationships/WorkshopOfferRail.astro";
 import WorkshopPhotographySource from "@/components/workshop/WorkshopPhotographySource.astro";
+import WorkshopProjectGrid from "@/components/workshop/WorkshopProjectGrid.astro";
+import WorkshopMethodStrip from "@/components/workshop/WorkshopMethodStrip.astro";
 import { workshopProcessFilm } from "@/data/workshop-process-film";
-import { getMedia } from "@/data/media-registry";
+import {
+  getWorkshopProject,
+  workshopCapabilities,
+} from "@/data/workshop-projects";
 
-const workshopSection = siteSections.find((entry) => entry.id === "workshop")!;
-const workshopHostGraphic = getMedia("workshop.graphics.hillary");
+const futureCarriage = getWorkshopProject("future-carriage")!;
+const futureSource = futureCarriage.secondaryMedia!;
+const futureResult = futureCarriage.media;
+const heroProjects = [
+  "other-alice-world",
+  "before-after",
+  "stylefusion",
+  "character-mannequin",
+]
+  .map((id) => getWorkshopProject(id))
+  .filter((project) => project !== undefined);
 
 const notes = (await getPublishedArticles())
   .filter((post) => getArticleDepartment(post.data) === "workshop-notes")
@@ -54,7 +67,7 @@ const workshopJsonLd = {
   "@type": "CollectionPage",
   name: "HobFarm Workshop",
   description:
-    "The HobFarm Workshop documents how visual languages, character systems, scenes, motion, stories, and publishable media are developed.",
+    "Selected concept campaigns, product visualization, character systems, photography, archival work, motion, and creative-production records from HobFarm.",
   url: `${siteOrigin}/workshop/`,
   mainEntity: {
     "@type": "ItemList",
@@ -69,42 +82,148 @@ const workshopJsonLd = {
 ---
 
 <BaseLayout
-  title="Workshop | Character Systems, Visual Development, and Production"
-  description="See how HobFarm develops visual languages, reusable characters, scenes, camera direction, motion, stories, products, and courses from one connected production method."
+  title="Workshop | Concept Campaigns, Visual Development, and Production"
+  description="See HobFarm concept campaigns, product visualization, character systems, photography, archival work, motion, interactive worlds, and creative-production records."
   canonical="/workshop/"
   structuredData={workshopJsonLd}
   palette="blue-red"
 >
-  <main class="workshop-page">
+  <div class="workshop-page">
     <section class="workshop-hero relative isolate overflow-hidden border-b border-base-800/70">
-      <img src={workshopSection.heroImage} alt={workshopSection.heroAlt} width="1600" height="900" class="absolute inset-0 -z-20 size-full object-cover opacity-45" loading="eager" fetchpriority="high" decoding="async" />
       <Wrapper variant="standard" class="py-16 lg:py-24">
-        <div class="grid gap-10 lg:grid-cols-[minmax(0,0.82fr)_minmax(24rem,0.58fr)] lg:items-center">
+        <div class="grid gap-10 lg:grid-cols-[minmax(0,0.88fr)_minmax(26rem,0.62fr)] lg:items-center">
           <div class="max-w-4xl">
             <p class="font-mono text-[10px] uppercase tracking-[0.24em] text-accent-blue-bright">
               HobFarm / Workshop
             </p>
             <h1 class="mt-5 font-display text-5xl font-light leading-[1.05] text-white text-balance lg:text-7xl">
-              Build the visual language before you build the image.
+              Bring the idea. Build the visual system.
             </h1>
             <p class="mt-6 max-w-3xl text-base leading-relaxed text-base-300 lg:text-lg">
-              The Workshop follows an idea from taste and reference through character design, camera direction, motion, publishing, and the finished thing. Tools matter here, but they enter after the work has a point of view.
+              HobFarm turns products, archives, characters, photographs, stories, and references into campaigns, scenes, motion, interactive pages, and production records.
             </p>
-            <blockquote class="mt-8 border-l-2 border-accent-blue pl-5 text-lg leading-relaxed text-base-100">
-              Specs preserve intent. Renders are snapshots. A strong system can keep producing after the first image is gone.
-            </blockquote>
             <div class="mt-8 flex flex-wrap gap-2">
-              <Button isLink size="sm" variant="green" href="#programs">Choose a program</Button>
+              <Button isLink size="sm" variant="green" href="#selected-projects">View selected projects</Button>
               <Button isLink size="sm" variant="muted" href="#method">See the method</Button>
-              <Button isLink size="sm" variant="muted" href="/academy/">Learn the process</Button>
+              <Button isLink size="sm" variant="muted" href="/contact/?subject=creative-project">Start a project</Button>
             </div>
           </div>
 
-          <a class="hero-system-card" href="/workshop/character-mannequin/avatar-host-system/">
-            <img src={workshopHostGraphic.src} alt={workshopHostGraphic.alt} width={workshopHostGraphic.width} height={workshopHostGraphic.height} loading="eager" decoding="async" />
-            <span>Character / Mannequin study</span>
-            <strong>Meet the editorial host system</strong>
-          </a>
+          <div class="hero-media-wall" aria-label="Workshop project range">
+            {heroProjects.map((project, index) => (
+              <a href={project.destination}>
+                <img
+                  src={project.media.src}
+                  alt={project.media.alt}
+                  width={project.media.width}
+                  height={project.media.height}
+                  loading={index === 0 ? "eager" : "lazy"}
+                  fetchpriority={index === 0 ? "high" : undefined}
+                  decoding="async"
+                />
+                <span>{project.title}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </Wrapper>
+    </section>
+
+    <section id="selected-projects" class="border-b border-base-800/70" aria-labelledby="selected-projects-heading">
+      <Wrapper variant="standard" class="py-14 lg:py-20">
+        <div class="max-w-4xl">
+          <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-cyan">Selected projects</p>
+          <h2 id="selected-projects-heading" class="mt-4 font-display text-4xl font-light text-white lg:text-6xl">
+            Start with the outcome, then open the production record.
+          </h2>
+          <p class="mt-5 max-w-3xl text-sm leading-relaxed text-base-300">
+            These projects start with different source material and end in different forms. Each card shows the brief, constraints, direction, and production files behind the visible result.
+          </p>
+        </div>
+        <div class="mt-10">
+          <WorkshopProjectGrid surface="workshop" />
+        </div>
+      </Wrapper>
+    </section>
+
+    <section class="capabilities-section border-b border-base-800/70" aria-labelledby="capabilities-heading">
+      <Wrapper variant="standard" class="py-14 lg:py-20">
+        <div class="grid gap-10 lg:grid-cols-[minmax(0,0.52fr)_minmax(0,1fr)]">
+          <div class="max-w-2xl">
+            <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-magenta-bright">What can be built here</p>
+            <h2 id="capabilities-heading" class="mt-4 font-display text-4xl font-light text-white lg:text-5xl">
+              One finished image or a larger campaign.
+            </h2>
+            <p class="mt-5 text-sm leading-relaxed text-base-300">
+              Work can end with one image, or continue into motion, an interactive page, character sheets, and a documented set of production rules.
+            </p>
+          </div>
+          <div class="capability-grid">
+            {workshopCapabilities.map((capability, index) => (
+              <article>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <h3>{capability.title}</h3>
+                <p>{capability.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </Wrapper>
+    </section>
+
+    <section class="future-carriage-feature border-b border-base-800/70" aria-labelledby="future-carriage-heading">
+      <Wrapper variant="standard" class="py-16 lg:py-24">
+        <header class="future-carriage-feature__heading">
+          <div>
+            <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-amber-300">Featured case study / Future Carriage</p>
+            <h2 id="future-carriage-heading">A historical drawing becomes a product campaign.</h2>
+          </div>
+          <div>
+            <p>
+              The source plate establishes the wheel scale, seating, silhouette, lamps, suspension, and pulling geometry. Propulsion and control change; the carriage keeps its identity.
+            </p>
+            <a href={futureCarriage.destination}>Open the complete case study <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </header>
+
+        <div class="future-carriage-feature__comparison">
+          <figure>
+            <img src={futureSource.src} alt={futureSource.alt} width={futureSource.width} height={futureSource.height} loading="lazy" decoding="async" />
+            <figcaption>Historical source / Stanhope gig No. 3915</figcaption>
+          </figure>
+          <figure>
+            <img src={futureResult.src} alt={futureResult.alt} width={futureResult.width} height={futureResult.height} loading="lazy" decoding="async" />
+            <figcaption>Product study / robot-pulled Model 3917 family</figcaption>
+          </figure>
+        </div>
+
+        <ol class="future-carriage-feature__chain" aria-label="Future Carriage development chain">
+          {[
+            "Historical plate",
+            "Extracted design rules",
+            "Future product study",
+            "Directed environment",
+            "Campaign image or motion",
+          ].map((step, index) => (
+            <li><span>{String(index + 1).padStart(2, "0")}</span><strong>{step}</strong></li>
+          ))}
+        </ol>
+      </Wrapper>
+    </section>
+
+    <section id="method" class="method-section border-b border-base-800/70" aria-labelledby="method-heading">
+      <Wrapper variant="standard" class="py-16 lg:py-24">
+        <div class="method-section__heading">
+          <div>
+            <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-blue-bright">How the work is developed</p>
+            <h2 id="method-heading">One production method. Five useful stages.</h2>
+          </div>
+          <p>
+            AI is one part of the chain. Research, concept development, continuity rules, camera direction, compositing, editing, typography, delivery formats, and revision decide what the project becomes.
+          </p>
+        </div>
+        <div class="mt-10">
+          <WorkshopMethodStrip />
         </div>
       </Wrapper>
     </section>
@@ -112,9 +231,9 @@ const workshopJsonLd = {
     <section id="programs" class="border-b border-base-800/70" aria-labelledby="programs-heading">
       <Wrapper variant="standard" class="py-14 lg:py-20">
         <div class="max-w-3xl">
-          <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-cyan">Workshop programs</p>
-          <h2 id="programs-heading" class="mt-4 font-display text-4xl font-light text-white lg:text-5xl">Six benches, each built for a different kind of work.</h2>
-          <p class="mt-5 text-sm leading-relaxed text-base-300">Programs organize finished experiments and process records without turning every technique into a top-level department.</p>
+          <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-cyan">Workshop programs and archive</p>
+          <h2 id="programs-heading" class="mt-4 font-display text-4xl font-light text-white lg:text-5xl">Browse the detailed programs.</h2>
+          <p class="mt-5 text-sm leading-relaxed text-base-300">The six programs hold full case studies, comparisons, software records, character systems, and current build notes.</p>
         </div>
         <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {workshopPrograms.map((program) => <a href={program.href} class="program-card group relative isolate min-h-72 overflow-hidden rounded-xl border border-base-800 bg-base-950/70 p-6 transition hover:-translate-y-1 hover:border-accent-cyan/50 motion-reduce:transition-none motion-reduce:hover:translate-y-0">
@@ -307,33 +426,6 @@ const workshopJsonLd = {
       </section>
     )}
 
-    <section id="method" class="border-b border-base-800/70" aria-labelledby="method-heading">
-      <Wrapper variant="standard" class="py-16 lg:py-24">
-        <div class="max-w-3xl">
-          <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-blue-bright">The HobFarm method</p>
-          <h2 id="method-heading" class="mt-4 font-display text-4xl font-light text-white lg:text-5xl">
-            A repeatable path from influence to finished work.
-          </h2>
-          <p class="mt-5 text-sm leading-relaxed text-base-300">
-            Each stage produces something the next stage can use. The goal is a working chain of decisions, not one lucky generation.
-          </p>
-        </div>
-
-        <ol class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {workshopMethod.map((step) => (
-            <li class="method-card flex min-h-72 flex-col rounded-xl border border-base-800 bg-base-950/55 p-6">
-              <div class="flex items-center justify-between gap-4">
-                <span class="font-mono text-[10px] tracking-[0.2em] text-accent-blue-bright">{step.number}</span>
-                <span class="rounded-full border border-base-800 px-3 py-1 font-mono text-[9px] uppercase tracking-wider text-base-500">{step.output}</span>
-              </div>
-              <h3 class="mt-10 font-display text-2xl font-light text-white">{step.title}</h3>
-              <p class="mt-4 text-sm leading-relaxed text-base-400">{step.description}</p>
-            </li>
-          ))}
-        </ol>
-      </Wrapper>
-    </section>
-
     <section class="border-b border-base-800/70" aria-labelledby="benches-heading">
       <Wrapper variant="standard" class="py-16 lg:py-24">
         <div class="max-w-3xl">
@@ -426,7 +518,24 @@ const workshopJsonLd = {
         </div>
       </Wrapper>
     </section>
-  </main>
+
+    <section class="workshop-final border-t border-base-800/70" aria-labelledby="workshop-final-heading">
+      <Wrapper variant="standard" class="py-14 lg:py-20">
+        <div class="workshop-final__layout">
+          <div>
+            <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-cyan">Continue</p>
+            <h2 id="workshop-final-heading">Open the record you need next.</h2>
+          </div>
+          <nav aria-label="Workshop next actions">
+            <a href="#programs">Browse Workshop programs</a>
+            <a href="/workshop/workshop-notes/">Read Workshop Notes</a>
+            <a href="/academy/">Continue to Academy</a>
+            <a href="/contact/?subject=creative-project">Start a project</a>
+          </nav>
+        </div>
+      </Wrapper>
+    </section>
+  </div>
 </BaseLayout>
 
 <style>
@@ -439,18 +548,255 @@ const workshopJsonLd = {
 
   .workshop-hero {
     background:
-      linear-gradient(90deg, rgba(7, 6, 11, 0.95), rgba(7, 6, 11, 0.62)),
-      radial-gradient(circle at 78% 28%, rgba(123, 47, 247, 0.12), transparent 30rem);
+      radial-gradient(circle at 14% 20%, rgba(59, 111, 224, 0.16), transparent 32rem),
+      radial-gradient(circle at 84% 32%, rgba(226, 58, 78, 0.09), transparent 30rem),
+      #07060b;
   }
 
-  .hero-system-card { position: relative; display: block; overflow: hidden; border: 1px solid rgb(85 215 255 / .3); border-radius: .75rem; background: #07060b; box-shadow: 0 26px 80px rgb(25 227 227 / .08); color: #fff; text-decoration: none; }
-  .hero-system-card img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; transition: transform .4s ease, opacity .3s ease; }
-  .hero-system-card span, .hero-system-card strong { position: absolute; left: 1rem; z-index: 1; }
-  .hero-system-card span { bottom: 3.2rem; color: #7bdde7; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; }
-  .hero-system-card strong { right: 1rem; bottom: 1.1rem; font-family: var(--font-display); font-size: clamp(1.35rem, 3vw, 2rem); font-weight: 300; line-height: 1; }
-  .hero-system-card::after { position: absolute; inset: 42% 0 0; content: ""; background: linear-gradient(transparent, rgb(5 4 9 / .94)); }
-  .hero-system-card:hover img, .hero-system-card:focus-visible img { transform: scale(1.015); opacity: .9; }
-  .hero-system-card:focus-visible { outline: 2px solid #55d7ff; outline-offset: 3px; }
+  .hero-media-wall {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
+    padding: 0.55rem;
+    border: 1px solid #2c2440;
+    border-radius: 0.8rem;
+    background: rgb(5 4 9 / 0.78);
+    box-shadow: 0 28px 90px rgb(0 0 0 / 0.3);
+  }
+
+  .hero-media-wall a {
+    position: relative;
+    min-height: 9rem;
+    overflow: hidden;
+    border: 1px solid #2c2440;
+    border-radius: 0.45rem;
+    color: #fff;
+  }
+
+  .hero-media-wall a:first-child {
+    grid-column: span 2;
+  }
+
+  .hero-media-wall a:last-child {
+    grid-column: span 2;
+  }
+
+  .hero-media-wall img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 9rem;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    opacity: 0.82;
+  }
+
+  .hero-media-wall span {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 2.2rem 0.65rem 0.55rem;
+    background: linear-gradient(transparent, rgb(5 4 9 / 0.94));
+    font-family: var(--font-mono);
+    font-size: 0.54rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .hero-media-wall a:focus-visible {
+    outline: 2px solid #55d7ff;
+    outline-offset: 2px;
+  }
+
+  .capabilities-section {
+    background: rgb(10 8 16 / 0.72);
+  }
+
+  .capability-grid {
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  .capability-grid article {
+    min-height: 13rem;
+    padding: 1rem;
+    border: 1px solid #2c2440;
+    border-top: 2px solid #f24da6;
+    border-radius: 0.55rem;
+    background: rgb(14 11 22 / 0.72);
+  }
+
+  .capability-grid span {
+    color: #8b8494;
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+  }
+
+  .capability-grid h3 {
+    margin: 2.3rem 0 0;
+    color: #f0edf6;
+    font-family: var(--font-display);
+    font-size: 1.65rem;
+    font-weight: 350;
+    line-height: 1;
+  }
+
+  .capability-grid p {
+    margin: 0.8rem 0 0;
+    color: #aaa5b3;
+    font-size: 0.8rem;
+    line-height: 1.62;
+  }
+
+  .future-carriage-feature {
+    background:
+      radial-gradient(circle at 84% 24%, rgb(197 147 75 / 0.11), transparent 30rem),
+      #090807;
+  }
+
+  .future-carriage-feature__heading,
+  .method-section__heading,
+  .workshop-final__layout {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .future-carriage-feature__heading h2,
+  .method-section__heading h2,
+  .workshop-final__layout h2 {
+    max-width: 64rem;
+    margin: 0.7rem 0 0;
+    color: #f4f0e8;
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    font-weight: 300;
+    letter-spacing: -0.05em;
+    line-height: 0.95;
+  }
+
+  .future-carriage-feature__heading > div:last-child > p,
+  .method-section__heading > p {
+    max-width: 44rem;
+    margin: 0;
+    color: #b3adb8;
+    line-height: 1.72;
+  }
+
+  .future-carriage-feature__heading a {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #e3c18f;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .future-carriage-feature__comparison {
+    display: grid;
+    gap: 0.8rem;
+    margin-top: 2rem;
+  }
+
+  .future-carriage-feature__comparison figure {
+    overflow: hidden;
+    margin: 0;
+    border: 1px solid #473b30;
+    border-radius: 0.65rem;
+    background: #0d0b09;
+  }
+
+  .future-carriage-feature__comparison img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+
+  .future-carriage-feature__comparison figure:first-child img {
+    object-fit: contain;
+    background: #eee8db;
+  }
+
+  .future-carriage-feature__comparison figcaption {
+    padding: 0.75rem;
+    color: #cfb792;
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .future-carriage-feature__chain {
+    display: grid;
+    gap: 0.55rem;
+    margin: 0.8rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .future-carriage-feature__chain li {
+    display: flex;
+    min-height: 5rem;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem;
+    border: 1px solid #3a3028;
+    background: rgb(14 12 10 / 0.82);
+  }
+
+  .future-carriage-feature__chain span {
+    color: #8d7960;
+    font-family: var(--font-mono);
+    font-size: 0.57rem;
+  }
+
+  .future-carriage-feature__chain strong {
+    color: #eee5d8;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: right;
+  }
+
+  .method-section {
+    background: rgb(7 6 11 / 0.88);
+  }
+
+  .workshop-final {
+    background:
+      radial-gradient(circle at 20% 40%, rgb(25 227 227 / 0.08), transparent 24rem),
+      #08070c;
+  }
+
+  .workshop-final__layout nav {
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  .workshop-final__layout nav a {
+    display: flex;
+    min-height: 3.25rem;
+    align-items: center;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid #332a43;
+    border-radius: 0.4rem;
+    color: #d6d1dc;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.07em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .workshop-final__layout nav a:hover,
+  .workshop-final__layout nav a:focus-visible {
+    border-color: #55d7ff;
+    color: #fff;
+    outline: 2px solid rgb(85 215 255 / 0.55);
+    outline-offset: 2px;
+  }
 
   .layer-dot {
     background: var(--layer-accent);
@@ -539,14 +885,52 @@ const workshopJsonLd = {
   }
 
   @media (min-width: 64rem) {
+    .capability-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .capability-grid article:last-child {
+      grid-column: span 2;
+    }
+
+    .future-carriage-feature__heading,
+    .method-section__heading,
+    .workshop-final__layout {
+      grid-template-columns: minmax(0, 1.1fr) minmax(24rem, 0.62fr);
+      align-items: end;
+    }
+
+    .future-carriage-feature__comparison {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .future-carriage-feature__chain {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .future-carriage-feature__chain li {
+      display: grid;
+      min-height: 7.5rem;
+      align-content: space-between;
+    }
+
+    .future-carriage-feature__chain strong {
+      text-align: left;
+    }
+
     .process-film-section__header {
       grid-template-columns: minmax(0, 1.12fr) minmax(24rem, 0.62fr);
       align-items: end;
     }
   }
 
-  .method-card,
   .bench-card {
     box-shadow: inset 0 1px rgba(255, 255, 255, 0.025);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-media-wall img {
+      transition: none;
+    }
   }
 </style>

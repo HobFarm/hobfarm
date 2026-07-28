@@ -1,0 +1,92 @@
+---
+import { workshopMethod } from "@/data/workshop-page";
+
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+---
+
+<ol class:list={["workshop-method-strip", compact && "workshop-method-strip--compact"]}>
+  {workshopMethod.map((step) => (
+    <li>
+      <span>{step.number}</span>
+      <h3>{step.title}</h3>
+      <p>{step.description}</p>
+      {!compact && <small>{step.output}</small>}
+    </li>
+  ))}
+</ol>
+
+<style>
+  .workshop-method-strip {
+    display: grid;
+    gap: 0.65rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: flex;
+    min-height: 15rem;
+    flex-direction: column;
+    padding: 1rem;
+    border: 1px solid #2c2440;
+    border-top: 2px solid #3b6fe0;
+    border-radius: 0.55rem;
+    background: rgb(14 11 22 / 0.72);
+  }
+
+  span,
+  small {
+    color: #6b93ed;
+    font-family: var(--font-mono);
+    font-size: 0.57rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  h3 {
+    margin: 2.4rem 0 0;
+    color: #f0edf6;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 350;
+    line-height: 1;
+  }
+
+  p {
+    margin: 0.8rem 0 0;
+    color: #a9a4b3;
+    font-size: 0.78rem;
+    line-height: 1.62;
+  }
+
+  small {
+    margin-top: auto;
+    padding-top: 1.25rem;
+    color: #777181;
+  }
+
+  .workshop-method-strip--compact li {
+    min-height: 11rem;
+  }
+
+  .workshop-method-strip--compact h3 {
+    margin-top: 1.6rem;
+  }
+
+  @media (min-width: 38rem) {
+    .workshop-method-strip {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .workshop-method-strip {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+  }
+</style>
