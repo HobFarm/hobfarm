@@ -26,7 +26,7 @@ socialCaption: "The old game consumed years. The new one leaves files behind and
 canonical: "/articles/i-could-be-playing-civilization/"
 pubDate: 2026-07-28
 publishedAt: 2026-07-28T17:20:00-07:00
-status: scheduled
+status: published
 featured: false
 coverStory: false
 draft: false
