@@ -68,7 +68,7 @@ const otherAliceMap: MediaRecord = {
 };
 
 const futureCarriageAssets = [
-  getMedia("workshop.ami-legacy.history.stanhope"),
+  getMedia("workshop.ami-legacy.history.gig-3917"),
   getMedia("workshop.ami-legacy.model-3917.vehicle"),
   getMedia("workshop.ami-legacy.autonomous-coach"),
   getMedia("workshop.ami-legacy.hero"),

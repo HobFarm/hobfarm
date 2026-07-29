@@ -27,7 +27,7 @@ The six source files were converted to optimized WebP derivatives without changi
 
 | Registry ID | Reference | Future answer |
 | --- | --- | --- |
-| `workshop.ami-legacy.history.stanhope` | Stanhope gig no. 3915 | Robot-pulled two-wheel Model 3917 family |
+| `workshop.ami-legacy.history.gig-3917` | Brewster & Co. gig no. 3917 | Robot-pulled two-wheel Model 3917 family |
 | `workshop.ami-legacy.history.diligence` | Enclosed diligence coach | Enclosed battery-electric autonomous coach |
 | `workshop.ami-legacy.history.phaeton` | Phaeton no. 651a | Open four-wheel electric grand tourer |
 | `workshop.ami-legacy.history.vis-a-vis` | Vis-à-vis no. 3049 | Social autonomous carriage with facing passenger seats |
@@ -40,7 +40,7 @@ Format: 9:16, 1080 × 1920, 7 seconds, captions as burned graphic text only if n
 
 | Time | Picture | Text / audio |
 | ---: | --- | --- |
-| 0.0–1.2 | Stanhope drawing, full width inside a letterboxed card | “3915 / horse-drawn” |
+| 0.0–1.2 | Gig no. 3917 drawing, full width inside a letterboxed card | “3917 / horse-drawn” |
 | 1.2–3.5 | Match cut to Model 3917 clean vehicle plate | “Same pull logic. New animal.” |
 | 3.5–5.8 | Model 3917 with Ami | “Electric. Robotic. Impractical in exactly the right way.” |
 | 5.8–7.0 | Legacy hero | “Legacy / The Electric Future Wagon” |
@@ -51,7 +51,7 @@ No Ami generation is required for this image-led version.
 
 Target: 24 seconds, 9:16 and 16:9 edits from one timeline.
 
-1. Historical drawing sequence: Stanhope, diligence, phaeton, vis-à-vis.
+1. Historical drawing sequence: gig no. 3917, diligence, phaeton, vis-à-vis.
 2. Match each wheelbase and cabin silhouette to a future image.
 3. State the engineering rule: two wheels are robot-pulled; four wheels are autonomous electric vehicles.
 4. Move from showroom to redwood lifestyle imagery.
@@ -71,7 +71,7 @@ One future campaign-specific Ami presenter clip can open and close this version.
 
 ## Deliverable 4 — Workshop case study
 
-Working title: **From Stanhope Gig to Robot-Pulled Model 3917**
+Working title: **From Gig No. 3917 to Robot-Pulled Model 3917**
 
 Page structure:
 
@@ -90,7 +90,7 @@ Page structure:
 Recommended 8 slides, 4:5:
 
 1. Legacy hero with Ami.
-2. Stanhope gig drawing.
+2. Gig no. 3917 drawing.
 3. Model 3917 clean product plate.
 4. Model 3917 with Ami.
 5. Diligence coach drawing.

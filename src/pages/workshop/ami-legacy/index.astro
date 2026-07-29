@@ -14,24 +14,32 @@ const redwoodProfile = getMedia("workshop.ami-legacy.redwood-profile");
 
 const historicalReferences = [
   {
-    label: "Stanhope gig / No. 3915",
+    label: "Brewster & Co. gig / No. 3917",
     answer: "Robot-pulled Model 3917 family",
-    media: getMedia("workshop.ami-legacy.history.stanhope"),
+    media: getMedia("workshop.ami-legacy.history.gig-3917"),
+    sourceHref: "https://www.metmuseum.org/art/collection/search/378670",
+    sourceNote: "The Met Open Access / Public domain",
   },
   {
     label: "Diligence coach",
     answer: "Enclosed electric autonomous coach",
     media: getMedia("workshop.ami-legacy.history.diligence"),
+    sourceHref: "https://picryl.com/",
+    sourceNote: "PICRYL source / Public domain / CC0 1.0",
   },
   {
     label: "Phaeton / No. 651a",
     answer: "Open four-wheel electric study",
     media: getMedia("workshop.ami-legacy.history.phaeton"),
+    sourceHref: "https://picryl.com/",
+    sourceNote: "PICRYL source / Public domain / CC0 1.0",
   },
   {
     label: "Vis-à-vis / No. 3049",
     answer: "Social carriage with facing seats",
     media: getMedia("workshop.ami-legacy.history.vis-a-vis"),
+    sourceHref: "https://picryl.com/",
+    sourceNote: "PICRYL source / Public domain / CC0 1.0",
   },
 ];
 
@@ -212,7 +220,7 @@ const structuredData = {
           <p class="kicker">Source to concept</p>
           <h2 id="source-concept-heading">The drawing creates the constraints.</h2>
           <p>
-            The Stanhope plate establishes two wheels, exposed seating, long shafts, tall wheel scale, and visible pulling geometry. The future study answers those decisions instead of using the carriage as surface decoration.
+            The No. 3917 gig plate establishes two wheels, exposed seating, long shafts, tall wheel scale, and visible pulling geometry. The future study answers those decisions instead of using the carriage as surface decoration.
           </p>
         </header>
         <div class="source-concept-grid">
@@ -225,7 +233,7 @@ const structuredData = {
               loading="lazy"
               decoding="async"
             />
-            <figcaption><strong>Historical source</strong> Stanhope gig / No. 3915</figcaption>
+            <figcaption><strong>Historical source</strong> Brewster &amp; Co. gig / No. 3917</figcaption>
           </figure>
           <div class="constraint-card">
             <p class="kicker">Design constraints</p>
@@ -413,20 +421,20 @@ const structuredData = {
           <p class="kicker">Historical sources</p>
           <h2 id="sources-heading">Four source plates anchor the current model families.</h2>
           <p>
-            The carriage plates were found through <a href="https://picryl.com/" target="_blank" rel="noreferrer">PICRYL</a>.
-            PICRYL describes them as public-domain material, free to use without copyright restrictions; the item record
-            supplied for this review lists CC0 1.0. The labels preserve the carriage names and model numbers recorded in
-            the project files.
+            The No. 3917 gig plate comes from <a href="https://www.metmuseum.org/art/collection/search/378670" target="_blank" rel="noreferrer">The Metropolitan Museum of Art’s Open Access collection</a>.
+            The other three plates were found through <a href="https://picryl.com/" target="_blank" rel="noreferrer">PICRYL</a>,
+            whose item records identify them as public-domain material under CC0 1.0. The labels preserve the carriage
+            names and model numbers recorded in the project files.
           </p>
         </header>
         <div class="source-grid">
-          {historicalReferences.map(({ label, answer, media }) => (
+          {historicalReferences.map(({ label, answer, media, sourceHref, sourceNote }) => (
             <figure>
               <img src={media.src} alt={media.alt} width={media.width} height={media.height} loading="lazy" decoding="async" />
               <figcaption>
                 <strong>Historical source / {label}</strong>
                 <span>Current concept answer / {answer}</span>
-                <small>PICRYL source / Public domain / CC0 1.0</small>
+                <small><a href={sourceHref} target="_blank" rel="noreferrer">{sourceNote}</a></small>
               </figcaption>
             </figure>
           ))}

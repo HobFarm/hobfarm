@@ -28,14 +28,42 @@ import {
 const futureCarriage = getWorkshopProject("future-carriage")!;
 const futureSource = futureCarriage.secondaryMedia!;
 const futureResult = futureCarriage.media;
-const heroProjects = [
+const heroProjectIds = [
   "other-alice-world",
   "before-after",
   "stylefusion",
   "character-mannequin",
-]
-  .map((id) => getWorkshopProject(id))
-  .filter((project) => project !== undefined);
+] as const;
+const heroProjectDetails = {
+  "other-alice-world": {
+    headline: "A working map of Wonderland",
+    description:
+      "The atlas tracks regions, routes, Houses, boundary mountains, and the Park Anomaly for the Other Alice story world.",
+    action: "Open the world guide",
+  },
+  "before-after": {
+    headline: "An abandoned laundry, rebuilt",
+    description:
+      "The finished frame from Shit to Shine 01 rebuilds a ruined laundry as a near-future utility room.",
+    action: "Open Before & After",
+  },
+  stylefusion: {
+    headline: "References turned into production direction",
+    description:
+      "This engraving study is a StyleFusion result. The application assigns each source image a job, extracts usable rules, and compiles a production record.",
+    action: "Open StyleFusion",
+  },
+  "character-mannequin": {
+    headline: "The production board beneath a character",
+    description:
+      "The board separates the neutral body, face and hair, wardrobe, camera, scene, and motion tests so later versions keep the same identity.",
+    action: "Open the workflow",
+  },
+} as const;
+const heroProjects = heroProjectIds.flatMap((id) => {
+  const project = getWorkshopProject(id);
+  return project ? [{ ...project, hero: heroProjectDetails[id] }] : [];
+});
 
 const notes = (await getPublishedArticles())
   .filter((post) => getArticleDepartment(post.data) === "workshop-notes")
@@ -89,29 +117,29 @@ const workshopJsonLd = {
   palette="blue-red"
 >
   <div class="workshop-page">
-    <section class="workshop-hero relative isolate overflow-hidden border-b border-base-800/70">
+    <section class="workshop-hero relative isolate overflow-hidden border-b border-base-800/70" aria-labelledby="workshop-hero-heading">
       <Wrapper variant="standard" class="py-16 lg:py-24">
-        <div class="grid gap-10 lg:grid-cols-[minmax(0,0.88fr)_minmax(26rem,0.62fr)] lg:items-center">
-          <div class="max-w-4xl">
-            <p class="font-mono text-[10px] uppercase tracking-[0.24em] text-accent-blue-bright">
-              HobFarm / Workshop
-            </p>
-            <h1 class="mt-5 font-display text-5xl font-light leading-[1.05] text-white text-balance lg:text-7xl">
-              Bring the idea. Build the visual system.
-            </h1>
-            <p class="mt-6 max-w-3xl text-base leading-relaxed text-base-300 lg:text-lg">
-              HobFarm turns products, archives, characters, photographs, stories, and references into campaigns, scenes, motion, interactive pages, and production records.
-            </p>
-            <div class="mt-8 flex flex-wrap gap-2">
-              <Button isLink size="sm" variant="green" href="#selected-projects">View selected projects</Button>
-              <Button isLink size="sm" variant="muted" href="#method">See the method</Button>
-              <Button isLink size="sm" variant="muted" href="/contact/?subject=creative-project">Start a project</Button>
-            </div>
+        <header class="workshop-hero__heading">
+          <p class="font-mono text-[10px] uppercase tracking-[0.24em] text-accent-blue-bright">
+            HobFarm / Workshop
+          </p>
+          <h1 id="workshop-hero-heading" class="mt-5 font-display text-5xl font-light leading-[1.05] text-white text-balance lg:text-7xl">
+            Bring the idea. Build the visual system.
+          </h1>
+          <p class="mt-6 max-w-3xl text-base leading-relaxed text-base-300 lg:text-lg">
+            HobFarm turns products, archives, characters, photographs, stories, and references into campaigns, scenes, motion, interactive pages, and production records.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-2">
+            <Button isLink size="sm" variant="green" href="#selected-projects">View selected projects</Button>
+            <Button isLink size="sm" variant="muted" href="#method">See the method</Button>
+            <Button isLink size="sm" variant="muted" href="/contact/?subject=creative-project">Start a project</Button>
           </div>
+        </header>
 
-          <div class="hero-media-wall" aria-label="Workshop project range">
-            {heroProjects.map((project, index) => (
-              <a href={project.destination}>
+        <div class="hero-project-grid" aria-label="Workshop project range">
+          {heroProjects.map((project, index) => (
+            <a class="hero-project-card" href={project.destination}>
+              <figure>
                 <img
                   src={project.media.src}
                   alt={project.media.alt}
@@ -121,10 +149,15 @@ const workshopJsonLd = {
                   fetchpriority={index === 0 ? "high" : undefined}
                   decoding="async"
                 />
-                <span>{project.title}</span>
-              </a>
-            ))}
-          </div>
+              </figure>
+              <div class="hero-project-card__copy">
+                <p>{project.title}</p>
+                <h2>{project.hero.headline}</h2>
+                <span>{project.hero.description}</span>
+                <strong>{project.hero.action} <span aria-hidden="true">&rarr;</span></strong>
+              </div>
+            </a>
+          ))}
         </div>
       </Wrapper>
     </section>
@@ -189,7 +222,7 @@ const workshopJsonLd = {
         <div class="future-carriage-feature__comparison">
           <figure>
             <img src={futureSource.src} alt={futureSource.alt} width={futureSource.width} height={futureSource.height} loading="lazy" decoding="async" />
-            <figcaption>Historical source / Stanhope gig No. 3915</figcaption>
+            <figcaption>Historical source / Brewster &amp; Co. gig No. 3917</figcaption>
           </figure>
           <figure>
             <img src={futureResult.src} alt={futureResult.alt} width={futureResult.width} height={futureResult.height} loading="lazy" decoding="async" />
@@ -553,60 +586,114 @@ const workshopJsonLd = {
       #07060b;
   }
 
-  .hero-media-wall {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.55rem;
-    padding: 0.55rem;
-    border: 1px solid #2c2440;
-    border-radius: 0.8rem;
-    background: rgb(5 4 9 / 0.78);
-    box-shadow: 0 28px 90px rgb(0 0 0 / 0.3);
+  .workshop-hero__heading {
+    max-width: 72rem;
   }
 
-  .hero-media-wall a {
-    position: relative;
-    min-height: 9rem;
+  .hero-project-grid {
+    display: grid;
+    gap: 0.8rem;
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .hero-project-card {
+    display: grid;
+    grid-template-rows: auto 1fr;
     overflow: hidden;
     border: 1px solid #2c2440;
-    border-radius: 0.45rem;
-    color: #fff;
+    border-radius: 0.7rem;
+    background: rgb(10 8 16 / 0.84);
+    color: inherit;
+    text-decoration: none;
+    transition: border-color 180ms ease, transform 180ms ease;
   }
 
-  .hero-media-wall a:first-child {
-    grid-column: span 2;
+  .hero-project-card:hover {
+    border-color: rgb(85 215 255 / 0.55);
+    transform: translateY(-0.2rem);
   }
 
-  .hero-media-wall a:last-child {
-    grid-column: span 2;
+  .hero-project-card:focus-visible {
+    border-color: #55d7ff;
+    outline: 2px solid #55d7ff;
+    outline-offset: 3px;
   }
 
-  .hero-media-wall img {
+  .hero-project-card figure {
+    overflow: hidden;
+    margin: 0;
+    border-bottom: 1px solid #2c2440;
+    background: #050409;
+  }
+
+  .hero-project-card img {
     display: block;
     width: 100%;
     height: 100%;
-    min-height: 9rem;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 16 / 11;
     object-fit: cover;
-    opacity: 0.82;
+    transition: opacity 180ms ease, transform 300ms ease;
   }
 
-  .hero-media-wall span {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding: 2.2rem 0.65rem 0.55rem;
-    background: linear-gradient(transparent, rgb(5 4 9 / 0.94));
+  .hero-project-card:hover img {
+    opacity: 0.9;
+    transform: scale(1.015);
+  }
+
+  .hero-project-card__copy {
+    display: flex;
+    min-height: 15rem;
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .hero-project-card__copy > p {
+    margin: 0;
+    color: #55d7ff;
     font-family: var(--font-mono);
-    font-size: 0.54rem;
-    letter-spacing: 0.08em;
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
   }
 
-  .hero-media-wall a:focus-visible {
-    outline: 2px solid #55d7ff;
-    outline-offset: 2px;
+  .hero-project-card__copy h2 {
+    margin: 1rem 0 0;
+    color: #f2eff7;
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2vw, 2rem);
+    font-weight: 350;
+    letter-spacing: -0.035em;
+    line-height: 1.02;
+  }
+
+  .hero-project-card__copy > span {
+    margin-top: 0.85rem;
+    color: #aaa5b3;
+    font-size: 0.78rem;
+    line-height: 1.58;
+  }
+
+  .hero-project-card__copy strong {
+    margin-top: auto;
+    padding-top: 1.25rem;
+    color: #e9e5ef;
+    font-family: var(--font-mono);
+    font-size: 0.56rem;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 40rem) {
+    .hero-project-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .hero-project-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
   }
 
   .capabilities-section {
@@ -929,8 +1016,14 @@ const workshopJsonLd = {
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero-media-wall img {
+    .hero-project-card,
+    .hero-project-card img {
       transition: none;
+    }
+
+    .hero-project-card:hover,
+    .hero-project-card:hover img {
+      transform: none;
     }
   }
 </style>

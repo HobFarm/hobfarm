@@ -121,6 +121,30 @@ const projects = [...selectedWorkshopProjects]
     object-fit: contain;
   }
 
+  .workshop-project-grid--workshop .workshop-project-card--future-carriage {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .workshop-project-grid--workshop .workshop-project-card--future-carriage .workshop-project-card__copy {
+    order: -1;
+  }
+
+  .workshop-project-grid--workshop .workshop-project-card--future-carriage .workshop-project-card__media--pair {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    align-content: start;
+  }
+
+  .workshop-project-grid--workshop .workshop-project-card--future-carriage .workshop-project-card__media figure {
+    height: auto;
+  }
+
+  .workshop-project-grid--workshop .workshop-project-card--future-carriage .workshop-project-card__media img {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: auto;
+  }
+
   .workshop-project-card--future-carriage .workshop-project-card__media figure:first-child img {
     background: #eee8db;
   }

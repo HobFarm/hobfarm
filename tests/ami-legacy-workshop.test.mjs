@@ -22,7 +22,7 @@ test("Legacy has a complete Workshop case study with the intro, design rules, an
     "workshop.ami-legacy.hero",
     "workshop.ami-legacy.model-3917.vehicle",
     "workshop.ami-legacy.autonomous-coach",
-    "workshop.ami-legacy.history.stanhope",
+    "workshop.ami-legacy.history.gig-3917",
     "workshop.ami-legacy.history.diligence",
     "workshop.ami-legacy.history.phaeton",
     "workshop.ami-legacy.history.vis-a-vis",
@@ -46,6 +46,8 @@ test("Legacy has a complete Workshop case study with the intro, design rules, an
   assert.match(page, /Production record/);
   assert.match(page, /href="https:\/\/picryl\.com\/"/);
   assert.match(page, /PICRYL source \/ Public domain \/ CC0 1\.0/);
+  assert.match(page, /href="https:\/\/www\.metmuseum\.org\/art\/collection\/search\/378670"/);
+  assert.match(page, /The Met Open Access \/ Public domain/);
   assert.doesNotMatch(page, /attribution pending/i);
   assert.match(page, /href="\/contact\/\?subject=creative-project"/);
 });
