@@ -10,8 +10,9 @@ test("homepage presents the six final HobFarm sections", () => {
   const data = read("src/data/site-hierarchy.ts");
 
   assert.match(homepage, /<SiteSections \/>/);
-  assert.match(component, /Six doors into the same publication/);
+  assert.match(component, /Six ways into HobFarm/);
   assert.match(component, /Browse by format/);
+  assert.ok(homepage.indexOf("<HomeCreativeInquiry />") < homepage.indexOf("<SiteSections />"));
 
   for (const label of ["Articles", "HobFarm Presents", "Workshop", "Academy", "Shop", "About & Support"]) {
     assert.match(data, new RegExp(`name: "${label.replace("&", "&")}"`));

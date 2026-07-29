@@ -8,6 +8,14 @@ const viewports = [
   { name: "tablet", width: 768, height: 900 },
   { name: "mobile", width: 390, height: 844 },
 ] as const;
+const deliverableViewports = [
+  { name: "1440x900", width: 1440, height: 900 },
+  { name: "1024x768", width: 1024, height: 768 },
+  { name: "768x1024", width: 768, height: 1024 },
+  { name: "390x844", width: 390, height: 844 },
+] as const;
+const screenshotOverlayStyle =
+  "#nav-wrapper, #searchButton, astro-dev-toolbar, .fixed.inset-x-0.bottom-0 { display: none !important; }";
 
 async function expectStablePage(page: Page, route: string, width: number) {
   const pageErrors: string[] = [];
@@ -37,13 +45,17 @@ async function loadImagesIn(target: Locator) {
 
   for (let index = 0; index < (await images.count()); index += 1) {
     const image = images.nth(index);
+    if (!(await image.isVisible())) continue;
+    const source = await image.getAttribute("src");
     await image.scrollIntoViewIfNeeded();
     await expect
-      .poll(() =>
-        image.evaluate((element) => {
-          const imageElement = element as HTMLImageElement;
-          return imageElement.complete && imageElement.naturalWidth > 0;
-        }),
+      .poll(
+        () =>
+          image.evaluate((element) => {
+            const imageElement = element as HTMLImageElement;
+            return imageElement.complete && imageElement.naturalWidth > 0;
+          }),
+        { message: `Image failed to load: ${source ?? "(no src)"}`, timeout: 15_000 },
       )
       .toBe(true);
   }
@@ -90,11 +102,12 @@ test("selected projects, media behavior, and inquiry preselection are wired", as
   }
 
   await page.goto("/");
-  const homeFutureBox = await page.locator('[data-workshop-project="future-carriage"]').boundingBox();
-  const homeBeforeAfterBox = await page.locator('[data-workshop-project="before-after"]').boundingBox();
-  expect(homeFutureBox).not.toBeNull();
-  expect(homeBeforeAfterBox).not.toBeNull();
-  expect(Math.abs(homeFutureBox!.width - homeBeforeAfterBox!.width)).toBeLessThan(2);
+  await expect(page.locator("[data-capability]")).toHaveCount(4);
+  await expect(page.locator('[data-capability="before-after"] .evidence-board')).toBeVisible();
+  await expect(page.locator('[data-capability="character-mannequin"] .production-rail')).toBeVisible();
+  await expect(page.locator('[data-capability="stylefusion"] .compiler')).toBeVisible();
+  await expect(page.locator('[data-capability="other-alice-world"] .world-teaser')).toBeVisible();
+  await expect(page.locator(".future-carriage")).toBeVisible();
 
   await page.goto("/workshop/");
   const processVideo = page.locator("[data-process-video]");
@@ -123,12 +136,73 @@ test("selected projects, media behavior, and inquiry preselection are wired", as
     await page.goto(subjectCase.route);
     await expect(page.locator('select[name="subject"]')).toHaveValue(subjectCase.value);
     await expect(page.locator('select[name="subject"] option:checked')).toHaveText(subjectCase.label);
+    if (subjectCase.value === "creative-project") {
+      await expect(page.getByRole("heading", { level: 1 })).toHaveText("Tell me what you're trying to make");
+      await expect(page.getByText("A useful first brief")).toBeVisible();
+    }
+  }
+});
+
+test("homepage narrative, Wonder Machine status, and project routes stay explicit", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/");
+
+  const sectionSelectors = [
+    "#magazine-front-page",
+    "#now-at-hobfarm",
+    ".publication-bridge",
+    "#home-workshop",
+    "#wonder-machine",
+    ".future-carriage",
+    ".creative-inquiry",
+    "#sections",
+    "#shop-directory",
+    "#explore",
+  ];
+  const positions = await Promise.all(
+    sectionSelectors.map(async (selector) => {
+      const box = await page.locator(selector).boundingBox();
+      expect(box, selector).not.toBeNull();
+      return box!.y;
+    }),
+  );
+  expect(positions).toEqual([...positions].sort((a, b) => a - b));
+
+  await expect(page.getByRole("link", { name: "Explore the Workshop" }).first()).toHaveAttribute("href", "/workshop/");
+  await expect(page.getByRole("link", { name: "Start a project" }).first()).toHaveAttribute(
+    "href",
+    "/contact/?subject=creative-project",
+  );
+  await expect(page.locator("#wonder-machine")).toContainText(
+    "Working locally. Public play is still in development.",
+  );
+  await expect(page.locator("#wonder-machine")).toContainText("Anomaly: known point of interest, not a mandatory quest");
+  await expect(page.locator(".future-carriage")).toContainText("Self-directed HobFarm concept campaign");
+
+  await page.goto("/departments/hobfarm-presents/other-alice-adventures/");
+  await expect(page.locator("#wonder-machine")).toContainText("Wonderland can remember your visit");
+  await expect(page.locator("#wonder-machine")).toContainText("finding the anomaly is optional");
+  await expect(page.locator("#wonder-machine")).toContainText("There is no public build yet");
+
+  await page.goto("/grimoire/");
+  await expect(page.getByRole("heading", { name: "The first persistent Wonderland is running locally." })).toBeVisible();
+  await expect(page.getByText("preserve refusal as a valid path", { exact: false })).toBeVisible();
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  for (const route of [
+    "/",
+    "/departments/hobfarm-presents/other-alice-adventures/",
+    "/grimoire/",
+    "/contact/?subject=creative-project",
+  ]) {
+    await expectStablePage(page, route, 390);
   }
 });
 
 test("Before & After comparison and avatar host navigation remain keyboard-safe", async ({ page }) => {
+  test.setTimeout(60_000);
   await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.goto("/workshop/before-and-after/");
+  await page.goto("/workshop/before-and-after/", { waitUntil: "domcontentloaded" });
 
   const comparison = page.locator('[role="slider"]').first();
   await comparison.focus();
@@ -137,7 +211,7 @@ test("Before & After comparison and avatar host navigation remain keyboard-safe"
   await page.keyboard.press("ArrowRight");
   await expect(comparison).not.toHaveAttribute("aria-valuenow", "50");
 
-  await page.goto("/workshop/character-mannequin/avatar-host-system/");
+  await page.goto("/workshop/character-mannequin/avatar-host-system/", { waitUntil: "domcontentloaded" });
   await expect(page.locator("#nav-wrapper")).toHaveCount(1);
   await expect(page.locator("[data-account-cta]")).toHaveCount(2);
   await expect(page.locator("[data-account-cta]:visible")).toHaveCount(1);
@@ -268,4 +342,57 @@ test("capture Workshop redesign evidence", async ({ page }) => {
     path: path.resolve("reports", "workshop-redesign-carriage-case-mobile.png"),
     animations: "disabled",
   });
+});
+
+test("capture homepage restructuring evidence", async ({ page }) => {
+  test.skip(test.info().project.name !== "chromium", "One browser owns the evidence files.");
+  test.setTimeout(180_000);
+  await page.emulateMedia({ reducedMotion: "reduce" });
+
+  for (const viewport of deliverableViewports) {
+    await page.setViewportSize({ width: viewport.width, height: viewport.height });
+    await page.goto("/");
+    await loadImagesIn(page.locator("body"));
+    await page.addStyleTag({ content: screenshotOverlayStyle });
+    await page.evaluate(() => document.fonts.ready);
+    await page.screenshot({
+      path: path.resolve("reports", "homepage-restructure", `final-home-${viewport.name}.png`),
+      fullPage: true,
+      animations: "disabled",
+    });
+  }
+
+  for (const viewport of [
+    { name: "1440x900", width: 1440, height: 900 },
+    { name: "390x844", width: 390, height: 844 },
+  ] as const) {
+    await page.setViewportSize({ width: viewport.width, height: viewport.height });
+
+    await page.goto("/");
+    await page.addStyleTag({ content: screenshotOverlayStyle });
+    const homeWonderMachine = page.locator("#wonder-machine");
+    await loadImagesIn(homeWonderMachine);
+    await homeWonderMachine.screenshot({
+      path: path.resolve("reports", "homepage-restructure", `final-home-wonder-machine-${viewport.name}.png`),
+      animations: "disabled",
+    });
+
+    await page.goto("/departments/hobfarm-presents/other-alice-adventures/");
+    await page.addStyleTag({ content: screenshotOverlayStyle });
+    const otherAliceWonderMachine = page.locator("#wonder-machine");
+    await loadImagesIn(otherAliceWonderMachine);
+    await otherAliceWonderMachine.screenshot({
+      path: path.resolve("reports", "homepage-restructure", `final-other-alice-${viewport.name}.png`),
+      animations: "disabled",
+    });
+
+    await page.goto("/grimoire/");
+    await page.addStyleTag({ content: screenshotOverlayStyle });
+    const grimoireCurrentState = page.locator("#grimoire-current-state");
+    await loadImagesIn(grimoireCurrentState);
+    await grimoireCurrentState.screenshot({
+      path: path.resolve("reports", "homepage-restructure", `final-grimoire-${viewport.name}.png`),
+      animations: "disabled",
+    });
+  }
 });

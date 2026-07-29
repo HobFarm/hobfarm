@@ -1,0 +1,420 @@
+---
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import { otherAliceDevelopment } from "@/data/other-alice-development";
+import { getWorkshopProject } from "@/data/workshop-projects";
+
+const otherAlice = getWorkshopProject("other-alice-world")!;
+const parkImage = otherAlice.approvedAssets[0];
+const choices = [
+  "search for the anomaly",
+  "ignore it",
+  "stay in the park",
+  "follow another encounter",
+] as const;
+const consequences = ["relationship", "home", "obligation", "route", "danger", "portal"] as const;
+const memory = [
+  "discovered map",
+  "elapsed time",
+  "relationships",
+  "promises and obligations",
+  "scheduled events",
+  "choices and consequences",
+  "save, resume, replay",
+] as const;
+---
+
+<section id="wonder-machine" class="wonder-machine scroll-mt-20 border-b border-base-800/70" aria-labelledby="wonder-machine-heading">
+  <Wrapper variant="standard" class="py-16 lg:py-24">
+    <header class="method-at-work">
+      <div>
+        <p>The method at work</p>
+        <h2>Two projects. Two different kinds of continuity.</h2>
+      </div>
+      <p>
+        Other Alice proves the method can hold a growing original world together. Future Carriage proves it can turn inherited source material into a modern production system.
+      </p>
+    </header>
+
+    <div class="wonder-machine__feature">
+      <div class="wonder-machine__copy">
+        <p class="wonder-machine__eyebrow">Working interactive world</p>
+        <h2 id="wonder-machine-heading">Wonder Machine remembers what happened.</h2>
+        <div class="wonder-machine__intro">
+          <p>
+            Other Alice Adventures is growing beyond an illustrated serial and world archive. Wonder Machine turns the authored world into a persistent, choice-driven visit.
+          </p>
+          <p>
+            A player begins in a large park knowing that an anomaly exists somewhere inside it. They can search for it, ignore it, follow another thread, or remain in the park until a different story takes shape. Small encounters can become homes, relationships, obligations, routes, dangers, or entire branches of a campaign.
+          </p>
+          <p>
+            The Grimoire defines the world. Wonder Machine runs each visit, keeps time, remembers choices, and preserves the consequences.
+          </p>
+        </div>
+
+        <p class="wonder-machine__status">
+          <span aria-hidden="true"></span>
+          {otherAliceDevelopment.statusLine}
+        </p>
+
+        <div class="wonder-machine__actions">
+          <Button
+            isLink
+            size="md"
+            variant="green"
+            href={otherAliceDevelopment.routes.otherAlice}
+            data-event="homepage_other_alice_open"
+            data-source-placement="homepage-wonder-machine"
+          >
+            Enter Other Alice Adventures
+          </Button>
+          <Button
+            isLink
+            size="md"
+            variant="muted"
+            href={otherAliceDevelopment.routes.grimoire}
+            data-event="homepage_grimoire_open"
+            data-source-placement="homepage-wonder-machine"
+          >
+            See how the Grimoire works
+          </Button>
+        </div>
+      </div>
+
+      <div class="visit-model" aria-label="A Wonder Machine visit can branch from an optional anomaly and preserve the resulting campaign history">
+        <figure class="visit-model__park">
+          <img
+            src={parkImage.src}
+            alt="An Other Alice world map used to show a large starting place with several possible directions"
+            width={parkImage.width}
+            height={parkImage.height}
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>
+            <span>Starting place / large park</span>
+            <strong>Anomaly: known point of interest, not a mandatory quest</strong>
+          </figcaption>
+        </figure>
+
+        <div class="visit-model__paths">
+          <div>
+            <p>Possible choices</p>
+            <ul>
+              {choices.map((choice) => <li>{choice}</li>)}
+            </ul>
+          </div>
+          <div>
+            <p>Possible campaign centers</p>
+            <ul class="visit-model__results">
+              {consequences.map((consequence) => <li>{consequence}</li>)}
+            </ul>
+          </div>
+        </div>
+
+        <aside class="visit-model__memory">
+          <p>Campaign memory</p>
+          <ul>
+            {memory.map((item) => <li>{item}</li>)}
+          </ul>
+        </aside>
+
+        <ol class="visit-model__boundary" aria-label="Grimoire and Wonder Machine system boundary">
+          {otherAliceDevelopment.systemBoundary.map((item, index) => (
+            <li>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              {item}
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </Wrapper>
+</section>
+
+<style>
+  .wonder-machine {
+    background:
+      radial-gradient(circle at 13% 30%, rgb(160 107 255 / 0.18), transparent 34rem),
+      radial-gradient(circle at 86% 68%, rgb(25 227 227 / 0.08), transparent 30rem),
+      #080a11;
+  }
+
+  .method-at-work,
+  .wonder-machine__feature {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .method-at-work {
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgb(255 255 255 / 0.1);
+  }
+
+  .method-at-work > div > p,
+  .wonder-machine__eyebrow,
+  .visit-model__paths p,
+  .visit-model__memory > p {
+    margin: 0;
+    color: #a88cff;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .method-at-work h2 {
+    margin: 0.7rem 0 0;
+    color: #f0eadd;
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4.8rem);
+    font-weight: 300;
+    letter-spacing: -0.045em;
+    line-height: 0.98;
+  }
+
+  .method-at-work > p {
+    max-width: 44rem;
+    margin: 0;
+    color: #b0aaba;
+    line-height: 1.75;
+  }
+
+  .wonder-machine__feature {
+    margin-top: 3rem;
+  }
+
+  .wonder-machine__copy h2 {
+    max-width: 10ch;
+    margin: 0.8rem 0 0;
+    color: #f0eadd;
+    font-family: Georgia, serif;
+    font-size: clamp(3rem, 5.2vw, 5.25rem);
+    font-weight: 400;
+    letter-spacing: -0.055em;
+    line-height: 0.9;
+  }
+
+  .wonder-machine__intro {
+    max-width: 46rem;
+    margin-top: 1.5rem;
+  }
+
+  .wonder-machine__intro p {
+    margin: 0;
+    color: #b4afbb;
+    line-height: 1.72;
+  }
+
+  .wonder-machine__intro p + p {
+    margin-top: 0.9rem;
+  }
+
+  .wonder-machine__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin: 1.4rem 0 0;
+    padding: 0.55rem 0.75rem;
+    border: 1px solid rgb(168 140 255 / 0.4);
+    border-radius: 999px;
+    color: #d7caff;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+  }
+
+  .wonder-machine__status span {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 999px;
+    background: #2fe089;
+    box-shadow: 0 0 16px rgb(47 224 137 / 0.6);
+  }
+
+  .wonder-machine__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: 1.5rem;
+  }
+
+  .visit-model {
+    display: grid;
+    gap: 0.6rem;
+    padding: 0.6rem;
+    border: 1px solid rgb(168 140 255 / 0.35);
+    border-radius: 0.8rem;
+    background: rgb(8 10 17 / 0.86);
+    box-shadow: 0 26px 90px rgb(0 0 0 / 0.35);
+  }
+
+  .visit-model__park {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    margin: 0;
+    border: 1px solid rgb(255 255 255 / 0.12);
+  }
+
+  .visit-model__park img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #d8c39b;
+    opacity: 0.9;
+  }
+
+  .visit-model__park::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent 58%, rgb(8 10 17 / 0.94));
+    pointer-events: none;
+  }
+
+  .visit-model__park figcaption {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    z-index: 1;
+  }
+
+  .visit-model__park span,
+  .visit-model__park strong {
+    display: block;
+  }
+
+  .visit-model__park span {
+    color: #d7caff;
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .visit-model__park strong {
+    max-width: 32rem;
+    margin-top: 0.45rem;
+    color: #f1ecf6;
+    font-size: 0.82rem;
+    font-weight: 500;
+  }
+
+  .visit-model__paths {
+    display: grid;
+    gap: 0.6rem;
+  }
+
+  .visit-model__paths > div,
+  .visit-model__memory {
+    padding: 1rem;
+    border: 1px solid rgb(255 255 255 / 0.1);
+    background: rgb(14 18 28 / 0.88);
+  }
+
+  .visit-model ul {
+    display: grid;
+    gap: 0.4rem;
+    margin: 0.8rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .visit-model__paths li {
+    padding: 0.55rem;
+    border-left: 2px solid #a88cff;
+    background: rgb(168 140 255 / 0.06);
+    color: #ded8e6;
+    font-size: 0.72rem;
+  }
+
+  .visit-model__results {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .visit-model__results li {
+    border-left-color: #19e3e3;
+  }
+
+  .visit-model__memory ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .visit-model__memory li {
+    color: #aca6b4;
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    line-height: 1.45;
+  }
+
+  .visit-model__memory li::before {
+    content: "•";
+    margin-right: 0.45rem;
+    color: #2fe089;
+  }
+
+  .visit-model__boundary {
+    display: grid;
+    gap: 0.35rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .visit-model__boundary li {
+    display: grid;
+    grid-template-columns: 1.8rem 1fr;
+    gap: 0.5rem;
+    padding: 0.65rem;
+    border: 1px solid rgb(255 255 255 / 0.09);
+    color: #c8c2cf;
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    line-height: 1.45;
+  }
+
+  .visit-model__boundary span {
+    color: #a88cff;
+  }
+
+  @media (min-width: 44rem) {
+    .visit-model__paths {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .visit-model__boundary {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .method-at-work {
+      grid-template-columns: minmax(0, 1.15fr) minmax(24rem, 0.62fr);
+      align-items: end;
+    }
+
+    .wonder-machine__feature {
+      grid-template-columns: minmax(22rem, 0.72fr) minmax(0, 1.28fr);
+      gap: 2rem;
+      align-items: start;
+    }
+  }
+
+  @media (max-width: 30rem) {
+    .visit-model__memory ul,
+    .visit-model__results {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wonder-machine *,
+    .wonder-machine *::before,
+    .wonder-machine *::after {
+      transition: none;
+    }
+  }
+</style>

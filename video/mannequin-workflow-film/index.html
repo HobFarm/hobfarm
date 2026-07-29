@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "IBM Plex Sans";
+        src: url("assets/fonts/ibm-plex-sans-400.woff2") format("woff2");
+        font-style: normal;
+        font-weight: 400;
+      }
+
+      @font-face {
+        font-family: "IBM Plex Sans";
+        src: url("assets/fonts/ibm-plex-sans-700.woff2") format("woff2");
+        font-style: normal;
+        font-weight: 700;
+      }
+
+      @font-face {
+        font-family: "IBM Plex Mono";
+        src: url("assets/fonts/ibm-plex-mono-600.woff2") format("woff2");
+        font-style: normal;
+        font-weight: 600;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 1920px;
+        height: 1080px;
+        margin: 0;
+        overflow: hidden;
+        background: #f1f2f1;
+      }
+
+      body {
+        color: #17191c;
+        font-family: "IBM Plex Sans", sans-serif;
+      }
+
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #f1f2f1;
+      }
+
+      .scene {
+        position: absolute;
+        inset: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        opacity: 0;
+        background: #f1f2f1;
+      }
+
+      .scene.is-preview {
+        opacity: 1;
+      }
+
+      .scene-content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        gap: 32px;
+        padding: 64px 72px;
+        overflow: hidden;
+        box-sizing: border-box;
+      }
+
+      .status {
+        position: relative;
+        z-index: 20;
+        width: fit-content;
+        margin: 0;
+        color: #50565b;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 20px;
+        font-weight: 650;
+        font-variant-numeric: tabular-nums;
+        letter-spacing: 0.15em;
+        line-height: 1.2;
+        text-transform: uppercase;
+      }
+
+      .statement {
+        position: relative;
+        z-index: 20;
+        max-width: 1040px;
+        margin: 0;
+        color: #17191c;
+        font-size: 64px;
+        font-weight: 700;
+        letter-spacing: -0.035em;
+        line-height: 0.98;
+        text-wrap: balance;
+      }
+
+      .board-frame {
+        position: relative;
+        overflow: hidden;
+        border: 2px solid #8b9298;
+        background: #f1f2f1;
+        box-shadow: 0 24px 54px #dde1e2;
+      }
+
+      .board-frame > .board-image,
+      .crop > .board-image {
+        display: block;
+        max-width: none;
+        user-select: none;
+        pointer-events: none;
+      }
+
+      .full-board {
+        width: 790px;
+        height: 790px;
+      }
+
+      .full-board > .board-image {
+        width: 100%;
+        height: 100%;
+        background-image: url("assets/mannequin-to-character-workflow.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+
+      .crop {
+        position: absolute;
+        overflow: hidden;
+        border: 2px solid #8b9298;
+        background: #f1f2f1;
+      }
+
+      .crop > .board-image {
+        position: absolute;
+        width: var(--board-size);
+        height: var(--board-size);
+        left: var(--board-x);
+        top: var(--board-y);
+        background-image: url("assets/mannequin-to-character-workflow.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+
+      .cyan-rule {
+        position: absolute;
+        z-index: 16;
+        background: #00aed5;
+      }
+
+      .registration-cross {
+        position: absolute;
+        z-index: 18;
+        width: 48px;
+        height: 48px;
+      }
+
+      .registration-cross::before,
+      .registration-cross::after {
+        content: "";
+        position: absolute;
+        background: #00aed5;
+      }
+
+      .registration-cross::before {
+        top: 23px;
+        left: 0;
+        width: 48px;
+        height: 2px;
+      }
+
+      .registration-cross::after {
+        top: 0;
+        left: 23px;
+        width: 2px;
+        height: 48px;
+      }
+
+      .scene-one .scene-content {
+        justify-content: space-between;
+      }
+
+      .scene-one .status {
+        margin-left: 6px;
+      }
+
+      .scene-one .statement {
+        max-width: 760px;
+        margin-bottom: 86px;
+        font-size: 74px;
+      }
+
+      .scene-one .full-board {
+        position: absolute;
+        top: 124px;
+        right: 94px;
+      }
+
+      .scene-one .scanner {
+        top: 150px;
+        right: 72px;
+        width: 836px;
+        height: 4px;
+      }
+
+      .scene-one .cross-a {
+        top: 104px;
+        right: 858px;
+      }
+
+      .scene-one .cross-b {
+        right: 64px;
+        bottom: 96px;
+      }
+
+      .scene-two .scene-content {
+        justify-content: space-between;
+      }
+
+      .scene-two .statement {
+        max-width: 1020px;
+        margin-bottom: 46px;
+        font-size: 60px;
+      }
+
+      .measurement-ticks {
+        position: absolute;
+        top: 160px;
+        right: 86px;
+        width: 1160px;
+        height: 2px;
+        opacity: 0.5;
+        background: repeating-linear-gradient(
+          90deg,
+          #8b9298 0,
+          #8b9298 3px,
+          #f1f2f1 3px,
+          #f1f2f1 22px
+        );
+      }
+
+      .scene-two .proportions-crop {
+        top: 210px;
+        left: 72px;
+        width: 570px;
+        height: 430px;
+        --board-size: 1630px;
+        --board-x: -65px;
+        --board-y: -176px;
+      }
+
+      .alignment-stage {
+        position: absolute;
+        top: 152px;
+        right: 92px;
+        width: 1040px;
+        height: 742px;
+        border: 2px solid #8b9298;
+        background: #dde1e2;
+        overflow: hidden;
+      }
+
+      .alignment-copy {
+        position: absolute;
+        top: 18px;
+        left: 305px;
+        width: 430px;
+        height: 706px;
+        overflow: hidden;
+        background: #f1f2f1;
+      }
+
+      .alignment-copy .board-image {
+        position: absolute;
+        width: 1500px;
+        height: 1500px;
+        left: -535px;
+        top: -170px;
+        background-image: url("assets/mannequin-to-character-workflow.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+
+      .alignment-copy.copy-left,
+      .alignment-copy.copy-right {
+        opacity: 0.18;
+      }
+
+      .alignment-copy.copy-main {
+        z-index: 4;
+      }
+
+      .alignment-copy.copy-left {
+        z-index: 2;
+      }
+
+      .alignment-copy.copy-right {
+        z-index: 3;
+      }
+
+      .alignment-line {
+        top: 152px;
+        right: 610px;
+        width: 4px;
+        height: 742px;
+      }
+
+      .scene-three .status,
+      .scene-four .status {
+        margin-left: auto;
+      }
+
+      .scene-three .statement {
+        max-width: 720px;
+        margin-top: 102px;
+        font-size: 58px;
+      }
+
+      .ghost-word {
+        position: absolute;
+        left: -26px;
+        bottom: 34px;
+        margin: 0;
+        color: #17191c;
+        opacity: 0.48;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 168px;
+        font-weight: 650;
+        letter-spacing: 0.08em;
+      }
+
+      .scene-three .face-crop {
+        top: 128px;
+        right: 72px;
+        width: 700px;
+        height: 306px;
+        --board-size: 2000px;
+        --board-x: -1285px;
+        --board-y: -190px;
+      }
+
+      .scene-three .palette-crop {
+        top: 464px;
+        right: 72px;
+        width: 700px;
+        height: 286px;
+        --board-size: 2000px;
+        --board-x: -1285px;
+        --board-y: -530px;
+      }
+
+      .scene-three .wardrobe-crop {
+        left: 724px;
+        bottom: 68px;
+        width: 650px;
+        height: 388px;
+        --board-size: 1700px;
+        --board-x: -45px;
+        --board-y: -680px;
+      }
+
+      .locator {
+        position: absolute;
+        left: 380px;
+        bottom: 72px;
+        width: 262px;
+        height: 262px;
+        border: 2px solid #00aed5;
+        background: #f1f2f1;
+      }
+
+      .locator .board-image {
+        width: 100%;
+        height: 100%;
+        background-image: url("assets/mannequin-to-character-workflow.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+
+      .route-a {
+        left: 630px;
+        bottom: 198px;
+        width: 130px;
+        height: 3px;
+      }
+
+      .route-b {
+        right: 694px;
+        bottom: 260px;
+        width: 3px;
+        height: 286px;
+      }
+
+      .scene-four .statement {
+        max-width: 710px;
+        margin-top: auto;
+        margin-bottom: 56px;
+        font-size: 54px;
+      }
+
+      .transition-shutter {
+        position: absolute;
+        z-index: 100;
+        left: 0;
+        width: 100%;
+        height: 540px;
+        background: #17191c;
+        pointer-events: none;
+      }
+
+      .transition-shutter-top {
+        top: 0;
+        transform: translateY(-540px);
+      }
+
+      .transition-shutter-bottom {
+        bottom: 0;
+        transform: translateY(540px);
+      }
+
+      .scene-four .camera-crop {
+        top: 150px;
+        left: 72px;
+        width: 760px;
+        height: 430px;
+        --board-size: 2200px;
+        --board-x: -72px;
+        --board-y: -1435px;
+      }
+
+      .scene-four .scene-crop {
+        top: 150px;
+        right: 72px;
+        width: 760px;
+        height: 360px;
+        --board-size: 2000px;
+        --board-x: -1160px;
+        --board-y: -900px;
+      }
+
+      .scene-four .output-crop {
+        right: 72px;
+        bottom: 102px;
+        width: 900px;
+        height: 430px;
+        border-color: #17191c;
+        background: #17191c;
+        --board-size: 2000px;
+        --board-x: -970px;
+        --board-y: -1350px;
+      }
+
+      .scene-four .scanline {
+        right: 72px;
+        bottom: 102px;
+        width: 4px;
+        height: 430px;
+      }
+
+      #scene-4-status {
+        min-width: 320px;
+      }
+
+      #scene-4-status span {
+        display: block;
+      }
+
+      #scene-4-status .status-verified {
+        position: absolute;
+        top: 0;
+        right: 0;
+        color: #007b95;
+        opacity: 0;
+      }
+
+      .scene-five .scene-content {
+        justify-content: center;
+        align-items: flex-end;
+      }
+
+      .scene-five .full-board {
+        position: absolute;
+        top: 102px;
+        left: 88px;
+        width: 876px;
+        height: 876px;
+      }
+
+      .scene-five .status,
+      .scene-five .statement {
+        width: 760px;
+        margin-right: 36px;
+      }
+
+      .scene-five .statement {
+        font-size: 70px;
+      }
+
+      .corner {
+        position: absolute;
+        z-index: 18;
+        width: 70px;
+        height: 70px;
+        border-color: #00aed5;
+        border-style: solid;
+      }
+
+      .corner-a {
+        top: 82px;
+        left: 68px;
+        border-width: 4px 0 0 4px;
+      }
+
+      .corner-b {
+        left: 944px;
+        bottom: 82px;
+        border-width: 0 4px 4px 0;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .scene {
+          transition: opacity 120ms linear;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-se1u" id="root" data-composition-id="mannequin-workflow-wide" data-start="0" data-duration="16" data-width="1920" data-height="1080">
+      <section data-hf-id="hf-3e4j" id="scene-1" class="scene scene-one is-preview" data-scene="1">
+        <div data-hf-id="hf-cn5c" class="scene-content">
+          <p data-hf-id="hf-8hcz" class="status">Continuity record / 00</p>
+          <h1 data-hf-id="hf-c957" class="statement">Build the system before the identity.</h1>
+          <div data-hf-id="hf-xk24" class="board-frame full-board">
+            <div data-hf-id="hf-fawi" class="board-image" role="img" aria-label="Complete Mannequin to Character workflow board"></div>
+          </div>
+          <div data-hf-id="hf-umjl" class="cyan-rule scanner" aria-hidden="true"></div>
+          <div data-hf-id="hf-nubv" class="registration-cross cross-a" aria-hidden="true"></div>
+          <div data-hf-id="hf-cyu8" class="registration-cross cross-b" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <section data-hf-id="hf-baam" id="scene-2" class="scene scene-two" data-scene="2">
+        <div data-hf-id="hf-o0eg" class="scene-content">
+          <p data-hf-id="hf-fm1r" class="status">Base / alignment lock</p>
+          <h2 data-hf-id="hf-t0rc" class="statement">Proportions, silhouette, and movement stay consistent.</h2>
+          <div data-hf-id="hf-sehu" class="measurement-ticks" aria-hidden="true"></div>
+          <div data-hf-id="hf-iw62" class="crop proportions-crop" data-layout-allow-overflow>
+            <div data-hf-id="hf-ncla" class="board-image" aria-hidden="true"></div>
+          </div>
+          <div data-hf-id="hf-vqdm" class="alignment-stage">
+            <div data-hf-id="hf-m55o" class="alignment-copy copy-left" data-layout-allow-overflow>
+              <div data-hf-id="hf-i92a" class="board-image" aria-hidden="true"></div>
+            </div>
+            <div data-hf-id="hf-ln1w" class="alignment-copy copy-main" data-layout-allow-overflow>
+              <div data-hf-id="hf-lm47" class="board-image" role="img" aria-label="Neutral mannequin aligned beneath a cyan center line"></div>
+            </div>
+            <div data-hf-id="hf-fk1f" class="alignment-copy copy-right" data-layout-allow-overflow>
+              <div data-hf-id="hf-indb" class="board-image" aria-hidden="true"></div>
+            </div>
+          </div>
+          <div data-hf-id="hf-0t4b" class="cyan-rule alignment-line" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <section data-hf-id="hf-96pm" id="scene-3" class="scene scene-three" data-scene="3">
+        <div data-hf-id="hf-mthd" class="scene-content">
+          <p data-hf-id="hf-v8ne" class="status">Variable layers / 02</p>
+          <h2 data-hf-id="hf-2sev" class="statement">Face, hair, palette, and wardrobe create identity.</h2>
+          <p data-hf-id="hf-8czj" class="ghost-word" aria-hidden="true" data-layout-allow-occlusion data-layout-allow-overflow>VARIABLES</p>
+          <div data-hf-id="hf-xh70" class="crop face-crop" role="img" aria-label="Face options from the supplied workflow board" data-layout-allow-overflow>
+            <div data-hf-id="hf-xfxr" class="board-image" aria-hidden="true"></div>
+          </div>
+          <div data-hf-id="hf-whia" class="crop palette-crop" role="img" aria-label="Hair and palette options from the supplied workflow board" data-layout-allow-overflow>
+            <div data-hf-id="hf-odgo" class="board-image" aria-hidden="true"></div>
+          </div>
+          <div data-hf-id="hf-z2gp" class="crop wardrobe-crop" role="img" aria-label="Wardrobe system from the supplied workflow board" data-layout-allow-overflow>
+            <div data-hf-id="hf-1gor" class="board-image" aria-hidden="true"></div>
+          </div>
+          <div data-hf-id="hf-w7ku" class="locator">
+            <div data-hf-id="hf-j1oc" class="board-image" aria-hidden="true"></div>
+          </div>
+          <div data-hf-id="hf-7sqm" class="cyan-rule route-a" aria-hidden="true"></div>
+          <div data-hf-id="hf-3uml" class="cyan-rule route-b" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <section data-hf-id="hf-56wu" id="scene-4" class="scene scene-four" data-scene="4">
+        <div data-hf-id="hf-n7se" class="scene-content">
+          <p data-hf-id="hf-8tw4" class="status" id="scene-4-status">
+            <span data-hf-id="hf-l3cl" class="status-test">Continuity test / 04</span>
+            <span data-hf-id="hf-wsw3" class="status-verified">Output verified</span>
+          </p>
+          <h2 data-hf-id="hf-0e0u" class="statement">Test the design through camera, scene, and motion.</h2>
+          <div data-hf-id="hf-y5b2" class="crop camera-crop" role="img" aria-label="Camera coverage tests from the supplied workflow board" data-layout-allow-overflow>
+            <div data-hf-id="hf-w8x8" class="board-image" aria-hidden="true"></div>
+          </div>
+          <div data-hf-id="hf-ssbp" class="crop scene-crop" role="img" aria-label="Scene direction tests from the supplied workflow board" data-layout-allow-overflow>
+            <div data-hf-id="hf-4v86" class="board-image" aria-hidden="true"></div>
+          </div>
+          <div data-hf-id="hf-isbw" class="crop output-crop" role="img" aria-label="Motion silhouettes and existing character output from the supplied workflow board" data-layout-allow-overflow>
+            <div data-hf-id="hf-f4lz" class="board-image" aria-hidden="true"></div>
+          </div>
+          <div data-hf-id="hf-merc" class="cyan-rule scanline" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <section data-hf-id="hf-xrsg" id="scene-5" class="scene scene-five" data-scene="5">
+        <div data-hf-id="hf-m0vb" class="scene-content">
+          <div data-hf-id="hf-odes" class="board-frame full-board">
+            <div data-hf-id="hf-l3iv" class="board-image" role="img" aria-label="Complete approved Mannequin to Character continuity record"></div>
+          </div>
+          <p data-hf-id="hf-klvs" class="status">Continuity record / ready for profile</p>
+          <h2 data-hf-id="hf-z33m" class="statement">One approved base can carry many identities.</h2>
+          <div data-hf-id="hf-77v3" class="corner corner-a" aria-hidden="true"></div>
+          <div data-hf-id="hf-yjz8" class="corner corner-b" aria-hidden="true"></div>
+        </div>
+      </section>
+      <div data-hf-id="hf-izhe" id="transition-shutter-top" class="transition-shutter transition-shutter-top" aria-hidden="true" data-layout-ignore></div>
+      <div data-hf-id="hf-4d70" id="transition-shutter-bottom" class="transition-shutter transition-shutter-bottom" aria-hidden="true" data-layout-ignore></div>
+    </div>
+
+    <script>
+      const previewScene = new URLSearchParams(window.location.search).get("scene");
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const scenes = gsap.utils.toArray(".scene");
+
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({
+        paused: true,
+        defaults: { overwrite: "auto" }
+      });
+      window.__timelines["mannequin-workflow-wide"] = tl;
+
+      if (previewScene) {
+        for (const scene of scenes) {
+          scene.classList.toggle("is-preview", scene.dataset.scene === previewScene);
+        }
+      } else {
+        for (const scene of scenes) {
+          scene.classList.remove("is-preview");
+        }
+
+        gsap.set(scenes, {
+          opacity: 0,
+          scale: 1,
+          filter: "blur(0px)",
+          transformOrigin: "50% 50%"
+        });
+        gsap.set("#scene-1", { opacity: 1 });
+
+        if (reducedMotion) {
+          const crossfade = (outgoing, incoming, start, midpoint) => {
+            tl.to(outgoing, { opacity: 0, duration: midpoint - start, ease: "none" }, start);
+            tl.to(incoming, { opacity: 1, duration: midpoint - start, ease: "none" }, midpoint);
+          };
+
+          crossfade("#scene-1", "#scene-2", 2.32, 2.44);
+          crossfade("#scene-2", "#scene-3", 5.56, 5.67);
+          crossfade("#scene-3", "#scene-4", 9.16, 9.27);
+          tl.set("#scene-4-status .status-test", { opacity: 0 }, 11.75);
+          tl.set("#scene-4-status .status-verified", { opacity: 1 }, 11.75);
+          crossfade("#scene-4", "#scene-5", 12.25, 12.39);
+        } else {
+          const enter = (target, at, vars = {}) => {
+            tl.from(target, {
+              opacity: 0,
+              duration: 0.5,
+              ease: "power3.out",
+              ...vars
+            }, at);
+          };
+
+          const focusPull = (outgoing, incoming, start, end) => {
+            const duration = end - start;
+            tl.set(incoming, {
+              opacity: 0,
+              scale: 0.985,
+              filter: "blur(8px)"
+            }, start);
+            tl.to(outgoing, {
+              opacity: 0,
+              scale: 1.018,
+              filter: "blur(8px)",
+              duration,
+              ease: "power2.inOut"
+            }, start);
+            tl.to(incoming, {
+              opacity: 1,
+              scale: 1,
+              filter: "blur(0px)",
+              duration,
+              ease: "power2.inOut"
+            }, start);
+          };
+
+          enter(".scene-one .status", 0.12, { x: -42, duration: 0.46 });
+          enter(".scene-one .full-board", 0.18, { x: 78, duration: 0.72 });
+          enter(".scene-one .statement", 0.42, { y: 54, duration: 0.68 });
+          enter(".scene-one .cross-a", 0.76, { scale: 0.4, rotation: -24, duration: 0.42 });
+          enter(".scene-one .cross-b", 0.88, { scale: 0.4, rotation: 24, duration: 0.42 });
+          tl.fromTo(
+            ".scene-one .full-board > .board-image",
+            { scale: 1 },
+            { scale: 1.018, duration: 1.95, ease: "sine.inOut" },
+            0.28
+          );
+          tl.fromTo(
+            ".scene-one .scanner",
+            { x: -830, opacity: 0.25 },
+            { x: 0, opacity: 1, duration: 1.36, ease: "power2.inOut" },
+            0.62
+          );
+
+          focusPull("#scene-1", "#scene-2", 2.32, 2.80);
+
+          enter(".scene-two .status", 2.48, { x: -36, duration: 0.42 });
+          enter(".scene-two .measurement-ticks", 2.56, { scaleX: 0.18, transformOrigin: "0% 50%", duration: 0.54 });
+          enter(".scene-two .proportions-crop", 2.64, { x: -64, duration: 0.58 });
+          enter(".scene-two .alignment-stage", 2.74, { x: 68, duration: 0.64 });
+          enter(".scene-two .alignment-line", 3.02, { scaleY: 0.14, transformOrigin: "50% 0%", duration: 0.52 });
+          enter(".scene-two .statement", 3.16, { y: 48, duration: 0.58 });
+          tl.fromTo(
+            ".scene-two .proportions-crop > .board-image",
+            { x: 22 },
+            { x: -14, duration: 1.62, ease: "sine.inOut" },
+            2.78
+          );
+          tl.fromTo(
+            ".scene-two .copy-left",
+            { x: -220, opacity: 0.08 },
+            { x: 0, opacity: 0.18, duration: 0.72, ease: "power4.in" },
+            4.18
+          );
+          tl.fromTo(
+            ".scene-two .copy-right",
+            { x: 220, opacity: 0.08 },
+            { x: 0, opacity: 0.18, duration: 0.72, ease: "power4.in" },
+            4.18
+          );
+          tl.fromTo(
+            ".scene-two .copy-main",
+            { y: -18 },
+            { y: 0, duration: 0.72, ease: "power4.in" },
+            4.18
+          );
+
+          focusPull("#scene-2", "#scene-3", 5.56, 6.00);
+
+          enter(".scene-three .status", 5.72, { x: 42, duration: 0.42 });
+          enter(".scene-three .ghost-word", 5.78, { x: -76, duration: 0.74 });
+          enter(".scene-three .statement", 5.88, { x: -54, duration: 0.62 });
+          enter(".scene-three .locator", 6.08, { scale: 0.72, rotation: -4, duration: 0.56 });
+          enter(".scene-three .face-crop", 6.14, { x: 72, duration: 0.62 });
+          enter(".scene-three .palette-crop", 6.34, { x: 72, duration: 0.62 });
+          enter(".scene-three .wardrobe-crop", 6.52, { y: 72, duration: 0.62 });
+          enter(".scene-three .route-a", 6.76, { scaleX: 0, transformOrigin: "0% 50%", duration: 0.36 });
+          enter(".scene-three .route-b", 6.86, { scaleY: 0, transformOrigin: "50% 100%", duration: 0.4 });
+          tl.fromTo(
+            ".scene-three .face-crop > .board-image",
+            { x: 26 },
+            { x: -10, duration: 2.34, ease: "sine.inOut" },
+            6.20
+          );
+          tl.fromTo(
+            ".scene-three .palette-crop > .board-image",
+            { x: -18 },
+            { x: 18, duration: 2.12, ease: "sine.inOut" },
+            6.42
+          );
+          tl.fromTo(
+            ".scene-three .wardrobe-crop > .board-image",
+            { y: 18 },
+            { y: -16, duration: 1.98, ease: "sine.inOut" },
+            6.58
+          );
+
+          tl.to("#transition-shutter-top", {
+            y: 0,
+            duration: 0.17,
+            ease: "power4.in"
+          }, 9.16);
+          tl.to("#transition-shutter-bottom", {
+            y: 0,
+            duration: 0.17,
+            ease: "power4.in"
+          }, 9.16);
+          tl.set("#scene-3", { opacity: 0 }, 9.33);
+          tl.set("#scene-4", { opacity: 1 }, 9.33);
+          tl.to("#transition-shutter-top", {
+            y: -540,
+            duration: 0.17,
+            ease: "power4.out"
+          }, 9.33);
+          tl.to("#transition-shutter-bottom", {
+            y: 540,
+            duration: 0.17,
+            ease: "power4.out"
+          }, 9.33);
+
+          enter(".scene-four .status", 9.38, { x: 38, duration: 0.4 });
+          enter(".scene-four .camera-crop", 9.42, { x: -64, duration: 0.58 });
+          enter(".scene-four .scene-crop", 9.50, { y: -54, duration: 0.58 });
+          enter(".scene-four .output-crop", 9.58, { y: 64, duration: 0.66 });
+          enter(".scene-four .statement", 9.70, { x: -48, duration: 0.6 });
+          tl.fromTo(
+            ".scene-four .camera-crop > .board-image",
+            { x: 28 },
+            { x: -10, duration: 1.72, ease: "sine.inOut" },
+            9.54
+          );
+          tl.fromTo(
+            ".scene-four .scene-crop > .board-image",
+            { x: -20 },
+            { x: 14, duration: 1.62, ease: "sine.inOut" },
+            9.62
+          );
+          tl.fromTo(
+            ".scene-four .output-crop > .board-image",
+            { x: 72 },
+            { x: -112, duration: 1.78, ease: "power2.inOut" },
+            9.86
+          );
+          tl.fromTo(
+            ".scene-four .scanline",
+            { x: -896, opacity: 0.34 },
+            { x: 0, opacity: 1, duration: 1.75, ease: "power1.inOut" },
+            9.86
+          );
+          tl.set("#scene-4-status .status-test", { opacity: 0 }, 11.75);
+          tl.set("#scene-4-status .status-verified", { opacity: 1 }, 11.75);
+
+          tl.set("#scene-5", {
+            opacity: 0,
+            scale: 1,
+            filter: "blur(0px)"
+          }, 12.25);
+          tl.to("#scene-4", {
+            opacity: 0,
+            scale: 1.018,
+            filter: "blur(8px)",
+            duration: 0.55,
+            ease: "power2.inOut"
+          }, 12.25);
+          tl.to("#scene-5", {
+            opacity: 1,
+            duration: 0.55,
+            ease: "power2.inOut"
+          }, 12.25);
+          tl.fromTo(
+            ".scene-five .full-board > .board-image",
+            { scale: 1.08, filter: "blur(8px)" },
+            { scale: 1, filter: "blur(0px)", duration: 0.88, ease: "power2.out" },
+            12.25
+          );
+          enter(".scene-five .full-board", 12.42, { x: -62, duration: 0.66 });
+          enter(".scene-five .status", 12.62, { x: 48, duration: 0.46 });
+          enter(".scene-five .statement", 12.82, { x: 58, duration: 0.68 });
+          enter(".scene-five .corner-a", 13.10, { scale: 0.32, rotation: -18, duration: 0.42 });
+          enter(".scene-five .corner-b", 13.20, { scale: 0.32, rotation: 18, duration: 0.42 });
+        }
+
+        tl.set("#root", { opacity: 1 }, 16);
+      }
+    </script>
+  </body>
+</html>

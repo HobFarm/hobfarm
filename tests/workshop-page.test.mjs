@@ -48,13 +48,13 @@ test("Workshop method follows five concise production stages", () => {
   }
 });
 
-test("Workshop homepage and landing page share one selected-project source", () => {
+test("Workshop homepage capabilities and landing grid share one selected-project source", () => {
   const page = read("src/pages/workshop/index.astro");
   const home = read("src/components/home/HomeWorkshop.astro");
   const projects = read("src/data/workshop-projects.ts");
 
   assert.match(page, /WorkshopProjectGrid surface="workshop"/);
-  assert.match(home, /WorkshopProjectGrid surface="home"/);
+  assert.match(home, /getWorkshopProject/);
 
   for (const id of [
     "future-carriage",

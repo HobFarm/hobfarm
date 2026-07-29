@@ -103,22 +103,23 @@ const sheetTwo = image(
   "Mannequin 02 / reference sheet",
 );
 
-const heroGraphic = image(
+const workflowBoard: MediaRef = {
+  src: "/media/workshop/character-mannequin/mannequin-to-character-workflow.png",
+  alt: "Mannequin-to-character workflow showing proportions, a neutral base, face and hair options, wardrobe, scene direction, camera tests, and motion output",
+  width: 1254,
+  height: 1254,
+  poster: null,
+  caption: "The neutral mannequin is designed and tested before a character profile is applied",
+  credit: CREDIT,
+};
+
+const assemblyGraphic = image(
   "page-graphics",
   "hobfarm-mannequin-character-outfit-scene-design.png",
   "Overview of the HobFarm mannequin, outfit, dressed character, and finished scene workflow",
   1672,
   941,
   "One mannequin moving from base design to a finished world",
-);
-
-const workflowGraphic = image(
-  "page-graphics",
-  "hobfarm-mannequin-character-outfit-scene-video-design.png",
-  "HobFarm workflow showing mannequin, outfit, character, scene, and video stages",
-  1448,
-  1086,
-  "The complete still-to-motion production route",
 );
 
 const wardrobeGraphic = image(
@@ -389,13 +390,13 @@ export const characterOffers: CharacterOffer[] = [
 export const characterMannequinPage = {
   title: "Character Mannequins, Outfit Design, Scenes and Video | HobFarm Workshop",
   description:
-    "See one HobFarm mannequin move through complete wardrobe designs, finished character scenes, and short videos, then browse character assets or commission a custom build.",
+    "See how HobFarm designs and tests a neutral mannequin before applying a character profile, then carries the approved identity through wardrobe, scenes, camera coverage, and motion.",
   basePortrait: portraitOne,
   baseSheet: sheetOne,
   alternatePortrait: portraitTwo,
   alternateSheet: sheetTwo,
-  heroGraphic,
-  workflowGraphic,
+  heroGraphic: workflowBoard,
+  workflowGraphic: assemblyGraphic,
   // The supplied hobfarm-mannequin-design.png URL returned 404 on 2026-07-15.
   mannequinLibraryGraphic: null,
   wardrobeGraphic,

@@ -3,6 +3,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import { OTHER_ALICE_ROOT_PATH } from "@/data/other-alice/canon";
+import { otherAliceDevelopment } from "@/data/other-alice-development";
 
 const title = "The Grimoire authors the world | HobFarm";
 const description =
@@ -401,23 +402,30 @@ const grimoireJsonLd = {
     </Wrapper>
   </section>
 
-  <section class="border-b border-base-800/70">
+  <section id="grimoire-current-state" class="scroll-mt-20 border-b border-base-800/70">
     <Wrapper variant="standard" class="py-14 lg:py-20">
       <div class="rounded-xl border border-accent-500/25 bg-accent-500/5 p-6 sm:p-8 lg:p-10">
         <div class="grid gap-8 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] lg:gap-14">
           <div>
             <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-300">Current state</p>
             <h2 class="mt-4 font-display text-3xl font-light text-white text-balance sm:text-5xl">
-              The first Wonderland substrate is running locally.
+              The first persistent Wonderland is running locally.
             </h2>
           </div>
           <div class="space-y-5 text-base leading-relaxed text-base-300">
             <p>
-              The Grimoire currently authors a reusable Other Alice world pack. The separate Wonder Machine runtime can consume that pack, create a player setup, accept or refuse entry, resolve local interactions, apply temporary conditions, surface bounded opportunities, advance time, save state, and replay deterministic sessions.
+              The Grimoire now compiles a private Other Alice opening pack for Wonder Machine. The current local runtime can begin a campaign in an explorable park, reveal only the map the player has discovered, surface changing anomalies, resolve conditional transformations and portals, preserve refusal as a valid path, and carry the resulting state through saves and later sessions.
             </p>
-            <p>This is still a local development system.</p>
             <p>
-              The public game does not exist yet. Several locations, forms, political structures, objects, and opportunities remain draft fixtures rather than locked Other Alice canon. Release promotion and public distribution still need deliberate rules.
+              Campaigns are pinned to exact versions of the authored world. Time, choices, relationships, scheduled events, and consequences remain part of that particular visit rather than rewriting Other Alice canon.
+            </p>
+            <ul class="grid gap-2 sm:grid-cols-2">
+              {otherAliceDevelopment.currentCapabilities.map((capability) => (
+                <li class="border-l-2 border-accent-400 pl-3 text-sm text-base-400">{capability}</li>
+              ))}
+            </ul>
+            <p>
+              The system is still private and under development. Public access, final presentation, and production release decisions remain ahead.
             </p>
             <p class="font-medium text-white">
               The authored world can remain stable while a player changes what happens inside a particular visit.

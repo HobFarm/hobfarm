@@ -20,12 +20,24 @@ const subjects = [
 const DEFAULT_SUBJECT = "support";
 const subjectValues = new Set(subjects.map((subject) => subject.value));
 
-export default function ContactForm() {
-  const [initialSubject, setInitialSubject] = useState(DEFAULT_SUBJECT);
+type ContactFormProps = {
+  initialSubject?: string;
+  projectBrief?: boolean;
+};
+
+export default function ContactForm({
+  initialSubject: requestedInitialSubject,
+  projectBrief = false,
+}: ContactFormProps) {
+  const safeInitialSubject =
+    requestedInitialSubject && subjectValues.has(requestedInitialSubject)
+      ? requestedInitialSubject
+      : DEFAULT_SUBJECT;
+  const [initialSubject, setInitialSubject] = useState(safeInitialSubject);
   const [form, setForm] = useState({
     name: "",
     email: "",
-    subject: DEFAULT_SUBJECT,
+    subject: safeInitialSubject,
     message: "",
   });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -34,11 +46,14 @@ export default function ContactForm() {
   const turnstileRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const requestedSubject = new URLSearchParams(window.location.search).get("subject") || DEFAULT_SUBJECT;
+    const requestedSubject =
+      new URLSearchParams(window.location.search).get("subject")
+      || requestedInitialSubject
+      || DEFAULT_SUBJECT;
     const safeSubject = subjectValues.has(requestedSubject) ? requestedSubject : DEFAULT_SUBJECT;
     setInitialSubject(safeSubject);
     setForm((current) => ({ ...current, subject: safeSubject }));
-  }, []);
+  }, [requestedInitialSubject]);
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -109,7 +124,11 @@ export default function ContactForm() {
     "w-full px-3 py-3 bg-base-900 border-l border-l-white border-transparent text-white placeholder-base-500 focus:border-white focus:bg-base-950 focus:outline-none transition-colors text-sm";
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-6"
+      data-event={projectBrief ? "creative_project_form_submit" : undefined}
+    >
       <div>
         <label htmlFor="name" className="block text-xs font-mono text-base-500 mb-2">
           Name
@@ -173,8 +192,18 @@ export default function ContactForm() {
           value={form.message}
           onChange={(e) => setForm({ ...form, message: e.target.value })}
           className={`${inputClass} resize-y`}
-          placeholder="What's on your mind?"
+          placeholder={
+            projectBrief
+              ? "What are you starting with, what should it become, which formats would help, and what timing or references matter?"
+              : "What's on your mind?"
+          }
+          aria-describedby={projectBrief ? "creative-project-message-help" : undefined}
         />
+        {projectBrief && (
+          <p id="creative-project-message-help" className="mt-2 text-xs leading-relaxed text-base-500">
+            Describe private material without pasting it into the form.
+          </p>
+        )}
       </div>
 
       <div ref={turnstileRef} />

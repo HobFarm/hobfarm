@@ -22,6 +22,8 @@ const allowedSubjects = new Set([
   "stylefusion",
   "grimoire",
   "membership",
+  "creative-project",
+  "custom-character",
   "business",
   "bug",
   "security",

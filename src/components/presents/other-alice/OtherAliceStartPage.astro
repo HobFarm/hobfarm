@@ -1,5 +1,6 @@
 ---
 import OaaProjectNav from "./OaaProjectNav.astro";
+import WonderMachineDevelopment from "./WonderMachineDevelopment.astro";
 import LivingAtlas from "./living-world/LivingAtlas.astro";
 import RouteAtlas from "./living-world/RouteAtlas.astro";
 import HousePowerStack from "./living-world/HousePowerStack.astro";
@@ -15,7 +16,6 @@ const alicePreview = otherAliceCastPreview[0];
 <div class="oaa-world">
  <OaaProjectNav current="start" />
  <header class="hero">
-  <div class="hero-art" aria-hidden="true"><img src="https://cdn.hob.farm/pages/other-alice-adventures/other-alice-wonderland-wasteland-poster.webp" alt="" width="900" height="1350" sizes="(max-width: 780px) 100vw, 38vw" fetchpriority="high"/></div>
   <div class="hero-copy">
    <p class="eyebrow">HobFarm Presents</p>
    <h1>Other Alice Adventures</h1>
@@ -26,7 +26,7 @@ const alicePreview = otherAliceCastPreview[0];
     <p>Alice studies local conditions, gathers materials, prepares remedies, negotiates access, changes her size to reach restricted places, and follows problems through systems that rarely explain themselves.</p>
     <p>Stories, character dossiers, maps, bestiary records, artifacts, diagrams, and visual studies reveal different parts of the same Wonderland.</p>
    </div>
-   <p class="format">A web-native surreal fantasy serial and illustrated world archive.</p>
+   <p class="format">A web-native surreal fantasy serial, illustrated world archive, and developing interactive story system.</p>
    <nav class="actions" aria-label="Explore Other Alice">
     <a href={OTHER_ALICE_WORLD_GUIDE_PATH}>Explore Wonderland</a>
     <a href={alicePreview.href ?? OTHER_ALICE_CAST_PATH}>Meet Other Alice</a>
@@ -36,6 +36,10 @@ const alicePreview = otherAliceCastPreview[0];
    <p class="project-index">Illustrated stories · World guide · Characters · Bestiary · Maps and records</p>
    <p class="thesis">The familiar story is the entrance. The larger world is Other Alice.</p>
   </div>
+  <figure class="hero-map">
+   <img src="/media/other-alice/other-alice-wonderland-world-map.png" alt="Developing map of Other Alice's Wonderland with concentric regions, routes, portals, House influences, the Wasteland, and the Park Anomaly" width="1448" height="1086" sizes="(max-width: 900px) 100vw, 58vw" fetchpriority="high"/>
+   <figcaption><strong>A developing world map.</strong> The regions, routes, portals, House influence, Park Anomaly, and Wasteland are parts of one authored system.</figcaption>
+  </figure>
  </header>
 
  <section class="section why-section" aria-labelledby="why-title">
@@ -65,6 +69,8 @@ const alicePreview = otherAliceCastPreview[0];
    </div>
   </div>
  </section>
+
+ <WonderMachineDevelopment />
 
  <section class="section atlas-section" aria-labelledby="glance-title">
   <div class="section-heading"><p class="index">01 / The inhabited world</p><h2 id="glance-title">Wonderland is inhabited, maintained, traded, taxed, and argued over.</h2><p>The Queen's court claims one circular realm. Daily power follows land, companies, water, labor, roads, appetite, and the people who can keep a place working.</p></div>
@@ -121,10 +127,10 @@ const alicePreview = otherAliceCastPreview[0];
 </div>
 <style>
  .oaa-world{--paper:#eee7d6;--ink:#090b12;--muted:#acb1bd;overflow:hidden;background:#080a11;color:var(--paper)}
- .hero{display:grid;grid-template-columns:minmax(20rem,.75fr) minmax(0,1.25fr);min-height:clamp(42rem,78vh,62rem);max-width:100rem;margin:auto;border-inline:1px solid rgba(255,255,255,.1)}.hero-art{position:relative;overflow:hidden;background:#14121e}.hero-art:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 60%,#080a11)}.hero-art img{width:100%;height:100%;object-fit:cover;object-position:center}.hero-copy{display:flex;flex-direction:column;justify-content:center;padding:clamp(2rem,7vw,7rem)}.eyebrow,.index{color:#a88cff;font:600 .68rem/1 ui-monospace,SFMono-Regular,monospace;letter-spacing:.16em;text-transform:uppercase}.hero h1{max-width:11ch;margin:.7rem 0 1.5rem;font:400 clamp(3.7rem,8vw,8.6rem)/.83 Georgia,serif;letter-spacing:-.065em}.deck{max-width:43rem;margin:0;color:#d6d7db;font-size:clamp(1.15rem,2vw,1.65rem);line-height:1.45}.format{margin:1.4rem 0;color:#9ea4b2;font-style:italic}.actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem}.actions a,.section-link a{border:1px solid #5f6674;border-radius:999px;padding:.7rem 1rem;color:#fff;font:600 .72rem/1 ui-monospace,monospace;text-transform:uppercase;text-decoration:none}.actions a:first-child{background:var(--paper);color:#0a0b10}.actions a:hover,.actions a:focus-visible,.section-link a:hover,.section-link a:focus-visible{outline:2px solid #9f7aea;outline-offset:3px}
+ .hero{display:grid;grid-template-columns:minmax(24rem,.72fr) minmax(0,1.28fr);gap:clamp(1.5rem,4vw,4rem);align-items:center;min-height:clamp(42rem,78vh,62rem);max-width:100rem;margin:auto;padding:clamp(2rem,5vw,5rem);border-inline:1px solid rgba(255,255,255,.1)}.hero-copy{display:flex;flex-direction:column;justify-content:center}.hero-map{margin:0;overflow:hidden;border:1px solid rgba(238,231,214,.3);background:#d6c29c;box-shadow:0 30px 100px rgba(0,0,0,.45)}.hero-map img{display:block;width:100%;height:auto}.hero-map figcaption{padding:.85rem 1rem;background:#0e121c;color:#aeb3bf;font-size:.82rem;line-height:1.55}.hero-map figcaption strong{color:#eee7d6}.eyebrow,.index{color:#a88cff;font:600 .68rem/1 ui-monospace,SFMono-Regular,monospace;letter-spacing:.16em;text-transform:uppercase}.hero h1{max-width:11ch;margin:.7rem 0 1.5rem;font:400 clamp(3.7rem,8vw,8.6rem)/.83 Georgia,serif;letter-spacing:-.065em}.deck{max-width:43rem;margin:0;color:#d6d7db;font-size:clamp(1.15rem,2vw,1.65rem);line-height:1.45}.format{margin:1.4rem 0;color:#9ea4b2;font-style:italic}.actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem}.actions a,.section-link a{border:1px solid #5f6674;border-radius:999px;padding:.7rem 1rem;color:#fff;font:600 .72rem/1 ui-monospace,monospace;text-transform:uppercase;text-decoration:none}.actions a:first-child{background:var(--paper);color:#0a0b10}.actions a:hover,.actions a:focus-visible,.section-link a:hover,.section-link a:focus-visible{outline:2px solid #9f7aea;outline-offset:3px}
  .hero-intro{max-width:48rem;margin-top:1.5rem;color:#aeb3bf;font-size:.98rem;line-height:1.65}.hero-intro p{margin:0}.hero-intro p+p{margin-top:.8rem}.project-index{margin:1.6rem 0 0;color:#8f95a4;font:600 .68rem/1.7 ui-monospace,monospace;text-transform:uppercase}.thesis{max-width:38rem;margin:1rem 0 0;color:#eee7d6;font:400 1.1rem/1.5 Georgia,serif}.section{max-width:90rem;margin:auto;padding:clamp(4rem,9vw,9rem) clamp(1rem,4vw,4rem);border-top:1px solid rgba(255,255,255,.1)}.section-heading{display:grid;grid-template-columns:minmax(10rem,.3fr) minmax(0,1fr);gap:1rem 3rem;margin-bottom:clamp(2rem,5vw,4rem)}.section-heading .index{grid-row:1/3}.section-heading h2{max-width:23ch;margin:0;font:400 clamp(2.25rem,5vw,5rem)/.98 Georgia,serif;letter-spacing:-.035em}.section-heading>p:not(.index),.section-heading>.section-copy{max-width:48rem;margin:0;color:var(--muted);font-size:1rem;line-height:1.7}.section-copy p{margin:0}.section-copy p+p{margin-top:1rem}.section-link{margin-top:1.5rem}
  .companion-card{display:block;max-width:48rem;padding:clamp(1.25rem,3vw,2rem);border:1px solid rgba(168,140,255,.45);background:linear-gradient(135deg,rgba(168,140,255,.12),rgba(14,18,28,.8));color:var(--paper);text-decoration:none}.companion-card span{display:block;color:#a88cff;font:600 .68rem/1 ui-monospace,monospace;letter-spacing:.16em;text-transform:uppercase}.companion-card strong{display:block;margin:.75rem 0;font:400 clamp(1.5rem,3vw,2.5rem)/1.05 Georgia,serif}.companion-card p{margin:0;color:#b5bac5}.companion-card:hover,.companion-card:focus-visible{border-color:#c5afff;outline:2px solid #9f7aea;outline-offset:4px}
  .evidence-layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(13rem,.7fr) minmax(12rem,.55fr);gap:1rem}.alice-plate{position:relative;overflow:hidden;min-height:40rem;background:#090c13}.alice-plate picture{display:block;width:100%;height:100%}.alice-plate img{width:100%;height:100%;object-fit:cover}.alice-plate div{position:absolute;inset:auto 1rem 1rem;padding:1rem;background:rgba(8,10,17,.9);backdrop-filter:blur(10px)}.alice-plate h3,.evidence-column h3{margin:.5rem 0;color:#fff;font:400 1.5rem/1.1 Georgia,serif}.alice-plate p,.evidence-column p{color:#b5bac5;line-height:1.55}.evidence-column{display:grid;gap:1rem}.evidence-column article{padding:1rem;border:1px solid rgba(255,255,255,.13);background:#0e121c}.evidence-column.narrow article:nth-child(2){border-color:#557c70}.evidence-column.narrow article:nth-child(3){border-style:dashed;border-color:#9f7aea}
- @media(max-width:900px){.hero{grid-template-columns:1fr;min-height:auto}.hero-art{height:32rem}.hero-art:after{background:linear-gradient(0deg,#080a11,transparent 55%)}.hero-copy{margin-top:-8rem;position:relative}.section-heading{grid-template-columns:1fr}.section-heading .index{grid-row:auto}.evidence-layout{grid-template-columns:1fr 1fr}.alice-plate{grid-column:1/-1;min-height:0;aspect-ratio:16/9}}
- @media(max-width:560px){.hero-art{height:27rem}.hero-copy{padding:1rem}.hero h1{font-size:3.7rem}.actions{display:grid}.actions a{text-align:center}.section{padding-block:4rem}.evidence-layout{grid-template-columns:1fr}.alice-plate{aspect-ratio:4/3}.evidence-column{grid-column:1}.section-heading h2{font-size:2.35rem}}
+ @media(max-width:900px){.hero{grid-template-columns:1fr;min-height:auto}.hero-map{order:-1}.section-heading{grid-template-columns:1fr}.section-heading .index{grid-row:auto}.evidence-layout{grid-template-columns:1fr 1fr}.alice-plate{grid-column:1/-1;min-height:0;aspect-ratio:16/9}}
+ @media(max-width:560px){.hero{padding:1rem}.hero h1{font-size:3.7rem}.actions{display:grid}.actions a{text-align:center}.section{padding-block:4rem}.evidence-layout{grid-template-columns:1fr}.alice-plate{aspect-ratio:4/3}.evidence-column{grid-column:1}.section-heading h2{font-size:2.35rem}}
 </style>

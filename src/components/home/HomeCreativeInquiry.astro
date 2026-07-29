@@ -1,0 +1,114 @@
+---
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+
+const audiences = [
+  "independent film",
+  "music and performance",
+  "publishing",
+  "characters and worlds",
+  "unusual products",
+  "archives and alternate histories",
+  "independent brands and small creative teams",
+] as const;
+---
+
+<section class="creative-inquiry border-b border-base-800/70" aria-labelledby="creative-inquiry-heading">
+  <Wrapper variant="standard" class="py-14 lg:py-20">
+    <div class="creative-inquiry__layout">
+      <div>
+        <p>Creative projects</p>
+        <h2 id="creative-inquiry-heading">Built for people making something specific.</h2>
+        <p class="creative-inquiry__copy">
+          Start with a script, archive, photograph, character, reference pile, product, or world that needs a visual system. HobFarm can help define the direction, build the production assets, and finish the still, motion, or web pieces the project actually needs.
+        </p>
+        <Button
+          isLink
+          size="md"
+          variant="green"
+          href="/contact/?subject=creative-project"
+          data-event="homepage_project_inquiry_begin"
+          data-source-placement="creative-audience"
+          class="mt-7 w-fit"
+        >
+          Start a creative project
+        </Button>
+      </div>
+      <ul aria-label="Kinds of creative work">
+        {audiences.map((audience) => <li>{audience}</li>)}
+      </ul>
+    </div>
+  </Wrapper>
+</section>
+
+<style>
+  .creative-inquiry {
+    background:
+      radial-gradient(circle at 20% 20%, rgb(47 224 137 / 0.08), transparent 28rem),
+      #08090b;
+  }
+
+  .creative-inquiry__layout {
+    display: grid;
+    gap: 2rem;
+    padding: clamp(1.2rem, 4vw, 3rem);
+    border: 1px solid #284133;
+    border-left: 3px solid #2fe089;
+    border-radius: 0.8rem;
+    background: rgb(10 16 12 / 0.7);
+  }
+
+  .creative-inquiry__layout > div > p:first-child {
+    margin: 0;
+    color: #2fe089;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    max-width: 18ch;
+    margin: 0.75rem 0 0;
+    color: #f0f4f0;
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 300;
+    letter-spacing: -0.05em;
+    line-height: 0.96;
+  }
+
+  .creative-inquiry__copy {
+    max-width: 50rem;
+    margin: 1.2rem 0 0;
+    color: #b0b8b1;
+    line-height: 1.75;
+  }
+
+  ul {
+    display: grid;
+    gap: 0.55rem;
+    align-content: start;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    padding: 0.8rem 0.9rem;
+    border: 1px solid #284133;
+    background: rgb(47 224 137 / 0.04);
+    color: #d6ddd7;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 64rem) {
+    .creative-inquiry__layout {
+      grid-template-columns: minmax(0, 1.15fr) minmax(22rem, 0.65fr);
+      align-items: center;
+    }
+  }
+</style>

@@ -4,11 +4,15 @@ import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import ContactForm from "@/components/ContactForm";
 import ContentPanel from "@/components/ContentPanel.astro";
+
+const isCreativeProject = Astro.url.searchParams.get("subject") === "creative-project";
 ---
 
 <BaseLayout
-  title="Contact | HobFarm"
-  description="Contact HobFarm for Customer Help, business questions, memberships, creative tools, digital products, and media projects."
+  title={isCreativeProject ? "Start a Creative Project | HobFarm" : "Contact | HobFarm"}
+  description={isCreativeProject
+    ? "Tell HobFarm about a script, archive, photograph, character, reference pile, product, or world that needs visual development, motion, or web presentation."
+    : "Contact HobFarm for Customer Help, business questions, memberships, creative tools, digital products, and media projects."}
 >
   <section>
     <ContentPanel>
@@ -20,29 +24,48 @@ import ContentPanel from "@/components/ContentPanel.astro";
           variant="displayXL"
           class="mt-12 text-white text-balance font-display"
         >
-          Get in Touch
+          {isCreativeProject ? "Tell me what you're trying to make" : "Get in Touch"}
         </Text>
         <Text tag="p" variant="textBase" class="mt-2 text-base-400 text-balance max-w-xl">
-          Customer Help, billing, refunds, membership access, product questions, creative projects,
-          partnership ideas, and bug reports all start here.
+          {isCreativeProject
+            ? "Start with the material you already have and the result you need. A rough idea is enough when you can explain what the project should become."
+            : "Customer Help, billing, refunds, membership access, product questions, creative projects, partnership ideas, and bug reports all start here."}
         </Text>
 
-        <div class="mt-10 border-y border-base-800 py-6">
-          <Text tag="h2" variant="textSM" class="text-white font-mono uppercase tracking-widest">
-            Customer Help path
-          </Text>
-          <p class="mt-4 text-sm text-base-400 leading-relaxed">
-            Start at <a href="/helpcenter/" class="text-white underline decoration-base-600 underline-offset-4 hover:decoration-white">Customer Help</a>, then use the form below when you need a reply. For payment questions, include your provider, order ID, account email, and the product or membership involved.
-          </p>
-          <p class="mt-3 text-sm text-base-500 leading-relaxed">
-            Security reports should use the <a href="/contact/?subject=security" class="text-white underline decoration-base-600 underline-offset-4 hover:decoration-white">security report subject</a>.
-          </p>
-        </div>
+        {isCreativeProject ? (
+          <div class="mt-10 border-y border-accent-500/30 py-6">
+            <Text tag="h2" variant="textSM" class="text-white font-mono uppercase tracking-widest">
+              A useful first brief
+            </Text>
+            <p class="mt-4 text-sm text-base-400 leading-relaxed">
+              Include the starting material, the result you want, the formats that would be useful, your timing, and any references that explain the direction.
+            </p>
+            <p class="mt-3 text-sm text-base-500 leading-relaxed">
+              Do not send private source files through this form. Describe what exists and HobFarm can work out a safer handoff if the project continues.
+            </p>
+          </div>
+        ) : (
+          <div class="mt-10 border-y border-base-800 py-6">
+            <Text tag="h2" variant="textSM" class="text-white font-mono uppercase tracking-widest">
+              Customer Help path
+            </Text>
+            <p class="mt-4 text-sm text-base-400 leading-relaxed">
+              Start at <a href="/helpcenter/" class="text-white underline decoration-base-600 underline-offset-4 hover:decoration-white">Customer Help</a>, then use the form below when you need a reply. For payment questions, include your provider, order ID, account email, and the product or membership involved.
+            </p>
+            <p class="mt-3 text-sm text-base-500 leading-relaxed">
+              Security reports should use the <a href="/contact/?subject=security" class="text-white underline decoration-base-600 underline-offset-4 hover:decoration-white">security report subject</a>.
+            </p>
+          </div>
+        )}
       </div>
 
       <div class="lg:col-span-2">
         <div class="lg:mt-12">
-          <ContactForm client:load />
+          <ContactForm
+            client:load
+            initialSubject={isCreativeProject ? "creative-project" : undefined}
+            projectBrief={isCreativeProject}
+          />
         </div>
       </div>
     </Wrapper>

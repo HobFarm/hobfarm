@@ -13,7 +13,9 @@ test("Grimoire publishes the current authored-source boundary and preserves the 
   assert.match(landing, /The Grimoire authors the world\. Wonder Machine runs the session\./);
   assert.match(landing, /Meaning lives in authored files\./);
   assert.match(landing, /Immutable consumer pack/);
-  assert.match(landing, /The first Wonderland substrate is running locally\./);
+  assert.match(landing, /The first persistent Wonderland is running locally\./);
+  assert.match(landing, /preserve refusal as a valid path/);
+  assert.match(landing, /particular visit rather than rewriting Other Alice canon/);
   assert.match(landing, /Open StyleFusion/);
   assert.match(landing, /Under redevelopment/);
   assert.ok(existsSync(join(root, archivedLanding)));

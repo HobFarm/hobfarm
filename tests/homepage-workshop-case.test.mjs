@@ -1,47 +1,64 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
+const sha256 = (path) =>
+  createHash("sha256")
+    .update(readFileSync(new URL(`../${path}`, import.meta.url)))
+    .digest("hex");
 
-test("homepage replaces the long Sophia and Stella feature with a broad Workshop overview", () => {
+test("supplied mannequin and Wonderland graphics remain exact local source files", () => {
+  assert.equal(
+    sha256("public/media/workshop/character-mannequin/mannequin-to-character-workflow.png"),
+    "ecdd95c39da7c3ddc9fa0dbe8654b9235ea4ee87b1744fe246cbb175a917ba4b",
+  );
+  assert.equal(
+    sha256("public/media/other-alice/other-alice-wonderland-world-map.png"),
+    "595e1117dd8c1d054ab229b8c11201a0923a68e67c4ed909b2ef02b5be3023b6",
+  );
+
+  const registry = read("src/data/media-registry.ts");
+  assert.match(registry, /workshop\.character-mannequin\.workflow/);
+  assert.match(registry, /other-alice\.wonderland\.world-map/);
+});
+
+test("homepage connects the publication to four distinct capability proofs and the five-stage method", () => {
   const homepage = read("src/pages/index.astro");
   const component = read("src/components/home/HomeWorkshop.astro");
+  const bridge = read("src/components/home/HomePublicationBridge.astro");
+  const projects = read("src/data/workshop-projects.ts");
+  const combined = `${component}\n${bridge}\n${projects}`;
 
   assert.match(homepage, /<HomeWorkshop \/>/);
   assert.doesNotMatch(homepage, /<VisualSystemFeature \/>/);
 
   for (const phrase of [
-    "Start with an idea. Build the visual system that makes it work",
-    "Five projects. Five different production problems",
-    "One identity, from brief to motion",
-    "Research. Define. Build. Direct. Finish",
-    "Enter the Workshop",
+    "Different source material. A production system built for each job",
+    "One recognizable subject can show time",
+    "Lock the identity, then change wardrobe",
+    "Give every reference a job",
+    "Build the rules behind a place",
+    "Research. Define. Build. Direct. Finish and deliver",
+    "Explore the Workshop",
     "Start a project",
   ]) {
-    assert.match(component, new RegExp(phrase));
+    assert.match(combined, new RegExp(phrase));
   }
+  assert.match(bridge, /The publication is made in the Workshop/);
 });
 
-test("homepage Process Film is poster-first and pauses outside the viewport", () => {
-  const component = read("src/components/workshop/WorkshopProcessFilm.astro");
+test("the complete Process Film stays on Workshop instead of repeating on the homepage", () => {
+  const workshop = read("src/pages/workshop/index.astro");
   const homepage = read("src/components/home/HomeWorkshop.astro");
 
-  assert.match(homepage, /variant="vertical"/);
-  assert.match(homepage, /autoplay=\{true\}/);
-  assert.match(component, /data-src=\{film\.videoSrc\}/);
-  assert.match(component, /preload="none"/);
-  assert.match(component, /IntersectionObserver/);
-  assert.match(component, /video\.pause\(\)/);
-  assert.match(component, /prefers-reduced-motion: reduce/);
-  assert.match(component, /process-film__static/);
-  assert.match(component, /src=\{film\.posterSrc\}/);
-  assert.match(component, /data-manual-playback="true"/);
-  assert.match(component, /loadVideo\(manualPlayback\)/);
-  assert.doesNotMatch(component, /if \(!video \|\| reduceMotion\) return;/);
+  assert.doesNotMatch(homepage, /WorkshopProcessFilm|autoplay/);
+  assert.match(workshop, /WorkshopProcessFilm/);
+  assert.match(workshop, /id="process-film"/);
 });
 
-test("homepage Workshop paths use diverse media and real routes", () => {
+test("homepage Workshop capabilities use one shared data model and real routes", () => {
   const component = read("src/components/home/HomeWorkshop.astro");
   const projects = read("src/data/workshop-projects.ts");
   const combined = `${component}\n${projects}`;
@@ -52,18 +69,82 @@ test("homepage Workshop paths use diverse media and real routes", () => {
     "/workshop/stylefusion/",
     "/workshop/ami-legacy/",
     "/departments/hobfarm-presents/other-alice-adventures/world-guide/",
-    "/workshop/#process-film",
   ]) {
     assert.match(combined, new RegExp(href.replaceAll("/", "\\/")));
   }
 
   for (const token of [
     "workshop.ami-legacy.model-3917.vehicle",
-    "before-after.shit-to-shine.source",
-    "workshop.process.zima.mannequin",
+    "before-after.north-shore.before",
+    "workshop.character-mannequin.workflow",
     "stylefusion.banner.image",
-    "oaa-map-wonderland-living-atlas",
+    "other-alice.wonderland.world-map",
   ]) {
     assert.match(combined, new RegExp(token));
+  }
+
+  for (const field of [
+    "startingMaterial",
+    "productionProblem",
+    "stages",
+    "possibleOutputs",
+    "approvedAssets",
+    "visualVariant",
+  ]) {
+    assert.match(projects, new RegExp(field));
+  }
+});
+
+test("Other Alice and Future Carriage are full proof sections after the method", () => {
+  const homepage = read("src/pages/index.astro");
+  const alice = read("src/components/home/HomeOtherAlice.astro");
+  const carriage = read("src/components/home/HomeFutureCarriage.astro");
+
+  assert.ok(homepage.indexOf("<HomeWorkshop />") < homepage.indexOf("<HomeOtherAlice />"));
+  assert.ok(homepage.indexOf("<HomeOtherAlice />") < homepage.indexOf("<HomeFutureCarriage />"));
+  assert.match(alice, /Wonder Machine remembers what happened/);
+  assert.match(alice, /Public play is still in development|statusLine/);
+  assert.match(carriage, /Self-directed HobFarm concept campaign/);
+  assert.match(carriage, /Open the complete case study/);
+});
+
+test("creative-project inquiry is contextual and accepted by the contact backend", () => {
+  const page = read("src/pages/contact.astro");
+  const form = read("src/components/ContactForm.tsx");
+  const endpoint = read("functions/api/contact.ts");
+
+  assert.match(page, /Tell me what you're trying to make/);
+  assert.match(page, /starting material, the result you want, the formats that would be useful, your timing/);
+  assert.match(page, /initialSubject=\{isCreativeProject/);
+  assert.match(form, /Describe private material without pasting it into the form/);
+  assert.match(endpoint, /"creative-project"/);
+  assert.match(endpoint, /"custom-character"/);
+});
+
+test("homepage proof and inquiry paths expose stable analytics hooks", () => {
+  const files = [
+    read("src/components/home/MagazineFrontPage.astro"),
+    read("src/components/home/HomeWorkshop.astro"),
+    read("src/components/home/HomeOtherAlice.astro"),
+    read("src/components/home/HomeFutureCarriage.astro"),
+    read("src/components/home/HomeCreativeInquiry.astro"),
+    read("src/components/home/SiteSections.astro"),
+    read("src/components/ContactForm.tsx"),
+  ].join("\n");
+
+  for (const event of [
+    "homepage_hero_read",
+    "homepage_hero_workshop",
+    "homepage_hero_project",
+    "homepage_cover_story_open",
+    "homepage_capability_open",
+    "homepage_other_alice_open",
+    "homepage_grimoire_open",
+    "homepage_future_carriage_open",
+    "homepage_project_inquiry_begin",
+    "homepage_directory_open",
+    "creative_project_form_submit",
+  ]) {
+    assert.match(files, new RegExp(`data-event[^\\n]*${event}|${event}[^\\n]*data-event`));
   }
 });

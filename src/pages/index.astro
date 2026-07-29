@@ -1,23 +1,32 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import MagazineFrontPage from "@/components/home/MagazineFrontPage.astro";
+import HomePublicationBridge from "@/components/home/HomePublicationBridge.astro";
 import SiteSections from "@/components/home/SiteSections.astro";
 import HomeWorkshop from "@/components/home/HomeWorkshop.astro";
+import HomeOtherAlice from "@/components/home/HomeOtherAlice.astro";
+import HomeFutureCarriage from "@/components/home/HomeFutureCarriage.astro";
+import HomeCreativeInquiry from "@/components/home/HomeCreativeInquiry.astro";
 import LatestDrops from "@/components/home/LatestDrops.astro";
 import ExploreSupportFollow from "@/components/home/ExploreSupportFollow.astro";
 ---
 
 <BaseLayout
-  title="HobFarm | Original Series, Cartoons, and Visual Worlds"
-  description="HobFarm is an online magazine and visual studio for original series, cartoons, films, character worlds, visual art, production notes, courses, and finished media."
+  title="HobFarm | Independent Publisher and Creative Studio"
+  description="HobFarm publishes original articles, stories, visual worlds, games, and creative applications, then opens the Workshop records behind their research, art direction, continuity, motion, and web presentation."
   palette="magenta-cyan"
 >
-  {/* 1 Hero · 2 Cover story · 3 Latest articles · 4 Departments */}
+  {/* 1 Hero · 2 current work */}
   <MagazineFrontPage />
-  <SiteSections />
-  {/* Workshop overview sits beneath the shared six-section directory. */}
+  {/* 3 publication-to-Workshop bridge · 4 capability overview · 5 method */}
+  <HomePublicationBridge />
   <HomeWorkshop />
-  {/* Compact handoff to the marketplace directory. */}
+  {/* 6 Other Alice · 7 Future Carriage · 8 inquiry */}
+  <HomeOtherAlice />
+  <HomeFutureCarriage />
+  <HomeCreativeInquiry />
+  {/* 9 six ways into HobFarm · 10 Shop · 11 support and follow */}
+  <SiteSections />
   <LatestDrops />
   <ExploreSupportFollow />
 </BaseLayout>

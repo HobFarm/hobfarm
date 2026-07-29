@@ -1,0 +1,310 @@
+---
+import { otherAliceDevelopment } from "@/data/other-alice-development";
+
+const parkChoices = [
+  "Find the anomaly",
+  "Ignore the anomaly",
+  "Follow another encounter",
+  "Remain in the park",
+] as const;
+---
+
+<section id="wonder-machine" class="wonder-development scroll-mt-20" aria-labelledby="wonder-development-title">
+  <div class="wonder-development__heading">
+    <p class="wonder-development__eyebrow">Interactive development</p>
+    <h2 id="wonder-development-title">Wonderland can remember your visit.</h2>
+    <div class="wonder-development__opening">
+      <p>
+        Other Alice Adventures remains an illustrated serial and public world archive. Wonder Machine adds another way into it: a choice-driven visit where the player enters an authored world without being handed one mandatory road through it.
+      </p>
+      <p>
+        The first opening begins in a large park. The player knows an anomaly exists somewhere inside it, but finding the anomaly is optional. They may investigate immediately, ignore it, establish routines, form relationships, or remain in the park while its weather, people, objects, and disturbances continue to change.
+      </p>
+      <p>Following the anomaly can open a route into Wonderland. Refusing it creates a different history.</p>
+    </div>
+  </div>
+
+  <div class="park-model" aria-label="The player enters the park and can choose several valid directions">
+    <div class="park-model__start">
+      <span>Starting place</span>
+      <strong>The player enters the park.</strong>
+      <p>The anomaly is known. It is not mandatory.</p>
+    </div>
+    <ul>
+      {parkChoices.map((choice) => <li>{choice}</li>)}
+    </ul>
+    <p class="park-model__result">The world continues from that choice.</p>
+  </div>
+
+  <div class="wonder-development__chapters">
+    <article>
+      <p class="wonder-development__eyebrow">Familiar forms, different structure</p>
+      <h3>The story does not sit inside one fixed quest chain.</h3>
+      <p>
+        Wonder Machine draws from text adventures, branching books, visual novels, comic serials, role-playing games, and open-world exploration.
+      </p>
+      <p>
+        Characters and places become important because of what the player repeatedly notices, avoids, repairs, damages, promises, protects, or returns to. A chance encounter with a hut might become the center of one campaign and remain an abandoned building in another.
+      </p>
+    </article>
+
+    <article>
+      <p class="wonder-development__eyebrow">An authored world, not an unlimited prompt</p>
+      <h3>The system resolves what can happen. It does not invent new physics.</h3>
+      <p>
+        Characters, locations, objects, transformations, routes, relationships, and consequences are written into the world before they become available during play. The system keeps the clock, records the result, and preserves the campaign state.
+      </p>
+      <p>
+        Images, dialogue, and narration express what happened. They do not quietly invent new destinations, powers, or history.
+      </p>
+    </article>
+
+    <article>
+      <p class="wonder-development__eyebrow">Literature rebuilt from the inside</p>
+      <h3>Familiar characters return through what their original stories do.</h3>
+      <p>
+        A character is not added because the costume is recognizable. Their original pressure, method, contradiction, relationships, and consequences are translated into Wonderland's politics, ecology, labor, routes, technology, and social systems. The character can then continue beyond the plot that first defined them.
+      </p>
+    </article>
+
+    <article class="wonder-development__status">
+      <p class="wonder-development__eyebrow">Current state</p>
+      <h3>{otherAliceDevelopment.localPrototypeStatus}.</h3>
+      <ul>
+        {otherAliceDevelopment.currentCapabilities.map((capability) => <li>{capability}</li>)}
+      </ul>
+      <p>
+        There is no public build yet. The working system now exists well enough to guide what the public experience should become.
+      </p>
+    </article>
+  </div>
+
+  <nav class="wonder-development__actions" aria-label="Continue from Other Alice interactive development">
+    <a
+      href={otherAliceDevelopment.routes.worldGuide}
+      data-event="other_alice_world_guide_open"
+      data-source-placement="wonder-machine-development"
+    >
+      Explore the world guide
+    </a>
+    <a
+      href={otherAliceDevelopment.routes.grimoire}
+      data-event="other_alice_grimoire_open"
+      data-source-placement="wonder-machine-development"
+    >
+      Read how the Grimoire authors the world
+    </a>
+  </nav>
+</section>
+
+<style>
+  .wonder-development {
+    max-width: 90rem;
+    margin: auto;
+    padding: clamp(4rem, 9vw, 9rem) clamp(1rem, 4vw, 4rem);
+    border-top: 1px solid rgb(255 255 255 / 0.1);
+    background:
+      radial-gradient(circle at 10% 18%, rgb(168 140 255 / 0.13), transparent 30rem),
+      transparent;
+  }
+
+  .wonder-development__heading {
+    display: grid;
+    gap: 1rem 3rem;
+  }
+
+  .wonder-development__eyebrow,
+  .park-model__start > span {
+    margin: 0;
+    color: #a88cff;
+    font: 600 0.68rem/1 ui-monospace, SFMono-Regular, monospace;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .wonder-development__heading h2 {
+    max-width: 20ch;
+    margin: 0;
+    color: #eee7d6;
+    font: 400 clamp(2.6rem, 6vw, 5.8rem)/0.95 Georgia, serif;
+    letter-spacing: -0.045em;
+  }
+
+  .wonder-development__opening {
+    max-width: 52rem;
+    color: #acb1bd;
+    line-height: 1.7;
+  }
+
+  .wonder-development__opening p {
+    margin: 0;
+  }
+
+  .wonder-development__opening p + p {
+    margin-top: 1rem;
+  }
+
+  .park-model {
+    display: grid;
+    gap: 0.6rem;
+    margin-top: 2.5rem;
+    padding: 0.6rem;
+    border: 1px solid rgb(168 140 255 / 0.45);
+    background: rgb(14 18 28 / 0.72);
+  }
+
+  .park-model__start,
+  .park-model__result {
+    padding: 1rem;
+    border: 1px solid rgb(255 255 255 / 0.1);
+    background:
+      linear-gradient(135deg, rgb(168 140 255 / 0.12), transparent),
+      #0b0e16;
+  }
+
+  .park-model__start strong {
+    display: block;
+    margin-top: 1rem;
+    color: #f1ebdd;
+    font: 400 1.45rem/1.1 Georgia, serif;
+  }
+
+  .park-model__start p {
+    margin: 0.6rem 0 0;
+    color: #aeb3bf;
+    font-size: 0.8rem;
+  }
+
+  .park-model ul {
+    display: grid;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .park-model li {
+    min-height: 4rem;
+    padding: 1rem;
+    border: 1px solid rgb(255 255 255 / 0.11);
+    border-left: 2px solid #a88cff;
+    background: #0e121c;
+    color: #dcd7e2;
+    font: 600 0.68rem/1.45 ui-monospace, SFMono-Regular, monospace;
+    text-transform: uppercase;
+  }
+
+  .park-model__result {
+    margin: 0;
+    color: #eee7d6;
+    font: 400 1rem/1.5 Georgia, serif;
+  }
+
+  .wonder-development__chapters {
+    display: grid;
+    gap: 0.8rem;
+    margin-top: 2.5rem;
+  }
+
+  .wonder-development__chapters article {
+    padding: clamp(1.2rem, 3vw, 2rem);
+    border: 1px solid rgb(255 255 255 / 0.12);
+    background: rgb(14 18 28 / 0.68);
+  }
+
+  .wonder-development__chapters h3 {
+    max-width: 24ch;
+    margin: 0.75rem 0 0;
+    color: #f2ecdf;
+    font: 400 clamp(1.8rem, 3.4vw, 3rem)/1 Georgia, serif;
+  }
+
+  .wonder-development__chapters article > p:not(.wonder-development__eyebrow) {
+    margin: 1rem 0 0;
+    color: #acb1bd;
+    line-height: 1.7;
+  }
+
+  .wonder-development__status {
+    border-color: rgb(47 224 137 / 0.36) !important;
+    background: rgb(47 224 137 / 0.045) !important;
+  }
+
+  .wonder-development__status .wonder-development__eyebrow {
+    color: #2fe089;
+  }
+
+  .wonder-development__status ul {
+    display: grid;
+    gap: 0.45rem;
+    margin: 1.2rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .wonder-development__status li {
+    padding-left: 1rem;
+    border-left: 2px solid #2fe089;
+    color: #c4c9c5;
+    font-size: 0.8rem;
+    line-height: 1.55;
+  }
+
+  .wonder-development__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+  }
+
+  .wonder-development__actions a {
+    min-height: 2.75rem;
+    padding: 0.8rem 1rem;
+    border: 1px solid #5f6674;
+    border-radius: 999px;
+    color: #fff;
+    font: 600 0.68rem/1 ui-monospace, SFMono-Regular, monospace;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .wonder-development__actions a:first-child {
+    border-color: #eee7d6;
+    background: #eee7d6;
+    color: #0a0b10;
+  }
+
+  .wonder-development__actions a:hover,
+  .wonder-development__actions a:focus-visible {
+    outline: 2px solid #9f7aea;
+    outline-offset: 3px;
+  }
+
+  @media (min-width: 48rem) {
+    .park-model {
+      grid-template-columns: minmax(14rem, 0.6fr) minmax(0, 1.4fr);
+    }
+
+    .park-model ul {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .park-model__result {
+      grid-column: 1 / -1;
+    }
+
+    .wonder-development__chapters {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .wonder-development__heading {
+      grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+    }
+
+    .wonder-development__heading .wonder-development__eyebrow {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

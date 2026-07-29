@@ -17,16 +17,35 @@ test("Start Here presents the project without landing-page chronology",()=>{
  assert.match(page,/Wonderland is already alive\. Alice is only one person inside it\./);
  assert.match(page,/Why Other Alice\?/);
  assert.match(page,/How an Adventure begins/);
+ assert.match(page,/WonderMachineDevelopment/);
  assert.match(page,/Each Adventure begins with something small\. Wonderland supplies the rest\./);
- assert.match(page,/A web-native surreal fantasy serial and illustrated world archive\./);
+ assert.match(page,/A web-native surreal fantasy serial, illustrated world archive, and developing interactive story system\./);
  assert.match(page,/The familiar story is the entrance\. The larger world is Other Alice\./);
  assert.match(page,/Wonderland is inhabited, maintained, traded, taxed, and argued over\./);
  assert.match(page,/The world does not wait for Alice\./);
  assert.doesNotMatch(page,/otherAliceChronology|chronologyRail|VisitorImprint|Age \d+|Wonderland time|Outside route/);
  assert.match(series,/Other Alice Adventures \| A Living Illustrated Wonderland/);
- assert.match(series,/A web-native surreal fantasy serial and illustrated world archive about the Alice who chose to stay/);
+ assert.match(series,/A web-native surreal fantasy serial, illustrated world archive, and developing interactive story system built around choice, consequence, persistent history, and literary characters reimagined through Wonderland/);
  assert.match(boundary,/Exterior record incomplete/);
  assert.doesNotMatch(page,/Read Adventure|Adventure No\.|current fragment/i);
+});
+
+test("Other Alice presents Wonder Machine as a private authored-world prototype",()=>{
+ const component=read("src/components/presents/other-alice/WonderMachineDevelopment.astro");
+ const status=read("src/data/other-alice-development.ts");
+ const combined=`${component}\n${status}`;
+ for(const phrase of [
+  "Wonderland can remember your visit",
+  "finding the anomaly is optional",
+  "Refusing it creates a different history",
+  "An authored world, not an unlimited prompt",
+  "There is no public build yet",
+  "Explore the world guide",
+  "Read how the Grimoire authors the world",
+ ]) assert.match(combined,new RegExp(phrase));
+ for(const forbidden of ["content hash","repository path","D1","R2","fixture.clockwork","Park Anomaly production"]) {
+  assert.doesNotMatch(component,new RegExp(forbidden,"i"));
+ }
 });
 
 test("withdrawn story routes redirect and story files are outside public content",()=>{

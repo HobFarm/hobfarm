@@ -10,7 +10,8 @@ test("Character / Mannequin has a dedicated process-led route", () => {
   const combined = `${route}\n${page}`;
 
   for (const phrase of [
-    "One mannequin. Three looks. Three worlds.",
+    "Build the mannequin before the character.",
+    "The neutral base is a production decision.",
     "The Character Assembly Line",
     "The face stays. The job changes.",
     "The picture is the output. The design record is the work.",
@@ -57,6 +58,7 @@ test("Character / Mannequin manifest covers the verified production media", () =
     "character-scene-outfit2.png",
     "character-scene-outfit3.png",
     "character2-scene-outfit3.mp4",
+    "mannequin-to-character-workflow.png",
   ]) {
     assert.match(data, new RegExp(file.replaceAll(".", "\\.")));
   }
@@ -80,6 +82,24 @@ test("Character stages are progressive, keyboard-addressable, and poster-first",
   assert.match(page, /event\.key === "ArrowRight"/);
   assert.match(page, /prefers-reduced-motion/);
   assert.match(page, /other !== video && !other\.paused/);
+});
+
+test("Character workflow film is poster-first and respects reduced motion", () => {
+  const page = read("src/components/workshop/CharacterMannequinPage.astro");
+  const registry = read("src/data/media-registry.ts");
+
+  assert.match(page, /Lock the base\. Change the layers\. Prove the output\./);
+  assert.match(page, /<video[\s\S]*controls[\s\S]*muted[\s\S]*playsinline[\s\S]*preload="none"[\s\S]*poster=/);
+  assert.doesNotMatch(page, /<video[\s\S]*autoplay/);
+  assert.match(page, /prefers-reduced-motion:[\s\S]*\.workflow-film__media video \{ display: none; \}/);
+  assert.match(page, /\.workflow-film__still \{ display: block; \}/);
+
+  for (const file of [
+    "mannequin-workflow-film.mp4",
+    "mannequin-workflow-film-poster.png",
+  ]) {
+    assert.match(registry, new RegExp(file.replaceAll(".", "\\.")));
+  }
 });
 
 test("Character commerce keeps unverified offers non-buyable", () => {

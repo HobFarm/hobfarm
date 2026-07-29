@@ -1,0 +1,304 @@
+---
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import { getWorkshopProject } from "@/data/workshop-projects";
+
+const futureCarriage = getWorkshopProject("future-carriage")!;
+const [sourcePlate, productPlate, productFamily, presenterFrame] = futureCarriage.approvedAssets;
+const constraints = [
+  "recognizable carriage silhouette",
+  "passenger compartment remains the visual center",
+  "wheel and suspension logic stays legible",
+  "electric, robotic, or autonomous propulsion is clearly conceptual",
+] as const;
+const deliverables = [
+  "hero image",
+  "source comparison",
+  "clean product plate",
+  "campaign poster",
+  "vertical social cut",
+  "landscape film",
+  "presenter segment",
+  "landing-page case study",
+  "production and continuity record",
+] as const;
+---
+
+<section class="future-carriage border-b border-base-800/70" aria-labelledby="future-carriage-heading">
+  <Wrapper variant="standard" class="py-16 lg:py-24">
+    <header class="future-carriage__heading">
+      <div>
+        <p>Flagship concept-to-campaign case</p>
+        <h2 id="future-carriage-heading">A historical drawing becomes a modern production system.</h2>
+      </div>
+      <div>
+        <p>
+          Future Carriage starts with 19th-century carriage drawings, preserves the useful operating and visual logic, develops electric, robotic, and autonomous product concepts, then extends the result into still, motion, social, and web formats.
+        </p>
+        <strong>Self-directed HobFarm concept campaign. The vehicle and transport service do not exist.</strong>
+      </div>
+    </header>
+
+    <ol class="future-carriage__sequence" aria-label="Future Carriage source-to-campaign sequence">
+      <li class="future-carriage__media">
+        <span>01 / Historical source plate</span>
+        <img
+          src={sourcePlate.src}
+          alt={sourcePlate.alt}
+          width={sourcePlate.width}
+          height={sourcePlate.height}
+          loading="lazy"
+          decoding="async"
+        />
+      </li>
+      <li class="future-carriage__constraints">
+        <span>02 / Extracted design constraints</span>
+        <ul>
+          {constraints.map((constraint) => <li>{constraint}</li>)}
+        </ul>
+      </li>
+      <li class="future-carriage__media">
+        <span>03 / Future product family</span>
+        <div class="future-carriage__product-pair">
+          <img
+            src={productPlate.src}
+            alt={productPlate.alt}
+            width={productPlate.width}
+            height={productPlate.height}
+            loading="lazy"
+            decoding="async"
+          />
+          <img
+            src={productFamily.src}
+            alt={productFamily.alt}
+            width={productFamily.width}
+            height={productFamily.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </li>
+      <li class="future-carriage__media">
+        <span>04 / Presenter direction</span>
+        <img
+          src={presenterFrame.src}
+          alt={presenterFrame.alt}
+          width={presenterFrame.width}
+          height={presenterFrame.height}
+          loading="lazy"
+          decoding="async"
+        />
+        <p>Ami appears in the campaign packet as a presenter direction. No dedicated Future Carriage commercial has been completed.</p>
+      </li>
+      <li class="future-carriage__delivery">
+        <span>05 / Campaign and delivery formats</span>
+        <ul>
+          {deliverables.map((deliverable) => <li>{deliverable}</li>)}
+        </ul>
+      </li>
+    </ol>
+
+    <div class="future-carriage__actions">
+      <Button
+        isLink
+        size="md"
+        variant="green"
+        href={futureCarriage.destination}
+        data-event="homepage_future_carriage_open"
+      >
+        Open the complete case study
+      </Button>
+      <Button
+        isLink
+        size="md"
+        variant="muted"
+        href="/contact/?subject=creative-project"
+        data-event="homepage_project_inquiry_begin"
+        data-source-placement="future-carriage"
+      >
+        Start a project
+      </Button>
+    </div>
+  </Wrapper>
+</section>
+
+<style>
+  .future-carriage {
+    background:
+      radial-gradient(circle at 85% 18%, rgb(197 147 75 / 0.16), transparent 32rem),
+      #090807;
+  }
+
+  .future-carriage__heading {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .future-carriage__heading > div:first-child > p {
+    margin: 0;
+    color: #d3a75f;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .future-carriage__heading h2 {
+    max-width: 68rem;
+    margin: 0.8rem 0 0;
+    color: #f4f0e8;
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 300;
+    letter-spacing: -0.055em;
+    line-height: 0.93;
+  }
+
+  .future-carriage__heading > div:last-child > p {
+    max-width: 46rem;
+    margin: 0;
+    color: #b8b0a5;
+    line-height: 1.75;
+  }
+
+  .future-carriage__heading > div:last-child > strong {
+    display: block;
+    max-width: 46rem;
+    margin-top: 1rem;
+    color: #e3c18f;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  .future-carriage__sequence {
+    display: grid;
+    gap: 0.6rem;
+    margin: 2.5rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .future-carriage__sequence > li {
+    overflow: hidden;
+    border: 1px solid #473b30;
+    background: rgb(14 12 10 / 0.84);
+  }
+
+  .future-carriage__sequence > li > span {
+    display: block;
+    padding: 0.75rem;
+    border-bottom: 1px solid #473b30;
+    color: #d3a75f;
+    font-family: var(--font-mono);
+    font-size: 0.56rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .future-carriage__media img {
+    display: block;
+    width: 100%;
+    min-height: 15rem;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+
+  .future-carriage__media:first-child img {
+    object-fit: contain;
+    background: #eee8db;
+  }
+
+  .future-carriage__product-pair {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .future-carriage__product-pair img {
+    min-width: 0;
+  }
+
+  .future-carriage__media > p {
+    margin: 0;
+    padding: 0.85rem;
+    color: #a99f92;
+    font-size: 0.7rem;
+    line-height: 1.55;
+  }
+
+  .future-carriage__constraints,
+  .future-carriage__delivery {
+    padding-bottom: 1rem;
+  }
+
+  .future-carriage__constraints ul,
+  .future-carriage__delivery ul {
+    display: grid;
+    gap: 0.45rem;
+    margin: 1rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .future-carriage__constraints li,
+  .future-carriage__delivery li {
+    padding: 0.6rem;
+    border-left: 2px solid #d3a75f;
+    background: rgb(211 167 95 / 0.06);
+    color: #d8d0c5;
+    font-size: 0.72rem;
+    line-height: 1.45;
+  }
+
+  .future-carriage__delivery ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .future-carriage__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: 1.5rem;
+  }
+
+  @media (min-width: 64rem) {
+    .future-carriage__heading {
+      grid-template-columns: minmax(0, 1.15fr) minmax(24rem, 0.62fr);
+      align-items: end;
+    }
+
+    .future-carriage__sequence {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+
+    .future-carriage__sequence > li:nth-child(1) {
+      grid-column: span 4;
+    }
+
+    .future-carriage__sequence > li:nth-child(2) {
+      grid-column: span 3;
+    }
+
+    .future-carriage__sequence > li:nth-child(3) {
+      grid-column: span 5;
+    }
+
+    .future-carriage__sequence > li:nth-child(4) {
+      grid-column: span 7;
+    }
+
+    .future-carriage__sequence > li:nth-child(5) {
+      grid-column: span 5;
+    }
+  }
+
+  @media (max-width: 32rem) {
+    .future-carriage__product-pair,
+    .future-carriage__delivery ul {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

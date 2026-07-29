@@ -3,6 +3,8 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import ArticleCard from "@/components/articles/ArticleCard.astro";
 import KofiTipCard from "@/components/support/KofiTipCard.astro";
+import { getPublishedHomepageFeatures } from "@/data/homepage-features";
+import { getMedia } from "@/data/media-registry";
 import {
   articlePath,
   getArticleDate,
@@ -13,140 +15,683 @@ import {
 } from "@/lib/articles";
 
 const articles = await getPublishedArticles();
-// Cover is always the newest published article; the recent strip is the next
-// few before it. Publishing a new article automatically promotes it to cover
-// and pushes the others down, with no manual flagging.
 const coverStory = articles[0];
-const latestArticles = articles.slice(1, 7);
+const recentArticles = coverStory ? articles.slice(1, 4) : articles.slice(0, 3);
+const selectedFeatures = getPublishedHomepageFeatures().slice(0, 3);
 
 const coverDate = coverStory ? getArticleDate(coverStory) : null;
 const coverHero = coverStory ? getArticleHero(coverStory.data) : undefined;
+const coverHref = coverStory ? articlePath(coverStory) : "/articles/";
+const editorialImage = coverHero ?? getMedia("home.hero.poster").src;
+
+const sampler = [
+  {
+    id: "editorial",
+    label: "Read / Current editorial",
+    title: "Articles begin with a real question.",
+    description: "Research, reporting, criticism, and visual evidence become an argument someone can actually read and inspect.",
+    href: coverHref,
+    src: editorialImage,
+    alt: coverStory?.data.heroAlt || coverStory?.data.title || "Current HobFarm editorial feature",
+  },
+  {
+    id: "character",
+    label: "Define / Character system",
+    title: "The mannequin comes before the personality.",
+    description: "Proportion, identity slots, wardrobe categories, camera coverage, and motion are tested before a profile is applied.",
+    href: "/workshop/character-mannequin/",
+    ...getMedia("workshop.character-mannequin.workflow"),
+  },
+  {
+    id: "carriage",
+    label: "Build / Concept campaign",
+    title: "A historical source can become a future product family.",
+    description: "Research and design constraints carry a carriage into product plates, campaign images, presenters, and motion.",
+    href: "/workshop/ami-legacy/",
+    ...getMedia("workshop.ami-legacy.model-3917.vehicle"),
+  },
+  {
+    id: "alice",
+    label: "Direct / Original world",
+    title: "Other Alice holds the whole practice together.",
+    description: "Stories, characters, maps, canon, interfaces, and a persistent game system all grow from the same authored world.",
+    href: "/departments/hobfarm-presents/other-alice-adventures/",
+    ...getMedia("other-alice.wonderland.world-map"),
+  },
+  {
+    id: "stylefusion",
+    label: "Finish / Production application",
+    title: "The method can become software.",
+    description: "StyleFusion gives each reference a job and turns a pile of visual evidence into a reusable production record.",
+    href: "/workshop/stylefusion/",
+    ...getMedia("stylefusion.banner.image"),
+  },
+] as const;
 ---
 
-<section id="magazine-front-page" class="bg-noise border-b border-base-800/70">
-  <Wrapper variant="standard" class="py-10 lg:py-14">
-    <div class="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(280px,0.58fr)] lg:items-center">
+<section id="magazine-front-page" class="publisher-front bg-noise border-b border-base-800/70">
+  <Wrapper variant="standard" class="py-10 lg:py-16">
+    <div class="publisher-front__hero">
       <div>
-        <p class="font-mono text-xs uppercase tracking-widest text-accent-magenta-bright">
-          INDEPENDENT PUBLISHER + CREATIVE STUDIO
+        <p class="publisher-front__eyebrow">Independent publisher + creative studio</p>
+        <h1>Articles, cartoons, visual worlds, and the workshop behind them.</h1>
+        <p class="publisher-front__deck">
+          HobFarm is where I write articles, make cartoons, build characters and worlds, and turn the same research-and-direction method into applications, motion, campaigns, and web experiences. The finished work is public. The Workshop keeps the decisions visible.
         </p>
-        <h1 class="mt-4 max-w-4xl font-display text-4xl font-light leading-tight text-white text-balance lg:text-6xl">
-          Original series, cartoons, visual worlds, and the workshop behind them.
-        </h1>
-        <p class="mt-5 max-w-3xl text-base leading-relaxed text-base-300">
-          Watch the stories, read the cartoons, explore the art, and see how it was made. HobFarm brings the finished work and the production process together in one place.
-        </p>
-        <div class="mt-6 flex flex-wrap gap-2">
-          <Button isLink size="sm" variant="green" href="/articles/">Read the latest</Button>
-          <Button isLink size="sm" variant="muted" href="/visual-systems/">Enter the studio</Button>
-          <Button isLink size="sm" variant="muted" href="/gallery/">Browse galleries</Button>
+        <div class="publisher-front__actions">
+          <Button isLink size="sm" variant="green" href={coverHref} data-event="homepage_hero_read">
+            Read the latest
+          </Button>
+          <Button isLink size="sm" variant="muted" href="/workshop/" data-event="homepage_hero_workshop">
+            Explore the Workshop
+          </Button>
+          <Button
+            isLink
+            size="sm"
+            variant="muted"
+            href="/contact/?subject=creative-project"
+            data-event="homepage_hero_project"
+          >
+            Start a project
+          </Button>
         </div>
       </div>
 
-      <div class="mx-auto mt-2 w-[min(72vw,320px)] lg:mt-0 lg:w-[clamp(280px,30vw,420px)]">
-        <figure
-          class="grid aspect-square w-full place-items-center overflow-hidden rounded-lg border border-base-800 bg-base-950/80 shadow-[inset_0_0_60px_rgba(180,60,255,0.08),0_24px_80px_rgba(0,0,0,0.35)]"
-          aria-label="HobFarm animated drip logo"
-        >
-          <video
-            class="size-full object-contain motion-reduce:hidden"
-            src="https://cdn.hob.farm/brand/hobfarm-rabbit-hole-logo.mp4"
-            poster="https://cdn.hob.farm/brand/hobfarm-drip-logo.png"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="metadata"
-            aria-hidden="true"
+      <div class="publisher-front__support">
+        <figure class="publisher-front__logo">
+          <img
+            src="https://cdn.hob.farm/brand/hobfarm-logo-white.svg"
+            alt="HobFarm"
+            width="1912"
+            height="448"
+            loading="eager"
+            decoding="async"
           />
-          <picture class="hidden size-full motion-reduce:block">
-            <source srcset="https://cdn.hob.farm/brand/hobfarm-drip-logo.png" type="image/png" />
-            <img
-              src="https://cdn.hob.farm/brand/hobfarm-logo.jpg"
-              alt="HobFarm drip logo"
-              class="size-full object-contain"
-              loading="eager"
-              decoding="async"
-            />
-          </picture>
-          <noscript>
-            <img
-              src="https://cdn.hob.farm/brand/hobfarm-drip-logo.png"
-              alt="HobFarm drip logo"
-              class="size-full object-contain"
-            />
-          </noscript>
         </figure>
-        <KofiTipCard variant="hero" placement="homepage-hero" class="mt-3" />
+        <KofiTipCard variant="hero" placement="homepage-hero" />
       </div>
     </div>
 
+    <section class="range-overview" aria-labelledby="range-overview-heading">
+      <header>
+        <p class="publisher-front__eyebrow">What you are looking at</p>
+        <h2 id="range-overview-heading">Five outputs. One habit of keeping the work inspectable.</h2>
+        <p>These are not unrelated gallery images. Each card shows a different job the same underlying practice can do.</p>
+      </header>
+      <div class="range-sampler" aria-label="HobFarm editorial, character, campaign, world, and application work">
+        {sampler.map((item, index) => (
+          <a
+            href={item.href}
+            class:list={["range-sampler__item", `range-sampler__item--${item.id}`]}
+            data-event="homepage_hero_sample_open"
+            data-sample-id={item.id}
+          >
+            <div class="range-sampler__media">
+              <img
+                src={item.src}
+                alt={item.alt}
+                width={"width" in item ? item.width : undefined}
+                height={"height" in item ? item.height : undefined}
+                loading={index === 0 ? "eager" : "lazy"}
+                decoding="async"
+              />
+            </div>
+            <div class="range-sampler__copy">
+              <span>{item.label}</span>
+              <strong>{item.title}</strong>
+              <p>{item.description}</p>
+              <em>Open this work <span aria-hidden="true">&rarr;</span></em>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  </Wrapper>
+</section>
+
+<section id="now-at-hobfarm" class="now-at-hobfarm border-b border-base-800/70" aria-labelledby="now-at-hobfarm-heading">
+  <Wrapper variant="standard" class="py-14 lg:py-20">
+    <header class="now-at-hobfarm__heading">
+      <div>
+        <p>Current work</p>
+        <h2 id="now-at-hobfarm-heading">Now at HobFarm</h2>
+      </div>
+      <p>The cover story leads. Recent articles keep the Editorial clock moving. Selected work opens the rest of the publication.</p>
+    </header>
+
     {coverStory && (
-      <section class="mt-12" aria-labelledby="homepage-cover-heading">
-        <div class="mb-5 flex flex-wrap items-end justify-between gap-3">
+      <section class="cover-story" aria-labelledby="homepage-cover-heading">
+        <div class="cover-story__meta">
           <div>
-            <p class="font-mono text-[10px] uppercase tracking-widest text-accent-cyan">
-              Cover story
-            </p>
-            <h2 id="homepage-cover-heading" class="mt-2 text-2xl font-display text-white lg:text-3xl">
-              {coverStory.data.title}
-            </h2>
+            <p>Cover story</p>
+            <h3 id="homepage-cover-heading">{coverStory.data.title}</h3>
           </div>
           {coverDate && (
-            <time class="font-mono text-[10px] uppercase tracking-wider text-base-500" datetime={coverDate.toISOString()}>
+            <time datetime={coverDate.toISOString()}>
               {coverDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
             </time>
           )}
         </div>
-        <a
-          href={articlePath(coverStory)}
-          class="group grid overflow-hidden rounded-lg border border-base-800 bg-base-950/70 transition-colors hover:border-accent-cyan/50 lg:grid-cols-[1.35fr_0.65fr]"
-        >
+        <a href={coverHref} class="cover-story__card" data-event="homepage_cover_story_open">
           {coverHero ? (
             <img
               src={coverHero}
               alt={coverStory.data.heroAlt || coverStory.data.title}
-              class="aspect-[16/9] h-full w-full object-cover"
               loading="eager"
               decoding="async"
             />
           ) : (
-            <div class="aspect-[16/9] bg-base-900" />
+            <div class="cover-story__fallback" aria-hidden="true"></div>
           )}
-          <div class="flex flex-col justify-between p-5 sm:p-6">
-            <div>
-              <p class="font-mono text-[10px] uppercase tracking-widest text-accent-cyan">
-                {getArticleDepartmentLabel(coverStory.data)}
-              </p>
-              <p class="mt-4 text-base leading-relaxed text-base-300">
-                {getArticleDek(coverStory.data)}
-              </p>
-            </div>
-            <span class="mt-6 inline-flex text-sm text-base-100 group-hover:text-accent-cyan">
-              Read the feature
-            </span>
+          <div>
+            <p>{getArticleDepartmentLabel(coverStory.data)}</p>
+            <strong>{getArticleDek(coverStory.data)}</strong>
+            <span>Read the feature <span aria-hidden="true">&rarr;</span></span>
           </div>
         </a>
+      </section>
+    )}
+
+    {recentArticles.length > 0 && (
+      <section class="recent-editorial" aria-labelledby="recent-editorial-heading">
+        <div class="current-work-subhead">
+          <h3 id="recent-editorial-heading">Three recent articles</h3>
+          <a href="/articles/">All articles</a>
+        </div>
+        <div class="recent-editorial__grid">
+          {recentArticles.map((article) => <ArticleCard post={article} />)}
+        </div>
+      </section>
+    )}
+
+    {selectedFeatures.length > 0 && (
+      <section class="selected-formats" aria-labelledby="selected-formats-heading">
+        <div class="current-work-subhead">
+          <h3 id="selected-formats-heading">Across HobFarm</h3>
+          <span>Manually selected</span>
+        </div>
+        <div class="selected-formats__grid">
+          {selectedFeatures.map((feature) => (
+            <a
+              href={feature.href}
+              class="selected-format-card"
+              data-event="homepage_selected_work_open"
+              data-feature-id={feature.id}
+            >
+              <img
+                src={feature.media.src}
+                alt={feature.media.alt}
+                width={feature.media.width}
+                height={feature.media.height}
+                loading="lazy"
+                decoding="async"
+              />
+              <div>
+                <p>{feature.format}</p>
+                <h4>{feature.title}</h4>
+                <span>{feature.description}</span>
+                <strong>Open this work <span aria-hidden="true">&rarr;</span></strong>
+              </div>
+            </a>
+          ))}
+        </div>
       </section>
     )}
   </Wrapper>
 </section>
 
-{latestArticles.length > 0 && (
-  <section class="border-b border-base-800/70">
-    <Wrapper variant="standard" class="py-14 lg:py-16">
-      <div class="mb-6 flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <p class="font-mono text-[10px] uppercase tracking-widest text-accent-magenta-bright">Latest</p>
-          <h2 class="mt-2 text-2xl font-display text-white">Latest from HobFarm</h2>
-        </div>
-        <a href="/articles/" class="text-sm text-base-400 transition-colors hover:text-white">
-          All articles
-        </a>
-      </div>
-      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {latestArticles.map((article) => <ArticleCard post={article} />)}
-      </div>
-    </Wrapper>
-  </section>
-)}
+<style>
+  .publisher-front {
+    background:
+      radial-gradient(circle at 10% 20%, rgb(224 33 138 / 0.09), transparent 28rem),
+      radial-gradient(circle at 88% 40%, rgb(25 227 227 / 0.07), transparent 30rem),
+      #07060b;
+  }
+
+  .publisher-front__hero,
+  .now-at-hobfarm__heading {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .publisher-front__support {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .publisher-front__logo {
+    display: grid;
+    min-height: 15rem;
+    margin: 0;
+    place-items: center;
+    overflow: hidden;
+    border: 1px solid #2c2440;
+    border-radius: 0.75rem;
+    background:
+      radial-gradient(circle at 50% 54%, rgb(25 227 227 / 0.18), transparent 45%),
+      radial-gradient(circle at 58% 42%, rgb(242 77 166 / 0.14), transparent 58%),
+      #030307;
+    box-shadow: inset 0 0 80px rgb(0 0 0 / 0.75), 0 28px 90px rgb(0 0 0 / 0.32);
+  }
+
+  .publisher-front__logo img {
+    width: min(78%, 32rem);
+    height: auto;
+    filter: drop-shadow(0 0 18px rgb(25 227 227 / 0.38));
+  }
+
+  .publisher-front__eyebrow,
+  .now-at-hobfarm__heading > div > p,
+  .cover-story__meta p {
+    margin: 0;
+    color: #f24da6;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    max-width: 17ch;
+    margin: 1rem 0 0;
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: clamp(3.2rem, 7.5vw, 7rem);
+    font-weight: 300;
+    letter-spacing: -0.06em;
+    line-height: 0.92;
+    text-wrap: balance;
+  }
+
+  .publisher-front__deck {
+    max-width: 52rem;
+    margin: 1.35rem 0 0;
+    color: #b8b2bf;
+    line-height: 1.75;
+  }
+
+  .publisher-front__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin-top: 1.5rem;
+  }
+
+  .range-overview {
+    margin-top: clamp(3rem, 8vw, 6rem);
+    padding-top: clamp(2rem, 5vw, 3.5rem);
+    border-top: 1px solid #30263d;
+  }
+
+  .range-overview > header {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .range-overview h2 {
+    max-width: 17ch;
+    margin: 0;
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5.6vw, 5rem);
+    font-weight: 300;
+    letter-spacing: -0.05em;
+    line-height: 0.96;
+  }
+
+  .range-overview > header > p:last-child {
+    max-width: 40rem;
+    margin: 0;
+    color: #aaa4b1;
+    line-height: 1.7;
+  }
+
+  .range-sampler {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+  }
+
+  .range-sampler__item {
+    display: grid;
+    overflow: hidden;
+    border: 1px solid #2c2440;
+    border-radius: 0.65rem;
+    background: rgb(8 7 12 / 0.88);
+    color: #fff;
+  }
+
+  .range-sampler__media {
+    min-height: 14rem;
+    overflow: hidden;
+    border-bottom: 1px solid #2c2440;
+    background: #08070c;
+  }
+
+  .range-sampler__item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 14rem;
+    object-fit: cover;
+    opacity: 0.9;
+    transition: opacity 180ms ease, transform 300ms ease;
+  }
+
+  .range-sampler__item--character img,
+  .range-sampler__item--carriage img {
+    object-fit: contain;
+  }
+
+  .range-sampler__item--character .range-sampler__media {
+    background: #eef0ef;
+  }
+
+  .range-sampler__copy {
+    display: flex;
+    min-height: 15rem;
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .range-sampler__copy > span {
+    color: #19e3e3;
+    font-family: var(--font-mono);
+    font-size: 0.54rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .range-sampler__copy strong {
+    display: block;
+    margin-top: 0.75rem;
+    color: #f3eff6;
+    font-family: var(--font-display);
+    font-size: clamp(1.55rem, 3vw, 2.25rem);
+    font-weight: 350;
+    line-height: 1.02;
+  }
+
+  .range-sampler__copy p {
+    margin: 0.75rem 0 0;
+    color: #aaa4b1;
+    font-size: 0.75rem;
+    line-height: 1.6;
+  }
+
+  .range-sampler__copy em {
+    margin-top: auto;
+    padding-top: 1.2rem;
+    color: #e8e4ec;
+    font-family: var(--font-mono);
+    font-size: 0.56rem;
+    font-style: normal;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .range-sampler__item:hover img {
+    opacity: 0.96;
+    transform: scale(1.015);
+  }
+
+  .range-sampler__item:focus-visible {
+    outline: 2px solid #19e3e3;
+    outline-offset: 2px;
+  }
+
+  .now-at-hobfarm {
+    background: #08070c;
+  }
+
+  .now-at-hobfarm__heading h2 {
+    margin: 0.65rem 0 0;
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 7vw, 5.8rem);
+    font-weight: 300;
+    letter-spacing: -0.055em;
+    line-height: 0.95;
+  }
+
+  .now-at-hobfarm__heading > p {
+    max-width: 42rem;
+    margin: 0;
+    color: #aaa4b1;
+    line-height: 1.7;
+  }
+
+  .cover-story {
+    margin-top: 2.5rem;
+  }
+
+  .cover-story__meta,
+  .current-work-subhead {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .cover-story__meta h3 {
+    max-width: 48rem;
+    margin: 0.5rem 0 0;
+    color: #f2edf5;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 350;
+    line-height: 1;
+  }
+
+  .cover-story__meta time,
+  .current-work-subhead span {
+    color: #777180;
+    font-family: var(--font-mono);
+    font-size: 0.56rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .cover-story__card {
+    display: grid;
+    overflow: hidden;
+    margin-top: 1rem;
+    border: 1px solid #2c2440;
+    border-radius: 0.75rem;
+    background: rgb(5 4 9 / 0.74);
+    color: inherit;
+  }
+
+  .cover-story__card:hover,
+  .cover-story__card:focus-visible {
+    border-color: rgb(25 227 227 / 0.55);
+    outline: 2px solid rgb(25 227 227 / 0.4);
+    outline-offset: 3px;
+  }
+
+  .cover-story__card > img,
+  .cover-story__fallback {
+    width: 100%;
+    height: 100%;
+    min-height: 20rem;
+    object-fit: cover;
+    background: #0d0b13;
+  }
+
+  .cover-story__card > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: clamp(1.2rem, 3vw, 2rem);
+  }
+
+  .cover-story__card > div > p,
+  .selected-format-card p {
+    margin: 0;
+    color: #19e3e3;
+    font-family: var(--font-mono);
+    font-size: 0.56rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  .cover-story__card strong {
+    margin-top: 1rem;
+    color: #c2bdc8;
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.65;
+  }
+
+  .cover-story__card > div > span {
+    margin-top: 2rem;
+    color: #f0edf5;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .recent-editorial,
+  .selected-formats {
+    margin-top: 3.5rem;
+  }
+
+  .current-work-subhead h3 {
+    margin: 0;
+    color: #f2edf5;
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 350;
+  }
+
+  .current-work-subhead a {
+    color: #9f99a6;
+    font-size: 0.8rem;
+  }
+
+  .recent-editorial__grid,
+  .selected-formats__grid {
+    display: grid;
+    gap: 0.8rem;
+    margin-top: 1rem;
+  }
+
+  .selected-format-card {
+    display: grid;
+    overflow: hidden;
+    border: 1px solid #2c2440;
+    border-radius: 0.65rem;
+    background: rgb(14 11 22 / 0.7);
+    color: inherit;
+  }
+
+  .selected-format-card:hover,
+  .selected-format-card:focus-visible {
+    border-color: rgb(242 77 166 / 0.5);
+    outline: 2px solid rgb(242 77 166 / 0.38);
+    outline-offset: 3px;
+  }
+
+  .selected-format-card img {
+    display: block;
+    width: 100%;
+    min-height: 14rem;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+
+  .selected-format-card > div {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .selected-format-card h4 {
+    margin: 0.7rem 0 0;
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 350;
+    line-height: 1;
+  }
+
+  .selected-format-card > div > span {
+    margin-top: 0.75rem;
+    color: #aaa4b2;
+    font-size: 0.76rem;
+    line-height: 1.6;
+  }
+
+  .selected-format-card > div > strong {
+    margin-top: 1.25rem;
+    color: #f0edf5;
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 42rem) {
+    .recent-editorial__grid,
+    .selected-formats__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .range-sampler {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .range-sampler__item--editorial {
+      grid-column: span 2;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .publisher-front__hero {
+      grid-template-columns: minmax(0, 1fr) minmax(26rem, 0.58fr);
+      align-items: center;
+    }
+
+    .range-overview > header {
+      grid-template-columns: minmax(0, 1.1fr) minmax(22rem, 0.55fr);
+      align-items: end;
+    }
+
+    .range-overview > header .publisher-front__eyebrow {
+      grid-column: 1 / -1;
+    }
+
+    .range-sampler {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .range-sampler__item--editorial,
+    .range-sampler__item--alice,
+    .range-sampler__item--stylefusion {
+      grid-column: span 2;
+    }
+
+    .now-at-hobfarm__heading {
+      grid-template-columns: minmax(0, 1.1fr) minmax(24rem, 0.62fr);
+      align-items: end;
+    }
+
+    .cover-story__card {
+      grid-template-columns: minmax(0, 1.35fr) minmax(20rem, 0.65fr);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .range-sampler__item img {
+      transition: none;
+    }
+
+    .range-sampler__item:hover img {
+      transform: none;
+    }
+  }
+</style>

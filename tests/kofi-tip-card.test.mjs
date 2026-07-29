@@ -21,11 +21,12 @@ test("Ko-fi tip card uses native links and no provider assets or scripts", () =>
   assert.doesNotMatch(component, /<script|<iframe|kofi_symbol|kofi_logo|support_me_on_kofi/);
 });
 
-test("homepage and footer use the native Ko-fi support placements", () => {
+test("the homepage and footer keep native Ko-fi support links", () => {
   const homepage = read("src/components/home/MagazineFrontPage.astro");
   const footer = read("src/components/global/Footer.astro");
 
   assert.match(homepage, /<KofiTipCard variant="hero" placement="homepage-hero"/);
+  assert.match(homepage, /hobfarm-logo-white\.svg/);
   assert.match(footer, /<KofiTipCard variant="footer" placement="site-footer"/);
   assert.doesNotMatch(footer, /KofiCta|variant="symbol"|text="Ko-fi"/);
 });

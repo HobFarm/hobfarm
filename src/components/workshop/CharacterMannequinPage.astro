@@ -13,6 +13,7 @@ import {
   type MediaRef,
 } from "@/data/character-mannequin";
 import { workshopPrograms } from "@/data/site-hierarchy";
+import { getMedia } from "@/data/media-registry";
 import type { ProductEntry } from "@/lib/products";
 import { imageSrcset, transformImageUrl } from "@/lib/media-transforms";
 
@@ -22,6 +23,8 @@ interface Props {
 
 const { relatedProducts = [] } = Astro.props;
 const page = characterMannequinPage;
+const workflowFilm = getMedia("workshop.character-mannequin.workflow-film");
+const workflowFilmPoster = getMedia("workshop.character-mannequin.workflow-film-poster");
 const heroArrangement = page.heroGraphic.width >= page.heroGraphic.height ? "horizontal" : "vertical";
 const preview = (media: MediaRef, width = 1200, fit: "cover" | "scale-down" = "scale-down") =>
   transformImageUrl(media.src, { width, quality: 82, fit });
@@ -29,11 +32,20 @@ const srcset = (media: MediaRef, fit: "cover" | "scale-down" = "scale-down") =>
   imageSrcset(media.src, [480, 768, 1000, 1280, 1600], { quality: 82, fit });
 
 const processStages = [
-  { label: "Base", description: "Start with one portrait, build the reference sheet, then lock face, hair, proportions, identifiers, and silhouette." },
-  { label: "Outfit", description: "Define garments, material, footwear, jewelry, bag, and prop before the character enters a scene." },
-  { label: "Character", description: "Apply the complete look while preserving the approved identity and body read." },
-  { label: "Scene", description: "Rebuild the character inside one directed environment with a clear camera and light plan." },
-  { label: "Motion", description: "Connect the clean character and scene frames with one controlled short video." },
+  { label: "Base", description: "Choose proportions, silhouette, joint logic, and the neutral body that later profiles must fit." },
+  { label: "Profile slots", description: "Define where face, key features, hair, palette, and other identity decisions can change." },
+  { label: "Wardrobe", description: "Set garment categories, footwear, accessories, and material rules before staging a look." },
+  { label: "Direction", description: "Test wide, mid, close, and detail cameras alongside lighting, mood, location, and styling." },
+  { label: "Proof", description: "Check idle, walk, pose, and action before the approved base carries a finished character." },
+] as const;
+
+const mannequinChecks = [
+  { label: "Fixed geometry", description: "Proportions, silhouette, joint placement, and range of motion." },
+  { label: "Identity slots", description: "Face, key features, hair, palette, markings, and other profile decisions." },
+  { label: "Wardrobe system", description: "Tops, outer layers, bottoms, footwear, accessories, and material behavior." },
+  { label: "Camera coverage", description: "Wide, mid, close, and detail views that expose continuity drift early." },
+  { label: "Scene direction", description: "Lighting, mood, location, and styling choices kept separate from the base." },
+  { label: "Motion proof", description: "Idle, walk, pose, and action tests before a named character takes over." },
 ] as const;
 
 const relatedRoutes = [
@@ -55,8 +67,8 @@ const relatedRoutes = [
       <div class:list={["hero-grid", `hero-grid--${heroArrangement}`]}>
         <div class="hero-copy">
           <p class="eyebrow">Character / Mannequin Workshop</p>
-          <h1 id="character-page-title">One mannequin. Three looks. Three worlds.</h1>
-          <p class="hero-deck">I start with one portrait, build a reusable character sheet, then direct the wardrobe, scene, camera, and motion around it. The finished work and the production record stay together here.</p>
+          <h1 id="character-page-title">Build the mannequin before the character.</h1>
+          <p class="hero-deck">A character profile needs somewhere stable to land. I define the neutral body, identity slots, wardrobe categories, camera coverage, scene variables, and motion tests first. Once the base holds together, it can carry a specific face, role, look, and world.</p>
           <div class="hero-actions">
             <a href="#assembly" class="button button--primary" data-event="character_page_primary_cta">Explore the process</a>
             <a href={page.commissionUrl} class="button button--secondary" data-event="character_page_commission_cta">Commission a character</a>
@@ -84,10 +96,10 @@ const relatedRoutes = [
     <Wrapper variant="standard" class="section-space">
       <div class="section-intro section-intro--split">
         <div>
-          <p class="eyebrow">The short version</p>
-          <h2 id="process-overview-heading">A visible route from one portrait to motion.</h2>
+          <p class="eyebrow">Before the profile</p>
+          <h2 id="process-overview-heading">The neutral base is a production decision.</h2>
         </div>
-        <p>The tool can change. The handoffs stay useful: approve the identity, isolate the wardrobe, stage the character, direct the scene, then test motion.</p>
+        <p>The mannequin is not a blank character waiting for random decoration. It is the approved geometry and test plan beneath later identities. Each decision stays visible so a weak face, garment, camera, or motion pass can be replaced without rebuilding everything.</p>
       </div>
       <ol class="process-ribbon">
         {processStages.map((stage, index) => (
@@ -98,6 +110,15 @@ const relatedRoutes = [
           </li>
         ))}
       </ol>
+      <div class="mannequin-checks" aria-label="What the neutral mannequin establishes before character design">
+        {mannequinChecks.map((check, index) => (
+          <article>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <h3>{check.label}</h3>
+            <p>{check.description}</p>
+          </article>
+        ))}
+      </div>
       <figure class="overview-graphic">
         <img
           src={preview(page.workflowGraphic)}
@@ -109,8 +130,38 @@ const relatedRoutes = [
           loading="lazy"
           decoding="async"
         />
-        <figcaption>{page.workflowGraphic.caption}</figcaption>
+        <figcaption>{page.workflowGraphic.caption}. This is what the approved base can become after a profile is attached.</figcaption>
       </figure>
+      <section class="workflow-film" aria-labelledby="workflow-film-heading">
+        <div class="workflow-film__copy">
+          <p class="eyebrow">Motion proof / 16 seconds</p>
+          <h3 id="workflow-film-heading">Lock the base. Change the layers. Prove the output.</h3>
+          <p id="workflow-film-description">This is the system before a named character arrives. The film locks the canonical mannequin, separates face, hair, palette, and wardrobe as identity layers, then tests the same base through camera, scene, and motion.</p>
+        </div>
+        <figure class="workflow-film__media">
+          <video
+            controls
+            muted
+            playsinline
+            preload="none"
+            poster={workflowFilm.poster}
+            aria-describedby="workflow-film-description"
+          >
+            <source src={workflowFilm.src} type="video/mp4" />
+            Your browser cannot play this video. The static continuity board remains available above.
+          </video>
+          <img
+            class="workflow-film__still"
+            src={workflowFilmPoster.src}
+            alt={workflowFilmPoster.alt}
+            width={workflowFilmPoster.width}
+            height={workflowFilmPoster.height}
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>A HyperFrames demonstration built only from the supplied workflow board. Reduced-motion visitors receive this final static proof instead.</figcaption>
+        </figure>
+      </section>
     </Wrapper>
   </section>
 
@@ -499,6 +550,19 @@ const relatedRoutes = [
   .process-ribbon li > span { color: #65e1c2; font-family: var(--font-mono); font-size: .58rem; }
   .process-ribbon h3 { margin: .6rem 0 0; color: #fff; font-family: var(--font-display); font-size: 1.45rem; font-weight: 400; }
   .process-ribbon p { margin: .55rem 0 0; color: #8f899b; font-size: .77rem; line-height: 1.6; }
+  .mannequin-checks { display: grid; gap: .55rem; margin-top: 1rem; }
+  .mannequin-checks article { padding: 1rem; border: 1px solid var(--line); background: #0d0a13; }
+  .mannequin-checks span { color: #19e3e3; font-family: var(--font-mono); font-size: .56rem; letter-spacing: .12em; }
+  .mannequin-checks h3 { margin: .65rem 0 0; color: #f3eff7; font-family: var(--font-display); font-size: 1.35rem; font-weight: 400; }
+  .mannequin-checks p { margin: .5rem 0 0; color: #8f899b; font-size: .75rem; line-height: 1.55; }
+  .workflow-film { display: grid; gap: 0; margin-top: 1rem; border: 1px solid #3c3150; background: #050407; }
+  .workflow-film__copy { align-self: center; padding: clamp(1.5rem, 4vw, 3rem); }
+  .workflow-film__copy h3 { max-width: 14ch; margin: .8rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(2rem, 4.2vw, 4.5rem); font-weight: 300; letter-spacing: -.045em; line-height: .94; text-wrap: balance; }
+  .workflow-film__copy > p:last-child { max-width: 38rem; margin: 1.2rem 0 0; color: var(--muted); font-size: .88rem; line-height: 1.75; }
+  .workflow-film__media { margin: 0; border-top: 1px solid #3c3150; background: #f1f2f1; }
+  .workflow-film__media video, .workflow-film__still { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; background: #f1f2f1; }
+  .workflow-film__still { display: none; }
+  .workflow-film__media figcaption { padding: .75rem 1rem; border-top: 1px solid #3c3150; background: #050407; color: #777184; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .08em; line-height: 1.6; text-transform: uppercase; }
   .overview-graphic, .themed-graphic, .wardrobe-graphic { margin-top: clamp(2.5rem, 6vw, 5rem); }
   .identity-media { display: grid; gap: 1rem; margin-top: 2.5rem; }
   .identity-portrait img { max-height: 48rem; }
@@ -544,12 +608,15 @@ const relatedRoutes = [
   @media (min-width: 700px) {
     .process-ribbon { grid-template-columns: repeat(2, minmax(0, 1fr)); border-left: 1px solid var(--line); }
     .process-ribbon li { padding: 1.25rem; border-right: 1px solid var(--line); }
+    .mannequin-checks { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .identity-media { grid-template-columns: minmax(15rem, .45fr) minmax(0, 1fr); align-items: center; }
     .identity-rules { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .alternate-identity-media { grid-template-columns: minmax(14rem, .4fr) minmax(0, 1fr); align-items: center; }
   }
   @media (min-width: 900px) {
     .section-intro--split, .tool-note__grid { grid-template-columns: minmax(0, 1.08fr) minmax(22rem, .72fr); align-items: end; gap: 3rem; }
+    .workflow-film { grid-template-columns: minmax(18rem, .43fr) minmax(0, 1fr); }
+    .workflow-film__media { border-top: 0; border-left: 1px solid #3c3150; }
     .relationship-rail { grid-auto-flow: initial; grid-auto-columns: auto; grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: visible; }
   }
   @media (min-width: 1040px) {
@@ -567,6 +634,8 @@ const relatedRoutes = [
   @media (prefers-reduced-motion: reduce) {
     :global(html) { scroll-behavior: auto !important; }
     .character-page { scroll-behavior: auto; }
+    .workflow-film__media video { display: none; }
+    .workflow-film__still { display: block; }
     .relationship-rail { scroll-snap-type: none; }
   }
 </style>

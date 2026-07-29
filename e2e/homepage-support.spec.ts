@@ -24,16 +24,18 @@ async function expectSupportLayout(page: Page, width: number, height: number, sc
   await expect(supportLinks.last()).toHaveAttribute("data-support-placement", "site-footer");
   expect(kofiRequests).toEqual([]);
 
-  const heroFigure = page.getByLabel("HobFarm animated drip logo");
-  const figureBox = await heroFigure.boundingBox();
-  expect(figureBox).not.toBeNull();
-  expect(Math.abs((figureBox?.width ?? 0) - (figureBox?.height ?? 0))).toBeLessThanOrEqual(1);
+  const heroLogo = page.locator(".publisher-front__logo img");
+  await expect(heroLogo).toBeVisible();
+  await expect(heroLogo).toHaveAttribute("alt", "HobFarm");
 
   const heroLink = supportLinks.first();
   await heroLink.focus();
   await expect(heroLink).toBeFocused();
   expect(await heroLink.evaluate((element) => getComputedStyle(element).outlineStyle)).not.toBe("none");
   expect(await heroLink.evaluate((element) => element.getBoundingClientRect().height)).toBeGreaterThanOrEqual(44);
+
+  await expect(page.locator(".range-sampler")).toBeVisible();
+  await expect(page.locator("#magazine-front-page video")).toHaveCount(0);
 
   const pageWidth = await page.evaluate(() => document.documentElement.scrollWidth);
   expect(pageWidth).toBeLessThanOrEqual(width);
@@ -53,12 +55,12 @@ test("homepage support layout is stable at 390px", async ({ page }) => {
   await expectSupportLayout(page, 390, 844, "homepage-support-mobile.png");
 });
 
-test("homepage logo uses its reduced-motion fallback", async ({ page }) => {
+test("homepage hero stays static under reduced motion", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
 
-  await expect(page.getByLabel("HobFarm animated drip logo").locator("video")).toBeHidden();
-  await expect(page.getByLabel("HobFarm animated drip logo").locator("picture")).toBeVisible();
+  await expect(page.locator(".range-sampler")).toBeVisible();
+  await expect(page.locator("#magazine-front-page video")).toHaveCount(0);
 });
 
 test("Ko-fi support links are keyboard reachable and open a new tab", async ({ page }) => {
