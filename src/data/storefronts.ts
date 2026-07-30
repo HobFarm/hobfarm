@@ -45,8 +45,10 @@ const marketplaceStorefronts: Storefront[] = [
     label: "One-off physical inventory",
     description:
       "Books, media, collectibles, equipment, antiques, and other counted objects sold one at a time.",
-    status: "pending",
-    statusLabel: "Listings being prepared",
+    status: "active",
+    statusLabel: "Storefront live",
+    href: "https://www.ebay.com/usr/hobfarm",
+    cta: "Browse HobFarm on eBay",
     accent: "#e53238",
   },
 ];

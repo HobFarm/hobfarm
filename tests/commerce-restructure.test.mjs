@@ -29,8 +29,10 @@ test("Shop is a three-lane marketplace directory with secondary learning and sup
   assert.doesNotMatch(storefronts, /Made by HobFarm|Ko-fi|Academy/);
   assert.match(storefronts, /status: "rebuilding"[\s\S]*https:\/\/www\.etsy\.com\/shop\/hobfarm/);
   assert.match(storefronts, /status: "active"[\s\S]*https:\/\/www\.deviantart\.com\/hobfarm/);
-  assert.match(storefronts, /id: "ebay"[\s\S]*status: "pending"/);
-  assert.doesNotMatch(storefronts.match(/id: "ebay"[\s\S]*?(?=\n  },|\n];)/)?.[0] ?? "", /href:/);
+  const ebayStorefront = storefronts.match(/id: "ebay"[\s\S]*?(?=\n  },|\n];)/)?.[0] ?? "";
+  assert.match(ebayStorefront, /status: "active"/);
+  assert.match(ebayStorefront, /href: "https:\/\/www\.ebay\.com\/usr\/hobfarm"/);
+  assert.match(ebayStorefront, /cta: "Browse HobFarm on eBay"/);
 
   assert.match(shop, /One clear shelf for each kind of work/);
   assert.match(shop, /Looking for something else/);

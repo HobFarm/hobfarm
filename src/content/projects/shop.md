@@ -19,6 +19,9 @@ ctas:
   - label: "Browse DeviantArt"
     href: "https://www.deviantart.com/hobfarm"
     external: true
+  - label: "Browse eBay"
+    href: "https://www.ebay.com/usr/hobfarm"
+    external: true
 featuresTitle: "Storefront roles"
 stack:
   - "Etsy"
@@ -34,7 +37,7 @@ features:
   - title: "DeviantArt"
     description: "Mannequin bases, character sheets, outfits, scenes, world packs, wallpapers, adoptables, exclusives, and collector downloads."
   - title: "eBay"
-    description: "Books, media, collectibles, equipment, antiques, and other counted objects sold one at a time. The store link waits for a verified seller destination."
+    description: "Books, media, collectibles, equipment, antiques, and other counted objects sold one at a time. The HobFarm seller page is live."
 ---
 
 The Shop is a directory, not a universal cart. Each platform has one clear job.
@@ -49,6 +52,6 @@ DeviantArt is the lane for mannequin bases, character sheets, outfits, scenes, w
 
 ## eBay
 
-eBay is reserved for counted physical inventory: books, media, collectibles, equipment, antiques, and other objects sold one at a time. A public store link will be added after the seller destination is verified.
+eBay is reserved for counted physical inventory: books, media, collectibles, equipment, antiques, and other objects sold one at a time. [Browse HobFarm on eBay](https://www.ebay.com/usr/hobfarm).
 
 Courses belong in [Academy](/academy/). Reader funding belongs on [Support HobFarm](/support/). Customer problems belong in [Customer Help](/helpcenter/).
