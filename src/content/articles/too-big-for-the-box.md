@@ -26,7 +26,7 @@ socialCaption: "The game escaped the mainframe, filled the box, emptied it, and 
 canonical: "/articles/too-big-for-the-box/"
 pubDate: 2026-07-29
 publishedAt: 2026-07-29T17:20:00-07:00
-status: scheduled
+status: published
 featured: false
 coverStory: false
 draft: false
