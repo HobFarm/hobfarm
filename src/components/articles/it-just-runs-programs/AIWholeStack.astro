@@ -1,0 +1,209 @@
+<figure class="ai-whole-stack not-prose" aria-labelledby="ai-whole-stack-title">
+  <header>
+    <p>From output to consequence</p>
+    <h2 id="ai-whole-stack-title">The machine is the whole stack</h2>
+  </header>
+
+  <ol>
+    <li>
+      <span>01</span>
+      <div>
+        <strong>Base model and weights</strong>
+        <p>A trained statistical system that can generalize, infer, fail, and surprise its builders.</p>
+      </div>
+    </li>
+    <li>
+      <span>02</span>
+      <div>
+        <strong>Post-training and system instructions</strong>
+        <p>The behavior the developer rewards, discourages, or places above the user’s request.</p>
+      </div>
+    </li>
+    <li>
+      <span>03</span>
+      <div>
+        <strong>Classifiers, memory, and product rules</strong>
+        <p>Hidden checks, retrieved context, account settings, regions, and the interface around the model.</p>
+      </div>
+    </li>
+    <li>
+      <span>04</span>
+      <div>
+        <strong>Tools, credentials, and permissions</strong>
+        <p>The files, networks, databases, services, passwords, and machines the system can reach.</p>
+      </div>
+    </li>
+    <li>
+      <span>05</span>
+      <div>
+        <strong>Operator and customer</strong>
+        <p>The person or organization choosing the objective, judging the output, and deciding whether to act.</p>
+      </div>
+    </li>
+    <li>
+      <span>06</span>
+      <div>
+        <strong>Company, contract, government, and law</strong>
+        <p>The institution that supplies money, policy, authority, incentives, targets, and consequences.</p>
+      </div>
+    </li>
+    <li>
+      <span>07</span>
+      <div>
+        <strong>Real-world effect</strong>
+        <p>A paragraph, a picture, a changed file, an account lock, an alert, a purchase, a search, or a strike.</p>
+      </div>
+    </li>
+  </ol>
+
+  <figcaption>
+    A model can produce a bad idea. The surrounding system gives the idea a password, a target, a budget, and permission to proceed.
+  </figcaption>
+</figure>
+
+<style>
+  .ai-whole-stack {
+    position: relative;
+    left: 50%;
+    width: min(68rem, calc(100vw - 2rem));
+    max-width: calc(100vw - 2rem);
+    margin: clamp(2.5rem, 7vw, 5rem) 0;
+    overflow: hidden;
+    border: 1px solid #5a4632;
+    border-radius: .35rem;
+    background: #090b0d;
+    color: #eee4cb;
+    transform: translateX(-50%);
+  }
+
+  header {
+    padding: 1.2rem 1.35rem;
+    border-bottom: 1px solid #5a4632;
+    background:
+      radial-gradient(circle at 85% 0%, rgb(213 178 47 / 18%), transparent 18rem),
+      linear-gradient(120deg, #21120f, #0b1110 64%);
+  }
+
+  header p {
+    margin: 0 0 .35rem !important;
+    color: #d8b52f !important;
+    font: 700 .66rem/1.2 var(--font-mono), monospace !important;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+  }
+
+  header h2 {
+    margin: 0 !important;
+    color: #f3ead3 !important;
+    font-size: clamp(1.35rem, 3vw, 2.15rem) !important;
+    font-weight: 500 !important;
+    line-height: 1.1 !important;
+  }
+
+  ol {
+    display: grid;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+  }
+
+  li {
+    position: relative;
+    display: grid;
+    grid-template-columns: 3.3rem 1fr;
+    gap: .95rem;
+    align-items: center;
+    min-height: 6.2rem;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid #35312b;
+    background: linear-gradient(90deg, rgb(213 178 47 / 5%), transparent 45%);
+  }
+
+  li:last-child {
+    border-bottom: 0;
+    background: linear-gradient(90deg, rgb(126 165 91 / 15%), transparent 60%);
+  }
+
+  li:not(:last-child)::after {
+    content: "↓";
+    position: absolute;
+    bottom: -.65rem;
+    left: 2.15rem;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 1.3rem;
+    height: 1.3rem;
+    color: #d8b52f;
+    background: #090b0d;
+    font: 700 .85rem/1 var(--font-mono), monospace;
+  }
+
+  li > span {
+    display: grid;
+    place-items: center;
+    width: 2.55rem;
+    height: 2.55rem;
+    border: 1px solid #6d604c;
+    border-radius: 50%;
+    color: #d8b52f;
+    font: 700 .68rem/1 var(--font-mono), monospace;
+  }
+
+  li:last-child > span {
+    border-color: #67814f;
+    color: #91b66d;
+  }
+
+  li div {
+    min-width: 0;
+  }
+
+  li strong {
+    display: block;
+    color: #f0e5cb;
+    font: 700 .78rem/1.25 var(--font-mono), monospace;
+    letter-spacing: .035em;
+    text-transform: uppercase;
+  }
+
+  li p {
+    margin: .35rem 0 0 !important;
+    color: #a9a092 !important;
+    font: 500 .72rem/1.5 var(--font-mono), monospace !important;
+  }
+
+  figcaption {
+    margin: 0 !important;
+    padding: 1rem 1.3rem !important;
+    border-top: 1px solid #5a4632;
+    background: #12120f;
+    color: #c8bfae !important;
+    font: 500 .7rem/1.55 var(--font-mono), monospace !important;
+    text-align: center !important;
+  }
+
+  @media (max-width: 620px) {
+    .ai-whole-stack {
+      width: calc(100vw - 1rem);
+      max-width: calc(100vw - 1rem);
+    }
+
+    li {
+      grid-template-columns: 2.5rem 1fr;
+      gap: .7rem;
+      min-height: 0;
+      padding: .9rem .85rem;
+    }
+
+    li > span {
+      width: 2rem;
+      height: 2rem;
+      font-size: .6rem;
+    }
+
+    li:not(:last-child)::after {
+      left: 1.2rem;
+    }
+  }
+</style>

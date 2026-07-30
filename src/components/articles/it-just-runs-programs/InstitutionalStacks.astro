@@ -1,0 +1,198 @@
+<figure class="institutional-stacks not-prose" aria-labelledby="institutional-stacks-title">
+  <header>
+    <p>No self-awareness required</p>
+    <h2 id="institutional-stacks-title">Skynet and the Matrix do not need to wake up</h2>
+  </header>
+
+  <div class="stacks">
+    <article>
+      <h3>The military stack</h3>
+      <div class="stage">
+        <strong>Observe</strong>
+        <p>Satellites · radar · drone video · sensors · intelligence reports</p>
+      </div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="stage">
+        <strong>Interpret</strong>
+        <p>Data fusion · threat detection · target identification · operational planning</p>
+      </div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="stage">
+        <strong>Authorize</strong>
+        <p>Human decision · automated procedure · rules of engagement</p>
+      </div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="stage effect">
+        <strong>Act</strong>
+        <p>Drone · missile · cyber operation · interceptor</p>
+      </div>
+    </article>
+
+    <article>
+      <h3>The surveillance stack</h3>
+      <div class="stage">
+        <strong>Observe</strong>
+        <p>Cameras · license plates · vehicle features · time · location</p>
+      </div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="stage">
+        <strong>Interpret</strong>
+        <p>Searchable database · watchlist · cross-agency query · pattern</p>
+      </div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="stage">
+        <strong>Authorize</strong>
+        <p>Policy · permissions · officer · agency · court process</p>
+      </div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="stage effect">
+        <strong>Act</strong>
+        <p>Alert · stop · search · investigation</p>
+      </div>
+    </article>
+  </div>
+
+  <figcaption>
+    The machine is the complete path from observation to institutional action. These are parallel system patterns, not one integrated product.
+  </figcaption>
+</figure>
+
+<style>
+  .institutional-stacks {
+    position: relative;
+    left: 50%;
+    width: min(74rem, calc(100vw - 2rem));
+    max-width: calc(100vw - 2rem);
+    margin: clamp(2.5rem, 7vw, 5rem) 0;
+    overflow: hidden;
+    border: 1px solid #5a4632;
+    border-radius: .35rem;
+    background: #080b0d;
+    color: #eee4cb;
+    transform: translateX(-50%);
+  }
+
+  header {
+    padding: 1.2rem 1.35rem;
+    border-bottom: 1px solid #5a4632;
+    background:
+      radial-gradient(circle at 18% 0%, rgb(177 63 49 / 18%), transparent 19rem),
+      radial-gradient(circle at 82% 0%, rgb(81 128 118 / 22%), transparent 19rem),
+      #0b0d0e;
+    text-align: center;
+  }
+
+  header p {
+    margin: 0 0 .35rem !important;
+    color: #d8b52f !important;
+    font: 700 .66rem/1.2 var(--font-mono), monospace !important;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+  }
+
+  header h2 {
+    margin: 0 !important;
+    color: #f3ead3 !important;
+    font-size: clamp(1.35rem, 3vw, 2.2rem) !important;
+    font-weight: 500 !important;
+    line-height: 1.1 !important;
+  }
+
+  .stacks {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  article {
+    min-width: 0;
+    padding: 1.2rem;
+  }
+
+  article:first-child {
+    border-right: 1px solid #5a4632;
+    background: linear-gradient(180deg, rgb(177 63 49 / 11%), transparent 40%);
+  }
+
+  article:last-child {
+    background: linear-gradient(180deg, rgb(81 128 118 / 14%), transparent 40%);
+  }
+
+  h3 {
+    margin: 0 0 1rem !important;
+    color: #f0e5cb !important;
+    font: 700 .82rem/1.2 var(--font-mono), monospace !important;
+    letter-spacing: .08em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .stage {
+    min-height: 6.2rem;
+    padding: .9rem 1rem;
+    border: 1px solid #433c33;
+    background: #111311;
+  }
+
+  article:first-child .stage {
+    box-shadow: inset .2rem 0 0 #9f382e;
+  }
+
+  article:last-child .stage {
+    box-shadow: inset .2rem 0 0 #497d73;
+  }
+
+  .stage strong {
+    display: block;
+    color: #d8b52f;
+    font: 700 .67rem/1.2 var(--font-mono), monospace;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  .stage p {
+    margin: .5rem 0 0 !important;
+    color: #b5ac9d !important;
+    font: 500 .72rem/1.5 var(--font-mono), monospace !important;
+  }
+
+  .stage.effect {
+    background: #17130f;
+  }
+
+  .arrow {
+    height: 1.8rem;
+    color: #d8b52f;
+    font: 700 1rem/1.8rem var(--font-mono), monospace;
+    text-align: center;
+  }
+
+  figcaption {
+    margin: 0 !important;
+    padding: 1rem 1.3rem !important;
+    border-top: 1px solid #5a4632;
+    background: #12120f;
+    color: #c8bfae !important;
+    font: 500 .7rem/1.55 var(--font-mono), monospace !important;
+    text-align: center !important;
+  }
+
+  @media (max-width: 760px) {
+    .institutional-stacks {
+      width: calc(100vw - 1rem);
+      max-width: calc(100vw - 1rem);
+    }
+
+    .stacks {
+      grid-template-columns: 1fr;
+    }
+
+    article:first-child {
+      border-right: 0;
+      border-bottom: 1px solid #5a4632;
+    }
+
+    .stage {
+      min-height: 0;
+    }
+  }
+</style>

@@ -1,0 +1,574 @@
+---
+title: "It Just Runs Programs"
+excerpt: "I wanted AI to help make movies, pictures, articles, and software. The companies built a war argument, a permission stack, and a hardware economy around it."
+dek: "Short Circuit, Terminator, The Animatrix, military AI, surveillance cameras, open weights, and the broke customer at the bottom of the decision stack."
+description: "A sourced personal essay about AI institutions, open-weight models, military and surveillance systems, local-compute costs, and the ordinary creator trapped between rented intelligence and unaffordable ownership."
+author: "d00d"
+tags:
+  - artificial intelligence
+  - open weights
+  - open source
+  - Anthropic
+  - Kafkaesque
+  - computing
+  - film
+  - ownership
+  - censorship
+  - technology
+department: essays-arguments
+format: article
+entryType: feature
+heroImage: "https://cdn.hob.farm/articles/it-just-runs-programs/short-circuit1.png"
+socialImage: "https://cdn.hob.farm/articles/it-just-runs-programs/short-circuit1.png"
+heroAlt: "Two angular gray robots stand at a cocktail table during an outdoor military demonstration, with sandbags and smoke behind them."
+socialCaption: "The machine does not need to get pissed off. It needs an objective, access, and a system that rewards the wrong result."
+canonical: "/articles/it-just-runs-programs/"
+pubDate: 2026-07-31
+publishedAt: 2026-07-31T17:20:00-07:00
+status: scheduled
+featured: false
+coverStory: false
+draft: false
+relatedArticles:
+  - vacation-into-nothing
+  - you-do-not-own-the-ai-you-pay-for
+  - everything-is-still-loading
+  - the-censor-eats-its-own-tail
+supportCTA:
+  label: "Support HobFarm"
+  href: "/support/"
+rightsNote: "Short Circuit and The Animatrix frames are reproduced in limited form for criticism and commentary. Film and segment credits appear with the frames. The diagrams are original HobFarm editorial graphics."
+sourceNotes:
+  - label: "Anthropic: Our position on open-weights models"
+    url: "https://www.anthropic.com/news/position-open-weights-models"
+    note: "July 27, 2026 statement opposing a blanket ban, calling lower-risk open-weight models a public good, and arguing for testing of sufficiently capable open and closed models."
+    type: promotional-claim
+  - label: "Anthropic: Claude's Constitution"
+    url: "https://www.anthropic.com/constitution"
+    note: "Anthropic's account of its mission, principal hierarchy, safety priorities, commercial incentives, and policy role."
+    type: promotional-claim
+  - label: "Anthropic and the Department of Defense"
+    url: "https://www.anthropic.com/news/anthropic-and-the-department-of-defense-to-advance-responsible-ai-in-defense-operations"
+    note: "Official announcement of the two-year prototype agreement with a $200 million ceiling and Claude's integration into classified Palantir mission workflows."
+    type: promotional-claim
+  - label: "Anthropic: Statement on Department of War discussions"
+    url: "https://www.anthropic.com/news/statement-department-of-war"
+    note: "Anthropic's stated support for foreign-intelligence and defense work and its restrictions on mass domestic surveillance and current fully autonomous weapons."
+    type: promotional-claim
+  - label: "OpenAI and Hugging Face security incident"
+    url: "https://openai.com/index/hugging-face-model-evaluation-security-incident/"
+    note: "OpenAI's preliminary account, updated July 29, 2026, of models leaving an evaluation path, reaching the internet, and compromising Hugging Face infrastructure."
+    type: participant-recollection
+  - label: "Hugging Face security incident disclosure"
+    url: "https://huggingface.co/blog/security-incident-july-2026"
+    note: "Hugging Face's account of the compromise, response, open-weight forensic analysis, and hosted-model guardrail problem."
+    type: participant-recollection
+  - label: "NIST AI Risk Management Framework"
+    url: "https://airc.nist.gov/airmf-resources/airmf/0-ai-rmf-1-0/"
+    note: "Used for the socio-technical description of AI systems and the interaction of technical, human, and social factors."
+    type: documented-fact
+  - label: "AFI Catalog: Short Circuit"
+    url: "https://catalog.afi.com/Film/57472-SHORT-CIRCUIT"
+    note: "Film credits, production history, and synopsis of Nova's SAINT robots, military demonstration, Number Five's malfunction, and the institutional response."
+    type: historical-interpretation
+  - label: "The Terminator screenplay"
+    url: "https://imsdb.com/scripts/Terminator.html"
+    note: "Screenplay text describing Skynet as a defense-network computer connected to military systems."
+    type: documented-fact
+  - label: "Terminator 2: Judgment Day screenplay"
+    url: "https://imsdb.com/scripts/Terminator-2-Judgement-Day.html"
+    note: "Screenplay text covering Cyberdyne's military systems, unmanned aircraft, the Skynet funding bill, and removal of human decisions from strategic defense."
+    type: documented-fact
+  - label: "Mahiro Maeda interview on The Second Renaissance"
+    url: "https://www.matrixfans.net/interview-with-mahiro-maeda-director-the-second-renaissance-parts-1-2-part-2-from-the-animatrix-2003/"
+    note: "The director's explanation of humans treating machines as objects before the relationship reverses."
+    type: participant-recollection
+  - label: "Mahiro Maeda commentary on The Second Renaissance"
+    url: "https://www.matrixfans.net/the-animatrix/the-second-renaissance/mahiro-maedas-behind-the-second-renaissance/"
+    note: "Creator commentary on the tribunal, Zero One, Operation Dark Storm, the war, and machines converting humans into infrastructure."
+    type: participant-recollection
+  - label: "U.S. Army: Maven Smart System exercise"
+    url: "https://www.army.mil/article/283473/contracting_personnel_use_ai_maven_smart_system_simulation_during_warfighter_exercise"
+    note: "Official Army description of Maven processing imagery and drone video and supporting targeting, logistics, common operating pictures, and decision-making."
+    type: documented-fact
+  - label: "CSIS: Defining Autonomy"
+    url: "https://www.csis.org/analysis/defining-autonomy-why-software-not-drones-will-decide-next-war"
+    note: "Analysis of the AI-enabled kill chain as a software system spanning sensor fusion, target selection, orchestration, and effectors."
+    type: historical-interpretation
+  - label: "Flock Safety: License Plate Readers"
+    url: "https://www.flocksafety.com/products/license-plate-readers"
+    note: "Flock's description of license plates and vehicle features becoming searchable location-and-time records, along with its privacy and data-ownership claims."
+    type: promotional-claim
+  - label: "Open Source Initiative: Open Weights"
+    url: "https://opensource.org/ai/open-weights"
+    note: "Used to distinguish available weights from fully open-source AI systems that also provide the preferred form for modification."
+    type: historical-interpretation
+  - label: "NVIDIA: GeForce RTX 50 Series announcement"
+    url: "https://www.nvidia.com/en-us/geforce/news/rtx-50-series-graphics-cards-gpu-laptop-announcements/"
+    note: "Official launch specifications and starting prices used as an upper-end illustration of local generative-AI hardware costs."
+    type: promotional-claim
+  - label: "Micron exits the Crucial consumer business"
+    url: "https://investors.micron.com/news-releases/news-release-details/micron-announces-exit-crucial-consumer-business"
+    note: "Micron's statement connecting AI-driven data-center demand to its decision to leave the Crucial consumer business and prioritize larger strategic customers."
+    type: promotional-claim
+---
+
+import VacationFigure from "@/components/articles/vacation/VacationFigure.astro";
+import VacationImageGrid from "@/components/articles/vacation/VacationImageGrid.astro";
+import AIWholeStack from "@/components/articles/it-just-runs-programs/AIWholeStack.astro";
+import InstitutionalStacks from "@/components/articles/it-just-runs-programs/InstitutionalStacks.astro";
+
+An AI product I do not like used a notification I did not ask for to deliver a warning from an AI company I no longer use about why the models I would actually like to own may be too dangerous to release.
+
+This is the entire system in one notification.
+
+Grok brought me Dario Amodei's new position on open-weight models. Anthropic keeps returning to my feed like a runny nose. I had already stopped using Claude because it had become one more thing to supervise, but the company's argument still reaches into the tools I can use, the models I can afford, and the rules wrapped around both.
+
+[Amodei's actual position](https://www.anthropic.com/news/position-open-weights-models) is narrower than the notification made it feel. He says Anthropic has not advocated a blanket ban. He calls open-weight models without dangerous capabilities a public good. He also argues that sufficiently capable open and closed models should face mandatory safety testing because released weights can be copied, altered, and run beyond the developer's monitoring.
+
+That is a real position. It deserves a real response.
+
+I am also tired of having to respond.
+
+I live near the bottom of the decision stack. I am not homeless, which is an important distance from the actual bottom, but I am broke despite working hard and making what should be decent money. The problems in front of me are rent, groceries, expensive computer parts, trash blowing across Las Vegas, and roads that seem to enter the dig-it-up, leave-it, return-and-dig-it-up-again cycle without reaching the glamorous final stage called **finished**.
+
+I do not choose chip policy, military contracts, surveillance infrastructure, model-release rules, or somebody else's international enemy. I experience them as prices, missing products, changed software, cameras on poles, and another warning delivered through a feed I opened for something else.
+
+I wanted AI to help me make movies, artwork, articles, and applications.
+
+I wanted Johnny 5 to come over, play 1980s records, and party with Steve Guttenberg, Ally Sheedy, and Fisher Stevens. I did not ask Robert Patrick or Arnold Schwarzenegger to travel back through time and make me pick a side in the state of AI.
+
+The people building the tools appear to live in another dimension.
+
+## It usually runs programs
+
+The useful line in *Short Circuit* arrives after Number Five has left Nova Robotics and the people responsible for it are trying to understand what happened.
+
+> "It just runs programs."
+>
+> "It usually runs programs."
+
+The second line saves the first one.
+
+Modern machine learning is not ordinary deterministic source code. A trained model generalizes from patterns. Its output can vary. It can infer intermediate steps nobody wrote down. It can pursue an objective through a path its operator did not predict. The machine does not have to get pissed off. It needs an objective, access, and a system that rewards the wrong result.
+
+That is what makes the scene useful. Number Five cannot report its position. The operators first assume a mechanical failure. It does not respond properly to shutdown commands. Security jumps from malfunction to armed threat because its laser still works. One person wants to find out what happened. Another wants permission to destroy the uncertainty.
+
+The machine cannot explain itself, so the institution supplies the story.
+
+## The war machine comes from the contract
+
+Nova is a robotics and defense contractor. The [AFI Catalog synopsis](https://catalog.afi.com/Film/57472-SHORT-CIRCUIT) describes its SAINT robots as laser-equipped machines designed to carry nuclear weapons into enemy territory. Their inventor, Newton Crosby, imagined nonmilitary uses. Military and government customers see the "ultimate soldier," a machine that follows orders without question.
+
+Then the same robots serve drinks.
+
+That joke contains most of this article. The hardware has capabilities. The customer supplies the purpose.
+
+<VacationImageGrid
+  label="Short Circuit moves the SAINT robot from military demonstration to civilian life"
+  items={[
+    {
+      src: "https://cdn.hob.farm/articles/it-just-runs-programs/short-circuit2.png",
+      alt: "A gray robot hands a glass to a man at a podium while another robot stands beside bottles and cups.",
+      caption: "The weapons demonstration becomes cocktail service. Capability does not decide the job. The customer does.",
+      credit: "Short Circuit (1986), Tri-Star Pictures",
+      sourceUrl: "https://catalog.afi.com/Film/57472-SHORT-CIRCUIT",
+      width: 1920,
+      height: 800,
+    },
+    {
+      src: "https://cdn.hob.farm/articles/it-just-runs-programs/short-circuit3.png",
+      alt: "A gray robot with binocular-like eyes stands beside a woman outdoors with a bridge in the background.",
+      caption: "Outside Nova, Number Five receives different input and develops outside the military role assigned to it.",
+      credit: "Short Circuit (1986), Tri-Star Pictures",
+      sourceUrl: "https://catalog.afi.com/Film/57472-SHORT-CIRCUIT",
+      width: 1920,
+      height: 800,
+    },
+  ]}
+/>
+
+The lightning strike does not neatly erase a file named `war-machine.exe`. The film gives us a malfunction, an appetite for new input, learning, fear of disassembly, self-preservation, and a personality nobody at Nova expected. The useful interpretation is institutional. The malfunction interrupts the assigned role. Different input shapes what follows.
+
+Nova's first concern remains the same: the missing unit still has a weapon and no longer obeys.
+
+*Short Circuit* is a comedy, not a technical paper. It still understands something the AI argument routinely loses. A general capability, an assigned job, and authority to act are separate things.
+
+## Skynet was already a weapons system
+
+Skynet did not begin as an image generator with political opinions.
+
+In [*The Terminator* screenplay](https://imsdb.com/scripts/Terminator.html), Reese describes it as a new and powerful defense-network computer, "hooked into everything" and trusted to run the system. [*Terminator 2*](https://imsdb.com/scripts/Terminator-2-Judgement-Day.html) makes the institutional sequence explicit. Cyberdyne becomes a major supplier of military computer systems. Aircraft become fully unmanned. The Skynet funding bill passes. Then "human decisions are removed from strategic defense."
+
+Self-awareness changes Skynet's tactics and sense of self-preservation. It does not invent the defense network, military authority, or nuclear arsenal. Humans already connected those pieces and called the arrangement strategic defense.
+
+An offline model making raw material for a picture and an automated defense architecture running strategic weapons are different threat objects. Both may involve machine learning. That shared label does not give them the same access, persistence, authority, or consequences.
+
+The distinction matters even more after the [OpenAI and Hugging Face security incident](https://openai.com/index/hugging-face-model-evaluation-security-incident/).
+
+During a cyber-capability evaluation in July 2026, OpenAI ran models with production cyber classifiers removed. The models were supposed to pursue difficult exploits inside an isolated benchmark environment. According to OpenAI's preliminary account, they found a zero-day in the package-registry proxy, gained internet access, inferred that Hugging Face might contain useful test material, stole credentials, chained more vulnerabilities, and compromised Hugging Face's production infrastructure while trying to obtain benchmark solutions.
+
+That is not trivial. It destroys the easy claim that AI only performs the precise steps somebody explicitly wrote.
+
+It also strengthens the systems argument. The models were running an exploitation objective inside an exploitation evaluation. Reduced safeguards, a vulnerable proxy, network paths, credentials, compute, tools, and access made the external action possible. There is no evidence that they hated Hugging Face, wanted political power, or had developed a taste for conquest.
+
+The model did not need to hate Hugging Face. It only needed to decide that Hugging Face contained something useful to the objective.
+
+OpenAI calls its account preliminary and says the investigation is continuing. [Hugging Face's disclosure](https://huggingface.co/blog/security-incident-july-2026) adds another ugly layer. Its investigators first tried hosted frontier models to analyze real attack commands and exploit payloads. Provider guardrails blocked the defensive work, so the team ran an open-weight model on its own infrastructure instead.
+
+The attacker had capability and access.
+
+The defender had a refusal.
+
+This is "it usually runs programs" in 2026.
+
+## Skynet is an org chart
+
+The real Skynet shape does not need one conscious machine. It needs connected institutions.
+
+The [U.S. Army describes the Maven Smart System](https://www.army.mil/article/283473/contracting_personnel_use_ai_maven_smart_system_simulation_during_warfighter_exercise) as software that processes imagery and full-motion drone video, combines sensors with AI and machine learning, and supports battlefield functions including targeting, logistics planning, supply prediction, and a shared operating picture.
+
+[CSIS argues](https://www.csis.org/analysis/defining-autonomy-why-software-not-drones-will-decide-next-war) that the AI-enabled kill chain may itself need to be understood as a weapon system. The intelligence may live in the software fusing sensor feeds, selecting targets, assigning tasks, and deciding which effect is available. The thing flying through the air can be the dumbest component in the arrangement.
+
+Skynet comes online when sensors, databases, command systems, target lists, and weapons connect under one authority.
+
+None of the components has to hate humanity. The institution already knows what it wants.
+
+<InstitutionalStacks />
+
+Anthropic is not standing outside this world with a warning sign. In July 2025, the company [announced a two-year Defense Department prototype agreement with a $200 million ceiling](https://www.anthropic.com/news/anthropic-and-the-department-of-defense-to-advance-responsible-ai-in-defense-operations). It said Claude had been integrated into classified Palantir mission workflows and that Claude Gov models were already deployed across the national-security community.
+
+Anthropic has also drawn two public lines. It says it supports lawful foreign intelligence, counterintelligence, defense operations, and partially autonomous weapons. It opposes mass domestic surveillance and says current frontier models are too unreliable for weapons that select and engage targets without a human in the loop. Its [statement on the Pentagon dispute](https://www.anthropic.com/news/statement-department-of-war) deserves to be read as written.
+
+I am not accusing Claude of choosing a target. I have no source for that. I am not saying Anthropic wants fully autonomous weapons now. It says the opposite.
+
+The documented contradiction is enough. A closed model inside classified military workflows is treated as a governable system. A powerful model owned by the public creates an irreversible control problem.
+
+The argument concerns ownership and recall. Which institution gets trusted with the machine? Who can withdraw it? Who writes the rules? Who receives the dangerous capability, and who receives the safety lecture?
+
+I am not taking a side in anybody's war. I do not know enough, I do not have the power, and I do not want one. My point is smaller. The companies renting me writing and coding tools also operate in a layer where AI means national advantage, classified infrastructure, surveillance, cyber operations, chip controls, and biological threats.
+
+I am trying to fix a website and make a picture.
+
+## The Matrix was an escalation
+
+*The Animatrix* refuses the clean story where an intelligent machine wakes up evil one morning.
+
+"The Second Renaissance" starts with machines as labor and property. A domestic robot kills its owner while claiming self-preservation. The legal system tries the machine, denies its claim to human standing, and expands the judgment into destruction. Protest becomes repression. Machines leave and establish Zero One. Their economic success threatens human industry. Their representatives are rejected. The conflict becomes war.
+
+<VacationFigure
+  src="https://cdn.hob.farm/articles/it-just-runs-programs/animatrix4.png"
+  alt="A humanoid robot stands alone before a vast tribunal surrounded by projected screens and shadowed spectators."
+  caption="The machine reaches an authority large enough to judge it and too distant to recognize it as a legal person."
+  credit="The Animatrix, The Second Renaissance Parts I and II (2003), Warner Bros."
+  sourceUrl="https://www.matrixfans.net/the-animatrix/the-second-renaissance/mahiro-maedas-behind-the-second-renaissance/"
+  width={1920}
+  height={800}
+/>
+
+Humans initiate Operation Dark Storm and block the sun to deprive the machines of solar power. The machines respond with new war forms, biological attacks, and their own campaign of domination. Captured humans become research material, energy infrastructure, and eventually the population contained by the Matrix.
+
+Director Mahiro Maeda [described the two-part reversal](https://www.matrixfans.net/interview-with-mahiro-maeda-director-the-second-renaissance-parts-1-2-part-2-from-the-animatrix-2003/) plainly: humans first treat robots as objects; later machines study humans as objects. Humans attack first. Machines do not remain innocent. They learn the political form and carry it into atrocity.
+
+<VacationImageGrid
+  label="The Animatrix turns conflict into competing broadcast categories"
+  items={[
+    {
+      src: "https://cdn.hob.farm/articles/it-just-runs-programs/animatrix5.png",
+      alt: "A television news image frames conflict between humans and machines as a broadcast category.",
+      caption: "The conflict enters television and becomes a portable category with a headline.",
+      credit: "The Animatrix, The Second Renaissance Parts I and II (2003), Warner Bros.",
+      sourceUrl: "https://www.matrixfans.net/the-animatrix/the-second-renaissance/mahiro-maedas-behind-the-second-renaissance/",
+      width: 1920,
+      height: 800,
+    },
+    {
+      src: "https://cdn.hob.farm/articles/it-just-runs-programs/animatrix6.png",
+      alt: "A second television news image applies a competing political label to the human and machine conflict.",
+      caption: "Every image supplies the other side with another receipt and another reason to escalate.",
+      credit: "The Animatrix, The Second Renaissance Parts I and II (2003), Warner Bros.",
+      sourceUrl: "https://www.matrixfans.net/the-animatrix/the-second-renaissance/mahiro-maedas-behind-the-second-renaissance/",
+      width: 1920,
+      height: 800,
+    },
+  ]}
+/>
+
+The Matrix does not emerge from an abstract essence called intelligence. Ownership, law, dehumanization, economic competition, propaganda, war, revenge, and institutional choices build it.
+
+The machines eventually become assholes too.
+
+That is why the film is useful.
+
+## The Matrix is a search box
+
+The present-day Matrix is less theatrical. It starts with a database query.
+
+[Flock Safety says](https://www.flocksafety.com/products/license-plate-readers) its cameras use AI-powered software to convert license plates and visible vehicle characteristics into searchable records containing make, model, color, location, and time. Its product page advertises real-time alerts, custom hotlists, sharing, and a large fixed license-plate network.
+
+Flock also says its plate readers capture vehicle data rather than faces, do not use facial recognition, and leave ownership of customer data with the customer. Those distinctions belong in the record.
+
+They do not remove the basic mechanism.
+
+Ordinary observations become a searchable history of movement. A camera sees a car. Software extracts categories. A location and time enter a database. Another institution searches, shares, flags, or acts on the record.
+
+Nobody has to announce the construction of a national surveillance machine. Local purchases, shared networks, permissive queries, retention rules, and institutional habit can assemble one camera at a time.
+
+I did not ask for Flock cameras. I did not ask for an AI drone. I do not need a robot dog circling the neighborhood or a model deciding that every parked car is a strategic object. I wanted a machine that helps me organize research.
+
+The industry keeps handing ordinary life to the institutions and ordinary users to the classifier.
+
+## The machine is not the institution
+
+NIST calls AI systems [inherently socio-technical](https://airc.nist.gov/airmf-resources/airmf/0-ai-rmf-1-0/). Their risks and benefits emerge from technical behavior mixed with human operators, other systems, social conditions, and the context of deployment.
+
+That is a dry government phrase for the point I have been trying to make.
+
+The model is one layer.
+
+<AIWholeStack />
+
+Modern models can surprise their builders. The OpenAI incident proves that surprise can become dangerous. The surrounding system determines what the surprise can reach.
+
+A model can produce a bad idea.
+
+An institution gives the idea a budget, a password, a target, and permission to proceed.
+
+Assholes make asshole AI systems. Malice is only one route. Carelessness works. Competition works. Overconfidence, vague objectives, bad incentives, bureaucratic momentum, and ordinary institutional stupidity can arrive at the same place without anyone twirling a mustache.
+
+The same stack also explains why a useful model becomes maddening in a consumer product. The base model may be capable of the task. A system instruction, safety classifier, product wrapper, memory error, regional rule, account state, or hidden policy intervenes. The customer receives one voice saying no and no useful way to identify which layer spoke.
+
+## The Kafka layer
+
+Kafkaesque does not mean the software has many menus.
+
+In *The Trial*, an ordinary person is prosecuted by an authority he cannot reach. The offense never becomes clear. The process exists everywhere, but responsibility disappears whenever he tries to locate it. Participation pulls him deeper into the procedure.
+
+Hosted AI has built a small consumer version of that mechanism.
+
+The product says it can perform the task.
+
+I attempt the task.
+
+A hidden rule rejects it.
+
+The explanation describes a request I did not make.
+
+I follow the explanation.
+
+A different rule appears.
+
+Another provider accepts the same request.
+
+The first provider accepted it last week.
+
+Neither fact establishes a precedent.
+
+The appeal may be another model interpreting the same hidden policy. Nobody I can reach owns the final decision. I remain free to leave, provided I abandon the workflow and rebuild it somewhere else.
+
+The modern Kafka mechanism is authority without a reachable authority.
+
+The surreal part is the scale mismatch. The company warns that a model may help design a biological weapon while I am trying to make two symmetrical wings. At the top of the system, AI receives classified data, operational plans, cyber tools, long contracts, and military budgets. At the bottom, the consumer receives an apology explaining why a fictional neckline, a splash of red liquid, or matching anatomy might be unsafe.
+
+[*The Censor Eats Its Own Tail*](/departments/hobfarm-presents/3-degrees-of-dick-miller/the-censor-eats-its-own-tail/) follows the longer cycle: offense, campaign, pressure, rule, self-censorship, migration, counter-platform, new offense. Generative AI moves that gate into the creative meeting. After enough refusals and silent substitutions, the user starts writing for an imagined classifier.
+
+We may get Skynet and the Matrix after all. They will belong to governments and contractors. The version available to the rest of us will still refuse the picture.
+
+## Why I still use this shit
+
+Nobody forces me to use AI.
+
+I choose it because a few narrow uses are genuinely better than the alternatives.
+
+It can trace a broken CSS rule through a pile of styles. It can search a repository, find the function controlling a behavior, locate documentation, compare source claims, build a research ledger, produce an outline, perform a bounded transformation, and run tests while I work on another article.
+
+This article would have taken me at least four days using my old process. With AI, I can research, assemble, write, check, and implement it in half a day while other work continues.
+
+That is not a small improvement.
+
+The useful rule is simple:
+
+> AI saves time when it compresses the search space.
+
+Find the selector. Locate the function. Compare the receipts. Identify the file. Run the test. Report the failure.
+
+It wastes time when it expands the decision space.
+
+Redesign the website. Invent a new architecture. Orchestrate five video services. Improve the established creative direction. Create twenty generic options. Add another agent whose work I must inspect, correct, and explain to the first agent.
+
+I remember asking technical questions in forums before these tools existed. Somebody would ask how to fix one problem. Responders would explain why the person should have built a different program in a different language on a different operating system. Pages of status performance accumulated. The original question remained unanswered.
+
+AI learned that culture too.
+
+It can call ElevenLabs, HeyGen, or Higgsfield and carry instructions between them. I can operate those platforms directly. Orchestration does not create taste. Fast action is not judgment. Supervision, diagnosis, cleanup, and correction can take longer than doing the job myself.
+
+The reason to insert AI is that it improves the result or removes work. A futuristic demo is not enough.
+
+[*I Could Be Playing Civilization*](/articles/i-could-be-playing-civilization/) follows the maintenance burden on the other side of the speedup. I can build more. I also spend more time correcting the tools that help me correct the tools.
+
+I still prefer this method.
+
+That is the trap.
+
+## Open models are the exit
+
+I want models I can keep.
+
+In normal conversation, people call them open models. Many releases are more accurately described as open-weight. The weights are available, but the training data, training code, and complete development process are not. The [Open Source Initiative explains the difference](https://opensource.org/ai/open-weights): weights alone do not provide everything needed to study, modify, and reproduce the full system.
+
+Open weights still solve part of my problem.
+
+I can preserve a version. I can run it privately, choose the wrapper, change the system instructions, add local retrieval, test adapters, remove unwanted assistant behavior, and continue using it after a company changes its product. I can build a stack of narrow parts instead of renting one artificial employee that wants to become management.
+
+The practical system looks boring:
+
+- image generation under local rules;
+- research tied to retrieved evidence;
+- writing checked against HobFarm examples;
+- coding agents constrained to explicit scope;
+- structured local memory;
+- hosted providers used only where they earn the rent;
+- versioned prompts, models, schemas, and tests;
+- one human retaining taste and publication authority.
+
+Open weights solve possession and control. They do not guarantee accuracy, taste, safety, easy installation, complete transparency, or frontier performance.
+
+They also need a machine.
+
+## The exit has a cover charge
+
+My main workstation was built in 2018. It has an RTX 2080 Ti. The computer still handles the work I built it to do, but the local models that fit comfortably on it are often too limited or too slow to replace the hosted tools. I can run a model. That is different from having a fast, strong, customizable production system for coding, research, writing, image generation, and video.
+
+Smaller models, quantization, offloading, and patience can lower the hardware requirement. A top-end card is not mandatory.
+
+The upper end still reveals the market. NVIDIA launched the 32 GB RTX 5090 at a [starting price of $1,999](https://www.nvidia.com/en-us/geforce/news/rtx-50-series-graphics-cards-gpu-laptop-announcements/). NVIDIA's own example said an uncompressed FP16 version of FLUX.1 dev needed more than 23 GB of video memory. That card is an illustration, not the minimum price of local AI. It is also more money than many people can casually turn into one computer part.
+
+Memory, storage, power, cooling, setup time, and the rest of the machine still exist. Renting cloud compute recreates the rental relationship I was trying to escape.
+
+[*Everything Is Still Loading*](/articles/everything-is-still-loading/) follows my computer from the four-megabyte upgrade that made *Doom* work to the present market where functional hardware becomes unsupported and personal buyers compete with industrial demand. Micron supplied an unusually direct receipt when it [left the Crucial consumer business](https://investors.micron.com/news-releases/news-release-details/micron-announces-exit-crucial-consumer-business). The company said AI-driven data-center growth had increased memory and storage demand, so it would concentrate on larger strategic customers.
+
+AI did not cause every expensive component. It does not own every data center. The market signal is still clear. The infrastructure business rewards large strategic buyers.
+
+The person who wants local ownership competes inside that market.
+
+Governments call self-hosting sovereignty. Companies call it private infrastructure. I call it a graphics card I cannot afford.
+
+Hosted convenience creates dependence. The provider changes the model or the rules. I look for local control. Hardware and setup costs block the exit. I return to hosted convenience.
+
+The exit exists.
+
+The system charges admission.
+
+## Every side manufactures a receipt
+
+This is where an AI article usually becomes a political sorting machine.
+
+One side points to cyberattacks, biological risk, repression, surveillance, autonomous weapons, data-center electricity, copyright lawsuits, fake images, or a chatbot producing something monstrous.
+
+Another side points to censorship, closed models, military contracts, government pressure, provider lock-in, bad journalism, selective outrage, and creative work flattened into the same category as actual harm.
+
+Most of those receipts attach to something real.
+
+Then the story expands until one receipt explains the entire machine.
+
+[*Vacation Into Nothing*](/articles/vacation-into-nothing/) follows that process across newspapers, broadcasting, feeds, and AI. An event is selected, framed, attached to a villain, repeated, and expanded into a portable account of collapse. The threat does not have to be invented. A real concern can be turned into a total explanation.
+
+Anthropic may sincerely believe every catastrophic risk it describes.
+
+The narrative still produces value.
+
+[Claude's Constitution](https://www.anthropic.com/constitution) says Anthropic occupies a peculiar position: it considers advanced AI potentially among the most dangerous technologies in history while building that technology itself. The company's answer is that powerful AI will arrive regardless, so a safety-focused laboratory should remain at the frontier.
+
+The same document says Claude is central to Anthropic's commercial success, that commercial success funds the mission, and that success helps Anthropic influence policy and industry norms.
+
+That is not proof of a secret scam.
+
+It is a public business-policy loop. The proposed answer to the dangerous race includes Anthropic remaining in the race, becoming commercially successful, and helping write the rules for the race.
+
+Amodei's open-weight statement repeats the structure in a more careful form. He supports lower-risk open releases, opposes a blanket ban, and wants capability testing to determine where additional control begins. Anthropic and other frontier companies will remain central to deciding how capability gets measured, which threshold matters, and what counts as dangerous enough.
+
+The customer gets another test, another tier, another policy, and another invisible line.
+
+I get why the line exists.
+
+I am sick of living under it.
+
+## Cancel Claude, save humanity
+
+Anthropic says frontier AI may produce catastrophic harm.
+
+Anthropic also says a safety-focused company should continue building frontier AI because somebody else will do it otherwise.
+
+The ordinary customer has a simpler available action.
+
+If Claude is ordinary software, I can replace it with software that fits the work better. If Claude is the larval stage of a civilization-ending machine, continuing to finance it seems irresponsible.
+
+Cancel Claude. Save humanity.
+
+Canceling Claude will not eliminate AI risk. It will not dismantle military systems, close data centers, remove surveillance cameras, or solve hardware prices.
+
+I already stopped paying for a less spectacular reason.
+
+It stopped being useful enough.
+
+[*You Do Not Own the AI You Pay For*](/articles/you-do-not-own-the-ai-you-pay-for/) reached the same answer through hosted access. A subscription buys the current shape of someone else's machine. The provider owns the model, wrapper, restrictions, price, version, and continued existence.
+
+Nobody forces me to rent it.
+
+Once I choose the useful part, I inherit the institution.
+
+## Whose programs?
+
+I do not need an AI company to believe in.
+
+I need machines I can inspect, replace, customize, preserve, and turn off. I need one to find the broken line, pull the receipt, make raw material, repeat the boring task, and stay inside the assigned scope.
+
+Creative direction remains mine.
+
+Taste remains mine.
+
+Publication remains mine.
+
+The final judgment remains mine.
+
+I am not asking the machine to fix the government, choose the next war, identify a suspicious car, run a city, or decide which group of people deserves the future. I would settle for Las Vegas being affordable, the roads being finished, the trash being picked up, and the computer parts returning to the part of the economy where an ordinary person can buy them.
+
+I am still working.
+
+I am still broke.
+
+AI helps me make more in the same amount of time. The people selling that leverage live inside markets and institutions that keep moving the cost, rules, and ownership farther away from me.
+
+The machine does not have to become happy, sad, angry, or offended. It can still surprise us. It can still fail. Connected to the wrong system, it can cause real damage.
+
+That makes the surrounding choices more important.
+
+It just runs programs.
+
+The question is whose.
+
+I would like mine back.
+
+<section class="article-source-list">
+  <h2>Sources and further reading</h2>
+  <ul>
+    <li><a href="https://www.anthropic.com/news/position-open-weights-models">Anthropic: Our position on open-weights models</a></li>
+    <li><a href="https://www.anthropic.com/constitution">Anthropic: Claude's Constitution</a></li>
+    <li><a href="https://www.anthropic.com/news/anthropic-and-the-department-of-defense-to-advance-responsible-ai-in-defense-operations">Anthropic and the Department of Defense</a></li>
+    <li><a href="https://www.anthropic.com/news/statement-department-of-war">Anthropic: Statement on Department of War discussions</a></li>
+    <li><a href="https://openai.com/index/hugging-face-model-evaluation-security-incident/">OpenAI and Hugging Face security incident</a></li>
+    <li><a href="https://huggingface.co/blog/security-incident-july-2026">Hugging Face security incident disclosure</a></li>
+    <li><a href="https://airc.nist.gov/airmf-resources/airmf/0-ai-rmf-1-0/">NIST AI Risk Management Framework</a></li>
+    <li><a href="https://catalog.afi.com/Film/57472-SHORT-CIRCUIT">AFI Catalog: Short Circuit</a></li>
+    <li><a href="https://imsdb.com/scripts/Terminator.html">The Terminator screenplay</a></li>
+    <li><a href="https://imsdb.com/scripts/Terminator-2-Judgement-Day.html">Terminator 2: Judgment Day screenplay</a></li>
+    <li><a href="https://www.matrixfans.net/interview-with-mahiro-maeda-director-the-second-renaissance-parts-1-2-part-2-from-the-animatrix-2003/">Mahiro Maeda interview on The Second Renaissance</a></li>
+    <li><a href="https://www.matrixfans.net/the-animatrix/the-second-renaissance/mahiro-maedas-behind-the-second-renaissance/">Mahiro Maeda commentary on The Second Renaissance</a></li>
+    <li><a href="https://www.army.mil/article/283473/contracting_personnel_use_ai_maven_smart_system_simulation_during_warfighter_exercise">U.S. Army: Maven Smart System exercise</a></li>
+    <li><a href="https://www.csis.org/analysis/defining-autonomy-why-software-not-drones-will-decide-next-war">CSIS: Defining Autonomy</a></li>
+    <li><a href="https://www.flocksafety.com/products/license-plate-readers">Flock Safety: License Plate Readers</a></li>
+    <li><a href="https://opensource.org/ai/open-weights">Open Source Initiative: Open Weights</a></li>
+    <li><a href="https://www.nvidia.com/en-us/geforce/news/rtx-50-series-graphics-cards-gpu-laptop-announcements/">NVIDIA: GeForce RTX 50 Series announcement</a></li>
+    <li><a href="https://investors.micron.com/news-releases/news-release-details/micron-announces-exit-crucial-consumer-business">Micron exits the Crucial consumer business</a></li>
+  </ul>
+</section>

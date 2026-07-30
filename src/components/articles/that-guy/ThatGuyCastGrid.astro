@@ -1,0 +1,173 @@
+---
+const actors = [
+  {
+    name: "William Sadler",
+    episodeRole: "Niles Talbot",
+    recognition: ["Heywood, The Shawshank Redemption", "Death, Bill & Ted’s Bogus Journey"],
+  },
+  {
+    name: "J. W. Smith",
+    episodeRole: "Ledbetter",
+    recognition: ["Turnbull A.C., The Warriors", "Salim, Red Heat"],
+  },
+  {
+    name: "Roy Brocksmith",
+    episodeRole: "Vic",
+    recognition: ["Mike the mailman, Scrooged", "Dr. Edgemar, Total Recall"],
+  },
+  {
+    name: "David Wohl",
+    episodeRole: "Warden Havers",
+    recognition: ["Dean Ulich, Revenge of the Nerds", "St. Peter, Reporter on the Afterlife"],
+  },
+  {
+    name: "Gerrit Graham",
+    episodeRole: "Theodore Carne",
+    recognition: ["Jeff, Used Cars", "Ace, Police Academy 6"],
+  },
+  {
+    name: "Robert Winley",
+    episodeRole: "Jimmy Flood",
+    recognition: ["The cigar-smoking biker", "Terminator 2: Judgment Day"],
+  },
+];
+---
+
+<aside class="that-guy-cast not-prose" aria-labelledby="that-guy-cast-title">
+  <header>
+    <p class="eyebrow">Recognition before identification</p>
+    <h2 id="that-guy-cast-title">Six versions of “Hey, it’s that guy”</h2>
+    <p>The premiere gets an entire movie world for the price of a familiar face.</p>
+  </header>
+
+  <div class="cast-grid">
+    {actors.map((actor, index) => (
+      <article>
+        <span class="number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+        <p class="episode-role">{actor.episodeRole}</p>
+        <h3>{actor.name}</h3>
+        <ul>
+          {actor.recognition.map((role) => <li>{role}</li>)}
+        </ul>
+      </article>
+    ))}
+  </div>
+</aside>
+
+<style>
+  .that-guy-cast {
+    margin: 3rem 0;
+    padding: clamp(1.1rem, 3vw, 2rem);
+    color: #efe6c9;
+    background:
+      radial-gradient(circle at 15% 0%, rgb(58 102 95 / 0.34), transparent 33%),
+      linear-gradient(145deg, #111817, #090d0e 65%);
+    border: 1px solid rgb(226 207 146 / 0.28);
+    box-shadow: 0 1.25rem 3rem rgb(0 0 0 / 0.28);
+  }
+
+  header {
+    max-width: 48rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .eyebrow,
+  .episode-role {
+    margin: 0;
+    color: #e1b95f;
+    font: 700 0.7rem/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0.35rem 0 0.55rem;
+    color: #fff8df;
+    font: 800 clamp(1.6rem, 4vw, 2.55rem)/0.98 Georgia, serif;
+  }
+
+  header > p:last-child {
+    margin: 0;
+    color: #b9c2b9;
+    line-height: 1.55;
+  }
+
+  .cast-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  article {
+    position: relative;
+    min-height: 12rem;
+    padding: 1rem;
+    overflow: hidden;
+    background: rgb(240 226 181 / 0.055);
+    border: 1px solid rgb(240 226 181 / 0.16);
+  }
+
+  article::after {
+    position: absolute;
+    right: -2rem;
+    bottom: -3rem;
+    width: 7rem;
+    height: 7rem;
+    background: #a32d24;
+    border-radius: 50%;
+    content: "";
+    filter: blur(2rem);
+    opacity: 0.18;
+  }
+
+  .number {
+    position: absolute;
+    top: 0.55rem;
+    right: 0.7rem;
+    color: rgb(225 185 95 / 0.35);
+    font: 800 1.5rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  .episode-role {
+    max-width: calc(100% - 2.5rem);
+  }
+
+  h3 {
+    margin: 0.45rem 0 0.85rem;
+    color: #fff8df;
+    font: 700 1.25rem/1.05 Georgia, serif;
+  }
+
+  ul {
+    display: grid;
+    gap: 0.45rem;
+    margin: 0;
+    padding: 0;
+    color: #bcc6bc;
+    font-size: 0.84rem;
+    line-height: 1.35;
+    list-style: none;
+  }
+
+  li::before {
+    margin-right: 0.45rem;
+    color: #62a399;
+    content: "•";
+  }
+
+  @media (max-width: 760px) {
+    .cast-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 480px) {
+    .cast-grid {
+      grid-template-columns: 1fr;
+    }
+
+    article {
+      min-height: 0;
+    }
+  }
+</style>
