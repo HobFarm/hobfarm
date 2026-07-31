@@ -35,8 +35,8 @@
 /projects/gotta-lotta-gifts/     /shop/  301
 
 # Shows moved under the HobFarm TV channel hub
-/projects/magazine-time-machine   /projects/hobfarm-tv/magazine-time-machine/   301
-/projects/magazine-time-machine/  /projects/hobfarm-tv/magazine-time-machine/   301
+/projects/magazine-time-machine   /departments/magazine-time-machine/   301
+/projects/magazine-time-machine/  /departments/magazine-time-machine/   301
 
 # 3DM is now a canonical HobFarm Presents title.
 /projects/hobfarm-tv/3-degrees-of-dick-miller   /departments/hobfarm-presents/3-degrees-of-dick-miller/   301
@@ -65,18 +65,18 @@
 # Articles category pages retired -> Departments (taxonomy migration).
 # Legacy slugs whose name changed remap explicitly (static, one hop). These must
 # stay ABOVE the dynamic :category catch-all below so they win the match.
-/articles/category/technical              /departments/workshop-notes/         301
-/articles/category/technical/             /departments/workshop-notes/         301
-/articles/category/research               /departments/workshop-notes/         301
-/articles/category/research/              /departments/workshop-notes/         301
-/articles/category/grimoire               /departments/workshop-notes/         301
-/articles/category/grimoire/              /departments/workshop-notes/         301
-/articles/category/stylefusion            /departments/workshop-notes/         301
-/articles/category/stylefusion/           /departments/workshop-notes/         301
-/articles/category/hobbot                 /departments/workshop-notes/         301
-/articles/category/hobbot/                /departments/workshop-notes/         301
-/articles/category/business               /departments/workshop-notes/         301
-/articles/category/business/              /departments/workshop-notes/         301
+/articles/category/technical              /workshop/workshop-notes/            301
+/articles/category/technical/             /workshop/workshop-notes/            301
+/articles/category/research               /workshop/workshop-notes/            301
+/articles/category/research/              /workshop/workshop-notes/            301
+/articles/category/grimoire               /workshop/workshop-notes/            301
+/articles/category/grimoire/              /workshop/workshop-notes/            301
+/articles/category/stylefusion            /workshop/workshop-notes/            301
+/articles/category/stylefusion/           /workshop/workshop-notes/            301
+/articles/category/hobbot                 /workshop/workshop-notes/            301
+/articles/category/hobbot/                /workshop/workshop-notes/            301
+/articles/category/business               /workshop/workshop-notes/            301
+/articles/category/business/              /workshop/workshop-notes/            301
 /articles/category/cultural-thread        /departments/essays-arguments/       301
 /articles/category/cultural-thread/       /departments/essays-arguments/       301
 /articles/category/fake-ads               /departments/satire/                 301
@@ -93,18 +93,18 @@
 /articles/category/3-degrees-of-dick-miller/  /departments/hobfarm-presents/   301
 
 # Same remaps for the doubly-legacy /blog/category/* chain (one hop, no double).
-/blog/category/technical                  /departments/workshop-notes/         301
-/blog/category/technical/                 /departments/workshop-notes/         301
-/blog/category/research                   /departments/workshop-notes/         301
-/blog/category/research/                  /departments/workshop-notes/         301
-/blog/category/grimoire                   /departments/workshop-notes/         301
-/blog/category/grimoire/                  /departments/workshop-notes/         301
-/blog/category/stylefusion                /departments/workshop-notes/         301
-/blog/category/stylefusion/               /departments/workshop-notes/         301
-/blog/category/hobbot                     /departments/workshop-notes/         301
-/blog/category/hobbot/                    /departments/workshop-notes/         301
-/blog/category/business                   /departments/workshop-notes/         301
-/blog/category/business/                  /departments/workshop-notes/         301
+/blog/category/technical                  /workshop/workshop-notes/            301
+/blog/category/technical/                 /workshop/workshop-notes/            301
+/blog/category/research                   /workshop/workshop-notes/            301
+/blog/category/research/                  /workshop/workshop-notes/            301
+/blog/category/grimoire                   /workshop/workshop-notes/            301
+/blog/category/grimoire/                  /workshop/workshop-notes/            301
+/blog/category/stylefusion                /workshop/workshop-notes/            301
+/blog/category/stylefusion/               /workshop/workshop-notes/            301
+/blog/category/hobbot                     /workshop/workshop-notes/            301
+/blog/category/hobbot/                    /workshop/workshop-notes/            301
+/blog/category/business                   /workshop/workshop-notes/            301
+/blog/category/business/                  /workshop/workshop-notes/            301
 /blog/category/cultural-thread            /departments/essays-arguments/       301
 /blog/category/cultural-thread/           /departments/essays-arguments/       301
 /blog/category/fake-ads                   /departments/satire/                 301

@@ -114,11 +114,11 @@ test("legacy blog URLs redirect to canonical articles URLs", () => {
   assert.match(redirects, /\/blog\/tags\/:tag\s+\/articles\/tags\/:tag\s+301/);
 });
 
-test("legacy category URLs redirect to canonical department pages", () => {
+test("legacy category URLs redirect to canonical category destinations", () => {
   const redirects = read("public/_redirects");
 
   assert.match(redirects, /\/articles\/category\/fake-ads\s+\/departments\/satire\/\s+301/);
-  assert.match(redirects, /\/articles\/category\/technical\s+\/departments\/workshop-notes\/\s+301/);
+  assert.match(redirects, /\/articles\/category\/technical\s+\/workshop\/workshop-notes\/\s+301/);
   assert.match(
     redirects,
     /\/articles\/category\/cultural-thread\s+\/departments\/essays-arguments\/\s+301/,

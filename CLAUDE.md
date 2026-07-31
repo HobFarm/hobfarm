@@ -38,16 +38,120 @@ Magazine describes the Editorial layer. It does not describe the entire business
 | HobFarm | Parent publisher and creative studio |
 | Editorial / Articles | Essays, reporting, research, satire, cartoons, visual features, and departments |
 | HobFarm Presents | Recurring stories, characters, film and media series, entertainment formats, and developed worlds |
-| Games and applications | Other Alice, StyleFusion, Grimoire, browser games, research tools, and interactive experiments |
+| Games and applications | Other Alice Adventures and its Wonder Machine runtime, the Grimoire world layer, StyleFusion, browser games, and interactive experiments |
 | Workshop | Visible production methods, experiments, tools, systems, revisions, and failures |
 | Academy | Free and affordable one-time courses built from working HobFarm methods |
 | Shop | Official commercial directory and direct merchandise store |
 | Support | One-time Ko-fi funding and the $5 monthly HobFarm Club |
 | Gallery | Shared visual archive |
-| Projects | Catalog for tools, games, applications, systems, and work in progress |
+| Projects | Retiring. A leftover from an earlier build. Workshop is the permanent home for tools, systems, and work in progress; Presents owns the editorial properties still parked there |
 | Customer Help | Orders, billing, downloads, course access, refunds, accounts, and application problems |
 
 Do not force every release through an article. An article, comic, adventure, game, application, gallery entry, Workshop note, course, product, and project page can each be the primary published object.
+
+---
+
+## How the Site Tells Its Story
+
+Everything on HobFarm is one connected system. The site exists to show that
+system working. Use this model when deciding what a page is for and what it
+should link to.
+
+```text
+Homepage           states the whole thesis: everything is connected, and this
+                   process is what makes the content
+Articles           are the content itself, mostly long form; each article's
+                   department maps it to the section it belongs to
+Presents           tells the story of what the recurring properties are;
+                   the articles are their actual content
+Workshop           shows the process behind all of it, in public
+Academy            sells the courses that teach the method Workshop demonstrates
+Shop               is where the marketplace output lands; the Workshop process
+                   describes how that output gets made
+Social media       shows the results; the process stays here on the site
+```
+
+An article about a film lands in 3 Degrees of Dick Miller. An article about
+something found in an old magazine lands in Magazine Time Machine. The category
+taxonomy is the routing layer between the writing and the sections.
+
+### Section structure
+
+`/departments/`, `/projects/`, and `/video/` are retired. They were earlier
+builds that split the same content across three prefixes. Three live sections
+hold everything:
+
+```text
+/presents/<section>/   recurring editorial properties, each an article archive
+/workshop/<program>/   production methods
+/articles/<category>/  editorial categories with no Presents or Workshop home
+```
+
+Presents has five sections, in this order: Other Alice Adventures,
+3 Degrees of Dick Miller, Magazine Time Machine, Funnies, HobFarm TV.
+`/presents/` is the "all" page; do not add a separate index or directory link.
+
+Other Alice Adventures is the flagship and the outlier. It is a project rather
+than an article feed, and it combines avatar work, character writing, the game
+concept, app building, StyleFusion, image generation, and video generation.
+HobFarm TV is video built from the articles in the other sections.
+
+One rule decides every category URL, with no exceptions:
+
+| Category maps to | URL |
+| --- | --- |
+| A Presents section | `/presents/<slug>/` |
+| A Workshop program | `/workshop/<slug>/` |
+| Neither | `/articles/<slug>/` |
+
+`departmentPath()` in `src/data/departments.ts` implements this. Use it. Never
+hardcode a category URL. A category with no content generates no route; it stays
+in the taxonomy so an article can be filed to it.
+
+**Workshop's specific job:** settle the question of how HobFarm uses AI. The
+answer is complicated, and Workshop is where the complication gets shown rather
+than argued about. Every Workshop program should leave a reader able to see what
+was actually done. When someone asks about a technique in a comment or a reply,
+the Workshop page is the thing to point at.
+
+**The site shows process. Social media gets the output.** A finished video, a
+reel, a campaign clip belongs on a social platform. What belongs here is how it
+was made: hyperframes videos, diagrams, annotated stills, before-and-after
+pairs, and example images. Future Carriage is the model. Old carriage drawings
+from the 1800s get a futuristic aesthetic; the Ami avatar is developed
+separately in the avatar workshop as a social media influencer; the two combine
+into one concept. The Workshop page demonstrates that sequence. The finished
+Ami video does not live on the site.
+
+This rules out media-archive pages. Do not build a video gallery, a portfolio
+reel, or a clips hub. If a video belongs anywhere on the site, it belongs on the
+page for the thing it is about.
+
+**Academy's specific job:** take a method Workshop demonstrates and teach it as
+a repeatable procedure. Every course states a problem, gives a solution, and
+walks the steps in order, plainly enough to follow without prior context. The
+standard short course is $7.
+
+Connect pages when the relationship is real. Workshop to Academy when a course
+teaches that method. Workshop to Shop when the process produced the goods.
+Articles to Workshop when the writing references the technique. Do not build
+funnels where no relationship exists.
+
+### Application and project status
+
+Inspect this before writing about, linking to, or reviving any application.
+
+| Subject | Current status |
+| --- | --- |
+| Other Alice Adventures | Active. The illustrated serial and world archive |
+| Wonder Machine | Active. The runtime that runs storylets, keeps time, remembers choices, and preserves consequences. Formerly the XKXXKX record |
+| Grimoire | Active, in redevelopment. The world and knowledge layer feeding Wonder Machine and StyleFusion. Not a standalone product page |
+| StyleFusion | In redesign, but the page stays public at `/workshop/stylefusion/` because too much links to it. The page says it is in development. What is written there does not yet describe the new version |
+| HobBot | Hidden, in redevelopment. Will eventually be the automation layer |
+| Drifter | Retired. Do not resurface |
+| AnomalyBot | Retired. Do not resurface |
+| 3DM, Magazine Time Machine | Editorial properties at `/presents/3-degrees-of-dick-miller/` and `/presents/magazine-time-machine/` |
+| HobFarm TV | A Presents section at `/presents/hobfarm-tv/`. Video built from the articles in the other sections, not a media archive |
 
 ---
 
@@ -77,7 +181,7 @@ Keep one job per surface:
 | Surface | Job |
 | --- | --- |
 | HobFarm Shop | Direct HobFarm merchandise and a map to the correct commercial shelf |
-| Academy | Free lessons and affordable one-time workflow courses |
+| Academy | Free lessons and affordable one-time workflow courses that teach the methods Workshop demonstrates |
 | Etsy | Clip art, scrapbook assets, seasonal packs, printables, decorative scenes, and archive collections |
 | DeviantArt | Mannequins, outfits, character sheets, wallpapers, premium packs, adoptables, and exclusives |
 | eBay | DVDs, magazines, books, antiques, collectibles, decor, media, and other counted physical objects |
