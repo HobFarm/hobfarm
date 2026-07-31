@@ -29,7 +29,7 @@ socialCaption: "The sunglasses in They Live are augmented reality in reverse. Th
 canonical: "/articles/put-on-the-glasses/"
 pubDate: 2026-07-30
 publishedAt: 2026-07-30T17:20:00-07:00
-status: scheduled
+status: published
 featured: false
 coverStory: false
 draft: false
