@@ -1,5 +1,6 @@
 ---
 import { selectedWorkshopProjects } from "@/data/workshop-projects";
+import { getWorkshopProgram } from "@/data/site-hierarchy";
 
 interface Props {
   surface?: "home" | "workshop";
@@ -9,6 +10,7 @@ const { surface = "workshop" } = Astro.props;
 const positionKey = surface === "home" ? "homepagePosition" : "featuredPosition";
 const projects = [...selectedWorkshopProjects]
   .filter((project) => surface !== "home" || project.homepagePosition)
+  .filter((project) => surface !== "workshop" || getWorkshopProgram(project.id)?.inNav !== false)
   .sort((a, b) => (a[positionKey] ?? 99) - (b[positionKey] ?? 99));
 ---
 

@@ -25,6 +25,11 @@ import {
   workshopCapabilities,
 } from "@/data/workshop-projects";
 
+const visibleWorkshopPrograms = workshopPrograms.filter((program) => program.inNav !== false);
+const styleFusionVisible = visibleWorkshopPrograms.some((program) => program.id === "stylefusion");
+const visibleWorkshopBenches = workshopBenches.filter(
+  (bench) => styleFusionVisible || bench.href !== "/projects/stylefusion/",
+);
 const futureCarriage = getWorkshopProject("future-carriage")!;
 const futureSource = futureCarriage.secondaryMedia!;
 const futureResult = futureCarriage.media;
@@ -60,7 +65,9 @@ const heroProjectDetails = {
     action: "Open the workflow",
   },
 } as const;
-const heroProjects = heroProjectIds.flatMap((id) => {
+const heroProjects = heroProjectIds.filter(
+  (id) => workshopPrograms.find((program) => program.id === id)?.inNav !== false,
+).flatMap((id) => {
   const project = getWorkshopProject(id);
   return project ? [{ ...project, hero: heroProjectDetails[id] }] : [];
 });
@@ -266,10 +273,10 @@ const workshopJsonLd = {
         <div class="max-w-3xl">
           <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-cyan">Workshop programs and archive</p>
           <h2 id="programs-heading" class="mt-4 font-display text-4xl font-light text-white lg:text-5xl">Browse the detailed programs.</h2>
-          <p class="mt-5 text-sm leading-relaxed text-base-300">The six programs hold full case studies, comparisons, software records, character systems, and current build notes.</p>
+          <p class="mt-5 text-sm leading-relaxed text-base-300">These programs hold full case studies, comparisons, character systems, and current build notes.</p>
         </div>
         <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {workshopPrograms.map((program) => <a href={program.href} class="program-card group relative isolate min-h-72 overflow-hidden rounded-xl border border-base-800 bg-base-950/70 p-6 transition hover:-translate-y-1 hover:border-accent-cyan/50 motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+          {visibleWorkshopPrograms.map((program) => <a href={program.href} class="program-card group relative isolate min-h-72 overflow-hidden rounded-xl border border-base-800 bg-base-950/70 p-6 transition hover:-translate-y-1 hover:border-accent-cyan/50 motion-reduce:transition-none motion-reduce:hover:translate-y-0">
             {program.heroImage && <img src={program.heroImage} alt="" width="800" height="450" class="absolute inset-0 -z-20 size-full object-cover opacity-25 transition group-hover:opacity-35" loading="lazy" decoding="async" />}
             <span class="absolute inset-0 -z-10 bg-gradient-to-t from-base-950 via-base-950/85 to-base-950/25"></span>
             <div class="flex h-full flex-col justify-end"><p class="font-mono text-[9px] uppercase tracking-[0.18em] text-accent-cyan">Program {String(program.order).padStart(2,"0")}</p><h3 class="mt-3 font-display text-2xl font-light text-white">{program.name}</h3><p class="mt-3 text-sm leading-relaxed text-base-300">{program.description}</p><span class="mt-6 font-mono text-[10px] uppercase tracking-wider text-white">{program.ctaLabel} &rarr;</span></div>
@@ -291,7 +298,7 @@ const workshopJsonLd = {
             </p>
             <nav aria-label="Related process routes">
               <a href="/workshop/character-mannequin/" data-event="workshop_character_mannequin_clicked">Character / Mannequin</a>
-              <a href="/workshop/stylefusion/" data-event="workshop_stylefusion_clicked">StyleFusion</a>
+              {styleFusionVisible && <a href="/workshop/stylefusion/" data-event="workshop_stylefusion_clicked">StyleFusion</a>}
               <a href="/workshop/workshop-notes/psygoth/">PsyGoth note</a>
             </nav>
           </div>
@@ -318,7 +325,7 @@ const workshopJsonLd = {
 
     <WorkshopPhotographySource />
 
-    <WorkshopMediaIndex />
+    <WorkshopMediaIndex showStyleFusion={styleFusionVisible} />
 
     <section class="border-b border-base-800/70" aria-labelledby="practice-heading">
       <Wrapper variant="standard" class="py-14 lg:py-20">
@@ -468,7 +475,7 @@ const workshopJsonLd = {
           </h2>
         </div>
         <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {workshopBenches.map((bench) => (
+          {visibleWorkshopBenches.map((bench) => (
             <a href={bench.href} class="bench-card group flex min-h-64 flex-col rounded-xl border border-base-800 bg-base-900/45 p-6 transition duration-300 hover:-translate-y-1 hover:border-accent-cyan/40 motion-reduce:transition-none motion-reduce:hover:translate-y-0">
               <h3 class="font-display text-2xl font-light text-white">{bench.label}</h3>
               <p class="mt-4 flex-1 text-sm leading-relaxed text-base-400">{bench.description}</p>

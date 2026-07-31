@@ -62,7 +62,7 @@ const hasProgramFeature = program.id === "alter-ego" || program.id === "stylefus
 const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
 const structuredData = { "@context":"https://schema.org", "@type":"CollectionPage", name:program.name, description:program.description, url:`${siteOrigin}${program.href}`, isPartOf:{"@type":"CollectionPage",name:"HobFarm Workshop",url:`${siteOrigin}/workshop/`} };
 ---
-<BaseLayout title={`${program.name} | HobFarm Workshop`} description={program.description} canonical={program.href} image={pageHero} imageAlt={pageHeroAlt} structuredData={structuredData} palette="blue-red">
+<BaseLayout title={`${program.name} | HobFarm Workshop`} description={program.description} canonical={program.href} image={pageHero} imageAlt={pageHeroAlt} structuredData={structuredData} palette="blue-red" noindex={program.noindex === true}>
   <SectionHero eyebrow="HobFarm Workshop program" title={program.name} deck={program.description} image={pageHero} imageAlt={pageHeroAlt} theme={program.theme} status={status} cta={{label:"See the work",href:"#work"}} breadcrumbs={[{label:"Home",href:"/"},{label:"Departments",href:"/departments/"},{label:"Workshop",href:"/workshop/"},{label:program.name}]} />
 
   <section class="program-index border-b border-base-800/70">
@@ -108,7 +108,7 @@ const structuredData = { "@context":"https://schema.org", "@type":"CollectionPag
     </Wrapper>
   </section>
 
-  <section><Wrapper variant="standard" class="py-12"><nav class="program-nav" aria-label="Workshop programs">{workshopPrograms.map((entry) => <a class:list={[entry.id===program.id&&"active"]} href={entry.href}>{entry.name}</a>)}</nav></Wrapper></section>
+  <section><Wrapper variant="standard" class="py-12"><nav class="program-nav" aria-label="Workshop programs">{workshopPrograms.filter((entry) => entry.inNav !== false).map((entry) => <a class:list={[entry.id===program.id&&"active"]} href={entry.href}>{entry.name}</a>)}</nav></Wrapper></section>
 </BaseLayout>
 
 <style>

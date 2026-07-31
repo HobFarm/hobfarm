@@ -428,7 +428,7 @@ const relatedRoutes = [
         ))}
       </nav>
       <nav class="program-nav" aria-label="Workshop programs">
-        {workshopPrograms.map((entry) => (
+        {workshopPrograms.filter((entry) => entry.inNav !== false).map((entry) => (
           <a class:list={[entry.id === "character-mannequin" && "active"]} href={entry.href}>{entry.name}</a>
         ))}
       </nav>

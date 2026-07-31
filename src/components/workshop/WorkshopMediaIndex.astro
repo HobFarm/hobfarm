@@ -2,6 +2,14 @@
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import { getMedia } from "@/data/media-registry";
 
+interface Props {
+  showStyleFusion?: boolean;
+}
+
+const { showStyleFusion = true } = Astro.props;
+const indexDescription = showStyleFusion
+  ? "The archive now sits with the Workshop program that explains it. StyleFusion shows role-scoped generation. Character / Mannequin holds character sheets and continuity records. Workshop Notes keeps informal translation tests readable."
+  : "The archive now sits with the Workshop program that explains it. Character / Mannequin holds character sheets and continuity records. Workshop Notes keeps informal translation tests readable.";
 const cathedral = getMedia("stylefusion.cathedral.hero");
 const hellcat = getMedia("stylefusion.hellcat.poster");
 const fashion = getMedia("character.fashion.sheet");
@@ -24,18 +32,22 @@ const academy = getMedia("academy.banner.video");
         <p class="label">Current visual index</p>
         <h2 id="media-index-heading">Follow the work from application evidence to finished media.</h2>
       </div>
-      <p>The archive now sits with the Workshop program that explains it. StyleFusion shows role-scoped generation. Character / Mannequin holds character sheets and continuity records. Workshop Notes keeps informal translation tests readable.</p>
+      <p>{indexDescription}</p>
     </header>
 
     <div class="feature-grid">
-      <a class="feature feature--lead" href="/workshop/stylefusion/#stylefusion-evidence">
-        <img src={cathedral.src} alt={cathedral.alt} loading="lazy" decoding="async" />
-        <div><p>SF-001 / StyleFusion</p><h3>Cathedral Cat</h3><span>References to result to book-world production &rarr;</span></div>
-      </a>
-      <a class="feature" href="/workshop/stylefusion/#stylefusion-evidence">
-        <img src={hellcat.src} alt={hellcat.alt} loading="lazy" decoding="async" />
-        <div><p>SF-002 / downstream production</p><h3>Hellcat of the Iron Wastes</h3><span>Variants, poster, and motion &rarr;</span></div>
-      </a>
+      {showStyleFusion && (
+        <>
+          <a class="feature feature--lead" href="/workshop/stylefusion/#stylefusion-evidence">
+            <img src={cathedral.src} alt={cathedral.alt} loading="lazy" decoding="async" />
+            <div><p>SF-001 / StyleFusion</p><h3>Cathedral Cat</h3><span>References to result to book-world production &rarr;</span></div>
+          </a>
+          <a class="feature" href="/workshop/stylefusion/#stylefusion-evidence">
+            <img src={hellcat.src} alt={hellcat.alt} loading="lazy" decoding="async" />
+            <div><p>SF-002 / downstream production</p><h3>Hellcat of the Iron Wastes</h3><span>Variants, poster, and motion &rarr;</span></div>
+          </a>
+        </>
+      )}
       <a class="feature feature--host" href="/workshop/character-mannequin/avatar-host-system/">
         <img src={hostSystem.src} alt={hostSystem.alt} width={hostSystem.width} height={hostSystem.height} loading="lazy" decoding="async" />
         <div><p>Character / Mannequin</p><h3>From character design to on-screen host</h3><span>Hillary, Ami, PsyGoth, and the retired Hobgal prototype &rarr;</span></div>

@@ -2,25 +2,19 @@ import { presentsSeries, workshopPrograms } from "@/data/site-hierarchy";
 
 export type NavLink = { label: string; href: string; children?: NavLink[] };
 
+const visibleWorkshopPrograms = workshopPrograms.filter((entry) => entry.inNav !== false);
+
 export const topNavLinks: NavLink[] = [
   { label: "Articles", href: "/articles/" },
   {
     label: "Presents",
     href: "/departments/hobfarm-presents/",
-    children: [
-      ...presentsSeries.map((entry) => ({ label: entry.shortName ?? entry.name, href: entry.href })),
-      { label: "View all Presents", href: "/departments/hobfarm-presents/" },
-      { label: "Departments directory", href: "/departments/" },
-    ],
+    children: presentsSeries.map((entry) => ({ label: entry.shortName ?? entry.name, href: entry.href })),
   },
   {
     label: "Workshop",
     href: "/workshop/",
-    children: [
-      ...workshopPrograms.map((entry) => ({ label: entry.name, href: entry.href })),
-      { label: "View all Workshop", href: "/workshop/" },
-      { label: "Departments directory", href: "/departments/" },
-    ],
+    children: visibleWorkshopPrograms.map((entry) => ({ label: entry.name, href: entry.href })),
   },
   { label: "Academy", href: "/academy/" },
   { label: "Shop", href: "/shop/" },
@@ -45,7 +39,7 @@ export const footerLinkGroups: FooterGroup[] = [
     title: "Studio",
     links: [
       { label: "Workshop", href: "/workshop/" },
-      ...workshopPrograms.slice(0, 5).map((entry) => ({ label: entry.name, href: entry.href })),
+      ...visibleWorkshopPrograms.map((entry) => ({ label: entry.name, href: entry.href })),
       { label: "Academy", href: "/academy/" },
     ],
   },

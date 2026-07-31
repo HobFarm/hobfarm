@@ -18,12 +18,33 @@ test("primary IA demotes archives while keeping search discoverable", () => {
   assert.doesNotMatch(navigation, /topNavLinks[\s\S]*label:\s*"Characters"/);
   assert.match(navigation, /label:\s*"Presents"[\s\S]*children:/);
   assert.match(navigation, /label:\s*"Workshop"[\s\S]*children:/);
-  assert.match(navigation, /Departments directory/);
+  assert.doesNotMatch(navigation, /View all Workshop|View all Presents|Departments directory/);
 
   assert.match(nav, /data-search-trigger/);
   assert.match(mobile, /data-search-trigger/);
   assert.match(search, /hobfarm:open-search/);
   assert.match(search, /closest\("\[data-search-trigger\]"\)/);
+});
+
+test("Workshop visibility keeps route generation separate from navigation", () => {
+  const hierarchy = read("src/data/site-hierarchy.ts");
+  const navigation = read("src/data/navigation.ts");
+  const programRoute = read("src/pages/workshop/[program].astro");
+
+  const visibleOrder = [
+    'id: "character-mannequin"',
+    'id: "alter-ego"',
+    'id: "cute-corrupted"',
+    'id: "before-after"',
+    'id: "workshop-notes"',
+  ].map((token) => hierarchy.indexOf(token));
+
+  assert.ok(visibleOrder.every((position) => position >= 0));
+  assert.deepEqual(visibleOrder, [...visibleOrder].sort((a, b) => a - b));
+  assert.match(hierarchy, /id: "stylefusion"[^\n]*inNav: false, noindex: true/);
+  assert.match(navigation, /workshopPrograms\.filter\(\(entry\) => entry\.inNav !== false\)/);
+  assert.match(programRoute, /return workshopPrograms[\s\S]*\.map\(\(program\)/);
+  assert.match(programRoute, /noindex=\{program\.noindex === true\}/);
 });
 
 test("department pages can surface related systems, drops, workshop notes, and comics", () => {
