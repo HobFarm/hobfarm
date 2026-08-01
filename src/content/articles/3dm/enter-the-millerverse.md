@@ -108,7 +108,7 @@ That expanding network is the Millerverse.
 
 The [AFI Catalog](https://catalog.afi.com/Film/52420-THE-UNDEAD) credits Barty as the Imp and Miller as the leper who sells his soul. The connection is a shared production credit, not an imagined meeting. Their characters occupy different scenes.
 
-That distinction explains the game before the page lists any rules. [The Mouse in the Cat Musical](/departments/hobfarm-presents/3-degrees-of-dick-miller/the-mouse-in-the-cat-musical/) starts in a Warner Bros. chorus, follows Billy Barty through screen history, and reaches Dick Miller in a 1957 Corman picture. This page accepts the handoff and keeps moving.
+That distinction explains the game before the page lists any rules. [The Mouse in the Cat Musical](/presents/3-degrees-of-dick-miller/the-mouse-in-the-cat-musical/) starts in a Warner Bros. chorus, follows Billy Barty through screen history, and reaches Dick Miller in a 1957 Corman picture. This page accepts the handoff and keeps moving.
 
 A filmography treats *The Undead* as another supporting credit. 3DM treats it as a junction. Billy Barty leads into the film. Dick Miller leads out.
 

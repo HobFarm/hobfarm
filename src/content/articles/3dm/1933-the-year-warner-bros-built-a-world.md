@@ -320,10 +320,10 @@ The distinction between the two Williams matters. Warren William is the suspicio
 
 ## The world behind the mouse
 
-This is the production world surrounding [The Mouse in the Cat Musical](/departments/hobfarm-presents/3-degrees-of-dick-miller/the-mouse-in-the-cat-musical/).
+This is the production world surrounding [The Mouse in the Cat Musical](/presents/3-degrees-of-dick-miller/the-mouse-in-the-cat-musical/).
 
 Billy Barty's mouse works as a 3DM starting point because *Footlight Parade* already contains the Warner machine in miniature. The alley set becomes a musical world through costume, choreography, camera, and the labor surrounding them. Follow one small performer out of that system and the route reaches Roger Corman, Dick Miller, Ridley Scott, and Lucasfilm fantasy.
 
-Barty did not leave one isolated classic and appear in another isolated curiosity. He moved between production systems. Frank McHugh opens another route from the same repertory world. [You Know Nothing of My Algorithm](/departments/hobfarm-presents/3-degrees-of-dick-miller/you-know-nothing-of-my-algorithm/) follows him into experimental television, Marshall McLuhan, and the programming systems that became the infinite feed.
+Barty did not leave one isolated classic and appear in another isolated curiosity. He moved between production systems. Frank McHugh opens another route from the same repertory world. [You Know Nothing of My Algorithm](/presents/3-degrees-of-dick-miller/you-know-nothing-of-my-algorithm/) follows him into experimental television, Marshall McLuhan, and the programming systems that became the infinite feed.
 
 Warner rebuilt the musical by treating show business as another Depression workplace. The recurring faces made the world familiar. The crews built it. Berkeley found the angle from which all that coordinated labor looked impossible.

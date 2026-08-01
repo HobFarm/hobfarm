@@ -1,9 +1,7 @@
 import {
   absoluteUrl,
-  adventureToAgentLink,
   characterToAgentLink,
   formatDate,
-  getPublicAgentAdventures,
   getPublicAgentArticles,
   getPublicAgentCharacters,
   getPublicAgentGalleryEntries,
@@ -106,10 +104,9 @@ function urlEntry(entry: SitemapEntry): string {
 }
 
 export async function GET() {
-  const [articles, adventures, galleryEntries, projects, grimoireEntries] =
+  const [articles, galleryEntries, projects, grimoireEntries] =
     await Promise.all([
       getPublicAgentArticles(),
-      getPublicAgentAdventures(),
       getPublicAgentGalleryEntries(),
       getPublicAgentProjects(),
       getPublicAgentGrimoireEntries(),
@@ -128,12 +125,6 @@ export async function GET() {
       loc: storySeriesToAgentLink(series).url,
       changefreq: "weekly" as const,
       priority: "0.9",
-    })),
-    ...adventures.map((adventure) => ({
-      loc: adventureToAgentLink(adventure).url,
-      lastmod: formatDate(adventure.data.date),
-      changefreq: "monthly" as const,
-      priority: "0.8",
     })),
     ...getPublicAgentCharacters().map((character) => ({
       loc: characterToAgentLink(character).url,

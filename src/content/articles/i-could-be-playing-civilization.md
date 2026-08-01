@@ -116,7 +116,7 @@ The new game has rules and mechanics, except they are model behaviors and instru
 
 The transfer is strong enough to be useful and weak enough to keep me trapped. Experience carries over; mastery does not. A model update changes the terrain. A wrapper changes how instructions reach it. A moderation layer shifts. A tool that followed a boring rule yesterday decides today that it has a better idea.
 
-The project is broad on purpose. If I get sick of article research, I can work on an image system, a video, StyleFusion, Grimoire, a restoration experiment, or the website. The Purple Gothic Doll on my project map is [Other Alice Adventures](/departments/hobfarm-presents/other-alice-adventures/), an entire developed world waiting behind what sounds like one distracting image prompt. Boredom with one branch does not release me from the game. It moves my unit to another tile.
+The project is broad on purpose. If I get sick of article research, I can work on an image system, a video, StyleFusion, Grimoire, a restoration experiment, or the website. The Purple Gothic Doll on my project map is [Other Alice Adventures](/presents/other-alice-adventures/), an entire developed world waiting behind what sounds like one distracting image prompt. Boredom with one branch does not release me from the game. It moves my unit to another tile.
 
 ## The fork became a skill file
 

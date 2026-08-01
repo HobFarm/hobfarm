@@ -15,11 +15,19 @@ export type ArticleTagCount = {
   count: number;
 };
 
-// Departments are the canonical taxonomy now (src/data/departments.ts).
-// `articleCategories` is kept as a back-compat re-export of the department
-// filter list so existing imports keep working; prefer importing
-// `departmentFilters` directly in new code.
+// The department registry remains the routing taxonomy (src/data/departments.ts),
+// even though the old /departments/ route tree is retired. `articleCategories`
+// stays as a back-compat re-export so existing imports keep working; prefer
+// importing `departmentFilters` directly in new code.
 export const articleCategories = departmentFilters;
+
+const preferredArticleTagLabels: Record<string, string> = {
+  ai: "AI",
+  anthropic: "Anthropic",
+  grimoire: "Grimoire",
+  "pre-code hollywood": "Pre-Code Hollywood",
+  stylefusion: "StyleFusion",
+};
 
 export function stripArticleExt(id: string): string {
   return id.replace(/\.(md|mdx)$/, "");
@@ -36,7 +44,11 @@ export function articlePath(articleOrId: Article | string): string {
 }
 
 export function articleTagPath(tag: string): string {
-  return `/articles/tags/${encodeURIComponent(tag)}`;
+  return `/articles/tags/${encodeURIComponent(normalizeArticleTag(tag))}/`;
+}
+
+export function normalizeArticleTag(tag: string): string {
+  return tag.trim().toLocaleLowerCase("en-US");
 }
 
 /** @deprecated Use departmentPath from @/data/departments. */
@@ -108,16 +120,24 @@ export async function getPublishedArticles(now: Date = new Date()): Promise<Arti
 }
 
 export function getArticleTagCounts(articles: Article[]): ArticleTagCount[] {
-  const counts = new Map<string, number>();
+  const counts = new Map<string, ArticleTagCount>();
 
   for (const article of articles) {
+    const articleTags = new Set<string>();
     for (const tag of article.data.tags) {
-      counts.set(tag, (counts.get(tag) ?? 0) + 1);
+      const normalizedTag = normalizeArticleTag(tag);
+      if (!normalizedTag || articleTags.has(normalizedTag)) continue;
+      articleTags.add(normalizedTag);
+
+      const existing = counts.get(normalizedTag);
+      counts.set(normalizedTag, {
+        tag: preferredArticleTagLabels[normalizedTag] ?? existing?.tag ?? tag.trim(),
+        count: (existing?.count ?? 0) + 1,
+      });
     }
   }
 
-  return [...counts.entries()]
-    .map(([tag, count]) => ({ tag, count }))
+  return [...counts.values()]
     .sort((a, b) => a.tag.localeCompare(b.tag, undefined, { sensitivity: "base" }));
 }
 
@@ -133,7 +153,7 @@ export function getRelatedArticles(current: Article, articles: Article[], limit 
   }
 
   const currentDepartment = getArticleDepartment(current.data);
-  const currentTags = new Set(current.data.tags);
+  const currentTags = new Set(current.data.tags.map(normalizeArticleTag));
   const currentSeries = current.data.series;
 
   return articles
@@ -143,7 +163,7 @@ export function getRelatedArticles(current: Article, articles: Article[], limit 
       if (currentSeries && article.data.series === currentSeries) score += 6;
       if (currentDepartment && getArticleDepartment(article.data) === currentDepartment) score += 4;
       for (const tag of article.data.tags) {
-        if (currentTags.has(tag)) score += 1;
+        if (currentTags.has(normalizeArticleTag(tag))) score += 1;
       }
       return { article, score };
     })

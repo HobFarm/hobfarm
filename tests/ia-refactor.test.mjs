@@ -22,8 +22,21 @@ test("primary IA demotes archives while keeping search discoverable", () => {
 
   assert.match(nav, /data-search-trigger/);
   assert.match(mobile, /data-search-trigger/);
+  for (const summary of mobile.matchAll(/<summary[\s\S]*?<\/summary>/g)) {
+    assert.doesNotMatch(summary[0], /<a\b/, "mobile submenu toggles must not nest links inside summary");
+  }
   assert.match(search, /hobfarm:open-search/);
   assert.match(search, /closest\("\[data-search-trigger\]"\)/);
+});
+
+test("Presents feature fallbacks are keyed by series identity, not nav position", () => {
+  const presents = read("src/pages/presents/index.astro");
+
+  assert.match(presents, /const seriesById = new Map/);
+  for (const id of ["other-alice", "3dm", "magazine-time-machine", "funnies", "hobfarm-tv"]) {
+    assert.match(presents, new RegExp(`seriesById\\.get\\("${id}"\\)`));
+  }
+  assert.doesNotMatch(presents, /presentsSeries\[\d+\]/);
 });
 
 test("Workshop visibility keeps route generation separate from navigation", () => {

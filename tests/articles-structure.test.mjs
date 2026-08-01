@@ -128,9 +128,21 @@ test("legacy blog URLs redirect to canonical articles URLs", () => {
   const redirects = read("public/_redirects");
 
   assert.match(redirects, /\/blog\s+\/articles\/\s+301/);
-  assert.match(redirects, /\/blog\/posts\/:slug\s+\/articles\/:slug\s+301/);
+  assert.match(redirects, /\/blog\/posts\/:slug\s+\/articles\/:slug\/\s+301/);
   assert.match(redirects, /\/blog\/category\/:category\s+\/articles\/:category\/\s+301/);
-  assert.match(redirects, /\/blog\/tags\/:tag\s+\/articles\/tags\/:tag\s+301/);
+  assert.match(redirects, /\/blog\/tags\/:tag\s+\/articles\/tags\/:tag\/\s+301/);
+});
+
+test("article tag routes use one case-insensitive canonical slug", () => {
+  const articles = read("src/lib/articles.ts");
+  const tagRoute = read("src/pages/articles/tags/[tag].astro");
+  const redirects = read("public/_redirects");
+
+  assert.match(articles, /export function normalizeArticleTag/);
+  assert.match(articles, /encodeURIComponent\(normalizeArticleTag\(tag\)\)/);
+  assert.match(tagRoute, /params: \{ tag: normalizedTag \}/);
+  assert.match(tagRoute, /post\.data\.tags\.some/);
+  assert.match(redirects, /\/articles\/tags\/StyleFusion\/\s+\/articles\/tags\/stylefusion\/\s+301/);
 });
 
 test("legacy category URLs redirect to canonical category destinations", () => {

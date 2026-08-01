@@ -10,27 +10,28 @@ test("Other Alice public navigation has five living-world entries",()=>{
  assert.doesNotMatch(nav,/Adventure|Atlas|Bestiary|Archive|Workshop/);
 });
 
-test("Start Here presents the project without landing-page chronology",()=>{
+test("Start Here presents the persistent game without landing-page chronology",()=>{
  const page=read("src/components/presents/other-alice/OtherAliceStartPage.astro");
  const series=read("src/data/story-series.ts");
  const boundary=read("src/components/presents/other-alice/living-world/BoundaryRecord.astro");
  assert.match(page,/Wonderland is already alive\. Alice is only one person inside it\./);
  assert.match(page,/Why Other Alice\?/);
- assert.match(page,/How an Adventure begins/);
+ assert.match(page,/How an Adventure takes shape/);
  assert.match(page,/WonderMachineDevelopment/);
- assert.match(page,/Each Adventure begins with something small\. Wonderland supplies the rest\./);
- assert.match(page,/A web-native surreal fantasy serial, illustrated world archive, and developing interactive story system\./);
- assert.match(page,/The familiar story is the entrance\. The larger world is Other Alice\./);
+ assert.match(page,/Each Adventure begins with something small\. The long-form story accumulates from what happens next\./);
+ assert.match(page,/A persistent interactive story and illustrated living world\. Each campaign becomes its own long-form account\./);
+ assert.match(page,/The familiar story is the entrance\. What happens next belongs to the visit\./);
+ assert.match(page,/other-alice\.alice\.representative-landscape/);
  assert.match(page,/Wonderland is inhabited, maintained, traded, taxed, and argued over\./);
  assert.match(page,/The world does not wait for Alice\./);
  assert.doesNotMatch(page,/otherAliceChronology|chronologyRail|VisitorImprint|Age \d+|Wonderland time|Outside route/);
- assert.match(series,/Other Alice Adventures \| A Living Illustrated Wonderland/);
- assert.match(series,/A web-native surreal fantasy serial, illustrated world archive, and developing interactive story system built around choice, consequence, persistent history, and literary characters reimagined through Wonderland/);
+ assert.match(series,/Other Alice Adventures \| A Persistent Interactive Wonderland/);
+ assert.match(series,/A persistent story game set in an authored Wonderland where choices, relationships, time, and consequences build the long-form account of each campaign/);
  assert.match(boundary,/Exterior record incomplete/);
  assert.doesNotMatch(page,/Read Adventure|Adventure No\.|current fragment/i);
 });
 
-test("Other Alice presents Wonder Machine as a private authored-world prototype",()=>{
+test("Other Alice presents Wonder Machine as a private runtime alpha",()=>{
  const component=read("src/components/presents/other-alice/WonderMachineDevelopment.astro");
  const status=read("src/data/other-alice-development.ts");
  const combined=`${component}\n${status}`;
@@ -39,7 +40,8 @@ test("Other Alice presents Wonder Machine as a private authored-world prototype"
   "finding the anomaly is optional",
   "Refusing it creates a different history",
   "An authored world, not an unlimited prompt",
-  "There is no public build yet",
+  "Private runtime alpha",
+  "no public build yet",
   "Explore the world guide",
   "Read how the Grimoire authors the world",
  ]) assert.match(combined,new RegExp(phrase));
@@ -48,7 +50,13 @@ test("Other Alice presents Wonder Machine as a private authored-world prototype"
  }
 });
 
-test("withdrawn story routes redirect and story files are outside public content",()=>{
+test("static Adventure publishing is retired while withdrawn story routes still redirect",()=>{
+ assert.equal(existsSync(join(root,"src/lib/adventures.ts")),false);
+ assert.equal(existsSync(join(root,"src/components/presents/AdventureCard.astro")),false);
+ assert.equal(existsSync(join(root,"src/pages/presents/[series]/[slug].astro")),false);
+ assert.equal(existsSync(join(root,"src/pages/presents/[series]/[slug]/index.md.ts")),false);
+ const contentConfig=read("src/content.config.ts");
+ assert.doesNotMatch(contentConfig,/const adventures = defineCollection|getCollection\("adventures"\)/);
  assert.equal(existsSync(join(root,"src/content/adventures/adventure-no-01-the-boundary-table.md")),false);
  assert.equal(existsSync(join(root,"src/content/adventures/adventure-no-01-the-wrong-tunnel.md")),false);
  assert.equal(existsSync(join(root,"docs/other-alice/narrative-architecture/private/drafts/withdrawn-story-draft-01.md")),true);

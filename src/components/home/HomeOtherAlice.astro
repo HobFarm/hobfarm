@@ -2,10 +2,9 @@
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import { otherAliceDevelopment } from "@/data/other-alice-development";
-import { getWorkshopProject } from "@/data/workshop-projects";
+import { getMedia } from "@/data/media-registry";
 
-const otherAlice = getWorkshopProject("other-alice-world")!;
-const parkImage = otherAlice.approvedAssets[0];
+const campaignImage = getMedia("other-alice.alice.first-home");
 const choices = [
   "search for the anomaly",
   "ignore it",
@@ -38,11 +37,11 @@ const memory = [
 
     <div class="wonder-machine__feature">
       <div class="wonder-machine__copy">
-        <p class="wonder-machine__eyebrow">Working interactive world</p>
+        <p class="wonder-machine__eyebrow">Persistent story game</p>
         <h2 id="wonder-machine-heading">Wonder Machine remembers what happened.</h2>
         <div class="wonder-machine__intro">
           <p>
-            Other Alice Adventures is growing beyond an illustrated serial and world archive. Wonder Machine turns the authored world into a persistent, choice-driven visit.
+            Other Alice Adventures is a game set inside an authored living world. Wonder Machine turns each visit into a persistent story shaped by what the player notices, refuses, changes, promises, and returns to.
           </p>
           <p>
             A player begins in a large park knowing that an anomaly exists somewhere inside it. They can search for it, ignore it, follow another thread, or remain in the park until a different story takes shape. Small encounters can become homes, relationships, obligations, routes, dangers, or entire branches of a campaign.
@@ -50,6 +49,7 @@ const memory = [
           <p>
             The Grimoire defines the world. Wonder Machine runs each visit, keeps time, remembers choices, and preserves the consequences.
           </p>
+          <p>{otherAliceDevelopment.playerExperience}</p>
         </div>
 
         <p class="wonder-machine__status">
@@ -84,16 +84,16 @@ const memory = [
       <div class="visit-model" aria-label="A Wonder Machine visit can branch from an optional anomaly and preserve the resulting campaign history">
         <figure class="visit-model__park">
           <img
-            src={parkImage.src}
-            alt="An Other Alice world map used to show a large starting place with several possible directions"
-            width={parkImage.width}
-            height={parkImage.height}
+            src={campaignImage.src}
+            alt={campaignImage.alt}
+            width={campaignImage.width}
+            height={campaignImage.height}
             loading="lazy"
             decoding="async"
           />
           <figcaption>
-            <span>Starting place / large park</span>
-            <strong>Anomaly: known point of interest, not a mandatory quest</strong>
+            <span>Representative world art / not a runtime screenshot</span>
+            <strong>A small encounter can become a home, relationship, obligation, or route.</strong>
           </figcaption>
         </figure>
 
@@ -251,7 +251,7 @@ const memory = [
 
   .visit-model__park {
     position: relative;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 3 / 2;
     overflow: hidden;
     margin: 0;
     border: 1px solid rgb(255 255 255 / 0.12);
@@ -261,9 +261,9 @@ const memory = [
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    background: #d8c39b;
-    opacity: 0.9;
+    object-fit: cover;
+    background: #090c13;
+    opacity: 0.94;
   }
 
   .visit-model__park::after {

@@ -27,7 +27,7 @@ relatedArticles:
   - stylefusion-ir-extraction
   - same-model-different-surface
   - how-psychedelia-went-beige
-relatedProject: /projects/stylefusion/
+relatedProject: /workshop/stylefusion/
 draft: false
 ---
 

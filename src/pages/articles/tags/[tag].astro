@@ -4,7 +4,12 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import ArticleCard from "@/components/articles/ArticleCard.astro";
 import ArticleTagCloud from "@/components/articles/ArticleTagCloud.astro";
 import ContentPanel from "@/components/ContentPanel.astro";
-import { articleTagPath, getArticleTagCounts, getPublishedArticles } from "@/lib/articles";
+import {
+  articleTagPath,
+  getArticleTagCounts,
+  getPublishedArticles,
+  normalizeArticleTag,
+} from "@/lib/articles";
 
 const allPosts = await getPublishedArticles();
 const tagCounts = getArticleTagCounts(allPosts);
@@ -12,20 +17,22 @@ const tagCounts = getArticleTagCounts(allPosts);
 export async function getStaticPaths() {
   const allPosts = await getPublishedArticles();
   return getArticleTagCounts(allPosts).map(({ tag }) => {
-    const filteredPosts = allPosts.filter((post) => post.data.tags.includes(tag));
+    const normalizedTag = normalizeArticleTag(tag);
+    const filteredPosts = allPosts.filter((post) =>
+      post.data.tags.some((postTag) => normalizeArticleTag(postTag) === normalizedTag),
+    );
     return {
-      params: { tag },
-      props: { posts: filteredPosts },
+      params: { tag: normalizedTag },
+      props: { posts: filteredPosts, displayTag: tag },
     };
   });
 }
 
-const { tag } = Astro.params;
-const { posts } = Astro.props;
-const description = `Articles tagged "${tag}" on HobFarm, covering related systems, visual research, and project notes.`;
+const { displayTag, posts } = Astro.props;
+const description = `Articles tagged "${displayTag}" on HobFarm, covering related systems, visual research, and project notes.`;
 ---
 
-<BaseLayout title={`${tag} Articles | HobFarm`} description={description} canonical={`${articleTagPath(tag!)}/`}>
+<BaseLayout title={`${displayTag} Articles | HobFarm`} description={description} canonical={articleTagPath(displayTag)}>
   <section>
     <ContentPanel>
       <Wrapper
@@ -37,7 +44,7 @@ const description = `Articles tagged "${tag}" on HobFarm, covering related syste
             &larr; All articles
           </a>
           <h1 class="mt-4 text-2xl font-light text-base-100 font-display capitalize text-balance">
-            Articles tagged: {tag}
+            Articles tagged: {displayTag}
           </h1>
           <p class="mt-2 text-sm text-base-400">
             {posts.length} {posts.length === 1 ? "article" : "articles"}
@@ -46,7 +53,7 @@ const description = `Articles tagged "${tag}" on HobFarm, covering related syste
           <div class="mt-12">
             <h2 class="text-base font-medium text-base-100">All tags</h2>
             <div class="mt-4">
-              <ArticleTagCloud tags={tagCounts} activeTag={tag} ariaLabel="All article tags" />
+              <ArticleTagCloud tags={tagCounts} activeTag={displayTag} ariaLabel="All article tags" />
             </div>
           </div>
         </div>

@@ -15,12 +15,12 @@ const parkChoices = [
     <h2 id="wonder-development-title">Wonderland can remember your visit.</h2>
     <div class="wonder-development__opening">
       <p>
-        Other Alice Adventures remains an illustrated serial and public world archive. Wonder Machine adds another way into it: a choice-driven visit where the player enters an authored world without being handed one mandatory road through it.
+        Other Alice Adventures is a persistent story game supported by a public world archive. The player enters an authored world without being handed one mandatory road through it.
       </p>
       <p>
         The first opening begins in a large park. The player knows an anomaly exists somewhere inside it, but finding the anomaly is optional. They may investigate immediately, ignore it, establish routines, form relationships, or remain in the park while its weather, people, objects, and disturbances continue to change.
       </p>
-      <p>Following the anomaly can open a route into Wonderland. Refusing it creates a different history.</p>
+      <p>Following the anomaly can open a route into Wonderland. Refusing it creates a different history. Either history can continue across later sessions.</p>
     </div>
   </div>
 
@@ -69,12 +69,12 @@ const parkChoices = [
 
     <article class="wonder-development__status">
       <p class="wonder-development__eyebrow">Current state</p>
-      <h3>{otherAliceDevelopment.localPrototypeStatus}.</h3>
+      <h3>{otherAliceDevelopment.localPrototypeStatus}</h3>
       <ul>
         {otherAliceDevelopment.currentCapabilities.map((capability) => <li>{capability}</li>)}
       </ul>
       <p>
-        There is no public build yet. The working system now exists well enough to guide what the public experience should become.
+        The runtime, pack handoff, persistence, and private service are working. The player-facing client and production-ready opening are still unfinished, so there is no public build yet.
       </p>
     </article>
   </div>

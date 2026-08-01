@@ -77,6 +77,14 @@ directory page.
 Other Alice is the flagship and has its own internal structure. Manage it as its
 own project; do not restructure it as a side effect of work elsewhere.
 
+Other Alice is a persistent interactive story and game world, not a feed of
+prewritten serial installments. `/presents/other-alice-adventures/` is its
+canonical public home. The World Guide, Houses, cast, and relationship pages
+describe the shared authored world. Wonder Machine owns each mutable campaign,
+including choices, time, consequences, saves, and the long-form account that
+emerges during play. Do not recreate that session history as a static website
+content collection.
+
 ### Category routing
 
 | Category maps to | URL |
@@ -99,7 +107,7 @@ than hardcoding a category URL. A category with no content generates no route.
 
 There is no site-wide cast index. A character is the output of the Character /
 Mannequin process; an edition is a version of the same character, not a new one.
-Hobunny is the first character: `docs/hobunny-project-outline.md`.
+Hobunny is the first character: `docs/hobunny-project-source.md`.
 
 Avatars: Hillary (YouTube), Ami (Instagram), and the PsyGoth trio Em, Nina, and
 Zima (mixed). Hobgal is retired.
@@ -108,8 +116,8 @@ Zima (mixed). Hobgal is retired.
 
 | Subject | Status |
 | --- | --- |
-| Other Alice Adventures | Active |
-| Wonder Machine | Active. Runtime for Other Alice; formerly the XKXXKX record |
+| Other Alice Adventures | Active. Presents property, public world record, and persistent story game in development |
+| Wonder Machine | Private runtime alpha for Other Alice; the player-facing client and production-ready opening are unfinished |
 | Grimoire | Active, in redevelopment. World and knowledge layer feeding Wonder Machine and StyleFusion |
 | StyleFusion | Public at `/workshop/stylefusion/`, in redesign. Current copy predates the new version |
 | HobBot | Record kept at `src/content/workshop/hobbot.md`, no public page, in redevelopment |
@@ -281,7 +289,7 @@ Documentation-only changes do not require a full Astro build unless they alter g
 
 - Use the correct collection and inspect `src/content.config.ts`.
 - Keep Articles as the Editorial feed; do not introduce `blog` naming.
-- Use `comics` and `adventures` when those objects fit.
+- Use `comics` for published image-first comic entries. Other Alice campaign history belongs to Wonder Machine rather than a static story collection.
 - Give released games and applications durable routes.
 - Use existing relationship fields instead of duplicating titles, prices, URLs, or product data.
 - Keep public previews separate from buyer files.

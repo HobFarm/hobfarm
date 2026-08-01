@@ -138,37 +138,22 @@
 /departments/funny-pages   /presents/funnies/   301
 /departments/funny-pages/  /presents/funnies/   301
 
-# Dynamic legacy redirects stay below static redirects for Pages matching.
-/blog/posts/:slug         /articles/:slug             301
-/blog/posts/:slug/        /articles/:slug/            301
-# Canonical department slugs pass straight through to the new department pages.
-/articles/category/:category   /articles/:category/   301
-/articles/category/:category/  /articles/:category/   301
-/blog/category/:category  /articles/:category/     301
-/blog/category/:category/ /articles/:category/     301
-/blog/tags/:tag           /articles/tags/:tag         301
-/blog/tags/:tag/          /articles/tags/:tag/        301
-
 # ---------------------------------------------------------------------------
 # Presents migration. /departments/ is retired; Presents sections, Workshop
-# programs, and editorial categories each own their own prefix. These sit at the
-# end so the specific legacy rules above win the match first.
+# programs, and editorial categories each own their own prefix.
 # ---------------------------------------------------------------------------
 
 # HobFarm TV moved out of the retiring /projects/ section.
 /projects/hobfarm-tv      /presents/hobfarm-tv/   301
 /projects/hobfarm-tv/     /presents/hobfarm-tv/   301
-/projects/hobfarm-tv/*    /presents/hobfarm-tv/:splat   301
 
 # Comics moved under Presents with the rest of the Funnies.
 /funnies                  /presents/funnies/   301
 /funnies/                 /presents/funnies/   301
-/funnies/*                /presents/funnies/:splat   301
 
 # Departments that became Presents sections.
 /departments/hobfarm-presents        /presents/   301
 /departments/hobfarm-presents/       /presents/   301
-/departments/hobfarm-presents/*      /presents/:splat   301
 /departments/magazine-time-machine   /presents/magazine-time-machine/   301
 /departments/magazine-time-machine/  /presents/magazine-time-machine/   301
 /departments/funnies                 /presents/funnies/   301
@@ -184,10 +169,8 @@
 /departments/essays-arguments   /articles/essays-arguments/   301
 /departments/essays-arguments/  /articles/essays-arguments/   301
 
-# Everything else that was a department. Empty categories generate no page, so
-# these land on the Articles feed rather than a 404.
-/departments/:category/   /articles/   301
-/departments/:category    /articles/   301
+# The retired department index is now the publisher homepage. Dynamic category
+# fallbacks stay in the final matching block below.
 /departments              /   301
 /departments/             /   301
 
@@ -217,8 +200,8 @@
 /video                    /presents/hobfarm-tv/   301
 /video/                   /presents/hobfarm-tv/   301
 
-# Anything else still under /projects/.
-/projects/*               /workshop/   301
+# The retired project index is now the Workshop. Dynamic project fallbacks stay
+# in the final matching block below.
 /projects                 /workshop/   301
 /projects/                /workshop/   301
 
@@ -262,8 +245,8 @@
 /characters/hillary-hobfarm   /workshop/avatar-host/   301
 /characters/hillary-hobfarm/  /workshop/avatar-host/   301
 
-# Anything else, including the retired index.
-/characters/*   /presents/funnies/   301
+# The retired site-wide character index now lands on Funnies. Dynamic character
+# fallbacks stay in the final matching block below.
 /characters     /presents/funnies/   301
 /characters/    /presents/funnies/   301
 
@@ -280,3 +263,42 @@
 /presents/funnies/hobunny/        /presents/funnies/          301
 /presents/funnies/one-offs        /presents/funnies/          301
 /presents/funnies/one-offs/       /presents/funnies/          301
+
+# Article tag routes are lowercase and case-insensitive in the content model.
+# Preserve the mixed-case URLs emitted by older builds without duplicate pages.
+/articles/tags/AI                     /articles/tags/ai/                    301
+/articles/tags/AI/                    /articles/tags/ai/                    301
+/articles/tags/Anthropic              /articles/tags/anthropic/             301
+/articles/tags/Anthropic/             /articles/tags/anthropic/             301
+/articles/tags/Grimoire               /articles/tags/grimoire/              301
+/articles/tags/Grimoire/              /articles/tags/grimoire/              301
+/articles/tags/Pre-Code%20Hollywood   /articles/tags/pre-code%20hollywood/  301
+/articles/tags/Pre-Code%20Hollywood/  /articles/tags/pre-code%20hollywood/  301
+/articles/tags/StyleFusion            /articles/tags/stylefusion/           301
+/articles/tags/StyleFusion/           /articles/tags/stylefusion/           301
+
+# ---------------------------------------------------------------------------
+# Dynamic and splat redirects. Cloudflare Pages checks these in file order, so
+# every static rule above must remain ahead of this final matching block.
+# ---------------------------------------------------------------------------
+
+# Specific retired route trees before their broader fallbacks.
+/projects/hobfarm-tv/*           /presents/hobfarm-tv/:splat   301
+/funnies/*                       /presents/funnies/:splat       301
+/departments/hobfarm-presents/*  /presents/:splat               301
+
+# Empty retired categories and unknown project/character records.
+/departments/:category/  /articles/          301
+/departments/:category   /articles/          301
+/projects/*              /workshop/          301
+/characters/*            /presents/funnies/  301
+
+# Legacy blog routes.
+/blog/posts/:slug          /articles/:slug/       301
+/blog/posts/:slug/         /articles/:slug/       301
+/articles/category/:category   /articles/:category/       301
+/articles/category/:category/  /articles/:category/       301
+/blog/category/:category       /articles/:category/       301
+/blog/category/:category/      /articles/:category/       301
+/blog/tags/:tag                /articles/tags/:tag/        301
+/blog/tags/:tag/               /articles/tags/:tag/        301

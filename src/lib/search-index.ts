@@ -6,11 +6,6 @@ import {
   getPublishedArticles,
 } from "@/lib/articles";
 import { comicPath, getComicDate, getPublishedComics } from "@/lib/comics";
-import {
-  adventurePath,
-  getAdventureDate,
-  getPublishedAdventures,
-} from "@/lib/adventures";
 import { galleryTypeLabels, type GalleryType } from "@/lib/gallery";
 import { resolveDepartment } from "@/data/departments";
 import { characters, characterPath } from "@/data/characters";
@@ -25,7 +20,6 @@ export type SearchItem = {
   type:
     | "article"
     | "comic"
-    | "adventure"
     | "series"
     | "character"
     | "project"
@@ -149,25 +143,6 @@ export async function buildSearchIndex(): Promise<SearchItem[]> {
     }),
   );
 
-  const adventureItems: SearchItem[] = (await getPublishedAdventures()).map(
-    (adventure) => ({
-      type: "adventure",
-      title: adventure.data.title,
-      description: adventure.data.summary ?? adventure.data.teaser,
-      href: adventurePath(adventure),
-      tags: adventure.data.tags,
-      category: "HobFarm Presents",
-      date: getAdventureDate(adventure).toISOString(),
-      notes: [
-        `Adventure No. ${String(adventure.data.number).padStart(2, "0")}`,
-        adventure.data.series,
-        adventure.data.region,
-      ]
-        .filter(Boolean)
-        .join(" · "),
-    }),
-  );
-
   const seriesItems: SearchItem[] = storySeries
     .filter((series) => series.status === "active")
     .map((series) => ({
@@ -176,7 +151,8 @@ export async function buildSearchIndex(): Promise<SearchItem[]> {
       description: series.metaDescription ?? series.logline,
       href: storySeriesPath(series.slug),
       tags: [
-        "illustrated serial",
+        "persistent story game",
+        "interactive fiction",
         "Alice in Wonderland",
         "Wonderland",
         "Wasteland",
@@ -324,7 +300,6 @@ export async function buildSearchIndex(): Promise<SearchItem[]> {
   return [
     ...articleItems,
     ...comicItems,
-    ...adventureItems,
     ...seriesItems,
     otherAliceCastItem,
     ...characterItems,

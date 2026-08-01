@@ -263,7 +263,7 @@ The question isn't "which AI image generator is best." The question is "which co
 
 That's what I built. These are the results. The data is open, the IRs are published, and the methodology is reproducible by anyone who builds the same kind of intermediary layer. Or you could just use mine.
 
-The public [StyleFusion project brief](/projects/stylefusion/) explains where this workflow is going while the app is being finished. Built on Cloudflare Workers, AI Gateway, and D1. The Grimoire powers the vocabulary enrichment. HobFarm builds the invisible labor. The results speak for themselves.
+The public [StyleFusion project brief](/workshop/stylefusion/) explains where this workflow is going while the app is being finished. Built on Cloudflare Workers, AI Gateway, and D1. The Grimoire powers the vocabulary enrichment. HobFarm builds the invisible labor. The results speak for themselves.
 
 <figure class="article-wide">
   <video controls autoplay muted loop playsinline>

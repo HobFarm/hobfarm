@@ -258,11 +258,11 @@ A small publication can distribute fiction without owning a printing press. It c
 
 That is what **Other Alice Adventures** is for.
 
-Other Alice is a mixed-media digital pulp serial built around complete short stories. Each Adventure can include its own painted cover, illustrations, moving scenes, sound, field notes, and artifacts recovered from Wonderland, Wasteland, or the holes connecting them.
+Other Alice is a persistent story game built inside an authored Wonderland. Each campaign can draw on prose, illustration, moving scenes, sound, field notes, and artifacts recovered from Wonderland, Wasteland, or the holes connecting them.
 
-The story remains the central object. The other media become illustration plates, evidence, atmosphere, trailers, and disturbances inside the fiction.
+The campaign becomes the central object. Choices, relationships, time, and consequences accumulate into a long-form account that no other visit has to repeat. It is a book that makes its own record as you go, while the authored world keeps its characters, places, rules, and history intact.
 
-There is something appropriately circular about using moving images, online publishing, and AI-assisted production to rebuild a home for the short story. The descendants of the machines that helped dismantle the old market become components of the new publication.
+There is something appropriately circular about using moving images, online publishing, and AI-assisted production to rebuild a home for long-form storytelling. The descendants of the machines that helped dismantle the old market become components of the new publication.
 
 This will not restore Vonnegut’s magazine economy. It does restore the ability to make the work, publish it, own the archive, and invite readers into it without waiting for a conglomerate to decide that short fiction has become profitable again.
 
@@ -274,4 +274,4 @@ The current category will eventually fill with shit.
 
 The durable move is to keep the production cheap enough that the work can lead, good enough that somebody cares, and independent enough that the next advertising migration does not take the whole publication with it.
 
-[**Read Other Alice Adventures →**](/departments/hobfarm-presents/other-alice-adventures/)
+[**Read Other Alice Adventures →**](/presents/other-alice-adventures/)

@@ -5,15 +5,16 @@ import ContentPanel from "@/components/ContentPanel.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import ComicCard from "@/components/funnies/ComicCard.astro";
-import AdventureCard from "@/components/presents/AdventureCard.astro";
 import AliceMotionRecords from "@/components/presents/other-alice/AliceMotionRecords.astro";
 import AliceVisualDevelopment from "@/components/presents/other-alice/AliceVisualDevelopment.astro";
-import { characters } from "@/data/characters";
+import { characterPath, characters } from "@/data/characters";
 import { getComicSeries, seriesPath } from "@/data/comic-series";
 import { getStorySeries, storySeriesPath } from "@/data/story-series";
 import { comicsForCharacter, getPublishedComics } from "@/lib/comics";
-import { getPublishedAdventures } from "@/lib/adventures";
-import { OTHER_ALICE_WORLD_GUIDE_PATH } from "@/data/other-alice-world-guide";
+import {
+  OTHER_ALICE_CAST_PATH,
+  OTHER_ALICE_WORLD_GUIDE_PATH,
+} from "@/data/other-alice-world-guide";
 
 // Other Alice residents only. `/characters/` is retired: comic characters now
 // render on their series page under /presents/funnies/, but the Other Alice
@@ -21,7 +22,6 @@ import { OTHER_ALICE_WORLD_GUIDE_PATH } from "@/data/other-alice-world-guide";
 // their own, and Other Alice keeps its own structure.
 export async function getStaticPaths() {
   const comics = await getPublishedComics();
-  const adventures = await getPublishedAdventures();
   return characters
     .filter((character) => character.relatedSeries.includes("other-alice-adventures"))
     .map((character) => ({
@@ -29,14 +29,11 @@ export async function getStaticPaths() {
       props: {
         character,
         comics: comicsForCharacter(comics, character.slug).slice(0, 6),
-        adventures: adventures
-          .filter((adventure) => character.relatedSeries.includes(adventure.data.series))
-          .slice(0, 6),
       },
     }));
 }
 
-const { character, comics, adventures } = Astro.props;
+const { character, comics } = Astro.props;
 const comicSeries = character.relatedSeries
   .map((slug) => getComicSeries(slug))
   .filter((s): s is NonNullable<typeof s> => Boolean(s));
@@ -44,7 +41,8 @@ const fictionSeries = character.relatedSeries
   .map((slug) => getStorySeries(slug))
   .filter((s): s is NonNullable<typeof s> => Boolean(s));
 const belongsToOtherAlice = fictionSeries.some((series) => series.slug === "other-alice-adventures");
-const canonicalUrl = new URL(`/characters/${character.slug}/`, "https://hob.farm").toString();
+const canonicalPath = characterPath(character.slug);
+const canonicalUrl = new URL(canonicalPath, "https://hob.farm").toString();
 const heroPortrait = character.heroMedia?.portrait;
 const heroLandscape = character.heroMedia?.landscape;
 const displayImage = heroPortrait?.src ?? character.image;
@@ -84,10 +82,22 @@ const characterStructuredData = socialImage
             {
               "@type": "ListItem",
               position: 1,
-              name: "Characters",
-              item: "https://hob.farm/characters/",
+              name: "HobFarm Presents",
+              item: "https://hob.farm/presents/",
             },
-            { "@type": "ListItem", position: 2, name: character.name, item: canonicalUrl },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Other Alice Adventures",
+              item: "https://hob.farm/presents/other-alice-adventures/",
+            },
+            {
+              "@type": "ListItem",
+              position: 3,
+              name: "Cast",
+              item: new URL(OTHER_ALICE_CAST_PATH, "https://hob.farm").toString(),
+            },
+            { "@type": "ListItem", position: 4, name: character.name, item: canonicalUrl },
           ],
         },
       ],
@@ -98,7 +108,7 @@ const characterStructuredData = socialImage
 <BaseLayout
   title={character.seoTitle ?? `${character.name} | Characters | HobFarm`}
   description={character.metaDescription ?? character.bio}
-  canonical={`/presents/other-alice-adventures/cast/${character.slug}/`}
+  canonical={canonicalPath}
   image={socialImage}
   imageAlt={socialImageAlt}
   structuredData={characterStructuredData}
@@ -106,8 +116,8 @@ const characterStructuredData = socialImage
   <section>
     <ContentPanel>
       <Wrapper variant="standard" class="py-12 lg:py-16">
-        <a href="/characters/" class="text-sm text-base-500 transition-colors hover:text-base-100">
-          &larr; Character index
+        <a href={OTHER_ALICE_CAST_PATH} class="text-sm text-base-500 transition-colors hover:text-base-100">
+          &larr; Other Alice cast
         </a>
         <div class:list={[
           "mt-5 grid grid-cols-1 gap-8",
@@ -278,7 +288,7 @@ const characterStructuredData = socialImage
 
         {fictionSeries.length > 0 && (
           <div class="mt-12">
-            <Text tag="h2" variant="displaySM" class="mb-5 font-display text-white">Story series</Text>
+            <Text tag="h2" variant="displaySM" class="mb-5 font-display text-white">Game world</Text>
             <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {fictionSeries.map((s) => (
                 <a
@@ -295,14 +305,10 @@ const characterStructuredData = socialImage
 
         {fictionSeries.length > 0 ? (
           <div class="mt-12 border-t border-base-800 pt-10">
-            <Text tag="h2" variant="displaySM" class="mb-5 font-display text-white">Appearances</Text>
-            {adventures.length > 0 ? (
-              <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {adventures.map((adventure) => <AdventureCard adventure={adventure} />)}
-              </div>
-            ) : (
-              <p class="text-sm text-base-400">The first published Adventure featuring {character.name} is still being prepared.</p>
-            )}
+            <Text tag="h2" variant="displaySM" class="mb-5 font-display text-white">Role in play</Text>
+            <p class="max-w-2xl text-sm leading-relaxed text-base-400">
+              This dossier records the shared character. Wonder Machine can surface authored people, places, relationships, and consequences when a campaign makes them relevant, but no page can predict a particular player's history.
+            </p>
           </div>
         ) : (
           <div class="mt-12 border-t border-base-800 pt-10">

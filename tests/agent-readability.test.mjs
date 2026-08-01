@@ -32,7 +32,6 @@ const requiredFiles = [
   "src/pages/presents/index.md.ts",
   "src/pages/presents/llms.txt.ts",
   "src/pages/presents/[series]/index.md.ts",
-  "src/pages/presents/[series]/[slug]/index.md.ts",
   "src/pages/presents/other-alice-adventures/cast/[character]/index.md.ts",
   "functions/_middleware.ts",
   "public/.well-known/agent-skills/index.json",

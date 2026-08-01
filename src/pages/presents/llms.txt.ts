@@ -1,8 +1,6 @@
 import {
-  adventureToAgentLink,
   buildSectionLlms,
   characterToAgentLink,
-  getPublicAgentAdventures,
   getPublicAgentCharacters,
   getPublicAgentStorySeries,
   storySeriesToAgentLink,
@@ -12,12 +10,11 @@ import {
 } from "@/lib/agent-corpus";
 
 export async function GET() {
-  const adventures = await getPublicAgentAdventures();
   const seriesArticles = (await getPublicAgentArticles()).filter((entry) => entry.data.presentsSeries === "3dm");
   return textResponse(
     await buildSectionLlms(
       "HobFarm Presents Agent Index",
-      "Published recurring series, film-history features, Adventures, and principal character guides. Draft entries and source files are excluded.",
+      "Published recurring worlds, games, film-history features, and principal character guides. Draft entries and source files are excluded.",
       [
         {
           title: "3 Degrees of Dick Miller",
@@ -27,7 +24,6 @@ export async function GET() {
         },
         ...getPublicAgentStorySeries().map(storySeriesToAgentLink),
         ...seriesArticles.map(articleToAgentLink),
-        ...adventures.map(adventureToAgentLink),
         ...getPublicAgentCharacters().map(characterToAgentLink),
       ],
     ),

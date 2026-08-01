@@ -311,7 +311,7 @@ Busby Berkeley turns that anxiety into architecture. Bodies become coins, assemb
 
 That awkwardness gives the film value. It shows the factory while the factory is being installed.
 
-The larger Warner system is mapped in [1933: The Year Warner Bros. Built a World](/departments/hobfarm-presents/3-degrees-of-dick-miller/1933-the-year-warner-bros-built-a-world/). [The Mouse in the Cat Musical](/departments/hobfarm-presents/3-degrees-of-dick-miller/the-mouse-in-the-cat-musical/) follows one tiny performer out of *Footlight Parade* and toward Roger Corman.
+The larger Warner system is mapped in [1933: The Year Warner Bros. Built a World](/presents/3-degrees-of-dick-miller/1933-the-year-warner-bros-built-a-world/). [The Mouse in the Cat Musical](/presents/3-degrees-of-dick-miller/the-mouse-in-the-cat-musical/) follows one tiny performer out of *Footlight Parade* and toward Roger Corman.
 
 ## From chorus girls to monsters in three moves
 

@@ -120,7 +120,7 @@ The movie's backstage comedy runs on exhaustion. Ideas become inventory. Perform
   <figcaption>Chester Kent, played by James Cagney, runs out of steam inside the prologue factory.</figcaption>
 </figure>
 
-The wider studio system is mapped in [1933: The Year Warner Bros. Built a World](/departments/hobfarm-presents/3-degrees-of-dick-miller/1933-the-year-warner-bros-built-a-world/).
+The wider studio system is mapped in [1933: The Year Warner Bros. Built a World](/presents/3-degrees-of-dick-miller/1933-the-year-warner-bros-built-a-world/).
 
 ## Chester Kent invents *Cats*
 

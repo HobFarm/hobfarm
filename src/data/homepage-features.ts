@@ -10,24 +10,15 @@ export type HomepageFeature = {
   status: "published" | "draft";
 };
 
-const otherAliceMedia: MediaRecord = {
-  src: "https://cdn.hob.farm/pages/other-alice-adventures/other-alice-wonderland-wasteland-poster.webp",
-  mediaType: "image",
-  width: 900,
-  height: 1350,
-  destination: "/presents/other-alice-adventures/",
-  role: "series-poster",
-  alt: "Other Alice stands at the boundary between wet Wonderland and the dry geometric Wasteland",
-  status: "active",
-};
+const otherAliceMedia = getMedia("other-alice.alice.workshop");
 
 export const homepageFeatures: readonly HomepageFeature[] = [
   {
     id: "other-alice",
-    format: "HobFarm Presents / Interactive world",
+    format: "HobFarm Presents / Persistent story game",
     title: "Other Alice Adventures",
     description:
-      "An illustrated serial, public world archive, and developing interactive story system built around authored choices and persistent history.",
+      "Enter an authored Wonderland where choices, relationships, time, and consequences become the long-form story of a particular campaign.",
     href: "/presents/other-alice-adventures/",
     media: otherAliceMedia,
     status: "published",

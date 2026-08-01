@@ -98,12 +98,18 @@ test("homepage Workshop capabilities use one shared data model and real routes",
 test("Other Alice and Future Carriage are full proof sections after the method", () => {
   const homepage = read("src/pages/index.astro");
   const alice = read("src/components/home/HomeOtherAlice.astro");
+  const frontPage = read("src/components/home/MagazineFrontPage.astro");
+  const features = read("src/data/homepage-features.ts");
   const carriage = read("src/components/home/HomeFutureCarriage.astro");
 
   assert.ok(homepage.indexOf("<HomeWorkshop />") < homepage.indexOf("<HomeOtherAlice />"));
   assert.ok(homepage.indexOf("<HomeOtherAlice />") < homepage.indexOf("<HomeFutureCarriage />"));
   assert.match(alice, /Wonder Machine remembers what happened/);
-  assert.match(alice, /Public play is still in development|statusLine/);
+  assert.match(alice, /persistent story shaped by what the player notices/);
+  assert.match(alice, /other-alice\.alice\.first-home/);
+  assert.doesNotMatch(alice, /other-alice\.wonderland\.world-map/);
+  assert.match(frontPage, /other-alice\.alice\.representative-landscape/);
+  assert.match(features, /other-alice\.alice\.workshop/);
   assert.match(carriage, /Self-directed HobFarm concept campaign/);
   assert.match(carriage, /Open the complete case study/);
 });

@@ -1,10 +1,8 @@
 import {
   buildSectionLlms,
   characterToAgentLink,
-  getPublicAgentAdventures,
   getPublicAgentCharacters,
   getPublicAgentStorySeries,
-  adventureToAgentLink,
   markdownResponse,
   storySeriesToAgentLink,
   articleToAgentLink,
@@ -12,7 +10,6 @@ import {
 } from "@/lib/agent-corpus";
 
 export async function GET() {
-  const adventures = await getPublicAgentAdventures();
   const seriesArticles = (await getPublicAgentArticles()).filter((entry) => entry.data.presentsSeries === "3dm");
   const links = [
     {
@@ -23,14 +20,13 @@ export async function GET() {
     },
     ...getPublicAgentStorySeries().map(storySeriesToAgentLink),
     ...seriesArticles.map(articleToAgentLink),
-    ...adventures.map(adventureToAgentLink),
     ...getPublicAgentCharacters().map(characterToAgentLink),
   ];
 
   return markdownResponse(
     await buildSectionLlms(
       "HobFarm Presents",
-      "HobFarm's series imprint for recurring story worlds, film-history projects, illustrated fiction, video essays, character files, and moving scenes.",
+      "HobFarm's series imprint for recurring worlds, games, film-history projects, video essays, character files, and moving scenes.",
       links,
     ),
   );

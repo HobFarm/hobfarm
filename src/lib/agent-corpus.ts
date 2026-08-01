@@ -14,11 +14,6 @@ import {
   type ProductEntry,
 } from "@/lib/products";
 import {
-  adventurePath,
-  getPublishedAdventures,
-  type Adventure,
-} from "@/lib/adventures";
-import {
   storySeries,
   storySeriesPath,
   type StorySeries,
@@ -137,7 +132,7 @@ export const CURATED_AGENT_LINKS: AgentLink[] = [
     title: "HobFarm Presents",
     url: "https://hob.farm/presents/",
     description:
-      "HobFarm's series imprint for recurring story worlds, film-history projects, illustrated fiction, video essays, and moving scenes.",
+      "HobFarm's series imprint for recurring worlds, games, film-history projects, video essays, and moving scenes.",
   },
   {
     title: "3 Degrees of Dick Miller",
@@ -149,13 +144,13 @@ export const CURATED_AGENT_LINKS: AgentLink[] = [
     title: "Other Alice Adventures",
     url: "https://hob.farm/presents/other-alice-adventures/",
     description:
-      "An original illustrated Alice in Wonderland serial about the Alice who stayed.",
+      "A persistent story game set in an authored Wonderland that remembers choices, relationships, time, and consequences.",
   },
   {
     title: "Other Alice character guide",
     url: "https://hob.farm/presents/other-alice-adventures/cast/alice/",
     description:
-      "Public character guide covering Alice's history, methods, flaws, equipment, and published appearances.",
+      "Public character guide covering Alice's history, methods, equipment, relationships, and role in the authored game world.",
   },
 ];
 
@@ -174,7 +169,7 @@ export const SECTION_INDEX_LINKS: AgentLink[] = [
     title: "HobFarm Presents llms index",
     url: "https://hob.farm/presents/llms.txt",
     description:
-      "Published fiction series, Adventures, and principal character guides.",
+      "Published recurring worlds, games, film-history features, and principal character guides.",
   },
   {
     title: "Workshop llms index",
@@ -346,10 +341,6 @@ export async function getPublicAgentArticles(): Promise<
   return getPublishedArticles();
 }
 
-export async function getPublicAgentAdventures(): Promise<Adventure[]> {
-  return getPublishedAdventures();
-}
-
 export function getPublicAgentStorySeries(): StorySeries[] {
   return storySeries.filter((series) => series.status === "active");
 }
@@ -411,24 +402,12 @@ export function articleToAgentLink(
   };
 }
 
-export function adventureToAgentLink(adventure: Adventure): AgentLink {
-  return {
-    title: adventure.data.title,
-    url: absoluteUrl(canonicalPath(adventurePath(adventure))),
-    description: sanitizeInline(
-      adventure.data.summary ?? adventure.data.teaser,
-    ),
-    date: formatDate(adventure.data.date),
-    tags: adventure.data.tags,
-  };
-}
-
 export function storySeriesToAgentLink(series: StorySeries): AgentLink {
   return {
     title: series.title,
     url: absoluteUrl(canonicalPath(storySeriesPath(series.slug))),
     description: sanitizeInline(series.metaDescription ?? series.logline),
-    tags: ["HobFarm Presents", "illustrated serial"],
+    tags: ["HobFarm Presents", "persistent story game", "interactive fiction"],
   };
 }
 
@@ -521,26 +500,6 @@ export function articleMarkdown(article: CollectionEntry<"articles">): string {
       relatedProject: article.data.relatedProject,
     },
     body: article.body,
-  });
-}
-
-export function adventureMarkdown(adventure: Adventure): string {
-  return pageMarkdown({
-    title: adventure.data.title,
-    description: adventure.data.summary ?? adventure.data.teaser,
-    canonicalUrl: absoluteUrl(canonicalPath(adventurePath(adventure))),
-    date: adventure.data.date,
-    metadata: {
-      section: "HobFarm Presents",
-      series: adventure.data.series,
-      adventureNumber: adventure.data.number,
-      region: adventure.data.region,
-      tags: adventure.data.tags,
-      coverImage: adventure.data.cover,
-      relatedArticle: adventure.data.relatedArticle,
-      relatedGallery: adventure.data.relatedGallery,
-    },
-    body: adventure.body,
   });
 }
 
@@ -803,7 +762,7 @@ export async function buildRootLlms(): Promise<string> {
     "",
     "## Markdown Alternates",
     "- Important pages expose `/index.md` alternates, for example `https://hob.farm/index.md`, `https://hob.farm/about/index.md`, and `https://hob.farm/articles/index.md`.",
-    "- Public article, fiction, character, gallery, and project detail pages expose `/index.md` alternates next to their canonical HTML routes.",
+    "- Public article, series, character, gallery, and project detail pages expose `/index.md` alternates next to their canonical HTML routes.",
     "- Requests with `Accept: text/markdown` receive Markdown for public content routes when a Markdown alternate exists.",
     "",
     boundariesMarkdown(),
@@ -837,14 +796,12 @@ export async function buildSectionLlms(
 export async function buildFullLlms(): Promise<string> {
   const [
     articles,
-    adventures,
     galleryEntries,
     projects,
     products,
     grimoireEntries,
   ] = await Promise.all([
     getPublicAgentArticles(),
-    getPublicAgentAdventures(),
     getPublicAgentGalleryEntries(),
     getPublicAgentProjects(),
     getPublicProducts(),
@@ -872,11 +829,6 @@ export async function buildFullLlms(): Promise<string> {
     linkList(series.map(storySeriesToAgentLink)),
     "",
     series.map(storySeriesMarkdown).join("\n\n---\n\n"),
-    "",
-    "## Published Adventures",
-    linkList(adventures.map(adventureToAgentLink)),
-    "",
-    adventures.map(adventureMarkdown).join("\n\n---\n\n"),
     "",
     "## Principal Story Characters",
     linkList(storyCharacters.map(characterToAgentLink)),

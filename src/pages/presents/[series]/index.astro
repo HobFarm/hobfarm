@@ -1,47 +1,32 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-import ContentPanel from "@/components/ContentPanel.astro";
-import Text from "@/components/fundations/elements/Text.astro";
-import Button from "@/components/fundations/elements/Button.astro";
-import FunniesHero from "@/components/funnies/FunniesHero.astro";
-import AdventureCard from "@/components/presents/AdventureCard.astro";
-import ResidentGallery from "@/components/presents/ResidentGallery.astro";
-import WorldConceptGallery from "@/components/presents/WorldConceptGallery.astro";
-import WorldStrip from "@/components/presents/WorldStrip.astro";
-import Subscribe from "@/components/articles/Subscribe.astro";
 import OtherAliceStartPage from "@/components/presents/other-alice/OtherAliceStartPage.astro";
 import { storySeries, storySeriesPath } from "@/data/story-series";
-import { characterPath, getCharacter } from "@/data/characters";
-import { adventurePath, adventuresInSeries, getPublishedAdventures } from "@/lib/adventures";
-import { OTHER_ALICE_WORLD_GUIDE_PATH } from "@/data/other-alice-world-guide";
+import { getMedia } from "@/data/media-registry";
 
-export async function getStaticPaths() {
-  const adventures = await getPublishedAdventures();
-  return storySeries.map((series) => ({
-    params: { series: series.slug },
-    props: {
-      series,
-      adventures: adventuresInSeries(adventures, series.slug),
-    },
-  }));
+export function getStaticPaths() {
+  return storySeries
+    .filter((series) => series.slug === "other-alice-adventures")
+    .map((series) => ({
+      params: { series: series.slug },
+      props: { series },
+    }));
 }
 
-const { series, adventures } = Astro.props;
-const cast = (series.characters ?? [])
-  .map((slug) => getCharacter(slug))
-  .filter((character): character is NonNullable<typeof character> => Boolean(character));
-const fieldNotes = adventures.flatMap((a) =>
-  (a.data.fieldNotes ?? []).map((note) => ({ ...note, adventureTitle: a.data.title }))
-);
-const alice = cast.find((character) => character.slug === "alice");
-const seriesImage = series.heroMedia?.type === "image" ? series.heroMedia.file : series.cover;
-const seriesImageAlt =
-  series.heroMedia?.type === "image" ? series.heroMedia.alt : series.coverAlt ?? series.title;
-const worldGuideHref =
-  series.slug === "other-alice-adventures" ? OTHER_ALICE_WORLD_GUIDE_PATH : undefined;
-const isOtherAlice = series.slug === "other-alice-adventures";
-const canonicalUrl = new URL(storySeriesPath(series.slug), "https://hob.farm").toString();
+const { series } = Astro.props;
+const canonicalPath = storySeriesPath(series.slug);
+const canonicalUrl = new URL(canonicalPath, "https://hob.farm").toString();
+const representativeScene = getMedia("other-alice.alice.representative-landscape");
+const seriesImage = series.slug === "other-alice-adventures"
+  ? representativeScene.src
+  : series.heroMedia?.type === "image"
+    ? series.heroMedia.file
+    : series.cover;
+const seriesImageAlt = series.slug === "other-alice-adventures"
+  ? representativeScene.alt
+  : series.heroMedia?.type === "image"
+    ? series.heroMedia.alt
+    : series.coverAlt ?? series.title;
 const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
@@ -52,39 +37,23 @@ const structuredData = {
       name: series.seoTitle ?? series.title,
       description: series.metaDescription ?? series.logline,
       image: seriesImage,
-      mainEntity: { "@id": `${canonicalUrl}#series` },
+      mainEntity: { "@id": `${canonicalUrl}#game` },
       isPartOf: { "@id": "https://hob.farm/#website" },
     },
     {
-      "@type": "CreativeWorkSeries",
-      "@id": `${canonicalUrl}#series`,
+      "@type": "VideoGame",
+      "@id": `${canonicalUrl}#game`,
       name: series.title,
-      alternateName: series.tagline,
       description: series.metaDescription ?? series.logline,
       url: canonicalUrl,
       image: seriesImage,
-      genre: ["Surreal fantasy", "Science fiction", "Pulp adventure", "Dark comedy"],
-      audience: { "@type": "Audience", audienceType: "Adults and older readers" },
+      genre: ["Surreal fantasy", "Interactive fiction", "Persistent world"],
+      gamePlatform: "Web browser",
       creator: (series.contributors ?? []).map((contributor) => ({
         "@type": "Person",
         name: contributor.name,
       })),
       publisher: { "@id": "https://hob.farm/#organization" },
-      associatedMedia: (isOtherAlice ? [] : [
-        ...(series.worldAtlas?.concepts ?? []),
-        ...(series.residents?.entries ?? []),
-      ]).map((media) => ({
-        "@type": "ImageObject",
-        contentUrl: media.image,
-        caption: "description" in media ? media.description : media.summary.join(" "),
-        description: media.imageAlt,
-      })),
-      hasPart: (isOtherAlice ? [] : adventures).map((adventure) => ({
-        "@type": "Article",
-        name: adventure.data.title,
-        url: new URL(adventurePath(adventure), "https://hob.farm").toString(),
-        position: adventure.data.number,
-      })),
     },
     {
       "@type": "BreadcrumbList",
@@ -110,275 +79,11 @@ const structuredData = {
 <BaseLayout
   title={series.seoTitle ?? `${series.title} | HobFarm Presents`}
   description={series.metaDescription ?? series.logline}
-  canonical={storySeriesPath(series.slug)}
+  canonical={canonicalPath}
   image={seriesImage}
   imageAlt={seriesImageAlt}
   structuredData={structuredData}
   feed={{ href: "/presents/rss.xml", title: "HobFarm Presents" }}
 >
-  {isOtherAlice && <OtherAliceStartPage series={series} adventures={adventures} />}
-
-  {!isOtherAlice && (
-  <section>
-    <ContentPanel>
-      <Wrapper variant="standard" class="py-12 lg:py-20">
-        {/* 1 Series masthead + current cover */}
-        <FunniesHero
-          title={series.title}
-          deck={series.heroDeck ?? series.tagline}
-          image={seriesImage}
-          imageAlt={seriesImageAlt}
-          eyebrow={series.eyebrow ?? "HobFarm Presents"}
-          backHref="/presents/"
-          backLabel="HobFarm Presents"
-        />
-
-        {/* 2 Premise and entry points */}
-        <div class="mt-8 max-w-3xl">
-          <p class="text-base leading-relaxed text-base-300 text-pretty">{series.logline}</p>
-          {(series.heroIntro ?? []).map((paragraph) => (
-            <p class="mt-4 text-base leading-relaxed text-base-400 text-pretty">{paragraph}</p>
-          ))}
-          <div class="mt-7 flex flex-wrap gap-3">
-            {adventures[0] && (
-              <Button isLink size="base" variant="green" href={adventurePath(adventures[0])}>
-                Read Adventure No. {String(adventures[0].data.number).padStart(2, "0")}
-              </Button>
-            )}
-            {alice && (
-              <Button isLink size="base" variant="muted" href={characterPath(alice.slug)}>
-                Meet Other Alice
-              </Button>
-            )}
-            <Button isLink size="base" variant="muted" href="#world-atlas">
-              Explore the worlds
-            </Button>
-            {worldGuideHref && (
-              <Button isLink size="base" variant="muted" href={worldGuideHref}>
-                Open the World Guide
-              </Button>
-            )}
-          </div>
-        </div>
-
-        {/* Plain-language identity and differentiation */}
-        {series.explainer && (
-          <div class="mt-16 border-t border-base-800 pt-10">
-            <Text tag="h2" variant="displaySM" class="font-display text-white">
-              {series.explainer.heading}
-            </Text>
-            <p class="mt-5 max-w-3xl text-lg leading-relaxed text-base-200 text-pretty">
-              <strong class="font-medium text-white">{series.explainer.lead}</strong>
-            </p>
-            <div class="mt-5 max-w-3xl space-y-4">
-              {series.explainer.paragraphs.map((paragraph) => (
-                <p class="text-base leading-relaxed text-base-400 text-pretty">{paragraph}</p>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {series.differentiation && (
-          <div class="mt-12 rounded-lg border border-accent-500/25 bg-accent-500/5 p-6 sm:p-8">
-            <Text tag="h2" variant="displaySM" class="font-display text-white">
-              {series.differentiation.heading}
-            </Text>
-            <div class="mt-4 max-w-3xl space-y-4">
-              {series.differentiation.paragraphs.map((paragraph) => (
-                <p class="text-base leading-relaxed text-base-300 text-pretty">{paragraph}</p>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {(series.profile?.length ?? 0) > 0 && (
-          <div class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {series.profile!.map((item) => (
-              <div class="rounded-lg border border-base-800 bg-base-900/50 p-5">
-                <h3 class="font-display text-base text-white">{item.title}</h3>
-                <p class="mt-3 text-sm leading-relaxed text-base-400">{item.text}</p>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* 3 Illustrated world atlas */}
-        {series.worldAtlas && (
-          <WorldConceptGallery
-            heading={series.worldAtlas.heading}
-            intro={series.worldAtlas.intro}
-            concepts={series.worldAtlas.concepts}
-          />
-        )}
-
-        {/* 4 Adventure archive */}
-        <div class="mt-16 border-t border-base-800 pt-10">
-          <Text tag="h2" variant="displaySM" class="mb-6 font-display text-white">
-            Adventures
-          </Text>
-          {adventures.length > 0 ? (
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {adventures.map((adventure) => <AdventureCard adventure={adventure} />)}
-            </div>
-          ) : (
-            <div class="rounded-lg border border-dashed border-base-800 bg-base-950/40 p-6">
-              <p class="text-sm text-base-400">The first Adventure is still being set.</p>
-            </div>
-          )}
-        </div>
-
-        {/* 5 World rules */}
-        <div id="worlds">
-          <WorldStrip worldStrip={series.worldStrip ?? []} />
-        </div>
-
-        {/* 6 Illustrated resident and faction records */}
-        {series.residents && (
-          <ResidentGallery
-            heading={series.residents.heading}
-            intro={series.residents.intro}
-            entries={series.residents.entries}
-          />
-        )}
-
-        {series.characterMedia?.type === "video" && (
-          <div class="mt-12 grid overflow-hidden border-y border-base-800 bg-base-950/45 lg:grid-cols-[minmax(260px,0.58fr)_minmax(0,1.42fr)] lg:items-center">
-            <div class="mx-auto w-full max-w-sm border-x border-base-800 bg-base-950 lg:max-w-none">
-              <video
-                autoplay
-                muted
-                loop
-                playsinline
-                preload="metadata"
-                poster={series.characterMedia.poster}
-                aria-label={series.characterMedia.alt}
-                class="aspect-[9/16] w-full object-cover"
-              >
-                <source src={series.characterMedia.file} type="video/mp4" />
-              </video>
-            </div>
-            <div class="p-6 sm:p-8 lg:p-10">
-              <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-500">Moving fragment</p>
-              <h2 class="mt-3 font-display text-2xl text-[#eee7d6]">Alice and Chester in motion</h2>
-              <p class="mt-5 max-w-xl text-base leading-relaxed text-base-300 text-pretty">
-                A field reel from the living side of the rabbit-hole network. Video fragments sit beside fiction,
-                portraits, maps, and recovered records as another way into the serial.
-              </p>
-            </div>
-          </div>
-        )}
-
-        {/* 7 Optional field notes and relics */}
-        {fieldNotes.length > 0 && (
-          <div class="mt-16 border-t border-base-800 pt-10">
-            <Text tag="h2" variant="displaySM" class="mb-6 font-display text-white">
-              Field notes &amp; relics
-            </Text>
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              {fieldNotes.map((note) => (
-                <div class="rounded-lg border border-base-800 bg-base-900/50 p-5">
-                  <p class="font-mono text-[10px] uppercase tracking-widest text-accent-500">{note.label}</p>
-                  <p class="mt-2 text-sm leading-relaxed text-base-400">{note.text}</p>
-                  <p class="mt-3 font-mono text-[10px] uppercase tracking-wider text-base-600">
-                    {note.adventureTitle}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* 8 Companion reading */}
-        {(series.relatedContent?.length ?? 0) > 0 && (
-          <div class="mt-16 border-t border-base-800 pt-10">
-            <Text tag="h2" variant="displaySM" class="mb-6 font-display text-white">
-              Companion reading
-            </Text>
-            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {series.relatedContent!.map((link) => (
-                <a
-                  href={link.href}
-                  class="rounded-md border border-base-800 bg-base-900/70 px-4 py-3 text-sm text-base-200 transition-colors hover:border-accent-500/50 hover:text-white"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* 9 About the mixed-media serial */}
-        {series.description.length > 0 && (
-          <div class="mt-16 border-t border-base-800 pt-10">
-            <Text tag="h2" variant="displaySM" class="mb-4 font-display text-white">
-              About the serial
-            </Text>
-            <div class="max-w-2xl space-y-4">
-              {series.description.map((paragraph) => (
-                <p class="text-base leading-relaxed text-base-400 text-pretty">{paragraph}</p>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {(series.loreSections?.length ?? 0) > 0 &&
-          series.loreSections!.map((section) => (
-            <div class="mt-16 border-t border-base-800 pt-10">
-              <Text tag="h2" variant="displaySM" class="font-display text-white">
-                {section.heading}
-              </Text>
-              {(section.paragraphs?.length ?? 0) > 0 && (
-                <div class="mt-4 max-w-3xl space-y-4">
-                  {section.paragraphs!.map((paragraph) => (
-                    <p class="text-base leading-relaxed text-base-400 text-pretty">{paragraph}</p>
-                  ))}
-                </div>
-              )}
-              {(section.items?.length ?? 0) > 0 && (
-                <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                  {section.items!.map((item) => (
-                    <div class="rounded-lg border border-base-800 bg-base-900/50 p-5">
-                      <h3 class="font-display text-base text-white">{item.title}</h3>
-                      <p class="mt-2 text-sm leading-relaxed text-base-400">{item.text}</p>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-
-        {(series.faq?.length ?? 0) > 0 && (
-          <div class="mt-16 border-t border-base-800 pt-10">
-            <Text tag="h2" variant="displaySM" class="font-display text-white">
-              Other Alice FAQ
-            </Text>
-            <div class="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-2">
-              {series.faq!.map((item) => (
-                <details class="group rounded-lg border border-base-800 bg-base-900/50 p-5 open:border-accent-500/30">
-                  <summary class="cursor-pointer list-none font-display text-base text-white">
-                    {item.question}
-                  </summary>
-                  <p class="mt-3 text-sm leading-relaxed text-base-400">{item.answer}</p>
-                </details>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {(series.endLine?.length ?? 0) > 0 && (
-          <div class="mt-16 border-t border-base-800 pt-10">
-            {series.endLine!.map((line) => (
-              <p class="font-display text-xl leading-relaxed text-base-200 text-pretty">{line}</p>
-            ))}
-          </div>
-        )}
-      </Wrapper>
-    </ContentPanel>
-
-    <Subscribe
-      heading="Follow the holes"
-      description="New Adventures, character files, field notes, images, and moving fragments arrive as the rabbit-hole network expands."
-    />
-  </section>
-  )}
+  <OtherAliceStartPage />
 </BaseLayout>

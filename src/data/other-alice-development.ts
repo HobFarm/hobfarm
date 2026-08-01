@@ -8,9 +8,9 @@ import { OTHER_ALICE_WORLD_GUIDE_PATH } from "@/data/other-alice-world-guide";
  * status language, routes, and supported public claims aligned.
  */
 export const otherAliceDevelopment = {
-  localPrototypeStatus: "Working locally",
-  publicAvailability: "Public play is still in development",
-  statusLine: "Working locally. Public play is still in development.",
+  localPrototypeStatus: "Private runtime alpha",
+  publicAvailability: "Public play is not available yet",
+  statusLine: "Private runtime alpha. The player-facing client is still in development.",
   currentCapabilities: [
     "an explorable park with an optional anomaly objective",
     "partial map knowledge and changing manifestations",
@@ -19,6 +19,8 @@ export const otherAliceDevelopment = {
     "saves, deterministic replay, and world time between sessions",
     "campaigns that remain playable when the apparent objective is refused",
   ],
+  playerExperience:
+    "Each campaign produces its own long-form account from authored places, characters, choices, consequences, and remembered time.",
   routes: {
     otherAlice: OTHER_ALICE_ROOT_PATH,
     worldGuide: OTHER_ALICE_WORLD_GUIDE_PATH,
@@ -32,4 +34,3 @@ export const otherAliceDevelopment = {
   ],
   lastVerified: "2026-07-28",
 } as const;
-

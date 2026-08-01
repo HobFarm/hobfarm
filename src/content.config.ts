@@ -870,87 +870,6 @@ const comics = defineCollection({
   }),
 });
 
-// Adventures are HobFarm Presents' fiction installments: long-form serial
-// story content (unlike comics, which are image-first). They live in their
-// own collection so they get clean /presents/[series]/[slug]
-// URLs and stay out of /articles and RSS. `series` is a slug into
-// src/data/story-series.ts (a loose string, like comics.series, validated only
-// at the CMS layer). `region` is free text naming a world/zone within the
-// series (e.g. "Wonderland", "the Wasteland", "the holes between").
-const adventures = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/adventures" }),
-  schema: z.object({
-    series: z.string(),
-    number: z.number().int().positive(),
-    title: z.string(),
-    teaser: z.string(),
-    summary: z.string().optional(),
-    department: z
-      .enum([
-        "magazine-time-machine",
-        "wtfacts",
-        "satire",
-        "picture-stories",
-        "funnies",
-        "cute-corrupted",
-        "before-after-eras",
-        "critter-feed",
-        "hobfarm-presents",
-        "workshop-notes",
-        "essays-arguments",
-      ])
-      .default("hobfarm-presents"),
-    region: z.string().optional(),
-    cover: z.string(),
-    coverAlt: z.string().optional(),
-    heroMedia: z.discriminatedUnion("type", [heroImage, heroVideo]).optional(),
-    mediaBadges: z.array(z.string()).default([]),
-    mediaSections: z
-      .array(
-        z.object({
-          title: z.string(),
-          text: z.string().optional(),
-          media: z.array(galleryMediaItem),
-        }),
-      )
-      .optional(),
-    fieldNotes: z
-      .array(
-        z.object({
-          label: z.string(),
-          text: z.string(),
-        }),
-      )
-      .optional(),
-    credits: z
-      .array(
-        z.object({
-          name: z.string(),
-          role: z.string(),
-        }),
-      )
-      .default([]),
-    relatedArticle: z.string().optional(),
-    relatedArticleTitle: z.string().optional(),
-    relatedGallery: z.string().optional(),
-    relatedGalleryTitle: z.string().optional(),
-    nextAdventureTeaser: z
-      .object({
-        number: z.number().int().positive(),
-        title: z.string(),
-        summary: z.string(),
-        status: z.string().default("Coming next"),
-      })
-      .optional(),
-    tags: z.array(z.string()).default([]),
-    date: z.coerce.date(),
-    status: z
-      .enum(["draft", "scheduled", "published", "archived"])
-      .default("published"),
-    draft: z.boolean().default(false),
-  }),
-});
-
 // Products / drops. External-first: each product links OUT to a storefront
 // (DeviantArt first). previewImage is a {folder,file} pair rendered through the
 // capped helpers in src/lib/gallery.ts, so a public preview never exposes a
@@ -1064,5 +983,4 @@ export const collections = {
   stack,
   comics,
   products,
-  adventures,
 };

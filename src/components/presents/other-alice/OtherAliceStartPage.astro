@@ -11,7 +11,9 @@ import {
   OTHER_ALICE_CAST_PATH, OTHER_ALICE_HOUSES_PATH, OTHER_ALICE_WEB_PATH, OTHER_ALICE_WORLD_GUIDE_PATH,
   otherAliceCastPreview, archiveRecords, bestiaryRecords,
 } from "@/data/other-alice-world-guide";
+import { getMedia } from "@/data/media-registry";
 const alicePreview = otherAliceCastPreview[0];
+const heroScene = getMedia("other-alice.alice.representative-landscape");
 ---
 <div class="oaa-world">
  <OaaProjectNav current="start" />
@@ -24,21 +26,21 @@ const alicePreview = otherAliceCastPreview[0];
     <p>Alice followed the White Rabbit into Wonderland. Later, she chose to stay. Other Alice Adventures begins there.</p>
     <p>Wonderland is a living country with its own ecology, politics, trade, labor, creatures, routes, settlements, and unfinished borders. Its people maintain roads, grow food, move goods, argue over land, repair damage, adapt foreign objects, and keep going when Alice is somewhere else.</p>
     <p>Alice studies local conditions, gathers materials, prepares remedies, negotiates access, changes her size to reach restricted places, and follows problems through systems that rarely explain themselves.</p>
-    <p>Stories, character dossiers, maps, bestiary records, artifacts, diagrams, and visual studies reveal different parts of the same Wonderland.</p>
+    <p>The public guide records the shared Wonderland. Wonder Machine turns its authored places, residents, routes, conditions, and consequences into a persistent story shaped during play.</p>
    </div>
-   <p class="format">A web-native surreal fantasy serial, illustrated world archive, and developing interactive story system.</p>
+   <p class="format">A persistent interactive story and illustrated living world. Each campaign becomes its own long-form account.</p>
    <nav class="actions" aria-label="Explore Other Alice">
     <a href={OTHER_ALICE_WORLD_GUIDE_PATH}>Explore Wonderland</a>
     <a href={alicePreview.href ?? OTHER_ALICE_CAST_PATH}>Meet Other Alice</a>
     <a href={OTHER_ALICE_HOUSES_PATH}>See who holds power</a>
     <a href={OTHER_ALICE_WEB_PATH}>Open the Web of Wonderland</a>
    </nav>
-   <p class="project-index">Illustrated stories · World guide · Characters · Bestiary · Maps and records</p>
-   <p class="thesis">The familiar story is the entrance. The larger world is Other Alice.</p>
+   <p class="project-index">Persistent game · World guide · Cast · Maps · Campaign memory</p>
+   <p class="thesis">The familiar story is the entrance. What happens next belongs to the visit.</p>
   </div>
   <figure class="hero-map">
-   <img src="/media/other-alice/other-alice-wonderland-world-map.png" alt="Developing map of Other Alice's Wonderland with concentric regions, routes, portals, House influences, the Wasteland, and the Park Anomaly" width="1448" height="1086" sizes="(max-width: 900px) 100vw, 58vw" fetchpriority="high"/>
-   <figcaption><strong>A developing world map.</strong> The regions, routes, portals, House influence, Park Anomaly, and Wasteland are parts of one authored system.</figcaption>
+   <img src={heroScene.src} alt={heroScene.alt} width={heroScene.width} height={heroScene.height} sizes="(max-width: 900px) 100vw, 58vw" fetchpriority="high"/>
+   <figcaption><strong>Alice inside the authored world.</strong> Representative world art, not a runtime screenshot. The maps and system records continue below.</figcaption>
   </figure>
  </header>
 
@@ -59,13 +61,13 @@ const alicePreview = otherAliceCastPreview[0];
  <section class="section adventure-section" aria-labelledby="adventures-title">
   <div class="section-heading">
    <p class="index">Story pattern</p>
-   <h2 id="adventures-title">How an Adventure begins</h2>
+   <h2 id="adventures-title">How an Adventure takes shape</h2>
    <div class="section-copy">
-    <p>Other Alice Adventures follows Alice after she chose to remain in Wonderland.</p>
-    <p>There is no single road she must follow and no final destination waiting at the end. She moves through an inhabited world, following curiosities, practical errands, local problems, unusual requests, and things that are behaving differently than they should.</p>
+    <p>The player enters an inhabited world after Alice chose to remain in Wonderland.</p>
+    <p>There is no single road they must follow and no final destination waiting at the end. A practical errand, unusual request, damaged route, or ignored disturbance can become the center of a campaign.</p>
     <p><strong>In Wonderland, a simple task rarely stays simple.</strong></p>
-    <p>A missing ingredient can expose a trade dispute. A blocked burrow can change who controls a region. A strange animal can be wildlife, infrastructure, a citizen, or all three. Alice moves from one encounter to the next, learning how the world works by becoming involved in it.</p>
-    <p>Each Adventure begins with something small. Wonderland supplies the rest.</p>
+    <p>A missing ingredient can expose a trade dispute. A blocked burrow can change who controls a region. A strange animal can be wildlife, infrastructure, a citizen, or all three. Wonder Machine records what the player learns, changes, refuses, and leaves unresolved.</p>
+    <p>Each Adventure begins with something small. The long-form story accumulates from what happens next.</p>
    </div>
   </div>
  </section>
@@ -127,7 +129,7 @@ const alicePreview = otherAliceCastPreview[0];
 </div>
 <style>
  .oaa-world{--paper:#eee7d6;--ink:#090b12;--muted:#acb1bd;overflow:hidden;background:#080a11;color:var(--paper)}
- .hero{display:grid;grid-template-columns:minmax(24rem,.72fr) minmax(0,1.28fr);gap:clamp(1.5rem,4vw,4rem);align-items:center;min-height:clamp(42rem,78vh,62rem);max-width:100rem;margin:auto;padding:clamp(2rem,5vw,5rem);border-inline:1px solid rgba(255,255,255,.1)}.hero-copy{display:flex;flex-direction:column;justify-content:center}.hero-map{margin:0;overflow:hidden;border:1px solid rgba(238,231,214,.3);background:#d6c29c;box-shadow:0 30px 100px rgba(0,0,0,.45)}.hero-map img{display:block;width:100%;height:auto}.hero-map figcaption{padding:.85rem 1rem;background:#0e121c;color:#aeb3bf;font-size:.82rem;line-height:1.55}.hero-map figcaption strong{color:#eee7d6}.eyebrow,.index{color:#a88cff;font:600 .68rem/1 ui-monospace,SFMono-Regular,monospace;letter-spacing:.16em;text-transform:uppercase}.hero h1{max-width:11ch;margin:.7rem 0 1.5rem;font:400 clamp(3.7rem,8vw,8.6rem)/.83 Georgia,serif;letter-spacing:-.065em}.deck{max-width:43rem;margin:0;color:#d6d7db;font-size:clamp(1.15rem,2vw,1.65rem);line-height:1.45}.format{margin:1.4rem 0;color:#9ea4b2;font-style:italic}.actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem}.actions a,.section-link a{border:1px solid #5f6674;border-radius:999px;padding:.7rem 1rem;color:#fff;font:600 .72rem/1 ui-monospace,monospace;text-transform:uppercase;text-decoration:none}.actions a:first-child{background:var(--paper);color:#0a0b10}.actions a:hover,.actions a:focus-visible,.section-link a:hover,.section-link a:focus-visible{outline:2px solid #9f7aea;outline-offset:3px}
+ .hero{display:grid;grid-template-columns:minmax(24rem,.78fr) minmax(0,1.22fr);gap:clamp(1.5rem,4vw,4rem);align-items:center;min-height:clamp(42rem,78vh,62rem);max-width:100rem;margin:auto;padding:clamp(2rem,5vw,5rem);border-inline:1px solid rgba(255,255,255,.1)}.hero-copy{display:flex;min-width:0;flex-direction:column;justify-content:center}.hero-map{margin:0;overflow:hidden;border:1px solid rgba(238,231,214,.3);background:#090c13;box-shadow:0 30px 100px rgba(0,0,0,.45)}.hero-map img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}.hero-map figcaption{padding:.85rem 1rem;background:#0e121c;color:#aeb3bf;font-size:.82rem;line-height:1.55}.hero-map figcaption strong{color:#eee7d6}.eyebrow,.index{color:#a88cff;font:600 .68rem/1 ui-monospace,SFMono-Regular,monospace;letter-spacing:.16em;text-transform:uppercase}.hero h1{max-width:100%;margin:.7rem 0 1.5rem;font:400 clamp(3.35rem,5.6vw,6.4rem)/.86 Georgia,serif;letter-spacing:-.06em;text-wrap:balance}.deck{max-width:43rem;margin:0;color:#d6d7db;font-size:clamp(1.15rem,2vw,1.65rem);line-height:1.45}.format{margin:1.4rem 0;color:#9ea4b2;font-style:italic}.actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem}.actions a,.section-link a{border:1px solid #5f6674;border-radius:999px;padding:.7rem 1rem;color:#fff;font:600 .72rem/1 ui-monospace,monospace;text-transform:uppercase;text-decoration:none}.actions a:first-child{background:var(--paper);color:#0a0b10}.actions a:hover,.actions a:focus-visible,.section-link a:hover,.section-link a:focus-visible{outline:2px solid #9f7aea;outline-offset:3px}
  .hero-intro{max-width:48rem;margin-top:1.5rem;color:#aeb3bf;font-size:.98rem;line-height:1.65}.hero-intro p{margin:0}.hero-intro p+p{margin-top:.8rem}.project-index{margin:1.6rem 0 0;color:#8f95a4;font:600 .68rem/1.7 ui-monospace,monospace;text-transform:uppercase}.thesis{max-width:38rem;margin:1rem 0 0;color:#eee7d6;font:400 1.1rem/1.5 Georgia,serif}.section{max-width:90rem;margin:auto;padding:clamp(4rem,9vw,9rem) clamp(1rem,4vw,4rem);border-top:1px solid rgba(255,255,255,.1)}.section-heading{display:grid;grid-template-columns:minmax(10rem,.3fr) minmax(0,1fr);gap:1rem 3rem;margin-bottom:clamp(2rem,5vw,4rem)}.section-heading .index{grid-row:1/3}.section-heading h2{max-width:23ch;margin:0;font:400 clamp(2.25rem,5vw,5rem)/.98 Georgia,serif;letter-spacing:-.035em}.section-heading>p:not(.index),.section-heading>.section-copy{max-width:48rem;margin:0;color:var(--muted);font-size:1rem;line-height:1.7}.section-copy p{margin:0}.section-copy p+p{margin-top:1rem}.section-link{margin-top:1.5rem}
  .companion-card{display:block;max-width:48rem;padding:clamp(1.25rem,3vw,2rem);border:1px solid rgba(168,140,255,.45);background:linear-gradient(135deg,rgba(168,140,255,.12),rgba(14,18,28,.8));color:var(--paper);text-decoration:none}.companion-card span{display:block;color:#a88cff;font:600 .68rem/1 ui-monospace,monospace;letter-spacing:.16em;text-transform:uppercase}.companion-card strong{display:block;margin:.75rem 0;font:400 clamp(1.5rem,3vw,2.5rem)/1.05 Georgia,serif}.companion-card p{margin:0;color:#b5bac5}.companion-card:hover,.companion-card:focus-visible{border-color:#c5afff;outline:2px solid #9f7aea;outline-offset:4px}
  .evidence-layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(13rem,.7fr) minmax(12rem,.55fr);gap:1rem}.alice-plate{position:relative;overflow:hidden;min-height:40rem;background:#090c13}.alice-plate picture{display:block;width:100%;height:100%}.alice-plate img{width:100%;height:100%;object-fit:cover}.alice-plate div{position:absolute;inset:auto 1rem 1rem;padding:1rem;background:rgba(8,10,17,.9);backdrop-filter:blur(10px)}.alice-plate h3,.evidence-column h3{margin:.5rem 0;color:#fff;font:400 1.5rem/1.1 Georgia,serif}.alice-plate p,.evidence-column p{color:#b5bac5;line-height:1.55}.evidence-column{display:grid;gap:1rem}.evidence-column article{padding:1rem;border:1px solid rgba(255,255,255,.13);background:#0e121c}.evidence-column.narrow article:nth-child(2){border-color:#557c70}.evidence-column.narrow article:nth-child(3){border-style:dashed;border-color:#9f7aea}

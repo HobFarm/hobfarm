@@ -1,5 +1,5 @@
 ---
-import { articleTagPath, type ArticleTagCount } from "@/lib/articles";
+import { articleTagPath, normalizeArticleTag, type ArticleTagCount } from "@/lib/articles";
 
 interface Props {
   tags: ArticleTagCount[];
@@ -22,7 +22,7 @@ function sizeClass(count: number): string {
   <ul role="list" class="flex flex-wrap items-center gap-2">
     {
       tags.map(({ tag, count }) => {
-        const isActive = tag === activeTag;
+        const isActive = activeTag !== undefined && normalizeArticleTag(tag) === normalizeArticleTag(activeTag);
         return (
           <li class="max-w-full">
             <a

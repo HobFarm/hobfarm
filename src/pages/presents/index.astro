@@ -4,24 +4,29 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import SectionHero from "@/components/sections/SectionHero.astro";
 import { presentsSeries, siteSections } from "@/data/site-hierarchy";
 import { getPublishedArticles, getArticleDepartment, articlePath, getArticleHero } from "@/lib/articles";
-import { getPublishedAdventures, adventurePath } from "@/lib/adventures";
 import { getPublishedComics, comicPath } from "@/lib/comics";
 import { OTHER_ALICE_WORLD_GUIDE_PATH } from "@/data/other-alice-world-guide";
+import { getMedia } from "@/data/media-registry";
 
 const section = siteSections.find((entry) => entry.id === "presents")!;
 const articles = await getPublishedArticles();
-const adventures = await getPublishedAdventures();
 const comics = await getPublishedComics();
 const latest3dm = articles.find((article) => article.data.presentsSeries === "3dm" || article.id.startsWith("3dm/"));
 const latestMagazine = articles.find((article) => getArticleDepartment(article.data) === "magazine-time-machine");
-const latestAlice = adventures.find((entry) => entry.data.series === "other-alice-adventures");
 const latestComic = comics[0];
+const seriesById = new Map(presentsSeries.map((entry) => [entry.id, entry]));
+const threeDmSeries = seriesById.get("3dm")!;
+const magazineSeries = seriesById.get("magazine-time-machine")!;
+const otherAliceSeries = seriesById.get("other-alice")!;
+const funniesSeries = seriesById.get("funnies")!;
+const hobfarmTvSeries = seriesById.get("hobfarm-tv")!;
+const otherAliceFeature = getMedia("other-alice.alice.size-change");
 const features: Record<string, { title:string; description:string; href:string; image?:string; alt:string }> = {
-  "3dm": latest3dm ? { title:latest3dm.data.title, description:latest3dm.data.excerpt, href:articlePath(latest3dm), image:getArticleHero(latest3dm.data), alt:latest3dm.data.heroAlt ?? latest3dm.data.title } : { title:"Enter the Millerverse", description:"Start with the connection map and current film-history archive.", href:presentsSeries[0].href, image:presentsSeries[0].logo, alt:"3 Degrees of Dick Miller logo" },
-  "magazine-time-machine": latestMagazine ? { title:latestMagazine.data.title, description:latestMagazine.data.excerpt, href:articlePath(latestMagazine), image:getArticleHero(latestMagazine.data), alt:latestMagazine.data.heroAlt ?? latestMagazine.data.title } : { title:"Open the archive", description:"Old pages become new investigations.", href:presentsSeries[1].href, image:presentsSeries[1].heroImage, alt:presentsSeries[1].heroAlt ?? "" },
-  "other-alice": latestAlice ? { title:latestAlice.data.title, description:latestAlice.data.teaser, href:adventurePath(latestAlice), image:latestAlice.data.heroMedia?.file ?? latestAlice.data.cover, alt:latestAlice.data.heroMedia?.alt ?? latestAlice.data.coverAlt ?? latestAlice.data.title } : { title:"Cross the boundary", description:"Begin the illustrated serial.", href:presentsSeries[2].href, image:presentsSeries[2].heroImage, alt:presentsSeries[2].heroAlt ?? "" },
-  "funnies": latestComic ? { title:latestComic.data.title, description:latestComic.data.caption, href:comicPath(latestComic), image:latestComic.data.image, alt:latestComic.data.imageAlt } : { title:"Read the Funnies", description:"Open the current cartoon archive.", href:presentsSeries[3].href, image:presentsSeries[3].heroImage, alt:presentsSeries[3].heroAlt ?? "" },
-  "hobfarm-tv": { title:"The network is still in the shop", description:"Programs will arrive when there are programs worth airing.", href:"/contact/?subject=hobfarm-tv-contributor", image:presentsSeries[4].heroImage, alt:presentsSeries[4].heroAlt ?? "" },
+  "3dm": latest3dm ? { title:latest3dm.data.title, description:latest3dm.data.excerpt, href:articlePath(latest3dm), image:getArticleHero(latest3dm.data), alt:latest3dm.data.heroAlt ?? latest3dm.data.title } : { title:"Enter the Millerverse", description:"Start with the connection map and current film-history archive.", href:threeDmSeries.href, image:threeDmSeries.logo, alt:"3 Degrees of Dick Miller logo" },
+  "magazine-time-machine": latestMagazine ? { title:latestMagazine.data.title, description:latestMagazine.data.excerpt, href:articlePath(latestMagazine), image:getArticleHero(latestMagazine.data), alt:latestMagazine.data.heroAlt ?? latestMagazine.data.title } : { title:"Open the archive", description:"Old pages become new investigations.", href:magazineSeries.href, image:magazineSeries.heroImage, alt:magazineSeries.heroAlt ?? "" },
+  "other-alice": { title:"Enter a world that remembers", description:"Explore the public Wonderland behind a persistent story game. The private runtime alpha already preserves choices, time, relationships, and consequences.", href:otherAliceSeries.href, image:otherAliceFeature.src, alt:otherAliceFeature.alt },
+  "funnies": latestComic ? { title:latestComic.data.title, description:latestComic.data.caption, href:comicPath(latestComic), image:latestComic.data.image, alt:latestComic.data.imageAlt } : { title:"Read the Funnies", description:"Open the current cartoon archive.", href:funniesSeries.href, image:funniesSeries.heroImage, alt:funniesSeries.heroAlt ?? "" },
+  "hobfarm-tv": { title:"The network is still in the shop", description:"Programs will arrive when there are programs worth airing.", href:"/contact/?subject=hobfarm-tv-contributor", image:hobfarmTvSeries.heroImage, alt:hobfarmTvSeries.heroAlt ?? "" },
 };
 ---
 <BaseLayout title="HobFarm Presents | Series, Film History, Cartoons, and Television" description={section.description} canonical={section.href} image={section.heroImage} imageAlt={section.heroAlt}>
@@ -32,7 +37,7 @@ const features: Record<string, { title:string; description:string; href:string; 
     <Wrapper variant="standard" class="py-16 lg:py-24">
       <div class:list={["series-layout", index % 2 === 1 && "series-layout--reverse"]}>
         <div class="series-copy">
-          <div class="series-meta"><span>{String(index+1).padStart(2,"0")}</span><span>{entry.id === "other-alice" ? "Illustrated Fiction" : entry.status === "coming-eventually" ? "Coming eventually" : "Now showing"}</span></div>
+          <div class="series-meta"><span>{String(index+1).padStart(2,"0")}</span><span>{entry.id === "other-alice" ? "Persistent story game" : entry.status === "coming-eventually" ? "Coming eventually" : "Now showing"}</span></div>
           <h2 class:list={[entry.logo && "sr-only"]}>{entry.name}</h2>
           {entry.logo && <img class="series-logo" src={entry.logo} alt={`${entry.name} logo`} width="640" height="360" loading="lazy" decoding="async" />}
           <p>{entry.description}</p>

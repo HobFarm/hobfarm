@@ -122,7 +122,7 @@ It also changed the design problem. The familiar blue dress was useful shorthand
 
 I also ruled out the easier version where Alice becomes a master combatant with a belt full of weapons. Other Alice is not a warrior, a murderer, or a sword-first hero. She gets through the world by noticing what it does, preparing for the specific problem, making useful things from local materials, changing scale when access matters, and working with people who know the ground better. Force can happen, but it is not her job description.
 
-Living in Wonderland has changed her body and senses. Those traits are not a superhero upgrade list. They are evidence that the place has acted on her, and that she has learned how to use what she became. [The current Alice record](/characters/alice/) explains those adaptations in detail. For this origin, the important point is that intelligence and invention give me better story problems than handing her a weapon.
+Living in Wonderland has changed her body and senses. Those traits are not a superhero upgrade list. They are evidence that the place has acted on her, and that she has learned how to use what she became. [The current Alice record](/presents/other-alice-adventures/cast/alice/) explains those adaptations in detail. For this origin, the important point is that intelligence and invention give me better story problems than handing her a weapon.
 
 <figure class="article-wide">
   <video controls muted loop playsinline preload="none" poster="https://cdn.hob.farm/articles/other-alice-origin/bloody-alice-wasteland2.jpg" width="1280" height="720" aria-label="Motion experiment based on the second bloody Alice shoreline composite.">
@@ -153,7 +153,7 @@ That contrast gave Alice somewhere genuinely unknown to investigate. It also gav
 
 Other Alice draws from spectacle that looked psychedelic before popular drug culture fixed the word to a familiar icon kit. Impossible scale, dream cuts, ornamental geometry, bodies turning into patterns, painted science, theatrical machinery, and visual nonsense were already doing the work.
 
-Busby Berkeley is one clean example. In the 1930s he moved the camera where a theater audience could never sit and turned dancers, water, coins, violins, and human faces into mechanical kaleidoscopes. [The 1933 Warner Bros. article](/departments/hobfarm-presents/3-degrees-of-dick-miller/1933-the-year-warner-bros-built-a-world/) follows that production system in detail. It is also exactly the kind of sideways visual history I want the [Magazine Time Machine](/departments/magazine-time-machine/) to keep finding.
+Busby Berkeley is one clean example. In the 1930s he moved the camera where a theater audience could never sit and turned dancers, water, coins, violins, and human faces into mechanical kaleidoscopes. [The 1933 Warner Bros. article](/presents/3-degrees-of-dick-miller/1933-the-year-warner-bros-built-a-world/) follows that production system in detail. It is also exactly the kind of sideways visual history I want the [Magazine Time Machine](/presents/magazine-time-machine/) to keep finding.
 
 The dates keep the argument honest. LSD was first synthesized in 1938, and its psychoactive properties were discovered in 1943. R. Gordon Wasson's “Seeking the Magic Mushroom” appeared in *LIFE* on May 13, 1957 and carried psilocybin mushrooms to a huge American magazine audience. He did not discover the knowledge. Maria Sabina and Mazatec communities already held ceremonial practices and expertise that his article exposed to outsiders.
 
@@ -175,7 +175,7 @@ That requires character continuity as well as world continuity. Alice had to sto
 <div class="article-connection-map">
   <h2>Follow the hole</h2>
   <p>The original bloody tea party is no longer the character. It is the artifact that opened the first hole.</p>
-  <p><a href="/departments/hobfarm-presents/other-alice-adventures/"><strong>Explore Other Alice Adventures →</strong></a></p>
+  <p><a href="/presents/other-alice-adventures/"><strong>Explore Other Alice Adventures →</strong></a></p>
 </div>
 
 <div class="article-source-list">

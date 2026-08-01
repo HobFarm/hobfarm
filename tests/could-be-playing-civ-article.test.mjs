@@ -61,7 +61,7 @@ test("Civilization article preserves the brief, evidence links, and 60-hour sche
   assert.match(article, /\[Gary and the Fork\]\(\/articles\/gary-and-the-fork\/\)/);
   assert.match(article, /\[A World of Geniuses Needs a System\]\(\/articles\/a-world-of-geniuses-needs-a-system\/\)/);
   assert.match(article, /\[You Do Not Own the AI You Pay For\]\(\/articles\/you-do-not-own-the-ai-you-pay-for\/\)/);
-  assert.match(article, /\[Other Alice Adventures\]\(\/departments\/hobfarm-presents\/other-alice-adventures\/\)/);
+  assert.match(article, /\[Other Alice Adventures\]\(\/presents\/other-alice-adventures\/\)/);
   assert.match(article, /human-directed externalized correction/i);
   assert.match(article, /learn\.chatgpt\.com\/docs\/agent-configuration\/agents-md/);
   assert.match(article, /learn\.chatgpt\.com\/docs\/build-skills/);

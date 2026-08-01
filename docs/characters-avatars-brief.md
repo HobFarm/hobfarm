@@ -167,7 +167,7 @@ second methodology.** The Workshop describes the process once. Character propert
 pages show what it produces. The same process produces the next character.
 
 **Hobunny is the first.** Her specification is
-`docs/hobunny-project-outline.md`, authored by d00d, narrowed 2026-07-31.
+`docs/hobunny-project-source.md`, authored by d00d and canonical as of 2026-07-31.
 
 ### What the page is for
 
@@ -217,7 +217,7 @@ stays canonical; the short one is for putting in a bio or a caption.
 
 The outline was narrowed on 2026-07-31 because it had grown into a parallel
 methodology. Read the "Narrowed" note at the top of
-`docs/hobunny-project-outline.md` before building anything.
+`docs/hobunny-project-source.md` before building anything.
 
 **Superseded:** outline §13's two-page structure and §14's twelve development
 sections. Do not build a `/development/` sub-page.
@@ -320,7 +320,7 @@ system.**
 
 **This is the most important rule in this brief.**
 
-`docs/hobunny-project-outline.md` contains authored creative material: voice
+`docs/hobunny-project-source.md` contains authored creative material: voice
 lines, edition concepts, satire targets, character anchors, a central
 contradiction. An agent must not invent, paraphrase, extend, summarize, or
 "improve" any of it.

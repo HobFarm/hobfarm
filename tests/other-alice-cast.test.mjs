@@ -195,6 +195,19 @@ test("cast route is wired into navigation, search, and sitemap", async () => {
   assert.match(sitemap, /otherAliceProjectNav/);
 });
 
+test("cast detail pages use the Other Alice route as their canonical home", async () => {
+  const [characterPage, relationships] = await Promise.all([
+    read("src/pages/presents/other-alice-adventures/cast/[character].astro"),
+    read("src/lib/content-relationships.ts"),
+  ]);
+
+  assert.match(characterPage, /const canonicalPath = characterPath\(character\.slug\)/);
+  assert.match(characterPage, /href=\{OTHER_ALICE_CAST_PATH\}/);
+  assert.doesNotMatch(characterPage, /https:\/\/hob\.farm\/characters\//);
+  assert.doesNotMatch(characterPage, /href="\/characters\//);
+  assert.match(relationships, /href: characterPath\(entry\.slug\)/);
+});
+
 test("cast presentation is data-derived and complete without character art", async () => {
   const [page, folio] = await Promise.all([
     read("src/pages/presents/other-alice-adventures/cast/index.astro"),

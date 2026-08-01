@@ -5,14 +5,15 @@ import { chromium } from "@playwright/test";
 
 const baseUrl = process.env.OAA_PREVIEW_URL ?? "http://127.0.0.1:4321";
 const isLocalPreview = ["127.0.0.1", "localhost"].includes(new URL(baseUrl).hostname);
-const outputDir = path.resolve("reports/other-alice-cast-foundation/after");
+const outputDir = path.resolve("reports/other-alice-structure/after");
 const routes = [
-  { id: "start", path: "/departments/hobfarm-presents/other-alice-adventures/" },
-  { id: "world-guide", path: "/departments/hobfarm-presents/other-alice-adventures/world-guide/" },
-  { id: "houses", path: "/departments/hobfarm-presents/other-alice-adventures/houses/" },
-  { id: "cast", path: "/departments/hobfarm-presents/other-alice-adventures/cast/" },
-  { id: "web", path: "/departments/hobfarm-presents/other-alice-adventures/web-of-wonderland/" },
+  { id: "start", path: "/presents/other-alice-adventures/" },
+  { id: "world-guide", path: "/presents/other-alice-adventures/world-guide/" },
+  { id: "houses", path: "/presents/other-alice-adventures/houses/" },
+  { id: "cast", path: "/presents/other-alice-adventures/cast/" },
+  { id: "web", path: "/presents/other-alice-adventures/web-of-wonderland/" },
 ];
+const retiredAdventureBase = "/departments/hobfarm-presents/other-alice-adventures/";
 const viewports = [
   { width: 1440, height: 1000 },
   { width: 1024, height: 900 },
@@ -214,7 +215,7 @@ try {
   if (isLocalPreview) {
     const redirects = await readFile(path.resolve("public/_redirects"), "utf8");
     for (const retired of retiredRoutes) {
-      assert.match(redirects, new RegExp(`${routes[0].path}${retired}/\\s+${routes[0].path}`), `${retired} is missing its Start Here redirect rule`);
+      assert.match(redirects, new RegExp(`${retiredAdventureBase}${retired}/\\s+${routes[0].path}`), `${retired} is missing its Start Here redirect rule`);
     }
   } else {
     for (const retired of retiredRoutes) {

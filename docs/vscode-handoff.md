@@ -186,7 +186,7 @@ Do not assume the images define '66, and do not derive canon from them: §4 and
 
 ## Deployment
 
-Nothing in this work is deployed. `main` is ahead of the live site by five
+Nothing in this work is deployed. `main` is ahead of the live site by seven
 commits. Cloudflare Pages builds from `main`, so the migration goes live on the
 next push.
 
@@ -197,16 +197,17 @@ series. Every retired path should resolve in one hop.
 
 ---
 
-## Things deliberately left alone
+## Things deliberately left alone or resolved separately
 
-- **Homepage files.** `RecentVideos.astro` had its "see all" link repointed from
-  the retired `/video/` to `/presents/hobfarm-tv/`, and nothing else on the
-  homepage was touched. That component is itself a video strip, so whether it
-  belongs there at all is d00d's call.
-- **Article body copy.** Ten articles still link to `/departments/` paths in
-  prose. The 301s handle them. Frontmatter link fields were repointed; body text
-  was not.
+- **Homepage outside Other Alice.** The Other Alice feature was later aligned
+  with the persistent-game direction and moved off the repeated atlas image.
+  The rest of the homepage structure remains outside the Presents migration.
+- **Article body copy.** Retired route links were repointed during the final
+  stabilization pass so canonical pages no longer rely on internal 301s.
 - **CDN paths.** Asset locations, not routes. Existing paths are inconsistent
   from earlier builds and are not being migrated.
 - **HobBot.** Record kept at `src/content/workshop/hobbot.md`, no public page.
-- **Empty `adventures` collection.** Pre-existing build notice, unrelated.
+- **Static `adventures` collection.** Retired after Other Alice was confirmed as
+  a persistent game whose long-form stories emerge from Wonder Machine
+  campaigns. Withdrawn story URLs still redirect to the canonical Presents
+  page.

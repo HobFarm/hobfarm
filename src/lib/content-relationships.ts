@@ -1,6 +1,6 @@
 import { allLessons, avatarCourse } from "@/data/avatar-content-system";
 import { getAcademyCourse } from "@/data/academy-courses";
-import { characters } from "@/data/characters";
+import { characterPath, characters } from "@/data/characters";
 import { workshopPrograms } from "@/data/site-hierarchy";
 import { visualSystems, visualSystemPath } from "@/data/visual-systems";
 import { articlePath, getPublishedArticles, stripArticleExt } from "@/lib/articles";
@@ -136,7 +136,7 @@ export async function resolveRelatedContent(
   for (const reference of relationships.relatedCharacters ?? []) {
     const id = normalizeRef(reference).replace(/^characters\//, "");
     const entry = characters.find((character) => character.slug === id);
-    if (entry) add({ id, kind: "character", label: entry.displayName ?? entry.name, href: `/characters/${entry.slug}/`, description: entry.blurb });
+    if (entry) add({ id, kind: "character", label: entry.displayName ?? entry.name, href: characterPath(entry.slug), description: entry.blurb });
   }
 
   for (const reference of relationships.relatedVisualSystems ?? []) {
