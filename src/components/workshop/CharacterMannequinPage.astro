@@ -1,58 +1,63 @@
 ---
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import CharacterLookChapter from "@/components/workshop/CharacterLookChapter.astro";
-import CharacterOfferShelf from "@/components/workshop/CharacterOfferShelf.astro";
-import DesignDecisionMatrix from "@/components/workshop/DesignDecisionMatrix.astro";
+import BeforeAfterCompare from "@/components/ui/BeforeAfterCompare.astro";
 import AffiliateDisclosure from "@/components/legal/AffiliateDisclosure.astro";
 import {
   characterLooks,
   characterMannequinPage,
-  characterOffers,
-  designDecisions,
-  themedCharacter,
+  characterSpecFields,
+  cleanBaseSpec,
+  cyberpopSpec,
   type MediaRef,
 } from "@/data/character-mannequin";
 import { workshopPrograms } from "@/data/site-hierarchy";
 import { getMedia } from "@/data/media-registry";
-import type { ProductEntry } from "@/lib/products";
 import { imageSrcset, transformImageUrl } from "@/lib/media-transforms";
 
-interface Props {
-  relatedProducts?: ProductEntry[];
-}
-
-const { relatedProducts = [] } = Astro.props;
 const page = characterMannequinPage;
 const workflowFilm = getMedia("workshop.character-mannequin.workflow-film");
 const workflowFilmPoster = getMedia("workshop.character-mannequin.workflow-film-poster");
-const heroArrangement = page.heroGraphic.width >= page.heroGraphic.height ? "horizontal" : "vertical";
 const preview = (media: MediaRef, width = 1200, fit: "cover" | "scale-down" = "scale-down") =>
   transformImageUrl(media.src, { width, quality: 82, fit });
 const srcset = (media: MediaRef, fit: "cover" | "scale-down" = "scale-down") =>
   imageSrcset(media.src, [480, 768, 1000, 1280, 1600], { quality: 82, fit });
 
-const processStages = [
-  { label: "Base", description: "Choose proportions, silhouette, joint logic, and the neutral body that later profiles must fit." },
-  { label: "Profile slots", description: "Define where face, key features, hair, palette, and other identity decisions can change." },
-  { label: "Wardrobe", description: "Set garment categories, footwear, accessories, and material rules before staging a look." },
-  { label: "Direction", description: "Test wide, mid, close, and detail cameras alongside lighting, mood, location, and styling." },
-  { label: "Proof", description: "Check idle, walk, pose, and action before the approved base carries a finished character." },
+const sheetPanels = [
+  { index: "01", label: "Portrait", description: "Locks face, makeup, and hair at a size where small details survive." },
+  { index: "02", label: "Front", description: "Locks proportion, silhouette, garment length, and the main construction lines." },
+  { index: "03", label: "Back", description: "Records hair volume, rear construction, closures, and details the front cannot prove." },
+  { index: "04", label: "Three-quarter", description: "Catches depth, overlap, and proportion drift that two flat views can hide." },
 ] as const;
 
-const mannequinChecks = [
-  { label: "Fixed geometry", description: "Proportions, silhouette, joint placement, and range of motion." },
-  { label: "Identity slots", description: "Face, key features, hair, palette, markings, and other profile decisions." },
-  { label: "Wardrobe system", description: "Tops, outer layers, bottoms, footwear, accessories, and material behavior." },
-  { label: "Camera coverage", description: "Wide, mid, close, and detail views that expose continuity drift early." },
-  { label: "Scene direction", description: "Lighting, mood, location, and styling choices kept separate from the base." },
-  { label: "Motion proof", description: "Idle, walk, pose, and action tests before a named character takes over." },
+const processStages = [
+  { label: "Base", description: "Set the body, silhouette, and four-panel format." },
+  { label: "Profile slots", description: "Name the face, hair, palette, makeup, and identity variables." },
+  { label: "Wardrobe", description: "Define garments, materials, hardware, footwear, accessories, and motif." },
+  { label: "Direction", description: "Build the reusable asset, then choose camera, scene, light, and pose." },
+  { label: "Proof", description: "Check the sheet, character asset, scene, and motion before release." },
 ] as const;
+
+const sheetExamples = [
+  { media: page.cleanBaseSheet, label: "Clean Base 001", note: "Neutral production base" },
+  { media: page.baseSheet, label: "Mannequin 01", note: "Stylized identity system" },
+  { media: page.alternateSheet, label: "Mannequin 02", note: "Different identity and rendering language" },
+] as const;
+
+const locked = ["face and eye shape", "platinum pixie hair", "black hair clip", "body proportions", "eye-makeup identifier"] as const;
+const variable = ["garment and material", "accessories and footwear", "pose and camera", "scene and lighting", "motion treatment"] as const;
+const specDiff = characterSpecFields.map((field) => ({
+  field,
+  base: cleanBaseSpec[field],
+  character: cyberpopSpec[field],
+  changed: cleanBaseSpec[field] !== cyberpopSpec[field],
+}));
 
 const relatedRoutes = [
   { eyebrow: "Workshop study", title: "Alter Ego", description: "See one base split into separate public identities.", href: "/workshop/alter-ego/", action: "Open the study" },
-  { eyebrow: "Shop", title: "Character packs and drops", description: "Browse verified product records and future character-file releases.", href: page.shopUrl, action: "Browse the Shop" },
-  { eyebrow: "Character index", title: "Visual systems", description: "Follow recurring mannequins, variants, and finished media packets.", href: page.characterIndexUrl, action: "Open the index" },
-  { eyebrow: "Academy / in development", title: "Learn the full method", description: "The future course will hold guided lessons, templates, and protected course files. This Workshop page remains the public process record.", href: page.academyUrl, action: "Visit the Academy" },
+  { eyebrow: "Shop", title: "Character files", description: "Verified files and licenses will appear only when a finished release exists.", href: page.shopUrl, action: "Browse the Shop" },
+  { eyebrow: "Character index", title: "Visual systems", description: "Follow recurring identities, variants, and finished media packets.", href: page.characterIndexUrl, action: "Open the index" },
+  { eyebrow: "Academy", title: "Learn the method", description: "Structured lessons can grow from the public Workshop record without duplicating it.", href: page.academyUrl, action: "Visit the Academy" },
 ] as const;
 ---
 
@@ -64,348 +69,182 @@ const relatedRoutes = [
         <a href="/workshop/">Workshop</a><span aria-hidden="true">/</span>
         <span>Character / Mannequin</span>
       </nav>
-      <div class:list={["hero-grid", `hero-grid--${heroArrangement}`]}>
+      <div class="hero-grid">
         <div class="hero-copy">
           <p class="eyebrow">Character / Mannequin Workshop</p>
-          <h1 id="character-page-title">Build the mannequin before the character.</h1>
-          <p class="hero-deck">A character profile needs somewhere stable to land. I define the neutral body, identity slots, wardrobe categories, camera coverage, scene variables, and motion tests first. Once the base holds together, it can carry a specific face, role, look, and world.</p>
+          <h1 id="character-page-title">The sheet is the constant.</h1>
+          <p class="hero-deck">A character can change body, face, wardrobe, rendering style, and world. The four-panel sheet keeps portrait, front, back, and three-quarter views in the same order, so each new decision has something visible to answer to.</p>
           <div class="hero-actions">
-            <a href="#assembly" class="button button--primary" data-event="character_page_primary_cta">Explore the process</a>
-            <a href={page.commissionUrl} class="button button--secondary" data-event="character_page_commission_cta">Commission a character</a>
+            <a href="#the-sheet" class="button button--primary" data-event="character_page_primary_cta">Open the method</a>
+            <a href="#the-series" class="button button--secondary">Inspect the series</a>
           </div>
         </div>
         <figure class="hero-art">
-          <img
-            src={preview(page.heroGraphic, 1600)}
-            srcset={srcset(page.heroGraphic)}
-            sizes={heroArrangement === "horizontal" ? "(min-width: 1280px) 1216px, 100vw" : "(min-width: 1000px) 56vw, 100vw"}
-            alt={page.heroGraphic.alt}
-            width={page.heroGraphic.width}
-            height={page.heroGraphic.height}
-            loading="eager"
-            decoding="async"
-            fetchpriority="high"
-          />
-          <figcaption>{page.heroGraphic.caption}</figcaption>
+          <a href={page.heroGraphic.src} target="_blank" rel="noopener noreferrer" aria-label="Open the full-size Mannequin 01 sheet">
+            <img
+              src={preview(page.heroGraphic, 1600)}
+              srcset={srcset(page.heroGraphic)}
+              sizes="(min-width: 1000px) 58vw, 100vw"
+              alt={page.heroGraphic.alt}
+              width={page.heroGraphic.width}
+              height={page.heroGraphic.height}
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+            />
+          </a>
+          <figcaption>{page.heroGraphic.caption} / open the full-size sheet</figcaption>
         </figure>
       </div>
     </Wrapper>
   </section>
 
-  <section class="process-overview" aria-labelledby="process-overview-heading">
+  <section class="workflow-film-section" aria-labelledby="workflow-film-heading">
     <Wrapper variant="standard" class="section-space">
-      <div class="section-intro section-intro--split">
-        <div>
-          <p class="eyebrow">Before the profile</p>
-          <h2 id="process-overview-heading">The neutral base is a production decision.</h2>
-        </div>
-        <p>The mannequin is not a blank character waiting for random decoration. It is the approved geometry and test plan beneath later identities. Each decision stays visible so a weak face, garment, camera, or motion pass can be replaced without rebuilding everything.</p>
-      </div>
-      <ol class="process-ribbon">
-        {processStages.map((stage, index) => (
-          <li>
-            <span>{String(index + 1).padStart(2, "0")}</span>
-            <h3>{stage.label}</h3>
-            <p>{stage.description}</p>
-          </li>
-        ))}
-      </ol>
-      <div class="mannequin-checks" aria-label="What the neutral mannequin establishes before character design">
-        {mannequinChecks.map((check, index) => (
-          <article>
-            <span>{String(index + 1).padStart(2, "0")}</span>
-            <h3>{check.label}</h3>
-            <p>{check.description}</p>
-          </article>
-        ))}
-      </div>
-      <figure class="overview-graphic">
-        <img
-          src={preview(page.workflowGraphic)}
-          srcset={srcset(page.workflowGraphic)}
-          sizes="(min-width: 1100px) 1120px, 100vw"
-          alt={page.workflowGraphic.alt}
-          width={page.workflowGraphic.width}
-          height={page.workflowGraphic.height}
-          loading="lazy"
-          decoding="async"
-        />
-        <figcaption>{page.workflowGraphic.caption}. This is what the approved base can become after a profile is attached.</figcaption>
-      </figure>
-      <section class="workflow-film" aria-labelledby="workflow-film-heading">
+      <div class="workflow-film">
         <div class="workflow-film__copy">
-          <p class="eyebrow">Motion proof / 16 seconds</p>
-          <h3 id="workflow-film-heading">Lock the base. Change the layers. Prove the output.</h3>
-          <p id="workflow-film-description">This is the system before a named character arrives. The film locks the canonical mannequin, separates face, hair, palette, and wardrobe as identity layers, then tests the same base through camera, scene, and motion.</p>
+          <p class="eyebrow">The method in 16 seconds</p>
+          <h2 id="workflow-film-heading">Lock the format. Change the layers. Prove the output.</h2>
+          <p id="workflow-film-description">The film compresses the whole route into one pass: sheet, identity, wardrobe, direction, and motion. The sections below separate those decisions again so each one can be inspected.</p>
         </div>
         <figure class="workflow-film__media">
-          <video
-            controls
-            muted
-            playsinline
-            preload="none"
-            poster={workflowFilm.poster}
-            aria-describedby="workflow-film-description"
-          >
+          <video controls muted playsinline preload="none" poster={workflowFilm.poster} aria-describedby="workflow-film-description">
             <source src={workflowFilm.src} type="video/mp4" />
-            Your browser cannot play this video. The static continuity board remains available above.
+            Your browser cannot play this video. The poster preserves the complete workflow.
           </video>
-          <img
-            class="workflow-film__still"
-            src={workflowFilmPoster.src}
-            alt={workflowFilmPoster.alt}
-            width={workflowFilmPoster.width}
-            height={workflowFilmPoster.height}
-            loading="lazy"
-            decoding="async"
-          />
-          <figcaption>A HyperFrames demonstration built only from the supplied workflow board. Reduced-motion visitors receive this final static proof instead.</figcaption>
+          <img class="workflow-film__still" src={workflowFilmPoster.src} alt={workflowFilmPoster.alt} width={workflowFilmPoster.width} height={workflowFilmPoster.height} loading="lazy" decoding="async" />
+          <figcaption>HyperFrames process film. Reduced-motion visitors receive the complete static poster.</figcaption>
         </figure>
-      </section>
-    </Wrapper>
-  </section>
-
-  <section class="identity-section" aria-labelledby="identity-heading">
-    <Wrapper variant="standard" class="section-space">
-      <div class="section-intro section-intro--split">
-        <div>
-          <p class="eyebrow">Identity anchor</p>
-          <h2 id="identity-heading">The face stays. The job changes.</h2>
-        </div>
-        <div>
-          <p>The mannequin began as a single portrait. My first production move was turning that portrait into a clean front, back, and three-quarter sheet. That sheet became the reference layer for every outfit and scene below.</p>
-          <p>The sheet does not make every later image identical. It gives each revision a known face, silhouette, and set of proportions to return to.</p>
-        </div>
-      </div>
-      <div class="identity-media">
-        <figure class="identity-portrait">
-          <img
-            src={preview(page.basePortrait, 900)}
-            srcset={srcset(page.basePortrait)}
-            sizes="(min-width: 900px) 34vw, 100vw"
-            alt={page.basePortrait.alt}
-            width={page.basePortrait.width}
-            height={page.basePortrait.height}
-            loading="lazy"
-            decoding="async"
-          />
-          <figcaption>{page.basePortrait.caption}</figcaption>
-        </figure>
-        <figure class="identity-sheet">
-          <img
-            src={preview(page.baseSheet, 1400)}
-            srcset={srcset(page.baseSheet)}
-            sizes="(min-width: 900px) 62vw, 100vw"
-            alt={page.baseSheet.alt}
-            width={page.baseSheet.width}
-            height={page.baseSheet.height}
-            loading="lazy"
-            decoding="async"
-          />
-          <figcaption>{page.baseSheet.caption}</figcaption>
-        </figure>
-      </div>
-      <div class="identity-rules">
-        <section>
-          <p class="rule-label">Locked</p>
-          <ul>
-            <li>face and eye shape</li>
-            <li>platinum pixie silhouette</li>
-            <li>black hair clip</li>
-            <li>body proportions</li>
-            <li>eye-makeup identifier</li>
-          </ul>
-        </section>
-        <section>
-          <p class="rule-label">Variable</p>
-          <ul>
-            <li>garment construction</li>
-            <li>jewelry, bag, footwear, and prop</li>
-            <li>pose and camera</li>
-            <li>scene and lighting</li>
-            <li>motion treatment</li>
-          </ul>
-        </section>
       </div>
     </Wrapper>
   </section>
 
-  <section id="assembly" class="assembly-section" aria-labelledby="assembly-heading">
-    <Wrapper variant="standard" class="section-space">
-      <header class="section-intro">
-        <p class="eyebrow">The Character Assembly Line</p>
-        <h2 id="assembly-heading">Three looks, kept open for inspection.</h2>
-        <p>Each chapter defaults to the finished scene. Use the stage controls to move backward into the outfit and dressed character, or forward into the motion test. The source material stays close enough to check the decisions.</p>
-      </header>
-      <div class="assembly-grid">
-        <aside class="identity-rail" data-identity-rail aria-label="Active mannequin and look index">
-          <figure>
-            <img
-              src={preview(page.basePortrait, 700)}
-              alt="Platinum mannequin identity anchor"
-              width={page.basePortrait.width}
-              height={page.basePortrait.height}
-              loading="lazy"
-              decoding="async"
-            />
-          </figure>
-          <div class="identity-rail__copy">
-            <p>Identity held through</p>
-            <strong>face / pixie / clip / proportions / eye mark</strong>
-          </div>
-          <nav aria-label="Look chapters">
-            {characterLooks.map((look) => (
-              <a href={`#${look.id}`} data-look-index={look.id} style={`--index-accent:${look.accent}`}>
-                <span>{String(look.displayOrder).padStart(2, "0")}</span>{look.shortTitle}
-              </a>
-            ))}
-          </nav>
-        </aside>
-        <div class="look-chapters">
-          {characterLooks.map((look, index) => (
-            <>
-              <CharacterLookChapter look={look} />
-              {index === 1 && (
-                <figure class="midpoint-graphic">
-                  <img
-                    src={preview(page.sceneTriptychGraphic)}
-                    srcset={srcset(page.sceneTriptychGraphic)}
-                    sizes="(min-width: 1180px) 54vw, 100vw"
-                    alt={page.sceneTriptychGraphic.alt}
-                    width={page.sceneTriptychGraphic.width}
-                    height={page.sceneTriptychGraphic.height}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <figcaption>{page.sceneTriptychGraphic.caption}</figcaption>
-                </figure>
-              )}
-            </>
-          ))}
-        </div>
-      </div>
-    </Wrapper>
-  </section>
-
-  <section class="new-identity-section" aria-labelledby="new-identity-heading">
-    <Wrapper variant="standard" class="section-space">
-      <div class="section-intro section-intro--split">
-        <div>
-          <p class="eyebrow">Beyond wardrobe</p>
-          <h2 id="new-identity-heading">The same pipeline can build a new character.</h2>
-        </div>
-        <p>The green character is a separate identity, not the platinum mannequin with a filter. Skin, hair color, markings, makeup, and attitude change at the character-DNA level. The outfit, scene, and motion stages remain traceable.</p>
-      </div>
-      <div class="alternate-identity-media">
-        <figure>
-          <img
-            src={preview(page.alternatePortrait, 800)}
-            srcset={srcset(page.alternatePortrait)}
-            sizes="(min-width: 900px) 32vw, 100vw"
-            alt={page.alternatePortrait.alt}
-            width={page.alternatePortrait.width}
-            height={page.alternatePortrait.height}
-            loading="lazy"
-            decoding="async"
-          />
-          <figcaption>{page.alternatePortrait.caption}</figcaption>
-        </figure>
-        <figure class="alternate-sheet">
-          <img
-            src={preview(page.alternateSheet, 1400)}
-            srcset={srcset(page.alternateSheet)}
-            sizes="(min-width: 900px) 64vw, 100vw"
-            alt={page.alternateSheet.alt}
-            width={page.alternateSheet.width}
-            height={page.alternateSheet.height}
-            loading="lazy"
-            decoding="async"
-          />
-          <figcaption>{page.alternateSheet.caption}</figcaption>
-        </figure>
-      </div>
-      <figure class="themed-graphic">
-        <img
-          src={preview(page.themedCharacterGraphic)}
-          srcset={srcset(page.themedCharacterGraphic)}
-          sizes="(min-width: 1100px) 1120px, 100vw"
-          alt={page.themedCharacterGraphic.alt}
-          width={page.themedCharacterGraphic.width}
-          height={page.themedCharacterGraphic.height}
-          loading="lazy"
-          decoding="async"
-        />
-        <figcaption>{page.themedCharacterGraphic.caption}</figcaption>
-      </figure>
-      <div class="themed-chapter"><CharacterLookChapter look={themedCharacter} compactHeader /></div>
-    </Wrapper>
-  </section>
-
-  <section class="design-record" aria-labelledby="design-record-heading">
+  <section id="the-sheet" class="act-section act-section--sheet" aria-labelledby="sheet-heading">
     <Wrapper variant="standard" class="section-space">
       <header class="section-intro section-intro--split">
-        <div>
-          <p class="eyebrow">The design record</p>
-          <h2 id="design-record-heading">The picture is the output. The design record is the work.</h2>
-        </div>
-        <p>The tool can produce pixels. My job is deciding what belongs in the picture, what stays locked, what changes, what gets rejected, and how the same identity survives a new garment, location, camera, and motion pass. The finished scene sits beside its source material so the choices remain visible.</p>
+        <div><p class="eyebrow">Act 1 / The sheet</p><h2 id="sheet-heading">Start with an inspectable base.</h2></div>
+        <p>The base does not need to be the same body or rendering style forever. It needs to use the same record. Four views establish enough evidence to find drift before the character reaches a scene.</p>
       </header>
-      <DesignDecisionMatrix decisions={designDecisions} />
+
+      <figure class="sheet-hero">
+        <a href={page.cleanBaseSheet.src} target="_blank" rel="noopener noreferrer" aria-label="Open the full-size Clean Base 001 sheet">
+          <img src={preview(page.cleanBaseSheet, 1600)} srcset={srcset(page.cleanBaseSheet)} sizes="(min-width:1100px) 1120px,100vw" alt={page.cleanBaseSheet.alt} width={page.cleanBaseSheet.width} height={page.cleanBaseSheet.height} loading="lazy" decoding="async" />
+        </a>
+        <figcaption><span>{page.cleanBaseSheet.caption}</span><a href={page.cleanBaseSheet.src} target="_blank" rel="noopener noreferrer">Open full size</a></figcaption>
+      </figure>
+
+      <ol class="panel-breakdown">
+        {sheetPanels.map((panel) => <li><span>{panel.index}</span><h3>{panel.label}</h3><p>{panel.description}</p></li>)}
+      </ol>
+
+      <ol class="process-ribbon" aria-label="Character production stages">
+        {processStages.map((stage, index) => <li><span>{String(index + 1).padStart(2, "0")}</span><h3>{stage.label}</h3><p>{stage.description}</p></li>)}
+      </ol>
+
+      <div class="sheet-library" aria-label="One sheet format across three aesthetics">
+        {sheetExamples.map((entry) => (
+          <figure>
+            <a href={entry.media.src} target="_blank" rel="noopener noreferrer"><img src={preview(entry.media, 800)} alt={entry.media.alt} width={entry.media.width} height={entry.media.height} loading="lazy" decoding="async" /></a>
+            <figcaption><strong>{entry.label}</strong><span>{entry.note}</span></figcaption>
+          </figure>
+        ))}
+      </div>
+    </Wrapper>
+  </section>
+
+  <section class="act-section act-section--input" aria-labelledby="input-heading">
+    <Wrapper variant="standard" class="section-space">
+      <header class="section-intro section-intro--split">
+        <div><p class="eyebrow">Act 2 / The input</p><h2 id="input-heading">Research becomes a fixed specification.</h2></div>
+        <p>Reference material can be loose, contradictory, and much longer than a useful production prompt. The spec compresses it into ten fields that appear in the same order on every sheet.</p>
+      </header>
+
+      <div class="input-grid">
+        <details class="research-record">
+          <summary><span>Research input</span><strong>Cyberpop × Bauhaus</strong></summary>
+          <div class="research-record__copy">
+            <p><strong>Editorial placeholder.</strong> The source notes need a final rewrite and attribution pass before publication. Draft phrasing has been withheld rather than pasted into the page.</p>
+            <p>The finished research block will identify the period, material language, geometry, color behavior, interface references, and points where the two source aesthetics disagree. The distilled specification beside it is the approved production input.</p>
+          </div>
+        </details>
+
+        <div class="spec-card" role="table" aria-label="Cyberpop and Bauhaus distilled character specification">
+          <div class="spec-card__header" role="row"><span role="columnheader">Field</span><span role="columnheader">Resolved input</span></div>
+          {characterSpecFields.map((field) => <div class="spec-card__row" role="row"><strong role="rowheader">{field}</strong><span role="cell">{cyberpopSpec[field]}</span></div>)}
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+
+  <section class="act-section act-section--transformation" aria-labelledby="transformation-heading">
+    <Wrapper variant="standard" class="section-space">
+      <header class="section-intro section-intro--split">
+        <div><p class="eyebrow">Act 3 / The transformation</p><h2 id="transformation-heading">Change one schema, then prove the outputs.</h2></div>
+        <p>The clean base and resolved character use identical panel geometry. The comparison works because the field order and views were locked before the styling pass began.</p>
+      </header>
+
+      <div class="sheet-comparison">
+        <BeforeAfterCompare
+          before={{ src: preview(page.cleanBaseSheet, 1600), alt: page.cleanBaseSheet.alt, label: "Clean base" }}
+          after={{ src: preview(page.cyberpopSheet, 1600), alt: page.cyberpopSheet.alt, label: "Resolved sheet" }}
+          aspect="aspect-[1672/941]"
+          fit="contain"
+          beforeAccent="#d7d2ca"
+          afterAccent="#ff3da9"
+          ariaLabel="Compare Clean Base 001 with the Cyberpop and Bauhaus character sheet"
+          id="clean-base-cyberpop-compare"
+        />
+        <div class="full-size-links"><a href={page.cleanBaseSheet.src} target="_blank" rel="noopener noreferrer">Open clean base full size</a><a href={page.cyberpopSheet.src} target="_blank" rel="noopener noreferrer">Open resolved sheet full size</a></div>
+      </div>
+
+      <div class="spec-diff" role="table" aria-label="Clean base and Cyberpop specification difference">
+        <div class="spec-diff__header" role="row"><span role="columnheader">Field</span><span role="columnheader">Clean base</span><span role="columnheader">Cyberpop × Bauhaus</span></div>
+        {specDiff.map((row) => <div class:list={["spec-diff__row", row.changed && "is-changed"]} role="row"><strong role="rowheader">{row.field}</strong><span role="cell" data-label="Clean base">{row.base}</span><span role="cell" data-label="Cyberpop × Bauhaus">{row.character}</span></div>)}
+      </div>
+
+      <div class="pair-intro"><p class="eyebrow">Pair output</p><h3>Make the reusable asset and the finished scene together.</h3><p>The sheet is the continuity reference. The white-background render is the reusable asset. The scene render is the finished content. All three belong to the same production pass.</p></div>
+      <div class="output-pair">
+        {[page.cyberpopCharacter, page.cyberpopScene].map((media) => <figure><a href={media.src} target="_blank" rel="noopener noreferrer"><img src={preview(media, 1000)} srcset={srcset(media)} sizes="(min-width:800px) 50vw,100vw" alt={media.alt} width={media.width} height={media.height} loading="lazy" decoding="async" /></a><figcaption>{media.caption}</figcaption></figure>)}
+      </div>
+    </Wrapper>
+  </section>
+
+  <section id="the-series" class="act-section act-section--series" aria-labelledby="series-heading">
+    <Wrapper variant="standard" class="section-space">
+      <header class="section-intro section-intro--split">
+        <div><p class="eyebrow">Act 4 / The series</p><h2 id="series-heading">Change styling or change identity. Keep the record.</h2></div>
+        <p>Looks 01 through 03 change wardrobe and direction on one identity. Look 04 changes the identity itself. Every chapter still uses Outfit, Character, Scene, and Motion as the review stages.</p>
+      </header>
+
+      <dl class="locked-variable">
+        <div><dt>Locked for looks 01–03</dt>{locked.map((item) => <dd>{item}</dd>)}</div>
+        <div><dt>Variable by chapter</dt>{variable.map((item) => <dd>{item}</dd>)}</div>
+      </dl>
+
+      <nav class="look-index" aria-label="Character production chapters">
+        {characterLooks.map((look) => <a href={`#${look.id}`} data-look-index={look.id}><span>{look.index}</span><strong>{look.title}</strong><small>{look.axis} axis</small></a>)}
+      </nav>
+      <div class="look-chapters">{characterLooks.map((look) => <CharacterLookChapter look={look} />)}</div>
     </Wrapper>
   </section>
 
   <section class="tool-note" aria-labelledby="tool-note-heading">
     <Wrapper variant="standard" class="section-space section-space--compact">
       <div class="tool-note__grid">
+        <div><p class="eyebrow">Tools and Flows</p><h2 id="tool-note-heading">The pipeline matters more than the app.</h2></div>
         <div>
-          <p class="eyebrow">One method, different tools</p>
-          <h2 id="tool-note-heading">The pipeline matters more than the app.</h2>
-        </div>
-        <div>
-          <p>I used an ElevenLabs Flow to turn the original portrait into a production-ready character sheet, then a second Flow for the broader character workflow. Another image, video, or automation tool can fill those roles. The reusable part is the sequence, the identity locks, and the review record.</p>
-          <div class="tool-links">
-            <a href={page.elevenLabsCharacterSheetWorkflowUrl} target="_blank" rel="noopener noreferrer">Open the portrait-to-sheet Flow</a>
-            <a href={page.elevenLabsAssemblyWorkflowUrl} target="_blank" rel="noopener noreferrer">Open the character workflow</a>
-            <a href={page.elevenLabsAffiliateUrl} target="_blank" rel="sponsored nofollow noopener noreferrer">Try ElevenLabs (affiliate)</a>
-          </div>
+          <p>I used an ElevenLabs Flow to turn the original portrait into a production-ready sheet, then a second Flow for the wider character process. Another image, video, or automation tool can fill those roles. The reusable part is the field order, the stage order, and the review record.</p>
+          <div class="tool-links"><a href={page.elevenLabsCharacterSheetWorkflowUrl} target="_blank" rel="noopener noreferrer">Open the portrait-to-sheet Flow</a><a href={page.elevenLabsAssemblyWorkflowUrl} target="_blank" rel="noopener noreferrer">Open the character workflow</a><a href={page.elevenLabsAffiliateUrl} target="_blank" rel="sponsored nofollow noopener noreferrer">Try ElevenLabs (affiliate)</a></div>
           <AffiliateDisclosure class="affiliate-disclosure" />
         </div>
       </div>
     </Wrapper>
   </section>
 
-  <section class="offer-section" aria-labelledby="offer-heading">
-    <Wrapper variant="standard" class="section-space">
-      <div class="section-intro section-intro--split">
-        <div>
-          <p class="eyebrow">What can leave the Workshop</p>
-          <h2 id="offer-heading">Buy the finished piece, or commission the whole build.</h2>
-        </div>
-        <p>The public page shows the process. Finished buyer files, approved licenses, and live prices belong in verified Shop records. Until those records exist, the shelf stays marked coming soon.</p>
-      </div>
-      <figure class="wardrobe-graphic">
-        <img
-          src={preview(page.wardrobeGraphic)}
-          srcset={srcset(page.wardrobeGraphic)}
-          sizes="(min-width: 1100px) 1120px, 100vw"
-          alt={page.wardrobeGraphic.alt}
-          width={page.wardrobeGraphic.width}
-          height={page.wardrobeGraphic.height}
-          loading="lazy"
-          decoding="async"
-        />
-        <figcaption>{page.wardrobeGraphic.caption}</figcaption>
-      </figure>
-      <CharacterOfferShelf offers={characterOffers} products={relatedProducts} />
-    </Wrapper>
-  </section>
-
-  <section class="commission-section" aria-labelledby="commission-heading">
+  <section class="availability-section" aria-labelledby="availability-heading">
     <Wrapper variant="standard" class="section-space section-space--compact">
-      <div class="commission-block">
-        <p class="eyebrow">Custom character work</p>
-        <h2 id="commission-heading">Need a character that does not exist yet?</h2>
-        <p>Bring a face, outfit, aesthetic, scene, story role, or rough reference pile. HobFarm can turn it into a locked character base, a finished scene, and an optional short video.</p>
+      <div class="availability-block">
+        <div><p class="eyebrow">Availability and commission</p><h2 id="availability-heading">Finished files will appear when a verified release exists.</h2><p>Until then, custom work starts with a face, outfit, aesthetic, scene, role, or reference pile and ends with an inspectable sheet and agreed outputs.</p></div>
         <a href={page.commissionUrl} class="button button--primary" data-event="character_page_commission_cta">Start a custom character brief</a>
       </div>
     </Wrapper>
@@ -413,49 +252,25 @@ const relatedRoutes = [
 
   <section class="related-section" aria-labelledby="related-heading">
     <Wrapper variant="standard" class="section-space">
-      <header class="section-intro">
-        <p class="eyebrow">Continue through HobFarm</p>
-        <h2 id="related-heading">See the work, get the files, or learn the system.</h2>
-      </header>
-      <nav class="relationship-rail" aria-label="Related Workshop, Shop, character, and Academy routes">
-        {relatedRoutes.map((item) => (
-          <a href={item.href}>
-            <span>{item.eyebrow}</span>
-            <h3>{item.title}</h3>
-            <p>{item.description}</p>
-            <strong>{item.action} &rarr;</strong>
-          </a>
-        ))}
-      </nav>
-      <nav class="program-nav" aria-label="Workshop programs">
-        {workshopPrograms.filter((entry) => entry.inNav !== false).map((entry) => (
-          <a class:list={[entry.id === "character-mannequin" && "active"]} href={entry.href}>{entry.name}</a>
-        ))}
-      </nav>
+      <header class="section-intro"><p class="eyebrow">Continue through HobFarm</p><h2 id="related-heading">See the work, get the files, or learn the system.</h2></header>
+      <nav class="relationship-rail" aria-label="Related Workshop, Shop, character, and Academy routes">{relatedRoutes.map((item) => <a href={item.href}><span>{item.eyebrow}</span><h3>{item.title}</h3><p>{item.description}</p><strong>{item.action} &rarr;</strong></a>)}</nav>
+      <nav class="program-nav" aria-label="Workshop programs">{workshopPrograms.filter((entry) => entry.inNav !== false).map((entry) => <a class:list={[entry.id === "character-mannequin" && "active"]} href={entry.href}>{entry.name}</a>)}</nav>
     </Wrapper>
   </section>
 </div>
 
 <script>
   const chapters = Array.from(document.querySelectorAll<HTMLElement>("[data-look-chapter]"));
-  const assemblyChapters = Array.from(document.querySelectorAll<HTMLElement>("#assembly [data-look-chapter]"));
-
   chapters.forEach((chapter) => {
     chapter.classList.add("is-enhanced");
     const tabs = Array.from(chapter.querySelectorAll<HTMLButtonElement>("[data-stage-tab]"));
     const panels = Array.from(chapter.querySelectorAll<HTMLElement>("[data-stage-panel]"));
-
     const activate = (selected: HTMLButtonElement, moveFocus = false) => {
       const stage = selected.dataset.stage;
-      tabs.forEach((tab) => {
-        const active = tab === selected;
-        tab.setAttribute("aria-selected", String(active));
-        tab.tabIndex = active ? 0 : -1;
-      });
+      tabs.forEach((tab) => { const active = tab === selected; tab.setAttribute("aria-selected", String(active)); tab.tabIndex = active ? 0 : -1; });
       panels.forEach((panel) => panel.classList.toggle("is-active", panel.dataset.stage === stage));
       if (moveFocus) selected.focus();
     };
-
     tabs.forEach((tab, index) => {
       tab.addEventListener("click", () => activate(tab));
       tab.addEventListener("keydown", (event) => {
@@ -470,172 +285,28 @@ const relatedRoutes = [
       });
     });
   });
-
   const videos = Array.from(document.querySelectorAll<HTMLVideoElement>("[data-character-video]"));
   videos.forEach((video) => {
-    video.addEventListener("play", () => {
-      videos.forEach((other) => {
-        if (other !== video && !other.paused) other.pause();
-      });
-    });
+    video.addEventListener("play", () => videos.forEach((other) => { if (other !== video && !other.paused) other.pause(); }));
   });
-
   if ("IntersectionObserver" in window) {
-    const videoObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting && entry.target instanceof HTMLVideoElement) entry.target.pause();
-      });
-    }, { threshold: 0.1 });
-    videos.forEach((video) => videoObserver.observe(video));
-
-    const rail = document.querySelector<HTMLElement>("[data-identity-rail]");
-    const indexLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-look-index]"));
-    const setActiveLook = (chapter: HTMLElement) => {
-      const id = chapter.dataset.lookId;
-      const accent = chapter.style.getPropertyValue("--look-accent");
-      if (rail && accent) rail.style.setProperty("--active-accent", accent);
-      indexLinks.forEach((link) => {
-        if (link.dataset.lookIndex === id) link.setAttribute("aria-current", "true");
-        else link.removeAttribute("aria-current");
-      });
-    };
-    if (assemblyChapters[0]) setActiveLook(assemblyChapters[0]);
-    const chapterObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && entry.target instanceof HTMLElement) setActiveLook(entry.target);
-      });
-    }, { rootMargin: "-22% 0px -58% 0px", threshold: 0 });
-    assemblyChapters.forEach((chapter) => chapterObserver.observe(chapter));
+    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => { if (!entry.isIntersecting && entry.target instanceof HTMLVideoElement) entry.target.pause(); }), { threshold: .1 });
+    videos.forEach((video) => observer.observe(video));
   }
 </script>
 
 <style>
-  .character-page { --ink: #07060b; --paper: #ece9f5; --muted: #aaa5b8; --line: #312a3e; overflow: clip; background: var(--ink); color: var(--paper); }
-  .character-page :global(.hero-wrapper) { padding-top: clamp(2rem, 5vw, 4rem); padding-bottom: clamp(3rem, 8vw, 7rem); }
-  .character-page :global(.section-space) { padding-top: clamp(4rem, 9vw, 8rem); padding-bottom: clamp(4rem, 9vw, 8rem); }
-  .character-page :global(.section-space--compact) { padding-top: clamp(3rem, 6vw, 5rem); padding-bottom: clamp(3rem, 6vw, 5rem); }
-  .character-hero { position: relative; border-bottom: 1px solid var(--line); background: radial-gradient(circle at 80% 10%, rgb(123 71 255 / .15), transparent 28rem), #08070d; }
-  .character-hero::before { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(7 6 11 / .9), transparent 52%); content: ""; pointer-events: none; }
-  .breadcrumbs { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: .55rem; color: #777184; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; }
-  .breadcrumbs a { color: #aaa5b8; text-decoration: none; }
-  .breadcrumbs a:hover { color: #fff; }
-  .hero-grid { position: relative; z-index: 1; display: grid; gap: 2rem; align-items: center; margin-top: 2rem; }
-  .hero-copy { max-width: 52rem; }
-  .hero-grid--horizontal { align-items: start; gap: clamp(2rem, 4vw, 3.5rem); }
-  .hero-grid--horizontal .hero-copy { max-width: none; }
-  .hero-grid--horizontal .hero-copy h1 { width: 100%; max-width: none; font-size: clamp(3.4rem, 7.6vw, 7.5rem); line-height: .9; }
-  .hero-grid--horizontal .hero-deck { max-width: 52rem; }
-  .eyebrow { margin: 0; color: #65e1c2; font-family: var(--font-mono); font-size: .63rem; letter-spacing: .16em; text-transform: uppercase; }
-  .hero-copy h1 { max-width: 13ch; margin: 1rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(3.4rem, 8.2vw, 8.2rem); font-weight: 300; letter-spacing: -.065em; line-height: .86; text-wrap: balance; }
-  .hero-deck { max-width: 46rem; margin: 1.5rem 0 0; color: #cbc7d3; font-size: clamp(1rem, 1.5vw, 1.18rem); line-height: 1.7; }
-  .hero-actions, .tool-links { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.7rem; }
-  .button { display: inline-flex; min-height: 3rem; align-items: center; justify-content: center; padding: .8rem 1rem; border: 1px solid #65e1c2; font-family: var(--font-mono); font-size: .64rem; letter-spacing: .09em; text-decoration: none; text-transform: uppercase; }
-  .button--primary { background: #65e1c2; color: #07110e; }
-  .button--primary:hover { background: #a0f4df; }
-  .button--secondary { color: #ece9f5; }
-  .button--secondary:hover { background: rgb(101 225 194 / .1); }
-  .button:focus-visible, .relationship-rail a:focus-visible, .program-nav a:focus-visible, .tool-links a:focus-visible { outline: 2px solid #65e1c2; outline-offset: 4px; }
-  .hero-art, .overview-graphic, .midpoint-graphic, .themed-graphic, .wardrobe-graphic, .identity-media figure, .alternate-identity-media figure { margin: 0; overflow: hidden; border: 1px solid var(--line); background: #050407; }
-  .hero-art img, .overview-graphic img, .midpoint-graphic img, .themed-graphic img, .wardrobe-graphic img, .identity-media img, .alternate-identity-media img { display: block; width: 100%; height: auto; object-fit: contain; }
-  .hero-art figcaption, .overview-graphic figcaption, .midpoint-graphic figcaption, .themed-graphic figcaption, .wardrobe-graphic figcaption, .identity-media figcaption, .alternate-identity-media figcaption { padding: .75rem 1rem; border-top: 1px solid var(--line); color: #777184; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .08em; text-transform: uppercase; }
-  .process-overview, .assembly-section, .design-record, .offer-section, .related-section { border-bottom: 1px solid var(--line); background: radial-gradient(circle at 18% 20%, rgb(68 215 255 / .06), transparent 30rem), #08070c; }
-  .identity-section, .new-identity-section, .tool-note, .commission-section { border-bottom: 1px solid var(--line); background: #0a0810; }
-  .section-intro { max-width: 58rem; }
-  .section-intro--split { display: grid; gap: 1.5rem; max-width: none; }
-  .section-intro h2, .tool-note h2, .commission-block h2 { margin: .75rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(2.6rem, 6.7vw, 6.3rem); font-weight: 300; letter-spacing: -.055em; line-height: .91; text-wrap: balance; }
-  .section-intro > p, .section-intro--split > p, .section-intro--split > div:last-child p, .tool-note__grid > div:last-child > p, .commission-block > p { max-width: 46rem; margin: 1rem 0 0; color: var(--muted); line-height: 1.75; }
-  .section-intro--split > div:last-child p:first-child { margin-top: 0; }
-  .process-ribbon { display: grid; margin: 2.25rem 0 0; padding: 0; border-top: 1px solid var(--line); list-style: none; }
-  .process-ribbon li { position: relative; padding: 1.25rem 0; border-bottom: 1px solid var(--line); }
-  .process-ribbon li > span { color: #65e1c2; font-family: var(--font-mono); font-size: .58rem; }
-  .process-ribbon h3 { margin: .6rem 0 0; color: #fff; font-family: var(--font-display); font-size: 1.45rem; font-weight: 400; }
-  .process-ribbon p { margin: .55rem 0 0; color: #8f899b; font-size: .77rem; line-height: 1.6; }
-  .mannequin-checks { display: grid; gap: .55rem; margin-top: 1rem; }
-  .mannequin-checks article { padding: 1rem; border: 1px solid var(--line); background: #0d0a13; }
-  .mannequin-checks span { color: #19e3e3; font-family: var(--font-mono); font-size: .56rem; letter-spacing: .12em; }
-  .mannequin-checks h3 { margin: .65rem 0 0; color: #f3eff7; font-family: var(--font-display); font-size: 1.35rem; font-weight: 400; }
-  .mannequin-checks p { margin: .5rem 0 0; color: #8f899b; font-size: .75rem; line-height: 1.55; }
-  .workflow-film { display: grid; gap: 0; margin-top: 1rem; border: 1px solid #3c3150; background: #050407; }
-  .workflow-film__copy { align-self: center; padding: clamp(1.5rem, 4vw, 3rem); }
-  .workflow-film__copy h3 { max-width: 14ch; margin: .8rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(2rem, 4.2vw, 4.5rem); font-weight: 300; letter-spacing: -.045em; line-height: .94; text-wrap: balance; }
-  .workflow-film__copy > p:last-child { max-width: 38rem; margin: 1.2rem 0 0; color: var(--muted); font-size: .88rem; line-height: 1.75; }
-  .workflow-film__media { margin: 0; border-top: 1px solid #3c3150; background: #f1f2f1; }
-  .workflow-film__media video, .workflow-film__still { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; background: #f1f2f1; }
-  .workflow-film__still { display: none; }
-  .workflow-film__media figcaption { padding: .75rem 1rem; border-top: 1px solid #3c3150; background: #050407; color: #777184; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .08em; line-height: 1.6; text-transform: uppercase; }
-  .overview-graphic, .themed-graphic, .wardrobe-graphic { margin-top: clamp(2.5rem, 6vw, 5rem); }
-  .identity-media { display: grid; gap: 1rem; margin-top: 2.5rem; }
-  .identity-portrait img { max-height: 48rem; }
-  .identity-sheet { align-self: center; }
-  .identity-rules { display: grid; gap: 1rem; margin-top: 1rem; }
-  .identity-rules section { padding: 1.25rem; border: 1px solid var(--line); background: #08070c; }
-  .rule-label { margin: 0; color: #65e1c2; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; }
-  .identity-rules ul { columns: 2; column-gap: 2rem; margin: 1rem 0 0; padding-left: 1.1rem; color: #aaa5b8; font-size: .8rem; line-height: 1.7; }
-  .assembly-grid { display: grid; gap: 2rem; margin-top: 3rem; }
-  .identity-rail { --active-accent: #87e9ff; display: none; }
-  .identity-rail figure { margin: 0; overflow: hidden; border: 1px solid color-mix(in srgb, var(--active-accent) 45%, var(--line)); background: #050407; }
-  .identity-rail img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 18%; }
-  .identity-rail__copy { padding: 1rem 0; border-bottom: 1px solid var(--line); }
-  .identity-rail__copy p { margin: 0; color: #777184; font-family: var(--font-mono); font-size: .56rem; letter-spacing: .1em; text-transform: uppercase; }
-  .identity-rail__copy strong { display: block; margin-top: .55rem; color: #c9c5d2; font-size: .76rem; font-weight: 400; line-height: 1.6; }
-  .identity-rail nav { display: grid; margin-top: .75rem; }
-  .identity-rail nav a { display: grid; grid-template-columns: 2rem 1fr; gap: .4rem; padding: .75rem 0; border-bottom: 1px solid #211c2b; color: #8f899b; font-size: .72rem; line-height: 1.4; text-decoration: none; }
-  .identity-rail nav a span { color: var(--index-accent); font-family: var(--font-mono); font-size: .57rem; }
-  .identity-rail nav a[aria-current="true"] { color: #fff; }
-  .identity-rail nav a[aria-current="true"]::after { grid-column: 1 / -1; width: 100%; height: 1px; background: var(--index-accent); content: ""; }
-  .midpoint-graphic { margin: clamp(3rem, 8vw, 7rem) 0; }
-  .alternate-identity-media { display: grid; gap: 1rem; margin-top: 2.5rem; }
-  .alternate-identity-media > figure:first-child img { max-height: 42rem; }
-  .themed-chapter { max-width: 76rem; margin: 2rem auto 0; }
-  .tool-note__grid { display: grid; gap: 1.5rem; padding: clamp(1.5rem, 4vw, 3rem); border: 1px solid #3c3150; background: linear-gradient(135deg, rgb(101 225 194 / .06), rgb(240 201 107 / .04)); }
-  .tool-note h2 { font-size: clamp(2.2rem, 5vw, 4.3rem); }
-  .tool-links a { display: inline-flex; min-height: 2.8rem; align-items: center; padding: .7rem .85rem; border: 1px solid #4a3d5d; color: #ece9f5; font-family: var(--font-mono); font-size: .61rem; letter-spacing: .06em; text-decoration: none; }
-  .tool-links a:hover { border-color: #65e1c2; }
-  .affiliate-disclosure { color: #777184 !important; font-size: .72rem; }
-  .commission-block { padding: clamp(1.75rem, 6vw, 5rem); border: 1px solid #65e1c2; background: radial-gradient(circle at 90% 0%, rgb(101 225 194 / .13), transparent 26rem), #08070c; }
-  .commission-block h2 { max-width: 15ch; }
-  .commission-block .button { margin-top: 1.6rem; }
-  .relationship-rail { display: grid; grid-auto-columns: minmax(min(18rem, 84vw), 1fr); grid-auto-flow: column; gap: .75rem; margin-top: 2rem; padding-bottom: .75rem; overflow-x: auto; scroll-snap-type: x proximity; }
-  .relationship-rail a { display: flex; min-height: 18rem; flex-direction: column; padding: 1.25rem; border: 1px solid var(--line); background: #0b0911; color: inherit; text-decoration: none; scroll-snap-align: start; }
-  .relationship-rail a:hover { border-color: #65e1c2; }
-  .relationship-rail span { color: #65e1c2; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; }
-  .relationship-rail h3 { margin: 1rem 0 0; color: #fff; font-family: var(--font-display); font-size: 1.65rem; font-weight: 400; line-height: 1.05; }
-  .relationship-rail p { margin: .8rem 0 0; color: #9f9aad; font-size: .8rem; line-height: 1.65; }
-  .relationship-rail strong { margin-top: auto; padding-top: 1.5rem; color: #ece9f5; font-family: var(--font-mono); font-size: .61rem; font-weight: 400; letter-spacing: .08em; text-transform: uppercase; }
-  .program-nav { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
-  .program-nav a { padding: .55rem .7rem; border: 1px solid var(--line); color: #8f899b; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .06em; text-decoration: none; text-transform: uppercase; }
-  .program-nav a:hover, .program-nav a.active { border-color: #65e1c2; color: #fff; }
-  @media (min-width: 700px) {
-    .process-ribbon { grid-template-columns: repeat(2, minmax(0, 1fr)); border-left: 1px solid var(--line); }
-    .process-ribbon li { padding: 1.25rem; border-right: 1px solid var(--line); }
-    .mannequin-checks { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .identity-media { grid-template-columns: minmax(15rem, .45fr) minmax(0, 1fr); align-items: center; }
-    .identity-rules { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .alternate-identity-media { grid-template-columns: minmax(14rem, .4fr) minmax(0, 1fr); align-items: center; }
-  }
-  @media (min-width: 900px) {
-    .section-intro--split, .tool-note__grid { grid-template-columns: minmax(0, 1.08fr) minmax(22rem, .72fr); align-items: end; gap: 3rem; }
-    .workflow-film { grid-template-columns: minmax(18rem, .43fr) minmax(0, 1fr); }
-    .workflow-film__media { border-top: 0; border-left: 1px solid #3c3150; }
-    .relationship-rail { grid-auto-flow: initial; grid-auto-columns: auto; grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: visible; }
-  }
-  @media (min-width: 1040px) {
-    .hero-grid--vertical { grid-template-columns: minmax(28rem, .85fr) minmax(0, 1.15fr); }
-    .hero-grid--vertical .hero-art { margin-right: max(-3vw, -3rem); }
-    .process-ribbon { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-    .assembly-grid { grid-template-columns: minmax(17rem, .36fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
-    .identity-rail { position: sticky; top: 6.5rem; display: block; }
-    .relationship-rail { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  }
-  @media (max-width: 520px) {
-    .identity-rules ul { columns: 1; }
-    .hero-copy h1 { font-size: clamp(3rem, 16vw, 4.6rem); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    :global(html) { scroll-behavior: auto !important; }
-    .character-page { scroll-behavior: auto; }
-    .workflow-film__media video { display: none; }
-    .workflow-film__still { display: block; }
-    .relationship-rail { scroll-snap-type: none; }
-  }
+  .character-page{--ink:#07060a;--panel:#0d0a12;--line:#30283b;--paper:#f0eadd;--muted:#aaa5b8;--cyan:#87e9ff;--pink:#ff3da9;--gold:#f0c96b;background:var(--ink);color:#ece9f5;overflow:hidden}.character-page :global(.hero-wrapper),.character-page :global(.section-space){padding-top:clamp(3.5rem,8vw,7rem);padding-bottom:clamp(3.5rem,8vw,7rem)}.character-page :global(.section-space--compact){padding-top:clamp(2.8rem,6vw,5rem);padding-bottom:clamp(2.8rem,6vw,5rem)}
+  .character-hero,.workflow-film-section,.act-section,.tool-note,.availability-section,.related-section{border-bottom:1px solid var(--line)}.character-hero{background:radial-gradient(circle at 78% 30%,rgb(255 61 169 / 12%),transparent 31rem),linear-gradient(140deg,#0b0811,#050406)}.breadcrumbs{display:flex;flex-wrap:wrap;gap:.55rem;color:#777184;font-family:var(--font-mono);font-size:.62rem;text-transform:uppercase}.breadcrumbs a{color:#aaa5b8;text-decoration:none}.hero-grid{display:grid;gap:2rem;margin-top:2.5rem}.hero-copy{align-self:center}.eyebrow{margin:0;color:var(--cyan);font-family:var(--font-mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase}.hero-copy h1{max-width:11ch;margin:.8rem 0 0;color:var(--paper);font-family:var(--font-display);font-size:clamp(4rem,10vw,8.5rem);font-weight:300;letter-spacing:-.065em;line-height:.82}.hero-deck{max-width:42rem;margin:1.4rem 0 0;color:#c1bdca;font-size:clamp(1rem,1.6vw,1.2rem);line-height:1.7}.hero-actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.6rem}.button{display:inline-flex;align-items:center;justify-content:center;min-height:2.8rem;padding:.65rem 1rem;border:1px solid var(--line);color:#fff;font-family:var(--font-mono);font-size:.64rem;letter-spacing:.08em;text-decoration:none;text-transform:uppercase}.button--primary{border-color:var(--pink);background:var(--pink);color:#07060a}.button--secondary{background:#0d0a12}.button:focus-visible,.hero-art a:focus-visible,.sheet-hero a:focus-visible,.sheet-library a:focus-visible,.output-pair a:focus-visible{outline:2px solid var(--cyan);outline-offset:4px}.hero-art,.sheet-hero,.sheet-library figure,.output-pair figure{margin:0}.hero-art{align-self:center;border:1px solid var(--line);background:#f4f2ed}.hero-art img,.sheet-hero img,.sheet-library img,.output-pair img{display:block;width:100%;height:auto}.hero-art figcaption,.sheet-hero figcaption,.sheet-library figcaption,.output-pair figcaption{padding:.75rem 1rem;border-top:1px solid var(--line);background:#0b0910;color:#8f899c;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.07em;line-height:1.5;text-transform:uppercase}
+  .workflow-film-section{background:linear-gradient(135deg,#0a0910,#11121b)}.workflow-film{display:grid;gap:2rem}.workflow-film__copy h2,.section-intro h2,.tool-note h2,.availability-block h2{margin:.75rem 0 0;color:var(--paper);font-family:var(--font-display);font-size:clamp(2.8rem,6vw,5.5rem);font-weight:300;letter-spacing:-.05em;line-height:.92;text-wrap:balance}.workflow-film__copy>p:last-child,.section-intro>p,.section-intro>div+div p,.tool-note__grid>div>p,.availability-block p{max-width:44rem;margin:1.2rem 0 0;color:var(--muted);line-height:1.75}.workflow-film__media{margin:0;border:1px solid var(--line);background:#040405}.workflow-film__media video,.workflow-film__still{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;background:#040405}.workflow-film__still{display:none}.workflow-film__media figcaption{padding:.75rem 1rem;border-top:1px solid var(--line);color:#777184;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase}
+  .act-section--sheet{background:#09070d}.act-section--input{background:linear-gradient(150deg,#0b0c10,#10080f)}.act-section--transformation{background:#08080d}.act-section--series{background:linear-gradient(165deg,#0b0810,#07060a)}.section-intro{max-width:70rem}.section-intro--split{display:grid;gap:1.25rem}.sheet-hero{margin-top:2.5rem;border:1px solid var(--line);background:#f4f2ed}.sheet-hero figcaption{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.75rem}.sheet-hero figcaption a,.full-size-links a{color:var(--cyan)}.panel-breakdown,.process-ribbon{display:grid;gap:1px;margin:1.5rem 0 0;padding:1px;background:var(--line);list-style:none}.panel-breakdown li,.process-ribbon li{min-width:0;padding:1rem;background:#0d0a12}.panel-breakdown span,.process-ribbon span{color:var(--pink);font-family:var(--font-mono);font-size:.58rem}.panel-breakdown h3,.process-ribbon h3{margin:.55rem 0 0;color:#fff;font-size:1rem}.panel-breakdown p,.process-ribbon p{margin:.55rem 0 0;color:#9690a1;font-size:.78rem;line-height:1.6}.process-ribbon{margin-top:2.5rem}.sheet-library{display:grid;gap:1rem;margin-top:2.5rem}.sheet-library figure{min-width:0;border:1px solid var(--line);background:#f4f2ed}.sheet-library figcaption{display:grid;gap:.25rem}.sheet-library strong{color:#ece9f5}.sheet-library span{color:#777184}
+  .input-grid{display:grid;gap:1.5rem;margin-top:2.5rem}.research-record{align-self:start;border:1px solid var(--line);background:#07060a}.research-record summary{display:grid;gap:.45rem;padding:1rem;color:#fff;cursor:pointer;font-family:var(--font-mono);font-size:.64rem;letter-spacing:.09em;text-transform:uppercase}.research-record summary span{color:var(--pink)}.research-record__copy{max-height:24rem;overflow:auto;padding:0 1rem 1.25rem;border-top:1px solid var(--line)}.research-record__copy p{margin:1rem 0 0;color:#aaa5b8;font-family:var(--font-mono);font-size:.78rem;line-height:1.75}.research-record__copy strong{color:var(--gold)}.spec-card,.spec-diff{border:1px solid #b9b4ac;background:#f5f3ee;color:#111}.spec-card__header,.spec-card__row{display:grid;grid-template-columns:minmax(6.5rem,.35fr) minmax(0,1fr);gap:1rem;padding:.75rem 1rem;border-top:1px solid #d2cec6}.spec-card__header{border-top:0;background:#e4e1da;font-family:var(--font-mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase}.spec-card__row strong,.spec-diff__row strong{font-size:.74rem}.spec-card__row span,.spec-diff__row span{font-size:.76rem;line-height:1.5}
+  .sheet-comparison{margin-top:2.5rem}.full-size-links{display:flex;flex-wrap:wrap;gap:.75rem 1.5rem;margin-top:.75rem;font-family:var(--font-mono);font-size:.62rem;text-transform:uppercase}.spec-diff{margin-top:2rem}.spec-diff__header,.spec-diff__row{display:grid;gap:.55rem;padding:.85rem 1rem;border-top:1px solid #d2cec6}.spec-diff__header{display:none;border-top:0;background:#e4e1da;font-family:var(--font-mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase}.spec-diff__row:first-of-type{border-top:0}.spec-diff__row.is-changed{box-shadow:inset 4px 0 #ff3da9}.spec-diff__row span::before{content:attr(data-label);display:block;margin-bottom:.25rem;color:#6d6870;font-family:var(--font-mono);font-size:.54rem;letter-spacing:.08em;text-transform:uppercase}.pair-intro{max-width:50rem;margin-top:3rem}.pair-intro h3{margin:.7rem 0 0;color:var(--paper);font-family:var(--font-display);font-size:clamp(2.2rem,4vw,3.8rem);font-weight:300;line-height:.95}.pair-intro>p:last-child{color:var(--muted);line-height:1.7}.output-pair{display:grid;gap:1rem;margin-top:1.5rem}.output-pair figure{border:1px solid var(--line);background:#f4f2ed}.output-pair img{aspect-ratio:941/1672;object-fit:contain}
+  .locked-variable{display:grid;gap:1px;margin:2.5rem 0 0;padding:1px;background:var(--line)}.locked-variable>div{padding:1.25rem;background:#0d0a12}.locked-variable dt{margin-bottom:.8rem;color:var(--cyan);font-family:var(--font-mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase}.locked-variable dd{margin:.45rem 0 0;color:#aaa5b8;font-size:.82rem}.locked-variable dd::before{content:"+";margin-right:.55rem;color:var(--pink);font-family:var(--font-mono)}.look-index{display:grid;gap:1px;margin-top:2rem;padding:1px;background:var(--line)}.look-index a{display:grid;grid-template-columns:2rem minmax(0,1fr);gap:.35rem .75rem;padding:1rem;background:#09070d;color:#fff;text-decoration:none}.look-index span,.look-index small{color:#8a8395;font-family:var(--font-mono);font-size:.58rem;text-transform:uppercase}.look-index strong{font-size:.86rem}.look-index small{grid-column:2}.look-index a:hover strong{color:var(--cyan)}.look-chapters{display:grid;gap:clamp(3rem,8vw,7rem);margin-top:clamp(3rem,7vw,6rem)}
+  .tool-note__grid{display:grid;gap:1.5rem}.tool-links{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.25rem}.tool-links a{padding:.65rem .75rem;border:1px solid var(--line);color:var(--cyan);font-family:var(--font-mono);font-size:.6rem;text-decoration:none;text-transform:uppercase}.tool-links a:hover{color:#fff}.affiliate-disclosure{margin-top:1rem}.availability-section{background:radial-gradient(circle at 80% 50%,rgb(255 61 169 / 12%),transparent 25rem),#0a080e}.availability-block{display:grid;gap:1.5rem;align-items:center;padding:clamp(1.25rem,4vw,2.5rem);border:1px solid var(--line);background:#0d0a12}.availability-block h2{font-size:clamp(2.25rem,4vw,4rem)}.availability-block .button{justify-self:start}
+  .relationship-rail{display:grid;gap:1px;margin-top:2rem;padding:1px;background:var(--line)}.relationship-rail a{display:flex;min-width:0;flex-direction:column;padding:1.2rem;background:#0d0a12;color:#fff;text-decoration:none}.relationship-rail span{color:var(--cyan);font-family:var(--font-mono);font-size:.56rem;text-transform:uppercase}.relationship-rail h3{margin:.65rem 0 0;font-size:1.15rem}.relationship-rail p{margin:.55rem 0 0;color:#9690a1;font-size:.78rem;line-height:1.55}.relationship-rail strong{margin-top:auto;padding-top:1rem;color:var(--pink);font-family:var(--font-mono);font-size:.58rem;text-transform:uppercase}.program-nav{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:2rem}.program-nav a{padding:.55rem .7rem;border:1px solid var(--line);color:#8f899c;font-family:var(--font-mono);font-size:.58rem;text-decoration:none;text-transform:uppercase}.program-nav a.active{border-color:var(--cyan);color:#fff}
+  @media(min-width:700px){.panel-breakdown{grid-template-columns:repeat(2,minmax(0,1fr))}.process-ribbon{grid-template-columns:repeat(5,minmax(0,1fr))}.sheet-library{grid-template-columns:repeat(3,minmax(0,1fr))}.output-pair,.locked-variable{grid-template-columns:repeat(2,minmax(0,1fr))}.look-index{grid-template-columns:repeat(2,minmax(0,1fr))}.relationship-rail{grid-template-columns:repeat(2,minmax(0,1fr))}.spec-diff__header,.spec-diff__row{grid-template-columns:minmax(7rem,.4fr) repeat(2,minmax(0,1fr));gap:1rem}.spec-diff__header{display:grid}.spec-diff__row span::before{display:none}}
+  @media(min-width:960px){.hero-grid{grid-template-columns:minmax(18rem,.72fr) minmax(0,1.28fr);align-items:center}.workflow-film,.section-intro--split,.tool-note__grid{grid-template-columns:minmax(16rem,.75fr) minmax(0,1.25fr);gap:clamp(2rem,6vw,6rem);align-items:start}.input-grid{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}.relationship-rail{grid-template-columns:repeat(4,minmax(0,1fr))}.availability-block{grid-template-columns:minmax(0,1fr) auto}.look-index{grid-template-columns:repeat(4,minmax(0,1fr))}}
+  @media(max-width:520px){.character-page :global(.hero-wrapper),.character-page :global(.section-space){padding-top:3.5rem;padding-bottom:3.5rem}.hero-copy h1{font-size:3.75rem}.research-record__copy{max-height:16rem}.spec-card__header,.spec-card__row{grid-template-columns:1fr;gap:.3rem}.spec-card__header span:first-child{display:none}.panel-breakdown{grid-template-columns:1fr}.sheet-library figcaption{font-size:.55rem}}
+  @media(prefers-reduced-motion:reduce){.workflow-film__media video{display:none}.workflow-film__still{display:block}}
 </style>

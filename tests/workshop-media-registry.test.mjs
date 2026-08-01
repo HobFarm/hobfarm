@@ -45,8 +45,9 @@ test("Character and note studies stay outside the StyleFusion application eviden
   const notes = read("src/components/workshop/StyleCardArchive.astro");
   const route = read("src/pages/workshop/[program].astro");
 
-  assert.match(character, /The Character Assembly Line/);
-  assert.match(character, /The picture is the output\. The design record is the work\./);
+  assert.match(character, /Act 4 \/ The series/);
+  assert.match(character, /The sheet is the constant\./);
+  assert.doesNotMatch(character, /The picture is the output\. The design record is the work\./);
   assert.match(characterRoute, /CharacterMannequinPage/);
   assert.match(notes, /informal style experiments/);
   assert.match(route, /program\.id !== "character-mannequin"/);

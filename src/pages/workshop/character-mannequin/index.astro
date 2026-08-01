@@ -4,15 +4,10 @@ import CharacterMannequinPage from "@/components/workshop/CharacterMannequinPage
 import {
   characterLooks,
   characterMannequinPage,
-  themedCharacter,
 } from "@/data/character-mannequin";
-import { getPublicProducts, productSlug } from "@/lib/products";
 import { transformImageUrl } from "@/lib/media-transforms";
 
 const page = characterMannequinPage;
-const products = (await getPublicProducts()).filter((product) =>
-  page.relatedProducts.includes(productSlug(product) as (typeof page.relatedProducts)[number]),
-);
 const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
 const canonical = "/workshop/character-mannequin/";
 const socialImage = transformImageUrl(page.heroGraphic.src, {
@@ -20,7 +15,6 @@ const socialImage = transformImageUrl(page.heroGraphic.src, {
   quality: 82,
   fit: "cover",
 });
-const looks = [...characterLooks, themedCharacter];
 const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
@@ -38,24 +32,24 @@ const structuredData = {
       },
       mainEntity: {
         "@type": "ItemList",
-        itemListElement: looks.map((look, index) => ({
+        itemListElement: characterLooks.map((look, index) => ({
           "@type": "ListItem",
           position: index + 1,
-          name: look.shortTitle,
+          name: look.title,
           url: `${siteOrigin}${canonical}#${look.id}`,
         })),
       },
     },
-    ...looks.map((look) => ({
+    ...characterLooks.map((look) => ({
       "@type": "VideoObject",
-      name: `${look.shortTitle} motion study`,
-      description: look.video.alt,
-      thumbnailUrl: transformImageUrl(look.sceneImage.src, {
+      name: `${look.title} motion study`,
+      description: look.motion.alt,
+      thumbnailUrl: transformImageUrl(look.scene.src, {
         width: 900,
         quality: 82,
         fit: "cover",
       }),
-      contentUrl: look.video.src,
+      contentUrl: look.motion.src,
       isPartOf: { "@id": `${siteOrigin}${canonical}#page` },
     })),
   ],
@@ -71,5 +65,5 @@ const structuredData = {
   structuredData={structuredData}
   palette="blue-red"
 >
-  <CharacterMannequinPage relatedProducts={products} />
+  <CharacterMannequinPage />
 </BaseLayout>
