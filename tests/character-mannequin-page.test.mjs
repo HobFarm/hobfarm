@@ -1,123 +1,106 @@
 import assert from "node:assert/strict";
-import { existsSync, readFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import test from "node:test";
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
 
-test("Character / Mannequin follows the nine-section method structure", () => {
-  const route = read("src/pages/workshop/character-mannequin/index.astro");
+test("Character / Mannequin is a five-section visual demonstration", () => {
   const page = read("src/components/workshop/CharacterMannequinPage.astro");
-  const combined = `${route}\n${page}`;
 
   for (const phrase of [
-    "The sheet is the constant.",
-    "Lock the format. Change the layers. Prove the output.",
-    "Act 1 / The sheet",
-    "Act 2 / The input",
-    "Act 3 / The transformation",
-    "Act 4 / The series",
-    "The pipeline matters more than the app.",
-    "Finished files will appear when a verified release exists.",
-    "Continue through HobFarm",
+    "Start with the base.",
+    "A neutral sheet gives every change the same place to begin.",
+    "Two styles on one mannequin. One style on two mannequins.",
+    "The look survives without producing the same picture.",
+    "This page shows the result. A course can teach the mechanics.",
   ]) {
-    assert.match(combined, new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+    assert.match(page, new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   }
 
-  assert.equal([...page.matchAll(/^\s*<section\b/gm)].length, 9);
+  assert.equal([...page.matchAll(/^\s*<section\b/gm)].length, 5);
 });
 
-test("repeated stage, decision, lock, and offer markup is removed", () => {
+test("the story order is clean base, dress blonde, black leather blonde, then black leather green", () => {
   const page = read("src/components/workshop/CharacterMannequinPage.astro");
-  const chapter = read("src/components/workshop/CharacterLookChapter.astro");
   const data = read("src/data/character-mannequin.ts");
+
+  const pageOrder = [
+    page.indexOf('label: "Clean base"'),
+    page.indexOf('label: "Dress / Blonde"'),
+    page.indexOf('label: "Black leather / Blonde"'),
+    page.indexOf('label: "Black leather / Green"'),
+  ];
+  assert.deepEqual([...pageOrder].sort((a, b) => a - b), pageOrder);
+  assert.equal(pageOrder.every((index) => index >= 0), true);
+
+  const lookOrder = [
+    data.indexOf('id: "yellow-pool"'),
+    data.indexOf('id: "black-marble"'),
+    data.indexOf('id: "green-art-deco"'),
+  ];
+  assert.deepEqual([...lookOrder].sort((a, b) => a - b), lookOrder);
+  assert.equal(lookOrder.every((index) => index >= 0), true);
+});
+
+test("the sequence contains two styling examples and one identity transfer", () => {
+  const data = read("src/data/character-mannequin.ts");
+  const chapter = read("src/components/workshop/CharacterLookChapter.astro");
+
+  assert.equal((data.match(/^    axis: "styling"/gm) ?? []).length, 2);
+  assert.equal((data.match(/^    axis: "identity"/gm) ?? []).length, 1);
+  assert.match(chapter, /The first two examples restyle the blonde mannequin/);
+  assert.match(chapter, /keeps the black leather look/);
+  assert.match(chapter, /Continuity note\./);
+});
+
+test("tool, affiliate, research, Cyberpop, ivory, and commission material is absent", () => {
+  const combined = [
+    read("src/components/workshop/CharacterMannequinPage.astro"),
+    read("src/data/character-mannequin.ts"),
+  ].join("\n");
 
   for (const removed of [
-    "Fixed geometry",
-    "Identity slots",
-    "Wardrobe system",
-    "Camera coverage",
-    "Scene direction",
-    "Motion proof",
-    "The picture is the output. The design record is the work.",
-    "Stayed locked",
-    "characterOffers",
-    "designDecisions",
-    "themedCharacter",
+    "ElevenLabs",
+    "affiliate",
+    "Editorial placeholder",
+    "Cyberpop",
+    "Bauhaus",
+    "ivory-noir",
+    "outfit2.png",
+    "custom-character",
+    "commission",
   ]) {
-    assert.doesNotMatch(`${page}\n${chapter}\n${data}`, new RegExp(removed.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+    assert.doesNotMatch(combined, new RegExp(removed, "i"));
   }
-
-  assert.equal(existsSync(new URL("../src/components/workshop/CharacterOfferShelf.astro", import.meta.url)), false);
-  assert.equal(existsSync(new URL("../src/components/workshop/DesignDecisionMatrix.astro", import.meta.url)), false);
-  assert.equal((page.match(/character_page_commission_cta/g) ?? []).length, 1);
 });
 
-test("the four look chapters share one data shape and distinguish styling from identity", () => {
-  const data = read("src/data/character-mannequin.ts");
-  const page = read("src/components/workshop/CharacterMannequinPage.astro");
-  const chapter = read("src/components/workshop/CharacterLookChapter.astro");
-
-  assert.match(data, /axis: "styling"/);
-  assert.match(data, /axis: "identity"/);
-  assert.match(data, /files: "coming-soon"/);
-  assert.match(data, /outfit: MediaRef/);
-  assert.match(data, /character: MediaRef/);
-  assert.match(data, /scene: MediaRef/);
-  assert.match(data, /motion: MediaRef/);
-  assert.doesNotMatch(data, /locked: string\[\]/);
-  assert.match(page, /characterLooks\.map\(\(look\) => <CharacterLookChapter look=\{look\}/);
-  assert.match(chapter, /look\.axis === "identity"/);
-});
-
-test("the sheet and Cyberpop specification use the locked ten-field schema", () => {
+test("Clean Base 001 remains the hero and the three sheets share a lightbox", () => {
   const data = read("src/data/character-mannequin.ts");
   const page = read("src/components/workshop/CharacterMannequinPage.astro");
 
-  for (const field of ["Palette", "Skin", "Hair", "Eyes", "Garment", "Materials", "Hardware", "Footwear", "Accessories", "Motif"]) {
-    assert.match(data, new RegExp(`"${field}"`));
-  }
-  assert.match(data, /Hardware: "None"/);
-  assert.match(data, /Accessories: "None"/);
-  assert.match(data, /Motif: "None"/);
-  assert.match(page, /characterSpecFields\.map/);
-  assert.match(page, /spec-diff__row/);
-  assert.match(page, /row\.changed/);
+  assert.match(data, /heroGraphic:\s*cleanBaseSheet/);
+  assert.match(data, /clean-base-001-sheet\.png/);
+  assert.match(page, /data-lightbox-group="character-sheet-library"/);
+  assert.match(page, /<Lightbox client:only="react" \/>/);
 });
 
-test("new Character / Mannequin assets are registered with matched dimensions", () => {
+test("the black leather transfer is shown directly on both mannequins", () => {
   const data = read("src/data/character-mannequin.ts");
-
-  for (const file of [
-    "clean-base-001-sheet.png",
-    "cyberpop-y2kfut-001-sheet.png",
-    "cyberpop-bauhaus-character.png",
-    "cyberpop-bauhaus-scene.png",
-  ]) {
-    assert.match(data, new RegExp(file.replaceAll(".", "\\.")));
-  }
-  assert.equal((data.match(/1672,\s*\n\s*941,/g) ?? []).length >= 4, true);
-  assert.equal((data.match(/941,\s*\n\s*1672,/g) ?? []).length >= 2, true);
-  assert.match(data, /cdn\.gallery/);
-});
-
-test("sheet transformation uses the existing comparison primitive and full-size fallbacks", () => {
   const page = read("src/components/workshop/CharacterMannequinPage.astro");
 
-  assert.match(page, /import BeforeAfterCompare/);
-  assert.match(page, /aspect="aspect-\[1672\/941\]"/);
-  assert.match(page, /Open clean base full size/);
-  assert.match(page, /Open resolved sheet full size/);
-  assert.match(page, /target="_blank"/);
+  assert.match(data, /mannequin-outfit3\.png/);
+  assert.match(data, /mannequin2-outfit3\.png/);
+  assert.match(page, /data-lightbox-group="black-look-transfer"/);
+  assert.match(page, /Same mannequin, different looks/);
+  assert.match(page, /Different mannequin, same look/);
 });
 
-test("Character stages are progressive, keyboard-addressable, and poster-first", () => {
+test("look stages are keyboard-addressable, character-first, and poster-first", () => {
   const chapter = read("src/components/workshop/CharacterLookChapter.astro");
   const page = read("src/components/workshop/CharacterMannequinPage.astro");
 
-  assert.match(chapter, /role="tablist"/);
-  assert.match(chapter, /role="tab"/);
-  assert.match(chapter, /aria-selected=/);
-  assert.match(chapter, /role="tabpanel"/);
+  for (const semantic of ['role="tablist"', 'role="tab"', 'role="tabpanel"']) assert.match(chapter, new RegExp(semantic));
+  assert.match(chapter, /stage\.key === "character" \? "true" : "false"/);
   assert.match(chapter, /preload="none"/);
   assert.match(chapter, /poster=/);
   assert.doesNotMatch(chapter, /autoplay/);
@@ -125,38 +108,11 @@ test("Character stages are progressive, keyboard-addressable, and poster-first",
   assert.match(page, /other !== video && !other\.paused/);
 });
 
-test("Character workflow film is poster-first and respects reduced motion", () => {
-  const page = read("src/components/workshop/CharacterMannequinPage.astro");
-  const registry = read("src/data/media-registry.ts");
-
-  assert.match(page, /Lock the format\. Change the layers\. Prove the output\./);
-  assert.match(page, /<video controls muted playsinline preload="none" poster=/);
-  assert.doesNotMatch(page, /<video[^>]*autoplay/);
-  assert.match(page, /prefers-reduced-motion:reduce/);
-  assert.match(page, /\.workflow-film__media video\{display:none\}/);
-  assert.match(page, /\.workflow-film__still\{display:block\}/);
-
-  for (const file of ["mannequin-workflow-film.mp4", "mannequin-workflow-film-poster.png"]) {
-    assert.match(registry, new RegExp(file.replaceAll(".", "\\.")));
-  }
-});
-
-test("research copy remains an explicit editorial placeholder", () => {
-  const page = read("src/components/workshop/CharacterMannequinPage.astro");
-
-  assert.match(page, /<details class="research-record">/);
-  assert.match(page, /Editorial placeholder\./);
-  assert.match(page, /final rewrite and attribution pass/);
-  assert.doesNotMatch(page, /Aesthetics Wiki/);
-});
-
-test("Character page links the tool-agnostic method to both supplied Flows", () => {
+test("route metadata follows the three-example sequence", () => {
+  const route = read("src/pages/workshop/character-mannequin/index.astro");
   const data = read("src/data/character-mannequin.ts");
-  const page = read("src/components/workshop/CharacterMannequinPage.astro");
 
-  assert.match(data, /kRlIkuiEdy0X1wC4n56O/);
-  assert.match(data, /eSYyxDGUCh4xbWjUuBKs/);
-  assert.match(data, /try\.elevenlabs\.io\/xyeeptwpw4d6/);
-  assert.match(page, /The pipeline matters more than the app\./);
-  assert.match(page, /rel="sponsored nofollow noopener noreferrer"/);
+  assert.match(route, /characterLooks\.map/);
+  assert.match(data, /Mannequin, Outfit, and Character Continuity/);
+  assert.match(data, /one outfit carrying across a different character and rendering style/);
 });

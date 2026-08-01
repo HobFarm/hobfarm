@@ -8,10 +8,9 @@ interface Props {
 
 const { look } = Astro.props;
 const accents: Record<string, string> = {
-  "01": "#87e9ff",
-  "02": "#e9d29a",
-  "03": "#ffe768",
-  "04": "#65e1c2",
+  "01": "#ffe768",
+  "02": "#87e9ff",
+  "03": "#65e1c2",
 };
 const stages = [
   { key: "outfit", label: "Outfit", media: look.outfit },
@@ -19,7 +18,8 @@ const stages = [
   { key: "scene", label: "Scene", media: look.scene },
   { key: "motion", label: "Motion", media: look.motion },
 ] as const;
-const axisLabel = look.axis === "identity" ? "Identity axis" : "Styling axis";
+const axisLabel = look.axis === "identity" ? "Different mannequin" : "Same mannequin";
+const recordLabel = look.axis === "identity" ? "What changed and what stayed" : "What changed";
 const preview = (media: MediaRef, width = 1100) =>
   transformImageUrl(media.src, { width, quality: 82, fit: "scale-down" });
 const srcset = (media: MediaRef) =>
@@ -39,7 +39,7 @@ const srcset = (media: MediaRef) =>
     <h3>{look.title}</h3>
     <p>{look.dek}</p>
     {look.axis === "identity" && (
-      <p class="axis-note">The first three chapters restyle one identity. This chapter changes the identity while keeping the same sheet and stage structure.</p>
+      <p class="axis-note">The first two examples restyle the blonde mannequin. This example keeps the black leather look and applies it to a different mannequin and rendering style.</p>
     )}
   </header>
 
@@ -49,9 +49,9 @@ const srcset = (media: MediaRef) =>
         id={`${look.id}-${stage.key}-tab`}
         type="button"
         role="tab"
-        aria-selected={stage.key === "scene" ? "true" : "false"}
+        aria-selected={stage.key === "character" ? "true" : "false"}
         aria-controls={`${look.id}-${stage.key}-panel`}
-        tabindex={stage.key === "scene" ? "0" : "-1"}
+        tabindex={stage.key === "character" ? "0" : "-1"}
         data-stage-tab
         data-stage={stage.key}
         data-event="character_look_stage_change"
@@ -66,7 +66,7 @@ const srcset = (media: MediaRef) =>
     {stages.map((stage) => (
       <section
         id={`${look.id}-${stage.key}-panel`}
-        class:list={["stage-panel", stage.key === "scene" && "is-active"]}
+        class:list={["stage-panel", stage.key === "character" && "is-active"]}
         role="tabpanel"
         aria-labelledby={`${look.id}-${stage.key}-tab`}
         data-stage-panel
@@ -109,10 +109,10 @@ const srcset = (media: MediaRef) =>
   </div>
 
   <details class="look-record" data-event="character_process_notes_open" data-look-id={look.id}>
-    <summary>Changed for this look</summary>
+    <summary>{recordLabel}</summary>
     <div class="look-record__body">
       <ul>{look.changed.map((item) => <li>{item}</li>)}</ul>
-      <p><strong>Production note.</strong> {look.productionNote}</p>
+      <p><strong>Continuity note.</strong> {look.productionNote}</p>
     </div>
   </details>
 </article>
