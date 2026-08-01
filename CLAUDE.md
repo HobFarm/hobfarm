@@ -242,10 +242,10 @@ cdn.hob.farm/presents/<section>/<file>
 cdn.hob.farm/gallery/<collection>/<slug>/<file>
 ```
 
-Existing paths are inconsistent from earlier builds and are not being migrated
-right now. Put new assets in the matching path and leave old ones alone unless a
-task says otherwise. `src/data/media-registry.ts` is the lookup for registered
-media; prefer it over hardcoding a CDN URL.
+Existing paths are inconsistent from earlier builds. Do not rename or migrate
+them; that resolves itself as old content is replaced. Put new assets in the
+matching path. `src/data/media-registry.ts` is the lookup for registered media;
+prefer it over hardcoding a CDN URL.
 
 CDN paths are not routes. A path like `cdn.hob.farm/pages/projects/images/...`
 is an asset location, so a site restructure does not rename it.

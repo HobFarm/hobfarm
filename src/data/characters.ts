@@ -577,15 +577,6 @@ export const characters: CharacterEntry[] = [
         "See how land, commodities, labor, and force overlap across the Diamond Highlands.",
     },
   },
-  {
-    slug: "hillary-hobfarm",
-    name: "Hillary HobFarm",
-    role: "Host",
-    blurb: "HobFarm's host character.",
-    bio: "Hillary HobFarm hosts, narrates, and occasionally apologizes for the rest of the cast.",
-    traits: ["Host", "Narrator", "Long-suffering"],
-    relatedSeries: [],
-  },
 ];
 
 const characterBySlug = new Map(characters.map((c) => [c.slug, c]));

@@ -2,27 +2,31 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import { getMedia } from "@/data/media-registry";
+import { avatars, getAvatar } from "@/data/avatars";
 
 const hobgalVideo = getMedia("avatar-host.hobgal.prototype.video");
 const hobgalTranscript = getMedia("avatar-host.hobgal.prototype.transcript");
 const amiHero = getMedia("workshop.ami-legacy.hero");
 const hostGraphic = getMedia("workshop.graphics.hillary");
 const presentsGraphic = getMedia("presents.graphics.avatar-system");
-const hillaryProfile = getMedia("avatar.identity.hillary");
-const amiProfile = getMedia("avatar.identity.ami");
-const emProfile = getMedia("avatar.identity.em");
-const ninaProfile = getMedia("avatar.identity.nina");
-const zimaProfile = getMedia("avatar.identity.zima");
-const hobgalProfile = getMedia("avatar.identity.hobgal");
+// The roster is data now: src/data/avatars.ts is the source of truth for who
+// the avatars are and where their content ships.
+const profileOf = (slug: string) => getAvatar(slug)!.profile!;
+const hillaryProfile = profileOf("hillary");
+const amiProfile = profileOf("ami");
+const emProfile = profileOf("em");
+const ninaProfile = profileOf("nina");
+const zimaProfile = profileOf("zima");
+const hobgalProfile = profileOf("hobgal");
 
-const identities = [
-  { id: "AV-HIL-001", name: "Hillary", role: "Editorial and Workshop guide", profile: hillaryProfile },
-  { id: "AV-AMI-001", name: "Ami", role: "Social and commercial presenter", profile: amiProfile },
-  { id: "AV-EM-001", name: "Em", role: "PsyGoth / green / growth", profile: emProfile },
-  { id: "AV-NIN-001", name: "Nina", role: "PsyGoth / red / pressure", profile: ninaProfile },
-  { id: "AV-ZIM-001", name: "Zima", role: "PsyGoth / blue / structure", profile: zimaProfile },
-  { id: "AV-HOB-001", name: "Hobgal", role: "Retired presenter prototype", profile: hobgalProfile, retired: true },
-];
+const identities = avatars.map((avatar) => ({
+  id: avatar.logicalId,
+  name: avatar.name,
+  role: avatar.role,
+  profile: avatar.profile!,
+  platform: avatar.platform,
+  retired: avatar.status === "retired",
+}));
 
 const productionChain = [
   "Character identity",
