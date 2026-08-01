@@ -5,7 +5,7 @@ import test from "node:test";
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
 
 test("avatar host study follows the requested Character / Mannequin sequence", () => {
-  const page = read("src/pages/workshop/character-mannequin/avatar-host-system/index.astro");
+  const page = read("src/pages/workshop/avatar-host/index.astro");
 
   assert.match(page, /From Character Design to On-Screen Host/);
   for (const heading of [

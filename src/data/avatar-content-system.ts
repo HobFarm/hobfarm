@@ -251,7 +251,7 @@ export const avatarIntroProject = {
     { label: "Review and make the next one", slug: "review-the-post-and-make-the-next-one" },
   ],
   kofiHref: "https://ko-fi.com/hobfarm",
-  workshopHref: "/workshop/ami-legacy/",
+  workshopHref: "/workshop/future-carriage/",
 };
 
 export const landingSections = {

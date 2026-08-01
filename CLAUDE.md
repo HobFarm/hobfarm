@@ -127,6 +127,52 @@ This rules out media-archive pages. Do not build a video gallery, a portfolio
 reel, or a clips hub. If a video belongs anywhere on the site, it belongs on the
 page for the thing it is about.
 
+The same rule governs characters. There is no site-wide cast index. A character
+lives on the page for the world it belongs to: Larry's cast on
+`/presents/funnies/larry/`, Wonderland's on the Other Alice cast page. Nothing
+gets a standalone directory just because it is a recurring type of thing.
+
+### Characters, avatars, and Other Alice are three different things
+
+| Class | What it is | Home |
+| --- | --- | --- |
+| Comic characters | Cast of a Funnies strip. Larry, Gary, and Buffcock are the three series | Their series page under `/presents/funnies/<series>/` |
+| Avatars | Presenters HobFarm builds through the Avatar & Host method | Documented at `/workshop/avatar-host/` |
+| Characters | A named character developed into a reusable identity with its own satire, anchors, modes, and editions | `/workshop/character-mannequin/characters/<slug>/` |
+| Other Alice residents | Cast of the Other Alice world | Other Alice, managed separately |
+
+A character is the **result** of the Character / Mannequin process, not a second
+methodology. The Workshop describes the process once; character pages show what
+it produces, and the same process produces the next one. Each character gets one
+dossier page recording the finished reusable identity, and it makes the system
+behind the character visible by linking to it, never by restating it.
+
+The job of a character page: someone sees the character on social and wonders
+whether it is a one-off AI picture. The page shows it is not.
+
+Characters nest under the method that made them and never become their own
+Workshop program or nav item. An **edition** is a contextual version of the same
+character, built around an era, culture, role, or commercial fantasy; it is not a
+separate character.
+
+Hobunny is the first; her specification is `docs/hobunny-project-outline.md`.
+When a character page starts describing procedure, that content belongs in a
+Workshop program instead.
+
+Avatars are Hillary (HobFarm TV host, also Magazine Time Machine, essays, and
+3DM), Ami (social influencer and product spokesperson), and the PsyGoth trio of
+Em, Nina, and Zima (style, colour, and art concepts in the PsyGoth aesthetic).
+Hobgal is a retired prototype.
+
+**Avatar content is made for social media, not the site.** Hillary's goes to
+YouTube, Ami's to Instagram, PsyGoth across a mix. The site documents the avatar
+and the method; the platform gets the finished video. No avatar gallery, reel
+page, or embeds hub.
+
+Other Alice is a website within the website: a large, dynamic world with its own
+structure. Manage it separately and do not restructure it as a side effect of
+work elsewhere.
+
 **Academy's specific job:** take a method Workshop demonstrates and teach it as
 a repeatable procedure. Every course states a problem, gives a solution, and
 walks the steps in order, plainly enough to follow without prior context. The

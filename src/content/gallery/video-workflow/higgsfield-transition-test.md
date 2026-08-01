@@ -25,7 +25,7 @@ hero:
   poster: "dancer-poster.jpg"
   alt: "Vertical dancer motion reel made from Grok image prompts, Grok image-to-video, and Higgsfield transitions using Kling 2.5 Turbo."
 heroAspect: "aspect-[2/3]"
-relatedProcess: "/process/motion/"
+relatedProcess: "/workshop/motion/"
 media:
   - type: "video"
     file: "Dancer.mp4"

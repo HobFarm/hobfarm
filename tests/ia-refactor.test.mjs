@@ -30,21 +30,31 @@ test("Workshop visibility keeps route generation separate from navigation", () =
   const hierarchy = read("src/data/site-hierarchy.ts");
   const navigation = read("src/data/navigation.ts");
   const programRoute = read("src/pages/workshop/[program].astro");
+  const workshopHub = read("src/pages/workshop/index.astro");
+  const departmentsHub = read("src/pages/departments/index.astro");
 
   const visibleOrder = [
     'id: "character-mannequin"',
     'id: "alter-ego"',
     'id: "cute-corrupted"',
+    'id: "avatar-host"',
     'id: "before-after"',
     'id: "workshop-notes"',
   ].map((token) => hierarchy.indexOf(token));
 
   assert.ok(visibleOrder.every((position) => position >= 0));
   assert.deepEqual(visibleOrder, [...visibleOrder].sort((a, b) => a - b));
-  assert.match(hierarchy, /id: "stylefusion"[^\n]*inNav: false, noindex: true/);
+  assert.match(hierarchy, /id: "stylefusion"[^\n]*inNav: false, noindex: false/);
   assert.match(navigation, /workshopPrograms\.filter\(\(entry\) => entry\.inNav !== false\)/);
   assert.match(programRoute, /return workshopPrograms[\s\S]*\.map\(\(program\)/);
+  assert.match(programRoute, /program\.id !== "avatar-host"/);
+  assert.match(programRoute, /getProcessPipelineBySlug\(program\.processSlug\)/);
   assert.match(programRoute, /noindex=\{program\.noindex === true\}/);
+  assert.match(workshopHub, /workshopPrograms\.filter\(\(program\) => program\.noindex !== true\)/);
+  assert.match(departmentsHub, /workshopPrograms\.filter\(\(entry\) => entry\.noindex !== true\)/);
+  for (const heading of ["Character", "World", "Time and motion"]) {
+    assert.match(workshopHub, new RegExp(`title: "${heading}"`));
+  }
 });
 
 test("department pages can surface related systems, drops, workshop notes, and comics", () => {

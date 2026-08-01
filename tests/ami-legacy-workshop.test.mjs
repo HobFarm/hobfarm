@@ -15,7 +15,7 @@ test("Ami's durable intro video is registered without a temporary provider URL",
 });
 
 test("Legacy has a complete Workshop case study with the intro, design rules, and source library", () => {
-  const page = read("src/pages/workshop/ami-legacy/index.astro");
+  const page = read("src/pages/workshop/future-carriage/index.astro");
 
   for (const id of [
     "workshop.ami-legacy.intro.video",
@@ -54,12 +54,12 @@ test("Legacy has a complete Workshop case study with the intro, design rules, an
 
 test("Workshop and the avatar host study lead readers into Ami's Legacy follow-up", () => {
   const index = read("src/components/workshop/WorkshopMediaIndex.astro");
-  const hostStudy = read("src/pages/workshop/character-mannequin/avatar-host-system/index.astro");
+  const hostStudy = read("src/pages/workshop/avatar-host/index.astro");
 
   assert.match(index, /workshop\.ami-legacy\.hero/);
-  assert.match(index, /href="\/workshop\/ami-legacy\/"/);
+  assert.match(index, /href="\/workshop\/future-carriage\/"/);
   assert.match(index, /The Electric Future Wagon/);
-  assert.match(hostStudy, /href: "\/workshop\/ami-legacy\/"/);
+  assert.match(hostStudy, /href: "\/workshop\/future-carriage\/"/);
   assert.match(hostStudy, /36-second HobFarm introduction/);
   assert.match(hostStudy, /Open the full Ami \/ Legacy study/);
 });

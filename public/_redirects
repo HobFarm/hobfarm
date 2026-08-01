@@ -17,6 +17,20 @@
 /departments/workshop-notes  /workshop/workshop-notes/     301
 /departments/workshop-notes/ /workshop/workshop-notes/     301
 
+# Process methods and Workshop studies promoted to canonical Workshop routes.
+/process/fashion    /workshop/fashion-grammar/  301
+/process/fashion/   /workshop/fashion-grammar/  301
+/process/motion     /workshop/motion/           301
+/process/motion/    /workshop/motion/           301
+/process/book       /workshop/book-package/     301
+/process/book/      /workshop/book-package/     301
+/process/seed-to-world   /workshop/seed-to-world/  301
+/process/seed-to-world/  /workshop/seed-to-world/  301
+/workshop/character-mannequin/avatar-host-system   /workshop/avatar-host/       301
+/workshop/character-mannequin/avatar-host-system/  /workshop/avatar-host/       301
+/workshop/ami-legacy   /workshop/future-carriage/  301
+/workshop/ami-legacy/  /workshop/future-carriage/  301
+
 # Articles replaced the old public blog routes
 /blog                    /articles/                 301
 /blog/                   /articles/                 301

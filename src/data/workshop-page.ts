@@ -64,13 +64,13 @@ export const workshopBenches = [
   {
     label: "World and scene design",
     description: "Move from a stable subject into environments, props, atmosphere, story clues, and a larger visual world.",
-    href: "/process/seed-to-world/",
+    href: "/workshop/seed-to-world/",
     action: "See seed to world",
   },
   {
     label: "Camera and motion",
     description: "Lens, angle, pose, shot size, aspect ratio, parallax, transitions, timing, editing, and sound-ready sequences.",
-    href: "/process/motion/",
+    href: "/workshop/motion/",
     action: "Open motion process",
   },
   {

@@ -223,7 +223,7 @@ export const avatarCourseRecord: AcademyCourse = {
   checkoutProvider: "membership-legacy",
   accessType: "active-membership",
   courseStatus: "beta",
-  relatedWorkshop: "/workshop/ami-legacy/",
+  relatedWorkshop: "/workshop/future-carriage/",
   affiliateDisclosure:
     "Affiliate link: HobFarm may earn a commission if you buy through this link. It does not change your price.",
   duration: "Self-paced",

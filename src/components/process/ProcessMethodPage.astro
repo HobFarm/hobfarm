@@ -1,0 +1,166 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Lightbox from "@/components/gallery/Lightbox";
+import ProcessEditorialChain from "@/components/process/ProcessEditorialChain.astro";
+import ProcessLoopReel from "@/components/process/ProcessLoopReel.astro";
+import ProcessMediaHero from "@/components/process/ProcessMediaHero.astro";
+import ProcessNotesPanel from "@/components/process/ProcessNotesPanel.astro";
+import ProcessStepGrid from "@/components/process/ProcessStepGrid.astro";
+import VisualDnaPanel from "@/components/process/VisualDnaPanel.astro";
+import GalleryCard from "@/components/gallery/GalleryCard.astro";
+import KofiCta from "@/components/KofiCta.astro";
+import { getProcessAssetUrl, type ProcessPipeline } from "@/data/processPipelines";
+
+interface Props {
+  pipeline: ProcessPipeline;
+  canonical?: string;
+  noindex?: boolean;
+  backHref?: string;
+}
+
+const {
+  pipeline,
+  canonical,
+  noindex = false,
+  backHref = "/services/#process",
+} = Astro.props;
+const ogUrl = getProcessAssetUrl(pipeline, pipeline.media.og ?? pipeline.media.hero);
+
+let relatedGalleryEntries: CollectionEntry<"gallery">[] = [];
+if (pipeline.relatedGallerySlugs && pipeline.relatedGallerySlugs.length > 0) {
+  const all = await getCollection("gallery");
+  const wanted = new Set(pipeline.relatedGallerySlugs.map((slug) => slug.replace(/\.(md|mdx)$/, "")));
+  relatedGalleryEntries = all
+    .filter((entry) => !entry.data.draft)
+    .filter((entry) => wanted.has(entry.id.replace(/\.(md|mdx)$/, "")));
+}
+
+const processMetadata: Record<string, { title: string; description: string }> = {
+  fashion: {
+    title: "Fashion Grammar | HobFarm Process",
+    description:
+      "A HobFarm process study showing how outfit logic, pose, accessories, material, and palette become a reusable character package.",
+  },
+  motion: {
+    title: "Motion Pass | HobFarm Process",
+    description:
+      "A HobFarm process study showing how still images become motion clips, transitions, edit loops, and finished media reels.",
+  },
+  book: {
+    title: "Book Package | HobFarm Process",
+    description:
+      "A HobFarm process study showing how a story idea becomes cover art, illustration language, motion teaser, and reusable visual world.",
+  },
+};
+const metadata = processMetadata[pipeline.slug] ?? {
+  title: `${pipeline.title} Process | HobFarm`,
+  description: pipeline.shortDescription,
+};
+---
+
+<BaseLayout
+  title={metadata.title}
+  description={metadata.description}
+  canonical={canonical}
+  image={ogUrl}
+  palette="magenta-cyan"
+  noindex={noindex}
+>
+  <section class="bg-noise">
+    <ContentPanel>
+      <Wrapper variant="standard" class="py-12 lg:py-16">
+        <a href={backHref} class="font-mono text-xs uppercase tracking-widest text-base-500 transition-colors hover:text-white">
+          &larr; Back to how it's made
+        </a>
+
+        <div class="mt-8">
+          <ProcessMediaHero pipeline={pipeline} />
+        </div>
+
+        <div class="mt-12 lg:mt-14">
+          <ProcessStepGrid pipeline={pipeline} />
+        </div>
+
+        {pipeline.editorialChain && (
+          <div class="mt-12 lg:mt-14">
+            <ProcessEditorialChain pipeline={pipeline} />
+          </div>
+        )}
+
+        {pipeline.loopReel && (
+          <div class="mt-12 lg:mt-14">
+            <ProcessLoopReel pipeline={pipeline} />
+          </div>
+        )}
+
+        {pipeline.notes && !pipeline.loopReel && (
+          <div class="mt-12 lg:mt-14">
+            <ProcessNotesPanel pipeline={pipeline} />
+          </div>
+        )}
+
+        <div class="mt-12 lg:mt-14">
+          <VisualDnaPanel pipeline={pipeline} />
+        </div>
+
+        {relatedGalleryEntries.length > 0 && (
+          <div class="mt-16 border-t border-base-800 pt-12">
+            <div class="mb-8 flex items-end justify-between gap-4">
+              <h2 class="font-mono text-xs uppercase tracking-wider text-base-500">
+                Finished Pieces
+              </h2>
+              <span class="font-mono text-[10px] uppercase tracking-wider text-base-600">
+                See how the artifact ships
+              </span>
+            </div>
+            <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {relatedGalleryEntries.map((entry) => {
+                const slug = entry.id.replace(/\.(md|mdx)$/, "");
+                return (
+                  <div class="flex flex-col gap-4">
+                    <GalleryCard entry={entry} />
+                    <a
+                      href={`/gallery/${slug}`}
+                      class="inline-flex items-center justify-center gap-2 rounded-full border border-accent-500/40 bg-accent-500/10 px-3 py-2 font-mono text-xs uppercase tracking-wider text-accent-200 transition-colors hover:border-accent-500 hover:text-accent-100"
+                    >
+                      See finished piece
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M13 6l6 6-6 6" />
+                      </svg>
+                    </a>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        <section class="mt-16 border-t border-base-800 pt-12" aria-labelledby="process-support-heading">
+          <div class="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-center">
+            <div class="lg:col-span-7">
+              <Text tag="span" variant="textSM" class="font-mono uppercase tracking-wider text-accent-500">
+                Support
+              </Text>
+              <Text id="process-support-heading" tag="h2" variant="displaySM" class="mt-3 font-display text-white">
+                Support the process
+              </Text>
+              <Text tag="p" variant="textBase" class="mt-3 max-w-2xl text-pretty leading-relaxed text-base-400">
+                These pages show how HobFarm turns visual experiments into reusable files, galleries, downloads, and shop material. Direct support helps keep the tests moving.
+              </Text>
+            </div>
+            <div class="lg:col-span-5 lg:flex lg:justify-end">
+              <KofiCta variant="button" />
+            </div>
+          </div>
+        </section>
+      </Wrapper>
+    </ContentPanel>
+  </section>
+
+  <Lightbox client:only="react" />
+</BaseLayout>

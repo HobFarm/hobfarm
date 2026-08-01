@@ -90,14 +90,14 @@ export const mediaRegistry = {
   "character.generic-37.negative": conceptImage("stylefusion-negative.jpg", "exclusion-guidance", "Exclusion guidance for Generic Female number 37"),
   "character.generic-37.video": conceptVideo("stylefusion-concept-vid.mp4", "stylefusion-concept2.jpg", "motion-result", "Generic Female number 37 motion result"),
 
-  "avatar.identity.hillary": workshopImage("images/hillary01.WEBP", "/workshop/character-mannequin/avatar-host-system/", "canonical-profile", "Hillary, the HobFarm editorial and Workshop host", 1280, 1920),
-  "avatar.identity.ami": workshopImage("images/ami01.WEBP", "/workshop/character-mannequin/avatar-host-system/", "canonical-profile", "Ami, the HobFarm social and commercial presenter", 1280, 1920),
+  "avatar.identity.hillary": workshopImage("images/hillary01.WEBP", "/workshop/avatar-host/", "canonical-profile", "Hillary, the HobFarm editorial and Workshop host", 1280, 1920),
+  "avatar.identity.ami": workshopImage("images/ami01.WEBP", "/workshop/avatar-host/", "canonical-profile", "Ami, the HobFarm social and commercial presenter", 1280, 1920),
   "avatar.identity.em": workshopImage("images/em01.jpg", "/workshop/workshop-notes/psygoth/", "canonical-profile", "Em, the green growth lane of the PsyGoth presenter trio", 1792, 2368),
   "avatar.identity.nina": workshopImage("images/nina01.jpg", "/workshop/workshop-notes/psygoth/", "canonical-profile", "Nina, the red pressure lane of the PsyGoth presenter trio", 1792, 2368),
   "avatar.identity.zima": workshopImage("images/zima01.WEBP", "/workshop/workshop-notes/psygoth/", "canonical-profile", "Zima, the blue structure lane of the PsyGoth presenter trio", 1280, 1920),
-  "avatar.identity.hobgal": workshopImage("images/hobgal01.jpg", "/workshop/character-mannequin/avatar-host-system/", "historical-profile", "Hobgal, the retired early HobFarm presenter prototype", 1664, 2496, "safe-to-archive-later"),
+  "avatar.identity.hobgal": workshopImage("images/hobgal01.jpg", "/workshop/avatar-host/", "historical-profile", "Hobgal, the retired early HobFarm presenter prototype", 1664, 2496, "safe-to-archive-later"),
   "workshop.graphics.landing": workshopImage("images/workshop.png", "/workshop/", "section-hero", "The HobFarm Workshop host system, character sheet, process inspector, storyboards, media registry, and motion test", 1672, 941),
-  "workshop.graphics.hillary": workshopImage("images/workshop-hillary.png", "/workshop/ and /workshop/character-mannequin/avatar-host-system/", "editorial-host-system", "Hillary at the center of HobFarm articles, Presents, Workshop, and in-progress productions", 1672, 941),
+  "workshop.graphics.hillary": workshopImage("images/workshop-hillary.png", "/workshop/ and /workshop/avatar-host/", "editorial-host-system", "Hillary at the center of HobFarm articles, Presents, Workshop, and in-progress productions", 1672, 941),
   "presents.graphics.avatar-system": workshopImage("images/presents-with-avatars.png", "/departments/hobfarm-presents/", "section-hero", "HobFarm Presents programs with Hillary, Ami, Em, Nina, and Zima as recurring editorial hosts", 1672, 941),
   "workshop.character-mannequin.workflow": {
     src: "/media/workshop/character-mannequin/mannequin-to-character-workflow.png",
@@ -166,9 +166,9 @@ export const mediaRegistry = {
   "avatar-host.zima.trio.video": avatarHostPlaceholder("video", "zima-trio-presenter.mp4", "standardized-host-test", "Zima blue-lane trio presenter standardized host test"),
   "avatar-host.zima.trio.captions": avatarHostPlaceholder("document", "zima-trio-presenter.srt", "caption-sidecar", "SRT captions for Zima's blue-lane trio presenter test"),
 
-  "avatar-host.hobgal.prototype.video": workshopMedia("avatar-host-system/hobgal-prototype.mp4", "video", "/workshop/character-mannequin/avatar-host-system/", "retired-prototype", "Hobgal explains an early version of the HobFarm production system", "safe-to-archive-later", "avatar-host-system/hobgal-prototype.webp"),
-  "avatar-host.hobgal.prototype.poster": workshopMedia("avatar-host-system/hobgal-prototype.webp", "image", "/workshop/character-mannequin/avatar-host-system/", "retired-prototype-poster", "Hobgal retired prototype presenter frame", "safe-to-archive-later", undefined, 405, 720),
-  "avatar-host.hobgal.prototype.transcript": workshopMedia("avatar-host-system/transcripts/hobgal-prototype.txt", "document", "/workshop/character-mannequin/avatar-host-system/", "historical-transcript", "Transcript for the retired Hobgal prototype clip", "safe-to-archive-later"),
+  "avatar-host.hobgal.prototype.video": workshopMedia("avatar-host-system/hobgal-prototype.mp4", "video", "/workshop/avatar-host/", "retired-prototype", "Hobgal explains an early version of the HobFarm production system", "safe-to-archive-later", "avatar-host-system/hobgal-prototype.webp"),
+  "avatar-host.hobgal.prototype.poster": workshopMedia("avatar-host-system/hobgal-prototype.webp", "image", "/workshop/avatar-host/", "retired-prototype-poster", "Hobgal retired prototype presenter frame", "safe-to-archive-later", undefined, 405, 720),
+  "avatar-host.hobgal.prototype.transcript": workshopMedia("avatar-host-system/transcripts/hobgal-prototype.txt", "document", "/workshop/avatar-host/", "historical-transcript", "Transcript for the retired Hobgal prototype clip", "safe-to-archive-later"),
 
   "workshop.psygoth.em.video": workshopMedia("psygoth/em-primary.mp4", "video", "/workshop/workshop-notes/psygoth/", "primary-character-chapter", "Em defines the green lane of the PsyGoth system", "active", "psygoth/em-primary.webp"),
   "workshop.psygoth.em.poster": workshopMedia("psygoth/em-primary.webp", "image", "/workshop/workshop-notes/psygoth/", "video-poster", "Em in an illustrated green PsyGoth landscape", "active"),
@@ -193,7 +193,7 @@ export const mediaRegistry = {
   "workshop.process.zima.wide-video": workshopMedia("mannequin-to-avatar/v2/renders/zima-process-film-wide-v2.mp4", "video", "/workshop/", "process-film", "Wide Zima mannequin-to-avatar Process Film", "active", "mannequin-to-avatar/v2/posters/zima-process-film-wide-poster-v2.jpg", 1920, 1080),
 
   "workshop.ami-legacy.hero": workshopMedia("ami-legacy/legacy-ami-hero.webp", "image", "Ami Legacy campaign packet", "campaign-hero", "Ami presents the Legacy electric future wagon and robotic pulling system", "registered", undefined, 1672, 941),
-  "workshop.ami-legacy.intro.video": workshopMedia("ami-legacy/Ami_Intro_with_captions.mp4", "video", "/workshop/ami-legacy/ and /academy/avatar-content-system/", "avatar-introduction", "Ami introduces herself as a HobFarm avatar and welcomes viewers into the studio", "active", "images/ami01.WEBP", 1080, 1920),
+  "workshop.ami-legacy.intro.video": workshopMedia("ami-legacy/Ami_Intro_with_captions.mp4", "video", "/workshop/future-carriage/ and /academy/avatar-content-system/", "avatar-introduction", "Ami introduces herself as a HobFarm avatar and welcomes viewers into the studio", "active", "images/ami01.WEBP", 1080, 1920),
   "workshop.ami-legacy.model-3917.ami": workshopMedia("ami-legacy/model-3917-ami.webp", "image", "Ami Legacy campaign packet", "campaign-key-art", "Ami beside the robot-pulled Model 3917 two-wheel carriage", "registered", undefined, 1672, 941),
   "workshop.ami-legacy.model-3917.vehicle": workshopMedia("ami-legacy/model-3917-vehicle.webp", "image", "Ami Legacy campaign packet", "vehicle-clean-plate", "Robot-pulled Model 3917 two-wheel carriage without a presenter", "registered", undefined, 1672, 941),
   "workshop.ami-legacy.autonomous-coach": workshopMedia("ami-legacy/autonomous-coach.webp", "image", "Ami Legacy campaign packet", "four-wheel-vehicle", "Four-wheel enclosed electric autonomous coach concept", "registered", undefined, 1672, 941),
@@ -318,7 +318,7 @@ function avatarHostPlaceholder(mediaType: "video" | "document", file: string, ro
   return {
     src: "",
     mediaType,
-    destination: "/workshop/character-mannequin/avatar-host-system/",
+    destination: "/workshop/avatar-host/",
     role,
     alt,
     status: "registered",

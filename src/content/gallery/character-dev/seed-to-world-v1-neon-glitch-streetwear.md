@@ -22,7 +22,7 @@ hero:
   file: "s2w-v1-05.mp4"
   poster: "s2w-v1-04.png"
   alt: "Motion proof for the Neon Glitch Streetwear set: night fountain streetwear scene in motion"
-relatedProcess: "/process/seed-to-world/"
+relatedProcess: "/workshop/seed-to-world/"
 specimenSheet:
   specimenId: "HF-S2W-V1-NEON-GLITCH-001"
   subjectName: "Neon Glitch Streetwear"

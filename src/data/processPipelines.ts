@@ -91,7 +91,7 @@ export const processPipelines: ProcessPipeline[] = [
     shortDescription:
       "Outfit logic, pose, accessories, material, and palette become a reusable character package.",
     pipeline: "Seed → outfit logic → character system → character sheet",
-    href: "/process/fashion/",
+    href: "/workshop/fashion-grammar/",
     assetBase: `${PROCESS_ASSET_BASE}/fashion/`,
     media: {
       video: "fashion-video.mp4",
@@ -220,7 +220,7 @@ export const processPipelines: ProcessPipeline[] = [
     shortDescription:
       "A single character prompt expands into a motion reel. Four generated stills become animated clips, transition shots, and an editorial loop built for atmosphere, repetition, and replay.",
     pipeline: "Seed → 4 stills → motion clips → transitions → edit loop",
-    href: "/process/motion/",
+    href: "/workshop/motion/",
     assetBase: `${PROCESS_ASSET_BASE}/motion/`,
     media: {
       video: "motion-video.mp4",
@@ -390,7 +390,7 @@ export const processPipelines: ProcessPipeline[] = [
     shortDescription:
       "A story signal becomes a cover, illustration system, motion teaser, and reusable visual world.",
     pipeline: "Story seed → cover → illustration system → motion trailer",
-    href: "/process/book/",
+    href: "/workshop/book-package/",
     assetBase: `${PROCESS_ASSET_BASE}/book/`,
     media: {
       video: "book-video.mp4",
@@ -545,7 +545,7 @@ export const processPipelines: ProcessPipeline[] = [
     shortDescription:
       "A baseline character becomes a small visual world: seed image, identity extraction, style pass, world translation, and motion proof.",
     pipeline: "Seed → identity → style → world → motion",
-    href: "/process/seed-to-world/",
+    href: "/workshop/seed-to-world/",
     assetBase: "https://cdn.hob.farm/gallery/seed-to-world/",
     media: {
       video: "s2w-v1-05.mp4",

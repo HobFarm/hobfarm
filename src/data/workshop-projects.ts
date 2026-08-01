@@ -118,7 +118,7 @@ export const selectedWorkshopProjects: readonly WorkshopProject[] = [
     media: futureCarriageAssets[1],
     secondaryMedia: futureCarriageAssets[0],
     approvedAssets: futureCarriageAssets,
-    destination: "/workshop/ami-legacy/",
+    destination: "/workshop/future-carriage/",
     status: "Published case study",
     featuredPosition: 1,
     homepagePosition: 1,

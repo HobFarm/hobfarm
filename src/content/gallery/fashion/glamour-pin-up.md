@@ -19,7 +19,7 @@ hero:
   file: "fashion-grammar-01.mp4"
   poster: "fashion-grammar-01-poster.jpg"
   alt: "Punk catgirl fashion character in an old city street with a red cooler and wet pavement."
-relatedProcess: "/process/fashion/"
+relatedProcess: "/workshop/fashion-grammar/"
 media:
   - type: "image"
     file: "fashion-grammar-01.png"

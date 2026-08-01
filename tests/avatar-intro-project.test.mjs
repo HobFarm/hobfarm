@@ -20,7 +20,7 @@ test("the Avatar course uses Ami's intro as a reusable field project", () => {
   assert.match(data, /name: "Social introduction"/);
   assert.match(data, /name: "Course field project"/);
   assert.match(data, /name: "Workshop follow-up"/);
-  assert.match(data, /workshopHref: "\/workshop\/ami-legacy\/"/);
+  assert.match(data, /workshopHref: "\/workshop\/future-carriage\/"/);
   assert.match(landing, /id="ami-intro-project"/);
   assert.match(landing, /workshop\.ami-legacy\.intro\.video/);
   assert.match(landing, /<video/);

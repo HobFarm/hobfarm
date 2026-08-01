@@ -12,15 +12,18 @@ import { mediaImageUrl } from "@/lib/gallery";
 import { getMedia } from "@/data/media-registry";
 import StyleFusionMediaStudies from "@/components/workshop/StyleFusionMediaStudies.astro";
 import StyleCardArchive from "@/components/workshop/StyleCardArchive.astro";
+import ProcessMethodPage from "@/components/process/ProcessMethodPage.astro";
+import { getProcessPipelineBySlug } from "@/data/processPipelines";
 
 export function getStaticPaths() {
   return workshopPrograms
-    .filter((program) => program.id !== "before-after" && program.id !== "character-mannequin")
+    .filter((program) => program.id !== "before-after" && program.id !== "character-mannequin" && program.id !== "avatar-host")
     .map((program) => ({ params: { program: program.slug }, props: { program } }));
 }
 
 interface Props { program: HierarchyEntry }
 const { program } = Astro.props;
+const processPipeline = program.processSlug ? getProcessPipelineBySlug(program.processSlug) : undefined;
 const articles = await getPublishedArticles();
 const gallery = (await getCollection("gallery")).filter((entry) => !entry.data.draft);
 const relatedArticles = articles.filter((article) => {
@@ -62,6 +65,14 @@ const hasProgramFeature = program.id === "alter-ego" || program.id === "stylefus
 const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
 const structuredData = { "@context":"https://schema.org", "@type":"CollectionPage", name:program.name, description:program.description, url:`${siteOrigin}${program.href}`, isPartOf:{"@type":"CollectionPage",name:"HobFarm Workshop",url:`${siteOrigin}/workshop/`} };
 ---
+{processPipeline ? (
+  <ProcessMethodPage
+    pipeline={processPipeline}
+    canonical={program.href}
+    noindex={program.noindex === true}
+    backHref="/workshop/"
+  />
+) : (
 <BaseLayout title={`${program.name} | HobFarm Workshop`} description={program.description} canonical={program.href} image={pageHero} imageAlt={pageHeroAlt} structuredData={structuredData} palette="blue-red" noindex={program.noindex === true}>
   <SectionHero eyebrow="HobFarm Workshop program" title={program.name} deck={program.description} image={pageHero} imageAlt={pageHeroAlt} theme={program.theme} status={status} cta={{label:"See the work",href:"#work"}} breadcrumbs={[{label:"Home",href:"/"},{label:"Departments",href:"/departments/"},{label:"Workshop",href:"/workshop/"},{label:program.name}]} />
 
@@ -110,6 +121,7 @@ const structuredData = { "@context":"https://schema.org", "@type":"CollectionPag
 
   <section><Wrapper variant="standard" class="py-12"><nav class="program-nav" aria-label="Workshop programs">{workshopPrograms.filter((entry) => entry.inNav !== false).map((entry) => <a class:list={[entry.id===program.id&&"active"]} href={entry.href}>{entry.name}</a>)}</nav></Wrapper></section>
 </BaseLayout>
+)}
 
 <style>
   .program-index,.alter-study{background:#0a0810}.label{margin:0;color:#5cf0f0;font-family:var(--font-mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase}h2{margin:.7rem 0 0;color:white;font-family:var(--font-display);font-size:clamp(2rem,5vw,4rem);font-weight:300;letter-spacing:-.04em;line-height:1}.program-index p:not(.label),header p:not(.label){max-width:46rem;margin:1rem 0 0;color:#9b96ad;line-height:1.7}.stage-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;margin:0;padding:0;list-style:none}.stage-grid li{min-height:8rem;padding:1rem;border:1px solid #2c2440;background:#0e0b16}.stage-grid span{display:block;color:#6b93ed;font-family:var(--font-mono);font-size:.65rem}.stage-grid strong{display:block;margin-top:2.5rem;color:#ece9f5;font-weight:500}.alter-grid{display:grid;gap:1rem;margin-top:2rem}.alter-grid figure{margin:0;overflow:hidden;border:1px solid #2c2440;background:#07060b}.alter-grid img,.alter-grid video{display:block;width:100%;height:100%;max-height:42rem;object-fit:contain}.alter-grid figcaption{padding:.8rem;color:#9b96ad;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase}.text-link{display:inline-block;margin-top:1.4rem;color:#ece9f5}.content-grid{display:grid;gap:1rem;margin-top:2rem}.program-nav{display:flex;flex-wrap:wrap;gap:.5rem}.program-nav a{padding:.55rem .75rem;border:1px solid #2c2440;color:#9b96ad;font-size:.75rem;text-decoration:none}.program-nav a:hover,.program-nav a.active{border-color:#19e3e3;color:white}@media(min-width:760px){.alter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.alter-sheet{grid-column:span 2}.content-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:600px){.stage-grid{grid-template-columns:1fr}}
