@@ -10,7 +10,7 @@ import { getCollection, getEntry } from "astro:content";
 import StyleFusionProjectPage from "@/components/projects/StyleFusionProjectPage.astro";
 import StyleFusionMediaStudies from "@/components/workshop/StyleFusionMediaStudies.astro";
 
-const project = await getEntry("projects", "stylefusion");
+const project = await getEntry("workshop", "stylefusion");
 if (!project) {
   throw new Error(
     "src/content/projects/stylefusion.md is required by /workshop/stylefusion/",

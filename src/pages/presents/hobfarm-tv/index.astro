@@ -1,38 +1,14 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { Image } from "astro:assets";
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Button from "@/components/fundations/elements/Button.astro";
-import StatusBadge from "@/components/ui/StatusBadge.astro";
 import ContentPanel from "@/components/ContentPanel.astro";
 import Eyebrow from "@/components/sections/Eyebrow.astro";
-import { getCollection } from "astro:content";
 import { presentsSeries } from "@/data/site-hierarchy";
 
-// Shows live as nested project entries under projects/hobfarm-tv/. Querying the
-// collection keeps this hub in sync: any new show file added to the folder
-// appears here automatically, ordered by its `order` frontmatter.
-const shows = (await getCollection("projects"))
-  .filter((p) => p.id.startsWith("hobfarm-tv/"))
-  .sort((a, b) => a.data.order - b.data.order);
 const tvSection = presentsSeries.find((entry) => entry.id === "hobfarm-tv")!;
 const tvHero = tvSection.heroImage!;
-
-// Every show already has a canonical home under Presents. The old project
-// prefix is retired, so there is no fallback path left to build.
-const SHOW_PATHS: Record<string, string> = {
-  "hobfarm-tv/3-degrees-of-dick-miller": "/presents/3-degrees-of-dick-miller/",
-  "hobfarm-tv/magazine-time-machine": "/presents/magazine-time-machine/",
-};
-const showPath = (slug: string) => SHOW_PATHS[slug] ?? "/presents/";
-
-type ContentImageMetadata = {
-  src: string;
-  width: number;
-  height: number;
-  format: "svg" | "png" | "jpg" | "jpeg" | "tiff" | "webp" | "gif" | "avif";
-};
 ---
 
 <BaseLayout
@@ -70,60 +46,17 @@ type ContentImageMetadata = {
           <img src={tvHero} alt={tvSection.heroAlt ?? "HobFarm TV test pattern"} width="1600" height="900" class="w-full h-full object-cover rounded-2xl" decoding="async" fetchpriority="high" />
         </div>
 
-        {/* ── Shows ── */}
+        {/* ── Shows ──
+             There are no shows yet. The two records this grid used to read were
+             3DM and Magazine Time Machine, which are sibling Presents sections,
+             not HobFarm TV shows. Shows will live at /presents/hobfarm-tv/shows/
+             once they exist. */}
         <Text tag="h2" variant="displayLG" class="text-white font-display mb-8">The Shows</Text>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {shows.map((show) => {
-            const showSlug = show.id.replace(/\.md$/, "");
-            const href = showPath(showSlug);
-            return (
-              <a
-                href={href}
-                class="flex flex-col p-6 lg:p-8 rounded-xl border border-base-800 bg-base-900/50 hover:border-accent-500/40 transition-colors duration-300 group"
-              >
-                <div class="flex items-start gap-4 mb-4">
-                  {show.data.logo && (
-                    <div class="w-14 h-14 rounded-xl bg-base-900 border border-base-800 flex items-center justify-center p-2 shrink-0">
-                      {show.data.logo.url.src.endsWith(".svg") ? (
-                        <img
-                          src={show.data.logo.url.src}
-                          alt={show.data.logo.alt}
-                          width={56}
-                          height={56}
-                          class="w-full h-full object-contain"
-                        />
-                      ) : (
-                        <Image
-                          src={show.data.logo.url as ContentImageMetadata}
-                          alt={show.data.logo.alt}
-                          width={56}
-                          height={56}
-                          format="webp"
-                          quality={82}
-                          class="w-full h-full object-contain"
-                        />
-                      )}
-                    </div>
-                  )}
-                  <div class="flex-1 min-w-0">
-                    <div class="mb-1.5">
-                      <StatusBadge status={show.data.status} />
-                    </div>
-                    <Text tag="h3" variant="textXL" class="text-white font-medium group-hover:text-white">
-                      {show.data.title}
-                    </Text>
-                  </div>
-                </div>
-                <Text tag="p" variant="textBase" class="text-base-400 leading-relaxed flex-1">
-                  {show.data.subtitle}
-                </Text>
-                <span class="mt-6 text-sm font-mono uppercase tracking-wider text-accent-violet-bright">
-                  View show &rarr;
-                </span>
-              </a>
-            );
-          })}
-        </div>
+        <p class="max-w-2xl text-base leading-relaxed text-base-400">
+          Nothing is scheduled yet. HobFarm TV is video built from the articles in
+          the other Presents sections, so the first shows will follow the writing
+          rather than lead it.
+        </p>
 
       </Wrapper>
     </ContentPanel>

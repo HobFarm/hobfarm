@@ -382,9 +382,9 @@ export async function getPublicAgentGalleryEntries(): Promise<
 }
 
 export async function getPublicAgentProjects(): Promise<
-  CollectionEntry<"projects">[]
+  CollectionEntry<"workshop">[]
 > {
-  const entries = await getCollection("projects");
+  const entries = await getCollection("workshop");
   // Records with no public route (HobBot, still in redevelopment) stay out of
   // the corpus rather than advertising a path that does not resolve.
   return entries
@@ -468,13 +468,13 @@ const PROJECT_PUBLIC_PATHS: Record<string, string> = {
 };
 
 export function projectPublicPath(
-  project: CollectionEntry<"projects">,
+  project: CollectionEntry<"workshop">,
 ): string | undefined {
   return PROJECT_PUBLIC_PATHS[stripExt(project.id)];
 }
 
 export function projectToAgentLink(
-  project: CollectionEntry<"projects">,
+  project: CollectionEntry<"workshop">,
 ): AgentLink {
   return {
     title: project.data.title,
@@ -718,7 +718,7 @@ export function galleryMarkdown(entry: CollectionEntry<"gallery">): string {
   });
 }
 
-export function projectMarkdown(project: CollectionEntry<"projects">): string {
+export function projectMarkdown(project: CollectionEntry<"workshop">): string {
   return pageMarkdown({
     title: project.data.title,
     description: project.data.subtitle || project.data.description,

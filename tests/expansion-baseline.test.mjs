@@ -6,8 +6,8 @@ const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf
 
 test("known missing media references are removed without replacement assets", () => {
   const projects = [
-    read("src/content/projects/hobbot.md"),
-    read("src/content/projects/stylefusion.md"),
+    read("src/content/workshop/hobbot.md"),
+    read("src/content/workshop/stylefusion.md"),
     read("src/pages/presents/hobfarm-tv/index.astro"),
     read("src/components/projects/StyleFusionProjectPage.astro"),
   ].join("\n");
@@ -18,15 +18,17 @@ test("known missing media references are removed without replacement assets", ()
   assert.match(astro, /Astro 6/);
 });
 
-test("HobFarm TV links every show to its canonical Presents route", () => {
+test("HobFarm TV has no shows and invents none", () => {
   const page = read("src/pages/presents/hobfarm-tv/index.astro");
 
-  assert.match(page, /const showPath/);
-  assert.match(page, /\/presents\/3-degrees-of-dick-miller\//);
-  assert.match(page, /\/presents\/magazine-time-machine\//);
-  assert.match(page, /const href = showPath\(/);
-  // `/projects/` is retired, so there is no fallback prefix left to link to.
+  // 3DM and Magazine Time Machine started as show concepts and became article
+  // sections. They are siblings under Presents, not HobFarm TV shows, and the
+  // legacy records that made them look like shows are gone. Real shows will
+  // live at /presents/hobfarm-tv/shows/ when they exist.
+  assert.doesNotMatch(page, /getCollection\("workshop"\)/);
   assert.doesNotMatch(page, /`\/projects\//);
+  assert.doesNotMatch(page, /View show/);
+  assert.match(page, /The Shows/);
 });
 
 test("Presents keeps an h2 for every series, including logo-led sections", () => {

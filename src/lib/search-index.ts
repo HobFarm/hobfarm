@@ -240,7 +240,7 @@ export async function buildSearchIndex(): Promise<SearchItem[]> {
   };
   // `/projects/` is retired. Only records whose content renders at a real route
   // are indexed; anything without one is omitted rather than linked to a 404.
-  const projectItems: SearchItem[] = (await getCollection("projects")).flatMap(
+  const projectItems: SearchItem[] = (await getCollection("workshop")).flatMap(
     (project) => {
       const slug = stripExt(project.id);
       const href = projectHrefOverrides[slug];

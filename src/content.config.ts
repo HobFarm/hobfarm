@@ -650,8 +650,10 @@ const stylefusionStudies = defineCollection({
   }),
 });
 
-const projects = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/projects" }),
+// Workshop projects. `/projects/` is retired: Workshop is the permanent home
+// for tools and systems, and everything here renders under /workshop/.
+const workshop = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/workshop" }),
   schema: ({ image }) =>
     z.object({
       order: z.number(),
@@ -1054,7 +1056,7 @@ export const collections = {
   academy,
   gallery,
   stylefusionStudies,
-  projects,
+  workshop,
   changelog,
   help,
   legal,

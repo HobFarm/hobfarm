@@ -75,6 +75,14 @@ An article about a film lands in 3 Degrees of Dick Miller. An article about
 something found in an old magazine lands in Magazine Time Machine. The category
 taxonomy is the routing layer between the writing and the sections.
 
+**The article is the spine of the visual content.** 3DM and Magazine Time
+Machine began as YouTube show concepts and became article sections; the video
+follows the writing rather than the other way round. So HobFarm TV shows get
+built from articles that already exist. Do not create a show, series, or video
+record that has no article underneath it, and do not treat a Presents section as
+a HobFarm TV show. Shows will live at `/presents/hobfarm-tv/shows/` when there
+are any; there are none today.
+
 ### Section structure
 
 `/departments/`, `/projects/`, and `/video/` are retired. They were earlier
