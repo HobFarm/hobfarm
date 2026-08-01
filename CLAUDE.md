@@ -36,7 +36,7 @@ Magazine describes the Editorial layer. It does not describe the entire business
 | Area | Job |
 | --- | --- |
 | HobFarm | Parent publisher and creative studio |
-| Editorial / Articles | Essays, reporting, research, satire, cartoons, visual features, and departments |
+| Editorial / Articles | Essays, reporting, research, satire, cartoons, and visual features |
 | HobFarm Presents | Recurring stories, characters, film and media series, entertainment formats, and developed worlds |
 | Games and applications | Other Alice Adventures and its Wonder Machine runtime, the Grimoire world layer, StyleFusion, browser games, and interactive experiments |
 | Workshop | Visible production methods, experiments, tools, systems, revisions, and failures |
@@ -44,67 +44,40 @@ Magazine describes the Editorial layer. It does not describe the entire business
 | Shop | Official commercial directory and direct merchandise store |
 | Support | One-time Ko-fi funding and the $5 monthly HobFarm Club |
 | Gallery | Shared visual archive |
-| Projects | Retiring. A leftover from an earlier build. Workshop is the permanent home for tools, systems, and work in progress; Presents owns the editorial properties still parked there |
 | Customer Help | Orders, billing, downloads, course access, refunds, accounts, and application problems |
 
 Do not force every release through an article. An article, comic, adventure, game, application, gallery entry, Workshop note, course, product, and project page can each be the primary published object.
 
 ---
 
-## How the Site Tells Its Story
+## Site Map
 
-Everything on HobFarm is one connected system. The site exists to show that
-system working. Use this model when deciding what a page is for and what it
-should link to.
-
-```text
-Homepage           states the whole thesis: everything is connected, and this
-                   process is what makes the content
-Articles           are the content itself, mostly long form; each article's
-                   department maps it to the section it belongs to
-Presents           tells the story of what the recurring properties are;
-                   the articles are their actual content
-Workshop           shows the process behind all of it, in public
-Academy            sells the courses that teach the method Workshop demonstrates
-Shop               is where the marketplace output lands; the Workshop process
-                   describes how that output gets made
-Social media       shows the results; the process stays here on the site
-```
-
-An article about a film lands in 3 Degrees of Dick Miller. An article about
-something found in an old magazine lands in Magazine Time Machine. The category
-taxonomy is the routing layer between the writing and the sections.
-
-**The article is the spine of the visual content.** 3DM and Magazine Time
-Machine began as YouTube show concepts and became article sections; the video
-follows the writing rather than the other way round. So HobFarm TV shows get
-built from articles that already exist. Do not create a show, series, or video
-record that has no article underneath it, and do not treat a Presents section as
-a HobFarm TV show. Shows will live at `/presents/hobfarm-tv/shows/` when there
-are any; there are none today.
-
-### Section structure
-
-`/departments/`, `/projects/`, and `/video/` are retired. They were earlier
-builds that split the same content across three prefixes. Three live sections
-hold everything:
+`/departments/`, `/projects/`, and `/video/` are retired. Three sections hold
+everything:
 
 ```text
-/presents/<section>/   recurring editorial properties, each an article archive
-/workshop/<program>/   production methods
-/articles/<category>/  editorial categories with no Presents or Workshop home
+/presents/<section>/    recurring editorial properties
+/workshop/<program>/    production methods and workshop projects
+/articles/<category>/   editorial categories with no Presents or Workshop home
 ```
 
-Presents has five sections, in this order: Other Alice Adventures,
-3 Degrees of Dick Miller, Magazine Time Machine, Funnies, HobFarm TV.
-`/presents/` is the "all" page; do not add a separate index or directory link.
+### Presents
 
-Other Alice Adventures is the flagship and the outlier. It is a project rather
-than an article feed, and it combines avatar work, character writing, the game
-concept, app building, StyleFusion, image generation, and video generation.
-HobFarm TV is video built from the articles in the other sections.
+Five sections, in nav order. `/presents/` is the index; there is no separate
+directory page.
 
-One rule decides every category URL, with no exceptions:
+| Section | Route |
+| --- | --- |
+| Other Alice Adventures | `/presents/other-alice-adventures/` |
+| 3 Degrees of Dick Miller | `/presents/3-degrees-of-dick-miller/` |
+| Magazine Time Machine | `/presents/magazine-time-machine/` |
+| Funnies | `/presents/funnies/`, comics at `/presents/funnies/<series>/<slug>/` |
+| HobFarm TV | `/presents/hobfarm-tv/`, shows will be at `/presents/hobfarm-tv/shows/` |
+
+Other Alice is the flagship and has its own internal structure. Manage it as its
+own project; do not restructure it as a side effect of work elsewhere.
+
+### Category routing
 
 | Category maps to | URL |
 | --- | --- |
@@ -112,100 +85,35 @@ One rule decides every category URL, with no exceptions:
 | A Workshop program | `/workshop/<slug>/` |
 | Neither | `/articles/<slug>/` |
 
-`departmentPath()` in `src/data/departments.ts` implements this. Use it. Never
-hardcode a category URL. A category with no content generates no route; it stays
-in the taxonomy so an article can be filed to it.
+`departmentPath()` in `src/data/departments.ts` implements this. Use it rather
+than hardcoding a category URL. A category with no content generates no route.
 
-**Workshop's specific job:** settle the question of how HobFarm uses AI. The
-answer is complicated, and Workshop is where the complication gets shown rather
-than argued about. Every Workshop program should leave a reader able to see what
-was actually done. When someone asks about a technique in a comment or a reply,
-the Workshop page is the thing to point at.
+### Characters and avatars
 
-**The site shows process. Social media gets the output.** A finished video, a
-reel, a campaign clip belongs on a social platform. What belongs here is how it
-was made: hyperframes videos, diagrams, annotated stills, before-and-after
-pairs, and example images. Future Carriage is the model. Old carriage drawings
-from the 1800s get a futuristic aesthetic; the Ami avatar is developed
-separately in the avatar workshop as a social media influencer; the two combine
-into one concept. The Workshop page demonstrates that sequence. The finished
-Ami video does not live on the site.
-
-This rules out media-archive pages. Do not build a video gallery, a portfolio
-reel, or a clips hub. If a video belongs anywhere on the site, it belongs on the
-page for the thing it is about.
-
-The same rule governs characters. There is no site-wide cast index. A character
-lives on the page for the world it belongs to: Larry's cast on
-`/presents/funnies/larry/`, Wonderland's on the Other Alice cast page. Nothing
-gets a standalone directory just because it is a recurring type of thing.
-
-### Characters, avatars, and Other Alice are three different things
-
-| Class | What it is | Home |
-| --- | --- | --- |
-| Comic characters | Cast of a Funnies strip. Larry, Gary, and Buffcock are the three series | Their series page under `/presents/funnies/<series>/` |
-| Avatars | Presenters HobFarm builds through the Avatar & Host method | Documented at `/workshop/avatar-host/` |
-| Characters | A named character developed into a reusable identity with its own satire, anchors, modes, and editions | `/workshop/character-mannequin/characters/<slug>/` |
-| Other Alice residents | Cast of the Other Alice world | Other Alice, managed separately |
-
-A character is the **result** of the Character / Mannequin process, not a second
-methodology. The Workshop describes the process once; character pages show what
-it produces, and the same process produces the next one. Each character gets one
-dossier page recording the finished reusable identity, and it makes the system
-behind the character visible by linking to it, never by restating it.
-
-The job of a character page: someone sees the character on social and wonders
-whether it is a one-off AI picture. The page shows it is not.
-
-Characters nest under the method that made them and never become their own
-Workshop program or nav item. An **edition** is a contextual version of the same
-character, built around an era, culture, role, or commercial fantasy; it is not a
-separate character.
-
-Hobunny is the first; her specification is `docs/hobunny-project-outline.md`.
-When a character page starts describing procedure, that content belongs in a
-Workshop program instead.
-
-Avatars are Hillary (HobFarm TV host, also Magazine Time Machine, essays, and
-3DM), Ami (social influencer and product spokesperson), and the PsyGoth trio of
-Em, Nina, and Zima (style, colour, and art concepts in the PsyGoth aesthetic).
-Hobgal is a retired prototype.
-
-**Avatar content is made for social media, not the site.** Hillary's goes to
-YouTube, Ami's to Instagram, PsyGoth across a mix. The site documents the avatar
-and the method; the platform gets the finished video. No avatar gallery, reel
-page, or embeds hub.
-
-Other Alice is a website within the website: a large, dynamic world with its own
-structure. Manage it separately and do not restructure it as a side effect of
-work elsewhere.
-
-**Academy's specific job:** take a method Workshop demonstrates and teach it as
-a repeatable procedure. Every course states a problem, gives a solution, and
-walks the steps in order, plainly enough to follow without prior context. The
-standard short course is $7.
-
-Connect pages when the relationship is real. Workshop to Academy when a course
-teaches that method. Workshop to Shop when the process produced the goods.
-Articles to Workshop when the writing references the technique. Do not build
-funnels where no relationship exists.
-
-### Application and project status
-
-Inspect this before writing about, linking to, or reviving any application.
-
-| Subject | Current status |
+| Class | Home |
 | --- | --- |
-| Other Alice Adventures | Active. The illustrated serial and world archive |
-| Wonder Machine | Active. The runtime that runs storylets, keeps time, remembers choices, and preserves consequences. Formerly the XKXXKX record |
-| Grimoire | Active, in redevelopment. The world and knowledge layer feeding Wonder Machine and StyleFusion. Not a standalone product page |
-| StyleFusion | In redesign, but the page stays public at `/workshop/stylefusion/` because too much links to it. The page says it is in development. What is written there does not yet describe the new version |
-| HobBot | Hidden, in redevelopment. Will eventually be the automation layer |
-| Drifter | Retired. Do not resurface |
-| AnomalyBot | Retired. Do not resurface |
-| 3DM, Magazine Time Machine | Editorial properties at `/presents/3-degrees-of-dick-miller/` and `/presents/magazine-time-machine/` |
-| HobFarm TV | A Presents section at `/presents/hobfarm-tv/`. Video built from the articles in the other sections, not a media archive |
+| Comic characters | Their series page under `/presents/funnies/<series>/`. Series are Larry, Gary, Buffcock |
+| Avatars | `/workshop/avatar-host/` |
+| Characters | `/workshop/character-mannequin/characters/<slug>/` |
+| Other Alice residents | The Other Alice cast page |
+
+There is no site-wide cast index. A character is the output of the Character /
+Mannequin process; an edition is a version of the same character, not a new one.
+Hobunny is the first character: `docs/hobunny-project-outline.md`.
+
+Avatars: Hillary (YouTube), Ami (Instagram), and the PsyGoth trio Em, Nina, and
+Zima (mixed). Hobgal is retired.
+
+### Application status
+
+| Subject | Status |
+| --- | --- |
+| Other Alice Adventures | Active |
+| Wonder Machine | Active. Runtime for Other Alice; formerly the XKXXKX record |
+| Grimoire | Active, in redevelopment. World and knowledge layer feeding Wonder Machine and StyleFusion |
+| StyleFusion | Public at `/workshop/stylefusion/`, in redesign. Current copy predates the new version |
+| HobBot | Record kept at `src/content/workshop/hobbot.md`, no public page, in redevelopment |
+| Drifter, AnomalyBot | Retired |
 
 ---
 
@@ -314,6 +222,33 @@ detached working copies. Use local preview tools for review.
 Tailwind tokens live in `src/styles/`. Do not create a Tailwind 3-style configuration.
 
 Keep secrets server-side. Never commit `.env`, `.dev.vars`, tokens, credentials, customer data, order payloads, or raw logs.
+
+### Deploy chain
+
+```text
+local -> GitHub (HobFarm/hobfarm, main) -> Cloudflare Pages -> hob.farm
+```
+
+Cloudflare Pages builds from `main`. There is one branch.
+
+### Media on the CDN
+
+R2 serves `https://cdn.hob.farm`. **Mirror the site structure in the bucket
+path**, so an asset sits where its page sits:
+
+```text
+cdn.hob.farm/workshop/<program>/<file>
+cdn.hob.farm/presents/<section>/<file>
+cdn.hob.farm/gallery/<collection>/<slug>/<file>
+```
+
+Existing paths are inconsistent from earlier builds and are not being migrated
+right now. Put new assets in the matching path and leave old ones alone unless a
+task says otherwise. `src/data/media-registry.ts` is the lookup for registered
+media; prefer it over hardcoding a CDN URL.
+
+CDN paths are not routes. A path like `cdn.hob.farm/pages/projects/images/...`
+is an asset location, so a site restructure does not rename it.
 
 ---
 
