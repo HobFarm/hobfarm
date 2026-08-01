@@ -2,7 +2,7 @@ import { appendFile, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 
 const articlePath = resolve("src/content/articles/i-may-have-inspired-it.md");
-const expectedPublication = "2026-08-02T17:20:00-07:00";
+const expectedPublication = "2026-08-01T17:20:00-07:00";
 const outputPath = process.env.GITHUB_OUTPUT;
 const article = await readFile(articlePath, "utf8");
 

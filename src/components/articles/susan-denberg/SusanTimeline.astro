@@ -1,0 +1,149 @@
+---
+const events = [
+  {
+    date: "August 2, 1944",
+    place: "Bad Polzin",
+    text: "Dietlinde Zechner is born in a German Pomeranian spa town that becomes Połczyn-Zdrój, Poland, after the war.",
+  },
+  {
+    date: "Early 1960s",
+    place: "Klagenfurt → London",
+    text: "In the account she later gives Playboy, childhood ballet training helps her enter the Bluebells after leaving Austria at about 18.",
+  },
+  {
+    date: "1964–1965",
+    place: "Stardust, Las Vegas",
+    text: "Later biographies place her in the Bluebell company across the Stardust’s fifth and sixth Lido editions. No online cast list naming her was located.",
+  },
+  {
+    date: "1965–1966",
+    place: "Hollywood",
+    text: "Television work, Warner Bros.’ An American Dream, a studio name contest, voice lessons, and Desilu training turn Dietlinde Zechner into several public versions of Susan Denberg.",
+  },
+  {
+    date: "June 2–13, 1966",
+    place: "Desilu",
+    text: "She films Magda in Star Trek’s “Mudd’s Women.” The episode will air October 13.",
+  },
+  {
+    date: "July 4–August 1966",
+    place: "Bray Studios",
+    text: "Frankenstein Created Woman films across her 22nd birthday. The Hammer role becomes her last known screen performance.",
+  },
+  {
+    date: "August 1966",
+    place: "Magazine / theater",
+    text: "Playboy presents a career beginning. An American Dream opens in Los Angeles on August 24 while most of her surviving screen work is already complete or in production.",
+  },
+  {
+    date: "1968–1972",
+    place: "Austria / tabloids",
+    text: "Later sources cite a sensational 1968 Midnight story and a 1972 newspaper return. The original pages were not available for this article, so their claims remain attributed leads.",
+  },
+  {
+    date: "August 2, 2026",
+    place: "Public record",
+    text: "No credible recent obituary or death record surfaced. On the available public record, the date appears to be her 82nd birthday.",
+  },
+];
+---
+
+<section class="susan-timeline not-prose article-wide" aria-labelledby="susan-timeline-title">
+  <header>
+    <p>August 1944 to August 2026</p>
+    <h2 id="susan-timeline-title">The route the profile could not see</h2>
+  </header>
+
+  <ol>
+    {
+      events.map((event) => (
+        <li>
+          <div>
+            <time>{event.date}</time>
+            <span>{event.place}</span>
+          </div>
+          <p>{event.text}</p>
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<style>
+  .susan-timeline {
+    margin-block: 3rem;
+    padding: clamp(1rem, 3vw, 1.8rem);
+    color: #f5ead7;
+    background:
+      linear-gradient(90deg, rgb(151 67 58 / 0.13) 1px, transparent 1px),
+      linear-gradient(#141112, #0e0d0f);
+    background-size: 3.4rem 100%, auto;
+    border: 1px solid rgb(218 183 129 / 0.34);
+    box-shadow: 0.5rem 0.65rem 0 rgb(45 22 25 / 0.75);
+  }
+
+  header > p {
+    margin: 0;
+    color: #d6a55f;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0.35rem 0 0;
+    color: #fff7e8;
+    font-family: var(--font-display);
+    font-size: clamp(1.65rem, 4vw, 2.5rem);
+    font-weight: 400;
+  }
+
+  ol {
+    display: grid;
+    gap: 0;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: minmax(9rem, 0.7fr) minmax(0, 2fr);
+    gap: 1.5rem;
+    padding: 0.9rem 0;
+    border-top: 1px solid rgb(218 183 129 / 0.18);
+  }
+
+  li > div {
+    display: grid;
+    gap: 0.25rem;
+    align-content: start;
+  }
+
+  time {
+    color: #fff7e8;
+    font-weight: 700;
+  }
+
+  li span {
+    color: #b57b72;
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  li p {
+    margin: 0;
+    color: #cfc3b4;
+    line-height: 1.55;
+  }
+
+  @media (max-width: 650px) {
+    li {
+      grid-template-columns: 1fr;
+      gap: 0.45rem;
+    }
+  }
+</style>

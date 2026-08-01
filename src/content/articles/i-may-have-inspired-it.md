@@ -25,8 +25,8 @@ socialImage: "/images/articles/i-may-have-inspired-it/01-birdbath-hero.jpg"
 heroAlt: "A rectangular white stone birdbath engraved Bird Conservation Club holds shallow water and debris in front of dense evergreen shrubs."
 socialCaption: "I was a child inspecting the birdbath beside the Thomas Hill Standpipe while Stephen King was turning Bangor into Derry. I would still like partial credit."
 canonical: "/articles/i-may-have-inspired-it/"
-pubDate: 2026-08-02
-publishedAt: 2026-08-02T17:20:00-07:00
+pubDate: 2026-08-01
+publishedAt: 2026-08-01T17:20:00-07:00
 status: scheduled
 featured: false
 coverStory: false

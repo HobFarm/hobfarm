@@ -1,8 +1,10 @@
 import { appendFile, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 
-const articlePath = resolve("src/content/articles/hey-its-that-guy.mdx");
-const expectedPublication = "2026-08-03T17:20:00-07:00";
+const articlePath = resolve(
+  "src/content/articles/susan-denbergs-american-dream.mdx",
+);
+const expectedPublication = "2026-08-02T17:20:00-07:00";
 const outputPath = process.env.GITHUB_OUTPUT;
 const article = await readFile(articlePath, "utf8");
 
@@ -16,7 +18,7 @@ function setOutput(value) {
 
 const publicationMatch = article.match(/^publishedAt:\s*(.+)$/m);
 if (!publicationMatch) {
-  throw new Error("The Tales from the Crypt article has no publishedAt field.");
+  throw new Error("The Susan Denberg article has no publishedAt field.");
 }
 
 if (publicationMatch[1].trim() !== expectedPublication) {
@@ -32,15 +34,13 @@ if (Date.now() < Date.parse(expectedPublication)) {
 }
 
 if (/^status:\s*published$/m.test(article)) {
-  console.log("The Tales from the Crypt article is already published.");
+  console.log("The Susan Denberg article is already published.");
   await setOutput("true");
   process.exit(0);
 }
 
 if (!/^status:\s*scheduled$/m.test(article)) {
-  throw new Error(
-    "The Tales from the Crypt article is neither scheduled nor published.",
-  );
+  throw new Error("The Susan Denberg article is neither scheduled nor published.");
 }
 
 await writeFile(
@@ -48,5 +48,5 @@ await writeFile(
   article.replace(/^status:\s*scheduled$/m, "status: published"),
   "utf8",
 );
-console.log("Marked the Tales from the Crypt article as published.");
+console.log("Marked the Susan Denberg article as published.");
 await setOutput("true");

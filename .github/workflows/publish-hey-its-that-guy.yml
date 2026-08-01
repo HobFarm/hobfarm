@@ -2,7 +2,7 @@ name: Publish Tales from the Crypt Article
 
 on:
   schedule:
-    - cron: "25 0 2 8 *"
+    - cron: "25 0 4 8 *"
   workflow_dispatch:
 
 permissions:

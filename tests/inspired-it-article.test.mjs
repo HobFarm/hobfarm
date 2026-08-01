@@ -29,7 +29,7 @@ function expectedCron(publication) {
   ].join(" ");
 }
 
-test("Bangor and Derry article is scheduled exactly 24 hours after the Crypt article", async () => {
+test("Bangor and Derry article is scheduled exactly 48 hours before the Crypt article", async () => {
   const [
     article,
     sourceArticle,
@@ -57,13 +57,13 @@ test("Bangor and Derry article is scheduled exactly 24 hours after the Crypt art
   const status = field(article, "status");
   const sourceStatus = field(sourceArticle, "status");
 
-  assert.equal(publication, "2026-08-02T17:20:00-07:00");
-  assert.equal(sourcePublication, "2026-08-01T17:20:00-07:00");
+  assert.equal(publication, "2026-08-01T17:20:00-07:00");
+  assert.equal(sourcePublication, "2026-08-03T17:20:00-07:00");
   assert.equal(
-    Date.parse(publication) - Date.parse(sourcePublication),
-    24 * 60 * 60 * 1000,
+    Date.parse(sourcePublication) - Date.parse(publication),
+    48 * 60 * 60 * 1000,
   );
-  assert.equal(field(article, "pubDate"), "2026-08-02");
+  assert.equal(field(article, "pubDate"), "2026-08-01");
   assert.ok(["scheduled", "published"].includes(status));
   assert.ok(["scheduled", "published"].includes(sourceStatus));
 

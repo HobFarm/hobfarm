@@ -1,15 +1,15 @@
-name: Publish Bangor and Derry Article
+name: Publish Susan Denberg Article
 
 on:
   schedule:
-    - cron: "25 0 2 8 *"
+    - cron: "25 0 3 8 *"
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: publish-inspired-it
+  group: publish-susan-denberg
   cancel-in-progress: false
 
 jobs:
@@ -23,14 +23,14 @@ jobs:
 
       - name: Publish when the scheduled time has arrived
         id: article
-        run: node scripts/publish-scheduled-inspired-it.mjs
+        run: node scripts/publish-scheduled-susan-denberg.mjs
 
       - name: Remove the one-time schedule and trigger the production build
         if: steps.article.outputs.published == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git rm .github/workflows/publish-inspired-it.yml
-          git add src/content/articles/i-may-have-inspired-it.md
-          git commit -m "Publish Bangor and Derry article"
+          git rm .github/workflows/publish-susan-denberg.yml
+          git add src/content/articles/susan-denbergs-american-dream.mdx
+          git commit -m "Publish Susan Denberg article"
           git push origin main

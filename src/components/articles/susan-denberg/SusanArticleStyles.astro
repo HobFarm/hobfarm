@@ -1,0 +1,269 @@
+<style is:inline>
+  .susan-artifact,
+  .susan-machines,
+  .susan-mailer,
+  .susan-confidence,
+  .susan-trail {
+    position: relative;
+    left: 50%;
+    display: block !important;
+    width: min(68rem, calc(100vw - 2rem));
+    max-width: calc(100vw - 2rem);
+    margin: clamp(2.5rem, 7vw, 4.5rem) 0 !important;
+    transform: translateX(-50%);
+  }
+
+  .susan-artifact {
+    padding: clamp(1.1rem, 3vw, 2rem);
+    color: #251c19 !important;
+    background:
+      linear-gradient(rgb(80 52 35 / 0.075) 1px, transparent 1px),
+      #eadcba;
+    background-size: 100% 1.5rem;
+    border: 1px solid #8a6a43;
+    box-shadow: 0.5rem 0.6rem 0 #3c2a27;
+  }
+
+  .susan-artifact .eyebrow,
+  .susan-machines .eyebrow,
+  .susan-mailer .eyebrow,
+  .susan-confidence .eyebrow,
+  .susan-trail .eyebrow {
+    margin: 0 !important;
+    color: #963c34 !important;
+    font: 800 0.7rem/1.2 var(--font-mono), ui-monospace, monospace !important;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .susan-artifact h2,
+  .susan-machines h2,
+  .susan-mailer h2,
+  .susan-confidence h2,
+  .susan-trail h2 {
+    margin: 0.35rem 0 0.8rem !important;
+    font: 800 clamp(1.55rem, 4vw, 2.4rem)/1.02 Georgia, serif !important;
+  }
+
+  .susan-artifact h2 {
+    color: #251c19 !important;
+  }
+
+  .susan-artifact blockquote {
+    margin: 1.25rem 0 0 !important;
+    padding: 1rem 1.15rem !important;
+    color: #3b2923 !important;
+    background: rgb(255 250 230 / 0.62);
+    border: 0 !important;
+    border-left: 0.35rem solid #963c34 !important;
+    font: 600 clamp(1rem, 2.4vw, 1.3rem)/1.5 Georgia, serif !important;
+  }
+
+  .susan-artifact .artifact-note {
+    margin: 0.9rem 0 0 !important;
+    color: #665144 !important;
+    font-size: 0.8rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .susan-machines {
+    padding: clamp(1rem, 3vw, 1.8rem);
+    color: #efe8dc !important;
+    background: #111316;
+    border: 1px solid rgb(211 169 103 / 0.33);
+  }
+
+  .susan-machines .eyebrow,
+  .susan-mailer .eyebrow,
+  .susan-confidence .eyebrow,
+  .susan-trail .eyebrow {
+    color: #d5a55d !important;
+  }
+
+  .susan-machines h2,
+  .susan-mailer h2,
+  .susan-confidence h2,
+  .susan-trail h2 {
+    color: #fff7e8 !important;
+  }
+
+  .susan-machines .machine-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.65rem;
+    margin-top: 1.25rem;
+  }
+
+  .susan-machines article {
+    min-height: 12rem;
+    padding: 1rem;
+    background: rgb(255 255 255 / 0.045);
+    border-top: 3px solid #a64b45;
+  }
+
+  .susan-machines article:nth-child(even) {
+    border-top-color: #c49854;
+  }
+
+  .susan-machines article span {
+    color: #b58f57;
+    font: 800 0.66rem/1 var(--font-mono), ui-monospace, monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .susan-machines article h3 {
+    margin: 0.5rem 0 !important;
+    color: #fff7e8 !important;
+    font: 700 1.06rem/1.1 Georgia, serif !important;
+  }
+
+  .susan-machines article p {
+    margin: 0 !important;
+    color: #c4b9aa !important;
+    font-size: 0.82rem !important;
+    line-height: 1.45 !important;
+  }
+
+  .susan-mailer {
+    padding: clamp(1.1rem, 3vw, 2rem);
+    color: #eee7dc !important;
+    background:
+      radial-gradient(circle at 88% 10%, rgb(118 43 47 / 0.28), transparent 28%),
+      #151214;
+    border: 1px solid rgb(213 169 93 / 0.3);
+  }
+
+  .susan-mailer ol {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+    margin: 1.3rem 0 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+  }
+
+  .susan-mailer li {
+    position: relative;
+    margin: 0 !important;
+    padding: 1rem !important;
+    border-top: 2px solid #b64a48;
+    border-right: 1px dashed rgb(238 231 220 / 0.22);
+  }
+
+  .susan-mailer li:last-child {
+    border-right: 0;
+  }
+
+  .susan-mailer li strong {
+    display: block;
+    color: #f2c77d;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .susan-mailer li span {
+    display: block;
+    margin-top: 0.45rem;
+    color: #c8beb2;
+    font-size: 0.82rem;
+    line-height: 1.45;
+  }
+
+  .susan-confidence {
+    padding: clamp(1.1rem, 3vw, 1.7rem);
+    color: #e8e0d4 !important;
+    background: #16191a;
+    border-left: 0.35rem solid #b24c45;
+  }
+
+  .susan-confidence p {
+    margin: 0.65rem 0 0 !important;
+    color: #c8beb1 !important;
+    line-height: 1.55 !important;
+  }
+
+  .susan-confidence strong {
+    color: #f3cc88;
+  }
+
+  .susan-trail {
+    padding: clamp(1.1rem, 3vw, 1.8rem);
+    color: #f3eadb !important;
+    background:
+      linear-gradient(135deg, rgb(159 63 57 / 0.23), transparent 38%),
+      #121214;
+    border: 1px solid rgb(230 190 122 / 0.34);
+  }
+
+  .susan-trail p {
+    margin: 0.6rem 0 0 !important;
+    color: #c9bfb3 !important;
+    line-height: 1.55 !important;
+  }
+
+  .susan-trail .next-trail {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 0.65rem;
+    color: #f1c477;
+    border: 1px solid rgb(241 196 119 / 0.42);
+    font: 700 0.72rem/1.2 var(--font-mono), ui-monospace, monospace;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .prose figure.susan-archive-image {
+    display: block !important;
+    margin-block: 2.8rem !important;
+  }
+
+  .prose figure.susan-archive-image img {
+    display: block;
+    width: 100%;
+    max-height: 38rem;
+    object-fit: cover;
+  }
+
+  .prose figure.susan-archive-image figcaption {
+    margin-top: 0.65rem !important;
+    color: var(--color-base-400) !important;
+    font-size: 0.78rem !important;
+    line-height: 1.5 !important;
+  }
+
+  @media (max-width: 760px) {
+    .susan-machines .machine-grid,
+    .susan-mailer ol {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 700px) {
+    .susan-artifact,
+    .susan-machines,
+    .susan-mailer,
+    .susan-confidence,
+    .susan-trail {
+      width: calc(100vw - 1rem);
+      max-width: calc(100vw - 1rem);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .susan-machines .machine-grid,
+    .susan-mailer ol {
+      grid-template-columns: 1fr;
+    }
+
+    .susan-machines article {
+      min-height: 0;
+    }
+
+    .susan-mailer li {
+      border-right: 0;
+    }
+  }
+</style>
