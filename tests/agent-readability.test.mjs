@@ -33,7 +33,7 @@ const requiredFiles = [
   "src/pages/presents/llms.txt.ts",
   "src/pages/presents/[series]/index.md.ts",
   "src/pages/presents/[series]/[slug]/index.md.ts",
-  "src/pages/characters/[character]/index.md.ts",
+  "src/pages/presents/other-alice-adventures/cast/[character]/index.md.ts",
   "functions/_middleware.ts",
   "public/.well-known/agent-skills/index.json",
   "public/.well-known/agent-skills/read-hobfarm-corpus/SKILL.md",
@@ -47,7 +47,7 @@ test("agent-readable corpus routes and markdown alternates are wired", () => {
   const corpus = read("src/lib/agent-corpus.ts");
   for (const route of [
     "https://hob.farm/about/",
-    "https://hob.farm/projects/stylefusion/",
+    "https://hob.farm/workshop/stylefusion/",
     "https://hob.farm/grimoire/",
     "https://hob.farm/gallery/asset-lab/atomic-noir-color-system/",
     "https://hob.farm/visual-systems/",
@@ -58,7 +58,7 @@ test("agent-readable corpus routes and markdown alternates are wired", () => {
     "https://hob.farm/gallery/",
     "https://hob.farm/presents/",
     "https://hob.farm/presents/other-alice-adventures/",
-    "https://hob.farm/characters/alice/",
+    "https://hob.farm/presents/other-alice-adventures/cast/alice/",
   ]) {
     assert.match(
       corpus,

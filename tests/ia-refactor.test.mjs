@@ -92,19 +92,15 @@ test("about page presents the independent publisher and its operating paths", ()
 
 test("archive surfaces are reframed without changing routes", () => {
   const gallery = read("src/pages/gallery/index.astro");
-  const characters = read("src/pages/characters/index.astro");
 
   assert.match(gallery, /Gallery Archive/);
-  assert.match(characters, /Character Index/);
-
   assert.match(gallery, /canonical="\/gallery\/"/);
-  assert.match(characters, /canonical="\/characters\/"/);
 });
 
 test("the media-archive routes are retired", () => {
-  // HobFarm is not a video gallery and has no project catalog. A video lives
-  // with the thing it is about; Workshop is the home for tools and systems.
-  for (const dir of ["src/pages/video", "src/pages/projects"]) {
+  // A video lives with the thing it is about, Workshop is the home for tools
+  // and systems, and a character lives on the page for its own world.
+  for (const dir of ["src/pages/video", "src/pages/projects", "src/pages/characters"]) {
     assert.equal(existsSync(join(root, dir)), false, `${dir} should be gone`);
   }
 });

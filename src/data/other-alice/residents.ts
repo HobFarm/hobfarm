@@ -66,7 +66,7 @@ const records: OtherAliceResidentRecord[] = [
     assetRef: "oaa-hero-other-alice-representative-portrait-v01-3x4",
     landscapeAssetRef: "oaa-hero-other-alice-representative-landscape-v01-16x9",
     detailPageReady: true,
-    href: "/characters/alice/",
+    href: "/presents/other-alice-adventures/cast/alice/",
     guideAnchor: "routes",
     visibility: "public",
     summary: [
@@ -97,7 +97,7 @@ const records: OtherAliceResidentRecord[] = [
     visualState: "approved",
     assetRef: "oaa-evidence-chester-portrait-v01-4x3",
     detailPageReady: true,
-    href: "/characters/chester/",
+    href: "/presents/other-alice-adventures/cast/chester/",
     guideAnchor: "routes",
     visibility: "public",
     summary: [
@@ -183,7 +183,7 @@ const records: OtherAliceResidentRecord[] = [
     visualState: "provisional",
     assetRef: "oaa-evidence-hatter-highlands-concept-v01-4x5",
     detailPageReady: true,
-    href: "/characters/the-hatter/",
+    href: "/presents/other-alice-adventures/cast/the-hatter/",
     guideAnchor: "regions",
     visibility: "public",
     summary: [

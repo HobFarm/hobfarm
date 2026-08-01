@@ -172,7 +172,7 @@ test("Funnies comics subsystem routes and data exist", () => {
     "src/pages/presents/funnies/index.astro",
     "src/pages/presents/funnies/[series]/index.astro",
     "src/pages/presents/funnies/[series]/[slug].astro",
-    "src/pages/characters/[character].astro",
+    "src/pages/presents/other-alice-adventures/cast/[character].astro",
     "src/data/comic-series.ts",
     "src/lib/comics.ts",
   ];

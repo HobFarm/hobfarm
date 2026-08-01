@@ -221,3 +221,62 @@
 /projects/*               /workshop/   301
 /projects                 /workshop/   301
 /projects/                /workshop/   301
+
+# ---------------------------------------------------------------------------
+# /characters/ retired. A character lives on the page for the world it belongs
+# to: comic characters on their series page, Other Alice residents on the cast
+# page. Avatars are presenters and live under Workshop.
+# ---------------------------------------------------------------------------
+
+# Other Alice residents.
+/characters/alice           /presents/other-alice-adventures/cast/alice/       301
+/characters/alice/          /presents/other-alice-adventures/cast/alice/       301
+/characters/chester         /presents/other-alice-adventures/cast/chester/     301
+/characters/chester/        /presents/other-alice-adventures/cast/chester/     301
+/characters/the-hatter      /presents/other-alice-adventures/cast/the-hatter/  301
+/characters/the-hatter/     /presents/other-alice-adventures/cast/the-hatter/  301
+
+# Larry's cast.
+/characters/larry           /presents/funnies/larry/#character-larry     301
+/characters/larry/          /presents/funnies/larry/#character-larry     301
+/characters/gothcat         /presents/funnies/larry/#character-gothcat   301
+/characters/gothcat/        /presents/funnies/larry/#character-gothcat   301
+/characters/helmut          /presents/funnies/larry/#character-helmut    301
+/characters/helmut/         /presents/funnies/larry/#character-helmut    301
+/characters/heidi           /presents/funnies/larry/#character-heidi     301
+/characters/heidi/          /presents/funnies/larry/#character-heidi     301
+
+# Gary's cast.
+/characters/gary            /presents/funnies/gary/#character-gary       301
+/characters/gary/           /presents/funnies/gary/#character-gary       301
+/characters/fat-cat         /presents/funnies/gary/#character-fat-cat    301
+/characters/fat-cat/        /presents/funnies/gary/#character-fat-cat    301
+
+# Buffcock's cast.
+/characters/buffcock        /presents/funnies/buffcock/#character-buffcock  301
+/characters/buffcock/       /presents/funnies/buffcock/#character-buffcock  301
+/characters/cs              /presents/funnies/buffcock/#character-cs        301
+/characters/cs/             /presents/funnies/buffcock/#character-cs        301
+
+# Hillary is an avatar, not a comic character.
+/characters/hillary-hobfarm   /workshop/avatar-host/   301
+/characters/hillary-hobfarm/  /workshop/avatar-host/   301
+
+# Anything else, including the retired index.
+/characters/*   /presents/funnies/   301
+/characters     /presents/funnies/   301
+/characters/    /presents/funnies/   301
+
+# Comic series folded into their surviving series.
+/presents/funnies/gary-fat-cat/gary-fat-cat-design   /presents/funnies/gary/gary-fat-cat-design/   301
+/presents/funnies/gary-fat-cat/gary-fat-cat-design/  /presents/funnies/gary/gary-fat-cat-design/   301
+/presents/funnies/gary-fat-cat    /presents/funnies/gary/     301
+/presents/funnies/gary-fat-cat/   /presents/funnies/gary/     301
+/presents/funnies/fat-cat         /presents/funnies/gary/     301
+/presents/funnies/fat-cat/        /presents/funnies/gary/     301
+/presents/funnies/gothcat         /presents/funnies/larry/    301
+/presents/funnies/gothcat/        /presents/funnies/larry/    301
+/presents/funnies/hobunny         /presents/funnies/          301
+/presents/funnies/hobunny/        /presents/funnies/          301
+/presents/funnies/one-offs        /presents/funnies/          301
+/presents/funnies/one-offs/       /presents/funnies/          301

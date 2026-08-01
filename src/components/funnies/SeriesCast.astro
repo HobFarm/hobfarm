@@ -1,0 +1,47 @@
+---
+// Full cast records for a comic series. Characters live on the page for the
+// series they belong to; there is no separate character route, so this is where
+// a character's bio and traits are actually readable.
+import Text from "@/components/fundations/elements/Text.astro";
+import { getCharacter } from "@/data/characters";
+
+interface Props {
+  /** Character slugs from the series definition. */
+  slugs: string[];
+}
+
+const { slugs } = Astro.props;
+const cast = slugs
+  .map((slug) => getCharacter(slug))
+  .filter((entry): entry is NonNullable<typeof entry> => Boolean(entry));
+---
+
+{cast.length > 0 && (
+  <section aria-labelledby="series-cast-heading">
+    <Text tag="h2" id="series-cast-heading" variant="displayXS" class="font-display text-white">
+      The cast
+    </Text>
+    <div class="mt-4 space-y-6">
+      {cast.map((character) => (
+        <div id={`character-${character.slug}`} class="scroll-mt-24">
+          <div class="flex flex-wrap items-baseline gap-x-3">
+            <h3 class="font-display text-base text-white">{character.name}</h3>
+            <span class="font-mono text-[10px] uppercase tracking-widest text-base-500">
+              {character.role}
+            </span>
+          </div>
+          <p class="mt-2 text-sm leading-relaxed text-base-400 text-pretty">{character.bio}</p>
+          {character.traits.length > 0 && (
+            <ul class="mt-3 flex flex-wrap gap-2">
+              {character.traits.map((trait) => (
+                <li class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-base-200">
+                  {trait}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      ))}
+    </div>
+  </section>
+)}

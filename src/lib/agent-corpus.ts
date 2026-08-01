@@ -84,7 +84,7 @@ export const CURATED_AGENT_LINKS: AgentLink[] = [
   },
   {
     title: "StyleFusion",
-    url: "https://hob.farm/projects/stylefusion/",
+    url: "https://hob.farm/workshop/stylefusion/",
     description:
       "The public project brief for structured visual extraction and prompt compilation. The unfinished workspace, account flows, and provider-key surfaces are excluded.",
   },
@@ -153,7 +153,7 @@ export const CURATED_AGENT_LINKS: AgentLink[] = [
   },
   {
     title: "Other Alice character guide",
-    url: "https://hob.farm/characters/alice/",
+    url: "https://hob.farm/presents/other-alice-adventures/cast/alice/",
     description:
       "Public character guide covering Alice's history, methods, flaws, equipment, and published appearances.",
   },
@@ -180,11 +180,6 @@ export const SECTION_INDEX_LINKS: AgentLink[] = [
     title: "Workshop llms index",
     url: "https://hob.farm/workshop/llms.txt",
     description: "Workshop and process-note index.",
-  },
-  {
-    title: "Projects llms index",
-    url: "https://hob.farm/projects/llms.txt",
-    description: "Public project and recurring-system index.",
   },
   {
     title: "Products llms index",

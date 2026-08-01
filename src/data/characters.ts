@@ -1,9 +1,12 @@
-// The HobFarm cast index. HobFarm has no character content collection (yet), so
-// the recurring cast is curated here as plain data. /characters lists them and
-// /characters/[slug] renders a detail page; `relatedSeries` links into either
-// the Funnies comic series (src/data/comic-series.ts) or the HobFarm Presents
-// story series (src/data/story-series.ts), and the page also pulls the latest
-// comics featuring the character from the comics collection.
+// The HobFarm cast. HobFarm has no character content collection (yet), so the
+// recurring cast is curated here as plain data.
+//
+// There is no /characters/ route. A character renders on the page for the world
+// it belongs to: comic characters on their series page under
+// /presents/funnies/, Other Alice residents on the Other Alice cast page.
+// `relatedSeries` decides which, and `characterPath()` resolves the anchor.
+//
+// Avatars are not here. They are presenters and live in src/data/avatars.ts.
 
 import {
   getOtherAliceResident,
@@ -242,7 +245,7 @@ export const characters: CharacterEntry[] = [
       "Perpetually hungry",
       "Holds a grudge against cutlery",
     ],
-    relatedSeries: ["gary", "gary-fat-cat"],
+    relatedSeries: ["gary"],
   },
   {
     slug: "fat-cat",
@@ -251,7 +254,7 @@ export const characters: CharacterEntry[] = [
     blurb: "Schemes big, follows through never.",
     bio: "Fat Cat is the resident schemer: a cat with grand plans, a low ceiling on effort, and a deep well of contempt for everyone, Gary especially.",
     traits: ["Cat", "Schemer", "Allergic to follow-through"],
-    relatedSeries: ["fat-cat", "gary-fat-cat"],
+    relatedSeries: ["gary"],
   },
   {
     slug: "larry",
@@ -279,7 +282,7 @@ export const characters: CharacterEntry[] = [
     blurb: "The HobFarm rabbit and recurring mascot.",
     bio: "Hobunny is the HobFarm rabbit and on-again, off-again mascot, present for most of the farm's worse ideas.",
     traits: ["Rabbit", "Mascot duties optional", "Suspiciously calm"],
-    relatedSeries: ["hobunny"],
+    relatedSeries: [],
   },
   {
     slug: "gothcat",
@@ -289,7 +292,7 @@ export const characters: CharacterEntry[] = [
       "Dark glamour, sharp brows, cat ears, and complete control of the room.",
     bio: "Gothcat is a cabaret performer and pre-Code actress type with dark glamour, satin, lace, feathers, crescent jewelry, and a room-commanding stare. Larry claims to disapprove of her act, then somehow keeps returning.",
     traits: ["Cat", "Cabaret glamour", "Room control"],
-    relatedSeries: ["gothcat", "larry"],
+    relatedSeries: ["larry"],
   },
   {
     slug: "helmut",
@@ -587,8 +590,23 @@ export function getCharacter(
   return slug ? characterBySlug.get(slug) : undefined;
 }
 
+/**
+ * Characters live on the page for the world they belong to. `/characters/` is
+ * retired, so this resolves to an anchor on that page: Other Alice residents to
+ * the cast page, comic characters to their series page.
+ */
 export function characterPath(slug: string): string {
-  return `/characters/${slug}/`;
+  const character = getCharacter(slug);
+  const series = character?.relatedSeries ?? [];
+
+  if (series.includes("other-alice-adventures")) {
+    return `/presents/other-alice-adventures/cast/${slug}/`;
+  }
+  const comicSeries = series.find((entry) => entry !== "other-alice-adventures");
+  if (comicSeries) {
+    return `/presents/funnies/${comicSeries}/#character-${slug}`;
+  }
+  return "/presents/funnies/";
 }
 
 export function getCharacterName(slug: string | undefined | null): string {

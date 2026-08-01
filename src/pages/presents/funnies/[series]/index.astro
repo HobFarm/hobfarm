@@ -4,6 +4,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import ContentPanel from "@/components/ContentPanel.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import ComicCard from "@/components/funnies/ComicCard.astro";
+import SeriesCast from "@/components/funnies/SeriesCast.astro";
 import FunniesHero from "@/components/funnies/FunniesHero.astro";
 import { comicSeries } from "@/data/comic-series";
 import { characters, characterPath, getCharacterName } from "@/data/characters";
@@ -69,7 +70,7 @@ const heroImageAlt = series.heroImageAlt ?? comics[0]?.data.imageAlt ?? `${serie
           </div>
         )}
 
-        {(series.engine?.length || series.world || series.supportingCast?.length) && (
+        {(series.engine?.length || series.world || series.supportingCast?.length || series.characters.length) && (
           <div class="mt-12 grid grid-cols-1 gap-8 border-y border-base-800 py-10 lg:grid-cols-3">
             {series.engine && series.engine.length > 0 && (
               <section>
@@ -92,6 +93,8 @@ const heroImageAlt = series.heroImageAlt ?? comics[0]?.data.imageAlt ?? `${serie
                 </div>
               </section>
             )}
+
+            <SeriesCast slugs={series.characters} />
 
             {series.supportingCast && series.supportingCast.length > 0 && (
               <section>

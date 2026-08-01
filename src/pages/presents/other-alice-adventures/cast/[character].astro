@@ -15,19 +15,25 @@ import { comicsForCharacter, getPublishedComics } from "@/lib/comics";
 import { getPublishedAdventures } from "@/lib/adventures";
 import { OTHER_ALICE_WORLD_GUIDE_PATH } from "@/data/other-alice-world-guide";
 
+// Other Alice residents only. `/characters/` is retired: comic characters now
+// render on their series page under /presents/funnies/, but the Other Alice
+// cast carries dossiers, trait plates, and motion records that need a page of
+// their own, and Other Alice keeps its own structure.
 export async function getStaticPaths() {
   const comics = await getPublishedComics();
   const adventures = await getPublishedAdventures();
-  return characters.map((character) => ({
-    params: { character: character.slug },
-    props: {
-      character,
-      comics: comicsForCharacter(comics, character.slug).slice(0, 6),
-      adventures: adventures
-        .filter((adventure) => character.relatedSeries.includes(adventure.data.series))
-        .slice(0, 6),
-    },
-  }));
+  return characters
+    .filter((character) => character.relatedSeries.includes("other-alice-adventures"))
+    .map((character) => ({
+      params: { character: character.slug },
+      props: {
+        character,
+        comics: comicsForCharacter(comics, character.slug).slice(0, 6),
+        adventures: adventures
+          .filter((adventure) => character.relatedSeries.includes(adventure.data.series))
+          .slice(0, 6),
+      },
+    }));
 }
 
 const { character, comics, adventures } = Astro.props;
@@ -92,7 +98,7 @@ const characterStructuredData = socialImage
 <BaseLayout
   title={character.seoTitle ?? `${character.name} | Characters | HobFarm`}
   description={character.metaDescription ?? character.bio}
-  canonical={`/characters/${character.slug}/`}
+  canonical={`/presents/other-alice-adventures/cast/${character.slug}/`}
   image={socialImage}
   imageAlt={socialImageAlt}
   structuredData={characterStructuredData}

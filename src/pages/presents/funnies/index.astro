@@ -162,16 +162,10 @@ const seriesCards = comicSeries.filter((s) => primarySeries.has(s.slug)).map((s)
           )}
         </div>
 
-        {/* 5 Cast strip -> /characters */}
+        {/* 5 Cast strip. Each name links to that character on its series page. */}
         <div class="mt-16 border-t border-base-800 pt-10">
           <div class="mb-6 flex items-end justify-between gap-4">
             <Text tag="h2" variant="displaySM" class="font-display text-white">The cast</Text>
-            <a
-              href="/characters/"
-              class="font-mono text-[10px] uppercase tracking-wider text-base-400 transition-colors hover:text-white"
-            >
-              Character index &rarr;
-            </a>
           </div>
           <div class="flex flex-wrap gap-2">
             {featuredCast.map((c) => (

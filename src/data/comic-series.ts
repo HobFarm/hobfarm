@@ -1,9 +1,9 @@
-// Comic series definitions for the Funnies department. Each recurring comic gets
-// a series here; individual comics (src/content/comics) reference a series by
+// Comic series definitions for the Funnies section. Three series: Larry, Gary,
+// and Buffcock. Individual comics (src/content/comics) reference a series by
 // slug. This is the source of truth for series titles, premises, and which
-// characters star, so /funnies, /presents/funnies/[series], and character pages all read
-// from one place. Comic membership and counts are derived from the comics
-// collection at build time, not stored here.
+// characters star, so /presents/funnies/ and its series pages all read from one
+// place. Comic membership and counts are derived from the comics collection at
+// build time, not stored here.
 
 export type ComicSeries = {
   slug: string;
@@ -111,36 +111,6 @@ export const comicSeries: ComicSeries[] = [
     shortBlurb:
       "Gary is a guinea pig person trying to survive normal human life. Fat Cat is there to make it worse with confidence.",
     formatBadge: "1:1 retro comic",
-  },
-  {
-    slug: "gary-fat-cat",
-    title: "Gary & Fat Cat",
-    characters: ["gary", "fat-cat"],
-    premise: "The guinea pig and the cat, locked in a rivalry neither of them fully understands.",
-  },
-  {
-    slug: "fat-cat",
-    title: "Fat Cat",
-    characters: ["fat-cat"],
-    premise: "Schemes, snacks, and contempt, delivered by a cat with no follow-through.",
-  },
-  {
-    slug: "hobunny",
-    title: "Hobunny",
-    characters: ["hobunny"],
-    premise: "The HobFarm rabbit, mascot duties optional.",
-  },
-  {
-    slug: "gothcat",
-    title: "Gothcat",
-    characters: ["gothcat"],
-    premise: "A cat with strong opinions about the void and your lighting choices.",
-  },
-  {
-    slug: "one-offs",
-    title: "One-Offs",
-    characters: [],
-    premise: "Single-panel gags and strays that do not belong to a recurring series.",
   },
 ];
 

@@ -24,7 +24,7 @@ test("homepage presents the six final HobFarm sections", () => {
 test("homepage separates sections from content formats", () => {
   const data = read("src/data/site-sections.ts");
 
-  for (const label of ["Articles", "Gallery", "Characters", "Video", "Support"]) {
+  for (const label of ["Articles", "Gallery", "Video", "Support"]) {
     assert.match(data, new RegExp(`label: "${label}"`));
   }
 

@@ -81,7 +81,7 @@ test("Alice representative media is separate from the contained character sheet"
     read("src/data/other-alice/assets.ts"),
     read("src/data/other-alice/residents.ts"),
     read("src/data/characters.ts"),
-    read("src/pages/characters/[character].astro"),
+    read("src/pages/presents/other-alice-adventures/cast/[character].astro"),
     read("src/components/presents/other-alice/cast/CastDossierFolio.astro"),
   ]);
   const aliceResident = residents.slice(residents.indexOf('id: "other-alice"'), residents.indexOf('id: "chester"'));
@@ -105,7 +105,7 @@ test("Alice representative media is separate from the contained character sheet"
 test("Alice's R2 motion records use matched posters and deferred supporting playback", async () => {
   const [charactersSource, characterPageSource, motionSource, assetSource] = await Promise.all([
     read("src/data/characters.ts"),
-    read("src/pages/characters/[character].astro"),
+    read("src/pages/presents/other-alice-adventures/cast/[character].astro"),
     read("src/components/presents/other-alice/AliceMotionRecords.astro"),
     read("src/data/other-alice/assets.ts"),
   ]);
@@ -131,7 +131,7 @@ test("Alice's adapted appearance is explained through the seven public trait pla
   const [canonSource, charactersSource, characterPageSource, appearanceSource, assetSource] = await Promise.all([
     read("src/data/other-alice/canon.ts"),
     read("src/data/characters.ts"),
-    read("src/pages/characters/[character].astro"),
+    read("src/pages/presents/other-alice-adventures/cast/[character].astro"),
     read("src/components/presents/other-alice/AliceVisualDevelopment.astro"),
     read("src/data/other-alice/assets.ts"),
   ]);

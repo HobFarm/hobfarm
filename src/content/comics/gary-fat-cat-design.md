@@ -1,6 +1,6 @@
 ---
 title: "Gary & Fat Cat Design"
-series: gary-fat-cat
+series: gary
 characters: [gary, fat-cat]
 department: funnies
 format: cartoon
