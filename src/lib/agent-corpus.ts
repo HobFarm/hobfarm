@@ -385,7 +385,11 @@ export async function getPublicAgentProjects(): Promise<
   CollectionEntry<"projects">[]
 > {
   const entries = await getCollection("projects");
-  return entries.sort((a, b) => a.data.order - b.data.order);
+  // Records with no public route (HobBot, still in redevelopment) stay out of
+  // the corpus rather than advertising a path that does not resolve.
+  return entries
+    .filter((entry) => projectPublicPath(entry) !== undefined)
+    .sort((a, b) => a.data.order - b.data.order);
 }
 
 export async function getPublicAgentGrimoireEntries(): Promise<
@@ -455,17 +459,18 @@ export function galleryToAgentLink(
   };
 }
 
+// `/projects/` is retired. Surviving records are data sources for pages that
+// live elsewhere, so each one resolves to the route that actually renders it.
+const PROJECT_PUBLIC_PATHS: Record<string, string> = {
+  stylefusion: "/workshop/stylefusion/",
+  "hobfarm-tv/3-degrees-of-dick-miller": "/presents/3-degrees-of-dick-miller/",
+  "hobfarm-tv/magazine-time-machine": "/presents/magazine-time-machine/",
+};
+
 export function projectPublicPath(
   project: CollectionEntry<"projects">,
-): string {
-  const slug = stripExt(project.id);
-  if (slug === "shop") return "/shop/";
-  if (slug === "courses") return "/academy/";
-  if (slug === "grimoire") return "/grimoire/";
-  if (slug === "hobfarm-tv/3-degrees-of-dick-miller") {
-    return "/presents/3-degrees-of-dick-miller/";
-  }
-  return canonicalPath(`/projects/${slug}`);
+): string | undefined {
+  return PROJECT_PUBLIC_PATHS[stripExt(project.id)];
 }
 
 export function projectToAgentLink(

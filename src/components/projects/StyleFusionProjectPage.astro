@@ -109,7 +109,7 @@ const faqs = [
 ];
 
 const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
-const styleFusionUrl = `${siteOrigin}/projects/stylefusion/`;
+const styleFusionUrl = `${siteOrigin}/workshop/stylefusion/`;
 const styleFusionJsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -146,7 +146,7 @@ const styleFusionJsonLd = {
 <BaseLayout
   title="StyleFusion | HobFarm"
   description={project.data.subtitle}
-  canonical="/projects/stylefusion/"
+  canonical="/workshop/stylefusion/"
   image={registeredHero.image.src}
   palette="magenta-cyan"
   structuredData={styleFusionJsonLd}
@@ -371,4 +371,7 @@ const styleFusionJsonLd = {
       </Wrapper>
     </ContentPanel>
   </section>
+
+  <!-- Media studies carried over from the retired Workshop StyleFusion page. -->
+  <slot />
 </BaseLayout>

@@ -19,6 +19,14 @@ const shows = (await getCollection("projects"))
 const tvSection = presentsSeries.find((entry) => entry.id === "hobfarm-tv")!;
 const tvHero = tvSection.heroImage!;
 
+// Every show already has a canonical home under Presents. The old project
+// prefix is retired, so there is no fallback path left to build.
+const SHOW_PATHS: Record<string, string> = {
+  "hobfarm-tv/3-degrees-of-dick-miller": "/presents/3-degrees-of-dick-miller/",
+  "hobfarm-tv/magazine-time-machine": "/presents/magazine-time-machine/",
+};
+const showPath = (slug: string) => SHOW_PATHS[slug] ?? "/presents/";
+
 type ContentImageMetadata = {
   src: string;
   width: number;
@@ -30,7 +38,7 @@ type ContentImageMetadata = {
 <BaseLayout
   title="HobFarm TV | HobFarm"
   description="HobFarm TV is the picture-show channel: cult-film archaeology, cultural analysis, and build logs. Home of 3 Degrees of Dick Miller and Magazine Time Machine."
-  canonical="/projects/hobfarm-tv/"
+  canonical="/presents/hobfarm-tv/"
   image={tvHero}
   imageAlt={tvSection.heroAlt}
 >
@@ -67,9 +75,7 @@ type ContentImageMetadata = {
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           {shows.map((show) => {
             const showSlug = show.id.replace(/\.md$/, "");
-            const href = showSlug === "hobfarm-tv/3-degrees-of-dick-miller"
-              ? "/presents/3-degrees-of-dick-miller/"
-              : `/projects/${showSlug}/`;
+            const href = showPath(showSlug);
             return (
               <a
                 href={href}

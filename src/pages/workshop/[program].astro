@@ -17,7 +17,9 @@ import { getProcessPipelineBySlug } from "@/data/processPipelines";
 
 export function getStaticPaths() {
   return workshopPrograms
-    .filter((program) => program.id !== "before-after" && program.id !== "character-mannequin" && program.id !== "avatar-host")
+    // Programs with their own static page under src/pages/workshop/ are excluded
+    // so the dynamic route does not also claim their path.
+    .filter((program) => program.id !== "before-after" && program.id !== "character-mannequin" && program.id !== "avatar-host" && program.id !== "stylefusion")
     .map((program) => ({ params: { program: program.slug }, props: { program } }));
 }
 

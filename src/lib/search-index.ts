@@ -234,22 +234,27 @@ export async function buildSearchIndex(): Promise<SearchItem[]> {
   };
 
   const projectHrefOverrides: Record<string, string> = {
-    shop: "/shop/",
-    courses: "/academy/",
-    grimoire: "/grimoire/",
+    stylefusion: "/workshop/stylefusion/",
     "hobfarm-tv/3-degrees-of-dick-miller": "/presents/3-degrees-of-dick-miller/",
+    "hobfarm-tv/magazine-time-machine": "/presents/magazine-time-machine/",
   };
-  const projectItems: SearchItem[] = (await getCollection("projects")).map(
+  // `/projects/` is retired. Only records whose content renders at a real route
+  // are indexed; anything without one is omitted rather than linked to a 404.
+  const projectItems: SearchItem[] = (await getCollection("projects")).flatMap(
     (project) => {
       const slug = stripExt(project.id);
-      return {
-        type: "project",
-        title: project.data.title,
-        description: project.data.description,
-        href: projectHrefOverrides[slug] ?? `/projects/${slug}`,
-        category: project.data.category,
-        date: toISO(project.data.pubDate),
-      };
+      const href = projectHrefOverrides[slug];
+      if (!href) return [];
+      return [
+        {
+          type: "project",
+          title: project.data.title,
+          description: project.data.description,
+          href,
+          category: project.data.category,
+          date: toISO(project.data.pubDate),
+        },
+      ];
     },
   );
 

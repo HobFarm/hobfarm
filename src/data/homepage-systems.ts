@@ -325,12 +325,12 @@ export const coreSystems = [
   {
     title: "StyleFusion",
     body: "The image tool: extraction, structured intent, enrichment, provider-aware prompt building, generation, and validation.",
-    href: "/projects/stylefusion/",
+    href: "/workshop/stylefusion/",
   },
   {
     title: "Publishing",
     body: "Gallery metadata, marketplace listings, social posts, reusable pieces, and packaging.",
-    href: "/projects/",
+    href: "/workshop/",
   },
 ];
 

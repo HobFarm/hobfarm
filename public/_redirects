@@ -4,8 +4,8 @@
 /departments/hobfarm-presents/other-alice-adventures/adventure-no-01-the-wrong-tunnel   /presents/other-alice-adventures/   301
 /departments/hobfarm-presents/other-alice-adventures/adventure-no-01-the-wrong-tunnel/  /presents/other-alice-adventures/   301
 
-/stylefusion  /projects/stylefusion/  301
-/sf           /projects/stylefusion/  301
+/stylefusion  /workshop/stylefusion/  301
+/sf           /workshop/stylefusion/  301
 
 # Workshop program hubs now own these visual/process archives.
 /gallery/before-and-after   /workshop/before-and-after/    301
@@ -190,3 +190,34 @@
 /departments/:category    /articles/   301
 /departments              /   301
 /departments/             /   301
+
+# ---------------------------------------------------------------------------
+# /projects/ and /video/ retired. Workshop is the permanent home for tools,
+# systems, and work in progress; Presents owns the editorial properties.
+# ---------------------------------------------------------------------------
+
+# StyleFusion consolidated into its Workshop home.
+/projects/stylefusion     /workshop/stylefusion/   301
+/projects/stylefusion/    /workshop/stylefusion/   301
+
+# Retired applications. Drifter and AnomalyBot are not coming back; HobBot is
+# preserved as a record while it is redeveloped, with no public page.
+/projects/drifter         /workshop/   301
+/projects/drifter/        /workshop/   301
+/projects/anomalybot      /workshop/   301
+/projects/anomalybot/     /workshop/   301
+/projects/hobbot          /workshop/   301
+/projects/hobbot/         /workshop/   301
+
+# XKXXKX is Wonder Machine now: the Other Alice runtime, not a standalone app.
+/projects/xkxxkx          /presents/other-alice-adventures/   301
+/projects/xkxxkx/         /presents/other-alice-adventures/   301
+
+# The video archive is retired. A video lives with the thing it is about.
+/video                    /presents/hobfarm-tv/   301
+/video/                   /presents/hobfarm-tv/   301
+
+# Anything else still under /projects/.
+/projects/*               /workshop/   301
+/projects                 /workshop/   301
+/projects/                /workshop/   301

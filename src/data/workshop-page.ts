@@ -76,7 +76,7 @@ export const workshopBenches = [
   {
     label: "StyleFusion application",
     description: "Assign approved reference images to subject, style, and composition roles, extract them through specialized agents, and compile an Intermediate Representation plus a model-ready document.",
-    href: "/projects/stylefusion/",
+    href: "/workshop/stylefusion/",
     action: "Explore StyleFusion",
   },
   {

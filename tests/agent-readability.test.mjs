@@ -23,9 +23,6 @@ const requiredFiles = [
   "src/pages/gallery/[...slug]/index.md.ts",
   "src/pages/workshop/index.md.ts",
   "src/pages/workshop/llms.txt.ts",
-  "src/pages/projects/index.md.ts",
-  "src/pages/projects/llms.txt.ts",
-  "src/pages/projects/[...slug]/index.md.ts",
   "src/pages/products/llms.txt.ts",
   "src/pages/shop/index.md.ts",
   "src/pages/academy/index.md.ts",
@@ -225,7 +222,6 @@ test("public sitemap alias is curated and excludes private surfaces", () => {
 });
 
 test("agent-readable public surfaces expose appropriate structured data", () => {
-  const projectDetail = read("src/pages/projects/[...slug].astro");
   const styleFusion = read(
     "src/components/projects/StyleFusionProjectPage.astro",
   );
@@ -236,8 +232,7 @@ test("agent-readable public surfaces expose appropriate structured data", () => 
   const legalLayout = read("src/layouts/LegalLayout.astro");
   const galleryDetail = read("src/components/gallery/GalleryDetail.astro");
 
-  assert.match(projectDetail, /projectJsonLd/);
-  assert.match(projectDetail, /"@type": "CreativeWork"/);
+  assert.match(styleFusion, /"@type": "CreativeWork"/);
   assert.match(styleFusion, /FAQPage/);
   assert.match(styleFusion, /mainEntity/);
   assert.match(shop, /shopJsonLd/);

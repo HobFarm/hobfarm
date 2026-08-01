@@ -47,7 +47,6 @@ const staticEntries: SitemapEntry[] = [
     changefreq: "weekly" as const,
     priority: "0.8",
   })),
-  { loc: absoluteUrl("/projects/"), changefreq: "monthly", priority: "0.8" },
   { loc: absoluteUrl("/workshop/"), changefreq: "weekly", priority: "0.8" },
   { loc: absoluteUrl("/academy/"), changefreq: "monthly", priority: "0.7" },
   { loc: absoluteUrl("/shop/"), changefreq: "weekly", priority: "0.7" },
@@ -147,12 +146,20 @@ export async function GET() {
       changefreq: "monthly" as const,
       priority: "0.7",
     })),
-    ...projects.map((project) => ({
-      loc: absoluteUrl(projectPublicPath(project)),
-      lastmod: formatDate(project.data.updatedDate ?? project.data.pubDate),
-      changefreq: "monthly" as const,
-      priority: "0.7",
-    })),
+    // Project records are data sources for pages elsewhere; only the ones with
+    // a real public route belong in the sitemap.
+    ...projects.flatMap((project) => {
+      const path = projectPublicPath(project);
+      if (!path) return [];
+      return [
+        {
+          loc: absoluteUrl(path),
+          lastmod: formatDate(project.data.updatedDate ?? project.data.pubDate),
+          changefreq: "monthly" as const,
+          priority: "0.7",
+        },
+      ];
+    }),
     ...grimoireEntries.map((entry) => ({
       loc: absoluteUrl(`/grimoire/${entry.id.replace(/\.(md|mdx)$/, "")}/`),
       lastmod: formatDate(entry.data.updated ?? entry.data.date),

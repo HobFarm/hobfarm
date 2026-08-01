@@ -32,13 +32,13 @@ export const inDevelopment: RoadmapItem[] = [
     name: "StyleFusion",
     description:
       "Public project brief is live; the visual compiler workspace is being finished",
-    href: "/projects/stylefusion/",
+    href: "/workshop/stylefusion/",
   },
   {
     name: "HobFarm TV",
     description:
       "Original programs in production: Magazine Time Machine and 3 Degrees of Dick Miller",
-    href: "/projects/hobfarm-tv/",
+    href: "/presents/hobfarm-tv/",
   },
   {
     name: "HobFarm Academy",

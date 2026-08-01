@@ -15,7 +15,7 @@ export const workshopTeasers: WorkshopTeaser[] = [
     status: "In Development",
     statusClass: "text-accent-500",
     hook: "A public brief for reference-driven visual systems while the workspace is being finished.",
-    href: "/projects/stylefusion/",
+    href: "/workshop/stylefusion/",
   },
   {
     title: "Grimoire",
@@ -43,7 +43,7 @@ export const workshopTeasers: WorkshopTeaser[] = [
     status: "Just Starting",
     statusClass: "text-accent-500",
     hook: "The picture-show channel: 3 Degrees of Dick Miller, Magazine Time Machine, and more in production.",
-    href: "/projects/hobfarm-tv/",
+    href: "/presents/hobfarm-tv/",
   },
   {
     title: "HobFarm Academy",

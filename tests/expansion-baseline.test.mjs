@@ -7,9 +7,9 @@ const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf
 test("known missing media references are removed without replacement assets", () => {
   const projects = [
     read("src/content/projects/hobbot.md"),
-    read("src/content/projects/grimoire.md"),
+    read("src/content/projects/stylefusion.md"),
     read("src/pages/presents/hobfarm-tv/index.astro"),
-    read("src/pages/projects/[...slug].astro"),
+    read("src/components/projects/StyleFusionProjectPage.astro"),
   ].join("\n");
   const astro = read("src/content/stack/astro.md");
 
@@ -18,12 +18,15 @@ test("known missing media references are removed without replacement assets", ()
   assert.match(astro, /Astro 6/);
 });
 
-test("video archive links 3DM directly to its canonical Presents route", () => {
-  const page = read("src/pages/video/index.astro");
+test("HobFarm TV links every show to its canonical Presents route", () => {
+  const page = read("src/pages/presents/hobfarm-tv/index.astro");
 
   assert.match(page, /const showPath/);
   assert.match(page, /\/presents\/3-degrees-of-dick-miller\//);
-  assert.match(page, /href=\{showPath\(show\.id\)\}/);
+  assert.match(page, /\/presents\/magazine-time-machine\//);
+  assert.match(page, /const href = showPath\(/);
+  // `/projects/` is retired, so there is no fallback prefix left to link to.
+  assert.doesNotMatch(page, /`\/projects\//);
 });
 
 test("Presents keeps an h2 for every series, including logo-led sections", () => {

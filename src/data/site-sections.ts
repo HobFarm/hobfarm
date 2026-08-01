@@ -74,6 +74,6 @@ export const formatLinks = [
   { label: "Articles", href: "/articles/", note: "Read" },
   { label: "Gallery", href: "/gallery/", note: "Look" },
   { label: "Characters", href: "/characters/", note: "Meet" },
-  { label: "Video", href: "/video/", note: "Watch" },
+  { label: "Video", href: "/presents/hobfarm-tv/", note: "Watch" },
   { label: "Support", href: "/support/", note: "Join" },
 ] as const;

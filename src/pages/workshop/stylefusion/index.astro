@@ -1,0 +1,31 @@
+---
+// StyleFusion consolidated. The old /projects/stylefusion/ writeup was the
+// better page, so it wins on content; Workshop is the correct home, so it wins
+// on location. The media studies below only existed on the old Workshop page
+// and are preserved here rather than dropped.
+//
+// This is a static route, so `stylefusion` is excluded from the getStaticPaths
+// filter in `/workshop/[program].astro`.
+import { getCollection, getEntry } from "astro:content";
+import StyleFusionProjectPage from "@/components/projects/StyleFusionProjectPage.astro";
+import StyleFusionMediaStudies from "@/components/workshop/StyleFusionMediaStudies.astro";
+
+const project = await getEntry("projects", "stylefusion");
+if (!project) {
+  throw new Error(
+    "src/content/projects/stylefusion.md is required by /workshop/stylefusion/",
+  );
+}
+
+const studies = await getCollection("stylefusionStudies");
+const cathedral = studies.find((entry) => entry.id === "tuxedo-cat-fusion");
+const hellcat = studies.find((entry) => entry.id === "industrial-elf-neo-noir");
+---
+
+<StyleFusionProjectPage project={project}>
+  {cathedral && hellcat && (
+    <div id="studies">
+      <StyleFusionMediaStudies cathedral={cathedral} hellcat={hellcat} />
+    </div>
+  )}
+</StyleFusionProjectPage>
