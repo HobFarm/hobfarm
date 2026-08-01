@@ -1,0 +1,74 @@
+---
+const wide = "https://cdn.hob.farm/articles/ec-machine/the-machine-that-made-ec-wide.svg";
+const mobile = "https://cdn.hob.farm/articles/ec-machine/the-machine-that-made-ec-mobile.svg";
+---
+
+<figure class="ec-machine-diagram not-prose">
+  <picture>
+    <source media="(min-width: 720px)" srcset={wide} />
+    <img
+      src={mobile}
+      alt="Diagram showing newspaper strips, Sunday color, pulp genres, radio, advertising premiums, cheap printing, newsstands, and Depression audiences feeding a chain from promotional booklets through comic books, Educational Comics, EC horror, Mad, paperback collections, and A Hard Day's Night."
+      width="720"
+      height="2200"
+      loading="lazy"
+      decoding="async"
+      data-lightbox={wide}
+      data-lightbox-caption="The Machine That Made EC: existing media, printing, advertising, and distribution systems flowed through a series of changing containers."
+    />
+  </picture>
+  <figcaption>
+    <span>Original HobFarm diagram. The content kept changing; the useful machinery traveled with it.</span>
+    <a href={wide}>Open the wide version</a>
+  </figcaption>
+</figure>
+
+<style>
+  .ec-machine-diagram {
+    position: relative;
+    left: 50%;
+    width: min(76rem, calc(100vw - 2rem));
+    max-width: calc(100vw - 2rem);
+    margin: clamp(2.5rem, 7vw, 5rem) 0;
+    transform: translateX(-50%);
+  }
+
+  .ec-machine-diagram picture,
+  .ec-machine-diagram img {
+    display: block;
+    width: 100%;
+  }
+
+  .ec-machine-diagram img {
+    height: auto;
+    margin: 0;
+    border: 1px solid #5a4632;
+    border-radius: 0.35rem;
+    background: #090b0c;
+    cursor: zoom-in;
+  }
+
+  .ec-machine-diagram figcaption {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.45rem 1rem;
+    margin: 0;
+    padding: 0.7rem 0.2rem 0;
+    color: #938b80;
+    font: 500 0.67rem/1.5 var(--font-mono), monospace;
+  }
+
+  .ec-machine-diagram figcaption a {
+    color: #c6a64a;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  @media (max-width: 719px) {
+    .ec-machine-diagram {
+      width: min(34rem, calc(100vw - 1rem));
+      max-width: calc(100vw - 1rem);
+    }
+  }
+</style>

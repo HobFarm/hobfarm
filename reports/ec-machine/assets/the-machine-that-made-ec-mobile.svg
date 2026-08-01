@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 2200" role="img" aria-labelledby="title desc">
+  <title id="title">The Machine That Made EC</title>
+  <desc id="desc">Eight existing systems feed promotional comic booklets and a vertical chain through comic books, Educational Comics, EC horror, MAD, paperback collections, and A Hard Day's Night.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#170d0b"/>
+      <stop offset="0.5" stop-color="#090c0d"/>
+      <stop offset="1" stop-color="#10160f"/>
+    </linearGradient>
+    <linearGradient id="hub" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#5d211b"/>
+      <stop offset="1" stop-color="#2c371f"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#d6684c"/>
+    </marker>
+    <style>
+      .label { fill: #dbb64b; font: 700 17px Arial, Helvetica, sans-serif; letter-spacing: 3px; }
+      .title { fill: #f2e8d1; font: 700 38px Georgia, 'Times New Roman', serif; }
+      .deck { fill: #aaa193; font: 400 20px Arial, Helvetica, sans-serif; }
+      .input rect { fill: #111517; stroke: #50463b; stroke-width: 2; }
+      .input text { fill: #e7ddc9; font: 700 22px Arial, Helvetica, sans-serif; }
+      .input .small { fill: #958d82; font: 400 16px Arial, Helvetica, sans-serif; }
+      .flow { fill: none; stroke: #6b5a48; stroke-width: 3; opacity: 0.75; }
+      .arrow { fill: none; stroke: #d6684c; stroke-width: 4; marker-end: url(#arrow); }
+      .hub-title { fill: #fff2d7; font: 700 25px Arial, Helvetica, sans-serif; }
+      .hub-sub { fill: #d8c8b2; font: 400 18px Arial, Helvetica, sans-serif; }
+      .stage rect { fill: #111516; stroke: #586048; stroke-width: 2; }
+      .stage text { fill: #efe5d0; font: 700 25px Arial, Helvetica, sans-serif; }
+      .stage .small { fill: #9f9789; font: 400 18px Arial, Helvetica, sans-serif; }
+      .ec rect { fill: #1d1210; stroke: #874b39; }
+      .mad rect { fill: #15170f; stroke: #9d8230; }
+      .final rect { fill: #182215; stroke: #718f51; stroke-width: 3; }
+      .footer { fill: #756f66; font: 400 15px Arial, Helvetica, sans-serif; letter-spacing: 1px; }
+    </style>
+  </defs>
+
+  <rect width="720" height="2200" fill="url(#bg)"/>
+  <rect x="22" y="22" width="676" height="2156" rx="16" fill="none" stroke="#554737" stroke-width="2"/>
+  <text x="42" y="67" class="label">MAGAZINE TIME MACHINE</text>
+  <text x="42" y="116" class="title">The Machine That Made EC</text>
+
+  <g class="input">
+    <g transform="translate(42 150)">
+      <rect width="300" height="92" rx="8"/>
+      <text x="16" y="36">Newspaper strips</text>
+      <text x="16" y="64" class="small">syndicates + characters</text>
+    </g>
+    <g transform="translate(378 150)">
+      <rect width="300" height="92" rx="8"/>
+      <text x="16" y="36">Sunday color</text>
+      <text x="16" y="64" class="small">four-color printing</text>
+    </g>
+    <g transform="translate(42 264)">
+      <rect width="300" height="92" rx="8"/>
+      <text x="16" y="36">Pulp genres</text>
+      <text x="16" y="64" class="small">crime, horror, science fiction</text>
+    </g>
+    <g transform="translate(378 264)">
+      <rect width="300" height="92" rx="8"/>
+      <text x="16" y="36">Radio storytelling</text>
+      <text x="16" y="64" class="small">anthologies + hosts</text>
+    </g>
+    <g transform="translate(42 378)">
+      <rect width="300" height="92" rx="8"/>
+      <text x="16" y="36">Advertisers</text>
+      <text x="16" y="64" class="small">premiums + coupons</text>
+    </g>
+    <g transform="translate(378 378)">
+      <rect width="300" height="92" rx="8"/>
+      <text x="16" y="36">Cheap paper + presses</text>
+      <text x="16" y="64" class="small">industrial capacity</text>
+    </g>
+    <g transform="translate(42 492)">
+      <rect width="300" height="92" rx="8"/>
+      <text x="16" y="36">Newsstand distribution</text>
+      <text x="16" y="64" class="small">national racks</text>
+    </g>
+    <g transform="translate(378 492)">
+      <rect width="300" height="92" rx="8"/>
+      <text x="16" y="36">Depression audiences</text>
+      <text x="16" y="64" class="small">cheap entertainment</text>
+    </g>
+  </g>
+
+  <g class="flow">
+    <path d="M192 242 C192 600 300 590 318 650"/>
+    <path d="M528 242 C528 600 420 590 402 650"/>
+    <path d="M192 356 C192 610 300 610 318 650"/>
+    <path d="M528 356 C528 610 420 610 402 650"/>
+    <path d="M192 470 C192 620 300 625 318 650"/>
+    <path d="M528 470 C528 620 420 625 402 650"/>
+    <path d="M192 584 C192 640 300 640 318 650"/>
+    <path d="M528 584 C528 640 420 640 402 650"/>
+  </g>
+
+  <rect x="92" y="646" width="536" height="116" rx="12" fill="url(#hub)" stroke="#c26a48" stroke-width="3"/>
+  <text x="360" y="692" text-anchor="middle" class="hub-title">PROMOTIONAL COMIC BOOKLETS</text>
+  <text x="360" y="727" text-anchor="middle" class="hub-sub">reprinted strips + branded giveaway</text>
+
+  <g class="stage">
+    <g transform="translate(130 814)">
+      <rect width="460" height="92" rx="8"/>
+      <text x="230" y="38" text-anchor="middle">Newsstand comic books</text>
+      <text x="230" y="67" text-anchor="middle" class="small">the ten-cent container</text>
+    </g>
+    <g transform="translate(130 946)">
+      <rect width="460" height="92" rx="8"/>
+      <text x="230" y="38" text-anchor="middle">Original genre comics</text>
+      <text x="230" y="67" text-anchor="middle" class="small">new stories + intellectual property</text>
+    </g>
+    <g transform="translate(130 1078)">
+      <rect width="460" height="92" rx="8"/>
+      <text x="230" y="38" text-anchor="middle">Educational Comics</text>
+      <text x="230" y="67" text-anchor="middle" class="small">approved knowledge in panels</text>
+    </g>
+    <g transform="translate(130 1210)" class="ec">
+      <rect width="460" height="92" rx="8"/>
+      <text x="230" y="38" text-anchor="middle">EC New Trend</text>
+      <text x="230" y="67" text-anchor="middle" class="small">voice + artists + fan ritual</text>
+    </g>
+    <g transform="translate(130 1342)" class="ec">
+      <rect width="460" height="92" rx="8"/>
+      <text x="230" y="38" text-anchor="middle">Tales from the Crypt</text>
+      <text x="230" y="67" text-anchor="middle" class="small">the horror anthology</text>
+    </g>
+    <g transform="translate(130 1474)" class="mad">
+      <rect width="460" height="92" rx="8"/>
+      <text x="230" y="38" text-anchor="middle">MAD comic</text>
+      <text x="230" y="67" text-anchor="middle" class="small">satire in comic-book form</text>
+    </g>
+    <g transform="translate(130 1606)" class="mad">
+      <rect width="460" height="92" rx="8"/>
+      <text x="230" y="38" text-anchor="middle">MAD magazine</text>
+      <text x="230" y="67" text-anchor="middle" class="small">larger format, outside the Code</text>
+    </g>
+    <g transform="translate(130 1738)" class="mad">
+      <rect width="460" height="92" rx="8"/>
+      <text x="230" y="38" text-anchor="middle">Paperback collections</text>
+      <text x="230" y="67" text-anchor="middle" class="small">the rack changes again</text>
+    </g>
+    <g transform="translate(100 1870)" class="final">
+      <rect width="520" height="104" rx="8"/>
+      <text x="260" y="40" text-anchor="middle">A Hard Day’s Night</text>
+      <text x="260" y="72" text-anchor="middle" class="small">Shake reads Son of Mad / 1964</text>
+    </g>
+  </g>
+
+  <path class="arrow" d="M360 762 V800"/>
+  <path class="arrow" d="M360 906 V932"/>
+  <path class="arrow" d="M360 1038 V1064"/>
+  <path class="arrow" d="M360 1170 V1196"/>
+  <path class="arrow" d="M360 1302 V1328"/>
+  <path class="arrow" d="M360 1434 V1460"/>
+  <path class="arrow" d="M360 1566 V1592"/>
+  <path class="arrow" d="M360 1698 V1724"/>
+  <path class="arrow" d="M360 1830 V1856"/>
+
+  <text x="360" y="2045" text-anchor="middle" class="title" font-size="31">The machinery traveled.</text>
+  <text x="360" y="2082" text-anchor="middle" class="deck">Format, distribution, voice, reader ritual.</text>
+  <line x1="112" y1="2117" x2="608" y2="2117" stroke="#554737" stroke-width="2"/>
+  <text x="360" y="2152" text-anchor="middle" class="footer">ORIGINAL HOBFARM EDITORIAL GRAPHIC / 2026</text>
+</svg>

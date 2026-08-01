@@ -1,0 +1,55 @@
+{
+  "article": "ec-machine",
+  "bucket": "hobfarm-cdn",
+  "prefix": "articles/ec-machine/",
+  "public_hostname": "https://cdn.hob.farm",
+  "verified_at": "2026-08-01",
+  "assets": [
+    {
+      "key": "articles/ec-machine/the-beatles-son-of-mad1.png",
+      "public_url": "https://cdn.hob.farm/articles/ec-machine/the-beatles-son-of-mad1.png",
+      "media_type": "image/png",
+      "width": 1321,
+      "height": 775,
+      "bytes": 594560,
+      "sha256": "c85e7f2001e23d3776ec4520bf7578dae0535629364411303773181845f4f423",
+      "r2_status": "existing-author-supplied",
+      "http_status": 200
+    },
+    {
+      "key": "articles/ec-machine/the-beatles-son-of-mad2.png",
+      "public_url": "https://cdn.hob.farm/articles/ec-machine/the-beatles-son-of-mad2.png",
+      "media_type": "image/png",
+      "width": 1326,
+      "height": 775,
+      "bytes": 718670,
+      "sha256": "5ad35e2065b7e009712929ca2c24dcdd9c558997074755dfe60893b6446f87af",
+      "r2_status": "existing-author-supplied",
+      "http_status": 200
+    },
+    {
+      "key": "articles/ec-machine/the-machine-that-made-ec-wide.svg",
+      "public_url": "https://cdn.hob.farm/articles/ec-machine/the-machine-that-made-ec-wide.svg",
+      "source_path": "reports/ec-machine/assets/the-machine-that-made-ec-wide.svg",
+      "media_type": "image/svg+xml",
+      "width": 1600,
+      "height": 1200,
+      "bytes": 9276,
+      "sha256": "f2d26d06c029cdb618cda6066dce5838077d70c96f0b9f60021d5e5fd306b3e6",
+      "r2_status": "uploaded-2026-08-01",
+      "http_status": 200
+    },
+    {
+      "key": "articles/ec-machine/the-machine-that-made-ec-mobile.svg",
+      "public_url": "https://cdn.hob.farm/articles/ec-machine/the-machine-that-made-ec-mobile.svg",
+      "source_path": "reports/ec-machine/assets/the-machine-that-made-ec-mobile.svg",
+      "media_type": "image/svg+xml",
+      "width": 720,
+      "height": 2200,
+      "bytes": 8344,
+      "sha256": "e2a414176deb098971b7c5f6206386435efb3ae6405592ad00d4082e8872d3cb",
+      "r2_status": "uploaded-2026-08-01",
+      "http_status": 200
+    }
+  ]
+}

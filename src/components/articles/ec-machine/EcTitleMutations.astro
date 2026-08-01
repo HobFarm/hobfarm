@@ -1,0 +1,182 @@
+<section class="ec-title-chart not-prose" aria-labelledby="ec-title-chart-heading">
+  <header>
+    <p>EC rack test / 1949–1950</p>
+    <h2 id="ec-title-chart-heading">The horror line changed titles without starting over</h2>
+  </header>
+
+  <div class="ec-title-chart__rows">
+    <div class="ec-title-chart__row">
+      <article>
+        <span>Crime</span>
+        <strong>Crime Patrol</strong>
+        <small>#15–16 test horror stories</small>
+      </article>
+      <span class="ec-title-chart__arrow" aria-hidden="true">→</span>
+      <article class="is-change">
+        <span>Horror</span>
+        <strong>The Crypt of Terror</strong>
+        <small>#17–19</small>
+      </article>
+      <span class="ec-title-chart__arrow" aria-hidden="true">→</span>
+      <article class="is-result">
+        <span>Horror</span>
+        <strong>Tales from the Crypt</strong>
+        <small>#20–46</small>
+      </article>
+    </div>
+
+    <div class="ec-title-chart__row">
+      <article>
+        <span>Crime</span>
+        <strong>War Against Crime!</strong>
+        <small>#10–11 test horror stories</small>
+      </article>
+      <span class="ec-title-chart__arrow" aria-hidden="true">→</span>
+      <article class="is-result">
+        <span>Horror</span>
+        <strong>The Vault of Horror</strong>
+        <small>#12–40</small>
+      </article>
+    </div>
+
+    <div class="ec-title-chart__row">
+      <article>
+        <span>Western</span>
+        <strong>Gunfighter</strong>
+        <small>#5–14</small>
+      </article>
+      <span class="ec-title-chart__arrow" aria-hidden="true">→</span>
+      <article class="is-result">
+        <span>Horror</span>
+        <strong>The Haunt of Fear</strong>
+        <small>#15–17, then reset to #4</small>
+      </article>
+    </div>
+  </div>
+
+  <p class="ec-title-chart__note">
+    The numbering preserved existing publishing and distribution machinery. The Post Office later required <cite>The Haunt of Fear</cite> to reset its count.
+  </p>
+</section>
+
+<style>
+  .ec-title-chart {
+    position: relative;
+    left: 50%;
+    width: min(74rem, calc(100vw - 2rem));
+    max-width: calc(100vw - 2rem);
+    margin: clamp(2.5rem, 7vw, 5rem) 0;
+    transform: translateX(-50%);
+    overflow: hidden;
+    border: 1px solid #584838;
+    border-radius: 0.4rem;
+    background: #090b0c;
+    color: #f0e8d5;
+  }
+
+  .ec-title-chart > header {
+    padding: 1.15rem 1.3rem;
+    border-bottom: 1px solid #584838;
+    background: linear-gradient(120deg, #24110e, #101311 62%, #13100c);
+  }
+
+  .ec-title-chart > header p {
+    margin: 0 0 0.35rem;
+    color: #dd6b4f;
+    font: 700 0.65rem/1.2 var(--font-mono), monospace;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .ec-title-chart > header h2 {
+    margin: 0;
+    color: #f4ead2;
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    font-weight: 500;
+    line-height: 1.12;
+  }
+
+  .ec-title-chart__rows {
+    display: grid;
+  }
+
+  .ec-title-chart__row {
+    display: flex;
+    align-items: stretch;
+    gap: 0.65rem;
+    padding: 1rem;
+    border-bottom: 1px solid #39342e;
+  }
+
+  .ec-title-chart__row article {
+    display: grid;
+    align-content: start;
+    gap: 0.3rem;
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0.85rem;
+    border: 1px solid #443c34;
+    background: #121416;
+  }
+
+  .ec-title-chart__row article.is-change {
+    border-color: #714336;
+    background: #1c1210;
+  }
+
+  .ec-title-chart__row article.is-result {
+    border-color: #4f6044;
+    background: #111711;
+  }
+
+  .ec-title-chart__row article > span {
+    color: #8f887c;
+    font: 700 0.58rem/1.2 var(--font-mono), monospace;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .ec-title-chart__row strong {
+    color: #f3ead7;
+    font: 700 clamp(0.75rem, 1.6vw, 0.92rem)/1.25 var(--font-mono), monospace;
+  }
+
+  .ec-title-chart__row small {
+    color: #aaa194;
+    font: 500 0.66rem/1.4 var(--font-mono), monospace;
+  }
+
+  .ec-title-chart__arrow {
+    display: grid;
+    place-items: center;
+    flex: 0 0 1.4rem;
+    color: #dd6b4f;
+    font: 700 1.1rem/1 var(--font-mono), monospace;
+  }
+
+  .ec-title-chart__note {
+    margin: 0;
+    padding: 0.9rem 1.2rem 1rem;
+    color: #8f887d;
+    font: 500 0.67rem/1.55 var(--font-mono), monospace;
+    text-align: center;
+  }
+
+  @media (max-width: 720px) {
+    .ec-title-chart {
+      width: calc(100vw - 1rem);
+      max-width: calc(100vw - 1rem);
+    }
+
+    .ec-title-chart__row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+
+    .ec-title-chart__arrow {
+      min-height: 1.4rem;
+      transform: rotate(90deg);
+    }
+  }
+</style>

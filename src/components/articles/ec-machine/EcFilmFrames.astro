@@ -1,0 +1,125 @@
+---
+const closeFrame = "https://cdn.hob.farm/articles/ec-machine/the-beatles-son-of-mad1.png";
+const wideFrame = "https://cdn.hob.farm/articles/ec-machine/the-beatles-son-of-mad2.png";
+---
+
+<div class="ec-frame-pair not-prose" aria-label="Two frames from A Hard Day's Night">
+  <figure>
+    <button
+      type="button"
+      data-lightbox={closeFrame}
+      data-lightbox-group="ec-machine-train"
+      data-lightbox-caption="John Junkin as Shake reads William M. Gaines's Son of Mad on the train in A Hard Day's Night."
+      data-lightbox-alt="Close-up of the Son of Mad Signet paperback held open in Shake's hands."
+      aria-label="Open the close-up of Son of Mad"
+    >
+      <img
+        src={closeFrame}
+        alt="Close-up of the Son of Mad Signet paperback held open in Shake's hands."
+        width="1321"
+        height="775"
+        loading="lazy"
+        decoding="async"
+      />
+    </button>
+    <figcaption>
+      <span>The cover makes the book legible: <cite>William M. Gaines’s Son of Mad</cite>, Signet S1701.</span>
+      <span>Frame from <cite>A Hard Day’s Night</cite> (1964), used for identification and commentary.</span>
+    </figcaption>
+  </figure>
+
+  <figure>
+    <button
+      type="button"
+      data-lightbox={wideFrame}
+      data-lightbox-group="ec-machine-train"
+      data-lightbox-caption="The wider train frame identifies the reader as Shake, played by John Junkin, rather than Paul McCartney."
+      data-lightbox-alt="John Junkin as Shake reads Son of Mad beside Norman Rossington as Norm in a train compartment."
+      aria-label="Open the wider train frame"
+    >
+      <img
+        src={wideFrame}
+        alt="John Junkin as Shake reads Son of Mad beside Norman Rossington as Norm in a train compartment."
+        width="1326"
+        height="775"
+        loading="lazy"
+        decoding="async"
+      />
+    </button>
+    <figcaption>
+      <span>The wider frame supplies the correction: Shake is reading. Paul McCartney is not in the shot.</span>
+      <span>Frame from <cite>A Hard Day’s Night</cite> (1964), used for identification and commentary.</span>
+    </figcaption>
+  </figure>
+</div>
+
+<style>
+  .ec-frame-pair {
+    position: relative;
+    left: 50%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+    width: min(76rem, calc(100vw - 2rem));
+    max-width: calc(100vw - 2rem);
+    margin: clamp(2.25rem, 6vw, 4.5rem) 0;
+    transform: translateX(-50%);
+  }
+
+  .ec-frame-pair figure {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    min-width: 0;
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid #554738;
+    border-radius: 0.35rem;
+    background: #08090a;
+  }
+
+  .ec-frame-pair button {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: #020303;
+    cursor: zoom-in;
+  }
+
+  .ec-frame-pair button:focus-visible {
+    outline: 3px solid #d7b348;
+    outline-offset: -4px;
+  }
+
+  .ec-frame-pair img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+
+  .ec-frame-pair figcaption {
+    display: grid;
+    align-content: start;
+    gap: 0.35rem;
+    margin: 0;
+    padding: 0.8rem 0.9rem 0.9rem;
+    border-top: 1px solid #3d352e;
+    color: #b8afa2;
+    font: 500 0.67rem/1.55 var(--font-mono), monospace;
+  }
+
+  .ec-frame-pair figcaption span:last-child {
+    color: #79736b;
+  }
+
+  @media (max-width: 760px) {
+    .ec-frame-pair {
+      grid-template-columns: 1fr;
+      width: calc(100vw - 1rem);
+      max-width: calc(100vw - 1rem);
+      gap: 1rem;
+    }
+  }
+</style>
