@@ -1,7 +1,7 @@
 // Comic series definitions for the Funnies department. Each recurring comic gets
 // a series here; individual comics (src/content/comics) reference a series by
 // slug. This is the source of truth for series titles, premises, and which
-// characters star, so /funnies, /funnies/[series], and character pages all read
+// characters star, so /funnies, /presents/funnies/[series], and character pages all read
 // from one place. Comic membership and counts are derived from the comics
 // collection at build time, not stored here.
 
@@ -151,7 +151,7 @@ export function getComicSeries(slug: string | undefined | null): ComicSeries | u
 }
 
 export function seriesPath(slug: string): string {
-  return `/funnies/${slug}/`;
+  return `/presents/funnies/${slug}/`;
 }
 
 export function getSeriesTitle(slug: string | undefined | null): string {

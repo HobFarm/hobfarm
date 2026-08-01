@@ -21,7 +21,7 @@ export async function GET() {
       [
         {
           title: "3 Degrees of Dick Miller",
-          url: "https://hob.farm/departments/hobfarm-presents/3-degrees-of-dick-miller/",
+          url: "https://hob.farm/presents/3-degrees-of-dick-miller/",
           description: "A film-history media series following documented production connections to Dick Miller in three degrees or fewer.",
           tags: ["HobFarm Presents", "film history", "3DM"],
         },

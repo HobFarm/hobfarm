@@ -24,7 +24,7 @@ tags:
 heroImage: https://cdn.hob.farm/articles/topless-party/topless-party-hero.png
 socialImage: https://cdn.hob.farm/articles/topless-party/topless-party-hero.png
 heroAlt: "Retro magazine-style illustration of a space-age cocktail lounge in orbit, filled with reel-to-reel machines, vinyl records, monitors, musicians, and labeled library-music file drawers."
-canonical: "/departments/hobfarm-presents/3-degrees-of-dick-miller/topless-party-in-outer-space/"
+canonical: "/presents/3-degrees-of-dick-miller/topless-party-in-outer-space/"
 relatedArticles:
   - mad-trump-and-the-magazine-time-machine
   - 1956-automation

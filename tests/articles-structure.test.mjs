@@ -45,24 +45,43 @@ test("the Articles index links every archive page without repeating the cover st
   assert.match(pagination, /return articles\.slice\(start, start \+ ARTICLE_CARDS_PER_PAGE\)/);
 });
 
-test("departments taxonomy and routes exist", () => {
+test("category taxonomy and routes exist", () => {
   const files = [
     "src/data/departments.ts",
-    "src/pages/departments/index.astro",
-    "src/pages/departments/[slug].astro",
+    "src/pages/articles/[category].astro",
+    "src/components/archive/CategoryArchive.astro",
   ];
   for (const file of files) {
     assert.equal(existsSync(join(root, file)), true, `${file} should exist`);
   }
+
+  // /departments/ is retired: Presents sections, Workshop programs, and
+  // editorial categories each own their own prefix.
+  assert.equal(
+    existsSync(join(root, "src/pages/departments")),
+    false,
+    "the /departments/ route tree should be gone",
+  );
+});
+
+test("departmentPath routes each category to its owning section", () => {
+  const departments = read("src/data/departments.ts");
+
+  assert.match(departments, /presentsSections/);
+  assert.match(departments, /"hobfarm-presents":\s*"\/presents\/"/);
+  assert.match(departments, /"magazine-time-machine":\s*"\/presents\/magazine-time-machine\/"/);
+  assert.match(departments, /"workshop-notes":\s*"\/workshop\/workshop-notes\/"/);
+  assert.match(departments, /"cute-corrupted":\s*"\/workshop\/cute-and-corrupted\/"/);
+  assert.match(departments, /`\/articles\/\$\{canonical\}\/`/);
 });
 
 test("active department hero images are defined and rendered on department surfaces", () => {
   const departments = read("src/data/departments.ts");
   const hierarchy = read("src/data/site-hierarchy.ts");
   const homepage = read("src/components/home/SiteSections.astro");
-  const departmentHub = read("src/pages/departments/index.astro");
-  const departmentDetail = read("src/pages/departments/[slug].astro");
-  const funnies = read("src/pages/departments/funnies.astro");
+  const presentsHub = read("src/pages/presents/index.astro");
+  const categoryArchive = read("src/components/archive/CategoryArchive.astro");
+  const funnies = read("src/pages/presents/funnies/index.astro");
 
   const expectedHeroImages = {
     "magazine-time-machine": "magazine-time-machine-hero.png",
@@ -85,8 +104,8 @@ test("active department hero images are defined and rendered on department surfa
   }
 
   assert.match(homepage, /section\.heroImage/);
-  assert.match(departmentHub, /entry\.heroImage/);
-  assert.match(departmentDetail, /department\.heroImage/);
+  assert.match(presentsHub, /entry\.heroImage/);
+  assert.match(categoryArchive, /department\.heroImage/);
   assert.match(funnies, /department\.heroImage/);
 });
 
@@ -110,26 +129,27 @@ test("legacy blog URLs redirect to canonical articles URLs", () => {
 
   assert.match(redirects, /\/blog\s+\/articles\/\s+301/);
   assert.match(redirects, /\/blog\/posts\/:slug\s+\/articles\/:slug\s+301/);
-  assert.match(redirects, /\/blog\/category\/:category\s+\/departments\/:category\/\s+301/);
+  assert.match(redirects, /\/blog\/category\/:category\s+\/articles\/:category\/\s+301/);
   assert.match(redirects, /\/blog\/tags\/:tag\s+\/articles\/tags\/:tag\s+301/);
 });
 
 test("legacy category URLs redirect to canonical category destinations", () => {
   const redirects = read("public/_redirects");
 
-  assert.match(redirects, /\/articles\/category\/fake-ads\s+\/departments\/satire\/\s+301/);
+  // Satire has no content, so it generates no page and lands on the feed.
+  assert.match(redirects, /\/articles\/category\/fake-ads\s+\/articles\/\s+301/);
   assert.match(redirects, /\/articles\/category\/technical\s+\/workshop\/workshop-notes\/\s+301/);
   assert.match(
     redirects,
-    /\/articles\/category\/cultural-thread\s+\/departments\/essays-arguments\/\s+301/,
+    /\/articles\/category\/cultural-thread\s+\/articles\/essays-arguments\/\s+301/,
   );
   assert.match(
     redirects,
-    /\/blog\/category\/cultural-thread\/\s+\/departments\/essays-arguments\/\s+301/,
+    /\/blog\/category\/cultural-thread\/\s+\/articles\/essays-arguments\/\s+301/,
   );
   assert.match(
     redirects,
-    /\/articles\/category\/before-after\s+\/departments\/before-after-eras\/\s+301/,
+    /\/articles\/category\/before-after\s+\/workshop\/before-and-after\/\s+301/,
   );
 });
 
@@ -149,9 +169,9 @@ test("search index includes published comics without adding them to articles", (
 
 test("Funnies comics subsystem routes and data exist", () => {
   const files = [
-    "src/pages/departments/funnies.astro",
-    "src/pages/funnies/[series]/index.astro",
-    "src/pages/funnies/[series]/[slug].astro",
+    "src/pages/presents/funnies/index.astro",
+    "src/pages/presents/funnies/[series]/index.astro",
+    "src/pages/presents/funnies/[series]/[slug].astro",
     "src/pages/characters/[character].astro",
     "src/data/comic-series.ts",
     "src/lib/comics.ts",
@@ -163,8 +183,8 @@ test("Funnies comics subsystem routes and data exist", () => {
 
 test("Larry cartoons series content and uploaded CDN comics are wired", () => {
   const series = read("src/data/comic-series.ts");
-  const funnies = read("src/pages/departments/funnies.astro");
-  const seriesPage = read("src/pages/funnies/[series]/index.astro");
+  const funnies = read("src/pages/presents/funnies/index.astro");
+  const seriesPage = read("src/pages/presents/funnies/[series]/index.astro");
   const expectedComics = [
     "larry-gothcat-hulmut-heidi-dinner.jpg",
     "larry-helmut-bauhaus.jpg",
@@ -196,9 +216,9 @@ test("Larry cartoons series content and uploaded CDN comics are wired", () => {
 test("all Funnies pages use the shared contained-media hero", () => {
   const heroComponent = "src/components/funnies/FunniesHero.astro";
   const routeFiles = [
-    "src/pages/departments/funnies.astro",
-    "src/pages/funnies/[series]/index.astro",
-    "src/pages/funnies/[series]/[slug].astro",
+    "src/pages/presents/funnies/index.astro",
+    "src/pages/presents/funnies/[series]/index.astro",
+    "src/pages/presents/funnies/[series]/[slug].astro",
   ];
 
   assert.equal(existsSync(join(root, heroComponent)), true, `${heroComponent} should exist`);
@@ -213,7 +233,7 @@ test("all Funnies pages use the shared contained-media hero", () => {
   assert.doesNotMatch(hero, /lg:min-h-\[500px\]/);
   assert.match(hero, /<slot name="meta"/);
 
-  const seriesPage = read("src/pages/funnies/[series]/index.astro");
+  const seriesPage = read("src/pages/presents/funnies/[series]/index.astro");
   assert.match(seriesPage, /fallbackHeroImage/);
 
   for (const file of routeFiles) {
@@ -226,7 +246,7 @@ test("all Funnies pages use the shared contained-media hero", () => {
 test("legacy funny-pages department redirects to funnies", () => {
   const redirects = read("public/_redirects");
 
-  assert.match(redirects, /\/departments\/funny-pages\s+\/departments\/funnies\/\s+301/);
+  assert.match(redirects, /\/departments\/funny-pages\s+\/presents\/funnies\/\s+301/);
 });
 
 test("search and rss use the canonical article path helper", () => {

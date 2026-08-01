@@ -8,7 +8,7 @@ export function adventureSlug(adventure: Adventure): string {
 }
 
 export function adventurePath(adventure: Adventure): string {
-  return `/departments/hobfarm-presents/${adventure.data.series}/${adventureSlug(adventure)}/`;
+  return `/presents/${adventure.data.series}/${adventureSlug(adventure)}/`;
 }
 
 export function getAdventureDate(adventure: Adventure): Date {

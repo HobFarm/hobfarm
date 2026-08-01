@@ -16,7 +16,7 @@ export type PresentsTitle = {
 };
 
 export const THREE_DM_SLUG = "3-degrees-of-dick-miller";
-export const THREE_DM_PATH = `/departments/hobfarm-presents/${THREE_DM_SLUG}/`;
+export const THREE_DM_PATH = `/presents/${THREE_DM_SLUG}/`;
 export const THREE_DM_GPT_URL = "https://chatgpt.com/g/g-682afb75dd04819189c82970670f6f7e-3-degrees-of-miller-3dm";
 export const THREE_DM_CDN_LOGO = "https://cdn.hob.farm/3dm/3dm-logo.png";
 export const THREE_DM_LOGO = THREE_DM_CDN_LOGO;
@@ -68,5 +68,5 @@ export function getActivePresentsTitles(): PresentsTitle[] {
 }
 
 export function presentsTitlePath(idOrSlug: string): string {
-  return getPresentsTitle(idOrSlug)?.href ?? `/departments/hobfarm-presents/${idOrSlug}/`;
+  return getPresentsTitle(idOrSlug)?.href ?? `/presents/${idOrSlug}/`;
 }

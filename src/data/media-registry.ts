@@ -98,7 +98,7 @@ export const mediaRegistry = {
   "avatar.identity.hobgal": workshopImage("images/hobgal01.jpg", "/workshop/avatar-host/", "historical-profile", "Hobgal, the retired early HobFarm presenter prototype", 1664, 2496, "safe-to-archive-later"),
   "workshop.graphics.landing": workshopImage("images/workshop.png", "/workshop/", "section-hero", "The HobFarm Workshop host system, character sheet, process inspector, storyboards, media registry, and motion test", 1672, 941),
   "workshop.graphics.hillary": workshopImage("images/workshop-hillary.png", "/workshop/ and /workshop/avatar-host/", "editorial-host-system", "Hillary at the center of HobFarm articles, Presents, Workshop, and in-progress productions", 1672, 941),
-  "presents.graphics.avatar-system": workshopImage("images/presents-with-avatars.png", "/departments/hobfarm-presents/", "section-hero", "HobFarm Presents programs with Hillary, Ami, Em, Nina, and Zima as recurring editorial hosts", 1672, 941),
+  "presents.graphics.avatar-system": workshopImage("images/presents-with-avatars.png", "/presents/", "section-hero", "HobFarm Presents programs with Hillary, Ami, Em, Nina, and Zima as recurring editorial hosts", 1672, 941),
   "workshop.character-mannequin.workflow": {
     src: "/media/workshop/character-mannequin/mannequin-to-character-workflow.png",
     mediaType: "image",
@@ -133,7 +133,7 @@ export const mediaRegistry = {
   "other-alice.wonderland.world-map": {
     src: "/media/other-alice/other-alice-wonderland-world-map.png",
     mediaType: "image",
-    destination: "/ and /departments/hobfarm-presents/other-alice-adventures/",
+    destination: "/ and /presents/other-alice-adventures/",
     role: "developing-world-map",
     alt: "Developing map of Other Alice's Wonderland with concentric regions, routes, portals, House influences, the Wasteland, and the Park Anomaly",
     status: "active",
@@ -221,8 +221,8 @@ export const mediaRegistry = {
 
   "academy.banner.image": projectImage("hobfarm-courses-banner.jpg", "/academy/ and /projects/courses/", "academy-bridge", "HobFarm Academy courses banner"),
   "academy.banner.video": projectVideo("hobfarm-courses-banner-video.mp4", "hobfarm-courses-banner.jpg", "/academy/ and /projects/courses/", "academy-bridge-motion", "HobFarm Academy courses banner in motion"),
-  "mtm.banner.image": projectImage("magazine-time-machine-banner.jpg", "/departments/magazine-time-machine/ and Presents indexes", "series-banner", "Magazine Time Machine archive banner"),
-  "mtm.banner.video": projectVideo("magazine-time-machine-banner-video.mp4", "magazine-time-machine-banner.jpg", "/departments/magazine-time-machine/ and Presents indexes", "series-banner-motion", "Magazine Time Machine archive banner in motion"),
+  "mtm.banner.image": projectImage("magazine-time-machine-banner.jpg", "/presents/magazine-time-machine/ and Presents indexes", "series-banner", "Magazine Time Machine archive banner"),
+  "mtm.banner.video": projectVideo("magazine-time-machine-banner-video.mp4", "magazine-time-machine-banner.jpg", "/presents/magazine-time-machine/ and Presents indexes", "series-banner-motion", "Magazine Time Machine archive banner in motion"),
 
   "about.fractal-octopus.video": aboutVideo("Fractal%20Octopus.mp4", "supporting-philosophy", "Fractal octopus motion study", "active"),
   "about.glow.video": aboutVideo("about-glow-vid.mp4", "supporting-pitch", "Luminous HobFarm studio motion study", "active"),

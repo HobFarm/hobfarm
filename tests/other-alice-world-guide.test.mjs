@@ -4,14 +4,14 @@ import test from "node:test";
 const read=(path)=>readFile(new URL(`../${path}`,import.meta.url),"utf8");
 
 test("World Guide publishes the eight required sections",async()=>{
- const page=await read("src/pages/departments/hobfarm-presents/[series]/world-guide.astro");
+ const page=await read("src/pages/presents/[series]/world-guide.astro");
  for(const id of ["regions","routes","access","time","visitors","ecology","residents","boundary"]) assert.match(page,new RegExp(`id=\\"${id}\\"`));
  assert.match(page,/SectionNav/); assert.match(page,/LivingAtlas/); assert.match(page,/RouteAtlas/); assert.match(page,/AccessSequence/); assert.match(page,/ThreeClocks/); assert.match(page,/VisitorImprint/);
 });
 
 test("visitor routes establish choice before imprint and attach Alice's record",async()=>{
  const [page,component,visitors,canon]=await Promise.all([
-  read("src/pages/departments/hobfarm-presents/[series]/world-guide.astro"),
+  read("src/pages/presents/[series]/world-guide.astro"),
   read("src/components/presents/other-alice/living-world/VisitorImprint.astro"),
   read("src/data/other-alice/visitors.ts"),
   read("src/data/other-alice/canon.ts"),
@@ -71,7 +71,7 @@ test("Hatter material is labeled as a disputed reconstruction",async()=>{
 test("private narrative modules are excluded from the public barrel",async()=>{
  const barrel=await read("src/data/other-alice/index.ts");
  assert.doesNotMatch(barrel,/\.\/private/);
- const publicImports=await Promise.all(["src/components/presents/other-alice/OtherAliceStartPage.astro","src/pages/departments/hobfarm-presents/[series]/world-guide.astro","src/pages/departments/hobfarm-presents/other-alice-adventures/houses/index.astro","src/pages/departments/hobfarm-presents/other-alice-adventures/cast/index.astro","src/pages/departments/hobfarm-presents/other-alice-adventures/web-of-wonderland/index.astro"].map(read));
+ const publicImports=await Promise.all(["src/components/presents/other-alice/OtherAliceStartPage.astro","src/pages/presents/[series]/world-guide.astro","src/pages/presents/other-alice-adventures/houses/index.astro","src/pages/presents/other-alice-adventures/cast/index.astro","src/pages/presents/other-alice-adventures/web-of-wonderland/index.astro"].map(read));
  assert.doesNotMatch(publicImports.join("\n"),/other-alice\/private|opening-cycle|causal-ledger|open-canon/);
 });
 

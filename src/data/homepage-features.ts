@@ -15,7 +15,7 @@ const otherAliceMedia: MediaRecord = {
   mediaType: "image",
   width: 900,
   height: 1350,
-  destination: "/departments/hobfarm-presents/other-alice-adventures/",
+  destination: "/presents/other-alice-adventures/",
   role: "series-poster",
   alt: "Other Alice stands at the boundary between wet Wonderland and the dry geometric Wasteland",
   status: "active",
@@ -28,7 +28,7 @@ export const homepageFeatures: readonly HomepageFeature[] = [
     title: "Other Alice Adventures",
     description:
       "An illustrated serial, public world archive, and developing interactive story system built around authored choices and persistent history.",
-    href: "/departments/hobfarm-presents/other-alice-adventures/",
+    href: "/presents/other-alice-adventures/",
     media: otherAliceMedia,
     status: "published",
   },

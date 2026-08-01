@@ -1,0 +1,89 @@
+---
+// Editorial categories that are neither a Presents section nor a Workshop
+// program. Replaces the retired `/departments/[slug]`. A category with no
+// content generates no route: it stays in the taxonomy so an article can be
+// filed to it, and its page appears when it has something to show.
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CategoryArchive from "@/components/archive/CategoryArchive.astro";
+import { getCollection } from "astro:content";
+import {
+  departments,
+  departmentPath,
+  departmentStatus,
+  galleryTypeToDepartment,
+  isArticleCategory,
+  resolveDepartment,
+} from "@/data/departments";
+import { visualSystemsForDepartment } from "@/data/visual-systems";
+import { getArticleDepartment, getPublishedArticles } from "@/lib/articles";
+import { getPublishedComics } from "@/lib/comics";
+import { getProductsByDepartment } from "@/lib/products";
+
+export async function getStaticPaths() {
+  const articles = await getPublishedArticles();
+  const visuals = (await getCollection("gallery")).filter((e) => !e.data.draft);
+  const comics = await getPublishedComics();
+
+  const candidates = await Promise.all(
+    departments
+      .filter((department) => isArticleCategory(department.slug))
+      .map(async (department) => {
+        const posts = articles.filter(
+          (p) => getArticleDepartment(p.data) === department.slug,
+        );
+        return {
+          params: { category: department.slug },
+          props: {
+            department,
+            posts,
+            visuals: visuals
+              .filter(
+                (g) =>
+                  resolveDepartment(
+                    g.data.department ?? galleryTypeToDepartment[g.data.type],
+                  ) === department.slug,
+              )
+              .slice(0, 6),
+            comics: comics
+              .filter((c) => resolveDepartment(c.data.department) === department.slug)
+              .slice(0, 6),
+            drops: await getProductsByDepartment(department.slug),
+            systems: visualSystemsForDepartment(department.slug),
+          },
+        };
+      }),
+  );
+
+  // An empty category generates no route at all.
+  return candidates.filter(
+    ({ props }) =>
+      props.posts.length > 0 ||
+      props.visuals.length > 0 ||
+      props.comics.length > 0 ||
+      props.drops.length > 0 ||
+      props.systems.length > 0,
+  );
+}
+
+const { department, posts, visuals, comics, drops, systems } = Astro.props;
+const noindex = departmentStatus(department) !== "active";
+const metaDescription = department.metaDescription ?? department.blurb;
+---
+
+<BaseLayout
+  title={`${department.label} | HobFarm`}
+  description={metaDescription}
+  canonical={departmentPath(department.slug)}
+  noindex={noindex}
+>
+  <CategoryArchive
+    department={department}
+    posts={posts}
+    visuals={visuals}
+    comics={comics}
+    drops={drops}
+    systems={systems}
+    backHref="/articles/"
+    backLabel="All articles"
+  />
+</BaseLayout>

@@ -816,7 +816,7 @@ const stack = defineCollection({
 
 // Comics are image-first objects (single-panel gags, strips, recurring bits),
 // not articles. They live in their own collection so they get clean
-// /funnies/[series]/[slug] URLs and stay out of /articles and RSS.
+// /presents/funnies/[series]/[slug] URLs and stay out of /articles and RSS.
 // `series` and `characters` are slugs into src/data/comic-series.ts and
 // src/data/characters.ts. department/format default to the comics taxonomy.
 const comics = defineCollection({
@@ -870,7 +870,7 @@ const comics = defineCollection({
 
 // Adventures are HobFarm Presents' fiction installments: long-form serial
 // story content (unlike comics, which are image-first). They live in their
-// own collection so they get clean /departments/hobfarm-presents/[series]/[slug]
+// own collection so they get clean /presents/[series]/[slug]
 // URLs and stay out of /articles and RSS. `series` is a slug into
 // src/data/story-series.ts (a loose string, like comics.series, validated only
 // at the CMS layer). `region` is free text naming a world/zone within the

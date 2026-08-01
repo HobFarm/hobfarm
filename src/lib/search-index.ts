@@ -237,7 +237,7 @@ export async function buildSearchIndex(): Promise<SearchItem[]> {
     shop: "/shop/",
     courses: "/academy/",
     grimoire: "/grimoire/",
-    "hobfarm-tv/3-degrees-of-dick-miller": "/departments/hobfarm-presents/3-degrees-of-dick-miller/",
+    "hobfarm-tv/3-degrees-of-dick-miller": "/presents/3-degrees-of-dick-miller/",
   };
   const projectItems: SearchItem[] = (await getCollection("projects")).map(
     (project) => {

@@ -19,7 +19,7 @@ const shows = (await getCollection("projects"))
 
 const showPath = (id: string) =>
   id === "hobfarm-tv/3-degrees-of-dick-miller"
-    ? "/departments/hobfarm-presents/3-degrees-of-dick-miller/"
+    ? "/presents/3-degrees-of-dick-miller/"
     : `/projects/${id.replace(/\.md$/, "")}/`;
 
 // Any gallery piece whose hero is a video, or that lives in the motion lane.
@@ -53,7 +53,7 @@ const videoArticles = (await getPublishedArticles()).filter((p) =>
             <Button isLink size="base" variant="default" href="https://www.youtube.com/@HobFarm" target="_blank" rel="noopener noreferrer">
               Subscribe on YouTube
             </Button>
-            <Button isLink size="base" variant="muted" href="/departments/hobfarm-presents/">
+            <Button isLink size="base" variant="muted" href="/presents/">
               HobFarm Presents
             </Button>
           </div>

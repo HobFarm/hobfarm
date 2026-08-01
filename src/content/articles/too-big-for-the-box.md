@@ -35,7 +35,7 @@ relatedArticles:
   - everything-is-still-loading
   - take-me-to-phobos
   - gonna-be-different
-relatedProject: "/departments/hobfarm-presents/other-alice-adventures/"
+relatedProject: "/presents/other-alice-adventures/"
 supportCTA:
   label: "Support HobFarm"
   href: "/support/"

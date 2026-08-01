@@ -74,7 +74,7 @@ const structuredData = { "@context":"https://schema.org", "@type":"CollectionPag
   />
 ) : (
 <BaseLayout title={`${program.name} | HobFarm Workshop`} description={program.description} canonical={program.href} image={pageHero} imageAlt={pageHeroAlt} structuredData={structuredData} palette="blue-red" noindex={program.noindex === true}>
-  <SectionHero eyebrow="HobFarm Workshop program" title={program.name} deck={program.description} image={pageHero} imageAlt={pageHeroAlt} theme={program.theme} status={status} cta={{label:"See the work",href:"#work"}} breadcrumbs={[{label:"Home",href:"/"},{label:"Departments",href:"/departments/"},{label:"Workshop",href:"/workshop/"},{label:program.name}]} />
+  <SectionHero eyebrow="HobFarm Workshop program" title={program.name} deck={program.description} image={pageHero} imageAlt={pageHeroAlt} theme={program.theme} status={status} cta={{label:"See the work",href:"#work"}} breadcrumbs={[{label:"Home",href:"/"},{label:"Workshop",href:"/workshop/"},{label:program.name}]} />
 
   <section class="program-index border-b border-base-800/70">
     <Wrapper variant="standard" class="py-12 lg:py-16">

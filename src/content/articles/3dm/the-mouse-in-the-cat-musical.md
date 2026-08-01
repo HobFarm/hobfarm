@@ -22,7 +22,7 @@ entryType: feature
 heroImage: "/images/3dm/the-mouse-in-the-cat-musical-hero.webp"
 socialImage: "/images/3dm/the-mouse-in-the-cat-musical-hero.webp"
 heroAlt: "Original vintage-style illustration of dancing cats and a mouse performer following a filmstrip from a 1930s soundstage into a handmade fantasy cave"
-canonical: "/departments/hobfarm-presents/3-degrees-of-dick-miller/the-mouse-in-the-cat-musical/"
+canonical: "/presents/3-degrees-of-dick-miller/the-mouse-in-the-cat-musical/"
 publishedAt: 2026-07-10
 featured: false
 status: published

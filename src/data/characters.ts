@@ -448,7 +448,7 @@ export const characters: CharacterEntry[] = [
     ],
     primaryCta: {
       label: "Explore Other Alice Adventures",
-      href: "/departments/hobfarm-presents/other-alice-adventures/",
+      href: "/presents/other-alice-adventures/",
       description:
         "Meet Alice through the anomalies, routes, and questions that pull her toward Wonderland's edge.",
     },
@@ -508,7 +508,7 @@ export const characters: CharacterEntry[] = [
     ],
     primaryCta: {
       label: "Open the Other Alice World Guide",
-      href: "/departments/hobfarm-presents/other-alice-adventures/world-guide/",
+      href: "/presents/other-alice-adventures/world-guide/",
       description: "See Chester's place among the Unsuited, routes, Houses, and current boundary evidence.",
     },
   },
@@ -572,7 +572,7 @@ export const characters: CharacterEntry[] = [
     ],
     primaryCta: {
       label: "Explore the Diamond power system",
-      href: "/departments/hobfarm-presents/other-alice-adventures/houses/#diamonds",
+      href: "/presents/other-alice-adventures/houses/#diamonds",
       description:
         "See how land, commodities, labor, and force overlap across the Diamond Highlands.",
     },

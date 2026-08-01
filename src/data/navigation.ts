@@ -8,7 +8,7 @@ export const topNavLinks: NavLink[] = [
   { label: "Articles", href: "/articles/" },
   {
     label: "Presents",
-    href: "/departments/hobfarm-presents/",
+    href: "/presents/",
     children: presentsSeries.map((entry) => ({ label: entry.shortName ?? entry.name, href: entry.href })),
   },
   {
@@ -28,11 +28,11 @@ export const footerLinkGroups: FooterGroup[] = [
     title: "Read",
     links: [
       { label: "Articles", href: "/articles/" },
-      { label: "HobFarm Presents", href: "/departments/hobfarm-presents/" },
-      { label: "Magazine Time Machine", href: "/departments/magazine-time-machine/" },
-      { label: "3DM", href: "/departments/hobfarm-presents/3-degrees-of-dick-miller/" },
-      { label: "Other Alice", href: "/departments/hobfarm-presents/other-alice-adventures/" },
-      { label: "Funnies", href: "/departments/funnies/" },
+      { label: "HobFarm Presents", href: "/presents/" },
+      { label: "Magazine Time Machine", href: "/presents/magazine-time-machine/" },
+      { label: "3DM", href: "/presents/3-degrees-of-dick-miller/" },
+      { label: "Other Alice", href: "/presents/other-alice-adventures/" },
+      { label: "Funnies", href: "/presents/funnies/" },
     ],
   },
   {
@@ -55,7 +55,6 @@ export const footerLinkGroups: FooterGroup[] = [
   {
     title: "Information",
     links: [
-      { label: "Departments", href: "/departments/" },
       { label: "About", href: "/about/" },
       { label: "Customer Help", href: "/helpcenter/" },
       { label: "Terms", href: "/legal/terms/" },

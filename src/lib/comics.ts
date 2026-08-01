@@ -12,11 +12,11 @@ export function comicSlug(comic: Comic): string {
 }
 
 export function comicPath(comic: Comic): string {
-  return `/funnies/${comic.data.series}/${comicSlug(comic)}/`;
+  return `/presents/funnies/${comic.data.series}/${comicSlug(comic)}/`;
 }
 
 export function comicTagPath(tag: string): string {
-  return `/funnies/tags/${encodeURIComponent(tag)}`;
+  return `/presents/funnies/tags/${encodeURIComponent(tag)}`;
 }
 
 export function getComicDate(comic: Comic): Date {

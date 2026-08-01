@@ -22,7 +22,7 @@ entryType: feature
 heroImage: "https://cdn.hob.farm/3dm/dick-miller/dick-miller-bucket-of-blood.jpg"
 socialImage: "https://cdn.hob.farm/3dm/dick-miller/dick-miller-bucket-of-blood.jpg"
 heroAlt: "Dick Miller as beatnik busboy and accidental sculptor Walter Paisley in A Bucket of Blood"
-canonical: "/departments/hobfarm-presents/3-degrees-of-dick-miller/enter-the-millerverse/"
+canonical: "/presents/3-degrees-of-dick-miller/enter-the-millerverse/"
 publishedAt: 2026-07-10
 updatedAt: 2026-07-11
 featured: true

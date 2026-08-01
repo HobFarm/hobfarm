@@ -27,5 +27,5 @@ export const storySeries: StorySeries[] = [{
 
 const seriesBySlug=new Map(storySeries.map((series)=>[series.slug,series]));
 export function getStorySeries(slug:string|undefined|null){return slug?seriesBySlug.get(slug):undefined}
-export function storySeriesPath(slug:string){return `/departments/hobfarm-presents/${slug}/`}
+export function storySeriesPath(slug:string){return `/presents/${slug}/`}
 export function getStorySeriesTitle(slug:string|undefined|null){return getStorySeries(slug)?.title??slug??"HobFarm Presents"}

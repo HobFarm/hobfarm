@@ -1,8 +1,8 @@
 # Canonical redirects
-/departments/hobfarm-presents/other-alice-adventures/adventure-no-01-the-boundary-table   /departments/hobfarm-presents/other-alice-adventures/   301
-/departments/hobfarm-presents/other-alice-adventures/adventure-no-01-the-boundary-table/  /departments/hobfarm-presents/other-alice-adventures/   301
-/departments/hobfarm-presents/other-alice-adventures/adventure-no-01-the-wrong-tunnel   /departments/hobfarm-presents/other-alice-adventures/   301
-/departments/hobfarm-presents/other-alice-adventures/adventure-no-01-the-wrong-tunnel/  /departments/hobfarm-presents/other-alice-adventures/   301
+/departments/hobfarm-presents/other-alice-adventures/adventure-no-01-the-boundary-table   /presents/other-alice-adventures/   301
+/departments/hobfarm-presents/other-alice-adventures/adventure-no-01-the-boundary-table/  /presents/other-alice-adventures/   301
+/departments/hobfarm-presents/other-alice-adventures/adventure-no-01-the-wrong-tunnel   /presents/other-alice-adventures/   301
+/departments/hobfarm-presents/other-alice-adventures/adventure-no-01-the-wrong-tunnel/  /presents/other-alice-adventures/   301
 
 /stylefusion  /projects/stylefusion/  301
 /sf           /projects/stylefusion/  301
@@ -49,22 +49,22 @@
 /projects/gotta-lotta-gifts/     /shop/  301
 
 # Shows moved under the HobFarm TV channel hub
-/projects/magazine-time-machine   /departments/magazine-time-machine/   301
-/projects/magazine-time-machine/  /departments/magazine-time-machine/   301
+/projects/magazine-time-machine   /presents/magazine-time-machine/   301
+/projects/magazine-time-machine/  /presents/magazine-time-machine/   301
 
 # 3DM is now a canonical HobFarm Presents title.
-/projects/hobfarm-tv/3-degrees-of-dick-miller   /departments/hobfarm-presents/3-degrees-of-dick-miller/   301
-/projects/hobfarm-tv/3-degrees-of-dick-miller/  /departments/hobfarm-presents/3-degrees-of-dick-miller/   301
-/departments/hobfarm-presents/3dm               /departments/hobfarm-presents/3-degrees-of-dick-miller/   301
-/departments/hobfarm-presents/3dm/              /departments/hobfarm-presents/3-degrees-of-dick-miller/   301
-/articles/3dm/enter-the-millerverse             /departments/hobfarm-presents/3-degrees-of-dick-miller/enter-the-millerverse/   301
-/articles/3dm/enter-the-millerverse/            /departments/hobfarm-presents/3-degrees-of-dick-miller/enter-the-millerverse/   301
-/articles/they-had-names-doll-family            /departments/hobfarm-presents/3-degrees-of-dick-miller/they-had-names-doll-family/   301
-/articles/they-had-names-doll-family/           /departments/hobfarm-presents/3-degrees-of-dick-miller/they-had-names-doll-family/   301
-/articles/topless-party-in-outer-space           /departments/hobfarm-presents/3-degrees-of-dick-miller/topless-party-in-outer-space/   301
-/articles/topless-party-in-outer-space/          /departments/hobfarm-presents/3-degrees-of-dick-miller/topless-party-in-outer-space/   301
-/articles/the-censor-eats-its-own-tail           /departments/hobfarm-presents/3-degrees-of-dick-miller/the-censor-eats-its-own-tail/   301
-/articles/the-censor-eats-its-own-tail/          /departments/hobfarm-presents/3-degrees-of-dick-miller/the-censor-eats-its-own-tail/   301
+/projects/hobfarm-tv/3-degrees-of-dick-miller   /presents/3-degrees-of-dick-miller/   301
+/projects/hobfarm-tv/3-degrees-of-dick-miller/  /presents/3-degrees-of-dick-miller/   301
+/departments/hobfarm-presents/3dm               /presents/3-degrees-of-dick-miller/   301
+/departments/hobfarm-presents/3dm/              /presents/3-degrees-of-dick-miller/   301
+/articles/3dm/enter-the-millerverse             /presents/3-degrees-of-dick-miller/enter-the-millerverse/   301
+/articles/3dm/enter-the-millerverse/            /presents/3-degrees-of-dick-miller/enter-the-millerverse/   301
+/articles/they-had-names-doll-family            /presents/3-degrees-of-dick-miller/they-had-names-doll-family/   301
+/articles/they-had-names-doll-family/           /presents/3-degrees-of-dick-miller/they-had-names-doll-family/   301
+/articles/topless-party-in-outer-space           /presents/3-degrees-of-dick-miller/topless-party-in-outer-space/   301
+/articles/topless-party-in-outer-space/          /presents/3-degrees-of-dick-miller/topless-party-in-outer-space/   301
+/articles/the-censor-eats-its-own-tail           /presents/3-degrees-of-dick-miller/the-censor-eats-its-own-tail/   301
+/articles/the-censor-eats-its-own-tail/          /presents/3-degrees-of-dick-miller/the-censor-eats-its-own-tail/   301
 
 # Retired character sheet archive -> current Cute / Corrupted entry
 /gallery/character-dev/neon-ghoul   /gallery/cute-corrupted/kareena/   301
@@ -91,20 +91,20 @@
 /articles/category/hobbot/                /workshop/workshop-notes/            301
 /articles/category/business               /workshop/workshop-notes/            301
 /articles/category/business/              /workshop/workshop-notes/            301
-/articles/category/cultural-thread        /departments/essays-arguments/       301
-/articles/category/cultural-thread/       /departments/essays-arguments/       301
-/articles/category/fake-ads               /departments/satire/                 301
-/articles/category/fake-ads/              /departments/satire/                 301
-/articles/category/before-after           /departments/before-after-eras/      301
-/articles/category/before-after/          /departments/before-after-eras/      301
-/articles/category/character-department   /departments/funnies/                301
-/articles/category/character-department/  /departments/funnies/                301
-/articles/category/archive-remix          /departments/magazine-time-machine/  301
-/articles/category/archive-remix/         /departments/magazine-time-machine/  301
-/articles/category/dead-future-report     /departments/magazine-time-machine/  301
-/articles/category/dead-future-report/    /departments/magazine-time-machine/  301
-/articles/category/3-degrees-of-dick-miller   /departments/hobfarm-presents/   301
-/articles/category/3-degrees-of-dick-miller/  /departments/hobfarm-presents/   301
+/articles/category/cultural-thread        /articles/essays-arguments/       301
+/articles/category/cultural-thread/       /articles/essays-arguments/       301
+/articles/category/fake-ads               /articles/                 301
+/articles/category/fake-ads/              /articles/                 301
+/articles/category/before-after           /workshop/before-and-after/      301
+/articles/category/before-after/          /workshop/before-and-after/      301
+/articles/category/character-department   /presents/funnies/                301
+/articles/category/character-department/  /presents/funnies/                301
+/articles/category/archive-remix          /presents/magazine-time-machine/  301
+/articles/category/archive-remix/         /presents/magazine-time-machine/  301
+/articles/category/dead-future-report     /presents/magazine-time-machine/  301
+/articles/category/dead-future-report/    /presents/magazine-time-machine/  301
+/articles/category/3-degrees-of-dick-miller   /presents/   301
+/articles/category/3-degrees-of-dick-miller/  /presents/   301
 
 # Same remaps for the doubly-legacy /blog/category/* chain (one hop, no double).
 /blog/category/technical                  /workshop/workshop-notes/            301
@@ -119,32 +119,74 @@
 /blog/category/hobbot/                    /workshop/workshop-notes/            301
 /blog/category/business                   /workshop/workshop-notes/            301
 /blog/category/business/                  /workshop/workshop-notes/            301
-/blog/category/cultural-thread            /departments/essays-arguments/       301
-/blog/category/cultural-thread/           /departments/essays-arguments/       301
-/blog/category/fake-ads                   /departments/satire/                 301
-/blog/category/fake-ads/                  /departments/satire/                 301
-/blog/category/before-after               /departments/before-after-eras/      301
-/blog/category/before-after/              /departments/before-after-eras/      301
-/blog/category/character-department       /departments/funnies/                301
-/blog/category/character-department/      /departments/funnies/                301
-/blog/category/archive-remix              /departments/magazine-time-machine/  301
-/blog/category/archive-remix/             /departments/magazine-time-machine/  301
-/blog/category/dead-future-report         /departments/magazine-time-machine/  301
-/blog/category/dead-future-report/        /departments/magazine-time-machine/  301
-/blog/category/3-degrees-of-dick-miller   /departments/hobfarm-presents/       301
-/blog/category/3-degrees-of-dick-miller/  /departments/hobfarm-presents/       301
+/blog/category/cultural-thread            /articles/essays-arguments/       301
+/blog/category/cultural-thread/           /articles/essays-arguments/       301
+/blog/category/fake-ads                   /articles/                 301
+/blog/category/fake-ads/                  /articles/                 301
+/blog/category/before-after               /workshop/before-and-after/      301
+/blog/category/before-after/              /workshop/before-and-after/      301
+/blog/category/character-department       /presents/funnies/                301
+/blog/category/character-department/      /presents/funnies/                301
+/blog/category/archive-remix              /presents/magazine-time-machine/  301
+/blog/category/archive-remix/             /presents/magazine-time-machine/  301
+/blog/category/dead-future-report         /presents/magazine-time-machine/  301
+/blog/category/dead-future-report/        /presents/magazine-time-machine/  301
+/blog/category/3-degrees-of-dick-miller   /presents/       301
+/blog/category/3-degrees-of-dick-miller/  /presents/       301
 
 # Comics desk renamed: funny-pages -> funnies.
-/departments/funny-pages   /departments/funnies/   301
-/departments/funny-pages/  /departments/funnies/   301
+/departments/funny-pages   /presents/funnies/   301
+/departments/funny-pages/  /presents/funnies/   301
 
 # Dynamic legacy redirects stay below static redirects for Pages matching.
 /blog/posts/:slug         /articles/:slug             301
 /blog/posts/:slug/        /articles/:slug/            301
 # Canonical department slugs pass straight through to the new department pages.
-/articles/category/:category   /departments/:category/   301
-/articles/category/:category/  /departments/:category/   301
-/blog/category/:category  /departments/:category/     301
-/blog/category/:category/ /departments/:category/     301
+/articles/category/:category   /articles/:category/   301
+/articles/category/:category/  /articles/:category/   301
+/blog/category/:category  /articles/:category/     301
+/blog/category/:category/ /articles/:category/     301
 /blog/tags/:tag           /articles/tags/:tag         301
 /blog/tags/:tag/          /articles/tags/:tag/        301
+
+# ---------------------------------------------------------------------------
+# Presents migration. /departments/ is retired; Presents sections, Workshop
+# programs, and editorial categories each own their own prefix. These sit at the
+# end so the specific legacy rules above win the match first.
+# ---------------------------------------------------------------------------
+
+# HobFarm TV moved out of the retiring /projects/ section.
+/projects/hobfarm-tv      /presents/hobfarm-tv/   301
+/projects/hobfarm-tv/     /presents/hobfarm-tv/   301
+/projects/hobfarm-tv/*    /presents/hobfarm-tv/:splat   301
+
+# Comics moved under Presents with the rest of the Funnies.
+/funnies                  /presents/funnies/   301
+/funnies/                 /presents/funnies/   301
+/funnies/*                /presents/funnies/:splat   301
+
+# Departments that became Presents sections.
+/departments/hobfarm-presents        /presents/   301
+/departments/hobfarm-presents/       /presents/   301
+/departments/hobfarm-presents/*      /presents/:splat   301
+/departments/magazine-time-machine   /presents/magazine-time-machine/   301
+/departments/magazine-time-machine/  /presents/magazine-time-machine/   301
+/departments/funnies                 /presents/funnies/   301
+/departments/funnies/                /presents/funnies/   301
+
+# Departments that were really Workshop programs.
+/departments/cute-corrupted     /workshop/cute-and-corrupted/   301
+/departments/cute-corrupted/    /workshop/cute-and-corrupted/   301
+/departments/before-after-eras  /workshop/before-and-after/     301
+/departments/before-after-eras/ /workshop/before-and-after/     301
+
+# Editorial categories now live under Articles.
+/departments/essays-arguments   /articles/essays-arguments/   301
+/departments/essays-arguments/  /articles/essays-arguments/   301
+
+# Everything else that was a department. Empty categories generate no page, so
+# these land on the Articles feed rather than a 404.
+/departments/:category/   /articles/   301
+/departments/:category    /articles/   301
+/departments              /   301
+/departments/             /   301

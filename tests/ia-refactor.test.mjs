@@ -31,7 +31,6 @@ test("Workshop visibility keeps route generation separate from navigation", () =
   const navigation = read("src/data/navigation.ts");
   const programRoute = read("src/pages/workshop/[program].astro");
   const workshopHub = read("src/pages/workshop/index.astro");
-  const departmentsHub = read("src/pages/departments/index.astro");
 
   const visibleOrder = [
     'id: "character-mannequin"',
@@ -51,23 +50,23 @@ test("Workshop visibility keeps route generation separate from navigation", () =
   assert.match(programRoute, /getProcessPipelineBySlug\(program\.processSlug\)/);
   assert.match(programRoute, /noindex=\{program\.noindex === true\}/);
   assert.match(workshopHub, /workshopPrograms\.filter\(\(program\) => program\.noindex !== true\)/);
-  assert.match(departmentsHub, /workshopPrograms\.filter\(\(entry\) => entry\.noindex !== true\)/);
   for (const heading of ["Character", "World", "Time and motion"]) {
     assert.match(workshopHub, new RegExp(`title: "${heading}"`));
   }
 });
 
-test("department pages can surface related systems, drops, workshop notes, and comics", () => {
-  const department = read("src/pages/departments/[slug].astro");
+test("category archives surface related systems, drops, workshop notes, and comics", () => {
+  const archive = read("src/components/archive/CategoryArchive.astro");
+  const categoryRoute = read("src/pages/articles/[category].astro");
 
-  assert.match(department, /import ComicCard/);
-  assert.match(department, /import DropCard/);
-  assert.match(department, /getProductsByDepartment/);
-  assert.match(department, /visualSystemsForDepartment/);
-  assert.match(department, /Workshop notes/);
-  assert.match(department, /Visual systems/);
-  assert.match(department, /Drops/);
-  assert.match(department, /Comics/);
+  assert.match(archive, /import ComicCard/);
+  assert.match(archive, /import DropCard/);
+  assert.match(archive, /Workshop notes/);
+  assert.match(archive, /Visual systems/);
+  assert.match(archive, /Drops/);
+  assert.match(archive, /Comics/);
+  assert.match(categoryRoute, /getProductsByDepartment/);
+  assert.match(categoryRoute, /visualSystemsForDepartment/);
 });
 
 test("about page presents the independent publisher and its operating paths", () => {

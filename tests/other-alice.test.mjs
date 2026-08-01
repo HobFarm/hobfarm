@@ -63,7 +63,7 @@ test("public chronology does not infer a fixed outside calendar",()=>{
   read("src/data/other-alice/visitors.ts"),
   read("src/data/other-alice/residents.ts"),
   read("src/components/presents/other-alice/OtherAliceStartPage.astro"),
-  read("src/pages/departments/hobfarm-presents/[series]/world-guide.astro"),
+  read("src/pages/presents/[series]/world-guide.astro"),
  ].join("\n");
  assert.doesNotMatch(publicSources,/2070s|150\s*[–-]\s*200|eleven years|arrived at seven|age 7\b/i);
  assert.match(publicSources,/outsideYears: "about 200 years"/);

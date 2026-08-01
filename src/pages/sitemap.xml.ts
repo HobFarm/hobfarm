@@ -33,12 +33,12 @@ const staticEntries: SitemapEntry[] = [
   { loc: absoluteUrl("/articles/"), changefreq: "daily", priority: "0.9" },
   { loc: absoluteUrl("/gallery/"), changefreq: "weekly", priority: "0.9" },
   {
-    loc: absoluteUrl("/departments/hobfarm-presents/"),
+    loc: absoluteUrl("/presents/"),
     changefreq: "weekly",
     priority: "0.9",
   },
   {
-    loc: absoluteUrl("/departments/hobfarm-presents/3-degrees-of-dick-miller/"),
+    loc: absoluteUrl("/presents/3-degrees-of-dick-miller/"),
     changefreq: "weekly",
     priority: "0.9",
   },

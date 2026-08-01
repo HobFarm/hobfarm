@@ -8,7 +8,7 @@ test("known missing media references are removed without replacement assets", ()
   const projects = [
     read("src/content/projects/hobbot.md"),
     read("src/content/projects/grimoire.md"),
-    read("src/pages/projects/hobfarm-tv/index.astro"),
+    read("src/pages/presents/hobfarm-tv/index.astro"),
     read("src/pages/projects/[...slug].astro"),
   ].join("\n");
   const astro = read("src/content/stack/astro.md");
@@ -22,19 +22,19 @@ test("video archive links 3DM directly to its canonical Presents route", () => {
   const page = read("src/pages/video/index.astro");
 
   assert.match(page, /const showPath/);
-  assert.match(page, /\/departments\/hobfarm-presents\/3-degrees-of-dick-miller\//);
+  assert.match(page, /\/presents\/3-degrees-of-dick-miller\//);
   assert.match(page, /href=\{showPath\(show\.id\)\}/);
 });
 
 test("Presents keeps an h2 for every series, including logo-led sections", () => {
-  const page = read("src/pages/departments/hobfarm-presents/index.astro");
+  const page = read("src/pages/presents/index.astro");
 
   assert.match(page, /<h2 class:list=\{\[entry\.logo && "sr-only"\]\}>\{entry\.name\}<\/h2>/);
   assert.doesNotMatch(page, /!entry\.logo && <h2>/);
 });
 
 test("Presents series calls to action keep explicit readable colors", () => {
-  const page = read("src/pages/departments/hobfarm-presents/index.astro");
+  const page = read("src/pages/presents/index.astro");
 
   assert.match(page, /\.series-cta\{[^}]*color:#ece9f5/);
   assert.match(page, /\.series-cta:hover,\.series-cta:focus-visible\{[^}]*color:#07060b/);

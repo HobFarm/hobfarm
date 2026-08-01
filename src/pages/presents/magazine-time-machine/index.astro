@@ -1,0 +1,56 @@
+---
+// Magazine Time Machine is a Presents section whose body is an article archive,
+// so it reuses the shared CategoryArchive rather than the story-series template
+// at `/presents/[series]`. Static because `[series]` already claims the dynamic
+// slot under `/presents/`.
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CategoryArchive from "@/components/archive/CategoryArchive.astro";
+import { getCollection } from "astro:content";
+import {
+  getDepartment,
+  departmentPath,
+  galleryTypeToDepartment,
+  resolveDepartment,
+} from "@/data/departments";
+import { visualSystemsForDepartment } from "@/data/visual-systems";
+import { getArticleDepartment, getPublishedArticles } from "@/lib/articles";
+import { getPublishedComics } from "@/lib/comics";
+import { getProductsByDepartment } from "@/lib/products";
+
+const SLUG = "magazine-time-machine";
+const department = getDepartment(SLUG)!;
+
+const posts = (await getPublishedArticles()).filter(
+  (p) => getArticleDepartment(p.data) === SLUG,
+);
+const visuals = (await getCollection("gallery"))
+  .filter((e) => !e.data.draft)
+  .filter(
+    (g) =>
+      resolveDepartment(g.data.department ?? galleryTypeToDepartment[g.data.type]) ===
+      SLUG,
+  )
+  .slice(0, 6);
+const comics = (await getPublishedComics())
+  .filter((c) => resolveDepartment(c.data.department) === SLUG)
+  .slice(0, 6);
+const drops = await getProductsByDepartment(SLUG);
+const systems = visualSystemsForDepartment(SLUG);
+---
+
+<BaseLayout
+  title={`${department.label} | HobFarm`}
+  description={department.metaDescription ?? department.blurb}
+  canonical={departmentPath(SLUG)}
+>
+  <CategoryArchive
+    department={department}
+    posts={posts}
+    visuals={visuals}
+    comics={comics}
+    drops={drops}
+    systems={systems}
+    backHref="/presents/"
+    backLabel="All Presents"
+  />
+</BaseLayout>

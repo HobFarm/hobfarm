@@ -75,7 +75,7 @@ relatedArticles:
 relatedWorkshop:
   - /workshop/stylefusion/
   - /workshop/character-mannequin/
-relatedProject: "/departments/hobfarm-presents/other-alice-adventures/"
+relatedProject: "/presents/other-alice-adventures/"
 workshopCTA:
   label: "Explore the HobFarm Workshop"
   href: "/workshop/"

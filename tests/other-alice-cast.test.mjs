@@ -183,7 +183,7 @@ test("cast route is wired into navigation, search, and sitemap", async () => {
   const [canon, nav, page, search, sitemap] = await Promise.all([
     read("src/data/other-alice/canon.ts"),
     read("src/data/other-alice/navigation.ts"),
-    read("src/pages/departments/hobfarm-presents/other-alice-adventures/cast/index.astro"),
+    read("src/pages/presents/other-alice-adventures/cast/index.astro"),
     read("src/lib/search-index.ts"),
     read("src/pages/sitemap.xml.ts"),
   ]);
@@ -197,7 +197,7 @@ test("cast route is wired into navigation, search, and sitemap", async () => {
 
 test("cast presentation is data-derived and complete without character art", async () => {
   const [page, folio] = await Promise.all([
-    read("src/pages/departments/hobfarm-presents/other-alice-adventures/cast/index.astro"),
+    read("src/pages/presents/other-alice-adventures/cast/index.astro"),
     read("src/components/presents/other-alice/cast/CastDossierFolio.astro"),
   ]);
   assert.match(page, /otherAliceCastGroups\.flatMap/);

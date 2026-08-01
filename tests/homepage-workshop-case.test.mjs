@@ -68,7 +68,7 @@ test("homepage Workshop capabilities use one shared data model and real routes",
     "/workshop/before-and-after/",
     "/workshop/stylefusion/",
     "/workshop/future-carriage/",
-    "/departments/hobfarm-presents/other-alice-adventures/world-guide/",
+    "/presents/other-alice-adventures/world-guide/",
   ]) {
     assert.match(combined, new RegExp(href.replaceAll("/", "\\/")));
   }

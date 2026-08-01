@@ -5,7 +5,7 @@ import test from "node:test";
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
 
 test("Presents exposes the new editorial journey", async () => {
-  const page = await read("src/pages/departments/hobfarm-presents/index.astro");
+  const page = await read("src/pages/presents/index.astro");
   for (const anchor of ["3dm", "magazine-time-machine", "other-alice", "funnies", "hobfarm-tv"]) {
     assert.match(page, new RegExp(`entry.id|${anchor}`));
   }

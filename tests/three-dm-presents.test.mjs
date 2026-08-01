@@ -6,7 +6,7 @@ const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf
 
 test("HobFarm Presents exposes all five series from shared hierarchy data", () => {
   const data = read("src/data/site-hierarchy.ts");
-  const hub = read("src/pages/departments/hobfarm-presents/index.astro");
+  const hub = read("src/pages/presents/index.astro");
 
   for (const title of ["3 Degrees of Dick Miller", "Magazine Time Machine", "Other Alice Adventures", "Funnies", "HobFarm TV"]) {
     assert.match(data, new RegExp(title));
@@ -17,16 +17,16 @@ test("HobFarm Presents exposes all five series from shared hierarchy data", () =
 });
 
 test("3DM has one canonical hub and nested introductory article", () => {
-  const hub = read("src/pages/departments/hobfarm-presents/3-degrees-of-dick-miller/index.astro");
+  const hub = read("src/pages/presents/3-degrees-of-dick-miller/index.astro");
   const article = read("src/content/articles/3dm/enter-the-millerverse.md");
   const articleRoutes = read("src/pages/articles/[...slug].astro");
   const redirects = read("public/_redirects");
 
   assert.match(hub, /THREE_DM_PATH/);
-  assert.match(article, /canonical: "\/departments\/hobfarm-presents\/3-degrees-of-dick-miller\/enter-the-millerverse\/"/);
+  assert.match(article, /canonical: "\/presents\/3-degrees-of-dick-miller\/enter-the-millerverse\/"/);
   assert.match(articleRoutes, /!entry\.data\.presentsSeries/);
-  assert.match(redirects, /\/projects\/hobfarm-tv\/3-degrees-of-dick-miller\s+\/departments\/hobfarm-presents\/3-degrees-of-dick-miller\/\s+301/);
-  assert.match(redirects, /\/departments\/hobfarm-presents\/3dm\/\s+\/departments\/hobfarm-presents\/3-degrees-of-dick-miller\/\s+301/);
+  assert.match(redirects, /\/projects\/hobfarm-tv\/3-degrees-of-dick-miller\s+\/presents\/3-degrees-of-dick-miller\/\s+301/);
+  assert.match(redirects, /\/departments\/hobfarm-presents\/3dm\/\s+\/presents\/3-degrees-of-dick-miller\/\s+301/);
 });
 
 test("film-centered features use the 3DM group and preserve their former URLs", () => {
@@ -37,7 +37,7 @@ test("film-centered features use the 3DM group and preserve their former URLs", 
   ];
   const redirects = read("public/_redirects");
   const layout = read("src/layouts/ThreeDMEntryLayout.astro");
-  const presentsHub = read("src/pages/departments/hobfarm-presents/index.astro");
+  const presentsHub = read("src/pages/presents/index.astro");
 
   for (const path of articlePaths) {
     const article = read(path);
@@ -49,14 +49,14 @@ test("film-centered features use the 3DM group and preserve their former URLs", 
     assert.match(
       article,
       new RegExp(
-        `^canonical: "/departments/hobfarm-presents/3-degrees-of-dick-miller/${slug}/"$`,
+        `^canonical: "/presents/3-degrees-of-dick-miller/${slug}/"$`,
         "m",
       ),
     );
     assert.match(
       redirects,
       new RegExp(
-        `/articles/${slug}/?\\s+/departments/hobfarm-presents/3-degrees-of-dick-miller/${slug}/\\s+301`,
+        `/articles/${slug}/?\\s+/presents/3-degrees-of-dick-miller/${slug}/\\s+301`,
       ),
     );
   }
@@ -67,7 +67,7 @@ test("film-centered features use the 3DM group and preserve their former URLs", 
 });
 
 test("3DM launch uses the supplied editorial voice and honest media state", () => {
-  const hub = read("src/pages/departments/hobfarm-presents/3-degrees-of-dick-miller/index.astro");
+  const hub = read("src/pages/presents/3-degrees-of-dick-miller/index.astro");
   const article = read("src/content/articles/3dm/enter-the-millerverse.md");
   const combined = `${hub}\n${article}`;
 
@@ -114,10 +114,10 @@ test("3DM schema supports optional video, evidence chains, warnings, and sources
 });
 
 test("3DM logo is rendered uncropped and entries remain discoverable", () => {
-  const hero = read("src/pages/departments/hobfarm-presents/3-degrees-of-dick-miller/index.astro");
+  const hero = read("src/pages/presents/3-degrees-of-dick-miller/index.astro");
   const card = read("src/components/presents/PresentsTitleCard.astro");
   const search = read("src/lib/search-index.ts");
-  const rss = read("src/pages/departments/hobfarm-presents/rss.xml.ts");
+  const rss = read("src/pages/presents/rss.xml.ts");
 
   assert.match(hero, /object-fit:contain/);
   assert.match(card, /object-fit: contain/);
@@ -127,7 +127,7 @@ test("3DM logo is rendered uncropped and entries remain discoverable", () => {
 
 test("3DM links its interactive GPT companion from the hub and entry layout", () => {
   const titleData = read("src/data/presents-titles.ts");
-  const hub = read("src/pages/departments/hobfarm-presents/3-degrees-of-dick-miller/index.astro");
+  const hub = read("src/pages/presents/3-degrees-of-dick-miller/index.astro");
   const layout = read("src/layouts/ThreeDMEntryLayout.astro");
 
   assert.match(titleData, /g-682afb75dd04819189c82970670f6f7e-3-degrees-of-miller-3dm/);
@@ -137,7 +137,7 @@ test("3DM links its interactive GPT companion from the hub and entry layout", ()
 
 test("the first 3DM connection feature documents the Billy Barty route", () => {
   const feature = read("src/content/articles/3dm/the-mouse-in-the-cat-musical.md");
-  const hub = read("src/pages/departments/hobfarm-presents/3-degrees-of-dick-miller/index.astro");
+  const hub = read("src/pages/presents/3-degrees-of-dick-miller/index.astro");
 
   assert.match(feature, /title: "The Mouse in the Cat Musical"/);
   assert.match(feature, /degreeCount: 3/);
@@ -157,7 +157,7 @@ test("the first 3DM connection feature documents the Billy Barty route", () => {
 test("the 1933 Warner feature maps the production world behind the first route", () => {
   const feature = read("src/content/articles/3dm/1933-the-year-warner-bros-built-a-world.md");
   const mouseFeature = read("src/content/articles/3dm/the-mouse-in-the-cat-musical.md");
-  const hub = read("src/pages/departments/hobfarm-presents/3-degrees-of-dick-miller/index.astro");
+  const hub = read("src/pages/presents/3-degrees-of-dick-miller/index.astro");
 
   assert.match(feature, /title: "1933: The Year Warner Bros\. Built a World"/);
   assert.match(feature, /42nd Street[\s\S]*Gold Diggers of 1933[\s\S]*Footlight Parade/);
@@ -182,7 +182,7 @@ test("the 1933 Warner feature maps the production world behind the first route",
 
 test("the McLuhan feature connects experimental television to the feed with R2 media", () => {
   const feature = read("src/content/articles/3dm/you-know-nothing-of-my-algorithm.mdx");
-  const hub = read("src/pages/departments/hobfarm-presents/3-degrees-of-dick-miller/index.astro");
+  const hub = read("src/pages/presents/3-degrees-of-dick-miller/index.astro");
   const combined = `${feature}\n${hub}`;
 
   assert.match(feature, /title: "You Know Nothing of My Algorithm"/);

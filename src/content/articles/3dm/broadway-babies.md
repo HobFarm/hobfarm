@@ -24,7 +24,7 @@ arrangement: horizontal-hero
 heroImage: "https://cdn.hob.farm/3dm/broadway-babies/broadway-babies-hero.png"
 socialImage: "https://cdn.hob.farm/3dm/broadway-babies/broadway-babies-hero.png"
 heroAlt: "Illustrated Broadway Babies feature art with Alice White, Marion Byron, and Sally Eilers against a Broadway nightscape"
-canonical: "/departments/hobfarm-presents/3-degrees-of-dick-miller/broadway-babies/"
+canonical: "/presents/3-degrees-of-dick-miller/broadway-babies/"
 publishedAt: 2026-07-11
 featured: false
 status: published

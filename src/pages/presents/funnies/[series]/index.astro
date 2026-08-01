@@ -27,7 +27,7 @@ const heroImageAlt = series.heroImageAlt ?? comics[0]?.data.imageAlt ?? `${serie
 <BaseLayout
   title={`${series.title} | Funnies | HobFarm`}
   description={series.seoDescription ?? series.premise}
-  canonical={`/funnies/${series.slug}/`}
+  canonical={`/presents/funnies/${series.slug}/`}
   image={heroImage}
   imageAlt={heroImageAlt}
 >
@@ -39,7 +39,7 @@ const heroImageAlt = series.heroImageAlt ?? comics[0]?.data.imageAlt ?? `${serie
           deck={series.deck ?? series.premise}
           image={heroImage}
           imageAlt={heroImageAlt}
-          backHref="/departments/funnies/"
+          backHref="/presents/funnies/"
           backLabel="All Funnies"
         >
           {series.characters.length > 0 && (

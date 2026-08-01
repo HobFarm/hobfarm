@@ -18,7 +18,7 @@ export const siteSections: SiteSection[] = [
     kicker: "Original series, films, and story worlds",
     description:
       "Enter Other Alice Adventures, 3 Degrees of Dick Miller, and the illustrated fiction, film-history series, video essays, and moving scenes arriving next.",
-    href: "/departments/hobfarm-presents/",
+    href: "/presents/",
     action: "Enter Presents",
     accent: "#a06bff",
     image: "https://cdn.hob.farm/hero-images/hobfarm-presents-hero.png",
@@ -31,7 +31,7 @@ export const siteSections: SiteSection[] = [
     kicker: "Cartoons, strips, and recurring characters",
     description:
       "Read Buffcock, Larry, Gary, the Farm cartoons, and the rest of the cast as they wander into panels, strips, and animated trouble.",
-    href: "/departments/funnies/",
+    href: "/presents/funnies/",
     action: "Read the Funnies",
     accent: "#5cf0a6",
     image: "https://cdn.hob.farm/hero-images/funnies-hero.png",

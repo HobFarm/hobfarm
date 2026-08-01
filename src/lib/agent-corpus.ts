@@ -135,19 +135,19 @@ export const CURATED_AGENT_LINKS: AgentLink[] = [
   },
   {
     title: "HobFarm Presents",
-    url: "https://hob.farm/departments/hobfarm-presents/",
+    url: "https://hob.farm/presents/",
     description:
       "HobFarm's series imprint for recurring story worlds, film-history projects, illustrated fiction, video essays, and moving scenes.",
   },
   {
     title: "3 Degrees of Dick Miller",
-    url: "https://hob.farm/departments/hobfarm-presents/3-degrees-of-dick-miller/",
+    url: "https://hob.farm/presents/3-degrees-of-dick-miller/",
     description:
       "A film-history media series following documented production connections to Dick Miller in three degrees or fewer.",
   },
   {
     title: "Other Alice Adventures",
-    url: "https://hob.farm/departments/hobfarm-presents/other-alice-adventures/",
+    url: "https://hob.farm/presents/other-alice-adventures/",
     description:
       "An original illustrated Alice in Wonderland serial about the Alice who stayed.",
   },
@@ -172,7 +172,7 @@ export const SECTION_INDEX_LINKS: AgentLink[] = [
   },
   {
     title: "HobFarm Presents llms index",
-    url: "https://hob.farm/departments/hobfarm-presents/llms.txt",
+    url: "https://hob.farm/presents/llms.txt",
     description:
       "Published fiction series, Adventures, and principal character guides.",
   },
@@ -463,7 +463,7 @@ export function projectPublicPath(
   if (slug === "courses") return "/academy/";
   if (slug === "grimoire") return "/grimoire/";
   if (slug === "hobfarm-tv/3-degrees-of-dick-miller") {
-    return "/departments/hobfarm-presents/3-degrees-of-dick-miller/";
+    return "/presents/3-degrees-of-dick-miller/";
   }
   return canonicalPath(`/projects/${slug}`);
 }

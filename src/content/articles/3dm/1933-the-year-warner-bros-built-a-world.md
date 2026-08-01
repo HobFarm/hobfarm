@@ -23,7 +23,7 @@ entryType: feature
 heroImage: "/images/3dm/1933-warner-built-a-world-hero.webp"
 socialImage: "/images/3dm/1933-warner-built-a-world-hero.webp"
 heroAlt: "Original vintage-style illustration of a 1933 Hollywood soundstage operating as a factory of reusable sets, repertory actors, camera cranes, and geometric chorus lines"
-canonical: "/departments/hobfarm-presents/3-degrees-of-dick-miller/1933-the-year-warner-bros-built-a-world/"
+canonical: "/presents/3-degrees-of-dick-miller/1933-the-year-warner-bros-built-a-world/"
 publishedAt: 2026-07-10
 featured: false
 status: published

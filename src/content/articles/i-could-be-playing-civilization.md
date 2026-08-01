@@ -35,7 +35,7 @@ relatedArticles:
   - a-world-of-geniuses-needs-a-system
   - you-do-not-own-the-ai-you-pay-for
   - everything-is-still-loading
-relatedProject: "/departments/hobfarm-presents/other-alice-adventures/"
+relatedProject: "/presents/other-alice-adventures/"
 supportCTA:
   label: "Support HobFarm"
   href: "/support/"

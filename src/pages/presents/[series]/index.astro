@@ -93,7 +93,7 @@ const structuredData = {
           "@type": "ListItem",
           position: 1,
           name: "HobFarm Presents",
-          item: "https://hob.farm/departments/hobfarm-presents/",
+          item: "https://hob.farm/presents/",
         },
         {
           "@type": "ListItem",
@@ -114,7 +114,7 @@ const structuredData = {
   image={seriesImage}
   imageAlt={seriesImageAlt}
   structuredData={structuredData}
-  feed={{ href: "/departments/hobfarm-presents/rss.xml", title: "HobFarm Presents" }}
+  feed={{ href: "/presents/rss.xml", title: "HobFarm Presents" }}
 >
   {isOtherAlice && <OtherAliceStartPage series={series} adventures={adventures} />}
 
@@ -129,7 +129,7 @@ const structuredData = {
           image={seriesImage}
           imageAlt={seriesImageAlt}
           eyebrow={series.eyebrow ?? "HobFarm Presents"}
-          backHref="/departments/hobfarm-presents/"
+          backHref="/presents/"
           backLabel="HobFarm Presents"
         />
 
