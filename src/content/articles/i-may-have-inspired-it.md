@@ -27,7 +27,7 @@ socialCaption: "I was a child inspecting the birdbath beside the Thomas Hill Sta
 canonical: "/articles/i-may-have-inspired-it/"
 pubDate: 2026-08-01
 publishedAt: 2026-08-01T17:20:00-07:00
-status: scheduled
+status: published
 featured: false
 coverStory: false
 draft: false
