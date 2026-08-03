@@ -23,9 +23,15 @@ test("homepage hero leads with the publisher, support, an explained work index, 
     assert.match(homepage, new RegExp(`id: "${id}"`));
   }
   assert.match(homepage, /KofiTipCard/);
-  assert.match(homepage, /hobfarm-logo-white\.svg/);
+  assert.match(homepage, /hobfarm-rabbit-hole-logo\.mp4/);
+  assert.match(homepage, /poster="https:\/\/cdn\.hob\.farm\/brand\/hobfarm-drip-logo\.png"/);
+  assert.match(homepage, /autoplay/);
+  assert.match(homepage, /muted/);
+  assert.match(homepage, /loop/);
+  assert.match(homepage, /playsinline/);
+  assert.match(homepage, /object-fit: cover/);
   assert.match(homepage, /Five outputs\. One habit of keeping the work inspectable\./);
-  assert.doesNotMatch(homepage, /autoplay|rabbit-hole-logo/);
+  assert.doesNotMatch(homepage, /hobfarm-logo-white\.svg/);
   assert.match(homepage, /Now at HobFarm/);
   assert.match(homepage, /Three recent articles/);
   assert.match(homepage, /getPublishedHomepageFeatures/);

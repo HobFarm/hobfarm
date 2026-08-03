@@ -2,14 +2,31 @@
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 
-const audiences = [
-  "independent film",
-  "music and performance",
-  "publishing",
-  "characters and worlds",
-  "unusual products",
-  "archives and alternate histories",
-  "independent brands and small creative teams",
+const paths = [
+  {
+    eyebrow: "Workshop",
+    title: "Find a useful starting point",
+    description:
+      "Browse finished work, source material, tests, revisions, and production records. Use them for inspiration or adapt the underlying idea to your own project.",
+    href: "/workshop/",
+    action: "Visit the Workshop",
+  },
+  {
+    eyebrow: "Academy",
+    title: "Learn a repeatable workflow",
+    description:
+      "Academy courses turn stable methods into guided practice, templates, and working files. Start here when you want to understand the process and make the work yourself.",
+    href: "/academy/",
+    action: "Browse the Academy",
+  },
+  {
+    eyebrow: "Custom work",
+    title: "Bring HobFarm into the project",
+    description:
+      "Some problems need a dedicated workflow and finished production. The current focus is scene-specific VFX and AI-assisted visual production for independent film, along with character, image, motion, and web work.",
+    href: "/services/",
+    action: "See services",
+  },
 ] as const;
 ---
 
@@ -17,10 +34,13 @@ const audiences = [
   <Wrapper variant="standard" class="py-14 lg:py-20">
     <div class="creative-inquiry__layout">
       <div>
-        <p>Creative projects</p>
-        <h2 id="creative-inquiry-heading">Built for people making something specific.</h2>
+        <p>Explore, learn, or hire HobFarm</p>
+        <h2 id="creative-inquiry-heading">Use the work at the level you need.</h2>
         <p class="creative-inquiry__copy">
-          Start with a script, archive, photograph, character, reference pile, product, or world that needs a visual system. HobFarm can help define the direction, build the production assets, and finish the still, motion, or web pieces the project actually needs.
+          The Workshop shows how the experiments and production decisions fit together. Academy courses teach the parts that can be repeated. If your project needs its own workflow, production assets, or scene-specific visual effects, HobFarm can help build and finish it.
+        </p>
+        <p class="creative-inquiry__principle">
+          These tools are easier to judge when you make something with them. HobFarm uses them to extend a person's ideas and skills, with human direction at every stage.
         </p>
         <Button
           isLink
@@ -31,12 +51,23 @@ const audiences = [
           data-source-placement="creative-audience"
           class="mt-7 w-fit"
         >
-          Start a creative project
+          Discuss a custom project
         </Button>
       </div>
-      <ul aria-label="Kinds of creative work">
-        {audiences.map((audience) => <li>{audience}</li>)}
-      </ul>
+      <nav aria-label="Ways to use HobFarm's work">
+        <ul>
+          {paths.map((path) => (
+            <li>
+              <a href={path.href}>
+                <span>{path.eyebrow}</span>
+                <h3>{path.title}</h3>
+                <p>{path.description}</p>
+                <strong>{path.action} &rarr;</strong>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </div>
   </Wrapper>
 </section>
@@ -85,6 +116,14 @@ const audiences = [
     line-height: 1.75;
   }
 
+  .creative-inquiry__principle {
+    max-width: 46rem;
+    margin: 1rem 0 0;
+    color: #d6ddd7;
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
   ul {
     display: grid;
     gap: 0.55rem;
@@ -95,14 +134,59 @@ const audiences = [
   }
 
   li {
-    padding: 0.8rem 0.9rem;
+    margin: 0;
+  }
+
+  li a {
+    display: grid;
+    gap: 0.55rem;
+    padding: 1rem;
     border: 1px solid #284133;
     background: rgb(47 224 137 / 0.04);
     color: #d6ddd7;
+    text-decoration: none;
+    transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+  }
+
+  li a:hover {
+    border-color: #2fe089;
+    background: rgb(47 224 137 / 0.08);
+    transform: translateX(-0.2rem);
+  }
+
+  li a:focus-visible {
+    outline: 2px solid #2fe089;
+    outline-offset: 3px;
+  }
+
+  li span,
+  li strong {
+    color: #2fe089;
     font-family: var(--font-mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.04em;
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
+  }
+
+  li h3 {
+    margin: 0;
+    color: #f0f4f0;
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 400;
+    line-height: 1.1;
+  }
+
+  li p {
+    margin: 0;
+    color: #aab4ac;
+    font-size: 0.82rem;
+    line-height: 1.55;
+  }
+
+  li strong {
+    margin-top: 0.3rem;
   }
 
   @media (min-width: 64rem) {

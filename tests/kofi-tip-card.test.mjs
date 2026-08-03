@@ -26,7 +26,8 @@ test("the homepage and footer keep native Ko-fi support links", () => {
   const footer = read("src/components/global/Footer.astro");
 
   assert.match(homepage, /<KofiTipCard variant="hero" placement="homepage-hero"/);
-  assert.match(homepage, /hobfarm-logo-white\.svg/);
+  assert.match(homepage, /hobfarm-rabbit-hole-logo\.mp4/);
+  assert.match(homepage, /hobfarm-drip-logo\.png/);
   assert.match(footer, /<KofiTipCard variant="footer" placement="site-footer"/);
   assert.doesNotMatch(footer, /KofiCta|variant="symbol"|text="Ko-fi"/);
 });

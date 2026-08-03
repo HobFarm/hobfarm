@@ -31,3 +31,17 @@ test("homepage separates sections from content formats", () => {
   assert.match(data, /3 Degrees of Dick Miller/);
   assert.match(data, /images, two-packs, character sheets, hero shots, posters, videos, commissions/);
 });
+
+test("homepage offers clear paths to explore, learn, or hire HobFarm", () => {
+  const inquiry = read("src/components/home/HomeCreativeInquiry.astro");
+
+  assert.match(inquiry, /Use the work at the level you need\./);
+  assert.match(inquiry, /scene-specific VFX and AI-assisted visual production for independent film/);
+  assert.match(inquiry, /Discuss a custom project/);
+
+  for (const href of ["/workshop/", "/academy/", "/services/"]) {
+    assert.match(inquiry, new RegExp(`href: "${href.replaceAll("/", "\\/")}"`));
+  }
+
+  assert.doesNotMatch(inquiry, /const audiences/);
+});

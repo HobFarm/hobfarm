@@ -99,14 +99,25 @@ const sampler = [
 
       <div class="publisher-front__support">
         <figure class="publisher-front__logo">
-          <img
-            src="https://cdn.hob.farm/brand/hobfarm-logo-white.svg"
-            alt="HobFarm"
-            width="1912"
-            height="448"
-            loading="eager"
-            decoding="async"
-          />
+          <video
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            poster="https://cdn.hob.farm/brand/hobfarm-drip-logo.png"
+            aria-label="Animated HobFarm logo"
+            width="1440"
+            height="1440"
+          >
+            <source src="https://cdn.hob.farm/brand/hobfarm-rabbit-hole-logo.mp4" type="video/mp4" />
+            <img
+              src="https://cdn.hob.farm/brand/hobfarm-drip-logo.png"
+              alt="HobFarm"
+              width="1912"
+              height="448"
+            />
+          </video>
         </figure>
         <KofiTipCard variant="hero" placement="homepage-hero" />
       </div>
@@ -261,7 +272,7 @@ const sampler = [
 
   .publisher-front__logo {
     display: grid;
-    min-height: 15rem;
+    aspect-ratio: 16 / 9;
     margin: 0;
     place-items: center;
     overflow: hidden;
@@ -274,10 +285,15 @@ const sampler = [
     box-shadow: inset 0 0 80px rgb(0 0 0 / 0.75), 0 28px 90px rgb(0 0 0 / 0.32);
   }
 
-  .publisher-front__logo img {
-    width: min(78%, 32rem);
+  .publisher-front__logo video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .publisher-front__logo video img {
+    width: 100%;
     height: auto;
-    filter: drop-shadow(0 0 18px rgb(25 227 227 / 0.38));
   }
 
   .publisher-front__eyebrow,
