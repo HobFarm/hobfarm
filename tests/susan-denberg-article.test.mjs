@@ -44,7 +44,7 @@ test("Susan Denberg feature keeps its schedule, licensed media, and Playboy repo
   assert.match(headers, /img-src[^;\n]*https:\/\/upload\.wikimedia\.org/);
   assert.match(headers, /img-src[^;\n]*https:\/\/tile\.loc\.gov/);
   assert.match(article, /CC BY-SA 2\.0/);
-  assert.match(article, /The supplied scans are being used as a primary source, not republished/);
-  assert.match(article, /The pictorial’s nude centerfold and full magazine pages do not appear here/);
+  assert.doesNotMatch(article, /The supplied scans are being used as a primary source, not republished/);
+  assert.doesNotMatch(article, /The pictorial’s nude centerfold and full magazine pages do not appear here/);
   assert.doesNotMatch(article, /playboy-centerfold\.(?:jpg|jpeg|png|webp)/i);
 });
