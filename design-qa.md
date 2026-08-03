@@ -1,48 +1,63 @@
-# Character Mannequin landscape hero design QA
+**Source visual truth**
 
-## Comparison target
+- User-provided homepage Future Carriage screenshot and layout brief in the active conversation.
+- Orange historical source: `public/media/workshop/ami-legacy/historical/diligence-coach.webp` (1920 × 1235).
+- Existing HobFarm Legacy campaign assets in `public/media/workshop/ami-legacy/`.
 
-- Source visual truth: `C:/Users/xkxxk/AppData/Local/Temp/hobfarm-character-desktop-final.png` (pre-change 1440 × 900 capture matching the user-supplied current-state screenshot)
-- Implementation URL: `http://127.0.0.1:4321/workshop/character-mannequin/`
-- Implementation screenshot: `C:/Users/xkxxk/AppData/Local/Temp/hobfarm-character-desktop-stacked.png`
-- Mobile screenshot: `C:/Users/xkxxk/AppData/Local/Temp/hobfarm-character-mobile-stacked.png`
-- Viewport: 1440 × 900 CSS pixels at device scale factor 1; responsive check at 375 × 812
-- State: signed-out public route, top of page, default look tabs
-- Full-view comparison evidence: `C:/Users/xkxxk/AppData/Local/Temp/hobfarm-character-layout-comparison.png`
+**Implementation evidence**
 
-No separate focused crop was needed. The full viewport contains the complete hero at readable native resolution, including the headline, deck, actions, and enough of the landscape artwork to verify its order, width, crop, and spacing.
+- Desktop screenshot: `C:\Users\xkxxk\AppData\Local\Temp\hobfarm-future-carriage-desktop.png`.
+- Mobile screenshot: `C:\Users\xkxxk\AppData\Local\Temp\hobfarm-future-carriage-mobile.png`.
+- Route and state: homepage, Future Carriage section, default dark theme, static content.
+- Desktop capture: 1757 × 909 pixels at the browser's default 1757 × 909 CSS viewport.
+- Mobile capture: 390 × 844 pixels at a 390 × 844 CSS viewport.
+- Density normalization: browser screenshots were compared at their native CSS viewport size; no resampling was needed.
 
-## Findings
+**Full-view comparison evidence**
 
-No actionable P0, P1, or P2 differences remain after the layout pass.
+- The Future Carriage section now follows the requested four-part image sequence.
+- The existing Legacy campaign image leads at full width.
+- The supplied orange diligence drawing appears first beside the orange autonomous-coach interpretation.
+- The Brewster No. 3917 drawing follows beside its modern Model 3917 interpretation.
+- The Ami and Model 3917 presenter frame closes the sequence at full width.
+- The two redwood campaign images are no longer present in the homepage section.
 
-- Fonts and typography: the existing display and mono faces, weights, letter spacing, and hierarchy are preserved. The landscape layout gives the headline the full content width, producing a balanced two-line desktop wrap instead of the narrow five-line column.
-- Spacing and layout rhythm: the copy now occupies one full-width row and the artwork begins 56 pixels below it at 1440 pixels. The desktop grid resolves to one 1216-pixel column. Mobile retains the existing vertical flow with a 32-pixel gap and no horizontal overflow.
-- Colors and visual tokens: the black, violet, white, muted grey, and mint palette is unchanged. Existing borders, button treatments, and background lighting remain intact.
-- Image quality and asset fidelity: the same 1672 × 941 landscape source is rendered uncropped at full content width. No placeholder, generated replacement, or code-native approximation was introduced.
-- Copy and content: headline, deck, calls to action, caption, and lower-page content are unchanged.
-- Responsiveness and accessibility: desktop and 375 × 812 captures have no document overflow. Header and footer remain present. The hero keeps semantic heading and figure markup.
-- Interaction states: both hero CTA destinations remain correct. Four look tab groups retain one selected and visible panel each, and ArrowRight advances focus and selection.
-- Console and media: zero page console errors and zero failed image responses in the final Character Mannequin passes.
+**Focused region comparison evidence**
 
-## Comparison history
+- Desktop comparison cards were inspected at readable scale. Historical sources use `object-fit: contain`; modern images use `object-fit: cover`. Both pairs remain aligned without stretching.
+- The Ami presenter image is a single 16:9 full-width frame beneath the comparison row.
+- The mobile comparison cards stack each historical drawing immediately above its modern interpretation. Titles, source labels, and image captions remain readable without horizontal overflow.
+- Mobile measurements reported a 341-pixel content width for both the comparison and presenter images, with no horizontal overflow.
 
-### Iteration 1
+**Findings**
 
-- Earlier P1 finding: the landscape hero image shared a desktop row with the headline, forcing the title into a very tall narrow column and making the artwork compete with it.
-- Fix made: derive the hero arrangement from the media dimensions, use a full-width horizontal layout for landscape art, and preserve the two-column option for future portrait art.
-- Post-fix evidence: the 1440 × 900 implementation capture shows the complete copy block first and the landscape artwork beneath it; computed layout confirms the artwork begins below the copy and the grid uses one column.
+- No actionable P0, P1, or P2 differences remain.
+- Fonts and typography: existing HobFarm display and mono treatments preserve the homepage hierarchy at desktop and mobile widths.
+- Spacing and layout rhythm: the full-width hero, two comparison cards, and final presenter frame form a clear sequence with consistent gaps and borders.
+- Colors and visual tokens: the existing warm brown and gold Future Carriage palette remains intact.
+- Image quality and asset fidelity: all supplied and existing raster assets render sharply, with historical drawings contained rather than cropped.
+- Copy and content: captions identify the historical and modern sides, preserve source notes, keep the concept-campaign disclaimer, and explain Ami's role as a spokesperson produced through the avatar workflow.
 
-## Implementation checklist
+**Primary interactions and console**
 
-- [x] Detect landscape and portrait hero orientation from media dimensions.
-- [x] Stack landscape artwork below the complete headline block.
-- [x] Preserve a two-column desktop layout for portrait artwork.
-- [x] Keep the existing mobile stack, copy, assets, and interactions.
-- [x] Validate desktop and mobile overflow, console, images, CTAs, and tabs.
+- Confirmed the section exposes the existing `/workshop/future-carriage/` case-study link and `/contact/?subject=creative-project` inquiry link.
+- No application console errors were found. Chrome reported a message-channel warning from browser-extension plumbing, unrelated to the page.
 
-## Follow-up polish
+**Comparison history**
 
-No blocking polish remains.
+- Initial implementation pass produced no P0, P1, or P2 findings. No visual correction loop was required.
+
+**Implementation checklist**
+
+- [x] Lead with the Legacy campaign hero.
+- [x] Pair the orange historical drawing with the orange modern concept.
+- [x] Pair the 3917 historical drawing with the green Model 3917 concept.
+- [x] Close with Ami and Model 3917 as the avatar-spokesperson application.
+- [x] Remove the two redwood campaign images from the homepage section.
+- [x] Preserve responsive behavior and existing calls to action.
+
+**Follow-up polish**
+
+- None required for this pass.
 
 final result: passed

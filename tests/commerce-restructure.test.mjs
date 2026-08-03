@@ -17,7 +17,7 @@ function publicSourceFiles(directory) {
 test("Shop is a three-lane marketplace directory with secondary learning and support", () => {
   const shop = read("src/pages/shop/index.astro");
   const storefronts = read("src/data/storefronts.ts");
-  const homepageShop = read("src/components/home/LatestDrops.astro");
+  const homepage = read("src/pages/index.astro");
   const product = read("src/content/products/melting-rabbit-hole-dad-hat.md");
 
   for (const name of ["Etsy", "DeviantArt", "eBay"]) {
@@ -42,10 +42,7 @@ test("Shop is a three-lane marketplace directory with secondary learning and sup
   assert.doesNotMatch(shop, /getPublicProducts|DropCard|Direct merchandise|Printful|POD/);
   assert.doesNotMatch(shop, /"@type": "Product"/);
 
-  assert.match(homepageShop, /Different work, different shelves/);
-  assert.match(homepageShop, /Find the right shop/);
-  assert.match(homepageShop, /href="\/shop\/"/);
-  assert.doesNotMatch(homepageShop, /getLatestDrops|DropCard|Melting Rabbit Hole Dad Hat/);
+  assert.doesNotMatch(homepage, /LatestDrops|Different work, different shelves/);
 
   assert.match(product, /status: archived/);
   assert.match(product, /featured: false/);

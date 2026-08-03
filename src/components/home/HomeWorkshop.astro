@@ -2,6 +2,7 @@
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import WorkshopMethodStrip from "@/components/workshop/WorkshopMethodStrip.astro";
+import { getMedia } from "@/data/media-registry";
 import { getWorkshopProject } from "@/data/workshop-projects";
 
 const beforeAfter = getWorkshopProject("before-after")!;
@@ -18,24 +19,34 @@ const evidenceLabels = [
 
 const characterProofs = [
   {
-    media: character.approvedAssets[0],
+    media: getMedia("workshop.character-mannequin.home.brief"),
+    label: "01 / Brief or portrait",
+    title: "Write the continuity brief",
+    description: "Record the person's role, age range, proportions, face structure, and the traits that must survive every later variation. A portrait can anchor the brief, but the useful result is a clear set of stable identity decisions.",
+  },
+  {
+    media: getMedia("workshop.character-mannequin.home.neutral-system"),
     label: "02 / Neutral system",
-    description: "Proportions, identity slots, wardrobe categories, camera coverage, scene direction, and motion tests are designed around one base.",
+    title: "Build a neutral production base",
+    description: "Test the body, face slots, hand poses, wardrobe categories, camera angles, and basic movement before styling begins. The base becomes the shared measurement system for every later asset.",
   },
   {
-    media: character.approvedAssets[1],
+    media: getMedia("workshop.character-mannequin.home.visual-language"),
     label: "03 / Visual language",
-    description: "Hair, palette, material, makeup, garment, and symbol choices become an inspectable board.",
+    title: "Choose the visual language",
+    description: "Compare hair, makeup, fabric, palette, garment shapes, materials, and recurring symbols around the neutral base. Each choice should be repeatable enough to direct another image or scene.",
   },
   {
-    media: character.approvedAssets[2],
+    media: getMedia("workshop.character-mannequin.home.character-profile"),
     label: "04 / Character profile",
-    description: "A specific identity is applied after the underlying continuity rules are stable.",
+    title: "Apply one character profile",
+    description: "Turn the approved base and visual language into a specific person. Front, profile, and rear evidence make it easier to catch drift before the character enters a new wardrobe or location.",
   },
   {
-    media: character.approvedAssets[3],
+    media: getMedia("workshop.character-mannequin.home.motion-proof"),
     label: "05 / Motion proof",
-    description: "The same record carries into a directed film without hiding the handoffs that produced it.",
+    title: "Prove the character in motion",
+    description: "Put the same profile through a directed turn, gesture, camera move, and lighting change. The test shows whether the identity survives performance and whether the record is complete enough for film.",
   },
 ] as const;
 
@@ -101,7 +112,7 @@ const stageLabel = (index: number) => String(index + 1).padStart(2, "0");
         </div>
       </article>
 
-      <article class="capability capability--character" data-capability={character.id}>
+      <article id="character-mannequin" class="capability capability--character" data-capability={character.id}>
         <header class="capability__heading">
           <div>
             <p class="home-workshop__eyebrow">{character.projectType}</p>
@@ -111,22 +122,21 @@ const stageLabel = (index: number) => String(index + 1).padStart(2, "0");
         </header>
 
         <ol class="production-rail" aria-label="Character production sequence">
-          <li class="production-rail__brief">
-            <span>01 / Brief or portrait</span>
-            <p>Identity, role, age, proportions, and the traits that cannot drift.</p>
-          </li>
           {characterProofs.map((proof) => (
             <li>
-              <img
-                src={proof.media.src}
-                alt={proof.media.alt}
-                width={proof.media.width}
-                height={proof.media.height}
-                loading="lazy"
-                decoding="async"
-              />
+              <figure>
+                <img
+                  src={proof.media.src}
+                  alt={proof.media.alt}
+                  width={proof.media.width}
+                  height={proof.media.height}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
               <div>
                 <span>{proof.label}</span>
+                <h4>{proof.title}</h4>
                 <p>{proof.description}</p>
               </div>
             </li>
@@ -467,70 +477,53 @@ const stageLabel = (index: number) => String(index + 1).padStart(2, "0");
   }
 
   .production-rail li {
-    position: relative;
-    min-height: 13rem;
+    display: grid;
+    grid-template-rows: auto 1fr;
     overflow: hidden;
     border: 1px solid #332a43;
     background: #08070c;
+  }
+
+  .production-rail figure {
+    overflow: hidden;
+    margin: 0;
+    aspect-ratio: 4 / 5;
+    border-bottom: 1px solid #332a43;
+    background: #090d17;
   }
 
   .production-rail img {
     display: block;
     width: 100%;
     height: 100%;
-    min-height: 13rem;
     object-fit: cover;
   }
 
-  .production-rail li:nth-child(2) img {
-    object-fit: contain;
-    background: #eef0ef;
-  }
-
   .production-rail li > div {
-    position: absolute;
-    right: 0.45rem;
-    bottom: 0.45rem;
-    left: 0.45rem;
-    padding: 0.65rem;
-    background: rgb(7 6 11 / 0.9);
+    padding: 0.9rem;
+    background: #0b0911;
   }
 
-  .production-rail li > div span,
-  .production-rail__brief > span {
-    color: #eee9f3;
+  .production-rail li > div span {
+    color: #7bdde7;
     font-family: var(--font-mono);
     font-size: 0.5rem;
     letter-spacing: 0.07em;
     text-transform: uppercase;
   }
 
+  .production-rail li > div h4 {
+    margin: 0.65rem 0 0;
+    color: #eee9f3;
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+
   .production-rail li > div p {
-    margin: 0.45rem 0 0;
+    margin: 0.55rem 0 0;
     color: #aaa4b1;
-    font-size: 0.66rem;
-    line-height: 1.45;
-  }
-
-  .production-rail__brief {
-    display: flex;
-    min-height: 13rem;
-    flex-direction: column;
-    justify-content: end;
-    padding: 1rem;
-    background:
-      linear-gradient(135deg, rgb(59 111 224 / 0.18), transparent),
-      #0a0910 !important;
-  }
-
-  .production-rail__brief span {
-    color: #6b93ed !important;
-  }
-
-  .production-rail__brief p {
-    margin: 0.75rem 0 0;
-    color: #c2bdc9;
-    font-size: 0.8rem;
+    font-size: 0.72rem;
     line-height: 1.55;
   }
 

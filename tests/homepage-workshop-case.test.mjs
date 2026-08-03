@@ -77,11 +77,20 @@ test("homepage Workshop capabilities use one shared data model and real routes",
     "workshop.ami-legacy.model-3917.vehicle",
     "before-after.north-shore.before",
     "workshop.character-mannequin.workflow",
+    "workshop.character-mannequin.home.brief",
+    "workshop.character-mannequin.home.neutral-system",
+    "workshop.character-mannequin.home.visual-language",
+    "workshop.character-mannequin.home.character-profile",
+    "workshop.character-mannequin.home.motion-proof",
     "stylefusion.banner.image",
     "other-alice.wonderland.world-map",
   ]) {
     assert.match(combined, new RegExp(token));
   }
+
+  assert.match(component, /Write the continuity brief/);
+  assert.match(component, /Prove the character in motion/);
+  assert.doesNotMatch(component, /production-rail__brief/);
 
   for (const field of [
     "startingMaterial",
@@ -111,6 +120,19 @@ test("Other Alice and Future Carriage are full proof sections after the method",
   assert.match(frontPage, /other-alice\.alice\.representative-landscape/);
   assert.match(features, /other-alice\.alice\.workshop/);
   assert.match(carriage, /Self-directed HobFarm concept campaign/);
+  assert.match(carriage, /workshop\.ami-legacy\.hero/);
+  assert.match(carriage, /workshop\.ami-legacy\.history\.gig-3917/);
+  assert.match(carriage, /workshop\.ami-legacy\.model-3917\.vehicle/);
+  assert.match(carriage, /workshop\.ami-legacy\.history\.diligence/);
+  assert.match(carriage, /workshop\.ami-legacy\.autonomous-coach/);
+  assert.match(carriage, /workshop\.ami-legacy\.model-3917\.ami/);
+  assert.match(carriage, /Avatar spokesperson/);
+  assert.doesNotMatch(carriage, /redwood-(?:lifestyle|profile)/);
+  assert.ok(
+    carriage.indexOf("workshop.ami-legacy.history.diligence") <
+      carriage.indexOf("workshop.ami-legacy.history.gig-3917"),
+  );
+  assert.match(carriage, /future-carriage__pair/);
   assert.match(carriage, /Open the complete case study/);
 });
 
