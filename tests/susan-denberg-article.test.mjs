@@ -4,6 +4,7 @@ import test from "node:test";
 
 const articlePath =
   "src/content/articles/susan-denbergs-american-dream.mdx";
+const headersPath = "public/_headers";
 const workflowPath = ".github/workflows/publish-susan-denberg.yml";
 const scriptPath = "scripts/publish-scheduled-susan-denberg.mjs";
 const publication = "2026-08-02T17:20:00-07:00";
@@ -13,8 +14,9 @@ function field(source, name) {
 }
 
 test("Susan Denberg feature keeps its schedule, licensed media, and Playboy reporting boundary", async () => {
-  const [article, script, workflow] = await Promise.all([
+  const [article, headers, script, workflow] = await Promise.all([
     readFile(articlePath, "utf8"),
+    readFile(headersPath, "utf8"),
     readFile(scriptPath, "utf8"),
     readFile(workflowPath, "utf8").catch((error) => {
       if (error.code === "ENOENT") return null;
@@ -39,6 +41,8 @@ test("Susan Denberg feature keeps its schedule, licensed media, and Playboy repo
   assert.match(article, /Frankenstein_Created_Woman_%26_The_Mummy/);
   assert.match(article, /tile\.loc\.gov\/storage-services/);
   assert.match(article, /Resorts_World_Las_Vegas/);
+  assert.match(headers, /img-src[^;\n]*https:\/\/upload\.wikimedia\.org/);
+  assert.match(headers, /img-src[^;\n]*https:\/\/tile\.loc\.gov/);
   assert.match(article, /CC BY-SA 2\.0/);
   assert.match(article, /The supplied scans are being used as a primary source, not republished/);
   assert.match(article, /The pictorial’s nude centerfold and full magazine pages do not appear here/);
