@@ -2,7 +2,7 @@ name: Publish Fear and Loathing After the American Dream
 
 on:
   schedule:
-    - cron: "25 23 5 8 *"
+    - cron: "20 23 5 8 *"
   workflow_dispatch:
 
 permissions:

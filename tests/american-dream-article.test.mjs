@@ -22,7 +22,7 @@ test("American Dream source article is complete and scheduled for August 5", asy
   assert.equal(field(article, "publishedAt"), "2026-08-05T16:20:00-07:00");
   assert.equal(field(article, "status"), "scheduled");
   assert.equal(field(article, "draft"), "false");
-  assert.match(workflow, /cron: "25 23 5 8 \*"/);
+  assert.match(workflow, /cron: "20 23 5 8 \*"/);
   assert.match(workflow, /node scripts\/publish-scheduled-american-dream\.mjs/);
   assert.match(script, /2026-08-05T16:20:00-07:00/);
   assert.match(article, /## Building a Small Replacement/);
