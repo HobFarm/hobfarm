@@ -377,6 +377,8 @@ relatedProducts?: string[];
 
 Every article needs `publishedAt` or `pubDate`. Inspect `src/content.config.ts` for current enums and relationship fields before creating frontmatter.
 
+New scheduled articles should normally publish at 4:20 p.m. in the `America/Los_Angeles` time zone, spaced 24 hours apart. Preserve publication times that were already scheduled unless the user asks to change them. Use the correct UTC offset for the release date so daylight saving time is handled explicitly.
+
 Keep optional fields optional unless the user explicitly requests a schema migration.
 
 ---

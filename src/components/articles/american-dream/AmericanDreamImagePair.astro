@@ -1,0 +1,72 @@
+---
+type PairImage = {
+  src: string;
+  alt: string;
+  caption: string;
+  width: number;
+  height: number;
+};
+
+interface Props {
+  images: [PairImage, PairImage];
+  label: string;
+}
+
+const { images, label } = Astro.props;
+---
+
+<section class="american-dream-pair article-wide not-prose" aria-label={label}>
+  {images.map((image) => (
+    <figure>
+      <img
+        src={image.src}
+        alt={image.alt}
+        width={image.width}
+        height={image.height}
+        loading="lazy"
+        decoding="async"
+        data-lightbox={image.src}
+        data-lightbox-caption={image.caption}
+      />
+      <figcaption>{image.caption}</figcaption>
+    </figure>
+  ))}
+</section>
+
+<style>
+  .american-dream-pair {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  figure {
+    min-width: 0;
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+    border-radius: 0.45rem;
+    background: #08070b;
+  }
+
+  img {
+    width: 100%;
+    height: clamp(17rem, 35vw, 28rem);
+    object-fit: cover;
+  }
+
+  figcaption {
+    box-sizing: border-box;
+    padding: 0 0.7rem 0.7rem;
+  }
+
+  @media (max-width: 639px) {
+    .american-dream-pair {
+      grid-template-columns: 1fr;
+    }
+
+    img {
+      height: auto;
+    }
+  }
+</style>

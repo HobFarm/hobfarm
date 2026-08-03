@@ -1,0 +1,39 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption: string;
+  width: number;
+  height: number;
+}
+
+const { src, alt, caption, width, height } = Astro.props;
+---
+
+<figure class="american-dream-figure article-wide not-prose">
+  <img
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading="lazy"
+    decoding="async"
+    data-lightbox={src}
+    data-lightbox-caption={caption}
+  />
+  <figcaption>{caption}</figcaption>
+</figure>
+
+<style>
+  .american-dream-figure {
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+    border-radius: 0.45rem;
+    background: #08070b;
+  }
+
+  .american-dream-figure figcaption {
+    box-sizing: border-box;
+    padding: 0 0.8rem 0.8rem;
+  }
+</style>

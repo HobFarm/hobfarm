@@ -17,6 +17,8 @@
     "manifest:put-on-the-glasses-assets": "node scripts/build-put-on-the-glasses-manifest.mjs",
     "r2:put-on-the-glasses:dry-run": "node scripts/r2-upload-manifest.mjs --manifest reports/put-on-the-glasses/asset-manifest.json",
     "r2:put-on-the-glasses:upload": "node scripts/r2-upload-manifest.mjs --manifest reports/put-on-the-glasses/asset-manifest.json --upload",
+    "r2:american-dream:dry-run": "node scripts/r2-upload-manifest.mjs --manifest reports/american-dream/asset-manifest.json",
+    "r2:american-dream:upload": "node scripts/r2-upload-manifest.mjs --manifest reports/american-dream/asset-manifest.json --upload --resume",
     "manifest:self-defense-assets": "node scripts/build-intellectual-self-defense-manifest.mjs",
     "r2:self-defense:dry-run": "node scripts/r2-upload-manifest.mjs --manifest reports/intellectual-self-defense-asset-manifest.json",
     "r2:self-defense:upload": "node scripts/r2-upload-manifest.mjs --manifest reports/intellectual-self-defense-asset-manifest.json --upload",
