@@ -28,6 +28,11 @@ homepage-*.png
 /docs/other-alice/narrative-architecture/
 /reports/other-alice-living-world/
 
+# Private HeyGen production state and local review renders
+/reports/ami-future-carriage/private/
+/reports/ami-future-carriage/review/
+/heygen-video-log.jsonl
+
 # Published through R2; local optimized derivatives are working copies only
 /public/media/other-alice/oaa-map-wonderland-living-atlas-v01-16x9.avif
 /public/media/other-alice/oaa-map-wonderland-living-atlas-v01-16x9.webp

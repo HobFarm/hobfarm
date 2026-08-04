@@ -111,16 +111,20 @@ test("Future Carriage connects the stable base, Ami, and the full case study", (
   assert.match(caseStudy, /Follow the stable-base method/);
 });
 
-test("planned avatar media stays data-only and private provider identifiers stay absent", () => {
+test("approved avatar media stays data-only until durable public assets exist", () => {
   const media = read("src/data/avatar-host-media.ts");
   const page = read("src/pages/workshop/avatar-host/index.astro");
 
-  assert.match(media, /status: "planned"/);
+  assert.match(media, /status: "approved"/);
+  assert.match(media, /localMasterAvailable: true/);
+  assert.match(media, /durationSeconds: 30\.48/);
   assert.match(media, /videoUrl\?: string/);
   assert.match(media, /transcriptUrl\?: string/);
   assert.match(media, /durationSeconds\?: number/);
   assert.match(media, /destinationUrls: readonly string\[\]/);
-  assert.doesNotMatch(media, /voiceId|avatarGroupId/);
+  assert.doesNotMatch(media, /voiceId|avatarGroupId|selectedLookIds|heygen\.com|video_id/i);
+  const campaignRecord = media.match(/id: "ami-future-carriage-campaign"[\s\S]*?\n  },/)?.[0] ?? "";
+  assert.doesNotMatch(campaignRecord, /videoUrl:|transcriptUrl:/);
   assert.doesNotMatch(page, /ami-future-carriage-campaign[\s\S]{0,300}<video/);
 });
 

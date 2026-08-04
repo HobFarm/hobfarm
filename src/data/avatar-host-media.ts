@@ -1,6 +1,15 @@
 import { getMedia } from "@/data/media-registry";
 
-export type AvatarHostMediaStatus = "planned" | "active" | "historical" | "retired" | "blocked";
+export type AvatarHostMediaStatus =
+  | "planned"
+  | "rendering"
+  | "review"
+  | "approved"
+  | "active"
+  | "failed"
+  | "historical"
+  | "retired"
+  | "blocked";
 
 /**
  * Public production metadata for recurring host media.
@@ -14,6 +23,9 @@ export type AvatarHostMediaRecord = {
   videoUrl?: string;
   transcriptUrl?: string;
   durationSeconds?: number;
+  aspectRatio?: "9:16" | "16:9";
+  resolution?: "1080p";
+  localMasterAvailable?: boolean;
   destinationUrls: readonly string[];
 };
 
@@ -34,9 +46,13 @@ export const avatarHostMedia: readonly AvatarHostMediaRecord[] = [
   },
   {
     id: "ami-future-carriage-campaign",
-    title: "Ami / Future Carriage campaign clips",
-    status: "planned",
+    title: "Ami / Future Carriage vertical proof",
+    status: "approved",
     poster: futureCarriagePoster.src,
+    durationSeconds: 30.48,
+    aspectRatio: "9:16",
+    resolution: "1080p",
+    localMasterAvailable: true,
     destinationUrls: ["/workshop/avatar-host/", "/workshop/future-carriage/"],
   },
   {
