@@ -5,15 +5,16 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import SectionHero from "@/components/sections/SectionHero.astro";
 import ArticleCard from "@/components/articles/ArticleCard.astro";
 import GalleryCard from "@/components/gallery/GalleryCard.astro";
-import { workshopPrograms, type HierarchyEntry } from "@/data/site-hierarchy";
+import { primaryWorkshopPrograms, workshopPrograms, type HierarchyEntry } from "@/data/site-hierarchy";
 import { getPublishedArticles, getArticleDepartment } from "@/lib/articles";
 import { getVisualSystem, visualSystemPath } from "@/data/visual-systems";
-import { mediaImageUrl } from "@/lib/gallery";
+import { transformImageUrl } from "@/lib/media-transforms";
 import { getMedia } from "@/data/media-registry";
 import StyleFusionMediaStudies from "@/components/workshop/StyleFusionMediaStudies.astro";
 import StyleCardArchive from "@/components/workshop/StyleCardArchive.astro";
 import ProcessMethodPage from "@/components/process/ProcessMethodPage.astro";
 import { getProcessPipelineBySlug } from "@/data/processPipelines";
+import WorkshopProgramNav from "@/components/workshop/WorkshopProgramNav.astro";
 
 export function getStaticPaths() {
   return workshopPrograms
@@ -25,6 +26,7 @@ export function getStaticPaths() {
 
 interface Props { program: HierarchyEntry }
 const { program } = Astro.props;
+const programDetails = primaryWorkshopPrograms.find((entry) => entry.id === program.id);
 const processPipeline = program.processSlug ? getProcessPipelineBySlug(program.processSlug) : undefined;
 const articles = await getPublishedArticles();
 const gallery = (await getCollection("gallery")).filter((entry) => !entry.data.draft);
@@ -35,35 +37,28 @@ const relatedArticles = articles.filter((article) => {
   return article.data.tags.some((tag) => tag.toLowerCase().replaceAll(" ", "-").includes(program.slug));
 }).slice(0, 6);
 const relatedGallery = gallery.filter((entry) => entry.data.workshopProgram === program.slug || entry.data.type === program.featuredQuery?.galleryType).slice(0, 6);
+const hasIndexedWork = relatedGallery.length > 0 || relatedArticles.length > 0;
 const stylefusionStudies = program.id === "stylefusion" ? await getCollection("stylefusionStudies") : [];
 const cathedralStudy = stylefusionStudies.find((entry) => entry.id === "tuxedo-cat-fusion");
 const hellcatStudy = stylefusionStudies.find((entry) => entry.id === "industrial-elf-neo-noir");
 
 const system = program.id === "alter-ego" ? getVisualSystem("sophia-stella") : undefined;
-const sophia = system?.variants.find((variant) => variant.key === "sophia");
-const stella = system?.variants.find((variant) => variant.key === "stella");
-const image = (folder: string, file: string, width = 900) => mediaImageUrl(folder, file, { width, quality: 82, fit: "scale-down" });
-const sophiaSheet = sophia?.sheetPreviews[0] ? image(sophia.sheetPreviews[0].folder, sophia.sheetPreviews[0].file) : undefined;
-const stellaSheet = stella?.sheetPreviews[0] ? image(stella.sheetPreviews[0].folder, stella.sheetPreviews[0].file) : undefined;
 const alterMediaRoot = "https://cdn.hob.farm/workshop/alter-ego";
-const alterHeroBright = `${alterMediaRoot}/hc-hd-hero-001_1.jpg`;
-const alterHeroDark = `${alterMediaRoot}/hc-hd-hero-001_2.jpg`;
-const alterPoster = `${alterMediaRoot}/hc-hd-poster-001.jpg`;
-const alterSheetBright = `${alterMediaRoot}/hc-hd-sheet-001_1.jpg`;
-const alterSheetDark = `${alterMediaRoot}/hc-hd-sheet-001_2.jpg`;
+const alterProof = (file: string, width = 1000) => transformImageUrl(`${alterMediaRoot}/${file}`, { width, quality: 82, fit: "scale-down" });
+const alterHeroBright = alterProof("hc-hd-hero-001_1.jpg");
+const alterHeroDark = alterProof("hc-hd-hero-001_2.jpg");
+const alterPoster = transformImageUrl(getMedia("workshop.alter-ego.poster").src, { width: 1000, quality: 82, fit: "scale-down" });
+const alterSheetBright = alterProof("hc-hd-sheet-001_1.jpg", 1200);
+const alterSheetDark = alterProof("hc-hd-sheet-001_2.jpg", 1200);
 const alterVideo = `${alterMediaRoot}/hc-video-001.mp4`;
-const processStages = program.id === "before-after"
-  ? ["Lock the subject", "Choose the new era or state", "Change styling and setting", "Compare what survived"]
-  : program.id === "stylefusion"
-    ? ["Assign approved reference roles", "Run specialized extraction agents", "Inspect the IR and compiled slots", "Export the diagnostic document"]
-    : program.id === "workshop-notes"
-        ? ["Record the question", "Keep the source material", "Compare the visible outputs", "Write the reusable finding"]
-      : ["Define the shared identity", "Separate the two lives", "Build each media packet", "Test the pair together"];
+const processStages = programDetails?.workflow ?? (program.id === "stylefusion"
+  ? ["Assign approved reference roles", "Run specialized extraction agents", "Inspect the IR and compiled slots", "Export the diagnostic document"]
+  : ["Define the source", "Record the stable rules", "Build the change", "Publish the result"]);
 const status = program.status === "coming-eventually" ? "Coming eventually" : undefined;
 const stylefusionHero = getMedia("stylefusion.banner.image");
 const pageHero = program.id === "stylefusion" ? stylefusionHero.src : program.heroImage;
 const pageHeroAlt = program.id === "stylefusion" ? stylefusionHero.alt : program.heroAlt;
-const hasProgramFeature = program.id === "alter-ego" || program.id === "stylefusion" || program.id === "workshop-notes";
+const hasProgramFeature = program.id === "alter-ego" || program.id === "stylefusion" || program.id === "workshop-notes" || program.id === "cute-corrupted";
 const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
 const structuredData = { "@context":"https://schema.org", "@type":"CollectionPage", name:program.name, description:program.description, url:`${siteOrigin}${program.href}`, isPartOf:{"@type":"CollectionPage",name:"HobFarm Workshop",url:`${siteOrigin}/workshop/`} };
 ---
@@ -82,9 +77,9 @@ const structuredData = { "@context":"https://schema.org", "@type":"CollectionPag
     <Wrapper variant="standard" class="py-12 lg:py-16">
       <div class="grid gap-8 lg:grid-cols-[minmax(0,.6fr)_minmax(0,1fr)]">
         <div>
-          <p class="label">Program method</p>
-          <h2>A working frame for the next pass.</h2>
-          <p>This page establishes the program, its route, and the content that belongs beneath it. Individual entries can carry more specific art direction without breaking the Workshop hierarchy.</p>
+          <p class="label">Program definition</p>
+          <h2>{program.id === "workshop-notes" ? "Keep the production record with the work." : programDetails?.transformation ?? "Keep the source and the decisions visible."}</h2>
+          <p>{program.id === "workshop-notes" ? "Each note records the question, source material, production decisions, visible tests, failure or revision, reusable finding, and final destination." : program.description}</p>
         </div>
         <ol class="stage-grid">
           {processStages.map((stage, index) => <li><span>{String(index + 1).padStart(2,"0")}</span><strong>{stage}</strong></li>)}
@@ -102,9 +97,7 @@ const structuredData = { "@context":"https://schema.org", "@type":"CollectionPag
         <figure class="alter-sheet"><img src={alterSheetBright} alt="Bright Alter Ego character sheet showing the candy-pop identity and its production views" width="1920" height="1081" loading="lazy" decoding="async" /><figcaption>Alter Ego / bright identity sheet</figcaption></figure>
         <figure class="alter-sheet"><img src={alterSheetDark} alt="Dark Alter Ego character sheet showing the gothic identity and its production views" width="1920" height="1081" loading="lazy" decoding="async" /><figcaption>Alter Ego / dark identity sheet</figcaption></figure>
         <figure class="alter-poster"><img src={alterPoster} alt="Alter Ego paired-identity poster" width="1081" height="1920" loading="lazy" decoding="async" /><figcaption>Alter Ego / paired poster study</figcaption></figure>
-        <figure class="alter-video"><video src={alterVideo} poster={alterPoster} controls muted loop playsinline preload="metadata" aria-label="Alter Ego paired-identity motion study"></video><figcaption>Alter Ego / motion study</figcaption></figure>
-        {sophiaSheet && <figure><img src={sophiaSheet} alt={sophia?.sheetPreviews[0]?.alt ?? "Sophia character sheet"} width="900" height="1200" loading="lazy" decoding="async" /><figcaption>Sophia / public-facing bright lane</figcaption></figure>}
-        {stellaSheet && <figure><img src={stellaSheet} alt={stella?.sheetPreviews[0]?.alt ?? "Stella character sheet"} width="900" height="1200" loading="lazy" decoding="async" /><figcaption>Stella / alternate nocturnal lane</figcaption></figure>}
+        <figure class="alter-video"><video src={alterVideo} poster={alterPoster} controls muted loop playsinline preload="none" aria-label="Alter Ego paired-identity motion study"></video><figcaption>Alter Ego / motion study</figcaption></figure>
       </div>
       {system && <a class="text-link" href={visualSystemPath(system.slug)}>Open the full Sophia / Stella system &rarr;</a>}
     </Wrapper>
@@ -113,18 +106,35 @@ const structuredData = { "@context":"https://schema.org", "@type":"CollectionPag
   {program.id === "stylefusion" && cathedralStudy && hellcatStudy && <div id="work"><StyleFusionMediaStudies cathedral={cathedralStudy} hellcat={hellcatStudy} /></div>}
   {program.id === "workshop-notes" && <div id="work"><StyleCardArchive /></div>}
 
-  <section id={hasProgramFeature ? "latest" : "work"} class="border-b border-base-800/70">
+  {programDetails && <section class="program-record border-b border-base-800/70" aria-labelledby="program-record-heading">
     <Wrapper variant="standard" class="py-14 lg:py-20">
-      <header class="max-w-3xl"><p class="label">Indexed work</p><h2>{relatedGallery.length || relatedArticles.length ? "Current entries and process notes." : "The program is ready for its first entry."}</h2><p>{relatedGallery.length || relatedArticles.length ? "Entries appear here from their existing content metadata. The chronological Articles feed remains intact." : "The route and visual frame are live without inventing placeholder projects. New work will populate this page when it has matching metadata."}</p></header>
+      <div class="record-grid">
+        <div>
+          <p class="label">What starts the process</p>
+          <h2 id="program-record-heading">Source, continuity, and destination.</h2>
+          <p>{program.id === "cute-corrupted" ? "The shared subject must remain readable across both modes. Palette, material, damage, expression, humor, environment, and motion can change, but the pair should still belong to one recognizable base." : program.id === "alter-ego" ? "The two personas share identity locks. Role, posture, wardrobe, attitude, setting, and public function create the split without replacing the person underneath." : "The source and stable traits stay visible so later changes can be compared, revised, and reused."}</p>
+        </div>
+        <div class="record-list">
+          <div><span>Starting inputs</span><p>{programDetails.startsWith.join(" · ")}</p></div>
+          <div><span>Possible outputs</span><p>{programDetails.outputs.join(" · ")}</p></div>
+          <div><span>Current demonstration</span><p>{programDetails.featuredExample}</p></div>
+        </div>
+      </div>
+    </Wrapper>
+  </section>}
+
+  {hasIndexedWork && <section id={hasProgramFeature ? "latest" : "work"} class="border-b border-base-800/70">
+    <Wrapper variant="standard" class="py-14 lg:py-20">
+      <header class="max-w-3xl"><p class="label">Indexed work</p><h2>Current entries and process notes.</h2><p>Entries appear here from their existing content metadata. The chronological Articles feed remains intact.</p></header>
       {relatedGallery.length > 0 && <div class="content-grid">{relatedGallery.map((entry) => <GalleryCard entry={entry} />)}</div>}
       {relatedArticles.length > 0 && <div class="content-grid">{relatedArticles.map((post) => <ArticleCard post={post} />)}</div>}
     </Wrapper>
-  </section>
+  </section>}
 
-  <section><Wrapper variant="standard" class="py-12"><nav class="program-nav" aria-label="Workshop programs">{workshopPrograms.filter((entry) => entry.inNav !== false).map((entry) => <a class:list={[entry.id===program.id&&"active"]} href={entry.href}>{entry.name}</a>)}</nav></Wrapper></section>
+  {programDetails && <section><Wrapper variant="standard" class="py-12"><WorkshopProgramNav currentId={program.id} /></Wrapper></section>}
 </BaseLayout>
 )}
 
 <style>
-  .program-index,.alter-study{background:#0a0810}.label{margin:0;color:#5cf0f0;font-family:var(--font-mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase}h2{margin:.7rem 0 0;color:white;font-family:var(--font-display);font-size:clamp(2rem,5vw,4rem);font-weight:300;letter-spacing:-.04em;line-height:1}.program-index p:not(.label),header p:not(.label){max-width:46rem;margin:1rem 0 0;color:#9b96ad;line-height:1.7}.stage-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;margin:0;padding:0;list-style:none}.stage-grid li{min-height:8rem;padding:1rem;border:1px solid #2c2440;background:#0e0b16}.stage-grid span{display:block;color:#6b93ed;font-family:var(--font-mono);font-size:.65rem}.stage-grid strong{display:block;margin-top:2.5rem;color:#ece9f5;font-weight:500}.alter-grid{display:grid;gap:1rem;margin-top:2rem}.alter-grid figure{margin:0;overflow:hidden;border:1px solid #2c2440;background:#07060b}.alter-grid img,.alter-grid video{display:block;width:100%;height:100%;max-height:42rem;object-fit:contain}.alter-grid figcaption{padding:.8rem;color:#9b96ad;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase}.text-link{display:inline-block;margin-top:1.4rem;color:#ece9f5}.content-grid{display:grid;gap:1rem;margin-top:2rem}.program-nav{display:flex;flex-wrap:wrap;gap:.5rem}.program-nav a{padding:.55rem .75rem;border:1px solid #2c2440;color:#9b96ad;font-size:.75rem;text-decoration:none}.program-nav a:hover,.program-nav a.active{border-color:#19e3e3;color:white}@media(min-width:760px){.alter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.alter-sheet{grid-column:span 2}.content-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:600px){.stage-grid{grid-template-columns:1fr}}
+  .program-index,.alter-study,.program-record{background:#0a0810}.label{margin:0;color:#5cf0f0;font-family:var(--font-mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase}h2{margin:.7rem 0 0;color:white;font-family:var(--font-display);font-size:clamp(2rem,5vw,4rem);font-weight:300;letter-spacing:-.04em;line-height:1}.program-index p:not(.label),header p:not(.label),.program-record p{max-width:46rem;margin:1rem 0 0;color:#9b96ad;line-height:1.7}.stage-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;margin:0;padding:0;list-style:none}.stage-grid li{min-height:8rem;padding:1rem;border:1px solid #2c2440;background:#0e0b16}.stage-grid span{display:block;color:#6b93ed;font-family:var(--font-mono);font-size:.65rem}.stage-grid strong{display:block;margin-top:2.5rem;color:#ece9f5;font-weight:500}.alter-grid{display:grid;gap:1rem;margin-top:2rem}.alter-grid figure{margin:0;overflow:hidden;border:1px solid #2c2440;background:#07060b}.alter-grid img,.alter-grid video{display:block;width:100%;height:100%;max-height:42rem;object-fit:contain}.alter-grid figcaption{padding:.8rem;color:#9b96ad;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase}.text-link{display:inline-block;margin-top:1.4rem;color:#ece9f5}.content-grid{display:grid;gap:1rem;margin-top:2rem}.record-grid{display:grid;gap:2rem}.record-list{display:grid;gap:.7rem}.record-list>div{padding:1rem;border:1px solid #2c2440;background:#0e0b16}.record-list span{color:#5cf0f0;font-family:var(--font-mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase}.record-list p{margin:.65rem 0 0;font-size:.78rem}@media(min-width:760px){.alter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.alter-sheet{grid-column:span 2}.content-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.record-grid{grid-template-columns:minmax(0,.7fr) minmax(0,1fr)}}@media(max-width:600px){.stage-grid{grid-template-columns:1fr}}
 </style>

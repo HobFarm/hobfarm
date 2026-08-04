@@ -55,14 +55,14 @@ test("Shop is a three-lane marketplace directory with secondary learning and sup
 test("Sophia and Stella are archived from drops and the old URL has a Workshop handoff", () => {
   const product = read("src/content/products/sophia-stella-sheet-pack.md");
   const handoff = read("src/pages/shop/sophia-stella-sheet-pack.astro");
-  const workshop = read("src/pages/workshop/index.astro");
+  const workshop = read("src/pages/workshop/[program].astro");
 
   assert.match(product, /status: archived/);
   assert.match(product, /featured: false/);
   assert.match(handoff, /not for sale/i);
-  assert.match(handoff, /\/workshop\/#sophia-stella/);
-  assert.match(workshop, /Learn the character system/);
-  assert.match(workshop, /Browse character assets on DeviantArt/);
+  assert.match(handoff, /\/workshop\/alter-ego\//);
+  assert.match(workshop, /Sophia \/ Stella/);
+  assert.match(workshop, /One base, more than one life/);
 });
 
 test("funding and Customer Help are separate public destinations", () => {

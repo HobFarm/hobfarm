@@ -46,14 +46,13 @@ test("Presents series calls to action keep explicit readable colors", () => {
   assert.doesNotMatch(page, /\.series-cta\{[^}]*color:inherit/);
 });
 
-test("Workshop teaser is poster-first and user-controlled", () => {
+test("Workshop hub uses still-image evidence without empty or autoplaying media", () => {
   const page = read("src/pages/workshop/index.astro");
-  const teaser = page.slice(page.indexOf("{pairVideo &&"), page.indexOf("</video>") + 8);
 
-  assert.match(teaser, /poster=\{pairPoster/);
-  assert.match(teaser, /controls/);
-  assert.match(teaser, /preload="none"/);
-  assert.doesNotMatch(teaser, /autoplay/);
+  assert.match(page, /carriage-evidence/);
+  assert.match(page, /loading="lazy"/);
+  assert.doesNotMatch(page, /<video/);
+  assert.doesNotMatch(page, /autoplay/);
 });
 
 test("product social metadata uses a direct CDN preview", () => {

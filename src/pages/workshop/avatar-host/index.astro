@@ -3,11 +3,12 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import { getMedia } from "@/data/media-registry";
 import { avatars, getAvatar } from "@/data/avatars";
+import WorkshopProgramNav from "@/components/workshop/WorkshopProgramNav.astro";
+import { avatarHostMedia } from "@/data/avatar-host-media";
 
 const hobgalVideo = getMedia("avatar-host.hobgal.prototype.video");
 const hobgalTranscript = getMedia("avatar-host.hobgal.prototype.transcript");
 const amiHero = getMedia("workshop.ami-legacy.hero");
-const hostGraphic = getMedia("workshop.graphics.hillary");
 const presentsGraphic = getMedia("presents.graphics.avatar-system");
 // The roster is data now: src/data/avatars.ts is the source of truth for who
 // the avatars are and where their content ships.
@@ -124,7 +125,7 @@ const destinations = [
     title: "Ami / Legacy",
     body: "Ami's reusable introduction now leads into a complete Legacy future-wagon study with historical sources and six campaign images.",
     href: "/workshop/future-carriage/",
-    label: "Open the Ami / Legacy study",
+    label: "Open the full Ami / Legacy study",
   },
 ];
 
@@ -132,25 +133,25 @@ const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  headline: "From Character Design to On-Screen Host",
-  description: "A Character / Mannequin study of how HobFarm character identities become recurring editorial hosts.",
-  image: hostGraphic.src,
+  headline: "Avatar & Host",
+  description: "A first-class HobFarm Workshop program for turning a stable identity into a recurring speaker with a role, voice, expression, motion, looks, continuity record, and destination.",
+  image: amiHero.src,
   url: `${siteOrigin}/workshop/avatar-host/`,
   isPartOf: {
     "@type": "CollectionPage",
-    name: "Character / Mannequin",
-    url: `${siteOrigin}/workshop/character-mannequin/`,
+    name: "HobFarm Workshop",
+    url: `${siteOrigin}/workshop/`,
   },
 };
 ---
 
 <BaseLayout
-  title="From Character Design to On-Screen Host | HobFarm Workshop"
-  description="Hobgal, Hillary, Ami, Em, Nina, and Zima show how character identity becomes a repeatable HobFarm presenter system."
+  title="Avatar & Host | HobFarm Workshop"
+  description="See how a stable identity gains a speaking role, voice, expression, motion, recurring looks, continuity records, and a useful destination."
   canonical="/workshop/avatar-host/"
   structuredData={structuredData}
-  image={hostGraphic.src}
-  imageAlt={hostGraphic.alt}
+  image={amiHero.src}
+  imageAlt={amiHero.alt}
   palette="blue-red"
 >
   <article class="host-study">
@@ -158,17 +159,17 @@ const structuredData = {
       <Wrapper variant="standard" class="py-16 lg:py-24">
         <div class="hero-layout">
           <div>
-            <p class="kicker">Character / Mannequin study</p>
-            <h1>From Character Design to On-Screen Host</h1>
-            <p class="deck">A HobFarm host is a stable character moving through controlled looks, voices, roles, and program destinations. The face holds. The editorial job changes.</p>
+            <p class="kicker">HobFarm Workshop program</p>
+            <h1>Avatar &amp; Host</h1>
+            <p class="deck">An avatar begins with a stable identity, then gains a speaking role, voice, expression, motion, recurring looks, and a destination. The base can come from a photograph, an existing character, or a newly built mannequin.</p>
             <div class="status-row" aria-label="Host system roles">
-              <span>Hillary / editorial guide</span>
               <span>Ami / commercial presenter</span>
+              <span>Hillary / editorial guide</span>
               <span>PsyGoth / three-host system</span>
               <span>Hobgal / retired prototype</span>
             </div>
           </div>
-          <img src={hostGraphic.src} alt={hostGraphic.alt} width={hostGraphic.width} height={hostGraphic.height} loading="eager" fetchpriority="high" decoding="async" />
+          <img src={amiHero.src} alt={amiHero.alt} width={amiHero.width} height={amiHero.height} loading="eager" fetchpriority="high" decoding="async" />
         </div>
       </Wrapper>
     </header>
@@ -187,32 +188,10 @@ const structuredData = {
       </Wrapper>
     </section>
 
-    <section class="prototype-section" id="hobgal-prototype">
-      <Wrapper variant="standard" class="py-14 lg:py-20">
-        <div class="prototype-grid">
-          <div>
-            <p class="kicker">01 / Retired prototype</p>
-            <h2>Hobgal made the system speak.</h2>
-            <img class="prototype-profile" src={hobgalProfile.src} alt={hobgalProfile.alt} width={hobgalProfile.width} height={hobgalProfile.height} loading="lazy" decoding="async" />
-            <p>Hobgal stays in the archive rather than the active cast. The surviving intro still matters because it explains the early idea: one input becomes analysis, prompts, generated options, and a finished video.</p>
-            <p>The clip says seven agents and nine models. Those were period-specific counts. The current system has changed, so the numbers are preserved as history rather than documentation.</p>
-            <details>
-              <summary>Open the recovered transcript</summary>
-              <p>People keep asking me how I make these. The honest answer is I built a system that does most of the work for me, which sounds lazy until you realize building the system took about a year. One image goes in. Seven agents extract everything about it. A compiler turns that into prompts. Nine AI models generate their own version. The best one gets animated into a video. So when someone says “you just type words into an AI,” I mean, technically yes. But also, no. Not even slightly.</p>
-              <a href={hobgalTranscript.src}>Plain-text transcript</a>
-            </details>
-          </div>
-          <video controls playsinline preload="none" poster={hobgalVideo.poster} aria-label="Retired Hobgal prototype clip">
-            <source src={hobgalVideo.src} type="video/mp4" />
-          </video>
-        </div>
-      </Wrapper>
-    </section>
-
     <section class="identity-section">
       <Wrapper variant="standard" class="py-14 lg:py-20">
         <header class="section-heading">
-          <p class="kicker">02 / Identity to group</p>
+            <p class="kicker">01 / Identity to group</p>
           <h2>The avatar group is the continuity boundary.</h2>
           <p>Each logical HobFarm ID points to one character identity. Role-specific looks stay inside that HeyGen group and keep the current default voice. This prevents a wardrobe change from becoming a new person.</p>
         </header>
@@ -231,7 +210,7 @@ const structuredData = {
       <Wrapper variant="standard" class="py-14 lg:py-20">
         <div class="role-intro">
           <header class="section-heading">
-            <p class="kicker">03 / Hillary role system</p>
+            <p class="kicker">02 / Hillary role system</p>
             <h2>One Hillary, three editorial jobs.</h2>
             <p>Hillary is the publication’s guide. Her main presenter, Workshop editor, and cinema-host looks stay inside one identity and keep one voice, so a new room or wardrobe never reads as a new person.</p>
           </header>
@@ -250,15 +229,15 @@ const structuredData = {
       </Wrapper>
     </section>
 
-    <section class="ami-section" id="ami-legacy">
+    <section class="ami-section" id="ami-future-carriage">
       <Wrapper variant="standard" class="py-14 lg:py-20">
         <div class="ami-grid">
           <div>
-            <p class="kicker">04 / Ami commercial lane</p>
-            <h2>Legacy gives Ami a product world to host.</h2>
+            <p class="kicker">03 / Ami and Future Carriage</p>
+            <h2>Future Carriage gives Ami a product world to host.</h2>
             <p>Two-wheel carriage forms keep their pull architecture and replace the horse with a robot. Four-wheel forms carry electric power and autonomous control. Ami belongs in the polished spokesperson frame: part car advertisement, part lifestyles-of-the-rich broadcast, with enough distance for a fake-commercial cut.</p>
             <p>Her 36-second HobFarm introduction is now the front door. The full Legacy case study follows it with six future-wagon images, four historical references, and a repeatable rule for the next model.</p>
-            <a class="ami-link" href="/workshop/future-carriage/">Open the full Ami / Legacy study &rarr;</a>
+            <a class="ami-link" href="/workshop/future-carriage/" data-event="workshop_future_carriage_open">Open the full Future Carriage study &rarr;</a>
           </div>
           <div class="ami-visuals">
             <img class="ami-profile" src={amiProfile.src} alt={amiProfile.alt} width={amiProfile.width} height={amiProfile.height} loading="lazy" decoding="async" />
@@ -271,7 +250,7 @@ const structuredData = {
     <section class="trio-section">
       <Wrapper variant="standard" class="py-14 lg:py-20">
         <header class="section-heading">
-          <p class="kicker">05 / Existing coordinated output</p>
+          <p class="kicker">04 / Existing coordinated output</p>
           <h2>PsyGoth already works as a three-host feature.</h2>
           <p>Em, Nina, and Zima each have a short landscape clip with a clear transcript claim. Their longer portrait takes supply fuller identity language and continuity evidence. No new generation is needed for the Workshop feature.</p>
         </header>
@@ -282,6 +261,28 @@ const structuredData = {
           <span>Open the completed study</span>
           <strong>PsyGoth: One Visual System, Three Identities</strong>
         </a>
+      </Wrapper>
+    </section>
+
+    <section class="prototype-section" id="hobgal-prototype">
+      <Wrapper variant="standard" class="py-14 lg:py-20">
+        <div class="prototype-grid">
+          <div>
+            <p class="kicker">Historical record / Retired prototype</p>
+            <h2>Hobgal made the early system speak.</h2>
+            <img class="prototype-profile" src={hobgalProfile.src} alt={hobgalProfile.alt} width={hobgalProfile.width} height={hobgalProfile.height} loading="lazy" decoding="async" />
+            <p>Hobgal stays in the archive rather than the active cast. The surviving intro records the early idea: one input becomes analysis, prompts, generated options, and a finished video.</p>
+            <p>The clip says seven agents and nine models. Those were period-specific counts. The current system has changed, so the numbers remain historical evidence rather than current documentation.</p>
+            <details>
+              <summary>Open the recovered transcript</summary>
+              <p>People keep asking me how I make these. The honest answer is I built a system that does most of the work for me, which sounds lazy until you realize building the system took about a year. One image goes in. Seven agents extract everything about it. A compiler turns that into prompts. Nine AI models generate their own version. The best one gets animated into a video. So when someone says “you just type words into an AI,” I mean, technically yes. But also, no. Not even slightly.</p>
+              <a href={hobgalTranscript.src}>Plain-text transcript</a>
+            </details>
+          </div>
+          <video controls playsinline preload="none" poster={hobgalVideo.poster} aria-label="Retired Hobgal prototype clip">
+            <source src={hobgalVideo.src} type="video/mp4" />
+          </video>
+        </div>
       </Wrapper>
     </section>
 
@@ -324,8 +325,7 @@ const structuredData = {
           <ul>
             <li><code>Identity portraits</code><span>Canonical</span></li>
             <li><code>PsyGoth clips + transcripts</code><span>Active</span></li>
-            <li><code>Hobgal prototype record</code><span>Historical</span></li>
-            <li><code>Future presenter tests</code><span>Reserved</span></li>
+            {avatarHostMedia.map((record) => <li><code>{record.title}</code><span>{record.status}</span></li>)}
           </ul>
         </div>
         <a class="presents-bridge" href="/presents/">
@@ -333,11 +333,11 @@ const structuredData = {
           <span>See where recurring hosts and programs meet in HobFarm Presents &rarr;</span>
         </a>
         <nav class="host-next" aria-label="Avatar host system related routes">
-          <a href="/workshop/character-mannequin/">Return to Character / Mannequin</a>
           <a href="/workshop/future-carriage/">View the Future Carriage campaign</a>
           <a href="/workshop/">Browse the Workshop</a>
           <a href="/contact/?subject=creative-project">Start a project</a>
         </nav>
+        <div class="program-sequence"><WorkshopProgramNav currentId="avatar-host" /></div>
       </Wrapper>
     </section>
   </article>
@@ -419,6 +419,7 @@ const structuredData = {
   .host-next { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: 1rem; }
   .host-next a { display: inline-flex; min-height: 2.75rem; align-items: center; padding: .65rem .8rem; border: 1px solid #3b3150; border-radius: .35rem; color: #b9b4c6; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .06em; text-decoration: none; text-transform: uppercase; }
   .host-next a:hover, .host-next a:focus-visible { border-color: #55d7ff; color: #fff; outline: 2px solid rgb(85 215 255 / .5); outline-offset: 2px; }
+  .program-sequence { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #2c2440; }
   @media (min-width: 700px) {
     .production-chain { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     .identity-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }

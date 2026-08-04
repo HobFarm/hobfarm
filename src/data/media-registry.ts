@@ -99,6 +99,14 @@ export const mediaRegistry = {
   "workshop.graphics.landing": workshopImage("images/workshop.png", "/workshop/", "section-hero", "The HobFarm Workshop host system, character sheet, process inspector, storyboards, media registry, and motion test", 1672, 941),
   "workshop.graphics.hillary": workshopImage("images/workshop-hillary.png", "/workshop/ and /workshop/avatar-host/", "editorial-host-system", "Hillary at the center of HobFarm articles, Presents, Workshop, and in-progress productions", 1672, 941),
   "presents.graphics.avatar-system": workshopImage("images/presents-with-avatars.png", "/presents/", "section-hero", "HobFarm Presents programs with Hillary, Ami, Em, Nina, and Zima as recurring editorial hosts", 1672, 941),
+  "workshop.alter-ego.poster": {
+    src: cdn("visual-systems/sophia-stella-poster-hd.jpg"),
+    mediaType: "image",
+    destination: "/workshop/alter-ego/",
+    role: "paired-persona-poster",
+    alt: "Sophia and Stella Alter Ego paired-persona poster",
+    status: "active",
+  },
   "workshop.character-mannequin.workflow": {
     src: "/media/workshop/character-mannequin/mannequin-to-character-workflow.png",
     mediaType: "image",

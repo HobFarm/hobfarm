@@ -2,12 +2,12 @@
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Lightbox from "@/components/gallery/Lightbox";
 import CharacterLookChapter from "@/components/workshop/CharacterLookChapter.astro";
+import WorkshopProgramNav from "@/components/workshop/WorkshopProgramNav.astro";
 import {
   characterLooks,
   characterMannequinPage,
   type MediaRef,
 } from "@/data/character-mannequin";
-import { workshopPrograms } from "@/data/site-hierarchy";
 import { imageSrcset, transformImageUrl } from "@/lib/media-transforms";
 
 const page = characterMannequinPage;
@@ -71,7 +71,7 @@ const relatedRoutes = [
         <div class="hero-copy">
           <p class="eyebrow">Character / Mannequin Workshop</p>
           <h1 id="character-page-title">Start with the base.</h1>
-          <p class="hero-deck">The clean sheet begins as a generic figure. A blonde mannequin then carries two different outfit-and-scene systems. The black leather look moves once more onto a green mannequin, where the body and rendering style change but the look stays recognizable.</p>
+          <p class="hero-deck">A mannequin is the stable form beneath later identities. It can be a person, animal, creature, cake, vehicle, prop, or other object. A character adds the face, persona, materials, wardrobe, behavior, visual language, and world. The production board below shows the method with humanoid examples.</p>
           <div class="hero-actions">
             <a href="#the-base" class="button button--primary" data-event="character_page_primary_cta">See the starting point</a>
             <a href="#the-sequence" class="button button--secondary">Follow the sequence</a>
@@ -108,7 +108,7 @@ const relatedRoutes = [
     <Wrapper variant="standard" class="section-space">
       <header class="section-intro section-intro--split">
         <div><p class="eyebrow">The starting point</p><h2 id="base-heading">A neutral sheet gives every change the same place to begin.</h2></div>
-        <p>The clean base is deliberately generic. Portrait, front, back, and three-quarter views make the figure easy to compare after an identity, outfit, or style has been applied.</p>
+        <p>The clean base is deliberately generic. Portrait, front, back, and three-quarter views make this humanoid example easy to compare after an identity, outfit, or style has been applied. The same structure can describe an animal, vehicle, prop, or cake. A wedding cake can be the mannequin; a corrupted green cake living in a swamp can be the character.</p>
       </header>
 
       <figure class="sheet-hero">
@@ -193,7 +193,7 @@ const relatedRoutes = [
         <p>The Workshop record stays with the visible comparison. Platform-specific setup, instruction, retries, and limitations belong in Academy material built for that platform.</p>
       </header>
       <nav class="relationship-rail" aria-label="Related Workshop, character, and Academy routes">{relatedRoutes.map((item) => <a href={item.href}><span>{item.eyebrow}</span><h3>{item.title}</h3><p>{item.description}</p><strong>{item.action} &rarr;</strong></a>)}</nav>
-      <nav class="program-nav" aria-label="Workshop programs">{workshopPrograms.filter((entry) => entry.inNav !== false).map((entry) => <a class:list={[entry.id === "character-mannequin" && "active"]} href={entry.href}>{entry.name}</a>)}</nav>
+      <div class="program-nav"><WorkshopProgramNav currentId="character-mannequin" /></div>
     </Wrapper>
   </section>
 </div>

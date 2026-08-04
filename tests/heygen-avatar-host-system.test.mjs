@@ -4,10 +4,12 @@ import test from "node:test";
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
 
-test("avatar host study follows the requested Character / Mannequin sequence", () => {
+test("Avatar & Host is a first-class Workshop program with a durable production sequence", () => {
   const page = read("src/pages/workshop/avatar-host/index.astro");
 
-  assert.match(page, /From Character Design to On-Screen Host/);
+  assert.match(page, /<h1>Avatar &amp; Host<\/h1>/);
+  assert.match(page, /HobFarm Workshop program/);
+  assert.match(page, /WorkshopProgramNav currentId="avatar-host"/);
   for (const heading of [
     "Character identity",
     "Canonical face and voice",

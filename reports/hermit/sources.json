@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "article_slug": "hermit-does-not-have-to-pay-for-repairs",
+  "generated_at": "2026-08-04T03:12:54.542Z",
+  "assets": [
+    {
+      "filename": "20160805_bdn.jpg",
+      "subject": "August 5, 2016 Bangor Daily News front page",
+      "creator": "HobFarm author",
+      "date": "2016-08-05",
+      "source_url": "https://cdn.hob.farm/articles/hermit/20160805_bdn.jpg",
+      "license": "Author-owned photograph",
+      "license_url": null,
+      "required_attribution": "HobFarm / author photograph",
+      "modifications": "None; existing CDN object retained as the article hero.",
+      "caption": "The August 5, 2016 Bangor Daily News front page.",
+      "alt": "The August 5, 2016 Bangor Daily News front page, with a small headline about the North Pond Hermit beside the larger headline Trump talks Somalis in Maine."
+    },
+    {
+      "filename": "20160805_bdn-hermit-crop.jpg",
+      "subject": "Tight crop of the North Pond Hermit headline",
+      "creator": "HobFarm author",
+      "date": "2016-08-05",
+      "source_url": "https://cdn.hob.farm/articles/hermit/20160805_bdn.jpg",
+      "license": "Author-owned photograph",
+      "license_url": null,
+      "required_attribution": "HobFarm / author photograph",
+      "modifications": "Cropped from the author-owned full newspaper photograph; no generative edit.",
+      "local_filename": "public/articles/hermit/20160805_bdn-hermit-crop.jpg",
+      "caption": "The headline that survived the trip and waited inside a camera roll for almost ten years.",
+      "alt": "A tight crop of the newspaper headline Hermit does not have to pay for repairs, with the subhead beginning $1,125 in restitution."
+    },
+    {
+      "filename": "shoichi-yokoi-young.jpg",
+      "subject": "Shōichi Yokoi as an Imperial Japanese Army sergeant",
+      "creator": "Unknown photographer; scanned from Asahi Graph, February 11, 1972, page 15",
+      "date": "Before 1945-07-30",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Shouichi_yokoi.jpg",
+      "license": "Public domain in Japan and the United States (PD-Japan-oldphoto; PD-1996)",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-Japan-oldphoto",
+      "required_attribution": "Public domain / Wikimedia Commons",
+      "modifications": "Downloaded at the original 543 by 700 pixel resolution; no crop.",
+      "local_filename": "public/articles/hermit/shoichi-yokoi-young.jpg",
+      "caption": "Shōichi Yokoi before the long hiding period on Guam.",
+      "alt": "Black-and-white military portrait of Shōichi Yokoi as a young Imperial Japanese Army sergeant."
+    },
+    {
+      "filename": "hiroo-onoda-young.jpg",
+      "subject": "Hiroo Onoda as a young Imperial Japanese Army officer",
+      "creator": "Unknown photographer",
+      "date": "1944–1945",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Hiroo_Onoda_young.jpg",
+      "license": "Public domain in Japan and the United States (PD-Japan-oldphoto; PD-1996)",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-Japan-oldphoto",
+      "required_attribution": "Unknown photographer, public domain / Wikimedia Commons",
+      "modifications": "Downloaded at the original 373 by 455 pixel resolution; no crop.",
+      "local_filename": "public/articles/hermit/hiroo-onoda-young.jpg",
+      "caption": "Hiroo Onoda as a young officer.",
+      "alt": "Black-and-white profile portrait of Hiroo Onoda as a young Imperial Japanese Army officer."
+    }
+  ],
+  "excluded_sources": [
+    {
+      "source_url": "https://commons.wikimedia.org/wiki/File:Hir%C5%8D_Onoda_surrender_1974.jpg",
+      "reason": "Not used. The file page identifies a Philippine government public-domain basis, but the embedded credit names Associated Press photographer Alfonso del Mundo. The task forbids republishing AP material without a valid license."
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+---
+const systems = [
+  {
+    name: "Yokoi",
+    details: [
+      ["Food", "Fish, shrimp, eels, rats, wild pigs, fruit, processed fadang nuts"],
+      ["Heat", "Guam climate; underground shelter"],
+      ["Gear", "Plant-fiber clothes, handmade traps, scavenged wartime metal"],
+      ["Infrastructure", "Low after 1944, though the island was inhabited"],
+      ["Exit", "Found by two CHamoru hunters"],
+    ],
+  },
+  {
+    name: "Onoda",
+    details: [
+      ["Food", "Gathered food, stolen rice and cattle"],
+      ["Heat", "Tropical cover and mobile camps"],
+      ["Gear", "Military weapons, training, repaired equipment"],
+      ["Infrastructure", "Farms and residents were involuntary suppliers and targets"],
+      ["Exit", "Former commander formally relieved him"],
+    ],
+  },
+  {
+    name: "Knight",
+    details: [
+      ["Food", "Prepared food stolen from camps and lake houses"],
+      ["Heat", "Propane, layered sleeping bags, seasonal stockpiles"],
+      ["Gear", "Stolen tents, clothes, tools, books, batteries"],
+      ["Infrastructure", "The whole North Pond cabin economy"],
+      ["Exit", "Motion detector and game warden"],
+    ],
+  },
+  {
+    name: "Alone",
+    details: [
+      ["Food", "Caught, trapped, gathered, or one selected ration item"],
+      ["Heat", "Self-built shelter and fire"],
+      ["Gear", "Ten selected items plus approved clothing and safety kit"],
+      ["Infrastructure", "Medical checks, emergency communication, extraction"],
+      ["Exit", "Tap out or medical removal"],
+    ],
+  },
+];
+
+const rows = ["Food", "Heat", "Gear", "Infrastructure", "Exit"];
+---
+
+<section class="supply-chain article-wide not-prose" aria-labelledby="supply-chain-title">
+  <header>
+    <p>The supply chain is the article</p>
+    <h2 id="supply-chain-title">What kept them alive</h2>
+  </header>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Need</th>
+          {systems.map((system) => <th scope="col">{system.name}</th>)}
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((row) => (
+          <tr>
+            <th scope="row">{row}</th>
+            {systems.map((system) => <td>{system.details.find(([label]) => label === row)?.[1]}</td>)}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="system-cards">
+    {systems.map((system) => (
+      <article>
+        <h3>{system.name}</h3>
+        <dl>
+          {system.details.map(([label, value]) => (
+            <div>
+              <dt>{label}</dt>
+              <dd>{value}</dd>
+            </div>
+          ))}
+        </dl>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .supply-chain {
+    margin-block: 3rem;
+    padding: clamp(1rem, 3vw, 1.65rem);
+    color: #17180f;
+    border: 1px solid #b4aa80;
+    background: #e7dfc6;
+    box-shadow: 0.55rem 0.65rem 0 #353923;
+  }
+
+  header > p {
+    margin: 0;
+    color: #636942;
+    font-family: var(--font-mono);
+    font-size: 0.69rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0.25rem 0 1.35rem;
+    color: #15170f;
+    font-family: var(--font-display);
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
+    font-weight: 500;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.76rem;
+    line-height: 1.45;
+  }
+
+  th,
+  td {
+    padding: 0.72rem;
+    vertical-align: top;
+    border: 1px solid rgb(70 72 46 / 0.25);
+  }
+
+  thead th,
+  tbody th {
+    color: #3f4429;
+    font-family: var(--font-mono);
+    text-align: left;
+  }
+
+  thead th {
+    background: rgb(94 103 57 / 0.13);
+  }
+
+  .system-cards {
+    display: none;
+  }
+
+  @media (max-width: 720px) {
+    .table-wrap {
+      display: none;
+    }
+
+    .system-cards {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .system-cards article {
+      padding: 0.9rem;
+      border: 1px solid rgb(70 72 46 / 0.3);
+      background: rgb(255 252 235 / 0.48);
+    }
+
+    h3 {
+      margin: 0 0 0.75rem;
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+    }
+
+    dl,
+    dd {
+      margin: 0;
+    }
+
+    dl {
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    dl div {
+      display: grid;
+      gap: 0.15rem;
+    }
+
+    dt {
+      color: #5d643b;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    dd {
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+  }
+</style>

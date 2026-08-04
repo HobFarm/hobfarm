@@ -1,38 +1,38 @@
 export const workshopMethod = [
   {
     number: "01",
-    title: "Research",
+    title: "Research the source",
     description:
-      "Find the useful history, references, materials, visual languages, and constraints.",
+      "Begin with a question, photograph, drawing, archive, object, place, character, style, story, or production problem.",
     output: "Source record",
   },
   {
     number: "02",
-    title: "Define",
+    title: "Define the base",
     description:
-      "Write the brief, identify what stays fixed, and establish the visual and render rules.",
-    output: "Project brief",
+      "Identify the form, identity, geometry, evidence, rules, or other traits that must remain stable.",
+    output: "Stable base",
   },
   {
     number: "03",
-    title: "Build",
+    title: "Build the transformation",
     description:
-      "Create the product, character, environment, reference sheets, and production assets.",
-    output: "Production assets",
+      "Apply a style, condition, era, persona, narrative idea, visual language, or functional change.",
+    output: "Transformation system",
   },
   {
     number: "04",
-    title: "Direct",
+    title: "Direct the result",
     description:
-      "Choose composition, camera, lighting, typography, motion, and delivery format.",
+      "Choose the camera, composition, environment, voice, motion, interface, typography, and delivery format required by the job.",
     output: "Directed frames",
   },
   {
     number: "05",
-    title: "Finish and deliver",
+    title: "Publish and extend",
     description:
-      "Composite, edit, correct, export, package, document, and prepare the next revision.",
-    output: "Delivery packet",
+      "Finish the work as an article, image set, video, character pack, product, application, campaign, lesson, or production asset.",
+    output: "Published work",
   },
 ] as const;
 

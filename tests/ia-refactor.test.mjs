@@ -46,12 +46,12 @@ test("Workshop visibility keeps route generation separate from navigation", () =
   const workshopHub = read("src/pages/workshop/index.astro");
 
   const visibleOrder = [
+    'id: "workshop-notes"',
     'id: "character-mannequin"',
-    'id: "alter-ego"',
-    'id: "cute-corrupted"',
     'id: "avatar-host"',
     'id: "before-after"',
-    'id: "workshop-notes"',
+    'id: "cute-corrupted"',
+    'id: "alter-ego"',
   ].map((token) => hierarchy.indexOf(token));
 
   assert.ok(visibleOrder.every((position) => position >= 0));
@@ -62,10 +62,9 @@ test("Workshop visibility keeps route generation separate from navigation", () =
   assert.match(programRoute, /program\.id !== "avatar-host"/);
   assert.match(programRoute, /getProcessPipelineBySlug\(program\.processSlug\)/);
   assert.match(programRoute, /noindex=\{program\.noindex === true\}/);
-  assert.match(workshopHub, /workshopPrograms\.filter\(\(program\) => program\.noindex !== true\)/);
-  for (const heading of ["Character", "World", "Time and motion"]) {
-    assert.match(workshopHub, new RegExp(`title: "${heading}"`));
-  }
+  assert.match(workshopHub, /primaryWorkshopPrograms/);
+  assert.match(workshopHub, /visualPrograms = primaryWorkshopPrograms\.filter/);
+  assert.match(workshopHub, /Tools and applications/);
 });
 
 test("category archives surface related systems, drops, workshop notes, and comics", () => {

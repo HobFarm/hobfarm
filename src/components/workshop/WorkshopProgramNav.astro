@@ -1,0 +1,61 @@
+---
+import { primaryWorkshopPrograms } from "@/data/site-hierarchy";
+
+interface Props {
+  currentId?: string;
+  compact?: boolean;
+}
+
+const { currentId, compact = false } = Astro.props;
+const currentIndex = currentId
+  ? primaryWorkshopPrograms.findIndex((program) => program.id === currentId)
+  : -1;
+const previous = currentIndex > 0 ? primaryWorkshopPrograms[currentIndex - 1] : undefined;
+const next = currentIndex >= 0 && currentIndex < primaryWorkshopPrograms.length - 1
+  ? primaryWorkshopPrograms[currentIndex + 1]
+  : undefined;
+---
+
+<nav class:list={["workshop-program-nav", compact && "workshop-program-nav--compact"]} aria-label="Workshop programs">
+  <div class="workshop-program-nav__index">
+    {primaryWorkshopPrograms.map((program) => (
+      <a
+        class:list={[program.id === currentId && "active"]}
+        href={program.href}
+        aria-current={program.id === currentId ? "page" : undefined}
+      >
+        <span>{String(program.order).padStart(2, "0")}</span>
+        {program.name}
+      </a>
+    ))}
+  </div>
+  {currentIndex >= 0 && (
+    <div class="workshop-program-nav__sequence" aria-label="Previous and next Workshop programs">
+      {previous ? (
+        <a rel="prev" href={previous.href}><span>Previous program</span><strong>{previous.name}</strong></a>
+      ) : (
+        <a href="/workshop/"><span>Workshop hub</span><strong>All programs</strong></a>
+      )}
+      {next ? (
+        <a rel="next" href={next.href}><span>Next program</span><strong>{next.name}</strong></a>
+      ) : (
+        <a href="/workshop/"><span>Workshop hub</span><strong>All programs</strong></a>
+      )}
+    </div>
+  )}
+</nav>
+
+<style>
+  .workshop-program-nav { display: grid; gap: 1rem; }
+  .workshop-program-nav__index { display: flex; flex-wrap: wrap; gap: .45rem; }
+  .workshop-program-nav__index a { display: inline-flex; min-height: 2.65rem; align-items: center; gap: .5rem; padding: .55rem .72rem; border: 1px solid #2c2440; border-radius: .35rem; color: #9b96ad; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .04em; text-decoration: none; text-transform: uppercase; }
+  .workshop-program-nav__index a:hover, .workshop-program-nav__index a:focus-visible, .workshop-program-nav__index a.active { border-color: #19e3e3; color: white; outline: none; }
+  .workshop-program-nav__index span { color: #55d7ff; }
+  .workshop-program-nav__sequence { display: grid; gap: .55rem; }
+  .workshop-program-nav__sequence a { display: flex; min-height: 4.5rem; flex-direction: column; justify-content: center; padding: .8rem 1rem; border: 1px solid #2c2440; border-radius: .4rem; background: #0d0a13; color: white; text-decoration: none; }
+  .workshop-program-nav__sequence a:hover, .workshop-program-nav__sequence a:focus-visible { border-color: #55d7ff; outline: 2px solid rgb(85 215 255 / .35); outline-offset: 2px; }
+  .workshop-program-nav__sequence span { color: #817b91; font-family: var(--font-mono); font-size: .54rem; letter-spacing: .08em; text-transform: uppercase; }
+  .workshop-program-nav__sequence strong { margin-top: .35rem; font-size: .84rem; font-weight: 500; }
+  .workshop-program-nav--compact .workshop-program-nav__index { display: none; }
+  @media (min-width: 44rem) { .workshop-program-nav__sequence { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+</style>

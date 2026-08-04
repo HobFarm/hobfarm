@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "article_slug": "hermit-does-not-have-to-pay-for-repairs",
+  "generated_at": "2026-08-04T03:12:54.542Z",
+  "bucket": "hobfarm-cdn",
+  "public_hostname": "https://cdn.hob.farm",
+  "policy": {
+    "new_keys_only": true,
+    "overwrite_existing": false,
+    "delete_or_rename_existing": false,
+    "dry_run_before_upload": true,
+    "allowed_prefixes": [
+      "articles/hermit/"
+    ]
+  },
+  "existing_remote_assets": [
+    {
+      "destination_key": "articles/hermit/20160805_bdn.jpg",
+      "public_url": "https://cdn.hob.farm/articles/hermit/20160805_bdn.jpg",
+      "purpose": "article hero",
+      "rights_basis": "author-owned photograph",
+      "replacement_policy": "preserve existing object"
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "hermit-newspaper-headline-crop",
+      "source_file": "public/articles/hermit/20160805_bdn-hermit-crop.jpg",
+      "destination_bucket": "hobfarm-cdn",
+      "destination_key": "articles/hermit/20160805_bdn-hermit-crop.jpg",
+      "public_url": "https://cdn.hob.farm/articles/hermit/20160805_bdn-hermit-crop.jpg",
+      "classification": "public-editorial",
+      "related_content": [
+        "article:hermit-does-not-have-to-pay-for-repairs"
+      ],
+      "purpose": "inline detail of the newspaper headline",
+      "caption": "The headline that survived the trip and waited inside a camera roll for almost ten years.",
+      "alt_text": "A tight crop of the newspaper headline Hermit does not have to pay for repairs, with the subhead beginning $1,125 in restitution.",
+      "credit": "HobFarm / author photograph",
+      "rights_basis": "author-owned photograph; cropped derivative",
+      "privacy": "safe",
+      "content_type": "image/jpeg",
+      "bytes": 183110,
+      "sha256": "892bc128e784cdaa80bea68b3654f967aff603fae4cdae2a3e4d596a58cde8dc",
+      "width": 1200,
+      "height": 1240,
+      "replacement_policy": "new-key-only; version filename on conflict; never overwrite",
+      "upload_status": "ready",
+      "verification_status": "destination-absent"
+    },
+    {
+      "asset_id": "hermit-shoichi-yokoi-young",
+      "source_file": "public/articles/hermit/shoichi-yokoi-young.jpg",
+      "destination_bucket": "hobfarm-cdn",
+      "destination_key": "articles/hermit/shoichi-yokoi-young.jpg",
+      "public_url": "https://cdn.hob.farm/articles/hermit/shoichi-yokoi-young.jpg",
+      "classification": "public-editorial",
+      "related_content": [
+        "article:hermit-does-not-have-to-pay-for-repairs"
+      ],
+      "purpose": "inline historical portrait",
+      "caption": "Shōichi Yokoi before the long hiding period on Guam.",
+      "alt_text": "Black-and-white military portrait of Shōichi Yokoi as a young Imperial Japanese Army sergeant.",
+      "credit": "Public domain / Wikimedia Commons",
+      "rights_basis": "public domain in Japan and the United States; see reports/hermit/sources.json",
+      "privacy": "safe; historical public figure",
+      "content_type": "image/jpeg",
+      "bytes": 95386,
+      "sha256": "6f3b2236ba43f36a2e107d564609fdda37e49ea218768a4c391a3d7dbaaeaeb1",
+      "width": 543,
+      "height": 700,
+      "replacement_policy": "new-key-only; version filename on conflict; never overwrite",
+      "upload_status": "ready",
+      "verification_status": "destination-absent"
+    },
+    {
+      "asset_id": "hermit-hiroo-onoda-young",
+      "source_file": "public/articles/hermit/hiroo-onoda-young.jpg",
+      "destination_bucket": "hobfarm-cdn",
+      "destination_key": "articles/hermit/hiroo-onoda-young.jpg",
+      "public_url": "https://cdn.hob.farm/articles/hermit/hiroo-onoda-young.jpg",
+      "classification": "public-editorial",
+      "related_content": [
+        "article:hermit-does-not-have-to-pay-for-repairs"
+      ],
+      "purpose": "inline historical portrait",
+      "caption": "Hiroo Onoda as a young officer.",
+      "alt_text": "Black-and-white profile portrait of Hiroo Onoda as a young Imperial Japanese Army officer.",
+      "credit": "Unknown photographer, public domain / Wikimedia Commons",
+      "rights_basis": "public domain in Japan and the United States; see reports/hermit/sources.json",
+      "privacy": "safe; historical public figure",
+      "content_type": "image/jpeg",
+      "bytes": 106753,
+      "sha256": "0dba2bc7d1677be6bdc6283f11fb4f3893ca5a8669b2c4d98fa54c3022acf31d",
+      "width": 373,
+      "height": 455,
+      "replacement_policy": "new-key-only; version filename on conflict; never overwrite",
+      "upload_status": "ready",
+      "verification_status": "destination-absent"
+    }
+  ],
+  "dry_run_at": "2026-08-04T03:14:39.795Z"
+}

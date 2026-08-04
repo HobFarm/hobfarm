@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import AmbientVideoFrame from "@/components/media/AmbientVideoFrame.astro";
 import BeforeAfterCompare from "@/components/ui/BeforeAfterCompare.astro";
+import WorkshopProgramNav from "@/components/workshop/WorkshopProgramNav.astro";
 import { getMedia } from "@/data/media-registry";
 import { mediaUrl } from "@/lib/gallery";
 
@@ -78,7 +79,7 @@ const archiveCategories: ReadonlyArray<{ label: string; href?: string; note: str
             muted
             loop
             playsinline
-            preload="metadata"
+            preload="none"
             aria-label="Shit to Shine transformation from an abandoned laundry room to a rebuilt near-future utility space"
             aria-describedby="featured-transformation-caption"
             data-featured-player
@@ -331,6 +332,7 @@ const archiveCategories: ReadonlyArray<{ label: string; href?: string; note: str
       <nav class="archive-nav" aria-label="Continue from Before and After">
         <a href="/workshop/">Workshop</a><a href="/gallery/">Gallery</a><a href="/articles/">Articles</a><a href="/support/">Support</a>
       </nav>
+      <div class="program-sequence"><WorkshopProgramNav currentId="before-after" /></div>
     </Wrapper>
   </section>
 </div>
@@ -506,6 +508,7 @@ const archiveCategories: ReadonlyArray<{ label: string; href?: string; note: str
   .archive-nav { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:2rem; }
   .archive-nav a { padding:.6rem .8rem; border:1px solid #35404a; color:#aeb8c0; font-family:var(--font-mono); font-size:.62rem; letter-spacing:.07em; text-decoration:none; text-transform:uppercase; }
   .archive-nav a:hover,.archive-nav a:focus-visible { border-color:var(--archive-cyan); color:#fff; }
+  .program-sequence { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #35404a; }
   @media (min-width:760px) {
     .section-heading--split { grid-template-columns:minmax(0,1.25fr) minmax(20rem,.75fr); align-items:end; }
     .media-wall { grid-template-columns:repeat(12,minmax(0,1fr)); }

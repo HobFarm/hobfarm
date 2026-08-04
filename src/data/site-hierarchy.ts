@@ -42,6 +42,15 @@ export type HierarchyEntry = {
   featuredQuery?: { department?: string; series?: string; format?: string; galleryType?: string };
 };
 
+export type WorkshopProgramEntry = HierarchyEntry & {
+  startsWith: readonly string[];
+  transformation: string;
+  outputs: readonly string[];
+  workflow: readonly string[];
+  featuredExample: string;
+  distinction?: string;
+};
+
 const hero = (filename: string) => `https://cdn.hob.farm/hero-images/${filename}`;
 
 export const siteSections: HierarchyEntry[] = [
@@ -63,18 +72,94 @@ export const presentsSeries: HierarchyEntry[] = [
   { id: "hobfarm-tv", slug: "hobfarm-tv", name: "HobFarm TV", description: "Video built from the articles in the other Presents sections: film essays, animated stories, cartoons, music, archive programs, and experimental television.", href: "/presents/hobfarm-tv/", parent: "presents", kind: "presents-series", status: "coming-eventually", heroImage: hero("hobfarm-tv-hero.png"), heroAlt: "A lost-broadcast HobFarm television ident", theme: "broadcast", order: 5, ctaLabel: "View the test pattern" },
 ];
 
-export const workshopPrograms: HierarchyEntry[] = [
-  { id: "character-mannequin", slug: "character-mannequin", name: "Character / Mannequin", description: "Neutral mannequin design, model sheets, identity slots, wardrobe systems, camera tests, scene direction, and continuity notes.", href: "/workshop/character-mannequin/", parent: "workshop", kind: "workshop-program", status: "active", heroImage: getMedia("workshop.character-mannequin.workflow").src, heroAlt: getMedia("workshop.character-mannequin.workflow").alt, theme: "character-sheet", order: 1, ctaLabel: "Open the character system" },
-  { id: "alter-ego", slug: "alter-ego", name: "Alter Ego", description: "Paired identities built around a public persona and its transformed, alternate, or private counterpart.", href: "/workshop/alter-ego/", parent: "workshop", kind: "workshop-program", status: "active", heroImage: hero("alter-ego-hero.png"), heroAlt: "Two alternate versions of the same identity", theme: "alter-ego", order: 2, ctaLabel: "Meet the other self" },
-  { id: "cute-corrupted", slug: "cute-and-corrupted", name: "Cute & Corrupted", description: "The same subject in two controlled modes, with paired palettes, materials, character notes, cakes, images, and motion.", href: "/workshop/cute-and-corrupted/", parent: "workshop", kind: "workshop-program", status: "active", heroImage: hero("cute-corrupted-hero.png"), heroAlt: "Cute and corrupted versions of the same subject", theme: "comparison", order: 3, ctaLabel: "Enter both modes", featuredQuery: { galleryType: "cute-corrupted" } },
-  { id: "avatar-host", slug: "avatar-host", name: "Avatar & Host", description: "Hobgal, Hillary, Ami, Em, Nina, and Zima show how character identity becomes a repeatable HobFarm presenter system.", href: "/workshop/avatar-host/", parent: "workshop", inNav: true, kind: "workshop-program", status: "active", heroImage: getMedia("workshop.graphics.hillary").src, heroAlt: getMedia("workshop.graphics.hillary").alt, theme: "character-sheet", order: 4, ctaLabel: "Open the host system" },
-  { id: "before-after", slug: "before-and-after", name: "Before & After", description: "Documentary comparisons, restorations, alternate histories, and character changes built around one recognizable subject.", href: "/workshop/before-and-after/", parent: "workshop", kind: "workshop-program", status: "active", heroImage: getMedia("before-after.shit-to-shine.after").src, heroAlt: getMedia("before-after.shit-to-shine.after").alt, theme: "comparison", order: 5, ctaLabel: "Compare the work", featuredQuery: { galleryType: "before-and-after" } },
-  { id: "workshop-notes", slug: "workshop-notes", name: "Workshop Notes", description: "Readable process logs covering methods, tests, revisions, failures, tool choices, and build records.", href: "/workshop/workshop-notes/", parent: "workshop", kind: "workshop-program", status: "active", heroImage: getMedia("workshop.graphics.landing").src, heroAlt: getMedia("workshop.graphics.landing").alt, theme: "notes", order: 6, ctaLabel: "Read the notes", featuredQuery: { department: "workshop-notes" } },
+export const primaryWorkshopPrograms: readonly WorkshopProgramEntry[] = [
+  {
+    id: "workshop-notes", slug: "workshop-notes", name: "Workshop Notes",
+    description: "The production record behind HobFarm: sources, questions, decisions, tests, failures, revisions, reusable findings, and finished destinations.",
+    href: "/workshop/workshop-notes/", parent: "workshop", kind: "workshop-program", status: "active",
+    heroImage: getMedia("workshop.graphics.landing").src, heroAlt: getMedia("workshop.graphics.landing").alt,
+    theme: "notes", order: 1, ctaLabel: "Read the notes", featuredQuery: { department: "workshop-notes" },
+    startsWith: ["a real question", "source material", "a production problem"],
+    transformation: "Keep the choices, tests, failures, and revisions attached to the work.",
+    outputs: ["process note", "source record", "case study", "reusable finding"],
+    workflow: ["Record the question", "Keep the source material", "Log the production decisions", "Show the tests and revisions", "Write the reusable finding", "Link the final destination"],
+    featuredExample: "Current Workshop Notes archive",
+  },
+  {
+    id: "character-mannequin", slug: "character-mannequin", name: "Character / Mannequin",
+    description: "A mannequin is the stable form beneath later identities. A character adds face, persona, materials, wardrobe, behavior, visual language, and world.",
+    href: "/workshop/character-mannequin/", parent: "workshop", kind: "workshop-program", status: "active",
+    heroImage: getMedia("workshop.character-mannequin.workflow").src, heroAlt: getMedia("workshop.character-mannequin.workflow").alt,
+    theme: "character-sheet", order: 2, ctaLabel: "Open the character system",
+    startsWith: ["a person or animal", "a creature or cake", "a vehicle, prop, or object"],
+    transformation: "Apply identity, materials, wardrobe, behavior, and a visual world to a stable form.",
+    outputs: ["production board", "character sheet", "directed scene", "motion proof"],
+    workflow: ["Define the stable form", "Record the identity locks", "Build the character system", "Direct the scene and camera", "Test continuity across outputs"],
+    featuredExample: "Mannequin-to-character production board",
+  },
+  {
+    id: "avatar-host", slug: "avatar-host", name: "Avatar & Host",
+    description: "A stable identity gains a speaking role, voice, expression, motion, recurring looks, and a destination.",
+    href: "/workshop/avatar-host/", parent: "workshop", kind: "workshop-program", status: "active",
+    heroImage: getMedia("workshop.ami-legacy.hero").src, heroAlt: getMedia("workshop.ami-legacy.hero").alt,
+    theme: "character-sheet", order: 3, ctaLabel: "Meet Ami and the host system",
+    startsWith: ["a photograph", "an existing character", "a newly built mannequin"],
+    transformation: "Add a role, voice, expression, motion direction, recurring looks, and a public job.",
+    outputs: ["presenter clip", "campaign host", "series guide", "lesson or article introduction"],
+    workflow: ["Lock the identity", "Define the speaking role", "Choose the voice and look", "Direct expression and motion", "Attach the clip to a destination"],
+    featuredExample: "Ami presents Future Carriage",
+  },
+  {
+    id: "before-after", slug: "before-and-after", name: "Before & After",
+    description: "One source is compared across time, condition, repair, decay, restoration, or a possible history, with documentary and invented results clearly labeled.",
+    href: "/workshop/before-and-after/", parent: "workshop", kind: "workshop-program", status: "active",
+    heroImage: getMedia("before-after.shit-to-shine.after").src, heroAlt: getMedia("before-after.shit-to-shine.after").alt,
+    theme: "comparison", order: 4, ctaLabel: "Compare the work", featuredQuery: { galleryType: "before-and-after" },
+    startsWith: ["a source photograph", "a matched historical view", "a locked subject and camera"],
+    transformation: "Change time or condition while preserving visible evidence and labeling invented material.",
+    outputs: ["documentary pair", "speculative restoration", "alternate history", "transition film"],
+    workflow: ["Verify the source", "Lock the subject and camera", "Label the mode", "Build the transformation", "Compare what survived", "Publish factual and invented context separately"],
+    featuredExample: "Salton Sea and abandoned laundry comparisons",
+  },
+  {
+    id: "cute-corrupted", slug: "cute-and-corrupted", name: "Cute & Corrupted",
+    description: "The same recognizable subject is developed in cute and corrupted modes by changing tone, palette, texture, materials, expression, damage, humor, environment, and motion.",
+    href: "/workshop/cute-and-corrupted/", parent: "workshop", kind: "workshop-program", status: "active",
+    heroImage: hero("cute-corrupted-hero.png"), heroAlt: "Cute and corrupted versions of the same subject",
+    theme: "comparison", order: 5, ctaLabel: "Enter both modes", featuredQuery: { galleryType: "cute-corrupted" },
+    startsWith: ["one recognizable subject", "a shared silhouette", "a readable identity"],
+    transformation: "Change the subject's tonal and material condition while keeping the base legible.",
+    outputs: ["paired stills", "character goods", "gross-out card", "motion pair or series"],
+    workflow: ["Define the shared mannequin", "Establish the cute baseline", "Write the corruption rule", "Build paired stills or motion", "Check identity continuity", "Package the pair as an entry, product, or series"],
+    featuredExample: "Cakes, critters, and character pairs",
+    distinction: "Cute & Corrupted changes a subject's tonal or material condition.",
+  },
+  {
+    id: "alter-ego", slug: "alter-ego", name: "Alter Ego",
+    description: "One mannequin produces two related personas that share an identity while role, posture, wardrobe, attitude, setting, and public function pull them apart.",
+    href: "/workshop/alter-ego/", parent: "workshop", kind: "workshop-program", status: "active",
+    heroImage: hero("alter-ego-hero.png"), heroAlt: "Two alternate versions of the same identity",
+    theme: "alter-ego", order: 6, ctaLabel: "Meet both personas",
+    startsWith: ["one mannequin", "shared identity locks", "two distinct roles or personas"],
+    transformation: "Split one identity into related personas with different roles, posture, wardrobe, attitude, settings, and public jobs.",
+    outputs: ["paired hero", "identity sheets", "poster", "host role or campaign"],
+    workflow: ["Define the shared mannequin and identity locks", "Write two distinct personas", "Build related visual systems", "Test the pair together", "Produce hero, sheet, poster, or motion evidence", "Route each persona to a useful role"],
+    featuredExample: "Sophia and Stella",
+    distinction: "Alter Ego changes the persona the subject performs.",
+  },
+];
+
+export const supportingWorkshopPrograms: readonly HierarchyEntry[] = [
   { id: "seed-to-world", slug: "seed-to-world", name: "Seed to World", description: "A baseline character becomes a small visual world: seed image, identity extraction, style pass, world translation, and motion proof.", href: "/workshop/seed-to-world/", parent: "workshop", inNav: false, noindex: false, processSlug: "seed-to-world", kind: "workshop-program", status: "active", heroImage: "https://cdn.hob.farm/gallery/seed-to-world/s2w-v1-04.png", heroAlt: "Seed character with pale grey features and multicolor neon hair", theme: "character-sheet", order: 7, ctaLabel: "Open Seed to World" },
   { id: "fashion-grammar", slug: "fashion-grammar", name: "Fashion Grammar", description: "Outfit logic, pose, accessories, material, and palette become a reusable character package.", href: "/workshop/fashion-grammar/", parent: "workshop", inNav: false, noindex: false, processSlug: "fashion", kind: "workshop-program", status: "active", heroImage: "https://cdn.hob.farm/pages/process/fashion/fashion-hero.png", heroAlt: "Starlet fashion grammar character package", theme: "workshop", order: 8, ctaLabel: "Open Fashion Grammar" },
   { id: "book-package", slug: "book-package", name: "Book Package", description: "A story signal becomes a cover, illustration system, motion teaser, and reusable visual world.", href: "/workshop/book-package/", parent: "workshop", inNav: false, noindex: false, processSlug: "book", kind: "workshop-program", status: "active", heroImage: "https://cdn.hob.farm/pages/process/book/book-hero.png", heroAlt: "The Star in the Skull book package", theme: "workshop", order: 9, ctaLabel: "Open the book package" },
   { id: "motion", slug: "motion", name: "Motion", description: "A single character prompt expands into animated clips, transition shots, and an editorial loop built for atmosphere, repetition, and replay.", href: "/workshop/motion/", parent: "workshop", inNav: false, noindex: false, processSlug: "motion", kind: "workshop-program", status: "active", heroImage: "https://cdn.hob.farm/pages/process/motion/motion-hero.png", heroAlt: "Hellcat motion hero artifact", theme: "workshop", order: 10, ctaLabel: "Open the motion pass" },
   { id: "stylefusion", slug: "stylefusion", name: "StyleFusion", description: "A separate reference-image application that assigns approved images to roles, runs specialized extraction agents, compiles an Intermediate Representation, and exports a model-ready generation document.", href: "/workshop/stylefusion/", parent: "workshop", inNav: false, noindex: false, kind: "workshop-program", status: "active", heroImage: getMedia("stylefusion.banner.image").src, heroAlt: getMedia("stylefusion.banner.image").alt, theme: "stylefusion", order: 11, ctaLabel: "Inspect the application", featuredQuery: { department: "workshop-notes", series: "StyleFusion" } },
+];
+
+export const workshopPrograms: readonly HierarchyEntry[] = [
+  ...primaryWorkshopPrograms,
+  ...supportingWorkshopPrograms,
 ];
 
 export const articleCategories: HierarchyEntry[] = [

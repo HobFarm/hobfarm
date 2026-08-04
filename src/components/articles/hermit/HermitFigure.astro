@@ -1,0 +1,74 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption: string;
+  credit: string;
+  sourceUrl?: string;
+  width: number;
+  height: number;
+  compact?: boolean;
+}
+
+const {
+  src,
+  alt,
+  caption,
+  credit,
+  sourceUrl,
+  width,
+  height,
+  compact = false,
+} = Astro.props;
+---
+
+<figure class:list={["hermit-figure", "not-prose", "article-wide", compact && "article-compact"]}>
+  <img
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading="lazy"
+    decoding="async"
+    data-lightbox={src}
+    data-lightbox-caption={caption}
+  />
+  <figcaption>
+    <span>{caption}</span>
+    <span class="hermit-credit">
+      {sourceUrl ? <a href={sourceUrl} rel="noreferrer">{credit}</a> : credit}
+    </span>
+  </figcaption>
+</figure>
+
+<style>
+  .hermit-figure {
+    margin-block: 2.5rem;
+  }
+
+  .hermit-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid rgb(196 175 126 / 0.28);
+    border-radius: 0.35rem;
+    background: #11120e;
+    box-shadow: 0.45rem 0.55rem 0 rgb(20 24 15 / 0.78);
+  }
+
+  .hermit-figure figcaption {
+    display: grid;
+    gap: 0.35rem;
+    margin-top: 0.85rem;
+  }
+
+  .hermit-credit {
+    color: var(--color-base-500, #858585);
+    font-size: 0.73rem;
+  }
+
+  .hermit-credit a {
+    color: inherit;
+    text-underline-offset: 0.16em;
+  }
+</style>

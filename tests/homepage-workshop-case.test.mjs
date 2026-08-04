@@ -49,13 +49,13 @@ test("homepage connects the publication to four distinct capability proofs and t
   assert.match(bridge, /The publication is made in the Workshop/);
 });
 
-test("the complete Process Film stays on Workshop instead of repeating on the homepage", () => {
+test("the long Process Film is removed from the compact hub and homepage", () => {
   const workshop = read("src/pages/workshop/index.astro");
   const homepage = read("src/components/home/HomeWorkshop.astro");
 
   assert.doesNotMatch(homepage, /WorkshopProcessFilm|autoplay/);
-  assert.match(workshop, /WorkshopProcessFilm/);
-  assert.match(workshop, /id="process-film"/);
+  assert.doesNotMatch(workshop, /WorkshopProcessFilm|id="process-film"/);
+  assert.match(workshop, /Five demonstrations of the same method/);
 });
 
 test("homepage Workshop capabilities use one shared data model and real routes", () => {

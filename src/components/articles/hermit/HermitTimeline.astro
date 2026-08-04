@@ -1,0 +1,157 @@
+---
+const spans = [
+  {
+    name: "Shōichi Yokoi",
+    dates: "1944–1972",
+    years: "27½ years",
+    system: "Jungle ecology, handmade gear, wartime debris, concealment",
+  },
+  {
+    name: "Hiroo Onoda",
+    dates: "1944–1974",
+    years: "29 years",
+    system: "Military training, weapons, gathered and stolen food, raids",
+  },
+  {
+    name: "Christopher Knight",
+    dates: "1986–2013",
+    years: "27 years",
+    system: "Cabins, lake houses, propane, prepared food, stolen equipment",
+  },
+];
+---
+
+<section class="hermit-timeline article-wide not-prose" aria-labelledby="hermit-timeline-title">
+  <header>
+    <p>Duration looks similar. Supply does not.</p>
+    <h2 id="hermit-timeline-title">Twenty-seven years, three systems</h2>
+  </header>
+
+  <ol>
+    {spans.map((span) => (
+      <li>
+        <div class="timeline-name">
+          <strong>{span.name}</strong>
+          <span>{span.dates}</span>
+        </div>
+        <div class="timeline-run" aria-hidden="true"><span></span></div>
+        <div class="timeline-result">
+          <strong>{span.years}</strong>
+          <span>{span.system}</span>
+        </div>
+      </li>
+    ))}
+  </ol>
+
+  <footer>
+    <span><b>2016</b> newspaper photographed</span>
+    <span><b>2026</b> photograph rediscovered</span>
+  </footer>
+</section>
+
+<style>
+  .hermit-timeline {
+    margin-block: 3rem;
+    padding: clamp(1rem, 3vw, 1.8rem);
+    color: #eee9da;
+    border: 1px solid rgb(203 189 139 / 0.34);
+    background:
+      linear-gradient(90deg, rgb(203 189 139 / 0.055) 1px, transparent 1px),
+      #10130d;
+    background-size: 2.5rem 100%;
+    box-shadow: 0.55rem 0.65rem 0 #2a2f1e;
+  }
+
+  header > p {
+    margin: 0;
+    color: #b7bf83;
+    font-family: var(--font-mono);
+    font-size: 0.69rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0.3rem 0 0;
+    color: #fff9e9;
+    font-family: var(--font-display);
+    font-size: clamp(1.7rem, 4vw, 2.55rem);
+    font-weight: 400;
+  }
+
+  ol {
+    display: grid;
+    gap: 1.1rem;
+    margin: 1.55rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: minmax(8rem, 0.7fr) minmax(7rem, 1.1fr) minmax(12rem, 1.7fr);
+    gap: 1rem;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid rgb(203 189 139 / 0.2);
+  }
+
+  .timeline-name,
+  .timeline-result {
+    display: grid;
+    gap: 0.22rem;
+  }
+
+  .timeline-name span,
+  .timeline-result span,
+  footer {
+    color: #b9b6aa;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    line-height: 1.5;
+  }
+
+  .timeline-run {
+    height: 0.72rem;
+    padding: 0.12rem;
+    border: 1px solid rgb(231 218 162 / 0.34);
+    border-radius: 999px;
+  }
+
+  .timeline-run span {
+    display: block;
+    width: 92%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #78824d, #d2bb70);
+  }
+
+  .timeline-result > strong {
+    color: #e3c97e;
+  }
+
+  footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px dashed rgb(203 189 139 / 0.3);
+  }
+
+  footer b {
+    color: #fff9e9;
+  }
+
+  @media (max-width: 700px) {
+    li {
+      grid-template-columns: 1fr;
+      gap: 0.55rem;
+    }
+
+    .timeline-run {
+      width: 100%;
+    }
+  }
+</style>

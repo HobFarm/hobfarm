@@ -1,0 +1,119 @@
+---
+const steps = [
+  "Police repeatedly use a private woods road",
+  "The road is damaged during evidence recovery and site cleanup",
+  "Maine State Police pay $1,125 to repair it",
+  "The trial court orders Knight to reimburse the police",
+  "The Maine high court vacates that order, 4–2",
+];
+---
+
+<figure class="road-chain article-wide not-prose" aria-labelledby="road-chain-title">
+  <header>
+    <p>State v. Knight, 2016 ME 123</p>
+    <h2 id="road-chain-title">The $1,125 chain</h2>
+  </header>
+
+  <ol>
+    {steps.map((step, index) => (
+      <li class:list={[index === steps.length - 1 && "result"]}>
+        <span>{String(index + 1).padStart(2, "0")}</span>
+        <strong>{step}</strong>
+      </li>
+    ))}
+  </ol>
+
+  <figcaption>The police had already paid for the repair. The appeal decided whether criminal restitution could shift that cost to Knight.</figcaption>
+</figure>
+
+<style>
+  .road-chain {
+    margin-block: 3rem;
+    padding: clamp(1rem, 3vw, 1.8rem);
+    color: #f3eddd;
+    border: 1px solid rgb(211 187 120 / 0.38);
+    background: #11130e;
+    box-shadow: 0.55rem 0.65rem 0 #3a3d25;
+  }
+
+  header > p {
+    margin: 0;
+    color: #b8bf7b;
+    font-family: var(--font-mono);
+    font-size: 0.69rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0.25rem 0 1.35rem;
+    color: #fff9e9;
+    font-family: var(--font-display);
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
+    font-weight: 400;
+  }
+
+  ol {
+    display: grid;
+    gap: 1.2rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    position: relative;
+    display: grid;
+    grid-template-columns: 2.25rem 1fr;
+    gap: 0.8rem;
+    align-items: center;
+  }
+
+  li:not(:last-child)::after {
+    position: absolute;
+    top: calc(100% + 0.18rem);
+    left: 1.05rem;
+    width: 1px;
+    height: 0.86rem;
+    background: #817f5b;
+    content: "";
+  }
+
+  li > span {
+    display: grid;
+    width: 2.2rem;
+    height: 2.2rem;
+    place-items: center;
+    border: 1px solid #817f5b;
+    border-radius: 50%;
+    color: #c8c0a5;
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+  }
+
+  li > strong {
+    padding: 0.75rem 0.85rem;
+    border-left: 3px solid #73794a;
+    background: rgb(255 255 255 / 0.045);
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  li.result > span {
+    color: #16170f;
+    border-color: #d1bd78;
+    background: #d1bd78;
+  }
+
+  li.result > strong {
+    color: #fff5d5;
+    border-left-color: #d1bd78;
+    background: rgb(209 189 120 / 0.13);
+  }
+
+  figcaption {
+    margin-top: 1.35rem !important;
+    padding-top: 1rem;
+    border-top: 1px dashed rgb(211 187 120 / 0.28);
+  }
+</style>
