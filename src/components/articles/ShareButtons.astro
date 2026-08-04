@@ -27,88 +27,131 @@ const encodedTitle = encodeURIComponent(title);
 const encodedText = encodeURIComponent(shareText);
 const encodedEmailBody = encodeURIComponent(`${shareText}\n\n${url}`);
 
-const links = [
+interface ShareAction {
+  label: string;
+  ariaLabel: string;
+  network: string;
+  icon: string;
+  href?: string;
+  behavior?: "instagram" | "copy";
+}
+
+const actions: ShareAction[] = [
   {
     label: "Facebook",
+    ariaLabel: "Share on Facebook",
+    network: "facebook",
+    icon: `<path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.105 4.388 23.1 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.025 1.792-4.697 4.533-4.697 1.313 0 2.686.236 2.686.236v2.971H15.83c-1.491 0-1.955.931-1.955 1.887v2.263h3.328l-.532 3.49h-2.796V24C19.612 23.1 24 18.105 24 12.073z"/>`,
     href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
   },
   {
-    label: "Threads",
-    href: `https://www.threads.net/intent/post?text=${encodedText}%20${encodedUrl}`,
-  },
-  {
-    label: "Bluesky",
-    href: `https://bsky.app/intent/compose?text=${encodedText}%20${encodedUrl}`,
+    label: "Instagram",
+    ariaLabel: "Share with Instagram",
+    network: "instagram",
+    icon: `<rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>`,
+    behavior: "instagram",
   },
   {
     label: "X",
+    ariaLabel: "Share on X",
+    network: "x",
+    icon: `<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>`,
     href: `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}`,
   },
   {
+    label: "Pinterest",
+    ariaLabel: "Save on Pinterest",
+    network: "pinterest",
+    icon: `<path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12.017 24c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641 0 12.017 0z"/>`,
+    href: `https://www.pinterest.com/pin/create/button/?url=${encodedUrl}&description=${encodedText}`,
+  },
+  {
     label: "Reddit",
+    ariaLabel: "Share on Reddit",
+    network: "reddit",
+    icon: `<circle cx="12" cy="13" r="8" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="9" cy="12" r="1.2"/><circle cx="15" cy="12" r="1.2"/><path d="M8.5 15.2c1.9 1.35 5.1 1.35 7 0M13.2 5.1l1-3.1 3.8.9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="19.5" cy="3.2" r="1.35" fill="none" stroke="currentColor" stroke-width="1.6"/>`,
     href: `https://www.reddit.com/submit?url=${encodedUrl}&title=${encodedTitle}`,
   },
   {
+    label: "Copy link",
+    ariaLabel: "Copy article link",
+    network: "copy",
+    icon: `<rect x="9" y="9" width="11" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>`,
+    behavior: "copy",
+  },
+  {
     label: "Email",
+    ariaLabel: "Share by email",
+    network: "email",
+    icon: `<rect x="2.5" y="4.5" width="19" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>`,
     href: `mailto:?subject=${encodedTitle}&body=${encodedEmailBody}`,
   },
 ];
 ---
 
-<div class="space-y-3" data-share-buttons data-share-title={title} data-share-text={text} data-share-url={url}>
-  <div class="flex flex-wrap items-center gap-2">
-    <button
-      type="button"
-      data-copy-link
-      data-url={url}
-      class="inline-flex h-9 items-center justify-center rounded-lg border border-base-700 px-3 text-xs font-mono uppercase tracking-wider text-base-300 transition-colors duration-200 hover:border-base-500 hover:text-base-100"
-    >
-      Copy link
-    </button>
-    <button
-      type="button"
-      data-native-share
-      hidden
-      class="inline-flex h-9 items-center justify-center rounded-lg border border-accent-cyan/50 px-3 text-xs font-mono uppercase tracking-wider text-accent-cyan transition-colors duration-200 hover:border-accent-cyan hover:text-base-100"
-    >
-      Share
-    </button>
-    {links.map((link) => (
-      <a
-        href={link.href}
-        target={link.href.startsWith("mailto:") ? undefined : "_blank"}
-        rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-        class="inline-flex h-9 items-center justify-center rounded-lg border border-base-700 px-3 text-xs font-mono uppercase tracking-wider text-base-300 transition-colors duration-200 hover:border-base-500 hover:text-base-100"
-        aria-label={`Share on ${link.label}`}
+<div class="article-share" data-share-buttons data-share-title={title} data-share-text={text} data-share-url={url}>
+  <div class="share-toolbar" role="group" aria-label="Article sharing options">
+    {actions.map((action) => action.behavior ? (
+      <button
+        type="button"
+        data-copy-link={action.behavior === "copy" ? true : undefined}
+        data-instagram-share={action.behavior === "instagram" ? true : undefined}
+        data-url={action.behavior === "copy" ? url : undefined}
+        data-network={action.network}
+        class="share-action"
+        aria-label={action.ariaLabel}
+        title={action.behavior === "instagram" ? "Opens your device share sheet, or copies the article link when unavailable" : undefined}
       >
-        {link.label}
+        <span class="share-action__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" set:html={action.icon} />
+        </span>
+        <span data-button-label>{action.label}</span>
+      </button>
+    ) : (
+      <a
+        href={action.href}
+        target={action.href?.startsWith("mailto:") ? undefined : "_blank"}
+        rel={action.href?.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+        data-network={action.network}
+        class="share-action"
+        aria-label={action.ariaLabel}
+      >
+        <span class="share-action__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" set:html={action.icon} />
+        </span>
+        <span>{action.label}</span>
       </a>
     ))}
   </div>
 
-  <details class="group rounded-lg border border-base-800 bg-base-950/60" data-share-post>
-    <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-3 py-2 text-xs font-mono uppercase tracking-wider text-base-300 transition-colors hover:text-base-100">
-      <span>Share post</span>
-      <span class="text-base-500 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+  <details class="share-caption group" data-share-post>
+    <summary>
+      <span>
+        <strong>Share caption</strong>
+        <small>A ready-to-paste post built from this article</small>
+      </span>
+      <span class="share-caption__toggle" aria-hidden="true">+</span>
     </summary>
-    <div class="border-t border-base-800 p-3">
+    <div class="share-caption__body">
       <textarea
         readonly
         rows="7"
         data-share-post-text
-        class="min-h-36 w-full resize-y rounded-md border border-base-800 bg-base-950 p-3 font-mono text-xs leading-relaxed text-base-200 outline-none focus:border-accent-cyan"
+        class="share-caption__text"
       >{sharePost}</textarea>
-      <div class="mt-3 flex flex-wrap items-center gap-2">
+      <div class="share-caption__footer">
         <button
           type="button"
           data-copy-share-post
-          class="inline-flex h-9 items-center justify-center rounded-lg border border-accent-magenta/50 px-3 text-xs font-mono uppercase tracking-wider text-accent-magenta-bright transition-colors duration-200 hover:border-accent-magenta hover:text-base-100"
+          class="share-caption__copy"
         >
-          Copy post
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <rect x="9" y="9" width="11" height="11" rx="2" />
+            <path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3" stroke-linecap="round" />
+          </svg>
+          <span data-button-label>Copy caption</span>
         </button>
-        <p class="text-xs text-base-500">
-          A short share draft built from the page title, description, link, and tags.
-        </p>
+        <p>Edit it freely after pasting.</p>
       </div>
     </div>
   </details>
@@ -116,17 +159,239 @@ const links = [
   <span data-copy-status class="sr-only" aria-live="polite"></span>
 </div>
 
+<style>
+  .article-share {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .share-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .share-action {
+    --share-color: #a8a2ae;
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    padding: 0.4rem 0.78rem 0.4rem 0.48rem;
+    border: 1px solid #30283d;
+    border-radius: 0.65rem;
+    background: rgb(10 8 15 / 0.72);
+    color: #c8c2ce;
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.055em;
+    line-height: 1;
+    text-transform: uppercase;
+    transition: border-color 160ms ease, background-color 160ms ease, color 160ms ease, transform 160ms ease;
+  }
+
+  .share-action__icon {
+    display: grid;
+    width: 1.75rem;
+    height: 1.75rem;
+    flex: none;
+    place-items: center;
+    border-radius: 0.45rem;
+    background: color-mix(in srgb, var(--share-color) 13%, transparent);
+    color: var(--share-color);
+  }
+
+  .share-action svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .share-action:hover,
+  .share-action:focus-visible {
+    border-color: color-mix(in srgb, var(--share-color) 64%, #30283d);
+    background: color-mix(in srgb, var(--share-color) 8%, #0a080f);
+    color: #fff;
+    outline: none;
+    transform: translateY(-1px);
+  }
+
+  .share-action:focus-visible {
+    box-shadow: 0 0 0 2px #07060b, 0 0 0 4px var(--share-color);
+  }
+
+  .share-action[data-network="facebook"] { --share-color: #4f8df7; }
+  .share-action[data-network="instagram"] { --share-color: #f24da6; }
+  .share-action[data-network="x"] { --share-color: #f4f1f6; }
+  .share-action[data-network="pinterest"] { --share-color: #e60023; }
+  .share-action[data-network="reddit"] { --share-color: #ff6534; }
+  .share-action[data-network="copy"] { --share-color: #19e3e3; }
+  .share-action[data-network="email"] { --share-color: #a98cff; }
+
+  .share-caption {
+    overflow: hidden;
+    border: 1px solid #272130;
+    border-radius: 0.65rem;
+    background: rgb(7 6 11 / 0.72);
+  }
+
+  .share-caption summary {
+    display: flex;
+    min-height: 3rem;
+    cursor: pointer;
+    list-style: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.65rem 0.85rem;
+    color: #c9c3cf;
+  }
+
+  .share-caption summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .share-caption summary > span:first-child {
+    display: grid;
+    gap: 0.15rem;
+  }
+
+  .share-caption summary strong {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.075em;
+    text-transform: uppercase;
+  }
+
+  .share-caption summary small {
+    color: #777180;
+    font-size: 0.68rem;
+  }
+
+  .share-caption summary:hover,
+  .share-caption summary:focus-visible {
+    color: #fff;
+    outline: none;
+  }
+
+  .share-caption__toggle {
+    color: #19e3e3;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    transition: transform 180ms ease;
+  }
+
+  .share-caption[open] .share-caption__toggle {
+    transform: rotate(45deg);
+  }
+
+  .share-caption__body {
+    padding: 0.75rem;
+    border-top: 1px solid #272130;
+  }
+
+  .share-caption__text {
+    min-height: 9rem;
+    width: 100%;
+    resize: vertical;
+    border: 1px solid #30283d;
+    border-radius: 0.5rem;
+    background: #07060b;
+    padding: 0.75rem;
+    color: #d8d3dc;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    line-height: 1.65;
+    outline: none;
+  }
+
+  .share-caption__text:focus {
+    border-color: #19e3e3;
+  }
+
+  .share-caption__footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+  }
+
+  .share-caption__copy {
+    display: inline-flex;
+    min-height: 2.5rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.45rem 0.8rem;
+    border: 1px solid rgb(242 77 166 / 0.5);
+    border-radius: 0.55rem;
+    color: #f57bbb;
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: border-color 160ms ease, background-color 160ms ease, color 160ms ease;
+  }
+
+  .share-caption__copy svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .share-caption__copy:hover,
+  .share-caption__copy:focus-visible {
+    border-color: #f24da6;
+    background: rgb(242 77 166 / 0.08);
+    color: #fff;
+    outline: none;
+  }
+
+  .share-caption__footer p {
+    margin: 0;
+    color: #777180;
+    font-size: 0.68rem;
+  }
+
+  @media (max-width: 32rem) {
+    .share-toolbar {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .share-action {
+      justify-content: flex-start;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .share-action,
+    .share-caption__toggle {
+      transition: none;
+    }
+
+    .share-action:hover,
+    .share-action:focus-visible {
+      transform: none;
+    }
+  }
+</style>
+
 <script>
   const successClasses = ["border-accent-cyan", "text-accent-cyan"];
 
   function markButtonCopied(button: HTMLButtonElement, label: string, status?: HTMLElement | null) {
-    const defaultText = button.textContent || label;
-    button.textContent = "Copied";
+    const labelTarget = button.querySelector<HTMLElement>("[data-button-label]");
+    const defaultText = labelTarget?.textContent || button.textContent || label;
+    if (labelTarget) labelTarget.textContent = "Copied";
+    else button.textContent = "Copied";
     button.classList.add(...successClasses);
     if (status) status.textContent = `${label} copied.`;
 
     window.setTimeout(() => {
-      button.textContent = defaultText;
+      if (labelTarget) labelTarget.textContent = defaultText;
+      else button.textContent = defaultText;
       button.classList.remove(...successClasses);
       if (status) status.textContent = "";
     }, 1800);
@@ -149,7 +414,7 @@ const links = [
 
       const copyButton = shareRoot.querySelector<HTMLButtonElement>("[data-copy-link]");
       const copySharePostButton = shareRoot.querySelector<HTMLButtonElement>("[data-copy-share-post]");
-      const nativeShareButton = shareRoot.querySelector<HTMLButtonElement>("[data-native-share]");
+      const instagramShareButton = shareRoot.querySelector<HTMLButtonElement>("[data-instagram-share]");
       const sharePostText = shareRoot.querySelector<HTMLTextAreaElement>("[data-share-post-text]");
       const status = shareRoot.querySelector<HTMLElement>("[data-copy-status]");
 
@@ -166,9 +431,8 @@ const links = [
         await copyText(sharePostText.value, copySharePostButton, "Share post", status);
       });
 
-      if (nativeShareButton && "share" in navigator) {
-        nativeShareButton.hidden = false;
-        nativeShareButton.addEventListener("click", async () => {
+      instagramShareButton?.addEventListener("click", async () => {
+        if ("share" in navigator) {
           try {
             await navigator.share({
               title: shareRoot.dataset.shareTitle,
@@ -180,8 +444,13 @@ const links = [
             if (error instanceof DOMException && error.name === "AbortError") return;
             if (status) status.textContent = "Share sheet unavailable.";
           }
-        });
-      }
+          return;
+        }
+
+        const articleUrl = shareRoot.dataset.shareUrl;
+        if (!articleUrl) return;
+        await copyText(articleUrl, instagramShareButton, "Instagram link", status);
+      });
     });
   }
 
