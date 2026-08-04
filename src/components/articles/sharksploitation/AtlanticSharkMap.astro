@@ -1,0 +1,104 @@
+<figure class="atlantic-map article-wide not-prose">
+  <div class="atlantic-map__graphic">
+    <svg viewBox="0 0 960 560" role="img" aria-labelledby="atlantic-map-title atlantic-map-desc">
+      <title id="atlantic-map-title">Schematic of white shark monitoring from the Carolinas to Atlantic Canada</title>
+      <desc id="atlantic-map-desc">A simplified western North Atlantic coast shows seasonal movement toward Maine, Halifax, and Cape Breton, along with Maine receiver coverage and a note that detections are not a population count.</desc>
+      <defs>
+        <linearGradient id="atlantic-water" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#06161a" />
+          <stop offset="1" stop-color="#0d3038" />
+        </linearGradient>
+        <marker id="north-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+          <path d="M0 0 10 5 0 10Z" fill="#ee6b46" />
+        </marker>
+      </defs>
+      <rect width="960" height="560" rx="18" fill="url(#atlantic-water)" />
+      <path d="M93 512 C151 461 156 420 207 383 C260 345 281 313 319 268 C353 226 348 194 395 161 C440 130 493 123 533 87 C567 56 620 42 704 23 L0 0 0 560Z" fill="#d5c9a5" opacity="0.92" />
+      <path d="M93 512 C151 461 156 420 207 383 C260 345 281 313 319 268 C353 226 348 194 395 161 C440 130 493 123 533 87 C567 56 620 42 704 23" fill="none" stroke="#f2ead4" stroke-width="4" />
+      <path d="M246 438 C350 383 375 308 442 241 S530 132 638 70" fill="none" stroke="#ee6b46" stroke-width="5" stroke-dasharray="9 12" marker-end="url(#north-arrow)" />
+      <path d="M431 220 C475 193 508 157 550 110" fill="none" stroke="#77a7b1" stroke-width="17" stroke-linecap="round" opacity="0.78" />
+      <g fill="#fff" font-family="system-ui, sans-serif" font-size="18" font-weight="700">
+        <text x="205" y="465">Carolinas</text>
+        <text x="338" y="292">Cape Cod</text>
+        <text x="405" y="209">Maine</text>
+        <text x="545" y="106">Halifax</text>
+        <text x="648" y="58">Cape Breton</text>
+      </g>
+      <g fill="#b9cdd1" font-family="system-ui, sans-serif" font-size="15">
+        <text x="564" y="356">Seasonal movement corridor</text>
+        <text x="564" y="383">shown schematically</text>
+        <text x="564" y="438">Blue band: Maine’s 2025</text>
+        <text x="564" y="465">receiver coverage, not density</text>
+      </g>
+      <circle cx="470" cy="183" r="8" fill="#ee6b46" />
+      <circle cx="577" cy="91" r="8" fill="#ee6b46" />
+      <circle cx="638" cy="70" r="8" fill="#ee6b46" />
+      <path d="M682 270 l34 -13 -13 15 19 9 -40 -2 -17 11 7 -15 -12 -8Z" fill="#f2ead4" opacity="0.9" />
+    </svg>
+  </div>
+  <div class="atlantic-map__stats" aria-label="White shark monitoring facts">
+    <div><strong>36</strong><span>Maine passive receiver sites in 2025</span></div>
+    <div><strong>19</strong><span>tagged white sharks detected in Maine in 2025</span></div>
+    <div><strong>260</strong><span>tagged sharks in the 2014–2023 Atlantic Canada study</span></div>
+  </div>
+  <figcaption>
+    Editorial schematic based on Maine DMR monitoring and a 2025 peer-reviewed Atlantic Canada telemetry study. Receiver detections measure tagged animals within range; they do not count every shark in the water.
+  </figcaption>
+</figure>
+
+<style>
+  .atlantic-map {
+    margin-block: 2.75rem;
+  }
+
+  .atlantic-map__graphic {
+    border: 1px solid rgb(119 167 177 / 0.38);
+    border-radius: 0.65rem;
+    overflow: hidden;
+    background: #06161a;
+    box-shadow: 0.55rem 0.65rem 0 rgb(2 9 11 / 0.72);
+  }
+
+  .atlantic-map svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .atlantic-map__stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.55rem;
+    margin-top: 0.55rem;
+  }
+
+  .atlantic-map__stats div {
+    display: grid;
+    gap: 0.2rem;
+    padding: 0.8rem 0.9rem;
+    border: 1px solid rgb(119 167 177 / 0.28);
+    background: #07191d;
+  }
+
+  .atlantic-map__stats strong {
+    color: #ee6b46;
+    font: 800 1.65rem/1 system-ui, sans-serif;
+  }
+
+  .atlantic-map__stats span {
+    color: #b9cdd1;
+    font: 0.75rem/1.35 system-ui, sans-serif;
+  }
+
+  .atlantic-map figcaption {
+    margin-top: 0.85rem;
+    color: var(--color-base-400, #a1a1a1);
+    font-size: 0.82rem;
+  }
+
+  @media (max-width: 640px) {
+    .atlantic-map__stats {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

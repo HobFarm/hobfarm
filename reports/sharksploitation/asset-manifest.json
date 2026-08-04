@@ -1,0 +1,200 @@
+{
+  "version": 1,
+  "article_slug": "sharksploitation",
+  "generated_at": "2026-08-04T05:55:13.9944596Z",
+  "bucket": "hobfarm-cdn",
+  "public_hostname": "https://cdn.hob.farm",
+  "policy": {
+    "new_keys_only": true,
+    "overwrite_existing": false,
+    "delete_or_rename_existing": false,
+    "dry_run_before_upload": true,
+    "allowed_prefixes": [
+      "articles/sharksploitation/"
+    ]
+  },
+  "generation": {
+    "tool": "OpenAI built-in image generation",
+    "mode": "stylized-concept",
+    "reference_images": [],
+    "exact_prompt": "Use case: editorial feature hero illustration for a long-form film-history and media-economics article. Create a wide 16:9 cinematic editorial collage with one single, continuous, anatomically believable shark silhouette swimming calmly from left to right through successive layers of media history. Far left: murky 1910s newspaper halftone and torn columns, monochrome ink and sea haze. Next: coarse early-1960s shockumentary film grain, scratched celluloid, documentary frame edges. Center-left: lurid low-budget drive-in exploitation palette, hand-painted red, sickly yellow and turquoise, without resembling any real poster. Center: the machinery of a 1970s studio blockbuster—projector beams, marquee bulbs, television spot frames and widening theater screens—abstract, no recognizable copyrighted imagery. Center-right: franchise empire conveyed through repeating generic toy blister shapes, sequel numerals reduced to abstract geometry, merchandising grids and corporate shine. Far right: a small contemporary independent set with a consumer camera, cheap practical lamp, plywood, tape and an upload progress glow; raw, human scale, hopeful but not sentimental. The same shark remains visually continuous and unchanged across every layer, showing that the animal stays the same while media systems transform it. Deep Atlantic blue-black base, salt-white paper, oxidized red accents, tactile printmaking, torn-paper strata, restrained cinematic light, sophisticated magazine illustration, legible at thumbnail scale with strong central silhouette and generous quiet space near the top for HTML title overlay. No words, no letters, no logos, no brands, no movie characters, no swimmer, no beach victim, no blood, no attack, no giant open mouth, no Jaws-poster composition, no copyrighted composition. Full-bleed landscape, 16:9."
+  },
+  "assets": [
+    {
+      "asset_id": "sharksploitation-hero-webp",
+      "source_file": "assets/sharksploitation/sharksploitation-hero.webp",
+      "destination_bucket": "hobfarm-cdn",
+      "destination_key": "articles/sharksploitation/sharksploitation-hero.webp",
+      "public_url": "https://cdn.hob.farm/articles/sharksploitation/sharksploitation-hero.webp",
+      "classification": "public-editorial",
+      "related_content": [
+        "article:sharksploitation"
+      ],
+      "purpose": "hero and article thumbnail",
+      "caption": "One shark remains continuous while the media machinery changes from newspaper panic to shockumentary, blockbuster, franchise, and an independent set.",
+      "alt_text": "One calm shark swims through torn layers of newspaper, film grain, drive-in color, blockbuster screens, merchandise, and a small independent camera set.",
+      "credit": "HobFarm original commission; generated with OpenAI image generation",
+      "rights_basis": "Original commissioned editorial illustration created for HobFarm; no copyrighted characters, logos, or source images used.",
+      "source_url": null,
+      "retrieved_at": "2026-08-03",
+      "content_type": "image/webp",
+      "bytes": 371130,
+      "sha256": "dae0f2666de88297e196903316f06656a64b86160ef3bf51e797a043701ccb2d",
+      "width": 1920,
+      "height": 1080,
+      "replacement_policy": "new-key-only; version filename on conflict; never overwrite",
+      "upload_status": "ready",
+      "verification_status": "destination-absent"
+    },
+    {
+      "asset_id": "sharksploitation-hero-avif",
+      "source_file": "assets/sharksploitation/sharksploitation-hero.avif",
+      "destination_bucket": "hobfarm-cdn",
+      "destination_key": "articles/sharksploitation/sharksploitation-hero.avif",
+      "public_url": "https://cdn.hob.farm/articles/sharksploitation/sharksploitation-hero.avif",
+      "classification": "public-editorial",
+      "related_content": [
+        "article:sharksploitation"
+      ],
+      "purpose": "optimized alternate hero format",
+      "caption": "One shark remains continuous while the media machinery changes around it.",
+      "alt_text": "One calm shark swims through torn layers of newspaper, film grain, drive-in color, blockbuster screens, merchandise, and a small independent camera set.",
+      "credit": "HobFarm original commission; generated with OpenAI image generation",
+      "rights_basis": "Original commissioned editorial illustration created for HobFarm; no copyrighted characters, logos, or source images used.",
+      "source_url": null,
+      "retrieved_at": "2026-08-03",
+      "content_type": "image/avif",
+      "bytes": 219099,
+      "sha256": "cc7982875e729003b9fc9a8b0ed52627060d253772bd34f961f1c57ad946228a",
+      "width": 1920,
+      "height": 1080,
+      "replacement_policy": "new-key-only; version filename on conflict; never overwrite",
+      "upload_status": "ready",
+      "verification_status": "destination-absent"
+    },
+    {
+      "asset_id": "sharksploitation-social",
+      "source_file": "assets/sharksploitation/sharksploitation-social-1200x630.jpg",
+      "destination_bucket": "hobfarm-cdn",
+      "destination_key": "articles/sharksploitation/sharksploitation-social-1200x630.jpg",
+      "public_url": "https://cdn.hob.farm/articles/sharksploitation/sharksploitation-social-1200x630.jpg",
+      "classification": "public-editorial",
+      "related_content": [
+        "article:sharksploitation"
+      ],
+      "purpose": "Open Graph and social preview",
+      "caption": "A shark crosses the media systems that turned it into a panic, a blockbuster, and an empire.",
+      "alt_text": "A shark crosses a collage of newsprint, film, theater screens, merchandise, and an independent camera set.",
+      "credit": "HobFarm original commission; generated with OpenAI image generation",
+      "rights_basis": "Original commissioned editorial illustration created for HobFarm; social crop derived from the retained source image.",
+      "source_url": null,
+      "retrieved_at": "2026-08-03",
+      "content_type": "image/jpeg",
+      "bytes": 258951,
+      "sha256": "7ce77e24eceb48134cfcba1128fecec56da199320d58ffeea95c8ecdaa8f20bb",
+      "width": 1200,
+      "height": 630,
+      "replacement_policy": "new-key-only; version filename on conflict; never overwrite",
+      "upload_status": "ready",
+      "verification_status": "destination-absent"
+    },
+    {
+      "asset_id": "philadelphia-inquirer-shark-attacks-1916",
+      "source_file": "assets/sharksploitation/philadelphia-inquirer-shark-attacks-1916.webp",
+      "destination_bucket": "hobfarm-cdn",
+      "destination_key": "articles/sharksploitation/philadelphia-inquirer-shark-attacks-1916.webp",
+      "public_url": "https://cdn.hob.farm/articles/sharksploitation/philadelphia-inquirer-shark-attacks-1916.webp",
+      "classification": "public-editorial",
+      "related_content": [
+        "article:sharksploitation"
+      ],
+      "purpose": "historical-inline: 1916 panic section",
+      "caption": "A portion of the July 15, 1916 Philadelphia Inquirer front page, combining Matawan Creek, caught-shark pictures, and man-eater language.",
+      "alt_text": "A July 15, 1916 Philadelphia Inquirer page shows Matawan Creek, a displayed shark, and a close view of a shark head beneath sensational headlines.",
+      "credit": "The Philadelphia Inquirer / Wikimedia Commons",
+      "rights_basis": "Public domain in the United States because it was published before January 1, 1931; Wikimedia Commons file page documents the source and status.",
+      "source_url": "https://commons.wikimedia.org/wiki/File:The_Philadelphia_Inquirer_report_on_Jersey_Shore_shark_attacks.jpg",
+      "retrieved_at": "2026-08-03",
+      "content_type": "image/webp",
+      "bytes": 512928,
+      "sha256": "4c7946fdb3524c1ffe429334268dfd20f7cb471f190b1a672959f80cd8386fe1",
+      "width": 1600,
+      "height": 1202,
+      "replacement_policy": "new-key-only; version filename on conflict; never overwrite",
+      "upload_status": "ready",
+      "verification_status": "destination-absent"
+    }
+  ],
+  "retained_sources": [
+    {
+      "source_file": "assets/sharksploitation/sharksploitation-hero-source.png",
+      "purpose": "retained full-resolution generation output for future crops; not intended for public upload",
+      "content_type": "image/png",
+      "bytes": 3191793,
+      "sha256": "cb6bcca9c2b5cb44b39aedaa9ef58a456578fcabf48cbe4af5a6fb29d65a6955",
+      "width": 1672,
+      "height": 941
+    }
+  ],
+  "existing_remote_assets": [
+    {
+      "asset_id": "mondo-cane-shark-beach-1",
+      "public_url": "https://cdn.hob.farm/articles/sharksploitation/mondo-cane1.png",
+      "width": 720,
+      "height": 540,
+      "content_type": "image/png",
+      "caption": "The sequence supplies a beach and people framed by the narration as shark victims.",
+      "alt_text": "Men work beside fishing nets, boats, and timbers on a beach in a frame from Mondo Cane.",
+      "credit": "Frame from Mondo Cane (1962)",
+      "rights_basis": "Copyrighted film still supplied for the article; limited non-graphic excerpt used for direct criticism and commentary.",
+      "retrieved_at": "2026-08-03",
+      "verification_status": "existing-cdn-object"
+    },
+    {
+      "asset_id": "mondo-cane-shark-beach-2",
+      "public_url": "https://cdn.hob.farm/articles/sharksploitation/mondo-cane2.png",
+      "width": 720,
+      "height": 540,
+      "content_type": "image/png",
+      "caption": "The sequence turns daily work into evidence for a story the voice-over has already decided.",
+      "alt_text": "A woman handles fishing net on the same beach in a frame from Mondo Cane.",
+      "credit": "Frame from Mondo Cane (1962)",
+      "rights_basis": "Copyrighted film still supplied for the article; limited non-graphic excerpt used for direct criticism and commentary.",
+      "retrieved_at": "2026-08-03",
+      "verification_status": "existing-cdn-object"
+    }
+  ],
+  "hosted_elsewhere": [
+    {
+      "asset_id": "jaws-original-trailer",
+      "url": "https://www.youtube.com/watch?v=U1fu_sA7XhE",
+      "embed_url": "https://www.youtube-nocookie.com/embed/U1fu_sA7XhE",
+      "purpose": "official trailer embed",
+      "rights_basis": "YouTube-hosted embed; no video downloaded or rehosted."
+    },
+    {
+      "asset_id": "mondo-cane-official-listing",
+      "url": "https://www.youtube.com/watch?v=KPT6RpqhYTU",
+      "purpose": "official YouTube Movies watch or purchase link",
+      "rights_basis": "Link only; no video downloaded, clipped, or rehosted."
+    }
+  ],
+  "inline_editorial_graphics": [
+    {
+      "component": "src/components/articles/sharksploitation/SharksploitationCycle.astro",
+      "purpose": "responsive exploitation-cycle infographic",
+      "rights_basis": "original inline SVG and HTML"
+    },
+    {
+      "component": "src/components/articles/sharksploitation/AtlanticSharkMap.astro",
+      "purpose": "responsive schematic of Maine and Atlantic Canada monitoring",
+      "rights_basis": "original inline SVG based on cited public research; no proprietary map copied"
+    },
+    {
+      "component": "src/components/articles/sharksploitation/ObsessionScale.astro",
+      "purpose": "responsive reported-budget, acquisition, and box-office scale",
+      "rights_basis": "original HTML/CSS data graphic based on cited public reporting"
+    }
+  ],
+  "dry_run_at": "2026-08-04T06:33:16.220Z"
+}

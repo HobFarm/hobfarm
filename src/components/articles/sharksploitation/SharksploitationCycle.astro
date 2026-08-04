@@ -1,0 +1,141 @@
+---
+const stages = [
+  ["01", "Thing", "A real animal or event"],
+  ["02", "Panic", "Fear outruns evidence"],
+  ["03", "Cheap exploitation", "A title, image, and promise"],
+  ["04", "Audience proof", "The crowd validates the hook"],
+  ["05", "Business model", "The method becomes repeatable"],
+  ["06", "Exploitation²", "The machine sells its own success"],
+  ["07", "Bloat", "Risk management replaces risk"],
+  ["08", "Indie reset", "A small production tests the gap"],
+];
+---
+
+<figure class="shark-cycle article-wide not-prose">
+  <div class="shark-cycle__canvas" aria-hidden="true">
+    <svg viewBox="0 0 960 520" role="presentation">
+      <defs>
+        <linearGradient id="cycle-water" x1="0" x2="1">
+          <stop offset="0" stop-color="#06161a" />
+          <stop offset="0.55" stop-color="#0b262d" />
+          <stop offset="1" stop-color="#07181d" />
+        </linearGradient>
+        <marker id="cycle-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+          <path d="M0 0 10 5 0 10Z" fill="#ee6b46" />
+        </marker>
+      </defs>
+      <rect width="960" height="520" rx="20" fill="url(#cycle-water)" />
+      <path d="M125 110 H815 C885 110 885 375 815 375 H125" fill="none" stroke="#ee6b46" stroke-width="4" stroke-dasharray="8 12" marker-end="url(#cycle-arrow)" />
+      {stages.map(([number, title, detail], index) => {
+        const columns = [30, 260, 490, 720, 720, 490, 260, 30];
+        const x = columns[index];
+        const y = index < 4 ? 45 : 310;
+        return (
+          <g transform={`translate(${x} ${y})`}>
+            <rect width="190" height="130" rx="10" fill="#0d3038" stroke="#77a7b1" stroke-opacity="0.62" />
+            <text x="16" y="27" fill="#ee6b46" font-size="15" font-weight="700" letter-spacing="2">{number}</text>
+            <text x="16" y="55" fill="#ffffff" font-size="17" font-weight="750">{title}</text>
+            <foreignObject x="16" y="68" width="158" height="50">
+              <div class="cycle-detail">{detail}</div>
+            </foreignObject>
+          </g>
+        );
+      })}
+      <path d="M30 488 C192 443 331 468 470 493 S726 533 930 478" fill="none" stroke="#77a7b1" stroke-opacity="0.25" stroke-width="2" />
+    </svg>
+  </div>
+
+  <ol class="shark-cycle__list" aria-label="The sharksploitation cycle">
+    {stages.map(([number, title, detail]) => (
+      <li>
+        <span>{number}</span>
+        <strong>{title}</strong>
+        <small>{detail}</small>
+      </li>
+    ))}
+  </ol>
+
+  <figcaption><strong>The Exploitation Factory.</strong> The animal does not move through this cycle. The story, audience, and production system do.</figcaption>
+</figure>
+
+<style>
+  .shark-cycle {
+    margin-block: 3rem;
+  }
+
+  .shark-cycle__canvas {
+    overflow-x: auto;
+    border: 1px solid rgb(119 167 177 / 0.38);
+    border-radius: 0.65rem;
+    background: #06161a;
+    box-shadow: 0.65rem 0.75rem 0 rgb(2 9 11 / 0.72);
+  }
+
+  .shark-cycle svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .cycle-detail {
+    color: #b9cdd1;
+    font: 13px/1.25 system-ui, sans-serif;
+  }
+
+  .shark-cycle__list {
+    display: none;
+  }
+
+  .shark-cycle figcaption {
+    margin-top: 0.85rem;
+    color: var(--color-base-400, #a1a1a1);
+    font-size: 0.84rem;
+  }
+
+  @media (max-width: 720px) {
+    .shark-cycle__canvas {
+      display: none;
+    }
+
+    .shark-cycle__list {
+      display: grid;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      border: 1px solid rgb(119 167 177 / 0.38);
+      border-radius: 0.6rem;
+      overflow: hidden;
+      background: #07191d;
+    }
+
+    .shark-cycle__list li {
+      display: grid;
+      grid-template-columns: 2.6rem 1fr;
+      gap: 0.2rem 0.7rem;
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid rgb(119 167 177 / 0.18);
+    }
+
+    .shark-cycle__list li:last-child {
+      border-bottom: 0;
+    }
+
+    .shark-cycle__list span {
+      grid-row: 1 / 3;
+      color: #ee6b46;
+      font: 700 0.8rem/1.4 system-ui, sans-serif;
+      letter-spacing: 0.08em;
+    }
+
+    .shark-cycle__list strong {
+      color: #fff;
+      font: 700 0.94rem/1.25 system-ui, sans-serif;
+    }
+
+    .shark-cycle__list small {
+      color: #b9cdd1;
+      font: 0.78rem/1.35 system-ui, sans-serif;
+    }
+  }
+</style>

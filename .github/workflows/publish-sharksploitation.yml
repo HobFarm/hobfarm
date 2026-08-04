@@ -1,0 +1,36 @@
+name: Publish Sharksploitation
+
+on:
+  schedule:
+    - cron: "20 23 7 8 *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-sharksploitation
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Publish when the scheduled time has arrived
+        id: article
+        run: node scripts/publish-scheduled-sharksploitation.mjs
+
+      - name: Remove the one-time schedule and trigger the production build
+        if: steps.article.outputs.published == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/publish-sharksploitation.yml
+          git add src/content/articles/sharksploitation.mdx
+          git commit -m "Publish Sharksploitation"
+          git push origin main

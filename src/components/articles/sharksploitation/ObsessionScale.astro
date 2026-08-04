@@ -1,0 +1,101 @@
+<figure class="obsession-scale article-wide not-prose">
+  <div class="obsession-scale__rail">
+    <div class="obsession-scale__item">
+      <span class="obsession-scale__amount">$800</span>
+      <strong><cite>Milk &amp; Serial</cite></strong>
+      <small>reported microbudget; uploaded free after distributors passed</small>
+    </div>
+    <span class="obsession-scale__arrow" aria-hidden="true">→</span>
+    <div class="obsession-scale__item">
+      <span class="obsession-scale__amount">$750K</span>
+      <strong><cite>Obsession</cite></strong>
+      <small>reported production budget; one tracker lists $1 million</small>
+    </div>
+    <span class="obsession-scale__arrow" aria-hidden="true">→</span>
+    <div class="obsession-scale__item">
+      <span class="obsession-scale__amount">$14–15M</span>
+      <strong>Focus acquisition</strong>
+      <small>trade-report range after the TIFF premiere</small>
+    </div>
+    <span class="obsession-scale__arrow" aria-hidden="true">→</span>
+    <div class="obsession-scale__item obsession-scale__item--final">
+      <span class="obsession-scale__amount">$474.9M</span>
+      <strong>Worldwide gross</strong>
+      <small>reported through August 2, 2026</small>
+    </div>
+  </div>
+  <figcaption>
+    This is an audience path, not a profit statement. The films are different productions, and gross revenue is divided among theaters, distributors, marketing, financiers, and participants.
+  </figcaption>
+</figure>
+
+<style>
+  .obsession-scale {
+    margin-block: 2.75rem;
+  }
+
+  .obsession-scale__rail {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+    align-items: stretch;
+    gap: 0.55rem;
+    padding: 1rem;
+    border: 1px solid rgb(119 167 177 / 0.38);
+    border-radius: 0.65rem;
+    background: linear-gradient(135deg, #06161a, #0c2930);
+    box-shadow: 0.55rem 0.65rem 0 rgb(2 9 11 / 0.72);
+  }
+
+  .obsession-scale__item {
+    display: grid;
+    align-content: start;
+    gap: 0.35rem;
+    padding: 0.95rem;
+    border: 1px solid rgb(119 167 177 / 0.28);
+    border-radius: 0.4rem;
+    background: rgb(6 20 23 / 0.72);
+  }
+
+  .obsession-scale__item--final {
+    border-color: rgb(238 107 70 / 0.58);
+  }
+
+  .obsession-scale__amount {
+    color: #ee6b46;
+    font: 800 clamp(1.3rem, 2.2vw, 2rem)/1 system-ui, sans-serif;
+    letter-spacing: -0.035em;
+  }
+
+  .obsession-scale strong {
+    color: #fff;
+    font: 700 0.9rem/1.25 system-ui, sans-serif;
+  }
+
+  .obsession-scale small {
+    color: #b9cdd1;
+    font: 0.75rem/1.4 system-ui, sans-serif;
+  }
+
+  .obsession-scale__arrow {
+    align-self: center;
+    color: #ee6b46;
+    font-size: 1.25rem;
+  }
+
+  .obsession-scale figcaption {
+    margin-top: 0.85rem;
+    color: var(--color-base-400, #a1a1a1);
+    font-size: 0.82rem;
+  }
+
+  @media (max-width: 850px) {
+    .obsession-scale__rail {
+      grid-template-columns: 1fr;
+    }
+
+    .obsession-scale__arrow {
+      transform: rotate(90deg);
+      justify-self: center;
+    }
+  }
+</style>

@@ -1,0 +1,58 @@
+---
+const mediaBase = "https://cdn.hob.farm/articles/sharksploitation";
+const src = `${mediaBase}/philadelphia-inquirer-shark-attacks-1916.webp`;
+const caption = "A portion of the July 15, 1916 Philadelphia Inquirer front page. The creek becomes a crime scene; a caught shark becomes the accused.";
+---
+
+<figure class:list={["sharksploitation-figure", "not-prose", "article-wide"]}>
+  <img
+    src={src}
+    alt="A July 15, 1916 Philadelphia Inquirer page shows Matawan Creek, a displayed shark, and a close view of a shark head beneath sensational headlines."
+    width="1600"
+    height="1202"
+    loading="lazy"
+    decoding="async"
+    data-lightbox={src}
+    data-lightbox-caption={caption}
+  />
+  <figcaption>
+    <span>{caption}</span>
+    <span class="sharksploitation-figure__credit">
+      <a href="https://commons.wikimedia.org/wiki/File:The_Philadelphia_Inquirer_report_on_Jersey_Shore_shark_attacks.jpg" rel="noreferrer">
+        The Philadelphia Inquirer / Wikimedia Commons / public domain in the United States
+      </a>
+    </span>
+  </figcaption>
+</figure>
+
+<style>
+  .sharksploitation-figure {
+    margin-block: 2.75rem;
+  }
+
+  .sharksploitation-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid rgb(119 167 177 / 0.34);
+    border-radius: 0.35rem;
+    background: #081417;
+    box-shadow: 0.5rem 0.6rem 0 rgb(2 9 11 / 0.72);
+  }
+
+  .sharksploitation-figure figcaption {
+    display: grid;
+    gap: 0.35rem;
+    margin-top: 0.85rem;
+  }
+
+  .sharksploitation-figure__credit {
+    color: var(--color-base-500, #858585);
+    font-size: 0.73rem;
+  }
+
+  .sharksploitation-figure__credit a {
+    color: inherit;
+    text-underline-offset: 0.16em;
+  }
+</style>

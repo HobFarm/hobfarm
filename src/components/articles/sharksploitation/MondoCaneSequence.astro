@@ -1,0 +1,64 @@
+---
+const mediaBase = "https://cdn.hob.farm/articles/sharksploitation";
+---
+
+<figure class="mondo-sequence article-wide not-prose">
+  <div class="mondo-sequence__grid">
+    <img
+      src={`${mediaBase}/mondo-cane1.png`}
+      alt="Men work beside fishing nets, boats, and timbers on a beach in a frame from Mondo Cane."
+      width="720"
+      height="540"
+      loading="lazy"
+      decoding="async"
+      data-lightbox={`${mediaBase}/mondo-cane1.png`}
+      data-lightbox-caption="The sequence first supplies a beach and a community framed by the narrator as victims."
+    />
+    <img
+      src={`${mediaBase}/mondo-cane2.png`}
+      alt="A woman handles fishing net on the same beach in a frame from Mondo Cane."
+      width="720"
+      height="540"
+      loading="lazy"
+      decoding="async"
+      data-lightbox={`${mediaBase}/mondo-cane2.png`}
+      data-lightbox-caption="The sequence turns daily work into evidence for a story the voice-over has already decided."
+    />
+  </div>
+  <figcaption>
+    Frames from <cite>Mondo Cane</cite> (1962), used in direct criticism of the film’s construction. The narration makes the accusations; the images do not independently prove them.
+  </figcaption>
+</figure>
+
+<style>
+  .mondo-sequence {
+    margin-block: 2.75rem;
+  }
+
+  .mondo-sequence__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
+    padding: 0.55rem;
+    border: 1px solid rgb(119 167 177 / 0.34);
+    background: #061417;
+  }
+
+  .mondo-sequence img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .mondo-sequence figcaption {
+    margin-top: 0.85rem;
+    color: var(--color-base-400, #a1a1a1);
+    font-size: 0.82rem;
+  }
+
+  @media (max-width: 640px) {
+    .mondo-sequence__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
