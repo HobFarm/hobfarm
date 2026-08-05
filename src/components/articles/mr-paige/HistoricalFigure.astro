@@ -1,0 +1,58 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption: string;
+  credit: string;
+  sourceUrl: string;
+}
+
+const { src, alt, caption, credit, sourceUrl } = Astro.props;
+---
+
+<figure class="article-wide historical-figure not-prose">
+  <img src={src} alt={alt} loading="lazy" decoding="async" />
+  <figcaption>
+    <span>{caption}</span>
+    <a href={sourceUrl} rel="noreferrer">{credit}</a>
+  </figcaption>
+</figure>
+
+<style>
+  .historical-figure {
+    display: grid;
+    justify-items: center;
+    gap: 0;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, #d7b36a 34%, transparent);
+    border-radius: 0.7rem;
+    background: #070b0d;
+    box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 0.24);
+  }
+
+  img {
+    display: block;
+    width: min(100%, 38rem);
+    height: auto;
+  }
+
+  figcaption {
+    display: grid;
+    width: 100%;
+    gap: 0.35rem;
+    border-top: 1px solid color-mix(in srgb, #d7b36a 22%, transparent);
+    padding: 0.85rem 1rem 0.95rem;
+    color: #d8d1c3;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    text-align: left !important;
+  }
+
+  a {
+    width: fit-content;
+    color: #9ff7f4;
+    font: 600 0.69rem/1.25 var(--font-mono);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+</style>

@@ -1,0 +1,98 @@
+<aside class="article-wide card-market not-prose" aria-label="Satchel Paige baseball card sales comparison">
+  <div>
+    <p class="eyebrow">What does a Satchel Paige card cost?</p>
+    <h3>One name, two pieces of cardboard</h3>
+    <p class="note">Verified against PSA’s public sales history on August 4, 2026. Prices are historical sales, not appraisals or investment advice.</p>
+  </div>
+  <dl>
+    <div>
+      <dt>1953 Topps #220 · PSA 1</dt>
+      <dd><strong>$620</strong><span>eBay auction · May 4, 2026</span></dd>
+    </div>
+    <div>
+      <dt>1949 Bowman #224 · PSA 8</dt>
+      <dd><strong>$42,700</strong><span>Heritage Auctions · March 2, 2026</span></dd>
+    </div>
+  </dl>
+</aside>
+
+<style>
+  .card-market {
+    display: grid;
+    gap: 1.2rem;
+    margin-block: 2rem;
+    border: 1px solid rgb(214 178 105 / 0.36);
+    border-radius: 0.7rem;
+    background: linear-gradient(135deg, #18120c, #0a1013);
+    padding: clamp(1rem, 3vw, 1.5rem);
+  }
+
+  .eyebrow {
+    margin: 0 0 0.35rem;
+    color: #d8b56d;
+    font: 700 0.68rem/1.2 var(--font-mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  h3,
+  .note,
+  dl,
+  dd {
+    margin: 0;
+  }
+
+  h3 {
+    color: #fff8e8;
+    font-size: 1.15rem;
+  }
+
+  .note {
+    margin-top: 0.5rem;
+    color: #a9a49c;
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+
+  dl {
+    display: grid;
+    gap: 0.65rem;
+  }
+
+  dl > div {
+    border-left: 2px solid #5ce1e6;
+    background: rgb(0 0 0 / 0.2);
+    padding: 0.75rem 0.9rem;
+  }
+
+  dt {
+    color: #d5d0c7;
+    font: 600 0.72rem/1.35 var(--font-mono);
+  }
+
+  dd {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.35rem 1rem;
+    margin-top: 0.25rem;
+  }
+
+  strong {
+    color: #fff;
+    font-size: 1.35rem;
+  }
+
+  dd span {
+    color: #8d8a84;
+    font-size: 0.72rem;
+  }
+
+  @media (min-width: 720px) {
+    .card-market {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      align-items: center;
+    }
+  }
+</style>

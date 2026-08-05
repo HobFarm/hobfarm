@@ -1,0 +1,111 @@
+---
+const columns = [
+  {
+    title: "Sunflower",
+    symbol: "✺",
+    rows: ["florets added through phyllotaxis", "opposing parastichy families", "often Fibonacci counts", "golden angle often relevant"],
+  },
+  {
+    title: "Rhinoceros horn",
+    symbol: "◒",
+    rows: ["keratin tubules and matrix", "growth at the base plus wear", "sweeping conical curve", "no shown golden-angle mechanism"],
+  },
+  {
+    title: "Dalí’s connection",
+    symbol: "↝",
+    rows: ["morphological analogy", "logarithmic spiral", "private symbolic system", "shape joined before mechanism"],
+  },
+];
+---
+
+<figure class="article-wide morphology not-prose">
+  <p class="eyebrow">The rhinoceros problem</p>
+  <div class="columns">
+    {columns.map((column) => (
+      <section>
+        <span class="symbol" aria-hidden="true">{column.symbol}</span>
+        <h3>{column.title}</h3>
+        <ul>
+          {column.rows.map((row) => <li>{row}</li>)}
+        </ul>
+      </section>
+    ))}
+  </div>
+  <figcaption>Dalí connected the forms before separating their mechanisms.</figcaption>
+</figure>
+
+<style>
+  .morphology {
+    margin-block: 2.2rem;
+    border: 1px solid rgb(92 225 230 / 0.34);
+    border-radius: 0.7rem;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 12% 0%, rgb(92 225 230 / 0.12), transparent 32%),
+      #080d10;
+    padding: clamp(1rem, 3vw, 1.5rem);
+  }
+
+  .eyebrow {
+    margin: 0 0 1rem;
+    color: #77e7e7;
+    font: 700 0.68rem/1.2 var(--font-mono);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .columns {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  section {
+    border: 1px solid rgb(255 255 255 / 0.1);
+    border-radius: 0.5rem;
+    background: rgb(255 255 255 / 0.025);
+    padding: 1rem;
+  }
+
+  .symbol {
+    display: block;
+    min-height: 2.25rem;
+    color: #d7b36c;
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  h3 {
+    margin: 0.5rem 0 0.75rem;
+    color: white;
+    font-size: 0.96rem;
+  }
+
+  ul {
+    display: grid;
+    gap: 0.35rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    color: #aaaeb0;
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+
+  li::before {
+    content: "— ";
+    color: #5ce1e6;
+  }
+
+  figcaption {
+    margin-top: 0.9rem;
+  }
+
+  @media (min-width: 720px) {
+    .columns {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

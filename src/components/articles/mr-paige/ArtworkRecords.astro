@@ -1,0 +1,125 @@
+---
+interface Props {
+  group: "early" | "mixed" | "ceilings";
+}
+
+const groups = {
+  early: {
+    label: "The 1925 source folder",
+    caption: "The supplied scans were used for research but are not reproduced here. Each card links to the Foundation catalogue record.",
+    works: [
+      { title: "Figure Seen from the Back", date: "1925", cat: "P 148", medium: "Tempera and oil on cardboard · 74.5 × 53 cm", place: "Fundació Gala-Salvador Dalí, Figueres", url: "https://catalogues.salvador-dali.org/catalogues/en/heritageobject/5173/" },
+      { title: "Figure at a Window", date: "1925", cat: "P 150", medium: "Oil on cardboard · 105 × 74.5 cm", place: "Museo Reina Sofía, Madrid", url: "https://catalogues.salvador-dali.org/catalogues/en/heritageobject/58-0334/" },
+      { title: "Venus and Sailor", date: "c. 1925", cat: "P 164", medium: "Oil on canvas on wood panel · 198 × 149 cm", place: "Fundació Gala-Salvador Dalí, Figueres", url: "https://catalogues.salvador-dali.org/catalogues/en/heritageobject/3800/" },
+      { title: "Study of a Nude", date: "1925", cat: "P 156", medium: "Oil on canvas · 99.1 × 71.2 cm", place: "The Dalí Museum, St. Petersburg, Florida", url: "https://catalogues.salvador-dali.org/catalogues/en/heritageobject/219-c6c0/" },
+    ],
+  },
+  mixed: {
+    label: "The seam remains visible",
+    caption: "Two supplied 1939 images could be identified to catalogue standard. Their printed matter remains printed matter inside the paintings.",
+    works: [
+      { title: "Shirley Temple, the Youngest, Most Sacred Monster of the Cinema in Her Time", date: "1939", cat: "P 509", medium: "Gouache, pastel and collage on cardboard · 75 × 100 cm", place: "Museum Boijmans Van Beuningen, Rotterdam", url: "https://catalogues.salvador-dali.org/catalogues/en/heritageobject/564/" },
+      { title: "Baby Map of the World", date: "1939", cat: "P 485", medium: "Oil and printed paper on cardboard · 46.4 × 38.3 cm", place: "Town Hall of Figueres, on permanent deposit with the Foundation", url: "https://catalogues.salvador-dali.org/catalogues/en/heritageobject/37-f82d/" },
+    ],
+  },
+  ceilings: {
+    label: "The frame becomes the room",
+    caption: "The two supplied ceiling photographs match these catalogue records. The archive files remain research-only until reproduction rights are cleared.",
+    works: [
+      { title: "Untitled: Ceiling of the Coats of Arms Room, Púbol", date: "c. 1971", cat: "P 843", medium: "Oil on canvas · 625 × 1217 cm", place: "Fundació Gala-Salvador Dalí, Figueres", url: "https://catalogues.salvador-dali.org/catalogues/en/heritageobject/3832/" },
+      { title: "The Palace of the Wind", date: "1970–73", cat: "P 859", medium: "Oil on canvas · 579 × 1150 cm", place: "Town Hall of Figueres, on permanent deposit with the Foundation", url: "https://catalogues.salvador-dali.org/catalogues/en/heritageobject/96/" },
+    ],
+  },
+};
+
+const current = groups[Astro.props.group];
+---
+
+<figure class="article-wide artwork-records not-prose">
+  <p class="eyebrow">{current.label}</p>
+  <div class="grid">
+    {current.works.map((work) => (
+      <a href={work.url} rel="noreferrer">
+        <span class="record">Catalogue record · {work.cat}</span>
+        <h3>{work.title}</h3>
+        <p>{work.date}</p>
+        <p>{work.medium}</p>
+        <p>{work.place}</p>
+        <span class="open">Open official record ↗</span>
+      </a>
+    ))}
+  </div>
+  <figcaption>{current.caption}</figcaption>
+</figure>
+
+<style>
+  .artwork-records {
+    margin-block: 2.2rem;
+    border-radius: 0.7rem;
+    background: #08090b;
+    padding: clamp(1rem, 3vw, 1.5rem);
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.12);
+  }
+
+  .eyebrow {
+    margin: 0 0 1rem;
+    color: #d9b56c;
+    font: 700 0.68rem/1.2 var(--font-mono);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .grid {
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  a {
+    display: block;
+    border: 1px solid rgb(92 225 230 / 0.2);
+    border-radius: 0.5rem;
+    background: linear-gradient(145deg, rgb(92 225 230 / 0.06), transparent 55%);
+    padding: 0.9rem;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  a:hover {
+    border-color: rgb(92 225 230 / 0.65);
+  }
+
+  .record,
+  .open {
+    color: #70dfe2;
+    font: 600 0.66rem/1.3 var(--font-mono);
+  }
+
+  h3 {
+    margin: 0.55rem 0 0.45rem;
+    color: #fff8ec;
+    font-size: 0.92rem;
+    line-height: 1.35;
+  }
+
+  p {
+    margin: 0.2rem 0;
+    color: #9fa2a4;
+    font-size: 0.72rem;
+    line-height: 1.45;
+  }
+
+  .open {
+    display: inline-block;
+    margin-top: 0.7rem;
+  }
+
+  figcaption {
+    margin-top: 0.9rem;
+  }
+
+  @media (min-width: 640px) {
+    .grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

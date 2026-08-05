@@ -1,0 +1,74 @@
+---
+interface Timestamp {
+  label: string;
+  seconds: number;
+}
+
+interface Props {
+  videoId: string;
+  title: string;
+  caption: string;
+  timestamps: Timestamp[];
+}
+
+const { videoId, title, caption, timestamps } = Astro.props;
+---
+
+<figure class="article-wide article-embed article-embed--youtube mr-paige-video not-prose">
+  <div class="article-embed-frame">
+    <iframe
+      src={`https://www.youtube-nocookie.com/embed/${videoId}`}
+      title={title}
+      loading="lazy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+    ></iframe>
+  </div>
+  <figcaption>
+    <span>{caption}</span>
+    <span class="time-links" aria-label="Selected timestamps">
+      {timestamps.map(({ label, seconds }) => (
+        <a href={`https://www.youtube.com/watch?v=${videoId}&t=${seconds}s`} rel="noreferrer">
+          {label}
+        </a>
+      ))}
+    </span>
+  </figcaption>
+</figure>
+
+<style>
+  .mr-paige-video {
+    border: 1px solid color-mix(in srgb, #5ce1e6 24%, transparent);
+    border-radius: 0.7rem;
+    background: #070b0d;
+    padding: 0.6rem;
+    box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 0.24);
+  }
+
+  figcaption {
+    display: grid;
+    gap: 0.65rem;
+    padding: 0.2rem 0.15rem 0.1rem;
+    text-align: left !important;
+  }
+
+  .time-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+
+  .time-links a {
+    border: 1px solid color-mix(in srgb, #5ce1e6 30%, transparent);
+    border-radius: 999px;
+    padding: 0.25rem 0.55rem;
+    color: #9ff7f4;
+    font: 600 0.69rem/1.1 var(--font-mono);
+    text-decoration: none;
+  }
+
+  .time-links a:hover {
+    border-color: #9ff7f4;
+    color: white;
+  }
+</style>

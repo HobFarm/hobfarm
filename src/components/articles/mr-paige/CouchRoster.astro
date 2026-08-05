@@ -1,0 +1,111 @@
+---
+const guests = [
+  {
+    initials: "SP",
+    name: "Satchel Paige",
+    line: "Pitching mastery enlarged into folklore while baseball was still correcting the record.",
+  },
+  {
+    initials: "LG",
+    name: "Lillian Gish",
+    line: "A screen actor trained when posture, glance, and movement had to carry the sentence.",
+  },
+  {
+    initials: "SD",
+    name: "Salvador Dalí",
+    line: "Painting, wardrobe, language, entrances, and publicity joined into one continuous image.",
+  },
+];
+---
+
+<aside class="article-wide couch-roster not-prose" aria-label="The three guests">
+  <p class="eyebrow">Three kinds of performance</p>
+  <div class="cards">
+    {guests.map((guest) => (
+      <section>
+        <span class="monogram" aria-hidden="true">{guest.initials}</span>
+        <h3>{guest.name}</h3>
+        <p>{guest.line}</p>
+      </section>
+    ))}
+  </div>
+</aside>
+
+<style>
+  .couch-roster {
+    margin-block: 2rem;
+    border: 1px solid rgb(202 164 91 / 0.34);
+    border-radius: 0.7rem;
+    background:
+      linear-gradient(120deg, rgb(119 34 42 / 0.2), transparent 45%),
+      #0d0c10;
+    padding: clamp(1rem, 3vw, 1.5rem);
+  }
+
+  .eyebrow {
+    margin: 0 0 0.9rem;
+    color: #d7b36c;
+    font: 600 0.7rem/1.2 var(--font-mono);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .cards {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  section {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    column-gap: 0.8rem;
+    align-items: center;
+    border-top: 1px solid rgb(255 255 255 / 0.09);
+    padding-top: 0.75rem;
+  }
+
+  .monogram {
+    grid-row: span 2;
+    display: grid;
+    width: 3rem;
+    aspect-ratio: 1;
+    place-items: center;
+    border: 1px solid rgb(92 225 230 / 0.42);
+    border-radius: 50%;
+    color: #8ce9eb;
+    font: 700 0.78rem/1 var(--font-mono);
+  }
+
+  h3,
+  p {
+    margin: 0;
+  }
+
+  h3 {
+    color: #fff7e8;
+    font-size: 1rem;
+  }
+
+  section p {
+    margin-top: 0.2rem;
+    color: #aaa4a0;
+    font-size: 0.83rem;
+    line-height: 1.55;
+  }
+
+  @media (min-width: 720px) {
+    .cards {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    section {
+      grid-template-columns: 1fr;
+      align-content: start;
+    }
+
+    .monogram {
+      grid-row: auto;
+      margin-bottom: 0.85rem;
+    }
+  }
+</style>

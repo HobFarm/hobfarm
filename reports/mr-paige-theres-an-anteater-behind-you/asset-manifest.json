@@ -1,0 +1,86 @@
+{
+  "article": "mr-paige-theres-an-anteater-behind-you",
+  "generated_at": "2026-08-04T00:00:00-07:00",
+  "generation": {
+    "provider": "OpenAI built-in image generation",
+    "mode": "historical-scene",
+    "reference_images": [],
+    "exact_prompt": "Use case: historical-scene. Asset type: wide editorial article hero for HobFarm. Create an original, richly textured editorial illustration inspired by a 1971 American late-night television set at the instant an anteater enters and reorganizes the room. Warm walnut paneling, deep burgundy carpet, low couch, studio curtains, hot television lights, analog broadcast haze, and subtle picture-tube texture. A long-snouted anteater commands the foreground; generalized period guest and host figures remain behind it. Ghostly spiral, sunflower, rhinoceros-horn, and cauliflower diagrams suggest thought connections without depicting any Salvador Dalí artwork. Sophisticated mid-century magazine illustration using gouache, cut paper, dry brush, halftone, and screenprint texture; original visual language, not in the style of a named artist. Cinematic 16:9 landscape, darker negative space near the upper left, no text. Tobacco brown, burgundy, cream, muted gold, deep teal, and electric cyan. No copied painting, no reconstruction of existing artwork, no logos, captions, letters, watermarks, recognizable celebrity likenesses, photorealism, or duplicated people. Anatomically plausible anteater."
+  },
+  "assets": [
+    {
+      "role": "generation-source",
+      "source_file": "reports/mr-paige-theres-an-anteater-behind-you/mr-paige-hero-source.png",
+      "public_url": null,
+      "width": 1664,
+      "height": 936,
+      "bytes": 2728299,
+      "sha256": "8af57ff7e5a4f1031a4abaa60c73eb81c4f2aefe43328b5108b8c96c3f5f676b",
+      "rights_basis": "Original HobFarm editorial generation; no input images or named-artist style reference.",
+      "upload_status": "not-applicable"
+    },
+    {
+      "role": "article-hero",
+      "source_file": "public/images/articles/mr-paige-theres-an-anteater-behind-you/mr-paige-hero.webp",
+      "public_url": "/images/articles/mr-paige-theres-an-anteater-behind-you/mr-paige-hero.webp",
+      "width": 1664,
+      "height": 936,
+      "bytes": 328202,
+      "sha256": "571a6990803e40bed8f0579ec55d451d4ab571cfb235403f34062776e8799c4b",
+      "rights_basis": "Original HobFarm editorial generation; web conversion from retained source PNG.",
+      "upload_status": "local-public-asset"
+    },
+    {
+      "role": "social-card",
+      "source_file": "public/images/articles/mr-paige-theres-an-anteater-behind-you/mr-paige-social-1200x630.jpg",
+      "public_url": "/images/articles/mr-paige-theres-an-anteater-behind-you/mr-paige-social-1200x630.jpg",
+      "width": 1200,
+      "height": 630,
+      "bytes": 350530,
+      "sha256": "0b752a52a061e942acee405b954c8cf637c18b82ff897658d58a8de2ccb74c8c",
+      "rights_basis": "Original HobFarm editorial generation; social crop from retained source PNG.",
+      "upload_status": "local-public-asset"
+    },
+    {
+      "role": "historical-editorial-figure",
+      "title": "Salvador Dalí emerging from a Paris Métro entrance with a giant anteater",
+      "creator": "Photographer unknown",
+      "date": "1969",
+      "source_page": "https://www.openculture.com/2015/05/salvador-dali-takes-his-anteater-for-a-stroll-in-paris-1969.html",
+      "source_derivative": "https://cdn8.openculture.com/wp-content/uploads/2015/05/dali-anteater1.jpg",
+      "source_file": "public/images/articles/mr-paige-theres-an-anteater-behind-you/dali-anteater-paris-1969.jpg",
+      "public_url": "/images/articles/mr-paige-theres-an-anteater-behind-you/dali-anteater-paris-1969.jpg",
+      "width": 612,
+      "height": 612,
+      "bytes": 83907,
+      "sha256": "b6772b5d2e2a4f673c1b49880fb4056d915550eb1fdf12ab4b183b31ff4eb476",
+      "rights_status": "No open license or identified rights holder found; not marked public domain.",
+      "rights_basis": "Small editorial derivative used to analyze Dalí's documented public staging with an anteater; the historic event cannot be truthfully replaced by a generated image.",
+      "direct_analysis_purpose": "Evidence for the article's comparison between Dalí's 1969 Paris anteater appearance and the 1971 Cavett entrance.",
+      "transformations": "None after retrieval; reduced source derivative served as received.",
+      "caption": "Salvador Dalí emerges from a Paris Métro entrance with a giant anteater, 1969. Photographer unknown. Small editorial derivative reproduced for direct analysis of Dalí’s public staging.",
+      "credit": "Source: Open Culture; photographer unknown.",
+      "alt": "Salvador Dalí standing at a Paris Métro entrance in 1969 while a giant anteater on a rope descends the steps beside him and pedestrians look on.",
+      "verification": "Scene matched the user-supplied version and the dated Open Culture source on August 4, 2026.",
+      "upload_status": "local-public-asset"
+    }
+  ],
+  "embeds": [
+    {
+      "role": "archival-zoo-video",
+      "video_id": "fWRqEBsVeSE",
+      "title": "1950s - Salvador Dali Painting A Rhino At The Zoo [Colorized]",
+      "channel": "Colorful History",
+      "source_url": "https://www.youtube.com/watch?v=fWRqEBsVeSE",
+      "duration_seconds": 49,
+      "upload_date": "2021-01-19",
+      "rights_basis": "Public YouTube embed; media is not downloaded or rehosted.",
+      "processing_disclosure": "Uploader identifies this version as colorized and machine-learning enhanced.",
+      "verification": "Public, unrestricted, and embeddable through youtube-nocookie.com on August 4, 2026."
+    }
+  ],
+  "remote_mutations": {
+    "r2_upload_attempted": false,
+    "reason": "Cloudflare mutations require explicit approval under repository instructions; local public assets satisfy the article."
+  }
+}
