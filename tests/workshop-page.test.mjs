@@ -31,6 +31,16 @@ test("Workshop uses one primary program registry in the required order", () => {
   assert.match(hierarchy.slice(hierarchy.indexOf("export const supportingWorkshopPrograms")), /id: "stylefusion"/);
 });
 
+test("Workshop navigation places Future Carriage after Avatar & Host", () => {
+  const navigation = read("src/data/navigation.ts");
+  const avatarPosition = navigation.indexOf('entry.id === "avatar-host"');
+  const futureCarriagePosition = navigation.indexOf('label: "Future Carriage"');
+
+  assert.ok(avatarPosition >= 0);
+  assert.ok(futureCarriagePosition > avatarPosition);
+  assert.match(navigation, /href: "\/workshop\/future-carriage\/"/);
+});
+
 test("Workshop hub follows the requested section hierarchy", () => {
   const page = read("src/pages/workshop/index.astro");
   const markers = [
@@ -48,6 +58,8 @@ test("Workshop hub follows the requested section hierarchy", () => {
   assert.ok(positions.every((position) => position >= 0));
   assert.deepEqual(positions, [...positions].sort((a, b) => a - b));
   assert.match(page, /One method\. Many kinds of work\./);
+  assert.match(page, /getMedia\("workshop\.graphics\.hero"\)/);
+  assert.doesNotMatch(page, /workshop-hero__layout \{ grid-template-columns:/);
   assert.match(page, /The production record behind HobFarm\./);
   assert.match(page, /Start with the source\. Keep the decisions visible\./);
   assert.match(page, /Five demonstrations of the same method\./);
@@ -130,6 +142,8 @@ test("approved avatar media stays data-only until durable public assets exist", 
 
 test("Workshop method uses five durable production stages", () => {
   const data = read("src/data/workshop-page.ts");
+  const component = read("src/components/workshop/WorkshopMethodStrip.astro");
+  const page = read("src/pages/workshop/index.astro");
 
   for (const title of [
     "Research the source",
@@ -140,4 +154,17 @@ test("Workshop method uses five durable production stages", () => {
   ]) {
     assert.match(data, new RegExp(`title: "${title}"`));
   }
+
+  for (const mediaId of [
+    "workshop.method.research-source",
+    "workshop.method.define-base",
+    "workshop.method.build-transformation",
+    "workshop.method.direct-result",
+    "workshop.method.publish-extend",
+  ]) {
+    assert.match(component, new RegExp(mediaId.replaceAll(".", "\\.")));
+  }
+
+  assert.match(component, /showMedia\?: boolean/);
+  assert.match(page, /<WorkshopMethodStrip showMedia \/>/);
 });

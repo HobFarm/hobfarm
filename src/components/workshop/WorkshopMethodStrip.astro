@@ -1,16 +1,38 @@
 ---
 import { workshopMethod } from "@/data/workshop-page";
+import { getMedia } from "@/data/media-registry";
 
 interface Props {
   compact?: boolean;
+  showMedia?: boolean;
 }
 
-const { compact = false } = Astro.props;
+const { compact = false, showMedia = false } = Astro.props;
+const methodMediaIds = [
+  "workshop.method.research-source",
+  "workshop.method.define-base",
+  "workshop.method.build-transformation",
+  "workshop.method.direct-result",
+  "workshop.method.publish-extend",
+] as const;
+const methodMedia = showMedia ? methodMediaIds.map((id) => getMedia(id)) : [];
 ---
 
 <ol class:list={["workshop-method-strip", compact && "workshop-method-strip--compact"]}>
-  {workshopMethod.map((step) => (
-    <li>
+  {workshopMethod.map((step, index) => (
+    <li class:list={[showMedia && "workshop-method-step--illustrated"]}>
+      {methodMedia[index] && (
+        <figure>
+          <img
+            src={methodMedia[index].src}
+            alt={methodMedia[index].alt}
+            width={methodMedia[index].width}
+            height={methodMedia[index].height}
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+      )}
       <span>{step.number}</span>
       <h3>{step.title}</h3>
       <p>{step.description}</p>
@@ -31,12 +53,31 @@ const { compact = false } = Astro.props;
   li {
     display: flex;
     min-height: 15rem;
+    overflow: hidden;
     flex-direction: column;
     padding: 1rem;
     border: 1px solid #2c2440;
     border-top: 2px solid #3b6fe0;
     border-radius: 0.55rem;
     background: rgb(14 11 22 / 0.72);
+  }
+
+  figure {
+    margin: -1rem -1rem 0;
+    overflow: hidden;
+    border-bottom: 1px solid #2c2440;
+    background: #07060b;
+  }
+
+  figure img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+
+  figure + span {
+    margin-top: 1rem;
   }
 
   span,
@@ -55,6 +96,10 @@ const { compact = false } = Astro.props;
     font-size: 1.5rem;
     font-weight: 350;
     line-height: 1;
+  }
+
+  .workshop-method-step--illustrated h3 {
+    margin-top: 1.6rem;
   }
 
   p {

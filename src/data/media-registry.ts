@@ -96,6 +96,12 @@ export const mediaRegistry = {
   "avatar.identity.nina": workshopImage("images/nina01.jpg", "/workshop/workshop-notes/psygoth/", "canonical-profile", "Nina, the red pressure lane of the PsyGoth presenter trio", 1792, 2368),
   "avatar.identity.zima": workshopImage("images/zima01.WEBP", "/workshop/workshop-notes/psygoth/", "canonical-profile", "Zima, the blue structure lane of the PsyGoth presenter trio", 1280, 1920),
   "avatar.identity.hobgal": workshopImage("images/hobgal01.jpg", "/workshop/avatar-host/", "historical-profile", "Hobgal, the retired early HobFarm presenter prototype", 1664, 2496, "safe-to-archive-later"),
+  "workshop.graphics.hero": workshopImage("images/workshop-hero.png", "/workshop/", "section-hero", "A long Workshop table covered with source books, drawings, character studies, camera gear, lighting, and portals into finished worlds", 1672, 941),
+  "workshop.method.research-source": workshopMethodImage("01-research-the-source.webp", "Archive books, photographs, sketches, and a magnifying glass arranged around a neutral mannequin on a Workshop table"),
+  "workshop.method.define-base": workshopMethodImage("02-define-the-base.webp", "A neutral mannequin measured against front and profile drawings on a calibrated Workshop platform"),
+  "workshop.method.build-transformation": workshopMethodImage("03-build-the-transformation.webp", "A neutral mannequin passes through a mechanical rig and emerges with clothing, materials, color, and a miniature world"),
+  "workshop.method.direct-result": workshopMethodImage("04-direct-the-result.webp", "A camera, two lights, and framing cards direct a mannequin inside a practical miniature set"),
+  "workshop.method.publish-extend": workshopMethodImage("05-publish-and-extend.webp", "One finished work connects to a book, framed print, screen, product box, and projected miniature scene"),
   "workshop.graphics.landing": workshopImage("images/workshop.png", "/workshop/", "section-hero", "The HobFarm Workshop host system, character sheet, process inspector, storyboards, media registry, and motion test", 1672, 941),
   "workshop.graphics.hillary": workshopImage("images/workshop-hillary.png", "/workshop/ and /workshop/avatar-host/", "editorial-host-system", "Hillary at the center of HobFarm articles, Presents, Workshop, and in-progress productions", 1672, 941),
   "presents.graphics.avatar-system": workshopImage("images/presents-with-avatars.png", "/presents/", "section-hero", "HobFarm Presents programs with Hillary, Ami, Em, Nina, and Zima as recurring editorial hosts", 1672, 941),
@@ -467,6 +473,19 @@ function workshopImage(
     role,
     alt,
     status,
+  };
+}
+
+function workshopMethodImage(file: string, alt: string): MediaRecord {
+  return {
+    src: `/media/workshop/production-method/${file}`,
+    mediaType: "image",
+    width: 1254,
+    height: 1254,
+    destination: "/workshop/#method",
+    role: "method-stage",
+    alt,
+    status: "active",
   };
 }
 

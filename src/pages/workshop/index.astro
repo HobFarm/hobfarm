@@ -17,6 +17,7 @@ const featuredNotes = notes.slice(0, 3);
 const moreNotes = notes.slice(3, 6);
 
 const visualPrograms = primaryWorkshopPrograms.filter((program) => program.id !== "workshop-notes");
+const workshopHero = getMedia("workshop.graphics.hero");
 const futureCarriage = getWorkshopProject("future-carriage")!;
 const futureSource = getMedia("workshop.ami-legacy.history.gig-3917");
 const futureProduct = getMedia("workshop.ami-legacy.model-3917.vehicle");
@@ -69,8 +70,8 @@ const workshopJsonLd = {
   description="See the sources, decisions, transformations, direction, and finished outputs behind HobFarm articles, characters, visual worlds, applications, products, and motion."
   canonical="/workshop/"
   structuredData={workshopJsonLd}
-  image={futureCampaign.src}
-  imageAlt={futureCampaign.alt}
+  image={workshopHero.src}
+  imageAlt={workshopHero.alt}
   palette="blue-red"
 >
   <main class="workshop-hub">
@@ -87,8 +88,8 @@ const workshopJsonLd = {
             </div>
           </header>
           <figure class="workshop-hero__figure">
-            <img src={futureCampaign.src} alt={futureCampaign.alt} width={futureCampaign.width} height={futureCampaign.height} loading="eager" fetchpriority="high" decoding="async" />
-            <figcaption>Future Carriage / one source moving through product design, campaign direction, and Ami's host system</figcaption>
+            <img src={workshopHero.src} alt={workshopHero.alt} width={workshopHero.width} height={workshopHero.height} loading="eager" fetchpriority="high" decoding="async" />
+            <figcaption>HobFarm Workshop / source material, character systems, production tools, and finished worlds</figcaption>
           </figure>
         </div>
       </Wrapper>
@@ -122,7 +123,7 @@ const workshopJsonLd = {
           </div>
           <p>Research, writing, photography, design, compositing, editing, voice, motion, code, and publishing can all enter the chain. AI is one production tool inside it. The method is older than the current software.</p>
         </div>
-        <div class="method-strip-wrap"><WorkshopMethodStrip /></div>
+        <div class="method-strip-wrap"><WorkshopMethodStrip showMedia /></div>
       </Wrapper>
     </section>
 
@@ -274,7 +275,7 @@ const workshopJsonLd = {
   .deck { max-width: 54rem; margin: 2rem 0 0; color: #c5c1d0; font-size: clamp(1rem, 2vw, 1.18rem); line-height: 1.75; }
   .actions, .route-links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: var(--cluster-space); }
   .workshop-hero { background: radial-gradient(circle at 82% 18%, rgb(85 215 255 / .12), transparent 32rem), radial-gradient(circle at 10% 70%, rgb(191 45 88 / .1), transparent 28rem), #07060b; }
-  .workshop-hero__layout { display: grid; gap: var(--content-space); align-items: center; }
+  .workshop-hero__layout { display: grid; gap: var(--content-space); }
   .workshop-hero__figure, .carriage-evidence figure { margin: 0; overflow: hidden; border: 1px solid #3b3150; border-radius: .7rem; background: #08070b; }
   .workshop-hero__figure img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
   figcaption { padding: .7rem .85rem; color: #908a9f; font-family: var(--font-mono); font-size: .55rem; letter-spacing: .05em; line-height: 1.5; text-transform: uppercase; }
@@ -332,7 +333,6 @@ const workshopJsonLd = {
     .tool-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media (min-width: 64rem) {
-    .workshop-hero__layout { grid-template-columns: minmax(0, 1fr) minmax(28rem, .82fr); }
     .section-heading--split { grid-template-columns: minmax(0, 1fr) minmax(24rem, .6fr); align-items: end; }
     .program-module { grid-template-columns: minmax(22rem, .72fr) minmax(0, 1fr); }
     .program-module:nth-child(even) > figure { grid-column: 2; grid-row: 1; border-right: 0; border-left: 1px solid var(--line); }

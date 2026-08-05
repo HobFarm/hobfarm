@@ -3,6 +3,13 @@ import { presentsSeries, workshopPrograms } from "@/data/site-hierarchy";
 export type NavLink = { label: string; href: string; children?: NavLink[] };
 
 const visibleWorkshopPrograms = workshopPrograms.filter((entry) => entry.inNav !== false);
+const workshopNavLinks: NavLink[] = visibleWorkshopPrograms.flatMap((entry) => {
+  const programLink = { label: entry.name, href: entry.href };
+
+  return entry.id === "avatar-host"
+    ? [programLink, { label: "Future Carriage", href: "/workshop/future-carriage/" }]
+    : [programLink];
+});
 
 export const topNavLinks: NavLink[] = [
   { label: "Articles", href: "/articles/" },
@@ -14,7 +21,7 @@ export const topNavLinks: NavLink[] = [
   {
     label: "Workshop",
     href: "/workshop/",
-    children: visibleWorkshopPrograms.map((entry) => ({ label: entry.name, href: entry.href })),
+    children: workshopNavLinks,
   },
   { label: "Academy", href: "/academy/" },
   { label: "Shop", href: "/shop/" },
