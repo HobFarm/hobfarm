@@ -4,13 +4,14 @@ import test from "node:test";
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
 
-test("Character / Mannequin is a five-section visual demonstration", () => {
+test("Character / Mannequin is a five-section provenance and continuity demonstration", () => {
   const page = read("src/components/workshop/CharacterMannequinPage.astro");
 
   for (const phrase of [
-    "Start with the base.",
-    "A neutral sheet gives every change the same place to begin.",
-    "Two styles on one mannequin. One style on two mannequins.",
+    "Give the character its own base.",
+    "The base now belongs to the examples on the page.",
+    "The character sheets guessed the outfits.",
+    "The outfit test starts after the identity lock.",
     "The look survives without producing the same picture.",
     "This page shows the result. A course can teach the mechanics.",
   ]) {
@@ -20,15 +21,15 @@ test("Character / Mannequin is a five-section visual demonstration", () => {
   assert.equal([...page.matchAll(/^\s*<section\b/gm)].length, 5);
 });
 
-test("the story order is clean base, dress blonde, black leather blonde, then black leather green", () => {
+test("the story separates portrait, clean base, inferred sheet, and directed outfit stages", () => {
   const page = read("src/components/workshop/CharacterMannequinPage.astro");
   const data = read("src/data/character-mannequin.ts");
 
   const pageOrder = [
-    page.indexOf('label: "Clean base"'),
-    page.indexOf('label: "Dress / Blonde"'),
-    page.indexOf('label: "Black leather / Blonde"'),
-    page.indexOf('label: "Black leather / Green"'),
+    page.indexOf('label: "Style files → portraits"'),
+    page.indexOf('label: "Portraits → clean bases"'),
+    page.indexOf('label: "Later sheet inference"'),
+    page.indexOf('label: "Directed outfit tests"'),
   ];
   assert.deepEqual([...pageOrder].sort((a, b) => a - b), pageOrder);
   assert.equal(pageOrder.every((index) => index >= 0), true);
@@ -48,19 +49,22 @@ test("the sequence contains two styling examples and one identity transfer", () 
 
   assert.equal((data.match(/^    axis: "styling"/gm) ?? []).length, 2);
   assert.equal((data.match(/^    axis: "identity"/gm) ?? []).length, 1);
-  assert.match(chapter, /The first two examples restyle the blonde mannequin/);
-  assert.match(chapter, /keeps the black leather look/);
+  assert.match(chapter, /The first two examples restyle the clean blonde base/);
+  assert.match(chapter, /keeps the separately defined black leather look/);
+  assert.match(chapter, /Neither inferred character-sheet outfit is part of the identity lock/);
   assert.match(chapter, /Continuity note\./);
 });
 
-test("tool, affiliate, research, Cyberpop, ivory, and commission material is absent", () => {
+test("the actual sheet tool is named while unrelated sales and archive material stays absent", () => {
   const combined = [
     read("src/components/workshop/CharacterMannequinPage.astro"),
     read("src/data/character-mannequin.ts"),
   ].join("\n");
 
+  assert.match(combined, /ElevenLabs character-sheet workflow/);
+  assert.match(combined, /AI relics/);
+
   for (const removed of [
-    "ElevenLabs",
     "affiliate",
     "Editorial placeholder",
     "Cyberpop",
@@ -74,14 +78,21 @@ test("tool, affiliate, research, Cyberpop, ivory, and commission material is abs
   }
 });
 
-test("Clean Base 001 remains the hero and the three sheets share a lightbox", () => {
+test("the new portrait-led identity bases replace the unrelated generic base", () => {
   const data = read("src/data/character-mannequin.ts");
   const page = read("src/components/workshop/CharacterMannequinPage.astro");
 
-  assert.match(data, /heroGraphic:\s*cleanBaseSheet/);
-  assert.match(data, /clean-base-001-sheet\.png/);
+  assert.match(data, /heroGraphic:\s*blondeIdentityBase/);
+  assert.match(data, /blonde-identity-base-v2\.png/);
+  assert.match(data, /green-zombie-identity-base-v2\.png/);
+  assert.match(data, /mannequin1-portrait\.png/);
+  assert.match(data, /mannequin2-portrait\.png/);
+  assert.doesNotMatch(data, /clean-base-001-sheet\.png/);
   assert.match(page, /data-lightbox-group="character-sheet-library"/);
   assert.match(page, /<Lightbox client:only="react" \/>/);
+
+  assert.ok(readFileSync(new URL("../public/media/workshop/character-mannequin/blonde-identity-base-v2.png", import.meta.url)).length > 1_000_000);
+  assert.ok(readFileSync(new URL("../public/media/workshop/character-mannequin/green-zombie-identity-base-v2.png", import.meta.url)).length > 1_000_000);
 });
 
 test("the black leather transfer is shown directly on both mannequins", () => {
@@ -114,5 +125,5 @@ test("route metadata follows the three-example sequence", () => {
 
   assert.match(route, /characterLooks\.map/);
   assert.match(data, /Mannequin, Outfit, and Character Continuity/);
-  assert.match(data, /one outfit carrying across a different character and rendering style/);
+  assert.match(data, /separating model-inferred sheet clothing from directed outfit and scene experiments/);
 });

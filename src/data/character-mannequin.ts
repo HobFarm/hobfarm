@@ -54,6 +54,22 @@ const designImage = (
   caption: string,
 ) => image("designs", file, alt, width, height, caption);
 
+const localImage = (
+  file: string,
+  alt: string,
+  width: number,
+  height: number,
+  caption: string,
+): MediaRef => ({
+  src: `/media/workshop/character-mannequin/${file}`,
+  alt,
+  width,
+  height,
+  poster: null,
+  caption,
+  credit: CREDIT,
+});
+
 const motion = (
   file: string,
   poster: MediaRef,
@@ -69,28 +85,52 @@ const motion = (
   credit: CREDIT,
 });
 
-const sheetOne = designImage(
+const blondePortrait = designImage(
+  "mannequin1-portrait.png",
+  "Portrait of the blonde doll mannequin with platinum pixie hair, a black clip, gray-blue eyes, and black makeup drips",
+  941,
+  1672,
+  "Blonde portrait / identity source",
+);
+
+const greenPortrait = designImage(
+  "mannequin2-portrait.png",
+  "Portrait of the green zombie doll mannequin with a black and violet bob, violet eyes, cheek stitches, and black makeup drips",
+  941,
+  1672,
+  "Green zombie portrait / identity source",
+);
+
+const blondeInferredSheet = designImage(
   "mannequin1-character-sheet.png",
-  "Character sheet for the blonde mannequin with face detail, front, back, and three-quarter views",
+  "Later character sheet for the blonde mannequin with a model-inferred black dress",
   1672,
   941,
-  "Blonde mannequin / reference sheet",
+  "Blonde / later sheet with inferred dress",
 );
 
-const sheetTwo = designImage(
+const greenInferredSheet = designImage(
   "mannequin2-character-sheet.png",
-  "Character sheet for the green mannequin with face detail, front, back, and three-quarter views",
+  "Later character sheet for the green zombie mannequin with a model-inferred goth outfit",
   1672,
   941,
-  "Green mannequin / reference sheet",
+  "Green zombie / later sheet with inferred goth outfit",
 );
 
-const cleanBaseSheet = designImage(
-  "clean-base-001-sheet.png",
-  "Clean Base 001 four-panel reference sheet with portrait, front, back, and three-quarter views",
+const blondeIdentityBase = localImage(
+  "blonde-identity-base-v2.png",
+  "Clean identity-base sheet for the blonde mannequin with portrait, front, back, and three-quarter views in a neutral gray studio unitard",
   1672,
   941,
-  "Clean Base 001 / neutral starting point",
+  "Blonde mannequin / clean identity base",
+);
+
+const greenIdentityBase = localImage(
+  "green-zombie-identity-base-v2.png",
+  "Clean identity-base sheet for the green zombie mannequin with portrait, front, back, and three-quarter views in a neutral gray studio unitard",
+  1672,
+  941,
+  "Green zombie mannequin / clean identity base",
 );
 
 const yellowOutfit = designImage(
@@ -156,8 +196,8 @@ export const characterLooks: CharacterLook[] = [
   {
     id: "yellow-pool",
     index: "01",
-    title: "Dress / Blonde mannequin",
-    dek: "The neutral figure takes on a butter-yellow dress, its accessories, and a neon pool setting.",
+    title: "Yellow dress / Blonde base",
+    dek: "A directed wardrobe set moves onto the blonde identity, then into a neon pool scene.",
     axis: "styling",
     outfit: yellowOutfit,
     character: yellowCharacter,
@@ -175,13 +215,13 @@ export const characterLooks: CharacterLook[] = [
       "magenta, cyan, and reflected light",
     ],
     productionNote:
-      "The outfit and scene establish one complete look. The blonde face, platinum hair, proportions, and black hair clip keep the mannequin recognizable underneath it.",
+      "The dress belongs to this styling test, not to the mannequin's character definition. The blonde face, platinum hair, proportions, black hair clip, and makeup drips keep the identity recognizable underneath it.",
   },
   {
     id: "black-marble",
     index: "02",
-    title: "Black leather / Blonde mannequin",
-    dek: "The same mannequin takes on a second outfit and scene without becoming a different character.",
+    title: "Black leather / Blonde base",
+    dek: "The same blonde base takes on a second directed outfit and scene without becoming a different character.",
     axis: "styling",
     outfit: blackOutfit,
     character: blackCharacter,
@@ -199,13 +239,13 @@ export const characterLooks: CharacterLook[] = [
       "pale stone and open daylight",
     ],
     productionNote:
-      "The wardrobe and setting change completely. The same face, hair, proportions, and identifier details make the dress and black leather read as two styles on one mannequin.",
+      "The wardrobe and setting change completely. The same face, hair, proportions, clip, and drip placement make the yellow dress and black leather read as two styles on one mannequin.",
   },
   {
     id: "green-art-deco",
     index: "03",
-    title: "Black leather / Green mannequin",
-    dek: "The black leather outfit moves to a different body, face, palette, and rendering style while keeping the same visual identity.",
+    title: "Black leather / Green zombie base",
+    dek: "The directed black leather set moves to the green zombie identity while its garment shapes and accessories stay legible.",
     axis: "identity",
     outfit: blackOutfit,
     character: greenCharacter,
@@ -219,22 +259,41 @@ export const characterLooks: CharacterLook[] = [
     changed: [
       "green skin and facial stitches",
       "black and violet hair",
-      "different face, proportions, and rendering style",
+      "different face, palette, and identity markers",
       "gold and emerald Art Deco setting",
     ],
     productionNote:
-      "The mannequin changes, but the lace-up top, shorts, boots, bag, fan, dark palette, and overall attitude remain legible. The look survives the transfer without producing an identical picture.",
+      "The green character's earlier goth sheet was model inference. This comparison instead transfers a separately defined leather set: lace-up top, shorts, boots, bag, fan, dark palette, and overall attitude.",
   },
 ];
 
 export const characterMannequinPage = {
   title: "Mannequin, Outfit, and Character Continuity | HobFarm Workshop",
   description:
-    "A visual study of one mannequin carrying different outfits and scenes, then one outfit carrying across a different character and rendering style.",
-  baseSheet: sheetOne,
-  alternateSheet: sheetTwo,
-  heroGraphic: cleanBaseSheet,
-  cleanBaseSheet,
+    "Two portrait-led mannequin identities rebuilt as clean bases, separating model-inferred sheet clothing from directed outfit and scene experiments.",
+  heroGraphic: blondeIdentityBase,
+  identities: [
+    {
+      id: "blonde",
+      name: "Blonde mannequin",
+      sourceNote: "Built from the HobFarm doll-style files as one of several mannequin designs.",
+      portrait: blondePortrait,
+      cleanBase: blondeIdentityBase,
+      inferredSheet: blondeInferredSheet,
+      kept: ["platinum asymmetrical crop", "black hair clip", "gray-blue eyes", "black eye-makeup drips"],
+      excluded: "The black dress from the later character sheet",
+    },
+    {
+      id: "green-zombie",
+      name: "Green zombie mannequin",
+      sourceNote: "Built in the same structure from a zombie brief and a visual example.",
+      portrait: greenPortrait,
+      cleanBase: greenIdentityBase,
+      inferredSheet: greenInferredSheet,
+      kept: ["mint-green skin", "black and violet bob", "violet eyes", "cheek stitches and black drips"],
+      excluded: "The goth outfit from the later character sheet",
+    },
+  ],
   academyUrl: "/academy/",
   characterIndexUrl: "/visual-systems/",
 } as const;

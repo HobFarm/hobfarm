@@ -45,7 +45,8 @@ test("Character and note studies stay outside the StyleFusion application eviden
   const notes = read("src/components/workshop/StyleCardArchive.astro");
   const route = read("src/pages/workshop/[program].astro");
 
-  assert.match(character, /Two styles on one mannequin\. One style on two mannequins\./);
+  assert.match(character, /The outfit test starts after the identity lock\./);
+  assert.match(character, /The character sheets guessed the outfits\./);
   assert.match(character, /The look survives without producing the same picture\./);
   assert.doesNotMatch(character, /The picture is the output\. The design record is the work\./);
   assert.match(characterRoute, /CharacterMannequinPage/);
