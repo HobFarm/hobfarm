@@ -1,0 +1,167 @@
+---
+const nodes = [
+  { label: "Sharksploitation", href: "/articles/sharksploitation/", kind: "published" },
+  { label: "The Mondo Machine", kind: "forming" },
+  { label: "Sharknado branch", kind: "forming" },
+  { label: "Other Alice", href: "/presents/other-alice-adventures/", kind: "world" },
+  { label: "Workshop Notes", href: "/workshop/workshop-notes/", kind: "center" },
+  { label: "Wonder Machine + Grimoire", href: "/grimoire/", kind: "system" },
+  { label: "Hey, It’s That Guy", href: "/articles/hey-its-that-guy/", kind: "published" },
+  { label: "I May Have Inspired It", href: "/articles/i-may-have-inspired-it/", kind: "published" },
+  { label: "Dalí article", kind: "forming" },
+];
+---
+
+<figure class="node-mesh article-wide not-prose">
+  <div class="node-mesh__field">
+    <svg viewBox="0 0 900 560" aria-hidden="true">
+      <path d="M120 90 C270 115 320 215 450 280 S650 160 790 100" />
+      <path d="M120 280 C250 235 330 275 450 280 S665 312 790 280" />
+      <path d="M120 470 C270 425 315 335 450 280 S640 420 790 470" />
+      <path d="M120 90 C120 220 170 345 120 470" />
+      <path d="M790 100 C745 235 840 345 790 470" />
+      <circle cx="450" cy="280" r="82" />
+    </svg>
+    <ul>
+      {nodes.map((node) => (
+        <li class:list={[`node-mesh__node`, `node-mesh__node--${node.kind}`]}>
+          {node.href ? <a href={node.href}>{node.label}</a> : <span>{node.label}</span>}
+        </li>
+      ))}
+    </ul>
+  </div>
+  <figcaption>A series asks what happens next. A mesh asks which connection becomes useful next.</figcaption>
+</figure>
+
+<style>
+  .node-mesh {
+    margin-block: 3rem;
+  }
+
+  .node-mesh__field {
+    position: relative;
+    min-height: 35rem;
+    overflow: hidden;
+    border: 1px solid rgb(119 167 177 / 0.38);
+    border-radius: 0.7rem;
+    background:
+      radial-gradient(circle at 50% 50%, rgb(14 58 67 / 0.72), transparent 36%),
+      #06161a;
+    box-shadow: 0.65rem 0.75rem 0 rgb(2 9 11 / 0.7);
+  }
+
+  .node-mesh svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .node-mesh svg path,
+  .node-mesh svg circle {
+    fill: none;
+    stroke: #77a7b1;
+    stroke-width: 2;
+    stroke-dasharray: 5 10;
+    opacity: 0.44;
+  }
+
+  .node-mesh ul {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .node-mesh__node {
+    position: absolute;
+    display: grid;
+    width: 10rem;
+    min-height: 4.2rem;
+    place-items: center;
+    padding: 0.7rem;
+    border: 1px solid rgb(119 167 177 / 0.55);
+    border-radius: 0.35rem;
+    background: #102a30;
+    box-shadow: 0.35rem 0.42rem 0 rgb(2 9 11 / 0.68);
+    text-align: center;
+    transform: rotate(-1deg);
+  }
+
+  .node-mesh__node a,
+  .node-mesh__node span {
+    color: #e8e3d8;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    line-height: 1.35;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .node-mesh__node:nth-child(1) { left: 4%; top: 7%; }
+  .node-mesh__node:nth-child(2) { left: 41%; top: 5%; transform: rotate(1.2deg); }
+  .node-mesh__node:nth-child(3) { right: 4%; top: 8%; }
+  .node-mesh__node:nth-child(4) { left: 4%; top: 43%; transform: rotate(1deg); }
+  .node-mesh__node:nth-child(5) { left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-0.5deg); }
+  .node-mesh__node:nth-child(6) { right: 4%; top: 43%; transform: rotate(1.4deg); }
+  .node-mesh__node:nth-child(7) { left: 4%; bottom: 7%; }
+  .node-mesh__node:nth-child(8) { left: 41%; bottom: 5%; transform: rotate(1deg); }
+  .node-mesh__node:nth-child(9) { right: 4%; bottom: 7%; }
+
+  .node-mesh__node--center {
+    border-color: #ee6b46;
+    background: #54281f;
+  }
+
+  .node-mesh__node--forming {
+    border-style: dashed;
+    background: #172329;
+  }
+
+  .node-mesh__node--world {
+    border-color: #8c77b4;
+  }
+
+  .node-mesh__node--system {
+    border-color: #8dc7d2;
+  }
+
+  .node-mesh__node a:hover,
+  .node-mesh__node a:focus-visible {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+
+  .node-mesh figcaption {
+    margin-top: 0.9rem;
+    color: var(--color-base-400, #a1a1a1);
+    font-size: 0.82rem;
+  }
+
+  @media (max-width: 720px) {
+    .node-mesh__field {
+      min-height: auto;
+      padding: 0.75rem;
+    }
+
+    .node-mesh svg {
+      display: none;
+    }
+
+    .node-mesh ul {
+      position: static;
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    .node-mesh__node,
+    .node-mesh__node:nth-child(n) {
+      position: static;
+      width: auto;
+      min-height: 3.5rem;
+      transform: none;
+    }
+  }
+</style>

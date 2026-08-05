@@ -1,0 +1,102 @@
+<figure class="route-sorter article-wide not-prose">
+  <div class="route-sorter__grid">
+    <section class="route-sorter__card route-sorter__card--route">
+      <span>Route</span>
+      <h3>Mondo’s shark sequence</h3>
+      <p>Narration, montage, music, and reaction shots turn visible fragments into one authoritative story. That strengthens the shark article and returns to its subject.</p>
+    </section>
+
+    <section class="route-sorter__card route-sorter__card--branch">
+      <span>Branch</span>
+      <h3>The Mondo machine</h3>
+      <p>Jacopetti, Cavara, Prosperi, <cite>Africa Addio</cite>, later shockumentaries, VHS gore culture, and online feeds develop their own center of gravity.</p>
+    </section>
+
+    <section class="route-sorter__card route-sorter__card--park">
+      <span>Cut or park</span>
+      <h3>Sahara → Chad</h3>
+      <p>The landscape is rich enough for another article or visual essay. It does not belong in the Dalí route unless it helps explain Dalí.</p>
+    </section>
+  </div>
+  <figcaption>Discovery creates more material than one article can use. Editorial work assigns each route a job.</figcaption>
+</figure>
+
+<style>
+  .route-sorter {
+    margin-block: 3rem;
+  }
+
+  .route-sorter__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.7rem;
+  }
+
+  .route-sorter__card {
+    min-width: 0;
+    padding: 1.25rem;
+    border: 1px solid rgb(119 167 177 / 0.38);
+    border-radius: 0.5rem;
+    background: #0a1e23;
+    box-shadow: 0.42rem 0.5rem 0 rgb(2 9 11 / 0.68);
+  }
+
+  .route-sorter__card:nth-child(1) {
+    transform: rotate(-0.6deg);
+  }
+
+  .route-sorter__card:nth-child(2) {
+    transform: translateY(0.4rem) rotate(0.5deg);
+  }
+
+  .route-sorter__card:nth-child(3) {
+    transform: rotate(-0.35deg);
+  }
+
+  .route-sorter__card span {
+    color: #ee6b46;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .route-sorter__card--branch span {
+    color: #8dc7d2;
+  }
+
+  .route-sorter__card--park span {
+    color: #b9ad91;
+  }
+
+  .route-sorter h3 {
+    margin: 0.55rem 0 0.65rem;
+    color: #f5efe3;
+    font-size: 1.15rem;
+  }
+
+  .route-sorter p {
+    margin: 0;
+    color: #b7c4c6;
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .route-sorter figcaption {
+    margin-top: 1rem;
+    color: var(--color-base-400, #a1a1a1);
+    font-size: 0.82rem;
+  }
+
+  @media (max-width: 760px) {
+    .route-sorter__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .route-sorter__card,
+    .route-sorter__card:nth-child(n) {
+      transform: none;
+    }
+  }
+</style>

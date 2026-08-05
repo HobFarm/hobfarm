@@ -1,0 +1,186 @@
+{
+  "version": 1,
+  "article_slug": "you-should-write-about-sharks",
+  "generated_at": "2026-08-04T08:00:00-07:00",
+  "bucket": "hobfarm-cdn",
+  "public_hostname": "https://cdn.hob.farm",
+  "policy": {
+    "new_keys_only": true,
+    "overwrite_existing": false,
+    "delete_or_rename_existing": false,
+    "dry_run_before_upload": true,
+    "allowed_prefixes": [
+      "articles/you-should-write-about-sharks/"
+    ]
+  },
+  "generation": {
+    "tool": "OpenAI built-in image generation",
+    "mode": "stylized-concept",
+    "reference_images": [
+      {
+        "path": "assets/sharksploitation/sharksploitation-hero-source.png",
+        "role": "style reference only"
+      }
+    ],
+    "exact_prompt": "Use case: stylized-concept. Asset type: 16:9 editorial feature hero for a HobFarm Workshop Notes article. Input image 1 is a style reference only: carry forward its tactile torn-paper collage, deep Atlantic blue-black ground, salt-white newsprint, oxidized red accents, restrained turquoise, scratched film texture, and sophisticated handmade magazine finish. Do not copy its left-to-right timeline, shark pose, objects, or composition.\n\nPrimary request: create a wide editorial illustration of a simple suggestion becoming a wandering article route. A single calm shark silhouette is integrated into an irregular hand-drawn route that begins at one loose paper scrap, swims through a field of clipped notes, film-frame fragments, source cards, archival newsprint, image crops, a small camera, and public article-page shapes, branches into several tempting side paths, then curves visibly back toward its starting point. The route should feel improvisational and exploratory, with loops, pauses, forks, taped joins, pencil corrections, and one clearly readable return—not like a corporate flowchart or literal software architecture diagram. A few side branches may terminate in a tornado-like spiral of torn paper, an old documentary frame, a tracking-map pulse, and a surreal desert-horizon fragment, but keep all of them generic and original.\n\nComposition/framing: full-bleed landscape 16:9, strong readable shark-and-route silhouette at thumbnail size, layered depth, generous quiet space near the upper center for live HTML headline overlay, no border. The central visual movement should wander outward and return.\n\nLighting/mood: nocturnal editorial worktable crossed with an underwater field, cinematic but tactile, strange, intelligent, slightly funny, not mystical or corporate.\n\nConstraints: no words, no legible writing, no letters, no logos, no brands, no private interfaces, no file paths, no prompt text, no glowing AI brain, no generic neural-network nodes, no direct Grateful Dead iconography, no Jaws poster imitation, no swimmer, no attack, no blood, no open shark mouth, no copyrighted movie characters or poster compositions, no watermark. Keep headline out of the image; it will be rendered as editable HTML."
+  },
+  "assets": [
+    {
+      "asset_id": "you-should-write-about-sharks-hero-webp",
+      "source_file": "assets/you-should-write-about-sharks/you-should-write-about-sharks-hero.webp",
+      "destination_bucket": "hobfarm-cdn",
+      "destination_key": "articles/you-should-write-about-sharks/you-should-write-about-sharks-hero.webp",
+      "public_url": "https://cdn.hob.farm/articles/you-should-write-about-sharks/you-should-write-about-sharks-hero.webp",
+      "classification": "public-editorial",
+      "related_content": [
+        "article:you-should-write-about-sharks"
+      ],
+      "purpose": "hero and article thumbnail",
+      "caption": "A shark-shaped route moves through notes, film frames, source cards, maps, and branching paths before returning toward its starting point.",
+      "alt_text": "A calm shark follows a looping route through torn notes, film frames, source cards, a camera, maps, and branching paths before returning toward its starting point.",
+      "credit": "HobFarm original commission; generated with OpenAI image generation",
+      "rights_basis": "Original commissioned editorial illustration created for HobFarm; the prior HobFarm hero was used only as a visual-style reference.",
+      "source_url": null,
+      "retrieved_at": "2026-08-04",
+      "content_type": "image/webp",
+      "bytes": 493154,
+      "sha256": "7400c8aead5d533046a621787ede1d62830a844e4dd33e8dfb0fd9a208774d49",
+      "width": 1920,
+      "height": 1080,
+      "replacement_policy": "new-key-only; version filename on conflict; never overwrite",
+      "upload_status": "ready",
+      "verification_status": "destination-absent"
+    },
+    {
+      "asset_id": "you-should-write-about-sharks-hero-avif",
+      "source_file": "assets/you-should-write-about-sharks/you-should-write-about-sharks-hero.avif",
+      "destination_bucket": "hobfarm-cdn",
+      "destination_key": "articles/you-should-write-about-sharks/you-should-write-about-sharks-hero.avif",
+      "public_url": "https://cdn.hob.farm/articles/you-should-write-about-sharks/you-should-write-about-sharks-hero.avif",
+      "classification": "public-editorial",
+      "related_content": [
+        "article:you-should-write-about-sharks"
+      ],
+      "purpose": "optimized alternate hero format",
+      "caption": "A shark-shaped route wanders through a working source field and returns.",
+      "alt_text": "A calm shark follows a looping route through torn notes, film frames, source cards, a camera, maps, and branching paths before returning toward its starting point.",
+      "credit": "HobFarm original commission; generated with OpenAI image generation",
+      "rights_basis": "Original commissioned editorial illustration created for HobFarm; the prior HobFarm hero was used only as a visual-style reference.",
+      "source_url": null,
+      "retrieved_at": "2026-08-04",
+      "content_type": "image/avif",
+      "bytes": 314794,
+      "sha256": "cb1186f6b1b77ccbc31b8bd89c57ef5594fbb2b8c56828884714ce3fde7158d9",
+      "width": 1920,
+      "height": 1080,
+      "replacement_policy": "new-key-only; version filename on conflict; never overwrite",
+      "upload_status": "ready",
+      "verification_status": "destination-absent"
+    },
+    {
+      "asset_id": "you-should-write-about-sharks-social",
+      "source_file": "assets/you-should-write-about-sharks/you-should-write-about-sharks-social-1200x630.jpg",
+      "destination_bucket": "hobfarm-cdn",
+      "destination_key": "articles/you-should-write-about-sharks/you-should-write-about-sharks-social-1200x630.jpg",
+      "public_url": "https://cdn.hob.farm/articles/you-should-write-about-sharks/you-should-write-about-sharks-social-1200x630.jpg",
+      "classification": "public-editorial",
+      "related_content": [
+        "article:you-should-write-about-sharks"
+      ],
+      "purpose": "Open Graph and social preview",
+      "caption": "A shark route branches through a field of notes, images, film, and maps.",
+      "alt_text": "A shark route branches through torn notes, film frames, a camera, and maps on a dark editorial worktable.",
+      "credit": "HobFarm original commission; generated with OpenAI image generation",
+      "rights_basis": "Social crop derived from the original HobFarm hero commission.",
+      "source_url": null,
+      "retrieved_at": "2026-08-04",
+      "content_type": "image/jpeg",
+      "bytes": 254546,
+      "sha256": "1870547b99dcb7f23a7d3a0c2b5d378cbef646ad45e3d45fdecb8fa172fe91d2",
+      "width": 1200,
+      "height": 630,
+      "replacement_policy": "new-key-only; version filename on conflict; never overwrite",
+      "upload_status": "ready",
+      "verification_status": "destination-absent"
+    },
+    {
+      "asset_id": "sharknado-poster-critical-reference",
+      "source_file": "assets/you-should-write-about-sharks/sharknado-poster-critical-reference.webp",
+      "destination_bucket": "hobfarm-cdn",
+      "destination_key": "articles/you-should-write-about-sharks/sharknado-poster-critical-reference.webp",
+      "public_url": "https://cdn.hob.farm/articles/you-should-write-about-sharks/sharknado-poster-critical-reference.webp",
+      "classification": "public-editorial",
+      "related_content": [
+        "article:you-should-write-about-sharks"
+      ],
+      "purpose": "critical-reference: visual sales proposition in The ocean becomes optional",
+      "caption": "The title, tornado, sharks, and disaster imagery make the complete sales proposition visible before the film begins.",
+      "alt_text": "The Sharknado poster shows airborne sharks twisting through a tornado above exploding Los Angeles landmarks beneath the large red title Sharknado.",
+      "credit": "The Asylum / Syfy promotional poster",
+      "rights_basis": "Copyrighted promotional art reproduced at limited article resolution for direct criticism of its title, composition, and immediate sales proposition.",
+      "source_url": "https://asylum-media.sfo3.cdn.digitaloceanspaces.com/Images/Sharknado.jpg",
+      "source_page": "https://www.theasylum.cc/index.php/titles/detail?id=416",
+      "retrieved_at": "2026-08-04",
+      "content_type": "image/webp",
+      "bytes": 26394,
+      "sha256": "15ab19c1a2d4a2404124fb0bcf123d7085deccf21f10392bbf4d6281d1d5df91",
+      "width": 228,
+      "height": 320,
+      "replacement_policy": "new-key-only; version filename on conflict; never overwrite",
+      "upload_status": "ready",
+      "verification_status": "destination-absent"
+    }
+  ],
+  "retained_sources": [
+    {
+      "source_file": "assets/you-should-write-about-sharks/you-should-write-about-sharks-hero-source.png",
+      "purpose": "retained full-resolution generation output for future crops; not intended for public upload",
+      "content_type": "image/png",
+      "bytes": 3038259,
+      "sha256": "aa06ed8ce944a4821ab7efff725d3d86ad942e4e11dd1aaec6ec2b20c145ba6f",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "source_file": "assets/you-should-write-about-sharks/sharknado-poster-source.jpg",
+      "purpose": "retained official-source download used to create the article-resolution WebP; not intended for public upload",
+      "content_type": "image/jpeg",
+      "bytes": 32278,
+      "sha256": "5ace52c6c73a9250d10e8de4f1f3f556241a89b0b866a8341be3159df34ca324",
+      "width": 228,
+      "height": 320,
+      "source_url": "https://asylum-media.sfo3.cdn.digitaloceanspaces.com/Images/Sharknado.jpg"
+    }
+  ],
+  "existing_remote_assets": [
+    {
+      "asset_id": "sharksploitation-hero-reuse",
+      "public_url": "https://cdn.hob.farm/articles/sharksploitation/sharksploitation-hero.webp",
+      "width": 1920,
+      "height": 1080,
+      "content_type": "image/webp",
+      "purpose": "public-facing evidence from the finished related article",
+      "credit": "HobFarm original commission",
+      "rights_basis": "Existing HobFarm editorial asset reused contextually.",
+      "verification_status": "existing-cdn-object"
+    }
+  ],
+  "inline_editorial_graphics": [
+    {
+      "component": "src/components/articles/you-should-write-about-sharks/DarkStarRoute.astro",
+      "purpose": "responsive detour-and-return route",
+      "rights_basis": "original inline SVG and HTML"
+    },
+    {
+      "component": "src/components/articles/you-should-write-about-sharks/RouteBranchCut.astro",
+      "purpose": "responsive editorial sorting model",
+      "rights_basis": "original HTML and CSS"
+    },
+    {
+      "component": "src/components/articles/you-should-write-about-sharks/NodeMesh.astro",
+      "purpose": "public-facing HobFarm node mesh",
+      "rights_basis": "original inline SVG and HTML"
+    }
+  ],
+  "dry_run_at": "2026-08-05T00:44:22.589Z"
+}
