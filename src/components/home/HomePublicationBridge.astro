@@ -2,10 +2,30 @@
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 
 const circuit = [
-  { label: "Source", detail: "archive, image, script, character, product, or reference pile" },
-  { label: "Workshop", detail: "research, constraints, visual system, direction, and record" },
-  { label: "Published work", detail: "story, world, campaign, film, application, or gallery" },
-  { label: "Next form", detail: "course, product, new release, or the next project" },
+  {
+    label: "Source",
+    detail: "archive, image, script, character, product, or reference pile",
+    image: "/media/home/publication-bridge/01-source.webp",
+    alt: "Archive papers, a photograph, cloth, and a clay figure joined by cyan thread",
+  },
+  {
+    label: "Workshop",
+    detail: "research, constraints, visual system, direction, and record",
+    image: "/media/home/publication-bridge/02-workshop.webp",
+    alt: "A clay figure measured inside a glass rig beside swatches, calipers, and a camera lens",
+  },
+  {
+    label: "Published work",
+    detail: "story, world, campaign, film, application, or gallery",
+    image: "/media/home/publication-bridge/03-published-work.webp",
+    alt: "A finished character world presented as a framed artwork with a book and glass plate",
+  },
+  {
+    label: "Next form",
+    detail: "course, product, new release, or the next project",
+    image: "/media/home/publication-bridge/04-next-form.webp",
+    alt: "A finished world branching by cyan threads into a folio, product box, image plate, and new seed",
+  },
 ] as const;
 ---
 
@@ -29,9 +49,21 @@ const circuit = [
     <ol class="publication-bridge__circuit" aria-label="How work moves through HobFarm">
       {circuit.map((item, index) => (
         <li>
-          <span>{String(index + 1).padStart(2, "0")}</span>
-          <strong>{item.label}</strong>
-          <p>{item.detail}</p>
+          <div class="publication-bridge__image">
+            <img
+              src={item.image}
+              alt={item.alt}
+              width="1200"
+              height="800"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="publication-bridge__card-copy">
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <strong>{item.label}</strong>
+            <p>{item.detail}</p>
+          </div>
         </li>
       ))}
     </ol>
@@ -94,8 +126,7 @@ const circuit = [
 
   .publication-bridge__circuit li {
     position: relative;
-    min-height: 9rem;
-    padding: 1rem;
+    min-width: 0;
     border: 1px solid #332a43;
     border-top: 2px solid #19e3e3;
     background: rgb(14 11 22 / 0.7);
@@ -105,11 +136,41 @@ const circuit = [
     content: "→";
     position: absolute;
     right: -0.55rem;
-    bottom: 0.55rem;
+    top: 5.75rem;
     z-index: 1;
     display: none;
     color: #19e3e3;
     font-family: var(--font-mono);
+  }
+
+  .publication-bridge__image {
+    position: relative;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    border-bottom: 1px solid #332a43;
+    background: #09080e;
+  }
+
+  .publication-bridge__image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, transparent 62%, rgb(9 8 14 / 0.48)),
+      linear-gradient(120deg, rgb(25 227 227 / 0.05), transparent 45%);
+    pointer-events: none;
+  }
+
+  .publication-bridge__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 450ms ease;
+  }
+
+  .publication-bridge__card-copy {
+    min-height: 9rem;
+    padding: 1rem;
   }
 
   .publication-bridge__circuit span {
@@ -131,6 +192,12 @@ const circuit = [
     color: #9f99a7;
     font-size: 0.72rem;
     line-height: 1.55;
+  }
+
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .publication-bridge__circuit li:hover .publication-bridge__image img {
+      transform: scale(1.025);
+    }
   }
 
   @media (min-width: 42rem) {
