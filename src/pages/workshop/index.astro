@@ -79,19 +79,23 @@ const workshopJsonLd = {
     <section class="workshop-hero" aria-labelledby="workshop-hero-heading">
       <Wrapper variant="standard" class="py-20 sm:py-24 lg:py-32">
         <div class="workshop-hero__layout">
-          <header>
-            <p class="eyebrow">HobFarm Workshop</p>
-            <h1 id="workshop-hero-heading">One method. Many kinds of work.</h1>
-            <p class="deck">The Workshop follows HobFarm projects from source material and rough ideas through design, transformation, direction, and release. The subject might be an article, photograph, character, object, product, visual effect, or interactive world. The tools change. The production habit stays recognizable.</p>
+          <figure class="workshop-hero__figure">
+            <div class="workshop-hero__media">
+              <img src={workshopHero.src} alt={workshopHero.alt} width={workshopHero.width} height={workshopHero.height} loading="eager" fetchpriority="high" decoding="async" />
+              <header class="workshop-hero__title">
+                <p class="eyebrow">HobFarm Workshop</p>
+                <h1 id="workshop-hero-heading">One method for different projects.</h1>
+              </header>
+            </div>
+            <figcaption>HobFarm Workshop / source material, character systems, production tools, and finished worlds</figcaption>
+          </figure>
+          <div class="workshop-hero__after">
+            <p class="deck">Start with an idea and find the angle that makes it yours. Build a baseline: a mannequin, scene, landscape, animal, object, or other stable form. Then layer in the influences and techniques that matter. Artists study a style, decide what they value in it, and work those decisions through their own method. The Workshop follows the same habit across different projects and tools.</p>
             <div class="actions">
               <Button isLink size="sm" variant="green" href="#programs">Explore the programs</Button>
               <Button isLink size="sm" variant="muted" href="/workshop/workshop-notes/" data-event="workshop_notes_open">Read Workshop Notes</Button>
             </div>
-          </header>
-          <figure class="workshop-hero__figure">
-            <img src={workshopHero.src} alt={workshopHero.alt} width={workshopHero.width} height={workshopHero.height} loading="eager" fetchpriority="high" decoding="async" />
-            <figcaption>HobFarm Workshop / source material, character systems, production tools, and finished worlds</figcaption>
-          </figure>
+          </div>
         </div>
       </Wrapper>
     </section>
@@ -285,9 +289,16 @@ const workshopJsonLd = {
   .deck { max-width: 54rem; margin: 2rem 0 0; color: #c5c1d0; font-size: clamp(1rem, 2vw, 1.18rem); line-height: 1.75; }
   .actions, .route-links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: var(--cluster-space); }
   .workshop-hero { background: radial-gradient(circle at 82% 18%, rgb(85 215 255 / .12), transparent 32rem), radial-gradient(circle at 10% 70%, rgb(191 45 88 / .1), transparent 28rem), #07060b; }
-  .workshop-hero__layout { display: grid; gap: var(--content-space); }
+  .workshop-hero__layout { display: grid; gap: 0; }
   .workshop-hero__figure, .carriage-evidence figure { margin: 0; overflow: hidden; border: 1px solid #3b3150; border-radius: .7rem; background: #08070b; }
+  .workshop-hero__media { position: relative; isolation: isolate; }
+  .workshop-hero__media::after { position: absolute; z-index: 0; inset: 0 43% 0 0; background: linear-gradient(90deg, rgb(237 227 208 / .2), transparent); content: ""; pointer-events: none; }
   .workshop-hero__figure img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+  .workshop-hero__title { position: absolute; z-index: 1; top: clamp(1.1rem, 4.5vw, 4.5rem); left: clamp(1rem, 4vw, 4rem); width: min(47%, 34rem); }
+  .workshop-hero__title .eyebrow { color: #174e5a; }
+  .workshop-hero__title h1 { max-width: 8ch; margin-top: clamp(.55rem, 1.4vw, 1.1rem); color: #151016; font-size: clamp(2rem, 6.4vw, 6.5rem); line-height: .84; text-wrap: balance; text-shadow: 0 1px 0 rgb(255 255 255 / .28); }
+  .workshop-hero__after { padding-top: clamp(1.5rem, 3vw, 2.5rem); }
+  .workshop-hero__after .deck { margin-top: 0; }
   figcaption { padding: .7rem .85rem; color: #908a9f; font-family: var(--font-mono); font-size: .55rem; letter-spacing: .05em; line-height: 1.5; text-transform: uppercase; }
   .notes-intro, .programs-section, .tools-section, .final-routes { background: #0a0810; }
   .section-heading { max-width: 64rem; }

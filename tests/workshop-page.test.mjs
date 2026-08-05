@@ -57,9 +57,14 @@ test("Workshop hub follows the requested section hierarchy", () => {
 
   assert.ok(positions.every((position) => position >= 0));
   assert.deepEqual(positions, [...positions].sort((a, b) => a - b));
-  assert.match(page, /One method\. Many kinds of work\./);
+  assert.match(page, /One method for different projects\./);
+  assert.match(page, /Start with an idea and find the angle that makes it yours\./);
   assert.match(page, /getMedia\("workshop\.graphics\.hero"\)/);
   assert.doesNotMatch(page, /workshop-hero__layout \{ grid-template-columns:/);
+  const hero = page.slice(page.indexOf('<section class="workshop-hero"'), page.indexOf('<section class="notes-intro"'));
+  assert.ok(hero.indexOf('class="workshop-hero__title"') < hero.indexOf("</figure>"));
+  assert.ok(hero.indexOf('class="workshop-hero__after"') > hero.indexOf("</figure>"));
+  assert.ok(hero.indexOf('<p class="deck">') > hero.indexOf("</figure>"));
   assert.match(page, /The production record behind HobFarm\./);
   assert.match(page, /Start with the source\. Keep the decisions visible\./);
   assert.match(page, /Five demonstrations of the same method\./);
