@@ -102,6 +102,20 @@ export const mediaRegistry = {
   "workshop.method.build-transformation": workshopMethodImage("03-build-the-transformation.webp", "A neutral mannequin passes through a mechanical rig and emerges with clothing, materials, color, and a miniature world"),
   "workshop.method.direct-result": workshopMethodImage("04-direct-the-result.webp", "A camera, two lights, and framing cards direct a mannequin inside a practical miniature set"),
   "workshop.method.publish-extend": workshopMethodImage("05-publish-and-extend.webp", "One finished work connects to a book, framed print, screen, product box, and projected miniature scene"),
+  "workshop.program-index.character-mannequin": workshopProgramIndexImage("character-mannequin.webp", "/workshop/character-mannequin/", "A wooden artist mannequin surrounded by material swatches, model studies, object maquettes, and a miniature set"),
+  "workshop.program-index.avatar-host": workshopProgramIndexImage("avatar-host.webp", "/workshop/avatar-host/", "A wooden artist mannequin staged with a camera, microphone, lights, monitor, and clapboard for a host production"),
+  "workshop.program-index.before-after": workshopProgramIndexImage("before-after.webp", "/workshop/before-and-after/", "The same utility room held in one camera view, aged and abandoned on one side and carefully restored on the other"),
+  "workshop.program-index.cute-corrupted": workshopProgramIndexImage("cute-corrupted.webp", "/workshop/cute-and-corrupted/", "Matching rabbit sculptures shown in a clean pastel mode and a cracked dark corrupted mode"),
+  "workshop.program-index.alter-ego": workshopProgramIndexImage("alter-ego.webp", "/workshop/alter-ego/", "Two wooden artist mannequins built from the same model and directed as bright and dark stage personas"),
+  "workshop.route-card.publication": workshopRouteCardImage("publication.webp", "/articles/", "An editor's worktable with an open folio, photographic print, gallery frame, sequencing cards, and binding tools"),
+  "workshop.route-card.motion-social": workshopRouteCardImage("motion-social.webp", "/presents/", "A miniature motion stage with a camera, storyboard frames, vertical display, carousel cards, and controlled light trails"),
+  "workshop.route-card.marketplace": workshopRouteCardImage("marketplace.webp", "/shop/", "A curated packing and display bench with image folios, template cards, edition sleeves, a parcel box, and shelf presentation"),
+  "workshop.route-card.academy": workshopRouteCardImage("academy.webp", "/academy/", "A teaching workbench with a wooden mannequin, step cards, source packet, notebook, template sheets, and a focused lamp"),
+  "workshop.route-card.applications-studio": workshopRouteCardImage("applications-studio.webp", "/workshop/stylefusion/", "An application and studio workbench with an abstract interface, miniature set, compositing plates, light grid, and finishing tools"),
+  "workshop.route-card.stylefusion": workshopRouteCardImage("stylefusion.webp", "/workshop/stylefusion/", "A reference-analysis bench organizing photo cards into color, material, lighting, and composition decisions"),
+  "workshop.route-card.wonder-machine": workshopRouteCardImage("wonder-machine.webp", "/presents/other-alice-adventures/", "A theatrical story machine with branching doorways, route tokens, character-memory cards, and a glowing mechanical orrery"),
+  "workshop.route-card.voice-avatar-production": workshopRouteCardImage("voice-avatar-production.webp", "/workshop/avatar-host/", "A wooden mannequin in a compact recording booth with a microphone, camera, lights, pose cards, and caption monitor"),
+  "workshop.route-card.image-motion-delivery": workshopRouteCardImage("image-motion-delivery.webp", "/workshop/workshop-notes/", "A finishing bench with photographic strips, motion frames, an edit timeline, compositing layers, and prepared output cases"),
   "workshop.graphics.landing": workshopImage("images/workshop.png", "/workshop/", "section-hero", "The HobFarm Workshop host system, character sheet, process inspector, storyboards, media registry, and motion test", 1672, 941),
   "workshop.graphics.hillary": workshopImage("images/workshop-hillary.png", "/workshop/ and /workshop/avatar-host/", "editorial-host-system", "Hillary at the center of HobFarm articles, Presents, Workshop, and in-progress productions", 1672, 941),
   "presents.graphics.avatar-system": workshopImage("images/presents-with-avatars.png", "/presents/", "section-hero", "HobFarm Presents programs with Hillary, Ami, Em, Nina, and Zima as recurring editorial hosts", 1672, 941),
@@ -484,6 +498,32 @@ function workshopMethodImage(file: string, alt: string): MediaRecord {
     height: 1254,
     destination: "/workshop/#method",
     role: "method-stage",
+    alt,
+    status: "active",
+  };
+}
+
+function workshopProgramIndexImage(file: string, destination: string, alt: string): MediaRecord {
+  return {
+    src: `/media/workshop/program-index/${file}`,
+    mediaType: "image",
+    width: 1360,
+    height: 1020,
+    destination,
+    role: "program-index",
+    alt,
+    status: "active",
+  };
+}
+
+function workshopRouteCardImage(file: string, destination: string, alt: string): MediaRecord {
+  return {
+    src: `/media/workshop/route-cards/${file}`,
+    mediaType: "image",
+    width: 1360,
+    height: 1020,
+    destination,
+    role: "workshop-route-card",
     alt,
     status: "active",
   };

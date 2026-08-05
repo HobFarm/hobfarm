@@ -25,25 +25,26 @@ const futureCampaign = getMedia("workshop.ami-legacy.hero");
 const ami = getMedia("avatar.identity.ami");
 
 const programProof = {
-  "character-mannequin": getMedia("workshop.character-mannequin.workflow"),
-  "avatar-host": futureCampaign,
-  "before-after": getMedia("before-after.shit-to-shine.after"),
-  "alter-ego": getMedia("workshop.alter-ego.poster"),
+  "character-mannequin": getMedia("workshop.program-index.character-mannequin"),
+  "avatar-host": getMedia("workshop.program-index.avatar-host"),
+  "before-after": getMedia("workshop.program-index.before-after"),
+  "cute-corrupted": getMedia("workshop.program-index.cute-corrupted"),
+  "alter-ego": getMedia("workshop.program-index.alter-ego"),
 } as const;
 
 const outputs = [
-  { title: "Publication", body: "Long-form article, visual essay, gallery, or recurring series.", href: "/articles/", label: "Read Articles", event: "workshop_publication_continue" },
-  { title: "Motion and social", body: "Avatar introduction, short clip, diagram, carousel, or trailer with a return path to the source.", href: "/presents/", label: "Explore Presents", event: "workshop_presents_continue" },
-  { title: "Marketplace", body: "Character pack, image set, template, digital product, edition, or related listing when one is verified.", href: "/shop/", label: "Browse Shop", event: "workshop_shop_continue" },
-  { title: "Academy", body: "Guided method, lesson, exercise, source packet, and production template.", href: "/academy/", label: "Continue to Academy", event: "workshop_academy_continue" },
-  { title: "Applications and studio work", body: "Interactive tool, web experience, campaign, VFX element, or custom production.", href: "/workshop/stylefusion/", label: "Explore an application", event: "workshop_application_open" },
+  { title: "Publication", body: "Long-form article, visual essay, gallery, or recurring series.", href: "/articles/", label: "Read Articles", event: "workshop_publication_continue", image: getMedia("workshop.route-card.publication") },
+  { title: "Motion and social", body: "Avatar introduction, short clip, diagram, carousel, or trailer with a return path to the source.", href: "/presents/", label: "Explore Presents", event: "workshop_presents_continue", image: getMedia("workshop.route-card.motion-social") },
+  { title: "Marketplace", body: "Character pack, image set, template, digital product, edition, or related listing when one is verified.", href: "/shop/", label: "Browse Shop", event: "workshop_shop_continue", image: getMedia("workshop.route-card.marketplace") },
+  { title: "Academy", body: "Guided method, lesson, exercise, source packet, and production template.", href: "/academy/", label: "Continue to Academy", event: "workshop_academy_continue", image: getMedia("workshop.route-card.academy") },
+  { title: "Applications and studio work", body: "Interactive tool, web experience, campaign, VFX element, or custom production.", href: "/workshop/stylefusion/", label: "Explore an application", event: "workshop_application_open", image: getMedia("workshop.route-card.applications-studio") },
 ] as const;
 
 const tools = [
-  { title: "StyleFusion", body: "Assigns reference images clear jobs, extracts usable visual rules, and compiles a production record.", href: "/workshop/stylefusion/", label: "Inspect StyleFusion" },
-  { title: "Wonder Machine", body: "Turns authored world rules, state, routes, and character memory into an interactive story application.", href: "/presents/other-alice-adventures/", label: "See the application" },
-  { title: "Voice and avatar production", body: "Connects a stable identity to a role, voice, expression, motion direction, captions, and a real destination.", href: "/workshop/avatar-host/", label: "Open Avatar & Host" },
-  { title: "Image, motion, and delivery", body: "Uses research, photography, design, compositing, editing, code, and format-specific finishing to publish the work.", href: "/workshop/workshop-notes/", label: "Read the records" },
+  { title: "StyleFusion", body: "Assigns reference images clear jobs, extracts usable visual rules, and compiles a production record.", href: "/workshop/stylefusion/", label: "Inspect StyleFusion", image: getMedia("workshop.route-card.stylefusion") },
+  { title: "Wonder Machine", body: "Turns authored world rules, state, routes, and character memory into an interactive story application.", href: "/presents/other-alice-adventures/", label: "See the application", image: getMedia("workshop.route-card.wonder-machine") },
+  { title: "Voice and avatar production", body: "Connects a stable identity to a role, voice, expression, motion direction, captions, and a real destination.", href: "/workshop/avatar-host/", label: "Open Avatar & Host", image: getMedia("workshop.route-card.voice-avatar-production") },
+  { title: "Image, motion, and delivery", body: "Uses research, photography, design, compositing, editing, code, and format-specific finishing to publish the work.", href: "/workshop/workshop-notes/", label: "Read the records", image: getMedia("workshop.route-card.image-motion-delivery") },
 ] as const;
 
 const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
@@ -135,31 +136,39 @@ const workshopJsonLd = {
           <p>Each program starts with a source, defines what must stay recognizable, applies a specific kind of change, then directs the result toward a useful form.</p>
         </header>
 
-        <div class="program-stack">
+        <div class="program-stack" aria-label="Workshop program sequence">
           {visualPrograms.map((program) => {
             const proof = program.id in programProof
               ? programProof[program.id as keyof typeof programProof]
               : { src: program.heroImage!, alt: program.heroAlt!, width: 1600, height: 900 };
             const proofSrc = transformImageUrl(proof.src, { width: 1000, quality: 82, fit: "cover" });
+            const programNumber = String(program.order - 1).padStart(2, "0");
             return (
-              <article class="program-module" data-program-id={program.id}>
-                <figure>
-                  <img src={proofSrc} alt={proof.alt} width={proof.width} height={proof.height} loading="lazy" decoding="async" />
-                  <figcaption>{program.featuredExample}</figcaption>
-                </figure>
-                <div class="program-module__copy">
-                  <p class="eyebrow">Program {String(program.order - 1).padStart(2, "0")}</p>
-                  <h3>{program.name}</h3>
-                  <p class="program-definition">{program.description}</p>
-                  {program.id === "character-mannequin" && <p>The mannequin can be a wedding cake. The character can be a corrupted green cake living in a swamp.</p>}
-                  {program.id === "avatar-host" && <p><a class="inline-link" href="/workshop/avatar-host/#ami-future-carriage" data-event="workshop_ami_open">Who is Ami? See how one identity becomes a recurring host.</a></p>}
-                  {program.distinction && <p class="distinction">{program.distinction}</p>}
+              <article class="program-entry" data-program-id={program.id}>
+                <div class="program-entry__marker" aria-hidden="true">
+                  <span>Program</span>
+                  <strong>{programNumber}</strong>
+                </div>
+                <span class="program-entry__ghost" aria-hidden="true">{programNumber}</span>
+                <div class="program-entry__main">
+                  <div class="program-entry__narrative">
+                    <h3>{program.name}</h3>
+                    <p class="program-definition">{program.description}</p>
+                    {program.id === "character-mannequin" && <p>The mannequin can be a wedding cake. The character can be a corrupted green cake living in a swamp.</p>}
+                    {program.id === "avatar-host" && <p><a class="inline-link" href="/workshop/avatar-host/#ami-future-carriage" data-event="workshop_ami_open">Who is Ami? See how one identity becomes a recurring host.</a></p>}
+                    {program.distinction && <p class="distinction">{program.distinction}</p>}
+                  </div>
+                  <figure class="program-entry__figure">
+                    <img src={proofSrc} alt={proof.alt} width={proof.width} height={proof.height} loading="lazy" decoding="async" />
+                  </figure>
                   <ol class="program-path" aria-label={`${program.name} source to output path`}>
                     <li><span>Source</span><strong>{program.startsWith[0]}</strong></li>
                     <li><span>Base</span><strong>{program.startsWith.at(-1)}</strong></li>
                     <li><span>Transformation</span><strong>{program.transformation}</strong></li>
                     <li><span>Output</span><strong>{program.outputs[0]}</strong></li>
                   </ol>
+                </div>
+                <div class="program-entry__footer">
                   <div class="program-meta">
                     <p><strong>Starting inputs</strong>{program.startsWith.join(" · ")}</p>
                     <p><strong>Possible outputs</strong>{program.outputs.join(" · ")}</p>
@@ -217,7 +226,8 @@ const workshopJsonLd = {
         <div class="output-grid">
           {outputs.map((output) => (
             <a href={output.href} data-event={output.event}>
-              <h3>{output.title}</h3><p>{output.body}</p><strong>{output.label} <span aria-hidden="true">&rarr;</span></strong>
+              <div class="route-card__media"><img src={output.image.src} alt={output.image.alt} width={output.image.width} height={output.image.height} loading="lazy" decoding="async" /></div>
+              <div class="route-card__body"><h3>{output.title}</h3><p>{output.body}</p><strong>{output.label} <span aria-hidden="true">&rarr;</span></strong></div>
             </a>
           ))}
         </div>
@@ -231,7 +241,7 @@ const workshopJsonLd = {
           <p>Provider names belong in technical records when they explain a decision. The Workshop hub keeps the durable function visible.</p>
         </header>
         <div class="tool-grid">
-          {tools.map((tool) => <a href={tool.href} data-event="workshop_application_open"><h3>{tool.title}</h3><p>{tool.body}</p><strong>{tool.label} <span aria-hidden="true">&rarr;</span></strong></a>)}
+          {tools.map((tool) => <a href={tool.href} data-event="workshop_application_open"><div class="route-card__media"><img src={tool.image.src} alt={tool.image.alt} width={tool.image.width} height={tool.image.height} loading="lazy" decoding="async" /></div><div class="route-card__body"><h3>{tool.title}</h3><p>{tool.body}</p><strong>{tool.label} <span aria-hidden="true">&rarr;</span></strong></div></a>)}
         </div>
       </Wrapper>
     </section>
@@ -287,22 +297,32 @@ const workshopJsonLd = {
   .text-link { display: inline-block; margin-top: 1.75rem; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .05em; text-decoration: none; text-transform: uppercase; }
   .note-grid { display: grid; gap: 1.25rem; margin-top: var(--content-space); }
   .method-strip-wrap { margin-top: var(--content-space); }
-  .program-stack { display: grid; gap: clamp(1.25rem, 3vw, 2rem); margin-top: var(--content-space); }
-  .program-module { display: grid; overflow: hidden; border: 1px solid var(--line); border-radius: .8rem; background: var(--panel); }
-  .program-module > figure { min-width: 0; margin: 0; border-bottom: 1px solid var(--line); background: #060509; }
-  .program-module > figure img { display: block; width: 100%; height: 100%; min-height: 18rem; max-height: 40rem; object-fit: cover; }
-  .program-module[data-program-id="character-mannequin"] > figure img { object-fit: contain; }
-  .program-module__copy { padding: clamp(1.75rem, 5vw, 3.5rem); }
-  .program-module h3 { margin: 1rem 0 0; font-size: clamp(2.3rem, 5vw, 4.7rem); letter-spacing: -.045em; line-height: .95; }
-  .program-definition, .program-module__copy > p:not(.eyebrow) { max-width: 48rem; margin: 1.4rem 0 0; line-height: 1.7; }
-  .distinction { padding-left: .8rem; border-left: 2px solid #d04a93; color: #d9c2d2; }
-  .program-path { display: grid; gap: 1px; margin: 2rem 0 0; padding: 1px; background: var(--line); list-style: none; }
-  .program-path li { min-width: 0; padding: 1rem; background: #09070e; }
+  .program-stack { position: relative; margin-top: var(--content-space); }
+  .program-stack::before { position: absolute; top: 0; bottom: 0; left: 1rem; width: 1px; background: #2ddfe3; content: ""; opacity: .72; }
+  .program-entry { position: relative; min-width: 0; padding: 3.25rem 0 3.5rem 3rem; border-top: 1px solid var(--line); }
+  .program-entry:first-child { padding-top: 0; border-top: 0; }
+  .program-entry__marker { position: absolute; top: 3.25rem; left: 0; z-index: 2; display: grid; width: 2rem; justify-items: center; gap: .35rem; color: #55d7ff; font-family: var(--font-mono); text-align: center; text-transform: uppercase; }
+  .program-entry:first-child .program-entry__marker { top: 0; }
+  .program-entry__marker::after { position: absolute; top: 1.05rem; left: .73rem; width: .58rem; height: .58rem; border-radius: 50%; background: #55d7ff; box-shadow: 0 0 0 3px #0a0810; content: ""; transform: translateY(-50%); }
+  .program-entry__marker span { display: none; font-size: .52rem; letter-spacing: .12em; }
+  .program-entry__marker strong { margin-top: 1.8rem; font-size: .9rem; font-weight: 400; letter-spacing: .04em; }
+  .program-entry__ghost { display: none; }
+  .program-entry__main { display: grid; gap: clamp(2rem, 5vw, 3.5rem); }
+  .program-entry h3 { max-width: 42rem; margin: 0; font-size: clamp(2.6rem, 7vw, 5.2rem); letter-spacing: -.05em; line-height: .92; text-wrap: balance; }
+  .program-definition, .program-entry__narrative > p:not(.distinction) { max-width: 42rem; margin: 1.35rem 0 0; line-height: 1.7; }
+  .distinction { margin: 1.5rem 0 0; padding-left: .8rem; border-left: 2px solid #d04a93; color: #d9c2d2; line-height: 1.7; }
+  .program-entry__figure { min-width: 0; margin: 0; overflow: hidden; border: 1px solid #3b3150; border-radius: .18rem; background: #060509; }
+  .program-entry__figure img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+  .program-path { display: grid; gap: 1rem; margin: 0; padding: 0; list-style: none; }
+  .program-path li { position: relative; min-width: 0; padding-left: 1.9rem; }
+  .program-path li::before { position: absolute; top: .72rem; left: 0; width: 1rem; height: 1px; background: #817b91; content: ""; }
   .program-path span, .program-meta strong { display: block; color: #55d7ff; font-family: var(--font-mono); font-size: .54rem; letter-spacing: .07em; text-transform: uppercase; }
-  .program-path strong { display: block; margin-top: .65rem; color: #e8e4ee; font-size: .72rem; font-weight: 500; line-height: 1.5; }
-  .program-meta { display: grid; gap: 1rem; margin-top: 1.5rem; }
+  .program-path strong { display: block; margin-top: .5rem; color: #d6d1df; font-size: .72rem; font-weight: 400; line-height: 1.5; }
+  .program-entry__footer { margin-top: clamp(1.5rem, 3vw, 2.25rem); padding-top: 1.25rem; border-top: 1px solid var(--line); }
+  .program-meta { display: grid; gap: .85rem; }
   .program-meta p { margin: 0; color: #918b9e; font-size: .7rem; line-height: 1.6; }
   .program-meta strong { margin-bottom: .35rem; }
+  .program-entry__footer .text-link { margin-top: 1.35rem; }
   .future-carriage { background: radial-gradient(circle at 86% 20%, rgb(197 147 75 / .14), transparent 32rem), #090807; }
   .future-carriage .eyebrow { color: #d3a75f; }
   .carriage-evidence { display: grid; gap: 1rem; margin-top: var(--content-space); }
@@ -316,8 +336,12 @@ const workshopJsonLd = {
   .route-links a, .final-route-grid a { display: inline-flex; min-height: 2.8rem; align-items: center; padding: .65rem .8rem; border: 1px solid #493d55; border-radius: .35rem; color: #ded9e6; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .04em; text-decoration: none; text-transform: uppercase; }
   .route-links a:hover, .route-links a:focus-visible, .final-route-grid a:hover, .final-route-grid a:focus-visible { border-color: #55d7ff; color: white; outline: none; }
   .output-grid, .tool-grid { display: grid; gap: 1rem; margin-top: var(--content-space); }
-  .output-grid a, .tool-grid a { display: flex; min-height: 16rem; flex-direction: column; padding: 1.5rem; border: 1px solid var(--line); border-radius: .6rem; background: var(--panel); text-decoration: none; }
+  .output-grid a, .tool-grid a { display: flex; min-width: 0; min-height: 22rem; flex-direction: column; overflow: hidden; border: 1px solid var(--line); border-radius: .6rem; background: var(--panel); text-decoration: none; }
   .output-grid a:hover, .output-grid a:focus-visible, .tool-grid a:hover, .tool-grid a:focus-visible { border-color: #55d7ff; outline: none; }
+  .route-card__media { overflow: hidden; border-bottom: 1px solid var(--line); background: #060509; }
+  .route-card__media img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; transition: filter .25s ease, transform .35s ease; }
+  .output-grid a:hover .route-card__media img, .output-grid a:focus-visible .route-card__media img, .tool-grid a:hover .route-card__media img, .tool-grid a:focus-visible .route-card__media img { filter: brightness(1.08); transform: scale(1.025); }
+  .route-card__body { display: flex; flex: 1; flex-direction: column; padding: 1.35rem 1.5rem 1.5rem; }
   .output-grid h3, .tool-grid h3 { margin: 0; font-size: 1.5rem; }
   .output-grid p, .tool-grid p { margin: 1.1rem 0 0; color: #9d97a9; font-size: .8rem; line-height: 1.65; }
   .output-grid strong, .tool-grid strong { margin-top: auto; padding-top: 2rem; color: #55d7ff; font-family: var(--font-mono); font-size: .58rem; font-weight: 500; text-transform: uppercase; }
@@ -325,7 +349,6 @@ const workshopJsonLd = {
   .program-index { margin-top: var(--cluster-space); padding-top: var(--cluster-space); border-top: 1px solid var(--line); }
   @media (min-width: 44rem) {
     .note-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .program-path { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     .program-meta { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .carriage-evidence { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .case-chain { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -334,9 +357,25 @@ const workshopJsonLd = {
   }
   @media (min-width: 64rem) {
     .section-heading--split { grid-template-columns: minmax(0, 1fr) minmax(24rem, .6fr); align-items: end; }
-    .program-module { grid-template-columns: minmax(22rem, .72fr) minmax(0, 1fr); }
-    .program-module:nth-child(even) > figure { grid-column: 2; grid-row: 1; border-right: 0; border-left: 1px solid var(--line); }
-    .program-module > figure { border-right: 1px solid var(--line); border-bottom: 0; }
+    .program-stack::before { left: 5rem; }
+    .program-entry { min-height: 35rem; padding: clamp(3.75rem, 6vw, 5rem) 0 clamp(4rem, 7vw, 5.5rem) 8.5rem; }
+    .program-entry:first-child { padding-top: 0; }
+    .program-entry__marker { top: clamp(3.75rem, 6vw, 5rem); left: 0; width: 5rem; align-items: start; justify-items: start; padding-left: .15rem; }
+    .program-entry:first-child .program-entry__marker { top: 0; }
+    .program-entry__marker::after { top: 1.25rem; left: 4.65rem; width: .7rem; height: .7rem; }
+    .program-entry__marker span { display: block; }
+    .program-entry__marker strong { margin-top: 0; font-size: 1.3rem; }
+    .program-entry__ghost { position: absolute; top: clamp(5.5rem, 8vw, 7.5rem); left: -4.25rem; display: block; color: #151222; font-family: var(--font-display); font-size: 11rem; font-weight: 300; letter-spacing: -.08em; line-height: .8; pointer-events: none; }
+    .program-entry:first-child .program-entry__ghost { top: 4rem; }
+    .program-entry__main { grid-template-columns: minmax(0, 1.1fr) minmax(10rem, .55fr) minmax(0, 1.1fr) minmax(10rem, .55fr); gap: clamp(1.5rem, 2.3vw, 2.25rem); align-items: start; }
+    .program-entry__figure { grid-column: 1 / 3; grid-row: 1; }
+    .program-entry__narrative { grid-column: 3; grid-row: 1; }
+    .program-path { grid-column: 4; grid-row: 1; }
+    .program-entry:nth-child(even) .program-entry__narrative { grid-column: 1; }
+    .program-entry:nth-child(even) .program-path { grid-column: 2; }
+    .program-entry:nth-child(even) .program-entry__figure { grid-column: 3 / 5; }
+    .program-entry h3 { font-size: clamp(3.4rem, 4.5vw, 4.8rem); }
+    .program-entry__footer { padding-left: 0; }
     .case-chain { grid-template-columns: repeat(6, minmax(0, 1fr)); }
     .output-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
   }

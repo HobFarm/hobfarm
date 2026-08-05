@@ -1,63 +1,50 @@
-**Source visual truth**
+# Design QA: Workshop page
 
-- User-provided homepage Future Carriage screenshot and layout brief in the active conversation.
-- Orange historical source: `public/media/workshop/ami-legacy/historical/diligence-coach.webp` (1920 × 1235).
-- Existing HobFarm Legacy campaign assets in `public/media/workshop/ami-legacy/`.
+## Visual truth
 
-**Implementation evidence**
+- Source reference: `C:\Users\xkxxk\.codex\generated_images\019fcfd5-31a6-7572-b20e-53c78a175703\exec-3c6da6ac-4ed2-4c85-b04b-a59ac6b2935c.png`
+- Implementation route: `http://127.0.0.1:4321/workshop/#programs`
+- Desktop implementation: `C:\Users\xkxxk\AppData\Local\Temp\hobfarm-workshop-programs-desktop.png`
+- Desktop alternating row: `C:\Users\xkxxk\AppData\Local\Temp\hobfarm-workshop-programs-desktop-alternate.png`
+- Mobile implementation: `C:\Users\xkxxk\AppData\Local\Temp\hobfarm-workshop-programs-mobile.png`
+- Mobile image-to-ledger detail: `C:\Users\xkxxk\AppData\Local\Temp\hobfarm-workshop-programs-mobile-detail.png`
+- Side-by-side comparison: `C:\Users\xkxxk\AppData\Local\Temp\hobfarm-workshop-programs-comparison.png`
 
-- Desktop screenshot: `C:\Users\xkxxk\AppData\Local\Temp\hobfarm-future-carriage-desktop.png`.
-- Mobile screenshot: `C:\Users\xkxxk\AppData\Local\Temp\hobfarm-future-carriage-mobile.png`.
-- Route and state: homepage, Future Carriage section, default dark theme, static content.
-- Desktop capture: 1757 × 909 pixels at the browser's default 1757 × 909 CSS viewport.
-- Mobile capture: 390 × 844 pixels at a 390 × 844 CSS viewport.
-- Density normalization: browser screenshots were compared at their native CSS viewport size; no resampling was needed.
+## Capture state
 
-**Full-view comparison evidence**
+- Desktop viewport: 1536 x 1024 CSS pixels, DPR 1
+- Mobile viewport: 390 x 844 CSS pixels, DPR 1
+- State: Workshop program index with the first program in view; second desktop capture verifies the alternating row
+- Source and desktop implementation captures are both 1536 x 1024
 
-- The Future Carriage section now follows the requested four-part image sequence.
-- The existing Legacy campaign image leads at full width.
-- The supplied orange diligence drawing appears first beside the orange autonomous-coach interpretation.
-- The Brewster No. 3917 drawing follows beside its modern Model 3917 interpretation.
-- The Ami and Model 3917 presenter frame closes the sequence at full width.
-- The two redwood campaign images are no longer present in the homepage section.
+## Comparison
 
-**Focused region comparison evidence**
+- The implementation preserves the reference's cyan sequence spine, oversized ghost numerals, borderless index rows, alternating image rhythm, compact method ledger, metadata footer, and restrained dark palette.
+- The implementation intentionally retains the live page's Workshop Programs introduction above the index and the existing editable program copy, so its rows are taller than the compact visual reference.
+- Purpose-built 4:3 images use one cohesive dark miniature-studio language while giving each program a distinct production metaphor.
+- Desktop alternation remains legible and balanced. Mobile collapses to title and explanation, image, method ledger, metadata, then CTA.
 
-- Desktop comparison cards were inspected at readable scale. Historical sources use `object-fit: contain`; modern images use `object-fit: cover`. Both pairs remain aligned without stretching.
-- The Ami presenter image is a single 16:9 full-width frame beneath the comparison row.
-- The mobile comparison cards stack each historical drawing immediately above its modern interpretation. Titles, source labels, and image captions remain readable without horizontal overflow.
-- Mobile measurements reported a 341-pixel content width for both the comparison and presenter images, with no horizontal overflow.
+## Findings and fixes
 
-**Findings**
+- P2 fixed: the initial mobile build placed the method ledger before the image. DOM order was changed so the visual follows the narrative before the supporting ledger.
+- No remaining P0, P1, or P2 visual issues found.
+- Console check: no warnings or errors.
+- Interaction check: the programs anchor and the Character / Mannequin route both navigate correctly.
 
-- No actionable P0, P1, or P2 differences remain.
-- Fonts and typography: existing HobFarm display and mono treatments preserve the homepage hierarchy at desktop and mobile widths.
-- Spacing and layout rhythm: the full-width hero, two comparison cards, and final presenter frame form a clear sequence with consistent gaps and borders.
-- Colors and visual tokens: the existing warm brown and gold Future Carriage palette remains intact.
-- Image quality and asset fidelity: all supplied and existing raster assets render sharply, with historical drawings contained rather than cropped.
-- Copy and content: captions identify the historical and modern sides, preserve source notes, keep the concept-campaign disclaimer, and explain Ami's role as a spokesperson produced through the avatar workflow.
+## Final output and supporting-system cards
 
-**Primary interactions and console**
-
-- Confirmed the section exposes the existing `/workshop/future-carriage/` case-study link and `/contact/?subject=creative-project` inquiry link.
-- No application console errors were found. Chrome reported a message-channel warning from browser-extension plumbing, unrelated to the page.
-
-**Comparison history**
-
-- Initial implementation pass produced no P0, P1, or P2 findings. No visual correction loop was required.
-
-**Implementation checklist**
-
-- [x] Lead with the Legacy campaign hero.
-- [x] Pair the orange historical drawing with the orange modern concept.
-- [x] Pair the 3917 historical drawing with the green Model 3917 concept.
-- [x] Close with Ami and Model 3917 as the avatar-spokesperson application.
-- [x] Remove the two redwood campaign images from the homepage section.
-- [x] Preserve responsive behavior and existing calls to action.
-
-**Follow-up polish**
-
-- None required for this pass.
+- Final export directory: `public/media/workshop/route-cards/`
+- Durable asset manifest: `src/data/media-registry.ts` under the `workshop.route-card.*` keys
+- Nine generated WebP images: Publication, Motion and social, Marketplace, Academy, Applications and studio work, StyleFusion, Wonder Machine, Voice and avatar production, and Image, motion, and delivery
+- Export dimensions: 1360 x 1020 pixels for every image
+- Generation method: one built-in ImageGen generation per asset, followed by deterministic WebP conversion; no autonomous regeneration
+- Shared direction: cinematic handcrafted miniature workbenches, ink-black and deep-blue rooms, warm practical lamps, restrained cyan and magenta accents, and no baked-in headings, logos, watermarks, or readable labels
+- Desktop captures: `C:\Users\xkxxk\AppData\Local\Temp\hobfarm-workshop-output-cards.png` and `C:\Users\xkxxk\AppData\Local\Temp\hobfarm-workshop-tool-cards.png`
+- Mobile captures: `C:\Users\xkxxk\AppData\Local\Temp\hobfarm-workshop-output-cards-mobile.png` and `C:\Users\xkxxk\AppData\Local\Temp\hobfarm-workshop-tool-cards-mobile.png`
+- Desktop QA: all five output cards form an even row at 1536 x 1024; all four supporting-system cards preserve the two-column layout and readable image crops
+- Mobile QA: cards collapse to one column, image crops retain their subjects, and titles, descriptions, and calls to action remain readable
+- Interaction check: the Publication card navigates to `/articles/` and browser history returns to the Workshop page correctly
+- Console check: no page-origin warnings or errors; Chrome reported one extension message-channel closure unrelated to the site runtime
+- No P0, P1, or P2 visual issues found in the final two sections.
 
 final result: passed
