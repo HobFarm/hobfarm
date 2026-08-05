@@ -26,10 +26,10 @@ const sheetPanels = [
 ] as const;
 
 const storySteps = [
-  { label: "Style files → portraits", description: "The blonde and green zombie begin as separate designs made through the same visual system." },
-  { label: "Portraits → clean bases", description: "Each portrait becomes a neutral four-view identity sheet with the same panel structure." },
-  { label: "Later sheet inference", description: "A character-sheet workflow fills unseen clothing. Those guesses stay in the archive, outside the identity lock." },
-  { label: "Directed outfit tests", description: "Defined wardrobe assets can now move across the bases without being confused with the characters." },
+  { label: "Style files → portraits", description: "The blonde and green zombie begin as separate designs made through the same visual system.", media: page.identities[0].portrait, crop: "portrait" },
+  { label: "Portraits → clean bases", description: "Each portrait becomes a neutral four-view identity sheet with the same panel structure.", media: page.identities[0].cleanBase, crop: "sheet" },
+  { label: "Later sheet inference", description: "A character-sheet workflow fills unseen clothing. Those guesses stay in the archive, outside the identity lock.", media: page.identities[0].inferredSheet, crop: "sheet" },
+  { label: "Directed outfit tests", description: "Defined wardrobe assets can now move across the bases without being confused with the characters.", media: characterLooks[0].character, crop: "look" },
 ] as const;
 
 const identityRecords = page.identities;
@@ -65,52 +65,63 @@ const relatedRoutes = [
         <a href="/workshop/">Workshop</a><span aria-hidden="true">/</span>
         <span>Character / Mannequin</span>
       </nav>
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">Character / Mannequin Workshop</p>
-          <h1 id="character-page-title">Give the character its own base.</h1>
+      <div class="hero-stack">
+        <figure class="hero-art">
+          <div class="hero-media">
+            <a
+              href={page.heroGraphic.src}
+              data-lightbox={page.heroGraphic.src}
+              data-lightbox-group="character-base-hero"
+              data-lightbox-alt={page.heroGraphic.alt}
+              data-lightbox-caption={page.heroGraphic.caption}
+              aria-label={`Open ${page.heroGraphic.caption} in the image viewer`}
+            >
+              <img
+                src={preview(page.heroGraphic, 1600)}
+                srcset={srcset(page.heroGraphic)}
+                sizes="100vw"
+                alt={page.heroGraphic.alt}
+                width={page.heroGraphic.width}
+                height={page.heroGraphic.height}
+                loading="eager"
+                decoding="async"
+                fetchpriority="high"
+              />
+            </a>
+            <header class="hero-copy">
+              <p class="eyebrow">Character / Mannequin Workshop</p>
+              <h1 id="character-page-title">Give the character its own base.</h1>
+            </header>
+          </div>
+          <figcaption>{page.heroGraphic.caption} / open in the image viewer</figcaption>
+        </figure>
+        <div class="hero-after">
           <p class="hero-deck">These two mannequins began as portraits made from the same style system. Their character sheets came later and guessed at the clothing they could not see. The new clean bases keep each portrait's identity while removing that wardrobe inference, so the outfit comparison starts from the right characters.</p>
           <div class="hero-actions">
             <a href="#the-base" class="button button--primary" data-event="character_page_primary_cta">Compare portrait and base</a>
             <a href="#the-sequence" class="button button--secondary">Open the outfit tests</a>
           </div>
         </div>
-        <figure class="hero-art">
-          <a
-            href={page.heroGraphic.src}
-            data-lightbox={page.heroGraphic.src}
-            data-lightbox-group="character-base-hero"
-            data-lightbox-alt={page.heroGraphic.alt}
-            data-lightbox-caption={page.heroGraphic.caption}
-            aria-label={`Open ${page.heroGraphic.caption} in the image viewer`}
-          >
-            <img
-              src={preview(page.heroGraphic, 1600)}
-              srcset={srcset(page.heroGraphic)}
-              sizes="(min-width: 1000px) 58vw, 100vw"
-              alt={page.heroGraphic.alt}
-              width={page.heroGraphic.width}
-              height={page.heroGraphic.height}
-              loading="eager"
-              decoding="async"
-              fetchpriority="high"
-            />
-          </a>
-          <figcaption>{page.heroGraphic.caption} / open in the image viewer</figcaption>
-        </figure>
       </div>
     </Wrapper>
   </section>
 
   <section id="the-base" class="base-section" aria-labelledby="base-heading">
     <Wrapper variant="standard" class="section-space">
-      <header class="section-intro section-intro--split">
+      <header class="section-intro section-intro--stack">
         <div><p class="eyebrow">Portrait to base</p><h2 id="base-heading">The base now belongs to the examples on the page.</h2></div>
         <p>The old generic base explained the panel structure, but it did not resemble either finished mannequin. These replacements carry the face, hair, palette, proportions, makeup, stitches, and drip marks from the source portraits. Both use the same plain gray unitard so clothing stays outside the identity definition.</p>
       </header>
 
       <ol class="story-ribbon" aria-label="Mannequin and outfit demonstration sequence">
-        {storySteps.map((step, index) => <li><span>{String(index + 1).padStart(2, "0")}</span><h3>{step.label}</h3><p>{step.description}</p></li>)}
+        {storySteps.map((step, index) => (
+          <li>
+            <figure class:list={["story-ribbon__image", `story-ribbon__image--${step.crop}`]}>
+              <img src={preview(step.media, 700)} srcset={srcset(step.media)} sizes="(min-width:960px) 25vw, (min-width:700px) 50vw, 100vw" alt={step.media.alt} width={step.media.width} height={step.media.height} loading="lazy" decoding="async" />
+            </figure>
+            <div class="story-ribbon__copy"><span>{String(index + 1).padStart(2, "0")}</span><h3>{step.label}</h3><p>{step.description}</p></div>
+          </li>
+        ))}
       </ol>
 
       <div class="identity-library" aria-label="Portrait and clean base for each mannequin identity">
@@ -249,16 +260,16 @@ const relatedRoutes = [
 </script>
 
 <style>
-  .character-page{--ink:#07060a;--panel:#0d0a12;--line:#30283b;--paper:#f0eadd;--muted:#aaa5b8;--cyan:#87e9ff;--pink:#ff3da9;background:var(--ink);color:#ece9f5;overflow:hidden}.character-page :global(.hero-wrapper),.character-page :global(.section-space){padding-top:clamp(3.5rem,8vw,7rem);padding-bottom:clamp(3.5rem,8vw,7rem)}
+  .character-page{--ink:#07060a;--panel:#0d0a12;--line:#30283b;--paper:#f0eadd;--muted:#aaa5b8;--cyan:#87e9ff;--pink:#ff3da9;background:var(--ink);color:#ece9f5;overflow:hidden}.character-page :global(.hero-wrapper){padding-top:clamp(1.5rem,3vw,2.5rem);padding-bottom:clamp(3.5rem,8vw,7rem)}.character-page :global(.section-space){padding-top:clamp(3.5rem,8vw,7rem);padding-bottom:clamp(3.5rem,8vw,7rem)}
   .character-hero,.base-section,.sequence-section,.transfer-section,.related-section{border-bottom:1px solid var(--line)}.character-hero{background:radial-gradient(circle at 78% 30%,rgb(255 61 169 / 12%),transparent 31rem),linear-gradient(140deg,#0b0811,#050406)}.base-section{background:#09070d}.sequence-section{background:linear-gradient(165deg,#0b0810,#07060a)}.transfer-section{background:#08080d}.related-section{background:#09070d}
-  .breadcrumbs{display:flex;flex-wrap:wrap;gap:.55rem;color:#777184;font-family:var(--font-mono);font-size:.62rem;text-transform:uppercase}.breadcrumbs a{color:#aaa5b8;text-decoration:none}.hero-grid{display:grid;gap:2rem;margin-top:2.5rem}.hero-copy{align-self:center}.eyebrow{margin:0;color:var(--cyan);font-family:var(--font-mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase}.hero-copy h1{max-width:10ch;margin:.8rem 0 0;color:var(--paper);font-family:var(--font-display);font-size:clamp(4rem,10vw,8.5rem);font-weight:300;letter-spacing:-.065em;line-height:.82}.hero-deck{max-width:42rem;margin:1.4rem 0 0;color:#c1bdca;font-size:clamp(1rem,1.6vw,1.2rem);line-height:1.7}.hero-actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.6rem}.button{display:inline-flex;align-items:center;justify-content:center;min-height:2.8rem;padding:.65rem 1rem;border:1px solid var(--line);color:#fff;font-family:var(--font-mono);font-size:.64rem;letter-spacing:.08em;text-decoration:none;text-transform:uppercase}.button--primary{border-color:var(--pink);background:var(--pink);color:#07060a}.button--secondary{background:#0d0a12}
-  .hero-art,.identity-figure,.inferred-library figure,.transfer-pair figure{margin:0;border:1px solid var(--line);background:#f4f2ed}.hero-art img,.identity-figure img,.inferred-library img,.transfer-pair img{display:block;width:100%;height:auto}.hero-art figcaption,.identity-figure figcaption,.inferred-library figcaption,.transfer-pair figcaption{padding:.75rem 1rem;border-top:1px solid var(--line);background:#0b0910;color:#8f899c;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.07em;line-height:1.5;text-transform:uppercase}.identity-figure figcaption,.inferred-library figcaption{display:grid;gap:.25rem}.identity-figure figcaption strong,.inferred-library figcaption strong{color:#ece9f5}.identity-figure figcaption span,.inferred-library figcaption span{color:#777184}.hero-art a:focus-visible,.identity-figure a:focus-visible,.inferred-library a:focus-visible,.transfer-pair a:focus-visible,.button:focus-visible{outline:2px solid var(--cyan);outline-offset:4px}
-  .section-intro{max-width:72rem}.section-intro--split{display:grid;gap:1.25rem}.section-intro h2{margin:.75rem 0 0;color:var(--paper);font-family:var(--font-display);font-size:clamp(2.8rem,6vw,5.5rem);font-weight:300;letter-spacing:-.05em;line-height:.92;text-wrap:balance}.section-intro>p{max-width:44rem;margin:1.2rem 0 0;color:var(--muted);line-height:1.75}
-  .panel-breakdown,.story-ribbon{display:grid;gap:1px;margin:1.5rem 0 0;padding:1px;background:var(--line);list-style:none}.panel-breakdown li,.story-ribbon li{min-width:0;padding:1rem;background:#0d0a12}.panel-breakdown span,.story-ribbon span{color:var(--pink);font-family:var(--font-mono);font-size:.58rem}.panel-breakdown h3,.story-ribbon h3{margin:.55rem 0 0;color:#fff;font-size:1rem}.panel-breakdown p,.story-ribbon p{margin:.55rem 0 0;color:#9690a1;font-size:.78rem;line-height:1.6}.story-ribbon{margin-top:2.5rem}.identity-library{display:grid;gap:2rem;margin-top:2.5rem}.identity-card{min-width:0;padding:clamp(1rem,3vw,2rem);border:1px solid var(--line);background:linear-gradient(145deg,#0e0a14,#08070c)}.identity-card__header{max-width:42rem}.identity-card__header h3{margin:.6rem 0 0;color:#fff;font-family:var(--font-display);font-size:clamp(2.1rem,4vw,3.8rem);font-weight:300;letter-spacing:-.04em;line-height:.95}.identity-card__header>p:last-child{margin:.8rem 0 0;color:#aaa5b8;line-height:1.65}.identity-card__media{display:grid;gap:1rem;margin-top:1.5rem}.identity-figure{min-width:0}.identity-figure--portrait img{max-height:36rem;object-fit:contain}.identity-logic{display:grid;gap:1px;margin:1rem 0 0;padding:1px;background:var(--line)}.identity-logic>div{padding:1rem;background:#0b0910}.identity-logic dt{margin-bottom:.7rem;color:var(--cyan);font-family:var(--font-mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase}.identity-logic dd{margin:.4rem 0 0;color:#aaa5b8;font-size:.78rem}.identity-logic dd::before{content:"+";margin-right:.5rem;color:var(--pink);font-family:var(--font-mono)}.panel-breakdown{margin-top:2rem}.inference-block{margin-top:clamp(3rem,7vw,6rem);padding-top:clamp(2rem,5vw,4rem);border-top:1px solid var(--line)}.inference-block>header{max-width:52rem}.inference-block h3{margin:.7rem 0 0;color:var(--paper);font-family:var(--font-display);font-size:clamp(2.3rem,5vw,4.8rem);font-weight:300;letter-spacing:-.045em;line-height:.95}.inference-block header>p:last-child{margin:1rem 0 0;color:#aaa5b8;line-height:1.75}.inferred-library{display:grid;gap:1rem;margin-top:2rem}.inferred-library figure{min-width:0}
+  .breadcrumbs{display:flex;flex-wrap:wrap;gap:.55rem;color:#777184;font-family:var(--font-mono);font-size:.62rem;text-transform:uppercase}.breadcrumbs a{color:#aaa5b8;text-decoration:none}.hero-stack{display:grid;gap:0;margin-top:clamp(1rem,2vw,1.5rem)}.hero-media{position:relative;isolation:isolate}.hero-media>a{display:block}.hero-media::after{position:absolute;z-index:0;inset:0 44% 0 0;background:linear-gradient(90deg,rgb(240 234 221 / .16),transparent);content:"";pointer-events:none}.hero-copy{position:absolute;z-index:1;top:clamp(1rem,4vw,3.75rem);left:clamp(1rem,4vw,4rem);width:min(42%,31rem);pointer-events:none}.eyebrow{margin:0;color:var(--cyan);font-family:var(--font-mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase}.hero-copy .eyebrow{color:#285862}.hero-copy h1{max-width:8ch;margin:clamp(.5rem,1.2vw,1rem) 0 0;color:#171118;font-family:var(--font-display);font-size:clamp(2rem,6.4vw,6.5rem);font-weight:300;letter-spacing:-.065em;line-height:.84;text-wrap:balance;text-shadow:0 1px 0 rgb(255 255 255 / .25)}.hero-after{padding-top:clamp(1.5rem,3vw,2.5rem)}.hero-deck{max-width:54rem;margin:0;color:#c1bdca;font-size:clamp(1rem,1.6vw,1.2rem);line-height:1.7}.hero-actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.6rem}.button{display:inline-flex;align-items:center;justify-content:center;min-height:2.8rem;padding:.65rem 1rem;border:1px solid var(--line);color:#fff;font-family:var(--font-mono);font-size:.64rem;letter-spacing:.08em;text-decoration:none;text-transform:uppercase}.button--primary{border-color:var(--pink);background:var(--pink);color:#07060a}.button--secondary{background:#0d0a12}
+  .hero-art,.identity-figure,.inferred-library figure,.transfer-pair figure{margin:0;border:1px solid var(--line);background:#f4f2ed}.hero-art{overflow:hidden;border-radius:.7rem}.hero-art img,.identity-figure img,.inferred-library img,.transfer-pair img{display:block;width:100%;height:auto}.hero-art img{aspect-ratio:16/9;object-fit:cover}.hero-art figcaption,.identity-figure figcaption,.inferred-library figcaption,.transfer-pair figcaption{padding:.75rem 1rem;border-top:1px solid var(--line);background:#0b0910;color:#8f899c;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.07em;line-height:1.5;text-transform:uppercase}.identity-figure figcaption,.inferred-library figcaption{display:grid;gap:.25rem}.identity-figure figcaption strong,.inferred-library figcaption strong{color:#ece9f5}.identity-figure figcaption span,.inferred-library figcaption span{color:#777184}.hero-art a:focus-visible,.identity-figure a:focus-visible,.inferred-library a:focus-visible,.transfer-pair a:focus-visible,.button:focus-visible{outline:2px solid var(--cyan);outline-offset:4px}
+  .section-intro{max-width:72rem}.section-intro--split{display:grid;gap:1.25rem}.section-intro--stack{max-width:64rem}.section-intro--stack>p{max-width:54rem}.section-intro h2{margin:.75rem 0 0;color:var(--paper);font-family:var(--font-display);font-size:clamp(2.8rem,6vw,5.5rem);font-weight:300;letter-spacing:-.05em;line-height:.92;text-wrap:balance}.section-intro>p{max-width:44rem;margin:1.2rem 0 0;color:var(--muted);line-height:1.75}
+  .panel-breakdown,.story-ribbon{display:grid;gap:1px;margin:1.5rem 0 0;padding:1px;background:var(--line);list-style:none}.panel-breakdown li,.story-ribbon li{min-width:0;background:#0d0a12}.panel-breakdown li{padding:1rem}.panel-breakdown span,.story-ribbon span{color:var(--pink);font-family:var(--font-mono);font-size:.58rem}.panel-breakdown h3,.story-ribbon h3{margin:.55rem 0 0;color:#fff;font-size:1rem}.panel-breakdown p,.story-ribbon p{margin:.55rem 0 0;color:#9690a1;font-size:.78rem;line-height:1.6}.story-ribbon{margin-top:2.5rem}.story-ribbon li{display:flex;overflow:hidden;flex-direction:column}.story-ribbon__image{aspect-ratio:16/9;margin:0;overflow:hidden;background:#f4f2ed}.story-ribbon__image img{display:block;width:100%;height:100%;object-fit:cover}.story-ribbon__image--portrait img{object-position:center 27%}.story-ribbon__image--sheet img{object-position:center}.story-ribbon__image--look img{object-position:center top}.story-ribbon__copy{flex:1;padding:1rem}.identity-library{display:grid;gap:2rem;margin-top:2.5rem}.identity-card{min-width:0;padding:clamp(1rem,3vw,2rem);border:1px solid var(--line);background:linear-gradient(145deg,#0e0a14,#08070c)}.identity-card__header{max-width:42rem}.identity-card__header h3{margin:.6rem 0 0;color:#fff;font-family:var(--font-display);font-size:clamp(2.1rem,4vw,3.8rem);font-weight:300;letter-spacing:-.04em;line-height:.95}.identity-card__header>p:last-child{margin:.8rem 0 0;color:#aaa5b8;line-height:1.65}.identity-card__media{display:grid;gap:1rem;margin-top:1.5rem}.identity-figure{min-width:0}.identity-figure--portrait img{max-height:36rem;object-fit:contain}.identity-logic{display:grid;gap:1px;margin:1rem 0 0;padding:1px;background:var(--line)}.identity-logic>div{padding:1rem;background:#0b0910}.identity-logic dt{margin-bottom:.7rem;color:var(--cyan);font-family:var(--font-mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase}.identity-logic dd{margin:.4rem 0 0;color:#aaa5b8;font-size:.78rem}.identity-logic dd::before{content:"+";margin-right:.5rem;color:var(--pink);font-family:var(--font-mono)}.panel-breakdown{margin-top:2rem}.inference-block{margin-top:clamp(3rem,7vw,6rem);padding-top:clamp(2rem,5vw,4rem);border-top:1px solid var(--line)}.inference-block>header{max-width:52rem}.inference-block h3{margin:.7rem 0 0;color:var(--paper);font-family:var(--font-display);font-size:clamp(2.3rem,5vw,4.8rem);font-weight:300;letter-spacing:-.045em;line-height:.95}.inference-block header>p:last-child{margin:1rem 0 0;color:#aaa5b8;line-height:1.75}.inferred-library{display:grid;gap:1rem;margin-top:2rem}.inferred-library figure{min-width:0}
   .look-index{display:grid;gap:1px;margin-top:2rem;padding:1px;background:var(--line)}.look-index a{display:grid;grid-template-columns:2rem minmax(0,1fr);gap:.35rem .75rem;padding:1rem;background:#09070d;color:#fff;text-decoration:none}.look-index span,.look-index small{color:#8a8395;font-family:var(--font-mono);font-size:.58rem;text-transform:uppercase}.look-index strong{font-size:.86rem}.look-index small{grid-column:2}.look-index a:hover strong{color:var(--cyan)}.look-chapters{display:grid;gap:clamp(3rem,8vw,7rem);margin-top:clamp(3rem,7vw,6rem)}
   .transfer-pair{display:grid;gap:1rem;margin-top:2.5rem}.transfer-pair img{aspect-ratio:1152/2048;object-fit:contain}.continuity-record{display:grid;gap:1px;margin:1.5rem 0 0;padding:1px;background:var(--line)}.continuity-record>div{padding:1.25rem;background:#0d0a12}.continuity-record dt{margin-bottom:.8rem;color:var(--cyan);font-family:var(--font-mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase}.continuity-record dd{margin:.45rem 0 0;color:#aaa5b8;font-size:.82rem}.continuity-record dd::before{content:"+";margin-right:.55rem;color:var(--pink);font-family:var(--font-mono)}
   .relationship-rail{display:grid;gap:1px;margin-top:2rem;padding:1px;background:var(--line)}.relationship-rail a{display:flex;min-width:0;flex-direction:column;padding:1.2rem;background:#0d0a12;color:#fff;text-decoration:none}.relationship-rail span{color:var(--cyan);font-family:var(--font-mono);font-size:.56rem;text-transform:uppercase}.relationship-rail h3{margin:.65rem 0 0;font-size:1.15rem}.relationship-rail p{margin:.55rem 0 0;color:#9690a1;font-size:.78rem;line-height:1.55}.relationship-rail strong{margin-top:auto;padding-top:1rem;color:var(--pink);font-family:var(--font-mono);font-size:.58rem;text-transform:uppercase}.program-nav{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:2rem}.program-nav a{padding:.55rem .7rem;border:1px solid var(--line);color:#8f899c;font-family:var(--font-mono);font-size:.58rem;text-decoration:none;text-transform:uppercase}.program-nav a.active{border-color:var(--cyan);color:#fff}
   @media(min-width:700px){.panel-breakdown,.transfer-pair,.continuity-record,.identity-logic,.inferred-library{grid-template-columns:repeat(2,minmax(0,1fr))}.story-ribbon{grid-template-columns:repeat(2,minmax(0,1fr))}.look-index,.relationship-rail{grid-template-columns:repeat(3,minmax(0,1fr))}.identity-card__media{grid-template-columns:minmax(11rem,.42fr) minmax(0,1.58fr);align-items:start}}
-  @media(min-width:960px){.hero-grid{grid-template-columns:minmax(18rem,.72fr) minmax(0,1.28fr);align-items:center}.section-intro--split{grid-template-columns:minmax(16rem,.75fr) minmax(0,1.25fr);gap:clamp(2rem,6vw,6rem);align-items:start}.story-ribbon{grid-template-columns:repeat(4,minmax(0,1fr))}}
-  @media(max-width:520px){.character-page :global(.hero-wrapper),.character-page :global(.section-space){padding-top:3.5rem;padding-bottom:3.5rem}.hero-copy h1{font-size:3.75rem}.panel-breakdown{grid-template-columns:1fr}.identity-figure figcaption,.inferred-library figcaption{font-size:.55rem}}
+  @media(min-width:960px){.section-intro--split{grid-template-columns:minmax(16rem,.75fr) minmax(0,1.25fr);gap:clamp(2rem,6vw,6rem);align-items:start}.story-ribbon{grid-template-columns:repeat(4,minmax(0,1fr))}}
+  @media(max-width:520px){.character-page :global(.hero-wrapper){padding-top:1.5rem;padding-bottom:3.5rem}.character-page :global(.section-space){padding-top:3.5rem;padding-bottom:3.5rem}.hero-copy .eyebrow{font-size:.5rem;letter-spacing:.11em}.hero-copy h1{font-size:clamp(1.75rem,8.5vw,2.1rem)}.panel-breakdown{grid-template-columns:1fr}.identity-figure figcaption,.inferred-library figcaption{font-size:.55rem}}
 </style>

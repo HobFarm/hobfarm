@@ -133,6 +133,14 @@ const greenIdentityBase = localImage(
   "Green zombie mannequin / clean identity base",
 );
 
+const mannequinIdentityHero = localImage(
+  "mannequin-identity-workshop-hero-v1.webp",
+  "Blonde and green zombie mannequins in neutral gray unitards standing in a character-design workshop beside portrait, rear-view, palette, and sculpting studies",
+  1672,
+  941,
+  "Blonde and green zombie mannequins / clean identity workshop",
+);
+
 const yellowOutfit = designImage(
   "outfit1.png",
   "Butter-yellow midi dress, gold jewelry, pale shoulder bag, and slingbacks arranged as an outfit design",
@@ -271,7 +279,7 @@ export const characterMannequinPage = {
   title: "Mannequin, Outfit, and Character Continuity | HobFarm Workshop",
   description:
     "Two portrait-led mannequin identities rebuilt as clean bases, separating model-inferred sheet clothing from directed outfit and scene experiments.",
-  heroGraphic: blondeIdentityBase,
+  heroGraphic: mannequinIdentityHero,
   identities: [
     {
       id: "blonde",

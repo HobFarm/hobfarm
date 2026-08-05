@@ -33,6 +33,13 @@ test("the story separates portrait, clean base, inferred sheet, and directed out
   ];
   assert.deepEqual([...pageOrder].sort((a, b) => a - b), pageOrder);
   assert.equal(pageOrder.every((index) => index >= 0), true);
+  assert.match(page, /section-intro section-intro--stack/);
+  assert.equal((page.match(/media: page\.identities\[0\]/g) ?? []).length, 3);
+  assert.match(page, /media: characterLooks\[0\]\.character/);
+  assert.match(page, /story-ribbon__image/);
+  assert.match(page, /aspect-ratio:16\/9/);
+  assert.doesNotMatch(page, /story-ribbon__image--contain/);
+  assert.match(page, /alt=\{step\.media\.alt\}/);
 
   const lookOrder = [
     data.indexOf('id: "yellow-pool"'),
@@ -82,7 +89,8 @@ test("the new portrait-led identity bases replace the unrelated generic base", (
   const data = read("src/data/character-mannequin.ts");
   const page = read("src/components/workshop/CharacterMannequinPage.astro");
 
-  assert.match(data, /heroGraphic:\s*blondeIdentityBase/);
+  assert.match(data, /heroGraphic:\s*mannequinIdentityHero/);
+  assert.match(data, /mannequin-identity-workshop-hero-v1\.webp/);
   assert.match(data, /blonde-identity-base-v2\.png/);
   assert.match(data, /green-zombie-identity-base-v2\.png/);
   assert.match(data, /mannequin1-portrait\.png/);
@@ -93,6 +101,7 @@ test("the new portrait-led identity bases replace the unrelated generic base", (
 
   assert.ok(readFileSync(new URL("../public/media/workshop/character-mannequin/blonde-identity-base-v2.png", import.meta.url)).length > 1_000_000);
   assert.ok(readFileSync(new URL("../public/media/workshop/character-mannequin/green-zombie-identity-base-v2.png", import.meta.url)).length > 1_000_000);
+  assert.ok(readFileSync(new URL("../public/media/workshop/character-mannequin/mannequin-identity-workshop-hero-v1.webp", import.meta.url)).length > 100_000);
 });
 
 test("the black leather transfer is shown directly on both mannequins", () => {
