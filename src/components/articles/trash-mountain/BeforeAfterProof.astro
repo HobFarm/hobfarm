@@ -1,0 +1,137 @@
+---
+import { trashMountainMediaBase } from "@/data/trash-mountain";
+import { imageSrcset, transformImageUrl } from "@/lib/media-transforms";
+
+const frames = [
+  {
+    date: "May 6, 2019",
+    file: "conakry-020-homes-before-2019-05-06.png",
+    alt: "Close Google Earth view of dense structures along the southern edge of the Dar-es-Salam waste mass in May 2019.",
+    caption: "Built fabric remains at the foot of the waste mass.",
+    width: 1122,
+    height: 842,
+  },
+  {
+    date: "December 6, 2019",
+    file: "conakry-021-homes-after-2019-12-06.png",
+    alt: "Close Google Earth view of the same southern edge in December 2019 showing a broad cleared strip where structures had been visible.",
+    caption: "A broad strip is open where dense structures had been visible.",
+    width: 1122,
+    height: 845,
+  },
+];
+---
+
+<section class="before-after-proof article-wide not-prose" aria-labelledby="before-after-title">
+  <header>
+    <p>Same edge, seven months apart</p>
+    <h2 id="before-after-title">The structures were present. Then they were not.</h2>
+  </header>
+  <div class="proof-grid">
+    {frames.map((frame) => {
+      const src = `${trashMountainMediaBase}/google-earth/${frame.file}`;
+      return (
+        <figure>
+          <time>{frame.date}</time>
+          <img
+            src={transformImageUrl(src, { width: 1000, quality: 86 })}
+            srcset={imageSrcset(src, [480, 720, 1000])}
+            sizes="(min-width: 720px) 21rem, 90vw"
+            alt={frame.alt}
+            width={frame.width}
+            height={frame.height}
+            loading="lazy"
+            decoding="async"
+            data-lightbox={src}
+            data-lightbox-caption={`${frame.date}: ${frame.caption}`}
+          />
+          <figcaption>{frame.caption}</figcaption>
+        </figure>
+      );
+    })}
+  </div>
+  <footer>
+    Human Rights Watch separately counted at least 386 buildings destroyed during May 2019 evictions in Dar-es-Salam. This pair shows the visible change, but it is not an exact overlay of the Human Rights Watch demolition boundary.
+    <a href="https://www.hrw.org/news/2019/06/18/guinea-draconian-forced-evictions" rel="noreferrer">Read the investigation</a>
+  </footer>
+</section>
+
+<style>
+  .before-after-proof {
+    overflow: hidden;
+    border: 1px solid rgb(206 91 72 / 0.4);
+    border-radius: 0.65rem;
+    background: #0b0908;
+  }
+
+  header {
+    padding: clamp(1rem, 3vw, 1.5rem);
+    background: linear-gradient(110deg, rgb(107 35 29 / 0.6), transparent 62%);
+  }
+
+  header p,
+  header h2 {
+    margin: 0 !important;
+  }
+
+  header p {
+    color: #f29982 !important;
+    font: 700 0.68rem/1.2 var(--font-mono), monospace !important;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  header h2 {
+    margin-top: 0.35rem !important;
+    color: #fff0e9 !important;
+    font-size: clamp(1.35rem, 3vw, 2rem) !important;
+  }
+
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    background: rgb(206 91 72 / 0.28);
+  }
+
+  figure {
+    min-width: 0;
+    margin: 0 !important;
+    padding: 0.75rem;
+    background: #090909;
+  }
+
+  time {
+    align-self: flex-start;
+    margin-bottom: 0.55rem;
+    color: #ffb19f;
+    font: 700 0.75rem/1.2 var(--font-mono), monospace;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+    background: #020202;
+  }
+
+  footer {
+    padding: 0.85rem 1rem 1rem;
+    color: #ae9c96;
+    font: 0.72rem/1.55 var(--font-mono), monospace;
+  }
+
+  footer a {
+    display: inline-block;
+    margin-left: 0.35rem;
+    color: #ff9e88;
+    text-underline-offset: 0.15em;
+  }
+
+  @media (max-width: 719px) {
+    .proof-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

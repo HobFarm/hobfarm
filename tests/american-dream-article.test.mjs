@@ -4,27 +4,28 @@ import test from "node:test";
 
 const articlePath =
   "src/content/articles/fear-and-loathing-after-the-american-dream.mdx";
-const workflowPath = ".github/workflows/publish-american-dream.yml";
 const scriptPath = "scripts/publish-scheduled-american-dream.mjs";
 const manifestPath = "reports/american-dream/asset-manifest.json";
 
 const field = (source, name) =>
   source.match(new RegExp(`^${name}:\\s*(.+)$`, "m"))?.[1].trim();
 
-test("American Dream source article is complete and scheduled for August 5", async () => {
-  const [article, workflow, script] = await Promise.all([
+test("American Dream source article is complete and published for August 5", async () => {
+  const [article, script] = await Promise.all([
     readFile(articlePath, "utf8"),
-    readFile(workflowPath, "utf8"),
     readFile(scriptPath, "utf8"),
   ]);
 
   assert.equal(field(article, "pubDate"), "2026-08-05");
   assert.equal(field(article, "publishedAt"), "2026-08-05T16:20:00-07:00");
-  assert.equal(field(article, "status"), "scheduled");
+  assert.equal(field(article, "status"), "published");
   assert.equal(field(article, "draft"), "false");
-  assert.match(workflow, /cron: "20 23 5 8 \*"/);
-  assert.match(workflow, /node scripts\/publish-scheduled-american-dream\.mjs/);
   assert.match(script, /2026-08-05T16:20:00-07:00/);
+  assert.match(
+    article,
+    /export const americanDreamMedia = "https:\/\/cdn\.hob\.farm\/articles\/american-dream";/,
+  );
+  assert.doesNotMatch(article, /^const americanDreamMedia/m);
   assert.match(article, /## Building a Small Replacement/);
   assert.match(article, /## Sources and further viewing/);
   assert.doesNotMatch(article, /<!-- (?:IMAGE|VIDEO EMBED|HERO|OPTIONAL GALLERY)/);

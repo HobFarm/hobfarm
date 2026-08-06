@@ -1,0 +1,88 @@
+---
+import { imageSrcset, transformImageUrl } from "@/lib/media-transforms";
+
+type Photo = {
+  src: string;
+  alt: string;
+  caption: string;
+  width: number;
+  height: number;
+};
+
+interface Props {
+  photos: Photo[];
+  label: string;
+  columns?: 2 | 3;
+}
+
+const { photos, label, columns = 2 } = Astro.props;
+---
+
+<section class:list={["trash-photo-grid", "article-wide", "not-prose", `cols-${columns}`]} aria-label={label}>
+  {photos.map((photo) => (
+    <figure>
+      <img
+        src={transformImageUrl(photo.src, { width: 900, quality: 84 })}
+        srcset={imageSrcset(photo.src, [420, 640, 900])}
+        sizes={columns === 3 ? "(min-width: 768px) 14rem, 90vw" : "(min-width: 768px) 21rem, 90vw"}
+        alt={photo.alt}
+        width={photo.width}
+        height={photo.height}
+        loading="lazy"
+        decoding="async"
+        data-lightbox={photo.src}
+        data-lightbox-caption={photo.caption}
+      />
+      <figcaption>{photo.caption} <small>Photograph: HobFarm</small></figcaption>
+    </figure>
+  ))}
+</section>
+
+<style>
+  .trash-photo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+    margin-block: 2rem !important;
+  }
+
+  .trash-photo-grid.cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  figure {
+    min-width: 0;
+    margin: 0 !important;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, currentColor 16%, transparent);
+    border-radius: 0.45rem;
+    background: #070808;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    max-height: 34rem;
+    object-fit: contain;
+    background: #030404;
+  }
+
+  figcaption {
+    box-sizing: border-box;
+    padding: 0 0.7rem 0.75rem;
+  }
+
+  small {
+    display: block;
+    margin-top: 0.3rem;
+    color: var(--color-base-500, #7f8582);
+    font-size: 0.68rem;
+  }
+
+  @media (max-width: 719px) {
+    .trash-photo-grid,
+    .trash-photo-grid.cols-3 {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

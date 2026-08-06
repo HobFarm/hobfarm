@@ -1,0 +1,303 @@
+---
+import { fatalWasteSlopeEvents, trashMountainMediaBase } from "@/data/trash-mountain";
+---
+
+<section class="case-ledger article-wide not-prose" aria-labelledby="case-ledger-title">
+  <header>
+    <div>
+      <p>Working audit, September 1996–July 2026</p>
+      <h2 id="case-ledger-title">Twenty-two fatal waste-slope failures</h2>
+    </div>
+    <a class="download" href={`${trashMountainMediaBase}/data/fatal-waste-slope-events.csv`} download>
+      Download CSV
+    </a>
+  </header>
+
+  <div class="ledger-summary">
+    <article>
+      <strong>691</strong>
+      <span>conservative confirmed total in the audited ledger</span>
+    </article>
+    <article>
+      <strong>751</strong>
+      <span>if Payatas uses the engineering account’s 278 recovered bodies</span>
+    </article>
+    <article>
+      <strong>10</strong>
+      <span>events reached occupied residential areas</span>
+    </article>
+  </div>
+
+  <p class="ledger-caveat">
+    This is an audited working inventory, not a complete world registry. Confirmed and missing people remain separate. The 691 total uses the later three-death Rodriguez account; the strongest official update located still reported one confirmed death and two missing people.
+  </p>
+
+  <details>
+    <summary>Open the full event ledger</summary>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Site and place</th>
+            <th scope="col">Confirmed deaths</th>
+            <th scope="col">Missing</th>
+            <th scope="col">Homes reached</th>
+            <th scope="col">Confidence</th>
+            <th scope="col">Receipt</th>
+          </tr>
+        </thead>
+        <tbody>
+          {fatalWasteSlopeEvents.map((event) => (
+            <tr class:list={[event.confidence.includes("low") && "is-provisional"]}>
+              <td data-label="Date"><time datetime={event.date}>{event.date}</time></td>
+              <td data-label="Site and place">
+                <strong>{event.site}</strong>
+                <span>{event.place}, {event.country}</span>
+                <small>{event.note}</small>
+              </td>
+              <td data-label="Confirmed">{event.confirmed}</td>
+              <td data-label="Missing">{event.missing ?? "—"}</td>
+              <td data-label="Homes reached"><span class:list={["home-status", `is-${event.reachedHomes}`]}>{event.reachedHomes}</span></td>
+              <td data-label="Confidence">{event.confidence}</td>
+              <td data-label="Receipt"><a href={event.sourceUrl} rel="noreferrer">Source</a></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+  <footer>
+    Residential means the moving waste reached occupied houses or a settlement. “Mass-casualty neighborhood” in the audit means at least six confirmed resident deaths. Those are editorial classifications, not international standards.
+  </footer>
+</section>
+
+<style>
+  .case-ledger {
+    overflow: hidden;
+    border: 1px solid rgb(163 200 111 / 0.32);
+    border-radius: 0.65rem;
+    background: #0a0c09;
+  }
+
+  header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: clamp(1rem, 3vw, 1.5rem);
+    background: linear-gradient(110deg, rgb(70 99 43 / 0.52), transparent 64%);
+  }
+
+  header p,
+  header h2 {
+    margin: 0 !important;
+  }
+
+  header p {
+    color: #b2df80 !important;
+    font: 700 0.68rem/1.2 var(--font-mono), monospace !important;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  header h2 {
+    margin-top: 0.35rem !important;
+    color: #f1f5e8 !important;
+    font-size: clamp(1.35rem, 3vw, 2rem) !important;
+  }
+
+  .download {
+    flex: none;
+    padding: 0.55rem 0.75rem;
+    color: #d7f0b8;
+    border: 1px solid rgb(178 223 128 / 0.45);
+    border-radius: 0.3rem;
+    font: 700 0.68rem/1.2 var(--font-mono), monospace;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .download:hover {
+    color: #0a0c09;
+    background: #b2df80;
+  }
+
+  .ledger-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    background: rgb(163 200 111 / 0.2);
+  }
+
+  .ledger-summary article {
+    padding: 1rem;
+    background: #0d100c;
+  }
+
+  .ledger-summary strong {
+    display: block;
+    color: #d7f0b8;
+    font: 700 clamp(1.6rem, 4vw, 2.6rem)/1 var(--font-mono), monospace;
+  }
+
+  .ledger-summary span {
+    display: block;
+    margin-top: 0.45rem;
+    color: #9fa994;
+    font-size: 0.74rem;
+    line-height: 1.4;
+  }
+
+  .ledger-caveat {
+    margin: 0 !important;
+    padding: 0.9rem 1rem !important;
+    color: #b9c0b2 !important;
+    background: rgb(255 255 255 / 0.025);
+    border-block: 1px solid rgb(163 200 111 / 0.18);
+    font: 0.74rem/1.55 var(--font-mono), monospace !important;
+  }
+
+  details {
+    color: #d6ddd0;
+  }
+
+  summary {
+    padding: 0.9rem 1rem;
+    color: #d7f0b8;
+    cursor: pointer;
+    font: 700 0.75rem/1.3 var(--font-mono), monospace;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    border-top: 1px solid rgb(163 200 111 / 0.18);
+  }
+
+  table {
+    width: 100%;
+    margin: 0 !important;
+    border-collapse: collapse;
+    color: #cfd4ca;
+    font-size: 0.72rem;
+    line-height: 1.45;
+  }
+
+  th,
+  td {
+    padding: 0.75rem 0.6rem;
+    border-bottom: 1px solid rgb(255 255 255 / 0.08);
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    color: #b2df80;
+    background: #10140e;
+    font: 700 0.63rem/1.2 var(--font-mono), monospace;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  td strong,
+  td span,
+  td small {
+    display: block;
+  }
+
+  td strong {
+    color: #f0f2ec;
+  }
+
+  td small {
+    margin-top: 0.3rem;
+    color: #8e9787;
+    line-height: 1.4;
+  }
+
+  tr.is-provisional {
+    background: rgb(184 122 60 / 0.08);
+  }
+
+  .home-status {
+    width: max-content;
+    padding: 0.18rem 0.32rem;
+    border-radius: 0.18rem;
+    font: 700 0.62rem/1 var(--font-mono), monospace;
+    text-transform: uppercase;
+  }
+
+  .home-status.is-yes {
+    color: #ffd0c3;
+    background: rgb(206 91 72 / 0.22);
+  }
+
+  .home-status.is-no {
+    color: #b2df80;
+    background: rgb(113 154 72 / 0.2);
+  }
+
+  .home-status.is-unclear {
+    color: #f1c48f;
+    background: rgb(184 122 60 / 0.2);
+  }
+
+  td a {
+    color: #b2df80;
+    text-underline-offset: 0.14em;
+  }
+
+  footer {
+    padding: 0.8rem 1rem 1rem;
+    color: #879080;
+    font: 0.68rem/1.55 var(--font-mono), monospace;
+  }
+
+  @media (max-width: 719px) {
+    header {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .ledger-summary {
+      grid-template-columns: 1fr;
+    }
+
+    thead {
+      display: none;
+    }
+
+    tbody,
+    tr,
+    td {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    tr {
+      padding: 0.6rem 0.75rem;
+      border-bottom: 1px solid rgb(255 255 255 / 0.12);
+    }
+
+    td {
+      display: grid;
+      grid-template-columns: 7rem minmax(0, 1fr);
+      gap: 0.65rem;
+      padding: 0.38rem 0;
+      border: 0;
+    }
+
+    td::before {
+      content: attr(data-label);
+      color: #7f8d73;
+      font: 700 0.62rem/1.4 var(--font-mono), monospace;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+  }
+</style>

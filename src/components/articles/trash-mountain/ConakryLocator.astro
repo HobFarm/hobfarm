@@ -1,0 +1,135 @@
+---
+import { trashMountainMediaBase } from "@/data/trash-mountain";
+import { imageSrcset, transformImageUrl } from "@/lib/media-transforms";
+
+const frames = [
+  {
+    src: `${trashMountainMediaBase}/google-earth/conakry-001-regional-locator.png`,
+    alt: "Satellite view locating Conakry on its long peninsula between the Atlantic and coastal wetlands.",
+    caption: "Conakry occupies a narrow peninsula on Guinea’s Atlantic coast. The Îles de Los sit offshore at lower left.",
+    width: 1333,
+    height: 822,
+  },
+  {
+    src: `${trashMountainMediaBase}/google-earth/conakry-002-peninsula-locator.png`,
+    alt: "Closer satellite view of Conakry’s densely built peninsula with Dar-es-Salam near its center.",
+    caption: "The peninsula is almost completely built over. Dar-es-Salam sits inside the urban field, not beyond it.",
+    width: 919,
+    height: 783,
+  },
+];
+---
+
+<section class="conakry-locator article-wide not-prose" aria-labelledby="conakry-locator-title">
+  <header>
+    <p>From coast to neighborhood</p>
+    <h2 id="conakry-locator-title">Which Guinea?</h2>
+    <span>Guinea is on the Atlantic coast of West Africa. Conakry is its capital.</span>
+  </header>
+  <div class="locator-grid">
+    {frames.map((frame) => (
+      <figure>
+        <img
+          src={transformImageUrl(frame.src, { width: 900, quality: 86 })}
+          srcset={imageSrcset(frame.src, [480, 720, 900])}
+          sizes="(min-width: 720px) 21rem, 90vw"
+          alt={frame.alt}
+          width={frame.width}
+          height={frame.height}
+          loading="lazy"
+          decoding="async"
+          data-lightbox={frame.src}
+          data-lightbox-caption={frame.caption}
+        />
+        <figcaption>{frame.caption}</figcaption>
+      </figure>
+    ))}
+  </div>
+  <footer>
+    Google Earth captures supplied by the author. Google and imagery-provider credits remain visible in each frame.
+    <a href="https://about.google/brand-resource-center/products-and-services/geo-guidelines/" rel="noreferrer">Geo use guidelines</a>
+  </footer>
+</section>
+
+<style>
+  .conakry-locator {
+    overflow: hidden;
+    border: 1px solid rgb(107 168 153 / 0.35);
+    border-radius: 0.65rem;
+    background: linear-gradient(145deg, rgb(18 40 37 / 0.92), rgb(8 11 12 / 0.98) 48%);
+  }
+
+  header {
+    padding: clamp(1rem, 3vw, 1.5rem);
+  }
+
+  header p,
+  header h2,
+  header span {
+    margin: 0 !important;
+  }
+
+  header p {
+    color: #7ee3c8 !important;
+    font: 700 0.68rem/1.2 var(--font-mono), monospace !important;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  header h2 {
+    margin-top: 0.3rem !important;
+    color: #f2f5ec !important;
+    font-size: clamp(1.35rem, 3vw, 2rem) !important;
+  }
+
+  header span {
+    display: block;
+    margin-top: 0.45rem !important;
+    color: #b6c6c0;
+    font-size: 0.9rem;
+  }
+
+  .locator-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    background: rgb(126 227 200 / 0.18);
+  }
+
+  figure {
+    min-width: 0;
+    margin: 0 !important;
+    padding: 0.65rem;
+    background: #080a0a;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+    background: #020303;
+  }
+
+  figcaption {
+    padding-inline: 0.3rem;
+  }
+
+  footer {
+    padding: 0.75rem 1rem 0.9rem;
+    color: #88958f;
+    font: 0.68rem/1.55 var(--font-mono), monospace;
+  }
+
+  footer a {
+    margin-left: 0.35rem;
+    color: #7ee3c8;
+    text-underline-offset: 0.15em;
+  }
+
+  @media (max-width: 719px) {
+    .locator-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

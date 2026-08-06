@@ -1,0 +1,108 @@
+---
+import { trashMountainMediaBase } from "@/data/trash-mountain";
+import { imageSrcset, transformImageUrl } from "@/lib/media-transforms";
+
+const cases = [
+  {
+    file: "payatas-dumpsite-manila-2007-cc-by-sa-3.0.jpg",
+    alt: "A broad view across Payatas dumpsite in 2007 with people working among large fields of mixed waste.",
+    caption: "Payatas in 2007, seven years after the 2000 failure. Photograph: Kounosu.",
+    license: "CC BY-SA 3.0",
+    source: "https://commons.wikimedia.org/wiki/File:Payatas-Dumpsite_Manila_Philippines02.jpg",
+    width: 960,
+    height: 536,
+  },
+  {
+    file: "hulene-dump-maputo-2014-cc-by-sa-2.0.jpg",
+    alt: "A waste truck on a weighbridge at Hulene dump in Maputo while a worker stands nearby.",
+    caption: "Hulene in 2014, four years before the 2018 collapse. Photograph: MOPA Maputo.",
+    license: "CC BY-SA 2.0",
+    source: "https://commons.wikimedia.org/wiki/File:Lixeira_de_Hulene_(18837040795).jpg",
+    width: 5760,
+    height: 3840,
+  },
+  {
+    file: "kiteezi-landfill-kampala-2024-cc0.jpg",
+    alt: "A truck and a crowd of people stand on muddy ground below a high active waste mound at Kiteezi landfill.",
+    caption: "Kiteezi in May 2024, three months before the August collapse. Photograph: Rebeccananonof.",
+    license: "CC0 1.0",
+    source: "https://commons.wikimedia.org/wiki/File:Kiteezi1_(1).jpg",
+    width: 4313,
+    height: 3248,
+  },
+];
+---
+
+<section class="case-image-strip article-wide not-prose" aria-label="Later and pre-disaster views of three waste sites">
+  {cases.map((item) => {
+    const src = `${trashMountainMediaBase}/licensed/${item.file}`;
+    return (
+      <figure>
+        <img
+          src={transformImageUrl(src, { width: 850, quality: 84 })}
+          srcset={imageSrcset(src, [420, 640, 850])}
+          sizes="(min-width: 900px) 14rem, 90vw"
+          alt={item.alt}
+          width={item.width}
+          height={item.height}
+          loading="lazy"
+          decoding="async"
+          data-lightbox={src}
+          data-lightbox-caption={item.caption}
+        />
+        <figcaption>
+          {item.caption}
+          <a href={item.source} rel="noreferrer">{item.license}</a>
+        </figcaption>
+      </figure>
+    );
+  })}
+</section>
+
+<style>
+  .case-image-strip {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  figure {
+    min-width: 0;
+    margin: 0 !important;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, currentColor 16%, transparent);
+    border-radius: 0.45rem;
+    background: #080808;
+  }
+
+  img {
+    width: 100%;
+    height: 14rem;
+    object-fit: cover;
+  }
+
+  figcaption {
+    box-sizing: border-box;
+    padding: 0 0.7rem 0.75rem;
+  }
+
+  a {
+    display: block;
+    margin-top: 0.35rem;
+    color: var(--color-accent-cyan, #5cf0f0);
+    font-size: 0.68rem;
+    text-underline-offset: 0.15em;
+  }
+
+  @media (max-width: 899px) {
+    .case-image-strip {
+      grid-template-columns: 1fr;
+    }
+
+    img {
+      height: auto;
+      max-height: 32rem;
+      object-fit: contain;
+    }
+  }
+</style>

@@ -1,0 +1,118 @@
+<figure class="waste-slope article-wide not-prose" aria-labelledby="waste-slope-title waste-slope-caption">
+  <header>
+    <p>Failure mechanism</p>
+    <h2 id="waste-slope-title">When mixed waste becomes a moving slope</h2>
+  </header>
+  <svg viewBox="0 0 960 520" role="img" aria-labelledby="waste-slope-svg-title waste-slope-svg-desc">
+    <title id="waste-slope-svg-title">Cross-section of a wet waste slope failure</title>
+    <desc id="waste-slope-svg-desc">Rain enters a steep mixed-waste mound, raises the leachate level, reduces friction along a curved failure surface and sends material toward houses and a road at the toe.</desc>
+    <defs>
+      <linearGradient id="waste-fill" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0" stop-color="#7f7052" />
+        <stop offset="1" stop-color="#463e31" />
+      </linearGradient>
+      <linearGradient id="wet-zone" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0" stop-color="#3e92a1" stop-opacity="0.18" />
+        <stop offset="1" stop-color="#43bdd0" stop-opacity="0.72" />
+      </linearGradient>
+      <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+        <path d="M0,0 L8,4 L0,8 Z" fill="#f08a63" />
+      </marker>
+      <pattern id="waste-pattern" width="45" height="35" patternUnits="userSpaceOnUse">
+        <path d="M3 8h15v8H3zM27 5l9 7-6 9-9-7zM9 26h9m10 2h12" fill="none" stroke="#d2bf91" stroke-opacity="0.32" stroke-width="3" />
+      </pattern>
+    </defs>
+
+    <path d="M30 438H930" stroke="#7f795f" stroke-width="18" stroke-linecap="round" />
+    <path d="M48 420C180 411 248 359 312 244C369 141 450 93 566 114C661 132 714 231 764 343L810 420Z" fill="url(#waste-fill)" stroke="#b49a66" stroke-width="4" />
+    <path d="M48 420C180 411 248 359 312 244C369 141 450 93 566 114C661 132 714 231 764 343L810 420Z" fill="url(#waste-pattern)" />
+    <path d="M165 398C269 365 305 290 338 229C395 124 504 122 586 167C650 202 689 282 741 390Z" fill="url(#wet-zone)" />
+    <path d="M173 402C277 385 326 314 356 246C393 162 476 135 563 162C648 189 695 280 742 393" fill="none" stroke="#f08a63" stroke-width="6" stroke-dasharray="12 9" />
+
+    <g stroke="#77c8df" stroke-width="5" stroke-linecap="round">
+      <path d="M370 48l-18 33" />
+      <path d="M423 34l-18 33" />
+      <path d="M476 48l-18 33" />
+      <path d="M529 34l-18 33" />
+      <path d="M582 48l-18 33" />
+      <path d="M635 34l-18 33" />
+    </g>
+
+    <g fill="#d8d3c5" stroke="#191a18" stroke-width="3">
+      <path d="M810 371l40-32 40 32v50h-80z" />
+      <rect x="830" y="389" width="17" height="32" fill="#222" />
+      <path d="M875 390h11v15h-11z" fill="#f2c36d" />
+      <path d="M742 407h57" stroke="#f08a63" stroke-width="7" marker-end="url(#arrow)" />
+    </g>
+
+    <g font-family="IBM Plex Mono, monospace" font-size="20" fill="#f4ede0">
+      <text x="382" y="26">rain enters the pile</text>
+      <text x="432" y="276" fill="#8ee4f2">leachate rises</text>
+      <text x="230" y="448" fill="#f3ad8f">curved failure surface</text>
+      <text x="741" y="486">road and homes at the toe</text>
+      <text x="116" y="118">daily placement</text>
+      <text x="116" y="144">adds load and height</text>
+    </g>
+
+    <path d="M256 151C293 145 319 151 345 170" fill="none" stroke="#f08a63" stroke-width="5" marker-end="url(#arrow)" />
+    <path d="M663 229C716 247 751 280 774 319" fill="none" stroke="#f08a63" stroke-width="7" marker-end="url(#arrow)" />
+  </svg>
+  <figcaption id="waste-slope-caption">
+    Water is usually the decisive ingredient. In a 62-case study, high leachate levels were the leading coded cause, followed by poor compaction and weak foundations. Fire and gas can interact with the failure, but they are not required.
+  </figcaption>
+</figure>
+
+<style>
+  .waste-slope {
+    overflow: hidden;
+    border: 1px solid rgb(240 138 99 / 0.36);
+    border-radius: 0.65rem;
+    background: #0b0d0d;
+  }
+
+  header {
+    box-sizing: border-box;
+    width: 100%;
+    padding: clamp(1rem, 3vw, 1.5rem);
+    background: linear-gradient(120deg, rgb(79 121 104 / 0.34), transparent 58%);
+  }
+
+  header p,
+  header h2 {
+    margin: 0 !important;
+  }
+
+  header p {
+    color: #8fd7bd !important;
+    font: 700 0.68rem/1.2 var(--font-mono), monospace !important;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  header h2 {
+    margin-top: 0.35rem !important;
+    color: #f5eee1 !important;
+    font-size: clamp(1.35rem, 3vw, 2rem) !important;
+  }
+
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: linear-gradient(#111719, #0b0d0d);
+  }
+
+  figcaption {
+    box-sizing: border-box;
+    padding: 0.85rem 1rem 1rem;
+    text-align: left !important;
+  }
+
+  @media (max-width: 560px) {
+    svg {
+      width: 150%;
+      max-width: none;
+      transform: translateX(-16.5%);
+    }
+  }
+</style>

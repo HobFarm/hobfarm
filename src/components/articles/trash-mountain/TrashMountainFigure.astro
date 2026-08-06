@@ -1,0 +1,97 @@
+---
+import { imageSrcset, transformImageUrl } from "@/lib/media-transforms";
+
+interface Props {
+  src: string;
+  alt: string;
+  caption: string;
+  width: number;
+  height: number;
+  credit?: string;
+  sourceUrl?: string;
+  compact?: boolean;
+  contain?: boolean;
+}
+
+const {
+  src,
+  alt,
+  caption,
+  width,
+  height,
+  credit,
+  sourceUrl,
+  compact = false,
+  contain = false,
+} = Astro.props;
+
+const displaySrc = transformImageUrl(src, { width: compact ? 800 : 1280, quality: 84 });
+const srcset = imageSrcset(src, compact ? [480, 720, 900] : [640, 960, 1280, 1600]);
+---
+
+<figure class:list={["trash-mountain-figure", "article-wide", "not-prose", compact && "article-compact", contain && "is-contained"]}>
+  <img
+    src={displaySrc}
+    srcset={srcset}
+    sizes={compact ? "(min-width: 640px) 28rem, 82vw" : "(min-width: 768px) 42rem, 90vw"}
+    alt={alt}
+    width={width}
+    height={height}
+    loading="lazy"
+    decoding="async"
+    data-lightbox={src}
+    data-lightbox-caption={caption}
+  />
+  <figcaption>
+    <span>{caption}</span>
+    {(credit || sourceUrl) && (
+      <small>
+        {credit && <span>{credit}</span>}
+        {sourceUrl && <a href={sourceUrl} rel="noreferrer">Source</a>}
+      </small>
+    )}
+  </figcaption>
+</figure>
+
+<style>
+  .trash-mountain-figure {
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, currentColor 16%, transparent);
+    border-radius: 0.5rem;
+    background: #08090a;
+  }
+
+  .trash-mountain-figure img {
+    display: block;
+    background: #030404;
+  }
+
+  .trash-mountain-figure.is-contained img {
+    max-height: 42rem;
+    object-fit: contain;
+  }
+
+  figcaption {
+    box-sizing: border-box;
+    padding: 0 0.8rem 0.8rem;
+  }
+
+  figcaption > span {
+    display: block;
+  }
+
+  small {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.35rem 0.75rem;
+    margin-top: 0.35rem;
+    color: var(--color-base-500, #7f8582);
+    font-size: 0.7rem;
+  }
+
+  a {
+    color: var(--color-accent-cyan, #5cf0f0);
+    text-underline-offset: 0.15em;
+  }
+</style>

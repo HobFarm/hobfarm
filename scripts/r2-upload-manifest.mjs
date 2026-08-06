@@ -22,6 +22,7 @@ if (!manifest.policy?.new_keys_only || manifest.policy?.overwrite_existing !== f
 
 const expectedMime = {
   ".avif": "image/avif",
+  ".csv": "text/csv; charset=utf-8",
   ".jpg": "image/jpeg",
   ".jpeg": "image/jpeg",
   ".json": "application/json; charset=utf-8",

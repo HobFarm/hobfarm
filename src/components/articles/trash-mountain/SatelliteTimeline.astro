@@ -1,0 +1,184 @@
+---
+import { trashMountainMediaBase } from "@/data/trash-mountain";
+import { imageSrcset, transformImageUrl } from "@/lib/media-transforms";
+
+const frames = [
+  {
+    date: "October 20, 2000",
+    file: "conakry-010-timeline-2000-10-20.png",
+    alt: "Google Earth view of the Dar-es-Salam quarry area in 2000, largely green with disturbed ground in the southern half and dense housing around it.",
+    caption: "Much of the former quarry appears green or wet. Disturbance is already visible in the south.",
+    width: 991,
+    height: 821,
+  },
+  {
+    date: "February 10, 2007",
+    file: "conakry-011-timeline-2007-02-10.png",
+    alt: "Google Earth view of Dar-es-Salam in 2007 with broad disturbed ground and smoke toward the south.",
+    caption: "The basin is substantially more disturbed, and smoke is visible near the southern disposal area.",
+    width: 795,
+    height: 845,
+  },
+  {
+    date: "January 16, 2015",
+    file: "conakry-012-timeline-2015-01-16.png",
+    alt: "Google Earth view of Dar-es-Salam in 2015 with exposed waste extending through the site and smoke rising from the center.",
+    caption: "Exposed waste extends farther through the basin. Smoke rises from the central and southern areas.",
+    width: 799,
+    height: 837,
+  },
+  {
+    date: "May 6, 2019",
+    file: "conakry-013-timeline-2019-05-06.png",
+    alt: "Google Earth view of Dar-es-Salam in May 2019 with the dump occupying most of the basin and structures at its southern edge.",
+    caption: "Most of the basin reads as disturbed ground, waste or access routes. Structures remain at the southern edge.",
+    width: 769,
+    height: 835,
+  },
+  {
+    date: "October 29, 2020",
+    file: "conakry-014-timeline-2020-10-29.png",
+    alt: "Google Earth view of Dar-es-Salam in October 2020 with green cover in the north, exposed waste through the center and a cleared southern area.",
+    caption: "Green cover returns in parts of the site while the southern clearing remains visible. This does not prove closure.",
+    width: 755,
+    height: 839,
+  },
+  {
+    date: "February 25, 2025",
+    file: "conakry-015-timeline-2025-02-25.png",
+    alt: "Google Earth view of Dar-es-Salam in February 2025 showing a broad exposed waste field and several smoke plumes.",
+    caption: "The exposed waste field is broad again, with several areas visibly smoking.",
+    width: 817,
+    height: 848,
+  },
+];
+---
+
+<section class="satellite-timeline article-wide not-prose" aria-labelledby="satellite-timeline-title">
+  <header>
+    <p>Historical imagery</p>
+    <h2 id="satellite-timeline-title">Twenty-five years inside one basin</h2>
+  </header>
+  <div class="timeline-track">
+    {frames.map((frame, index) => {
+      const src = `${trashMountainMediaBase}/google-earth/${frame.file}`;
+      return (
+        <figure>
+          <div class="frame-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</div>
+          <time>{frame.date}</time>
+          <img
+            src={transformImageUrl(src, { width: 800, quality: 86 })}
+            srcset={imageSrcset(src, [420, 640, 800])}
+            sizes="(min-width: 900px) 14rem, 78vw"
+            alt={frame.alt}
+            width={frame.width}
+            height={frame.height}
+            loading="lazy"
+            decoding="async"
+            data-lightbox={src}
+            data-lightbox-caption={`${frame.date}: ${frame.caption}`}
+          />
+          <figcaption>{frame.caption}</figcaption>
+        </figure>
+      );
+    })}
+  </div>
+  <footer>
+    The frames come from different sensors, seasons and color balances. They show visible changes in land cover, waste, smoke, roads and structures; they are not a seamless animation.
+  </footer>
+</section>
+
+<style>
+  .satellite-timeline {
+    overflow: hidden;
+    border: 1px solid rgb(211 145 76 / 0.34);
+    border-radius: 0.65rem;
+    background: #0d0c0a;
+  }
+
+  header {
+    padding: clamp(1rem, 3vw, 1.5rem);
+    background: linear-gradient(110deg, rgb(92 50 25 / 0.52), transparent 60%);
+  }
+
+  header p,
+  header h2 {
+    margin: 0 !important;
+  }
+
+  header p {
+    color: #e9a95d !important;
+    font: 700 0.68rem/1.2 var(--font-mono), monospace !important;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  header h2 {
+    margin-top: 0.3rem !important;
+    color: #f5eee1 !important;
+    font-size: clamp(1.4rem, 3vw, 2.1rem) !important;
+  }
+
+  .timeline-track {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    background: rgb(211 145 76 / 0.22);
+  }
+
+  figure {
+    position: relative;
+    min-width: 0;
+    margin: 0 !important;
+    padding: 0.75rem;
+    background: #090909;
+  }
+
+  .frame-number {
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
+    color: rgb(233 169 93 / 0.46);
+    font: 800 1.2rem/1 var(--font-mono), monospace;
+  }
+
+  time {
+    display: block;
+    margin-bottom: 0.55rem;
+    color: #f1c07f;
+    font: 700 0.73rem/1.2 var(--font-mono), monospace;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    background: #020202;
+  }
+
+  figcaption {
+    min-height: 4.5rem;
+    text-align: left !important;
+  }
+
+  footer {
+    padding: 0.85rem 1rem 1rem;
+    color: #a49888;
+    font: 0.72rem/1.55 var(--font-mono), monospace;
+  }
+
+  @media (max-width: 899px) {
+    .timeline-track {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-color: #d3914c #17120e;
+    }
+
+    figure {
+      flex: 0 0 min(78vw, 25rem);
+      scroll-snap-align: start;
+    }
+  }
+</style>
