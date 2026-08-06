@@ -71,7 +71,7 @@ export default defineConfig({
         );
       },
     }),
-    mdx(),
+    mdx({ gfm: true }),
     react(),
   ],
 });
