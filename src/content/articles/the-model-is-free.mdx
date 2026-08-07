@@ -1,0 +1,320 @@
+---
+title: "The Model Is Free. The Computer Isn't."
+excerpt: "Open weights promise control. The practical problem is paying for the machine, maintaining it, and replacing it when the workload moves."
+dek: "Open weights democratize permission. Affordable compute democratizes access. The useful compromise is to rent the GPU and own the workflow."
+description: "A practical argument for hybrid AI production: keep files, workflows, and decisions local, then rent accelerator capacity when a job exceeds the computer you own."
+author: "d00d"
+tags:
+  - ai
+  - open weights
+  - local ai
+  - GPUs
+  - cloud computing
+  - ComfyUI
+  - creative workflows
+  - hardware
+  - production systems
+category: research
+department: essays-arguments
+format: article
+entryType: feature
+heroImage: "https://cdn.hob.farm/articles/the-model-is-free/hero.webp"
+socialImage: "https://cdn.hob.farm/articles/the-model-is-free/social.webp"
+thumbnail: "https://cdn.hob.farm/articles/the-model-is-free/social.webp"
+heroAlt: "A satirical technical-magazine cutaway shows an older workstation controlling files and workflows, a crate of model weights too large for its memory gate, an expensive specialty AI appliance, a link to rented GPU machinery, and modular compute bricks."
+socialCaption: "The model is free. The computer isn't. Keep the durable production layer local and rent the accelerator when the job exceeds the box."
+canonical: "/articles/the-model-is-free/"
+pubDate: 2026-08-13
+publishedAt: 2026-08-13T16:20:00-07:00
+status: scheduled
+featured: false
+coverStory: false
+draft: false
+relatedArticles:
+  - same-same-but-different
+  - you-do-not-own-the-ai-you-pay-for
+  - too-big-for-the-box
+  - everything-is-still-loading
+  - it-just-runs-programs
+supportCTA:
+  label: "Support independent publishing"
+  href: "/support/"
+rightsNote: "Original HobFarm editorial illustration and explanatory diagrams. The a16z post appears as an author-supplied screenshot for editorial commentary and criticism. Product names appear for factual comparison."
+---
+
+import ArticleDiagram from "@/components/articles/the-model-is-free/ArticleDiagram.astro";
+import FeedScreenshot from "@/components/articles/the-model-is-free/FeedScreenshot.astro";
+
+> **Hardware and service state recorded August 6, 2026.** Prices, products, model requirements, and cloud rates will change. The economic problem will probably survive the table.
+
+I opened X and the first thing it showed me was an a16z clip explaining why open-weight models matter.
+
+Cost. Control. Latency. Reliability. The ability to extend a model, build guardrails around it, and avoid placing critical infrastructure behind somebody else's proprietary API.
+
+I agree.
+
+Then comes the practical version of that freedom. NVIDIA will sell me a compact local AI system with 128 gigabytes of unified memory. Its current U.S. price is $4,699.[^dgx-market]
+
+The model is free.
+
+The computer isn't.
+
+<FeedScreenshot />
+
+The people making the control argument are not necessarily wrong. A company running voice agents, production inference, or another continuous service may need predictable response times and direct control over the model. At enough volume, buying or reserving hardware can make more sense than paying somebody else's margin forever.
+
+That is an infrastructure decision.
+
+For me, it begins with another question.
+
+With what computer?
+
+## The machine bought for another world
+
+I built my current computer around 2018. It has an RTX 2080 Ti with 11 gigabytes of VRAM. That was expensive flagship hardware. NVIDIA launched the card for games, real-time ray tracing, graphics, and creative work, with partner cards starting at $999 and its Founders Edition at $1,199.[^2080ti]
+
+I bought it for video editing, motion graphics, and games.
+
+I did not buy it as a local generative-AI server because today's consumer AI workload was not a normal thing to buy a computer for. There was no rational checklist that said I should prepare for open video models, diffusion pipelines, multimodal agents, LoRA training, giant language models, or whatever shows up next Thursday.
+
+The computer still performs much of the work it was built to perform.
+
+The machine did not get slower. The workload moved.
+
+That distinction matters. Ordinary hardware aging means the same job takes longer on an old machine. This shift created a new class of job organized around model memory, accelerator support, quantization, offloading, and whether the entire thing fits at all.
+
+Rendering a motion graphic in forty seconds instead of fifteen is slower.
+
+Discovering that the model does not fit is a wall.
+
+I can force some workloads around the wall. Smaller checkpoints, quantization, CPU offload, lower resolution, aggressive memory management, and enough patience can make a demonstration run. A production workflow has a higher standard. I need to iterate, compare, correct, and finish something without making the computer unusable for the rest of the day.
+
+A model that technically launches is not automatically a tool I can use.
+
+The full history of this working machine, its failed Windows 11 upgrade, and the support systems that declared it old is in [Everything Is Still Loading](/articles/everything-is-still-loading/). Here the problem is narrower: a working workstation has met a workload it was never designed to carry.
+
+## The upgrade that becomes a computer
+
+Part of the original appeal of building a desktop was that I could improve it over time.
+
+Buy the machine. Replace a card later. Add memory. Add a drive. Keep the expensive structure and improve the part that became limiting.
+
+That worked for a while.
+
+Now a serious GPU purchase can expose the rest of the machine. The new card may fit an older PCIe slot, but then come the power supply, connector standard, case clearance, heat, cooling, CPU balance, memory generation, scratch storage, drivers, operating system, and the question of whether it makes sense to place a multi-thousand-dollar component behind the old platform.
+
+NVIDIA's reference specifications illustrate the scale change. The RTX 5090 lists 575 watts of total graphics power and a 1,000-watt required system power figure for NVIDIA's reference test configuration.[^5090] Partner cards and real systems vary. The figure is an example of the surrounding demands, not a claim that every upgrade requires a new kilowatt supply.
+
+The useful upgrade can become a system decision long before the old slot becomes electrically impossible.
+
+A major upgrade stops being an upgrade and becomes another computer.
+
+<ArticleDiagram kind="upgrade-cascade" />
+
+## Open permission, closed wallet
+
+People use *open source* and *open weights* as if they describe the same release. They do not always.
+
+The Open Source Initiative distinguishes downloadable weights from the preferred form needed to modify an open-source AI system. Weights are learned parameters. A release can make them available while withholding training code, information about the data, or other material needed to study and reproduce the whole system.[^osi-weights][^osi-definition]
+
+The exact label matters, but it does not remove the physical problem.
+
+Whether I receive the weights or a more complete open system, I still need memory, compute, storage, power, cooling, drivers, dependencies, and time.
+
+Anyone may run it.
+
+Not everyone can run it.
+
+**Open weights democratize permission. Affordable compute democratizes access.**
+
+That is the missing half of a lot of open-model celebration. The download button is presented as the end of dependence. For an ordinary person, it can be the beginning of a hardware bill.
+
+## The $4,699 answer
+
+DGX Spark is an unusually clear specimen because it addresses the memory problem directly.
+
+NVIDIA gives it 128 gigabytes of coherent unified memory around a Grace Blackwell GB10 system. The company says it can run inference on models up to 200 billion parameters and fine-tune models up to 70 billion parameters.[^dgx] Those are vendor limits for particular configurations, not a promise that every model beneath the number will run well.
+
+It is also a purpose-built AI appliance sitting beside the computer I already own. Buying it does not mean I upgraded my workstation. It means I bought another machine so I can stop renting somebody else's machine.
+
+For a company running enough inference, that can be a sensible purchase. For an individual who uses different models at irregular times, it can be a large bet on today's hardware assumptions.
+
+I look at a $4,699 AI computer and see $4,699 worth of future junk.
+
+By *junk*, I do not mean that it breaks or becomes incapable of running today's models. My current computer is the example. A working machine can become a capability dead end when an interesting new workload requires a different architecture, memory arrangement, accelerator, driver stack, or scale.
+
+Maybe 128 gigabytes remains plenty for years. Maybe models become smaller and more efficient. Maybe a new local runtime makes the box more useful. Maybe video generation grows into a completely different monster. Maybe the cloud gets so cheap that the ownership calculation collapses. Nobody buying this category can know which assumption survives five years.
+
+Affordability includes replacement.
+
+## Someone else owns the depreciation
+
+Hosted AI comes with a pile of conditions.
+
+The provider can moderate the request. The product can change. The model can disappear. The price can rise. An unlimited plan can become limited. A region can lose access. The queue can stall. An API can deprecate the endpoint. A policy can change after I built the workflow around it.
+
+Those failures are documented in [You Do Not Own the AI You Pay For](/articles/you-do-not-own-the-ai-you-pay-for/), while [Too Big for the Box](/articles/too-big-for-the-box/) follows the particular problem of work that cannot remain inside a hosted generator.
+
+There is also a service hiding inside that irritation.
+
+The provider buys the hardware. The provider handles the power, cooling, failures, utilization, upgrades, and depreciation. If next week's useful model wants a different machine, the provider has to find one.
+
+I pay for the slice I need.
+
+Someone else gets stuck owning the obsolete GPU.
+
+That can be economically rational when the work is irregular. A company running the same model all day can amortize a local system. I may train something this month, generate video next month, test a new image model for two days, and then spend three weeks writing articles and touching none of it.
+
+A break-even chart without my actual jobs, run time, transfer costs, storage, maintenance, and accepted-output rate would be fake precision. The important distinction is capital exposure. An API bill can be irritating and still protect me from a hardware purchase I cannot absorb.
+
+<ArticleDiagram kind="three-routes" />
+
+## Rent the GPU. Own the workflow.
+
+The useful answer is neither total dependence nor a miniature data center under my desk.
+
+My old computer can remain the control plane.
+
+It can hold the project files, source images, source video, prompts, schemas, ComfyUI workflow JSON, datasets, captions, LoRAs, custom nodes, version records, accepted outputs, and the editor where the thing becomes finished.
+
+It can run smaller models, quantized models, preprocessing, post-processing, and any job that fits without wrecking the day.
+
+When the job exceeds the box, I can attach rented compute.
+
+RunPod documents most of this pattern. A user can launch a dedicated GPU Pod with ComfyUI, transfer files, attach a network volume that persists independently of the worker, or use its community ComfyUI-to-API path to prepare a serverless deployment.[^runpod-overview][^runpod-comfy][^runpod-volume] The details matter: persistent storage keeps billing after compute stops, network volumes are region-dependent, and data does not synchronize automatically.
+
+The remote machine can train the LoRA, run the larger inference job, generate the high-resolution batch, or chew through the video model. The results, logs, adapters, and environment records come back. The expensive worker shuts down.
+
+This is not magic. The cloud version adds containers, dependency pins, transfer time, cold starts, storage charges, region availability, custom-node security, and the possibility that I forget to shut something down.
+
+The point is control over which layer I own.
+
+**Rent the GPU. Own the workflow.**
+
+<ArticleDiagram kind="hybrid-workflow" />
+
+## What survives the next model
+
+A LoRA file feels durable because it is small and local.
+
+It is only durable inside a compatible model family and runtime. The next base model may use a different architecture, text encoder, attention system, adapter format, or training method. A file can remain intact while its practical route disappears.
+
+Parameter-efficient fine-tuning and quantization still matter. PEFT methods can train a much smaller set of additional parameters, and quantization can reduce memory enough to make some local execution possible on hardware that could not carry a full-precision model.[^peft][^quant]
+
+The stronger archive includes more than the adapter:
+
+- original source material;
+- rights and provenance;
+- captions and labels;
+- preprocessing scripts;
+- training recipe and settings;
+- base-model identity and license;
+- environment locks;
+- workflow JSON;
+- accepted examples;
+- output and model records;
+- the human decision about what success looks like.
+
+That package can be rebuilt, translated, or routed somewhere else. As [Same Same, But Different](/articles/same-same-but-different/) argued, the model is only one stage in the production machine. The durable asset is the system that lets another model take its place.
+
+Keep the durable parts. Rent the depreciating part.
+
+## The computer that should exist
+
+The hybrid route is the current answer. It is not the computer I actually want.
+
+I want a local system that can grow.
+
+Not one sealed AI appliance. A controller, an open backplane, and affordable compute bricks. Add an accelerator. Add another one later. Add memory or scratch storage. Keep an older module available for a smaller job. Route a large job across several boxes when the software supports it. Attach remote capacity through the same workflow when local parts are not enough.
+
+Pieces of that future exist.
+
+Thunderbolt 5 external GPU enclosures can place a desktop accelerator outside the host computer. Plugable currently sells one for local AI with an 850-watt power supply and a physical x16 slot connected over four PCIe 4.0 lanes. It costs $629.99 before the GPU arrives, requires a supported Windows 11 host, and does not support macOS, Linux, or ChromeOS.[^plugable]
+
+PCI-SIG describes external PCIe cabling for CPU-to-memory, CPU-to-accelerator, and accelerator-fabric connections. CXL defines coherent links and memory-pooling concepts among processors, memory devices, and accelerators.[^copprlink][^cxl] These are largely data-center technologies, not proof that an inexpensive consumer backplane is around the corner.
+
+AMD and Framework show another direction through large unified-memory systems. Framework also explains the compromise: the 256-bit high-bandwidth memory in its current desktop could not be made user-upgradeable, so the memory is fixed.[^framework]
+
+AMD has documented a four-node cluster of 128-gigabyte Framework systems using 5-gigabit Ethernet and llama.cpp RPC to run a very large quantized language model.[^amd-cluster]
+
+That is close to the picture in my head.
+
+It is also four expensive computers, a specific runtime, a specific workload, and a setup that does not turn every accelerator's memory into one transparent bucket. The current pieces prove the idea is technically legible. They do not create the affordable hobbyist system.
+
+<ArticleDiagram kind="modular-backplane" />
+
+## When compute becomes boring
+
+I remember buying a 13-inch black-and-white television in 1986. A basic modern HD screen can cost less than that old small set did in my memory.
+
+The exact receipt is gone. The larger direction is documented. The Bureau of Labor Statistics reported that its quality-adjusted television price index fell 94 percent between December 1997 and August 2015 while the products improved.[^bls]
+
+The interesting future is not a $4,699 AI box becoming a $3,999 AI box.
+
+The category has to become boring.
+
+Nobody asks whether a normal television can display color. Nobody buys a separate internet-capable computer. The capability disappears into the ordinary object.
+
+Useful local AI should become an ordinary property of a computer. The machine I was going to buy anyway should run serious local tools. When the frontier exceeds it, rented capacity should behave like a peripheral rather than a new kingdom I have to move into.
+
+<ArticleDiagram kind="compute-boring" />
+
+## What are you making?
+
+The previous article ended with a router question.
+
+What are you making?
+
+That still cuts through most of the noise.
+
+What fits locally? What needs a temporary burst? What must stay private? What can tolerate provider moderation? How often does the job happen? Which file or workflow needs to survive after the model changes? What is the least expensive route to an accepted result?
+
+I do not need to own the frontier.
+
+I need to own the project, the files, the workflow, and the decision about what counts as finished.
+
+The data center can chase next week's GPU.
+
+Open weights democratize permission.
+
+Affordable compute democratizes access.
+
+My X feed apparently thinks this is normal breakfast conversation. Other people open the same platform and receive a completely different world. That personalized microculture is another machine, and the next article starts there.
+
+---
+
+## Source notes and publication receipts
+
+[^dgx-market]: NVIDIA Marketplace, [DGX Spark listing](https://marketplace.nvidia.com/en-us/enterprise/personal-ai-supercomputers/dgx-spark/). Price and availability checked August 6, 2026.
+
+[^2080ti]: NVIDIA, [“10 Years in the Making: NVIDIA Brings Real-Time Ray Tracing to Gamers with GeForce RTX”](https://nvidianews.nvidia.com/news/10-years-in-the-making-nvidia-brings-real-time-ray-tracing-to-gamers-with-geforce-rtx), August 20, 2018.
+
+[^5090]: NVIDIA, [GeForce RTX 5090 specifications](https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5090/) and [user guide](https://www.nvidia.com/content/geforce-gtx/GeForce_RTX_5090_User_Guide_Rev1.pdf). Reference figures checked August 6, 2026.
+
+[^osi-weights]: Open Source Initiative, [“Open Weights: not quite what you've been told”](https://opensource.org/ai/open-weights).
+
+[^osi-definition]: Open Source Initiative, [The Open Source AI Definition 1.0](https://opensource.org/ai/open-source-ai-definition).
+
+[^dgx]: NVIDIA, [DGX Spark product page](https://www.nvidia.com/en-us/products/workstations/dgx-spark/). Model-size limits are NVIDIA claims and depend on configuration.
+
+[^runpod-overview]: RunPod, [Pods overview](https://docs.runpod.io/pods/overview) and [Serverless overview](https://docs.runpod.io/serverless/overview).
+
+[^runpod-comfy]: RunPod, [ComfyUI on a Pod](https://docs.runpod.io/tutorials/pods/comfyui) and [community ComfyUI-to-API workflow](https://docs.runpod.io/community-solutions/comfyui-to-api/overview).
+
+[^runpod-volume]: RunPod, [network volumes](https://docs.runpod.io/storage/network-volumes) and [file transfer](https://docs.runpod.io/pods/storage/transfer-files).
+
+[^peft]: Hugging Face, [PEFT documentation](https://huggingface.co/docs/peft/index) and [Diffusers LoRA loaders](https://huggingface.co/docs/diffusers/api/loaders/lora).
+
+[^quant]: Hugging Face, [Transformers bitsandbytes quantization](https://huggingface.co/docs/transformers/quantization/bitsandbytes).
+
+[^plugable]: Plugable, [TBT5-AI product page](https://plugable.com/products/tbt5-ai). Price, specifications, compatibility, and included components checked August 6, 2026.
+
+[^copprlink]: PCI-SIG, [“PCIe Cabling, The Journey to CopprLink”](https://pcisig.com/blog/pcie%C2%AE-cabling-%E2%80%93-journey-copprlink%E2%84%A2).
+
+[^cxl]: Compute Express Link Consortium, [CXL overview](https://computeexpresslink.org/about-cxl/) and [memory pooling explainer](https://computeexpresslink.org/blog/explaining-cxl-memory-pooling-and-sharing-1049/).
+
+[^framework]: Framework, [Framework Desktop introduction](https://frame.work/blog/introducing-the-framework-desktop) and [current mainboard listing](https://frame.work/products/framework-desktop-mainboard-amd-ryzen-ai-max-300-series).
+
+[^amd-cluster]: AMD, [“How to Run a One Trillion-Parameter LLM Locally”](https://www.amd.com/en/developer/resources/technical-articles/2026/how-to-run-a-one-trillion-parameter-llm-locally-an-amd.html), February 25, 2026. This is a vendor technical demonstration.
+
+[^bls]: U.S. Bureau of Labor Statistics, [“Long-term price trends for computers, TVs, and related items”](https://www.bls.gov/opub/ted/2015/long-term-price-trends-for-computers-tvs-and-related-items.htm), October 13, 2015.

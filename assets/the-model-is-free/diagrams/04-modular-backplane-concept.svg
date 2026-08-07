@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+<title id="title">The Computer That Should Exist</title>
+<desc id="desc">A speculative affordable modular AI computer with open backplane, accelerator bricks, memory, storage, serviceable power and cooling, and a cloud burst port.</desc>
+<rect width="1600" height="1000" fill="#f3eddc"/>
+<rect x="26" y="26" width="1548" height="948" rx="6" fill="none" stroke="#202321" stroke-width="4"/>
+<line x1="26" y1="136" x2="1574" y2="136" stroke="#202321" stroke-width="3"/>
+<text x="70" y="88" font-family="DejaVu Sans, Arial, sans-serif" font-size="48" font-weight="800" letter-spacing="1" fill="#202321">THE COMPUTER THAT SHOULD EXIST</text>
+<text x="1530" y="86" text-anchor="end" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="17" fill="#6c6a62">HOBFARM / FIELD DIAGRAM / 2026</text>
+<defs>
+      <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#202321"/>
+      </marker>
+      <pattern id="hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <line x1="0" y1="0" x2="0" y2="12" stroke="#e2dbc8" stroke-width="5"/>
+      </pattern>
+    </defs>
+<rect x="70" y="102" width="215" height="38" rx="19" fill="#9f3f32"/>
+<text x="177.5" y="128" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="800" fill="#fffaf0" text-anchor="middle" letter-spacing="0.5">WHAT-IF CONCEPT</text>
+<text x="310" y="128" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="850" fill="#9f3f32" text-anchor="start" letter-spacing="0.8">NOT A CURRENT CONSUMER PRODUCT</text>
+<rect x="270" y="270" width="1060" height="420" rx="22" fill="#fffaf0" stroke="#202321" stroke-width="5"/>
+<text x="800" y="315" font-family="DejaVu Sans, Arial, sans-serif" font-size="27" font-weight="900" fill="#202321" text-anchor="middle" letter-spacing="1">OPEN BACKPLANE / LOCAL COMPUTE FABRIC</text>
+<line x1="335" y1="350" x2="1265" y2="350" stroke="#202321" stroke-width="4"/>
+<rect x="320" y="395" width="190" height="205" rx="10" fill="#ece5d3" stroke="#202321" stroke-width="3"/>
+<rect x="320" y="395" width="190" height="58" rx="10" fill="#3f6875"/>
+<rect x="320" y="441" width="190" height="12" fill="#3f6875"/>
+<text x="415.0" y="420" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="900" fill="#fffaf0" text-anchor="middle">
+<tspan x="415.0" dy="0.0">LOCAL</tspan>
+<tspan x="415.0" dy="18.9">CONTROLLER</tspan>
+</text>
+<circle cx="340" cy="483" r="6" fill="#3f6875"/>
+<text x="360" y="490" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="360" dy="0.0">OS + UI</tspan>
+</text>
+<circle cx="340" cy="514.0" r="6" fill="#3f6875"/>
+<text x="360" y="521.0" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="360" dy="0.0">scheduler</tspan>
+</text>
+<circle cx="340" cy="545.0" r="6" fill="#3f6875"/>
+<text x="360" y="552.0" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="360" dy="0.0">project state</tspan>
+</text>
+<rect x="387.0" y="592" width="56" height="18" fill="#202321"/>
+<rect x="535" y="395" width="190" height="205" rx="10" fill="#ece5d3" stroke="#202321" stroke-width="3"/>
+<rect x="535" y="395" width="190" height="58" rx="10" fill="#9f3f32"/>
+<rect x="535" y="441" width="190" height="12" fill="#9f3f32"/>
+<text x="630.0" y="420" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="900" fill="#fffaf0" text-anchor="middle">
+<tspan x="630.0" dy="0.0">ACCELERATOR</tspan>
+<tspan x="630.0" dy="18.9">BRICK A</tspan>
+</text>
+<circle cx="555" cy="483" r="6" fill="#9f3f32"/>
+<text x="575" y="490" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="575" dy="0.0">replaceable</tspan>
+</text>
+<circle cx="555" cy="514.0" r="6" fill="#9f3f32"/>
+<text x="575" y="521.0" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="575" dy="0.0">mixed vendor?</tspan>
+</text>
+<circle cx="555" cy="545.0" r="6" fill="#9f3f32"/>
+<text x="575" y="552.0" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="575" dy="0.0">job-specific</tspan>
+</text>
+<rect x="602.0" y="592" width="56" height="18" fill="#202321"/>
+<rect x="750" y="395" width="190" height="205" rx="10" fill="#ece5d3" stroke="#202321" stroke-width="3"/>
+<rect x="750" y="395" width="190" height="58" rx="10" fill="#9f3f32"/>
+<rect x="750" y="441" width="190" height="12" fill="#9f3f32"/>
+<text x="845.0" y="420" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="900" fill="#fffaf0" text-anchor="middle">
+<tspan x="845.0" dy="0.0">ACCELERATOR</tspan>
+<tspan x="845.0" dy="18.9">BRICK B</tspan>
+</text>
+<circle cx="770" cy="483" r="6" fill="#9f3f32"/>
+<text x="790" y="490" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="790" dy="0.0">add later</tspan>
+</text>
+<circle cx="770" cy="514.0" r="6" fill="#9f3f32"/>
+<text x="790" y="521.0" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="790" dy="0.0">pool when able</tspan>
+</text>
+<circle cx="770" cy="545.0" r="6" fill="#9f3f32"/>
+<text x="790" y="552.0" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="790" dy="0.0">serviceable</tspan>
+</text>
+<rect x="817.0" y="592" width="56" height="18" fill="#202321"/>
+<rect x="965" y="395" width="150" height="205" rx="10" fill="#ece5d3" stroke="#202321" stroke-width="3"/>
+<rect x="965" y="395" width="150" height="58" rx="10" fill="#d5a22f"/>
+<rect x="965" y="441" width="150" height="12" fill="#d5a22f"/>
+<text x="1040.0" y="420" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="900" fill="#fffaf0" text-anchor="middle">
+<tspan x="1040.0" dy="0.0">MEMORY</tspan>
+<tspan x="1040.0" dy="18.9">BRICK</tspan>
+</text>
+<circle cx="985" cy="483" r="6" fill="#d5a22f"/>
+<text x="1005" y="490" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="1005" dy="0.0">shared tier?</tspan>
+</text>
+<circle cx="985" cy="514.0" r="6" fill="#d5a22f"/>
+<text x="1005" y="521.0" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="1005" dy="0.0">cache</tspan>
+</text>
+<circle cx="985" cy="545.0" r="6" fill="#d5a22f"/>
+<text x="1005" y="552.0" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="1005" dy="0.0">capacity</tspan>
+</text>
+<rect x="1012.0" y="592" width="56" height="18" fill="#202321"/>
+<rect x="1140" y="395" width="150" height="205" rx="10" fill="#ece5d3" stroke="#202321" stroke-width="3"/>
+<rect x="1140" y="395" width="150" height="58" rx="10" fill="#5b745f"/>
+<rect x="1140" y="441" width="150" height="12" fill="#5b745f"/>
+<text x="1215.0" y="420" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="900" fill="#fffaf0" text-anchor="middle">
+<tspan x="1215.0" dy="0.0">STORAGE</tspan>
+<tspan x="1215.0" dy="18.9">BRICK</tspan>
+</text>
+<circle cx="1160" cy="483" r="6" fill="#5b745f"/>
+<text x="1180" y="490" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="1180" dy="0.0">models</tspan>
+</text>
+<circle cx="1160" cy="514.0" r="6" fill="#5b745f"/>
+<text x="1180" y="521.0" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="1180" dy="0.0">scratch</tspan>
+</text>
+<circle cx="1160" cy="545.0" r="6" fill="#5b745f"/>
+<text x="1180" y="552.0" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="1180" dy="0.0">datasets</tspan>
+</text>
+<rect x="1187.0" y="592" width="56" height="18" fill="#202321"/>
+<rect x="70" y="380" width="150" height="210" rx="10" fill="#e5ddc9" stroke="#202321" stroke-width="3"/>
+<text x="145" y="423" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="900" fill="#202321" text-anchor="middle" letter-spacing="0">POWER</text>
+<text x="145" y="455" font-family="DejaVu Sans, Arial, sans-serif" font-size="25" font-weight="900" fill="#9f3f32" text-anchor="middle" letter-spacing="0">+</text>
+<text x="145" y="491" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="900" fill="#202321" text-anchor="middle" letter-spacing="0">COOLING</text>
+<text x="145" y="535" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#6c6a62" text-anchor="middle">
+<tspan x="145" dy="0.0">serviceable</tspan>
+<tspan x="145" dy="17.9">standard parts</tspan>
+</text>
+<line x1="220" y1="485" x2="270" y2="485" stroke="#202321" stroke-width="4" marker-end="url(#arrow)"/>
+<rect x="1380" y="380" width="150" height="210" rx="10" fill="#e5ddc9" stroke="#202321" stroke-width="3"/>
+<text x="1455" y="423" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="900" fill="#202321" text-anchor="middle" letter-spacing="0">CLOUD</text>
+<text x="1455" y="458" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="900" fill="#9f3f32" text-anchor="middle" letter-spacing="0">BURST</text>
+<text x="1455" y="493" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="900" fill="#202321" text-anchor="middle" letter-spacing="0">PORT</text>
+<text x="1455" y="535" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#6c6a62" text-anchor="middle">
+<tspan x="1455" dy="0.0">rent the</tspan>
+<tspan x="1455" dy="17.9">frontier</tspan>
+</text>
+<line x1="1330" y1="485" x2="1380" y2="485" stroke="#202321" stroke-width="4" marker-end="url(#arrow)"/>
+<rect x="270" y="625" width="1060" height="45" rx="4" fill="#202321" stroke="#202321" stroke-width="0"/>
+<text x="800" y="655" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="850" fill="#fffaf0" text-anchor="middle" letter-spacing="0.6">OPEN RUNTIME + SCHEDULER + STANDARD INTERCONNECT</text>
+<rect x="70" y="735" width="715" height="160" rx="12" fill="#fffaf0" stroke="#202321" stroke-width="3"/>
+<text x="98" y="774" font-family="DejaVu Sans, Arial, sans-serif" font-size="21" font-weight="900" fill="#3f6875" text-anchor="start" letter-spacing="0.7">PIECES THAT EXIST NOW</text>
+<text x="98" y="816" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="600" fill="#202321" text-anchor="start">
+<tspan x="98" dy="0.0">PCIe cabling  |  Thunderbolt 5 eGPU  |  OCuLink</tspan>
+<tspan x="98" dy="29.0">CXL  |  unified-memory PCs  |  networked clusters</tspan>
+</text>
+<rect x="815" y="735" width="715" height="160" rx="12" fill="#fffaf0" stroke="#202321" stroke-width="3"/>
+<text x="843" y="774" font-family="DejaVu Sans, Arial, sans-serif" font-size="21" font-weight="900" fill="#9f3f32" text-anchor="start" letter-spacing="0.7">WHY THEY DO NOT YET ADD UP</text>
+<text x="843" y="816" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="600" fill="#202321" text-anchor="start">
+<tspan x="843" dy="0.0">fixed memory  |  narrow external links  |  non-pooled VRAM</tspan>
+<tspan x="843" dy="29.0">software-specific distribution  |  high cost</tspan>
+</text>
+<text x="800" y="940" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="850" fill="#202321" text-anchor="middle" letter-spacing="0.35">THE OPEN ECOSYSTEM BECOMES CULTURALLY IMPORTANT WHEN HOBBYISTS CAN BUILD CAPABILITY OVER TIME</text>
+</svg>

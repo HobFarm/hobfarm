@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+<title id="title">The Upgrade Cascade</title>
+<desc id="desc">A new high-end GPU may expose practical dependencies across power, case, cooling, platform, memory, storage, drivers, and migration time.</desc>
+<rect width="1600" height="1000" fill="#f3eddc"/>
+<rect x="26" y="26" width="1548" height="948" rx="6" fill="none" stroke="#202321" stroke-width="4"/>
+<line x1="26" y1="136" x2="1574" y2="136" stroke="#202321" stroke-width="3"/>
+<text x="70" y="88" font-family="DejaVu Sans, Arial, sans-serif" font-size="48" font-weight="800" letter-spacing="1" fill="#202321">THE UPGRADE CASCADE</text>
+<text x="1530" y="86" text-anchor="end" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="17" fill="#6c6a62">HOBFARM / FIELD DIAGRAM / 2026</text>
+<defs>
+      <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#202321"/>
+      </marker>
+      <pattern id="hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <line x1="0" y1="0" x2="0" y2="12" stroke="#e2dbc8" stroke-width="5"/>
+      </pattern>
+    </defs>
+<text x="70" y="118" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#9f3f32" text-anchor="start" letter-spacing="1">THE CARD MAY FIT THE SLOT. THE USEFUL UPGRADE MAY KEEP GOING.</text>
+<rect x="590" y="365" width="420" height="230" rx="18" fill="#202321" stroke="#202321" stroke-width="4"/>
+<rect x="625" y="405" width="350" height="105" rx="8" fill="#3f6875"/>
+<circle cx="705" cy="457" r="38" fill="none" stroke="#fffaf0" stroke-width="8"/>
+<circle cx="705" cy="457" r="9" fill="#fffaf0"/>
+<circle cx="805" cy="457" r="38" fill="none" stroke="#fffaf0" stroke-width="8"/>
+<circle cx="805" cy="457" r="9" fill="#fffaf0"/>
+<circle cx="905" cy="457" r="38" fill="none" stroke="#fffaf0" stroke-width="8"/>
+<circle cx="905" cy="457" r="9" fill="#fffaf0"/>
+<text x="800" y="555" font-family="DejaVu Sans, Arial, sans-serif" font-size="31" font-weight="900" fill="#fffaf0" text-anchor="middle" letter-spacing="1">NEW GPU</text>
+<line x1="590" y1="420" x2="445" y2="262" stroke="#202321" stroke-width="3" stroke-dasharray="8 8" marker-end="url(#arrow)"/>
+<line x1="1010" y1="420" x2="1155" y2="262" stroke="#202321" stroke-width="3" stroke-dasharray="8 8" marker-end="url(#arrow)"/>
+<line x1="590" y1="480" x2="445" y2="477" stroke="#202321" stroke-width="3" stroke-dasharray="8 8" marker-end="url(#arrow)"/>
+<line x1="1010" y1="480" x2="1155" y2="477" stroke="#202321" stroke-width="3" stroke-dasharray="8 8" marker-end="url(#arrow)"/>
+<line x1="590" y1="540" x2="445" y2="692" stroke="#202321" stroke-width="3" stroke-dasharray="8 8" marker-end="url(#arrow)"/>
+<line x1="1010" y1="540" x2="1155" y2="692" stroke="#202321" stroke-width="3" stroke-dasharray="8 8" marker-end="url(#arrow)"/>
+<rect x="85" y="190" width="360" height="145" rx="12" fill="#fffaf0" stroke="#202321" stroke-width="3"/>
+<rect x="85" y="190" width="360" height="44" rx="12" fill="#9f3f32"/>
+<rect x="85" y="222" width="360" height="12" fill="#9f3f32"/>
+<text x="103" y="220" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="900" fill="#fffaf0" text-anchor="start" letter-spacing="0">POWER + CONNECTORS</text>
+<text x="103" y="267" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="103" dy="0.0">Wattage, transient load, cable</tspan>
+<tspan x="103" dy="21.2">standard, spare headroom.</tspan>
+</text>
+<text x="429" y="319" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="850" fill="#9f3f32" text-anchor="end" letter-spacing="0.6">MAY REQUIRE</text>
+<rect x="1155" y="190" width="360" height="145" rx="12" fill="#fffaf0" stroke="#202321" stroke-width="3"/>
+<rect x="1155" y="190" width="360" height="44" rx="12" fill="#3f6875"/>
+<rect x="1155" y="222" width="360" height="12" fill="#3f6875"/>
+<text x="1173" y="220" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="900" fill="#fffaf0" text-anchor="start" letter-spacing="0">CASE CLEARANCE</text>
+<text x="1173" y="267" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="1173" dy="0.0">Length, thickness, airflow, support</tspan>
+<tspan x="1173" dy="21.2">bracket, cable bend.</tspan>
+</text>
+<text x="1499" y="319" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="850" fill="#3f6875" text-anchor="end" letter-spacing="0.6">MAY EXPOSE</text>
+<rect x="85" y="405" width="360" height="145" rx="12" fill="#fffaf0" stroke="#202321" stroke-width="3"/>
+<rect x="85" y="405" width="360" height="44" rx="12" fill="#d5a22f"/>
+<rect x="85" y="437" width="360" height="12" fill="#d5a22f"/>
+<text x="103" y="435" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="900" fill="#fffaf0" text-anchor="start" letter-spacing="0">COOLING</text>
+<text x="103" y="482" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="103" dy="0.0">Heat, fan noise, radiator position,</tspan>
+<tspan x="103" dy="21.2">room temperature.</tspan>
+</text>
+<text x="429" y="534" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="850" fill="#d5a22f" text-anchor="end" letter-spacing="0.6">MAY EXPOSE</text>
+<rect x="1155" y="405" width="360" height="145" rx="12" fill="#fffaf0" stroke="#202321" stroke-width="3"/>
+<rect x="1155" y="405" width="360" height="44" rx="12" fill="#5b745f"/>
+<rect x="1155" y="437" width="360" height="12" fill="#5b745f"/>
+<text x="1173" y="435" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="900" fill="#fffaf0" text-anchor="start" letter-spacing="0">PLATFORM VALUE</text>
+<text x="1173" y="482" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="1173" dy="0.0">CPU limits, PCIe lanes, BIOS support,</tspan>
+<tspan x="1173" dy="21.2">remaining system life.</tspan>
+</text>
+<text x="1499" y="534" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="850" fill="#5b745f" text-anchor="end" letter-spacing="0.6">DEPENDS ON SYSTEM</text>
+<rect x="85" y="620" width="360" height="145" rx="12" fill="#fffaf0" stroke="#202321" stroke-width="3"/>
+<rect x="85" y="620" width="360" height="44" rx="12" fill="#5b745f"/>
+<rect x="85" y="652" width="360" height="12" fill="#5b745f"/>
+<text x="103" y="650" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="900" fill="#fffaf0" text-anchor="start" letter-spacing="0">RAM + STORAGE</text>
+<text x="103" y="697" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="103" dy="0.0">Capacity, generation, scratch space,</tspan>
+<tspan x="103" dy="21.2">model library size.</tspan>
+</text>
+<text x="429" y="749" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="850" fill="#5b745f" text-anchor="end" letter-spacing="0.6">MAY TRIGGER</text>
+<rect x="1155" y="620" width="360" height="145" rx="12" fill="#fffaf0" stroke="#202321" stroke-width="3"/>
+<rect x="1155" y="620" width="360" height="44" rx="12" fill="#9f3f32"/>
+<rect x="1155" y="652" width="360" height="12" fill="#9f3f32"/>
+<text x="1173" y="650" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="900" fill="#fffaf0" text-anchor="start" letter-spacing="0">DRIVERS + MIGRATION</text>
+<text x="1173" y="697" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="1173" dy="0.0">OS support, clean install, testing,</tspan>
+<tspan x="1173" dy="21.2">downtime, old projects.</tspan>
+</text>
+<text x="1499" y="749" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="850" fill="#9f3f32" text-anchor="end" letter-spacing="0.6">MAY TRIGGER</text>
+<rect x="508" y="760" width="584" height="115" rx="12" fill="#e9e1ce" stroke="#202321" stroke-width="3"/>
+<text x="800" y="800" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="900" fill="#9f3f32" text-anchor="middle" letter-spacing="1">ACTUAL CLAIM</text>
+<text x="800" y="836" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="650" fill="#202321" text-anchor="middle">
+<tspan x="800" dy="0.0">A GPU does not universally require a new motherboard. A practical</tspan>
+<tspan x="800" dy="24.4">upgrade can still become a whole-system decision.</tspan>
+</text>
+<text x="800" y="925" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="850" fill="#202321" text-anchor="middle" letter-spacing="0.6">VERIFY THE REAL MACHINE BEFORE MAKING COMPONENT-SPECIFIC CLAIMS</text>
+</svg>

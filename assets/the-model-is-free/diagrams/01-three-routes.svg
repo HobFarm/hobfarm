@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+<title id="title">Three Ways to Pay</title>
+<desc id="desc">Qualitative comparison of closed service, owned local appliance, and hybrid local plus rented compute.</desc>
+<rect width="1600" height="1000" fill="#f3eddc"/>
+<rect x="26" y="26" width="1548" height="948" rx="6" fill="none" stroke="#202321" stroke-width="4"/>
+<line x1="26" y1="136" x2="1574" y2="136" stroke="#202321" stroke-width="3"/>
+<text x="70" y="88" font-family="DejaVu Sans, Arial, sans-serif" font-size="48" font-weight="800" letter-spacing="1" fill="#202321">THREE WAYS TO PAY</text>
+<text x="1530" y="86" text-anchor="end" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="17" fill="#6c6a62">HOBFARM / FIELD DIAGRAM / 2026</text>
+<defs>
+      <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#202321"/>
+      </marker>
+      <pattern id="hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <line x1="0" y1="0" x2="0" y2="12" stroke="#e2dbc8" stroke-width="5"/>
+      </pattern>
+    </defs>
+<text x="70" y="118" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#9f3f32" text-anchor="start" letter-spacing="1">THE ROUTE COMES AFTER THE JOB</text>
+<rect x="70" y="175" width="450" height="650" rx="14" fill="#fffaf0" stroke="#202321" stroke-width="3"/>
+<rect x="70" y="175" width="450" height="86" rx="14" fill="#3f6875"/>
+<rect x="70" y="247" width="450" height="14" fill="#3f6875"/>
+<text x="104" y="231" font-family="DejaVu Sans, Arial, sans-serif" font-size="44" font-weight="900" fill="#fffaf0" text-anchor="start" letter-spacing="0">1</text>
+<text x="168" y="210" font-family="DejaVu Sans, Arial, sans-serif" font-size="24" font-weight="850" fill="#fffaf0" text-anchor="start">
+<tspan x="168" dy="0.0">CLOSED SERVICE OR API</tspan>
+</text>
+<circle cx="112" cy="308" r="6" fill="#3f6875"/>
+<text x="132" y="315" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="132" dy="0.0">Low up-front capital</tspan>
+</text>
+<circle cx="112" cy="356.0" r="6" fill="#3f6875"/>
+<text x="132" y="363.0" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="132" dy="0.0">Pay per use or subscription</tspan>
+</text>
+<circle cx="112" cy="404.0" r="6" fill="#3f6875"/>
+<text x="132" y="411.0" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="132" dy="0.0">Provider owns upgrades and</tspan>
+<tspan x="132" dy="26.0">depreciation</tspan>
+</text>
+<circle cx="112" cy="477.96" r="6" fill="#3f6875"/>
+<text x="132" y="484.96" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="132" dy="0.0">Moderation, limits, and product</tspan>
+<tspan x="132" dy="26.0">changes apply</tspan>
+</text>
+<circle cx="112" cy="551.92" r="6" fill="#3f6875"/>
+<text x="132" y="558.92" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="132" dy="0.0">Strong fit for irregular or</tspan>
+<tspan x="132" dy="26.0">frontier jobs</tspan>
+</text>
+<line x1="100" y1="735" x2="490" y2="735" stroke="#e2dbc8" stroke-width="3"/>
+<text x="295" y="780" font-family="DejaVu Sans, Arial, sans-serif" font-size="19" font-weight="850" fill="#3f6875" text-anchor="middle" letter-spacing="0.6">RENT THE WHOLE STACK</text>
+<rect x="560" y="175" width="450" height="650" rx="14" fill="#fffaf0" stroke="#202321" stroke-width="3"/>
+<rect x="560" y="175" width="450" height="86" rx="14" fill="#9f3f32"/>
+<rect x="560" y="247" width="450" height="14" fill="#9f3f32"/>
+<text x="594" y="231" font-family="DejaVu Sans, Arial, sans-serif" font-size="44" font-weight="900" fill="#fffaf0" text-anchor="start" letter-spacing="0">2</text>
+<text x="658" y="210" font-family="DejaVu Sans, Arial, sans-serif" font-size="24" font-weight="850" fill="#fffaf0" text-anchor="start">
+<tspan x="658" dy="0.0">OWNED LOCAL APPLIANCE</tspan>
+</text>
+<circle cx="602" cy="308" r="6" fill="#9f3f32"/>
+<text x="622" y="315" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="622" dy="0.0">High up-front capital</tspan>
+</text>
+<circle cx="602" cy="356.0" r="6" fill="#9f3f32"/>
+<text x="622" y="363.0" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="622" dy="0.0">Maximum local control and</tspan>
+<tspan x="622" dy="26.0">privacy</tspan>
+</text>
+<circle cx="602" cy="429.96" r="6" fill="#9f3f32"/>
+<text x="622" y="436.96" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="622" dy="0.0">Owner maintains, powers, and</tspan>
+<tspan x="622" dy="26.0">replaces it</tspan>
+</text>
+<circle cx="602" cy="503.91999999999996" r="6" fill="#9f3f32"/>
+<text x="622" y="510.91999999999996" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="622" dy="0.0">Low marginal cost only after</tspan>
+<tspan x="622" dy="26.0">enough use</tspan>
+</text>
+<circle cx="602" cy="577.88" r="6" fill="#9f3f32"/>
+<text x="622" y="584.88" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="622" dy="0.0">Strong fit for sustained</tspan>
+<tspan x="622" dy="26.0">predictable load</tspan>
+</text>
+<line x1="590" y1="735" x2="980" y2="735" stroke="#e2dbc8" stroke-width="3"/>
+<text x="785" y="780" font-family="DejaVu Sans, Arial, sans-serif" font-size="19" font-weight="850" fill="#9f3f32" text-anchor="middle" letter-spacing="0.6">OWN THE WHOLE STACK</text>
+<rect x="1050" y="175" width="450" height="650" rx="14" fill="#fffaf0" stroke="#202321" stroke-width="3"/>
+<rect x="1050" y="175" width="450" height="86" rx="14" fill="#5b745f"/>
+<rect x="1050" y="247" width="450" height="14" fill="#5b745f"/>
+<text x="1084" y="231" font-family="DejaVu Sans, Arial, sans-serif" font-size="44" font-weight="900" fill="#fffaf0" text-anchor="start" letter-spacing="0">3</text>
+<text x="1148" y="210" font-family="DejaVu Sans, Arial, sans-serif" font-size="24" font-weight="850" fill="#fffaf0" text-anchor="start">
+<tspan x="1148" dy="0.0">HYBRID LOCAL + BURST</tspan>
+<tspan x="1148" dy="27.6">COMPUTE</tspan>
+</text>
+<circle cx="1092" cy="308" r="6" fill="#5b745f"/>
+<text x="1112" y="315" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="1112" dy="0.0">Ordinary local machine is the</tspan>
+<tspan x="1112" dy="26.0">control plane</tspan>
+</text>
+<circle cx="1092" cy="381.96" r="6" fill="#5b745f"/>
+<text x="1112" y="388.96" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="1112" dy="0.0">Keep files, workflows,</tspan>
+<tspan x="1112" dy="26.0">adapters, and judgment</tspan>
+</text>
+<circle cx="1092" cy="455.91999999999996" r="6" fill="#5b745f"/>
+<text x="1112" y="462.91999999999996" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="1112" dy="0.0">Rent larger accelerators only</tspan>
+<tspan x="1112" dy="26.0">when needed</tspan>
+</text>
+<circle cx="1092" cy="529.88" r="6" fill="#5b745f"/>
+<text x="1112" y="536.88" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="1112" dy="0.0">Some cloud setup and storage</tspan>
+<tspan x="1112" dy="26.0">friction remains</tspan>
+</text>
+<circle cx="1092" cy="603.84" r="6" fill="#5b745f"/>
+<text x="1112" y="610.84" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400" fill="#202321" text-anchor="start">
+<tspan x="1112" dy="0.0">Strong fit for irregular custom</tspan>
+<tspan x="1112" dy="26.0">production</tspan>
+</text>
+<line x1="1080" y1="735" x2="1470" y2="735" stroke="#e2dbc8" stroke-width="3"/>
+<text x="1275" y="780" font-family="DejaVu Sans, Arial, sans-serif" font-size="19" font-weight="850" fill="#5b745f" text-anchor="middle" letter-spacing="0.6">OWN THE DURABLE LAYER</text>
+<rect x="70" y="855" width="1430" height="74" rx="4" fill="#202321" stroke="#202321" stroke-width="0"/>
+<text x="785" y="902" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="800" fill="#fffaf0" text-anchor="middle" letter-spacing="0.5">NO WINNER BEFORE FREQUENCY, PRIVACY, MAINTENANCE, BUDGET, AND REPLACEMENT RISK</text>
+</svg>

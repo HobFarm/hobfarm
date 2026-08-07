@@ -1,0 +1,156 @@
+---
+type DiagramKey =
+  | "three-routes"
+  | "hybrid-workflow"
+  | "upgrade-cascade"
+  | "modular-backplane"
+  | "compute-boring";
+
+interface Props {
+  kind: DiagramKey;
+}
+
+const diagrams: Record<DiagramKey, {
+  file: string;
+  title: string;
+  alt: string;
+  caption: string;
+  transcript: string[];
+}> = {
+  "three-routes": {
+    file: "01-three-routes.svg",
+    title: "Three ways to pay",
+    alt: "Three columns compare a closed service or API, an owned local appliance, and a hybrid local workflow with rented burst compute across capital cost, control, maintenance, and best-fit use.",
+    caption: "The cheapest route cannot be chosen before the job, frequency, privacy need, maintenance tolerance, and replacement risk are known.",
+    transcript: [
+      "Closed service or API: low entry cost and low maintenance, with provider control over models, policy, pricing, and availability.",
+      "Owned local appliance: high capital cost and local control, with the owner responsible for setup, power, maintenance, and replacement risk.",
+      "Hybrid workflow: local files and decisions plus rented burst compute, with transfer, environment, and storage work between the two.",
+      "The sensible route depends on the job and how often it happens. There is no universal winner.",
+    ],
+  },
+  "hybrid-workflow": {
+    file: "02-rent-gpu-own-workflow.svg",
+    title: "Rent the GPU. Own the workflow.",
+    alt: "A local control plane sends a bounded job and required assets to a temporary rented GPU, receives results and logs, then terminates compute while local files and records remain owned.",
+    caption: "Keep the durable production layer local. Attach the expensive accelerator only when the job exceeds the box.",
+    transcript: [
+      "The local control plane retains project files, source assets, prompts, schemas, workflows, datasets, adapters, version records, and accepted outputs.",
+      "A bounded job and only the required assets move to temporary rented compute.",
+      "The remote GPU performs large inference, training, video, or batch work.",
+      "Results, logs, adapters, and environment records return to the local archive before the expensive worker is terminated.",
+    ],
+  },
+  "upgrade-cascade": {
+    file: "03-upgrade-cascade.svg",
+    title: "The upgrade cascade",
+    alt: "A new GPU sits at the center of conditional arrows to power and connectors, case clearance, cooling, platform value, RAM and storage, and drivers and migration.",
+    caption: "The card may fit the slot. The useful upgrade can still become a whole-system decision.",
+    transcript: [
+      "A GPU upgrade can expose six conditional dependencies: power and connectors, case clearance, cooling, platform value, RAM and storage, and drivers and migration.",
+      "Not every card triggers every dependency.",
+      "The point is that compatibility at the slot does not guarantee a sensible or complete production upgrade.",
+    ],
+  },
+  "modular-backplane": {
+    file: "04-modular-backplane-concept.svg",
+    title: "A modular AI backplane",
+    alt: "A clearly labeled what-if diagram connects a local controller, accelerator bricks, memory, storage, serviceable power and cooling, and a cloud-burst port through an open backplane and runtime.",
+    caption: "The pieces of composable computing exist. The affordable hobbyist system that makes them feel like one ordinary computer does not.",
+    transcript: [
+      "This is a speculative system, not a current product recommendation.",
+      "An open backplane and runtime connect a durable local controller to replaceable accelerator, memory, storage, power, and cooling modules.",
+      "A cloud-burst port gives the same workflow temporary access to remote capacity when the local system is not enough.",
+      "Current external PCIe, coherent interconnect, and clustered systems show pieces of the idea, but not this complete affordable consumer machine.",
+    ],
+  },
+  "compute-boring": {
+    file: "05-compute-becomes-boring.svg",
+    title: "When compute becomes boring",
+    alt: "Two qualitative timelines compare televisions moving from specialized equipment to an ordinary household baseline and ask whether local AI compute can follow a similar path.",
+    caption: "The category changes when useful local AI becomes an ordinary property of a computer instead of a separate infrastructure purchase.",
+    transcript: [
+      "Television moved from expensive specialized equipment toward a cheap, ordinary household capability while quality improved.",
+      "Local AI is still in the expensive specialty-machine stage for many serious workloads.",
+      "The hoped-for destination is useful local capability in an ordinary computer, with remote compute behaving like a peripheral for exceptional jobs.",
+    ],
+  },
+};
+
+const diagram = diagrams[Astro.props.kind];
+const src = `https://cdn.hob.farm/articles/the-model-is-free/diagrams/${diagram.file}`;
+---
+
+<figure class="article-wide tmif-diagram">
+  <a class="tmif-diagram__image" href={src} target="_blank" rel="noreferrer" aria-label={`Open ${diagram.title} at full size`}>
+    <img src={src} alt={diagram.alt} width="1600" height="1000" loading="lazy" decoding="async" />
+  </a>
+  <figcaption>
+    {diagram.caption}
+    <a href={src} target="_blank" rel="noreferrer">Open the editable SVG.</a>
+  </figcaption>
+  <details class="tmif-diagram__transcript">
+    <summary>Read this diagram as text</summary>
+    <ol>
+      {diagram.transcript.map((item) => <li>{item}</li>)}
+    </ol>
+  </details>
+</figure>
+
+<style>
+  .tmif-diagram {
+    gap: 0.65rem;
+    margin-block: 2.5rem !important;
+  }
+
+  .tmif-diagram__image {
+    display: block;
+    width: 100%;
+    border: 1px solid color-mix(in srgb, var(--color-base-400, #a0a0a0) 22%, transparent);
+    border-radius: 0.35rem;
+    background: #f2ead9;
+    box-shadow: 0 1rem 3rem rgb(0 0 0 / 0.28);
+  }
+
+  .tmif-diagram__image img {
+    margin: 0 !important;
+  }
+
+  figcaption a {
+    margin-left: 0.35rem;
+  }
+
+  .tmif-diagram__transcript {
+    width: 100%;
+    border: 1px solid color-mix(in srgb, var(--color-base-400, #a0a0a0) 22%, transparent);
+    border-radius: 0.35rem;
+    background: color-mix(in srgb, var(--color-base-900, #0e0b16) 82%, transparent);
+    color: var(--color-base-300, #c7c7c7);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    line-height: 1.55;
+    text-align: left;
+  }
+
+  .tmif-diagram__transcript summary {
+    cursor: pointer;
+    padding: 0.75rem 0.9rem;
+    color: var(--color-accent-300, #be9aff);
+    letter-spacing: 0.04em;
+  }
+
+  .tmif-diagram__transcript ol {
+    margin: 0 !important;
+    padding: 0 1.1rem 0.9rem 2.3rem !important;
+  }
+
+  .tmif-diagram__transcript li {
+    margin: 0.35rem 0 !important;
+  }
+
+  @media (min-width: 640px) {
+    .tmif-diagram__transcript {
+      display: none;
+    }
+  }
+</style>

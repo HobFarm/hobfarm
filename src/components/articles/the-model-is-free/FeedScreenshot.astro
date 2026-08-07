@@ -1,0 +1,35 @@
+---
+const src = "https://cdn.hob.farm/articles/the-model-is-free/a16z-open-weights-feed.webp";
+const caption = "The first thing X showed me while I was thinking about this article: an infrastructure argument about open weights, cost, and control.";
+const alt = "Screenshot of an a16z post quoting Simon Mo on open-weight models, infrastructure control, cost, latency, and reliance on proprietary APIs, with a video still below the text.";
+---
+
+<figure class="article-wide article-compact tmif-feed">
+  <img
+    src={src}
+    alt={alt}
+    width="596"
+    height="1000"
+    loading="lazy"
+    decoding="async"
+    data-lightbox={src}
+    data-lightbox-caption={caption}
+  />
+  <figcaption>
+    {caption} Author-supplied screenshot of a public a16z post, captured August 6, 2026.
+  </figcaption>
+</figure>
+
+<style>
+  .tmif-feed {
+    margin-block: 2.25rem !important;
+  }
+
+  .tmif-feed img {
+    width: min(100%, 37.25rem);
+    margin-inline: auto !important;
+    border: 1px solid color-mix(in srgb, var(--color-base-400, #a0a0a0) 22%, transparent);
+    border-radius: 0.35rem;
+    box-shadow: 0 1rem 3rem rgb(0 0 0 / 0.28);
+  }
+</style>

@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+<title id="title">Compute Becomes Boring</title>
+<desc id="desc">Television commoditization as a historical analogy, and AI compute as an open question rather than a guaranteed forecast.</desc>
+<rect width="1600" height="1000" fill="#f3eddc"/>
+<rect x="26" y="26" width="1548" height="948" rx="6" fill="none" stroke="#202321" stroke-width="4"/>
+<line x1="26" y1="136" x2="1574" y2="136" stroke="#202321" stroke-width="3"/>
+<text x="70" y="88" font-family="DejaVu Sans, Arial, sans-serif" font-size="48" font-weight="800" letter-spacing="1" fill="#202321">COMPUTE BECOMES BORING</text>
+<text x="1530" y="86" text-anchor="end" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="17" fill="#6c6a62">HOBFARM / FIELD DIAGRAM / 2026</text>
+<defs>
+      <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#202321"/>
+      </marker>
+      <pattern id="hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <line x1="0" y1="0" x2="0" y2="12" stroke="#e2dbc8" stroke-width="5"/>
+      </pattern>
+    </defs>
+<text x="70" y="118" font-family="DejaVu Sans, Arial, sans-serif" font-size="19" font-weight="750" fill="#9f3f32" text-anchor="start" letter-spacing="0.55">A TECHNOLOGY CHANGES WHEN THE CAPABILITY STOPS FEELING LIKE AN INFRASTRUCTURE PROJECT</text>
+<line x1="245" y1="520" x2="335" y2="520" stroke="#202321" stroke-width="3" marker-end="url(#arrow)"/>
+<circle cx="150" cy="520" r="72" fill="#9f3f32" stroke="#202321" stroke-width="3"/>
+<text x="150" y="510" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="900" fill="#fffaf0" text-anchor="middle">
+<tspan x="150" dy="0.0">SPECIALIZED</tspan>
+</text>
+<line x1="525" y1="520" x2="615" y2="520" stroke="#202321" stroke-width="3" marker-end="url(#arrow)"/>
+<circle cx="430" cy="520" r="72" fill="#3f6875" stroke="#202321" stroke-width="3"/>
+<text x="430" y="510" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="900" fill="#fffaf0" text-anchor="middle">
+<tspan x="430" dy="0.0">PROFESSIONAL</tspan>
+</text>
+<line x1="805" y1="520" x2="895" y2="520" stroke="#202321" stroke-width="3" marker-end="url(#arrow)"/>
+<circle cx="710" cy="520" r="72" fill="#d5a22f" stroke="#202321" stroke-width="3"/>
+<text x="710" y="510" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="900" fill="#fffaf0" text-anchor="middle">
+<tspan x="710" dy="0.0">ENTHUSIAST</tspan>
+</text>
+<line x1="1085" y1="520" x2="1175" y2="520" stroke="#202321" stroke-width="3" marker-end="url(#arrow)"/>
+<circle cx="990" cy="520" r="72" fill="#5b745f" stroke="#202321" stroke-width="3"/>
+<text x="990" y="510" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="900" fill="#fffaf0" text-anchor="middle">
+<tspan x="990" dy="0.0">ORDINARY</tspan>
+</text>
+<circle cx="1270" cy="520" r="72" fill="#202321" stroke="#202321" stroke-width="3"/>
+<text x="1270" y="510" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="900" fill="#fffaf0" text-anchor="middle">
+<tspan x="1270" dy="0.0">INVISIBLE</tspan>
+<tspan x="1270" dy="18.9">BASELINE?</tspan>
+</text>
+<text x="70" y="205" font-family="DejaVu Sans, Arial, sans-serif" font-size="24" font-weight="900" fill="#3f6875" text-anchor="start" letter-spacing="1">DISPLAY TECHNOLOGY</text>
+<rect x="85.0" y="270" width="130" height="90" rx="8" fill="#d8d0bc" stroke="#202321" stroke-width="3"/>
+<rect x="99.0" y="284" width="85" height="60" rx="4" fill="#202321"/>
+<circle cx="197.0" cy="300" r="6" fill="#9f3f32"/>
+<line x1="120" y1="270" x2="102" y2="245" stroke="#202321" stroke-width="3"/>
+<line x1="160" y1="270" x2="178" y2="245" stroke="#202321" stroke-width="3"/>
+<text x="150" y="420" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="750" fill="#6c6a62" text-anchor="middle" letter-spacing="0">rare / costly</text>
+<rect x="357.5" y="270" width="145" height="100" rx="8" fill="#d8d0bc" stroke="#202321" stroke-width="3"/>
+<rect x="371.5" y="284" width="100" height="70" rx="4" fill="#202321"/>
+<circle cx="484.5" cy="300" r="6" fill="#9f3f32"/>
+<line x1="400" y1="270" x2="382" y2="245" stroke="#202321" stroke-width="3"/>
+<line x1="440" y1="270" x2="458" y2="245" stroke="#202321" stroke-width="3"/>
+<text x="430" y="420" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="750" fill="#6c6a62" text-anchor="middle" letter-spacing="0">mass professional</text>
+<rect x="635.0" y="280" width="150" height="84" rx="3" fill="#202321" stroke="#202321" stroke-width="3"/>
+<rect x="643.0" y="288" width="134" height="68" fill="#3f6875" opacity="0.75"/>
+<line x1="710" y1="364" x2="710" y2="384" stroke="#202321" stroke-width="4"/>
+<line x1="675" y1="384" x2="745" y2="384" stroke="#202321" stroke-width="4"/>
+<text x="710" y="420" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="750" fill="#6c6a62" text-anchor="middle" letter-spacing="0">premium household</text>
+<rect x="915.0" y="280" width="150" height="84" rx="3" fill="#202321" stroke="#202321" stroke-width="3"/>
+<rect x="923.0" y="288" width="134" height="68" fill="#5b745f" opacity="0.75"/>
+<line x1="990" y1="364" x2="990" y2="384" stroke="#202321" stroke-width="4"/>
+<line x1="955" y1="384" x2="1025" y2="384" stroke="#202321" stroke-width="4"/>
+<text x="990" y="420" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="750" fill="#6c6a62" text-anchor="middle" letter-spacing="0">basic HD for little</text>
+<rect x="1185.0" y="280" width="170" height="95" rx="3" fill="#202321" stroke="#202321" stroke-width="3"/>
+<rect x="1193.0" y="288" width="154" height="79" fill="#5b745f" opacity="0.75"/>
+<text x="1270" y="420" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="750" fill="#6c6a62" text-anchor="middle" letter-spacing="0">screen disappears</text>
+<text x="70" y="650" font-family="DejaVu Sans, Arial, sans-serif" font-size="24" font-weight="900" fill="#9f3f32" text-anchor="start" letter-spacing="1">LOCAL AI COMPUTE</text>
+<rect x="92" y="720" width="116" height="34" rx="3" fill="#d8d0bc" stroke="#202321" stroke-width="2"/>
+<circle cx="112" cy="737" r="4" fill="#9f3f32"/>
+<rect x="92" y="762" width="116" height="34" rx="3" fill="#d8d0bc" stroke="#202321" stroke-width="2"/>
+<circle cx="112" cy="779" r="4" fill="#9f3f32"/>
+<rect x="92" y="804" width="116" height="34" rx="3" fill="#d8d0bc" stroke="#202321" stroke-width="2"/>
+<circle cx="112" cy="821" r="4" fill="#9f3f32"/>
+<text x="150" y="890" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="900" fill="#202321" text-anchor="middle" letter-spacing="0">data-center rack</text>
+<text x="150" y="918" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="650" fill="#6c6a62" text-anchor="middle" letter-spacing="0">industrial clusters</text>
+<rect x="366" y="720" width="128" height="132" rx="10" fill="#d8d0bc" stroke="#202321" stroke-width="3"/>
+<rect x="386" y="745" width="88" height="38" fill="#202321"/>
+<circle cx="430" cy="818" r="16" fill="none" stroke="#9f3f32" stroke-width="4"/>
+<text x="430" y="890" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="900" fill="#202321" text-anchor="middle" letter-spacing="0">specialty box</text>
+<text x="430" y="918" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="650" fill="#6c6a62" text-anchor="middle" letter-spacing="0">$4,699 class</text>
+<rect x="643" y="720" width="134" height="140" rx="7" fill="#d8d0bc" stroke="#202321" stroke-width="3"/>
+<circle cx="710" cy="812" r="36" fill="none" stroke="#3f6875" stroke-width="6"/>
+<rect x="665" y="740" width="90" height="24" fill="#202321"/>
+<text x="710" y="890" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="900" fill="#202321" text-anchor="middle" letter-spacing="0">workstation</text>
+<text x="710" y="918" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="650" fill="#6c6a62" text-anchor="middle" letter-spacing="0">high-end consumer</text>
+<rect x="907" y="735" width="166" height="110" rx="9" fill="#d8d0bc" stroke="#202321" stroke-width="3"/>
+<rect x="935" y="762" width="28" height="55" fill="#5b745f" stroke="#202321" stroke-width="2"/>
+<rect x="972" y="762" width="28" height="55" fill="#5b745f" stroke="#202321" stroke-width="2"/>
+<rect x="1009" y="762" width="28" height="55" fill="#5b745f" stroke="#202321" stroke-width="2"/>
+<text x="990" y="890" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="900" fill="#202321" text-anchor="middle" letter-spacing="0">modular local</text>
+<text x="990" y="918" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="650" fill="#6c6a62" text-anchor="middle" letter-spacing="0">affordable build-up?</text>
+<rect x="1188" y="742" width="164" height="95" rx="8" fill="#fffaf0" stroke="#202321" stroke-width="3" stroke-dasharray="10 8"/>
+<text x="1270" y="800" font-family="DejaVu Sans, Arial, sans-serif" font-size="48" font-weight="900" fill="#9f3f32" text-anchor="middle" letter-spacing="0">?</text>
+<text x="1270" y="890" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="900" fill="#202321" text-anchor="middle" letter-spacing="0">ordinary PC?</text>
+<text x="1270" y="918" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="650" fill="#6c6a62" text-anchor="middle" letter-spacing="0">no separate purchase?</text>
+<rect x="70" y="950" width="1460" height="0" rx="10" fill="#f3eddc" stroke="#f3eddc" stroke-width="0"/>
+<text x="70" y="944" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="700" fill="#6c6a62" text-anchor="start" letter-spacing="0.25">HISTORICAL ANCHOR: U.S. BLS REPORTED THE QUALITY-ADJUSTED TV PRICE INDEX FELL 94% FROM DEC. 1997 TO AUG. 2015.</text>
+<text x="1530" y="968" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="850" fill="#9f3f32" text-anchor="end" letter-spacing="0.4">THE AI LANE IS A QUESTION, NOT A GUARANTEE.</text>
+</svg>

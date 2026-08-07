@@ -1,0 +1,19 @@
+id,entity,final_wording_or_action,source,checked_at,result
+schedule-predecessor,Same Same But Different,"2026-08-12T16:20:00-07:00; successor set to exactly 86400 seconds later",repository article record,2026-08-06,passed
+dgx-price,NVIDIA DGX Spark,"Current U.S. listing says $4699 and Add to Cart",https://marketplace.nvidia.com/en-us/enterprise/personal-ai-supercomputers/dgx-spark/,2026-08-06,passed
+dgx-specs,NVIDIA DGX Spark,"128 GB coherent unified memory; up to 200B inference and 70B fine-tuning attributed to NVIDIA",https://www.nvidia.com/en-us/products/workstations/dgx-spark/,2026-08-06,passed
+runpod-price,RunPod,"No GPU rate quoted; copy avoids a universal cost claim",https://www.runpod.io/pricing,2026-08-06,passed-by-omission
+runpod-billing,RunPod,"Pods described as dedicated instances; Serverless kept distinct",https://docs.runpod.io/overview,2026-08-06,passed
+runpod-storage,RunPod,"Persistence plus continuing storage charges region limits and no automatic synchronization stated",https://docs.runpod.io/storage/network-volumes,2026-08-06,passed
+comfy-serverless,RunPod and ComfyUI,"Community ComfyUI-to-API route identified as a preparation path rather than a first-party guarantee",https://docs.runpod.io/community-solutions/comfyui-to-api/overview,2026-08-06,passed
+osi-language,Open Source Initiative,"Open weights distinguished from the preferred form needed to modify an open-source AI system",https://opensource.org/ai/open-source-ai-definition,2026-08-06,passed
+plugable,Plugable TBT5-AI,"$629.99; 850 W PSU; physical x16 over four PCIe 4.0 lanes; GPU excluded; supported Windows 11 host required",https://plugable.com/products/tbt5-ai,2026-08-06,passed
+framework-price,Framework Desktop,"Current prices checked but omitted because the argument does not need them",https://frame.work/products/framework-desktop-mainboard-amd-ryzen-ai-max-300-series,2026-08-06,passed-by-omission
+framework-memory,Framework Desktop,"256-bit high-bandwidth memory described as fixed and not user-upgradeable",https://frame.work/blog/introducing-the-framework-desktop,2026-08-06,passed
+framework-192,Framework Desktop,"192 GB remains a preview and is omitted",https://frame.work/blog/framework-laptop-13-pro-press-reviews-and-previewing-a-192gb-framework-desktop,2026-08-06,passed-by-omission
+amd-halo,AMD Ryzen AI Halo,"128 GB product context checked; marketing model-size claim omitted",https://www.amd.com/en/products/processors/desktops/ryzen/ryzen-ai-halo.html,2026-08-06,passed-by-omission
+amd-cluster,AMD cluster guide,"Four 128 GB Framework nodes; 5-gigabit Ethernet; llama.cpp RPC; vendor demonstration label retained",https://www.amd.com/en/developer/resources/technical-articles/2026/how-to-run-a-one-trillion-parameter-llm-locally-an-amd.html,2026-08-06,passed
+author-hardware,Author workstation,"Only supplied facts used: assembled around 2018; RTX 2080 Ti 11 GB; video editing motion graphics and games",packet research/USER-SOURCE-MATERIAL.md,2026-08-06,passed
+tv-current-price,Television analogy,"No exact 1986 or current retail price stated; BLS 94 percent quality-adjusted decline retained",https://www.bls.gov/opub/ted/2015/long-term-price-trends-for-computers-tvs-and-related-items.htm,2026-08-06,passed
+asset-prefix,R2 and CDN,"Eight absent keys verified before upload; no object overwritten; public checksums and MIME types verified",reports/the-model-is-free/asset-manifest.json,2026-08-06,passed
+future-seed,Microculture article,"One short bridge only; no route or dead link created",repository content map,2026-08-06,passed
