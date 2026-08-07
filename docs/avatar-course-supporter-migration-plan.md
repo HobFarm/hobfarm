@@ -1,47 +1,34 @@
-# Avatar Content System supporter migration plan
+# Avatar Content System access migration
 
-## Current state
+Updated: 2026-08-06
 
-The Avatar Content System currently has four public setup lessons and 12 paid beta lessons. Active HobFarm supporters receive the paid lessons while their $5 monthly membership is active.
+## Preserved behavior
 
-The entitlement is enforced in `functions/api/academy/avatar-content-system/lesson/[[slug]].ts`. It checks the signed-in user, retrieves the user's subscription record, and accepts active subscription states. The membership page and course pages describe the same benefit.
+The Avatar Content System keeps four public lessons and twelve paid lessons. Active and trialing HobFarm supporters retain access throughout the migration. Membership now represents the provider-neutral `academy_all_access` catalog grant, so there is no cutover date when current supporter access is removed.
 
-No entitlement behavior changes in this commerce restructure.
+Scheduled cancellation keeps access while the authoritative subscription status remains active. Lapsed, unpaid, canceled, or otherwise inactive membership does not supply the catalog grant.
 
-## Target state
+## Added behavior
 
-Academy should sell affordable one-time courses. Avatar Content System can move to that model after existing supporters have a clear transition.
+Avatar gains a separate $7 one-time product, `academy_avatar_content_system_v1`. A verified direct payment creates a permanent entitlement to `academy-course-avatar-v1`. That grant survives membership cancellation and is suspended only when the matching purchase is refunded, disputed, revoked, or corrected through the audited support path.
 
-The target needs:
+A current supporter may buy the course permanently. The purchase is optional while membership already supplies access, but it remains after membership ends.
 
-1. A one-time course product and approved price.
-2. A durable course entitlement that does not depend on an active subscription.
-3. A record of which current and former supporters receive a grandfathered entitlement.
-4. Checkout, receipt, refund, and Customer Help copy for the standalone course.
-5. A cutover date and a direct notice to affected supporters.
+## Safe activation order
 
-## Proposed migration
+1. Apply the reviewed Academy D1 migration.
+2. Verify the Pages `COMMERCE` service binding and existing auth worker contract.
+3. Create and inspect the live Stripe $7 Price without committing its ID.
+4. Approve the Stripe Tax and digital-goods tax decision.
+5. Configure the Price and required webhook events.
+6. Test purchase, duplicate/replayed event, delayed event, refund, dispute, membership lapse, direct-purchase survival, and clean-account access.
+7. Run the client/static paid-body leakage audit.
+8. Turn on the server checkout switch and then the public purchase control.
 
-1. Export a count of active, trialing, past-due, canceled, and incomplete supporter records without placing personal data in the repository.
-2. Decide the grandfathering rule. The recommended rule is permanent Avatar access for anyone with an active paid supporter subscription on the announced cutover date.
-3. Create a versioned entitlement such as `academy.avatar-content-system.v1`.
-4. Backfill the approved supporters into the entitlement store with an idempotent migration.
-5. Add one-time Checkout for new buyers and grant the same entitlement only after verified payment.
-6. Update the lesson endpoint to accept either the grandfathered/course entitlement or the temporary active-membership rule.
-7. Notify supporters before removing the active-membership rule.
-8. Keep a repair script for missing grants and a revocation path limited to refunds, disputes, or confirmed fraud.
+## No supporter backfill
 
-## Owner approvals required
+No permanent entitlement backfill is required because membership access is not being withdrawn. A future decision to remove Avatar from `academy_all_access` would be a different migration and would require a separately approved grandfathering rule, count, notice, and idempotent backfill.
 
-- Confirm whether all active supporters or only supporters with at least one successful payment are grandfathered.
-- Approve the one-time price: $5, $7, $9, or a bundle price.
-- Approve the cutover date and supporter notice.
-- Confirm whether membership keeps a different benefit after Avatar access becomes standalone.
-- Approve the entitlement migration after reviewing a dry-run count.
+## Recovery
 
-## Risks
-
-- Removing the membership check before backfill would lock out current supporters.
-- Granting by current status alone may include incomplete or unpaid subscriptions.
-- Reusing a subscription identifier as a course entitlement would keep the two products coupled.
-- A refund policy change without a versioned purchase record could make later support decisions inconsistent.
+The commerce ledger stores stable user, purchase, event, and entitlement IDs. Verified webhook replay can repair a successful payment that returned before the grant appeared. Manual corrections require an operator ID, reason, timestamp, and audit record. Customer Help should use the support-visible Academy repair code and provider order ID, never card details.

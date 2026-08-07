@@ -28,6 +28,7 @@ If you create an account, join a membership, access gated services, or authentic
 
 - Name, email address, account identifiers, login timestamps, authentication tokens, and access status.
 - Membership tier, subscription status, credit balance, product access, usage limits, and account preferences.
+- Academy course entitlements, lesson progress, completion status, and support repair references.
 - Security and anti-abuse data, including rate-limit events and access logs.
 
 We do not store your password if authentication is handled by an external identity provider.
@@ -60,6 +61,8 @@ If you use the contact form, email HobFarm, request a refund, report a bug, subm
 - Name, email address, subject, message, order details, attachments, and support history.
 - Payment provider, order ID, account email, and screenshots if you include them.
 - Anti-spam or verification data from Cloudflare Turnstile or similar systems.
+
+Signed-in learners may also submit a private Academy question tied to a course and, optionally, a lesson. HobFarm uses the question to improve course material. The question text is not sent to advertising analytics or published on the course page.
 
 ### Communications
 
@@ -118,6 +121,7 @@ Retention depends on the data type:
 - Account and membership records are kept while your account is active and for a reasonable period afterward.
 - Purchase, refund, tax, accounting, and dispute records may be kept as long as required for legal, tax, fraud prevention, and payment network obligations.
 - Support messages are kept as needed to respond, preserve context, and improve support.
+- Academy progress is kept with the account so a learner can resume on another device. Private course questions may be kept while open and for a reasonable period after resolution so the related course change can be reviewed.
 - Uploads and generated media are kept according to the product flow, account settings, storage limits, or deletion requests.
 - Public gallery or showcase submissions remain public until removed by HobFarm or by request when practical.
 - Server logs and security logs are retained according to operational and provider policies.

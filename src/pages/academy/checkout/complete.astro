@@ -1,0 +1,33 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import CheckoutCompletion from "@/components/academy/CheckoutCompletion";
+
+export const prerender = false;
+const sessionId = Astro.url.searchParams.get("session_id") ?? "";
+---
+
+<BaseLayout
+  title="Verify Academy access | HobFarm"
+  description="Verify a HobFarm Academy purchase and attach course access to the signed-in account."
+  noindex
+>
+  <ContentPanel>
+    <Wrapper variant="standard" class="py-16 lg:py-24">
+      <div class="max-w-3xl">
+        <p class="text-xs font-mono uppercase tracking-wider text-accent-cyan-bright">HobFarm Academy</p>
+        <Text tag="h1" variant="displayXL" class="mt-5 text-white">Verify course access</Text>
+        <p class="mt-5 text-base leading-relaxed text-base-300">
+          The return from Stripe is not proof of payment by itself. HobFarm opens the course only after the signed webhook creates the account entitlement.
+        </p>
+        <div class="mt-10">
+          {sessionId
+            ? <CheckoutCompletion sessionId={sessionId} client:load />
+            : <p class="border border-base-800 bg-base-900/60 p-6 text-base-300">No checkout session was supplied. Open Account to check your courses.</p>}
+        </div>
+      </div>
+    </Wrapper>
+  </ContentPanel>
+</BaseLayout>

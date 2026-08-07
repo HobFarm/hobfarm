@@ -56,16 +56,38 @@ function markdownAssetPath(pathname: string): string | null {
   return normalized === "/" ? "/index.md" : `${normalized}index.md`;
 }
 
+function withSecurityHeaders(response: Response, pathname: string): Response {
+  const headers = new Headers(response.headers);
+  headers.set("X-Content-Type-Options", "nosniff");
+  headers.set("X-Frame-Options", "DENY");
+  headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=()");
+  headers.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
+
+  if (pathname.startsWith("/api/")) {
+    headers.set("Cache-Control", "no-store");
+    headers.set("Pragma", "no-cache");
+    headers.set("Content-Signal", "ai-train=no, search=no, ai-input=no");
+    headers.set("X-Robots-Tag", "noindex, nofollow");
+  }
+
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
 export const onRequest: PagesFunction<Env> = async (context) => {
   const url = new URL(context.request.url);
 
   if (!acceptsMarkdown(context.request)) {
-    return context.next();
+    return withSecurityHeaders(await context.next(), url.pathname);
   }
 
   const markdownPath = markdownAssetPath(url.pathname);
   if (!markdownPath) {
-    return context.next();
+    return withSecurityHeaders(await context.next(), url.pathname);
   }
 
   const markdownUrl = new URL(markdownPath, url.origin);
@@ -73,10 +95,10 @@ export const onRequest: PagesFunction<Env> = async (context) => {
   const assetResponse = await context.env.ASSETS.fetch(markdownRequest);
 
   if (!assetResponse.ok) {
-    return context.next();
+    return withSecurityHeaders(await context.next(), url.pathname);
   }
 
-  return new Response(assetResponse.body, {
+  return withSecurityHeaders(new Response(assetResponse.body, {
     status: assetResponse.status,
     statusText: assetResponse.statusText,
     headers: {
@@ -88,5 +110,5 @@ export const onRequest: PagesFunction<Env> = async (context) => {
       "Vary": "Accept",
       "X-Content-Type-Options": "nosniff",
     },
-  });
+  }), url.pathname);
 };

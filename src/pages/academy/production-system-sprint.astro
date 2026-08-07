@@ -1,0 +1,71 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Breadcrumbs from "@/components/global/Breadcrumbs.astro";
+import { academyFeatures } from "@/data/academy-features";
+
+const intake = [
+  "Applicant name and HobFarm account",
+  "Project title and intended audience",
+  "Problem to solve and finished result desired",
+  "Existing sources, assets, and rights or consent status",
+  "Current tools, accounts, and technical comfort",
+  "Budget beyond the sprint and external production costs",
+  "Deadline, known blockers, and what has already been tried",
+  "Why self-serve courses are insufficient",
+  "Preferred session format, time zone, and accessibility needs",
+  "Agreement to the final scope and support boundary",
+];
+---
+
+<BaseLayout
+  title="HobFarm Production System Sprint — Draft"
+  description="Draft scope and manual application path for a private HobFarm production-system sprint. Applications, scheduling, and payment are not active."
+  canonical="/academy/production-system-sprint/"
+  noindex
+  palette="magenta-cyan"
+>
+  <ContentPanel><Wrapper variant="standard" class="pt-5"><Breadcrumbs items={[{ label: "Academy", href: "/academy/" }, { label: "Production System Sprint" }]} /></Wrapper></ContentPanel>
+  <header class="sprint-hero"><ContentPanel><Wrapper variant="standard" class="py-14 lg:py-20">
+    <p class="eyebrow">Private service draft / applications closed</p>
+    <h1>HobFarm Production System Sprint</h1>
+    <p class="lead">Up to five hours of live work to turn one real creative-production problem into a source file, production route, test, and next-step system. The proposed fee is $1,000 minimum. Final terms, dates, applications, scheduling, and payment are not active.</p>
+  </Wrapper></ContentPanel></header>
+  <main><ContentPanel><Wrapper variant="standard" class="py-12 lg:py-20">
+    <section class="scope-grid">
+      <article><p class="eyebrow">Good fit</p><h2>One bounded production system</h2><ul><li>Character and mannequin systems</li><li>Style and reference systems</li><li>Avatar and host workflows</li><li>Image or motion production routes</li><li>Publication or course production systems</li><li>Small creative web-tool planning</li></ul></article>
+      <article><p class="eyebrow">Outside the offer</p><h2>No open-ended production promise</h2><ul><li>Unrestricted software development</li><li>Legal advice or rights clearance</li><li>Guaranteed marketing results</li><li>Guaranteed model consistency</li><li>Finished production beyond the agreed scope</li><li>External model, API, hosting, stock, or licensing costs</li></ul></article>
+    </section>
+
+    <section class="sprint-section"><p class="eyebrow">Working terms</p><h2>One or two sessions inside a defined window.</h2><p>The proposed fee is the minimum even if the customer chooses not to use all five hours. The default target is one accepted project per month. Availability is manual and scarce; acceptance is not automatic.</p></section>
+
+    <section class="sprint-section"><p class="eyebrow">Draft intake</p><h2>What the application will ask</h2><ol class="intake">{intake.map((item) => <li>{item}</li>)}</ol><div class="closed"><strong>{academyFeatures.sprintApplicationsOpen ? "Application path ready" : "Applications are not open."}</strong><p>This page does not submit information, create an invoice, schedule a call, or collect payment. The operator must approve the offer, terms, intake, and available dates first.</p><button type="button" disabled data-event="academy_sprint_application_start">Application unavailable</button></div></section>
+
+    <section class="sprint-section"><p class="eyebrow">Manual acceptance flow</p><h2>Application first. Scope and payment later.</h2><ol class="flow"><li>Applicant submits the approved form.</li><li>HobFarm reviews fit and rejects, requests clarification, or accepts.</li><li>An accepted applicant receives the written scope, dates, payment request, cancellation terms, and preparation checklist.</li><li>Payment is verified before the session.</li><li>The customer receives a private preparation page.</li></ol></section>
+
+    <p class="back"><a href="/academy/">Return to Academy</a> or use <a href="/contact/?subject=creative-project">Contact</a> for an ordinary project question. Contact is not a sprint application.</p>
+  </Wrapper></ContentPanel></main>
+</BaseLayout>
+
+<style>
+  .sprint-hero { border-bottom: 1px solid #2c2440; background: radial-gradient(circle at 78% 12%, rgba(242,77,166,.12), transparent 30rem), #07060b; }
+  .eyebrow { margin: 0; color: #5cf0f0; font-family: var(--font-mono); font-size: .64rem; letter-spacing: .1em; text-transform: uppercase; }
+  h1 { max-width: 62rem; margin: 1rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(3rem, 8vw, 6.5rem); font-weight: 300; line-height: .9; letter-spacing: -.05em; }
+  .lead { max-width: 50rem; margin: 1.4rem 0 0; color: #c8c6d4; font-size: 1.05rem; line-height: 1.68; }
+  .scope-grid { display: grid; gap: .9rem; }
+  .scope-grid article, .closed { padding: 1.2rem; border: 1px solid #2c2440; background: #0e0b16; }
+  h2 { margin: .7rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 350; line-height: 1.05; }
+  p, li { color: #aaa5b7; font-size: .86rem; line-height: 1.65; }
+  ul, ol { padding-left: 1.2rem; }
+  .sprint-section { margin-top: 3.5rem; }
+  .intake { display: grid; gap: .55rem; margin-top: 1.2rem; }
+  .intake li { padding: .7rem .8rem; border: 1px solid #2c2440; background: #0e0b16; }
+  .closed { margin-top: 1rem; border-color: rgba(240,201,107,.42); }
+  .closed strong { color: #f0c96b; }
+  .closed button { border: 1px solid #4b4557; border-radius: 999px; padding: .6rem .9rem; background: transparent; color: #777086; cursor: not-allowed; }
+  .flow { display: grid; gap: .55rem; }
+  .back { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #2c2440; }
+  a { color: #5cf0a6; text-underline-offset: .2rem; }
+  @media (min-width: 760px) { .scope-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .intake { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+</style>

@@ -112,9 +112,14 @@ export async function logout(): Promise<boolean> {
   return status === 200;
 }
 
-export async function deleteAccount(): Promise<boolean> {
-  const { status } = await authFetch<{ ok: boolean }>("/api/auth/account/delete", { method: "POST" });
-  return status === 200;
+export async function deleteAccount(confirmEmail: string): Promise<{ ok: boolean; error?: string }> {
+  const { status, data } = await authFetch<{ ok: boolean; error?: string }>("/api/auth/account/delete", {
+    method: "POST",
+    body: JSON.stringify({ confirmEmail }),
+  });
+  return status === 200
+    ? { ok: true }
+    : { ok: false, error: data?.error ?? "delete_failed" };
 }
 
 export async function fetchKeys(): Promise<KeyEntry[]> {

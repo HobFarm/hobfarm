@@ -1,0 +1,5 @@
+Contact: https://hob.farm/contact/?subject=security
+Expires: 2027-08-06T23:59:59Z
+Canonical: https://hob.farm/.well-known/security.txt
+Preferred-Languages: en
+Policy: https://hob.farm/legal/privacy/

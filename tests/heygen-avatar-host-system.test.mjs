@@ -23,14 +23,16 @@ test("Avatar & Host is a first-class Workshop program with a durable production 
   ]) {
     assert.match(page, new RegExp(heading.replaceAll("/", "\\/")));
   }
-  for (const role of [
-    "Hillary \/ editorial guide",
-    "Ami \/ commercial presenter",
-    "PsyGoth \/ three-host system",
-    "Hobgal \/ retired prototype",
+  for (const principle of [
+    "Article first",
+    "Video for social",
+    "Human review",
+    "Link back to HobFarm",
   ]) {
-    assert.match(page, new RegExp(role));
+    assert.match(page, new RegExp(principle));
   }
+  assert.match(page, /A Codex production project/);
+  assert.match(page, /PsyGoth is an existing experiment, not a separate media strategy/);
 });
 
 test("avatar host media slots remain registered without generated URLs", () => {
@@ -98,7 +100,9 @@ test("PsyGoth uses three durable CDN clips with deferred playback and transcript
     assert.match(registry, new RegExp(id.replaceAll(".", "\\.")));
   }
   assert.match(registry, /cdn\(`workshop\/\$\{file\}`\)/);
-  assert.doesNotMatch(registry, /src: `\/media\/workshop/);
+  for (const slug of ["em", "nina", "zima"]) {
+    assert.match(registry, new RegExp(`workshop\\.psygoth\\.${slug}\\.video[\\s\\S]{0,600}workshopMedia\\(`));
+  }
 });
 
 test("canonical avatar portraits and section graphics use approved R2 paths", () => {

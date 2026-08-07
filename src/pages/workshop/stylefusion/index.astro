@@ -9,6 +9,7 @@
 import { getCollection, getEntry } from "astro:content";
 import StyleFusionProjectPage from "@/components/projects/StyleFusionProjectPage.astro";
 import StyleFusionMediaStudies from "@/components/workshop/StyleFusionMediaStudies.astro";
+import WorkshopCourseBridge from "@/components/academy/WorkshopCourseBridge.astro";
 
 const project = await getEntry("workshop", "stylefusion");
 if (!project) {
@@ -28,4 +29,8 @@ const hellcat = studies.find((entry) => entry.id === "industrial-elf-neo-noir");
       <StyleFusionMediaStudies cathedral={cathedral} hellcat={hellcat} />
     </div>
   )}
+  <WorkshopCourseBridge
+    courseSlug="style-is-a-system"
+    publicProof="The public StyleFusion record shows the reference roles, transformations, and boundary conditions. The planned course will teach a portable source-file method without promising application access."
+  />
 </StyleFusionProjectPage>

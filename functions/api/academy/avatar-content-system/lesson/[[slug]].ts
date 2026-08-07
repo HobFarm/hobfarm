@@ -1,26 +1,7 @@
 import { getPaidLesson } from "../../../../../src/data/avatar-content-system-paid";
-import {
-  fetchAdminJson,
-  resolveAuthUser,
-  type AdminSubscriptionRecord,
-} from "../../../stripe/internal";
+import { academyJson as json, resolveAcademyAccess, type AcademyEnv } from "../../internal";
 
-interface Env {
-  AUTH_WORKER_URL?: string;
-  INTERNAL_ADMIN_HMAC_SECRET?: string;
-}
-
-const jsonHeaders = {
-  "Cache-Control": "no-store",
-  "Content-Type": "application/json; charset=utf-8",
-  "X-Content-Type-Options": "nosniff",
-};
-
-const ACTIVE_STATUSES = new Set(["active", "trialing"]);
-
-function json(data: Record<string, unknown>, status = 200): Response {
-  return Response.json(data, { status, headers: jsonHeaders });
-}
+type Env = AcademyEnv;
 
 function getSlug(params: Record<string, unknown>): string | null {
   const raw = params.slug;
@@ -49,57 +30,51 @@ export const onRequestGet: PagesFunction<Env> = async ({ request, env, params })
         locked: true,
         error: "login_required",
         message:
-          "Sign in to check course access. Supporter beta access unlocks the paid starter kit lessons.",
+          "Sign in to check permanent purchase or membership access.",
         login_url: `/login?next=/academy/avatar-content-system/course/${encodeURIComponent(slug)}`,
         membership_url: "/membership",
+        purchase_url: "/academy/courses/avatar-content-system/#access",
       },
       401,
     );
   }
 
-  if (!env.AUTH_WORKER_URL || !env.INTERNAL_ADMIN_HMAC_SECRET) {
+  if (!env.AUTH_WORKER_URL || !env.INTERNAL_ADMIN_HMAC_SECRET || !env.COMMERCE) {
     return json({ error: "course_access_not_configured" }, 503);
   }
 
-  const user = await resolveAuthUser(request, { AUTH_WORKER_URL: env.AUTH_WORKER_URL });
-  if (!user) {
+  const access = await resolveAcademyAccess(request, env, "academy-course-avatar-v1");
+  if (!access.user) {
     return json(
       {
         locked: true,
         error: "login_required",
         message:
-          "Sign in to check course access. Supporter beta access unlocks the paid starter kit lessons.",
+          "Sign in to check permanent purchase or membership access.",
         login_url: `/login?next=/academy/avatar-content-system/course/${encodeURIComponent(slug)}`,
         membership_url: "/membership",
+        purchase_url: "/academy/courses/avatar-content-system/#access",
       },
       401,
     );
   }
 
-  const lookup = await fetchAdminJson<{ subscription: AdminSubscriptionRecord | null }>(
-    {
-      AUTH_WORKER_URL: env.AUTH_WORKER_URL,
-      INTERNAL_ADMIN_HMAC_SECRET: env.INTERNAL_ADMIN_HMAC_SECRET,
-    },
-    "GET",
-    `/api/admin/subscriptions/by-user/${encodeURIComponent(user.id)}`,
-  );
-
-  const subscription = lookup.status === 200 ? lookup.data?.subscription ?? null : null;
-  if (!subscription || !ACTIVE_STATUSES.has(subscription.status)) {
+  if (!access.allowed) {
     return json(
       {
         locked: true,
-        error: "supporter_required",
+        error: "course_access_required",
         message:
-          "This lesson is part of the paid starter kit. Supporter beta access unlocks the full lesson body.",
+          "This lesson is included with permanent course access or an active HobFarm membership.",
+        purchase_url: "/academy/courses/avatar-content-system/#access",
         membership_url: "/membership",
+        repair_code: access.repairCode,
       },
       403,
     );
   }
 
-  return json({ lesson });
+  return json({ lesson, access: access.source, repair_code: access.repairCode });
 };
 
 export const onRequestPost: PagesFunction = async () => {

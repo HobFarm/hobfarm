@@ -270,15 +270,38 @@ test("search and rss use the canonical article path helper", () => {
   assert.match(rss, /link:\s*articlePath\(post\)/);
 });
 
-test("article share controls include a generated share post", () => {
+test("article sharing uses the standard seven controls and a generated share caption", () => {
   const shareButtons = read("src/components/articles/ShareButtons.astro");
   const articleLayout = read("src/layouts/ArticleLayout.astro");
 
+  for (const network of ["facebook", "instagram", "x", "pinterest", "reddit", "copy", "email"]) {
+    assert.match(shareButtons, new RegExp(`network: "${network}"`));
+  }
   assert.match(shareButtons, /data-share-post/);
   assert.match(shareButtons, /data-copy-share-post/);
-  assert.match(shareButtons, /data-native-share/);
-  assert.match(shareButtons, /Share post/);
+  assert.match(shareButtons, /data-instagram-share/);
+  assert.match(shareButtons, /Share caption/);
+  assert.doesNotMatch(shareButtons, /Threads|Bluesky/i);
+  assert.equal((articleLayout.match(/<ShareButtons/g) ?? []).length, 2);
   assert.match(articleLayout, /tags=\{frontmatter\.tags\}/);
+});
+
+test("RSS is discoverable and new published articles populate the feed", () => {
+  const baseLayout = read("src/layouts/BaseLayout.astro");
+  const subscribe = read("src/components/articles/Subscribe.astro");
+  const articlesPage = read("src/pages/articles/index.astro");
+  const rss = read("src/pages/rss.xml.js");
+
+  assert.match(baseLayout, /href: "\/rss\.xml"/);
+  assert.match(baseLayout, /rel="alternate" type="application\/rss\+xml"/);
+  assert.match(subscribe, /data-rss-subscribe/);
+  assert.match(subscribe, /id="article-subscribe"/);
+  assert.match(subscribe, /Open the RSS feed/);
+  assert.match(subscribe, /Copy feed address/);
+  assert.match(articlesPage, /href="#article-subscribe"/);
+  assert.match(articlesPage, /Subscribe to articles/);
+  assert.match(rss, /getPublishedArticles\(\)/);
+  assert.match(rss, /categories: post\.data\.tags/);
 });
 
 test("the Articles cover story prefers each article's hero over a series logo", () => {

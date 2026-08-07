@@ -1,17 +1,21 @@
 import { useEffect, useState } from "react";
 import SnippetCards from "./SnippetCards";
 import type { LessonPreview } from "@/data/avatar-content-system";
-import type { PaidLesson } from "@/data/avatar-content-system-paid";
+import type { PaidLesson } from "@/data/avatar-course-contract";
+import LessonProgress from "./LessonProgress";
 
 interface Props {
   slug: string;
   preview: LessonPreview;
+  lessonId: string;
+  courseHref: string;
+  isFinalLesson?: boolean;
 }
 
 type LoadState =
   | { kind: "loading" }
   | { kind: "ready"; lesson: PaidLesson }
-  | { kind: "locked"; message: string; loginUrl: string; membershipUrl: string }
+  | { kind: "locked"; message: string; loginUrl: string; membershipUrl: string; purchaseUrl: string }
   | { kind: "error"; message: string };
 
 const primaryLinkClass =
@@ -20,7 +24,7 @@ const primaryLinkClass =
 const secondaryLinkClass =
   "inline-flex h-9 items-center justify-center rounded-full border border-base-700 px-4 py-2 text-xs font-medium text-base-300 transition-colors hover:border-white hover:text-white";
 
-export default function PaidLessonView({ slug, preview }: Props) {
+export default function PaidLessonView({ slug, preview, lessonId, courseHref, isFinalLesson = false }: Props) {
   const [state, setState] = useState<LoadState>({ kind: "loading" });
 
   useEffect(() => {
@@ -38,6 +42,7 @@ export default function PaidLessonView({ slug, preview }: Props) {
               message?: string;
               login_url?: string;
               membership_url?: string;
+              purchase_url?: string;
               error?: string;
             }
           | null;
@@ -50,13 +55,17 @@ export default function PaidLessonView({ slug, preview }: Props) {
         }
 
         if (res.status === 401 || res.status === 403) {
+          window.dispatchEvent(new CustomEvent("hobfarm:analytics", {
+            detail: { name: "academy_access_denied", courseId: "avatar-content-system", lessonId: slug },
+          }));
           setState({
             kind: "locked",
             message:
               data?.message ??
-              "This lesson is part of the paid starter kit. Supporter beta access unlocks the full lesson body.",
+              "This lesson is included with permanent course access or an active HobFarm membership.",
             loginUrl: data?.login_url ?? `/login?next=/academy/avatar-content-system/course/${slug}`,
             membershipUrl: data?.membership_url ?? "/membership",
+            purchaseUrl: data?.purchase_url ?? "/academy/courses/avatar-content-system/#access",
           });
           return;
         }
@@ -98,14 +107,17 @@ export default function PaidLessonView({ slug, preview }: Props) {
         <p className="text-xs font-mono uppercase tracking-wider text-accent-violet-bright">
           Locked lesson
         </p>
-        <h2 className="mt-5 text-2xl font-display text-white">Supporter beta access unlocks this lesson.</h2>
+        <h2 className="mt-5 text-2xl font-display text-white">Permanent access or membership unlocks this lesson.</h2>
         <p className="mt-4 max-w-2xl text-sm leading-relaxed text-base-400">{state.message}</p>
         <div className="mt-6 flex flex-wrap gap-3">
           <a href={state.loginUrl} className={primaryLinkClass}>
             Sign in
           </a>
+          <a href={state.purchaseUrl} className={secondaryLinkClass}>
+            Compare access options
+          </a>
           <a href={state.membershipUrl} className={secondaryLinkClass}>
-            Get supporter access
+            View membership
           </a>
         </div>
         <div className="mt-8 border-t border-base-800 pt-5">
@@ -130,6 +142,7 @@ export default function PaidLessonView({ slug, preview }: Props) {
   const { lesson } = state;
 
   return (
+    <>
     <article className="space-y-10">
       <section className="border border-base-800 bg-base-900/40 p-6">
         <p className="text-xs font-mono uppercase tracking-wider text-accent-green-bright">Goal</p>
@@ -211,5 +224,15 @@ export default function PaidLessonView({ slug, preview }: Props) {
         </div>
       ) : null}
     </article>
+    <div className="mt-10">
+      <LessonProgress
+        courseSlug="avatar-content-system"
+        lessonSlug={slug}
+        lessonId={lessonId}
+        courseHref={courseHref}
+        isFinalLesson={isFinalLesson}
+      />
+    </div>
+    </>
   );
 }

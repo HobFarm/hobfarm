@@ -101,7 +101,7 @@ The guide controls prose shape, not canon. Factual constraints, the user's curre
 
 | Layer     | Technology                                     |
 | --------- | ---------------------------------------------- |
-| Framework | Astro 6                                        |
+| Framework | Astro 7                                        |
 | Language  | TypeScript                                     |
 | Styling   | Tailwind CSS v4, CSS-first setup               |
 | CMS       | PagesCMS, configured in `.pages.yml`           |

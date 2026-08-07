@@ -2,7 +2,7 @@ import { avatarCourse } from "@/data/avatar-content-system";
 
 export type AcademyCourseSource = "legacy" | "content";
 export type AcademyCheckoutProvider = "none" | "stripe" | "external" | "membership-legacy";
-export type AcademyAccessType = "public" | "one-time" | "bundle" | "active-membership";
+export type AcademyAccessType = "public" | "one-time" | "bundle" | "active-membership" | "one-time-or-membership";
 export type AcademyCourseStatus = "available" | "beta" | "planned";
 export type AcademyPriceLabel =
   | "Free"
@@ -212,17 +212,17 @@ export const avatarCourseRecord: AcademyCourse = {
   source: "legacy",
   title: avatarCourse.productName,
   shortTitle: avatarCourse.productName,
-  href: `${avatarCourse.basePath}/`,
+  href: "/academy/courses/avatar-content-system/",
   startHref: avatarCourse.freePath,
   ctaLabel: "Preview course",
   description: avatarCourse.summary,
   deck: avatarCourse.thesis,
-  statusLabel: "Available through membership",
-  accessLabel: "4 free lessons + 12 paid beta lessons",
-  priceLabel: "$5/month supporter beta",
-  checkoutProvider: "membership-legacy",
-  accessType: "active-membership",
-  courseStatus: "beta",
+  statusLabel: "Available now",
+  accessLabel: "4 free lessons + 12 paid lessons",
+  priceLabel: "$7",
+  checkoutProvider: "stripe",
+  accessType: "one-time-or-membership",
+  courseStatus: "available",
   relatedWorkshop: "/workshop/future-carriage/",
   affiliateDisclosure:
     "Affiliate link: HobFarm may earn a commission if you buy through this link. It does not change your price.",

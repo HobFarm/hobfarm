@@ -1,209 +1,106 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Text from "@/components/fundations/elements/Text.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import ContentPanel from "@/components/ContentPanel.astro";
-import Eyebrow from "@/components/sections/Eyebrow.astro";
-import SectionHeader from "@/components/sections/SectionHeader.astro";
-import Button from "@/components/fundations/elements/Button.astro";
-import {
-  academyCourses,
-  intellectualSelfDefenseCourse,
-} from "@/data/academy-courses";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Breadcrumbs from "@/components/global/Breadcrumbs.astro";
+import AcademyCourseCard from "@/components/academy/AcademyCourseCard.astro";
+import { academyCourseManifests, academyCourseScaffolds } from "@/data/academy-manifest";
 
-type Track = { title: string; body: string };
-
-const tracks: Track[] = [
-  {
-    title: "Platform fundamentals",
-    body: "Getting set up on the main AI platforms: figuring out what each model is good at, getting your API keys working, and learning the quirks of Grok on X, Meta AI, and Gemini. This is the groundwork everything else builds on.",
-  },
-  {
-    title: "Prompt science",
-    body: "How to write prompts that actually work. Run the same prompt through different models and compare the results. Try the same model with different formats (plain text, markdown, JSON, tag lists) and watch what changes. Learn how the order of a prompt shifts the answer, and where each platform's length limits get in the way.",
-  },
-  {
-    title: "Image workflows",
-    body: "The full image process, start to finish. Mask a subject image in Photoshop, assign approved StyleFusion reference roles, inspect the export, then send the compiled document into a downstream image run. Grimoire keeps the references, notes, and metadata connected without treating the generated images as part of the export.",
-  },
-  {
-    title: "Building with AI",
-    body: "How the HobFarm apps actually get built: the tools, the tech stack, the custom Claude skills and instructions behind them, and how one person ships real software with AI.",
-  },
-  {
-    title: "Selling your work",
-    body: "Etsy and print-on-demand, run from a real shop. How to set up listings, turn generated art into physical products people can buy, and let a single post that shows a real technique do the selling for you.",
-  },
-  {
-    title: "Character sheets",
-    body: "Reusable character sheets and reference files that keep a character looking the same from one image to the next, across different models and projects.",
-  },
-];
-
-const priceBands = [
-  {
-    label: "Free",
-    body: "Public courses and onboarding material stay open without checkout.",
-  },
-  {
-    label: "$5 / $7 / $9",
-    body: "Paid courses use a one-time price chosen for the size of the course.",
-  },
-  {
-    label: "Bundle price",
-    body: "A bundle gets one clearly labeled one-time price when several courses belong together.",
-  },
-];
-
-const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
+const available = academyCourseManifests.filter((course) => course.publicStatus === "available");
+const previews = academyCourseManifests.filter((course) => course.publicStatus === "preview" || course.publicStatus === "in production");
 const academyJsonLd = {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  name: "Academy",
-  description:
-    "Practical HobFarm courses for research, creative production, media judgment, and repeatable AI workflows.",
-  url: `${siteOrigin}/academy/`,
-  mainEntity: {
-    "@type": "ItemList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: intellectualSelfDefenseCourse.title,
-        url: `${siteOrigin}${intellectualSelfDefenseCourse.href}`,
-      },
-      ...academyCourses.slice(1).map((course, index) => ({
-        "@type": "ListItem",
-        position: index + 2,
-        name: course.title,
-        url: `${siteOrigin}${course.href}`,
-      })),
-      ...tracks.map((track, index) => ({
-        "@type": "ListItem",
-        position: index + academyCourses.length + 1,
-        name: track.title,
-        description: track.body,
-      })),
-    ],
-  },
+  "@type": "ItemList",
+  name: "HobFarm Academy courses",
+  itemListElement: available.map((course, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    url: `https://hob.farm/academy/courses/${course.slug}/`,
+    name: course.title,
+  })),
 };
 ---
 
 <BaseLayout
   title="Academy | HobFarm"
-  description="Practical HobFarm courses for research, creative production, media judgment, and repeatable AI workflows."
+  description="Practical HobFarm courses that turn Workshop methods into finished assets, source files, and repeatable workflows."
   canonical="/academy/"
   structuredData={academyJsonLd}
+  palette="magenta-cyan"
 >
-  {/* ── Hero ── */}
-  <section class="bg-noise border-b border-base-800/50">
-    <ContentPanel>
-      <Wrapper variant="standard" class="py-20 lg:py-28">
-        <Eyebrow text="HobFarm / Academy" />
-        <Text tag="h1" variant="display2XL" class="mt-6 text-white font-display max-w-4xl text-balance">
-          Academy
-        </Text>
-        <Text tag="p" variant="textBase" class="text-base-300 mt-6 max-w-2xl text-pretty leading-relaxed">
-          A catalog of practical free and affordable one-time courses built from HobFarm's working methods. Start with the free media-literacy course or preview the Avatar Content System while its current supporter access remains in place.
-        </Text>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <Button isLink size="sm" variant="green" href={intellectualSelfDefenseCourse.startHref}>
-            Start the free course
-          </Button>
-          <Button isLink size="sm" variant="muted" href={intellectualSelfDefenseCourse.href}>
-            View the course map
-          </Button>
-        </div>
-      </Wrapper>
-    </ContentPanel>
-  </section>
+  <ContentPanel><Wrapper variant="standard" class="pt-5"><Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Academy" }]} /></Wrapper></ContentPanel>
 
-  {/* ── Available courses ── */}
-  <section class="border-t border-base-800/50">
-    <ContentPanel>
-      <Wrapper variant="standard" class="py-12 lg:py-20">
-        <SectionHeader eyebrow="01" heading="Available courses" note="Start with the job in front of you." />
-        <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
-          {academyCourses.map((course) => (
-            <article class="overflow-hidden border border-base-800 bg-base-900/40">
-              <img src={course.cover} alt={course.coverAlt} class="aspect-video w-full object-cover" loading="lazy" decoding="async" />
-              <div class="p-6">
-                <p class="text-xs font-mono uppercase tracking-wider text-accent-green-bright">{course.accessLabel}</p>
-                <Text tag="h2" variant="displaySM" class="mt-3 text-white font-display text-balance">
-                  {course.title}
-                </Text>
-                <p class="mt-4 max-w-2xl text-sm leading-relaxed text-base-400">{course.description}</p>
-                <div class="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-xs font-mono text-base-500">
-                  <span>{course.statusLabel}</span>
-                  <span>{course.priceLabel}</span>
-                  <span>{course.duration}</span>
-                </div>
-                {course.accessType === "active-membership" && (
-                  <p class="mt-4 border-l-2 border-accent-cyan/50 pl-3 text-xs leading-relaxed text-base-500">
-                    Existing supporter entitlement remains active. A one-time purchase migration has not been approved or applied.
-                  </p>
-                )}
-                <div class="mt-6 flex flex-wrap gap-3">
-                  <Button isLink size="sm" variant="green" href={course.href}>{course.ctaLabel}</Button>
-                  <Button isLink size="sm" variant="muted" href={course.startHref}>Start here</Button>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </Wrapper>
-    </ContentPanel>
-  </section>
+  <header class="academy-hero" data-event="academy_catalog_view">
+    <ContentPanel><Wrapper variant="standard" class="py-16 lg:py-24">
+      <p class="eyebrow">HobFarm / Academy</p>
+      <h1>Learn the system behind the work.</h1>
+      <p class="lead">Each course starts with one production problem and ends with a finished asset, source file, or repeatable workflow. Start with a free course, buy one for $5 or $7 when it is available, or use the catalog with the $5 monthly HobFarm membership.</p>
+      <div class="hero-actions"><a href="#courses">Browse courses</a><a href="/account/">Continue from Account</a><a href="/academy/help/">Academy help</a></div>
+    </Wrapper></ContentPanel>
+  </header>
 
-  <section class="border-t border-base-800/50">
-    <ContentPanel>
-      <Wrapper variant="standard" class="py-12 lg:py-20">
-        <SectionHeader eyebrow="02" heading="Simple one-time pricing" note="The price appears before checkout." />
-        <div class="grid grid-cols-1 gap-5 md:grid-cols-3">
-          {priceBands.map((band) => (
-            <article class="border border-base-800 bg-base-900/40 p-6">
-              <p class="font-mono text-lg text-accent-green-bright">{band.label}</p>
-              <p class="mt-3 text-sm leading-relaxed text-base-400">{band.body}</p>
-            </article>
-          ))}
+  <main>
+    <ContentPanel><Wrapper variant="standard" class="py-12 lg:py-20">
+      <section class="access-explainer" aria-labelledby="access-heading">
+        <div><p class="eyebrow">Access</p><h2 id="access-heading">The price buys the course. Membership borrows the catalog.</h2></div>
+        <div class="access-grid">
+          <article><span>Free</span><p>Public lessons, exercises, and downloads stay open without an account.</p></article>
+          <article><span>One time</span><p>A $5 or $7 course purchase grants permanent account access unless it is refunded, disputed, or corrected by support.</p></article>
+          <article><span>Membership</span><p>The $5 monthly HobFarm membership includes Academy courses while membership is active. A separate purchase survives cancellation.</p></article>
         </div>
-      </Wrapper>
-    </ContentPanel>
-  </section>
+      </section>
 
-  {/* ── What's coming ── */}
-  <section class="border-t border-base-800/50">
-    <ContentPanel>
-      <Wrapper variant="standard" class="py-12 lg:py-20">
-        <SectionHeader eyebrow="03" heading="What's coming" note="More tracks in production." />
-        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {tracks.map((track) => (
-            <div class="rounded-lg border border-base-800 bg-base-900/40 p-6">
-              <Text tag="h3" variant="textLG" class="text-white font-display">
-                {track.title}
-              </Text>
-              <Text tag="p" variant="textSM" class="text-base-400 mt-3 text-pretty leading-relaxed">
-                {track.body}
-              </Text>
-            </div>
-          ))}
-        </div>
-      </Wrapper>
-    </ContentPanel>
-  </section>
+      <section id="courses" class="catalog-section" aria-labelledby="available-heading">
+        <div class="section-heading"><div><p class="eyebrow">Available now</p><h2 id="available-heading">Courses you can use</h2></div><p>Course prices do not include outside model, avatar, voice, API, hosting, stock, or licensing costs. Each card names the likely tool requirement.</p></div>
+        <div class="course-grid">{available.map((course) => <AcademyCourseCard course={course} />)}</div>
+      </section>
 
-  {/* ── Built from real work ── */}
-  <section class="border-t border-base-800/50">
-    <ContentPanel>
-      <Wrapper variant="standard" class="py-12 lg:py-20">
-        <SectionHeader eyebrow="04" heading="Built from real work" note="Nothing here is theory." />
-        <Text tag="p" variant="textBase" class="text-base-400 max-w-2xl text-pretty leading-relaxed">
-          These courses come from the same work behind StyleFusion, Grimoire, and the rest of HobFarm. When a lesson covers a prompt change, it shows the results side by side. When it covers a platform quirk, it explains where the issue came up and how it was handled.
-        </Text>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <Button isLink size="sm" variant="green" href="/articles">Get notified through articles</Button>
-        </div>
-      </Wrapper>
-    </ContentPanel>
-  </section>
+      <section class="catalog-section" aria-labelledby="preview-heading">
+        <div class="section-heading"><div><p class="eyebrow">Preview</p><h2 id="preview-heading">Built from current Workshop evidence</h2></div><p>These drafts are not on sale. Public previews show the problem and source trace while operator walkthroughs close the remaining gaps.</p></div>
+        <div class="course-grid">{previews.map((course) => <AcademyCourseCard course={course} />)}</div>
+      </section>
+
+      <section class="catalog-section" aria-labelledby="planned-heading">
+        <div class="section-heading"><div><p class="eyebrow">Planned</p><h2 id="planned-heading">Next source-backed courses</h2></div><p>These are production records, not promises or products. They move forward only when the Workshop source, operator steps, and validation record support them.</p></div>
+        <div class="course-grid">{academyCourseScaffolds.map((course) => <AcademyCourseCard course={course} />)}</div>
+      </section>
+
+      <section class="catalog-section next-routes" aria-labelledby="next-heading">
+        <div><p class="eyebrow">Need a route</p><h2 id="next-heading">Start with the evidence, the lesson, or support.</h2></div>
+        <nav aria-label="Academy next steps">
+          <a href="/workshop/"><strong>Workshop</strong><span>See the public proof and production record.</span></a>
+          <a href="/academy/help/"><strong>Academy Help</strong><span>Search course questions and report a missing answer.</span></a>
+          <a href="/academy/choose-the-tool-for-the-job/"><strong>Choose the Tool for the Job</strong><span>Preview the planned free route map for choosing a workflow from constraints.</span></a>
+          <a href="/academy/production-system-sprint/"><strong>Private sprint draft</strong><span>Read the proposed high-touch scope. Applications are not open.</span></a>
+        </nav>
+      </section>
+    </Wrapper></ContentPanel>
+  </main>
 </BaseLayout>
+
+<style>
+  .academy-hero { border-bottom: 1px solid #2c2440; background: radial-gradient(circle at 82% 18%, rgba(242,77,166,.13), transparent 31rem), radial-gradient(circle at 20% 70%, rgba(92,240,240,.08), transparent 28rem), #07060b; }
+  .eyebrow { margin: 0; color: #5cf0f0; font-family: var(--font-mono); font-size: .65rem; letter-spacing: .11em; text-transform: uppercase; }
+  h1 { max-width: 64rem; margin: 1rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(3.2rem, 9vw, 7.4rem); font-weight: 280; line-height: .88; letter-spacing: -.055em; }
+  .lead { max-width: 52rem; margin: 1.5rem 0 0; color: #c8c6d4; font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.7; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.5rem; }
+  .hero-actions a { border: 1px solid #41345c; border-radius: 999px; padding: .65rem 1rem; color: #ece9f5; font-family: var(--font-mono); font-size: .68rem; text-decoration: none; }
+  .hero-actions a:first-child { border-color: #5cf0a6; background: #5cf0a6; color: #07060b; }
+  .access-explainer, .catalog-section { margin-top: 4rem; }
+  .access-explainer { margin-top: 0; }
+  .access-explainer h2, .section-heading h2, .next-routes h2 { max-width: 48rem; margin: .65rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 340; line-height: 1.02; }
+  .access-grid { display: grid; gap: .7rem; margin-top: 1.4rem; }
+  .access-grid article { padding: 1.1rem; border: 1px solid #2c2440; background: #0e0b16; }
+  .access-grid span { color: #5cf0a6; font-family: var(--font-mono); font-size: .64rem; text-transform: uppercase; }
+  .access-grid p, .section-heading > p { color: #aaa5b7; font-size: .82rem; line-height: 1.6; }
+  .section-heading { display: grid; gap: 1rem; align-items: end; }
+  .section-heading > p { max-width: 38rem; margin: 0; }
+  .course-grid { display: grid; gap: .9rem; margin-top: 1.3rem; }
+  .next-routes { display: grid; gap: 1.4rem; padding: 1.3rem; border: 1px solid #41345c; background: #0e0b16; }
+  .next-routes nav { display: grid; gap: .65rem; }
+  .next-routes a { padding: .9rem; border: 1px solid #2c2440; color: #fff; text-decoration: none; }
+  .next-routes a:hover { border-color: #5cf0a6; }
+  .next-routes strong { display: block; font-family: var(--font-display); font-size: 1.1rem; }
+  .next-routes span { display: block; margin-top: .35rem; color: #8d879d; font-size: .72rem; line-height: 1.5; }
+  @media (min-width: 720px) { .access-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } .section-heading, .next-routes { grid-template-columns: 1fr .8fr; } .course-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+</style>

@@ -1,0 +1,59 @@
+---
+import { academyFeatures } from "@/data/academy-features";
+import { academyPriceLabel, type AcademyCourseManifest } from "@/data/academy-manifest";
+
+interface Props { course: AcademyCourseManifest }
+const { course } = Astro.props;
+const canOfferPurchase = course.productKey && course.status === "available" && academyFeatures.oneTimeCheckoutVisible;
+---
+
+<section id="access" class="access-card" aria-labelledby="course-access-heading">
+  <p class="access-card__eyebrow">Course access</p>
+  <h2 id="course-access-heading">Choose permanent access or the catalog membership.</h2>
+  {course.priceTier === "free" ? (
+    <>
+      <p>This course is public. No purchase or membership is required.</p>
+      <a class="primary" href={course.lessons[0]?.legacyHref ?? `/academy/courses/${course.slug}/${course.lessons[0]?.slug}/`}>Start the free course</a>
+    </>
+  ) : (
+    <div class="access-card__grid">
+      <article>
+        <span>Keep this course</span>
+        <strong>{academyPriceLabel(course.priceTier)}</strong>
+        <p>Permanent access on your HobFarm account unless the purchase is refunded, disputed, or corrected by support.</p>
+        {canOfferPurchase ? (
+          <form method="post" action="/api/academy/checkout" data-event="academy_checkout_start" data-course-id={course.courseId}>
+            <input type="hidden" name="product_key" value={course.productKey!} />
+            <button type="submit">Buy permanent access</button>
+          </form>
+        ) : (
+          <p class="pending">One-time checkout is in final payment and tax review. It is not active yet.</p>
+        )}
+      </article>
+      <article>
+        <span>Use the catalog</span>
+        <strong>$5/month</strong>
+        <p>Included while HobFarm membership is active. Current supporter access remains valid during this migration.</p>
+        <a class="secondary" href="/membership/" data-event="academy_membership_start" data-course-id={course.courseId}>View membership</a>
+      </article>
+    </div>
+  )}
+  <p class="support">Already paid or already a supporter? <a href="/login?next=/account/">Sign in</a>, then check <a href="/account/">Account</a>. Billing and missing access go to <a href="/helpcenter/">Customer Help</a>.</p>
+</section>
+
+<style>
+  .access-card { padding: clamp(1.25rem, 4vw, 2rem); border: 1px solid #41345c; border-radius: 1rem; background: radial-gradient(circle at 90% 0, rgba(92,240,166,.08), transparent 45%), #0e0b16; }
+  .access-card__eyebrow { margin: 0; color: #5cf0a6; font-family: var(--font-mono); font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; }
+  h2 { max-width: 42rem; margin: .75rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 350; line-height: 1.05; }
+  p { color: #aaa5b7; font-size: .84rem; line-height: 1.62; }
+  .access-card__grid { display: grid; gap: .8rem; margin-top: 1.4rem; }
+  article { padding: 1.1rem; border: 1px solid #2c2440; background: rgba(7,6,11,.65); }
+  article span { color: #777086; font-family: var(--font-mono); font-size: .62rem; text-transform: uppercase; }
+  article strong { display: block; margin-top: .35rem; color: #fff; font-family: var(--font-display); font-size: 1.7rem; font-weight: 400; }
+  button, .primary, .secondary { display: inline-flex; margin-top: .8rem; border: 0; border-radius: 999px; padding: .65rem 1rem; background: #5cf0a6; color: #08070c; font-size: .72rem; font-weight: 650; text-decoration: none; cursor: pointer; }
+  .secondary { border: 1px solid #514461; background: transparent; color: #ece9f5; }
+  .pending { padding: .75rem; border-left: 2px solid #f0c96b; background: rgba(240,201,107,.05); color: #d8ca9e; }
+  .support { margin: 1rem 0 0; }
+  .support a { color: #5cf0f0; text-underline-offset: .2rem; }
+  @media (min-width: 720px) { .access-card__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+</style>

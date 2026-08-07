@@ -113,9 +113,10 @@ test("Academy models one-time pricing while preserving Avatar supporter access",
   for (const field of ["checkoutProvider", "accessType", "courseStatus", "relatedWorkshop", "relatedAssetPack", "affiliateDisclosure"]) {
     assert.match(academy, new RegExp(field));
   }
-  assert.match(academy, /checkoutProvider: "membership-legacy"/);
-  assert.match(avatar, /accessModel: "membership-beta"/);
-  assert.match(migration, /No entitlement behavior changes/);
+  assert.match(academy, /checkoutProvider: "stripe"/);
+  assert.match(academy, /accessType: "one-time-or-membership"/);
+  assert.match(avatar, /accessModel: "permanent-or-membership"/);
+  assert.match(migration, /academy_all_access/);
 });
 
 test("contextual offers and nearby affiliate disclosure are reusable", () => {

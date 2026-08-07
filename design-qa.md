@@ -1,50 +1,37 @@
-# Design QA: Workshop page
+# HobFarm visual QA
 
-## Visual truth
+Result: **PASSED**
 
-- Source reference: `C:\Users\xkxxk\.codex\generated_images\019fcfd5-31a6-7572-b20e-53c78a175703\exec-3c6da6ac-4ed2-4c85-b04b-a59ac6b2935c.png`
-- Implementation route: `http://127.0.0.1:4321/workshop/#programs`
-- Desktop implementation: `C:\Users\xkxxk\AppData\Local\Temp\hobfarm-workshop-programs-desktop.png`
-- Desktop alternating row: `C:\Users\xkxxk\AppData\Local\Temp\hobfarm-workshop-programs-desktop-alternate.png`
-- Mobile implementation: `C:\Users\xkxxk\AppData\Local\Temp\hobfarm-workshop-programs-mobile.png`
-- Mobile image-to-ledger detail: `C:\Users\xkxxk\AppData\Local\Temp\hobfarm-workshop-programs-mobile-detail.png`
-- Side-by-side comparison: `C:\Users\xkxxk\AppData\Local\Temp\hobfarm-workshop-programs-comparison.png`
+## Source of truth
 
-## Capture state
+- Article-sharing screenshot attached to the August 6, 2026 build request.
+- Homepage screenshot attached to the same request.
+- Existing HobFarm rabbit assets: `https://cdn.hob.farm/brand/hobfarm-rabbit-hole-logo.mp4` with `https://cdn.hob.farm/brand/hobfarm-drip-logo.png` as its poster.
 
-- Desktop viewport: 1536 x 1024 CSS pixels, DPR 1
-- Mobile viewport: 390 x 844 CSS pixels, DPR 1
-- State: Workshop program index with the first program in view; second desktop capture verifies the alternating row
-- Source and desktop implementation captures are both 1536 x 1024
+The screenshots were supplied in the conversation rather than as local files. The rebuilt pages were compared directly with those references during browser review.
 
-## Comparison
+## Viewports and routes
 
-- The implementation preserves the reference's cyan sequence spine, oversized ghost numerals, borderless index rows, alternating image rhythm, compact method ledger, metadata footer, and restrained dark palette.
-- The implementation intentionally retains the live page's Workshop Programs introduction above the index and the existing editable program copy, so its rows are taller than the compact visual reference.
-- Purpose-built 4:3 images use one cohesive dark miniature-studio language while giving each program a distinct production metaphor.
-- Desktop alternation remains legible and balanced. Mobile collapses to title and explanation, image, method ledger, metadata, then CTA.
+- Desktop: 1294 × 838
+- Mobile: 390 × 844
+- `/`
+- `/articles/`
+- `/articles/hermit-does-not-have-to-pay-for-repairs/`
+- `/workshop/avatar-host/`
 
-## Findings and fixes
+## Checks
 
-- P2 fixed: the initial mobile build placed the method ledger before the image. DOM order was changed so the visual follows the narrative before the supporting ledger.
-- No remaining P0, P1, or P2 visual issues found.
-- Console check: no warnings or errors.
-- Interaction check: the programs anchor and the Character / Mannequin route both navigate correctly.
+- Homepage hero keeps the current animated rabbit identity and its dripping-rabbit poster. The rabbit appears during the eight-second loop.
+- New hero copy fits above the fold without horizontal overflow at either viewport.
+- Article sharing matches the supplied control set and visual treatment: Facebook, Instagram, X, Pinterest, Reddit, Copy link, Email, and the expandable share caption.
+- Threads and Bluesky do not appear.
+- The share caption expands correctly. The Copy link control reports `Copied` after use.
+- The Articles page exposes a visible `Subscribe to articles` jump link.
+- The RSS panel explains feed-reader use, opens `/rss.xml`, and reports `Feed address copied` after the copy action.
+- The RSS panel and article share controls wrap cleanly on mobile with no horizontal overflow.
+- The Avatar & Host hero identifies the article as the permanent source and the Codex project as the article-to-video production step. The hero media loads its poster when the video is not ready.
 
-## Final output and supporting-system cards
+## Intentional differences from the screenshots
 
-- Final export directory: `public/media/workshop/route-cards/`
-- Durable asset manifest: `src/data/media-registry.ts` under the `workshop.route-card.*` keys
-- Nine generated WebP images: Publication, Motion and social, Marketplace, Academy, Applications and studio work, StyleFusion, Wonder Machine, Voice and avatar production, and Image, motion, and delivery
-- Export dimensions: 1360 x 1020 pixels for every image
-- Generation method: one built-in ImageGen generation per asset, followed by deterministic WebP conversion; no autonomous regeneration
-- Shared direction: cinematic handcrafted miniature workbenches, ink-black and deep-blue rooms, warm practical lamps, restrained cyan and magenta accents, and no baked-in headings, logos, watermarks, or readable labels
-- Desktop captures: `C:\Users\xkxxk\AppData\Local\Temp\hobfarm-workshop-output-cards.png` and `C:\Users\xkxxk\AppData\Local\Temp\hobfarm-workshop-tool-cards.png`
-- Mobile captures: `C:\Users\xkxxk\AppData\Local\Temp\hobfarm-workshop-output-cards-mobile.png` and `C:\Users\xkxxk\AppData\Local\Temp\hobfarm-workshop-tool-cards-mobile.png`
-- Desktop QA: all five output cards form an even row at 1536 x 1024; all four supporting-system cards preserve the two-column layout and readable image crops
-- Mobile QA: cards collapse to one column, image crops retain their subjects, and titles, descriptions, and calls to action remain readable
-- Interaction check: the Publication card navigates to `/articles/` and browser history returns to the Workshop page correctly
-- Console check: no page-origin warnings or errors; Chrome reported one extension message-channel closure unrelated to the site runtime
-- No P0, P1, or P2 visual issues found in the final two sections.
-
-final result: passed
+- Homepage wording was rewritten to foreground the article-to-production path requested in the task.
+- RSS subscription controls were added below the article catalog and linked from the Articles introduction.

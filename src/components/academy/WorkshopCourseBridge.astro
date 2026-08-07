@@ -1,0 +1,50 @@
+---
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import {
+  academyCourseHref,
+  academyPriceLabel,
+  getAcademyManifest,
+} from "@/data/academy-manifest";
+
+interface Props {
+  courseSlug: string;
+  publicProof: string;
+}
+
+const { courseSlug, publicProof } = Astro.props;
+const course = getAcademyManifest(courseSlug);
+if (!course) throw new Error(`Unknown Academy course bridge: ${courseSlug}`);
+---
+
+<section class="course-bridge" aria-labelledby={`course-bridge-${course.slug}`}>
+  <Wrapper variant="standard" class="course-bridge__inner">
+    <div>
+      <p class="course-bridge__eyebrow">Workshop to Academy / {course.publicStatus}</p>
+      <h2 id={`course-bridge-${course.slug}`}>{course.title}</h2>
+      <p><strong>See the result here. Learn the mechanics in Academy.</strong> {publicProof}</p>
+    </div>
+    <dl>
+      <div><dt>Production problem</dt><dd>{course.problem}</dd></div>
+      <div><dt>Course result</dt><dd>{course.outcome}</dd></div>
+      <div><dt>Access</dt><dd>{academyPriceLabel(course.priceTier)}{course.membershipGrant ? "; included with active $5/month membership" : ""}</dd></div>
+    </dl>
+    {course.status === "draft"
+      ? <span class="course-bridge__pending">Source map in production</span>
+      : <a href={academyCourseHref(course)} data-event="workshop_academy_course_open" data-course-id={course.courseId}>{course.status === "available" ? "Open the course" : "Read the course preview"} &rarr;</a>}
+  </Wrapper>
+</section>
+
+<style>
+  .course-bridge { border-top: 1px solid #2c2440; border-bottom: 1px solid #2c2440; background: radial-gradient(circle at 85% 10%, rgba(92,240,166,.08), transparent 27rem), #0a0810; }
+  .course-bridge__inner { display: grid; gap: 1.25rem; padding-top: clamp(2.5rem, 6vw, 4.5rem); padding-bottom: clamp(2.5rem, 6vw, 4.5rem); }
+  .course-bridge__eyebrow { margin: 0; color: #5cf0a6; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; }
+  h2 { max-width: 44rem; margin: .7rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 350; line-height: 1.02; }
+  p { max-width: 44rem; color: #aaa5b7; font-size: .86rem; line-height: 1.65; }
+  p strong { color: #ece9f5; font-weight: 550; }
+  dl { display: grid; gap: .6rem; margin: 0; }
+  dl div { padding: .8rem; border: 1px solid #2c2440; background: rgba(7,6,11,.7); }
+  dt { color: #777086; font-family: var(--font-mono); font-size: .58rem; text-transform: uppercase; }
+  dd { margin: .35rem 0 0; color: #c8c6d4; font-size: .75rem; line-height: 1.5; }
+  a, .course-bridge__pending { width: fit-content; color: #5cf0a6; font-family: var(--font-mono); font-size: .68rem; text-underline-offset: .25rem; }
+  @media (min-width: 850px) { .course-bridge__inner { grid-template-columns: minmax(0, 1fr) minmax(20rem, .7fr); align-items: start; } .course-bridge__inner > a, .course-bridge__inner > span { grid-column: 1 / -1; } }
+</style>

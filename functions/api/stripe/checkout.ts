@@ -7,6 +7,7 @@ import {
   isSameOriginMutation,
   type AdminSubscriptionRecord,
 } from "./internal";
+import { isBodyTooLargeError, readTextBodyLimited } from "../request-body";
 
 interface Env {
   STRIPE_API_KEY: string;
@@ -70,19 +71,22 @@ const BLOCKING_SUB_STATUSES = new Set([
 
 async function parseProduct(request: Request): Promise<CheckoutProduct | null> {
   const contentType = request.headers.get("content-type") ?? "";
+  const rawBody = await readTextBodyLimited(request, MAX_BODY_BYTES);
 
   if (contentType.includes("application/json")) {
-    const body = (await request.json()) as { product?: unknown };
+    const body = rawBody ? JSON.parse(rawBody) as { product?: unknown } : {};
     const product = typeof body.product === "string" ? body.product : DEFAULT_PRODUCT;
     return isCheckoutProduct(product) ? product : null;
   }
 
-  if (contentType.includes("application/x-www-form-urlencoded") || contentType.includes("multipart/form-data")) {
-    const formData = await request.formData();
+  if (contentType.includes("application/x-www-form-urlencoded")) {
+    const formData = new URLSearchParams(rawBody);
     const product = formData.get("product");
     const productKey = typeof product === "string" ? product : DEFAULT_PRODUCT;
     return isCheckoutProduct(productKey) ? productKey : null;
   }
+
+  if (contentType.includes("multipart/form-data")) return null;
 
   return DEFAULT_PRODUCT;
 }
@@ -92,11 +96,6 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     return jsonError("Cross-site checkout requests are not allowed", 403);
   }
 
-  const contentLength = Number(request.headers.get("content-length") ?? "0");
-  if (contentLength > MAX_BODY_BYTES) {
-    return jsonError("Request body is too large", 413);
-  }
-
   if (!env.STRIPE_API_KEY) {
     return jsonError("STRIPE_API_KEY not configured", 500);
   }
@@ -104,7 +103,8 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   let productKey: CheckoutProduct | null;
   try {
     productKey = await parseProduct(request);
-  } catch {
+  } catch (error) {
+    if (isBodyTooLargeError(error)) return jsonError("Request body is too large", 413);
     return jsonError("Invalid checkout request", 400);
   }
 
@@ -172,7 +172,10 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     sessionParams.customer_email = user.email;
   }
 
-  const session = await stripe.checkout.sessions.create(sessionParams);
+  const bucket = Math.floor(Date.now() / (15 * 60 * 1000));
+  const session = await stripe.checkout.sessions.create(sessionParams, {
+    idempotencyKey: `hobfarm-membership:${user.id}:${productKey}:${bucket}`,
+  });
 
   if (!session.url) {
     return jsonError("Stripe did not return a checkout URL", 502);

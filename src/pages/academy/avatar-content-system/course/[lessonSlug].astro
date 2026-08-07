@@ -8,6 +8,8 @@ import Eyebrow from "@/components/sections/Eyebrow.astro";
 import SectionHeader from "@/components/sections/SectionHeader.astro";
 import SnippetCards from "@/components/academy/SnippetCards";
 import PaidLessonView from "@/components/academy/PaidLessonView";
+import LessonProgress from "@/components/academy/LessonProgress";
+import { getAcademyLesson } from "@/data/academy-manifest";
 import {
   allLessons,
   avatarCourse,
@@ -32,6 +34,7 @@ const { lesson } = Astro.props;
 const freeLesson = lesson.access === "free" ? getFreeLesson(lesson.slug) : undefined;
 const nextLesson = freeLesson?.nextLessonSlug ? getLessonPreview(freeLesson.nextLessonSlug) : undefined;
 const trackText = lesson.trackTags.join(" / ");
+const manifestLesson = getAcademyLesson("avatar-content-system", lesson.slug);
 ---
 
 <BaseLayout
@@ -72,8 +75,8 @@ const trackText = lesson.trackTags.join(" / ");
               Back to course
             </Button>
             {lesson.access === "paid" && (
-              <Button isLink size="sm" variant="green" href={avatarCourse.checkoutPath}>
-                Get supporter access
+              <Button isLink size="sm" variant="green" href={avatarCourse.purchasePath}>
+                Compare access options
               </Button>
             )}
           </div>
@@ -156,8 +159,25 @@ const trackText = lesson.trackTags.join(" / ");
             )}
           </article>
         ) : (
-          <PaidLessonView slug={lesson.slug} preview={lesson} client:load />
+          <PaidLessonView
+            slug={lesson.slug}
+            preview={lesson}
+            lessonId={manifestLesson?.lessonId ?? `avatar-${lesson.slug}`}
+            courseHref={avatarCourse.coursePath}
+            isFinalLesson={!nextLesson}
+            client:load
+          />
         )}
+        {freeLesson && <div class="mt-10">
+          <LessonProgress
+            courseSlug="avatar-content-system"
+            lessonSlug={lesson.slug}
+            lessonId={manifestLesson?.lessonId ?? `avatar-${lesson.slug}`}
+            courseHref={avatarCourse.coursePath}
+            isFinalLesson={!nextLesson}
+            client:visible
+          />
+        </div>}
       </Wrapper>
     </ContentPanel>
   </section>

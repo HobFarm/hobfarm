@@ -41,8 +41,8 @@ import {
               <Button isLink size="sm" variant="green" href={`/academy/avatar-content-system/course/${freeLessons[0].slug}`}>
                 Start lesson 1
               </Button>
-              <Button isLink size="sm" variant="muted" href={avatarCourse.checkoutPath}>
-                Get supporter access
+              <Button isLink size="sm" variant="muted" href={avatarCourse.purchasePath}>
+                Compare access options
               </Button>
             </div>
             <p class="mt-4 text-xs font-mono text-base-500">{avatarCourse.betaCta}</p>
@@ -109,7 +109,7 @@ import {
       <Wrapper variant="standard" class="py-12 lg:py-20">
         <div class="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_0.9fr]">
           <div>
-            <SectionHeader eyebrow="03" heading="Supporter beta access" />
+            <SectionHeader eyebrow="03" heading="Permanent purchase or membership" />
             <p class="max-w-2xl text-base leading-relaxed text-base-300">
               {avatarCourse.betaCta} The four setup lessons remain public.
             </p>
@@ -117,7 +117,10 @@ import {
               {avatarCourse.standaloneNote}
             </p>
             <div class="mt-6 flex flex-wrap gap-3">
-              <Button isLink size="sm" variant="green" href={avatarCourse.checkoutPath}>
+              <Button isLink size="sm" variant="green" href={avatarCourse.purchasePath}>
+                Compare access options
+              </Button>
+              <Button isLink size="sm" variant="muted" href={avatarCourse.checkoutPath}>
                 Open membership
               </Button>
               <Button isLink size="sm" variant="muted" href={avatarCourse.freePath}>

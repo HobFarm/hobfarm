@@ -40,10 +40,14 @@ export default function DangerZone() {
       return;
     }
     setBusy(true);
-    const ok = await deleteAccount();
-    if (!ok) {
+    const result = await deleteAccount(confirmEmail.trim());
+    if (!result.ok) {
       setBusy(false);
-      setError("Delete failed. Try again or visit Customer Help.");
+      setError(
+        result.error === "reauthentication_required"
+          ? "For security, log out and sign in again before deleting the account."
+          : "Delete failed. Try again or visit Customer Help.",
+      );
       return;
     }
     window.location.href = "/?deleted=1";

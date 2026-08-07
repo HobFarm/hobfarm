@@ -302,6 +302,6 @@ export const characterMannequinPage = {
       excluded: "The goth outfit from the later character sheet",
     },
   ],
-  academyUrl: "/academy/",
+  academyUrl: "/academy/courses/keep-the-character/",
   characterIndexUrl: "/visual-systems/",
 } as const;

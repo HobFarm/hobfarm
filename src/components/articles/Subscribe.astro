@@ -7,12 +7,12 @@ interface Props {
 }
 
 const {
-  heading = "Get new articles and visual notes",
-  description = "Subscribe for new HobFarm features, gallery notes, studio updates, and work-in-progress dispatches.",
+  heading = "Follow new HobFarm articles",
+  description = "Use the RSS feed in any feed reader, or get occasional HobFarm updates by email.",
 } = Astro.props;
 ---
 
-<section>
+<section id="article-subscribe" class="scroll-mt-24">
   <Wrapper
     variant="standard"
     class="py-12 relative grid grid-cols-1 md:grid-cols-4"
@@ -29,6 +29,30 @@ const {
       <p class="text-base-300 mt-2 text-balance leading-relaxed">
         {description}
       </p>
+
+      <div class="mt-8 border border-base-700 bg-base-950/70 p-4 sm:p-5" data-rss-subscribe>
+        <p class="font-mono text-[10px] uppercase tracking-[0.14em] text-accent-cyan">RSS / automatic article feed</p>
+        <p class="mt-2 text-sm leading-relaxed text-base-300">
+          Copy the feed address into Feedly, Inoreader, NetNewsWire, or any other RSS app. Every newly published article appears there automatically.
+        </p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <a
+            href="/rss.xml"
+            class="inline-flex min-h-11 items-center border border-accent-cyan/50 px-4 py-2 font-mono text-[10px] uppercase tracking-wider text-accent-cyan transition-colors hover:border-accent-cyan hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-cyan"
+          >
+            Open the RSS feed
+          </a>
+          <button
+            type="button"
+            data-copy-rss
+            data-rss-url="/rss.xml"
+            class="inline-flex min-h-11 items-center border border-base-700 px-4 py-2 font-mono text-[10px] uppercase tracking-wider text-base-300 transition-colors hover:border-base-400 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-base-300"
+          >
+            <span data-rss-label>Copy feed address</span>
+          </button>
+        </div>
+        <p data-rss-status class="sr-only" aria-live="polite"></p>
+      </div>
 
       <div data-success hidden class="mt-12">
         <div class="flex items-start gap-3 p-4 border border-accent-500/30 bg-accent-500/5">
@@ -107,6 +131,25 @@ const {
     const submitBtn = root.querySelector<HTMLButtonElement>("[data-submit]");
     const submitIdle = root.querySelector<HTMLElement>("[data-submit-idle]");
     const submitLoading = root.querySelector<HTMLElement>("[data-submit-loading]");
+    const copyRss = root.querySelector<HTMLButtonElement>("[data-copy-rss]");
+    const rssLabel = root.querySelector<HTMLElement>("[data-rss-label]");
+    const rssStatus = root.querySelector<HTMLElement>("[data-rss-status]");
+
+    copyRss?.addEventListener("click", async () => {
+      const feedPath = copyRss.dataset.rssUrl || "/rss.xml";
+      const feedUrl = new URL(feedPath, window.location.origin).toString();
+      try {
+        await navigator.clipboard.writeText(feedUrl);
+        if (rssLabel) rssLabel.textContent = "Feed address copied";
+        if (rssStatus) rssStatus.textContent = "RSS feed address copied.";
+        window.setTimeout(() => {
+          if (rssLabel) rssLabel.textContent = "Copy feed address";
+          if (rssStatus) rssStatus.textContent = "";
+        }, 1800);
+      } catch {
+        if (rssStatus) rssStatus.textContent = "Could not copy the feed address. Open the feed and copy its URL.";
+      }
+    });
 
     form?.addEventListener("submit", async (event) => {
       event.preventDefault();

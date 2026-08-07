@@ -15,6 +15,7 @@ import StyleCardArchive from "@/components/workshop/StyleCardArchive.astro";
 import ProcessMethodPage from "@/components/process/ProcessMethodPage.astro";
 import { getProcessPipelineBySlug } from "@/data/processPipelines";
 import WorkshopProgramNav from "@/components/workshop/WorkshopProgramNav.astro";
+import WorkshopCourseBridge from "@/components/academy/WorkshopCourseBridge.astro";
 
 export function getStaticPaths() {
   return workshopPrograms
@@ -61,6 +62,17 @@ const pageHeroAlt = program.id === "stylefusion" ? stylefusionHero.alt : program
 const hasProgramFeature = program.id === "alter-ego" || program.id === "stylefusion" || program.id === "workshop-notes" || program.id === "cute-corrupted";
 const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
 const structuredData = { "@context":"https://schema.org", "@type":"CollectionPage", name:program.name, description:program.description, url:`${siteOrigin}${program.href}`, isPartOf:{"@type":"CollectionPage",name:"HobFarm Workshop",url:`${siteOrigin}/workshop/`} };
+const academyBridge = program.id === "cute-corrupted"
+  ? {
+      courseSlug: "one-base-two-modes",
+      publicProof: "The cute and corrupted studies provide the paired visual evidence. The planned Academy course will turn that evidence into a repeatable continuity method.",
+    }
+  : program.id === "alter-ego"
+    ? {
+        courseSlug: "one-identity-two-jobs",
+        publicProof: "The Sophia and Stella system shows one identity carrying two public roles. The planned Academy course will document how those roles stay distinct without losing the shared person.",
+      }
+    : undefined;
 ---
 {processPipeline ? (
   <ProcessMethodPage
@@ -130,6 +142,8 @@ const structuredData = { "@context":"https://schema.org", "@type":"CollectionPag
       {relatedArticles.length > 0 && <div class="content-grid">{relatedArticles.map((post) => <ArticleCard post={post} />)}</div>}
     </Wrapper>
   </section>}
+
+  {academyBridge && <WorkshopCourseBridge {...academyBridge} />}
 
   {programDetails && <section><Wrapper variant="standard" class="py-12"><WorkshopProgramNav currentId={program.id} /></Wrapper></section>}
 </BaseLayout>

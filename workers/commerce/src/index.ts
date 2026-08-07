@@ -1,6 +1,20 @@
 import { MELTING_RABBIT_HOLE_DAD_HAT } from "./catalog.mjs";
 import { checkoutCartFingerprint } from "./checkout.mjs";
 import { decryptJson } from "./crypto";
+import {
+  attachAcademyCheckout,
+  correctAcademyAccess,
+  createAcademyQuestion,
+  getAcademyAccess,
+  getAcademyProduct,
+  listAcademyProgress,
+  listOpenAcademyQuestions,
+  putAcademyProgress,
+  recordAcademyCheckoutFailure,
+  recordAcademyPaid,
+  recordAcademyPaymentState,
+  reserveAcademyPurchase,
+} from "./academy";
 import { normalizeReserveOrder, normalizeStripePaidEvent } from "./order-contracts.mjs";
 import {
   attachStripeSession,
@@ -165,6 +179,136 @@ async function handleLedgerRequest(
   if (!url.pathname.startsWith("/internal/")) return null;
 
   try {
+    if (request.method === "GET" && url.pathname.startsWith("/internal/academy/products/")) {
+      const productKey = decodeURIComponent(url.pathname.split("/").pop() ?? "");
+      const product = await getAcademyProduct(requireLedger(env), productKey);
+      return product ? json({ product }) : json({ error: "product_not_found" }, 404);
+    }
+
+    if (request.method === "POST" && url.pathname === "/internal/academy/checkout/reserve") {
+      const body = (await readJson(request)) as Record<string, unknown>;
+      const result = await reserveAcademyPurchase(requireLedger(env), {
+        userId: String(body.userId ?? ""),
+        productKey: String(body.productKey ?? ""),
+        checkoutToken: String(body.checkoutToken ?? ""),
+        provider: String(body.provider ?? ""),
+        amount: Number(body.amount),
+        currency: String(body.currency ?? "") as "USD",
+      });
+      return json(result);
+    }
+
+    if (request.method === "POST" && url.pathname === "/internal/academy/checkout/attach") {
+      const body = (await readJson(request)) as Record<string, unknown>;
+      await attachAcademyCheckout(
+        requireLedger(env),
+        String(body.purchaseId ?? ""),
+        String(body.providerOrderId ?? ""),
+      );
+      return json({ attached: true });
+    }
+
+    if (request.method === "POST" && url.pathname === "/internal/academy/stripe/paid") {
+      const body = (await readJson(request)) as Record<string, unknown>;
+      const result = await recordAcademyPaid(requireLedger(env), {
+        provider: "stripe",
+        eventId: String(body.eventId ?? ""),
+        eventType: String(body.eventType ?? ""),
+        eventCreated: Number(body.eventCreated),
+        providerOrderId: String(body.providerOrderId ?? ""),
+        providerPaymentId: String(body.providerPaymentId ?? ""),
+        providerCustomerId: typeof body.providerCustomerId === "string" ? body.providerCustomerId : null,
+        userId: String(body.userId ?? ""),
+        productKey: String(body.productKey ?? ""),
+        amount: Number(body.amount),
+        currency: String(body.currency ?? "") as "USD",
+      });
+      return json(result);
+    }
+
+    if (request.method === "POST" && url.pathname === "/internal/academy/stripe/payment-state") {
+      const body = (await readJson(request)) as Record<string, unknown>;
+      const status = String(body.status ?? "");
+      if (!(["paid", "refunded", "disputed"] as string[]).includes(status)) {
+        return json({ error: "invalid_contract" }, 400);
+      }
+      return json(await recordAcademyPaymentState(requireLedger(env), {
+        provider: "stripe",
+        eventId: String(body.eventId ?? ""),
+        eventType: String(body.eventType ?? ""),
+        eventCreated: Number(body.eventCreated),
+        providerPaymentId: String(body.providerPaymentId ?? ""),
+        status: status as "paid" | "refunded" | "disputed",
+      }));
+    }
+
+    if (request.method === "POST" && url.pathname === "/internal/academy/stripe/checkout-failed") {
+      const body = (await readJson(request)) as Record<string, unknown>;
+      const status = String(body.status ?? "");
+      if (status !== "failed" && status !== "expired") return json({ error: "invalid_contract" }, 400);
+      return json(await recordAcademyCheckoutFailure(requireLedger(env), {
+        provider: "stripe",
+        eventId: String(body.eventId ?? ""),
+        eventType: String(body.eventType ?? ""),
+        eventCreated: Number(body.eventCreated),
+        providerOrderId: String(body.providerOrderId ?? ""),
+        status,
+      }));
+    }
+
+    if (request.method === "GET" && url.pathname === "/internal/academy/access") {
+      const userId = url.searchParams.get("user_id") ?? "";
+      const courseId = url.searchParams.get("course_id") ?? undefined;
+      return json(await getAcademyAccess(requireLedger(env), userId, courseId));
+    }
+
+    if (request.method === "POST" && url.pathname === "/internal/academy/access/manual") {
+      const body = (await readJson(request)) as Record<string, unknown>;
+      const status = String(body.status ?? "");
+      if (status !== "active" && status !== "revoked") return json({ error: "invalid_contract" }, 400);
+      return json(await correctAcademyAccess(requireLedger(env), {
+        userId: String(body.userId ?? ""),
+        courseId: String(body.courseId ?? ""),
+        operatorId: String(body.operatorId ?? ""),
+        reason: String(body.reason ?? ""),
+        status,
+      }));
+    }
+
+    if (request.method === "GET" && url.pathname === "/internal/academy/progress") {
+      const userId = url.searchParams.get("user_id") ?? "";
+      return json({ progress: await listAcademyProgress(requireLedger(env), userId) });
+    }
+
+    if (request.method === "POST" && url.pathname === "/internal/academy/progress") {
+      const body = (await readJson(request)) as Record<string, unknown>;
+      const status = String(body.status ?? "");
+      if (status !== "started" && status !== "complete") return json({ error: "invalid_contract" }, 400);
+      await putAcademyProgress(requireLedger(env), {
+        userId: String(body.userId ?? ""),
+        courseId: String(body.courseId ?? ""),
+        lessonId: String(body.lessonId ?? ""),
+        status,
+        clientUpdatedAt: Number(body.clientUpdatedAt),
+      });
+      return json({ saved: true });
+    }
+
+    if (request.method === "POST" && url.pathname === "/internal/academy/questions") {
+      const body = (await readJson(request)) as Record<string, unknown>;
+      return json(await createAcademyQuestion(requireLedger(env), {
+        userId: String(body.userId ?? ""),
+        courseId: String(body.courseId ?? ""),
+        lessonId: typeof body.lessonId === "string" ? body.lessonId : undefined,
+        category: String(body.category ?? ""),
+        question: String(body.question ?? ""),
+      }));
+    }
+
+    if (request.method === "GET" && url.pathname === "/internal/academy/questions/open") {
+      return json({ reports: await listOpenAcademyQuestions(requireLedger(env)) });
+    }
+
     if (request.method === "POST" && url.pathname === "/internal/checkout/reserve") {
       const reservation = normalizeReserveOrder(await readJson(request));
       const order = await reserveOrder(requireLedger(env), reservation);

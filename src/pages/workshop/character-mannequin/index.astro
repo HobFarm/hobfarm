@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import CharacterMannequinPage from "@/components/workshop/CharacterMannequinPage.astro";
+import WorkshopCourseBridge from "@/components/academy/WorkshopCourseBridge.astro";
 import {
   characterLooks,
   characterMannequinPage,
@@ -66,4 +67,8 @@ const structuredData = {
   palette="blue-red"
 >
   <CharacterMannequinPage />
+  <WorkshopCourseBridge
+    courseSlug="keep-the-character"
+    publicProof="This Workshop page demonstrates a stable base, controlled look changes, cross-base transfer, and the continuity questions that the course turns into guided practice."
+  />
 </BaseLayout>

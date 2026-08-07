@@ -18,11 +18,11 @@ const MUTED_LINK_BTN =
 
 const offerings = [
   {
-    title: "Avatar Content System beta",
+    title: "Academy while membership is active",
     description:
-      "Active supporters can open all 12 paid Avatar Content System lessons. Four setup lessons remain public so you can inspect the workflow first.",
-    href: "/academy/avatar-content-system/",
-    cta: "Preview the course",
+      "Active supporters can open every course included in Academy membership. The Avatar Content System is included now, with four public previews and twelve member lessons.",
+    href: "/academy/",
+    cta: "Browse Academy",
   },
   {
     title: "The free course stays free",
@@ -103,7 +103,7 @@ export default function OnboardingView({ user, subscription }: Props) {
           <p className="mt-4 max-w-3xl text-base text-base-400 leading-relaxed text-balance">
             HobFarm is free to use. Supporter membership is optional, $5 a month, and helps cover
             the infrastructure, API costs, and tool work that keep the projects running. Active
-            supporters currently receive beta access to the 12 paid Avatar Content System lessons.
+            supporters receive access to included Academy courses while the membership is active.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#subscribe" className={PRIMARY_GREEN}>
@@ -120,8 +120,9 @@ export default function OnboardingView({ user, subscription }: Props) {
             Supporter Membership
           </h2>
           <p className="mt-4 text-sm text-base-400 leading-relaxed">
-            $5/month, optional, cancel any time. Includes Avatar Content System beta access while
-            the membership is active. Stripe handles payment collection, receipts, and billing.
+            $5/month, optional, cancel any time. Includes the Academy catalog while the membership
+            is active. A separate one-time course purchase remains attached to the buyer's account
+            after membership ends. Stripe handles payment collection, receipts, and billing.
           </p>
           <div className="mt-5">
             <SubscribeCta user={user} subscription={subscription} />

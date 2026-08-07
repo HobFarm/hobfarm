@@ -168,15 +168,35 @@ content:
       sort: [courseSlug, order]
     fields:
       - { name: courseSlug, label: Course Slug, type: string, required: true }
+      - { name: courseId, label: Stable Course ID, type: string }
+      - { name: lessonId, label: Stable Lesson ID, type: string }
       - { name: slug, label: Lesson Slug, type: string, required: true }
       - { name: title, label: Title, type: string, required: true }
       - { name: deck, label: Deck, type: text, required: true }
       - { name: order, label: Lesson Order, type: number, required: true }
       - { name: moduleTitle, label: Module Title, type: string, required: true }
+      - { name: moduleId, label: Stable Module ID, type: string }
       - { name: moduleOrder, label: Module Order, type: number, required: true }
       - { name: duration, label: Duration, type: string, required: true }
       - { name: skill, label: Skill, type: text, required: true }
       - { name: learnerOutput, label: Learner Output, type: string, required: true }
+      - name: access
+        label: Access
+        type: select
+        default: public
+        options: [public, paid]
+      - { name: objective, label: Objective, type: text }
+      - { name: builds, label: Artifact Built, type: text }
+      - { name: sourceRefs, label: Source References, type: string, list: true }
+      - name: evidenceStatus
+        label: Evidence Status
+        type: select
+        default: verified
+        options: [verified, needs_operator, volatile]
+      - { name: providerDetailDate, label: Provider Detail Date, type: date }
+      - { name: exercise, label: Guided Exercise, type: text }
+      - { name: checkpoint, label: Completion Checkpoint, type: text }
+      - { name: nextLesson, label: Next Stable Lesson ID, type: string }
       - { name: prerequisites, label: Prerequisites, type: string, list: true }
       - { name: inputs, label: Inputs, type: string, list: true }
       - name: figure

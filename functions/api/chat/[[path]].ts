@@ -1,6 +1,7 @@
 interface Env {
   HOBBOT_WORKER_URL: string;
   AUTH_WORKER_URL: string;
+  HOBBOT_ENABLED?: string;
 }
 
 type RouteKind = "conversations" | "conversation" | "message" | "feedback";
@@ -330,6 +331,13 @@ function optionsResponse(request: Request, route: ChatRoute): Response {
 
 export const onRequest: PagesFunction<Env> = async (context) => {
   const { request, env, params } = context;
+
+  // The public assistant stays off until a reviewed course/article corpus and
+  // real support-question set exist. Missing configuration fails closed.
+  if (env.HOBBOT_ENABLED !== "true") {
+    return jsonError("Chat is not available", 404);
+  }
+
   const route = resolveRoute(getPathSegments(params));
 
   if (!route) {

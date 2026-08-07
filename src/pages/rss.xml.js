@@ -6,13 +6,15 @@ export async function GET(context) {
 
   return rss({
     title: 'HobFarm Articles',
-    description: 'HobFarm is an online humor magazine and visual studio for visual culture, media history, cartoons, satirical magazine ads, archive dives, character systems, production notes, and image and video work.',
+    description: 'Long-form HobFarm articles about film, art, media, history, technology, and the connections between them.',
     site: context.site,
     items: posts.map((post) => ({
       title: post.data.title,
       pubDate: post.data.pubDate ?? post.data.publishedAt,
       description: getArticleDescription(post.data),
       link: articlePath(post),
+      categories: post.data.tags,
     })),
+    customData: '<language>en-us</language>',
   });
 }

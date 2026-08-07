@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import BeforeAfterArchive from "@/components/workshop/BeforeAfterArchive.astro";
+import WorkshopCourseBridge from "@/components/academy/WorkshopCourseBridge.astro";
 import { getMedia } from "@/data/media-registry";
 
 const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
@@ -84,4 +85,8 @@ const structuredData = {
   palette="blue-red"
 >
   <BeforeAfterArchive />
+  <WorkshopCourseBridge
+    courseSlug="lock-the-frame-change-the-world"
+    publicProof="This archive keeps documentary, restoration, alternate-history, and fictional transformations beside their visible sources and labels. The planned course will teach the anchor and failure checks."
+  />
 </BaseLayout>

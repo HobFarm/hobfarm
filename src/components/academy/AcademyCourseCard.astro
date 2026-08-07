@@ -1,0 +1,56 @@
+---
+import {
+  academyCourseHref,
+  academyPriceLabel,
+  type AcademyCourseManifest,
+} from "@/data/academy-manifest";
+
+interface Props {
+  course: AcademyCourseManifest;
+}
+
+const { course } = Astro.props;
+const isOpenable = course.status !== "draft";
+---
+
+<article class="course-card" data-course-id={course.courseId} data-course-status={course.publicStatus}>
+  <div class="course-card__topline">
+    <span>{course.publicStatus}</span>
+    <span>{academyPriceLabel(course.priceTier)}</span>
+  </div>
+  <h2>{course.title}</h2>
+  <p class="course-card__problem"><strong>Problem:</strong> {course.problem}</p>
+  <p><strong>Finish:</strong> {course.outcome}</p>
+  <dl>
+    <div><dt>Level</dt><dd>{course.learner}</dd></div>
+    <div><dt>Lesson time</dt><dd>{course.estimatedTime}</dd></div>
+    <div><dt>Free previews</dt><dd>{course.freePreviewLessons.length}</dd></div>
+    <div><dt>Tools</dt><dd>{course.requiredTools.join(", ")}</dd></div>
+    <div><dt>External costs</dt><dd>{course.externalCostNote}</dd></div>
+    <div><dt>Verified</dt><dd>{course.toolDetailsVerifiedAt}</dd></div>
+  </dl>
+  {course.membershipGrant && <p class="course-card__membership">Included with the $5/month membership while active.</p>}
+  <div class="course-card__actions">
+    {isOpenable
+      ? <a href={academyCourseHref(course)} data-event={course.publicStatus === "available" ? "academy_course_view" : "academy_preview_start"} data-course-id={course.courseId}>{course.publicStatus === "available" ? "Open course" : "View course preview"}</a>
+      : <span>Course source map in production</span>}
+    {course.workshopSources[0] && <a href={course.workshopSources[0]}>Workshop source</a>}
+  </div>
+</article>
+
+<style>
+  .course-card { display: flex; min-height: 100%; flex-direction: column; padding: 1.25rem; border: 1px solid #2c2440; border-radius: .85rem; background: linear-gradient(145deg, rgba(20,16,31,.96), rgba(8,7,12,.96)); }
+  .course-card__topline { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem; color: #5cf0f0; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; }
+  h2 { margin: 1rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(1.55rem, 3vw, 2.1rem); font-weight: 380; line-height: 1.04; }
+  p { margin: .75rem 0 0; color: #b9b5c8; font-size: .82rem; line-height: 1.6; }
+  p strong { color: #ece9f5; font-weight: 600; }
+  .course-card__problem { margin-top: 1.1rem; }
+  dl { display: grid; gap: .65rem; margin: 1.1rem 0 0; padding-top: 1rem; border-top: 1px solid #2c2440; }
+  dl div { display: grid; grid-template-columns: 6rem minmax(0, 1fr); gap: .75rem; }
+  dt { color: #777086; font-family: var(--font-mono); font-size: .61rem; text-transform: uppercase; }
+  dd { margin: 0; color: #b9b5c8; font-size: .72rem; line-height: 1.45; }
+  .course-card__membership { color: #5cf0a6; }
+  .course-card__actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: auto; padding-top: 1.25rem; }
+  .course-card__actions a, .course-card__actions span { color: #fff; font-family: var(--font-mono); font-size: .65rem; text-decoration: underline; text-underline-offset: .25rem; }
+  .course-card__actions a:first-child { color: #5cf0a6; }
+</style>

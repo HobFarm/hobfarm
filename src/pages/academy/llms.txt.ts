@@ -1,5 +1,5 @@
 import { absoluteUrl, buildSectionLlms, textResponse } from "@/lib/agent-corpus";
-import { academyCourses, intellectualSelfDefenseCourse } from "@/data/academy-courses";
+import { academyCourseManifests, academyCourseHref } from "@/data/academy-manifest";
 
 export async function GET() {
   return textResponse(
@@ -12,14 +12,14 @@ export async function GET() {
           url: absoluteUrl("/academy/"),
           description: "Public catalog of HobFarm courses and one-time pricing bands.",
         },
-        ...academyCourses.map((course) => ({
+        ...academyCourseManifests.map((course) => ({
           title: course.title,
-          url: absoluteUrl(course.href),
-          description: `${course.accessLabel}. ${course.description}`,
+          url: absoluteUrl(academyCourseHref(course)),
+          description: `${course.publicStatus}. ${course.problem} Result: ${course.outcome}`,
         })),
         {
           title: "Start Intellectual Self-Defense",
-          url: absoluteUrl(intellectualSelfDefenseCourse.startHref),
+          url: absoluteUrl("/academy/intellectual-self-defense/the-card-catalog-started-talking-back/"),
           description: "First lesson in the free, public Intellectual Self-Defense course.",
         },
         {

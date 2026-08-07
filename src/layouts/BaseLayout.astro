@@ -42,7 +42,10 @@ const {
   structuredData,
   palette = "purple-green",
   noindex = false,
-  feed,
+  feed = {
+    href: "/rss.xml",
+    title: "HobFarm Articles",
+  },
 } = Astro.props;
 ---
 

@@ -1,0 +1,89 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Breadcrumbs from "@/components/global/Breadcrumbs.astro";
+import LessonProgress from "@/components/academy/LessonProgress";
+import CourseAccessCard from "@/components/academy/CourseAccessCard.astro";
+import {
+  academyCourseHref,
+  academyCourseManifests,
+  academyLessonHref,
+  type AcademyCourseManifest,
+  type AcademyLessonManifest,
+} from "@/data/academy-manifest";
+
+export function getStaticPaths() {
+  return academyCourseManifests.flatMap((course) => course.lessons.map((lesson) => ({
+    params: { courseSlug: course.slug, lessonSlug: lesson.slug },
+    props: { course, lesson },
+  })));
+}
+
+interface Props { course: AcademyCourseManifest; lesson: AcademyLessonManifest }
+const { course, lesson } = Astro.props;
+if (lesson.legacyHref) return Astro.redirect(lesson.legacyHref, 301);
+const next = lesson.nextLesson ? course.lessons.find((entry) => entry.lessonId === lesson.nextLesson) : undefined;
+---
+
+<BaseLayout
+  title={`${lesson.title} | ${course.title}`}
+  description={lesson.preview}
+  canonical={academyLessonHref(course, lesson)}
+  noindex={course.status !== "available"}
+  palette="magenta-cyan"
+>
+  <ContentPanel><Wrapper variant="standard" class="pt-5"><Breadcrumbs items={[{ label: "Academy", href: "/academy/" }, { label: course.title, href: academyCourseHref(course) }, { label: lesson.title }]} /></Wrapper></ContentPanel>
+  <header class="lesson-hero"><ContentPanel><Wrapper variant="standard" class="py-14 lg:py-20">
+    <p class="eyebrow">Lesson {String(lesson.order).padStart(2, "0")} / {lesson.access === "public" ? "Free preview" : "Paid lesson preview"}</p>
+    <h1>{lesson.title}</h1>
+    <p class="preview">{lesson.preview}</p>
+    <div class="meta"><span>{lesson.module}</span><span>Evidence: {lesson.evidenceStatus.replace("_", " ")}</span></div>
+  </Wrapper></ContentPanel></header>
+  <main><ContentPanel><Wrapper variant="standard" class="py-12 lg:py-18">
+    {lesson.access === "public" ? (
+      <article class="lesson-body">
+        <section><p class="eyebrow">What this lesson solves</p><h2>{lesson.objective}</h2><p>The Character / Mannequin Workshop evidence separates the subject from everything placed around it. Read the visible example first. Name only the traits supported by that evidence, then keep guesses and later styling outside the identity record.</p></section>
+        <section><p class="eyebrow">What you will build</p><h2>{lesson.builds}</h2><p>This is a working boundary record, not a promise of perfect model consistency. It should make the next mistake easier to see and easier to repair.</p></section>
+        <section><p class="eyebrow">Decision</p><h2>Identity is not the whole image.</h2><div class="boundary-grid"><span>Identity</span><span>Wardrobe</span><span>Style</span><span>Scene</span><span>Motion</span></div><p>Mark each observed trait in one lane. If the source does not show a garment or view, write “not evidenced” instead of promoting an inference into canon.</p></section>
+        <section><p class="eyebrow">Guided exercise</p><h2>Read the blonde and green mannequin evidence.</h2><p>{lesson.exercise}</p><ol><li>List face, hair, proportions, marks, and other stable traits that remain visible.</li><li>List garments, materials, props, setting, and rendering choices separately.</li><li>Circle anything that appears only in a generated sheet or later variation.</li><li>Label the circled item as inference until another source supports it.</li></ol></section>
+        <section class="check"><p class="eyebrow">Check your work</p><h2>{lesson.checkpoint}</h2><p>A useful record can explain why a new outfit is allowed to change while the face, hair, proportions, and supported marks remain under review.</p></section>
+        <section><p class="eyebrow">Source receipts</p><ul>{lesson.sourceRefs.map((source) => <li>{source.startsWith("/") ? <a href={source}>{source}</a> : <code>{source}</code>}</li>)}</ul></section>
+        <LessonProgress courseSlug={course.slug} lessonSlug={lesson.slug} lessonId={lesson.lessonId} courseHref={academyCourseHref(course)} isFinalLesson={!next} client:visible />
+        <nav>{next ? <a href={academyLessonHref(course, next)}>Next lesson: {next.title}</a> : <a href={academyCourseHref(course)}>Return to course</a>}</nav>
+      </article>
+    ) : (
+      <div class="locked-shell">
+        <section class="locked"><p class="eyebrow">Paid body unpublished</p><h2>This lesson stays locked while the course is in operator review.</h2><p>The public preview names the objective and artifact. Exact steps will be published only after the clean-account walkthrough and source review pass.</p><dl><div><dt>Objective</dt><dd>{lesson.objective}</dd></div><div><dt>Build</dt><dd>{lesson.builds}</dd></div></dl></section>
+        <CourseAccessCard course={course} />
+      </div>
+    )}
+  </Wrapper></ContentPanel></main>
+</BaseLayout>
+
+<style>
+  .lesson-hero { border-bottom: 1px solid #2c2440; background: radial-gradient(circle at 80% 0, rgba(92,240,240,.09), transparent 34rem), #07060b; }
+  .eyebrow { margin: 0; color: #5cf0f0; font-family: var(--font-mono); font-size: .64rem; letter-spacing: .1em; text-transform: uppercase; }
+  h1 { max-width: 58rem; margin: 1rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(2.8rem, 7vw, 5.3rem); font-weight: 300; line-height: .94; letter-spacing: -.04em; }
+  .preview { max-width: 46rem; margin: 1.3rem 0 0; color: #c8c6d4; font-size: 1.05rem; line-height: 1.65; }
+  .meta { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.2rem; }
+  .meta span { padding: .4rem .6rem; border: 1px solid #2c2440; color: #8d879d; font-family: var(--font-mono); font-size: .6rem; text-transform: uppercase; }
+  .lesson-body { width: min(100%, 50rem); margin: 0 auto; }
+  .lesson-body > section, .lesson-body > :global(section), .lesson-body nav { margin-top: 3rem; }
+  .lesson-body > section:first-child { margin-top: 0; }
+  .lesson-body h2, .locked h2 { margin: .7rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.7rem); font-weight: 350; line-height: 1.06; }
+  .lesson-body p, .lesson-body li, .locked p, .locked dd { color: #b9b5c8; font-size: .92rem; line-height: 1.75; }
+  .lesson-body ol { padding-left: 1.3rem; }
+  .boundary-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .55rem; margin-top: 1rem; }
+  .boundary-grid span { padding: .8rem; border: 1px solid #2c2440; background: #0e0b16; color: #ece9f5; font-family: var(--font-mono); font-size: .7rem; text-align: center; text-transform: uppercase; }
+  .check, .locked { padding: 1.25rem; border: 1px solid #41345c; background: #0e0b16; }
+  .lesson-body a { color: #5cf0a6; text-underline-offset: .2rem; }
+  .lesson-body code { color: #5cf0f0; }
+  .lesson-body nav { padding-top: 1.5rem; border-top: 1px solid #2c2440; }
+  .locked-shell { display: grid; gap: 1rem; }
+  .locked { max-width: 52rem; }
+  .locked dl { display: grid; gap: .7rem; margin-top: 1.2rem; }
+  .locked dt { color: #777086; font-family: var(--font-mono); font-size: .62rem; text-transform: uppercase; }
+  .locked dd { margin: .25rem 0 0; }
+  @media (min-width: 700px) { .boundary-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+</style>

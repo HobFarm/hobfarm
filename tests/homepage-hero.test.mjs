@@ -9,9 +9,10 @@ const read = (file) => readFileSync(join(root, file), "utf8");
 test("homepage hero leads with the publisher, support, an explained work index, and three useful actions", () => {
   const homepage = read("src/components/home/MagazineFrontPage.astro");
 
-  assert.match(homepage, /Independent publisher \+ creative studio/);
-  assert.match(homepage, /Articles, cartoons, visual worlds, and the workshop behind them\./);
-  assert.match(homepage, /HobFarm is where I write articles, make cartoons, build characters and worlds/);
+  assert.match(homepage, /Independent publisher \+ working studio/);
+  assert.match(homepage, /Follow a good article down the rabbit hole\./);
+  assert.match(homepage, /The complete articles live here\./);
+  assert.match(homepage, /avatar-led video/);
 
   for (const label of ["Read the latest", "Explore the Workshop", "Start a project"]) {
     assert.match(homepage, new RegExp(label));

@@ -331,7 +331,7 @@ const amiIntroVideo = getMedia("workshop.ami-legacy.intro.video");
       <Wrapper variant="standard" class="py-12 lg:py-20">
         <div class="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-start">
           <div>
-            <SectionHeader eyebrow="10" heading="Supporter beta access" note="Simple access while the kit is new." />
+            <SectionHeader eyebrow="10" heading="Permanent purchase or membership" note="Choose the access that fits the work." />
             <p class="max-w-2xl text-base leading-relaxed text-base-300">
               {avatarCourse.betaCta} The four setup lessons remain public, so you can inspect the workflow before joining.
             </p>
@@ -339,8 +339,11 @@ const amiIntroVideo = getMedia("workshop.ami-legacy.intro.video");
               {avatarCourse.standaloneNote}
             </p>
             <div class="mt-6 flex flex-wrap gap-3">
-              <Button isLink size="sm" variant="green" href={avatarCourse.checkoutPath}>
-                Join for beta access
+              <Button isLink size="sm" variant="green" href={avatarCourse.purchasePath}>
+                Compare access options
+              </Button>
+              <Button isLink size="sm" variant="muted" href={avatarCourse.checkoutPath}>
+                View membership
               </Button>
               <Button isLink size="sm" variant="muted" href={avatarCourse.coursePath}>
                 See lesson previews
@@ -350,7 +353,7 @@ const amiIntroVideo = getMedia("workshop.ami-legacy.intro.video");
           <aside class="border border-base-800 bg-base-900/40 p-5">
             <p class="text-xs font-mono uppercase tracking-wider text-accent-cyan-bright">Course access note</p>
             <p class="mt-4 text-sm leading-relaxed text-base-400">
-              Current supporter access remains active while the course moves toward a one-time purchase model.
+              Current supporter access remains active. A separate $7 purchase will remain attached to the account after membership ends.
             </p>
           </aside>
         </div>

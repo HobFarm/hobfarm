@@ -9,6 +9,7 @@ import {
   resolveAuthUser,
 } from "../stripe/internal";
 import { fetchCommerceJson, type CommerceServiceEnv } from "./internal";
+import { isBodyTooLargeError, readJsonBodyLimited } from "../request-body";
 
 interface Env extends CommerceServiceEnv {
   STRIPE_API_KEY: string;
@@ -51,10 +52,6 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     return jsonError("Cross-site shop checkout requests are not allowed", 403);
   }
 
-  const contentLength = Number(request.headers.get("content-length") ?? "0");
-  if (contentLength > MAX_BODY_BYTES) {
-    return jsonError("Request body is too large", 413);
-  }
   if (env.DIRECT_SHOP_CHECKOUT_ENABLED !== "true") {
     return jsonError("Direct shop checkout is not open yet", 503);
   }
@@ -79,8 +76,9 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     if (!(request.headers.get("content-type") ?? "").includes("application/json")) {
       return jsonError("Shop checkout requires a JSON request", 415);
     }
-    body = (await request.json()) as CheckoutRequest;
-  } catch {
+    body = await readJsonBodyLimited<CheckoutRequest>(request, MAX_BODY_BYTES);
+  } catch (error) {
+    if (isBodyTooLargeError(error)) return jsonError("Request body is too large", 413);
     return jsonError("Invalid checkout request", 400);
   }
   if (

@@ -56,6 +56,8 @@ Course refunds depend on the course listing and payment platform. If no specific
 
 No refund is guaranteed after substantial access to lessons, downloads, templates, recordings, or private course materials unless required by law or the product was not delivered as described.
 
+A one-time Academy purchase grants permanent account access to the named course unless the payment is refunded or disputed, the purchase is revoked to correct an error, or the course terms say otherwise. Academy access included with a HobFarm membership lasts only while that membership remains active or inside its verified paid-through period. Ending a membership does not remove a separate one-time course purchase.
+
 ## Custom Work and Commissions
 
 Custom work may include creative direction, AI-assisted production, image sets, cover concepts, consulting, workflow design, and implementation work.

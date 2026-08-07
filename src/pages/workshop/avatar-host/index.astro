@@ -5,6 +5,7 @@ import { getMedia } from "@/data/media-registry";
 import { avatars, getAvatar } from "@/data/avatars";
 import WorkshopProgramNav from "@/components/workshop/WorkshopProgramNav.astro";
 import { avatarHostMedia } from "@/data/avatar-host-media";
+import WorkshopCourseBridge from "@/components/academy/WorkshopCourseBridge.astro";
 
 const hobgalVideo = getMedia("avatar-host.hobgal.prototype.video");
 const hobgalTranscript = getMedia("avatar-host.hobgal.prototype.transcript");
@@ -30,13 +31,13 @@ const identities = avatars.map((avatar) => ({
 }));
 
 const productionChain = [
-  "Character identity",
-  "Avatar group",
-  "Role-specific look",
-  "Voice",
-  "Motion direction",
-  "Presenter clip",
-  "Recurring use",
+  "Publish the full article",
+  "Choose one video angle",
+  "Build a source-backed script",
+  "Choose the right avatar",
+  "Make the vertical video",
+  "Review every claim and frame",
+  "Publish a link back to the article",
 ];
 
 const hillaryRoles = [
@@ -80,8 +81,8 @@ const systemSequence = [
   },
   {
     number: "05",
-    title: "Expression and motion direction / PsyGoth trio",
-    body: "Em, Nina, and Zima share a video format while their green, red, and blue identity signals stay distinct. Existing clips already support a complete Workshop feature.",
+    title: "Expression and motion direction / early three-host experiment",
+    body: "PsyGoth is the name of an existing Em, Nina, and Zima test, not the publishing system itself. The useful evidence is that three presenters can share a format while keeping distinct identity signals.",
   },
   {
     number: "06",
@@ -107,9 +108,9 @@ const systemSequence = [
 
 const destinations = [
   {
-    status: "Active",
-    title: "PsyGoth Workshop feature",
-    body: "Three selected HeyGen clips, edited transcripts, source transcripts, and continuity notes.",
+    status: "Existing experiment",
+    title: "PsyGoth three-host study",
+    body: "PsyGoth is an older coordinated-host example: three selected clips, transcripts, and continuity notes. It remains evidence, not the model for every article video.",
     href: "/workshop/workshop-notes/psygoth/",
     label: "Open the PsyGoth feature",
   },
@@ -134,7 +135,7 @@ const structuredData = {
   "@context": "https://schema.org",
   "@type": "TechArticle",
   headline: "Avatar & Host",
-  description: "A first-class HobFarm Workshop program for turning a stable identity into a recurring speaker with a role, voice, expression, motion, looks, continuity record, and destination.",
+  description: "The HobFarm process for turning a published article into reviewed avatar-led video while keeping the article as the canonical source.",
   image: amiHero.src,
   url: `${siteOrigin}/workshop/avatar-host/`,
   isPartOf: {
@@ -147,7 +148,7 @@ const structuredData = {
 
 <BaseLayout
   title="Avatar & Host | HobFarm Workshop"
-  description="See how a stable identity gains a speaking role, voice, expression, motion, recurring looks, continuity records, and a useful destination."
+  description="See how a finished HobFarm article becomes source-backed avatar video while the complete article remains on the website."
   canonical="/workshop/avatar-host/"
   structuredData={structuredData}
   image={amiHero.src}
@@ -161,12 +162,12 @@ const structuredData = {
           <div>
             <p class="kicker">HobFarm Workshop program</p>
             <h1>Avatar &amp; Host</h1>
-            <p class="deck">An avatar begins with a stable identity, then gains a speaking role, voice, expression, motion, recurring looks, and a destination. The base can come from a photograph, an existing character, or a newly built mannequin.</p>
-            <div class="status-row" aria-label="Host system roles">
-              <span>Ami / commercial presenter</span>
-              <span>Hillary / editorial guide</span>
-              <span>PsyGoth / three-host system</span>
-              <span>Hobgal / retired prototype</span>
+            <p class="deck">The article is the source and permanent home. A Codex production project can turn its research, images, and argument into short avatar-led videos, add new footage where it helps, and prepare platform-ready cuts that point viewers back to the complete work.</p>
+            <div class="status-row" aria-label="Article video system principles">
+              <span>Article first</span>
+              <span>Video for social</span>
+              <span>Human review</span>
+              <span>Link back to HobFarm</span>
             </div>
           </div>
           <img src={amiHero.src} alt={amiHero.alt} width={amiHero.width} height={amiHero.height} loading="eager" fetchpriority="high" decoding="async" />
@@ -177,8 +178,9 @@ const structuredData = {
     <section class="chain-section">
       <Wrapper variant="standard" class="py-12 lg:py-16">
         <header class="section-heading">
-          <p class="kicker">Production chain</p>
-          <h2>Every recurring appearance follows the same chain.</h2>
+          <p class="kicker">Article-to-video production chain</p>
+          <h2>One article can become several useful videos without becoming disposable social copy.</h2>
+          <p>Start a production project from the published page. Extract a few honest video angles, choose an avatar only when a presenter helps, make vertical cuts for the selected platforms, review them, then link every post back to the article.</p>
         </header>
         <ol class="production-chain">
           {productionChain.map((step, index) => (
@@ -251,8 +253,8 @@ const structuredData = {
       <Wrapper variant="standard" class="py-14 lg:py-20">
         <header class="section-heading">
           <p class="kicker">04 / Existing coordinated output</p>
-          <h2>PsyGoth already works as a three-host feature.</h2>
-          <p>Em, Nina, and Zima each have a short landscape clip with a clear transcript claim. Their longer portrait takes supply fuller identity language and continuity evidence. No new generation is needed for the Workshop feature.</p>
+          <h2>PsyGoth is an existing experiment, not a separate media strategy.</h2>
+          <p>The name belongs to an earlier three-host test using Em, Nina, and Zima. Their clips and transcripts remain useful continuity evidence, but new article videos begin with the article and choose a presenter for the specific job.</p>
         </header>
         <div class="trio-portraits" aria-label="PsyGoth host portraits">
           {[emProfile, ninaProfile, zimaProfile].map((profile) => <img src={profile.src} alt={profile.alt} width={profile.width} height={profile.height} loading="lazy" decoding="async" />)}
@@ -324,7 +326,7 @@ const structuredData = {
           </div>
           <ul>
             <li><code>Identity portraits</code><span>Canonical</span></li>
-            <li><code>PsyGoth clips + transcripts</code><span>Active</span></li>
+            <li><code>PsyGoth clips + transcripts</code><span>Existing study</span></li>
             {avatarHostMedia.map((record) => <li><code>{record.title}</code><span>{record.status}</span></li>)}
           </ul>
         </div>
@@ -341,6 +343,10 @@ const structuredData = {
       </Wrapper>
     </section>
   </article>
+  <WorkshopCourseBridge
+    courseSlug="build-a-recurring-host-cast"
+    publicProof="This Workshop record shows the host identities, role lanes, destinations, and reusable media records. The planned advanced course will turn that evidence into a repeatable cast workflow."
+  />
 </BaseLayout>
 
 <style>
