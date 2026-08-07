@@ -1,0 +1,719 @@
+---
+title: "Same Same, But Different"
+excerpt: "The models overlap. The workflows, prices, guardrails, and failure modes do not."
+dek: "A model benchmark, a platform evaluation, and a production audit measure different things. The right AI system depends on the job, the route, and the cost of an accepted result."
+description: "A dated map of the creative AI market, comparing model labs, first-party studios, APIs, aggregators, wrappers, specialist systems, hosted nodes, local execution, and custom orchestration."
+author: "d00d"
+tags:
+  - ai
+  - generative media
+  - video generation
+  - image generation
+  - APIs
+  - creative workflows
+  - model providers
+  - ComfyUI
+  - production systems
+category: research
+department: essays-arguments
+format: article
+entryType: feature
+heroImage: "/articles/same-same-but-different/hero.webp"
+socialImage: "/articles/same-same-but-different/social.webp"
+thumbnail: "/articles/same-same-but-different/social.webp"
+heroAlt: "A satirical cutaway shows generic AI storefronts connected to an underground machine of model engines, credit meters, moderation gates, adapters, queues, and rejected outputs."
+socialCaption: "No platform wins outside a job. A dated map of the model, wrapper, API, and production layers that turn one request into very different work."
+canonical: "/articles/same-same-but-different/"
+pubDate: 2026-08-12
+publishedAt: 2026-08-12T16:20:00-07:00
+status: scheduled
+featured: false
+coverStory: false
+draft: false
+relatedArticles:
+  - invisible-variable
+  - same-model-different-surface
+  - i-could-be-playing-civilization
+  - you-do-not-own-the-ai-you-pay-for
+relatedWorkshop:
+  - /workshop/stylefusion/
+workshopCTA:
+  label: "Inspect the StyleFusion workflow"
+  href: "/workshop/stylefusion/"
+supportCTA:
+  label: "Support independent publishing"
+  href: "/support/"
+rightsNote: "Original HobFarm editorial illustration and explanatory diagrams. Provider names appear for factual comparison. The cardboard-box image is author-owned."
+---
+
+import ArticleDiagram from "@/components/articles/same-same-but-different/ArticleDiagram.astro";
+import CardboardFigure from "@/components/articles/same-same-but-different/CardboardFigure.astro";
+import ProviderMatrix from "@/components/articles/same-same-but-different/ProviderMatrix.astro";
+import StyleFusionReceipt from "@/components/articles/same-same-but-different/StyleFusionReceipt.astro";
+
+> **System state recorded August 6, 2026.** Prices, models, limits, interfaces, and terms may change before this article finishes loading.
+
+> “unfollowing anyone promoting Higgsfield  
+> respect your followers, don't sell your ass”
+
+I did not follow the account and had not seen its earlier posts about Higgsfield. The quote appeared because I follow Higgsfield, the post mentioned Higgsfield, and X decided that disagreement counted as relevance.
+
+That is how I use X. I follow model companies, API providers, creative platforms, and people who test this stuff because the market changes faster than any normal publication schedule can follow it. My coworkers tell me X is nothing but politics and pornography. Mine is image models, video models, API launches, price changes, new limits, benchmark charts, and somebody announcing that the thing everyone loved last Thursday is garbage now.
+
+We are using the same platform and receiving different manufactured realities.
+
+The first sentence of the post made enough sense. Unfollowing people is one way to remove a subject from an algorithmic feed. I do it all the time. The second sentence changed feed maintenance into a moral accusation. Anyone mentioning this particular production tool had apparently betrayed the audience.
+
+People in the replies asked what they should use instead.
+
+That was already the wrong question.
+
+What are you trying to make?
+
+A person generating ten-second video clips does not necessarily need the same system as somebody building a collaborative visual canvas, hosting a ComfyUI graph, dubbing a film, making a recurring avatar presenter, designing vector graphics, or routing several APIs through a custom application. Naming a replacement before defining the job is like recommending a drill press to somebody who asked why their toaster caught fire.
+
+I eventually found the missing context. Higgsfield had given people legitimate reasons to distrust it. Its official X account had been suspended. Reporting had documented aggressive creator promotion, stock material sent out in a marketing kit, payment disputes, bans, throttled unlimited plans, and a terms-of-service fight.[^forbes-higgsfield] Higgsfield disputed or explained parts of that history, blamed fraud and bot activity for some of the operational mess, and replaced a briefly published terms version with a narrower one.[^higgsfield-terms]
+
+Fine. There was a case file.
+
+The post had delivered only the verdict.
+
+
+
+## Higgsfield is a bundle
+
+I use Higgsfield.
+
+That sentence does not mean I admire the company, approve of every business decision, believe its marketing, use every feature, or intend to join a fan club. It means parts of the service currently do jobs I need.
+
+For my video work, Higgsfield is useful as a storefront and execution layer. It gives me one place to reach several models, a credit pool I already have, and some cinema controls that are occasionally useful. Kling often produces clips that are good enough for what I am making at a price that lets me experiment without turning every attempt into a budget meeting. Seedance can be impressive, but it has often been too expensive for my normal iteration pattern.
+
+Higgsfield's own August 3 credit explainer makes the difference unusually visible. For the company's stated ten-second 1080p example, Seedance 2.0 cost 90 credits while Kling 3.0 cost 25. Cinema Studio cost 100 and Wan 2.7 cost 25.[^higgsfield-credits] Those are Higgsfield's numbers for those settings on that date. They are not a universal model price comparison. They explain why I may choose Kling inside Higgsfield even when the newest benchmark or launch campaign says something else is better.
+
+The company also says an output that simply came out wrong does not receive an automatic refund. Its own recommended calculation is generation cost multiplied by the average number of attempts required to get a usable result.[^higgsfield-credits]
+
+That is closer to production reality than most AI marketing.
+
+Higgsfield also contains Supercomputer, identity systems, marketing tools, presets, Canvas, community projects, contests, MCP and CLI access, and whatever else was added while I was writing this paragraph. Some of it may be useful. Some of it may be lame. I am allowed to ignore it.
+
+A platform is not one opinion.
+
+It is a bundle:
+
+```text
+shared model access
++ proprietary controls
++ project interface
++ credits and limits
++ storage
++ moderation
++ company conduct
++ promotional machinery
+```
+
+The useful parts do not erase the bad parts. The bad parts do not make every useful button disappear.
+
+Higgsfield is a good first specimen because the name currently refers to all of those things at once. A person says the “product” is terrible. Which product? Kling through its video page? Cinema Studio? Supercomputer? The creator program? Billing? Support? The company? The terms? A failed generation? A paid campaign?
+
+Those are different investigations.
+
+## Name the whole machine
+
+I had already tested pieces of this problem.
+
+In [*The Invisible Variable*](/articles/invisible-variable/), I sent the same reference material through several vision models and used their descriptions to drive image generation. The models did not neutrally extract the same facts. One found fractal mathematics. Another found psychedelic poster art. Another emphasized Art Nouveau. The interpreter acted like a quiet creative director.[^invisible-variable]
+
+In [*Same Model, Different Surface*](/articles/same-model-different-surface/), I sent the same structured material through consumer interfaces and APIs carrying the same model names. The surfaces changed the result. Sometimes the supposed same model looked like a related product. Sometimes it looked like a completely different one. One surface changed while the article was being finished.[^different-surface]
+
+The invisible variable had multiplied.
+
+<ArticleDiagram kind="whole-machine" />
+
+The user does not hand an idea directly to a pure model. The work passes through a chain:
+
+```text
+source material
+→ interpretation
+→ schema or prompt
+→ provider adapter
+→ hosted endpoint
+→ platform wrapper
+→ moderation
+→ billing and limits
+→ retries and correction
+→ accepted asset
+```
+
+The model matters. Every other box matters too.
+
+[Prompt Goth, Get Boots](/articles/goth-get-boots/) recorded the same mechanism more narrowly. Ask ChatGPT to name a male elf and Maeric is one of the names it reaches for. Once invoked, the name keeps producing a male elf across radically different instructions. Those instructions can turn a blonde courtier into a blue PsyGoth figure inside a psychedelic landscape, but they cannot prompt the elf out of Maeric. Mara is different. She is a common female name without the same elf association, so she can become a contemporary woman, a Victorian goth, or a blue humanoid as the instructions change. Some traits are baked into the model's associations. Others remain available to context.
+
+The same thing happens to a social feed. A new account receives the platform's broadest profitable guesses. Add years of follows, searches, clicks, blocks, and indifference, and the feed becomes a distorted model of the user. My X account shows me provider news because that is what I trained it to notice. It also shows me contextless outrage about those providers because outrage around a topic still counts as the topic.
+
+A prompt is context. A schema is context. A source file is context. A follow graph is context. None gives complete control. All alter the result.
+
+## The market is several markets stacked together
+
+The creative AI landscape looks impossible because the same companies appear in several categories at once.
+
+The dated matrix prepared for this article tracks forty-five provider and service surfaces. It is still not exhaustive. The point is to cover the major route classes and current contenders without pretending the market will stop moving long enough to become a phone book.
+
+<ArticleDiagram kind="market-layers" />
+
+<ProviderMatrix />
+
+At the bottom are model developers. Black Forest Labs makes FLUX. Google makes Gemini, Imagen, and Veo. OpenAI makes GPT models and GPT Image. Alibaba makes Qwen and Wan. ByteDance makes Seed and Seedance. Kuaishou makes Kling. MiniMax, Z.ai, xAI, Recraft, Bria, Ideogram, Stability AI, and others make their own model families.
+
+Some of those companies provide a first-party playground and API. BFL has its own playground and API. Google has AI Studio and the Gemini API. Alibaba has Model Studio. Kling has a first-party consumer site and developer access. Luma has an app and an API for Ray and UNI. OpenAI and Anthropic have consumer project workspaces and APIs.
+
+Then come aggregators and infrastructure providers. fal, Replicate, Hugging Face Inference Providers, Together, OpenRouter, RunPod, and similar services reduce the need to maintain a separate account, billing system, authentication method, queue contract, and webhook implementation for every model company.
+
+Then come creative wrappers. Higgsfield, Runway, FLORA, Luma App, Krea, Magnific, Adobe Firefly, and others put models inside a more opinionated production environment.
+
+Then come specialized systems. ElevenLabs is still organized around voice and sound even as it expands into image and video workflows. HeyGen and Synthesia are organized around presenters. InVideo is organized around assembling a finished video from a prompt, script, stock, generated media, and templates.
+
+Then there are node systems. ComfyUI exposes the graph. RunningHub hosts the graph. RunPod rents the compute under the graph. fal can host a ComfyUI deployment. ElevenCreative and Runway have their own node-like workflow systems. FLORA and Magnific Spaces arrange similar ideas on a collaborative canvas.
+
+Then there is custom orchestration. That is where I put StyleFusion, provider adapters, Cloudflare AI Gateway, source packages, output manifests, and whatever code keeps the project from belonging to one vendor.
+
+Then there is final assembly, which often happens in a conventional editor, authored web component, code renderer, or some other non-magical piece of software.
+
+“AI platform” can mean any part of that stack.
+
+## The same model is for sale in several stores
+
+Black Forest Labs released FLUX 3 Video through its own API and selected partners on August 4, two days before this snapshot. The initial release supports clips up to twenty seconds, native audio, text-to-video, image-to-video, keyframes, continuation, and multiple shots. BFL also describes a future open-weight FLUX 3 Dev route.[^flux3]
+
+That creates several ways to reach related capability:
+
+```text
+BFL API
+partner API
+aggregator
+creative platform
+hosted workflow
+future private or open weights
+```
+
+The underlying model may be closely related across those routes. The product is not.
+
+One route may expose keyframes and draft mode. Another may simplify them. One may rewrite the prompt. One may impose another moderation layer. One may bill per second. Another may convert the same request into credits. One may preserve request logs and webhooks. Another may preserve a visual project. One may disappear from a region. Another may still offer access under a different agreement.
+
+This is why “Why use Higgsfield for Kling when you can use Kling?” is a real question with several possible answers.
+
+Use Kling directly when the first-party surface or API provides the controls, price, visibility, and reliability you need.
+
+Use Higgsfield when its existing subscription, credit pool, camera controls, cross-model comparison, project convenience, or regional route makes the complete job easier or cheaper.
+
+Use fal when you need a programmable request and want to place Kling beside several other endpoints in one application.
+
+Use ComfyUI or a hosted graph when the generation belongs inside a repeatable node workflow.
+
+None of those answers can be chosen before the job is defined.
+
+<ArticleDiagram kind="several-routes" />
+
+## What the wrapper actually sells
+
+A broad model gallery is becoming a commodity.
+
+Krea advertises a large library across image, video, 3D, editing, audio, and upscaling.[^krea] Recraft's studio lists its own models beside Nano Banana, FLUX, Ideogram, GPT Image, Imagen, Qwen Image, Seedream, Grok, Veo, Kling, Sora, Seedance, Hailuo, Wan, and Luma.[^recraft] Luma App integrates third-party video and audio models around Luma's own Ray and UNI systems.[^luma] Magnific combines a large model gallery with stock assets, editing, upscaling, and Spaces.[^magnific] Adobe Firefly increasingly describes itself as one studio containing Adobe models and partner models.[^firefly]
+
+Pika packages its effects-driven video tools as a distinct creative surface and developer route. PixVerse and Vidu sell first-party video systems and separate developer platforms. Hailuo is a consumer surface for MiniMax visual models. Leonardo and OpenArt package large visual model catalogs with editing, motion, character, or story workflows.[^pika-pixverse][^vidu-hailuo][^leonardo-openart]
+
+If everyone has a dropdown containing many of the same names, the dropdown is not the product.
+
+The product is what the platform organizes.
+
+<ArticleDiagram kind="primary-objects" />
+
+fal organizes a request.
+
+ComfyUI organizes a graph.
+
+RunningHub organizes a hosted graph.
+
+FLORA organizes a canvas.
+
+Higgsfield organizes a shot and a collection of cinematic controls.
+
+Runway organizes a video project.
+
+Luma organizes an agent-directed visual project.
+
+ElevenLabs organizes a voice or audio performance.
+
+HeyGen organizes a presenter.
+
+Recraft organizes a production image or vector.
+
+StyleFusion organizes a portable reference-and-prompt package.
+
+HyperFrames organizes a deterministic composition.
+
+The primary object changes what is easy, what is visible, what is preserved, and what gets locked inside the service.
+
+A canvas is useful when the work branches visually and several people need to see the history. A graph is useful when the pipeline needs inspection, reuse, and exact routing. A presenter system is useful when the central problem is a reusable host. A shot platform is useful when the central problem is camera motion and iteration. A direct API is useful when the surrounding workflow already exists somewhere else.
+
+The platform earns its markup when it removes labor I do not want to perform or provides access I cannot obtain cleanly another way.
+
+It loses the argument when its wrapper adds more work than it removes.
+
+## Every provider requires an adapter
+
+Most playgrounds look almost identical for the first five minutes.
+
+Choose a model. Paste a prompt. Attach a reference. Select an aspect ratio. Click generate.
+
+The differences appear when the test becomes a system:
+
+```text
+prompt length
+reference count
+file size
+accepted formats
+schema
+authentication
+rate limits
+concurrency
+regions
+safety policy
+resolution
+duration
+seed support
+versioning
+webhooks
+retries
+refunds
+```
+
+Alibaba Model Studio has been easier for me to approach than Google Cloud. That is not an objective ranking of two giant cloud companies. I am a web and media person doing fairly basic API work. Alibaba's studio made enough sense that I could use it.
+
+Then one of its video endpoints rejected the kind of long JSON prompt package I normally produce. The documented text-to-video limit for that endpoint was shorter than my schema output.[^alibaba-limit]
+
+So I made another workflow.
+
+The source material stayed the same. The provider required a compact serializer that preserved the important instructions inside its limit. Another adapter entered the system.
+
+Luma's current API allows prompts up to 6,000 characters, supports specific aspect-ratio sets, exposes no public seed for UNI, and returns one-hour signed output URLs that need to be downloaded or refreshed.[^luma-api] That is a different contract.
+
+Google AI Studio and the Gemini API are reasonably direct model surfaces. Google Cloud is a much larger world of projects, identities, billing, organizations, permissions, startup programs, and enterprise services. My worst Google experience came from trying to enter that larger world, change the account identity attached to a startup program, getting locked out, and having to write support to recover it. By the time I could theoretically use the benefit, I no longer wanted it.
+
+Google has capable image and video models. Google also feels like quicksand to me. Both statements can be true.
+
+Every provider eventually makes the user maintain an adapter for its particular flavor of bullshit.
+
+[*I Could Be Playing Civilization*](/articles/i-could-be-playing-civilization/) followed the maintenance loop in more detail. The fix becomes a source file. The source file becomes another thing that can go stale. The system grows because the providers keep changing.[^civilization]
+
+## Regional access is part of the product
+
+Direct access is not always direct everywhere.
+
+BytePlus provides a developer route into ByteDance model services where available. Its current specific terms for video generation say those services are unavailable in the United States.[^byteplus-region]
+
+That gives a wrapper a legitimate reason to exist. A user may reach a ByteDance model through a platform even when the first-party API is not sold in their region.
+
+The situation is unstable by nature. A platform can add the model, lose the model, rename the model, change its contract, route it through another provider, or restrict it by account. The user may not know which arrangement sits behind the button.
+
+Several Chinese image and video models currently give me a strong balance of quality and price. That is a production assessment from my work, not a declaration that one country has won artificial intelligence. It is also the part of my current stack I trust least to remain conveniently available under the same terms.
+
+Maybe access stays fine. Maybe regulations, licensing, trade policy, provider strategy, or regional enforcement changes it. The fact is current availability. The instability is a reasonable risk, not a finished prediction.
+
+A portable workflow assumes the button may vanish.
+
+## A benchmark is not a purchase order
+
+I do not care very much which model won a broad benchmark.
+
+That does not make every benchmark fake. It means the benchmark usually answers a narrower question than the one I have.
+
+Artificial Analysis makes a useful effort to separate video quality, speed, price, text-to-video, image-to-video, editing, audio, model variants, and endpoint conditions. It also states the boundary: the system evaluates public model endpoints, not the complete Higgsfield, Runway, FLORA, HeyGen, or Luma production environment.[^aa]
+
+A model benchmark tests an endpoint under selected conditions.
+
+A platform evaluation tests the endpoint plus wrapper, controls, moderation, pricing, storage, and export.
+
+A production audit asks whether the whole arrangement produced something I could use.
+
+Those are three different objects.
+
+A model can score well because it produces attractive lighting, surface detail, and motion while failing the exact property that kills my shot. The face changes. The object count is wrong. The text melts. The wardrobe drifts. The camera does something I did not request. The animation looks like a photograph being tortured into motion.
+
+Specialized benchmarks exist because those failure modes disappear inside overall scores. Research has found current video models struggling with exact object counts and stable readable text even when the clips look impressive.[^count-text]
+
+The useful production record looks like this:
+
+```text
+attempt 1: attractive, wrong action
+attempt 2: correct action, broken continuity
+attempt 3: moderation refusal
+attempt 4: good motion, wrong composition
+attempt 5: accepted after editing
+```
+
+The benchmark may have captured attempt one or attempt five.
+
+My invoice captures all five.
+
+<ArticleDiagram kind="accepted-output-funnel" />
+
+## The retry tax
+
+The advertised price is the cost of one attempt.
+
+The production price is the cost of reaching an accepted result.
+
+```text
+acceptance rate
+accepted outputs / total attempts
+
+cost per accepted asset
+total generation spend / accepted assets
+
+cost per usable second
+total video spend / final usable seconds
+```
+
+Add correction time. Add the time spent changing the prompt after a provider changed its fields. Add the credit charged for an output that failed. Add the queue. Add the upscale. Add the manual repair. Add the time spent discovering which layer blocked the request.
+
+A cheaper model can be more expensive when it fails repeatedly. A more expensive model can be economical when it gets a difficult shot right. A slightly worse model can be the correct tool when the result only needs to survive for three seconds inside a larger edit.
+
+This is why Kling can be more useful to me than Seedance even when somebody else prefers Seedance's motion. My job, retry tolerance, and cost floor are not their job.
+
+It is also why “unlimited” needs inspection. Higgsfield describes concurrency limits and eligible-model restrictions. Magnific currently documents that several high-demand models moved from unlimited generation back to credits on some plans.[^magnific-unlimited] ElevenLabs lets some paid credits roll over for up to two months while sharing one pool across speech, music, effects, dubbing, and visual products.[^eleven-pricing] Other services reset credits monthly or sell annual pools. API billing may charge by image, second, token, or GPU time.
+
+One thousand credits on one platform cannot be compared to one thousand credits on another.
+
+The useful unit is accepted work.
+
+## Moderation is an uninvited production role
+
+I have already written the longer censorship article. The compact version here is that the refusal can come from several places:
+
+```text
+model
+input classifier
+output classifier
+system prompt
+platform wrapper
+provider rule
+region
+account setting
+```
+
+The user often cannot tell which one objected.
+
+For production comparison, moderation becomes another measurable failure mode:
+
+> How often does this service block, sanitize, or redirect legal work, and what does recovery cost?
+
+Meta's upgraded image model can produce decent images. In my work it has also delivered harsher refusals and less useful control than several alternatives. The cardboard-box images came from trying to make ordinary stylized bodies and clothing without spending the entire day arguing with a classifier.
+
+<CardboardFigure />
+
+The box worked. It also became funny. Moderation did not stop the work. It redirected the design.
+
+That is still labor imposed by the system.
+
+Sometimes the simplest solution is to draw the thing myself.
+
+## Bad product, bad deal, bad practice, paid promotion, scam
+
+Social media uses “scam” as a universal word for disappointment.
+
+The distinctions matter.
+
+A bad product fails to perform the claimed job.
+
+A bad deal works but costs too much for the result.
+
+A bad business practice can involve unclear billing, misleading terms, poor support, aggressive throttling, or unstable promises.
+
+Paid promotion involves money, credits, free service, early access, affiliate revenue, or another material benefit. Paid promotion is ordinary advertising when the relationship is disclosed clearly. The FTC treats those benefits as material connections that can affect how an audience evaluates the recommendation.[^ftc]
+
+A scam is a stronger allegation involving meaningful deception or payment taken under false pretenses. It needs evidence.
+
+Higgsfield's stock-template incident is a specific documented story. “Scamfield” is a slogan.
+
+The general point does not depend on guessing at one account's relationship. FLORA openly offers affiliate revenue, discounts, credits, co-marketing, and partner expectations.[^flora-partners] Higgsfield openly offers creator benefits. Other platforms run similar programs.
+
+Creators can genuinely like the products they promote. They can also become faster inside the systems they use most. Their recommendations remain incomplete until the reader knows the job, relationship, cost, and failure conditions.
+
+## The picture is a checksum
+
+I built StyleFusion because I wanted the durable part of an image workflow to exist before the provider call.
+
+The visible output is often the least important artifact.
+
+```text
+source references
++ reference roles
++ structured JSON
++ natural-language prompt
++ provider adapter
++ output schema
++ model and version record
++ validation
+```
+
+The generated image proves that the package executed. It may never appear on social media. It may never appear on the site. It can be discarded after revealing that one provider ignored composition, another dropped identity, another rejected the prompt length, and another interpreted the style in a useful direction.
+
+The picture is a checksum.
+
+<StyleFusionReceipt />
+
+This is a very different relationship from opening a consumer site and typing “make a cool picture.” It also explains why I do not care about producing a steady feed of AI women, avatars, or fashion demonstrations. The interesting work is the system that carries intent across unstable models.
+
+A StyleFusion package can move from an OpenAI image endpoint to BFL, Alibaba, Recraft, Bria, Ideogram, Seedream through an available provider, or a future local model. Each target needs an adapter. The source package should not be rewritten from scratch every time.
+
+[*Building HobFarm: Architecture for Multi-Provider AI*](/articles/hello-world/) described the thin-adapter version of that idea. [*How to Fix Slop*](/articles/how-to-fix-slop/) described the project context around it. This article places those systems inside the current market.[^multi-provider][^fix-slop]
+
+The durable asset is not the model output.
+
+It is the ability to produce another output after the model changes.
+
+## Direct API, aggregator, wrapper, nodes, or local?
+
+There is no single correct layer.
+
+A direct first-party API gives the cleanest relationship to the model provider. It can expose current controls, clearer versioning, and direct pricing. It also creates another integration, bill, authentication system, policy contract, region, and failure mode.
+
+An aggregator reduces those integrations. fal can provide broad image, video, audio, 3D, and vision endpoints while also hosting custom serverless applications and ComfyUI deployments.[^fal] Replicate simplifies versioned model predictions. Hugging Face links model discovery, weights, and hosted providers. OpenRouter does similar routing for language models. Cloudflare AI Gateway can sit above several providers to log, cache, rate-limit, route, and fail over requests.[^gateway]
+
+A creative wrapper adds an opinionated workflow. That is useful when the opinion matches the job.
+
+A node system exposes the pipeline. ComfyUI makes the graph inspectable and reusable. RunningHub rents a hosted version of that experience. RunPod rents the GPU machinery under it. The user avoids buying a new computer and becomes responsible for containers, storage, cold starts, dependencies, and deployment.
+
+Local execution offers the strongest control. It also requires expensive VRAM, storage, power, cooling, weights, nodes, licenses, fine-tuning data, dependency repair, and time.
+
+The escape from rented AI is buying a small AI factory and becoming its unpaid janitor.
+
+I cannot currently justify the hardware required for the local image and video work I would want to run and fine-tune. So I use APIs and platforms, keep the source files, and try not to build anything that dies when one provider becomes irritating.
+
+## Chatbots belong in the same map
+
+The same logic applies to ChatGPT, Claude, Grok, Gemini, and other assistants.
+
+A benchmark says a model is strong at coding, reasoning, tool use, or some selected test. My project asks whether it read the current source files, understood which detail mattered, avoided importing stale context, completed the requested change, and left the system in a state I can use.
+
+Claude was useful to me, then became less useful. ChatGPT was weak for parts of my workflow, then improved. Sometimes I move work between them. Sometimes I ask each to critique the other's result. Sometimes a disagreement reveals that neither has a receipt.
+
+That is not brand indecision. It is variance as a checking system.
+
+```text
+independent response A
++ independent response B
++ critique
++ source verification
++ human decision
+```
+
+Five models can repeat the same wrong claim. Multiple answers do not create truth automatically. Different failure patterns help identify where the source work is needed.
+
+Grok's consumer image generation was useful to me until its limits became unpredictable enough that I stopped planning around it. The API remains something I may use. Current xAI developer documentation gives explicit prices and newer cost-reporting fields.[^xai] That does not erase the earlier consumer experience. It demonstrates again that the surface changed.
+
+Gemini's image and video systems are acceptable for some work. Gemini chat and Google's project organization do not fit my method as well as project workspaces built around source files and scoped instructions. Google advertises a world of shopping, travel, assistance, and connected services. I want a project folder that knows the current source of truth and leaves the rest of the Google world alone.
+
+Every assistant is useful until it changes, the project changes, or another assistant fails in a more convenient way.
+
+## What are you making?
+
+This is the answer the social-media replies skipped.
+
+<ArticleDiagram kind="job-router" />
+
+Before recommending a platform, ask:
+
+```text
+What are you making?
+What source material already exists?
+What output do you need?
+What quality floor is acceptable?
+What failure is unacceptable?
+How much iteration can you afford?
+How much control do you need?
+Does the workflow need to move later?
+```
+
+If the job is raw programmable model access, start with the first-party API or an aggregator.
+
+If the job is a repeatable custom visual system, start with a schema, adapters, and output records.
+
+If the job is collaborative visual exploration, use a canvas.
+
+If the job is an inspectable reusable pipeline, use a graph.
+
+If the job is an economical short clip, compare the actual accepted-second cost across the direct model and the wrappers you already pay for.
+
+If the job is a controlled cinematic shot, choose the surface with useful camera, keyframe, continuation, reference, or editing controls.
+
+If the job is narration, music, effects, or dubbing, use an audio system.
+
+If the job is a recurring presenter, use a presenter system.
+
+If the job is vector art, typography, icons, or a controlled design asset, use an image specialist built around those outputs.
+
+If the job is maximum independence, buy or rent the compute and accept the maintenance.
+
+If the job is final assembly, stop generating and open the editor.
+
+The brand arrives after the route class.
+
+## A current HobFarm stack
+
+My current stack is not a recommendation for everyone. It is an example of tools earning separate jobs.
+
+Local tools prepare files and handle some enhancement.
+
+ChatGPT and other assistants help research, structure source material, critique, write schemas, and implement systems when they behave well enough.
+
+StyleFusion preserves structured visual intent and routes it toward providers.
+
+fal provides programmable model access and API jobs.
+
+Higgsfield provides video volume, selected models, and cinematic controls when the price fits.
+
+ElevenLabs handles narration, voice, music, effects, dubbing, and audio experiments.
+
+HeyGen can provide recurring hosts when a presenter is the correct output.
+
+HyperFrames and conventional editors handle deterministic derivatives and final assembly.
+
+Another month may rearrange that list.
+
+The article is the source. Social clips, presenter segments, captions, graphics, and other derivatives can be compiled from the approved article package. I do not need to reinvent the idea every morning for a feed I barely use.
+
+```text
+article and source package
+→ approved claims and visual beats
+→ distribution manifest
+→ selected production systems
+→ platform-specific output
+→ human review
+```
+
+That is a production stack.
+
+It is not a fan club.
+
+## Build for substitution
+
+The system I trust is the one that assumes every provider will eventually change something I depend on.
+
+```text
+stable source material
++ explicit project instructions
++ portable schemas
++ provider-specific adapters
++ replaceable execution targets
++ recorded tests
++ human judgment
+```
+
+The interpreter can change.
+
+The endpoint can change.
+
+The wrapper can change.
+
+The price can change.
+
+The moderation can change.
+
+The model can improve, degrade, disappear, split into fast and quality routes, or keep its name while becoming a different product.
+
+The project changes too. My HobFarm structure is more stable than it was months ago. A model that failed when the project was a pile of half-formed assumptions may perform differently when it receives a clean source package. A model that once knew enough from memory can become dangerous when that memory goes stale.
+
+The durable system keeps the truth somewhere the provider does not control.
+
+[*You Do Not Own the AI You Pay For*](/articles/you-do-not-own-the-ai-you-pay-for/) followed the access problem. [*Too Big for the Box*](/articles/too-big-for-the-box/) followed the return to remote machinery. This is the operating answer.[^do-not-own][^too-big]
+
+## August 6, 2026
+
+By the time this publishes, one of these providers will have released another model, changed a price, extended an unlimited offer, removed an unlimited offer, renamed a product, updated a policy, altered a rate limit, deprecated an endpoint, or announced that the previous frontier model has become embarrassing.
+
+That does not make the article pointless.
+
+It makes it a time capsule.
+
+On August 6, 2026, the market contained model labs selling direct APIs and weights, aggregators selling access, creative platforms selling workflows, specialized systems selling voices and presenters, hosted node systems selling convenience, cloud companies selling infrastructure, and local models selling freedom to anyone who could afford the hardware and maintenance.
+
+They overlapped heavily.
+
+They failed differently.
+
+No platform won outside a job.
+
+I use the route that completes the work today. I keep the source package. I record what worked. I replace the provider when the arrangement stops making sense. Sometimes I use the API. Sometimes I use the wrapper. Sometimes I decide the AI is creating more work than it removes and do the thing myself.
+
+The earlier articles found individual variables.
+
+This is the machine.
+
+Same same, but different.
+
+---
+
+## Source notes and publication receipts
+
+[^forbes-higgsfield]: Rashi Shrivastava, [“The Dark Side Of AI Video Startup Higgsfield’s Super-Fast Growth”](https://www.forbes.com/sites/rashishrivastava/2026/02/11/racist-videos-and-payment-problems-the-dark-side-of-this-ai-startups-super-fast-growth/), *Forbes*, February 11, 2026. The article includes the company's responses beside reported complaints.
+
+[^higgsfield-terms]: Higgsfield's [current terms](https://higgsfield.ai/terms-of-use-agreement), [archived July 23 terms](https://higgsfield.ai/terms-of-use-agreement-23-07-2026), [privacy policy](https://higgsfield.ai/privacy-policy), and [July 25 company update](https://higgsfield.ai/blog/terms-of-use-privacy-policy-update). The current terms were last updated July 26, 2026; the company says they take effect August 27 for users who accepted an earlier version.
+
+[^higgsfield-credits]: Higgsfield, [“AI Video Credits Explained”](https://higgsfield.ai/blog/ai-video-credits-explained), August 3, 2026. Rates in this article preserve the August 6 snapshot; the publication-day queue requires another check.
+
+[^invisible-variable]: HobFarm, [“The Invisible Variable”](/articles/invisible-variable/).
+
+[^different-surface]: HobFarm, [“Same Model, Different Surface”](/articles/same-model-different-surface/).
+
+[^flux3]: Black Forest Labs, [“FLUX 3”](https://bfl.ai/blog/flux-3), July 23, 2026; [“FLUX 3 Video, Part 1”](https://bfl.ai/blog/flux-3-video), August 4, 2026; and [current pricing](https://bfl.ai/pricing).
+
+[^krea]: Krea [homepage](https://www.krea.ai/), [model library](https://www.krea.ai/models), [pricing](https://www.krea.ai/pricing), and [API](https://www.krea.ai/features/api) pages.
+
+[^recraft]: Recraft [API and studio page](https://www.recraft.ai/api) and [V4.1 documentation](https://www.recraft.ai/docs/recraft-models/recraft-v4-1).
+
+[^luma]: Luma [structured product page](https://lumalabs.ai/llm-info) and [API FAQ](https://docs.agents.lumalabs.ai/guides/faq/). Vendor ranking language is treated as marketing evidence.
+
+[^magnific]: Magnific [homepage](https://www.magnific.com/), [pricing](https://www.magnific.com/pricing), [Spaces](https://www.magnific.com/spaces), and [Freepik transition](https://www.magnific.com/freepik).
+
+[^firefly]: Adobe Firefly [studio](https://firefly.adobe.com/), [plans](https://www.adobe.com/products/firefly/plans.html), and [API overview](https://developer.adobe.com/firefly-services/docs/firefly-api/).
+
+[^alibaba-limit]: Alibaba Cloud Model Studio, [current](https://www.alibabacloud.com/help/en/model-studio/text-to-video-api-reference) and [legacy](https://www.alibabacloud.com/help/en/model-studio/legacy-wan-text-to-video-api-reference) text-to-video API references. Prompt ceilings vary by Wan model and endpoint.
+
+[^luma-api]: Luma [API FAQ](https://docs.agents.lumalabs.ai/guides/faq/), prompt, aspect-ratio, seed and output sections.
+
+[^civilization]: HobFarm, [“I Could Be Playing Civilization”](/articles/i-could-be-playing-civilization/).
+
+[^byteplus-region]: BytePlus ModelArk [specific video-generation terms](https://docs.byteplus.com/en/docs/ModelArk/Specific_Terms_for_the_BytePlus_Video_Generation_Model_Services) and [Seedance tutorial](https://docs.byteplus.com/en/docs/ModelArk/2291680).
+
+[^aa]: Artificial Analysis, [video arena methodology](https://artificialanalysis.ai/video/methodology).
+
+[^count-text]: [T2VCountBench](https://arxiv.org/abs/2504.04051) and [T2VTextBench](https://arxiv.org/abs/2505.04946).
+
+[^magnific-unlimited]: Magnific, [“What's changing in Unlimited”](https://www.magnific.com/ai/unlimited/changes).
+
+[^eleven-pricing]: ElevenLabs [billing documentation](https://elevenlabs.io/docs/overview/administration/billing), [Image and Video documentation](https://elevenlabs.io/docs/eleven-creative/playground/image-video), and [API pricing](https://elevenlabs.io/pricing/api).
+
+[^ftc]: U.S. Federal Trade Commission, [Endorsement Guides FAQ](https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking). This is general information, not legal advice.
+
+[^flora-partners]: FLORA [partner program](https://flora.ai/partners), checked August 6, 2026.
+
+[^multi-provider]: HobFarm, [“Building HobFarm: Architecture for Multi-Provider AI”](/articles/hello-world/).
+
+[^fix-slop]: HobFarm, [“How to Fix Slop”](/articles/how-to-fix-slop/).
+
+[^fal]: fal [documentation](https://fal.ai/docs/documentation) and [changelog](https://fal.ai/docs/changelog).
+
+[^gateway]: Cloudflare, [AI Gateway documentation](https://developers.cloudflare.com/ai-gateway/).
+
+[^xai]: xAI developer [pricing](https://docs.x.ai/developers/pricing) and [release notes](https://docs.x.ai/developers/release-notes).
+
+[^pika-pixverse]: Pika [product](https://pika.art/), [pricing](https://pika.art/pricing), [API](https://pika.art/api), and [developer model](https://dev.pika.art/models) pages; PixVerse [product](https://pixverse.ai/en), [API documentation](https://docs.platform.pixverse.ai/), and [API pricing](https://docs.platform.pixverse.ai/pricing-796039m0). Consumer and developer surfaces are treated separately.
+
+[^vidu-hailuo]: Vidu [API pricing](https://platform.vidu.com/docs/pricing), [Hailuo](https://hailuoai.video/), and MiniMax [developer pricing](https://platform.minimax.io/docs/guides/pricing). Consumer and API model names are not assumed to describe identical routes.
+
+[^leonardo-openart]: Leonardo [product](https://leonardo.ai/), [pricing](https://leonardo.ai/pricing), and [API](https://leonardo.ai/api) pages; OpenArt [product](https://openart.ai/) and [pricing](https://openart.ai/pricing). Approximate output counts are treated as vendor estimates.
+
+[^do-not-own]: HobFarm, [“You Do Not Own the AI You Pay For”](/articles/you-do-not-own-the-ai-you-pay-for/).
+
+[^too-big]: HobFarm, [“Too Big for the Box”](/articles/too-big-for-the-box/).

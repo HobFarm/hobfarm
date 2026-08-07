@@ -1,0 +1,181 @@
+---
+type DiagramKey =
+  | "whole-machine"
+  | "market-layers"
+  | "several-routes"
+  | "primary-objects"
+  | "accepted-output-funnel"
+  | "job-router";
+
+interface Props {
+  kind: DiagramKey;
+}
+
+const diagrams: Record<DiagramKey, {
+  file: string;
+  title: string;
+  alt: string;
+  caption: string;
+  transcript: string[];
+}> = {
+  "whole-machine": {
+    file: "01-whole-machine.svg",
+    title: "The whole machine",
+    alt: "A vertical production chain runs from source material through interpretation, schemas, provider adapters, endpoints, wrappers, moderation, billing, retries, and an accepted asset.",
+    caption: "The model is one stage in a longer production chain. Every stage can change the result or stop it.",
+    transcript: [
+      "Source material: references, notes, audio, code and rules.",
+      "Interpreter: what the system notices.",
+      "Schema or prompt: what survives compression.",
+      "Provider adapter: limits, fields and file formats.",
+      "Endpoint and wrapper: model route, controls and project state.",
+      "Moderation, billing and limits: policy, credits, queue and region.",
+      "Retries and correction: human labor before the accepted asset.",
+    ],
+  },
+  "market-layers": {
+    file: "02-market-layers.svg",
+    title: "The market layers",
+    alt: "Stacked shelves separate model labs, first-party studios, API aggregators, creative wrappers, specialists, hosted nodes, local execution, custom orchestration, and final assembly.",
+    caption: "Creative AI is several overlapping markets. Some providers occupy more than one layer.",
+    transcript: [
+      "Model labs make model families, APIs or weights.",
+      "First-party studios expose those models directly.",
+      "Aggregators combine endpoints under one contract.",
+      "Creative wrappers organize models around projects, shots or canvases.",
+      "Specialists organize work around voice, presenters or finished video.",
+      "Hosted nodes and rented GPUs expose workflows and compute.",
+      "Local and custom systems preserve control, routing and portable source material.",
+      "Conventional editors and deterministic renderers assemble the final work.",
+    ],
+  },
+  "several-routes": {
+    file: "03-one-job-several-routes.svg",
+    title: "One job, several routes",
+    alt: "One source package branches toward a first-party API, an aggregator, a creative wrapper, a hosted graph, and local execution, each with different labor, cost and control.",
+    caption: "A related model can be reached through different products. The route changes the labor, cost and control.",
+    transcript: [
+      "First-party API: direct contract and current controls, with another integration to maintain.",
+      "Aggregator: one programmable contract across providers, with another layer between user and model.",
+      "Creative wrapper: less setup and more workflow opinion, with less transparency.",
+      "Hosted graph: inspectable pipeline without owned hardware, with deployment and dependency work.",
+      "Local execution: maximum control and maximum maintenance.",
+    ],
+  },
+  "primary-objects": {
+    file: "04-primary-objects.svg",
+    title: "The primary object",
+    alt: "A grid compares systems organized around a request, graph, hosted graph, canvas, shot, project, voice, presenter, image, schema package, and deterministic composition.",
+    caption: "The primary object reveals what a platform is built to preserve and optimize.",
+    transcript: [
+      "Request: programmability. Graph: inspection and reuse. Hosted graph: reusable nodes without owned compute.",
+      "Canvas: branching and collaboration. Shot: camera and generation workflow. Video project: generation plus editing.",
+      "Voice: audio performance. Presenter: reusable host. Image or vector: controlled production asset.",
+      "Schema package: portable intent and routing. Composition: deterministic output.",
+    ],
+  },
+  "accepted-output-funnel": {
+    file: "05-accepted-output-funnel.svg",
+    title: "The accepted-output funnel",
+    alt: "An illustrative funnel narrows twenty submitted attempts to one published asset while tracking completion, attractiveness, brief adherence, continuity and edit survival.",
+    caption: "Illustrative data only. The advertised unit is an attempt; the useful production unit is accepted work.",
+    transcript: [
+      "Illustrative funnel: 20 submitted, 17 completed, 9 attractive, 5 followed the brief, 3 preserved continuity, 2 survived editing, 1 published.",
+      "Acceptance rate equals accepted outputs divided by attempts.",
+      "Cost per accepted asset equals total spend divided by accepted outputs.",
+      "Cost per usable second equals video spend divided by final usable seconds.",
+    ],
+  },
+  "job-router": {
+    file: "06-job-router.svg",
+    title: "Job router",
+    alt: "A decision map starts with what are you making and routes jobs toward a direct API, schema system, canvas, graph, shot platform, audio system, presenter system, local compute, or final editor.",
+    caption: "Choose the route class from the job. Provider names come later.",
+    transcript: [
+      "Raw programmable access: first-party API or aggregator.",
+      "Portable custom visual system: schema, adapters and output records.",
+      "Collaborative exploration: canvas. Inspectable repeatable pipeline: graph.",
+      "Economical clip or controlled shot: compare accepted cost and useful controls.",
+      "Narration, music or dubbing: audio system. Recurring host: presenter system.",
+      "Maximum independence: rented or local compute. Final assembly: conventional editor or deterministic renderer.",
+    ],
+  },
+};
+
+const diagram = diagrams[Astro.props.kind];
+const src = `/articles/same-same-but-different/diagrams/${diagram.file}`;
+---
+
+<figure class="article-wide ssbd-diagram">
+  <a class="ssbd-diagram__image" href={src} target="_blank" rel="noreferrer" aria-label={`Open ${diagram.title} at full size`}>
+    <img src={src} alt={diagram.alt} loading="lazy" decoding="async" />
+  </a>
+  <figcaption>
+    {diagram.caption}
+    <a href={src} target="_blank" rel="noreferrer">Open the editable SVG.</a>
+  </figcaption>
+  <details class="ssbd-diagram__transcript">
+    <summary>Read this diagram as text</summary>
+    <ol>
+      {diagram.transcript.map((item) => <li>{item}</li>)}
+    </ol>
+  </details>
+</figure>
+
+<style>
+  .ssbd-diagram {
+    gap: 0.65rem;
+    margin-block: 2.5rem !important;
+  }
+
+  .ssbd-diagram__image {
+    display: block;
+    width: 100%;
+    border: 1px solid color-mix(in srgb, var(--color-base-400, #a0a0a0) 22%, transparent);
+    border-radius: 0.35rem;
+    background: #f2ead9;
+    box-shadow: 0 1rem 3rem rgb(0 0 0 / 0.28);
+  }
+
+  .ssbd-diagram__image img {
+    margin: 0 !important;
+  }
+
+  figcaption a {
+    margin-left: 0.35rem;
+  }
+
+  .ssbd-diagram__transcript {
+    width: 100%;
+    border: 1px solid color-mix(in srgb, var(--color-base-400, #a0a0a0) 22%, transparent);
+    border-radius: 0.35rem;
+    background: color-mix(in srgb, var(--color-base-900, #0e0b16) 82%, transparent);
+    color: var(--color-base-300, #c7c7c7);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    line-height: 1.55;
+    text-align: left;
+  }
+
+  .ssbd-diagram__transcript summary {
+    cursor: pointer;
+    padding: 0.75rem 0.9rem;
+    color: var(--color-accent-300, #be9aff);
+    letter-spacing: 0.04em;
+  }
+
+  .ssbd-diagram__transcript ol {
+    margin: 0 !important;
+    padding: 0 1.1rem 0.9rem 2.3rem !important;
+  }
+
+  .ssbd-diagram__transcript li {
+    margin: 0.35rem 0 !important;
+  }
+
+  @media (min-width: 640px) {
+    .ssbd-diagram__transcript {
+      display: none;
+    }
+  }
+</style>

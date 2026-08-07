@@ -1,0 +1,462 @@
+---
+import matrix from "@/data/same-same-but-different-provider-matrix.json";
+
+const rows = matrix.providers.map((provider) => {
+  const text = [
+    provider.provider_or_service,
+    provider.layer,
+    provider.primary_object,
+    provider.modalities,
+    provider.direct_api,
+    provider.local_or_open_weights,
+    provider.current_fit,
+    provider.characteristic_friction,
+    provider.regional_notes,
+  ].join(" ").toLowerCase();
+
+  const filters = [
+    provider.modalities.toLowerCase().includes("image") && "image",
+    provider.modalities.toLowerCase().includes("video") && "video",
+    /(audio|speech|music|voice|dubbing)/i.test(provider.modalities) && "audio",
+    /(text|chat|language|coding)/i.test(`${provider.modalities} ${provider.primary_object}`) && "language",
+    !/^(no|limited)/i.test(provider.direct_api) && "api",
+    /(yes|open|self-host|user deploys)/i.test(provider.local_or_open_weights) && "open-local",
+    /(creative|consumer|specialized|guided)/i.test(provider.layer) && "creative",
+    /(aggregator|inference|gateway|gpu|hosted|cloud)/i.test(provider.layer) && "infrastructure",
+  ].filter(Boolean);
+
+  return {
+    ...provider,
+    search: text,
+    filters: filters.join(" "),
+    sources: provider.official_sources.split(" | ").filter((source) => source.startsWith("https://")),
+    sourceNote: provider.official_sources.startsWith("https://") ? undefined : provider.official_sources,
+  };
+});
+
+const filters = [
+  ["all", "All 45"],
+  ["image", "Image"],
+  ["video", "Video"],
+  ["audio", "Audio"],
+  ["language", "Language"],
+  ["api", "Direct API"],
+  ["open-local", "Open or local"],
+  ["creative", "Creative surface"],
+  ["infrastructure", "Infrastructure"],
+];
+---
+
+<section class="provider-matrix" data-provider-matrix aria-labelledby="provider-matrix-title">
+  <header class="provider-matrix__header">
+    <div>
+      <p class="provider-matrix__eyebrow">Market reference</p>
+      <h2 id="provider-matrix-title">45 provider and service surfaces</h2>
+      <p>
+        Snapshot recorded and checked {matrix.snapshot_date}. This is a route map, not a ranking.
+        Open any entry for fit, friction, access and first-party receipts.
+      </p>
+    </div>
+    <p class="provider-matrix__count" aria-live="polite"><strong data-provider-count>{rows.length}</strong> shown</p>
+  </header>
+
+  <div class="provider-matrix__controls" role="search">
+    <label>
+      <span>Search providers</span>
+      <input data-provider-search type="search" placeholder="Try video, canvas, API, local..." />
+    </label>
+    <div class="provider-matrix__filters" aria-label="Filter provider matrix">
+      {filters.map(([value, label], index) => (
+        <button type="button" data-provider-filter={value} aria-pressed={index === 0 ? "true" : "false"}>{label}</button>
+      ))}
+    </div>
+  </div>
+
+  <div class="provider-matrix__grid" data-provider-grid>
+    {rows.map((provider, index) => (
+      <details
+        class="provider-card"
+        data-provider-card
+        data-search={provider.search}
+        data-filters={provider.filters}
+      >
+        <summary>
+          <span class="provider-card__number">{String(index + 1).padStart(2, "0")}</span>
+          <span class="provider-card__title">
+            <strong>{provider.provider_or_service}</strong>
+            <small>{provider.layer}</small>
+          </span>
+          <span class={`provider-card__volatility provider-card__volatility--${provider.volatility.replace(" ", "-")}`}>
+            {provider.volatility}
+          </span>
+        </summary>
+        <div class="provider-card__body">
+          <dl>
+            <div><dt>Primary object</dt><dd>{provider.primary_object}</dd></div>
+            <div><dt>Modalities</dt><dd>{provider.modalities}</dd></div>
+            <div><dt>Proprietary anchor</dt><dd>{provider.proprietary_anchor}</dd></div>
+            <div><dt>Third-party gallery</dt><dd>{provider.third_party_gallery}</dd></div>
+            <div><dt>Direct API</dt><dd>{provider.direct_api}</dd></div>
+            <div><dt>Local or open weights</dt><dd>{provider.local_or_open_weights}</dd></div>
+            <div><dt>Pricing pattern</dt><dd>{provider.pricing_pattern}</dd></div>
+            <div><dt>Current fit</dt><dd>{provider.current_fit}</dd></div>
+            <div><dt>Characteristic friction</dt><dd>{provider.characteristic_friction}</dd></div>
+            <div><dt>Regional notes</dt><dd>{provider.regional_notes}</dd></div>
+          </dl>
+          <p class="provider-card__sources">
+            <span>Official sources</span>
+            {provider.sources.map((source, sourceIndex) => (
+              <a href={source} target="_blank" rel="noreferrer">{sourceIndex + 1}</a>
+            ))}
+            {provider.sourceNote && <span>{provider.sourceNote}</span>}
+          </p>
+          <p class="provider-card__checked">Checked {provider.checked_at} · Article depth: {provider.article_depth}</p>
+        </div>
+      </details>
+    ))}
+  </div>
+  <p class="provider-matrix__empty" data-provider-empty hidden>No entries match this filter and search.</p>
+  <noscript><p class="provider-matrix__noscript">Search and filters need JavaScript. All 45 entries remain available below.</p></noscript>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-provider-matrix]").forEach((matrixElement) => {
+    const search = matrixElement.querySelector<HTMLInputElement>("[data-provider-search]");
+    const cards = Array.from(matrixElement.querySelectorAll<HTMLElement>("[data-provider-card]"));
+    const buttons = Array.from(matrixElement.querySelectorAll<HTMLButtonElement>("[data-provider-filter]"));
+    const count = matrixElement.querySelector<HTMLElement>("[data-provider-count]");
+    const empty = matrixElement.querySelector<HTMLElement>("[data-provider-empty]");
+    let activeFilter = "all";
+
+    const update = () => {
+      const query = search?.value.trim().toLowerCase() ?? "";
+      let visible = 0;
+
+      cards.forEach((card) => {
+        const matchesFilter = activeFilter === "all" || (card.dataset.filters ?? "").split(" ").includes(activeFilter);
+        const matchesSearch = !query || (card.dataset.search ?? "").includes(query);
+        card.hidden = !(matchesFilter && matchesSearch);
+        if (!card.hidden) visible += 1;
+      });
+
+      if (count) count.textContent = String(visible);
+      if (empty) empty.hidden = visible !== 0;
+    };
+
+    search?.addEventListener("input", update);
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        activeFilter = button.dataset.providerFilter ?? "all";
+        buttons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+        update();
+      });
+    });
+  });
+</script>
+
+<style>
+  .provider-matrix {
+    position: relative;
+    left: 50%;
+    width: min(76rem, 94vw);
+    margin: 3rem 0;
+    padding: clamp(1rem, 2.5vw, 1.75rem);
+    transform: translateX(-50%);
+    border: 1px solid color-mix(in srgb, var(--color-base-400, #a0a0a0) 26%, transparent);
+    border-radius: 0.6rem;
+    background:
+      linear-gradient(135deg, rgb(123 47 247 / 0.08), transparent 34%),
+      var(--color-base-950, #07060b);
+    box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 0.32);
+    color: var(--color-base-200, #dedede);
+  }
+
+  .provider-matrix__header {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .provider-matrix__eyebrow,
+  .provider-matrix__header h2,
+  .provider-matrix__header p,
+  .provider-matrix__count {
+    margin: 0 !important;
+  }
+
+  .provider-matrix__eyebrow {
+    color: var(--color-accent-300, #be9aff);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .provider-matrix__header h2 {
+    margin-top: 0.25rem !important;
+    color: var(--color-base-50, #fafafa);
+    font-size: clamp(1.45rem, 3vw, 2.15rem) !important;
+    font-weight: 500;
+  }
+
+  .provider-matrix__header p:not(.provider-matrix__eyebrow):not(.provider-matrix__count) {
+    max-width: 66ch;
+    margin-top: 0.5rem !important;
+    color: var(--color-base-400, #a0a0a0);
+    font-size: 0.9rem;
+  }
+
+  .provider-matrix__count {
+    flex: 0 0 auto;
+    padding: 0.45rem 0.65rem;
+    border: 1px solid var(--color-accent-500, #7b2ff7);
+    color: var(--color-base-300, #c7c7c7);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+  }
+
+  .provider-matrix__count strong {
+    color: white;
+    font-size: 1rem;
+  }
+
+  .provider-matrix__controls {
+    display: grid;
+    gap: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .provider-matrix__controls label span {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--color-base-400, #a0a0a0);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .provider-matrix__controls input {
+    width: 100%;
+    padding: 0.72rem 0.8rem;
+    border: 1px solid var(--color-base-700, #393443);
+    border-radius: 0.25rem;
+    background: var(--color-base-900, #0e0b16);
+    color: white;
+  }
+
+  .provider-matrix__filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .provider-matrix__filters button {
+    padding: 0.38rem 0.6rem;
+    border: 1px solid var(--color-base-700, #393443);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--color-base-300, #c7c7c7);
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+  }
+
+  .provider-matrix__filters button:hover,
+  .provider-matrix__filters button[aria-pressed="true"] {
+    border-color: var(--color-accent-400, #9f6cff);
+    background: rgb(123 47 247 / 0.18);
+    color: white;
+  }
+
+  .provider-matrix__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
+  }
+
+  .provider-card {
+    min-width: 0;
+    border: 1px solid var(--color-base-800, #24202c);
+    border-radius: 0.3rem;
+    background: color-mix(in srgb, var(--color-base-900, #0e0b16) 88%, transparent);
+  }
+
+  .provider-card[hidden] {
+    display: none;
+  }
+
+  .provider-card summary {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.65rem;
+    min-height: 4.25rem;
+    padding: 0.7rem;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .provider-card summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .provider-card summary::after {
+    content: "+";
+    grid-column: 3;
+    grid-row: 1;
+    color: var(--color-accent-300, #be9aff);
+    font-family: var(--font-mono);
+  }
+
+  .provider-card[open] summary::after {
+    content: "−";
+  }
+
+  .provider-card__number {
+    color: var(--color-base-500, #7c7487);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+  }
+
+  .provider-card__title {
+    min-width: 0;
+  }
+
+  .provider-card__title strong,
+  .provider-card__title small {
+    display: block;
+  }
+
+  .provider-card__title strong {
+    color: var(--color-base-100, #ececec);
+    font-size: 0.86rem;
+    line-height: 1.25;
+  }
+
+  .provider-card__title small {
+    margin-top: 0.2rem;
+    color: var(--color-base-500, #7c7487);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    line-height: 1.35;
+  }
+
+  .provider-card__volatility {
+    grid-column: 2;
+    justify-self: start;
+    padding: 0.12rem 0.35rem;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    color: var(--color-base-500, #7c7487);
+    font-family: var(--font-mono);
+    font-size: 0.52rem;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .provider-card__volatility--high,
+  .provider-card__volatility--very-high {
+    color: #ff9866;
+  }
+
+  .provider-card__body {
+    padding: 0 0.75rem 0.8rem;
+    border-top: 1px solid var(--color-base-800, #24202c);
+  }
+
+  .provider-card dl,
+  .provider-card dl div,
+  .provider-card dt,
+  .provider-card dd,
+  .provider-card__sources,
+  .provider-card__checked {
+    margin: 0 !important;
+  }
+
+  .provider-card dl div {
+    display: grid;
+    grid-template-columns: minmax(7.5rem, 0.35fr) minmax(0, 1fr);
+    gap: 0.75rem;
+    padding: 0.48rem 0;
+    border-bottom: 1px solid var(--color-base-800, #24202c);
+  }
+
+  .provider-card dt {
+    color: var(--color-base-500, #7c7487);
+    font-family: var(--font-mono);
+    font-size: 0.61rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .provider-card dd {
+    color: var(--color-base-300, #c7c7c7);
+    font-size: 0.74rem;
+    line-height: 1.45;
+  }
+
+  .provider-card__sources {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding-top: 0.65rem;
+    color: var(--color-base-500, #7c7487);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+  }
+
+  .provider-card__sources a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.35rem;
+    height: 1.35rem;
+    border: 1px solid var(--color-accent-500, #7b2ff7);
+    border-radius: 50%;
+    color: var(--color-accent-200, #d5baff);
+    text-decoration: none;
+  }
+
+  .provider-card__checked {
+    padding-top: 0.5rem;
+    color: var(--color-base-500, #7c7487);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+  }
+
+  .provider-matrix__empty,
+  .provider-matrix__noscript {
+    margin: 1rem 0 0 !important;
+    color: var(--color-base-400, #a0a0a0);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+  }
+
+  @media (max-width: 719px) {
+    .provider-matrix {
+      width: 92vw;
+      padding: 0.85rem;
+    }
+
+    .provider-matrix__header {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .provider-matrix__count {
+      justify-self: start;
+    }
+
+    .provider-matrix__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .provider-card dl div {
+      grid-template-columns: 1fr;
+      gap: 0.18rem;
+    }
+  }
+</style>

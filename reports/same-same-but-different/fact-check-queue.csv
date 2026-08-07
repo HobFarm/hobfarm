@@ -1,0 +1,22 @@
+check_id,due_date,subject,task,priority,completion_rule
+F001,2026-08-11,All core providers,"Recheck pricing, model inventory, current model names, promotions and “unlimited” language.",critical,"Update matrix, source notes and on-page values. Preserve Aug 6 snapshot where historical comparison is intentional."
+F002,2026-08-11,Higgsfield,"Archive current terms, privacy policy, July 23 archived terms and creator-program page.",critical,"Store HTML/PDF or dated captures in research report, not public assets unless directly quoted."
+F003,2026-08-11,Higgsfield,"Verify Seedance 2.5 launch state, Aug 7 unlimited offer, Kling/Cinema/Wan credit examples.",critical,The homepage changed between Aug 6 and publication by design.
+F004,2026-08-11,Unnamed X opening,Verify the exact quote from supplied transcript and remove all handle/profile references.,critical,No screenshot embed.
+F005,2026-08-11,Recommendation economy,Find a direct archived public receipt for the unnamed account’s stated partner relationship if the hypocrisy sentence remains.,critical,"If not found, remove individual connection and discuss programs generally."
+F006,2026-08-11,Google,"Recheck Gemini API prices, current Veo/Imagen models and deprecation dates.",critical,Model rows are highly volatile.
+F007,2026-08-11,OpenAI,Recheck current GPT image/video/API surfaces and deprecation dates using official OpenAI sources only.,critical,Do not repeat outdated Sora or model availability.
+F008,2026-08-11,Anthropic,"Recheck current Claude model family, Projects/memory behavior and pricing.",high,Personal experience stays dated; product facts must be current.
+F009,2026-08-11,Alibaba,Confirm exact prompt limit for the endpoint the author used and international-region pricing.,critical,Do not turn a model-specific limit into a platform-wide limit.
+F010,2026-08-11,BytePlus,Archive the clause stating video-generation services are unavailable in the US.,critical,Use exact regional scope.
+F011,2026-08-11,Kling,Compare direct first-party consumer/API access with Higgsfield wrapper access for one or two defined settings.,high,Do not force full parity if settings differ.
+F012,2026-08-11,FLORA,"Recheck Aug 31 launch bonus, seat prices, partner terms and per-model billing.",high,Avoid turning temporary bonus into normal plan value.
+F013,2026-08-11,Magnific,"Verify current rebrand state, annual credit pools, Spaces and which models moved off unlimited.",high,Dated policy example.
+F014,2026-08-11,Luma,"Verify current Ray/UNI names, app plans, API price table, model integrations and no-benchmark clause if discussed.",high,Avoid using vendor LLM-info claims as independent evaluation.
+F015,2026-08-11,Provider matrix,"Check all 39 rows for dead URLs, changed names and incorrect layer classification.",critical,Record `verified_at` separately from `captured_at`.
+F016,2026-08-11,HobFarm articles,"Inspect current repository routes, titles and related-content IDs for all internal links.",critical,Repository wins over website memory.
+F017,2026-08-11,StyleFusion,"Inspect current schema, provider adapters and Workshop page.",critical,Do not describe removed video features as current.
+F018,2026-08-11,Publication schedule,"Find adjacent scheduled articles and standard timezone/time. Set Aug 12, 2026 without inventing time.",critical,"Test RSS, sitemap and future-date visibility."
+F019,2026-08-12,Rendered article,"Read every table, caption, source note and mobile layout.",critical,No white-paper wall of tables. Use disclosure panels and progressive detail.
+F020,2026-08-12,Final prose,"Search for em dashes, generic AI marketing language, repeated contrast templates and unsupported certainty.",critical,Use regular prose guide.
+F021,2026-08-11,Additional video and creator platforms,"Recheck Pika, PixVerse, Vidu, Hailuo, Leonardo and OpenArt model inventory, consumer/API separation and pricing.",high,Update provider matrix and source ledger. Preserve August 6 values as dated snapshot when the current state has changed.

@@ -1,0 +1,69 @@
+{
+  "snapshot_date": "2026-08-06",
+  "questions": [
+    "What are you making?",
+    "What source material already exists?",
+    "What is the required output format, resolution, duration, and delivery surface?",
+    "What failure is unacceptable?",
+    "How much iteration can you afford?",
+    "How much control and reproducibility do you need?",
+    "Does the workflow need to survive a provider change?"
+  ],
+  "routes": [
+    {
+      "job": "Raw programmable model access",
+      "route": "Direct first-party API or aggregator",
+      "examples": "BFL, Google AI Studio/Gemini API, Alibaba Model Studio, fal, Replicate"
+    },
+    {
+      "job": "Repeatable custom visual pipeline",
+      "route": "Structured schema plus provider adapters",
+      "examples": "StyleFusion, custom API app, Cloudflare AI Gateway"
+    },
+    {
+      "job": "Collaborative visual exploration",
+      "route": "Canvas platform",
+      "examples": "FLORA, Magnific Spaces, Luma App, Krea"
+    },
+    {
+      "job": "Inspectable reusable generation graph",
+      "route": "Node workflow",
+      "examples": "ComfyUI, RunningHub, Runway Workflows, ElevenCreative Flows"
+    },
+    {
+      "job": "Economical short video clips",
+      "route": "Compare accepted-output cost for direct model and wrappers",
+      "examples": "Kling direct, Higgsfield, Krea, fal, Runway, Luma"
+    },
+    {
+      "job": "Controlled cinematic shot",
+      "route": "Platform or first-party model with camera/keyframe controls",
+      "examples": "Higgsfield Cinema Studio, Runway, Luma Ray, FLUX 3, Kling"
+    },
+    {
+      "job": "Narration, effects, music, dubbing",
+      "route": "Audio-specialized system",
+      "examples": "ElevenLabs"
+    },
+    {
+      "job": "Recurring presenter or translated host",
+      "route": "Avatar-specialized system",
+      "examples": "HeyGen, Synthesia"
+    },
+    {
+      "job": "Typography, vector, design-system asset",
+      "route": "Image/design specialist",
+      "examples": "Recraft, Ideogram, Bria, Adobe Firefly"
+    },
+    {
+      "job": "Maximum independence and fine-tuning",
+      "route": "Local weights plus owned or rented GPU",
+      "examples": "ComfyUI on local hardware, RunPod, fal serverless, Stability, BFL open weights"
+    },
+    {
+      "job": "Final assembly",
+      "route": "Conventional editor or deterministic renderer",
+      "examples": "NLE, HyperFrames, authored templates"
+    }
+  ]
+}

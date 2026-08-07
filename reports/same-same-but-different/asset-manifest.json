@@ -1,0 +1,137 @@
+{
+  "project": "Same Same, But Different",
+  "snapshot_date": "2026-08-06",
+  "verified_at": "2026-08-06",
+  "scheduled_publication": "2026-08-12T16:20:00-07:00",
+  "delivery": "repository-local",
+  "r2_objects_added": 0,
+  "notes": "Public derivatives and editable SVGs are intentionally served from the repository. No R2 upload, overwrite, or remote mutation was performed.",
+  "assets": [
+    {
+      "id": "hero-master",
+      "status": "internal-source",
+      "path": "_cdn/articles/same-same-but-different/source/same-same-but-different-hero-master.png",
+      "role": "editable source master",
+      "provider": "OpenAI image generation",
+      "generated_at": "2026-08-06",
+      "dimensions": [1672, 941],
+      "mime": "image/png",
+      "bytes": 3408632,
+      "sha256": "dec8b51de571303d4ac994eee636cfab5a63458bd3b17c9f9feb67286150e3f3",
+      "rights": "Original editorial image generated for HobFarm; prompt and production record retained in reports/same-same-but-different/hero-prompt.md."
+    },
+    {
+      "id": "hero-webp",
+      "status": "publication-ready",
+      "path": "public/articles/same-same-but-different/hero.webp",
+      "public_path": "/articles/same-same-but-different/hero.webp",
+      "role": "article hero",
+      "dimensions": [1600, 900],
+      "mime": "image/webp",
+      "bytes": 576402,
+      "sha256": "91cf91b4a8d293e62a1f07b245885e8859e6287a1599a92fc8e4a9fba50a3fff",
+      "alt": "A satirical cutaway shows generic AI storefronts connected to an underground machine of model engines, credit meters, moderation gates, adapters, queues, and rejected outputs."
+    },
+    {
+      "id": "hero-avif",
+      "status": "publication-ready",
+      "path": "public/articles/same-same-but-different/hero.avif",
+      "public_path": "/articles/same-same-but-different/hero.avif",
+      "role": "alternate article hero",
+      "dimensions": [1600, 900],
+      "mime": "image/avif",
+      "bytes": 423310,
+      "sha256": "c168666e8ea9f2b1130b461ad1f48ecb3288bb60f30cff9c969f71ed33eb7842"
+    },
+    {
+      "id": "social-webp",
+      "status": "publication-ready",
+      "path": "public/articles/same-same-but-different/social.webp",
+      "public_path": "/articles/same-same-but-different/social.webp",
+      "role": "open graph and social card",
+      "dimensions": [1200, 630],
+      "mime": "image/webp",
+      "bytes": 348772,
+      "sha256": "18dd9b15c276d987d24d30390cb4ba3827e196a7eb6e5c69f44c1247453b4f50"
+    },
+    {
+      "id": "cardboard-box",
+      "status": "publication-ready",
+      "path": "public/articles/same-same-but-different/goth-cardboard-box.webp",
+      "public_path": "/articles/same-same-but-different/goth-cardboard-box.webp",
+      "role": "moderation footnote",
+      "source": "author-owned image supplied in the build pack",
+      "dimensions": [1280, 1920],
+      "mime": "image/webp",
+      "bytes": 388922,
+      "sha256": "5d02b9dac8aa07be8e59643c2350e48776531ed1843adbe5297d105b5b0e3681",
+      "rights": "Author-owned; credit HobFarm."
+    },
+    {
+      "id": "whole-machine",
+      "status": "publication-ready",
+      "path": "public/articles/same-same-but-different/diagrams/01-whole-machine.svg",
+      "public_path": "/articles/same-same-but-different/diagrams/01-whole-machine.svg",
+      "role": "explanatory diagram",
+      "viewBox": "0 0 2380 330",
+      "mime": "image/svg+xml",
+      "bytes": 5678,
+      "sha256": "149c396c106e9cfba2f46de2630569ef63ad7a22e883ea54cc20a639b706893a"
+    },
+    {
+      "id": "market-layers",
+      "status": "publication-ready",
+      "path": "public/articles/same-same-but-different/diagrams/02-market-layers.svg",
+      "public_path": "/articles/same-same-but-different/diagrams/02-market-layers.svg",
+      "role": "explanatory diagram",
+      "viewBox": "0 0 1500 850",
+      "mime": "image/svg+xml",
+      "bytes": 3537,
+      "sha256": "f67b164d321ba5f463928d1bad94ca344f90645fac61fd231ce31fe1b36a9498"
+    },
+    {
+      "id": "one-job-several-routes",
+      "status": "publication-ready",
+      "path": "public/articles/same-same-but-different/diagrams/03-one-job-several-routes.svg",
+      "public_path": "/articles/same-same-but-different/diagrams/03-one-job-several-routes.svg",
+      "role": "explanatory diagram",
+      "viewBox": "0 0 1900 560",
+      "mime": "image/svg+xml",
+      "bytes": 4185,
+      "sha256": "689c73bff1d3a05167fc374d40a61725205ef4eb1e58020da8bd6a5f4376082e"
+    },
+    {
+      "id": "primary-objects",
+      "status": "publication-ready",
+      "path": "public/articles/same-same-but-different/diagrams/04-primary-objects.svg",
+      "public_path": "/articles/same-same-but-different/diagrams/04-primary-objects.svg",
+      "role": "explanatory diagram",
+      "viewBox": "0 0 1460 650",
+      "mime": "image/svg+xml",
+      "bytes": 4403,
+      "sha256": "9528155e19fd325d9d1a187ddd799058553ae5df20bea37696096463ffcabead"
+    },
+    {
+      "id": "accepted-output-funnel",
+      "status": "publication-ready",
+      "path": "public/articles/same-same-but-different/diagrams/05-accepted-output-funnel.svg",
+      "public_path": "/articles/same-same-but-different/diagrams/05-accepted-output-funnel.svg",
+      "role": "explanatory diagram",
+      "viewBox": "0 0 1510 720",
+      "mime": "image/svg+xml",
+      "bytes": 3110,
+      "sha256": "38311813a10dffc0d8c48fd1d267895c390dc085ff1ba1d7c5dada8adf35c5e5"
+    },
+    {
+      "id": "job-router",
+      "status": "publication-ready",
+      "path": "public/articles/same-same-but-different/diagrams/06-job-router.svg",
+      "public_path": "/articles/same-same-but-different/diagrams/06-job-router.svg",
+      "role": "explanatory diagram",
+      "viewBox": "0 0 1580 760",
+      "mime": "image/svg+xml",
+      "bytes": 4618,
+      "sha256": "f0a4fdfe71ee101970b7274bbdcf4d9a01eca37643cf1bffc902c2f513f326cc"
+    }
+  ]
+}

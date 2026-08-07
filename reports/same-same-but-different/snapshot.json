@@ -1,0 +1,13 @@
+{
+  "captured_at": "2026-08-06",
+  "verified_at": "2026-08-06",
+  "scheduled_publication_date": "2026-08-12",
+  "publication_time": "2026-08-12T16:20:00-07:00",
+  "title": "Same Same, But Different",
+  "slug": "same-same-but-different",
+  "deck": "The models overlap. The workflows, prices, guardrails, and failure modes do not.",
+  "snapshot_note": "System state recorded August 6, 2026. Prices, models, limits, interfaces, and terms may change before this article finishes loading.",
+  "asset_prefix_proposed": "articles/same-same-but-different/",
+  "status": "integrated locally; scheduled; publication-day recheck remains due August 11 or 12",
+  "provider_count": 45
+}
