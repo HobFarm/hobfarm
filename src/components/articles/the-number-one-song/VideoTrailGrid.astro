@@ -1,0 +1,275 @@
+---
+const videos = [
+  {
+    title: "Life Signs",
+    artist: "Water From Your Eyes",
+    credit: "Directed by Rachel Brown",
+    note: "A television loop disguised as a song release.",
+    href: "https://www.youtube.com/watch?v=1reSpJWbuYE",
+    videoId: "1reSpJWbuYE",
+    kind: "video",
+  },
+  {
+    title: "oh baby",
+    artist: "LCD Soundsystem",
+    credit: "Rian Johnson · Sissy Spacek · David Strathairn",
+    note: "A complete science-fiction tragedy in five minutes.",
+    href: "https://www.youtube.com/watch?v=5gIhrPGyu6U",
+    videoId: "5gIhrPGyu6U",
+    kind: "video",
+  },
+  {
+    title: "Gosh",
+    artist: "Jamie xx",
+    credit: "Directed by Romain Gavras",
+    note: "Architecture, mass choreography and a replica Eiffel Tower.",
+    href: "https://www.youtube.com/watch?v=hTGJfRPLe08",
+    videoId: "hTGJfRPLe08",
+    kind: "video",
+  },
+  {
+    title: "Cirrus",
+    artist: "Bonobo",
+    credit: "Video by Cyriak",
+    note: "Mid-century consumer imagery mutates into a machine dream.",
+    href: "https://www.youtube.com/watch?v=WF34N4gJAKE",
+    videoId: "WF34N4gJAKE",
+    kind: "video",
+  },
+  {
+    title: "Horse",
+    artist: "Salvatore Ganacci",
+    credit: "Directed by Vedran Rupic",
+    note: "Animal revenge, human cruelty and a man arriving in a giant shoe.",
+    href: "https://www.youtube.com/watch?v=NkRkuI0ZgX0",
+    videoId: "NkRkuI0ZgX0",
+    kind: "video",
+  },
+] as const;
+---
+
+<section class="article-wide video-trail not-prose" aria-labelledby="video-trail-title">
+  <header>
+    <p>THE PRIVATE SHORT-FILM PROGRAM</p>
+    <h3 id="video-trail-title">Five doors in the trail</h3>
+  </header>
+  <div class="video-trail__grid">
+    {videos.map((video, index) => (
+      <article class={`video-trail__card video-trail__card--${index + 1}`}>
+        <div class="video-trail__frame" data-video-frame>
+          <button
+            type="button"
+            data-lazy-video
+            data-video-id={video.videoId}
+            data-video-title={`${video.artist}, ${video.title}, official music video`}
+            aria-label={`Load the official video for ${video.title} by ${video.artist}`}
+          >
+            <span class="video-trail__play" aria-hidden="true">▶</span>
+            <span>Click to load official video</span>
+          </button>
+        </div>
+        <div class="video-trail__copy">
+          <p>0{index + 1} · {video.artist}</p>
+          <h4>{video.title}</h4>
+          <p>{video.credit}</p>
+          <p>{video.note}</p>
+          <a href={video.href} target="_blank" rel="noreferrer">Open source</a>
+        </div>
+      </article>
+    ))}
+  </div>
+  <p class="video-trail__note">
+    All five official YouTube players load only after a click. The Nirvana performance appears earlier as a durable still image with separate archival and official-release receipts.
+  </p>
+</section>
+
+<script>
+  const lazyVideoButtons = document.querySelectorAll<HTMLButtonElement>("[data-lazy-video]");
+
+  lazyVideoButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const videoId = button.dataset.videoId;
+      const videoTitle = button.dataset.videoTitle;
+      if (!videoId || !videoTitle) return;
+
+      const iframe = document.createElement("iframe");
+      iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
+      iframe.title = videoTitle;
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = "strict-origin-when-cross-origin";
+      button.replaceWith(iframe);
+      iframe.focus();
+    }, { once: true });
+  });
+</script>
+
+<style>
+  .video-trail {
+    margin-block: 3rem !important;
+    padding: clamp(0.85rem, 2.5vw, 1.35rem);
+    border: 1px solid rgb(227 98 72 / 0.3);
+    border-radius: 0.55rem;
+    background: #090b0d;
+    box-shadow: 0.65rem 0.8rem 0 #030405;
+  }
+
+  header {
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+
+  header p,
+  header h3 {
+    margin: 0 !important;
+  }
+
+  header p {
+    color: #e36248;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+  }
+
+  header h3 {
+    margin-top: 0.2rem !important;
+    color: #f3ebdb;
+    font-size: clamp(1.25rem, 3vw, 1.75rem) !important;
+  }
+
+  .video-trail__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  .video-trail__card {
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid rgb(255 255 255 / 0.13);
+    border-top: 0.28rem solid var(--card-color);
+    border-radius: 0.35rem;
+    background: #111417;
+  }
+
+  .video-trail__card--1,
+  .video-trail__card--4 { --card-color: #d5aa52; }
+  .video-trail__card--2,
+  .video-trail__card--5 { --card-color: #67b9b4; }
+  .video-trail__card--3 { --card-color: #e36248; }
+
+  .video-trail__frame {
+    display: grid;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    place-items: center;
+    border-bottom: 1px solid rgb(255 255 255 / 0.12);
+    background:
+      radial-gradient(circle at 68% 30%, color-mix(in srgb, var(--card-color) 24%, transparent), transparent 32%),
+      repeating-linear-gradient(115deg, transparent 0 12px, rgb(255 255 255 / 0.022) 13px 14px),
+      #080b0d;
+  }
+
+  .video-trail__frame button {
+    display: grid;
+    gap: 0.48rem;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    border: 0;
+    background: transparent;
+    color: #e9e2d6;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+  }
+
+  .video-trail__frame button:hover,
+  .video-trail__frame button:focus-visible {
+    color: white;
+    outline: 2px solid var(--card-color);
+    outline-offset: -4px;
+  }
+
+  .video-trail__frame iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .video-trail__play {
+    display: grid;
+    width: 2.7rem;
+    height: 2.7rem;
+    place-items: center;
+    border: 1px solid var(--card-color);
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--card-color) 18%, #080b0d);
+    color: var(--card-color);
+    font-size: 0.9rem;
+    text-indent: 0.1rem;
+  }
+
+  .video-trail__copy {
+    padding: 0.8rem;
+    text-align: left;
+  }
+
+  .video-trail__copy p,
+  .video-trail__copy h4 {
+    margin: 0 !important;
+  }
+
+  .video-trail__copy p:first-child {
+    color: var(--card-color);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .video-trail__copy h4 {
+    margin-top: 0.15rem !important;
+    color: #f4eee4;
+    font-size: 1rem;
+  }
+
+  .video-trail__copy p:nth-of-type(2) {
+    margin-top: 0.18rem !important;
+    color: #c5bfb5;
+    font-size: 0.65rem;
+  }
+
+  .video-trail__copy p:nth-of-type(3) {
+    margin-top: 0.55rem !important;
+    color: #97928a;
+    font-size: 0.72rem;
+    line-height: 1.45;
+  }
+
+  .video-trail__copy a {
+    display: inline-block;
+    margin-top: 0.7rem;
+    color: var(--card-color) !important;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+  }
+
+  .video-trail__note {
+    margin: 0.9rem 0 0 !important;
+    color: #85817b;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    line-height: 1.5;
+    text-align: left;
+  }
+
+  @media (max-width: 620px) {
+    .video-trail__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

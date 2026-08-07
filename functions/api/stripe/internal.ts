@@ -57,6 +57,13 @@ export interface AdminEnv {
 }
 
 const HEX = "0123456789abcdef";
+const ADMIN_SECRET_MIN_BYTES = 32;
+
+function requireAdminSecret(secret: string): void {
+  if (typeof secret !== "string" || new TextEncoder().encode(secret).byteLength < ADMIN_SECRET_MIN_BYTES) {
+    throw new Error("INTERNAL_ADMIN_HMAC_SECRET is not configured securely");
+  }
+}
 
 function bytesToHex(bytes: Uint8Array): string {
   let out = "";
@@ -74,6 +81,7 @@ async function sha256Hex(input: string): Promise<string> {
 }
 
 async function hmacSha256Hex(secret: string, message: string): Promise<string> {
+  requireAdminSecret(secret);
   const encoder = new TextEncoder();
   const key = await crypto.subtle.importKey(
     "raw",

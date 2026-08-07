@@ -1,0 +1,58 @@
+---
+type ReceiptKey = "palace" | "miss-kane";
+
+interface Props {
+  kind: ReceiptKey;
+}
+
+const receipts = {
+  palace: {
+    src: "https://cdn.hob.farm/articles/the-number-one-song-ive-never-heard/you-can-build-a-palace-radio.webp",
+    width: 645,
+    height: 198,
+    alt: "Spotify playlist screenshot for You Can Build a Palace, Or You Can Please People Radio, with Skinshape and adjacent tracks visible in a red interface.",
+    caption: "The actual listening environment in which I learned about Britain's record-breaking number one: a radio trail growing from music I had chosen.",
+  },
+  "miss-kane": {
+    src: "https://cdn.hob.farm/articles/the-number-one-song-ive-never-heard/miss-kane-radio.webp",
+    width: 776,
+    height: 225,
+    alt: "Spotify Miss Kane Radio screenshot showing Donald Byrd, the Blackbyrds, Johnny Hammond and adjacent artists in a purple and blue interface.",
+    caption: "Miss Kane Radio begins with a record I own, then moves through a visible neighborhood of related music.",
+  },
+} as const;
+
+const receipt = receipts[Astro.props.kind];
+---
+
+<figure class="article-wide spotify-receipt not-prose">
+  <img
+    src={receipt.src}
+    alt={receipt.alt}
+    width={receipt.width}
+    height={receipt.height}
+    loading="lazy"
+    decoding="async"
+    data-lightbox={receipt.src}
+    data-lightbox-caption={receipt.caption}
+  />
+  <figcaption>{receipt.caption} Author-supplied screenshot.</figcaption>
+</figure>
+
+<style>
+  .spotify-receipt {
+    margin-block: 2.4rem !important;
+  }
+
+  .spotify-receipt img {
+    border: 1px solid rgb(255 255 255 / 0.16);
+    border-radius: 0.45rem;
+    background: #100e13;
+    box-shadow: 0.6rem 0.75rem 0 rgb(0 0 0 / 0.28);
+  }
+
+  .spotify-receipt figcaption {
+    max-width: 44rem;
+    margin-inline: auto;
+  }
+</style>

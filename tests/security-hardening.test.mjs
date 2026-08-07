@@ -22,11 +22,14 @@ test("API request limits inspect the streamed body instead of trusting Content-L
 test("membership checkout and entitlement sync reject duplicate or wrong-price work", () => {
   const checkout = read("functions/api/stripe/checkout.ts");
   const webhook = read("functions/api/stripe/webhook.ts");
+  const internal = read("functions/api/stripe/internal.ts");
 
   assert.match(checkout, /idempotencyKey: `hobfarm-membership:/);
   assert.match(webhook, /STRIPE_CREATIVE_MEMBERSHIP_PRICE_ID/);
   assert.match(webhook, /membership_subscription_verification_failed/);
   assert.match(webhook, /price\?\.id === env\.STRIPE_CREATIVE_MEMBERSHIP_PRICE_ID/);
+  assert.match(internal, /ADMIN_SECRET_MIN_BYTES = 32/);
+  assert.match(internal, /INTERNAL_ADMIN_HMAC_SECRET is not configured securely/);
 });
 
 test("the public assistant is disabled by default", () => {

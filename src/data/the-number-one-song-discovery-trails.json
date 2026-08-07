@@ -1,0 +1,40 @@
+{
+  "notice": "Personal discovery history, not a reverse-engineered platform graph.",
+  "trails": [
+    {
+      "id": "donald-byrd",
+      "title": "A record I already owned",
+      "confidence": "Author-confirmed start, approximate downstream path",
+      "nodes": [
+        "Donald Byrd record owned by the author",
+        "Miss Kane",
+        "Miss Kane Radio",
+        "Donald Byrd, the Blackbyrds, Johnny Hammond and adjacent music",
+        "Sunbear, Let Love Flow for Peace"
+      ]
+    },
+    {
+      "id": "sonic-youth-video",
+      "title": "A video queue allowed to wander",
+      "confidence": "Author-confirmed neighborhood, not a complete or exact sequence",
+      "nodes": [
+        "Sonic Youth, Incinerate",
+        "Related-video shuffle",
+        "Pixies, LCD Soundsystem, the Stone Roses, Dinosaur Jr., Violent Femmes, King Krule, Blur, My Bloody Valentine and the Flaming Lips",
+        "Water From Your Eyes, Life Signs",
+        "LCD Soundsystem, oh baby"
+      ]
+    },
+    {
+      "id": "spotify-video-horse",
+      "title": "A song trail becomes a film program",
+      "confidence": "Author-confirmed discovery, preceding videos unspecified",
+      "nodes": [
+        "Random Spotify video playlist",
+        "Salvatore Ganacci, Horse",
+        "Vedran Rupic's surreal animal-revenge comedy",
+        "One of the author's favorite music videos"
+      ]
+    }
+  ]
+}

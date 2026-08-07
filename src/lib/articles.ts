@@ -58,7 +58,11 @@ export function articleCategoryPath(category: string): string {
 
 export function getArticleDate(articleOrData: Article | ArticleData): Date {
   const data = "data" in articleOrData ? articleOrData.data : articleOrData;
-  return new Date(data.pubDate ?? data.publishedAt ?? 0);
+  // `publishedAt` carries the release clock used by scheduled articles. Prefer
+  // it for ordering so two entries on the same calendar date still sort in
+  // their actual publication sequence; `pubDate` remains the fallback for
+  // older entries that only record a day.
+  return new Date(data.publishedAt ?? data.pubDate ?? 0);
 }
 
 export function getArticleUpdatedDate(articleOrData: Article | ArticleData): Date | undefined {

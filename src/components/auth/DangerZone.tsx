@@ -46,7 +46,9 @@ export default function DangerZone() {
       setError(
         result.error === "reauthentication_required"
           ? "For security, log out and sign in again before deleting the account."
-          : "Delete failed. Try again or visit Customer Help.",
+          : result.error === "active_subscription"
+            ? "Cancel your membership in the billing portal first. You can delete the account after paid access ends."
+            : "Delete failed. Try again or visit Customer Help.",
       );
       return;
     }
@@ -66,7 +68,8 @@ export default function DangerZone() {
       <div className="border-t border-base-800 pt-6 space-y-4">
         <p className="text-xs font-mono text-red-400 uppercase tracking-wider">Danger zone</p>
         <p className="text-sm text-base-400">
-          Deleting your account drops all sessions and stored API keys, and anonymizes your email so it can be reused.
+          Deleting your account drops all sessions and stored API keys, then anonymizes your email so it can be reused.
+          An active membership must be canceled and allowed to end first.
         </p>
 
         {!confirming ? (

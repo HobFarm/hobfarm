@@ -1,0 +1,45 @@
+---
+const src = "https://cdn.hob.farm/articles/the-number-one-song-ive-never-heard/nirvana-top-of-the-pops-1991.webp";
+const caption = "Nirvana on Top of the Pops in 1991. Kurt Cobain sang live over the program's prerecorded backing while the band made the required mime visibly absurd.";
+---
+
+<figure class="article-wide nirvana-totp not-prose">
+  <img
+    src={src}
+    alt="Kurt Cobain holds a black guitar under saturated orange, red, and purple studio lights during Nirvana's 1991 Top of the Pops performance, with Dave Grohl's drum kit behind him."
+    width="1038"
+    height="775"
+    loading="lazy"
+    decoding="async"
+    data-lightbox={src}
+    data-lightbox-caption={caption}
+  />
+  <figcaption>
+    {caption} Author-supplied screenshot from a
+    <a href="https://www.youtube.com/watch?v=6s4KXiXVFAI" target="_blank" rel="noreferrer">fan archival upload</a>.
+    Nirvana's <a href="https://www.nirvana.com/releases-archive/live-tonight-sold-out/" target="_blank" rel="noreferrer">official release archive</a>
+    confirms the performance in <em>Live! Tonight! Sold Out!!</em>
+  </figcaption>
+</figure>
+
+<style>
+  .nirvana-totp {
+    margin-block: 2.5rem !important;
+  }
+
+  .nirvana-totp img {
+    border: 1px solid rgb(255 114 67 / 0.35);
+    border-radius: 0.35rem;
+    background: #12080f;
+    box-shadow: 0.65rem 0.8rem 0 rgb(4 2 6 / 0.72);
+  }
+
+  .nirvana-totp figcaption {
+    max-width: 42rem;
+    margin-inline: auto;
+  }
+
+  .nirvana-totp figcaption a {
+    color: #e77956;
+  }
+</style>

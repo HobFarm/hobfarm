@@ -1,0 +1,197 @@
+---
+const systems = [
+  {
+    era: "Shared broadcast",
+    signal: "One scheduled program",
+    path: ["limited national outlets", "simultaneous encounters", "shared conversation"],
+    verdict: "Distribution helped create the public the chart measured.",
+    tone: "broadcast",
+  },
+  {
+    era: "Current chart",
+    signal: "Many separate plays",
+    path: ["private listening worlds", "counted sales and streams", "one aggregate rank"],
+    verdict: "The rank can be accurate without producing common exposure.",
+    tone: "chart",
+  },
+  {
+    era: "Personal trail",
+    signal: "One chosen door",
+    path: ["record, artist or video", "related recommendation", "another useful door"],
+    verdict: "Relationship replaces popularity as the organizing principle.",
+    tone: "trail",
+  },
+];
+---
+
+<figure class="article-wide delivery-systems not-prose" aria-labelledby="delivery-title delivery-caption">
+  <div class="delivery-systems__frame">
+    <header>
+      <p>THREE DELIVERY SYSTEMS</p>
+      <h3 id="delivery-title">Same music. Different route into the room.</h3>
+    </header>
+    <ol>
+      {systems.map((system, index) => (
+        <li class={`delivery-systems__system delivery-systems__system--${system.tone}`}>
+          <span class="delivery-systems__index">0{index + 1}</span>
+          <div>
+            <p>{system.era}</p>
+            <h4>{system.signal}</h4>
+            <ol aria-label={`${system.era} sequence`}>
+              {system.path.map((step, stepIndex) => (
+                <li>
+                  <span>{step}</span>
+                  {stepIndex < system.path.length - 1 && <b aria-hidden="true">→</b>}
+                </li>
+              ))}
+            </ol>
+            <p class="delivery-systems__verdict">{system.verdict}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+  <figcaption id="delivery-caption">
+    The chart still counts consumption. What changed is its ability to force the same record through the same national doorway.
+  </figcaption>
+</figure>
+
+<style>
+  .delivery-systems {
+    margin-block: 2.8rem !important;
+  }
+
+  .delivery-systems__frame {
+    padding: clamp(1rem, 3vw, 1.6rem);
+    overflow: hidden;
+    border: 1px solid rgb(209 187 130 / 0.28);
+    border-radius: 0.5rem;
+    background: #0b1112;
+    box-shadow: 0.65rem 0.8rem 0 #030506;
+  }
+
+  header {
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+
+  header p,
+  header h3 {
+    margin: 0 !important;
+  }
+
+  header p {
+    color: #d2a94d;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+  }
+
+  header h3 {
+    margin-top: 0.25rem !important;
+    color: #f2ead8;
+    font-size: clamp(1.15rem, 3vw, 1.65rem) !important;
+  }
+
+  .delivery-systems__frame > ol {
+    display: grid;
+    gap: 0.7rem;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none;
+  }
+
+  .delivery-systems__system {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    gap: 0.8rem;
+    margin: 0 !important;
+    padding: 0.9rem;
+    border: 1px solid rgb(255 255 255 / 0.13);
+    border-left: 0.35rem solid var(--system-color);
+    background: rgb(255 255 255 / 0.035);
+    text-align: left;
+  }
+
+  .delivery-systems__system--broadcast { --system-color: #cf553f; }
+  .delivery-systems__system--chart { --system-color: #d2a94d; }
+  .delivery-systems__system--trail { --system-color: #53b5b1; }
+
+  .delivery-systems__index {
+    color: var(--system-color);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 800;
+  }
+
+  .delivery-systems__system p,
+  .delivery-systems__system h4 {
+    margin: 0 !important;
+  }
+
+  .delivery-systems__system > div > p:first-child {
+    color: var(--system-color);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .delivery-systems__system h4 {
+    margin-top: 0.14rem !important;
+    color: #f4eee2;
+    font-size: 1rem;
+  }
+
+  .delivery-systems__system ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin: 0.65rem 0 !important;
+    padding: 0 !important;
+    list-style: none;
+  }
+
+  .delivery-systems__system ol li {
+    display: flex;
+    gap: 0.35rem;
+    align-items: center;
+    margin: 0 !important;
+  }
+
+  .delivery-systems__system ol span {
+    padding: 0.3rem 0.42rem;
+    border: 1px solid rgb(255 255 255 / 0.13);
+    color: #d7d1c6;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+  }
+
+  .delivery-systems__system ol b {
+    color: var(--system-color);
+    font-weight: 400;
+  }
+
+  .delivery-systems__verdict {
+    color: #aca69d;
+    font-size: 0.76rem;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 520px) {
+    .delivery-systems__system ol {
+      display: grid;
+    }
+
+    .delivery-systems__system ol li {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    .delivery-systems__system ol b {
+      transform: rotate(90deg);
+      transform-origin: 0.6rem center;
+    }
+  }
+</style>
