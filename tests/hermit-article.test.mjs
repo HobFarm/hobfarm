@@ -23,19 +23,17 @@ function articleWordCount(article) {
   return body.match(/[\p{L}\p{N}][\p{L}\p{N}’'–—-]*/gu)?.length ?? 0;
 }
 
-test("Hermit article is complete and scheduled for August 6 at 4:20 p.m. Pacific", async () => {
-  const [article, workflow, script] = await Promise.all([
+test("Hermit article is complete and published on August 6 at 4:20 p.m. Pacific", async () => {
+  const [article, script] = await Promise.all([
     readFile(articlePath, "utf8"),
-    readFile(workflowPath, "utf8"),
     readFile(scriptPath, "utf8"),
   ]);
 
   assert.equal(field(article, "pubDate"), "2026-08-06");
   assert.equal(field(article, "publishedAt"), "2026-08-06T16:20:00-07:00");
-  assert.equal(field(article, "status"), "scheduled");
+  assert.equal(field(article, "status"), "published");
   assert.equal(field(article, "draft"), "false");
-  assert.match(workflow, /cron: "20 23 6 8 \*"/);
-  assert.match(workflow, /node scripts\/publish-scheduled-hermit\.mjs/);
+  await assert.rejects(access(workflowPath), { code: "ENOENT" });
   assert.match(script, /2026-08-06T16:20:00-07:00/);
   assert.match(article, /yesterday’s article about the American Dream/);
   assert.match(article, /\/articles\/fear-and-loathing-after-the-american-dream\//);

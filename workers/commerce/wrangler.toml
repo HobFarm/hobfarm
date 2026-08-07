@@ -1,10 +1,24 @@
 name = "hobfarm-commerce"
 main = "src/index.ts"
-compatibility_date = "2026-07-23"
+compatibility_date = "2026-08-06"
+compatibility_flags = ["nodejs_compat"]
 
 # This Worker has no public route. It is intended for remote inspection during
 # setup and, later, a service binding from the HobFarm Pages project.
 workers_dev = false
+
+[[d1_databases]]
+binding = "COMMERCE_DB"
+database_name = "hobfarm-commerce-db"
+database_id = "d8d6c0d6-7511-4b25-8610-e9e0f6090cf4"
+migrations_dir = "migrations"
+
+[[queues.producers]]
+binding = "FULFILLMENT_QUEUE"
+queue = "hobfarm-fulfillment"
+
+[[queues.consumers]]
+queue = "hobfarm-fulfillment"
 
 [[secrets_store_secrets]]
 binding = "PRINTFUL_API_TOKEN"
@@ -23,4 +37,4 @@ PRINTFUL_MAX_ORDER_COST_AMOUNT = "0"
 crons = ["*/15 * * * *"]
 
 [observability]
-enabled = false
+enabled = true
