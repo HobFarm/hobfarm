@@ -1,0 +1,156 @@
+---
+type EvidenceKey = "slate" | "spotify-neighborhood" | "jeremy" | "woodstock";
+
+interface Props {
+  kind: EvidenceKey;
+}
+
+const root = "/images/articles/i-want-my-mtv";
+
+const singleAssets = {
+  slate: {
+    src: `${root}/stone-roses-love-spreads-master-slate.png`,
+    webp: `${root}/stone-roses-love-spreads-master-slate.webp`,
+    width: 1373,
+    height: 1026,
+    alt: "Black television master slate for the Stone Roses song Love Spreads, showing a duration of four minutes fifty-six seconds, the date November 14, 1994, Vector Television, and Edit Suite 1.",
+    caption: "A production master slate for the Stone Roses’ “Love Spreads,” dated November 14, 1994. The tape was built for television; this frame now appears inside the author’s Spotify video playback.",
+  },
+  jeremy: {
+    src: `${root}/spotify-jeremy-radio.png`,
+    webp: `${root}/spotify-jeremy-radio.webp`,
+    width: 396,
+    height: 672,
+    alt: "Spotify Jeremy Radio queue showing songs by Helmet, Tool, Alice in Chains, Rage Against the Machine, Incubus, and Nine Inch Nails.",
+    caption: "Starting with Pearl Jam’s “Jeremy” produces Helmet, Tool, Alice in Chains, Rage Against the Machine, Incubus, and Nine Inch Nails. Some rows have videos; some remain audio.",
+  },
+  woodstock: {
+    src: `${root}/woodstock-99-author-photo.jpg`,
+    webp: `${root}/woodstock-99-author-photo.webp`,
+    width: 2048,
+    height: 1375,
+    alt: "Phone photograph of an old Woodstock '99 print showing the author and friends at a campsite with an MTV crew. The person at center is identified by the author as Carson Daly.",
+    caption: "The author and friends at Woodstock '99 with an MTV crew. The author identifies the person at center as Carson Daly. This phone photograph of an original print is a rough archival teaser; the full photo set will be scanned for the next article.",
+  },
+} as const;
+
+const neighborhoodAssets = [
+  {
+    src: `${root}/spotify-morphine-video-queue-wide.png`,
+    webp: `${root}/spotify-morphine-video-queue-wide.webp`,
+    width: 1788,
+    height: 826,
+    alt: "Wide Spotify desktop music-video screen with Morphine playing and a queue of related videos by alternative and indie artists.",
+  },
+  {
+    src: `${root}/spotify-alt-video-queue-sidebar.png`,
+    webp: `${root}/spotify-alt-video-queue-sidebar.webp`,
+    width: 377,
+    height: 686,
+    alt: "Spotify music-video queue listing the Breeders, Lush, bar italia, Elliott Smith, Sonic Youth, Pixies, LCD Soundsystem, the Stone Roses, Dinosaur Jr., and others.",
+  },
+] as const;
+
+const single = Astro.props.kind === "spotify-neighborhood" ? undefined : singleAssets[Astro.props.kind];
+---
+
+{Astro.props.kind === "spotify-neighborhood" ? (
+  <figure class="article-wide mtv-evidence mtv-evidence--pair not-prose">
+    <div class="mtv-evidence__pair">
+      {neighborhoodAssets.map((asset) => (
+        <picture>
+          <source srcset={asset.webp} type="image/webp" />
+          <img
+            src={asset.src}
+            alt={asset.alt}
+            width={asset.width}
+            height={asset.height}
+            loading="lazy"
+            decoding="async"
+            data-lightbox={asset.src}
+            data-lightbox-caption="Author-supplied Spotify music-video queue screenshot."
+          />
+        </picture>
+      ))}
+    </div>
+    <figcaption>
+      Morphine plays while Spotify assembles a video neighborhood containing Sonic Youth, Pixies, LCD Soundsystem, the Stone Roses, Dinosaur Jr., Violent Femmes, Blur, My Bloody Valentine, and artists from several other decades. Author-supplied screenshots.
+    </figcaption>
+  </figure>
+) : single && (
+  <figure class={`article-wide mtv-evidence mtv-evidence--${Astro.props.kind} not-prose`}>
+    <picture>
+      <source srcset={single.webp} type="image/webp" />
+      <img
+        src={single.src}
+        alt={single.alt}
+        width={single.width}
+        height={single.height}
+        loading={Astro.props.kind === "slate" ? "eager" : "lazy"}
+        decoding="async"
+        fetchpriority={Astro.props.kind === "slate" ? "high" : undefined}
+        data-lightbox={single.src}
+        data-lightbox-caption={single.caption}
+      />
+    </picture>
+    <figcaption>{single.caption} Author-supplied image.</figcaption>
+  </figure>
+)}
+
+<style>
+  .mtv-evidence {
+    margin-block: 2.5rem !important;
+  }
+
+  .mtv-evidence picture {
+    display: block;
+    min-width: 0;
+  }
+
+  .mtv-evidence img {
+    width: 100%;
+    height: auto;
+    border: 1px solid rgb(255 255 255 / 0.17);
+    border-radius: 0.32rem;
+    background: #050608;
+    box-shadow: 0.65rem 0.75rem 0 rgb(0 0 0 / 0.32);
+  }
+
+  .mtv-evidence--slate img {
+    aspect-ratio: 1373 / 1026;
+    object-fit: contain;
+  }
+
+  .mtv-evidence--jeremy picture {
+    width: min(100%, 24rem);
+    margin-inline: auto;
+  }
+
+  .mtv-evidence__pair {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(8rem, 0.75fr);
+    align-items: center;
+    gap: clamp(0.65rem, 2vw, 1rem);
+  }
+
+  .mtv-evidence__pair picture:last-child img {
+    max-height: 31rem;
+    object-fit: contain;
+  }
+
+  .mtv-evidence figcaption {
+    max-width: 44rem;
+    margin-inline: auto;
+  }
+
+  @media (max-width: 38rem) {
+    .mtv-evidence__pair {
+      grid-template-columns: 1fr;
+    }
+
+    .mtv-evidence__pair picture:last-child {
+      width: min(100%, 18rem);
+      margin-inline: auto;
+    }
+  }
+</style>

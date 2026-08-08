@@ -1,0 +1,89 @@
+---
+const rows = [
+  ["Music-video discovery", "Spotify video radio", "Strong, but title and market dependent", "YouTube official channels"],
+  ["Exact chosen sequence", "Personal YouTube Music playlist", "Nearly complete; unavailable items may interrupt", "Manual skip or replacement"],
+  ["Official artist archives", "YouTube", "Deepest surviving public catalog", "Label and artist channels"],
+  ["Full live performances", "Artist channels and concert uploads", "Uneven but substantial", "Official live releases"],
+  ["MTV programs", "Paramount+", "Selected series and specials", "Official MTV pages and clips"],
+  ["DJ night", "Book Club Radio", "Current, continuous filmed sets", "Venue event"],
+] as const;
+---
+
+<section class="article-wide catalog-matrix not-prose" aria-labelledby="catalog-matrix-title">
+  <header>
+    <p>CATALOG STATUS / CHECKED 2026-08-08</p>
+    <h3 id="catalog-matrix-title">What exists where</h3>
+  </header>
+  <div class="catalog-matrix__scroll" tabindex="0" role="region" aria-label="Streaming catalog comparison table">
+    <table>
+      <thead><tr><th>Need</th><th>Best current home</th><th>Coverage</th><th>Fallback</th></tr></thead>
+      <tbody>{rows.map((row) => <tr>{row.map((cell: string) => <td>{cell}</td>)}</tr>)}</tbody>
+    </table>
+  </div>
+</section>
+
+<style>
+  .catalog-matrix {
+    margin-block: 3rem !important;
+    padding: clamp(0.75rem, 2vw, 1.1rem);
+    border: 1px solid rgb(243 202 82 / 0.3);
+    border-radius: 0.45rem;
+    background: #0d0c08;
+  }
+
+  header p,
+  header h3 {
+    margin: 0 !important;
+  }
+
+  header p {
+    color: #f3ca52;
+    font: 700 0.6rem/1.3 var(--font-mono);
+    letter-spacing: 0.13em;
+  }
+
+  header h3 {
+    margin: 0.2rem 0 0.9rem !important;
+    color: #f6f2e7;
+    font-size: clamp(1.25rem, 3.5vw, 1.8rem) !important;
+  }
+
+  .catalog-matrix__scroll {
+    overflow-x: auto;
+    scrollbar-color: #8b7637 #15130c;
+  }
+
+  table {
+    width: 100%;
+    min-width: 42rem;
+    border-collapse: collapse;
+    font-family: var(--font-mono);
+  }
+
+  th,
+  td {
+    padding: 0.62rem;
+    border: 1px solid rgb(255 255 255 / 0.1);
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    background: #17140b;
+    color: #f3ca52;
+    font-size: 0.61rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  td {
+    color: #aaa69b;
+    font-size: 0.66rem;
+    line-height: 1.45;
+  }
+
+  td:first-child {
+    color: #eee9dd;
+    font-weight: 700;
+  }
+</style>

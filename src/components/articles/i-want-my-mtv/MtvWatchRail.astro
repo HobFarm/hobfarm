@@ -1,0 +1,128 @@
+---
+const videos = [
+  ["Gosh", "Jamie xx", "hTGJfRPLe08"],
+  ["Cirrus", "Bonobo", "WF34N4gJAKE"],
+  ["oh baby", "LCD Soundsystem", "5gIhrPGyu6U"],
+] as const;
+---
+
+<aside class="article-wide watch-rail not-prose" aria-labelledby="watch-rail-title">
+  <header><p>AFTER-HOURS WATCH RAIL</p><h3 id="watch-rail-title">The private film program continues</h3></header>
+  <ul>
+    {videos.map(([title, artist, id]) => (
+      <li>
+        <a href={`https://www.youtube.com/watch?v=${id}`} target="_blank" rel="noopener noreferrer">
+          <img src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`} alt="" width="480" height="360" loading="lazy" decoding="async" />
+          <span><strong>{title}</strong><small>{artist}</small></span>
+          <b aria-hidden="true">Watch ↗</b>
+        </a>
+      </li>
+    ))}
+  </ul>
+</aside>
+
+<style>
+  .watch-rail {
+    margin-block: 2.6rem !important;
+  }
+
+  header p,
+  header h3 {
+    margin: 0 !important;
+  }
+
+  header p {
+    color: #c89cff;
+    font: 700 0.59rem/1.3 var(--font-mono);
+    letter-spacing: 0.13em;
+  }
+
+  header h3 {
+    margin-top: 0.18rem !important;
+    color: #f1ebf4;
+    font-size: clamp(1.15rem, 3.5vw, 1.65rem) !important;
+  }
+
+  ul {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.65rem;
+    margin: 0.9rem 0 0 !important;
+    padding: 0 !important;
+    list-style: none;
+  }
+
+  li {
+    min-width: 0;
+    margin: 0 !important;
+  }
+
+  a {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid rgb(200 156 255 / 0.25);
+    border-radius: 0.35rem;
+    background: #0e0a12;
+    text-decoration: none !important;
+  }
+
+  a:hover,
+  a:focus-visible {
+    border-color: #c89cff;
+    outline: 2px solid #c89cff;
+    outline-offset: 2px;
+  }
+
+  img {
+    grid-column: 1 / -1;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  a > span {
+    display: grid;
+    min-width: 0;
+    padding: 0.62rem;
+  }
+
+  strong {
+    overflow: hidden;
+    color: #eee9f1;
+    font-size: 0.75rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  small {
+    color: #918897;
+    font-size: 0.62rem;
+  }
+
+  b {
+    align-self: center;
+    padding: 0.62rem;
+    color: #c89cff;
+    font: 700 0.58rem/1 var(--font-mono);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 42rem) {
+    ul {
+      grid-template-columns: 1fr;
+    }
+
+    a {
+      grid-template-columns: 8rem 1fr auto;
+      align-items: center;
+    }
+
+    img {
+      grid-column: 1;
+      grid-row: 1;
+      height: 100%;
+    }
+  }
+</style>

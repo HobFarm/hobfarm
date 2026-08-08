@@ -1,0 +1,136 @@
+---
+const channels = [
+  { seed: "Sonic Youth", color: "#ff6b9d", results: ["Pixies", "Breeders", "Dinosaur Jr.", "My Bloody Valentine", "Blur"] },
+  { seed: "Nirvana", color: "#f3ca52", results: ["Summer of 1992", "Alternative rotation", "Unplugged"] },
+  { seed: "Dr. Dre", color: "#ff8354", results: ["Early-1990s hip-hop", "West Coast block", "Related videos"] },
+  { seed: "Pearl Jam / Jeremy", color: "#69d7d1", results: ["Helmet", "Tool", "Alice in Chains", "Rage Against the Machine", "Nine Inch Nails"] },
+  { seed: "Snarky Puppy", color: "#9cabff", results: ["Filmed performance", "Full concerts", "Live archive"] },
+  { seed: "Tinzo / Book Club Radio", color: "#c89cff", results: ["House set", "DJ channel", "Home club night"] },
+] as const;
+---
+
+<section class="article-wide seed-channels not-prose" aria-labelledby="seed-channels-title">
+  <header>
+    <p>PROGRAM ROUTER</p>
+    <h3 id="seed-channels-title">One seed, different channel</h3>
+  </header>
+  <div class="seed-channels__grid">
+    {channels.map((channel, index) => (
+      <article style={`--channel-color: ${channel.color}`}>
+        <p>INPUT {String(index + 1).padStart(2, "0")}</p>
+        <h4>{channel.seed}</h4>
+        <span aria-hidden="true">↓</span>
+        <ul>
+          {channel.results.map((result: string) => <li>{result}</li>)}
+        </ul>
+      </article>
+    ))}
+  </div>
+  <p class="seed-channels__note">Observed routes from the author’s listening and viewing history, not deterministic results promised to every account.</p>
+</section>
+
+<style>
+  .seed-channels {
+    margin-block: 3rem !important;
+    padding: clamp(0.85rem, 2vw, 1.25rem);
+    border: 1px solid rgb(255 107 157 / 0.28);
+    border-radius: 0.5rem;
+    background: #0b090e;
+  }
+
+  header {
+    margin-bottom: 1rem;
+  }
+
+  header p,
+  header h3 {
+    margin: 0 !important;
+  }
+
+  header p {
+    color: #ff6b9d;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+  }
+
+  header h3 {
+    margin-top: 0.18rem !important;
+    color: #f3edf4;
+    font-size: clamp(1.25rem, 3.5vw, 1.8rem) !important;
+  }
+
+  .seed-channels__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+  }
+
+  article {
+    min-width: 0;
+    padding: 0.8rem;
+    border: 1px solid color-mix(in srgb, var(--channel-color) 42%, #302b35);
+    border-left: 0.3rem solid var(--channel-color);
+    background:
+      linear-gradient(90deg, color-mix(in srgb, var(--channel-color) 7%, transparent), transparent 55%),
+      #0e0c12;
+  }
+
+  article p,
+  article h4 {
+    margin: 0 !important;
+  }
+
+  article > p {
+    color: var(--channel-color);
+    font-family: var(--font-mono);
+    font-size: 0.57rem;
+    letter-spacing: 0.1em;
+  }
+
+  article h4 {
+    margin-top: 0.15rem !important;
+    color: #f3edf4;
+    font-size: 0.92rem;
+  }
+
+  article > span {
+    display: block;
+    margin-block: 0.4rem;
+    color: var(--channel-color);
+    font-family: var(--font-mono);
+  }
+
+  article ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none;
+  }
+
+  article li {
+    margin: 0 !important;
+    padding: 0.28rem 0.4rem;
+    border: 1px solid rgb(255 255 255 / 0.11);
+    color: #b8b1bc;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+  }
+
+  .seed-channels__note {
+    margin: 0.85rem 0 0 !important;
+    color: #857e89;
+    font-family: var(--font-mono);
+    font-size: 0.61rem;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 38rem) {
+    .seed-channels__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

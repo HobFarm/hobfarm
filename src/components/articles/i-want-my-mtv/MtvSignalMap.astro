@@ -1,0 +1,181 @@
+---
+const outputs = [
+  ["01", "Spotify", "Recommendation blocks and audio/video switching"],
+  ["02", "YouTube", "Official videos, alternate versions, and concerts"],
+  ["03", "YouTube Music", "A music interface laid over YouTube’s archive"],
+  ["04", "Paramount+", "MTV programs and the cable afterlife"],
+  ["05", "Artist channels", "Videos and individual live performances"],
+  ["06", "Personal playlists", "Taste, sequence, and smaller programs"],
+  ["07", "Book Club Radio", "A filmed club night that can fill the room"],
+  ["08", "Venue nights", "A temporary shared channel for a crowd"],
+  ["09", "Elsewhere", "News, interviews, commentary, and former VJs"],
+] as const;
+---
+
+<section class="article-wide signal-map not-prose" aria-labelledby="signal-map-title">
+  <header>
+    <p>PATCH BAY / 2026-08-08</p>
+    <h3 id="signal-map-title">MTV, disassembled</h3>
+    <span>The old channel’s jobs did not travel together.</span>
+  </header>
+
+  <div class="signal-map__source">
+    <span>INPUT 00</span>
+    <strong>MUSIC TELEVISION</strong>
+    <small>ONE CABLE SIGNAL</small>
+  </div>
+
+  <ol>
+    {outputs.map(([number, label, note]) => (
+      <li>
+        <span>{number}</span>
+        <div>
+          <strong>{label}</strong>
+          <p>{note}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+</section>
+
+<style>
+  .signal-map {
+    --signal: #62f0cf;
+    margin-block: 3rem !important;
+    padding: clamp(0.85rem, 2.4vw, 1.4rem);
+    border: 1px solid rgb(98 240 207 / 0.35);
+    border-radius: 0.5rem;
+    background:
+      linear-gradient(rgb(255 255 255 / 0.018) 50%, transparent 50%) 0 0 / 100% 4px,
+      radial-gradient(circle at 50% 0%, rgb(98 240 207 / 0.1), transparent 44%),
+      #070b0c;
+    box-shadow: 0.7rem 0.85rem 0 #030405;
+    color: #e9efe9;
+  }
+
+  header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 0.2rem 1rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid rgb(98 240 207 / 0.25);
+  }
+
+  header p,
+  header h3,
+  header span {
+    margin: 0 !important;
+  }
+
+  header p {
+    grid-column: 1 / -1;
+    color: var(--signal);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+  }
+
+  header h3 {
+    color: #f3f7f3;
+    font-size: clamp(1.35rem, 4vw, 2rem) !important;
+  }
+
+  header span {
+    color: #8e9a96;
+    font-size: 0.72rem;
+  }
+
+  .signal-map__source {
+    position: relative;
+    display: grid;
+    width: min(100%, 22rem);
+    margin: 1.2rem auto 1.8rem;
+    padding: 0.85rem 1rem;
+    border: 2px solid var(--signal);
+    background: #0c1515;
+    text-align: center;
+  }
+
+  .signal-map__source::after {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 1px;
+    height: 1.8rem;
+    background: var(--signal);
+    content: "";
+  }
+
+  .signal-map__source span,
+  .signal-map__source small {
+    color: #91aaa4;
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+  }
+
+  .signal-map__source strong {
+    margin-block: 0.22rem;
+    color: #fff;
+    font-family: var(--font-mono);
+    letter-spacing: 0.08em;
+  }
+
+  ol {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.55rem;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.6rem;
+    min-width: 0;
+    margin: 0 !important;
+    padding: 0.7rem;
+    border: 1px solid rgb(255 255 255 / 0.12);
+    background: rgb(8 11 13 / 0.84);
+  }
+
+  li > span {
+    color: var(--signal);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+  }
+
+  li strong,
+  li p {
+    margin: 0 !important;
+  }
+
+  li strong {
+    color: #eef4ef;
+    font-size: 0.8rem;
+  }
+
+  li p {
+    margin-top: 0.25rem !important;
+    color: #8f9996;
+    font-size: 0.68rem;
+    line-height: 1.42;
+  }
+
+  @media (max-width: 42rem) {
+    header {
+      grid-template-columns: 1fr;
+    }
+
+    ol {
+      grid-template-columns: 1fr;
+    }
+
+    li {
+      padding: 0.75rem;
+    }
+  }
+</style>
