@@ -1,0 +1,149 @@
+---
+const stops = [
+  ["West valley", "Storms fall on the mountains and developed valley."],
+  ["Flamingo Wash", "Runoff moves east through a mostly engineered drainage."],
+  ["Strip reach", "The wash crosses the resort corridor near Caesars Palace and the LINQ."],
+  ["LINQ garage", "The historic Imperial Palace garage remains part of the conveyance problem."],
+  ["Las Vegas Wash", "Flamingo Wash joins the valley's main drainage."],
+  ["Lake Mead", "The system continues east toward the Colorado River reservoir."],
+] as const;
+---
+
+<figure class="wash-route article-wide not-prose" aria-labelledby="wash-route-title">
+  <figcaption>
+    <strong id="wash-route-title">The wash beneath the entertainment corridor</strong>
+    <span>Schematic flow only. It does not show parcel boundaries, safe routes, or real-time flood conditions.</span>
+  </figcaption>
+  <ol>
+    {stops.map(([name, description], index) => (
+      <li class:list={[index === 3 && "wash-route__garage"]}>
+        <b>{String(index + 1).padStart(2, "0")}</b>
+        <div><strong>{name}</strong><span>{description}</span></div>
+      </li>
+    ))}
+  </ol>
+  <p>
+    Direction and confluence are based on USGS drainage records. The garage note is based on Clark County Regional Flood Control District reporting quoted by <a href="https://knpr.org/magazine-desert-companion/2019-08-01/water-water-but-not-everywhere">KNPR</a>.
+  </p>
+</figure>
+
+<style>
+  .wash-route {
+    margin-block: 2.8rem !important;
+    padding: clamp(1rem, 3vw, 1.7rem);
+    border: 1px solid rgb(105 224 207 / 0.24);
+    border-radius: 0.75rem;
+    background:
+      radial-gradient(circle at 19% 10%, rgb(49 122 134 / 0.42), transparent 30%),
+      #0b1416;
+    color: #edf5f3;
+  }
+
+  figcaption {
+    display: grid;
+    gap: 0.35rem;
+    margin-bottom: 1.25rem;
+  }
+
+  figcaption strong {
+    font-size: 1.1rem;
+  }
+
+  figcaption span,
+  p {
+    color: #a7b6b3;
+    font-size: 0.76rem;
+    line-height: 1.5;
+  }
+
+  ol {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    position: relative;
+    display: grid;
+    align-content: start;
+    gap: 0.55rem;
+    min-width: 0;
+    padding: 0.8rem 0.65rem;
+    border-top: 3px solid #59cfc4;
+  }
+
+  li:not(:last-child)::after {
+    position: absolute;
+    top: -0.48rem;
+    right: -0.28rem;
+    z-index: 1;
+    width: 0.72rem;
+    height: 0.72rem;
+    border-top: 3px solid #59cfc4;
+    border-right: 3px solid #59cfc4;
+    content: "";
+    transform: rotate(45deg);
+  }
+
+  li > b {
+    color: #69dfd0;
+    font: 800 0.64rem/1 var(--font-mono, monospace);
+  }
+
+  li div {
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  li div strong {
+    color: #f1f6f4;
+    font-size: 0.75rem;
+  }
+
+  li div span {
+    color: #aebbb8;
+    font-size: 0.65rem;
+    line-height: 1.4;
+  }
+
+  .wash-route__garage {
+    border-radius: 0 0 0.4rem 0.4rem;
+    background: rgb(217 159 75 / 0.16);
+  }
+
+  .wash-route__garage > b,
+  .wash-route__garage div strong {
+    color: #efbd6f;
+  }
+
+  p {
+    margin: 1rem 0 0;
+  }
+
+  a {
+    color: #69dfd0;
+  }
+
+  @media (max-width: 48rem) {
+    ol {
+      grid-template-columns: 1fr;
+    }
+
+    li {
+      grid-template-columns: 2rem 1fr;
+      border-top: 0;
+      border-left: 3px solid #59cfc4;
+    }
+
+    li:not(:last-child)::after {
+      top: auto;
+      right: auto;
+      bottom: -0.25rem;
+      left: -0.48rem;
+      transform: rotate(135deg);
+    }
+  }
+</style>

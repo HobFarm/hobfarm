@@ -1,0 +1,120 @@
+---
+const places = [
+  ["Brooklyn", "2009", "Open", "The original: 16 lanes, a club room, Blue Ribbon food, and the Wetlands partnership carried forward."],
+  ["London", "2014–2017", "Closed", "The first expansion opened at The O2 and closed after three years."],
+  ["Las Vegas", "2014", "Open", "The largest early version, built into the LINQ with 32 lanes and a two-level concert room."],
+  ["Nashville", "2021", "Open", "Planned for March 2020, then delayed by the live-music shutdown."],
+  ["Philadelphia", "2021", "Open", "A larger sibling in Fishtown."],
+  ["Washington, D.C.", "Announced", "Unverified", "A Buzzard Point project was announced. No operating venue appears in Brooklyn Bowl's current location list."],
+] as const;
+---
+
+<figure class="bowl-family article-wide not-prose" aria-labelledby="bowl-family-title">
+  <figcaption>
+    <strong id="bowl-family-title">The Brooklyn Bowl family</strong>
+    <span>Status checked August 9, 2026. “Announced” is not the same as open.</span>
+  </figcaption>
+  <div>
+    {places.map(([place, year, status, note]) => (
+      <article class:list={[status === "Open" && "is-open", status === "Closed" && "is-closed"]}>
+        <p><strong>{place}</strong><span>{year}</span></p>
+        <b>{status}</b>
+        <small>{note}</small>
+      </article>
+    ))}
+  </div>
+</figure>
+
+<style>
+  .bowl-family {
+    margin-block: 2.8rem !important;
+    padding: clamp(1rem, 3vw, 1.6rem);
+    border-radius: 0.75rem;
+    background: #e7dcc6;
+    color: #20292a;
+  }
+
+  figcaption {
+    display: grid;
+    gap: 0.3rem;
+    margin-bottom: 1rem;
+  }
+
+  figcaption strong {
+    font-size: 1.12rem;
+  }
+
+  figcaption span {
+    color: #5d6665;
+    font-size: 0.75rem;
+  }
+
+  .bowl-family > div {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.7rem;
+  }
+
+  article {
+    display: grid;
+    align-content: start;
+    gap: 0.55rem;
+    min-width: 0;
+    padding: 0.9rem;
+    border: 1px solid rgb(32 41 42 / 0.18);
+    border-top: 4px solid #8b6b46;
+    border-radius: 0.4rem;
+    background: rgb(255 255 255 / 0.4);
+  }
+
+  article.is-open {
+    border-top-color: #267160;
+  }
+
+  article.is-closed {
+    border-top-color: #8e3d34;
+  }
+
+  p {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin: 0;
+  }
+
+  p strong {
+    font-size: 0.88rem;
+  }
+
+  p span,
+  article > b {
+    color: #5f6765;
+    font: 700 0.64rem/1.2 var(--font-mono, monospace);
+  }
+
+  article > b {
+    width: fit-content;
+    padding: 0.18rem 0.35rem;
+    border-radius: 999px;
+    background: rgb(32 41 42 / 0.09);
+  }
+
+  small {
+    color: #4f5b59;
+    font-size: 0.68rem;
+    line-height: 1.45;
+  }
+
+  @media (max-width: 48rem) {
+    .bowl-family > div {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 32rem) {
+    .bowl-family > div {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

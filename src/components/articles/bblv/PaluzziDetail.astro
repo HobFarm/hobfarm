@@ -1,0 +1,119 @@
+---
+const src = "https://cdn.hob.farm/articles/bblv/unlv-paluzzi-strip-detail-1982-v1.jpg";
+---
+
+<figure class="paluzzi article-wide not-prose" aria-labelledby="paluzzi-title">
+  <figcaption>
+    <strong id="paluzzi-title">What the 1982 panorama can actually establish</strong>
+    <span>The labels identify visible landmarks, not a surveyed boundary for the future LINQ or Brooklyn Bowl.</span>
+  </figcaption>
+  <div>
+    <img
+      src={src}
+      alt="Detail from Bob Paluzzi's December 1982 Las Vegas Strip panorama, showing wet Las Vegas Boulevard, Caesars Palace signs, and the Flamingo sign."
+      width="1400"
+      height="3174"
+      loading="lazy"
+      decoding="async"
+      data-lightbox={src}
+      data-lightbox-caption="Detail from Bob Paluzzi's December 1982 Las Vegas Strip panorama. UNLV Special Collections and Archives, PH_00414_132-01."
+    />
+    <span class="pin pin--one"><b>1</b><i>Flamingo sign</i></span>
+    <span class="pin pin--two"><b>2</b><i>Caesars Palace signs</i></span>
+    <span class="pin pin--three"><b>3</b><i>Las Vegas Boulevard</i></span>
+  </div>
+  <p>
+    Bob Paluzzi, December 8–9, 1982. UNLV Special Collections and Archives, Bob Paluzzi Panoramic Photographs, PH_00414_132-01. Copyright UNLV; educational use permitted. <a href="https://special.library.unlv.edu/ark:/62930/d1qb9z35k">Open the archive record</a>.
+  </p>
+</figure>
+
+<style>
+  .paluzzi {
+    margin-block: 2.8rem !important;
+    padding: clamp(1rem, 3vw, 1.4rem);
+    border-radius: 0.7rem;
+    background: #0d1011;
+    color: #eef1ef;
+  }
+
+  figcaption {
+    display: grid;
+    gap: 0.3rem;
+    margin-bottom: 1rem;
+  }
+
+  figcaption strong {
+    font-size: 1.08rem;
+  }
+
+  figcaption span,
+  p {
+    color: #aeb7b4;
+    font-size: 0.72rem;
+    line-height: 1.5;
+  }
+
+  .paluzzi > div {
+    position: relative;
+    width: min(100%, 27rem);
+    margin-inline: auto;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid rgb(255 255 255 / 0.13);
+    border-radius: 0.35rem;
+  }
+
+  .pin {
+    position: absolute;
+    display: flex;
+    gap: 0.35rem;
+    align-items: center;
+  }
+
+  .pin b {
+    display: grid;
+    place-items: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    flex: 0 0 auto;
+    border: 2px solid white;
+    border-radius: 50%;
+    background: #a83e31;
+    color: white;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.45);
+    font: 800 0.66rem/1 var(--font-mono, monospace);
+  }
+
+  .pin i {
+    padding: 0.25rem 0.35rem;
+    border-radius: 0.2rem;
+    background: rgb(8 10 10 / 0.86);
+    color: white;
+    font: normal 700 0.62rem/1.2 var(--font-mono, monospace);
+  }
+
+  .pin--one { top: 48%; right: -9%; }
+  .pin--two { top: 56%; left: 13%; }
+  .pin--three { top: 70%; left: 36%; }
+
+  p {
+    max-width: 48rem;
+    margin: 0.9rem auto 0;
+  }
+
+  a {
+    color: #70dccb;
+  }
+
+  @media (max-width: 34rem) {
+    .pin i {
+      display: none;
+    }
+
+    .pin--one { right: 3%; }
+  }
+</style>

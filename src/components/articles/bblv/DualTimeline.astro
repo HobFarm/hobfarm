@@ -1,0 +1,134 @@
+---
+const land = [
+  ["1952", "The UNLV aerial shows the Flamingo and open ground east of the Strip."],
+  ["1959", "Flamingo Capri opens."],
+  ["1971", "Ralph Engelstad buys the Flamingo Capri."],
+  ["1979", "The expanded property becomes the Imperial Palace."],
+  ["2005", "Harrah's acquires the Imperial Palace."],
+  ["2012", "Imperial Palace becomes the Quad as Project LINQ construction remakes the corridor."],
+  ["2014", "The hotel and promenade take the LINQ name; Brooklyn Bowl opens."],
+] as const;
+
+const music = [
+  ["1989", "Wetlands Preserve opens in Manhattan."],
+  ["1996", "Peter Shapiro takes over Wetlands; Charley Ryan is its general manager."],
+  ["2001", "Wetlands closes after its final September shows."],
+  ["2009", "Brooklyn Bowl opens in Williamsburg."],
+  ["2013", "Joe Russo's Almost Dead debuts at Brooklyn Bowl."],
+  ["2014", "Brooklyn Bowl London and Las Vegas open."],
+  ["2019", "Brooklyn Bowl forms a partnership with Live Nation."],
+  ["2021", "Nashville and Philadelphia join the operating family after the pandemic interruption."],
+] as const;
+---
+
+<figure class="dual-timeline article-wide not-prose" aria-labelledby="dual-timeline-title">
+  <figcaption>
+    <strong id="dual-timeline-title">Two histories arrive at the same room</strong>
+    <span>Property and drainage history on one side; venue and music history on the other.</span>
+  </figcaption>
+  <div class="dual-timeline__grid">
+    <section aria-labelledby="land-title">
+      <h3 id="land-title">The Strip parcel</h3>
+      <ol>{land.map(([year, event]) => <li><time>{year}</time><span>{event}</span></li>)}</ol>
+    </section>
+    <section aria-labelledby="music-title">
+      <h3 id="music-title">The music lineage</h3>
+      <ol>{music.map(([year, event]) => <li><time>{year}</time><span>{event}</span></li>)}</ol>
+    </section>
+  </div>
+</figure>
+
+<style>
+  .dual-timeline {
+    margin-block: 2.8rem !important;
+    padding: clamp(1rem, 3vw, 1.6rem);
+    border-radius: 0.75rem;
+    background: #111516;
+    color: #eef2ef;
+  }
+
+  figcaption {
+    display: grid;
+    gap: 0.35rem;
+    margin-bottom: 1.2rem;
+  }
+
+  figcaption > strong {
+    font-size: 1.12rem;
+  }
+
+  figcaption span {
+    color: #a8b2af;
+    font-size: 0.76rem;
+  }
+
+  .dual-timeline__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  section {
+    min-width: 0;
+    padding: 1rem;
+    border: 1px solid rgb(255 255 255 / 0.1);
+    border-radius: 0.5rem;
+  }
+
+  section:first-child {
+    background: linear-gradient(160deg, rgb(204 161 87 / 0.14), transparent 65%);
+  }
+
+  section:last-child {
+    background: linear-gradient(160deg, rgb(91 218 198 / 0.13), transparent 65%);
+  }
+
+  h3 {
+    margin: 0 0 0.85rem;
+    color: #f0cf92;
+    font: 800 0.78rem/1.2 var(--font-mono, monospace);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  section:last-child h3 {
+    color: #74dfce;
+  }
+
+  ol {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: 3.4rem 1fr;
+    gap: 0.55rem;
+    padding: 0.55rem 0;
+    border-top: 1px solid rgb(255 255 255 / 0.09);
+  }
+
+  time {
+    color: #e5bb70;
+    font: 800 0.68rem/1.45 var(--font-mono, monospace);
+  }
+
+  section:last-child time {
+    color: #69d6c5;
+  }
+
+  li span {
+    color: #ccd3d0;
+    font-size: 0.72rem;
+    line-height: 1.45;
+  }
+
+  @media (max-width: 44rem) {
+    .dual-timeline__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

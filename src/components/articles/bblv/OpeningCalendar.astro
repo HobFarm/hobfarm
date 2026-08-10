@@ -1,0 +1,102 @@
+---
+const nights = [
+  ["Mar 8–9", "Soulive with guests", "Public opening weekend"],
+  ["Mar 14", "The Roots", "Grand-opening run"],
+  ["Mar 15–16", "Elvis Costello and The Roots", "Two nights"],
+  ["Mar 20–22", "Cake", "Three nights"],
+  ["Mar 26–29", "Galactic", "First late-night block"],
+  ["Apr 18–20", "Phil Lesh & Friends", "Three nights"],
+  ["May 1–3", "Primus", "Three nights"],
+  ["May 8–10", "Jane's Addiction", "Nothing's Shocking"],
+  ["May 29–31", "Tedeschi Trucks Band", "Early shows"],
+  ["May 29–31", "Soulive", "Late shows"],
+] as const;
+---
+
+<figure class="opening-calendar article-wide not-prose" aria-labelledby="opening-calendar-title">
+  <figcaption>
+    <strong id="opening-calendar-title">The first season was the argument</strong>
+    <span>Selected dates from Brooklyn Bowl Las Vegas's announced 2014 opening calendar.</span>
+  </figcaption>
+  <ol>
+    {nights.map(([date, act, note]) => (
+      <li><time>{date}</time><strong>{act}</strong><span>{note}</span></li>
+    ))}
+  </ol>
+  <p>Source: <a href="https://jambands.com/news/2014/01/28/brooklyn-bowl-las-vegas-confirms-phil-lesh-friends-elvis-costello-the-roots-string-cheese-incident-tedeschi-trucks-jane-s-addiciton-avett-brothers-cake-and-many-more/">Jambands.com, January 28, 2014</a>.</p>
+</figure>
+
+<style>
+  .opening-calendar {
+    margin-block: 2.8rem !important;
+    padding: clamp(1rem, 3vw, 1.6rem);
+    border: 1px solid rgb(231 187 103 / 0.25);
+    border-radius: 0.75rem;
+    background: #15120f;
+    color: #f3eee5;
+  }
+
+  figcaption {
+    display: grid;
+    gap: 0.3rem;
+    margin-bottom: 1rem;
+  }
+
+  figcaption strong {
+    font-size: 1.12rem;
+  }
+
+  figcaption span,
+  p {
+    color: #b8aea0;
+    font-size: 0.74rem;
+  }
+
+  ol {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: 4.5rem 1fr;
+    gap: 0.12rem 0.6rem;
+    padding: 0.7rem;
+    border: 1px solid rgb(255 255 255 / 0.1);
+    border-radius: 0.35rem;
+    background: rgb(255 255 255 / 0.03);
+  }
+
+  time {
+    grid-row: 1 / 3;
+    color: #efc274;
+    font: 800 0.68rem/1.45 var(--font-mono, monospace);
+  }
+
+  li strong {
+    font-size: 0.75rem;
+  }
+
+  li span {
+    color: #a99f92;
+    font-size: 0.65rem;
+  }
+
+  p {
+    margin: 0.9rem 0 0;
+  }
+
+  a {
+    color: #efc274;
+  }
+
+  @media (max-width: 42rem) {
+    ol {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

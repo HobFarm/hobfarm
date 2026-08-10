@@ -1,0 +1,65 @@
+---
+interface Props {
+  src: string;
+  poster: string;
+  title: string;
+  caption: string;
+  credit: string;
+  fallbackUrl?: string;
+}
+
+const { src, poster, title, caption, credit, fallbackUrl } = Astro.props;
+---
+
+<figure class="bblv-video article-wide not-prose">
+  <video controls playsinline preload="metadata" poster={poster} aria-label={title}>
+    <source src={src} type="video/mp4" />
+    <p>
+      Your browser cannot play this video.
+      <a href={fallbackUrl ?? src}>Open the MP4 file</a>.
+    </p>
+  </video>
+  <figcaption>
+    <span>{caption}</span>
+    <small>{credit}</small>
+    {fallbackUrl && <a href={fallbackUrl}>Open the supplied original</a>}
+  </figcaption>
+</figure>
+
+<style>
+  .bblv-video {
+    margin-block: 2.7rem !important;
+    overflow: hidden;
+    border: 1px solid rgb(104 224 207 / 0.24);
+    border-radius: 0.55rem;
+    background: #050707;
+    box-shadow: 0.75rem 0.85rem 0 rgb(0 0 0 / 0.3);
+  }
+
+  video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+  }
+
+  figcaption {
+    display: grid;
+    gap: 0.3rem;
+    padding: 0.8rem 0.9rem 0.9rem;
+    color: #c8d0ce;
+    font-size: 0.84rem;
+    line-height: 1.45;
+  }
+
+  small {
+    color: #82918e;
+    font: 600 0.67rem/1.4 var(--font-mono, monospace);
+  }
+
+  a {
+    width: fit-content;
+    color: #6ce7d0;
+    font: 700 0.68rem/1.4 var(--font-mono, monospace);
+  }
+</style>

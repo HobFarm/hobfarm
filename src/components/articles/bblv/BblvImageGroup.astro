@@ -1,0 +1,82 @@
+---
+interface Item {
+  src: string;
+  alt: string;
+  caption: string;
+  credit?: string;
+  width?: number;
+  height?: number;
+}
+
+interface Props {
+  label: string;
+  items: Item[];
+  columns?: 2 | 3;
+}
+
+const { label, items, columns = 2 } = Astro.props;
+---
+
+<section class="bblv-group article-wide not-prose" aria-label={label} style={`--columns:${columns}`}>
+  {items.map((item) => (
+    <figure>
+      <img
+        src={item.src}
+        alt={item.alt}
+        width={item.width}
+        height={item.height}
+        loading="lazy"
+        decoding="async"
+        data-lightbox={item.src}
+        data-lightbox-caption={`${item.caption} ${item.credit ?? "Photograph by HobFarm."}`}
+      />
+      <figcaption>
+        <span>{item.caption}</span>
+        <small>{item.credit ?? "Photograph by HobFarm."}</small>
+      </figcaption>
+    </figure>
+  ))}
+</section>
+
+<style>
+  .bblv-group {
+    display: grid;
+    grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+    gap: 1rem;
+    margin-block: 2.6rem !important;
+  }
+
+  figure {
+    min-width: 0;
+    margin: 0;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid rgb(255 255 255 / 0.13);
+    border-radius: 0.4rem;
+    box-shadow: 0.45rem 0.55rem 0 rgb(0 0 0 / 0.24);
+  }
+
+  figcaption {
+    display: grid;
+    gap: 0.25rem;
+    margin-top: 0.65rem;
+    color: #c1c9c9;
+    font-size: 0.8rem;
+    line-height: 1.45;
+  }
+
+  small {
+    color: #82908d;
+    font: 600 0.65rem/1.4 var(--font-mono, monospace);
+  }
+
+  @media (max-width: 44rem) {
+    .bblv-group {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

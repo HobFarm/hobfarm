@@ -99,7 +99,12 @@ test("all five supplied images and four editorial graphics are represented", asy
   }
 
   assert.match(evidence, /identified by the author as Carson Daly/);
-  assert.match(evidence, /rough archival teaser; the full photo set will be scanned/);
+  assert.match(evidence, /rough archival teaser; the full photo set will be scanned for a future article/);
+  assert.match(
+    article,
+    /That is a future article, once I scan the photographs\./,
+    "Woodstock must be framed as a future seed rather than the immediate next article",
+  );
 });
 
 test("supplied source images remain byte-identical after descriptive renaming", async () => {

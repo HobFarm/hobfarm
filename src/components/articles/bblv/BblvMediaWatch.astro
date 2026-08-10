@@ -1,0 +1,163 @@
+---
+interface Props {
+  title: string;
+  publisher: string;
+  videoId: string;
+  note: string;
+}
+
+const { title, publisher, videoId, note } = Astro.props;
+const watchUrl = `https://www.youtube.com/watch?v=${videoId}`;
+const posterUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+---
+
+<figure class="bblv-watch article-wide not-prose" data-bblv-player data-video-id={videoId}>
+  <div class="bblv-watch__screen" data-player-screen>
+    <img src={posterUrl} alt="" width="480" height="360" loading="lazy" decoding="async" />
+    <button type="button" data-player-load aria-label={`Load ${title} from YouTube`}>
+      <span aria-hidden="true">▶</span>
+      Load video
+    </button>
+  </div>
+  <figcaption>
+    <div>
+      <strong>{title}</strong>
+      <span>{publisher}</span>
+      <small>{note}</small>
+    </div>
+    <a href={watchUrl} target="_blank" rel="noopener noreferrer">Watch on YouTube <span aria-hidden="true">↗</span></a>
+  </figcaption>
+  <p class="sr-only" aria-live="polite" data-player-status></p>
+</figure>
+
+<script>
+  function installBblvPlayers() {
+    document.querySelectorAll<HTMLElement>("[data-bblv-player]").forEach((player) => {
+      const button = player.querySelector<HTMLButtonElement>("[data-player-load]");
+      const screen = player.querySelector<HTMLElement>("[data-player-screen]");
+      const status = player.querySelector<HTMLElement>("[data-player-status]");
+      if (!button || !screen || button.dataset.ready === "true") return;
+      button.dataset.ready = "true";
+
+      button.addEventListener("click", () => {
+        const videoId = player.dataset.videoId;
+        if (!videoId) return;
+        const iframe = document.createElement("iframe");
+        iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?rel=0`;
+        iframe.title = button.getAttribute("aria-label")?.replace(/^Load /, "").replace(/ from YouTube$/, "") ?? "YouTube video";
+        iframe.loading = "lazy";
+        iframe.allow = "encrypted-media; picture-in-picture; web-share";
+        iframe.referrerPolicy = "strict-origin-when-cross-origin";
+        iframe.allowFullscreen = true;
+        iframe.addEventListener("load", () => {
+          if (status) status.textContent = `${iframe.title} loaded.`;
+          iframe.focus();
+        });
+        screen.replaceChildren(iframe);
+        if (status) status.textContent = `Loading ${iframe.title}.`;
+      });
+    });
+  }
+
+  installBblvPlayers();
+  document.addEventListener("astro:page-load", installBblvPlayers);
+</script>
+
+<style>
+  .bblv-watch {
+    margin-block: 2.7rem !important;
+    overflow: hidden;
+    border: 1px solid rgb(224 184 96 / 0.3);
+    border-radius: 0.5rem;
+    background: #080909;
+    box-shadow: 0.65rem 0.75rem 0 rgb(0 0 0 / 0.28);
+  }
+
+  .bblv-watch__screen {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: #020303;
+  }
+
+  .bblv-watch__screen::after {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgb(0 0 0 / 0.72));
+    content: "";
+    pointer-events: none;
+  }
+
+  .bblv-watch__screen img,
+  .bblv-watch__screen :global(iframe) {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    object-fit: cover;
+  }
+
+  .bblv-watch__screen :global(iframe) {
+    position: relative;
+    z-index: 2;
+  }
+
+  button {
+    position: absolute;
+    z-index: 1;
+    right: 1rem;
+    bottom: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.68rem 0.82rem;
+    border: 1px solid rgb(255 255 255 / 0.68);
+    border-radius: 0.2rem;
+    background: rgb(5 8 9 / 0.92);
+    color: white;
+    font: 700 0.72rem/1 var(--font-mono, monospace);
+    cursor: pointer;
+  }
+
+  button:hover,
+  button:focus-visible {
+    border-color: #e7bd69;
+    outline: 2px solid #e7bd69;
+    outline-offset: 2px;
+  }
+
+  figcaption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 0.95rem;
+  }
+
+  figcaption div {
+    display: grid;
+    gap: 0.15rem;
+  }
+
+  strong {
+    color: #f2f4f2;
+    font-size: 0.84rem;
+  }
+
+  figcaption span,
+  small {
+    color: #96a09e;
+    font-size: 0.69rem;
+  }
+
+  a {
+    flex: 0 0 auto;
+    color: #e7bd69 !important;
+    font: 700 0.68rem/1.3 var(--font-mono, monospace);
+  }
+
+  @media (max-width: 34rem) {
+    figcaption {
+      align-items: start;
+      flex-direction: column;
+    }
+  }
+</style>

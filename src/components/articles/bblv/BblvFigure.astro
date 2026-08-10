@@ -1,0 +1,88 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption: string;
+  credit: string;
+  sourceUrl?: string;
+  width?: number;
+  height?: number;
+  wide?: boolean;
+  eager?: boolean;
+  contain?: boolean;
+}
+
+const {
+  src,
+  alt,
+  caption,
+  credit,
+  sourceUrl,
+  width,
+  height,
+  wide = true,
+  eager = false,
+  contain = false,
+} = Astro.props;
+---
+
+<figure class:list={["bblv-figure", wide && "article-wide", contain && "bblv-figure--contain"]}>
+  <img
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={eager ? "eager" : "lazy"}
+    decoding="async"
+    fetchpriority={eager ? "high" : undefined}
+    data-lightbox={src}
+    data-lightbox-caption={`${caption} ${credit}`}
+  />
+  <figcaption>
+    <span>{caption}</span>
+    <small>
+      {sourceUrl ? <a href={sourceUrl} rel="noreferrer">{credit}</a> : credit}
+    </small>
+  </figcaption>
+</figure>
+
+<style>
+  .bblv-figure {
+    margin-block: 2.5rem !important;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid rgb(255 255 255 / 0.13);
+    border-radius: 0.45rem;
+    background: #080a0b;
+    box-shadow: 0.65rem 0.75rem 0 rgb(0 0 0 / 0.28);
+  }
+
+  .bblv-figure--contain img {
+    max-height: 44rem;
+    object-fit: contain;
+  }
+
+  figcaption {
+    display: grid;
+    gap: 0.3rem;
+    max-width: 52rem;
+    margin: 0.8rem auto 0;
+    color: #c1c9c9;
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  small {
+    color: #85918f;
+    font: 600 0.69rem/1.45 var(--font-mono, monospace);
+  }
+
+  a {
+    color: inherit;
+    text-underline-offset: 0.16em;
+  }
+</style>

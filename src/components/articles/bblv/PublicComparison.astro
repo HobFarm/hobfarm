@@ -1,0 +1,82 @@
+<figure class="comparison article-wide not-prose" aria-labelledby="comparison-title">
+  <figcaption>
+    <strong id="comparison-title">The public record does not support a crowd chart</strong>
+    <span>Checked August 9, 2026. Ticket status, headcount, capacity, gross, and settlement are different facts.</span>
+  </figcaption>
+  <div role="table" aria-label="Available public evidence for selected 2026 JRAD dates">
+    <p role="row"><b role="columnheader">Date and market</b><b role="columnheader">What is public</b><b role="columnheader">What is not public</b></p>
+    <p role="row"><span>July 30, Las Vegas</span><span>Venue listing and author media</span><span>Verified headcount, tickets sold, gross</span></p>
+    <p role="row"><span>August 21, Dillon</span><span>Municipal listing marked sold out before the event</span><span>Final scanned count and gross</span></p>
+    <p role="row"><span>August 22, Vail</span><span>Public amphitheater listing before the event</span><span>Final scanned count and gross</span></p>
+  </div>
+  <p>A sold-out label for a future outdoor date cannot be converted into a comparable Las Vegas attendance number. The article therefore makes no numeric market claim.</p>
+</figure>
+
+<style>
+  .comparison {
+    margin-block: 2.8rem !important;
+    padding: clamp(1rem, 3vw, 1.5rem);
+    border: 1px solid rgb(255 255 255 / 0.12);
+    border-radius: 0.65rem;
+    background: #111414;
+    color: #edf1ef;
+  }
+
+  figcaption {
+    display: grid;
+    gap: 0.3rem;
+    margin-bottom: 1rem;
+  }
+
+  figcaption strong {
+    font-size: 1.08rem;
+  }
+
+  figcaption span,
+  .comparison > p {
+    color: #a9b2af;
+    font-size: 0.72rem;
+    line-height: 1.5;
+  }
+
+  [role="table"] {
+    overflow: hidden;
+    border: 1px solid rgb(255 255 255 / 0.1);
+    border-radius: 0.4rem;
+  }
+
+  [role="row"] {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr 1fr;
+    gap: 0.7rem;
+    margin: 0;
+    padding: 0.7rem;
+    border-top: 1px solid rgb(255 255 255 / 0.08);
+  }
+
+  [role="row"]:first-child {
+    border-top: 0;
+    background: rgb(104 219 200 / 0.1);
+  }
+
+  [role="row"] b {
+    color: #70dccb;
+    font: 800 0.65rem/1.35 var(--font-mono, monospace);
+  }
+
+  [role="row"] span {
+    color: #cbd2cf;
+    font-size: 0.68rem;
+    line-height: 1.4;
+  }
+
+  .comparison > p {
+    margin: 0.85rem 0 0;
+  }
+
+  @media (max-width: 39rem) {
+    [role="row"] {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
