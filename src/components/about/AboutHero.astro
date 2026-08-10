@@ -1,54 +1,75 @@
 ---
-import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-import Eyebrow from "@/components/sections/Eyebrow.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import { aboutHeroActions } from "@/data/about";
+import type { MediaRecord } from "@/data/media-registry";
+import { imageSrcset, transformImageUrl } from "@/lib/media-transforms";
 
-// Money-forward paths, surfaced above the fold. Destinations mirror /projects + footer.
-const engage = [
-  { label: "Shop", note: "Buy", href: "/shop/" },
-  { label: "Membership", note: "Support", href: "/membership/" },
-  { label: "Courses", note: "Learn", href: "/academy/" },
-  { label: "Hire", note: "Commission", href: "/contact/" },
-  { label: "Follow", note: "Watch", href: "https://www.youtube.com/@HobFarm", external: true },
-];
+interface Props {
+  image: MediaRecord;
+  caption: string;
+  srcset?: string;
+}
+
+const { image, caption, srcset: suppliedSrcset } = Astro.props;
+const imageSrc = transformImageUrl(image.src, { width: 1400, quality: 84, fit: "cover" });
+const srcset =
+  suppliedSrcset ??
+  (image.src.startsWith("https://cdn.hob.farm/")
+    ? imageSrcset(image.src, [640, 960, 1400], { quality: 84, fit: "cover" })
+    : undefined);
 ---
 
-<section class="bg-noise border-b border-base-800/50">
-  <Wrapper variant="standard" class="py-20 lg:py-28">
-    <Eyebrow text="HobFarm / Las Vegas" />
-
-    <Text
-      tag="h1"
-      variant="display2XL"
-      class="mt-6 text-white font-display max-w-4xl text-balance"
-    >
-      A creative production and commerce project.
-    </Text>
-
-    <Text tag="p" variant="textBase" class="text-base-300 mt-6 max-w-2xl text-pretty leading-relaxed">
-      HobFarm brings together creative services, original projects, digital and physical products, media experiments, and resale inventory under one brand. The work moves across character design, visual development, AI-assisted media, film-history research, video formats, digital art, product ideas, collectibles, DVDs, auction finds, and whatever else is worth turning into something.
-    </Text>
-
-    <Text tag="p" variant="textBase" class="text-base-400 mt-4 max-w-2xl text-pretty leading-relaxed">
-      Some things are made from scratch. Some are researched and developed into projects. Some are bought, cleaned up, listed, and sold. Some become videos, downloads, designs, products, or recurring formats. The point is simple: HobFarm is where ideas, media, objects, and experiments get turned into usable work.
-    </Text>
-
-    {/* Engagement strip: the money-forward paths, above the fold */}
-    <div class="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-      {engage.map((item) => (
-        <a
-          href={item.href}
-          {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-          class="group flex flex-col gap-1 p-4 rounded-xl border border-base-800 bg-base-900/50 hover:border-accent-500/50 hover:bg-base-900 transition-all duration-300"
-        >
-          <span class="text-[10px] font-mono uppercase tracking-wider text-base-500">
-            {item.note}
-          </span>
-          <span class="text-sm text-white font-medium group-hover:text-accent-violet-bright transition-colors duration-200">
-            {item.label}
-          </span>
-        </a>
-      ))}
+<header class="about-hero" aria-labelledby="about-title">
+  <Wrapper variant="standard" class="about-hero__inner">
+    <div class="about-hero__copy">
+      <p class="about-kicker">Kris Reynolds</p>
+      <p class="about-role">Publisher / Digital media / Production systems</p>
+      <h1 id="about-title">I build and run HobFarm.</h1>
+      <p class="about-deck">
+        HobFarm is an independent publication and working studio for research, web publishing,
+        visual media, and production systems. It is where questions, source material, unfinished
+        ideas, and practical production problems become articles, images, video, applications,
+        and reusable workflows.
+      </p>
+      <div class="about-actions" aria-label="Primary About page links">
+        {aboutHeroActions.map((action) => (
+          <Button
+            isLink
+            size="sm"
+            variant={action.primary ? "green" : "muted"}
+            href={action.href}
+            data-event={action.event}
+            {...(action.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+          >
+            {action.label}
+          </Button>
+        ))}
+      </div>
+      <p class="about-location">
+        <span aria-hidden="true"></span>
+        Las Vegas, Nevada
+      </p>
     </div>
+
+    <figure class="about-hero__figure">
+      <div class="about-hero__image-frame">
+        <img
+          src={imageSrc}
+          srcset={srcset}
+          sizes="(min-width: 1024px) 48vw, 100vw"
+          alt={image.alt}
+          width={image.width ?? 1672}
+          height={image.height ?? 941}
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+        <div class="about-hero__route" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+      <figcaption>{caption}</figcaption>
+    </figure>
   </Wrapper>
-</section>
+</header>

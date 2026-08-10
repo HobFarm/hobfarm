@@ -344,6 +344,16 @@ export const mediaRegistry = {
 
   "about.fractal-octopus.video": aboutVideo("Fractal%20Octopus.mp4", "supporting-philosophy", "Fractal octopus motion study", "active"),
   "about.glow.video": aboutVideo("about-glow-vid.mp4", "supporting-pitch", "Luminous HobFarm studio motion study", "active"),
+  "about.hero.hayworth-avenue": {
+    src: "/media/about/about-hero-hayworth-avenue-1920.webp",
+    mediaType: "image",
+    width: 1920,
+    height: 1080,
+    destination: "/about/",
+    role: "author-landscape-photograph",
+    alt: "Night photograph looking north along South Hayworth Avenue toward Beverly Boulevard, with parked cars and streetlights beneath trees",
+    status: "active",
+  },
   "about.hero.video": aboutVideo("about-hero-vid.mp4", "hero-candidate", "HobFarm About hero motion study", "unused"),
 
   "home.composition-lighting.one": homeImage("comp-lighting-1.png", "home-visual-showcase", "Composition and lighting comparison, first example", "active"),

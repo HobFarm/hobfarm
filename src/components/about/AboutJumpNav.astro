@@ -1,0 +1,14 @@
+---
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import { aboutJumpLinks } from "@/data/about";
+---
+
+<nav class="about-jump" aria-label="About page sections">
+  <Wrapper variant="standard" class="about-jump__inner">
+    <span class="about-jump__label">On this page</span>
+    <div class="about-jump__links">
+      {aboutJumpLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+    </div>
+  </Wrapper>
+</nav>
+

@@ -1,0 +1,24 @@
+---
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import { aboutCapabilities } from "@/data/about";
+---
+
+<section id="what-i-do" class="about-section" aria-labelledby="about-capabilities-heading">
+  <Wrapper variant="standard" class="about-section__grid">
+    <p class="about-section__label">02 / What I operate</p>
+    <div class="about-section__body">
+      <h2 id="about-capabilities-heading">The work crosses media, systems, and delivery.</h2>
+      <div class="about-capabilities">
+        {aboutCapabilities.map((capability, index) => (
+          <article class="about-capability">
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <h3>{capability.title}</h3>
+            <p>{capability.responsibility}</p>
+            <p class="about-capability__result">{capability.result}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </Wrapper>
+</section>
+

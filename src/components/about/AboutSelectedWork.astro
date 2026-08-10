@@ -1,0 +1,66 @@
+---
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import { aboutSelectedWork } from "@/data/about";
+import { getMedia, type MediaId } from "@/data/media-registry";
+import { imageSrcset, transformImageUrl } from "@/lib/media-transforms";
+
+const work = aboutSelectedWork.map((item) => {
+  const media = getMedia(item.mediaId as MediaId);
+  return {
+    ...item,
+    media,
+    src: transformImageUrl(media.src, { width: 1000, quality: 82, fit: "cover" }),
+    srcset: media.src.startsWith("https://cdn.hob.farm/")
+      ? imageSrcset(media.src, [480, 760, 1000], { quality: 82, fit: "cover" })
+      : undefined,
+  };
+});
+---
+
+<section id="selected-work" class="about-section" aria-labelledby="about-work-heading">
+  <Wrapper variant="standard" class="about-section__grid">
+    <p class="about-section__label">05 / Start with the relevant evidence</p>
+    <div class="about-section__body">
+      <h2 id="about-work-heading">Four routes into the work.</h2>
+      <div class="about-work-grid">
+        {work.map((item, index) => (
+          <article class:list={["about-work", index % 2 === 1 && "about-work--offset"]}>
+            <a
+              class="about-work__media"
+              href={item.href}
+              data-event="about_selected_work_open"
+              data-work-id={item.id}
+              aria-label={`${item.linkLabel}: ${item.title}`}
+            >
+              <img
+                src={item.src}
+                srcset={item.srcset}
+                sizes="(min-width: 1024px) 36vw, (min-width: 640px) 46vw, 100vw"
+                alt={item.media.alt}
+                width={item.media.width ?? 1360}
+                height={item.media.height ?? 1020}
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+            <div class="about-work__copy">
+              <p class="about-work__route">{item.routeLabel}</p>
+              <h3>{item.title}</h3>
+              <p>{item.premise}</p>
+              <p class="about-work__proof">{item.proof}</p>
+              <a
+                class="about-text-link"
+                href={item.href}
+                data-event="about_selected_work_open"
+                data-work-id={item.id}
+              >
+                {item.linkLabel} <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </Wrapper>
+</section>
+

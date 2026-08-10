@@ -7,6 +7,7 @@ const subjects = [
   { value: "billing", label: "Billing / Payments" },
   { value: "refund", label: "Refund Request" },
   { value: "general", label: "General Inquiry" },
+  { value: "employment", label: "Employment / Work Inquiry" },
   { value: "stylefusion", label: "StyleFusion" },
   { value: "grimoire", label: "Grimoire" },
   { value: "membership", label: "Membership" },

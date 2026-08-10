@@ -1,0 +1,31 @@
+---
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import { aboutHobFarmRoutes } from "@/data/about";
+
+type AboutRouteLink = { label: string; href: string };
+---
+
+<section id="hobfarm" class="about-section" aria-labelledby="about-hobfarm-heading">
+  <Wrapper variant="standard" class="about-section__grid">
+    <p class="about-section__label">06 / The publication and studio</p>
+    <div class="about-section__body">
+      <h2 id="about-hobfarm-heading">One operation, several durable forms.</h2>
+      <div class="about-route-list">
+        {aboutHobFarmRoutes.map((route, index) => (
+          <article class="about-route">
+            <p class="about-route__number">{String(index + 1).padStart(2, "0")}</p>
+            <div>
+              <h3>{route.title}</h3>
+              <p>{route.description}</p>
+              <div class="about-route__links">
+                {route.links.map((link: AboutRouteLink) => (
+                  <a href={link.href}>{link.label} <span aria-hidden="true">&rarr;</span></a>
+                ))}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </Wrapper>
+</section>

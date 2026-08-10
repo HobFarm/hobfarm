@@ -1,0 +1,36 @@
+---
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import { aboutContactLinks } from "@/data/about";
+---
+
+<section id="contact" class="about-contact" aria-labelledby="about-contact-heading">
+  <Wrapper variant="standard" class="about-contact__inner">
+    <p class="about-section__label">08 / Contact</p>
+    <div>
+      <h2 id="about-contact-heading">Tell me what you are trying to make, fix, publish, or understand.</h2>
+      <p>
+        For employment, production, web, editorial, collaboration, and referral inquiries, use the
+        contact page. Include the object, problem, deadline, and useful context when possible.
+      </p>
+      <p class="about-contact__privacy">
+        The form keeps the public page useful without publishing a personal phone number, street
+        address, or direct email address.
+      </p>
+      <div class="about-actions">
+        {aboutContactLinks.map((link) => (
+          <Button
+            isLink
+            size="sm"
+            variant={link.primary ? "green" : "muted"}
+            href={link.href}
+            data-event={link.event}
+            {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+          >
+            {link.label}
+          </Button>
+        ))}
+      </div>
+    </div>
+  </Wrapper>
+</section>

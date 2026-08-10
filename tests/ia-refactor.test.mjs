@@ -82,15 +82,21 @@ test("category archives surface related systems, drops, workshop notes, and comi
 });
 
 test("about page presents the independent publisher and its operating paths", () => {
-  const about = read("src/pages/about/index.astro");
+  const about = [
+    read("src/pages/about/index.astro"),
+    read("src/data/about.ts"),
+    read("src/components/about/AboutHero.astro"),
+    read("src/components/about/AboutHobFarmRoutes.astro"),
+    read("src/components/about/AboutContactBlock.astro"),
+  ].join("\n");
 
   for (const phrase of [
-    "independent publisher of articles, media, games, and creative systems",
+    "independent publication and working studio",
     "Articles are the editorial center",
-    "Workshop shows how the work is made",
-    "Academy teaches practical workflows",
+    "Workshop keeps the sources",
+    "Courses, products, commissions, reader support",
     "HobFarm is currently run by one person",
-    "not currently hiring",
+    "For employment, production, web, editorial, collaboration, and referral inquiries",
   ]) {
     assert.match(about, new RegExp(phrase));
   }
@@ -99,7 +105,7 @@ test("about page presents the independent publisher and its operating paths", ()
   assert.doesNotMatch(about, /import AboutPitch/);
   assert.match(about, /href:\s*"\/workshop\/"/);
   assert.match(about, /href:\s*"\/shop\/"/);
-  assert.match(about, /href:\s*"\/contact\/"/);
+  assert.match(about, /href:\s*"\/contact\/\?subject=employment"/);
 });
 
 test("archive surfaces are reframed without changing routes", () => {

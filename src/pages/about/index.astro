@@ -1,123 +1,110 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import ContentPanel from "@/components/ContentPanel.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-import Text from "@/components/fundations/elements/Text.astro";
-import Button from "@/components/fundations/elements/Button.astro";
-import Eyebrow from "@/components/sections/Eyebrow.astro";
+import AboutHero from "@/components/about/AboutHero.astro";
+import AboutJumpNav from "@/components/about/AboutJumpNav.astro";
+import AboutWhy from "@/components/about/AboutWhy.astro";
+import AboutCapabilityGrid from "@/components/about/AboutCapabilityGrid.astro";
+import AboutProductionGrounding from "@/components/about/AboutProductionGrounding.astro";
+import AboutMethodMap from "@/components/about/AboutMethodMap.astro";
+import AboutSelectedWork from "@/components/about/AboutSelectedWork.astro";
+import AboutHobFarmRoutes from "@/components/about/AboutHobFarmRoutes.astro";
+import AboutContactBlock from "@/components/about/AboutContactBlock.astro";
+import { aboutLinkedInUrl } from "@/data/about";
+import { getMedia } from "@/data/media-registry";
+import "@/styles/about.css";
 
-const sections = [
-  {
-    eyebrow: "Publication",
-    heading: "Articles are the editorial center.",
-    body:
-      "HobFarm publishes reported pieces, arguments, satire, cartoons, archive dives, visual essays, and recurring departments. Social posts carry fragments into other feeds; the complete work and its sources stay on hob.farm.",
-    links: [
-      { label: "Read articles", href: "/articles/" },
-      { label: "Browse Presents", href: "/presents/" },
-    ],
-  },
-  {
-    eyebrow: "Media and projects",
-    heading: "Recurring work gets a durable home.",
-    body:
-      "Character worlds, visual systems, video formats, galleries, and ongoing series live as projects that can grow across several releases. A project page connects the finished media to the articles, Workshop notes, and later work built from the same system.",
-    links: [
-      { label: "Explore projects", href: "/workshop/" },
-      { label: "Open the gallery", href: "/gallery/" },
-    ],
-  },
-  {
-    eyebrow: "Games and applications",
-    heading: "Software is part of the publishing work.",
-    body:
-      "HobFarm builds games, creative applications, research tools, and small interactive experiments. Some are public projects. Others remain prototypes until they are useful, secure, and ready to maintain.",
-    links: [{ label: "See current projects", href: "/workshop/" }],
-  },
-  {
-    eyebrow: "Workshop",
-    heading: "Workshop shows how the work is made.",
-    body:
-      "Workshop pages record production methods, character locks, prompts, image tests, motion studies, publishing decisions, revisions, and failures. They preserve the method behind a release without turning every case study into a generic tutorial.",
-    links: [{ label: "Visit Workshop", href: "/workshop/" }],
-  },
-  {
-    eyebrow: "Academy",
-    heading: "Academy teaches practical workflows.",
-    body:
-      "Academy is a catalog of free and affordable one-time courses. Lessons come from working HobFarm systems and lead to a clear result, file, checklist, or repeatable production habit.",
-    links: [{ label: "Browse Academy", href: "/academy/" }],
-  },
-  {
-    eyebrow: "Shop and support",
-    heading: "Sales and reader funding pay for the next release.",
-    body:
-      "The Shop directory sends digital packs, character releases, and one-off physical inventory to the right marketplace. Ko-fi handles one-time reader support, HobFarm membership handles recurring support, and Academy holds the course catalog.",
-    links: [
-      { label: "Visit the Shop", href: "/shop/" },
-      { label: "Support HobFarm", href: "/support/" },
-    ],
-  },
-  {
-    eyebrow: "Operation",
-    heading: "HobFarm is currently run by one person.",
-    body:
-      "The operation is solo today. More reliable revenue can eventually pay contributors and specialists for defined work. HobFarm is not currently hiring; any future paid openings will be posted only when the budget and job are real.",
-    links: [{ label: "Contact HobFarm", href: "/contact/" }],
-  },
-];
+const title = "About Kris Reynolds and HobFarm";
+const description =
+  "Kris Reynolds builds and operates HobFarm, an independent publication and working studio for research, digital media, web systems, visual production, and inspectable creative workflows.";
+const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
+const canonicalUrl = `${siteOrigin}/about/`;
+const heroImage = getMedia("about.hero.hayworth-avenue");
+const heroSrcset = [640, 960, 1400, 1920]
+  .map((width) => `/media/about/about-hero-hayworth-avenue-${width}.webp ${width}w`)
+  .join(", ");
+const heroCaption =
+  "South Hayworth Avenue, just south of Beverly Boulevard, Los Angeles / looking north / photograph by Kris Reynolds";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${canonicalUrl}#kris-reynolds`,
+      name: "Kris Reynolds",
+      url: canonicalUrl,
+      jobTitle: "Publisher and Digital Media Producer",
+      homeLocation: {
+        "@type": "Place",
+        name: "Las Vegas, Nevada",
+      },
+      sameAs: [aboutLinkedInUrl],
+      worksFor: {
+        "@id": `${siteOrigin}/#organization`,
+      },
+    },
+    {
+      "@type": "Organization",
+      "@id": `${siteOrigin}/#organization`,
+      name: "HobFarm",
+      url: `${siteOrigin}/`,
+      logo: "https://cdn.hob.farm/brand/hobfarm-logo-white.svg",
+      founder: {
+        "@id": `${canonicalUrl}#kris-reynolds`,
+      },
+    },
+    {
+      "@type": "AboutPage",
+      "@id": `${canonicalUrl}#webpage`,
+      url: canonicalUrl,
+      name: title,
+      description,
+      about: [
+        { "@id": `${canonicalUrl}#kris-reynolds` },
+        { "@id": `${siteOrigin}/#organization` },
+      ],
+      mainEntity: {
+        "@id": `${canonicalUrl}#kris-reynolds`,
+      },
+    },
+  ],
+};
 ---
 
 <BaseLayout
-  title="About | HobFarm"
-  description="HobFarm is an independent publisher of articles, media, games, and creative systems."
+  title={title}
+  description={description}
   canonical="/about/"
+  image={heroImage.src}
+  imageAlt={heroImage.alt}
+  structuredData={structuredData}
+  palette="blue-red"
 >
-  <section class="bg-noise border-b border-base-800/50">
-    <ContentPanel>
-      <Wrapper variant="standard" class="py-16 lg:py-24">
-        <Eyebrow text="HobFarm / About" />
-        <Text tag="h1" variant="display2XL" class="mt-6 max-w-5xl text-balance font-display text-white">
-          HobFarm is an independent publisher of articles, media, games, and creative systems.
-        </Text>
-        <Text tag="p" variant="textLG" class="mt-6 max-w-3xl text-pretty leading-relaxed text-base-300">
-          The publication, projects, software, Workshop, Academy, and Shop share one job: make the work easy to find, follow, learn from, and fund.
-        </Text>
-      </Wrapper>
-    </ContentPanel>
-  </section>
+  <div class="about-page">
+    <AboutHero image={heroImage} caption={heroCaption} srcset={heroSrcset} />
+    <AboutJumpNav />
+    <AboutWhy />
+    <AboutCapabilityGrid />
+    <AboutProductionGrounding />
+    <AboutMethodMap />
+    <AboutSelectedWork />
+    <AboutHobFarmRoutes />
 
-  {sections.map((section, index) => (
-    <section class="border-b border-base-800/50">
-      <ContentPanel>
-        <Wrapper variant="standard" class="py-12 lg:py-18">
-          <div class="grid grid-cols-1 gap-6 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-10">
-            <p class="font-mono text-[10px] uppercase tracking-widest text-accent-400">
-              {String(index + 1).padStart(2, "0")} / {section.eyebrow}
-            </p>
-            <div class="max-w-3xl">
-              <Text tag="h2" variant="displaySM" class="text-balance font-display text-white">
-                {section.heading}
-              </Text>
-              <Text tag="p" variant="textBase" class="mt-4 text-pretty leading-relaxed text-base-400">
-                {section.body}
-              </Text>
-              <div class="mt-6 flex flex-wrap gap-3">
-                {section.links.map((link, linkIndex) => (
-                  <Button
-                    isLink
-                    size="sm"
-                    variant={linkIndex === 0 ? "green" : "muted"}
-                    href={link.href}
-                  >
-                    {link.label}
-                  </Button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </Wrapper>
-      </ContentPanel>
+    <section class="about-section about-operation" aria-labelledby="about-operation-heading">
+      <Wrapper variant="standard" class="about-section__grid">
+        <p class="about-section__label">07 / Operation</p>
+        <div class="about-section__body">
+          <h2 id="about-operation-heading">HobFarm is currently run by one person.</h2>
+          <p>
+            The source, decisions, production, publishing, and maintenance remain connected.
+            Defined collaborators and specialists can join when a real project, role, budget, and
+            delivery need justify it.
+          </p>
+        </div>
+      </Wrapper>
     </section>
-  ))}
+
+    <AboutContactBlock />
+  </div>
 </BaseLayout>

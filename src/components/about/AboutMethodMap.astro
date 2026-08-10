@@ -1,0 +1,24 @@
+---
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import { aboutMethodStages } from "@/data/about";
+---
+
+<section id="method" class="about-section about-method" aria-labelledby="about-method-heading">
+  <Wrapper variant="standard" class="about-section__grid">
+    <p class="about-section__label">04 / Production method</p>
+    <div class="about-section__body">
+      <h2 id="about-method-heading">Research. Define. Build. Direct. Publish.</h2>
+      <ol class="about-method__track">
+        {aboutMethodStages.map((stage, index) => (
+          <li>
+            <span class="about-method__node" aria-hidden="true"></span>
+            <p class="about-method__number">{String(index + 1).padStart(2, "0")}</p>
+            <h3>{stage.title}</h3>
+            <p>{stage.description}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </Wrapper>
+</section>
+
