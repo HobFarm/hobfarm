@@ -1,0 +1,128 @@
+---
+const steps = [
+  ["1", "Familiar record", "Start with a sound already stored in memory."],
+  ["2", "Verified source", "Use a credit or reliable source to find one earlier recording."],
+  ["3", "Full track", "Stay for the music surrounding the recognizable fragment."],
+  ["4", "Open another door", "Follow the album, players, producer, label, store bin, or radio trail."],
+] as const;
+---
+
+<figure class="discovery-loop article-wide not-prose" aria-labelledby="discovery-loop-title">
+  <figcaption id="discovery-loop-title">The discovery loop</figcaption>
+  <ol>
+    {steps.map(([number, title, text]) => (
+      <li>
+        <span>{number}</span>
+        <div><strong>{title}</strong><p>{text}</p></div>
+      </li>
+    ))}
+  </ol>
+  <p class="discovery-loop__return"><span aria-hidden="true">↺</span> The new find becomes the next starting point.</p>
+</figure>
+
+<style>
+  .discovery-loop {
+    margin-block: 2.7rem !important;
+    padding: 1rem;
+    border: 1px solid rgb(200 167 91 / 0.42);
+    border-radius: 0.5rem;
+    background:
+      repeating-linear-gradient(0deg, transparent 0 1.35rem, rgb(255 255 255 / 0.03) 1.4rem 1.45rem),
+      #101317;
+    box-shadow: 0.65rem 0.75rem 0 rgb(0 0 0 / 0.26);
+  }
+
+  figcaption {
+    margin-bottom: 0.85rem;
+    color: #efdcae;
+    font: 800 0.74rem/1.4 var(--font-mono, monospace);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  ol {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.7rem;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none;
+  }
+
+  li {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.6rem;
+    padding: 0.75rem;
+    border: 1px solid rgb(255 255 255 / 0.1);
+    background: rgb(6 9 11 / 0.72);
+  }
+
+  li:not(:last-child)::after {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    right: -0.72rem;
+    color: #cb4f2e;
+    content: "→";
+    font-weight: 900;
+    transform: translateY(-50%);
+  }
+
+  li > span {
+    display: grid;
+    width: 1.8rem;
+    height: 1.8rem;
+    place-items: center;
+    border: 1px solid #d2a74f;
+    border-radius: 50%;
+    color: #e6c57e;
+    font: 800 0.68rem/1 var(--font-mono, monospace);
+  }
+
+  li strong {
+    color: #eee8dc;
+    font-size: 0.77rem;
+  }
+
+  li p {
+    margin: 0.15rem 0 0 !important;
+    color: #9fa9aa;
+    font-size: 0.67rem;
+    line-height: 1.4;
+  }
+
+  .discovery-loop__return {
+    margin: 0.8rem 0 0 !important;
+    color: #c5b995;
+    font: 700 0.68rem/1.45 var(--font-mono, monospace);
+    text-align: center;
+  }
+
+  .discovery-loop__return span {
+    color: #cb4f2e;
+    font-size: 1rem;
+  }
+
+  @media (max-width: 54rem) {
+    ol {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    li:nth-child(2)::after,
+    li:last-child::after {
+      content: "";
+    }
+  }
+
+  @media (max-width: 34rem) {
+    ol {
+      grid-template-columns: 1fr;
+    }
+
+    li::after {
+      content: "" !important;
+    }
+  }
+</style>

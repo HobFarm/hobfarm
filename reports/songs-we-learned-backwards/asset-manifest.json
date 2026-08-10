@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "article_slug": "songs-we-learned-backwards",
+  "bucket": "hobfarm-cdn",
+  "public_hostname": "https://cdn.hob.farm",
+  "source_manifest": "User-supplied hero path and songs-we-learned-backwards-CODEX_TASK.md",
+  "policy": {
+    "new_keys_only": true,
+    "overwrite_existing": false,
+    "allowed_prefixes": [
+      "articles/songs-we-learned-backwards/"
+    ],
+    "publication_status_required": "publish by explicit user direction"
+  },
+  "normalization": {
+    "hero": "1600 by 900 WebP at quality 88 from the approved 1672 by 941 PNG",
+    "social": "1200 by 630 centered crop from the approved PNG at quality 88",
+    "encoder": "Sharp/libvips WebP with source metadata omitted and no source overwrite"
+  },
+  "source_originals": [
+    {
+      "file": ".tmp/songs-we-learned-backwards-upload/songs-we-learned-backwards-hero-source-v1.png",
+      "original_location": "F:/Web-Stuff/HobFarm-web Project Files/Articles/songs we learned backward/ChatGPT Image Aug 10, 2026, 03_15_10 PM.png",
+      "width": 1672,
+      "height": 941,
+      "bytes": 3128168,
+      "sha256": "98b037373f5772c97f564d85c0bc9bbe9cddd430c863e9018180db9cc12b5abe",
+      "preserved": true
+    }
+  ],
+  "prefix_inventory_before_upload": {
+    "checked_with": "scripts/r2-upload-manifest.mjs object-by-object remote checks",
+    "result": "v1 hero and social keys absent on dry run; no object overwritten"
+  },
+  "assets": [
+    {
+      "id": "songs-we-learned-backwards-hero-v1",
+      "source_file": ".tmp/songs-we-learned-backwards-upload/songs-we-learned-backwards-hero-v1.webp",
+      "source_original_file": "User-supplied PNG preserved as .tmp/songs-we-learned-backwards-upload/songs-we-learned-backwards-hero-source-v1.png; SHA-256 98b037373f5772c97f564d85c0bc9bbe9cddd430c863e9018180db9cc12b5abe",
+      "destination_bucket": "hobfarm-cdn",
+      "destination_key": "articles/songs-we-learned-backwards/songs-we-learned-backwards-hero-v1.webp",
+      "public_url": "https://cdn.hob.farm/articles/songs-we-learned-backwards/songs-we-learned-backwards-hero-v1.webp",
+      "content_type": "image/webp",
+      "width": 1600,
+      "height": 900,
+      "bytes": 483696,
+      "sha256": "c4c5b9028c7f0770127c5302b533dd7d56079daf31eeefd5c538390004b7a28c",
+      "rights": "user-supplied-editorial-image",
+      "credit": "Image supplied by HobFarm",
+      "purpose": "article hero and card image",
+      "alt_text": "Vintage collage tracing a looping path from 1970s jazz, funk, and soul through 1980s and 1990s hip-hop sampling to present-day listening, surrounded by records, instruments, a sampler, a dancer, headphones, and a phone.",
+      "publication_status": "publish by explicit user direction",
+      "upload_status": "uploaded",
+      "verification_status": "verified",
+      "remote_sha256": "c4c5b9028c7f0770127c5302b533dd7d56079daf31eeefd5c538390004b7a28c",
+      "http_status": 200,
+      "verified_content_type": "image/webp",
+      "verified_cache_control": "public, max-age=31536000, immutable",
+      "public_response_sha256": "c4c5b9028c7f0770127c5302b533dd7d56079daf31eeefd5c538390004b7a28c",
+      "edge_transformed": false,
+      "verified_at": "2026-08-10T22:45:42.354Z"
+    },
+    {
+      "id": "songs-we-learned-backwards-social-v1",
+      "source_file": ".tmp/songs-we-learned-backwards-upload/songs-we-learned-backwards-social-v1.webp",
+      "source_original_file": "Centered social crop of the user-supplied hero PNG; SHA-256 98b037373f5772c97f564d85c0bc9bbe9cddd430c863e9018180db9cc12b5abe",
+      "destination_bucket": "hobfarm-cdn",
+      "destination_key": "articles/songs-we-learned-backwards/songs-we-learned-backwards-social-v1.webp",
+      "public_url": "https://cdn.hob.farm/articles/songs-we-learned-backwards/songs-we-learned-backwards-social-v1.webp",
+      "content_type": "image/webp",
+      "width": 1200,
+      "height": 630,
+      "bytes": 282420,
+      "sha256": "7f5f324fa01705beac5701e40fe46b695c9e8608bd64ac2495bdf9e16f9763a2",
+      "rights": "user-supplied-editorial-image",
+      "credit": "Image supplied by HobFarm",
+      "purpose": "social preview image",
+      "alt_text": "Wide vintage collage connecting 1970s jazz, funk, and soul to hip-hop sampling and present-day music discovery through records, instruments, a sampler, a dancer, and a phone.",
+      "publication_status": "publish by explicit user direction",
+      "upload_status": "uploaded",
+      "verification_status": "verified",
+      "remote_sha256": "7f5f324fa01705beac5701e40fe46b695c9e8608bd64ac2495bdf9e16f9763a2",
+      "http_status": 200,
+      "verified_content_type": "image/webp",
+      "verified_cache_control": "public, max-age=31536000, immutable",
+      "public_response_sha256": "7f5f324fa01705beac5701e40fe46b695c9e8608bd64ac2495bdf9e16f9763a2",
+      "edge_transformed": false,
+      "verified_at": "2026-08-10T22:45:48.655Z"
+    }
+  ],
+  "dry_run_at": "2026-08-10T22:45:35.363Z",
+  "upload_completed_at": "2026-08-10T22:45:48.656Z"
+}

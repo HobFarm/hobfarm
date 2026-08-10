@@ -1,0 +1,200 @@
+---
+interface Track {
+  label: string;
+  artist: string;
+  year: string;
+  title: string;
+  cue: string;
+  url: string;
+  service: string;
+}
+
+interface Props {
+  number: string;
+  source: Track;
+  later: Track;
+  listenFor: string;
+  note?: string;
+  evidenceUrl: string;
+}
+
+const { number, source, later, listenFor, note, evidenceUrl } = Astro.props;
+---
+
+<figure class="listening-pair article-wide not-prose" aria-labelledby={`pair-${number}-title`}>
+  <figcaption>
+    <span>Listening pair {number}</span>
+    <strong id={`pair-${number}-title`}>{source.artist} → {later.artist}</strong>
+  </figcaption>
+
+  <div class="listening-pair__tracks">
+    {[source, later].map((track) => (
+      <article>
+        <p>{track.label}</p>
+        <h3>{track.title}</h3>
+        <span>{track.artist} · {track.year}</span>
+        <small><b>Cue:</b> {track.cue}</small>
+        <a href={track.url} target="_blank" rel="noopener noreferrer">
+          Open on {track.service} <span aria-hidden="true">↗</span>
+        </a>
+      </article>
+    ))}
+  </div>
+
+  <div class="listening-pair__note">
+    <p><strong>Listen for:</strong> {listenFor}</p>
+    {note && <p>{note}</p>}
+    <a href={evidenceUrl} target="_blank" rel="noopener noreferrer">
+      Check the relationship <span aria-hidden="true">↗</span>
+    </a>
+  </div>
+</figure>
+
+<style>
+  .listening-pair {
+    --pair-ink: #171711;
+    --pair-paper: #d8bf82;
+    margin-block: 2.7rem !important;
+    overflow: hidden;
+    border: 1px solid rgb(220 180 91 / 0.48);
+    border-radius: 0.5rem;
+    background:
+      linear-gradient(rgb(255 255 255 / 0.035) 1px, transparent 1px) 0 0 / 100% 1.5rem,
+      #0d1114;
+    box-shadow: 0.65rem 0.75rem 0 rgb(0 0 0 / 0.26);
+  }
+
+  figcaption {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 0 !important;
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid rgb(220 180 91 / 0.35);
+    background: #18140d;
+  }
+
+  figcaption span,
+  article p {
+    color: #d6a94e;
+    font: 800 0.64rem/1.35 var(--font-mono, monospace);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  figcaption strong {
+    color: #f4ead1;
+    font-size: 0.84rem;
+  }
+
+  .listening-pair__tracks {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  article {
+    position: relative;
+    display: grid;
+    align-content: start;
+    gap: 0.28rem;
+    min-height: 12.5rem;
+    padding: 1.2rem;
+  }
+
+  article:first-child {
+    border-right: 1px dashed rgb(220 180 91 / 0.38);
+  }
+
+  article::before {
+    width: 3.2rem;
+    height: 3.2rem;
+    margin-bottom: 0.4rem;
+    border: 0.45rem double rgb(216 191 130 / 0.5);
+    border-radius: 50%;
+    background: radial-gradient(circle, #d8bf82 0 8%, #171711 9% 18%, #d8bf82 19% 22%, #171711 23%);
+    content: "";
+  }
+
+  article p,
+  article h3,
+  article span,
+  article small {
+    margin: 0 !important;
+  }
+
+  article h3 {
+    color: #f5f0e5;
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+
+  article > span {
+    color: #aaa79e;
+    font-size: 0.75rem;
+  }
+
+  article small {
+    color: #c7c0ae;
+    font: 600 0.69rem/1.45 var(--font-mono, monospace);
+  }
+
+  article small b {
+    color: #e2bf73;
+  }
+
+  article a {
+    width: fit-content;
+    margin-top: 0.55rem;
+    color: #e7bb5d !important;
+    font: 800 0.69rem/1.35 var(--font-mono, monospace);
+  }
+
+  .listening-pair__note {
+    display: grid;
+    gap: 0.35rem;
+    padding: 0.85rem 1rem 0.95rem;
+    border-top: 1px solid rgb(220 180 91 / 0.35);
+    background: rgb(216 191 130 / 0.07);
+  }
+
+  .listening-pair__note p {
+    margin: 0 !important;
+    color: #cac6bb;
+    font-size: 0.76rem;
+    line-height: 1.5;
+  }
+
+  .listening-pair__note strong {
+    color: #f0dfb9;
+  }
+
+  .listening-pair__note a {
+    width: fit-content;
+    color: #9bbac8 !important;
+    font: 700 0.65rem/1.4 var(--font-mono, monospace);
+  }
+
+  a:focus-visible {
+    border-radius: 0.1rem;
+    outline: 2px solid #e7bb5d;
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 38rem) {
+    figcaption {
+      align-items: start;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .listening-pair__tracks {
+      grid-template-columns: 1fr;
+    }
+
+    article:first-child {
+      border-right: 0;
+      border-bottom: 1px dashed rgb(220 180 91 / 0.38);
+    }
+  }
+</style>
