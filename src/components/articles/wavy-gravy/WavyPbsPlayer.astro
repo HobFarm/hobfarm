@@ -1,0 +1,162 @@
+---
+interface Props {
+  title: string;
+  note: string;
+}
+
+const { title, note } = Astro.props;
+const watchUrl = "https://www.pbs.org/video/woodstock-wavy-gravy-please-chief-woodstock/";
+const playerUrl = "https://player.pbs.org/viralplayer/3031061174/";
+const posterUrl = "https://image.pbs.org/video-assets/7C5ThhE-asset-mezzanine-16x9-Oych5k1.jpg";
+---
+
+<figure class="wavy-pbs article-wide not-prose" data-wavy-pbs data-player-url={playerUrl}>
+  <div class="wavy-pbs__screen" data-player-screen>
+    <img src={posterUrl} alt="" width="1280" height="720" loading="lazy" decoding="async" />
+    <button type="button" data-player-load aria-label={`Load ${title} from PBS`}>
+      <span aria-hidden="true">▶</span>
+      Load the 1:13 clip
+    </button>
+  </div>
+  <figcaption>
+    <div>
+      <strong>{title}</strong>
+      <span>PBS American Experience</span>
+      <small>{note}</small>
+    </div>
+    <a href={watchUrl} target="_blank" rel="noopener noreferrer">Watch on PBS <span aria-hidden="true">↗</span></a>
+  </figcaption>
+  <p class="sr-only" aria-live="polite" data-player-status></p>
+</figure>
+
+<script>
+  function installWavyPbsPlayers() {
+    document.querySelectorAll<HTMLElement>("[data-wavy-pbs]").forEach((player) => {
+      const button = player.querySelector<HTMLButtonElement>("[data-player-load]");
+      const screen = player.querySelector<HTMLElement>("[data-player-screen]");
+      const status = player.querySelector<HTMLElement>("[data-player-status]");
+      if (!button || !screen || button.dataset.ready === "true") return;
+      button.dataset.ready = "true";
+
+      button.addEventListener("click", () => {
+        const playerUrl = player.dataset.playerUrl;
+        if (!playerUrl) return;
+        const iframe = document.createElement("iframe");
+        iframe.src = playerUrl;
+        iframe.title = button.getAttribute("aria-label")?.replace(/^Load /, "").replace(/ from PBS$/, "") ?? "PBS video";
+        iframe.loading = "lazy";
+        iframe.allow = "encrypted-media; picture-in-picture";
+        iframe.referrerPolicy = "strict-origin-when-cross-origin";
+        iframe.allowFullscreen = true;
+        iframe.addEventListener("load", () => {
+          if (status) status.textContent = `${iframe.title} loaded.`;
+          iframe.focus();
+        });
+        screen.replaceChildren(iframe);
+        if (status) status.textContent = `Loading ${iframe.title}.`;
+      });
+    });
+  }
+
+  installWavyPbsPlayers();
+  document.addEventListener("astro:page-load", installWavyPbsPlayers);
+</script>
+
+<style>
+  .wavy-pbs {
+    margin-block: 2.8rem !important;
+    overflow: hidden;
+    border: 1px solid rgb(221 172 83 / 0.35);
+    border-radius: 0.5rem;
+    background: #080807;
+    box-shadow: 0.65rem 0.75rem 0 rgb(0 0 0 / 0.28);
+  }
+
+  .wavy-pbs__screen {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: #030303;
+  }
+
+  .wavy-pbs__screen::after {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 42%, rgb(0 0 0 / 0.76));
+    content: "";
+    pointer-events: none;
+  }
+
+  .wavy-pbs__screen img,
+  .wavy-pbs__screen :global(iframe) {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    object-fit: cover;
+  }
+
+  .wavy-pbs__screen :global(iframe) {
+    position: relative;
+    z-index: 2;
+  }
+
+  button {
+    position: absolute;
+    z-index: 1;
+    right: 1rem;
+    bottom: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 0.85rem;
+    border: 1px solid rgb(255 255 255 / 0.72);
+    border-radius: 0.2rem;
+    background: rgb(8 8 7 / 0.94);
+    color: white;
+    font: 700 0.72rem/1 var(--font-mono, monospace);
+    cursor: pointer;
+  }
+
+  button:hover,
+  button:focus-visible {
+    border-color: #e3b254;
+    outline: 2px solid #e3b254;
+    outline-offset: 2px;
+  }
+
+  figcaption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 0.95rem;
+  }
+
+  figcaption div {
+    display: grid;
+    gap: 0.15rem;
+  }
+
+  strong {
+    color: #f2f0e9;
+    font-size: 0.84rem;
+  }
+
+  figcaption span,
+  small {
+    color: #99958c;
+    font-size: 0.69rem;
+  }
+
+  a {
+    flex: 0 0 auto;
+    color: #e3b254 !important;
+    font: 700 0.68rem/1.3 var(--font-mono, monospace);
+  }
+
+  @media (max-width: 34rem) {
+    figcaption {
+      align-items: start;
+      flex-direction: column;
+    }
+  }
+</style>

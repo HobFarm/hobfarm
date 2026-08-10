@@ -1,0 +1,157 @@
+---
+const records = [
+  {
+    label: "Hugh Romney with Pigasus",
+    detail: "Lisa Law, Hog Farm Camp, El Valle, New Mexico, 1968. NMAH 1998.0139.126.",
+    href: "https://americanhistory.si.edu/collections/object/nmah_892551",
+  },
+  {
+    label: "Hog Farmers arrive in New York",
+    detail: "Lisa Law, Kennedy Airport, 1969. NMAH 1998.0139.150.",
+    href: "https://americanhistory.si.edu/collections/object/nmah_892577",
+  },
+  {
+    label: "Food at the festival",
+    detail: "Smithsonian food-history account of volunteers serving granola, brown rice, and vegetables.",
+    href: "https://americanhistory.si.edu/explore/exhibitions/food/online/countercultures",
+  },
+  {
+    label: "The Mime Troupe benefit",
+    detail: "Bill Graham Memorial Foundation record of the November 6, 1965 Calliope benefit.",
+    href: "https://billgrahamfoundation.org/about-bill/biography/",
+  },
+];
+---
+
+<aside class="archive-shelf article-wide not-prose" aria-labelledby="archive-shelf-heading">
+  <header>
+    <p>Documentary trail</p>
+    <h2 id="archive-shelf-heading">Four records to open</h2>
+    <span>The object photographs stay with their institutions because their reuse notices require more clearance than the article has.</span>
+  </header>
+  <ul>
+    {records.map((record) => (
+      <li>
+        <a href={record.href} target="_blank" rel="noopener noreferrer">
+          <strong>{record.label}</strong>
+          <span>{record.detail}</span>
+          <small>Open the institutional record <span aria-hidden="true">↗</span></small>
+        </a>
+      </li>
+    ))}
+  </ul>
+</aside>
+
+<style>
+  .archive-shelf {
+    margin-block: 2.8rem !important;
+    overflow: hidden;
+    border: 1px solid rgb(175 160 133 / 0.3);
+    border-radius: 0.5rem;
+    background: #100f0d;
+    box-shadow: 0.55rem 0.65rem 0 rgb(0 0 0 / 0.24);
+  }
+
+  header {
+    padding: 1.1rem 1.2rem;
+    border-bottom: 1px solid rgb(175 160 133 / 0.22);
+  }
+
+  header p,
+  header h2,
+  header span {
+    margin: 0;
+  }
+
+  header p {
+    color: #c39c56;
+    font: 700 0.66rem/1.4 var(--font-mono, monospace);
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  header h2 {
+    margin-top: 0.2rem;
+    color: #efe9de;
+    font: 400 1.35rem/1.2 var(--font-display, serif);
+  }
+
+  header span {
+    display: block;
+    margin-top: 0.45rem;
+    color: #99948b;
+    font-size: 0.76rem;
+    line-height: 1.5;
+  }
+
+  ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    min-width: 0;
+    border-right: 1px solid rgb(255 255 255 / 0.07);
+    border-bottom: 1px solid rgb(255 255 255 / 0.07);
+  }
+
+  li:nth-child(2n) {
+    border-right: 0;
+  }
+
+  li:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+
+  a {
+    display: grid;
+    gap: 0.45rem;
+    min-height: 100%;
+    padding: 1rem 1.1rem;
+    text-decoration: none;
+  }
+
+  a:hover,
+  a:focus-visible {
+    background: rgb(227 178 84 / 0.06);
+    outline: 2px solid #e3b254;
+    outline-offset: -2px;
+  }
+
+  strong {
+    color: #eee9df;
+    font-size: 0.88rem;
+  }
+
+  li span {
+    color: #aaa69e;
+    font-size: 0.76rem;
+    line-height: 1.5;
+  }
+
+  small {
+    align-self: end;
+    color: #d5a956;
+    font: 700 0.65rem/1.4 var(--font-mono, monospace);
+  }
+
+  @media (max-width: 38rem) {
+    ul {
+      grid-template-columns: 1fr;
+    }
+
+    li,
+    li:nth-child(2n),
+    li:nth-last-child(-n + 2) {
+      border-right: 0;
+      border-bottom: 1px solid rgb(255 255 255 / 0.07);
+    }
+
+    li:last-child {
+      border-bottom: 0;
+    }
+  }
+</style>

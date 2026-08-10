@@ -1,0 +1,87 @@
+<section class="before-label article-wide not-prose" aria-labelledby="before-label-heading">
+  <header>
+    <p>Working chronology</p>
+    <h2 id="before-label-heading">Before the label</h2>
+  </header>
+  <ol>
+    <li><time>Late 1950s</time><span>Hugh Romney works the Gaslight basement, where poetry, comedy, jazz, and folk share a room.</span></li>
+    <li><time>1961</time><span>Bob Dylan records an informal set at Bonnie Beecher's Minneapolis home.</span></li>
+    <li><time>1964</time><span>Beecher performs “Come Wander with Me” for <em>The Twilight Zone</em>.</span></li>
+    <li><time>1965</time><span>Bill Graham organizes a Mime Troupe benefit. Hugh and Bonnie meet in Los Angeles.</span></li>
+    <li><time>1966–67</time><span>Ballrooms, Acid Tests, light shows, benefits, and communal groups begin to look connected.</span></li>
+    <li><time>1968</time><span>The Hog Farm takes its working method on the road.</span></li>
+    <li><time>1969</time><span>Woodstock becomes a public demonstration of skills developed elsewhere.</span></li>
+  </ol>
+  <p class="before-label__note">The dates mark separate working histories. They are not a claim that one person or event caused the next.</p>
+</section>
+
+<style>
+  .before-label {
+    margin-block: 3rem !important;
+    border: 1px solid rgb(223 171 79 / 0.3);
+    border-radius: 0.5rem;
+    background: linear-gradient(145deg, #11100d, #17140f);
+    box-shadow: 0.65rem 0.75rem 0 rgb(0 0 0 / 0.25);
+  }
+
+  header {
+    padding: 1.2rem 1.3rem 0.9rem;
+    border-bottom: 1px solid rgb(223 171 79 / 0.22);
+  }
+
+  header p,
+  .before-label__note {
+    margin: 0;
+    color: #b09665;
+    font: 700 0.67rem/1.4 var(--font-mono, monospace);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0.25rem 0 0;
+    color: #f3ead8;
+    font: 400 clamp(1.45rem, 4vw, 2.2rem)/1.05 var(--font-display, serif);
+  }
+
+  ol {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: 7rem minmax(0, 1fr);
+    gap: 1rem;
+    padding: 0.9rem 1.3rem;
+    border-bottom: 1px solid rgb(255 255 255 / 0.07);
+  }
+
+  time {
+    color: #e3b254;
+    font: 800 0.7rem/1.5 var(--font-mono, monospace);
+    letter-spacing: 0.04em;
+  }
+
+  li span {
+    color: #d0cbc0;
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  .before-label__note {
+    padding: 0.9rem 1.3rem 1.1rem;
+    color: #8e897f;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  @media (max-width: 34rem) {
+    li {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+  }
+</style>

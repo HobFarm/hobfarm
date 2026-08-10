@@ -1,0 +1,106 @@
+<section class="work-continues article-wide not-prose" aria-labelledby="work-continues-heading">
+  <header>
+    <p>What lasted</p>
+    <h2 id="work-continues-heading">The work changed clothes</h2>
+  </header>
+  <div class="work-continues__path">
+    <article><time>1960s</time><strong>Performance and communal practice</strong><span>Hold attention, share labor, make the gathering function.</span></article>
+    <article><time>1975</time><strong>Camp Winnarainbow</strong><span>Circus and performance become a durable place for children to practice confidence and community.</span></article>
+    <article><time>1978</time><strong>Seva Foundation</strong><span>Benefits, medicine, service, and musician networks support sight-saving work.</span></article>
+    <article><time>2026</time><strong>Still active</strong><span>Birthday events benefit institutions that grew from the same working life.</span></article>
+  </div>
+</section>
+
+<style>
+  .work-continues {
+    margin-block: 3rem !important;
+    overflow: hidden;
+    border: 1px solid rgb(148 117 174 / 0.4);
+    border-radius: 0.5rem;
+    background: #111015;
+    box-shadow: 0.65rem 0.75rem 0 rgb(0 0 0 / 0.25);
+  }
+
+  header {
+    padding: 1.2rem 1.3rem;
+    border-bottom: 1px solid rgb(148 117 174 / 0.3);
+  }
+
+  header p {
+    margin: 0;
+    color: #b196c8;
+    font: 700 0.67rem/1.4 var(--font-mono, monospace);
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0.25rem 0 0;
+    color: #f2ecf5;
+    font: 400 clamp(1.45rem, 4vw, 2.2rem)/1.05 var(--font-display, serif);
+  }
+
+  .work-continues__path {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  article {
+    display: grid;
+    align-content: start;
+    gap: 0.45rem;
+    min-width: 0;
+    padding: 1rem;
+    border-right: 1px solid rgb(255 255 255 / 0.08);
+  }
+
+  article:last-child {
+    border-right: 0;
+  }
+
+  time {
+    color: #ddb660;
+    font: 800 0.68rem/1.4 var(--font-mono, monospace);
+  }
+
+  strong {
+    color: #efe7f1;
+    font-size: 0.88rem;
+  }
+
+  span {
+    color: #bdb5c0;
+    font-size: 0.76rem;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 46rem) {
+    .work-continues__path {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    article:nth-child(2) {
+      border-right: 0;
+    }
+
+    article:nth-child(-n + 2) {
+      border-bottom: 1px solid rgb(255 255 255 / 0.08);
+    }
+  }
+
+  @media (max-width: 30rem) {
+    .work-continues__path {
+      grid-template-columns: 1fr;
+    }
+
+    article,
+    article:nth-child(2) {
+      border-right: 0;
+      border-bottom: 1px solid rgb(255 255 255 / 0.08);
+    }
+
+    article:last-child {
+      border-bottom: 0;
+    }
+  }
+</style>

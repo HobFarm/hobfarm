@@ -1,0 +1,94 @@
+---
+interface Props {
+  title: string;
+  artist: string;
+  note: string;
+}
+
+const { title, artist, note } = Astro.props;
+const spotifyUrl = "https://open.spotify.com/track/5b2Zf1kc0M7KNfCnBV4vWO";
+---
+
+<aside class="spotify-card article-wide not-prose" aria-labelledby="spotify-card-title">
+  <div class="spotify-card__mark" aria-hidden="true">♪</div>
+  <div>
+    <p>Listen on Spotify</p>
+    <h3 id="spotify-card-title">{title}</h3>
+    <span>{artist}</span>
+    <small>{note}</small>
+  </div>
+  <a href={spotifyUrl} target="_blank" rel="noopener noreferrer">Open track <span aria-hidden="true">↗</span></a>
+</aside>
+
+<style>
+  .spotify-card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1rem;
+    margin-block: 2.5rem !important;
+    padding: 1rem 1.1rem;
+    border: 1px solid rgb(120 189 132 / 0.35);
+    border-radius: 0.5rem;
+    background: linear-gradient(135deg, #0b1410, #10100d);
+    box-shadow: 0.55rem 0.65rem 0 rgb(0 0 0 / 0.24);
+  }
+
+  .spotify-card__mark {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid rgb(120 189 132 / 0.55);
+    border-radius: 50%;
+    color: #95d09d;
+    font-size: 1.5rem;
+  }
+
+  p,
+  h3,
+  span,
+  small {
+    margin: 0;
+  }
+
+  p {
+    color: #83bd8c;
+    font: 700 0.65rem/1.3 var(--font-mono, monospace);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  h3 {
+    margin-top: 0.2rem;
+    color: #f0eee8;
+    font-size: 1rem;
+  }
+
+  span,
+  small {
+    display: block;
+    color: #aaa89f;
+    font-size: 0.72rem;
+  }
+
+  small {
+    margin-top: 0.3rem;
+  }
+
+  a {
+    color: #95d09d !important;
+    font: 700 0.7rem/1.3 var(--font-mono, monospace);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 35rem) {
+    .spotify-card {
+      grid-template-columns: auto minmax(0, 1fr);
+    }
+
+    a {
+      grid-column: 2;
+    }
+  }
+</style>

@@ -1,0 +1,126 @@
+<section class="please-loop article-wide not-prose" aria-labelledby="please-loop-heading">
+  <header>
+    <p>Interpretive model</p>
+    <h2 id="please-loop-heading">The Please Force operating loop</h2>
+  </header>
+  <ol>
+    <li><span>1</span><div><strong>Receive</strong><p>A frightened, hungry, lost, or overwhelmed person reaches the volunteer area.</p></div></li>
+    <li><span>2</span><div><strong>Stabilize</strong><p>Food, calm company, useful information, humor, or a safer setting reduces immediate distress.</p></div></li>
+    <li><span>3</span><div><strong>Return agency</strong><p>The person is treated as a participant who can understand the situation and make a next choice.</p></div></li>
+    <li><span>4</span><div><strong>Recruit care</strong><p>Some people who recover help the next arrivals, increasing capacity inside the crowd.</p></div></li>
+  </ol>
+  <p class="please-loop__note">This loop is HobFarm's reading of the film dialogue and the Hog Farm record. It is not a clinical protocol or a term the group used.</p>
+</section>
+
+<style>
+  .please-loop {
+    margin-block: 3rem !important;
+    border: 1px solid rgb(198 94 61 / 0.42);
+    border-radius: 0.5rem;
+    background: #15100e;
+    box-shadow: 0.65rem 0.75rem 0 rgb(0 0 0 / 0.25);
+  }
+
+  header {
+    padding: 1.2rem 1.3rem;
+    border-bottom: 1px solid rgb(198 94 61 / 0.3);
+  }
+
+  header p,
+  .please-loop__note {
+    margin: 0;
+    color: #cf8064;
+    font: 700 0.67rem/1.4 var(--font-mono, monospace);
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0.25rem 0 0;
+    color: #f6ecdd;
+    font: 400 clamp(1.45rem, 4vw, 2.2rem)/1.05 var(--font-display, serif);
+  }
+
+  ol {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    position: relative;
+    display: grid;
+    align-content: start;
+    gap: 0.65rem;
+    min-width: 0;
+    padding: 1rem;
+    border-right: 1px solid rgb(255 255 255 / 0.08);
+  }
+
+  li:last-child {
+    border-right: 0;
+  }
+
+  li > span {
+    display: grid;
+    place-items: center;
+    width: 1.8rem;
+    height: 1.8rem;
+    border: 1px solid #d99c53;
+    border-radius: 50%;
+    color: #f1bd63;
+    font: 800 0.68rem/1 var(--font-mono, monospace);
+  }
+
+  strong {
+    color: #f2eadf;
+    font-size: 0.9rem;
+  }
+
+  li p {
+    margin: 0.35rem 0 0;
+    color: #bdb7ad;
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+
+  .please-loop__note {
+    padding: 0.95rem 1.3rem 1.15rem;
+    border-top: 1px solid rgb(255 255 255 / 0.08);
+    color: #928b82;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  @media (max-width: 48rem) {
+    ol {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    li:nth-child(2) {
+      border-right: 0;
+    }
+
+    li:nth-child(-n + 2) {
+      border-bottom: 1px solid rgb(255 255 255 / 0.08);
+    }
+  }
+
+  @media (max-width: 30rem) {
+    ol {
+      grid-template-columns: 1fr;
+    }
+
+    li,
+    li:nth-child(2) {
+      border-right: 0;
+      border-bottom: 1px solid rgb(255 255 255 / 0.08);
+    }
+
+    li:last-child {
+      border-bottom: 0;
+    }
+  }
+</style>

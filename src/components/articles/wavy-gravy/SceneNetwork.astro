@@ -1,0 +1,110 @@
+<section class="scene-network article-wide not-prose" aria-labelledby="scene-network-heading">
+  <header>
+    <p>Overlapping practices, not one origin</p>
+    <h2 id="scene-network-heading">How the work assembled</h2>
+  </header>
+  <div class="scene-network__grid">
+    <article>
+      <span>Rooms</span>
+      <h3>Basements and theaters</h3>
+      <p>Poetry, improvisation, acting, comedy, and folk performance trained people to read a room.</p>
+    </article>
+    <article>
+      <span>Events</span>
+      <h3>Benefits and ballrooms</h3>
+      <p>Promoters learned permits, sound, lights, tickets, hospitality, and how to keep a crowd moving.</p>
+    </article>
+    <article>
+      <span>Experiments</span>
+      <h3>Acid Tests and happenings</h3>
+      <p>Audiences became participants while bands, projectionists, poets, and organizers shared the floor.</p>
+    </article>
+    <article>
+      <span>Communities</span>
+      <h3>Farms and buses</h3>
+      <p>Shared living became portable logistics: food, beds, travel, performance, care, and the next stop.</p>
+    </article>
+  </div>
+  <p class="scene-network__result"><strong>What emerged:</strong> a loose network of people who could make gatherings happen before the gathering had a stable category.</p>
+</section>
+
+<style>
+  .scene-network {
+    margin-block: 3rem !important;
+    overflow: hidden;
+    border: 1px solid rgb(87 138 133 / 0.4);
+    border-radius: 0.5rem;
+    background: #0c1211;
+    box-shadow: 0.65rem 0.75rem 0 rgb(0 0 0 / 0.25);
+  }
+
+  header {
+    padding: 1.2rem 1.3rem;
+    border-bottom: 1px solid rgb(87 138 133 / 0.3);
+  }
+
+  header p,
+  article span {
+    margin: 0;
+    color: #87b8ad;
+    font: 700 0.67rem/1.4 var(--font-mono, monospace);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0.25rem 0 0;
+    color: #eff4ee;
+    font: 400 clamp(1.45rem, 4vw, 2.2rem)/1.05 var(--font-display, serif);
+  }
+
+  .scene-network__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  article {
+    min-width: 0;
+    padding: 1.15rem 1.3rem;
+    border-right: 1px solid rgb(255 255 255 / 0.07);
+    border-bottom: 1px solid rgb(255 255 255 / 0.07);
+  }
+
+  article:nth-child(2n) {
+    border-right: 0;
+  }
+
+  h3 {
+    margin: 0.35rem 0 0.5rem;
+    color: #f0eadc;
+    font-size: 1rem;
+  }
+
+  article p,
+  .scene-network__result {
+    margin: 0;
+    color: #bfc8c4;
+    font-size: 0.84rem;
+    line-height: 1.55;
+  }
+
+  .scene-network__result {
+    padding: 1rem 1.3rem 1.15rem;
+    color: #d6d0c3;
+  }
+
+  .scene-network__result strong {
+    color: #e4b458;
+  }
+
+  @media (max-width: 38rem) {
+    .scene-network__grid {
+      grid-template-columns: 1fr;
+    }
+
+    article,
+    article:nth-child(2n) {
+      border-right: 0;
+    }
+  }
+</style>
