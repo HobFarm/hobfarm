@@ -21,7 +21,7 @@ const source = (await Promise.all(files.map((file) => readFile(file, "utf8")))).
 test("About page is person-first and includes the required professional routes", () => {
   for (const expected of [
     "Kris Reynolds",
-    "I build and run HobFarm.",
+    "What is HobFarm?",
     "Publisher / Digital media / Production systems",
     "Las Vegas, Nevada",
     "/articles/",
