@@ -1,12 +1,28 @@
 ---
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import { editorialSections, editorialSectionPath } from "@/data/editorial-mesh";
-import { articlePath, getArticleDate, getPublishedArticles } from "@/lib/articles";
+import { articlePath, getArticleDate, getArticleHero, getPublishedArticles } from "@/lib/articles";
+import { imageSrcset, transformImageUrl } from "@/lib/media-transforms";
 
 const articles = await getPublishedArticles();
-const sections = editorialSections.map((section) => {
+const sections = editorialSections.map((section, index) => {
   const posts = articles.filter((article) => article.data.mesh?.section === section.slug);
-  return { ...section, posts, newest: posts[0] };
+  const visualArticle = posts.find((article) => Boolean(getArticleHero(article.data)));
+  const visual = visualArticle ? getArticleHero(visualArticle.data) : undefined;
+  const wide = index === 0 || index === 3;
+  return {
+    ...section,
+    wide,
+    posts,
+    newest: posts[0],
+    visual,
+    visualSrc: visual
+      ? transformImageUrl(visual, { width: 900, quality: 80, fit: "cover" })
+      : undefined,
+    visualSrcset: visual
+      ? imageSrcset(visual, [360, 540, 720, 900], { quality: 80, fit: "cover" })
+      : undefined,
+  };
 });
 ---
 
@@ -20,12 +36,32 @@ const sections = editorialSections.map((section) => {
 
     <div class="section-overview">
       {sections.map((section, index) => (
-        <article class:list={["section-overview__card", index === 0 || index === 3 ? "section-overview__card--wide" : ""]} style={`--section-accent:${section.accent}`}>
+        <article class:list={["section-overview__card", section.wide && "section-overview__card--wide"]} style={`--section-accent:${section.accent}`}>
           <a href={editorialSectionPath(section.slug)} class="section-overview__main">
-            <span>{section.posts.length} published</span>
-            <h3>{section.label}</h3>
-            <p>{section.blurb}</p>
-            <strong>Open section &rarr;</strong>
+            <div class="section-overview__visual">
+              {section.visual ? (
+                <img
+                  src={section.visualSrc}
+                  srcset={section.visualSrcset}
+                  sizes={section.wide ? "(min-width: 1040px) 44vw, (min-width: 720px) 50vw, 100vw" : "(min-width: 1040px) 22vw, (min-width: 720px) 50vw, 100vw"}
+                  alt=""
+                  width="900"
+                  height="506"
+                  loading="lazy"
+                  fetchpriority="low"
+                  decoding="async"
+                />
+              ) : (
+                <span class="section-overview__fallback" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+              )}
+              <span class="section-overview__number" aria-hidden="true">Section {String(index + 1).padStart(2, "0")}</span>
+              <span class="section-overview__count">{section.posts.length} published</span>
+            </div>
+            <div class="section-overview__body">
+              <h3>{section.label}</h3>
+              <p>{section.blurb}</p>
+              <strong>Open section &rarr;</strong>
+            </div>
           </a>
           {section.newest && (
             <a href={articlePath(section.newest)} class="section-overview__latest">
@@ -44,16 +80,27 @@ const sections = editorialSections.map((section) => {
 
 <style>
   .section-overview { display: grid; gap: .75rem; margin-top: 1.5rem; }
-  .section-overview__card { display: grid; border: 1px solid #2c2440; border-top: 2px solid var(--section-accent); border-radius: .75rem; overflow: hidden; background: #0e0b16a8; }
+  .section-overview__card { display: grid; min-width: 0; overflow: hidden; border: 1px solid #2c2440; border-top: 2px solid var(--section-accent); border-radius: .75rem; background: #0e0b16a8; }
   .section-overview__main, .section-overview__latest { color: inherit; text-decoration: none; }
-  .section-overview__main { display: flex; flex-direction: column; min-height: 14rem; padding: 1.25rem; }
-  .section-overview__main > span, .section-overview__latest > span, .section-overview__latest time { color: #8f899f; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; }
-  .section-overview__main h3 { margin: .8rem 0 0; color: #fff; font-family: var(--font-display); font-size: 1.55rem; font-weight: 300; }
+  .section-overview__main { display: flex; min-width: 0; flex-direction: column; }
+  .section-overview__main:focus-visible, .section-overview__latest:focus-visible { outline: 2px solid var(--section-accent); outline-offset: -3px; }
+  .section-overview__visual { position: relative; min-height: 7.5rem; overflow: hidden; border-bottom: 1px solid #2c2440; background: linear-gradient(135deg, color-mix(in srgb, var(--section-accent) 16%, #0e0b16), #07060b); }
+  .section-overview__visual::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 35%, rgb(7 6 11 / 0.78)), linear-gradient(120deg, color-mix(in srgb, var(--section-accent) 12%, transparent), transparent 45%); pointer-events: none; }
+  .section-overview__visual img { width: 100%; height: 100%; min-height: 7.5rem; object-fit: cover; filter: saturate(.82) contrast(1.06); transition: filter 240ms ease, transform 450ms ease; }
+  .section-overview__fallback { position: absolute; inset: 0; display: grid; place-items: center; color: color-mix(in srgb, var(--section-accent) 45%, transparent); font-family: var(--font-mono); font-size: 4rem; }
+  .section-overview__number, .section-overview__count { position: absolute; z-index: 1; bottom: .75rem; font-family: var(--font-mono); font-size: .55rem; letter-spacing: .1em; text-transform: uppercase; }
+  .section-overview__number { left: .9rem; color: var(--section-accent); }
+  .section-overview__count { right: .9rem; color: #d8d4e4; }
+  .section-overview__body { display: flex; min-height: 12rem; flex: 1; flex-direction: column; padding: 1.1rem; }
+  .section-overview__latest > span, .section-overview__latest time { color: #8f899f; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; }
+  .section-overview__main h3 { margin: 0; color: #fff; font-family: var(--font-display); font-size: 1.55rem; font-weight: 300; }
   .section-overview__main p { margin: .7rem 0 0; color: #aaa5ba; font-size: .8rem; line-height: 1.55; }
-  .section-overview__main > strong { margin-top: auto; padding-top: 1rem; color: var(--section-accent); font-family: var(--font-mono); font-size: .62rem; font-weight: 400; letter-spacing: .08em; text-transform: uppercase; }
+  .section-overview__main strong { margin-top: auto; padding-top: 1rem; color: var(--section-accent); font-family: var(--font-mono); font-size: .62rem; font-weight: 400; letter-spacing: .08em; text-transform: uppercase; }
   .section-overview__latest { display: grid; gap: .45rem; border-top: 1px solid #2c2440; padding: 1rem 1.25rem; }
   .section-overview__latest strong { color: #ece9f5; font-size: .82rem; font-weight: 400; line-height: 1.35; }
   .section-overview__card a:hover strong { color: #fff; }
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) { .section-overview__main:hover .section-overview__visual img { filter: saturate(1) contrast(1.02); transform: scale(1.025); } }
   @media (min-width: 720px) { .section-overview { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1040px) { .section-overview { grid-template-columns: repeat(4, 1fr); } .section-overview__card--wide { grid-column: span 2; } }
+  @media (min-width: 1040px) { .section-overview { grid-template-columns: repeat(4, 1fr); } .section-overview__card--wide { grid-column: span 2; } .section-overview__card--wide .section-overview__visual { min-height: 9rem; } .section-overview__card--wide .section-overview__visual img { min-height: 9rem; } }
+  @media (prefers-reduced-motion: reduce) { .section-overview__visual img { transition: none; } }
 </style>

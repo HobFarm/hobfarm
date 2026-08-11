@@ -12,7 +12,7 @@ test("homepage presents the six final HobFarm sections", () => {
   assert.match(homepage, /<SiteSections \/>/);
   assert.match(component, /Six ways into HobFarm/);
   assert.match(component, /Browse by format/);
-  assert.ok(homepage.indexOf("<HomeCreativeInquiry />") < homepage.indexOf("<SiteSections />"));
+  assert.ok(homepage.indexOf("<HomeWorkshop />") < homepage.indexOf("<SiteSections />"));
 
   for (const label of ["Articles", "HobFarm Presents", "Workshop", "Academy", "Shop", "About & Support"]) {
     assert.match(data, new RegExp(`name: "${label.replace("&", "&")}"`));

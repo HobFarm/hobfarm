@@ -9,7 +9,7 @@ const read = (file) => readFileSync(join(root, file), "utf8");
 test("Ko-fi tip card uses native links and no provider assets or scripts", () => {
   const component = read("src/components/support/KofiTipCard.astro");
 
-  assert.match(component, /type KofiTipCardVariant = "hero" \| "footer"/);
+  assert.match(component, /type KofiTipCardVariant = "band" \| "footer"/);
   assert.match(component, /href = "https:\/\/ko-fi\.com\/hobfarm"/);
   assert.match(component, /target="_blank"/);
   assert.match(component, /rel="noopener noreferrer"/);
@@ -22,12 +22,15 @@ test("Ko-fi tip card uses native links and no provider assets or scripts", () =>
 });
 
 test("the homepage and footer keep native Ko-fi support links", () => {
-  const homepage = read("src/components/home/MagazineFrontPage.astro");
+  const homepage = read("src/pages/index.astro");
+  const frontPage = read("src/components/home/MagazineFrontPage.astro");
+  const support = read("src/components/home/HomeSupportBand.astro");
   const footer = read("src/components/global/Footer.astro");
 
-  assert.match(homepage, /<KofiTipCard variant="hero" placement="homepage-hero"/);
-  assert.match(homepage, /hobfarm-rabbit-hole-logo\.mp4/);
-  assert.match(homepage, /hobfarm-drip-logo\.png/);
+  assert.match(homepage, /<HomeSupportBand \/>/);
+  assert.ok(homepage.indexOf("<HomeEditorialSpecials />") < homepage.indexOf("<HomeSupportBand />"));
+  assert.match(support, /<KofiTipCard variant="band" placement="homepage-after-specials"/);
+  assert.doesNotMatch(frontPage, /KofiTipCard|hobfarm-rabbit-hole-logo|hobfarm-drip-logo/);
   assert.match(footer, /<KofiTipCard variant="footer" placement="site-footer"/);
   assert.doesNotMatch(footer, /KofiCta|variant="symbol"|text="Ko-fi"/);
 });
