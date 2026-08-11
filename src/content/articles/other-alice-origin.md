@@ -63,6 +63,35 @@ relatedProject: "/presents/other-alice-adventures/"
 workshopCTA:
   label: "See how HobFarm builds characters"
   href: "/workshop/character-mannequin/"
+mesh:
+  section: art-design
+  subjects:
+    - worldbuilding
+    - visual-development
+    - mixed-media-fiction
+    - character-design
+    - creative-workflows
+  series: []
+  entities:
+    people: []
+    organizations: []
+    places:
+      - salton-sea
+    events: []
+    works:
+      - star-trek
+      - frankenstein-created-woman
+    publications: []
+    technologies:
+      - stylefusion
+  sourceArtifacts:
+    - id: bloody-alice-salton-sea-prototype
+      type: photograph
+      label: Bloody Alice at the Salton Sea prototype composite
+      role: origin
+  storyModes:
+    - process-essay
+    - visual-study
 ---
 
 Last year I made a bloody Alice tea party at the Salton Sea, decided it was pretty cool, dropped it into a folder full of unrelated experiments, and forgot it existed.

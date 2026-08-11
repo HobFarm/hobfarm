@@ -1,0 +1,130 @@
+---
+import type { Article, ArticleSubjectCount } from "@/lib/articles";
+import {
+  articlePath,
+  articleSubjectPath,
+  articleUsesSeries,
+  getArticleDate,
+  getArticleDek,
+  getArticleHero,
+  getArticleSubjectCounts,
+} from "@/lib/articles";
+import type { EditorialSectionSlug } from "@/data/editorial-mesh";
+import { editorialSeries } from "@/data/editorial-mesh";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Breadcrumbs from "@/components/global/Breadcrumbs.astro";
+import EditorialSectionRail from "@/components/articles/EditorialSectionRail.astro";
+import ArticleCard from "@/components/articles/ArticleCard.astro";
+
+interface Props {
+  section: {
+    slug: EditorialSectionSlug;
+    label: string;
+    blurb: string;
+    definition: string;
+    accent: string;
+  };
+  posts: Article[];
+  denseSubjects: ArticleSubjectCount[];
+}
+
+const { section, posts, denseSubjects } = Astro.props;
+const lead = posts[0];
+const archive = posts.slice(1);
+const subjectCounts = getArticleSubjectCounts(posts)
+  .filter((subject) => denseSubjects.some((candidate) => candidate.id === subject.id))
+  .slice(0, 14);
+const intersectingSeries = editorialSeries
+  .map((series) => ({
+    ...series,
+    count: posts.filter((post) => articleUsesSeries(post.data, series.id)).length,
+  }))
+  .filter((series) => series.count > 0);
+const leadHero = lead ? getArticleHero(lead.data) : undefined;
+---
+
+<section>
+  <ContentPanel>
+    <Wrapper variant="standard" class="py-8 lg:py-12">
+      <Breadcrumbs items={[
+        { label: "Home", href: "/" },
+        { label: "Articles", href: "/articles/" },
+        { label: section.label },
+      ]} />
+
+      <div class="mt-7">
+        <EditorialSectionRail currentSection={section.slug} />
+      </div>
+
+      <header class="mt-10 max-w-3xl">
+        <p class="font-mono text-[10px] uppercase tracking-[.16em]" style={`color:${section.accent}`}>
+          HobFarm Editorial
+        </p>
+        <h1 class="mt-3 font-display text-4xl font-light text-white sm:text-5xl">{section.label}</h1>
+        <p class="mt-4 text-base leading-relaxed text-base-300">{section.definition}</p>
+        <p class="mt-2 text-sm leading-relaxed text-base-500">{section.blurb}</p>
+        <a href={`/articles/${section.slug}/rss.xml`} class="mt-5 inline-flex font-mono text-[10px] uppercase tracking-wider text-base-400 hover:text-white">
+          Section RSS &rarr;
+        </a>
+      </header>
+
+      {lead && (
+        <section class="mt-12" aria-labelledby="section-lead-heading">
+          <p class="font-mono text-[10px] uppercase tracking-widest text-accent-cyan">Newest in {section.label}</p>
+          <a href={articlePath(lead)} class="group mt-3 grid overflow-hidden rounded-xl border border-base-800 bg-base-950/70 hover:border-accent-cyan/50 lg:grid-cols-[1.35fr_.65fr]">
+            {leadHero && (
+              <img src={leadHero} alt={lead.data.heroAlt || lead.data.title} class="aspect-video h-full w-full object-cover" loading="eager" decoding="async" />
+            )}
+            <div class="flex flex-col justify-center p-6 lg:p-8">
+              <time datetime={getArticleDate(lead).toISOString()} class="font-mono text-[10px] uppercase tracking-wider text-base-500">
+                {getArticleDate(lead).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" })}
+              </time>
+              <h2 id="section-lead-heading" class="mt-3 font-display text-2xl font-light text-white sm:text-3xl">{lead.data.title}</h2>
+              <p class="mt-4 text-sm leading-relaxed text-base-300">{getArticleDek(lead.data)}</p>
+              <span class="mt-6 text-sm text-base-200 group-hover:text-accent-cyan">Read the article &rarr;</span>
+            </div>
+          </a>
+        </section>
+      )}
+
+      {archive.length > 0 && (
+        <section class="mt-14" aria-labelledby="section-archive-heading">
+          <div class="mb-5 flex items-end justify-between gap-4">
+            <h2 id="section-archive-heading" class="font-display text-2xl font-light text-white">Archive</h2>
+            <span class="font-mono text-[10px] uppercase tracking-wider text-base-500">{posts.length} published</span>
+          </div>
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {archive.map((post) => <ArticleCard post={post} />)}
+          </div>
+        </section>
+      )}
+
+      {intersectingSeries.length > 0 && (
+        <section class="mt-14 border-t border-base-800 pt-8" aria-labelledby="section-series-heading">
+          <h2 id="section-series-heading" class="font-display text-xl font-light text-white">Specials in this section</h2>
+          <div class="mt-4 flex flex-wrap gap-3">
+            {intersectingSeries.map((series) => (
+              <a href={series.href} class="rounded-md border border-base-800 px-4 py-3 text-sm text-base-300 hover:border-accent-magenta-bright/60 hover:text-white">
+                {series.label} <span class="ml-2 font-mono text-[10px] text-base-500">{series.count}</span>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {subjectCounts.length > 0 && (
+        <section class="mt-12 border-t border-base-800 pt-8" aria-labelledby="section-subjects-heading">
+          <h2 id="section-subjects-heading" class="font-display text-xl font-light text-white">Common subjects</h2>
+          <div class="mt-4 flex flex-wrap gap-2">
+            {subjectCounts.map((subject) => (
+              <a href={articleSubjectPath(subject.id)} class="rounded-full border border-base-800 px-3 py-1.5 font-mono text-[10px] text-base-400 hover:border-accent-cyan/50 hover:text-white">
+                {subject.label} <span class="text-accent-cyan">{subject.count}</span>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+    </Wrapper>
+  </ContentPanel>
+</section>

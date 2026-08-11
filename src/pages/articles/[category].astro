@@ -4,86 +4,63 @@
 // content generates no route: it stays in the taxonomy so an article can be
 // filed to it, and its page appears when it has something to show.
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import CategoryArchive from "@/components/archive/CategoryArchive.astro";
-import { getCollection } from "astro:content";
+import EditorialSectionArchive from "@/components/archive/EditorialSectionArchive.astro";
 import {
-  departments,
-  departmentPath,
-  departmentStatus,
-  galleryTypeToDepartment,
-  isArticleCategory,
-  resolveDepartment,
-} from "@/data/departments";
-import { visualSystemsForDepartment } from "@/data/visual-systems";
-import { getArticleDepartment, getPublishedArticles } from "@/lib/articles";
-import { getPublishedComics } from "@/lib/comics";
-import { getProductsByDepartment } from "@/lib/products";
+  editorialSections,
+  editorialSectionPath,
+  getEditorialSection,
+} from "@/data/editorial-mesh";
+import { articlePath, getArticleSubjectCounts, getPublishedArticles } from "@/lib/articles";
 
 export async function getStaticPaths() {
   const articles = await getPublishedArticles();
-  const visuals = (await getCollection("gallery")).filter((e) => !e.data.draft);
-  const comics = await getPublishedComics();
 
-  const candidates = await Promise.all(
-    departments
-      .filter((department) => isArticleCategory(department.slug))
-      .map(async (department) => {
-        const posts = articles.filter(
-          (p) => getArticleDepartment(p.data) === department.slug,
-        );
-        return {
-          params: { category: department.slug },
-          props: {
-            department,
-            posts,
-            visuals: visuals
-              .filter(
-                (g) =>
-                  resolveDepartment(
-                    g.data.department ?? galleryTypeToDepartment[g.data.type],
-                  ) === department.slug,
-              )
-              .slice(0, 6),
-            comics: comics
-              .filter((c) => resolveDepartment(c.data.department) === department.slug)
-              .slice(0, 6),
-            drops: await getProductsByDepartment(department.slug),
-            systems: visualSystemsForDepartment(department.slug),
-          },
-        };
-      }),
-  );
+  const sectionCandidates = editorialSections.map((section) => ({
+    params: { category: section.slug },
+    props: {
+      department: section,
+      canonical: editorialSectionPath(section.slug),
+      noindex: false,
+      posts: articles.filter((article) => article.data.mesh?.section === section.slug),
+    },
+  }));
 
   // An empty category generates no route at all.
-  return candidates.filter(
-    ({ props }) =>
-      props.posts.length > 0 ||
-      props.visuals.length > 0 ||
-      props.comics.length > 0 ||
-      props.drops.length > 0 ||
-      props.systems.length > 0,
-  );
+  return sectionCandidates.filter(({ props }) => props.posts.length > 0);
 }
 
-const { department, posts, visuals, comics, drops, systems } = Astro.props;
-const noindex = departmentStatus(department) !== "active";
-const metaDescription = department.metaDescription ?? department.blurb;
+const { department, canonical, noindex, posts } = Astro.props;
+const editorialSection = getEditorialSection(department.slug);
+const publishedArticles = await getPublishedArticles();
+const denseSubjects = getArticleSubjectCounts(publishedArticles).filter((subject) => subject.count >= 2);
+const metaDescription =
+  editorialSection?.blurb ?? String(department.blurb);
+const sectionJsonLd = editorialSection ? {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: `${editorialSection.label} articles`,
+  description: editorialSection.definition,
+  url: new URL(canonical, Astro.site ?? "https://hob.farm").toString(),
+  mainEntity: {
+    "@type": "ItemList",
+    numberOfItems: posts.length,
+    itemListElement: posts.map((post, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: new URL(`${articlePath(post)}/`, Astro.site ?? "https://hob.farm").toString(),
+      name: post.data.title,
+    })),
+  },
+} : undefined;
 ---
 
 <BaseLayout
   title={`${department.label} | HobFarm`}
   description={metaDescription}
-  canonical={departmentPath(department.slug)}
+  canonical={canonical}
   noindex={noindex}
+  feed={editorialSection ? { href: `/articles/${editorialSection.slug}/rss.xml`, title: `${editorialSection.label} articles` } : undefined}
+  structuredData={sectionJsonLd}
 >
-  <CategoryArchive
-    department={department}
-    posts={posts}
-    visuals={visuals}
-    comics={comics}
-    drops={drops}
-    systems={systems}
-    backHref="/articles/"
-    backLabel="All articles"
-  />
+  {editorialSection && <EditorialSectionArchive section={editorialSection} posts={posts} denseSubjects={denseSubjects} />}
 </BaseLayout>

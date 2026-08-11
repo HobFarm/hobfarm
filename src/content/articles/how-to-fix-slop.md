@@ -16,6 +16,30 @@ hero: https://cdn.hob.farm/blog/article-hero/agents-structured-data.png
 heroAlt: "How to fix slop: a structured data environment with role-specific agents working inside it, instead of one chatbot guessing from a blank prompt."
 publishedAt: 2026-06-09
 draft: false
+mesh:
+  section: technology
+  subjects:
+    - artificial-intelligence
+    - knowledge-systems
+    - schema-design
+    - creative-workflows
+    - creative-systems
+  series: []
+  entities:
+    people: []
+    organizations: []
+    places: []
+    events: []
+    works: []
+    publications: []
+    technologies:
+      - artificial-intelligence
+      - grimoire
+      - stylefusion
+  sourceArtifacts: []
+  storyModes:
+    - technical-explainer
+    - process-essay
 ---
 
 Slop has no memory.

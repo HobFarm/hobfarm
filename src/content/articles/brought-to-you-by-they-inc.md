@@ -158,6 +158,34 @@ sourceNotes:
     url: "https://www.pewresearch.org/short-reads/2025/02/19/how-americans-view-elon-musk-and-mark-zuckerberg/"
     note: "Used for the 2025 partisan gap in favorable views of Musk."
     type: documented-fact
+mesh:
+  section: culture
+  subjects:
+    - political-culture
+    - information-systems
+    - propaganda
+    - social-media
+    - media-literacy
+    - personal-history
+  series: []
+  entities:
+    people:
+      - donald-trump
+    organizations: []
+    places:
+      - las-vegas
+    events:
+      - covid-19-pandemic
+      - january-6-attack
+    works: []
+    publications: []
+    technologies:
+      - recommendation-algorithms
+      - artificial-intelligence
+  sourceArtifacts: []
+  storyModes:
+    - personal-history-trail
+    - systems-investigation
 ---
 
 The lettuce was going to make me shit my pants.

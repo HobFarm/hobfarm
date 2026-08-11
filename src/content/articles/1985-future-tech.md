@@ -27,6 +27,37 @@ relatedArticles:
   - 1973-when-airbrush-was-ai
   - 1956-automation
 draft: false
+mesh:
+  section: technology
+  subjects:
+    - retrofuturism
+    - consumer-technology
+    - media-history
+    - automation
+    - computing-history
+  series:
+    - magazine-time-machine
+  entities:
+    people: []
+    organizations: []
+    places: []
+    events: []
+    works: []
+    publications:
+      - playboy
+    technologies:
+      - robotics
+      - smart-glasses
+      - automation
+  sourceArtifacts:
+    - id: playboy-december-1985-future-tech
+      type: magazine
+      label: Playboy, December 1985, Hold On, It's Comin'
+      publication: playboy
+      role: origin
+  storyModes:
+    - archive-trail
+    - comparative-history
 ---
 
 In December 1985, Playboy ran a future-tech spread called **"Hold On, It's Comin',"** framed as a sneak peek at the "electronic drawing board." The piece joked about a fictional Sony "Crystal Ballman," then did what old magazine futurism does best: it mixed plausible engineering, consumer fantasy, trade-show wishcasting, and horny gadget logic into one glossy prediction pile.

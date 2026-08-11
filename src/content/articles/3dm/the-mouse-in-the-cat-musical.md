@@ -89,6 +89,38 @@ sourceNotes:
     url: "https://www.loc.gov/collections/federal-theatre-project-1935-to-1939/"
     note: "Library of Congress collection for public-domain and rights-cleared context on Depression-era theatrical labor. It is contextual material, not evidence from the Footlight Parade production."
     type: historical-interpretation
+mesh:
+  section: film-tv
+  subjects:
+    - film-history
+    - pre-code-hollywood
+    - musical-film
+    - character-actors
+    - production-systems
+  series:
+    - 3dm
+  entities:
+    people:
+      - billy-barty
+      - dick-miller
+      - busby-berkeley
+    organizations:
+      - warner-bros
+    places: []
+    events: []
+    works:
+      - footlight-parade
+      - the-undead
+    publications: []
+    technologies: []
+  sourceArtifacts:
+    - id: footlight-parade-mouse-number
+      type: film
+      label: Footlight Parade, Sittin' on a Backyard Fence number
+      role: origin
+  storyModes:
+    - connection-map
+    - media-genealogy
 ---
 
 In 1933, James Cagney's Chester Kent staged a musical about cats. The cats danced on a backyard fence, Ruby Keeler handled the tap work, and a tiny mouse interrupted the feline courtship. Andrew Lloyd Webber's *Cats* would not open in London until 1981.

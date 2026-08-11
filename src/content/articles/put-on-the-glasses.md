@@ -134,6 +134,35 @@ sourceNotes:
     url: "https://stormkingcomics.com/"
     note: "Current catalog documenting the continuing comics work associated with John Carpenter and Sandy King's Storm King Productions."
     type: promotional-claim
+mesh:
+  section: technology
+  subjects:
+    - consumer-technology
+    - open-computing
+    - software-ownership
+    - platform-governance
+    - media-history
+  series: []
+  entities:
+    people:
+      - john-carpenter
+      - roddy-piper
+      - keith-david
+    organizations:
+      - google
+    places: []
+    events: []
+    works:
+      - they-live
+    publications: []
+    technologies:
+      - augmented-reality
+      - smart-glasses
+      - atheer
+  sourceArtifacts: []
+  storyModes:
+    - personal-history-trail
+    - systems-investigation
 ---
 
 I have loved *They Live* since it came out.

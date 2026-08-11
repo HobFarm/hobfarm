@@ -110,6 +110,43 @@ sourceNotes:
     url: "https://upload.wikimedia.org/wikipedia/commons/b/be/Movie_mirror._%28Vol._1%2C_Nov._1931-Apr._1932%29_%28IA_moviemirrorvol1n01unse%29.pdf"
     note: "Contemporary Movie Mirror feature describes the WAMPAS publicity program and lists Joan Blondell among the 1931 selections."
     type: trade-report
+mesh:
+  section: film-tv
+  subjects:
+    - film-history
+    - pre-code-hollywood
+    - studio-systems
+    - musical-film
+    - production-design
+  series:
+    - 3dm
+  entities:
+    people:
+      - busby-berkeley
+      - joan-blondell
+      - ruby-keeler
+      - billy-barty
+      - dick-miller
+    organizations:
+      - warner-bros
+    places: []
+    events:
+      - great-depression
+    works:
+      - 42nd-street-1933
+      - gold-diggers-of-1933
+      - footlight-parade
+      - the-undead
+    publications: []
+    technologies: []
+  sourceArtifacts:
+    - id: warner-1933-musical-cycle
+      type: film
+      label: Warner Bros. 1933 musical cycle
+      role: organizing
+  storyModes:
+    - media-genealogy
+    - systems-investigation
 ---
 
 In 1933, Warner Bros. released three enormous musicals about people who could barely afford to stage a show. The studio filled them with unemployed chorus girls, exhausted producers, singing juveniles, professional con men, horny millionaires, and Guy Kibbee, usually arriving with the money everybody else needed.

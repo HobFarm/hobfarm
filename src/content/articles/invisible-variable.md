@@ -16,6 +16,35 @@ heroAlt: "The Invisible Variable: 5 AI providers: Gemini, Grok, ChatGPT, Z.AI, Q
 publishedAt: 2026-03-19
 featured: true
 draft: false
+mesh:
+  section: technology
+  subjects:
+    - model-behavior
+    - ai-image-generation
+    - schema-design
+    - benchmarking
+    - creative-workflows
+  series: []
+  entities:
+    people: []
+    organizations:
+      - openai
+      - google
+      - xai
+    places: []
+    events: []
+    works: []
+    publications: []
+    technologies:
+      - stylefusion
+      - gemini
+      - grok
+      - qwen
+      - glm
+  sourceArtifacts: []
+  storyModes:
+    - systems-investigation
+    - technical-explainer
 ---
 
 There are three layers to AI image generation that most people collapse into one. The first is prompt engineering: writing text, sending it to an image model, tweaking words until the output improves. That's what everyone talks about.

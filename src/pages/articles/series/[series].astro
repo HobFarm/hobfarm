@@ -1,0 +1,47 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CategoryArchive from "@/components/archive/CategoryArchive.astro";
+import { editorialSeries } from "@/data/editorial-mesh";
+import { getPublishedArticles } from "@/lib/articles";
+
+export async function getStaticPaths() {
+  const articles = await getPublishedArticles();
+
+  return editorialSeries
+    .filter((series) => series.href.startsWith("/articles/series/"))
+    .map((series) => ({
+      params: { series: series.id },
+      props: {
+        series,
+        posts: articles.filter((article) => article.data.mesh?.series.includes(series.id)),
+      },
+    }))
+    .filter(({ props }) => props.posts.length > 0);
+}
+
+const { series, posts } = Astro.props;
+const archive = {
+  slug: series.id,
+  label: series.label,
+  blurb: series.membershipRule,
+  accent: "#55d7ff",
+  navHub: "Articles" as const,
+};
+---
+
+<BaseLayout
+  title={`${series.label} | HobFarm`}
+  description={series.membershipRule}
+  canonical={series.href}
+>
+  <CategoryArchive
+    department={archive}
+    posts={posts}
+    visuals={[]}
+    comics={[]}
+    drops={[]}
+    systems={[]}
+    backHref="/articles/"
+    backLabel="All articles"
+  />
+</BaseLayout>

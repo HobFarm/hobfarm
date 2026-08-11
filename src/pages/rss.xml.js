@@ -1,5 +1,11 @@
 import rss from '@astrojs/rss';
-import { articlePath, getArticleDescription, getPublishedArticles } from '@/lib/articles';
+import {
+  articlePath,
+  getArticleDescription,
+  getArticleSectionLabel,
+  getPublishedArticles,
+} from '@/lib/articles';
+import { getEditorialSeries } from '@/data/editorial-mesh';
 
 export async function GET(context) {
   const posts = await getPublishedArticles();
@@ -13,7 +19,11 @@ export async function GET(context) {
       pubDate: post.data.pubDate ?? post.data.publishedAt,
       description: getArticleDescription(post.data),
       link: articlePath(post),
-      categories: post.data.tags,
+      categories: [
+        getArticleSectionLabel(post.data),
+        ...(post.data.mesh?.subjects ?? []),
+        ...(post.data.mesh?.series ?? []).map((id) => getEditorialSeries(id)?.label ?? id),
+      ],
     })),
     customData: '<language>en-us</language>',
   });

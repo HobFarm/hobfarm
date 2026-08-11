@@ -17,6 +17,31 @@ hero: https://cdn.hob.farm/blog/genius-system/genius-system-hero.jpg
 heroAlt: "A filing cabinet holding the index while a swarm of small workers generates around it: the system that keeps the human in the chair."
 publishedAt: 2026-06-11
 draft: false
+mesh:
+  section: technology
+  subjects:
+    - artificial-intelligence
+    - creative-systems
+    - human-agency
+    - creative-labor
+    - knowledge-systems
+  series: []
+  entities:
+    people:
+      - dario-amodei
+    organizations:
+      - anthropic
+    places: []
+    events: []
+    works: []
+    publications: []
+    technologies:
+      - artificial-intelligence
+      - grimoire
+  sourceArtifacts: []
+  storyModes:
+    - systems-investigation
+    - process-essay
 ---
 
 In June 2026, Dario Amodei, CEO of the most powerful AI lab on earth, published a policy essay. Most of it is what you'd expect: testing regimes for frontier models, export controls, wage insurance, the machinery of governments trying to keep pace with an exponential. But buried in the economics section is the most honest sentence in the document. He writes that any real response to AI-driven job displacement has to solve two problems, not one: providing for people economically, and the harder one, the need for people to find meaning, purpose, and agency.

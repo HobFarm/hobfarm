@@ -1,166 +1,112 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-import ArticleCard from "@/components/articles/ArticleCard.astro";
-import ArticleTagCloud from "@/components/articles/ArticleTagCloud.astro";
-import ArticlePagination from "@/components/articles/ArticlePagination.astro";
 import ContentPanel from "@/components/ContentPanel.astro";
+import ArticleCard from "@/components/articles/ArticleCard.astro";
+import ArticlePagination from "@/components/articles/ArticlePagination.astro";
+import EditorialSectionRail from "@/components/articles/EditorialSectionRail.astro";
+import EditorialSpecials from "@/components/articles/EditorialSpecials.astro";
+import EditorialSubjectLinks from "@/components/articles/EditorialSubjectLinks.astro";
 import Subscribe from "@/components/articles/Subscribe.astro";
 import {
   articlePath,
   getArticleDate,
   getArticleDek,
-  getArticleDepartmentLabel,
   getArticleHero,
-  getArticleTagCounts,
+  getArticleSectionLabel,
+  getArticleSubjectCounts,
   getPublishedArticles,
 } from "@/lib/articles";
 import {
   getArticleArchivePage,
   getArticleArchivePageCount,
 } from "@/lib/article-pagination";
-import { departmentFilters, departmentPath } from "@/data/departments";
-import { THREE_DM_LOGO } from "@/data/presents-titles";
 
 const allPosts = await getPublishedArticles();
-const tagCounts = getArticleTagCounts(allPosts);
-// The lead slot is always the newest published article. Frontmatter flags can
-// still describe content elsewhere, but publishing something new promotes it.
 const coverStory = allPosts[0];
 const latest = getArticleArchivePage(allPosts, 1);
 const totalPages = getArticleArchivePageCount(allPosts.length);
 const coverDate = coverStory ? getArticleDate(coverStory) : null;
-const coverHero = coverStory
-  ? getArticleHero(coverStory.data) ?? (coverStory.data.presentsSeries === "3dm" ? THREE_DM_LOGO : undefined)
-  : undefined;
-const coverPreservesArtwork = coverHero === THREE_DM_LOGO;
+const coverHero = coverStory ? getArticleHero(coverStory.data) : undefined;
+const subjects = getArticleSubjectCounts(allPosts).filter((subject) => subject.count >= 2);
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "HobFarm Articles",
+  description: "The public Editorial archive for HobFarm.",
+  url: new URL("/articles/", Astro.site ?? "https://hob.farm").toString(),
+  mainEntity: {
+    "@type": "ItemList",
+    numberOfItems: allPosts.length,
+    itemListElement: allPosts.map((post, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: post.data.title,
+      url: new URL(`${articlePath(post)}/`, Astro.site ?? "https://hob.farm").toString(),
+    })),
+  },
+};
 ---
 
 <BaseLayout
   title="Articles | HobFarm"
-  description="Articles from HobFarm, an online magazine and visual studio for visual culture, media history, cartoons, satire, archive dives, movie trailers, character systems, production notes, and image and video work."
+  description="HobFarm Editorial publishes articles about technology, art and design, culture, film and television, music, and the places and systems beneath them."
   canonical="/articles/"
+  structuredData={structuredData}
 >
   <section>
     <ContentPanel>
-      <Wrapper
-        variant="standard"
-        class="grid grid-cols-1 py-10 gap-y-10 lg:gap-x-10 lg:grid-cols-4"
-      >
-        <aside class="order-2 lg:order-1">
-          <div class="lg:sticky lg:top-24 lg:pr-8">
-            <p class="font-mono text-xs uppercase tracking-widest text-accent-cyan">
-              HobFarm Magazine
-            </p>
-            <h1 class="mt-4 text-3xl lg:text-4xl font-light text-base-100 text-balance font-display">
-              Articles
-            </h1>
-            <p class="mt-4 text-sm leading-relaxed text-base-400">
-              Features, departments, series notes, visual research, character systems, media-history trails, and production writeups.
-            </p>
+      <Wrapper variant="standard" class="py-8 lg:py-12">
+        <header class="max-w-3xl">
+          <p class="font-mono text-[10px] uppercase tracking-[.16em] text-accent-cyan">HobFarm Editorial</p>
+          <h1 class="mt-3 font-display text-4xl font-light text-white sm:text-5xl">Articles</h1>
+          <p class="mt-4 text-base leading-relaxed text-base-300">
+            Research, criticism, reporting, satire, visual studies, and production essays from the publishing side of HobFarm.
+          </p>
+          <a href="#article-subscribe" class="mt-5 inline-flex font-mono text-[10px] uppercase tracking-wider text-accent-cyan hover:text-white">
+            Subscribe to articles &rarr;
+          </a>
+        </header>
 
-            <a
-              href="#article-subscribe"
-              class="mt-5 inline-flex min-h-11 items-center border border-accent-cyan/50 px-4 py-2 font-mono text-[10px] uppercase tracking-wider text-accent-cyan transition-colors hover:border-accent-cyan hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-cyan"
-            >
-              Subscribe to articles
-            </a>
+        <div class="mt-8"><EditorialSectionRail /></div>
 
-            <div class="mt-8 flex flex-wrap gap-2 lg:flex-col">
-              {departmentFilters.map((cat) => (
-                <a
-                  href={cat.value === "all" ? "/articles/" : departmentPath(cat.value)}
-                  class:list={[
-                    "text-xs font-mono px-3 py-1.5 border transition-colors",
-                    cat.value === "all"
-                      ? "border-base-100 text-base-100"
-                      : "border-base-700 text-base-400 hover:border-base-100 hover:text-base-100",
-                  ]}
-                >
-                  {cat.label}
-                </a>
-              ))}
+        {coverStory && (
+          <section class="mt-12" aria-labelledby="cover-story-heading">
+            <div class="mb-4 flex flex-wrap items-end justify-between gap-3">
+              <p class="font-mono text-[10px] uppercase tracking-widest text-accent-magenta-bright">Cover story</p>
+              {coverDate && (
+                <time class="font-mono text-[10px] uppercase tracking-wider text-base-500" datetime={coverDate.toISOString()}>
+                  {coverDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" })}
+                </time>
+              )}
             </div>
-
-          </div>
-        </aside>
-
-        <div class="order-1 lg:order-2 lg:col-span-3">
-          {coverStory && (
-            <section aria-labelledby="cover-story-heading">
-              <div class="mb-4 flex flex-wrap items-end justify-between gap-3">
-                <div>
-                  <p class="font-mono text-[10px] uppercase tracking-widest text-accent-magenta-bright">
-                    Cover story
-                  </p>
-                  <h2 id="cover-story-heading" class="mt-2 text-2xl font-display text-white">
-                    {coverStory.data.title}
-                  </h2>
-                </div>
-                {coverDate && (
-                  <time class="font-mono text-[10px] uppercase tracking-wider text-base-500" datetime={coverDate.toISOString()}>
-                    {coverDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" })}
-                  </time>
-                )}
+            <a href={articlePath(coverStory)} class="group grid overflow-hidden rounded-xl border border-base-800 bg-base-950/70 transition-colors hover:border-accent-cyan/50 lg:grid-cols-[1.25fr_.75fr]">
+              {coverHero && (
+                <img src={coverHero} alt={coverStory.data.heroAlt || coverStory.data.title} class="aspect-video h-full w-full object-cover" loading="eager" decoding="async" />
+              )}
+              <div class="flex flex-col justify-center p-6 lg:p-8">
+                <p class="font-mono text-[10px] uppercase tracking-widest text-accent-cyan">{getArticleSectionLabel(coverStory.data)}</p>
+                <h2 id="cover-story-heading" class="mt-3 font-display text-2xl font-light text-white sm:text-3xl">{coverStory.data.title}</h2>
+                <p class="mt-4 text-sm leading-relaxed text-base-300">{getArticleDek(coverStory.data)}</p>
+                <span class="mt-6 text-sm text-base-200 group-hover:text-accent-cyan">Read the feature &rarr;</span>
               </div>
-              <a
-                href={articlePath(coverStory)}
-                class="group grid overflow-hidden rounded-lg border border-base-800 bg-base-950/60 transition-colors hover:border-accent-cyan/50 lg:grid-cols-[1.2fr_0.8fr]"
-              >
-                {coverHero && (
-                  <img
-                    src={coverHero}
-                    alt={coverStory.data.heroAlt || coverStory.data.title}
-                    class:list={["aspect-video h-full w-full", coverPreservesArtwork ? "bg-[#07101b] object-contain p-4" : "object-cover"]}
-                    loading="eager"
-                    decoding="async"
-                  />
-                )}
-                <div class="p-5 sm:p-6">
-                  <p class="font-mono text-[10px] uppercase tracking-widest text-accent-cyan">
-                    {getArticleDepartmentLabel(coverStory.data)}
-                  </p>
-                  <p class="mt-4 text-base leading-relaxed text-base-300">
-                    {getArticleDek(coverStory.data)}
-                  </p>
-                  <span class="mt-6 inline-flex text-sm text-base-100 group-hover:text-accent-cyan">
-                    Read the feature
-                  </span>
-                </div>
-              </a>
-            </section>
-          )}
-
-          <section class="mt-12" aria-labelledby="latest-articles-heading">
-            <div class="mb-5 flex items-end justify-between gap-4">
-              <h2 id="latest-articles-heading" class="text-xl font-light text-base-100">
-                Latest articles
-              </h2>
-              <span class="font-mono text-[10px] uppercase tracking-wider text-base-500">
-                Page 1 of {totalPages} &middot; {allPosts.length} published
-              </span>
-            </div>
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {latest.map((post) => <ArticleCard post={post} />)}
-            </div>
-            <ArticlePagination currentPage={1} totalPages={totalPages} />
+            </a>
           </section>
+        )}
 
-          <section class="mt-12" aria-labelledby="article-tags-heading">
-            <div class="mb-5 flex flex-wrap items-end justify-between gap-4">
-              <h2 id="article-tags-heading" class="text-xl font-light text-base-100">
-                Article tags
-              </h2>
-              <a
-                href="/articles/tags/"
-                class="font-mono text-[10px] uppercase tracking-wider text-base-500 transition-colors hover:text-base-100"
-              >
-                All tags
-              </a>
-            </div>
-            <ArticleTagCloud tags={tagCounts} />
-          </section>
-        </div>
+        <section class="mt-14" aria-labelledby="latest-articles-heading">
+          <div class="mb-5 flex flex-wrap items-end justify-between gap-4">
+            <h2 id="latest-articles-heading" class="font-display text-2xl font-light text-white">Chronological archive</h2>
+            <span class="font-mono text-[10px] uppercase tracking-wider text-base-500">Page 1 of {totalPages} &middot; {allPosts.length} published</span>
+          </div>
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {latest.map((post) => <ArticleCard post={post} />)}
+          </div>
+          <ArticlePagination currentPage={1} totalPages={totalPages} />
+        </section>
+
+        <EditorialSpecials heading="Series and specials" compact />
+        <EditorialSubjectLinks subjects={subjects} limit={28} />
       </Wrapper>
     </ContentPanel>
     <Subscribe />

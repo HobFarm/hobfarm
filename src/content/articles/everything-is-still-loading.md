@@ -92,6 +92,33 @@ relatedArticles:
   - take-me-to-phobos
   - gonna-be-different
   - how-the-money-eats-the-medium
+mesh:
+  section: technology
+  subjects:
+    - game-history
+    - platform-economics
+    - software-ownership
+    - computing-history
+    - forced-obsolescence
+  series: []
+  entities:
+    people: []
+    organizations:
+      - valve
+      - microsoft
+    places: []
+    events: []
+    works:
+      - doom
+      - civilization-vii
+    publications: []
+    technologies:
+      - bbs
+      - steam
+  sourceArtifacts: []
+  storyModes:
+    - personal-history-trail
+    - systems-investigation
 ---
 
 [*Take Me to Phobos*](/articles/take-me-to-phobos/) ended in 1993.

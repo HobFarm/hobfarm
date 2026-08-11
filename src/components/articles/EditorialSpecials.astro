@@ -1,0 +1,56 @@
+---
+import { editorialSeries } from "@/data/editorial-mesh";
+import {
+  articleUsesSeries,
+  getArticleDate,
+  getPublishedArticles,
+} from "@/lib/articles";
+
+interface Props {
+  heading?: string;
+  compact?: boolean;
+}
+
+const { heading = "Specials", compact = false } = Astro.props;
+const articles = await getPublishedArticles();
+const specials = editorialSeries.map((series) => {
+  const entries = articles.filter((article) => articleUsesSeries(article.data, series.id));
+  return { ...series, entries, newest: entries[0] };
+});
+---
+
+<section class:list={["editorial-specials", compact && "editorial-specials--compact"]} aria-labelledby="editorial-specials-heading">
+  <header>
+    <p>Recurring editorial work</p>
+    <h2 id="editorial-specials-heading">{heading}</h2>
+  </header>
+  <div class="editorial-specials__grid">
+    {specials.map((special) => (
+      <a href={special.href} class="editorial-specials__card">
+        <span>{special.entries.length} {special.entries.length === 1 ? "entry" : "entries"}</span>
+        <h3>{special.label}</h3>
+        <p>{special.membershipRule}</p>
+        {special.newest && (
+          <small>
+            Latest {getArticleDate(special.newest).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" })}
+          </small>
+        )}
+      </a>
+    ))}
+  </div>
+</section>
+
+<style>
+  .editorial-specials { margin-top: 4rem; }
+  .editorial-specials header > p { margin: 0; color: #f24da6; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; }
+  .editorial-specials header h2 { margin: .55rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, 2.7rem); font-weight: 300; }
+  .editorial-specials__grid { display: grid; gap: .75rem; margin-top: 1.25rem; }
+  .editorial-specials__card { display: flex; min-height: 14rem; flex-direction: column; border: 1px solid #2c2440; border-radius: .75rem; padding: 1.25rem; background: #0e0b16b8; color: inherit; text-decoration: none; }
+  .editorial-specials__card:hover { border-color: #f24da680; }
+  .editorial-specials__card > span, .editorial-specials__card small { color: #8f899f; font-family: var(--font-mono); font-size: .6rem; letter-spacing: .09em; text-transform: uppercase; }
+  .editorial-specials__card h3 { margin: 1rem 0 0; color: #fff; font-family: var(--font-display); font-size: 1.35rem; font-weight: 400; }
+  .editorial-specials__card p { margin: .65rem 0 0; color: #aaa5ba; font-size: .8rem; line-height: 1.55; }
+  .editorial-specials__card small { margin-top: auto; padding-top: 1rem; }
+  .editorial-specials--compact .editorial-specials__card { min-height: 11rem; }
+  @media (min-width: 720px) { .editorial-specials__grid { grid-template-columns: repeat(3, 1fr); } }
+</style>

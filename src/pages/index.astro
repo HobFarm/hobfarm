@@ -1,12 +1,11 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import MagazineFrontPage from "@/components/home/MagazineFrontPage.astro";
+import HomeSectionOverview from "@/components/home/HomeSectionOverview.astro";
+import HomeEditorialSpecials from "@/components/home/HomeEditorialSpecials.astro";
 import HomePublicationBridge from "@/components/home/HomePublicationBridge.astro";
 import SiteSections from "@/components/home/SiteSections.astro";
 import HomeWorkshop from "@/components/home/HomeWorkshop.astro";
-import HomeOtherAlice from "@/components/home/HomeOtherAlice.astro";
-import HomeFutureCarriage from "@/components/home/HomeFutureCarriage.astro";
-import HomeCreativeInquiry from "@/components/home/HomeCreativeInquiry.astro";
 import ExploreSupportFollow from "@/components/home/ExploreSupportFollow.astro";
 ---
 
@@ -15,16 +14,14 @@ import ExploreSupportFollow from "@/components/home/ExploreSupportFollow.astro";
   description="HobFarm publishes original articles, stories, visual worlds, games, and creative applications, then opens the Workshop records behind their research, art direction, continuity, motion, and web presentation."
   palette="magenta-cyan"
 >
-  {/* 1 Hero · 2 current work */}
+  {/* 1 publisher intro · 2 sections · 3 current Editorial */}
   <MagazineFrontPage />
-  {/* 3 publication-to-Workshop bridge · 4 capability overview · 5 method */}
+  <HomeSectionOverview />
+  <HomeEditorialSpecials />
+  {/* Workshop evidence follows the public Editorial architecture. */}
   <HomePublicationBridge />
   <HomeWorkshop />
-  {/* 6 Other Alice · 7 Future Carriage · 8 inquiry */}
-  <HomeOtherAlice />
-  <HomeFutureCarriage />
-  <HomeCreativeInquiry />
-  {/* 9 six ways into HobFarm · 10 support and follow */}
+  {/* Quiet bridges to Presents, Academy, Shop, Gallery, and Projects. */}
   <SiteSections />
   <ExploreSupportFollow />
 </BaseLayout>

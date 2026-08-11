@@ -2,11 +2,11 @@
 import { render } from "astro:content";
 import ArticleLayout from "@/layouts/ArticleLayout.astro";
 import { readingTime } from "@/lib/reading-time";
-import { byOldestArticle, getPublishedArticles, stripArticleExt } from "@/lib/articles";
+import { articleUsesSeries, byOldestArticle, getPublishedArticles, stripArticleExt } from "@/lib/articles";
 
 export async function getStaticPaths() {
   const articles = (await getPublishedArticles())
-    .filter((entry) => !entry.data.presentsSeries)
+    .filter((entry) => !articleUsesSeries(entry.data, "3dm"))
     .sort(byOldestArticle);
   return articles.map((entry, i) => ({
     params: { slug: stripArticleExt(entry.id) },

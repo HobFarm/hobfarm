@@ -25,6 +25,39 @@ heroAlt: "A retro-futurist automation scene connecting 1950s IBM computers, huma
 relatedArticles:
   - 1973-when-airbrush-was-ai
 draft: false
+mesh:
+  section: technology
+  subjects:
+    - automation
+    - computing-history
+    - artificial-intelligence
+    - labor-history
+    - retrofuturism
+    - media-history
+  series:
+    - magazine-time-machine
+  entities:
+    people: []
+    organizations:
+      - ibm
+    places: []
+    events: []
+    works: []
+    publications:
+      - playboy
+    technologies:
+      - automation
+      - artificial-intelligence
+      - robotics
+  sourceArtifacts:
+    - id: playboy-january-1956-labor-cartoon
+      type: magazine
+      label: Playboy, January 1956, Labor cartoon
+      publication: playboy
+      role: origin
+  storyModes:
+    - archive-trail
+    - comparative-history
 ---
 
 <figure class="article-wide">

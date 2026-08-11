@@ -8,6 +8,29 @@ format: workshop-note
 status: published
 tags: ["anime", "gothic", "art-history", "style-transfer", "visual-dna"]
 hero: https://cdn.hob.farm/pages/blog/anime_gothic_hero.png
+mesh:
+  section: art-design
+  subjects:
+    - art-history
+    - gothic-art
+    - anime
+    - visual-systems
+    - ai-image-generation
+  series: []
+  entities:
+    people: []
+    organizations: []
+    places: []
+    events: []
+    works: []
+    publications: []
+    technologies:
+      - stylefusion
+      - ai-image-generation
+  sourceArtifacts: []
+  storyModes:
+    - visual-study
+    - comparative-history
 ---
 
 HobFarm Gallery studies produced downstream from StyleFusion exports have a recurring pattern: gothic anime line art consistently produces some of the most striking outputs. That's not a coincidence. There's a deep structural connection between Japanese animation aesthetics and European gothic art that makes them unusually compatible for style transfer.

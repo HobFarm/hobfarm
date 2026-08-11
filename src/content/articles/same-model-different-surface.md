@@ -19,6 +19,34 @@ publishedAt: 2026-04-03
 updatedAt: 2026-04-05
 featured: true
 draft: false
+mesh:
+  section: technology
+  subjects:
+    - model-behavior
+    - ai-image-generation
+    - platform-design
+    - benchmarking
+    - creative-tools
+  series: []
+  entities:
+    people: []
+    organizations:
+      - google
+      - openai
+      - xai
+    places: []
+    events: []
+    works: []
+    publications: []
+    technologies:
+      - stylefusion
+      - gemini
+      - gpt-image
+      - grok
+  sourceArtifacts: []
+  storyModes:
+    - systems-investigation
+    - technical-explainer
 ---
 
 In [The Invisible Variable](/articles/invisible-variable/), I ran the same reference images through five extraction models and found that each one acts as a creative director. The vocabulary it chooses, the details it emphasizes, the art-historical references it invokes, all cascade into fundamentally different generation results. The extraction model isn't a passive observer. It's the first creative decision in the pipeline.

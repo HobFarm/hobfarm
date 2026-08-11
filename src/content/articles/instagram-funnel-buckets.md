@@ -24,6 +24,31 @@ relatedArticles:
   - how-to-fix-slop
   - psychedelic-goth-defined
 draft: false
+mesh:
+  section: culture
+  subjects:
+    - social-media
+    - attention-economy
+    - platform-design
+    - synthetic-media
+    - advertising
+  series: []
+  entities:
+    people: []
+    organizations:
+      - instagram
+      - meta
+    places: []
+    events: []
+    works: []
+    publications: []
+    technologies:
+      - recommendation-algorithms
+      - artificial-intelligence
+  sourceArtifacts: []
+  storyModes:
+    - field-report
+    - systems-investigation
 ---
 
 I have been studying Instagram for a couple weeks and I am already bored.

@@ -6,9 +6,10 @@ import Subscribe from "@/components/articles/Subscribe.astro";
 import ConnectionChain from "@/components/presents/ConnectionChain.astro";
 import ThreeDMEntryCard from "@/components/presents/ThreeDMEntryCard.astro";
 import { articlePath, getPublishedArticles } from "@/lib/articles";
+import { articleUsesSeries } from "@/data/editorial-mesh";
 import { THREE_DM_GPT_URL, THREE_DM_LOGO, THREE_DM_PATH } from "@/data/presents-titles";
 
-const entries = (await getPublishedArticles()).filter((entry) => entry.data.presentsSeries === "3dm");
+const entries = (await getPublishedArticles()).filter((entry) => articleUsesSeries(entry.data, "3dm"));
 const featured = entries.find((entry) => entry.data.featured) ?? entries[0];
 const firstRoute = entries.find((entry) => entry.id.endsWith("the-mouse-in-the-cat-musical"));
 const studioFeature = entries.find((entry) => entry.id.endsWith("1933-the-year-warner-bros-built-a-world"));

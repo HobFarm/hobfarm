@@ -381,6 +381,32 @@ New scheduled articles should normally publish at 4:20 p.m. in the `America/Los_
 
 Keep optional fields optional unless the user explicitly requests a schema migration.
 
+## Editorial Mesh Rules
+
+When creating, substantially editing, classifying, scheduling, publishing, or changing navigation for an Editorial article, read and follow `.agents/skills/editorial-mesh/SKILL.md` before finalizing the work.
+
+The visible publication may use a small set of broad sections, but article relationships are a mesh. Do not force series, subjects, people, places, events, works, source artifacts, and related articles into a single category tree.
+
+The current corpus is the source of truth for editorial classification. Market research may improve professional proof, distribution, automation, and business offers, but it must not drive article taxonomy.
+
+Hard series rules:
+
+- Magazine Time Machine requires a specific old magazine artifact to directly originate or materially drive the article.
+- 3DM requires an actual Dick Miller connection and the article must use that connection as part of the series logic.
+- Do not infer either series from thematic similarity.
+
+After substantial article work, run the editorial mesh pass defined by the skill and preserve existing URLs and explicit related-article overrides.
+
+## Publication Architecture
+
+Treat `docs/site-architecture.md` as the durable public route map and `src/data/editorial-mesh.ts` as the executable Editorial registry. The primary publisher navigation remains Articles, Presents, Workshop, Academy, Shop, and About.
+
+Editorial has exactly six canonical section archives: Technology, Art & Design, Culture, Film & TV, Music, and Places & Systems. Sections are the human navigation layer. Series and subjects are separate discovery layers; do not present them as additional sections.
+
+Only subjects shared by at least two released articles receive public topic routes. Strict `mesh.series` membership owns Magazine Time Machine, 3DM, and Built Over presentation. Legacy department and series fields may remain for compatibility, but they must not decide canonical URLs or public membership.
+
+After a production build, run `npm run audit:site-structure` when changing navigation, routes, sitemap behavior, RSS, canonicals, structured data, or public article relationships.
+
 ---
 
 ## HobFarm Presents Rules

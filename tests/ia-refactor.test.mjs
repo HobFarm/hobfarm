@@ -67,18 +67,17 @@ test("Workshop visibility keeps route generation separate from navigation", () =
   assert.match(workshopHub, /Tools and applications/);
 });
 
-test("category archives surface related systems, drops, workshop notes, and comics", () => {
-  const archive = read("src/components/archive/CategoryArchive.astro");
+test("Editorial section archives keep sections, specials, subjects, and feeds separate", () => {
+  const archive = read("src/components/archive/EditorialSectionArchive.astro");
   const categoryRoute = read("src/pages/articles/[category].astro");
 
-  assert.match(archive, /import ComicCard/);
-  assert.match(archive, /import DropCard/);
-  assert.match(archive, /Workshop notes/);
-  assert.match(archive, /Visual systems/);
-  assert.match(archive, /Drops/);
-  assert.match(archive, /Comics/);
-  assert.match(categoryRoute, /getProductsByDepartment/);
-  assert.match(categoryRoute, /visualSystemsForDepartment/);
+  assert.match(archive, /EditorialSectionRail/);
+  assert.match(archive, /Newest in/);
+  assert.match(archive, /Specials in this section/);
+  assert.match(archive, /Common subjects/);
+  assert.match(archive, /Section RSS/);
+  assert.match(categoryRoute, /editorialSections\.map/);
+  assert.doesNotMatch(categoryRoute, /legacyCandidates/);
 });
 
 test("about page presents the independent publisher and its operating paths", () => {

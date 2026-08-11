@@ -69,6 +69,31 @@ sourceNotes:
     url: "https://status.claude.com/"
     note: "Status history reviewed on July 26, 2026, including Fable 5 access and usage-credit incidents."
     type: documented-fact
+mesh:
+  section: technology
+  subjects:
+    - creative-systems
+    - multi-agent-systems
+    - game-design
+    - solo-publishing
+    - knowledge-systems
+  series: []
+  entities:
+    people: []
+    organizations:
+      - hobfarm
+    places: []
+    events: []
+    works:
+      - civilization-v
+    publications: []
+    technologies:
+      - codex
+      - grimoire
+  sourceArtifacts: []
+  storyModes:
+    - personal-history-trail
+    - process-essay
 ---
 
 At 2:45 in the morning, eating lunch at my computer, I found an old rule telling Codex to obey a skill I no longer used.

@@ -121,6 +121,33 @@ sourceNotes:
     url: "https://www.gutenberg.org/ebooks/345"
     note: "Public-domain edition of Bram Stoker's 1897 text used as a primary literary reference."
     type: documented-fact
+mesh:
+  section: technology
+  subjects:
+    - cloud-computing
+    - interactive-fiction
+    - software-ownership
+    - game-design
+    - artificial-intelligence
+    - platform-economics
+  series: []
+  entities:
+    people: []
+    organizations: []
+    places: []
+    events: []
+    works:
+      - civilization-v
+      - other-alice-adventures
+    publications: []
+    technologies:
+      - wonder-machine
+      - artificial-intelligence
+      - cloud-computing
+  sourceArtifacts: []
+  storyModes:
+    - systems-investigation
+    - process-essay
 ---
 
 The Wonder Machine has learned how to do nothing.

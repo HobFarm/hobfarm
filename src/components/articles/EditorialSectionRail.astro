@@ -1,0 +1,88 @@
+---
+import {
+  editorialSections,
+  editorialSectionPath,
+} from "@/data/editorial-mesh";
+
+interface Props {
+  currentSection?: string;
+  includeAll?: boolean;
+}
+
+const { currentSection, includeAll = true } = Astro.props;
+---
+
+<nav class="editorial-section-rail" aria-label="Editorial sections">
+  <span class="editorial-section-rail__label">Sections</span>
+  <div class="editorial-section-rail__links">
+    {includeAll && (
+      <a
+        href="/articles/"
+        aria-current={!currentSection ? "page" : undefined}
+        class:list={["editorial-section-rail__link", !currentSection && "is-current"]}
+      >
+        All
+      </a>
+    )}
+    {editorialSections.map((section) => (
+      <a
+        href={editorialSectionPath(section.slug)}
+        aria-current={currentSection === section.slug ? "page" : undefined}
+        class:list={[
+          "editorial-section-rail__link",
+          currentSection === section.slug && "is-current",
+        ]}
+      >
+        {"shortLabel" in section ? section.shortLabel : section.label}
+      </a>
+    ))}
+  </div>
+</nav>
+
+<style>
+  .editorial-section-rail {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    min-width: 0;
+    border-block: 1px solid #2c2440;
+    padding-block: .65rem;
+  }
+  .editorial-section-rail__label {
+    flex: 0 0 auto;
+    color: #6b6580;
+    font-family: var(--font-mono);
+    font-size: .58rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+  .editorial-section-rail__links {
+    display: flex;
+    gap: .35rem;
+    min-width: 0;
+    overflow-x: auto;
+    padding-bottom: .1rem;
+    scrollbar-width: thin;
+  }
+  .editorial-section-rail__link {
+    flex: 0 0 auto;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    padding: .35rem .65rem;
+    color: #aaa5ba;
+    font-family: var(--font-mono);
+    font-size: .65rem;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .editorial-section-rail__link:hover,
+  .editorial-section-rail__link:focus-visible {
+    border-color: #55d7ff;
+    color: #fff;
+  }
+  .editorial-section-rail__link.is-current {
+    border-color: #55d7ff80;
+    background: #55d7ff12;
+    color: #55d7ff;
+  }
+</style>

@@ -108,6 +108,57 @@ content:
             type: select
             options: [documented-fact, participant-recollection, trade-report, promotional-claim, historical-interpretation, open-question]
       - { name: tags, label: Tags, type: string, list: true }
+      - name: mesh
+        label: Editorial Mesh (canonical)
+        type: object
+        fields:
+          - name: section
+            label: Primary Section
+            type: select
+            required: true
+            options: [music, film-tv, art-design, technology, culture, places-systems]
+          - name: subjects
+            label: Canonical Subjects
+            type: string
+            list: true
+            required: true
+          - name: series
+            label: Canonical Series and Specials
+            type: select
+            list: true
+            options: [magazine-time-machine, 3dm, built-over]
+          - name: entities
+            label: Named Entities
+            type: object
+            fields:
+              - { name: people, label: People IDs, type: string, list: true }
+              - { name: organizations, label: Organization IDs, type: string, list: true }
+              - { name: places, label: Place IDs, type: string, list: true }
+              - { name: events, label: Event IDs, type: string, list: true }
+              - { name: works, label: Work IDs, type: string, list: true }
+              - { name: publications, label: Publication IDs, type: string, list: true }
+              - { name: technologies, label: Technology IDs, type: string, list: true }
+          - name: sourceArtifacts
+            label: Originating or Organizing Artifacts
+            type: object
+            list: true
+            fields:
+              - { name: id, label: Canonical Artifact ID, type: string }
+              - name: type
+                label: Artifact Type
+                type: select
+                options: [magazine, newspaper, book, paperback, photograph, map, catalog, film, broadcast, recording, manual, other]
+              - { name: label, label: Display Label, type: string }
+              - { name: publication, label: Publication ID, type: string }
+              - name: role
+                label: Story Role
+                type: select
+                options: [origin, organizing]
+          - name: storyModes
+            label: Story Modes
+            type: select
+            list: true
+            options: [archive-trail, comparative-history, connection-map, cultural-trail, field-report, media-genealogy, personal-history-trail, place-study, process-essay, systems-investigation, technical-explainer, visual-study]
       - { name: hero, label: Hero Image URL, type: string }
       - { name: heroImage, label: Hero Image URL (new field), type: string }
       - { name: heroAlt, label: Hero Alt Text, type: string }

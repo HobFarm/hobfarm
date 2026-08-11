@@ -24,12 +24,12 @@ test("3DM has one canonical hub and nested introductory article", () => {
 
   assert.match(hub, /THREE_DM_PATH/);
   assert.match(article, /canonical: "\/presents\/3-degrees-of-dick-miller\/enter-the-millerverse\/"/);
-  assert.match(articleRoutes, /!entry\.data\.presentsSeries/);
+  assert.match(articleRoutes, /!articleUsesSeries\(entry\.data, "3dm"\)/);
   assert.match(redirects, /\/projects\/hobfarm-tv\/3-degrees-of-dick-miller\s+\/presents\/3-degrees-of-dick-miller\/\s+301/);
   assert.match(redirects, /\/departments\/hobfarm-presents\/3dm\/\s+\/presents\/3-degrees-of-dick-miller\/\s+301/);
 });
 
-test("film-centered features use the 3DM group and preserve their former URLs", () => {
+test("legacy 3DM features preserve their URLs without entering the strict canonical series", () => {
   const articlePaths = [
     "src/content/articles/they-had-names-doll-family.mdx",
     "src/content/articles/topless-party-in-outer-space.md",
@@ -46,24 +46,19 @@ test("film-centered features use the 3DM group and preserve their former URLs", 
     assert.match(article, /^department: hobfarm-presents$/m);
     assert.match(article, /^series: 3dm$/m);
     assert.match(article, /^presentsSeries: 3dm$/m);
-    assert.match(
-      article,
-      new RegExp(
-        `^canonical: "/presents/3-degrees-of-dick-miller/${slug}/"$`,
-        "m",
-      ),
-    );
+    assert.match(article, /^mesh:\r?\n[\s\S]*?^  series: \[\]$/m);
+    assert.match(article, new RegExp(`^canonical: "/articles/${slug}/"$`, "m"));
     assert.match(
       redirects,
       new RegExp(
-        `/articles/${slug}/?\\s+/presents/3-degrees-of-dick-miller/${slug}/\\s+301`,
+        `/presents/3-degrees-of-dick-miller/${slug}/?\\s+/articles/${slug}/\\s+301`,
       ),
     );
   }
 
   assert.match(layout, /import Lightbox from "@\/components\/gallery\/Lightbox"/);
   assert.match(layout, /<Lightbox client:only="react" \/>/);
-  assert.match(presentsHub, /presentsSeries === "3dm"/);
+  assert.match(presentsHub, /articleUsesSeries\(article\.data, "3dm"\)/);
 });
 
 test("3DM launch uses the supplied editorial voice and honest media state", () => {
@@ -122,7 +117,7 @@ test("3DM logo is rendered uncropped and entries remain discoverable", () => {
   assert.match(hero, /object-fit:contain/);
   assert.match(card, /object-fit: contain/);
   assert.match(search, /href: articlePath\(post\)/);
-  assert.match(rss, /entry\.data\.presentsSeries === "3dm"/);
+  assert.match(rss, /articleUsesSeries\(entry\.data, "3dm"\)/);
 });
 
 test("3DM links its interactive GPT companion from the hub and entry layout", () => {

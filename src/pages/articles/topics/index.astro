@@ -1,0 +1,36 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Breadcrumbs from "@/components/global/Breadcrumbs.astro";
+import EditorialSectionRail from "@/components/articles/EditorialSectionRail.astro";
+import EditorialSubjectLinks from "@/components/articles/EditorialSubjectLinks.astro";
+import { getArticleSubjectCounts, getPublishedArticles } from "@/lib/articles";
+
+const subjects = getArticleSubjectCounts(await getPublishedArticles()).filter((subject) => subject.count >= 2);
+---
+
+<BaseLayout
+  title="Article subjects | HobFarm"
+  description="Browse recurring subjects across HobFarm Editorial, from media history and creative systems to regional history, music, film, art, and technology."
+  canonical="/articles/topics/"
+>
+  <ContentPanel>
+    <Wrapper variant="standard" class="py-8 lg:py-12">
+      <Breadcrumbs items={[
+        { label: "Home", href: "/" },
+        { label: "Articles", href: "/articles/" },
+        { label: "Subjects" },
+      ]} />
+      <div class="mt-7"><EditorialSectionRail /></div>
+      <header class="mt-10 max-w-3xl">
+        <p class="font-mono text-[10px] uppercase tracking-widest text-accent-cyan">Editorial index</p>
+        <h1 class="mt-3 font-display text-4xl font-light text-white">Article subjects</h1>
+        <p class="mt-4 text-base leading-relaxed text-base-300">
+          These subject pages appear only when at least two published articles share a canonical subject. They are a cross-section of the archive, not another set of desks.
+        </p>
+      </header>
+      <EditorialSubjectLinks subjects={subjects} heading="Recurring subjects" />
+    </Wrapper>
+  </ContentPanel>
+</BaseLayout>

@@ -24,12 +24,42 @@ tags:
 heroImage: https://cdn.hob.farm/articles/topless-party/topless-party-hero.png
 socialImage: https://cdn.hob.farm/articles/topless-party/topless-party-hero.png
 heroAlt: "Retro magazine-style illustration of a space-age cocktail lounge in orbit, filled with reel-to-reel machines, vinyl records, monitors, musicians, and labeled library-music file drawers."
-canonical: "/presents/3-degrees-of-dick-miller/topless-party-in-outer-space/"
+canonical: "/articles/topless-party-in-outer-space/"
 relatedArticles:
   - mad-trump-and-the-magazine-time-machine
   - 1956-automation
   - 1985-future-tech
 draft: false
+mesh:
+  section: music
+  subjects:
+    - library-music
+    - film-music
+    - media-history
+    - music-discovery
+    - advertising
+  series: []
+  entities:
+    people:
+      - piero-umiliani
+      - giuliano-sorgini
+      - leonard-nimoy
+      - bob-crewe
+    organizations: []
+    places: []
+    events: []
+    works:
+      - lavoro-e-tempo-libero
+    publications: []
+    technologies: []
+  sourceArtifacts:
+    - id: lavoro-e-tempo-libero-record
+      type: recording
+      label: Giuliano Sorgini, Lavoro e tempo libero
+      role: origin
+  storyModes:
+    - media-genealogy
+    - cultural-trail
 ---
 
 Spotify opened the wrong door, which is usually how the best rooms are found.

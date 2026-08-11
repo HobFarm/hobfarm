@@ -67,6 +67,34 @@ sourceNotes:
     url: "https://www.ebsco.com/research-starters/mathematics/six-degrees-kevin-bacon"
     note: "EBSCO Research Starter used for the game's January 1994 origin, its Albright College creators, and the graph-theory definition of a connection."
     type: documented-fact
+mesh:
+  section: film-tv
+  subjects:
+    - film-history
+    - cult-film
+    - character-actors
+    - production-systems
+  series:
+    - 3dm
+  entities:
+    people:
+      - dick-miller
+      - billy-barty
+      - roger-corman
+    organizations:
+      - new-world-pictures
+    places: []
+    events: []
+    works:
+      - the-undead
+      - a-bucket-of-blood
+      - the-howling
+    publications: []
+    technologies: []
+  sourceArtifacts: []
+  storyModes:
+    - connection-map
+    - media-genealogy
 ---
 
 Every movie leads somewhere. The interesting ones lead to Dick Miller.

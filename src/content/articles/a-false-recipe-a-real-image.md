@@ -17,6 +17,28 @@ hero: https://cdn.hob.farm/blog/grimoire/grimoire-cross-pollination-hero.png
 heroAlt: "A speculative archive artifact: a false fabrication recipe rendered as a real, compelling image."
 publishedAt: 2026-06-09
 draft: false
+mesh:
+  section: art-design
+  subjects:
+    - creative-systems
+    - speculative-design
+    - knowledge-systems
+    - visual-development
+  series: []
+  entities:
+    people: []
+    organizations: []
+    places: []
+    events: []
+    works: []
+    publications: []
+    technologies:
+      - grimoire
+      - ai-image-generation
+  sourceArtifacts: []
+  storyModes:
+    - process-essay
+    - visual-study
 ---
 
 The Grimoire recently generated a card called **Molten Kiltie Forge**.

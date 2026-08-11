@@ -301,14 +301,15 @@ test("RSS is discoverable and new published articles populate the feed", () => {
   assert.match(articlesPage, /href="#article-subscribe"/);
   assert.match(articlesPage, /Subscribe to articles/);
   assert.match(rss, /getPublishedArticles\(\)/);
-  assert.match(rss, /categories: post\.data\.tags/);
+  assert.match(rss, /getArticleSectionLabel\(post\.data\)/);
+  assert.match(rss, /post\.data\.mesh\?\.subjects/);
 });
 
 test("the Articles cover story prefers each article's hero over a series logo", () => {
   const articlesPage = read("src/pages/articles/index.astro");
 
   assert.match(articlesPage, /getArticleHero\(coverStory\.data\)/);
-  assert.match(articlesPage, /coverHero === THREE_DM_LOGO/);
+  assert.doesNotMatch(articlesPage, /THREE_DM_LOGO/);
   assert.match(articlesPage, /timeZone: "UTC"/);
   assert.doesNotMatch(
     articlesPage,

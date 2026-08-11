@@ -1,8 +1,8 @@
 import { articleMarkdown, getPublicAgentArticles, markdownResponse } from "@/lib/agent-corpus";
-import { stripArticleExt } from "@/lib/articles";
+import { articleUsesSeries, stripArticleExt } from "@/lib/articles";
 
 export async function getStaticPaths() {
-  const entries = (await getPublicAgentArticles()).filter((entry) => entry.data.presentsSeries === "3dm");
+  const entries = (await getPublicAgentArticles()).filter((entry) => articleUsesSeries(entry.data, "3dm"));
   return entries.map((entry) => ({
     params: { slug: stripArticleExt(entry.id).split("/").pop()! },
     props: { entry },

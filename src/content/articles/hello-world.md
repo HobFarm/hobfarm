@@ -13,6 +13,32 @@ tags:
 hero: https://cdn.hob.farm/pages/blog/hello_world_hero.png
 publishedAt: 2026-03-01
 draft: false
+mesh:
+  section: technology
+  subjects:
+    - cloud-computing
+    - multi-provider-ai
+    - software-architecture
+    - platform-economics
+  series: []
+  entities:
+    people: []
+    organizations:
+      - cloudflare
+      - hobfarm
+    places: []
+    events: []
+    works: []
+    publications: []
+    technologies:
+      - cloudflare-workers
+      - ai-gateway
+      - cloudflare-r2
+      - cloudflare-d1
+      - model-apis
+  sourceArtifacts: []
+  storyModes:
+    - technical-explainer
 ---
 
 ## Why Multi-Provider?

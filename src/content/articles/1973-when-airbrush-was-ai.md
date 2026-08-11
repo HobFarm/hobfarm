@@ -8,6 +8,32 @@ format: article
 status: published
 tags: ["1970s", "airbrush", "illustration", "history", "ai-parallels"]
 hero: https://cdn.hob.farm/pages/blog/airbrush_hero.png
+mesh:
+  section: art-design
+  subjects:
+    - commercial-illustration
+    - art-history
+    - creative-tools
+    - ai-image-generation
+    - visual-culture
+  series: []
+  entities:
+    people:
+      - hajime-sorayama
+    organizations:
+      - hipgnosis
+    places: []
+    events: []
+    works: []
+    publications: []
+    technologies:
+      - airbrush
+      - ai-image-generation
+      - stylefusion
+  sourceArtifacts: []
+  storyModes:
+    - comparative-history
+    - visual-study
 ---
 
 Open any magazine from 1973, a Playboy, a National Geographic, a Popular Mechanics, and you'll see the airbrush everywhere. Photorealistic illustrations of cars, faces, landscapes, all produced with a tool that most traditional illustrators considered cheating.

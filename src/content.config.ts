@@ -1,6 +1,12 @@
 import { defineCollection } from "astro:content";
 import { z } from "astro/zod";
 import { glob } from "astro/loaders";
+import {
+  editorialSectionSlugs,
+  editorialSeriesIds,
+  editorialStoryModes,
+  editorialSubjectIds,
+} from "./data/editorial-mesh";
 
 const contentRelationshipFields = {
   relatedWorkshop: z.array(z.string()).optional(),
@@ -10,6 +16,48 @@ const contentRelationshipFields = {
   relatedCharacters: z.array(z.string()).optional(),
   relatedVisualSystems: z.array(z.string()).optional(),
 };
+
+const editorialEntityGroups = z.object({
+  people: z.array(z.string()).default([]),
+  organizations: z.array(z.string()).default([]),
+  places: z.array(z.string()).default([]),
+  events: z.array(z.string()).default([]),
+  works: z.array(z.string()).default([]),
+  publications: z.array(z.string()).default([]),
+  technologies: z.array(z.string()).default([]),
+});
+
+const editorialMesh = z.object({
+  section: z.enum(editorialSectionSlugs),
+  subjects: z.array(z.enum(editorialSubjectIds)).min(1),
+  series: z.array(z.enum(editorialSeriesIds)).default([]),
+  entities: editorialEntityGroups,
+  sourceArtifacts: z
+    .array(
+      z.object({
+        id: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+        type: z.enum([
+          "magazine",
+          "newspaper",
+          "book",
+          "paperback",
+          "photograph",
+          "map",
+          "catalog",
+          "film",
+          "broadcast",
+          "recording",
+          "manual",
+          "other",
+        ]),
+        label: z.string(),
+        publication: z.string().optional(),
+        role: z.enum(["origin", "organizing"]),
+      }),
+    )
+    .default([]),
+  storyModes: z.array(z.enum(editorialStoryModes)).default([]),
+});
 
 const articles = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/articles" }),
@@ -21,6 +69,9 @@ const articles = defineCollection({
       description: z.string().optional(),
       author: z.string().default("d00d"),
       tags: z.array(z.string()).default([]),
+      // Canonical semantic layer. Kept additive while category, department,
+      // series, tags, and their existing routes remain compatibility inputs.
+      mesh: editorialMesh.optional(),
       category: z
         .enum([
           "technical",

@@ -2,10 +2,10 @@
 import { render } from "astro:content";
 import ThreeDMEntryLayout from "@/layouts/ThreeDMEntryLayout.astro";
 import { readingTime } from "@/lib/reading-time";
-import { getPublishedArticles, stripArticleExt } from "@/lib/articles";
+import { articleUsesSeries, getPublishedArticles, stripArticleExt } from "@/lib/articles";
 
 export async function getStaticPaths() {
-  const entries = (await getPublishedArticles()).filter((entry) => entry.data.presentsSeries === "3dm");
+  const entries = (await getPublishedArticles()).filter((entry) => articleUsesSeries(entry.data, "3dm"));
   return entries.map((entry) => ({
     params: { slug: stripArticleExt(entry.id).split("/").pop()! },
     props: { entry, related: entries.filter((candidate) => candidate.id !== entry.id).slice(0, 4) },

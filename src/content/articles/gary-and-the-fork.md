@@ -17,6 +17,30 @@ hero: https://cdn.hob.farm/blog/gary-fork/gary-hero.png?v=20260612
 heroAlt: "Title card for Gary and the Fork: a recurring guinea pig character and the utensil that haunted his image thread."
 publishedAt: 2026-06-12
 draft: false
+mesh:
+  section: technology
+  subjects:
+    - model-behavior
+    - ai-image-generation
+    - prompt-engineering
+    - creative-workflows
+  series: []
+  entities:
+    people: []
+    organizations:
+      - openai
+    places: []
+    events: []
+    works: []
+    publications: []
+    technologies:
+      - chatgpt
+      - gpt-4o
+      - ai-image-generation
+  sourceArtifacts: []
+  storyModes:
+    - field-report
+    - systems-investigation
 ---
 
 *A field note on haunted conversations, repeated images, and one accidental experiment.*

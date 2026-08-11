@@ -27,6 +27,41 @@ relatedArticles:
   - 1956-automation
   - 1973-when-airbrush-was-ai
 draft: false
+mesh:
+  section: culture
+  subjects:
+    - publishing
+    - satire
+    - censorship
+    - media-history
+  series:
+    - magazine-time-machine
+  entities:
+    people:
+      - harvey-kurtzman
+      - hugh-hefner
+      - donald-trump
+    organizations:
+      - ec-comics
+      - playboy-enterprises
+    places: []
+    events: []
+    works: []
+    publications:
+      - mad-magazine
+      - trump-1957
+      - trump-magazine
+      - national-lampoon
+    technologies: []
+  sourceArtifacts:
+    - id: trump-1957-issues-one-and-two
+      type: magazine
+      label: TRUMP issues 1 and 2 (1957)
+      publication: trump-1957
+      role: origin
+  storyModes:
+    - archive-trail
+    - media-genealogy
 ---
 
 I started this because I was reading about MAD magazine in the 1950s.

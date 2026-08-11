@@ -110,6 +110,42 @@ sourceNotes:
     url: "https://catalog.afi.com/Catalog/PersonDetails/137604"
     note: "AFI filmography used for Eilers' career through Stage to Tucson, released in 1951."
     type: documented-fact
+mesh:
+  section: film-tv
+  subjects:
+    - film-history
+    - pre-code-hollywood
+    - musical-film
+    - great-depression
+    - character-actors
+  series:
+    - 3dm
+  entities:
+    people:
+      - alice-white
+      - marion-byron
+      - sally-eilers
+      - dick-miller
+    organizations:
+      - first-national-pictures
+      - warner-bros
+    places: []
+    events:
+      - great-depression
+    works:
+      - broadway-babies
+      - the-last-hurrah
+      - the-undead
+    publications: []
+    technologies: []
+  sourceArtifacts:
+    - id: broadway-babies-1929-film
+      type: film
+      label: Broadway Babies (1929)
+      role: origin
+  storyModes:
+    - connection-map
+    - media-genealogy
 ---
 
 *Broadway Babies* ends with $170,000 in gangster money and a Broadway show.

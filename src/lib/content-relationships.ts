@@ -49,10 +49,10 @@ export type AssetManifestRef = {
 };
 
 export const relatedContentKindLabels: Record<RelatedContentKind, string> = {
-  workshop: "Workshop",
-  academy: "Academy",
-  product: "Shop",
-  article: "Article",
+  workshop: "Behind this work",
+  academy: "Learn the method",
+  product: "Use the finished work",
+  article: "Read the article",
   character: "Character",
   "visual-system": "Visual system",
 };

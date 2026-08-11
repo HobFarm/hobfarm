@@ -1,0 +1,76 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Breadcrumbs from "@/components/global/Breadcrumbs.astro";
+import EditorialSectionRail from "@/components/articles/EditorialSectionRail.astro";
+import ArticleCard from "@/components/articles/ArticleCard.astro";
+import {
+  articlePath,
+  articleSubjectPath,
+  getArticleSubjectCounts,
+  getPublishedArticles,
+} from "@/lib/articles";
+import { getEditorialSubject } from "@/data/editorial-mesh";
+
+export async function getStaticPaths() {
+  const articles = await getPublishedArticles();
+  return getArticleSubjectCounts(articles)
+    .filter((subject) => subject.count >= 2)
+    .map((subject) => ({
+      params: { subject: subject.id },
+      props: {
+        subject,
+        posts: articles.filter((article) => article.data.mesh?.subjects.includes(subject.id)),
+      },
+    }));
+}
+
+const { subject, posts } = Astro.props;
+const registered = getEditorialSubject(subject.id);
+const label = registered?.label ?? subject.label;
+const canonical = articleSubjectPath(subject.id);
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: `${label} articles`,
+  url: new URL(canonical, Astro.site ?? "https://hob.farm").toString(),
+  mainEntity: {
+    "@type": "ItemList",
+    numberOfItems: posts.length,
+    itemListElement: posts.map((post, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: post.data.title,
+      url: new URL(`${articlePath(post)}/`, Astro.site ?? "https://hob.farm").toString(),
+    })),
+  },
+};
+---
+
+<BaseLayout
+  title={`${label} articles | HobFarm`}
+  description={`Published HobFarm articles connected by the subject ${label}.`}
+  canonical={canonical}
+  structuredData={structuredData}
+>
+  <ContentPanel>
+    <Wrapper variant="standard" class="py-8 lg:py-12">
+      <Breadcrumbs items={[
+        { label: "Home", href: "/" },
+        { label: "Articles", href: "/articles/" },
+        { label: "Subjects", href: "/articles/topics/" },
+        { label },
+      ]} />
+      <div class="mt-7"><EditorialSectionRail /></div>
+      <header class="mt-10">
+        <p class="font-mono text-[10px] uppercase tracking-widest text-accent-cyan">Subject</p>
+        <h1 class="mt-3 font-display text-4xl font-light text-white">{label}</h1>
+        <p class="mt-3 text-sm text-base-400">{posts.length} published articles across the Editorial sections.</p>
+      </header>
+      <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {posts.map((post) => <ArticleCard post={post} />)}
+      </div>
+    </Wrapper>
+  </ContentPanel>
+</BaseLayout>

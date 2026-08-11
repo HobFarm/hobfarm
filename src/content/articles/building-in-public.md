@@ -14,6 +14,30 @@ hero: https://cdn.hob.farm/pages/blog/building-in-public.png
 publishedAt: 2026-03-01
 featured: true
 draft: false
+mesh:
+  section: technology
+  subjects:
+    - artificial-intelligence
+    - creative-workflows
+    - multi-agent-systems
+    - schema-design
+    - publishing-workflow
+  series: []
+  entities:
+    people: []
+    organizations:
+      - hobfarm
+    places: []
+    events: []
+    works: []
+    publications: []
+    technologies:
+      - artificial-intelligence
+      - codex
+  sourceArtifacts: []
+  storyModes:
+    - technical-explainer
+    - process-essay
 ---
 
 ## The Multi-Agent Workflow

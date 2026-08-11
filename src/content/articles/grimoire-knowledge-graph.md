@@ -14,6 +14,28 @@ hero: https://cdn.hob.farm/pages/blog/grimoire_knowledge.png
 publishedAt: 2026-02-01
 featured: false
 draft: false
+mesh:
+  section: technology
+  subjects:
+    - knowledge-systems
+    - visual-systems
+    - artificial-intelligence
+    - schema-design
+  series: []
+  entities:
+    people: []
+    organizations: []
+    places: []
+    events: []
+    works: []
+    publications: []
+    technologies:
+      - grimoire
+      - stylefusion
+      - artificial-intelligence
+  sourceArtifacts: []
+  storyModes:
+    - technical-explainer
 ---
 
 ## The Vocabulary Problem

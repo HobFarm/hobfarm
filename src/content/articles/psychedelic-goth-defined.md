@@ -15,6 +15,27 @@ hero: https://cdn.hob.farm/blog/psychedelic-goth/psychedelic-goth.png
 heroAlt: "Psychedelic goth: a dark ground with toxic violet, poison green, and electric blue, impossible recursive space and melting macabre forms."
 publishedAt: 2026-06-07
 draft: false
+mesh:
+  section: art-design
+  subjects:
+    - psychedelic-art
+    - gothic-art
+    - visual-systems
+    - aesthetics
+    - art-history
+  series: []
+  entities:
+    people: []
+    organizations: []
+    places: []
+    events: []
+    works: []
+    publications: []
+    technologies: []
+  sourceArtifacts: []
+  storyModes:
+    - visual-study
+    - cultural-trail
 ---
 
 A few years ago someone asked r/goth a simple question: is psychedelic goth a thing? Thirty-seven people answered. Every single answer was a band name. Siouxsie. Fields of the Nephilim. The Legendary Pink Dots. Red Temple Spirits. Not one person posted a picture, named a visual artist, or described what the style looks like. The thread reached its own verdict: it's not an established genre, and if it's not, make it a thing.

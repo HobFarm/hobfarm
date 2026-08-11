@@ -8,9 +8,10 @@ import {
   getPublicAgentArticles,
   textResponse,
 } from "@/lib/agent-corpus";
+import { articleUsesSeries } from "@/data/editorial-mesh";
 
 export async function GET() {
-  const seriesArticles = (await getPublicAgentArticles()).filter((entry) => entry.data.presentsSeries === "3dm");
+  const seriesArticles = (await getPublicAgentArticles()).filter((entry) => articleUsesSeries(entry.data, "3dm"));
   return textResponse(
     await buildSectionLlms(
       "HobFarm Presents Agent Index",

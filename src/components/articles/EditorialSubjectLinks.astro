@@ -1,0 +1,40 @@
+---
+import { articleSubjectPath, type ArticleSubjectCount } from "@/lib/articles";
+
+interface Props {
+  subjects: ArticleSubjectCount[];
+  heading?: string;
+  limit?: number;
+}
+
+const { subjects, heading = "Browse by subject", limit } = Astro.props;
+const visibleSubjects = (limit ? subjects.slice(0, limit) : subjects).filter((subject) => subject.count >= 2);
+---
+
+{visibleSubjects.length > 0 && (
+  <section class="editorial-subjects" aria-labelledby="editorial-subjects-heading">
+    <div class="editorial-subjects__heading">
+      <h2 id="editorial-subjects-heading">{heading}</h2>
+      <a href="/articles/topics/">All subjects</a>
+    </div>
+    <div class="editorial-subjects__links">
+      {visibleSubjects.map((subject) => (
+        <a href={articleSubjectPath(subject.id)}>
+          <span>{subject.label}</span>
+          <small>{subject.count}</small>
+        </a>
+      ))}
+    </div>
+  </section>
+)}
+
+<style>
+  .editorial-subjects { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #2c2440; }
+  .editorial-subjects__heading { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+  .editorial-subjects__heading h2 { margin: 0; color: #fff; font-family: var(--font-display); font-size: 1.45rem; font-weight: 300; }
+  .editorial-subjects__heading > a { color: #8f899f; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; }
+  .editorial-subjects__links { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1rem; }
+  .editorial-subjects__links a { display: inline-flex; align-items: center; gap: .45rem; border: 1px solid #2c2440; border-radius: 999px; padding: .4rem .7rem; color: #aaa5ba; font-family: var(--font-mono); font-size: .65rem; text-decoration: none; }
+  .editorial-subjects__links a:hover { border-color: #55d7ff80; color: #fff; }
+  .editorial-subjects__links small { color: #55d7ff; font-size: .55rem; }
+</style>

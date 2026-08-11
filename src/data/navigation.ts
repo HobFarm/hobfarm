@@ -1,4 +1,5 @@
 import { presentsSeries, workshopPrograms } from "@/data/site-hierarchy";
+import { editorialSections, editorialSectionPath } from "@/data/editorial-mesh";
 
 export type NavLink = { label: string; href: string; children?: NavLink[] };
 
@@ -12,7 +13,14 @@ const workshopNavLinks: NavLink[] = visibleWorkshopPrograms.flatMap((entry) => {
 });
 
 export const topNavLinks: NavLink[] = [
-  { label: "Articles", href: "/articles/" },
+  {
+    label: "Articles",
+    href: "/articles/",
+    children: editorialSections.map((section) => ({
+      label: "shortLabel" in section ? section.shortLabel : section.label,
+      href: editorialSectionPath(section.slug),
+    })),
+  },
   {
     label: "Presents",
     href: "/presents/",

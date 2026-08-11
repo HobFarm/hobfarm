@@ -15,6 +15,29 @@ hero: https://cdn.hob.farm/pages/blog/ir_extraction.png
 publishedAt: 2026-02-15
 featured: true
 draft: false
+mesh:
+  section: technology
+  subjects:
+    - ai-image-generation
+    - schema-design
+    - prompt-compilation
+    - visual-systems
+    - creative-tools
+  series: []
+  entities:
+    people: []
+    organizations: []
+    places: []
+    events: []
+    works: []
+    publications: []
+    technologies:
+      - stylefusion
+      - grimoire
+      - ai-image-generation
+  sourceArtifacts: []
+  storyModes:
+    - technical-explainer
 ---
 
 ## The Problem with Vibes

@@ -24,6 +24,34 @@ heroImage: https://cdn.hob.farm/articles/money-eats-medium/money-eats-medium.png
 socialImage: https://cdn.hob.farm/articles/money-eats-medium/money-eats-medium.png
 heroAlt: "A wall-sized collage traces magazines to television, internet creator platforms, and AI while a creator builds a new magazine rack."
 draft: false
+mesh:
+  section: culture
+  subjects:
+    - media-economics
+    - publishing
+    - independent-media
+    - platform-economics
+    - creative-labor
+  series: []
+  entities:
+    people:
+      - kurt-vonnegut
+      - roger-corman
+    organizations:
+      - youtube
+    places: []
+    events: []
+    works: []
+    publications:
+      - saturday-evening-post
+      - colliers
+      - cosmopolitan
+    technologies:
+      - artificial-intelligence
+  sourceArtifacts: []
+  storyModes:
+    - systems-investigation
+    - media-genealogy
 ---
 
 In 1980, Kurt Vonnegut told a room of writing students that they were learning a living craft inside a dying business.

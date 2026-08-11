@@ -76,7 +76,7 @@ import SearchIcon from "@/components/fundations/icons/Search.astro";
 </div>
 <script>
   type SearchItem = {
-    type: "article" | "comic" | "project" | "gallery" | "grimoire" | "help" | "changelog";
+    type: "article" | "comic" | "series" | "character" | "project" | "gallery" | "grimoire" | "help" | "changelog";
     title: string;
     description: string;
     href: string;
@@ -244,6 +244,7 @@ import SearchIcon from "@/components/fundations/icons/Search.astro";
         meta.className =
           "text-xs text-base-500 mt-4 uppercase tracking-wider";
         const metaParts: string[] = [item.type];
+        if (item.category) metaParts.push(item.category);
         const dateLabel = formatDate(item.date);
         if (dateLabel) metaParts.push(dateLabel);
         meta.textContent = metaParts.join(" · ");

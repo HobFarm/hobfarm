@@ -17,6 +17,31 @@ hero: https://cdn.hob.farm/blog/article-hero/you-own-nothing.png
 heroAlt: "Title card for You Do Not Own the AI You Pay For, about hosted AI access and permissioned infrastructure."
 publishedAt: 2026-06-16T00:00:00-07:00
 draft: false
+mesh:
+  section: technology
+  subjects:
+    - software-ownership
+    - artificial-intelligence
+    - platform-governance
+    - open-computing
+    - consumer-technology
+  series: []
+  entities:
+    people:
+      - dario-amodei
+    organizations:
+      - anthropic
+    places: []
+    events: []
+    works: []
+    publications: []
+    technologies:
+      - fable-5
+      - mythos-5
+      - open-weight-models
+  sourceArtifacts: []
+  storyModes:
+    - systems-investigation
 ---
 
 Anthropic's Fable 5 shutdown is a perfect little window into the future of consumer AI, and the view is ugly.

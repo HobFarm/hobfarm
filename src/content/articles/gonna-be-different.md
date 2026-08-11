@@ -79,6 +79,36 @@ relatedProject: "/presents/other-alice-adventures/"
 workshopCTA:
   label: "Explore the HobFarm Workshop"
   href: "/workshop/"
+mesh:
+  section: technology
+  subjects:
+    - interactive-fiction
+    - procedural-storytelling
+    - game-design
+    - creative-systems
+    - media-history
+  series: []
+  entities:
+    people: []
+    organizations: []
+    places: []
+    events: []
+    works:
+      - big-1988
+      - other-alice-adventures
+    publications: []
+    technologies:
+      - wonder-machine
+      - grimoire
+      - stylefusion
+  sourceArtifacts:
+    - id: big-electronic-comic-scene
+      type: film
+      label: Big (1988), electronic comic scene
+      role: origin
+  storyModes:
+    - media-genealogy
+    - process-essay
 ---
 
 When I was a kid, I saw *Big* when it was new. I loved the movie, watched it repeatedly on VHS, and never forgot the computer game with the frozen wizard.

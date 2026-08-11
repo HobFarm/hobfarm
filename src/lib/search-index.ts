@@ -3,6 +3,8 @@ import {
   articlePath,
   getArticleDate,
   getArticleDescription,
+  getArticleMeshKeywords,
+  getArticleSectionLabel,
   getPublishedArticles,
 } from "@/lib/articles";
 import { comicPath, getComicDate, getPublishedComics } from "@/lib/comics";
@@ -122,9 +124,13 @@ export async function buildSearchIndex(): Promise<SearchItem[]> {
       title: post.data.title,
       description: getArticleDescription(post.data),
       href: articlePath(post),
-      tags: post.data.tags,
-      category: resolveDepartment(post.data.department ?? post.data.category),
+      tags: [...new Set([...post.data.tags, ...getArticleMeshKeywords(post.data)])],
+      category: getArticleSectionLabel(post.data),
       date: getArticleDate(post).toISOString(),
+      notes: [
+        ...(post.data.mesh?.series ?? []),
+        ...(post.data.mesh?.storyModes ?? []),
+      ].join(" · "),
     }),
   );
 

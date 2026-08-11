@@ -2,23 +2,30 @@
 import type { Article } from "@/lib/articles";
 import {
   articlePath,
+  articleSubjectPath,
   articleTagPath,
+  getArticleAboutEntities,
   getArticleDate,
   getArticleDek,
   getArticleDepartment,
-  getArticleDepartmentLabel,
   getArticleDescription,
   getArticleHero,
   getArticleImage,
+  getArticleMeshKeywords,
+  getArticleSectionLabel,
+  getArticleSectionPath,
+  getArticleSubjectCounts,
   getArticleUpdatedDate,
   getPublishedArticles,
   getRelatedArticles,
 } from "@/lib/articles";
 import { departmentPath } from "@/data/departments";
+import { getEditorialSeries, getEditorialSubject } from "@/data/editorial-mesh";
 import BaseLayout from "./BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import ContentPanel from "@/components/ContentPanel.astro";
 import ShareButtons from "@/components/articles/ShareButtons.astro";
+import EditorialSectionRail from "@/components/articles/EditorialSectionRail.astro";
 import ArticleCard from "@/components/articles/ArticleCard.astro";
 import Lightbox from "@/components/gallery/Lightbox";
 import Breadcrumbs from "@/components/global/Breadcrumbs.astro";
@@ -42,13 +49,15 @@ const description = getArticleDescription(frontmatter);
 const dek = getArticleDek(frontmatter);
 const hero = getArticleHero(frontmatter);
 const seoImage = getArticleImage(frontmatter);
-const departmentLabel = getArticleDepartmentLabel(frontmatter);
 const department = getArticleDepartment(frontmatter);
-const departmentHref = department === "magazine-time-machine"
-  ? "/presents/magazine-time-machine/"
-  : department === "workshop-notes"
-    ? "/workshop/workshop-notes/"
-    : department ? departmentPath(department) : undefined;
+const sectionLabel = getArticleSectionLabel(frontmatter);
+const sectionHref = getArticleSectionPath(frontmatter) ?? (department ? departmentPath(department) : undefined);
+const canonicalSeries = (frontmatter.mesh?.series ?? [])
+  .map((id) => getEditorialSeries(id))
+  .filter(
+    (series): series is NonNullable<ReturnType<typeof getEditorialSeries>> =>
+      Boolean(series),
+  );
 const formattedDate = publishedAt.toLocaleDateString("en-US", {
   year: "numeric",
   month: "long",
@@ -85,6 +94,32 @@ const heroSrcset = hero ? getCdnImageSrcset(hero, [640, 960, 1280, 1600]) : unde
 
 const allArticles = await getPublishedArticles();
 const relatedArticles = getRelatedArticles(article, allArticles, 4);
+const meshKeywords = getArticleMeshKeywords(frontmatter);
+const denseSubjectIds = new Set(
+  getArticleSubjectCounts(allArticles)
+    .filter((subject) => subject.count >= 2)
+    .map((subject) => subject.id),
+);
+const articleSubjects = (frontmatter.mesh?.subjects ?? []).map((id) => ({
+  id,
+  label: getEditorialSubject(id)?.label ?? id,
+  href: denseSubjectIds.has(id) ? articleSubjectPath(id) : undefined,
+}));
+const entityRecords = getArticleAboutEntities(frontmatter);
+const schemaTypeByEntity = {
+  people: "Person",
+  organizations: "Organization",
+  places: "Place",
+  events: "Event",
+  works: "CreativeWork",
+  publications: "CreativeWork",
+  technologies: "Thing",
+} as const;
+const aboutEntities = entityRecords.map((entity) => ({
+  "@type": schemaTypeByEntity[entity.type],
+  name: entity.label,
+  identifier: entity.id,
+}));
 const relationshipItems = await resolveRelatedContent({
   relatedWorkshop: frontmatter.relatedWorkshop,
   relatedAcademy: frontmatter.relatedAcademy,
@@ -156,7 +191,9 @@ const articleJsonLd = {
     },
   },
   mainEntityOfPage: canonicalUrl,
-  keywords: frontmatter.tags,
+  articleSection: sectionLabel,
+  keywords: meshKeywords,
+  about: aboutEntities.length ? aboutEntities : undefined,
 };
 ---
 
@@ -169,13 +206,21 @@ const articleJsonLd = {
   type="article"
   publishedTime={publishedAt.toISOString()}
   modifiedTime={(updatedAt ?? publishedAt).toISOString()}
-  tags={frontmatter.tags}
+  tags={meshKeywords}
   structuredData={articleJsonLd}
 >
   <section>
     <ContentPanel>
       <Wrapper variant="standard" class="pt-5">
-        <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Articles", href: "/articles/" }, { label: frontmatter.title }]} />
+        <Breadcrumbs items={[
+          { label: "Home", href: "/" },
+          { label: "Articles", href: "/articles/" },
+          ...(sectionHref ? [{ label: sectionLabel, href: sectionHref }] : []),
+          { label: frontmatter.title },
+        ]} />
+        <div class="mt-5">
+          <EditorialSectionRail currentSection={frontmatter.mesh?.section} />
+        </div>
       </Wrapper>
       {hero && (
         <div class="relative overflow-hidden rounded-t-lg aspect-[4/3] sm:aspect-21/9">
@@ -194,18 +239,34 @@ const articleJsonLd = {
             <div class="flex flex-wrap items-center gap-3 text-xs uppercase text-base-400">
               <time datetime={publishedAt.toISOString()}>{formattedDate}</time>
               <span>&middot;</span>
+              <span>By {frontmatter.author}</span>
+              <span>&middot;</span>
               <span>{readingTime}</span>
-              {department && (
+              {updatedAt && (
+                <>
+                  <span>&middot;</span>
+                  <span>Updated {updatedAt.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" })}</span>
+                </>
+              )}
+              {sectionHref && (
                 <>
                   <span>&middot;</span>
                   <a
-                    href={departmentHref}
+                    href={sectionHref}
                     class="font-mono text-accent-cyan hover:text-base-100 transition-colors"
                   >
-                    {departmentLabel}
+                    {sectionLabel}
                   </a>
                 </>
               )}
+              {canonicalSeries.map((series) => (
+                <>
+                  <span>&middot;</span>
+                  <a href={series.href} class="font-mono text-accent-magenta-bright hover:text-base-100 transition-colors">
+                    {series.label}
+                  </a>
+                </>
+              ))}
             </div>
             <h1 class="mt-3 sm:mt-4 text-2xl sm:text-3xl lg:text-4xl font-light tracking-tight text-base-100 text-balance">
               {frontmatter.title}
@@ -222,9 +283,31 @@ const articleJsonLd = {
           <div class="flex flex-wrap items-center gap-3 text-xs uppercase text-base-400">
             <time datetime={publishedAt.toISOString()}>{formattedDate}</time>
             <span>&middot;</span>
-            <span>{readingTime}</span>
+            <span>By {frontmatter.author}</span>
             <span>&middot;</span>
-            <span class="font-mono text-accent-cyan">{departmentLabel}</span>
+            <span>{readingTime}</span>
+            {updatedAt && (
+              <>
+                <span>&middot;</span>
+                <span>Updated {updatedAt.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" })}</span>
+              </>
+            )}
+            {sectionHref && (
+              <>
+                <span>&middot;</span>
+                <a href={sectionHref} class="font-mono text-accent-cyan hover:text-base-100 transition-colors">
+                  {sectionLabel}
+                </a>
+              </>
+            )}
+            {canonicalSeries.map((series) => (
+              <>
+                <span>&middot;</span>
+                <a href={series.href} class="font-mono text-accent-magenta-bright hover:text-base-100 transition-colors">
+                  {series.label}
+                </a>
+              </>
+            ))}
           </div>
           <h1 class="mt-4 text-3xl lg:text-4xl font-light tracking-tight text-base-100 text-balance">
             {frontmatter.title}
@@ -237,7 +320,12 @@ const articleJsonLd = {
 
       <Wrapper variant="narrow" class="mt-6">
         <div class="flex flex-wrap gap-2">
-          {frontmatter.series && (
+          {canonicalSeries.map((series) => (
+            <a href={series.href} class="text-xs font-mono px-2 py-1 border border-accent-magenta-bright/40 text-accent-magenta-bright">
+              {series.label}
+            </a>
+          ))}
+          {frontmatter.series && canonicalSeries.length === 0 && (
             <span class="text-xs font-mono px-2 py-1 border border-accent-cyan/40 text-accent-cyan capitalize">
               {frontmatter.series}
             </span>
@@ -251,6 +339,26 @@ const articleJsonLd = {
             </a>
           ))}
         </div>
+        {articleSubjects.length > 0 && (
+          <div class="mt-4 border-t border-base-800 pt-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-base-500">Subjects</p>
+            <div class="mt-2 flex flex-wrap gap-2">
+              {articleSubjects.map((subject) => subject.href ? (
+                <a href={subject.href} class="text-xs font-mono text-base-300 underline decoration-base-700 underline-offset-4 hover:text-accent-cyan">{subject.label}</a>
+              ) : (
+                <span class="text-xs font-mono text-base-500">{subject.label}</span>
+              ))}
+            </div>
+          </div>
+        )}
+        {entityRecords.length > 0 && (
+          <div class="mt-4 border-t border-base-800 pt-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-base-500">People, places, and works in this article</p>
+            <p class="mt-2 text-xs leading-relaxed text-base-400">
+              {entityRecords.slice(0, 8).map((entity) => entity.label).join(" · ")}
+            </p>
+          </div>
+        )}
       </Wrapper>
 
       <Wrapper variant="narrow" class="mt-8">

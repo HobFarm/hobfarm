@@ -13,7 +13,8 @@ import {
   resolveDepartment,
 } from "@/data/departments";
 import { visualSystemsForDepartment } from "@/data/visual-systems";
-import { getArticleDepartment, getPublishedArticles } from "@/lib/articles";
+import { articleUsesSeries } from "@/data/editorial-mesh";
+import { getPublishedArticles } from "@/lib/articles";
 import { getPublishedComics } from "@/lib/comics";
 import { getProductsByDepartment } from "@/lib/products";
 
@@ -21,7 +22,7 @@ const SLUG = "magazine-time-machine";
 const department = getDepartment(SLUG)!;
 
 const posts = (await getPublishedArticles()).filter(
-  (p) => getArticleDepartment(p.data) === SLUG,
+  (p) => articleUsesSeries(p.data, SLUG),
 );
 const visuals = (await getCollection("gallery"))
   .filter((e) => !e.data.draft)

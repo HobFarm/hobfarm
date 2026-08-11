@@ -10,6 +10,9 @@
     "test": "node --test tests/*.test.mjs",
     "audit:oaa-public": "node scripts/audit-other-alice-public-bundle.mjs",
     "audit:academy-paid": "node scripts/audit-academy-paid-content.mjs",
+    "audit:editorial-mesh": "node scripts/audit-editorial-mesh.mjs",
+    "audit:site-structure": "node scripts/audit-site-structure.mjs",
+    "report:editorial-mesh": "node scripts/generate-editorial-mesh-reports.mjs",
     "build:self-defense-assets": "node scripts/build-intellectual-self-defense-assets.mjs",
     "build:too-big-for-box-assets": "node scripts/build-too-big-for-box-assets.mjs",
     "manifest:too-big-for-box-assets": "node scripts/build-too-big-for-box-manifest.mjs",
@@ -75,7 +78,8 @@
     "@types/node": "^26.0.1",
     "@types/three": "^0.183.1",
     "typescript": "^5.9.3",
-    "wrangler": "^4.119.0"
+    "wrangler": "^4.119.0",
+    "yaml": "^2.9.0"
   },
   "overrides": {
     "esbuild": "^0.28.1",

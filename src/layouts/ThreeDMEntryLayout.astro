@@ -8,7 +8,7 @@ import MediaPlayer from "@/components/media/MediaPlayer.astro";
 import ConnectionChain from "@/components/presents/ConnectionChain.astro";
 import ThreeDMEntryCard from "@/components/presents/ThreeDMEntryCard.astro";
 import Lightbox from "@/components/gallery/Lightbox";
-import { articlePath, getArticleDate, getArticleDescription, getArticleHero, getArticleUpdatedDate } from "@/lib/articles";
+import { articlePath, getArticleDate, getArticleDescription, getArticleHero, getArticleSectionLabel, getArticleSectionPath, getArticleUpdatedDate } from "@/lib/articles";
 import { THREE_DM_GPT_URL, THREE_DM_LOGO, THREE_DM_PATH } from "@/data/presents-titles";
 
 interface Props {
@@ -27,6 +27,8 @@ const image = getArticleHero(data) ?? THREE_DM_LOGO;
 const socialImage = data.socialImage ?? image;
 const usesSeriesLogo = image === THREE_DM_LOGO;
 const description = getArticleDescription(data);
+const sectionLabel = getArticleSectionLabel(data);
+const sectionHref = getArticleSectionPath(data);
 const entryType = (data.entryType ?? "article").replaceAll("-", " ");
 const heroArrangement = data.arrangement === "horizontal-hero" ? "horizontal" : "vertical";
 const videoObject = data.video
@@ -54,6 +56,7 @@ const structuredData = {
       author: { "@type": "Person", name: data.author },
       publisher: { "@id": "https://hob.farm/#organization" },
       mainEntityOfPage: canonicalUrl,
+      articleSection: sectionLabel,
       isPartOf: { "@id": `${new URL(THREE_DM_PATH, "https://hob.farm")}#series` },
       associatedMedia: videoObject,
     },
@@ -95,7 +98,9 @@ const structuredData = {
             <img src={image} alt={data.heroAlt ?? data.title} width={usesSeriesLogo ? 900 : 1672} height={usesSeriesLogo ? 900 : 941} decoding="async" fetchpriority="high" />
           </div>
           <div class="three-dm-entry__intro">
-            <p class="three-dm-kicker">{entryType} · {publishedAt.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" })} · {readingTime}</p>
+            <p class="three-dm-kicker">
+              {sectionHref ? <a href={sectionHref}>{sectionLabel}</a> : sectionLabel} · {entryType} · {publishedAt.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" })} · {readingTime}
+            </p>
             <h1>{data.title}</h1>
             <p class="three-dm-entry__deck">{data.dek ?? data.excerpt}</p>
           </div>
@@ -180,6 +185,7 @@ const structuredData = {
   .three-dm-entry__hero--horizontal h1 { width:100%; max-width:none; font-size:clamp(2.1rem,5vw,4.75rem); letter-spacing:-.055em; line-height:.94; text-wrap:balance; }
   .three-dm-entry__hero--horizontal .three-dm-entry__deck { max-width:55rem; }
   .three-dm-kicker { margin:0; color:var(--miller-orange); font-family:var(--font-mono); font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; }
+  .three-dm-kicker a { color:inherit; text-decoration:underline; text-underline-offset:.25em; }
   .three-dm-entry__deck { max-width:42rem; margin:1.2rem 0 0; color:#d8cab1; font-size:clamp(1.05rem,2vw,1.35rem); line-height:1.55; }
   .three-dm-entry__media,.three-dm-entry__route { margin-top:1.5rem; }
   .three-dm-entry__body { padding-top:clamp(2.5rem,6vw,5rem); padding-bottom:4rem; }

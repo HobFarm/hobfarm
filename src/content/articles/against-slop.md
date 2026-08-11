@@ -16,6 +16,30 @@ hero: https://cdn.hob.farm/blog/article-hero/against-slop.png
 heroAlt: "Against Slop: the flattened, averaged version of an aesthetic, set against the named sources and rules it was compressed from."
 publishedAt: 2026-06-08
 draft: false
+mesh:
+  section: art-design
+  subjects:
+    - generative-media
+    - ai-image-generation
+    - psychedelic-art
+    - visual-systems
+    - creative-workflows
+  series: []
+  entities:
+    people: []
+    organizations: []
+    places: []
+    events: []
+    works: []
+    publications: []
+    technologies:
+      - ai-image-generation
+      - stylefusion
+      - grimoire
+  sourceArtifacts: []
+  storyModes:
+    - visual-study
+    - process-essay
 ---
 
 Type "psychedelic poster" into an image model and you get mushrooms and eyes. You wanted fractals and geometry, or liquid letterforms, or anything at all that wasn't mushrooms and eyes. The model isn't broken. It handed you the statistical average of everything the word "psychedelic" left behind on the internet. That average has a name now: slop.

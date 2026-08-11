@@ -2,9 +2,10 @@ import rss from "@astrojs/rss";
 import type { APIContext } from "astro";
 import { articlePath, getArticleDate, getArticleDescription, getPublishedArticles } from "@/lib/articles";
 import { THREE_DM_CDN_LOGO } from "@/data/presents-titles";
+import { articleUsesSeries } from "@/data/editorial-mesh";
 
 export async function GET(context: APIContext) {
-  const entries = (await getPublishedArticles()).filter((entry) => entry.data.presentsSeries === "3dm");
+  const entries = (await getPublishedArticles()).filter((entry) => articleUsesSeries(entry.data, "3dm"));
 
   return rss({
     title: "HobFarm Presents",

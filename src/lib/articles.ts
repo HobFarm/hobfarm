@@ -7,11 +7,32 @@ import {
   resolveDepartment,
 } from "@/data/departments";
 import { getPresentsTitle } from "@/data/presents-titles";
+import {
+  editorialEntityTypes,
+  editorialSectionPath,
+  type EditorialSeriesId,
+  type EditorialSubjectId,
+  getEditorialEntity,
+  getEditorialSection,
+  getEditorialSubject,
+} from "@/data/editorial-mesh";
+import {
+  scoreEditorialMeshRelated,
+  type RelatedArticleScore,
+} from "@/lib/editorial-mesh";
+import { isArticlePublicAt } from "@/lib/article-publication";
+
+export type { RelatedArticleScore } from "@/lib/editorial-mesh";
 
 export type Article = CollectionEntry<"articles">;
 export type ArticleData = Article["data"];
 export type ArticleTagCount = {
   tag: string;
+  count: number;
+};
+export type ArticleSubjectCount = {
+  id: EditorialSubjectId;
+  label: string;
   count: number;
 };
 
@@ -34,8 +55,11 @@ export function stripArticleExt(id: string): string {
 }
 
 export function articlePath(articleOrId: Article | string): string {
-  if (typeof articleOrId !== "string" && articleOrId.data.presentsSeries) {
-    const title = getPresentsTitle(articleOrId.data.presentsSeries);
+  if (
+    typeof articleOrId !== "string" &&
+    articleOrId.data.mesh?.series.includes("3dm")
+  ) {
+    const title = getPresentsTitle("3dm");
     const slug = stripArticleExt(articleOrId.id).split("/").pop();
     if (title && slug) return `${title.href}${slug}`;
   }
@@ -45,6 +69,10 @@ export function articlePath(articleOrId: Article | string): string {
 
 export function articleTagPath(tag: string): string {
   return `/articles/tags/${encodeURIComponent(normalizeArticleTag(tag))}/`;
+}
+
+export function articleSubjectPath(subject: string): string {
+  return `/articles/topics/${encodeURIComponent(subject)}/`;
 }
 
 export function normalizeArticleTag(tag: string): string {
@@ -97,17 +125,45 @@ export function getArticleDepartmentLabel(dataOrValue: ArticleData | string | un
   return getDepartmentLabel(value);
 }
 
+export function getArticleSection(data: ArticleData): string | undefined {
+  return data.mesh?.section;
+}
+
+export function getArticleSectionLabel(data: ArticleData): string {
+  return getEditorialSection(getArticleSection(data))?.label ?? getArticleDepartmentLabel(data);
+}
+
+export function getArticleSectionPath(data: ArticleData): string | undefined {
+  const section = getArticleSection(data);
+  return section ? editorialSectionPath(section) : undefined;
+}
+
+export function articleUsesSeries(data: ArticleData, seriesId: EditorialSeriesId): boolean {
+  return data.mesh?.series.includes(seriesId) ?? false;
+}
+
+export function getArticleMeshKeywords(data: ArticleData): string[] {
+  const mesh = data.mesh;
+  if (!mesh) return data.tags;
+
+  const entityLabels = editorialEntityTypes.flatMap((type) =>
+    mesh.entities[type].map((id) => getEditorialEntity(id)?.label ?? id),
+  );
+  return [...new Set([...mesh.subjects, ...mesh.series, ...entityLabels])];
+}
+
+export function getArticleAboutEntities(data: ArticleData) {
+  if (!data.mesh) return [];
+  return editorialEntityTypes.flatMap((type) =>
+    data.mesh!.entities[type].flatMap((id) => {
+      const entity = getEditorialEntity(id);
+      return entity ? [{ ...entity, type }] : [];
+    }),
+  );
+}
+
 export function isPublishedArticle(article: Article, now: Date = new Date()): boolean {
-  if (article.data.draft) return false;
-  const status = article.data.status ?? "published";
-  if (status === "draft" || status === "archived") return false;
-  // A scheduled entry may use `pubDate` as its reader-facing calendar date while
-  // `publishedAt` preserves the exact release instant.
-  const releaseDate =
-    status === "scheduled" && article.data.publishedAt
-      ? article.data.publishedAt
-      : getArticleDate(article);
-  return releaseDate.getTime() <= now.getTime();
+  return isArticlePublicAt(article.data, now);
 }
 
 export function byNewestArticle(a: Article, b: Article): number {
@@ -145,6 +201,37 @@ export function getArticleTagCounts(articles: Article[]): ArticleTagCount[] {
     .sort((a, b) => a.tag.localeCompare(b.tag, undefined, { sensitivity: "base" }));
 }
 
+export function getArticleSubjectCounts(articles: Article[]): ArticleSubjectCount[] {
+  const counts = new Map<EditorialSubjectId, number>();
+
+  for (const article of articles) {
+    for (const subject of new Set(article.data.mesh?.subjects ?? [])) {
+      counts.set(subject, (counts.get(subject) ?? 0) + 1);
+    }
+  }
+
+  return [...counts.entries()]
+    .map(([id, count]) => ({
+      id,
+      label: getEditorialSubject(id)?.label ?? id,
+      count,
+    }))
+    .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
+}
+
+export function scoreRelatedArticle(current: ArticleData, candidate: ArticleData): RelatedArticleScore {
+  if (!current.mesh || !candidate.mesh) {
+    const result: RelatedArticleScore = { score: 0, reasons: [] };
+    const currentDepartment = getArticleDepartment(current);
+    if (currentDepartment && getArticleDepartment(candidate) === currentDepartment) {
+      result.score += 1;
+      result.reasons.push(`legacy department: ${currentDepartment}`);
+    }
+    return result;
+  }
+  return scoreEditorialMeshRelated(current.mesh, candidate.mesh);
+}
+
 export function getRelatedArticles(current: Article, articles: Article[], limit = 4): Article[] {
   const currentSlug = stripArticleExt(current.id);
   const bySlug = new Map(articles.map((article) => [stripArticleExt(article.id), article]));
@@ -156,20 +243,11 @@ export function getRelatedArticles(current: Article, articles: Article[], limit 
       .slice(0, limit);
   }
 
-  const currentDepartment = getArticleDepartment(current.data);
-  const currentTags = new Set(current.data.tags.map(normalizeArticleTag));
-  const currentSeries = current.data.series;
-
   return articles
     .filter((article) => stripArticleExt(article.id) !== currentSlug)
     .map((article) => {
-      let score = 0;
-      if (currentSeries && article.data.series === currentSeries) score += 6;
-      if (currentDepartment && getArticleDepartment(article.data) === currentDepartment) score += 4;
-      for (const tag of article.data.tags) {
-        if (currentTags.has(normalizeArticleTag(tag))) score += 1;
-      }
-      return { article, score };
+      const relationship = scoreRelatedArticle(current.data, article.data);
+      return { article, ...relationship };
     })
     .filter(({ score }) => score > 0)
     .sort((a, b) => {

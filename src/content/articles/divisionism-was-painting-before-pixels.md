@@ -17,6 +17,28 @@ hero: https://cdn.hob.farm/blog/divisionism/divisionism-hero.png
 heroAlt: "A Divisionist surface of separated color marks that resolves into a unified image at distance, set beside its digital descendants."
 publishedAt: 2026-06-09
 draft: false
+mesh:
+  section: art-design
+  subjects:
+    - art-history
+    - color-theory
+    - visual-systems
+    - ai-image-generation
+    - visual-aesthetics
+  series: []
+  entities:
+    people: []
+    organizations: []
+    places: []
+    events: []
+    works: []
+    publications: []
+    technologies:
+      - ai-image-generation
+  sourceArtifacts: []
+  storyModes:
+    - comparative-history
+    - visual-study
 ---
 
 Divisionism sounds like the kind of art-history term that gets trapped in a museum label and never escapes.

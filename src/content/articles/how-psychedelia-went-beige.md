@@ -16,6 +16,28 @@ hero: https://cdn.hob.farm/blog/article-hero/how-psychedelia-went-beige.png
 heroAlt: "A beige, earth-toned mandala and sacred-geometry wellness scene: the default picture an image model returns for the word psychedelic."
 publishedAt: 2026-06-07
 draft: false
+mesh:
+  section: art-design
+  subjects:
+    - psychedelic-art
+    - generative-media
+    - festival-culture
+    - visual-culture
+    - ai-image-generation
+  series: []
+  entities:
+    people: []
+    organizations: []
+    places: []
+    events: []
+    works: []
+    publications: []
+    technologies:
+      - ai-image-generation
+  sourceArtifacts: []
+  storyModes:
+    - visual-study
+    - cultural-trail
 ---
 
 There is a default picture of the word "psychedelic," and lately that picture is beige.

@@ -3,8 +3,8 @@ import type { Article } from "@/lib/articles";
 import {
   articlePath,
   getArticleDate,
-  getArticleDepartmentLabel,
   getArticleHero,
+  getArticleSectionLabel,
 } from "@/lib/articles";
 import { readingTime } from "@/lib/reading-time";
 import { imageSrcset, transformImageUrl } from "@/lib/media-transforms";
@@ -37,7 +37,7 @@ const formattedDate = publishedAt.toLocaleDateString("en-US", {
   timeZone: "UTC",
 });
 
-const department = getArticleDepartmentLabel(post.data);
+const section = getArticleSectionLabel(post.data);
 const stats = post.body ? readingTime(post.body) : null;
 ---
 
@@ -83,7 +83,7 @@ const stats = post.body ? readingTime(post.body) : null;
             {title}
           </h3>
           <p class="mt-2 text-[10px] font-mono uppercase tracking-wider text-accent-cyan">
-            {department}
+            {section}
           </p>
         </div>
       </div>
@@ -109,7 +109,7 @@ const stats = post.body ? readingTime(post.body) : null;
             {title}
           </h3>
           <p class="mt-2 text-[10px] font-mono uppercase tracking-wider text-accent-cyan">
-            {department}
+          {section}
           </p>
         </div>
       </div>

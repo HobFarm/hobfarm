@@ -40,7 +40,7 @@ const next = lesson.nextLesson ? course.lessons.find((entry) => entry.lessonId =
     <p class="preview">{lesson.preview}</p>
     <div class="meta"><span>{lesson.module}</span><span>Evidence: {lesson.evidenceStatus.replace("_", " ")}</span></div>
   </Wrapper></ContentPanel></header>
-  <main><ContentPanel><Wrapper variant="standard" class="py-12 lg:py-18">
+  <div><ContentPanel><Wrapper variant="standard" class="py-12 lg:py-18">
     {lesson.access === "public" ? (
       <article class="lesson-body">
         <section><p class="eyebrow">What this lesson solves</p><h2>{lesson.objective}</h2><p>The Character / Mannequin Workshop evidence separates the subject from everything placed around it. Read the visible example first. Name only the traits supported by that evidence, then keep guesses and later styling outside the identity record.</p></section>
@@ -58,7 +58,7 @@ const next = lesson.nextLesson ? course.lessons.find((entry) => entry.lessonId =
         <CourseAccessCard course={course} />
       </div>
     )}
-  </Wrapper></ContentPanel></main>
+  </Wrapper></ContentPanel></div>
 </BaseLayout>
 
 <style>

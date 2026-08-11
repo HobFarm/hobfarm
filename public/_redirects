@@ -59,12 +59,14 @@
 /departments/hobfarm-presents/3dm/              /presents/3-degrees-of-dick-miller/   301
 /articles/3dm/enter-the-millerverse             /presents/3-degrees-of-dick-miller/enter-the-millerverse/   301
 /articles/3dm/enter-the-millerverse/            /presents/3-degrees-of-dick-miller/enter-the-millerverse/   301
-/articles/they-had-names-doll-family            /presents/3-degrees-of-dick-miller/they-had-names-doll-family/   301
-/articles/they-had-names-doll-family/           /presents/3-degrees-of-dick-miller/they-had-names-doll-family/   301
-/articles/topless-party-in-outer-space           /presents/3-degrees-of-dick-miller/topless-party-in-outer-space/   301
-/articles/topless-party-in-outer-space/          /presents/3-degrees-of-dick-miller/topless-party-in-outer-space/   301
-/articles/the-censor-eats-its-own-tail           /presents/3-degrees-of-dick-miller/the-censor-eats-its-own-tail/   301
-/articles/the-censor-eats-its-own-tail/          /presents/3-degrees-of-dick-miller/the-censor-eats-its-own-tail/   301
+# These three records keep their historical 3DM-shaped URLs as redirects, but
+# strict mesh membership now determines which articles appear in the series.
+/presents/3-degrees-of-dick-miller/they-had-names-doll-family    /articles/they-had-names-doll-family/       301
+/presents/3-degrees-of-dick-miller/they-had-names-doll-family/   /articles/they-had-names-doll-family/       301
+/presents/3-degrees-of-dick-miller/topless-party-in-outer-space  /articles/topless-party-in-outer-space/      301
+/presents/3-degrees-of-dick-miller/topless-party-in-outer-space/ /articles/topless-party-in-outer-space/      301
+/presents/3-degrees-of-dick-miller/the-censor-eats-its-own-tail  /articles/the-censor-eats-its-own-tail/      301
+/presents/3-degrees-of-dick-miller/the-censor-eats-its-own-tail/ /articles/the-censor-eats-its-own-tail/      301
 
 # Retired character sheet archive -> current Cute / Corrupted entry
 /gallery/character-dev/neon-ghoul   /gallery/cute-corrupted/kareena/   301
@@ -105,6 +107,12 @@
 /articles/category/dead-future-report/    /presents/magazine-time-machine/  301
 /articles/category/3-degrees-of-dick-miller   /presents/   301
 /articles/category/3-degrees-of-dick-miller/  /presents/   301
+
+# Editorial mesh v1 replaces the remaining old department-style archives.
+/articles/magazine-time-machine    /presents/magazine-time-machine/  301
+/articles/magazine-time-machine/   /presents/magazine-time-machine/  301
+/articles/essays-arguments         /articles/  301
+/articles/essays-arguments/        /articles/  301
 
 # Same remaps for the doubly-legacy /blog/category/* chain (one hop, no double).
 /blog/category/technical                  /workshop/workshop-notes/            301

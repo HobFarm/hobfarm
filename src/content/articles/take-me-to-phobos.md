@@ -96,6 +96,41 @@ relatedArticles:
   - 1985-future-tech
   - 1956-automation
   - how-the-money-eats-the-medium
+mesh:
+  section: technology
+  subjects:
+    - game-history
+    - interactive-fiction
+    - computing-history
+    - network-history
+    - research-methods
+  series: []
+  entities:
+    people: []
+    organizations:
+      - infocom
+      - computer-history-museum
+    places: []
+    events: []
+    works:
+      - colossal-cave-adventure
+      - zork
+      - leather-goddesses-of-phobos
+      - doom
+    publications:
+      - the-status-line
+    technologies:
+      - arpanet
+      - apple-i
+      - bbs
+  sourceArtifacts:
+    - id: leather-goddesses-of-phobos-package
+      type: catalog
+      label: Leather Goddesses of Phobos package and InfoComics advertisement
+      role: origin
+  storyModes:
+    - archive-trail
+    - media-genealogy
 ---
 
 I was finishing an article about the electronic comic book in *Big* when one of the citations failed inspection.

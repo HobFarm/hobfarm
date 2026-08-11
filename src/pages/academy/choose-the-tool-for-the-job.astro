@@ -19,12 +19,12 @@ import { academyToolRoute } from "@/data/academy-tool-route";
     <h1>{academyToolRoute.title}</h1>
     <p class="lead">{academyToolRoute.purpose} This preview records the questions. It does not recommend or rank providers yet.</p>
   </Wrapper></ContentPanel></header>
-  <main><ContentPanel><Wrapper variant="standard" class="py-12 lg:py-20">
+  <div><ContentPanel><Wrapper variant="standard" class="py-12 lg:py-20">
     <section aria-labelledby="route-heading"><p class="eyebrow">Route map</p><h2 id="route-heading">Describe the job before choosing the software.</h2>
       <ol class="questions">{academyToolRoute.questions.map((question) => <li><strong>{question.prompt}</strong>{question.choices && <span>{question.choices.join(" / ")}</span>}</li>)}</ol>
     </section>
     <aside><strong>The worksheet is not active.</strong><p>Provider facts, availability, pricing, and regional limits will be added only with a visible verification date. The finished tool will allow a chain of tools when one provider cannot meet the whole job.</p></aside>
-  </Wrapper></ContentPanel></main>
+  </Wrapper></ContentPanel></div>
 </BaseLayout>
 
 <style>

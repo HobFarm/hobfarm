@@ -42,7 +42,7 @@ const { course } = Astro.props;
     </Wrapper></ContentPanel>
   </header>
 
-  <main>
+  <div>
     <ContentPanel><Wrapper variant="standard" class="py-12 lg:py-18">
       <section class="problem-grid">
         <article><span>Production problem</span><p>{course.problem}</p></article>
@@ -97,7 +97,7 @@ const { course } = Astro.props;
         </section>
       )}
     </Wrapper></ContentPanel>
-  </main>
+  </div>
 </BaseLayout>
 
 <style>

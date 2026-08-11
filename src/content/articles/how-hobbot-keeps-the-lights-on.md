@@ -8,6 +8,30 @@ format: workshop-note
 status: published
 tags: ["automation", "hobbot", "pipeline", "infrastructure"]
 hero: https://cdn.hob.farm/pages/blog/hobbot_hero.png
+mesh:
+  section: technology
+  subjects:
+    - automation
+    - publishing-workflow
+    - cloud-computing
+    - solo-publishing
+  series: []
+  entities:
+    people: []
+    organizations:
+      - hobfarm
+      - cloudflare
+    places: []
+    events: []
+    works: []
+    publications: []
+    technologies:
+      - hobbot
+      - cloudflare-workers
+      - grimoire
+  sourceArtifacts: []
+  storyModes:
+    - technical-explainer
 ---
 
 Running a creative platform with a team of one means automation isn't optional. HobBot is the system that handles everything I'd rather not do manually: content scheduling, pipeline monitoring, status checks, and the tedious glue work between services.

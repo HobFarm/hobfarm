@@ -16,6 +16,33 @@ hero: https://cdn.hob.farm/blog/goth-get-boots/ggb-hero.png?v=20260612
 heroAlt: "Prompt Goth, Get Boots: the model's default name, outfit, and staging surfacing across three years of one person's AI chat archive."
 publishedAt: 2026-06-12
 draft: false
+mesh:
+  section: technology
+  subjects:
+    - model-behavior
+    - ai-image-generation
+    - synthetic-media
+    - prompt-engineering
+    - research-methods
+  series: []
+  entities:
+    people:
+      - laura-wattenberg
+      - max-read
+    organizations:
+      - openai
+    places: []
+    events: []
+    works: []
+    publications: []
+    technologies:
+      - chatgpt
+      - gpt-4o
+      - ai-image-generation
+  sourceArtifacts: []
+  storyModes:
+    - archive-trail
+    - systems-investigation
 ---
 
 There's a chat in my ChatGPT history titled "trying to get chat to sound human." It's from October 2023, one of my earliest conversations. In it, I asked the model to write like a novelist: an abandoned quarry, cursed by a witch. It gave me hushed tones, moonless nights, a palpable sense of dread, and a witch with a name it chose all by itself.

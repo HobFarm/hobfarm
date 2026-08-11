@@ -80,6 +80,32 @@ sourceNotes:
     url: "https://cms5.revize.com/revize/bucksport/Document_Center/Community/Our%20History/Legends_of_Jonathan_Buck.pdf"
     note: "Town history used for the monument, the leg-shaped stain, the later witch legend, and the lack of evidence that Buck ordered an execution."
     type: historical-interpretation
+mesh:
+  section: culture
+  subjects:
+    - personal-history
+    - regional-history
+    - folklore
+    - literary-history
+    - place-memory
+  series: []
+  entities:
+    people:
+      - stephen-king
+    organizations: []
+    places:
+      - bangor-maine
+      - thomas-hill-standpipe
+    events: []
+    works:
+      - it
+      - carrie
+    publications: []
+    technologies: []
+  sourceArtifacts: []
+  storyModes:
+    - personal-history-trail
+    - place-study
 ---
 
 After sitting down to watch *Tales from the Crypt* because I wanted something shorter than a movie, I ended up in the usual rabbit hole. Old EC horror comics led to *Creepshow*. *Creepshow* led to Stephen King. Stephen King led me back to a story I have been telling coworkers for years:

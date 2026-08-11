@@ -8,6 +8,34 @@ format: workshop-note
 status: published
 tags: ["solo-dev", "indie", "cloudflare", "business-model"]
 hero: https://cdn.hob.farm/pages/blog/solo_developer_hero.png
+mesh:
+  section: technology
+  subjects:
+    - indie-development
+    - cloud-computing
+    - solo-publishing
+    - automation
+    - platform-economics
+  series: []
+  entities:
+    people: []
+    organizations:
+      - cloudflare
+      - hobfarm
+    places: []
+    events: []
+    works: []
+    publications: []
+    technologies:
+      - cloudflare-workers
+      - cloudflare-d1
+      - cloudflare-r2
+      - stylefusion
+      - grimoire
+  sourceArtifacts: []
+  storyModes:
+    - technical-explainer
+    - process-essay
 ---
 
 HobFarm is a one-person operation. That's not a limitation statement; it's an architecture decision. When your team is one, every technical choice is also a business choice. Here's what that looks like in practice.

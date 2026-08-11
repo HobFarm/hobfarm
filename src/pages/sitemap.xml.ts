@@ -14,9 +14,15 @@ import {
 import {
   articlePath,
   getArticleDate,
+  getArticleSubjectCounts,
   getArticleUpdatedDate,
 } from "@/lib/articles";
 import { otherAliceProjectNav } from "@/data/other-alice-world-guide";
+import {
+  editorialSections,
+  editorialSectionPath,
+  editorialSeries,
+} from "@/data/editorial-mesh";
 
 type SitemapEntry = {
   loc: string;
@@ -29,6 +35,22 @@ const staticEntries: SitemapEntry[] = [
   { loc: absoluteUrl("/"), changefreq: "weekly", priority: "1.0" },
   { loc: absoluteUrl("/about/"), changefreq: "monthly", priority: "0.7" },
   { loc: absoluteUrl("/articles/"), changefreq: "daily", priority: "0.9" },
+  { loc: absoluteUrl("/articles/topics/"), changefreq: "weekly", priority: "0.6" },
+  ...editorialSections.map((section) => ({
+    loc: absoluteUrl(editorialSectionPath(section.slug)),
+    changefreq: "weekly" as const,
+    priority: "0.8",
+  })),
+  ...editorialSeries.map((series) => ({
+    loc: absoluteUrl(series.href),
+    changefreq: "weekly" as const,
+    priority: "0.8",
+  })),
+  {
+    loc: absoluteUrl("/articles/mesh.json"),
+    changefreq: "daily",
+    priority: "0.4",
+  },
   { loc: absoluteUrl("/gallery/"), changefreq: "weekly", priority: "0.9" },
   {
     loc: absoluteUrl("/presents/"),
@@ -113,6 +135,13 @@ export async function GET() {
     ]);
 
   const dynamicEntries: SitemapEntry[] = [
+    ...getArticleSubjectCounts(articles)
+      .filter((subject) => subject.count >= 2)
+      .map((subject) => ({
+        loc: absoluteUrl(`/articles/topics/${subject.id}/`),
+        changefreq: "weekly" as const,
+        priority: "0.6",
+      })),
     ...articles.map((article) => ({
       loc: absoluteUrl(`${articlePath(article)}/`),
       lastmod: formatDate(

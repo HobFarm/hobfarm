@@ -29,6 +29,29 @@ relatedArticles:
   - how-psychedelia-went-beige
 relatedProject: /workshop/stylefusion/
 draft: false
+mesh:
+  section: art-design
+  subjects:
+    - visual-systems
+    - character-design
+    - psychedelic-art
+    - ai-image-generation
+    - creative-workflows
+  series: []
+  entities:
+    people: []
+    organizations: []
+    places: []
+    events: []
+    works: []
+    publications: []
+    technologies:
+      - stylefusion
+      - ai-image-generation
+  sourceArtifacts: []
+  storyModes:
+    - process-essay
+    - visual-study
 ---
 
 Nearly twenty years ago, I watched a documentary about fractals and Benoit Mandelbrot. I think it was on PBS, or NOVA, or one of those public-television science shows that explained the universe with a soothing narrator and a bunch of math graphics that looked like they escaped from a wizard's computer.

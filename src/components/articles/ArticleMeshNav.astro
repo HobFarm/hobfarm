@@ -1,0 +1,59 @@
+---
+import {
+  editorialSections,
+  editorialSectionPath,
+  editorialSeries,
+} from "@/data/editorial-mesh";
+
+interface Props {
+  currentSection?: string;
+}
+
+const { currentSection } = Astro.props;
+---
+
+<nav aria-label="Browse the article archive">
+  <p class="font-mono text-[10px] uppercase tracking-widest text-base-500">
+    Primary sections
+  </p>
+  <div class="mt-3 flex flex-wrap gap-2 lg:flex-col">
+    <a
+      href="/articles/"
+      class:list={[
+        "text-xs font-mono px-3 py-1.5 border transition-colors",
+        !currentSection
+          ? "border-base-100 text-base-100"
+          : "border-base-700 text-base-400 hover:border-base-100 hover:text-base-100",
+      ]}
+    >
+      All articles
+    </a>
+    {editorialSections.map((section) => (
+      <a
+        href={editorialSectionPath(section.slug)}
+        class:list={[
+          "text-xs font-mono px-3 py-1.5 border transition-colors",
+          currentSection === section.slug
+            ? "border-base-100 text-base-100"
+            : "border-base-700 text-base-400 hover:border-base-100 hover:text-base-100",
+        ]}
+      >
+        {section.label}
+      </a>
+    ))}
+  </div>
+
+  <p class="mt-8 font-mono text-[10px] uppercase tracking-widest text-base-500">
+    Series and specials
+  </p>
+  <div class="mt-3 flex flex-col gap-2">
+    {editorialSeries.map((series) => (
+      <a
+        href={series.href}
+        class="text-xs font-mono text-base-400 transition-colors hover:text-base-100"
+      >
+        {series.label}
+      </a>
+    ))}
+  </div>
+</nav>

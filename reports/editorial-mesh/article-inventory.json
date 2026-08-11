@@ -1,0 +1,4218 @@
+{
+  "generatedAt": "2026-08-11T07:26:59.125Z",
+  "articleCount": 65,
+  "articles": [
+    {
+      "slug": "1956-automation",
+      "title": "IBM in the Bedroom: The 1956 Automation Joke That Still Works",
+      "status": "published",
+      "date": "2026-06-25T00:00:00.000Z",
+      "legacy": {
+        "category": "magazine-time-machine",
+        "department": "magazine-time-machine",
+        "series": "Magazine Time Machine",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "",
+        "format": "article"
+      },
+      "tags": [
+        "magazine-time-machine",
+        "ibm",
+        "automation",
+        "ai",
+        "robotics",
+        "media-history",
+        "visual-culture",
+        "labor"
+      ],
+      "relatedArticles": [
+        "1973-when-airbrush-was-ai"
+      ],
+      "centralObject": "A January 1956 Playboy automation cartoon and the technical future it accidentally kept describing.",
+      "primarySection": "technology",
+      "subjects": [
+        "automation",
+        "computing-history",
+        "artificial-intelligence",
+        "labor-history",
+        "retrofuturism",
+        "media-history"
+      ],
+      "seriesAndSpecials": [
+        "magazine-time-machine"
+      ],
+      "entities": {
+        "people": [],
+        "organizations": [
+          "ibm"
+        ],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [
+          "playboy"
+        ],
+        "technologies": [
+          "automation",
+          "artificial-intelligence",
+          "robotics"
+        ]
+      },
+      "sourceArtifacts": [
+        {
+          "id": "playboy-january-1956-labor-cartoon",
+          "type": "magazine",
+          "label": "Playboy, January 1956, Labor cartoon",
+          "publication": "playboy",
+          "role": "origin"
+        }
+      ],
+      "storyModes": [
+        "archive-trail",
+        "comparative-history"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "1973-when-airbrush-was-ai",
+      "title": "1973: When Airbrush Was AI",
+      "status": "published",
+      "date": "2026-03-05T00:00:00.000Z",
+      "legacy": {
+        "category": "magazine-time-machine",
+        "department": "magazine-time-machine",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "",
+        "format": "article"
+      },
+      "tags": [
+        "1970s",
+        "airbrush",
+        "illustration",
+        "history",
+        "ai-parallels"
+      ],
+      "relatedArticles": [],
+      "centralObject": "The airbrush as an earlier commercial-art technology panic and a comparison point for AI image generation.",
+      "primarySection": "art-design",
+      "subjects": [
+        "commercial-illustration",
+        "art-history",
+        "creative-tools",
+        "ai-image-generation",
+        "visual-culture"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [
+          "hajime-sorayama"
+        ],
+        "organizations": [
+          "hipgnosis"
+        ],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "airbrush",
+          "ai-image-generation",
+          "stylefusion"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "comparative-history",
+        "visual-study"
+      ],
+      "confidence": "medium",
+      "ambiguityNotes": "Legacy Magazine Time Machine filing does not identify one originating magazine artifact, so the canonical series is omitted."
+    },
+    {
+      "slug": "1985-future-tech",
+      "title": "Playboy Drew the Future as Gadgets. The Future Arrived as Infrastructure.",
+      "status": "published",
+      "date": "2026-06-25T00:00:00.000Z",
+      "legacy": {
+        "category": "magazine-time-machine",
+        "department": "magazine-time-machine",
+        "series": "Magazine Time Machine",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "",
+        "format": "article"
+      },
+      "tags": [
+        "magazine-time-machine",
+        "retro-futurism",
+        "future-tech",
+        "media-history",
+        "playboy",
+        "robotics",
+        "smart-glasses",
+        "self-driving-cars",
+        "visual-culture"
+      ],
+      "relatedArticles": [
+        "1973-when-airbrush-was-ai",
+        "1956-automation"
+      ],
+      "centralObject": "A December 1985 Playboy future-tech spread compared with the infrastructure that actually arrived.",
+      "primarySection": "technology",
+      "subjects": [
+        "retrofuturism",
+        "consumer-technology",
+        "media-history",
+        "automation",
+        "computing-history"
+      ],
+      "seriesAndSpecials": [
+        "magazine-time-machine"
+      ],
+      "entities": {
+        "people": [],
+        "organizations": [],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [
+          "playboy"
+        ],
+        "technologies": [
+          "robotics",
+          "smart-glasses",
+          "automation"
+        ]
+      },
+      "sourceArtifacts": [
+        {
+          "id": "playboy-december-1985-future-tech",
+          "type": "magazine",
+          "label": "Playboy, December 1985, Hold On, It's Comin'",
+          "publication": "playboy",
+          "role": "origin"
+        }
+      ],
+      "storyModes": [
+        "archive-trail",
+        "comparative-history"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "3dm/1933-the-year-warner-bros-built-a-world",
+      "title": "1933: The Year Warner Bros. Built a World",
+      "status": "published",
+      "date": "2026-07-10T00:00:00.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "hobfarm-presents",
+        "series": "3dm",
+        "presentsSeries": "3dm",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "3dm",
+        "Warner Bros.",
+        "1933",
+        "Busby Berkeley",
+        "Joan Blondell",
+        "Ruby Keeler",
+        "Dick Powell",
+        "character actors",
+        "Pre-Code Hollywood"
+      ],
+      "relatedArticles": [],
+      "centralObject": "Warner Bros.' 1933 musical production system and the Billy Barty route that reaches Dick Miller.",
+      "primarySection": "film-tv",
+      "subjects": [
+        "film-history",
+        "pre-code-hollywood",
+        "studio-systems",
+        "musical-film",
+        "production-design"
+      ],
+      "seriesAndSpecials": [
+        "3dm"
+      ],
+      "entities": {
+        "people": [
+          "busby-berkeley",
+          "joan-blondell",
+          "ruby-keeler",
+          "billy-barty",
+          "dick-miller"
+        ],
+        "organizations": [
+          "warner-bros"
+        ],
+        "places": [],
+        "events": [
+          "great-depression"
+        ],
+        "works": [
+          "42nd-street-1933",
+          "gold-diggers-of-1933",
+          "footlight-parade",
+          "the-undead"
+        ],
+        "publications": [],
+        "technologies": []
+      },
+      "sourceArtifacts": [
+        {
+          "id": "warner-1933-musical-cycle",
+          "type": "film",
+          "label": "Warner Bros. 1933 musical cycle",
+          "role": "organizing"
+        }
+      ],
+      "storyModes": [
+        "media-genealogy",
+        "systems-investigation"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "3dm/broadway-babies",
+      "title": "Broadway Babies: The Last Summer Before the Money Vanished",
+      "status": "published",
+      "date": "2026-07-11T00:00:00.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "hobfarm-presents",
+        "series": "3dm",
+        "presentsSeries": "3dm",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "3dm",
+        "Dick Miller",
+        "Broadway Babies",
+        "Alice White",
+        "Marion Byron",
+        "Sally Eilers",
+        "early sound",
+        "Great Depression",
+        "Warner Bros."
+      ],
+      "relatedArticles": [],
+      "centralObject": "Broadway Babies at the edge of the Depression and its sourced route through film history to Dick Miller.",
+      "primarySection": "film-tv",
+      "subjects": [
+        "film-history",
+        "pre-code-hollywood",
+        "musical-film",
+        "great-depression",
+        "character-actors"
+      ],
+      "seriesAndSpecials": [
+        "3dm"
+      ],
+      "entities": {
+        "people": [
+          "alice-white",
+          "marion-byron",
+          "sally-eilers",
+          "dick-miller"
+        ],
+        "organizations": [
+          "first-national-pictures",
+          "warner-bros"
+        ],
+        "places": [],
+        "events": [
+          "great-depression"
+        ],
+        "works": [
+          "broadway-babies",
+          "the-last-hurrah",
+          "the-undead"
+        ],
+        "publications": [],
+        "technologies": []
+      },
+      "sourceArtifacts": [
+        {
+          "id": "broadway-babies-1929-film",
+          "type": "film",
+          "label": "Broadway Babies (1929)",
+          "role": "origin"
+        }
+      ],
+      "storyModes": [
+        "connection-map",
+        "media-genealogy"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "3dm/enter-the-millerverse",
+      "title": "Enter the Millerverse: What Is 3DM?",
+      "status": "published",
+      "date": "2026-07-10T00:00:00.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "hobfarm-presents",
+        "series": "3dm",
+        "presentsSeries": "3dm",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "3dm",
+        "Dick Miller",
+        "film history",
+        "cult cinema",
+        "Roger Corman",
+        "Joe Dante",
+        "character actors",
+        "Walter Paisley"
+      ],
+      "relatedArticles": [],
+      "centralObject": "Dick Miller's career as the trunk of a sourced movie-connection map.",
+      "primarySection": "film-tv",
+      "subjects": [
+        "film-history",
+        "cult-film",
+        "character-actors",
+        "production-systems"
+      ],
+      "seriesAndSpecials": [
+        "3dm"
+      ],
+      "entities": {
+        "people": [
+          "dick-miller",
+          "billy-barty",
+          "roger-corman"
+        ],
+        "organizations": [
+          "new-world-pictures"
+        ],
+        "places": [],
+        "events": [],
+        "works": [
+          "the-undead",
+          "a-bucket-of-blood",
+          "the-howling"
+        ],
+        "publications": [],
+        "technologies": []
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "connection-map",
+        "media-genealogy"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "3dm/the-mouse-in-the-cat-musical",
+      "title": "The Mouse in the Cat Musical",
+      "status": "published",
+      "date": "2026-07-10T00:00:00.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "hobfarm-presents",
+        "series": "3dm",
+        "presentsSeries": "3dm",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "3dm",
+        "Dick Miller",
+        "Billy Barty",
+        "Warner Bros.",
+        "1930s",
+        "character actors",
+        "fantasy",
+        "Roger Corman"
+      ],
+      "relatedArticles": [],
+      "centralObject": "Billy Barty's mouse performance in Footlight Parade and the documented route to Dick Miller in The Undead.",
+      "primarySection": "film-tv",
+      "subjects": [
+        "film-history",
+        "pre-code-hollywood",
+        "musical-film",
+        "character-actors",
+        "production-systems"
+      ],
+      "seriesAndSpecials": [
+        "3dm"
+      ],
+      "entities": {
+        "people": [
+          "billy-barty",
+          "dick-miller",
+          "busby-berkeley"
+        ],
+        "organizations": [
+          "warner-bros"
+        ],
+        "places": [],
+        "events": [],
+        "works": [
+          "footlight-parade",
+          "the-undead"
+        ],
+        "publications": [],
+        "technologies": []
+      },
+      "sourceArtifacts": [
+        {
+          "id": "footlight-parade-mouse-number",
+          "type": "film",
+          "label": "Footlight Parade, Sittin' on a Backyard Fence number",
+          "role": "origin"
+        }
+      ],
+      "storyModes": [
+        "connection-map",
+        "media-genealogy"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "3dm/you-know-nothing-of-my-algorithm",
+      "title": "You Know Nothing of My Algorithm",
+      "status": "published",
+      "date": "2026-07-10T00:00:00.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "hobfarm-presents",
+        "series": "3 Degrees of Dick Miller",
+        "presentsSeries": "3dm",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "3dm",
+        "frank mchugh",
+        "marshall mcluhan",
+        "television history",
+        "algorithms",
+        "funnel buckets",
+        "media theory"
+      ],
+      "relatedArticles": [
+        "instagram-funnel-buckets",
+        "how-the-money-eats-the-medium",
+        "3dm/1933-the-year-warner-bros-built-a-world"
+      ],
+      "centralObject": "Frank McHugh's experimental-television credit, its 3DM route, and the programming logic that became the feed.",
+      "primarySection": "film-tv",
+      "subjects": [
+        "television-history",
+        "media-theory",
+        "recommendation-systems",
+        "social-media"
+      ],
+      "seriesAndSpecials": [
+        "3dm"
+      ],
+      "entities": {
+        "people": [
+          "frank-mchugh",
+          "marshall-mcluhan",
+          "dick-miller"
+        ],
+        "organizations": [
+          "nbc"
+        ],
+        "places": [],
+        "events": [],
+        "works": [
+          "nbc-experiment-in-television",
+          "the-last-hurrah",
+          "the-howling"
+        ],
+        "publications": [],
+        "technologies": [
+          "recommendation-algorithms"
+        ]
+      },
+      "sourceArtifacts": [
+        {
+          "id": "to-wally-pantoni-broadcast",
+          "type": "broadcast",
+          "label": "To Wally Pantoni We Leave a Credenza (1968)",
+          "role": "origin"
+        }
+      ],
+      "storyModes": [
+        "connection-map",
+        "media-genealogy"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "a-false-recipe-a-real-image",
+      "title": "A False Recipe, a Real Image",
+      "status": "published",
+      "date": "2026-06-09T00:00:00.000Z",
+      "legacy": {
+        "category": "grimoire",
+        "department": "workshop-notes",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "",
+        "format": "workshop-note"
+      },
+      "tags": [
+        "grimoire",
+        "cross-pollination",
+        "creative systems",
+        "process",
+        "concept development",
+        "speculative artifacts"
+      ],
+      "relatedArticles": [],
+      "centralObject": "A Grimoire cross-pollination card that failed as a recipe and succeeded as a speculative visual artifact.",
+      "primarySection": "art-design",
+      "subjects": [
+        "creative-systems",
+        "speculative-design",
+        "knowledge-systems",
+        "visual-development"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "grimoire",
+          "ai-image-generation"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "process-essay",
+        "visual-study"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "a-world-of-geniuses-needs-a-system",
+      "title": "A World of Geniuses Needs a System",
+      "status": "published",
+      "date": "2026-06-11T00:00:00.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "essays-arguments",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "",
+        "format": "article"
+      },
+      "tags": [
+        "ai",
+        "agency",
+        "creative systems",
+        "grimoire",
+        "slop",
+        "process"
+      ],
+      "relatedArticles": [],
+      "centralObject": "A practical answer to the agency problem created by increasingly capable AI systems.",
+      "primarySection": "technology",
+      "subjects": [
+        "artificial-intelligence",
+        "creative-systems",
+        "human-agency",
+        "creative-labor",
+        "knowledge-systems"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [
+          "dario-amodei"
+        ],
+        "organizations": [
+          "anthropic"
+        ],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "artificial-intelligence",
+          "grimoire"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "systems-investigation",
+        "process-essay"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "against-slop",
+      "title": "Against Slop",
+      "status": "published",
+      "date": "2026-06-08T00:00:00.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "essays-arguments",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "",
+        "format": "article"
+      },
+      "tags": [
+        "manifesto",
+        "ai art",
+        "slop",
+        "style construction",
+        "psychedelic goth"
+      ],
+      "relatedArticles": [],
+      "centralObject": "How model averages flatten visual culture and how an artist can build a specific visual system instead.",
+      "primarySection": "art-design",
+      "subjects": [
+        "generative-media",
+        "ai-image-generation",
+        "psychedelic-art",
+        "visual-systems",
+        "creative-workflows"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "ai-image-generation",
+          "stylefusion",
+          "grimoire"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "visual-study",
+        "process-essay"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "before-wavy-gravy-was-ice-cream",
+      "title": "Before Wavy Gravy Was Ice Cream",
+      "status": "scheduled",
+      "date": "2026-08-16T23:20:00.000Z",
+      "legacy": {
+        "category": "magazine-time-machine",
+        "department": "magazine-time-machine",
+        "series": "Before the Scene Had a Name",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "Wavy Gravy",
+        "Jahanara Romney",
+        "Bonnie Beecher",
+        "Hog Farm",
+        "Woodstock",
+        "Bill Graham",
+        "Camp Winnarainbow",
+        "Seva Foundation",
+        "counterculture",
+        "live music"
+      ],
+      "relatedArticles": [
+        "from-wetlands-to-the-wash",
+        "fear-and-loathing-after-the-american-dream"
+      ],
+      "centralObject": "The people, communities, and working systems behind Wavy Gravy before the ice-cream brand association.",
+      "primarySection": "culture",
+      "subjects": [
+        "counterculture",
+        "communal-living",
+        "festival-culture",
+        "live-music",
+        "social-history"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [
+          "wavy-gravy",
+          "jahanara-romney",
+          "ken-kesey",
+          "bill-graham"
+        ],
+        "organizations": [
+          "hog-farm",
+          "merry-pranksters",
+          "grateful-dead",
+          "camp-winnarainbow",
+          "seva-foundation",
+          "ben-and-jerrys"
+        ],
+        "places": [
+          "san-francisco"
+        ],
+        "events": [
+          "woodstock-1969",
+          "veneta-1972"
+        ],
+        "works": [],
+        "publications": [],
+        "technologies": []
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "cultural-trail",
+        "media-genealogy"
+      ],
+      "confidence": "medium",
+      "ambiguityNotes": "The legacy label Before the Scene Had a Name is a singleton and remains outside the canonical series registry pending a publisher decision."
+    },
+    {
+      "slug": "brought-to-you-by-they-inc",
+      "title": "Brought to You by They, Inc.",
+      "status": "published",
+      "date": "2026-07-24T15:00:00.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "essays-arguments",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "media",
+        "political identity",
+        "attention",
+        "propaganda",
+        "information systems",
+        "artificial intelligence",
+        "thirty-year field report"
+      ],
+      "relatedArticles": [
+        "vacation-into-nothing",
+        "the-censor-eats-its-own-tail",
+        "you-do-not-own-the-ai-you-pay-for"
+      ],
+      "centralObject": "Thirty years of secondhand certainty and the social supply chain that manufactures it.",
+      "primarySection": "culture",
+      "subjects": [
+        "political-culture",
+        "information-systems",
+        "propaganda",
+        "social-media",
+        "media-literacy",
+        "personal-history"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [
+          "donald-trump"
+        ],
+        "organizations": [],
+        "places": [
+          "las-vegas"
+        ],
+        "events": [
+          "covid-19-pandemic",
+          "january-6-attack"
+        ],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "recommendation-algorithms",
+          "artificial-intelligence"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "personal-history-trail",
+        "systems-investigation"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "building-in-public",
+      "title": "Building in Public with AI Tools",
+      "status": "published",
+      "date": "2026-03-01T00:00:00.000Z",
+      "legacy": {
+        "category": "technical",
+        "department": "workshop-notes",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "",
+        "format": "workshop-note"
+      },
+      "tags": [
+        "ai",
+        "workflow",
+        "hobfarm"
+      ],
+      "relatedArticles": [],
+      "centralObject": "A schema-first, multi-agent workflow for building and publishing HobFarm.",
+      "primarySection": "technology",
+      "subjects": [
+        "artificial-intelligence",
+        "creative-workflows",
+        "multi-agent-systems",
+        "schema-design",
+        "publishing-workflow"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [
+          "hobfarm"
+        ],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "artificial-intelligence",
+          "codex"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "technical-explainer",
+        "process-essay"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "building-in-public-solo-developer",
+      "title": "Building in Public as a Solo Developer",
+      "status": "published",
+      "date": "2026-03-10T00:00:00.000Z",
+      "legacy": {
+        "category": "business",
+        "department": "workshop-notes",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "",
+        "format": "workshop-note"
+      },
+      "tags": [
+        "solo-dev",
+        "indie",
+        "cloudflare",
+        "business-model"
+      ],
+      "relatedArticles": [],
+      "centralObject": "The infrastructure and business tradeoffs of running HobFarm as a solo developer.",
+      "primarySection": "technology",
+      "subjects": [
+        "indie-development",
+        "cloud-computing",
+        "solo-publishing",
+        "automation",
+        "platform-economics"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [
+          "cloudflare",
+          "hobfarm"
+        ],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "cloudflare-workers",
+          "cloudflare-d1",
+          "cloudflare-r2",
+          "stylefusion",
+          "grimoire"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "technical-explainer",
+        "process-essay"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "california-used-to-race-here",
+      "title": "California Used to Race Here",
+      "status": "published",
+      "date": "2026-07-25T15:00:00.000Z",
+      "legacy": {
+        "category": "",
+        "department": "magazine-time-machine",
+        "series": "Built Over",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "California history",
+        "auto racing",
+        "Southern California",
+        "Gilmore Stadium",
+        "hot rods",
+        "lowriders",
+        "built environment"
+      ],
+      "relatedArticles": [],
+      "centralObject": "Southern California race sites and the successive urban systems built over them.",
+      "primarySection": "places-systems",
+      "subjects": [
+        "regional-history",
+        "built-environment",
+        "transportation-history",
+        "urban-development",
+        "place-memory"
+      ],
+      "seriesAndSpecials": [
+        "built-over"
+      ],
+      "entities": {
+        "people": [],
+        "organizations": [],
+        "places": [
+          "southern-california",
+          "gilmore-stadium",
+          "original-farmers-market",
+          "pan-pacific-auditorium"
+        ],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": []
+      },
+      "sourceArtifacts": [
+        {
+          "id": "farmers-market-historical-display",
+          "type": "photograph",
+          "label": "Original Farmers Market historical display",
+          "role": "origin"
+        }
+      ],
+      "storyModes": [
+        "place-study",
+        "archive-trail"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "color-becomes-a-cast",
+      "title": "Color Becomes a Cast",
+      "status": "published",
+      "date": "2026-07-04T07:00:00.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "workshop-notes",
+        "series": "Visual Systems",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "",
+        "format": "article"
+      },
+      "tags": [
+        "visual-systems",
+        "stylefusion",
+        "psygoth",
+        "technodelic",
+        "rgb",
+        "character-design",
+        "ai-image-generation",
+        "workflow"
+      ],
+      "relatedArticles": [
+        "psychedelic-goth-defined",
+        "stylefusion-ir-extraction",
+        "same-model-different-surface",
+        "how-psychedelia-went-beige"
+      ],
+      "centralObject": "The long evolution of a color-driven visual idea into reusable HobFarm character and style systems.",
+      "primarySection": "art-design",
+      "subjects": [
+        "visual-systems",
+        "character-design",
+        "psychedelic-art",
+        "ai-image-generation",
+        "creative-workflows"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "stylefusion",
+          "ai-image-generation"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "process-essay",
+        "visual-study"
+      ],
+      "confidence": "medium",
+      "ambiguityNotes": "Visual Systems is treated as a Workshop/program label rather than a canonical Editorial series."
+    },
+    {
+      "slug": "divisionism-was-painting-before-pixels",
+      "title": "Divisionism Was Painting Before Pixels",
+      "status": "published",
+      "date": "2026-06-09T00:00:00.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "essays-arguments",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "",
+        "format": "article"
+      },
+      "tags": [
+        "divisionism",
+        "art history",
+        "visual systems",
+        "image generation",
+        "grimoire",
+        "process"
+      ],
+      "relatedArticles": [],
+      "centralObject": "Divisionism as a system of separated visual units that anticipates digital image logic.",
+      "primarySection": "art-design",
+      "subjects": [
+        "art-history",
+        "color-theory",
+        "visual-systems",
+        "ai-image-generation",
+        "visual-aesthetics"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "ai-image-generation"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "comparative-history",
+        "visual-study"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "ec-machine",
+      "title": "Before the Crypt: The Machine That Made EC Comics",
+      "status": "published",
+      "date": "2026-08-05T00:20:00.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "magazine-time-machine",
+        "series": "Magazine Time Machine",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "EC Comics",
+        "Max Gaines",
+        "William Gaines",
+        "Mad",
+        "Son of Mad",
+        "Tales from the Crypt",
+        "comic book history",
+        "A Hard Day's Night",
+        "Magazine Time Machine"
+      ],
+      "relatedArticles": [
+        "hey-its-that-guy",
+        "mad-trump-and-the-magazine-time-machine",
+        "the-censor-eats-its-own-tail",
+        "how-the-money-eats-the-medium"
+      ],
+      "centralObject": "The Son of Mad paperback inside A Hard Day's Night and the publishing machinery behind it.",
+      "primarySection": "culture",
+      "subjects": [
+        "publishing",
+        "media-history",
+        "censorship",
+        "film-history"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [
+          "max-gaines",
+          "william-gaines",
+          "harvey-kurtzman"
+        ],
+        "organizations": [
+          "ec-comics",
+          "new-american-library"
+        ],
+        "places": [],
+        "events": [],
+        "works": [
+          "son-of-mad",
+          "a-hard-days-night",
+          "tales-from-the-crypt"
+        ],
+        "publications": [
+          "mad-magazine"
+        ],
+        "technologies": []
+      },
+      "sourceArtifacts": [
+        {
+          "id": "son-of-mad-s1701-paperback",
+          "type": "paperback",
+          "label": "William M. Gaines's Son of Mad, Signet S1701",
+          "publication": "mad-magazine",
+          "role": "origin"
+        }
+      ],
+      "storyModes": [
+        "archive-trail",
+        "media-genealogy"
+      ],
+      "confidence": "medium",
+      "ambiguityNotes": "The originating artifact is a paperback rather than a magazine, so canonical Magazine Time Machine membership is omitted while the legacy route remains."
+    },
+    {
+      "slug": "everything-is-still-loading",
+      "title": "Everything Is Still Loading",
+      "status": "published",
+      "date": "2026-07-19T15:00:00.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "essays-arguments",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "PC gaming",
+        "computer history",
+        "Doom",
+        "BBS",
+        "Steam",
+        "Civilization",
+        "Early Access",
+        "Windows 11",
+        "Adobe Premiere",
+        "forced obsolescence",
+        "virtual reality"
+      ],
+      "relatedArticles": [
+        "take-me-to-phobos",
+        "gonna-be-different",
+        "how-the-money-eats-the-medium"
+      ],
+      "centralObject": "The change from a finished game in a box to a distributed service that is always still loading.",
+      "primarySection": "technology",
+      "subjects": [
+        "game-history",
+        "platform-economics",
+        "software-ownership",
+        "computing-history",
+        "forced-obsolescence"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [
+          "valve",
+          "microsoft"
+        ],
+        "places": [],
+        "events": [],
+        "works": [
+          "doom",
+          "civilization-vii"
+        ],
+        "publications": [],
+        "technologies": [
+          "bbs",
+          "steam"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "personal-history-trail",
+        "systems-investigation"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "fear-and-loathing-after-the-american-dream",
+      "title": "Fear and Loathing After the American Dream",
+      "status": "published",
+      "date": "2026-08-05T23:20:00.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "essays-arguments",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "Hunter S. Thompson",
+        "Fear and Loathing in Las Vegas",
+        "American Dream",
+        "Las Vegas",
+        "Route 66",
+        "road trip",
+        "political culture",
+        "cannabis history",
+        "housing",
+        "live production",
+        "personal essay"
+      ],
+      "relatedArticles": [
+        "susan-denbergs-american-dream",
+        "i-may-have-inspired-it",
+        "i-could-be-playing-civilization",
+        "hey-its-that-guy"
+      ],
+      "centralObject": "A 2016 road trip used to test the American Dream across changed places, politics, and personal history.",
+      "primarySection": "culture",
+      "subjects": [
+        "personal-history",
+        "road-culture",
+        "political-culture",
+        "urban-history",
+        "place-memory"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [
+          "hunter-s-thompson"
+        ],
+        "organizations": [],
+        "places": [
+          "las-vegas",
+          "route-66",
+          "aspen",
+          "maine"
+        ],
+        "events": [],
+        "works": [
+          "fear-and-loathing-in-las-vegas"
+        ],
+        "publications": [],
+        "technologies": []
+      },
+      "sourceArtifacts": [
+        {
+          "id": "american-dream-road-trip-photo-archive",
+          "type": "photograph",
+          "label": "2016 cross-country road-trip photograph archive",
+          "role": "organizing"
+        }
+      ],
+      "storyModes": [
+        "personal-history-trail",
+        "field-report"
+      ],
+      "confidence": "medium",
+      "ambiguityNotes": "Culture owns the personal and political argument; Places & Systems remains a strong secondary relationship."
+    },
+    {
+      "slug": "from-wetlands-to-the-wash",
+      "title": "From Wetlands to the Wash",
+      "status": "scheduled",
+      "date": "2026-08-15T23:20:00.000Z",
+      "legacy": {
+        "category": "magazine-time-machine",
+        "department": "magazine-time-machine",
+        "series": "Built Over",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "Las Vegas",
+        "Brooklyn Bowl",
+        "Flamingo Wash",
+        "The LINQ",
+        "Imperial Palace",
+        "Wetlands Preserve",
+        "Joe Russo's Almost Dead",
+        "live music",
+        "built environment",
+        "Peter Shapiro",
+        "Sphere"
+      ],
+      "relatedArticles": [
+        "california-used-to-race-here",
+        "i-want-my-mtv"
+      ],
+      "centralObject": "The physical and commercial systems layered beneath Brooklyn Bowl Las Vegas.",
+      "primarySection": "places-systems",
+      "subjects": [
+        "built-environment",
+        "infrastructure",
+        "live-music",
+        "venue-history",
+        "urban-hydrology"
+      ],
+      "seriesAndSpecials": [
+        "built-over"
+      ],
+      "entities": {
+        "people": [
+          "peter-shapiro"
+        ],
+        "organizations": [
+          "brooklyn-bowl",
+          "caesars-entertainment",
+          "live-nation"
+        ],
+        "places": [
+          "flamingo-wash",
+          "linq-promenade",
+          "wetlands-preserve",
+          "las-vegas"
+        ],
+        "events": [
+          "covid-19-pandemic"
+        ],
+        "works": [],
+        "publications": [],
+        "technologies": []
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "place-study",
+        "systems-investigation"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "gary-and-the-fork",
+      "title": "Gary and the Fork",
+      "status": "published",
+      "date": "2026-06-12T00:00:00.000Z",
+      "legacy": {
+        "category": "technical",
+        "department": "workshop-notes",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "",
+        "format": "workshop-note"
+      },
+      "tags": [
+        "ai",
+        "image generation",
+        "prompting",
+        "process",
+        "character design",
+        "gary"
+      ],
+      "relatedArticles": [],
+      "centralObject": "A repeated fork in generated images used as a controlled experiment in conversational and model defaults.",
+      "primarySection": "technology",
+      "subjects": [
+        "model-behavior",
+        "ai-image-generation",
+        "prompt-engineering",
+        "creative-workflows"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [
+          "openai"
+        ],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "chatgpt",
+          "gpt-4o",
+          "ai-image-generation"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "field-report",
+        "systems-investigation"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "gonna-be-different",
+      "title": "It’s Gonna Be Different Every Time",
+      "status": "published",
+      "date": "2026-07-17T00:00:00.000Z",
+      "legacy": {
+        "category": "research",
+        "department": "essays-arguments",
+        "series": "Other Alice Adventures",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "Big",
+        "Other Alice Adventures",
+        "interactive fiction",
+        "AI-native games",
+        "procedural storytelling",
+        "game design",
+        "story engines",
+        "Grimoire",
+        "StyleFusion"
+      ],
+      "relatedArticles": [
+        "other-alice-origin",
+        "grimoire-knowledge-graph",
+        "stylefusion-ir-extraction",
+        "3dm/enter-the-millerverse"
+      ],
+      "centralObject": "The electronic comic in Big as a route into HobFarm's procedural Other Alice story engine.",
+      "primarySection": "technology",
+      "subjects": [
+        "interactive-fiction",
+        "procedural-storytelling",
+        "game-design",
+        "creative-systems",
+        "media-history"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [],
+        "places": [],
+        "events": [],
+        "works": [
+          "big-1988",
+          "other-alice-adventures"
+        ],
+        "publications": [],
+        "technologies": [
+          "wonder-machine",
+          "grimoire",
+          "stylefusion"
+        ]
+      },
+      "sourceArtifacts": [
+        {
+          "id": "big-electronic-comic-scene",
+          "type": "film",
+          "label": "Big (1988), electronic comic scene",
+          "role": "origin"
+        }
+      ],
+      "storyModes": [
+        "media-genealogy",
+        "process-essay"
+      ],
+      "confidence": "medium",
+      "ambiguityNotes": "Other Alice Adventures is a Presents title/imprint relationship rather than a canonical Editorial series."
+    },
+    {
+      "slug": "goth-get-boots",
+      "title": "Prompt Goth, Get Boots",
+      "status": "published",
+      "date": "2026-06-12T00:00:00.000Z",
+      "legacy": {
+        "category": "technical",
+        "department": "workshop-notes",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "",
+        "format": "workshop-note"
+      },
+      "tags": [
+        "ai",
+        "image generation",
+        "prompting",
+        "character design",
+        "defaults",
+        "names"
+      ],
+      "relatedArticles": [],
+      "centralObject": "Three years of chat and image history used to document recurring model names, outfits, and staging defaults.",
+      "primarySection": "technology",
+      "subjects": [
+        "model-behavior",
+        "ai-image-generation",
+        "synthetic-media",
+        "prompt-engineering",
+        "research-methods"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [
+          "laura-wattenberg",
+          "max-read"
+        ],
+        "organizations": [
+          "openai"
+        ],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "chatgpt",
+          "gpt-4o",
+          "ai-image-generation"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "archive-trail",
+        "systems-investigation"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "grimoire-knowledge-graph",
+      "title": "Why a Visual Knowledge Graph",
+      "status": "published",
+      "date": "2026-02-01T00:00:00.000Z",
+      "legacy": {
+        "category": "grimoire",
+        "department": "workshop-notes",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "",
+        "format": "workshop-note"
+      },
+      "tags": [
+        "grimoire",
+        "knowledge-graph",
+        "ai"
+      ],
+      "relatedArticles": [],
+      "centralObject": "Grimoire's graph structure for turning aesthetic vocabulary into queryable, reusable data.",
+      "primarySection": "technology",
+      "subjects": [
+        "knowledge-systems",
+        "visual-systems",
+        "artificial-intelligence",
+        "schema-design"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "grimoire",
+          "stylefusion",
+          "artificial-intelligence"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "technical-explainer"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "hello-world",
+      "title": "Building HobFarm: Architecture for Multi-Provider AI",
+      "status": "published",
+      "date": "2026-03-01T00:00:00.000Z",
+      "legacy": {
+        "category": "technical",
+        "department": "workshop-notes",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "",
+        "format": "workshop-note"
+      },
+      "tags": [
+        "cloudflare",
+        "architecture",
+        "workers"
+      ],
+      "relatedArticles": [],
+      "centralObject": "HobFarm's thin multi-provider routing architecture on Cloudflare.",
+      "primarySection": "technology",
+      "subjects": [
+        "cloud-computing",
+        "multi-provider-ai",
+        "software-architecture",
+        "platform-economics"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [
+          "cloudflare",
+          "hobfarm"
+        ],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "cloudflare-workers",
+          "ai-gateway",
+          "cloudflare-r2",
+          "cloudflare-d1",
+          "model-apis"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "technical-explainer"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "hermit-does-not-have-to-pay-for-repairs",
+      "title": "Hermit Does Not Have to Pay for Repairs",
+      "status": "published",
+      "date": "2026-08-06T23:20:00.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "essays-arguments",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "Christopher Knight",
+        "North Pond Hermit",
+        "Shōichi Yokoi",
+        "Hiroo Onoda",
+        "survival",
+        "Alone",
+        "Jeremiah Johnson",
+        "Maine",
+        "personal essay",
+        "comparative history"
+      ],
+      "relatedArticles": [
+        "fear-and-loathing-after-the-american-dream",
+        "i-may-have-inspired-it"
+      ],
+      "centralObject": "A small 2016 Maine newspaper headline opening a comparison among several forms of isolation and survival.",
+      "primarySection": "culture",
+      "subjects": [
+        "survival",
+        "social-isolation",
+        "personal-history",
+        "regional-history",
+        "labor-history"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [
+          "christopher-knight",
+          "shoichi-yokoi",
+          "hiroo-onoda"
+        ],
+        "organizations": [],
+        "places": [
+          "maine"
+        ],
+        "events": [],
+        "works": [
+          "alone",
+          "jeremiah-johnson"
+        ],
+        "publications": [
+          "bangor-daily-news"
+        ],
+        "technologies": []
+      },
+      "sourceArtifacts": [
+        {
+          "id": "bangor-daily-news-august-5-2016",
+          "type": "newspaper",
+          "label": "Bangor Daily News front page, August 5, 2016",
+          "publication": "bangor-daily-news",
+          "role": "origin"
+        }
+      ],
+      "storyModes": [
+        "archive-trail",
+        "comparative-history"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "hey-its-that-guy",
+      "title": "Hey, It’s That Guy: The Tales from the Crypt Rabbit Hole",
+      "status": "published",
+      "date": "2026-08-04T00:20:00.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "magazine-time-machine",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "connection-map",
+        "format": "article"
+      },
+      "tags": [
+        "Tales from the Crypt",
+        "The Man Who Was Death",
+        "Walter Hill",
+        "William Sadler",
+        "EC Comics",
+        "Creepshow",
+        "Stephen King",
+        "Ray Bradbury",
+        "character actors",
+        "film history",
+        "Bangor Maine",
+        "Brewer Maine"
+      ],
+      "relatedArticles": [
+        "ec-machine",
+        "i-may-have-inspired-it",
+        "3dm/enter-the-millerverse",
+        "how-the-money-eats-the-medium",
+        "mad-trump-and-the-magazine-time-machine",
+        "the-censor-eats-its-own-tail"
+      ],
+      "centralObject": "A Tales from the Crypt rewatch that opens a map of performers, comics, production histories, and Maine locations.",
+      "primarySection": "film-tv",
+      "subjects": [
+        "film-history",
+        "television-history",
+        "character-actors",
+        "censorship"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [
+          "walter-hill",
+          "william-sadler",
+          "stephen-king",
+          "ray-bradbury"
+        ],
+        "organizations": [
+          "hbo",
+          "ec-comics"
+        ],
+        "places": [
+          "bangor-maine"
+        ],
+        "events": [],
+        "works": [
+          "tales-from-the-crypt",
+          "the-man-who-was-death",
+          "creepshow-2"
+        ],
+        "publications": [],
+        "technologies": []
+      },
+      "sourceArtifacts": [
+        {
+          "id": "the-man-who-was-death-broadcast",
+          "type": "broadcast",
+          "label": "Tales from the Crypt: The Man Who Was Death",
+          "role": "origin"
+        }
+      ],
+      "storyModes": [
+        "media-genealogy",
+        "connection-map"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "how-hobbot-keeps-the-lights-on",
+      "title": "How HobBot Keeps the Lights On",
+      "status": "published",
+      "date": "2026-03-13T00:00:00.000Z",
+      "legacy": {
+        "category": "hobbot",
+        "department": "workshop-notes",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "",
+        "format": "workshop-note"
+      },
+      "tags": [
+        "automation",
+        "hobbot",
+        "pipeline",
+        "infrastructure"
+      ],
+      "relatedArticles": [],
+      "centralObject": "The scheduled and event-driven automations that keep a one-person publishing system moving.",
+      "primarySection": "technology",
+      "subjects": [
+        "automation",
+        "publishing-workflow",
+        "cloud-computing",
+        "solo-publishing"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [
+          "hobfarm",
+          "cloudflare"
+        ],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "hobbot",
+          "cloudflare-workers",
+          "grimoire"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "technical-explainer"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "how-psychedelia-went-beige",
+      "title": "How Psychedelia Went Beige",
+      "status": "published",
+      "date": "2026-06-07T00:00:00.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "essays-arguments",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "",
+        "format": "article"
+      },
+      "tags": [
+        "observation",
+        "psychedelic",
+        "ai slop",
+        "festival culture",
+        "aesthetics"
+      ],
+      "relatedArticles": [],
+      "centralObject": "How one spiritual-wellness visual kit became the default picture of psychedelia and then a model average.",
+      "primarySection": "art-design",
+      "subjects": [
+        "psychedelic-art",
+        "generative-media",
+        "festival-culture",
+        "visual-culture",
+        "ai-image-generation"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "ai-image-generation"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "visual-study",
+        "cultural-trail"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "how-the-money-eats-the-medium",
+      "title": "How the Money Eats the Medium",
+      "status": "published",
+      "date": "2026-07-09T00:00:00.000Z",
+      "legacy": {
+        "category": "magazine-time-machine",
+        "department": "magazine-time-machine",
+        "series": "Magazine Time Machine",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "",
+        "format": "article"
+      },
+      "tags": [
+        "magazine-time-machine",
+        "vonnegut",
+        "publishing-history",
+        "media-economics",
+        "short-stories",
+        "television",
+        "independent-media",
+        "ai",
+        "other-alice-adventures"
+      ],
+      "relatedArticles": [],
+      "centralObject": "The recurring economic cycle in which one media system removes the living market beneath another.",
+      "primarySection": "culture",
+      "subjects": [
+        "media-economics",
+        "publishing",
+        "independent-media",
+        "platform-economics",
+        "creative-labor"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [
+          "kurt-vonnegut",
+          "roger-corman"
+        ],
+        "organizations": [
+          "youtube"
+        ],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [
+          "saturday-evening-post",
+          "colliers",
+          "cosmopolitan"
+        ],
+        "technologies": [
+          "artificial-intelligence"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "systems-investigation",
+        "media-genealogy"
+      ],
+      "confidence": "medium",
+      "ambiguityNotes": "Magazines are central evidence but no specific old magazine artifact originates the article, so canonical Magazine Time Machine membership is omitted."
+    },
+    {
+      "slug": "how-to-fix-slop",
+      "title": "How to Fix Slop",
+      "status": "published",
+      "date": "2026-06-09T00:00:00.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "workshop-notes",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "",
+        "format": "workshop-note"
+      },
+      "tags": [
+        "ai agents",
+        "structured data",
+        "knowledge systems",
+        "ai slop",
+        "style construction"
+      ],
+      "relatedArticles": [],
+      "centralObject": "Structured memory, roles, retrieval, and project boundaries as an engineering answer to AI slop.",
+      "primarySection": "technology",
+      "subjects": [
+        "artificial-intelligence",
+        "knowledge-systems",
+        "schema-design",
+        "creative-workflows",
+        "creative-systems"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "artificial-intelligence",
+          "grimoire",
+          "stylefusion"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "technical-explainer",
+        "process-essay"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "i-could-be-playing-civilization",
+      "title": "I Could Be Playing Civilization",
+      "status": "published",
+      "date": "2026-07-29T00:20:00.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "essays-arguments",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "ai",
+        "Civilization",
+        "agentic systems",
+        "codex",
+        "skills",
+        "AGENTS.md",
+        "creative systems",
+        "grimoire",
+        "solo publishing",
+        "Other Alice"
+      ],
+      "relatedArticles": [
+        "gary-and-the-fork",
+        "a-world-of-geniuses-needs-a-system",
+        "you-do-not-own-the-ai-you-pay-for",
+        "everything-is-still-loading"
+      ],
+      "centralObject": "The same systems appetite expressed first through Civilization and now through durable AI-assisted publishing work.",
+      "primarySection": "technology",
+      "subjects": [
+        "creative-systems",
+        "multi-agent-systems",
+        "game-design",
+        "solo-publishing",
+        "knowledge-systems"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [
+          "hobfarm"
+        ],
+        "places": [],
+        "events": [],
+        "works": [
+          "civilization-v"
+        ],
+        "publications": [],
+        "technologies": [
+          "codex",
+          "grimoire"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "personal-history-trail",
+        "process-essay"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "i-may-have-inspired-it",
+      "title": "I May Have Inspired Stephen King’s It",
+      "status": "published",
+      "date": "2026-08-02T00:20:00.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "magazine-time-machine",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "Stephen King",
+        "It",
+        "Bangor Maine",
+        "Derry Maine",
+        "Thomas Hill Standpipe",
+        "local history",
+        "personal essay",
+        "Carrie",
+        "Pet Sematary",
+        "Hampden Academy",
+        "Bucksport Maine"
+      ],
+      "relatedArticles": [
+        "hey-its-that-guy",
+        "mad-trump-and-the-magazine-time-machine",
+        "the-censor-eats-its-own-tail"
+      ],
+      "centralObject": "A deliberately unprovable childhood Bangor story situated inside the real places Stephen King turned into Derry.",
+      "primarySection": "culture",
+      "subjects": [
+        "personal-history",
+        "regional-history",
+        "folklore",
+        "literary-history",
+        "place-memory"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [
+          "stephen-king"
+        ],
+        "organizations": [],
+        "places": [
+          "bangor-maine",
+          "thomas-hill-standpipe"
+        ],
+        "events": [],
+        "works": [
+          "it",
+          "carrie"
+        ],
+        "publications": [],
+        "technologies": []
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "personal-history-trail",
+        "place-study"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "i-want-my-mtv",
+      "title": "I Want My MTV",
+      "status": "scheduled",
+      "date": "2026-08-14T23:20:00.000Z",
+      "legacy": {
+        "category": "magazine-time-machine",
+        "department": "magazine-time-machine",
+        "series": "Magazine Time Machine",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "MTV",
+        "music videos",
+        "Spotify",
+        "YouTube",
+        "YouTube Music",
+        "Paramount+",
+        "1990s",
+        "1980s",
+        "Beavis and Butt-Head",
+        "MTV Unplugged",
+        "streaming",
+        "music television",
+        "Woodstock '99"
+      ],
+      "relatedArticles": [
+        "the-number-one-song-ive-never-heard",
+        "how-the-money-eats-the-medium"
+      ],
+      "centralObject": "The fragmented afterlife of music television and a personal attempt to rebuild MTV from streaming archives.",
+      "primarySection": "music",
+      "subjects": [
+        "music-television",
+        "streaming",
+        "music-discovery",
+        "media-history",
+        "platform-fragmentation"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [
+          "spotify",
+          "youtube",
+          "paramount-plus"
+        ],
+        "places": [],
+        "events": [],
+        "works": [
+          "love-spreads"
+        ],
+        "publications": [],
+        "technologies": [
+          "streaming-media"
+        ]
+      },
+      "sourceArtifacts": [
+        {
+          "id": "love-spreads-broadcast-master-slate",
+          "type": "broadcast",
+          "label": "Love Spreads broadcast master slate, 1994",
+          "role": "origin"
+        }
+      ],
+      "storyModes": [
+        "personal-history-trail",
+        "media-genealogy"
+      ],
+      "confidence": "medium",
+      "ambiguityNotes": "The originating artifact is broadcast media rather than a magazine, so the canonical Magazine Time Machine series is omitted."
+    },
+    {
+      "slug": "instagram-funnel-buckets",
+      "title": "The Feed Is the Slop Machine",
+      "status": "published",
+      "date": "2026-06-29T19:00:00.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "essays-arguments",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "",
+        "format": "article"
+      },
+      "tags": [
+        "instagram",
+        "algorithm",
+        "social media",
+        "ai slop",
+        "funnel buckets",
+        "cute and corrupted"
+      ],
+      "relatedArticles": [
+        "against-slop",
+        "how-to-fix-slop",
+        "psychedelic-goth-defined"
+      ],
+      "centralObject": "The repeatable emotional costumes that turn Instagram posts into engagement funnels.",
+      "primarySection": "culture",
+      "subjects": [
+        "social-media",
+        "attention-economy",
+        "platform-design",
+        "synthetic-media",
+        "advertising"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [
+          "instagram",
+          "meta"
+        ],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "recommendation-algorithms",
+          "artificial-intelligence"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "field-report",
+        "systems-investigation"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "invisible-variable",
+      "title": "The Invisible Variable: How Five AI Models Read the Same Image Differently",
+      "status": "published",
+      "date": "2026-03-19T00:00:00.000Z",
+      "legacy": {
+        "category": "research",
+        "department": "workshop-notes",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "",
+        "format": "workshop-note"
+      },
+      "tags": [
+        "stylefusion",
+        "grimoire",
+        "research",
+        "ai-image-generation"
+      ],
+      "relatedArticles": [],
+      "centralObject": "A controlled comparison showing that vision extraction models act as creative directors inside an image pipeline.",
+      "primarySection": "technology",
+      "subjects": [
+        "model-behavior",
+        "ai-image-generation",
+        "schema-design",
+        "benchmarking",
+        "creative-workflows"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [
+          "openai",
+          "google",
+          "xai"
+        ],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "stylefusion",
+          "gemini",
+          "grok",
+          "qwen",
+          "glm"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "systems-investigation",
+        "technical-explainer"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "it-just-runs-programs",
+      "title": "It Just Runs Programs",
+      "status": "published",
+      "date": "2026-08-01T00:20:00.000Z",
+      "legacy": {
+        "category": "",
+        "department": "essays-arguments",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "artificial intelligence",
+        "open weights",
+        "open source",
+        "Anthropic",
+        "Kafkaesque",
+        "computing",
+        "film",
+        "ownership",
+        "censorship",
+        "technology"
+      ],
+      "relatedArticles": [
+        "vacation-into-nothing",
+        "you-do-not-own-the-ai-you-pay-for",
+        "everything-is-still-loading",
+        "the-censor-eats-its-own-tail"
+      ],
+      "centralObject": "The institutions and contracts that decide which programs AI runs and which models ordinary users may own.",
+      "primarySection": "technology",
+      "subjects": [
+        "artificial-intelligence",
+        "open-computing",
+        "surveillance",
+        "censorship",
+        "software-ownership",
+        "military-technology"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [
+          "dario-amodei"
+        ],
+        "organizations": [
+          "anthropic"
+        ],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "artificial-intelligence",
+          "open-weight-models"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "systems-investigation",
+        "cultural-trail"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "mad-trump-and-the-magazine-time-machine",
+      "title": "MAD, TRUMP, and the Magazine Time Machine",
+      "status": "published",
+      "date": "2026-06-29T00:00:00.000Z",
+      "legacy": {
+        "category": "magazine-time-machine",
+        "department": "magazine-time-machine",
+        "series": "Magazine Time Machine",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "",
+        "format": "article"
+      },
+      "tags": [
+        "magazine-time-machine",
+        "mad-magazine",
+        "trump-magazine",
+        "harvey-kurtzman",
+        "media-history",
+        "satire",
+        "visual-culture",
+        "censorship"
+      ],
+      "relatedArticles": [
+        "1985-future-tech",
+        "1956-automation",
+        "1973-when-airbrush-was-ai"
+      ],
+      "centralObject": "The two-issue 1957 TRUMP run and the changing meanings layered onto satire-magazine artifacts.",
+      "primarySection": "culture",
+      "subjects": [
+        "publishing",
+        "satire",
+        "censorship",
+        "media-history"
+      ],
+      "seriesAndSpecials": [
+        "magazine-time-machine"
+      ],
+      "entities": {
+        "people": [
+          "harvey-kurtzman",
+          "hugh-hefner",
+          "donald-trump"
+        ],
+        "organizations": [
+          "ec-comics",
+          "playboy-enterprises"
+        ],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [
+          "mad-magazine",
+          "trump-1957",
+          "trump-magazine",
+          "national-lampoon"
+        ],
+        "technologies": []
+      },
+      "sourceArtifacts": [
+        {
+          "id": "trump-1957-issues-one-and-two",
+          "type": "magazine",
+          "label": "TRUMP issues 1 and 2 (1957)",
+          "publication": "trump-1957",
+          "role": "origin"
+        }
+      ],
+      "storyModes": [
+        "archive-trail",
+        "media-genealogy"
+      ],
+      "confidence": "medium",
+      "ambiguityNotes": "The source is a short magazine run rather than one page; the artifacts materially drive the article and are recorded explicitly."
+    },
+    {
+      "slug": "mr-paige-theres-an-anteater-behind-you",
+      "title": "Mr. Paige, There’s an Anteater Behind You",
+      "status": "published",
+      "date": "2026-08-09T23:20:00.000Z",
+      "legacy": {
+        "category": "magazine-time-machine",
+        "department": "magazine-time-machine",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "Salvador Dalí",
+        "Dick Cavett",
+        "Lillian Gish",
+        "Satchel Paige",
+        "Surrealism",
+        "hypnagogia",
+        "art history",
+        "television"
+      ],
+      "relatedArticles": [
+        "you-should-write-about-sharks",
+        "the-card-catalog-started-talking-back",
+        "mad-trump-and-the-magazine-time-machine"
+      ],
+      "centralObject": "Salvador Dalí's television performance as a route into his visual method, public character, and surrealist machinery.",
+      "primarySection": "art-design",
+      "subjects": [
+        "surrealism",
+        "art-history",
+        "television-history",
+        "creative-workflows",
+        "visual-aesthetics"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [
+          "salvador-dali",
+          "dick-cavett",
+          "satchel-paige",
+          "lillian-gish",
+          "gala-dali"
+        ],
+        "organizations": [],
+        "places": [],
+        "events": [],
+        "works": [
+          "the-dick-cavett-show"
+        ],
+        "publications": [],
+        "technologies": []
+      },
+      "sourceArtifacts": [
+        {
+          "id": "dick-cavett-dali-anteater-broadcast",
+          "type": "broadcast",
+          "label": "The Dick Cavett Show, Salvador Dalí anteater appearance (1971)",
+          "role": "origin"
+        }
+      ],
+      "storyModes": [
+        "media-genealogy",
+        "visual-study"
+      ],
+      "confidence": "medium",
+      "ambiguityNotes": "Art & Design owns Dalí's visual method; Film & TV remains a strong secondary relationship because the originating artifact is a broadcast."
+    },
+    {
+      "slug": "other-alice-origin",
+      "title": "Bloody Tea at the Salton Sea",
+      "status": "published",
+      "date": "2026-07-14T00:00:00.000Z",
+      "legacy": {
+        "category": "stylefusion",
+        "department": "workshop-notes",
+        "series": "Other Alice Adventures",
+        "presentsSeries": "",
+        "workshopProgram": "stylefusion",
+        "entryType": "",
+        "format": "workshop-note"
+      },
+      "tags": [
+        "Other Alice Adventures",
+        "Alice in Wonderland",
+        "worldbuilding",
+        "visual development",
+        "Salton Sea",
+        "process",
+        "mixed-media fiction",
+        "StyleFusion"
+      ],
+      "relatedArticles": [
+        "3dm/1933-the-year-warner-bros-built-a-world",
+        "stylefusion-ir-extraction",
+        "psychedelic-goth-defined",
+        "against-slop"
+      ],
+      "centralObject": "A forgotten image composite and the design questions that turned it into Other Alice Adventures.",
+      "primarySection": "art-design",
+      "subjects": [
+        "worldbuilding",
+        "visual-development",
+        "mixed-media-fiction",
+        "character-design",
+        "creative-workflows"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [],
+        "places": [
+          "salton-sea"
+        ],
+        "events": [],
+        "works": [
+          "star-trek",
+          "frankenstein-created-woman"
+        ],
+        "publications": [],
+        "technologies": [
+          "stylefusion"
+        ]
+      },
+      "sourceArtifacts": [
+        {
+          "id": "bloody-alice-salton-sea-prototype",
+          "type": "photograph",
+          "label": "Bloody Alice at the Salton Sea prototype composite",
+          "role": "origin"
+        }
+      ],
+      "storyModes": [
+        "process-essay",
+        "visual-study"
+      ],
+      "confidence": "medium",
+      "ambiguityNotes": "Other Alice Adventures is a Presents title/imprint relationship rather than a canonical Editorial series."
+    },
+    {
+      "slug": "psychedelic-goth-defined",
+      "title": "Psychedelic Goth: A Definition",
+      "status": "published",
+      "date": "2026-06-07T00:00:00.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "workshop-notes",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "",
+        "format": "workshop-note"
+      },
+      "tags": [
+        "psychedelic goth",
+        "style guide",
+        "aesthetics",
+        "dark psychedelia"
+      ],
+      "relatedArticles": [],
+      "centralObject": "A visual definition and historical source map for psychedelic goth.",
+      "primarySection": "art-design",
+      "subjects": [
+        "psychedelic-art",
+        "gothic-art",
+        "visual-systems",
+        "aesthetics",
+        "art-history"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": []
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "visual-study",
+        "cultural-trail"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "put-on-the-glasses",
+      "title": "Put On the Glasses",
+      "status": "published",
+      "date": "2026-07-31T00:20:00.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "essays-arguments",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "They Live",
+        "John Carpenter",
+        "Roddy Piper",
+        "Keith David",
+        "augmented reality",
+        "smart glasses",
+        "Atheer",
+        "open source",
+        "enterprise software",
+        "1980s film",
+        "character actors",
+        "media criticism",
+        "personal computing"
+      ],
+      "relatedArticles": [
+        "too-big-for-the-box",
+        "brought-to-you-by-they-inc",
+        "the-card-catalog-started-talking-back"
+      ],
+      "centralObject": "They Live and Atheer as a route into who controls the augmented layer between a person and the world.",
+      "primarySection": "technology",
+      "subjects": [
+        "consumer-technology",
+        "open-computing",
+        "software-ownership",
+        "platform-governance",
+        "media-history"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [
+          "john-carpenter",
+          "roddy-piper",
+          "keith-david"
+        ],
+        "organizations": [
+          "google"
+        ],
+        "places": [],
+        "events": [],
+        "works": [
+          "they-live"
+        ],
+        "publications": [],
+        "technologies": [
+          "augmented-reality",
+          "smart-glasses",
+          "atheer"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "personal-history-trail",
+        "systems-investigation"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "same-model-different-surface",
+      "title": "Same Model, Different Surface",
+      "status": "published",
+      "date": "2026-04-03T00:00:00.000Z",
+      "legacy": {
+        "category": "research",
+        "department": "workshop-notes",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "",
+        "format": "workshop-note"
+      },
+      "tags": [
+        "stylefusion",
+        "research",
+        "ai-image-generation",
+        "grok",
+        "gemini",
+        "chatgpt"
+      ],
+      "relatedArticles": [],
+      "centralObject": "A controlled API-versus-web comparison showing how provider surfaces change output from the same model.",
+      "primarySection": "technology",
+      "subjects": [
+        "model-behavior",
+        "ai-image-generation",
+        "platform-design",
+        "benchmarking",
+        "creative-tools"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [
+          "google",
+          "openai",
+          "xai"
+        ],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "stylefusion",
+          "gemini",
+          "gpt-image",
+          "grok"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "systems-investigation",
+        "technical-explainer"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "same-same-but-different",
+      "title": "Same Same, But Different",
+      "status": "scheduled",
+      "date": "2026-08-12T23:20:00.000Z",
+      "legacy": {
+        "category": "research",
+        "department": "essays-arguments",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "ai",
+        "generative media",
+        "video generation",
+        "image generation",
+        "APIs",
+        "creative workflows",
+        "model providers",
+        "ComfyUI",
+        "production systems"
+      ],
+      "relatedArticles": [
+        "invisible-variable",
+        "same-model-different-surface",
+        "i-could-be-playing-civilization",
+        "you-do-not-own-the-ai-you-pay-for"
+      ],
+      "centralObject": "A production-oriented way to evaluate AI models, platforms, wrappers, routes, and accepted-result cost.",
+      "primarySection": "technology",
+      "subjects": [
+        "generative-media",
+        "platform-economics",
+        "benchmarking",
+        "creative-tools",
+        "creative-workflows"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [
+          "openai",
+          "google",
+          "xai"
+        ],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "model-apis",
+          "comfyui",
+          "stylefusion"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "systems-investigation",
+        "field-report"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "sharksploitation",
+      "title": "Sharksploitation: The Shark Never Had to Come Ashore",
+      "status": "published",
+      "date": "2026-08-07T23:20:00.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "essays-arguments",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "sharks",
+        "exploitation film",
+        "Mondo Cane",
+        "Jaws",
+        "Roger Corman",
+        "American International Pictures",
+        "blockbuster history",
+        "independent film",
+        "Curry Barker",
+        "Obsession",
+        "film economics",
+        "media panic"
+      ],
+      "relatedArticles": [
+        "how-the-money-eats-the-medium",
+        "the-censor-eats-its-own-tail",
+        "fear-and-loathing-after-the-american-dream"
+      ],
+      "centralObject": "The production machine that turns a real shark into panic, exploitation, blockbuster, franchise, and independent-film opportunity.",
+      "primarySection": "film-tv",
+      "subjects": [
+        "exploitation-film",
+        "film-history",
+        "media-panic",
+        "film-economics",
+        "independent-film"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [
+          "roger-corman",
+          "curry-barker"
+        ],
+        "organizations": [
+          "american-international-pictures",
+          "universal-pictures"
+        ],
+        "places": [
+          "las-vegas"
+        ],
+        "events": [],
+        "works": [
+          "mondo-cane",
+          "jaws",
+          "obsession-2026"
+        ],
+        "publications": [],
+        "technologies": []
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "media-genealogy",
+        "systems-investigation"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "songs-we-learned-backwards",
+      "title": "Songs We Learned Backwards",
+      "status": "scheduled",
+      "date": "2026-08-17T23:20:00.000Z",
+      "legacy": {
+        "category": "magazine-time-machine",
+        "department": "magazine-time-machine",
+        "series": "Magazine Time Machine",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "sampling",
+        "hip-hop",
+        "jazz-funk",
+        "soul",
+        "music discovery",
+        "Eugene McDaniels",
+        "Beastie Boys",
+        "Quincy Jones",
+        "The Pharcyde",
+        "Labi Siffre",
+        "Eminem",
+        "Bob James",
+        "Run-DMC"
+      ],
+      "relatedArticles": [
+        "the-number-one-song-ive-never-heard",
+        "i-want-my-mtv",
+        "from-wetlands-to-the-wash"
+      ],
+      "centralObject": "Sampling as a reverse discovery path from familiar hip-hop fragments into older jazz, funk, and soul records.",
+      "primarySection": "music",
+      "subjects": [
+        "sampling",
+        "music-discovery",
+        "hip-hop",
+        "jazz-funk",
+        "soul"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [
+          "eugene-mcdaniels",
+          "q-tip",
+          "bob-james",
+          "labi-siffre"
+        ],
+        "organizations": [],
+        "places": [],
+        "events": [],
+        "works": [
+          "headless-heroes",
+          "get-it-together"
+        ],
+        "publications": [],
+        "technologies": []
+      },
+      "sourceArtifacts": [
+        {
+          "id": "headless-heroes-recording",
+          "type": "recording",
+          "label": "Eugene McDaniels, Headless Heroes",
+          "role": "origin"
+        }
+      ],
+      "storyModes": [
+        "media-genealogy",
+        "personal-history-trail"
+      ],
+      "confidence": "medium",
+      "ambiguityNotes": "The article is a music trail rather than a magazine-origin investigation, so canonical Magazine Time Machine membership is omitted."
+    },
+    {
+      "slug": "stylefusion-ir-extraction",
+      "title": "How StyleFusion Reads Images",
+      "status": "published",
+      "date": "2026-02-15T00:00:00.000Z",
+      "legacy": {
+        "category": "stylefusion",
+        "department": "workshop-notes",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "stylefusion",
+        "entryType": "",
+        "format": "workshop-note"
+      },
+      "tags": [
+        "stylefusion",
+        "ai",
+        "image-generation"
+      ],
+      "relatedArticles": [],
+      "centralObject": "StyleFusion's Intermediate Representation and provider-specific prompt compilation pipeline.",
+      "primarySection": "technology",
+      "subjects": [
+        "ai-image-generation",
+        "schema-design",
+        "prompt-compilation",
+        "visual-systems",
+        "creative-tools"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "stylefusion",
+          "grimoire",
+          "ai-image-generation"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "technical-explainer"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "susan-denbergs-american-dream",
+      "title": "I Opened August 1966 and Found Susan Denberg",
+      "status": "published",
+      "date": "2026-08-03T00:20:00.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "magazine-time-machine",
+        "series": "Magazine Time Machine",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "Susan Denberg",
+        "Playboy",
+        "August 1966",
+        "Las Vegas",
+        "Stardust",
+        "Bluebell Girls",
+        "Lido de Paris",
+        "Norman Mailer",
+        "An American Dream",
+        "Esquire",
+        "Star Trek",
+        "Hammer Horror",
+        "magazine history"
+      ],
+      "relatedArticles": [
+        "i-may-have-inspired-it",
+        "hey-its-that-guy",
+        "mad-trump-and-the-magazine-time-machine"
+      ],
+      "centralObject": "The Susan Denberg feature in Playboy's August 1966 issue and the career histories the page could not yet know.",
+      "primarySection": "culture",
+      "subjects": [
+        "media-history",
+        "film-history",
+        "publishing",
+        "regional-history"
+      ],
+      "seriesAndSpecials": [
+        "magazine-time-machine"
+      ],
+      "entities": {
+        "people": [
+          "susan-denberg",
+          "norman-mailer"
+        ],
+        "organizations": [
+          "playboy-enterprises"
+        ],
+        "places": [
+          "las-vegas"
+        ],
+        "events": [],
+        "works": [
+          "other-alice-adventures"
+        ],
+        "publications": [
+          "playboy",
+          "esquire"
+        ],
+        "technologies": []
+      },
+      "sourceArtifacts": [
+        {
+          "id": "playboy-august-1966-susan-denberg",
+          "type": "magazine",
+          "label": "Playboy, August 1966, Susan Denberg Picture Playmate",
+          "publication": "playboy",
+          "role": "origin"
+        }
+      ],
+      "storyModes": [
+        "archive-trail",
+        "media-genealogy"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "take-me-to-phobos",
+      "title": "Take Me to Phobos",
+      "status": "published",
+      "date": "2026-07-18T15:00:00.000Z",
+      "legacy": {
+        "category": "research",
+        "department": "essays-arguments",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "interactive fiction",
+        "computer history",
+        "Colossal Cave Adventure",
+        "Zork",
+        "Infocom",
+        "ARPANET",
+        "Apple I",
+        "BBS",
+        "Doom",
+        "game history"
+      ],
+      "relatedArticles": [
+        "gonna-be-different",
+        "1985-future-tech",
+        "1956-automation",
+        "how-the-money-eats-the-medium"
+      ],
+      "centralObject": "A misused catalog record that opened the networked prehistory of interactive fiction and Doom.",
+      "primarySection": "technology",
+      "subjects": [
+        "game-history",
+        "interactive-fiction",
+        "computing-history",
+        "network-history",
+        "research-methods"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [
+          "infocom",
+          "computer-history-museum"
+        ],
+        "places": [],
+        "events": [],
+        "works": [
+          "colossal-cave-adventure",
+          "zork",
+          "leather-goddesses-of-phobos",
+          "doom"
+        ],
+        "publications": [
+          "the-status-line"
+        ],
+        "technologies": [
+          "arpanet",
+          "apple-i",
+          "bbs"
+        ]
+      },
+      "sourceArtifacts": [
+        {
+          "id": "leather-goddesses-of-phobos-package",
+          "type": "catalog",
+          "label": "Leather Goddesses of Phobos package and InfoComics advertisement",
+          "role": "origin"
+        }
+      ],
+      "storyModes": [
+        "archive-trail",
+        "media-genealogy"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "the-anime-to-gothic-pipeline",
+      "title": "The Anime-to-Gothic Pipeline",
+      "status": "published",
+      "date": "2026-03-08T00:00:00.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "workshop-notes",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "",
+        "format": "workshop-note"
+      },
+      "tags": [
+        "anime",
+        "gothic",
+        "art-history",
+        "style-transfer",
+        "visual-dna"
+      ],
+      "relatedArticles": [],
+      "centralObject": "The shared structural visual grammar that makes anime and European Gothic art compatible in style-transfer work.",
+      "primarySection": "art-design",
+      "subjects": [
+        "art-history",
+        "gothic-art",
+        "anime",
+        "visual-systems",
+        "ai-image-generation"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "stylefusion",
+          "ai-image-generation"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "visual-study",
+        "comparative-history"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "the-card-catalog-started-talking-back",
+      "title": "The Card Catalog Started Talking Back",
+      "status": "published",
+      "date": "2026-07-21T00:00:00.000Z",
+      "legacy": {
+        "category": "",
+        "department": "essays-arguments",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "artificial intelligence",
+        "media literacy",
+        "research",
+        "creative systems",
+        "scope control",
+        "academy"
+      ],
+      "relatedArticles": [
+        "vacation-into-nothing",
+        "a-world-of-geniuses-needs-a-system"
+      ],
+      "centralObject": "The changed research job when the catalog can answer, synthesize, and confidently leave the assignment.",
+      "primarySection": "technology",
+      "subjects": [
+        "artificial-intelligence",
+        "media-literacy",
+        "research-methods",
+        "education",
+        "knowledge-systems"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [
+          "hobfarm"
+        ],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "artificial-intelligence",
+          "chatgpt"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "process-essay",
+        "technical-explainer"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "the-censor-eats-its-own-tail",
+      "title": "The Censor Eats Its Own Tail",
+      "status": "published",
+      "date": "2026-07-22T12:25:57.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "hobfarm-presents",
+        "series": "3dm",
+        "presentsSeries": "3dm",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "3dm",
+        "film history",
+        "censorship",
+        "media history",
+        "Production Code",
+        "comics",
+        "music",
+        "social media",
+        "artificial intelligence",
+        "independent publishing"
+      ],
+      "relatedArticles": [
+        "vacation-into-nothing",
+        "how-the-money-eats-the-medium",
+        "mad-trump-and-the-magazine-time-machine",
+        "you-do-not-own-the-ai-you-pay-for"
+      ],
+      "centralObject": "A film-centered history of censorship moving from seals and sponsors into platforms and AI policy.",
+      "primarySection": "film-tv",
+      "subjects": [
+        "censorship",
+        "film-history",
+        "media-history",
+        "platform-governance",
+        "artificial-intelligence"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [
+          "youtube",
+          "hbo"
+        ],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "recommendation-algorithms",
+          "artificial-intelligence"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "media-genealogy",
+        "systems-investigation"
+      ],
+      "confidence": "low",
+      "ambiguityNotes": "Legacy 3DM fields and URL remain for compatibility, but the article contains no Dick Miller connection and is excluded from the canonical 3DM series."
+    },
+    {
+      "slug": "the-future-was-already-there",
+      "title": "The Future Was Already There",
+      "status": "scheduled",
+      "date": "2026-08-18T23:20:00.000Z",
+      "legacy": {
+        "category": "",
+        "department": "before-after-eras",
+        "series": "Before & After Eras",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "YouTube",
+        "television",
+        "media history",
+        "Maine"
+      ],
+      "relatedArticles": [
+        "songs-we-learned-backwards",
+        "i-want-my-mtv",
+        "from-wetlands-to-the-wash"
+      ],
+      "centralObject": "A surviving Portland graffiti film used to map three creative paths and the transition into one-person video production.",
+      "primarySection": "film-tv",
+      "subjects": [
+        "documentary-film",
+        "television-production",
+        "personal-history",
+        "regional-art",
+        "media-production"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [
+          "mike-rich",
+          "tim-clorius",
+          "eli-cayer"
+        ],
+        "organizations": [
+          "youtube"
+        ],
+        "places": [
+          "portland-maine"
+        ],
+        "events": [],
+        "works": [
+          "subone-graffiti-art"
+        ],
+        "publications": [],
+        "technologies": []
+      },
+      "sourceArtifacts": [
+        {
+          "id": "subone-graffiti-art-2006-film",
+          "type": "film",
+          "label": "SUBONE Graffiti Art (2006)",
+          "role": "origin"
+        }
+      ],
+      "storyModes": [
+        "personal-history-trail",
+        "media-genealogy"
+      ],
+      "confidence": "medium",
+      "ambiguityNotes": "Film & TV owns the documentary and production history; Culture and Art & Design are strong secondary relationships."
+    },
+    {
+      "slug": "the-model-is-free",
+      "title": "The Model Is Free. The Computer Isn't.",
+      "status": "scheduled",
+      "date": "2026-08-13T23:20:00.000Z",
+      "legacy": {
+        "category": "research",
+        "department": "essays-arguments",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "ai",
+        "open weights",
+        "local ai",
+        "GPUs",
+        "cloud computing",
+        "ComfyUI",
+        "creative workflows",
+        "hardware",
+        "production systems"
+      ],
+      "relatedArticles": [
+        "same-same-but-different",
+        "you-do-not-own-the-ai-you-pay-for",
+        "too-big-for-the-box",
+        "everything-is-still-loading",
+        "it-just-runs-programs"
+      ],
+      "centralObject": "The gap between open model permission and affordable compute, with rented GPUs as a practical middle path.",
+      "primarySection": "technology",
+      "subjects": [
+        "open-computing",
+        "hardware-economics",
+        "cloud-computing",
+        "artificial-intelligence",
+        "software-ownership"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [
+          "nvidia"
+        ],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "open-weight-models",
+          "nvidia-dgx-spark",
+          "rtx-2080-ti",
+          "comfyui"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "systems-investigation",
+        "field-report"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "the-number-one-song-ive-never-heard",
+      "title": "The Number One Song I’ve Never Heard",
+      "status": "scheduled",
+      "date": "2026-08-13T23:19:00.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "essays-arguments",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "music discovery",
+        "UK singles chart",
+        "Spotify",
+        "YouTube",
+        "Top of the Pops",
+        "music videos",
+        "1966"
+      ],
+      "relatedArticles": [
+        "same-same-but-different",
+        "fear-and-loathing-after-the-american-dream"
+      ],
+      "centralObject": "A record-breaking number-one song the author never encountered and the listening trails that replaced a shared chart room.",
+      "primarySection": "music",
+      "subjects": [
+        "music-discovery",
+        "streaming",
+        "media-history",
+        "content-discovery",
+        "platform-fragmentation"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [
+          "sam-fender",
+          "olivia-dean"
+        ],
+        "organizations": [
+          "spotify",
+          "official-charts-company"
+        ],
+        "places": [],
+        "events": [],
+        "works": [
+          "rein-me-in"
+        ],
+        "publications": [],
+        "technologies": [
+          "streaming-media",
+          "recommendation-algorithms"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "personal-history-trail",
+        "systems-investigation"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "the-unlit-corner-chiaroscuro-truth-shadows",
+      "title": "The Unlit Corner: Chiaroscuro and the Truth of Shadows",
+      "status": "published",
+      "date": "2026-03-12T00:00:00.000Z",
+      "legacy": {
+        "category": "grimoire",
+        "department": "workshop-notes",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "",
+        "format": "workshop-note"
+      },
+      "tags": [
+        "lighting",
+        "visual-aesthetics",
+        "noir",
+        "contrast",
+        "shadow",
+        "art-history",
+        "perception"
+      ],
+      "relatedArticles": [],
+      "centralObject": "Chiaroscuro as a visual philosophy that uses withheld light to make the viewer participate.",
+      "primarySection": "art-design",
+      "subjects": [
+        "art-history",
+        "lighting",
+        "visual-aesthetics",
+        "film-noir",
+        "aesthetics"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": []
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "visual-study",
+        "cultural-trail"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "they-had-names-doll-family",
+      "title": "They Had Names: The Doll Family from Freaks to Sarasota",
+      "status": "published",
+      "date": "2026-07-27T06:40:00.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "hobfarm-presents",
+        "series": "3dm",
+        "presentsSeries": "3dm",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "3dm",
+        "film history",
+        "circus history",
+        "disability",
+        "dwarfism",
+        "Freaks",
+        "The Wizard of Oz",
+        "Sarasota",
+        "pre-Code Hollywood"
+      ],
+      "relatedArticles": [
+        "the-censor-eats-its-own-tail",
+        "california-used-to-race-here",
+        "mad-trump-and-the-magazine-time-machine"
+      ],
+      "centralObject": "The named Doll Family members as workers moving through film, circus, and Sarasota history.",
+      "primarySection": "film-tv",
+      "subjects": [
+        "film-history",
+        "circus-history",
+        "disability-history",
+        "labor-history",
+        "pre-code-hollywood"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [
+          "harry-earles",
+          "daisy-earles",
+          "gracie-doll",
+          "tiny-doll"
+        ],
+        "organizations": [
+          "mgm",
+          "ringling-bros"
+        ],
+        "places": [
+          "sarasota"
+        ],
+        "events": [],
+        "works": [
+          "freaks",
+          "wizard-of-oz"
+        ],
+        "publications": [],
+        "technologies": []
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "archive-trail",
+        "media-genealogy"
+      ],
+      "confidence": "low",
+      "ambiguityNotes": "Legacy 3DM fields and URL remain for compatibility, but the article contains no Dick Miller connection and is excluded from the canonical 3DM series."
+    },
+    {
+      "slug": "too-big-for-the-box",
+      "title": "Too Big for the Box",
+      "status": "published",
+      "date": "2026-07-30T00:20:00.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "essays-arguments",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "games",
+        "interactive fiction",
+        "cloud computing",
+        "AI",
+        "Wonder Machine",
+        "Other Alice",
+        "physical media",
+        "software factories",
+        "wearable computing",
+        "creative systems"
+      ],
+      "relatedArticles": [
+        "i-could-be-playing-civilization",
+        "everything-is-still-loading",
+        "take-me-to-phobos",
+        "gonna-be-different"
+      ],
+      "centralObject": "The return of terminal-and-mainframe computing at planetary scale and the bounded machine being built for Other Alice.",
+      "primarySection": "technology",
+      "subjects": [
+        "cloud-computing",
+        "interactive-fiction",
+        "software-ownership",
+        "game-design",
+        "artificial-intelligence",
+        "platform-economics"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [],
+        "places": [],
+        "events": [],
+        "works": [
+          "civilization-v",
+          "other-alice-adventures"
+        ],
+        "publications": [],
+        "technologies": [
+          "wonder-machine",
+          "artificial-intelligence",
+          "cloud-computing"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "systems-investigation",
+        "process-essay"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "topless-party-in-outer-space",
+      "title": "Topless Party in Outer Space",
+      "status": "published",
+      "date": "2026-07-08T07:00:00.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "hobfarm-presents",
+        "series": "3dm",
+        "presentsSeries": "3dm",
+        "workshopProgram": "",
+        "entryType": "",
+        "format": "article"
+      },
+      "tags": [
+        "3dm",
+        "italian-soundtracks",
+        "library-music",
+        "piero-umiliani",
+        "giuliano-sorgini",
+        "leonard-nimoy",
+        "muppets",
+        "bob-crewe",
+        "media-history"
+      ],
+      "relatedArticles": [
+        "mad-trump-and-the-magazine-time-machine",
+        "1956-automation",
+        "1985-future-tech"
+      ],
+      "centralObject": "An Italian library record opening a trail through soundtrack funk, advertising music, lounge, television, and novelty records.",
+      "primarySection": "music",
+      "subjects": [
+        "library-music",
+        "film-music",
+        "media-history",
+        "music-discovery",
+        "advertising"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [
+          "piero-umiliani",
+          "giuliano-sorgini",
+          "leonard-nimoy",
+          "bob-crewe"
+        ],
+        "organizations": [],
+        "places": [],
+        "events": [],
+        "works": [
+          "lavoro-e-tempo-libero"
+        ],
+        "publications": [],
+        "technologies": []
+      },
+      "sourceArtifacts": [
+        {
+          "id": "lavoro-e-tempo-libero-record",
+          "type": "recording",
+          "label": "Giuliano Sorgini, Lavoro e tempo libero",
+          "role": "origin"
+        }
+      ],
+      "storyModes": [
+        "media-genealogy",
+        "cultural-trail"
+      ],
+      "confidence": "low",
+      "ambiguityNotes": "Legacy 3DM fields and URL remain for compatibility, but the article contains no Dick Miller connection and is excluded from the canonical 3DM series."
+    },
+    {
+      "slug": "trash-mountain",
+      "title": "We Built a Mountain and It Moved",
+      "status": "scheduled",
+      "date": "2026-08-11T23:20:00.000Z",
+      "legacy": {
+        "category": "research",
+        "department": "essays-arguments",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "garbage",
+        "landfills",
+        "waste management",
+        "Conakry",
+        "Guinea",
+        "Maine",
+        "infrastructure",
+        "visual investigation",
+        "Google Earth"
+      ],
+      "relatedArticles": [],
+      "centralObject": "Waste systems becoming visible when bins overflow, landfills close, and accumulated garbage behaves like geology.",
+      "primarySection": "places-systems",
+      "subjects": [
+        "waste-systems",
+        "infrastructure",
+        "public-safety",
+        "settlement-patterns",
+        "environmental-systems"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [],
+        "places": [
+          "conakry",
+          "guinea",
+          "maine",
+          "las-vegas"
+        ],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "google-earth"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "place-study",
+        "systems-investigation"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "vacation-into-nothing",
+      "title": "Vacation Into Nothing",
+      "status": "published",
+      "date": "2026-07-20T15:00:00.000Z",
+      "legacy": {
+        "category": "",
+        "department": "essays-arguments",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "media history",
+        "misinformation",
+        "attention economy",
+        "social media",
+        "artificial intelligence",
+        "journalism"
+      ],
+      "relatedArticles": [],
+      "centralObject": "The recurring media machinery that packages uncertainty into certainty from yellow journalism through AI slop.",
+      "primarySection": "culture",
+      "subjects": [
+        "misinformation",
+        "journalism-history",
+        "attention-economy",
+        "social-media",
+        "artificial-intelligence",
+        "media-literacy"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [
+          "william-randolph-hearst",
+          "joseph-pulitzer"
+        ],
+        "organizations": [],
+        "places": [],
+        "events": [
+          "uss-maine-explosion",
+          "spanish-american-war"
+        ],
+        "works": [],
+        "publications": [
+          "new-york-journal",
+          "new-york-world"
+        ],
+        "technologies": [
+          "community-notes",
+          "grok",
+          "artificial-intelligence"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "media-genealogy",
+        "systems-investigation"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "you-do-not-own-the-ai-you-pay-for",
+      "title": "You Do Not Own the AI You Pay For",
+      "status": "published",
+      "date": "2026-06-16T07:00:00.000Z",
+      "legacy": {
+        "category": "cultural-thread",
+        "department": "essays-arguments",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "",
+        "format": "article"
+      },
+      "tags": [
+        "ai",
+        "hosted ai",
+        "local ai",
+        "ai policy",
+        "consumer ai",
+        "anthropic"
+      ],
+      "relatedArticles": [],
+      "centralObject": "A hosted-model shutdown used to show that paid AI access remains revocable infrastructure rather than ownership.",
+      "primarySection": "technology",
+      "subjects": [
+        "software-ownership",
+        "artificial-intelligence",
+        "platform-governance",
+        "open-computing",
+        "consumer-technology"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [
+          "dario-amodei"
+        ],
+        "organizations": [
+          "anthropic"
+        ],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "fable-5",
+          "mythos-5",
+          "open-weight-models"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "systems-investigation"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "you-should-write-about-sharks",
+      "title": "You Should Write About Sharks",
+      "status": "published",
+      "date": "2026-08-08T23:20:00.000Z",
+      "legacy": {
+        "category": "research",
+        "department": "workshop-notes",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "workshop-notes",
+        "entryType": "feature",
+        "format": "workshop-note"
+      },
+      "tags": [
+        "article process",
+        "editorial method",
+        "Sharksploitation",
+        "Sharknado",
+        "artificial intelligence",
+        "research",
+        "Workshop Notes",
+        "creative systems"
+      ],
+      "relatedArticles": [
+        "sharksploitation",
+        "the-card-catalog-started-talking-back",
+        "how-to-fix-slop",
+        "hey-its-that-guy",
+        "i-may-have-inspired-it"
+      ],
+      "centralObject": "The HobFarm editorial production system exposed by turning a vague shark suggestion into a sourced illustrated feature.",
+      "primarySection": "technology",
+      "subjects": [
+        "publishing-workflow",
+        "research-methods",
+        "artificial-intelligence",
+        "creative-systems",
+        "media-production"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [
+          "hobfarm"
+        ],
+        "places": [],
+        "events": [],
+        "works": [
+          "sharksploitation"
+        ],
+        "publications": [],
+        "technologies": [
+          "artificial-intelligence"
+        ]
+      },
+      "sourceArtifacts": [],
+      "storyModes": [
+        "process-essay",
+        "systems-investigation"
+      ],
+      "confidence": "medium",
+      "ambiguityNotes": "Technology owns the production system; Culture remains a plausible alternative if editorial method becomes a larger desk."
+    }
+  ]
+}
