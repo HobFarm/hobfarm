@@ -24,26 +24,24 @@ function articleWordCount(article) {
   return body.match(/[\p{L}\p{N}][\p{L}\p{N}’'–—-]*/gu)?.length ?? 0;
 }
 
-test("Sharksploitation is complete and scheduled 24 hours after Hermit", async () => {
-  const [article, hermit, workflow, script] = await Promise.all([
+test("Sharksploitation published 24 hours after Hermit and retired its one-time workflow", async () => {
+  const [article, hermit, script] = await Promise.all([
     readFile(articlePath, "utf8"),
     readFile(hermitPath, "utf8"),
-    readFile(workflowPath, "utf8"),
     readFile(scriptPath, "utf8"),
   ]);
 
   assert.equal(field(article, "pubDate"), "2026-08-07");
   assert.equal(field(article, "publishedAt"), "2026-08-07T16:20:00-07:00");
-  assert.equal(field(article, "status"), "scheduled");
+  assert.equal(field(article, "status"), "published");
   assert.equal(field(article, "draft"), "false");
   assert.equal(
     Date.parse(field(article, "publishedAt")) -
       Date.parse(field(hermit, "publishedAt")),
     24 * 60 * 60 * 1000,
   );
-  assert.match(workflow, /cron: "20 23 7 8 \*"/);
-  assert.match(workflow, /node scripts\/publish-scheduled-sharksploitation\.mjs/);
   assert.match(script, /2026-08-07T16:20:00-07:00/);
+  await assert.rejects(access(workflowPath), (error) => error?.code === "ENOENT");
   assert.match(article, /The shark never had to come ashore\./);
   assert.doesNotMatch(article, /contentWarnings|Content note:/i);
 

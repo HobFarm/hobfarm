@@ -25,11 +25,10 @@ function articleWordCount(article) {
   return body.match(/[\p{L}\p{N}][\p{L}\p{N}’'–—-]*/gu)?.length ?? 0;
 }
 
-test("You Should Write About Sharks is scheduled after Sharksploitation", async () => {
-  const [article, sharksploitation, workflow, script] = await Promise.all([
+test("You Should Write About Sharks published after Sharksploitation and retired its one-time workflow", async () => {
+  const [article, sharksploitation, script] = await Promise.all([
     readFile(articlePath, "utf8"),
     readFile(sharksploitationPath, "utf8"),
-    readFile(workflowPath, "utf8"),
     readFile(scriptPath, "utf8"),
   ]);
 
@@ -37,19 +36,15 @@ test("You Should Write About Sharks is scheduled after Sharksploitation", async 
   assert.equal(field(article, "format"), "workshop-note");
   assert.equal(field(article, "pubDate"), "2026-08-08");
   assert.equal(field(article, "publishedAt"), "2026-08-08T16:20:00-07:00");
-  assert.equal(field(article, "status"), "scheduled");
+  assert.equal(field(article, "status"), "published");
   assert.equal(field(article, "draft"), "false");
   assert.equal(
     Date.parse(field(article, "publishedAt")) -
       Date.parse(field(sharksploitation, "publishedAt")),
     24 * 60 * 60 * 1000,
   );
-  assert.match(workflow, /cron: "20 23 8 8 \*"/);
-  assert.match(
-    workflow,
-    /node scripts\/publish-scheduled-you-should-write-about-sharks\.mjs/,
-  );
   assert.match(script, /2026-08-08T16:20:00-07:00/);
+  await assert.rejects(access(workflowPath), (error) => error?.code === "ENOENT");
 
   const wordCount = articleWordCount(article);
   assert.ok(wordCount >= 1800 && wordCount <= 2500, `article word count is ${wordCount}`);

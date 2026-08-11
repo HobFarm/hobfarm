@@ -1,0 +1,36 @@
+name: Publish The Future Was Already There
+
+on:
+  schedule:
+    - cron: "20 23 18 8 *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-the-future-was-already-there
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Publish when the scheduled time has arrived
+        id: article
+        run: node scripts/publish-scheduled-the-future-was-already-there.mjs
+
+      - name: Remove the one-time schedule and trigger the production build
+        if: steps.article.outputs.published == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/publish-the-future-was-already-there.yml
+          git add src/content/articles/the-future-was-already-there.mdx
+          git commit -m "Publish The Future Was Already There"
+          git push origin main

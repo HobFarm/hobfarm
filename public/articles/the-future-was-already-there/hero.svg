@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">The Future Was Already There</title>
+  <desc id="desc">A diagrammatic handheld camera faces a painted brick wall while three colored routes branch toward a mural, a studio canvas, and a community table.</desc>
+  <defs>
+    <linearGradient id="night" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#08111b"/>
+      <stop offset="0.55" stop-color="#142332"/>
+      <stop offset="1" stop-color="#090e14"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7eeeff"/>
+      <stop offset="1" stop-color="#126d85"/>
+    </linearGradient>
+    <pattern id="brick" width="112" height="52" patternUnits="userSpaceOnUse">
+      <rect width="112" height="52" fill="#202f3d"/>
+      <path d="M0 1h112M0 51h112M1 0v26M56 26v26M111 0v26" fill="none" stroke="#435566" stroke-width="2" opacity=".58"/>
+    </pattern>
+    <pattern id="scan" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 7.5h8" stroke="#fff" stroke-opacity=".055"/>
+    </pattern>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#night)"/>
+  <circle cx="1290" cy="120" r="285" fill="#55e6ff" opacity=".055"/>
+  <circle cx="120" cy="760" r="300" fill="#ff6d67" opacity=".045"/>
+  <rect width="1600" height="900" fill="url(#scan)"/>
+
+  <g opacity=".38" font-family="monospace" font-size="19" fill="#9eb0c0" letter-spacing="3">
+    <text x="90" y="95">PORTLAND / MAINE</text>
+    <text x="1280" y="95">2004—2006</text>
+  </g>
+
+  <g transform="translate(770 120)">
+    <path d="M0 8h680v484H0z" fill="url(#brick)" stroke="#718599" stroke-width="3"/>
+    <path d="M44 314C147 179 234 390 330 199S500 302 633 96" fill="none" stroke="#e6ff4f" stroke-width="34" stroke-linecap="round" stroke-linejoin="round" opacity=".82"/>
+    <path d="M56 134c77 105 139 42 204 1 85-53 124 28 191 23 73-5 88-70 157-78" fill="none" stroke="#ff6d67" stroke-width="23" stroke-linecap="round" opacity=".78"/>
+    <path d="M92 409c76-76 145-59 194-3 63 70 132 45 194-29 40-48 83-62 128-49" fill="none" stroke="#55e6ff" stroke-width="17" stroke-linecap="round" opacity=".78"/>
+    <g fill="none" stroke="#f4f0e5" stroke-width="7" opacity=".88">
+      <circle cx="323" cy="256" r="89"/>
+      <path d="M250 285c47-23 96-30 147-17M281 233c12-14 25-21 40-21s30 8 46 24M311 314l34-10"/>
+    </g>
+    <text x="42" y="468" fill="#eaf1f8" font-family="monospace" font-size="17" letter-spacing="3">THE WALL / ACCESS / RISK / PERMISSION</text>
+  </g>
+
+  <g transform="translate(110 245)">
+    <path d="M38 87h417c26 0 47 21 47 47v250c0 26-21 47-47 47H38c-21 0-38-17-38-38V125c0-21 17-38 38-38z" fill="#111c27" stroke="#9caebd" stroke-width="4"/>
+    <path d="M98 87l49-80h197l58 80" fill="#111c27" stroke="#9caebd" stroke-width="4" stroke-linejoin="round"/>
+    <circle cx="280" cy="255" r="119" fill="#071018" stroke="#d7e2ec" stroke-width="12"/>
+    <circle cx="280" cy="255" r="83" fill="url(#screen)" stroke="#55e6ff" stroke-width="6"/>
+    <circle cx="280" cy="255" r="42" fill="#09131d" stroke="#b5f6ff" stroke-width="4"/>
+    <circle cx="250" cy="222" r="19" fill="#fff" opacity=".62"/>
+    <rect x="31" y="126" width="88" height="49" rx="8" fill="#e6ff4f"/>
+    <text x="48" y="158" fill="#091018" font-family="monospace" font-weight="bold" font-size="17">REC ●</text>
+    <path d="M0 180l-75 50v126L0 384" fill="#111c27" stroke="#9caebd" stroke-width="4"/>
+    <path d="M502 175l111-58v270l-111-55" fill="#162533" stroke="#9caebd" stroke-width="4"/>
+    <text x="34" y="474" fill="#9eb0c0" font-family="monospace" font-size="18" letter-spacing="2">ONE CAMERA / THREE PATHS</text>
+  </g>
+
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M690 580C910 599 1003 648 1088 767" stroke="#55e6ff" stroke-width="8"/>
+    <path d="M690 615C865 680 835 779 724 817" stroke="#e6ff4f" stroke-width="8"/>
+    <path d="M690 547C939 516 1172 569 1393 715" stroke="#ff6d67" stroke-width="8"/>
+  </g>
+
+  <g transform="translate(1010 724)" stroke="#55e6ff" fill="#0c1721" stroke-width="4">
+    <rect x="0" y="0" width="178" height="111"/>
+    <path d="M22 86l43-46 31 28 29-36 33 54z"/>
+    <text x="47" y="143" fill="#98adbd" stroke="none" font-family="monospace" font-size="16" letter-spacing="2">STREET</text>
+  </g>
+  <g transform="translate(575 716)" stroke="#e6ff4f" fill="#0c1721" stroke-width="4">
+    <path d="M15 107h167L158 0H40z"/>
+    <path d="M48 31c38 4 47 39 77 44 16 3 29-5 43-20"/>
+    <text x="54" y="143" fill="#98adbd" stroke="none" font-family="monospace" font-size="16" letter-spacing="2">STUDIO</text>
+  </g>
+  <g transform="translate(1320 690)" stroke="#ff6d67" fill="#0c1721" stroke-width="4">
+    <ellipse cx="94" cy="45" rx="82" ry="30"/>
+    <path d="M12 45v43c0 17 37 30 82 30s82-13 82-30V45M94 75v76M39 106l-17 45M149 106l18 45"/>
+    <text x="30" y="181" fill="#98adbd" stroke="none" font-family="monospace" font-size="16" letter-spacing="2">COMMUNITY</text>
+  </g>
+
+  <g filter="url(#glow)">
+    <circle cx="690" cy="580" r="10" fill="#fff"/>
+  </g>
+</svg>

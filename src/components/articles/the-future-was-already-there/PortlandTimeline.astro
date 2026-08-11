@@ -1,0 +1,213 @@
+---
+const events = [
+  {
+    year: "2002",
+    title: "WCSH-DT begins operation",
+    note: "Local broadcasting enters the long analog-and-digital overlap.",
+    lane: "broadcast",
+  },
+  {
+    year: "JUL 2004",
+    title: "The Portland film begins",
+    note: "A three-person graffiti documentary forms around Mike Rich, Tim Clorius, and Eli Cayer.",
+    lane: "film",
+  },
+  {
+    year: "APR 2005",
+    title: "YouTube's first upload",
+    note: "The public video platform arrives while the documentary is already in production.",
+    lane: "web",
+  },
+  {
+    year: "MAY 2006",
+    title: "SUBONE goes online",
+    note: "The 9:47 film is uploaded on May 28 and gains a durable address.",
+    lane: "film",
+  },
+  {
+    year: "OCT 2006",
+    title: "Google announces acquisition",
+    note: "The agreed price for YouTube is $1.65 billion in stock.",
+    lane: "web",
+  },
+  {
+    year: "AUG 2021",
+    title: "KPVM reaches HBO",
+    note: "Small Town News follows an independent station attempting to expand.",
+    lane: "broadcast",
+  },
+  {
+    year: "LATE 2021",
+    title: "Studio B opens in Henderson",
+    note: "Short YouTube reports and half-hour television broadcasts share one reporting workflow.",
+    lane: "both",
+  },
+] as const;
+---
+
+<figure class="timeline article-wide" aria-labelledby="timeline-title">
+  <figcaption>
+    <p>Production and distribution · 2002–2021</p>
+    <h3 id="timeline-title">Three systems become one job</h3>
+  </figcaption>
+  <div class="timeline__key" aria-label="Timeline categories">
+    <span class="timeline__key-item timeline__key-item--film">Documentary</span>
+    <span class="timeline__key-item timeline__key-item--web">Online video</span>
+    <span class="timeline__key-item timeline__key-item--broadcast">Broadcast</span>
+  </div>
+  <ol>
+    {events.map((event) => (
+      <li class={`timeline__event timeline__event--${event.lane}`}>
+        <span class="timeline__dot" aria-hidden="true"></span>
+        <time>{event.year}</time>
+        <h4>{event.title}</h4>
+        <p>{event.note}</p>
+      </li>
+    ))}
+  </ol>
+  <p class="timeline__result"><span>RESULT</span> Report · shoot · edit · publish · broadcast</p>
+</figure>
+
+<style>
+  .timeline {
+    margin-block: 3.5rem;
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--color-border, #64748b) 70%, transparent);
+    background: #f1eee5;
+    color: #101820;
+    box-shadow: 0 20px 55px rgb(15 23 42 / 0.13);
+  }
+
+  figcaption p,
+  figcaption h3,
+  .timeline__event h4,
+  .timeline__event p,
+  .timeline__result {
+    margin: 0;
+  }
+
+  figcaption > p {
+    color: #536270;
+    font: 700 0.7rem/1.3 var(--font-mono, monospace);
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  figcaption h3 {
+    margin-top: 0.45rem;
+    color: #101820;
+    font-size: clamp(1.65rem, 4vw, 2.75rem);
+    line-height: 1.04;
+  }
+
+  .timeline__key {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 1rem;
+    margin-block: 1.4rem 2.5rem;
+    color: #384653;
+    font: 700 0.64rem/1 var(--font-mono, monospace);
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .timeline__key-item::before {
+    display: inline-block;
+    width: 0.62rem;
+    height: 0.62rem;
+    margin-right: 0.35rem;
+    border-radius: 50%;
+    background: var(--key-color);
+    content: "";
+  }
+
+  .timeline__key-item--film { --key-color: #e4483f; }
+  .timeline__key-item--web { --key-color: #067d93; }
+  .timeline__key-item--broadcast { --key-color: #7a7211; }
+
+  ol {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .timeline__event {
+    --event-color: #7a7211;
+    position: relative;
+    min-width: 0;
+    padding: 1rem 1rem 1rem 1.2rem;
+    border-left: 4px solid var(--event-color);
+    background: rgb(255 253 246 / 0.78);
+  }
+
+  .timeline__event--film { --event-color: #e4483f; }
+  .timeline__event--web { --event-color: #067d93; }
+  .timeline__event--both { --event-color: #111827; }
+
+  .timeline__dot {
+    position: absolute;
+    top: 1.15rem;
+    left: -0.55rem;
+    width: 0.86rem;
+    height: 0.86rem;
+    border: 2px solid #f1eee5;
+    border-radius: 50%;
+    background: var(--event-color);
+    box-shadow: 0 0 0 1px var(--event-color);
+  }
+
+  .timeline__event time {
+    color: var(--event-color);
+    font: 800 0.67rem/1 var(--font-mono, monospace);
+    letter-spacing: 0.08em;
+  }
+
+  .timeline__event h4 {
+    margin-top: 0.55rem;
+    color: #101820;
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  .timeline__event p {
+    margin-top: 0.45rem;
+    color: #50606c;
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+
+  .timeline__result {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 1.25rem;
+    padding: 0.85rem 1rem;
+    border: 1px solid #a9a69b;
+    background: #fffdf6;
+    color: #101820;
+    font: 700 clamp(0.78rem, 2vw, 0.92rem)/1.35 var(--font-mono, monospace);
+  }
+
+  .timeline__result span {
+    padding: 0.3rem 0.5rem;
+    background: #101820;
+    color: #fff;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+  }
+
+  @media (max-width: 560px) {
+    ol {
+      grid-template-columns: 1fr;
+    }
+
+    .timeline__result {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+</style>

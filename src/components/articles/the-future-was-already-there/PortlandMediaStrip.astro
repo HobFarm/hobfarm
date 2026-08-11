@@ -1,0 +1,169 @@
+---
+const clips = [
+  {
+    label: "Process fragment · 2007 · 6:37",
+    title: "SUBONE and Friends Graffiti Art",
+    description: "Several pieces recorded across four days.",
+    href: "https://www.youtube.com/watch?v=8-EsRJ8Pc7U",
+    mark: "4 DAYS",
+  },
+  {
+    label: "Live fragment · 2006 · 1:53",
+    title: "Mix Master Mike Live",
+    description: "A surviving piece of the live-music and projection overlap.",
+    href: "https://www.youtube.com/watch?v=7XYS1yturKs",
+    mark: "LIVE",
+  },
+] as const;
+---
+
+<aside class="media-strip article-wide" aria-labelledby="media-strip-title">
+  <div class="media-strip__intro">
+    <p>Related footage</p>
+    <h3 id="media-strip-title">Two fragments from the same working network</h3>
+  </div>
+  <div class="media-strip__links">
+    {clips.map((clip) => (
+      <a href={clip.href}>
+        <span class="media-strip__mark" aria-hidden="true">{clip.mark}</span>
+        <span class="media-strip__copy">
+          <small>{clip.label}</small>
+          <strong>{clip.title}</strong>
+          <span>{clip.description}</span>
+        </span>
+        <span class="media-strip__arrow" aria-hidden="true">↗</span>
+      </a>
+    ))}
+  </div>
+  <p class="media-strip__privacy">Plain links; no player loads here.</p>
+</aside>
+
+<style>
+  .media-strip {
+    display: grid;
+    grid-template-columns: minmax(12rem, 0.72fr) minmax(0, 1.8fr);
+    gap: 1.25rem;
+    margin-block: 2.5rem 3.5rem;
+    padding: 1.25rem;
+    border: 1px solid color-mix(in srgb, var(--color-border, #64748b) 70%, transparent);
+    background: #111820;
+    color: #fff;
+  }
+
+  .media-strip__intro p,
+  .media-strip__intro h3,
+  .media-strip__privacy {
+    margin: 0;
+  }
+
+  .media-strip__intro p {
+    color: #e6ff4f;
+    font: 700 0.67rem/1.3 var(--font-mono, monospace);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .media-strip__intro h3 {
+    margin-top: 0.45rem;
+    color: #fff;
+    font-size: clamp(1.15rem, 2.4vw, 1.6rem);
+    line-height: 1.08;
+  }
+
+  .media-strip__links {
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  .media-strip__links a {
+    display: grid;
+    grid-template-columns: 4.2rem minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.85rem;
+    border: 1px solid rgb(255 255 255 / 0.14);
+    background: #1a2530;
+    color: inherit;
+    text-decoration: none;
+    transition: border-color 150ms ease, background 150ms ease;
+  }
+
+  .media-strip__links a:hover {
+    border-color: #55e6ff;
+    background: #202e3a;
+  }
+
+  .media-strip__links a:focus-visible {
+    outline: 3px solid #e6ff4f;
+    outline-offset: 3px;
+  }
+
+  .media-strip__mark {
+    display: grid;
+    min-height: 3.2rem;
+    place-items: center;
+    border: 1px solid #53687a;
+    background:
+      repeating-linear-gradient(135deg, rgb(255 255 255 / 0.04) 0 4px, transparent 4px 8px),
+      #0b1117;
+    color: #55e6ff;
+    font: 800 0.6rem/1 var(--font-mono, monospace);
+    letter-spacing: 0.08em;
+  }
+
+  .media-strip__copy {
+    display: grid;
+    gap: 0.16rem;
+    min-width: 0;
+  }
+
+  .media-strip__copy small {
+    color: #93a7b8;
+    font: 600 0.61rem/1.3 var(--font-mono, monospace);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .media-strip__copy strong {
+    color: #fff;
+    font-size: 0.93rem;
+    line-height: 1.25;
+  }
+
+  .media-strip__copy > span {
+    color: #bdc9d4;
+    font-size: 0.77rem;
+    line-height: 1.35;
+  }
+
+  .media-strip__arrow {
+    color: #e6ff4f;
+    font-size: 1.1rem;
+  }
+
+  .media-strip__privacy {
+    grid-column: 2;
+    color: #8395a5;
+    font: 0.64rem/1.4 var(--font-mono, monospace);
+  }
+
+  @media (max-width: 680px) {
+    .media-strip {
+      grid-template-columns: 1fr;
+    }
+
+    .media-strip__privacy {
+      grid-column: 1;
+    }
+
+    .media-strip__links a {
+      grid-template-columns: 3.4rem minmax(0, 1fr) auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .media-strip__links a {
+      transition: none;
+    }
+  }
+</style>

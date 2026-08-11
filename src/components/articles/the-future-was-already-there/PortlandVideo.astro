@@ -1,0 +1,185 @@
+---
+interface Props {
+  videoId: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  featured?: boolean;
+}
+
+const { videoId, eyebrow, title, description, featured = false } = Astro.props;
+const watchUrl = `https://www.youtube.com/watch?v=${videoId}`;
+const posterUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+---
+
+<figure id={`video-${videoId}`} class:list={["portland-video article-wide", { "portland-video--featured": featured }]} data-portland-video data-video-id={videoId}>
+  <div class="portland-video__frame">
+    <img src={posterUrl} alt="" width="1280" height="720" loading="lazy" decoding="async" />
+    <div class="portland-video__wash" aria-hidden="true"></div>
+    <button class="portland-video__play" type="button" aria-label={`Play ${title}`}>
+      <span class="portland-video__play-icon" aria-hidden="true"></span>
+      <span>Play film</span>
+    </button>
+  </div>
+  <figcaption>
+    <p class="portland-video__eyebrow">{eyebrow}</p>
+    <h3>{title}</h3>
+    <p>{description}</p>
+    <a href={watchUrl}>Open on YouTube <span aria-hidden="true">↗</span></a>
+  </figcaption>
+</figure>
+
+<script>
+  function bindPortlandVideos() {
+    document.querySelectorAll<HTMLElement>("[data-portland-video]").forEach((root) => {
+      if (root.dataset.bound === "true") return;
+      root.dataset.bound = "true";
+
+      const button = root.querySelector<HTMLButtonElement>("button");
+      const frame = root.querySelector<HTMLElement>(".portland-video__frame");
+      const videoId = root.dataset.videoId;
+      if (!button || !frame || !videoId) return;
+
+      button.addEventListener("click", () => {
+        const iframe = document.createElement("iframe");
+        iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
+        iframe.title = button.getAttribute("aria-label")?.replace(/^Play /, "") ?? "YouTube video";
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        iframe.allowFullscreen = true;
+        iframe.referrerPolicy = "strict-origin-when-cross-origin";
+        frame.replaceChildren(iframe);
+      }, { once: true });
+    });
+  }
+
+  bindPortlandVideos();
+  document.addEventListener("astro:page-load", bindPortlandVideos);
+</script>
+
+<style>
+  .portland-video {
+    --video-accent: #e6ff4f;
+    margin-block: 3rem;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--color-border, #64748b) 65%, transparent);
+    background: #10151d;
+    color: #f8fafc;
+    box-shadow: 0 24px 70px rgb(2 6 23 / 0.28);
+  }
+
+  .portland-video--featured {
+    --video-accent: #55e6ff;
+  }
+
+  .portland-video__frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #05080d;
+  }
+
+  .portland-video__frame img,
+  .portland-video__frame :global(iframe) {
+    width: 100%;
+    height: 100% !important;
+    border: 0;
+    object-fit: cover;
+  }
+
+  .portland-video__frame img {
+    filter: saturate(0.72) contrast(1.08);
+  }
+
+  .portland-video__wash {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(130deg, rgb(5 8 13 / 0.12), rgb(5 8 13 / 0.62)),
+      repeating-linear-gradient(0deg, transparent 0 3px, rgb(255 255 255 / 0.03) 3px 4px);
+  }
+
+  .portland-video__play {
+    position: absolute;
+    inset: 50% auto auto 50%;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    min-height: 3.25rem;
+    padding: 0.8rem 1.2rem;
+    transform: translate(-50%, -50%);
+    border: 1px solid rgb(255 255 255 / 0.68);
+    border-radius: 999px;
+    background: rgb(5 8 13 / 0.88);
+    color: #fff;
+    font: 700 0.78rem/1 var(--font-mono, monospace);
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: transform 160ms ease, background 160ms ease, color 160ms ease;
+  }
+
+  .portland-video__play:hover {
+    transform: translate(-50%, -50%) scale(1.035);
+    background: var(--video-accent);
+    color: #071016;
+  }
+
+  .portland-video__play:focus-visible {
+    outline: 3px solid var(--video-accent);
+    outline-offset: 4px;
+  }
+
+  .portland-video__play-icon {
+    width: 0;
+    height: 0;
+    border-block: 0.38rem solid transparent;
+    border-left: 0.62rem solid currentColor;
+  }
+
+  figcaption {
+    display: grid;
+    gap: 0.55rem;
+    padding: clamp(1.2rem, 3vw, 2rem);
+    border-top: 4px solid var(--video-accent);
+  }
+
+  figcaption p,
+  figcaption h3 {
+    margin: 0;
+  }
+
+  figcaption h3 {
+    color: #fff;
+    font-size: clamp(1.45rem, 3vw, 2.2rem);
+    line-height: 1.05;
+  }
+
+  figcaption > p:not(.portland-video__eyebrow) {
+    max-width: 70ch;
+    color: #cbd5e1;
+    font-size: 0.96rem;
+    line-height: 1.55;
+  }
+
+  .portland-video__eyebrow {
+    color: var(--video-accent);
+    font: 700 0.72rem/1.3 var(--font-mono, monospace);
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  figcaption a {
+    width: fit-content;
+    color: var(--video-accent);
+    font: 700 0.78rem/1.3 var(--font-mono, monospace);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.24em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .portland-video__play {
+      transition: none;
+    }
+  }
+</style>
