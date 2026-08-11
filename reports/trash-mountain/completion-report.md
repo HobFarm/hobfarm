@@ -10,7 +10,7 @@ Built a source-backed visual feature from the supplied Codex pack. The article c
 - Draft/scheduled/published: scheduled
 - Publication date: August 11, 2026 at 4:20 p.m. PDT (`2026-08-11T16:20:00-07:00`)
 - Scheduled publisher: `.github/workflows/publish-trash-mountain.yml`
-- Current public state: not deployed; the work remains uncommitted on local `main`
+- Current public state: scheduled; article and workflow are on `origin/main`, while the route remains hidden until publication
 
 ## Article
 
@@ -25,15 +25,15 @@ Built a source-backed visual feature from the supplied Codex pack. The article c
 
 | Asset group | Source class | Derivatives | CDN destination | Credit | Status |
 |---|---|---|---|---|---|
-| 11 street and shoreline photographs | User-owned | Original files retained; U01 also supplies hero/social crops | `articles/trash-mountain/source/` | HobFarm | All 11 used in article; staged locally; destination keys absent |
-| 16 Conakry captures | Google Earth editorial evidence | None | `articles/trash-mountain/google-earth/` | Google Earth plus visible providers | 11 used; 5 secondary references staged; attribution remains visible; destination keys absent |
-| Payatas, Hulene and Kiteezi photographs | CC BY-SA 3.0, CC BY-SA 2.0 and CC0 | None | `articles/trash-mountain/licensed/` | Per-source creator credits | Used in case strip; staged locally; destination keys absent |
-| Ghazipur, Pacific map and two NASA Conakry images | CC/public-domain | None | `articles/trash-mountain/licensed/` | Per-source credits | Considered and staged, but omitted from the page because they did not improve the final sequence |
-| Hero and social crops | User-owned U01 | 1600×900 WebP and 1200×630 WebP | `articles/trash-mountain/` | Photograph: HobFarm | Used in metadata/layout; staged locally; destination keys absent |
-| Fatal-event ledger | Original structured research | CSV | `articles/trash-mountain/data/` | HobFarm research audit | Used as download; staged locally; destination key absent |
+| 11 street and shoreline photographs | User-owned | Original files retained; U01 also supplies hero/social crops | `articles/trash-mountain/source/` | HobFarm | All 11 used in article; uploaded and verified |
+| 16 Conakry captures | Google Earth editorial evidence | None | `articles/trash-mountain/google-earth/` | Google Earth plus visible providers | 11 used; 5 secondary references retained; attribution remains visible; uploaded and verified |
+| Payatas, Hulene and Kiteezi photographs | CC BY-SA 3.0, CC BY-SA 2.0 and CC0 | None | `articles/trash-mountain/licensed/` | Per-source creator credits | Used in case strip; uploaded and verified |
+| Ghazipur, Pacific map and two NASA Conakry images | CC/public-domain | None | `articles/trash-mountain/licensed/` | Per-source credits | Omitted from the page but retained as verified supporting assets |
+| Hero and social crops | User-owned U01 | 1600×900 WebP and 1200×630 WebP | `articles/trash-mountain/` | Photograph: HobFarm | Used in metadata/layout; uploaded and verified |
+| Fatal-event ledger | Original structured research | CSV | `articles/trash-mountain/data/` | HobFarm research audit | Used as download; uploaded and verified |
 | Guineematin ground photograph | Reference only | None | None | Not published | Excluded because the pack contains no publication license |
 
-All 37 publishable files are staged under `_cdn/articles/trash-mountain/` (52,436,372 bytes). The non-overwriting R2 dry run confirmed that all 37 destination keys are absent. No remote object was written.
+All 37 publishable files remain staged under `_cdn/articles/trash-mountain/` (52,436,372 bytes) and were uploaded through the non-overwriting manifest. R2 checksums and public CDN responses were verified for every object. Upload completed at `2026-08-11T01:25:02.532Z`.
 
 ## Components
 
@@ -95,7 +95,7 @@ All 37 publishable files are staged under `_cdn/articles/trash-mountain/` (52,43
 |---|---|
 | Pack `verify-pack.py` | Passed: 11 owned photos, 16 Google Earth captures, 7 licensed/public files, 1 excluded reference, 22 event rows |
 | `node scripts/build-trash-mountain-manifest.mjs --pack <pack>` | Passed; generated a checksummed 37-asset manifest |
-| `node scripts/r2-upload-manifest.mjs --manifest reports/trash-mountain/asset-manifest.json` | Passed; all 37 keys ready and destination-absent; no remote writes |
+| `node scripts/r2-upload-manifest.mjs --manifest reports/trash-mountain/asset-manifest.json --upload --resume` | Passed; all 37 R2 objects uploaded or checksum-adopted and publicly verified |
 | `node scripts/publish-scheduled-trash-mountain.mjs` | Passed pre-publication guard; returned `published=false` |
 | `npx astro check` | Passed: 539 files, 0 errors, 0 warnings, 0 hints |
 | `npm run build` | Passed; production build completed |
@@ -106,8 +106,6 @@ All 37 publishable files are staged under `_cdn/articles/trash-mountain/` (52,43
 
 ## Unresolved
 
-- The 37 CDN objects are prepared but not uploaded. Cloudflare/R2 mutation requires explicit authorization.
-- The scheduled workflow is local and uncommitted. It cannot run until the validated work is committed and pushed to `origin/main` before August 11.
 - Rodriguez's official and later technical totals still disagree.
 - New Carmen's final missing-person outcome was not located.
 - Kiteezi's missing-person record remains unresolved in the latest strong source located.
@@ -115,10 +113,11 @@ All 37 publishable files are staged under `_cdn/articles/trash-mountain/` (52,43
 
 ## Deployment
 
-- Commit: not created
+- Article/workflow commit: `9dc9ae13c037a3c9277bcdd3834e8f5354ee115b`
 - Branch: `main`
-- CDN upload completed: no
+- CDN upload completed: yes; 37 of 37 objects verified
 - Site deployment completed: no
+- Scheduled workflow: active on GitHub Actions for August 11, 2026 at 4:20 p.m. PDT
 - Smoke test URL: local-only `/articles/trash-mountain/`; server stopped after QA
 
-Do not claim the article is remotely scheduled until the CDN upload and `main` push are authorized and completed.
+The article is remotely scheduled and its CDN dependencies are ready. The site route should become public only after the one-time workflow publishes it.

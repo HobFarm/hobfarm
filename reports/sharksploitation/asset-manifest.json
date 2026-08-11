@@ -43,8 +43,15 @@
       "width": 1920,
       "height": 1080,
       "replacement_policy": "new-key-only; version filename on conflict; never overwrite",
-      "upload_status": "ready",
-      "verification_status": "destination-absent"
+      "upload_status": "uploaded",
+      "verification_status": "verified",
+      "remote_sha256": "dae0f2666de88297e196903316f06656a64b86160ef3bf51e797a043701ccb2d",
+      "http_status": 200,
+      "verified_content_type": "image/webp",
+      "verified_cache_control": "public, max-age=31536000, immutable",
+      "public_response_sha256": "dae0f2666de88297e196903316f06656a64b86160ef3bf51e797a043701ccb2d",
+      "edge_transformed": false,
+      "verified_at": "2026-08-11T01:02:41.581Z"
     },
     {
       "asset_id": "sharksploitation-hero-avif",
@@ -69,8 +76,15 @@
       "width": 1920,
       "height": 1080,
       "replacement_policy": "new-key-only; version filename on conflict; never overwrite",
-      "upload_status": "ready",
-      "verification_status": "destination-absent"
+      "upload_status": "uploaded",
+      "verification_status": "verified",
+      "remote_sha256": "cc7982875e729003b9fc9a8b0ed52627060d253772bd34f961f1c57ad946228a",
+      "http_status": 200,
+      "verified_content_type": "image/avif",
+      "verified_cache_control": "public, max-age=31536000, immutable",
+      "public_response_sha256": "cc7982875e729003b9fc9a8b0ed52627060d253772bd34f961f1c57ad946228a",
+      "edge_transformed": false,
+      "verified_at": "2026-08-11T01:02:47.844Z"
     },
     {
       "asset_id": "sharksploitation-social",
@@ -95,8 +109,15 @@
       "width": 1200,
       "height": 630,
       "replacement_policy": "new-key-only; version filename on conflict; never overwrite",
-      "upload_status": "ready",
-      "verification_status": "destination-absent"
+      "upload_status": "uploaded",
+      "verification_status": "verified",
+      "remote_sha256": "7ce77e24eceb48134cfcba1128fecec56da199320d58ffeea95c8ecdaa8f20bb",
+      "http_status": 200,
+      "verified_content_type": "image/jpeg",
+      "verified_cache_control": "public, max-age=31536000, immutable",
+      "public_response_sha256": "7ce77e24eceb48134cfcba1128fecec56da199320d58ffeea95c8ecdaa8f20bb",
+      "edge_transformed": false,
+      "verified_at": "2026-08-11T01:02:54.237Z"
     },
     {
       "asset_id": "philadelphia-inquirer-shark-attacks-1916",
@@ -121,8 +142,15 @@
       "width": 1600,
       "height": 1202,
       "replacement_policy": "new-key-only; version filename on conflict; never overwrite",
-      "upload_status": "ready",
-      "verification_status": "destination-absent"
+      "upload_status": "uploaded",
+      "verification_status": "verified",
+      "remote_sha256": "4c7946fdb3524c1ffe429334268dfd20f7cb471f190b1a672959f80cd8386fe1",
+      "http_status": 200,
+      "verified_content_type": "image/webp",
+      "verified_cache_control": "public, max-age=31536000, immutable",
+      "public_response_sha256": "4c7946fdb3524c1ffe429334268dfd20f7cb471f190b1a672959f80cd8386fe1",
+      "edge_transformed": false,
+      "verified_at": "2026-08-11T01:03:00.599Z"
     }
   ],
   "retained_sources": [
@@ -196,5 +224,6 @@
       "rights_basis": "original HTML/CSS data graphic based on cited public reporting"
     }
   ],
-  "dry_run_at": "2026-08-04T06:33:16.220Z"
+  "dry_run_at": "2026-08-11T01:02:34.928Z",
+  "upload_completed_at": "2026-08-11T01:03:00.601Z"
 }

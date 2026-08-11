@@ -62,7 +62,7 @@ test("Sharksploitation includes its editorial graphics, sources, and exact embed
   assert.match(article, /The production method does the work\./);
 });
 
-test("Sharksploitation upload assets exist and document their rights", async () => {
+test("Sharksploitation upload assets are verified and document their rights", async () => {
   const [article, manifestSource, seedsSource] = await Promise.all([
     readFile(articlePath, "utf8"),
     readFile(manifestPath, "utf8"),
@@ -80,9 +80,14 @@ test("Sharksploitation upload assets exist and document their rights", async () 
   for (const asset of manifest.assets) {
     await access(asset.source_file);
     assert.ok(asset.rights_basis);
-    assert.equal(asset.upload_status, "ready");
-    assert.equal(asset.verification_status, "destination-absent");
+    assert.equal(asset.upload_status, "uploaded");
+    assert.equal(asset.verification_status, "verified");
+    assert.equal(asset.http_status, 200);
+    assert.equal(asset.remote_sha256, asset.sha256);
+    assert.equal(asset.public_response_sha256, asset.sha256);
   }
+
+  assert.ok(manifest.upload_completed_at);
 
   assert.match(article, /sharksploitation-hero\.webp/);
   assert.match(article, /sharksploitation-social-1200x630\.jpg/);

@@ -67,7 +67,7 @@ test("the Workshop Note preserves the requested route, branches, and public boun
   assert.doesNotMatch(article, /[A-Z]:\\|\.github\/workflows|src\/content|asset-manifest/i);
 });
 
-test("article upload assets exist and carry dimensions, rights, and provenance", async () => {
+test("article upload assets are verified and carry dimensions, rights, and provenance", async () => {
   const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
 
   assert.equal(manifest.assets.length, 4);
@@ -80,7 +80,12 @@ test("article upload assets exist and carry dimensions, rights, and provenance",
     assert.ok(asset.width > 0);
     assert.ok(asset.height > 0);
     assert.ok(asset.rights_basis);
-    assert.equal(asset.upload_status, "ready");
-    assert.equal(asset.verification_status, "destination-absent");
+    assert.equal(asset.upload_status, "uploaded");
+    assert.equal(asset.verification_status, "verified");
+    assert.equal(asset.http_status, 200);
+    assert.equal(asset.remote_sha256, asset.sha256);
+    assert.equal(asset.public_response_sha256, asset.sha256);
   }
+
+  assert.ok(manifest.upload_completed_at);
 });
