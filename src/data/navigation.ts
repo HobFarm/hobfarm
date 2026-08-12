@@ -1,16 +1,17 @@
-import { presentsSeries, workshopPrograms } from "@/data/site-hierarchy";
+import { presentsSeries } from "@/data/site-hierarchy";
 import { editorialSections, editorialSectionPath } from "@/data/editorial-mesh";
 
 export type NavLink = { label: string; href: string; children?: NavLink[] };
 
-const visibleWorkshopPrograms = workshopPrograms.filter((entry) => entry.inNav !== false);
-const workshopNavLinks: NavLink[] = visibleWorkshopPrograms.flatMap((entry) => {
-  const programLink = { label: entry.name, href: entry.href };
-
-  return entry.id === "avatar-host"
-    ? [programLink, { label: "Future Carriage", href: "/workshop/future-carriage/" }]
-    : [programLink];
-});
+const workshopNavLinks: NavLink[] = [
+  { label: "Overview", href: "/workshop/" },
+  { label: "Projects", href: "/workshop/projects/" },
+  { label: "Workshop Notes", href: "/workshop/workshop-notes/" },
+  { label: "HobFarm project", href: "/workshop/projects/hobfarm/" },
+  { label: "StyleFusion", href: "/workshop/stylefusion/" },
+  { label: "Before & After", href: "/workshop/before-and-after/" },
+  { label: "Future Carriage", href: "/workshop/future-carriage/" },
+];
 
 export const topNavLinks: NavLink[] = [
   {
@@ -54,7 +55,8 @@ export const footerLinkGroups: FooterGroup[] = [
     title: "Studio",
     links: [
       { label: "Workshop", href: "/workshop/" },
-      ...visibleWorkshopPrograms.map((entry) => ({ label: entry.name, href: entry.href })),
+      { label: "Workshop Projects", href: "/workshop/projects/" },
+      { label: "Workshop Notes", href: "/workshop/workshop-notes/" },
       { label: "Academy", href: "/academy/" },
     ],
   },

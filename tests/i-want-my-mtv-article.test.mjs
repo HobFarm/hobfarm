@@ -29,7 +29,7 @@ test("article preserves the protected route, release slot, and longform brief", 
   assert.equal(field(article, "canonical"), '"/articles/i-want-my-mtv/"');
   assert.equal(field(article, "pubDate"), "2026-08-16");
   assert.equal(field(article, "publishedAt"), "2026-08-16T16:20:00-07:00");
-  assert.equal(field(article, "status"), "scheduled");
+  assert.ok(["scheduled", "published"].includes(field(article, "status")));
   assert.equal(field(article, "draft"), "false");
   assert.match(article, /MTV did not disappear\. It became raw material\./);
   assert.match(article, /I have not verified which one Spotify is serving/);
@@ -40,22 +40,15 @@ test("article preserves the protected route, release slot, and longform brief", 
   assert.ok(words >= 4000 && words <= 6000, `Article word count ${words} is outside the brief.`);
 });
 
-test("the one-time publisher protects the next vacant standard slot", async () => {
-  const [article, predecessor, scheduler, workflow] = await Promise.all([
+test("publication metadata preserves the next vacant standard slot", async () => {
+  const [article, predecessor] = await Promise.all([
     readFile(articlePath, "utf8"),
     readFile("src/content/articles/every-sentence-is-a-keynote-conclusion.mdx", "utf8"),
-    readFile("scripts/publish-scheduled-i-want-my-mtv.mjs", "utf8"),
-    readFile(".github/workflows/publish-i-want-my-mtv.yml", "utf8"),
   ]);
 
   const release = Date.parse(field(article, "publishedAt"));
   const priorStandardSlot = Date.parse(field(predecessor, "publishedAt"));
   assert.equal(release - priorStandardSlot, 24 * 60 * 60 * 1000);
-  assert.match(scheduler, /expectedPublication = "2026-08-16T16:20:00-07:00"/);
-  assert.match(scheduler, /Date\.now\(\) < Date\.parse\(expectedPublication\)/);
-  assert.match(scheduler, /status:\\s\*scheduled/);
-  assert.match(workflow, /cron: "20 23 16 8 \*"/);
-  assert.match(workflow, /git rm \.github\/workflows\/publish-i-want-my-mtv\.yml/);
 });
 
 test("the article uses six click-to-load official videos with durable fallbacks", async () => {

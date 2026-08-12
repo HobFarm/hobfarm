@@ -4,52 +4,16 @@ import test from "node:test";
 
 const articlePath = "src/content/articles/i-may-have-inspired-it.md";
 const sourceArticlePath = "src/content/articles/hey-its-that-guy.mdx";
-const articleWorkflowPath = ".github/workflows/publish-inspired-it.yml";
-const sourceWorkflowPath = ".github/workflows/publish-hey-its-that-guy.yml";
-const articleScriptPath = "scripts/publish-scheduled-inspired-it.mjs";
-const sourceScriptPath = "scripts/publish-scheduled-hey-its-that-guy.mjs";
 const assetRoot = "public/images/articles/i-may-have-inspired-it";
 
 function field(source, name) {
   return source.match(new RegExp(`^${name}:\\s*(.+)$`, "m"))?.[1].trim();
 }
 
-function escapeRegExp(value) {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
-function expectedCron(publication) {
-  const trigger = new Date(Date.parse(publication) + 5 * 60 * 1000);
-  return [
-    trigger.getUTCMinutes(),
-    trigger.getUTCHours(),
-    trigger.getUTCDate(),
-    trigger.getUTCMonth() + 1,
-    "*",
-  ].join(" ");
-}
-
-test("Bangor and Derry article is scheduled exactly 48 hours before the Crypt article", async () => {
-  const [
-    article,
-    sourceArticle,
-    articleWorkflow,
-    sourceWorkflow,
-    articleScript,
-    sourceScript,
-  ] = await Promise.all([
+test("Bangor and Derry article is dated exactly 48 hours before the Crypt article", async () => {
+  const [article, sourceArticle] = await Promise.all([
     readFile(articlePath, "utf8"),
     readFile(sourceArticlePath, "utf8"),
-    readFile(articleWorkflowPath, "utf8").catch((error) => {
-      if (error.code === "ENOENT") return null;
-      throw error;
-    }),
-    readFile(sourceWorkflowPath, "utf8").catch((error) => {
-      if (error.code === "ENOENT") return null;
-      throw error;
-    }),
-    readFile(articleScriptPath, "utf8"),
-    readFile(sourceScriptPath, "utf8"),
   ]);
 
   const publication = field(article, "publishedAt");
@@ -66,35 +30,6 @@ test("Bangor and Derry article is scheduled exactly 48 hours before the Crypt ar
   assert.equal(field(article, "pubDate"), "2026-08-01");
   assert.ok(["scheduled", "published"].includes(status));
   assert.ok(["scheduled", "published"].includes(sourceStatus));
-
-  assert.match(
-    articleScript,
-    new RegExp(`expectedPublication = "${escapeRegExp(publication)}"`),
-  );
-  assert.match(
-    sourceScript,
-    new RegExp(`expectedPublication = "${escapeRegExp(sourcePublication)}"`),
-  );
-
-  if (status === "scheduled") {
-    assert.ok(articleWorkflow, "Scheduled article must retain its workflow.");
-    assert.match(
-      articleWorkflow,
-      new RegExp(`cron: "${escapeRegExp(expectedCron(publication))}"`),
-    );
-  } else {
-    assert.equal(articleWorkflow, null);
-  }
-
-  if (sourceStatus === "scheduled") {
-    assert.ok(sourceWorkflow, "Scheduled Crypt article must retain its workflow.");
-    assert.match(
-      sourceWorkflow,
-      new RegExp(`cron: "${escapeRegExp(expectedCron(sourcePublication))}"`),
-    );
-  } else {
-    assert.equal(sourceWorkflow, null);
-  }
 });
 
 test("article uses the supplied public-safe photo set and preserves its reporting boundary", async () => {

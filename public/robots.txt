@@ -4,6 +4,10 @@ Disallow: /login
 Disallow: /account
 Disallow: /api/
 
+# Search and user-directed retrieval remain allowed by the public policy above.
+# This includes Googlebot, Bingbot, OAI-SearchBot, Claude-SearchBot,
+# Claude-User, PerplexityBot, Perplexity-User, and comparable search agents.
+
 # Large-scale training crawlers are not allowed to use HobFarm content.
 User-agent: Amazonbot
 User-agent: Applebot-Extended

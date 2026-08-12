@@ -1,7 +1,7 @@
 export const aboutLinkedInUrl = "https://www.linkedin.com/in/krisreynoldslv/";
 
 export const aboutHeroActions = [
-  { label: "Explore the work", href: "/workshop/", event: "about_hero_workshop_open", primary: true, external: false },
+  { label: "Explore the work", href: "/workshop/projects/", event: "about_hero_workshop_open", primary: true, external: false },
   { label: "Read the articles", href: "/articles/", event: "about_hero_articles_open", primary: false, external: false },
   { label: "Contact", href: "/contact/?subject=employment", event: "about_hero_contact_open", primary: false, external: false },
   { label: "LinkedIn", href: aboutLinkedInUrl, event: "about_hero_linkedin_open", primary: false, external: true },
@@ -90,15 +90,15 @@ export const aboutSelectedWork = [
   },
   {
     id: "workshop",
-    routeLabel: "Production record",
-    title: "Workshop",
+    routeLabel: "Web and publishing project",
+    title: "HobFarm",
     premise:
       "Sources, constraints, tests, failures, revisions, production decisions, and reusable findings stay attached to finished work.",
     proof:
       "The route makes the operating judgment inspectable instead of presenting only a polished result.",
-    href: "/workshop/",
-    linkLabel: "Inspect the Workshop",
-    mediaId: "workshop.graphics.hero",
+    href: "/workshop/projects/hobfarm/",
+    linkLabel: "Inspect the HobFarm project",
+    mediaId: "home.site-banner",
   },
   {
     id: "stylefusion",
@@ -140,22 +140,22 @@ export const aboutHobFarmRoutes = [
     title: "Workshop",
     description:
       "Workshop keeps the sources, questions, decisions, tests, failures, revisions, and reusable findings attached to the finished release.",
-    links: [{ label: "Workshop", href: "/workshop/" }],
+    links: [{ label: "Workshop", href: "/workshop/" }, { label: "Projects", href: "/workshop/projects/" }],
   },
   {
     title: "Projects",
     description:
-      "Recurring stories, visual systems, videos, galleries, and named bodies of work receive durable pages that can grow across several releases.",
+      "Case studies keep the source, production problem, method, evidence, outputs, and connected destinations attached to each body of work.",
     links: [
+      { label: "Workshop Projects", href: "/workshop/projects/" },
       { label: "Presents", href: "/presents/" },
-      { label: "Gallery", href: "/gallery/" },
     ],
   },
   {
     title: "Applications and interactive work",
     description:
       "Games, creative applications, research tools, and small interactive experiments become public when they are useful, secure, and maintainable.",
-    links: [{ label: "Current projects", href: "/workshop/" }],
+    links: [{ label: "Current projects", href: "/workshop/projects/" }],
   },
   {
     title: "Support and future releases",

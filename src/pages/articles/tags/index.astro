@@ -9,7 +9,7 @@ const allPosts = await getPublishedArticles();
 const tagCounts = getArticleTagCounts(allPosts);
 ---
 
-<BaseLayout title="Article Tags | HobFarm" canonical="/articles/tags/">
+<BaseLayout title="Article Tags | HobFarm" canonical="/articles/tags/" noindex>
   <section>
     <ContentPanel>
       <Wrapper variant="standard" class="py-12 lg:py-16">

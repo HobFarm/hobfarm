@@ -31,6 +31,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git rm .github/workflows/publish-the-model-is-free.yml
+          git rm scripts/publish-scheduled-the-model-is-free.mjs
           git add src/content/articles/the-model-is-free.mdx
           git commit -m "Publish The Model Is Free"
           git push origin main

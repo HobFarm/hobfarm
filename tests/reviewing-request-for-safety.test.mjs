@@ -34,7 +34,7 @@ test("Reviewing Request for Safety owns the August 14 trilogy slot", async () =>
   assert.equal(field(article, "canonical"), '"/articles/reviewing-request-for-safety/"');
   assert.equal(field(article, "pubDate"), "2026-08-14");
   assert.equal(field(article, "publishedAt"), "2026-08-14T16:20:00-07:00");
-  assert.equal(field(article, "status"), "scheduled");
+  assert.ok(["scheduled", "published"].includes(field(article, "status")));
   assert.equal(
     Date.parse(field(article, "publishedAt")) - Date.parse(field(predecessor, "publishedAt")),
     24 * 60 * 60 * 1000,
@@ -119,17 +119,4 @@ test("the asset manifest preserves source bytes and August 14 labels", async () 
     assert.match(source, /08\.14\.2026/);
     assert.doesNotMatch(source, /08\.20\.2026/);
   }
-});
-
-test("the one-time publisher protects the exact August 14 release", async () => {
-  const [scheduler, workflow] = await Promise.all([
-    readFile("scripts/publish-scheduled-reviewing-request-for-safety.mjs", "utf8"),
-    readFile(".github/workflows/publish-reviewing-request-for-safety.yml", "utf8"),
-  ]);
-
-  assert.match(scheduler, /expectedPublication = "2026-08-14T16:20:00-07:00"/);
-  assert.match(scheduler, /Date\.now\(\) < Date\.parse\(expectedPublication\)/);
-  assert.match(workflow, /cron: "20 23 14 8 \*"/);
-  assert.match(workflow, /node scripts\/publish-scheduled-reviewing-request-for-safety\.mjs/);
-  assert.match(workflow, /git rm \.github\/workflows\/publish-reviewing-request-for-safety\.yml/);
 });

@@ -5,8 +5,6 @@ import test from "node:test";
 const articlePath = "src/content/articles/sharksploitation.mdx";
 const hermitPath =
   "src/content/articles/hermit-does-not-have-to-pay-for-repairs.mdx";
-const workflowPath = ".github/workflows/publish-sharksploitation.yml";
-const scriptPath = "scripts/publish-scheduled-sharksploitation.mjs";
 const manifestPath = "reports/sharksploitation/asset-manifest.json";
 const seedsPath = "reports/sharksploitation/future-article-seeds.json";
 
@@ -24,11 +22,10 @@ function articleWordCount(article) {
   return body.match(/[\p{L}\p{N}][\p{L}\p{N}’'–—-]*/gu)?.length ?? 0;
 }
 
-test("Sharksploitation published 24 hours after Hermit and retired its one-time workflow", async () => {
-  const [article, hermit, script] = await Promise.all([
+test("Sharksploitation published 24 hours after Hermit", async () => {
+  const [article, hermit] = await Promise.all([
     readFile(articlePath, "utf8"),
     readFile(hermitPath, "utf8"),
-    readFile(scriptPath, "utf8"),
   ]);
 
   assert.equal(field(article, "pubDate"), "2026-08-07");
@@ -40,8 +37,6 @@ test("Sharksploitation published 24 hours after Hermit and retired its one-time 
       Date.parse(field(hermit, "publishedAt")),
     24 * 60 * 60 * 1000,
   );
-  assert.match(script, /2026-08-07T16:20:00-07:00/);
-  await assert.rejects(access(workflowPath), (error) => error?.code === "ENOENT");
   assert.match(article, /The shark never had to come ashore\./);
   assert.doesNotMatch(article, /contentWarnings|Content note:/i);
 

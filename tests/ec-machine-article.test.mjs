@@ -5,38 +5,16 @@ import test from "node:test";
 
 const articlePath = "src/content/articles/ec-machine.mdx";
 const cryptPath = "src/content/articles/hey-its-that-guy.mdx";
-const workflowPath = ".github/workflows/publish-ec-machine.yml";
-const scriptPath = "scripts/publish-scheduled-ec-machine.mjs";
 const assetManifestPath = "reports/ec-machine/asset-manifest.json";
 
 function field(source, name) {
   return source.match(new RegExp(`^${name}:\\s*(.+)$`, "m"))?.[1].trim();
 }
 
-function escapeRegExp(value) {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
-function expectedCron(publication) {
-  const trigger = new Date(Date.parse(publication) + 5 * 60 * 1000);
-  return [
-    trigger.getUTCMinutes(),
-    trigger.getUTCHours(),
-    trigger.getUTCDate(),
-    trigger.getUTCMonth() + 1,
-    "*",
-  ].join(" ");
-}
-
-test("EC machine article has the requested route, date, and one-time schedule", async () => {
-  const [article, crypt, workflow, script] = await Promise.all([
+test("EC machine article has the requested route and publication date", async () => {
+  const [article, crypt] = await Promise.all([
     readFile(articlePath, "utf8"),
     readFile(cryptPath, "utf8"),
-    readFile(workflowPath, "utf8").catch((error) => {
-      if (error.code === "ENOENT") return null;
-      throw error;
-    }),
-    readFile(scriptPath, "utf8"),
   ]);
 
   const publication = field(article, "publishedAt");
@@ -52,20 +30,6 @@ test("EC machine article has the requested route, date, and one-time schedule", 
     "The EC machine article should follow the linked Crypt article by one day.",
   );
   assert.ok(["scheduled", "published"].includes(status));
-  assert.match(
-    script,
-    new RegExp(`expectedPublication = "${escapeRegExp(publication)}"`),
-  );
-
-  if (status === "scheduled") {
-    assert.ok(workflow, "Scheduled article must retain its workflow.");
-    assert.match(
-      workflow,
-      new RegExp(`cron: "${escapeRegExp(expectedCron(publication))}"`),
-    );
-  } else {
-    assert.equal(workflow, null);
-  }
 });
 
 test("article preserves the film observation and required reporting boundaries", async () => {

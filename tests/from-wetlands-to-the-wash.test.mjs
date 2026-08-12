@@ -26,7 +26,7 @@ test("article preserves its route, boundaries, and publication slot", async () =
   assert.equal(field(article, "canonical"), '"/articles/from-wetlands-to-the-wash/"');
   assert.equal(field(article, "pubDate"), "2026-08-17");
   assert.equal(field(article, "publishedAt"), "2026-08-17T16:20:00-07:00");
-  assert.equal(field(article, "status"), "scheduled");
+  assert.ok(["scheduled", "published"].includes(field(article, "status")));
   assert.equal(Date.parse(field(article, "publishedAt")) - Date.parse(field(predecessor, "publishedAt")), 24 * 60 * 60 * 1000);
   assert.match(article, /This article is my independent HobFarm work/);
   assert.match(article, /No legitimate public box-office receipt/);
@@ -61,18 +61,6 @@ test("multimedia and original graphics remain present", async () => {
   assert.match(video, /playsinline/);
   assert.match(player, /youtube-nocookie\.com/);
   assert.match(player, /data-player-load/);
-});
-
-test("one-time publisher protects the exact August 17 release", async () => {
-  const [scheduler, workflow] = await Promise.all([
-    readFile("scripts/publish-scheduled-from-wetlands-to-the-wash.mjs", "utf8"),
-    readFile(".github/workflows/publish-from-wetlands-to-the-wash.yml", "utf8"),
-  ]);
-
-  assert.match(scheduler, /expectedPublication = "2026-08-17T16:20:00-07:00"/);
-  assert.match(scheduler, /Date\.now\(\) < Date\.parse\(expectedPublication\)/);
-  assert.match(workflow, /cron: "20 23 17 8 \*"/);
-  assert.match(workflow, /git rm \.github\/workflows\/publish-from-wetlands-to-the-wash\.yml/);
 });
 
 test("MTV ending now treats Woodstock as a future seed", async () => {

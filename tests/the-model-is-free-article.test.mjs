@@ -6,8 +6,6 @@ import test from "node:test";
 const articlePath = "src/content/articles/the-model-is-free.mdx";
 const predecessorPath = "src/content/articles/same-same-but-different.mdx";
 const manifestPath = "reports/the-model-is-free/asset-manifest.json";
-const workflowPath = ".github/workflows/publish-the-model-is-free.yml";
-const scheduleScriptPath = "scripts/publish-scheduled-the-model-is-free.mjs";
 
 function field(source, name) {
   return source.match(new RegExp(`^${name}:\\s*(.+)$`, "m"))?.[1].trim();
@@ -25,15 +23,10 @@ function articleWordCount(source) {
   return plain.split(/\s+/).filter(Boolean).length;
 }
 
-test("article is scheduled exactly 24 hours after Same Same, But Different", async () => {
-  const [article, predecessor, scheduleScript, workflow] = await Promise.all([
+test("article is dated exactly 24 hours after Same Same, But Different", async () => {
+  const [article, predecessor] = await Promise.all([
     readFile(articlePath, "utf8"),
     readFile(predecessorPath, "utf8"),
-    readFile(scheduleScriptPath, "utf8"),
-    readFile(workflowPath, "utf8").catch((error) => {
-      if (error.code === "ENOENT") return null;
-      throw error;
-    }),
   ]);
 
   const predecessorTimestamp = field(predecessor, "publishedAt");
@@ -48,15 +41,6 @@ test("article is scheduled exactly 24 hours after Same Same, But Different", asy
   assert.equal(field(article, "canonical"), '"/articles/the-model-is-free/"');
   assert.equal(field(article, "draft"), "false");
   assert.ok(["scheduled", "published"].includes(field(article, "status")));
-  assert.match(scheduleScript, /expectedPublication = "2026-08-13T16:20:00-07:00"/);
-
-  if (field(article, "status") === "scheduled") {
-    assert.ok(workflow, "Scheduled article must retain its one-time workflow.");
-    assert.match(workflow, /cron: "20 23 13 8 \*"/);
-    assert.match(workflow, /node scripts\/publish-scheduled-the-model-is-free\.mjs/);
-  } else {
-    assert.equal(workflow, null, "Published article should not retain its one-time workflow.");
-  }
 });
 
 test("article keeps the requested argument, evidence limits, and editorial links", async () => {

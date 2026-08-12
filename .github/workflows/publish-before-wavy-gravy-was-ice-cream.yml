@@ -31,6 +31,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git rm .github/workflows/publish-before-wavy-gravy-was-ice-cream.yml
+          git rm scripts/publish-scheduled-before-wavy-gravy-was-ice-cream.mjs
           git add src/content/articles/before-wavy-gravy-was-ice-cream.mdx
           git commit -m "Publish Before Wavy Gravy Was Ice Cream"
           git push origin main

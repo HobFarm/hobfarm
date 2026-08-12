@@ -1,24 +1,25 @@
 ---
 import { selectedWorkshopProjects } from "@/data/workshop-projects";
-import { getWorkshopProgram } from "@/data/site-hierarchy";
 
 interface Props {
-  surface?: "home" | "workshop";
+  surface?: "home" | "workshop" | "projects";
 }
 
 const { surface = "workshop" } = Astro.props;
 const positionKey = surface === "home" ? "homepagePosition" : "featuredPosition";
 const projects = [...selectedWorkshopProjects]
   .filter((project) => surface !== "home" || project.homepagePosition)
-  .filter((project) => surface !== "workshop" || getWorkshopProgram(project.id)?.inNav !== false)
+  .filter((project) => surface !== "workshop" || project.featuredPosition <= 6)
   .sort((a, b) => (a[positionKey] ?? 99) - (b[positionKey] ?? 99));
 ---
 
 <div class:list={["workshop-project-grid", `workshop-project-grid--${surface}`]}>
   {projects.map((project) => (
     <a
+      id={surface === "projects" ? project.id : undefined}
       class:list={["workshop-project-card", `workshop-project-card--${project.id}`]}
       href={project.destination}
+      data-event={surface === "home" ? "homepage_project_open" : "workshop_project_open"}
       data-workshop-project={project.id}
     >
       <div class:list={["workshop-project-card__media", project.secondaryMedia && "workshop-project-card__media--pair"]}>
@@ -277,7 +278,8 @@ const projects = [...selectedWorkshopProjects]
 
   @media (min-width: 70rem) {
     .workshop-project-grid--home,
-    .workshop-project-grid--workshop {
+    .workshop-project-grid--workshop,
+    .workshop-project-grid--projects {
       grid-template-columns: repeat(6, minmax(0, 1fr));
     }
 
@@ -303,6 +305,15 @@ const projects = [...selectedWorkshopProjects]
       grid-column: span 6;
     }
 
+    .workshop-project-card--hobfarm-site {
+      grid-column: span 6;
+      grid-template-columns: minmax(0, 1.15fr) minmax(18rem, .85fr);
+    }
+
+    .workshop-project-card--hobfarm-site .workshop-project-card__copy {
+      order: -1;
+    }
+
     .workshop-project-card--before-after .workshop-project-card__media--pair {
       grid-template-columns: 1fr;
       grid-template-rows: repeat(2, minmax(10rem, 1fr));
@@ -314,8 +325,11 @@ const projects = [...selectedWorkshopProjects]
     }
 
     .workshop-project-grid--home .workshop-project-card--future-carriage,
-    .workshop-project-grid--home .workshop-project-card--before-after {
+    .workshop-project-grid--home .workshop-project-card--before-after,
+    .workshop-project-grid--home .workshop-project-card--hobfarm-site,
+    .workshop-project-grid--home .workshop-project-card--stylefusion {
       grid-column: span 3;
+      grid-template-columns: 1fr;
     }
   }
 

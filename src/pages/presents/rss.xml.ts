@@ -1,11 +1,15 @@
 import rss from "@astrojs/rss";
 import type { APIContext } from "astro";
-import { articlePath, getArticleDate, getArticleDescription, getPublishedArticles } from "@/lib/articles";
+import { articlePath, getArticleDate, getArticleDescription, getArticleImage, getPublishedArticles } from "@/lib/articles";
 import { THREE_DM_CDN_LOGO } from "@/data/presents-titles";
 import { articleUsesSeries } from "@/data/editorial-mesh";
 
 export async function GET(context: APIContext) {
   const entries = (await getPublishedArticles()).filter((entry) => articleUsesSeries(entry.data, "3dm"));
+  const mediaContent = (image: string) => {
+    const url = new URL(image, context.site).toString().replaceAll("&", "&amp;").replaceAll('"', "&quot;");
+    return `<media:content xmlns:media="http://search.yahoo.com/mrss/" url="${url}" medium="image" />`;
+  };
 
   return rss({
     title: "HobFarm Presents",
@@ -18,8 +22,8 @@ export async function GET(context: APIContext) {
         title: `${entry.data.title} | 3 Degrees of Dick Miller`,
         pubDate: getArticleDate(entry),
         description: getArticleDescription(entry.data),
-        link: articlePath(entry),
-        customData: `<media:content xmlns:media="http://search.yahoo.com/mrss/" url="${entry.data.heroImage ?? THREE_DM_CDN_LOGO}" medium="image" />`,
+        link: `${articlePath(entry)}/`,
+        customData: mediaContent(getArticleImage(entry.data) ?? THREE_DM_CDN_LOGO),
       })),
     ].sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime()),
   });

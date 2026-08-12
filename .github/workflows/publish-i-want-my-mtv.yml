@@ -31,6 +31,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git rm .github/workflows/publish-i-want-my-mtv.yml
+          git rm scripts/publish-scheduled-i-want-my-mtv.mjs
           git add src/content/articles/i-want-my-mtv.mdx
           git commit -m "Publish I Want My MTV"
           git push origin main

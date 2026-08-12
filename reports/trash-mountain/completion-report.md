@@ -2,15 +2,15 @@
 
 ## Result
 
-Built a source-backed visual feature from the supplied Codex pack. The article combines original street-waste photographs, an attributed Google Earth investigation of Dar-es-Salam in Conakry, an original waste-slope mechanism diagram, a 22-event casualty ledger, licensed case photographs and a downloadable research CSV. The source is scheduled for August 11, 2026 at 4:20 p.m. Pacific, with a matching one-time GitHub Actions publisher.
+Built and published a source-backed visual feature from the supplied Codex pack. The article combines original street-waste photographs, an attributed Google Earth investigation of Dar-es-Salam in Conakry, an original waste-slope mechanism diagram, a 22-event casualty ledger, licensed case photographs and a downloadable research CSV. It was released on August 11, 2026 at 4:20 p.m. Pacific.
 
 ## Route and status
 
 - Route: `/articles/trash-mountain/`
-- Draft/scheduled/published: scheduled
+- Draft/scheduled/published: published
 - Publication date: August 11, 2026 at 4:20 p.m. PDT (`2026-08-11T16:20:00-07:00`)
-- Scheduled publisher: `.github/workflows/publish-trash-mountain.yml`
-- Current public state: scheduled; article and workflow are on `origin/main`, while the route remains hidden until publication
+- Historical publisher: the one-time workflow ran successfully and removed itself in publication commit `82968b7`; its orphaned helper script was removed during the later structure audit
+- Current public state: published
 
 ## Article
 
@@ -73,10 +73,10 @@ All 37 publishable files remain staged under `_cdn/articles/trash-mountain/` (52
 
 ## Files changed
 
-- `.github/workflows/publish-trash-mountain.yml`
+- Historical one-time publication workflow (removed after publication)
 - `package.json`
 - `scripts/build-trash-mountain-manifest.mjs`
-- `scripts/publish-scheduled-trash-mountain.mjs`
+- Historical one-time publication helper (left behind by the publication commit, then removed as stale residue)
 - `scripts/r2-upload-manifest.mjs`
 - `src/content/articles/trash-mountain.mdx`
 - `src/data/trash-mountain.ts`
@@ -96,12 +96,14 @@ All 37 publishable files remain staged under `_cdn/articles/trash-mountain/` (52
 | Pack `verify-pack.py` | Passed: 11 owned photos, 16 Google Earth captures, 7 licensed/public files, 1 excluded reference, 22 event rows |
 | `node scripts/build-trash-mountain-manifest.mjs --pack <pack>` | Passed; generated a checksummed 37-asset manifest |
 | `node scripts/r2-upload-manifest.mjs --manifest reports/trash-mountain/asset-manifest.json --upload --resume` | Passed; all 37 R2 objects uploaded or checksum-adopted and publicly verified |
-| `node scripts/publish-scheduled-trash-mountain.mjs` | Passed pre-publication guard; returned `published=false` |
-| `npx astro check` | Passed: 539 files, 0 errors, 0 warnings, 0 hints |
+| Historical one-time publication helper | Passed its pre-publication guard; the orphaned file was removed during the later structure audit |
+| `npx astro check` | Passed: 651 files, 0 errors, 0 warnings, 0 hints |
 | `npm run build` | Passed; production build completed |
 | `node --test tests/trash-mountain-article.test.mjs` | Passed: 2 of 2 |
 | Local Playwright visual QA | Passed at 1440×1000 and 390×844: 26 images loaded, 22 ledger rows rendered, no horizontal overflow |
-| `npm test` | Trash Mountain tests passed; repository suite finished 232/236. Four unrelated existing failures remain: missing American Dream workflow, stale native-share expectation, PsyGoth CDN clip expectation and homepage hero-copy expectation. |
+| `npm test` | Passed: 310 of 310 current repository tests |
+| `npm run audit:site-structure` | Passed: 0 structural errors, 0 review warnings, 0 orphaned released articles |
+| `npm run audit:editorial-mesh` | Passed: 0 structural errors, 0 review warnings |
 | `git diff --check` | Passed |
 
 ## Unresolved
@@ -116,8 +118,8 @@ All 37 publishable files remain staged under `_cdn/articles/trash-mountain/` (52
 - Article/workflow commit: `9dc9ae13c037a3c9277bcdd3834e8f5354ee115b`
 - Branch: `main`
 - CDN upload completed: yes; 37 of 37 objects verified
-- Site deployment completed: no
-- Scheduled workflow: active on GitHub Actions for August 11, 2026 at 4:20 p.m. PDT
-- Smoke test URL: local-only `/articles/trash-mountain/`; server stopped after QA
+- Publication commit: `82968b7`
+- Scheduled workflow: completed and removed itself; the helper residue was removed later
+- Public route: `/articles/trash-mountain/`
 
-The article is remotely scheduled and its CDN dependencies are ready. The site route should become public only after the one-time workflow publishes it.
+The article was published by the historical one-time workflow, which removed itself after completing the release.

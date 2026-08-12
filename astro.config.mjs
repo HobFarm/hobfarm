@@ -5,6 +5,7 @@ import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import cloudflare from "@astrojs/cloudflare";
 import { departments, departmentStatus } from "./src/data/departments.ts";
+import { academyCourseManifests } from "./src/data/academy-manifest.ts";
 import { PUBLIC_GRIMOIRE_ARCHIVE_ENABLED } from "./src/data/public-features.ts";
 
 const noindexDepartmentPaths = new Set(
@@ -18,6 +19,24 @@ const redirectedPaths = new Set([
   "/departments/workshop-notes/",
 ]);
 const privatePrototypePaths = new Set(["/workshop/visual-lab/", "/workshop/stylefusion/prototype/"]);
+const privateTransactionPaths = new Set([
+  "/academy/checkout/complete/",
+  "/membership/success/",
+  "/shop/order-received/",
+]);
+const noindexAcademyPaths = new Set([
+  "/academy/choose-the-tool-for-the-job/",
+  "/academy/production-system-sprint/",
+]);
+for (const course of academyCourseManifests) {
+  const coursePath = `/academy/courses/${course.slug}/`;
+  if (course.status !== "available") noindexAcademyPaths.add(coursePath);
+  for (const lesson of course.lessons) {
+    if (course.status !== "available" || lesson.legacyHref) {
+      noindexAcademyPaths.add(`${coursePath}${lesson.slug}/`);
+    }
+  }
+}
 
 // https://astro.build/config
 export default defineConfig({
@@ -62,10 +81,13 @@ export default defineConfig({
         return (
           !page.includes("/login") &&
           !page.includes("/account") &&
+          !pathname.startsWith("/articles/tags/") &&
           (PUBLIC_GRIMOIRE_ARCHIVE_ENABLED ||
             pathname === "/grimoire/" ||
             !pathname.startsWith("/grimoire/")) &&
           !privatePrototypePaths.has(pathname) &&
+          !privateTransactionPaths.has(pathname) &&
+          !noindexAcademyPaths.has(pathname) &&
           !noindexDepartmentPaths.has(pathname) &&
           !redirectedPaths.has(pathname)
         );

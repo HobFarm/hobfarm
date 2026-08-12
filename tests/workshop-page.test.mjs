@@ -13,7 +13,7 @@ const expectedProgramIds = [
   "alter-ego",
 ];
 
-test("Workshop uses one primary program registry in the required order", () => {
+test("Workshop preserves the program registry while public navigation uses system layers", () => {
   const hierarchy = read("src/data/site-hierarchy.ts");
   const primaryBlock = hierarchy.slice(
     hierarchy.indexOf("export const primaryWorkshopPrograms"),
@@ -25,19 +25,24 @@ test("Workshop uses one primary program registry in the required order", () => {
   assert.deepEqual(positions, [...positions].sort((a, b) => a - b));
 
   const navigation = read("src/data/navigation.ts");
-  assert.match(navigation, /workshopPrograms\.filter/);
-  assert.match(navigation, /entry\.inNav !== false/);
+  assert.match(navigation, /label: "Overview", href: "\/workshop\/"/);
+  assert.match(navigation, /label: "Projects", href: "\/workshop\/projects\/"/);
+  assert.match(navigation, /label: "Workshop Notes", href: "\/workshop\/workshop-notes\/"/);
   assert.doesNotMatch(primaryBlock, /id: "stylefusion"/);
   assert.match(hierarchy.slice(hierarchy.indexOf("export const supportingWorkshopPrograms")), /id: "stylefusion"/);
 });
 
-test("Workshop navigation places Future Carriage after Avatar & Host", () => {
+test("Workshop navigation leads with system layers and keeps featured projects available", () => {
   const navigation = read("src/data/navigation.ts");
-  const avatarPosition = navigation.indexOf('entry.id === "avatar-host"');
+  const overviewPosition = navigation.indexOf('label: "Overview"');
+  const projectsPosition = navigation.indexOf('label: "Projects"');
+  const notesPosition = navigation.indexOf('label: "Workshop Notes"');
   const futureCarriagePosition = navigation.indexOf('label: "Future Carriage"');
 
-  assert.ok(avatarPosition >= 0);
-  assert.ok(futureCarriagePosition > avatarPosition);
+  assert.ok(overviewPosition >= 0);
+  assert.ok(projectsPosition > overviewPosition);
+  assert.ok(notesPosition > projectsPosition);
+  assert.ok(futureCarriagePosition > notesPosition);
   assert.match(navigation, /href: "\/workshop\/future-carriage\/"/);
 });
 
@@ -47,7 +52,10 @@ test("Workshop hub follows the requested section hierarchy", () => {
     "workshop-hero",
     "notes-intro",
     'id="method"',
-    'id="programs"',
+    'id="system"',
+    "representation-section",
+    "production-paths",
+    'id="projects"',
     '<section class="future-carriage"',
     'aria-labelledby="outputs-heading"',
     "tools-section",
@@ -67,7 +75,10 @@ test("Workshop hub follows the requested section hierarchy", () => {
   assert.ok(hero.indexOf('<p class="deck">') > hero.indexOf("</figure>"));
   assert.match(page, /The production record behind HobFarm\./);
   assert.match(page, /Start with the source\. Keep the decisions visible\./);
-  assert.match(page, /Five demonstrations of the same method\./);
+  assert.match(page, /Build the system around the job\./);
+  assert.match(page, /A schema is not necessarily JSON\./);
+  assert.match(page, /Keep the representation stable while the tool changes\./);
+  assert.match(page, /Selected projects/);
 });
 
 test("Workshop hub exposes all primary routes and keeps StyleFusion supporting", () => {

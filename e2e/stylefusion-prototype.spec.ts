@@ -67,7 +67,7 @@ test.describe("without JavaScript", () => {
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
     await expect(page.getByRole("heading", { name: "Tuxedo cat fusion" })).toBeVisible();
     await expect(page.getByText("gpt-5.5", { exact: true }).first()).toBeVisible();
-    await expect(page.getByText("Reference image withheld from this prototype.").first()).toBeVisible();
+    await expect(page.getByText("Reference image withheld from the public page.").first()).toBeVisible();
     await expect(page.getByRole("heading", { name: "Downstream production stays separate." })).toBeVisible();
   });
 });

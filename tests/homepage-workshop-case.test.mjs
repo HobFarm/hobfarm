@@ -24,7 +24,7 @@ test("supplied mannequin and Wonderland graphics remain exact local source files
   assert.match(registry, /other-alice\.wonderland\.world-map/);
 });
 
-test("homepage connects the publication to four distinct capability proofs and the five-stage method", () => {
+test("homepage connects the publication to four broad project proofs and the five-stage method", () => {
   const homepage = read("src/pages/index.astro");
   const component = read("src/components/home/HomeWorkshop.astro");
   const bridge = read("src/components/home/HomePublicationBridge.astro");
@@ -35,14 +35,14 @@ test("homepage connects the publication to four distinct capability proofs and t
   assert.doesNotMatch(homepage, /<VisualSystemFeature \/>/);
 
   for (const phrase of [
-    "Different source material. A production system built for each job",
-    "One recognizable subject can show time",
-    "Lock the identity, then change wardrobe",
-    "Give every reference a job",
-    "Build the rules behind a place",
+    "The publication is made in the Workshop",
+    "HobFarm",
+    "StyleFusion",
+    "Before & After",
+    "Future Carriage",
     "Research. Define. Build. Direct. Finish and deliver",
     "Explore the Workshop",
-    "Start a project",
+    "Browse Projects",
   ]) {
     assert.match(combined, new RegExp(phrase));
   }
@@ -55,42 +55,36 @@ test("the long Process Film is removed from the compact hub and homepage", () =>
 
   assert.doesNotMatch(homepage, /WorkshopProcessFilm|autoplay/);
   assert.doesNotMatch(workshop, /WorkshopProcessFilm|id="process-film"/);
-  assert.match(workshop, /Five demonstrations of the same method/);
+  assert.match(workshop, /Selected projects/);
+  assert.match(workshop, /Build the system around the job/);
 });
 
-test("homepage Workshop capabilities use one shared data model and real routes", () => {
+test("homepage Workshop projects use one shared data model and real routes", () => {
   const component = read("src/components/home/HomeWorkshop.astro");
   const projects = read("src/data/workshop-projects.ts");
   const combined = `${component}\n${projects}`;
 
   for (const href of [
-    "/workshop/character-mannequin/",
+    "/workshop/projects/hobfarm/",
     "/workshop/before-and-after/",
     "/workshop/stylefusion/",
     "/workshop/future-carriage/",
-    "/presents/other-alice-adventures/world-guide/",
   ]) {
     assert.match(combined, new RegExp(href.replaceAll("/", "\\/")));
   }
 
   for (const token of [
+    "home.site-banner",
     "workshop.ami-legacy.model-3917.vehicle",
     "before-after.north-shore.before",
-    "workshop.character-mannequin.workflow",
-    "workshop.character-mannequin.home.brief",
-    "workshop.character-mannequin.home.neutral-system",
-    "workshop.character-mannequin.home.visual-language",
-    "workshop.character-mannequin.home.character-profile",
-    "workshop.character-mannequin.home.motion-proof",
     "stylefusion.banner.image",
-    "other-alice.wonderland.world-map",
   ]) {
     assert.match(combined, new RegExp(token));
   }
 
-  assert.match(component, /Write the continuity brief/);
-  assert.match(component, /Prove the character in motion/);
-  assert.doesNotMatch(component, /production-rail__brief/);
+  assert.match(component, /WorkshopNodeMesh compact/);
+  assert.match(component, /WorkshopProjectGrid surface="home"/);
+  assert.doesNotMatch(component, /Character \/ Mannequin/);
 
   for (const field of [
     "startingMaterial",
@@ -150,10 +144,11 @@ test("creative-project inquiry is contextual and accepted by the contact backend
   assert.match(endpoint, /"custom-character"/);
 });
 
-test("homepage proof and inquiry paths expose stable analytics hooks", () => {
+test("homepage proof and project paths expose stable analytics hooks", () => {
   const files = [
     read("src/components/home/MagazineFrontPage.astro"),
     read("src/components/home/HomeWorkshop.astro"),
+    read("src/components/workshop/WorkshopProjectGrid.astro"),
     read("src/components/home/HomeOtherAlice.astro"),
     read("src/components/home/HomeFutureCarriage.astro"),
     read("src/components/home/HomeCreativeInquiry.astro"),
@@ -165,7 +160,8 @@ test("homepage proof and inquiry paths expose stable analytics hooks", () => {
     "homepage_hero_read",
     "homepage_hero_workshop",
     "homepage_cover_story_open",
-    "homepage_capability_open",
+    "homepage_project_open",
+    "homepage_projects_open",
     "homepage_other_alice_open",
     "homepage_grimoire_open",
     "homepage_future_carriage_open",

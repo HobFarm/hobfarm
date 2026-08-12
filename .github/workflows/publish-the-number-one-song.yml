@@ -31,6 +31,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git rm .github/workflows/publish-the-number-one-song.yml
+          git rm scripts/publish-scheduled-the-number-one-song.mjs
           git add src/content/articles/the-number-one-song-ive-never-heard.mdx
           git commit -m "Publish The Number One Song I've Never Heard"
           git push origin main

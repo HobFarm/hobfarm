@@ -1,0 +1,25 @@
+---
+import { projectNodeParts } from "@/data/workshop-node-mesh";
+---
+
+<figure class="node-anatomy" aria-labelledby="node-anatomy-caption">
+  <div class="node-anatomy__core"><span>Bounded project</span><strong>One job</strong></div>
+  <ol>
+    {projectNodeParts.map((part, index) => <li><span>{String(index + 1).padStart(2, "0")}</span><div><strong>{part.label}</strong><p>{part.description}</p></div></li>)}
+  </ol>
+  <figcaption id="node-anatomy-caption">A project carries enough context to do its job and clear boundaries that keep unrelated material out.</figcaption>
+</figure>
+
+<style>
+  .node-anatomy { display: grid; gap: 1rem; margin: 0; padding: 1rem; border: 1px solid #302744; border-radius: .8rem; background: #0b0911; }
+  .node-anatomy__core { display: grid; min-height: 12rem; place-content: center; border: 1px solid #55d7ff; border-radius: 50%; background: radial-gradient(circle, rgb(85 215 255 / .18), transparent 67%); text-align: center; }
+  .node-anatomy__core span { color: #55d7ff; font-family: var(--font-mono); font-size: .55rem; letter-spacing: .1em; text-transform: uppercase; }
+  .node-anatomy__core strong { margin-top: .5rem; color: #fff; font-family: var(--font-display); font-size: 2rem; font-weight: 300; }
+  ol { display: grid; gap: .55rem; margin: 0; padding: 0; list-style: none; }
+  li { display: grid; grid-template-columns: 2.4rem 1fr; gap: .7rem; padding: .8rem; border: 1px solid #302744; background: #0e0b16; }
+  li > span { color: #d04a93; font-family: var(--font-mono); font-size: .6rem; }
+  li strong { color: #f0ecf4; font-size: .82rem; }
+  li p { margin: .35rem 0 0; color: #9e98aa; font-size: .7rem; line-height: 1.55; }
+  figcaption { color: #8f899e; font-family: var(--font-mono); font-size: .56rem; line-height: 1.55; text-transform: uppercase; }
+  @media (min-width: 50rem) { .node-anatomy { grid-template-columns: minmax(13rem, .45fr) minmax(0, 1fr); align-items: center; padding: 1.4rem; } ol { grid-template-columns: repeat(2, minmax(0, 1fr)); } figcaption { grid-column: 1 / -1; } }
+</style>

@@ -32,7 +32,7 @@ const { displayTag, posts } = Astro.props;
 const description = `Articles tagged "${displayTag}" on HobFarm, covering related systems, visual research, and project notes.`;
 ---
 
-<BaseLayout title={`${displayTag} Articles | HobFarm`} description={description} canonical={articleTagPath(displayTag)}>
+<BaseLayout title={`${displayTag} Articles | HobFarm`} description={description} canonical={articleTagPath(displayTag)} noindex>
   <section>
     <ContentPanel>
       <Wrapper

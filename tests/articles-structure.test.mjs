@@ -267,7 +267,7 @@ test("search and rss use the canonical article path helper", () => {
 
   assert.match(searchIndex, /type:\s*"article"/);
   assert.match(searchIndex, /href:\s*articlePath\(post\)/);
-  assert.match(rss, /link:\s*articlePath\(post\)/);
+  assert.match(rss, /link:\s*`\$\{articlePath\(post\)\}\/`/);
 });
 
 test("article sharing uses the standard seven controls and a generated share caption", () => {
@@ -301,6 +301,8 @@ test("RSS is discoverable and new published articles populate the feed", () => {
   assert.match(articlesPage, /href="#article-subscribe"/);
   assert.match(articlesPage, /Subscribe to articles/);
   assert.match(rss, /getPublishedArticles\(\)/);
+  assert.match(rss, /getArticleDate\(post\)/);
+  assert.match(rss, /getArticleImage\(post\.data\)/);
   assert.match(rss, /getArticleSectionLabel\(post\.data\)/);
   assert.match(rss, /post\.data\.mesh\?\.subjects/);
 });

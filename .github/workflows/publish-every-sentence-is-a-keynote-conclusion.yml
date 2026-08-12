@@ -31,6 +31,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git rm .github/workflows/publish-every-sentence-is-a-keynote-conclusion.yml
+          git rm scripts/publish-scheduled-every-sentence-is-a-keynote-conclusion.mjs
           git add src/content/articles/every-sentence-is-a-keynote-conclusion.mdx
           git commit -m "Publish Every Sentence Is a Keynote Conclusion"
           git push origin main

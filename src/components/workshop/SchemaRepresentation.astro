@@ -1,0 +1,25 @@
+---
+import { representationExamples } from "@/data/workshop-node-mesh";
+---
+
+<div class="schema-representation">
+  {representationExamples.map((example) => (
+    <article>
+      <h3>{example.label}</h3>
+      <ul>{example.values.map((value: string) => <li>{value}</li>)}</ul>
+    </article>
+  ))}
+</div>
+<p class="schema-principle">The useful representation makes the important decisions explicit enough that the next part of the system can act without losing the intent.</p>
+
+<style>
+  .schema-representation { display: grid; gap: .7rem; }
+  article { min-width: 0; padding: 1rem; border: 1px solid #302744; border-top: 2px solid #55d7ff; background: #0d0a13; }
+  article:nth-child(even) { border-top-color: #d04a93; }
+  h3 { margin: 0; color: #fff; font-family: var(--font-display); font-size: 1.45rem; font-weight: 400; }
+  ul { display: flex; flex-wrap: wrap; gap: .35rem; margin: 1rem 0 0; padding: 0; list-style: none; }
+  li { padding: .35rem .45rem; border: 1px solid #332a43; color: #9f99ac; font-family: var(--font-mono); font-size: .53rem; }
+  .schema-principle { margin: 1rem 0 0; padding: 1rem; border-left: 3px solid #55d7ff; background: rgb(85 215 255 / .06); color: #c8c3d0; line-height: 1.65; }
+  @media (min-width: 42rem) { .schema-representation { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 70rem) { .schema-representation { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+</style>

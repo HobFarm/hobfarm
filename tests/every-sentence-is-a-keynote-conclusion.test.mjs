@@ -34,7 +34,7 @@ test("Every Sentence Is a Keynote Conclusion owns the August 15 follow-up slot",
   assert.equal(field(article, "canonical"), '"/articles/every-sentence-is-a-keynote-conclusion/"');
   assert.equal(field(article, "pubDate"), "2026-08-15");
   assert.equal(field(article, "publishedAt"), "2026-08-15T16:20:00-07:00");
-  assert.equal(field(article, "status"), "scheduled");
+  assert.ok(["scheduled", "published"].includes(field(article, "status")));
   assert.equal(
     Date.parse(field(article, "publishedAt")) - Date.parse(field(trilogyAnchor, "publishedAt")),
     24 * 60 * 60 * 1000,
@@ -95,17 +95,4 @@ test("the visual package is original, readable, and complete", async () => {
   assert.match(hero, /EDITORIAL PATH/);
   assert.ok(heroWebp.size > 30_000);
   assert.ok(socialWebp.size > 20_000);
-});
-
-test("the one-time publisher protects the exact August 15 release", async () => {
-  const [scheduler, workflow] = await Promise.all([
-    readFile("scripts/publish-scheduled-every-sentence-is-a-keynote-conclusion.mjs", "utf8"),
-    readFile(".github/workflows/publish-every-sentence-is-a-keynote-conclusion.yml", "utf8"),
-  ]);
-
-  assert.match(scheduler, /expectedPublication = "2026-08-15T16:20:00-07:00"/);
-  assert.match(scheduler, /Date\.now\(\) < Date\.parse\(expectedPublication\)/);
-  assert.match(workflow, /cron: "20 23 15 8 \*"/);
-  assert.match(workflow, /node scripts\/publish-scheduled-every-sentence-is-a-keynote-conclusion\.mjs/);
-  assert.match(workflow, /git rm \.github\/workflows\/publish-every-sentence-is-a-keynote-conclusion\.yml/);
 });

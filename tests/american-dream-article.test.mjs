@@ -4,23 +4,18 @@ import test from "node:test";
 
 const articlePath =
   "src/content/articles/fear-and-loathing-after-the-american-dream.mdx";
-const scriptPath = "scripts/publish-scheduled-american-dream.mjs";
 const manifestPath = "reports/american-dream/asset-manifest.json";
 
 const field = (source, name) =>
   source.match(new RegExp(`^${name}:\\s*(.+)$`, "m"))?.[1].trim();
 
 test("American Dream source article is complete and published for August 5", async () => {
-  const [article, script] = await Promise.all([
-    readFile(articlePath, "utf8"),
-    readFile(scriptPath, "utf8"),
-  ]);
+  const article = await readFile(articlePath, "utf8");
 
   assert.equal(field(article, "pubDate"), "2026-08-05");
   assert.equal(field(article, "publishedAt"), "2026-08-05T16:20:00-07:00");
   assert.equal(field(article, "status"), "published");
   assert.equal(field(article, "draft"), "false");
-  assert.match(script, /2026-08-05T16:20:00-07:00/);
   assert.match(
     article,
     /export const americanDreamMedia = "https:\/\/cdn\.hob\.farm\/articles\/american-dream";/,

@@ -19,12 +19,12 @@ function articleWordCount(source) {
   return plain.split(/\s+/).filter(Boolean).length;
 }
 
-test("article uses the fixed route, schedule, metadata, and updated draft", async () => {
+test("article uses the fixed route, release metadata, and updated draft", async () => {
   const article = await readFile(articlePath, "utf8");
 
   assert.equal(field(article, "pubDate"), "2026-08-13");
   assert.equal(field(article, "publishedAt"), "2026-08-13T16:19:00-07:00");
-  assert.equal(field(article, "status"), "scheduled");
+  assert.ok(["scheduled", "published"].includes(field(article, "status")));
   assert.equal(field(article, "draft"), "false");
   assert.equal(field(article, "canonical"), '"/articles/the-number-one-song-ive-never-heard/"');
   assert.match(article, /Another random Spotify video playlist handed me Salvatore Ganacci’s “Horse.”/);
@@ -66,21 +66,17 @@ test("article includes the requested receipts and accessible visual systems", as
   assert.match(palace, /width: 776/);
 });
 
-test("scheduler preserves exact release order around the August 13 collision", async () => {
-  const [article, predecessor, following, scheduler, workflow, articleLib] = await Promise.all([
+test("publication metadata preserves exact release order around the August 13 collision", async () => {
+  const [article, predecessor, following, articleLib] = await Promise.all([
     readFile(articlePath, "utf8"),
     readFile("src/content/articles/same-same-but-different.mdx", "utf8"),
     readFile("src/content/articles/the-model-is-free.mdx", "utf8"),
-    readFile("scripts/publish-scheduled-the-number-one-song.mjs", "utf8"),
-    readFile(".github/workflows/publish-the-number-one-song.yml", "utf8"),
     readFile("src/lib/articles.ts", "utf8"),
   ]);
 
   const release = Date.parse(field(article, "publishedAt"));
   assert.ok(Date.parse(field(predecessor, "publishedAt")) < release);
   assert.ok(release < Date.parse(field(following, "publishedAt")));
-  assert.match(scheduler, /expectedPublication = "2026-08-13T16:19:00-07:00"/);
-  assert.match(workflow, /cron: "19 23 13 8 \*"/);
   assert.match(articleLib, /data\.publishedAt \?\? data\.pubDate/);
 });
 

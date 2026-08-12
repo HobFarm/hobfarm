@@ -31,7 +31,7 @@ test("The Future Was Already There owns the August 20 publication slot", async (
   assert.equal(field(article, "canonical"), '"/articles/the-future-was-already-there/"');
   assert.equal(field(article, "pubDate"), "2026-08-20");
   assert.equal(field(article, "publishedAt"), "2026-08-20T16:20:00-07:00");
-  assert.equal(field(article, "status"), "scheduled");
+  assert.ok(["scheduled", "published"].includes(field(article, "status")));
   assert.equal(
     Date.parse(field(article, "publishedAt")) - Date.parse(field(predecessor, "publishedAt")),
     24 * 60 * 60 * 1000,
@@ -85,17 +85,4 @@ test("multimedia uses original graphics and click-to-load author video", async (
   assert.ok(heroWebp.size > 30_000);
   assert.ok(socialWebp.size > 20_000);
   assert.doesNotMatch(article, /<img[^>]+(?:pressherald|thebollard|mikerichart)/i);
-});
-
-test("the one-time publisher protects the exact August 20 release", async () => {
-  const [scheduler, workflow] = await Promise.all([
-    readFile("scripts/publish-scheduled-the-future-was-already-there.mjs", "utf8"),
-    readFile(".github/workflows/publish-the-future-was-already-there.yml", "utf8"),
-  ]);
-
-  assert.match(scheduler, /expectedPublication = "2026-08-20T16:20:00-07:00"/);
-  assert.match(scheduler, /Date\.now\(\) < Date\.parse\(expectedPublication\)/);
-  assert.match(workflow, /cron: "20 23 20 8 \*"/);
-  assert.match(workflow, /node scripts\/publish-scheduled-the-future-was-already-there\.mjs/);
-  assert.match(workflow, /git rm \.github\/workflows\/publish-the-future-was-already-there\.yml/);
 });

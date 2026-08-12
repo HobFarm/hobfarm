@@ -4,10 +4,6 @@ import test from "node:test";
 
 const articlePath = "src/content/articles/you-should-write-about-sharks.mdx";
 const sharksploitationPath = "src/content/articles/sharksploitation.mdx";
-const workflowPath =
-  ".github/workflows/publish-you-should-write-about-sharks.yml";
-const scriptPath =
-  "scripts/publish-scheduled-you-should-write-about-sharks.mjs";
 const manifestPath =
   "reports/you-should-write-about-sharks/asset-manifest.json";
 
@@ -25,11 +21,10 @@ function articleWordCount(article) {
   return body.match(/[\p{L}\p{N}][\p{L}\p{N}’'–—-]*/gu)?.length ?? 0;
 }
 
-test("You Should Write About Sharks published after Sharksploitation and retired its one-time workflow", async () => {
-  const [article, sharksploitation, script] = await Promise.all([
+test("You Should Write About Sharks published after Sharksploitation", async () => {
+  const [article, sharksploitation] = await Promise.all([
     readFile(articlePath, "utf8"),
     readFile(sharksploitationPath, "utf8"),
-    readFile(scriptPath, "utf8"),
   ]);
 
   assert.equal(field(article, "department"), "workshop-notes");
@@ -43,8 +38,6 @@ test("You Should Write About Sharks published after Sharksploitation and retired
       Date.parse(field(sharksploitation, "publishedAt")),
     24 * 60 * 60 * 1000,
   );
-  assert.match(script, /2026-08-08T16:20:00-07:00/);
-  await assert.rejects(access(workflowPath), (error) => error?.code === "ENOENT");
 
   const wordCount = articleWordCount(article);
   assert.ok(wordCount >= 1800 && wordCount <= 2500, `article word count is ${wordCount}`);

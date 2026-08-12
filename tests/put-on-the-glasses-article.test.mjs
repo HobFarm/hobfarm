@@ -5,14 +5,7 @@ import test from "node:test";
 
 const articlePath = "src/content/articles/put-on-the-glasses.md";
 const sourceArticlePath = "src/content/articles/too-big-for-the-box.md";
-const workflowPath = ".github/workflows/publish-put-on-the-glasses.yml";
-const scheduleScriptPath =
-  "scripts/publish-scheduled-put-on-the-glasses.mjs";
 const manifestPath = "reports/put-on-the-glasses/asset-manifest.json";
-
-function escapeRegExp(value) {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
 
 function field(source, name) {
   return source.match(new RegExp(`^${name}:\\s*(.+)$`, "m"))?.[1].trim();
@@ -29,16 +22,10 @@ function articleWordCount(source) {
 }
 
 test("Put On the Glasses is exactly 24 hours after Too Big for the Box", async () => {
-  const [article, sourceArticle, scheduleScript, workflow] =
-    await Promise.all([
-      readFile(articlePath, "utf8"),
-      readFile(sourceArticlePath, "utf8"),
-      readFile(scheduleScriptPath, "utf8"),
-      readFile(workflowPath, "utf8").catch((error) => {
-        if (error.code === "ENOENT") return null;
-        throw error;
-      }),
-    ]);
+  const [article, sourceArticle] = await Promise.all([
+    readFile(articlePath, "utf8"),
+    readFile(sourceArticlePath, "utf8"),
+  ]);
 
   const publication = field(article, "publishedAt");
   const sourcePublication = field(sourceArticle, "publishedAt");
@@ -54,33 +41,6 @@ test("Put On the Glasses is exactly 24 hours after Too Big for the Box", async (
   assert.equal(publication.slice(11, 19), sourcePublication.slice(11, 19));
   assert.equal(field(article, "pubDate"), "2026-07-30");
   assert.ok(["scheduled", "published"].includes(status));
-  assert.match(
-    scheduleScript,
-    new RegExp(`expectedPublication = "${escapeRegExp(publication)}"`),
-  );
-
-  if (status === "scheduled") {
-    assert.ok(workflow, "Scheduled article must retain its one-time workflow.");
-    const trigger = new Date(Date.parse(publication) + 5 * 60 * 1000);
-    const expectedCron = [
-      trigger.getUTCMinutes(),
-      trigger.getUTCHours(),
-      trigger.getUTCDate(),
-      trigger.getUTCMonth() + 1,
-      "*",
-    ].join(" ");
-    assert.match(workflow, new RegExp(`cron: "${escapeRegExp(expectedCron)}"`));
-    assert.match(
-      workflow,
-      /node scripts\/publish-scheduled-put-on-the-glasses\.mjs/,
-    );
-  } else {
-    assert.equal(
-      workflow,
-      null,
-      "Published article should not retain its one-time workflow.",
-    );
-  }
 });
 
 test("article preserves the requested structure, facts, links, and media", async () => {

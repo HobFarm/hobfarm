@@ -121,6 +121,9 @@ test("global headers advertise discovery and deliberate content signals", () => 
   assert.match(headers, /\/api\/\*/);
   assert.match(headers, /\/account\*/);
   assert.match(headers, /\/login\*/);
+  assert.match(headers, /\/academy\/checkout\/\*/);
+  assert.match(headers, /\/membership\/success\*/);
+  assert.match(headers, /\/shop\/order-received\*/);
   assert.match(
     headers,
     /Content-Signal:\s*ai-train=no, search=no, ai-input=no/,
@@ -140,7 +143,10 @@ test("robots policy allows public agent reading while protecting private and tra
   assert.match(robots, /Disallow:\s*\/api\//);
   assert.match(robots, /User-agent:\s*GPTBot[\s\S]*Disallow:\s*\//);
   assert.match(robots, /User-agent:\s*Google-Extended[\s\S]*Disallow:\s*\//);
-  assert.doesNotMatch(robots, /User-agent:\s*OAI-SearchBot/);
+  for (const agent of ["OAI-SearchBot", "Claude-SearchBot", "Claude-User", "PerplexityBot", "Perplexity-User"]) {
+    assert.match(robots, new RegExp(agent));
+    assert.doesNotMatch(robots, new RegExp(`User-agent:\\s*${agent}`));
+  }
   assert.doesNotMatch(robots, /User-agent:\s*Google-CloudVertexBot/);
 });
 
@@ -213,6 +219,9 @@ test("public sitemap alias is curated and excludes private surfaces", () => {
   assert.match(sitemap, /getPublicAgentGalleryEntries/);
   assert.match(sitemap, /getPublicAgentProjects/);
   assert.match(sitemap, /getPublicAgentGrimoireEntries/);
+  assert.match(sitemap, /selectedWorkshopProjects/);
+  assert.match(sitemap, /\/workshop\/projects\//);
+  assert.match(sitemap, /\/workshop\/workshop-notes\//);
   assert.match(sitemap, /Content-Type": "application\/xml; charset=utf-8"/);
   assert.doesNotMatch(sitemap, /articles\/tags/);
   assert.doesNotMatch(sitemap, /\/api\//);

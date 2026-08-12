@@ -31,6 +31,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git rm .github/workflows/publish-from-wetlands-to-the-wash.yml
+          git rm scripts/publish-scheduled-from-wetlands-to-the-wash.mjs
           git add src/content/articles/from-wetlands-to-the-wash.mdx
           git commit -m "Publish From Wetlands to the Wash"
           git push origin main

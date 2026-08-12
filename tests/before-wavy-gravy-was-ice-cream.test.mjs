@@ -27,7 +27,7 @@ test("article uses the requested title and the queued slot after Wetlands", asyn
   assert.equal(field(article, "canonical"), '"/articles/before-wavy-gravy-was-ice-cream/"');
   assert.equal(field(article, "pubDate"), "2026-08-18");
   assert.equal(field(article, "publishedAt"), "2026-08-18T16:20:00-07:00");
-  assert.equal(field(article, "status"), "scheduled");
+  assert.ok(["scheduled", "published"].includes(field(article, "status")));
   assert.equal(
     Date.parse(field(article, "publishedAt")) - Date.parse(field(predecessor, "publishedAt")),
     24 * 60 * 60 * 1000,
@@ -96,19 +96,6 @@ test("multimedia uses owned assets, live-text graphics, and official fallbacks",
   assert.match(manifestSource, /f56dc39f9e9e8572cedc7304486448de09cb2eed9dc48c27beb500c9126246ca/);
   assert.match(manifestSource, /f1a9c49328e8f151eb2c2401c5afef8baf14dbd2bcdf500f2d6ac69048c040f1/);
   assert.match(manifestSource, /de7d21c23375f3d672261ee458ad8816a369a2c534a5a342d088b5c48f5d9b34/);
-});
-
-test("one-time publisher protects the exact August 18 release", async () => {
-  const [scheduler, workflow] = await Promise.all([
-    readFile("scripts/publish-scheduled-before-wavy-gravy-was-ice-cream.mjs", "utf8"),
-    readFile(".github/workflows/publish-before-wavy-gravy-was-ice-cream.yml", "utf8"),
-  ]);
-
-  assert.match(scheduler, /expectedPublication = "2026-08-18T16:20:00-07:00"/);
-  assert.match(scheduler, /Date\.now\(\) < Date\.parse\(expectedPublication\)/);
-  assert.match(workflow, /cron: "20 23 18 8 \*"/);
-  assert.match(workflow, /node scripts\/publish-scheduled-before-wavy-gravy-was-ice-cream\.mjs/);
-  assert.match(workflow, /git rm \.github\/workflows\/publish-before-wavy-gravy-was-ice-cream\.yml/);
 });
 
 test("article preserves uncertainty and the supplied editorial boundaries", async () => {

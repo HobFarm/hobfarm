@@ -2,13 +2,15 @@ import { expect, test, type Page } from "@playwright/test";
 
 const smokeRoutes = [
   "/",
-  "/departments/",
-  "/departments/funnies/",
-  "/video/",
-  "/characters/",
-  "/workshop/",
   "/articles/",
+  "/presents/",
+  "/presents/funnies/",
+  "/workshop/",
+  "/workshop/projects/",
   "/gallery/",
+  "/academy/",
+  "/shop/",
+  "/about/",
 ];
 
 const plannedDepartmentNames = [
@@ -45,27 +47,24 @@ test.describe("HobFarm public smoke routes", () => {
   }
 });
 
-test("planned WTFacts department loads but stays noindexed", async ({ page }) => {
-  await page.goto("/departments/wtfacts/");
-
-  await expectPageShell(page);
-  await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
-});
-
 test("homepage does not promote planned departments", async ({ page }) => {
   await page.goto("/");
 
   await expectNoPlannedDepartmentPromotion(page);
 });
 
-test("departments hub does not promote planned departments", async ({ page }) => {
-  await page.goto("/departments/");
+test("current Articles and Presents hubs do not promote planned legacy departments", async ({ page }) => {
+  await page.goto("/articles/");
+
+  await expectNoPlannedDepartmentPromotion(page);
+
+  await page.goto("/presents/");
 
   await expectNoPlannedDepartmentPromotion(page);
 });
 
-test("Funnies department visibly identifies itself", async ({ page }) => {
-  await page.goto("/departments/funnies/");
+test("canonical Funnies route visibly identifies itself", async ({ page }) => {
+  await page.goto("/presents/funnies/");
 
   await expect(page.getByRole("heading", { name: "Funnies", exact: true }).first()).toBeVisible();
 });

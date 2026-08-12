@@ -31,6 +31,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git rm .github/workflows/publish-songs-we-learned-backwards.yml
+          git rm scripts/publish-scheduled-songs-we-learned-backwards.mjs
           git add src/content/articles/songs-we-learned-backwards.mdx
           git commit -m "Publish Songs We Learned Backwards"
           git push origin main

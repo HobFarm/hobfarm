@@ -11,12 +11,13 @@ const programRoutes = [
 ] as const;
 
 const programLabels = [
+  "Overview",
+  "Projects",
   "Workshop Notes",
-  "Character / Mannequin",
-  "Avatar & Host",
+  "HobFarm project",
+  "StyleFusion",
   "Before & After",
-  "Cute & Corrupted",
-  "Alter Ego",
+  "Future Carriage",
 ] as const;
 
 async function expectStablePage(page: Page, route: string, width: number) {
@@ -53,14 +54,14 @@ async function loadPageImages(page: Page) {
   });
 }
 
-test("desktop and mobile Workshop menus use the shared primary order", async ({ page }) => {
+test("desktop and mobile Workshop menus lead with system layers", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/workshop/");
 
   const desktopLinks = page.locator('#nav-wrapper nav.hidden .nav-group:has(> a[href="/workshop/"]) .nav-menu > a');
   await expect(desktopLinks).toHaveCount(programLabels.length);
   expect(await desktopLinks.allTextContents()).toEqual([...programLabels]);
-  await expect(desktopLinks.locator('a[href="/workshop/stylefusion/"]')).toHaveCount(0);
+  await expect(page.locator('#nav-wrapper nav.hidden .nav-group:has(> a[href="/workshop/"]) .nav-menu > a[href="/workshop/stylefusion/"]')).toHaveCount(1);
 
   await page.setViewportSize({ width: 390, height: 844 });
   await page.getByRole("button", { name: "Toggle main menu" }).click();
@@ -68,7 +69,7 @@ test("desktop and mobile Workshop menus use the shared primary order", async ({ 
   await details.locator("summary").click({ force: true });
   const mobileLinks = details.locator('a[href^="/workshop/"]');
   expect(await mobileLinks.allTextContents()).toEqual([...programLabels]);
-  await expect(details.locator('a[href="/workshop/stylefusion/"]')).toHaveCount(0);
+  await expect(details.locator('a[href="/workshop/stylefusion/"]')).toHaveCount(1);
 });
 
 test("Workshop hub hierarchy and all primary program links are visible", async ({ page }) => {
@@ -79,7 +80,10 @@ test("Workshop hub hierarchy and all primary program links are visible", async (
     ".workshop-hero",
     ".notes-intro",
     "#method",
-    "#programs",
+    "#system",
+    ".representation-section",
+    ".production-paths",
+    "#projects",
     ".future-carriage",
     '[aria-labelledby="outputs-heading"]',
     ".tools-section",
@@ -88,11 +92,44 @@ test("Workshop hub hierarchy and all primary program links are visible", async (
   const positions = await Promise.all(selectors.map(async (selector) => (await page.locator(selector).boundingBox())!.y));
   expect(positions).toEqual([...positions].sort((a, b) => a - b));
 
-  await expect(page.locator("#programs article[data-program-id]")).toHaveCount(5);
+  await expect(page.locator('#projects [data-workshop-project]')).toHaveCount(6);
   for (const route of programRoutes) {
     await expect(page.locator(`a[href="${route}"]`).first()).toBeVisible();
   }
   await expect(page.getByText("A working frame for the next pass.")).toHaveCount(0);
+});
+
+test("Projects hub and HobFarm case study remain stable across responsive widths", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  for (const viewport of [{ width: 390, height: 844 }, { width: 768, height: 1024 }, { width: 1440, height: 1000 }]) {
+    await page.setViewportSize(viewport);
+    await expectStablePage(page, "/workshop/projects/", viewport.width);
+    await expectStablePage(page, "/workshop/projects/hobfarm/", viewport.width);
+  }
+  await page.goto("/workshop/projects/");
+  await expect(page.locator("[data-workshop-project]")).toHaveCount(8);
+});
+
+test("Presents Funnies overview no longer renders a bright white field", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/presents/");
+  const comics = page.locator("#funnies");
+  await expect(comics).toBeVisible();
+  const background = await comics.evaluate((element) => getComputedStyle(element).backgroundColor);
+  expect(background).not.toBe("rgb(244, 242, 237)");
+  await expect(comics.getByRole("heading", { name: "Funnies", exact: true })).toBeVisible();
+});
+
+test("changed surfaces load their published images without broken assets", async ({ page }) => {
+  test.setTimeout(120_000);
+  for (const route of ["/", "/workshop/", "/workshop/projects/", "/workshop/projects/hobfarm/", "/presents/"]) {
+    await page.goto(route, { waitUntil: "networkidle" });
+    await loadPageImages(page);
+    const broken = await page.locator("img").evaluateAll((images) => (images as HTMLImageElement[])
+      .filter((image) => !image.complete || image.naturalWidth === 0)
+      .map((image) => image.getAttribute("src")));
+    expect(broken, route).toEqual([]);
+  }
 });
 
 test("program pages stay stable and previous-next navigation follows the registry", async ({ page }) => {
@@ -150,6 +187,10 @@ test("capture rebuilt Workshop pages at desktop and mobile widths", async ({ pag
 
   const routes = [
     { slug: "hub", route: "/workshop/" },
+    { slug: "projects", route: "/workshop/projects/" },
+    { slug: "site-project", route: "/workshop/projects/hobfarm/" },
+    { slug: "stylefusion", route: "/workshop/stylefusion/" },
+    { slug: "presents", route: "/presents/" },
     { slug: "workshop-notes", route: "/workshop/workshop-notes/" },
     { slug: "character-mannequin", route: "/workshop/character-mannequin/" },
     { slug: "avatar-host", route: "/workshop/avatar-host/" },

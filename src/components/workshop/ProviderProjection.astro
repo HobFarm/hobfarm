@@ -1,0 +1,30 @@
+---
+interface Props { compact?: boolean; }
+const { compact = false } = Astro.props;
+const tools = compact ? ["Tool A", "Tool B", "Direct work"] : ["Image model", "Code", "Photography", "Compositing"];
+---
+
+<figure class="projection" aria-labelledby="projection-caption" style={`--projection-columns:${tools.length}`}>
+  <div class="projection__source"><span>Durable project record</span><strong>Canonical representation</strong></div>
+  <div class="projection__adapters" aria-label="Replaceable production paths">
+    {tools.map((tool) => <div><span>Adapter</span><strong>{tool}</strong><small>execute → evaluate</small></div>)}
+  </div>
+  <div class="projection__return"><span>Revision returns to the project record</span></div>
+  <figcaption id="projection-caption">The project record stays stable while the tool, provider, or direct production method changes.</figcaption>
+</figure>
+
+<style>
+  .projection { display: grid; gap: .75rem; margin: 0; padding: 1rem; border: 1px solid #302744; border-radius: .8rem; background: #09070e; }
+  .projection__source { padding: 1.1rem; border: 1px solid #55d7ff; background: rgb(85 215 255 / .07); text-align: center; }
+  .projection__source span, .projection__adapters span, .projection__return span { display: block; color: #55d7ff; font-family: var(--font-mono); font-size: .54rem; letter-spacing: .08em; text-transform: uppercase; }
+  .projection__source strong { display: block; margin-top: .55rem; color: #fff; font-family: var(--font-display); font-size: clamp(1.4rem, 4vw, 2.5rem); font-weight: 300; }
+  .projection__adapters { display: grid; gap: .55rem; }
+  .projection__adapters > div { position: relative; padding: 1rem; border: 1px solid #3a304d; background: #0e0b16; }
+  .projection__adapters > div::before { position: absolute; top: -.8rem; left: 50%; height: .8rem; border-left: 1px solid #55d7ff; content: ""; }
+  .projection__adapters strong { display: block; margin-top: 1rem; color: #eeeaf3; font-size: .82rem; }
+  .projection__adapters small { display: block; margin-top: .5rem; color: #8f899e; font-family: var(--font-mono); font-size: .52rem; }
+  .projection__return { padding: .7rem; border: 1px dashed #d04a93; text-align: center; }
+  .projection__return span { color: #d86aa4; }
+  figcaption { color: #8f899e; font-family: var(--font-mono); font-size: .56rem; line-height: 1.55; text-transform: uppercase; }
+  @media (min-width: 46rem) { .projection__adapters { grid-template-columns: repeat(var(--projection-columns, 4), minmax(0, 1fr)); } }
+</style>

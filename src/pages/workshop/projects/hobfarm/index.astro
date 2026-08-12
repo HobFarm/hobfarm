@@ -1,0 +1,143 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Breadcrumbs from "@/components/global/Breadcrumbs.astro";
+import HobFarmProductionDiagram from "@/components/workshop/HobFarmProductionDiagram.astro";
+import ProjectNodeAnatomy from "@/components/workshop/ProjectNodeAnatomy.astro";
+import ConnectedWork from "@/components/workshop/ConnectedWork.astro";
+import { getMedia } from "@/data/media-registry";
+
+const hero = getMedia("home.site-banner");
+const workshop = getMedia("workshop.graphics.hero");
+const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
+const canonical = "/workshop/projects/hobfarm/";
+const canonicalUrl = `${siteOrigin}${canonical}`;
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteOrigin}/#organization`,
+      name: "HobFarm",
+      url: `${siteOrigin}/`,
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteOrigin}/#website`,
+      name: "HobFarm",
+      url: `${siteOrigin}/`,
+      publisher: { "@id": `${siteOrigin}/#organization` },
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${canonicalUrl}#webpage`,
+      name: "HobFarm website and publishing system",
+      url: canonicalUrl,
+      isPartOf: { "@id": `${siteOrigin}/#website` },
+      mainEntity: { "@id": `${canonicalUrl}#project` },
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": `${canonicalUrl}#project`,
+      name: "HobFarm website and publishing system",
+      description: "A Workshop case study in web development, content architecture, repository context, Cloudflare deployment, publishing, and iteration.",
+      url: canonicalUrl,
+      image: hero.src,
+      creator: { "@id": `${siteOrigin}/#organization` },
+      mainEntityOfPage: { "@id": `${canonicalUrl}#webpage` },
+      isPartOf: { "@type": "CollectionPage", "@id": `${siteOrigin}/workshop/projects/#collection`, name: "HobFarm Workshop Projects", url: `${siteOrigin}/workshop/projects/` },
+      about: { "@id": `${siteOrigin}/#website` },
+    },
+  ],
+};
+const facts = [
+  ["Framework", "Astro 7 and TypeScript"],
+  ["Presentation", "Tailwind CSS 4 plus route-level Astro styles"],
+  ["Content", "Astro content collections and PagesCMS"],
+  ["Platform", "Cloudflare Pages, Pages Functions, and R2 media"],
+  ["Source control", "Git and GitHub"],
+  ["Validation", "Astro checks, Node tests, production builds, structural audits, and browser review"],
+] as const;
+---
+
+<BaseLayout title="HobFarm: Website and Publishing System | Workshop" description="How HobFarm uses project context, repository rules, Astro, Git, Cloudflare, tests, and observation to operate an independent publication and studio." canonical={canonical} image={hero.src} imageAlt={hero.alt} palette="blue-red" structuredData={structuredData}>
+  <main class="hobfarm-case">
+    <Wrapper variant="standard" class="breadcrumbs"><Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Workshop", href: "/workshop/" }, { label: "Projects", href: "/workshop/projects/" }, { label: "HobFarm" }]} /></Wrapper>
+    <header class="case-hero">
+      <Wrapper variant="standard" class="case-hero__layout">
+        <div><p class="eyebrow">Workshop project / Active publication</p><h1>The website is part of the work.</h1><p class="lead">HobFarm is an independent publication and studio, but it is also the clearest proof that the Workshop method extends beyond images. Content architecture, code, operating rules, media, commerce, deployment, and revision all have to remain connected.</p><div class="actions"><a href="#system">Inspect the system</a><a href="/workshop/projects/">Browse every project</a></div></div>
+        <figure><img src={hero.src} alt={hero.alt} width={hero.width} height={hero.height} loading="eager" fetchpriority="high" decoding="async" /><figcaption>HobFarm website banner / a public publishing surface built from the same Workshop record</figcaption></figure>
+      </Wrapper>
+    </header>
+
+    <section id="system" aria-labelledby="system-heading">
+      <Wrapper variant="standard" class="section-space">
+        <div class="section-heading"><div><p class="eyebrow">The production loop</p><h2 id="system-heading">Context becomes code, routes, releases, and another round of observation.</h2></div><p>The project context describes the goal and editorial intent. The repository supplies the actual architecture and constraints. Development happens against both, then tests and visual review decide whether the result can ship.</p></div>
+        <div class="diagram-space"><HobFarmProductionDiagram /></div>
+      </Wrapper>
+    </section>
+
+    <section class="evidence" aria-labelledby="evidence-heading">
+      <Wrapper variant="standard" class="section-space">
+        <div class="section-heading"><div><p class="eyebrow">Verified implementation</p><h2 id="evidence-heading">The repository is the evidence.</h2></div><p>This record names the systems present in the current HobFarm codebase. It does not imply a hidden automation layer between conversations, project instructions, and the repository.</p></div>
+        <div class="evidence-grid">
+          <figure><img src={workshop.src} alt={workshop.alt} width={workshop.width} height={workshop.height} loading="lazy" decoding="async" /><figcaption>Workshop / the operating method made visible</figcaption></figure>
+          <dl>{facts.map(([term, detail]) => <div><dt>{term}</dt><dd>{detail}</dd></div>)}</dl>
+        </div>
+      </Wrapper>
+    </section>
+
+    <section aria-labelledby="node-heading">
+      <Wrapper variant="standard" class="section-space">
+        <div class="section-heading"><div><p class="eyebrow">Bounded project context</p><h2 id="node-heading">The site knows what the site needs.</h2></div><p>HobFarm carries its route map, content contracts, design patterns, platform constraints, and validation rules. A separate image or story project can pass in a finished artifact without importing the entire website context.</p></div>
+        <div class="diagram-space"><ProjectNodeAnatomy /></div>
+      </Wrapper>
+    </section>
+
+    <section aria-labelledby="decisions-heading">
+      <Wrapper variant="standard" class="section-space">
+        <div class="section-heading"><div><p class="eyebrow">Tests and decisions</p><h2 id="decisions-heading">The useful work happens between the first render and the release.</h2></div><p>Build errors expose broken contracts. Screenshots expose scale, contrast, and responsive problems. Link audits catch disconnected routes. Analytics and real content reveal what the architecture failed to anticipate.</p></div>
+        <ol class="decision-grid"><li><span>01</span><strong>Inspect</strong><p>Read the live route, nearby components, content model, and current working tree.</p></li><li><span>02</span><strong>Implement</strong><p>Make the smallest coherent change in the existing language and structure.</p></li><li><span>03</span><strong>Validate</strong><p>Run schema, type, structural, link, build, and browser checks in proportion to the risk.</p></li><li><span>04</span><strong>Observe</strong><p>Use the live publication, errors, reader paths, and new work to shape the next revision.</p></li></ol>
+      </Wrapper>
+    </section>
+
+    <Wrapper variant="standard" class="connected-space"><ConnectedWork links={[{ relationship: "Method", label: "Workshop overview", href: "/workshop/" }, { relationship: "Technical application", label: "StyleFusion", href: "/workshop/stylefusion/" }, { relationship: "Editorial output", label: "Articles", href: "/articles/" }, { relationship: "Ongoing release record", label: "Changelog", href: "/changelog/" }]} /></Wrapper>
+  </main>
+</BaseLayout>
+
+<style>
+  .hobfarm-case { background: #07060b; color: #aaa5b8; }
+  .breadcrumbs { padding-top: 1.25rem; }
+  .case-hero { padding-block: clamp(3.5rem, 8vw, 7rem); border-bottom: 1px solid #2c2440; background: radial-gradient(circle at 16% 20%, rgb(85 215 255 / .13), transparent 30rem), #07060b; }
+  .case-hero__layout { display: grid; gap: 2rem; align-items: center; }
+  .eyebrow { margin: 0; color: #55d7ff; font-family: var(--font-mono); font-size: .61rem; letter-spacing: .15em; text-transform: uppercase; }
+  h1, h2 { color: #fff; font-family: var(--font-display); font-weight: 300; letter-spacing: -.055em; text-wrap: balance; }
+  h1 { margin: 1rem 0 0; font-size: clamp(3.4rem, 8vw, 7rem); line-height: .88; }
+  h2 { margin: .8rem 0 0; font-size: clamp(2.5rem, 6vw, 5rem); line-height: .94; }
+  .lead { max-width: 52rem; margin: 1.4rem 0 0; color: #c7c2cf; font-size: clamp(1rem, 2vw, 1.16rem); line-height: 1.75; }
+  .actions { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1.5rem; }
+  .actions a { padding: .7rem .85rem; border: 1px solid #55d7ff; color: #eeeaf3; font-family: var(--font-mono); font-size: .59rem; text-decoration: none; text-transform: uppercase; }
+  .actions a:first-child { background: #55d7ff; color: #07060b; }
+  figure { margin: 0; overflow: hidden; border: 1px solid #3a304c; background: #09070e; }
+  figure img { display: block; width: 100%; height: auto; }
+  figcaption { padding: .7rem; color: #8f899e; font-family: var(--font-mono); font-size: .55rem; line-height: 1.5; text-transform: uppercase; }
+  section { border-bottom: 1px solid #2c2440; }
+  .evidence { background: #0a0810; }
+  :global(.section-space) { padding-block: clamp(4rem, 8vw, 7rem); }
+  .section-heading { display: grid; gap: 1.4rem; }
+  .section-heading > p { max-width: 45rem; margin: 0; line-height: 1.75; }
+  .diagram-space, .evidence-grid, .decision-grid { margin-top: clamp(2rem, 4vw, 3.5rem); }
+  .evidence-grid { display: grid; gap: 1rem; align-items: start; }
+  dl { display: grid; gap: .55rem; margin: 0; }
+  dl div { padding: .85rem; border: 1px solid #342b45; background: #0d0a13; }
+  dt { color: #55d7ff; font-family: var(--font-mono); font-size: .54rem; letter-spacing: .08em; text-transform: uppercase; }
+  dd { margin: .4rem 0 0; color: #d0cbd6; font-size: .75rem; line-height: 1.55; }
+  .decision-grid { display: grid; gap: .65rem; padding: 0; list-style: none; }
+  .decision-grid li { min-height: 12rem; padding: 1rem; border: 1px solid #342b45; background: #0d0a13; }
+  .decision-grid span { color: #d04a93; font-family: var(--font-mono); font-size: .58rem; }
+  .decision-grid strong { display: block; margin-top: 2.5rem; color: #fff; font-family: var(--font-display); font-size: 1.45rem; font-weight: 400; }
+  .decision-grid p { margin: .7rem 0 0; color: #9f99aa; font-size: .73rem; line-height: 1.6; }
+  :global(.connected-space) { padding-block: clamp(3rem, 6vw, 5rem); }
+  @media (min-width: 48rem) { .evidence-grid { grid-template-columns: minmax(0, 1.15fr) minmax(20rem, .85fr); } .decision-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  @media (min-width: 64rem) { .case-hero__layout { grid-template-columns: minmax(0, 1fr) minmax(26rem, .8fr); } .section-heading { grid-template-columns: minmax(0, 1.15fr) minmax(24rem, .65fr); align-items: end; } }
+</style>

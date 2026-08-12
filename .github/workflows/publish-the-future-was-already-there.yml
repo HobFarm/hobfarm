@@ -31,6 +31,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git rm .github/workflows/publish-the-future-was-already-there.yml
+          git rm scripts/publish-scheduled-the-future-was-already-there.mjs
           git add src/content/articles/the-future-was-already-there.mdx
           git commit -m "Publish The Future Was Already There"
           git push origin main

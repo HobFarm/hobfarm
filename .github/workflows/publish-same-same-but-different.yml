@@ -31,6 +31,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git rm .github/workflows/publish-same-same-but-different.yml
+          git rm scripts/publish-scheduled-same-same-but-different.mjs
           git add src/content/articles/same-same-but-different.mdx
           git commit -m "Publish Same Same, But Different"
           git push origin main

@@ -4,13 +4,7 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 const articlePath = "src/content/articles/i-could-be-playing-civilization.md";
-const workflowPath = ".github/workflows/publish-civ-article.yml";
-const scheduleScriptPath = "scripts/publish-scheduled-civ-article.mjs";
 const manifestPath = "reports/could-be-playing-civ/asset-manifest.json";
-
-function escapeRegExp(value) {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
 
 function articleWordCount(source) {
   const body = source.split(/^---$/m).slice(2).join("\n");
@@ -21,15 +15,8 @@ function articleWordCount(source) {
   return plain.split(/\s+/).filter(Boolean).length;
 }
 
-test("Civilization article preserves the brief, evidence links, and 60-hour schedule", async () => {
-  const [article, scheduleScript, workflow] = await Promise.all([
-    readFile(articlePath, "utf8"),
-    readFile(scheduleScriptPath, "utf8"),
-    readFile(workflowPath, "utf8").catch((error) => {
-      if (error.code === "ENOENT") return null;
-      throw error;
-    }),
-  ]);
+test("Civilization article preserves the brief, evidence links, and publication metadata", async () => {
+  const article = await readFile(articlePath, "utf8");
 
   const publication = article.match(/^publishedAt:\s*(.+)$/m)?.[1].trim();
   const displayDate = article.match(/^pubDate:\s*(.+)$/m)?.[1].trim();
@@ -37,26 +24,6 @@ test("Civilization article preserves the brief, evidence links, and 60-hour sche
   assert.ok(publication);
   assert.equal(displayDate, "2026-07-28");
   assert.ok(["scheduled", "published"].includes(status));
-  assert.match(
-    scheduleScript,
-    new RegExp(`expectedPublication = "${escapeRegExp(publication)}"`),
-  );
-
-  if (status === "scheduled") {
-    assert.ok(workflow, "Scheduled article must retain its one-time workflow.");
-    const trigger = new Date(Date.parse(publication) + 5 * 60 * 1000);
-    const expectedCron = [
-      trigger.getUTCMinutes(),
-      trigger.getUTCHours(),
-      trigger.getUTCDate(),
-      trigger.getUTCMonth() + 1,
-      "*",
-    ].join(" ");
-    assert.match(workflow, new RegExp(`cron: "${escapeRegExp(expectedCron)}"`));
-    assert.match(workflow, /node scripts\/publish-scheduled-civ-article\.mjs/);
-  } else {
-    assert.equal(workflow, null, "Published article should not retain its one-time workflow.");
-  }
 
   assert.match(article, /\[Gary and the Fork\]\(\/articles\/gary-and-the-fork\/\)/);
   assert.match(article, /\[A World of Geniuses Needs a System\]\(\/articles\/a-world-of-geniuses-needs-a-system\/\)/);

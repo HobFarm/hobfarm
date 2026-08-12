@@ -1,0 +1,107 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Breadcrumbs from "@/components/global/Breadcrumbs.astro";
+import WorkshopProjectGrid from "@/components/workshop/WorkshopProjectGrid.astro";
+import WorkshopNodeMesh from "@/components/workshop/WorkshopNodeMesh.astro";
+import ProjectNodeAnatomy from "@/components/workshop/ProjectNodeAnatomy.astro";
+import ConnectedWork from "@/components/workshop/ConnectedWork.astro";
+import { selectedWorkshopProjects } from "@/data/workshop-projects";
+
+const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
+const canonicalUrl = `${siteOrigin}/workshop/projects/`;
+const projectItems = [...selectedWorkshopProjects]
+  .sort((a, b) => a.featuredPosition - b.featuredPosition)
+  .map((project) => ({
+    "@type": "CreativeWork",
+    "@id": `${new URL(project.destination, siteOrigin)}#project`,
+    name: project.title,
+    description: project.brief,
+    url: new URL(project.destination, siteOrigin).toString(),
+  }));
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": `${canonicalUrl}#collection`,
+      name: "HobFarm Workshop Projects",
+      description: "Case studies showing how HobFarm builds different production systems around different jobs.",
+      url: canonicalUrl,
+      isPartOf: { "@type": "CollectionPage", "@id": `${siteOrigin}/workshop/#collection`, name: "HobFarm Workshop", url: `${siteOrigin}/workshop/` },
+      hasPart: projectItems.map((project) => ({ "@id": project["@id"] })),
+      mainEntity: { "@id": `${canonicalUrl}#projects` },
+    },
+    {
+      "@type": "ItemList",
+      "@id": `${canonicalUrl}#projects`,
+      numberOfItems: projectItems.length,
+      itemListElement: projectItems.map((project, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: project,
+      })),
+    },
+  ],
+};
+---
+
+<BaseLayout title="Workshop Projects | HobFarm" description="Different jobs need different systems. Explore HobFarm case studies in publishing, software, photography, campaigns, characters, motion, and interactive worlds." canonical="/workshop/projects/" palette="blue-red" structuredData={structuredData}>
+  <main class="projects-page">
+    <Wrapper variant="standard" class="projects-breadcrumbs"><Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Workshop", href: "/workshop/" }, { label: "Projects" }]} /></Wrapper>
+
+    <header class="projects-hero">
+      <Wrapper variant="standard">
+        <p class="eyebrow">HobFarm Workshop / Projects</p>
+        <h1>Different jobs need different systems.</h1>
+        <p class="lead">Each project starts with its own sources, context, constraints, representation, tools, outputs, and checks. These records show how the Workshop method changes with the job.</p>
+        <div class="hero-actions"><a href="#project-index">Browse the projects</a><a href="/workshop/">Read the method</a></div>
+      </Wrapper>
+    </header>
+
+    <section aria-labelledby="mesh-heading">
+      <Wrapper variant="standard" class="section-space">
+        <div class="section-heading"><div><p class="eyebrow">One network, bounded jobs</p><h2 id="mesh-heading">Artifacts travel. Context stays controlled.</h2></div><p>A useful decision can move from research into a project, from a project into an article, or from the Workshop into an Academy lesson. Each node still keeps its own purpose and rules.</p></div>
+        <div class="diagram-space"><WorkshopNodeMesh /></div>
+      </Wrapper>
+    </section>
+
+    <section id="project-index" class="project-index" aria-labelledby="projects-heading">
+      <Wrapper variant="standard" class="section-space">
+        <div class="section-heading"><div><p class="eyebrow">Project index</p><h2 id="projects-heading">One method across a wider range of work.</h2></div><p>Web development, software, photography, historical research, product concepts, character systems, presenter media, and an interactive world all require different production records.</p></div>
+        <div class="project-grid-space"><WorkshopProjectGrid surface="projects" /></div>
+      </Wrapper>
+    </section>
+
+    <section aria-labelledby="anatomy-heading">
+      <Wrapper variant="standard" class="section-space">
+        <div class="section-heading"><div><p class="eyebrow">Project anatomy</p><h2 id="anatomy-heading">Enough structure to act. Clear limits on what belongs.</h2></div><p>The shape is shared. The contents are not. A website, photograph, character, application, and story world should not inherit the same sources or validation rules.</p></div>
+        <div class="diagram-space"><ProjectNodeAnatomy /></div>
+      </Wrapper>
+    </section>
+
+    <Wrapper variant="standard" class="connected-space"><ConnectedWork links={[{ relationship: "Durable method", label: "Workshop overview", href: "/workshop/" }, { relationship: "Ongoing record", label: "Workshop Notes", href: "/workshop/workshop-notes/" }, { relationship: "Turn evidence into lessons", label: "Academy", href: "/academy/" }]} /></Wrapper>
+  </main>
+</BaseLayout>
+
+<style>
+  .projects-page { background: #07060b; color: #aaa5b8; }
+  .projects-breadcrumbs { padding-top: 1.25rem; }
+  .projects-hero { padding-block: clamp(4rem, 10vw, 8rem); border-bottom: 1px solid #2c2440; background: radial-gradient(circle at 78% 18%, rgb(85 215 255 / .13), transparent 30rem), radial-gradient(circle at 16% 76%, rgb(208 74 147 / .09), transparent 28rem), #07060b; }
+  .eyebrow { margin: 0; color: #55d7ff; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .15em; text-transform: uppercase; }
+  h1, h2 { color: #fff; font-family: var(--font-display); font-weight: 300; letter-spacing: -.055em; text-wrap: balance; }
+  h1 { max-width: 68rem; margin: 1rem 0 0; font-size: clamp(3.5rem, 9vw, 8rem); line-height: .88; }
+  h2 { margin: .8rem 0 0; font-size: clamp(2.5rem, 6vw, 5.2rem); line-height: .94; }
+  .lead { max-width: 52rem; margin: 1.5rem 0 0; color: #c6c1ce; font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.75; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.8rem; }
+  .hero-actions a { padding: .7rem .9rem; border: 1px solid #55d7ff; color: #eae6f0; font-family: var(--font-mono); font-size: .6rem; text-decoration: none; text-transform: uppercase; }
+  .hero-actions a:first-child { background: #55d7ff; color: #07060b; }
+  section { border-bottom: 1px solid #2c2440; }
+  .project-index { background: #0a0810; }
+  :global(.section-space) { padding-block: clamp(4rem, 8vw, 7rem); }
+  .section-heading { display: grid; gap: 1.5rem; }
+  .section-heading > p { max-width: 45rem; margin: 0; line-height: 1.75; }
+  .diagram-space, .project-grid-space { margin-top: clamp(2rem, 4vw, 3.5rem); }
+  :global(.connected-space) { padding-block: clamp(3rem, 6vw, 5rem); }
+  @media (min-width: 64rem) { .section-heading { grid-template-columns: minmax(0, 1.2fr) minmax(24rem, .6fr); align-items: end; } }
+</style>

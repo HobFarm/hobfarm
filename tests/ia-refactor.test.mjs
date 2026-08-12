@@ -57,13 +57,15 @@ test("Workshop visibility keeps route generation separate from navigation", () =
   assert.ok(visibleOrder.every((position) => position >= 0));
   assert.deepEqual(visibleOrder, [...visibleOrder].sort((a, b) => a - b));
   assert.match(hierarchy, /id: "stylefusion"[^\n]*inNav: false, noindex: false/);
-  assert.match(navigation, /workshopPrograms\.filter\(\(entry\) => entry\.inNav !== false\)/);
+  assert.match(navigation, /label: "Overview", href: "\/workshop\/"/);
+  assert.match(navigation, /label: "Projects", href: "\/workshop\/projects\/"/);
+  assert.match(navigation, /label: "Workshop Notes", href: "\/workshop\/workshop-notes\/"/);
   assert.match(programRoute, /return workshopPrograms[\s\S]*\.map\(\(program\)/);
   assert.match(programRoute, /program\.id !== "avatar-host"/);
   assert.match(programRoute, /getProcessPipelineBySlug\(program\.processSlug\)/);
   assert.match(programRoute, /noindex=\{program\.noindex === true\}/);
-  assert.match(workshopHub, /primaryWorkshopPrograms/);
-  assert.match(workshopHub, /visualPrograms = primaryWorkshopPrograms\.filter/);
+  assert.match(workshopHub, /WorkshopProjectGrid surface="workshop"/);
+  assert.match(workshopHub, /WorkshopNodeMesh/);
   assert.match(workshopHub, /Tools and applications/);
 });
 

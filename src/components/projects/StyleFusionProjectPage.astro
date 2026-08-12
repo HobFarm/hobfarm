@@ -6,6 +6,7 @@ import Button from "@/components/fundations/elements/Button.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import StatusBadge from "@/components/ui/StatusBadge.astro";
+import ProviderProjection from "@/components/workshop/ProviderProjection.astro";
 import { getProjectHeroMedia } from "@/data/media-registry";
 
 interface Props {
@@ -57,6 +58,13 @@ const workflow = [
   "Generation JSON",
   "Complete Export",
 ];
+
+const evolution = [
+  { version: "V1", environment: "Claude Artifact", result: "An image-to-JSON prompt prototype established the first useful transformation." },
+  { version: "V2", environment: "Gemini / Google AI Studio", result: "The prototype expanded into a broader reference-analysis experiment." },
+  { version: "V3", environment: "Local application", result: "VS Code, GitHub, and Cloudflare turned the experiment into a larger production system." },
+  { version: "V4", environment: "Current architecture", result: "Dynamic schema work, a canonical Visual IR, provider projection, and evaluation separate the durable record from execution." },
+] as const;
 
 const accountBenefits = [
   "Follow development notes as the workspace is finished.",
@@ -122,10 +130,20 @@ const styleFusionJsonLd = {
       image: registeredHero.image.src,
       creator: {
         "@type": "Organization",
+        "@id": `${siteOrigin}/#organization`,
         name: "HobFarm",
-        url: siteOrigin,
+        url: `${siteOrigin}/`,
       },
+      mainEntityOfPage: { "@id": `${styleFusionUrl}#webpage` },
+      isPartOf: { "@type": "CollectionPage", "@id": `${siteOrigin}/workshop/projects/#collection`, name: "HobFarm Workshop Projects", url: `${siteOrigin}/workshop/projects/` },
       keywords: ["visual systems", "prompt compilation", "reference extraction", "AI image workflows"],
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${styleFusionUrl}#webpage`,
+      name: "StyleFusion",
+      url: styleFusionUrl,
+      mainEntity: { "@id": `${styleFusionUrl}#creativework` },
     },
     {
       "@type": "FAQPage",
@@ -270,6 +288,21 @@ const styleFusionJsonLd = {
             ))}
           </ol>
         </div>
+
+        <section class="mt-16 rounded-2xl border border-base-700 bg-base-900/70 p-4 sm:p-6" aria-labelledby="stylefusion-evolution-heading">
+          <div class="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(22rem,.7fr)] lg:items-end">
+            <div><p class="font-mono text-xs uppercase tracking-widest text-accent-400">Product evolution</p><h2 id="stylefusion-evolution-heading" class="mt-3 text-3xl font-medium text-white">Four iterations moved the source of truth out of the prompt.</h2></div>
+            <p class="text-sm leading-6 text-base-400">Each version made the reference record more explicit and the execution layer more replaceable.</p>
+          </div>
+          <ol class="mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+            {evolution.map((stage) => <li class="min-h-48 border border-base-700 bg-base-950 p-4"><span class="font-mono text-xs text-accent-400">{stage.version}</span><strong class="mt-8 block text-lg font-medium text-white">{stage.environment}</strong><p class="mt-3 text-sm leading-6 text-base-400">{stage.result}</p></li>)}
+          </ol>
+        </section>
+
+        <section class="mt-16" aria-labelledby="projection-heading">
+          <div class="mb-6 max-w-3xl"><p class="font-mono text-xs uppercase tracking-widest text-accent-400">Provider projection</p><h2 id="projection-heading" class="mt-3 text-3xl font-medium text-white">The visual specification survives the inference system.</h2><p class="mt-4 text-base leading-7 text-base-300">StyleFusion treats the canonical representation as the source of truth. Provider-specific prompts and documents are projections, so one vendor's preferred syntax does not own the project.</p></div>
+          <ProviderProjection />
+        </section>
 
         <div class="mt-16 grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
           <section class="rounded-2xl border border-base-700 bg-base-900/75 p-6 sm:p-8">

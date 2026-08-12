@@ -1,0 +1,32 @@
+---
+const stages = [
+  { label: "Project context", detail: "goals, architecture, design rules, operating rules" },
+  { label: "Repository context", detail: "AGENTS.md, code, content models, current constraints" },
+  { label: "Development", detail: "inspection, implementation, tests, visual review" },
+  { label: "Source control", detail: "Git history, review, recovery" },
+  { label: "Platform", detail: "Cloudflare Pages, Functions, R2" },
+  { label: "hob.farm", detail: "the live publication and public catalog" },
+  { label: "Observe", detail: "content needs, errors, analytics, design changes" },
+] as const;
+---
+
+<figure class="site-production" aria-labelledby="site-production-caption">
+  <ol>
+    {stages.map((stage, index) => <li><span>{String(index + 1).padStart(2, "0")}</span><div><strong>{stage.label}</strong><p>{stage.detail}</p></div></li>)}
+  </ol>
+  <div class="site-production__return" aria-hidden="true">observe and revise ↺</div>
+  <figcaption id="site-production-caption">Project context and repository context are deliberately aligned. They are not presented as an automatic synchronization system.</figcaption>
+</figure>
+
+<style>
+  .site-production { margin: 0; padding: 1rem; border: 1px solid #342b45; border-radius: .75rem; background: #09070e; }
+  ol { display: grid; gap: .55rem; margin: 0; padding: 0; list-style: none; }
+  li { position: relative; display: grid; grid-template-columns: 2.3rem 1fr; gap: .6rem; min-width: 0; padding: .8rem; border: 1px solid #342b45; background: #0e0b16; }
+  li:not(:last-child)::after { position: absolute; right: 50%; bottom: -.6rem; z-index: 2; color: #55d7ff; content: "↓"; font-family: var(--font-mono); font-size: .7rem; }
+  li > span { color: #55d7ff; font-family: var(--font-mono); font-size: .58rem; }
+  li strong { color: #fff; font-size: .78rem; }
+  li p { margin: .35rem 0 0; color: #9c96a7; font-size: .68rem; line-height: 1.5; }
+  .site-production__return { margin-top: .7rem; padding: .65rem; border: 1px dashed #d04a93; color: #db71a9; font-family: var(--font-mono); font-size: .57rem; text-align: center; text-transform: uppercase; }
+  figcaption { margin-top: .75rem; color: #8f899e; font-family: var(--font-mono); font-size: .55rem; line-height: 1.55; text-transform: uppercase; }
+  @media (min-width: 64rem) { ol { grid-template-columns: repeat(7, minmax(0, 1fr)); } li { grid-template-columns: 1fr; min-height: 9rem; } li:not(:last-child)::after { top: 1rem; right: -.65rem; bottom: auto; content: "→"; } }
+</style>

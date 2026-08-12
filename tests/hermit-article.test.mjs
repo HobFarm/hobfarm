@@ -4,8 +4,6 @@ import test from "node:test";
 
 const articlePath =
   "src/content/articles/hermit-does-not-have-to-pay-for-repairs.mdx";
-const workflowPath = ".github/workflows/publish-hermit.yml";
-const scriptPath = "scripts/publish-scheduled-hermit.mjs";
 const assetManifestPath = "reports/hermit/asset-manifest.json";
 const sourcesPath = "reports/hermit/sources.json";
 
@@ -24,17 +22,12 @@ function articleWordCount(article) {
 }
 
 test("Hermit article is complete and published on August 6 at 4:20 p.m. Pacific", async () => {
-  const [article, script] = await Promise.all([
-    readFile(articlePath, "utf8"),
-    readFile(scriptPath, "utf8"),
-  ]);
+  const article = await readFile(articlePath, "utf8");
 
   assert.equal(field(article, "pubDate"), "2026-08-06");
   assert.equal(field(article, "publishedAt"), "2026-08-06T16:20:00-07:00");
   assert.equal(field(article, "status"), "published");
   assert.equal(field(article, "draft"), "false");
-  await assert.rejects(access(workflowPath), { code: "ENOENT" });
-  assert.match(script, /2026-08-06T16:20:00-07:00/);
   assert.match(article, /yesterday’s article about the American Dream/);
   assert.match(article, /\/articles\/fear-and-loathing-after-the-american-dream\//);
   assert.match(article, /## Sources and further viewing/);

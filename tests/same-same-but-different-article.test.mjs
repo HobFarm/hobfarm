@@ -6,8 +6,6 @@ import test from "node:test";
 const articlePath = "src/content/articles/same-same-but-different.mdx";
 const matrixPath = "src/data/same-same-but-different-provider-matrix.json";
 const manifestPath = "reports/same-same-but-different/asset-manifest.json";
-const workflowPath = ".github/workflows/publish-same-same-but-different.yml";
-const scheduleScriptPath = "scripts/publish-scheduled-same-same-but-different.mjs";
 
 function field(source, name) {
   return source.match(new RegExp(`^${name}:\\s*(.+)$`, "m"))?.[1].trim();
@@ -23,15 +21,8 @@ function articleWordCount(source) {
   return plain.split(/\s+/).filter(Boolean).length;
 }
 
-test("article preserves the August 6 time capsule and the August 12 schedule", async () => {
-  const [article, scheduleScript, workflow] = await Promise.all([
-    readFile(articlePath, "utf8"),
-    readFile(scheduleScriptPath, "utf8"),
-    readFile(workflowPath, "utf8").catch((error) => {
-      if (error.code === "ENOENT") return null;
-      throw error;
-    }),
-  ]);
+test("article preserves the August 6 time capsule and August 12 release metadata", async () => {
+  const article = await readFile(articlePath, "utf8");
 
   const status = field(article, "status");
   assert.equal(field(article, "pubDate"), "2026-08-12");
@@ -40,15 +31,6 @@ test("article preserves the August 6 time capsule and the August 12 schedule", a
   assert.equal(field(article, "draft"), "false");
   assert.ok(["scheduled", "published"].includes(status));
   assert.match(article, /System state recorded August 6, 2026/);
-  assert.match(scheduleScript, /expectedPublication = "2026-08-12T16:20:00-07:00"/);
-
-  if (status === "scheduled") {
-    assert.ok(workflow, "Scheduled article must retain its one-time workflow.");
-    assert.match(workflow, /cron: "20 23 12 8 \*"/);
-    assert.match(workflow, /node scripts\/publish-scheduled-same-same-but-different\.mjs/);
-  } else {
-    assert.equal(workflow, null, "Published article should not retain its one-time workflow.");
-  }
 });
 
 test("article keeps the requested argument, receipts, links, and evidence limits", async () => {

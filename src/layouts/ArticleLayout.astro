@@ -115,7 +115,13 @@ const schemaTypeByEntity = {
   publications: "CreativeWork",
   technologies: "Thing",
 } as const;
-const aboutEntities = entityRecords.map((entity) => ({
+const subjectEntities = articleSubjects.map((subject) => ({
+  "@type": "DefinedTerm",
+  ...(subject.href ? { "@id": `${toAbsoluteUrl(subject.href)}#subject`, url: toAbsoluteUrl(subject.href) } : {}),
+  name: subject.label,
+  identifier: subject.id,
+}));
+const mentionedEntities = entityRecords.map((entity) => ({
   "@type": schemaTypeByEntity[entity.type],
   name: entity.label,
   identifier: entity.id,
@@ -170,30 +176,90 @@ const supportOffer =
     ? { label: "Support independent publishing", href: "/support/" }
     : undefined);
 
+const authorId = `${siteOrigin}/about/#kris-reynolds`;
+const organizationId = `${siteOrigin}/#organization`;
+const websiteId = `${siteOrigin}/#website`;
+const webpageId = `${canonicalUrl}#webpage`;
+const articleId = `${canonicalUrl}#article`;
+const imageId = `${canonicalUrl}#primaryimage`;
+const collectionMembership = [
+  sectionHref && {
+    "@type": "CollectionPage",
+    "@id": `${toAbsoluteUrl(sectionHref)}#collection`,
+    name: sectionLabel,
+    url: toAbsoluteUrl(sectionHref),
+  },
+  ...canonicalSeries.map((series) => ({
+    "@type": "CreativeWorkSeries",
+    "@id": `${toAbsoluteUrl(series.href)}#series`,
+    name: series.label,
+    url: toAbsoluteUrl(series.href),
+  })),
+].filter(Boolean);
+const citations = frontmatter.sourceNotes.map((source) => ({
+  "@type": "CreativeWork",
+  name: source.label,
+  url: source.url,
+}));
 const articleJsonLd = {
   "@context": "https://schema.org",
-  "@type": "Article",
-  headline: frontmatter.title,
-  description,
-  image: seoImage ? [toAbsoluteUrl(seoImage)] : undefined,
-  datePublished: publishedAt.toISOString(),
-  dateModified: (updatedAt ?? publishedAt).toISOString(),
-  author: {
-    "@type": "Person",
-    name: frontmatter.author,
-  },
-  publisher: {
-    "@type": "Organization",
-    name: "HobFarm",
-    logo: {
-      "@type": "ImageObject",
-      url: `${siteOrigin}/favicon.svg`,
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": organizationId,
+      name: "HobFarm",
+      url: `${siteOrigin}/`,
+      logo: "https://cdn.hob.farm/brand/hobfarm-logo-white.svg",
     },
-  },
-  mainEntityOfPage: canonicalUrl,
-  articleSection: sectionLabel,
-  keywords: meshKeywords,
-  about: aboutEntities.length ? aboutEntities : undefined,
+    {
+      "@type": "WebSite",
+      "@id": websiteId,
+      name: "HobFarm",
+      url: `${siteOrigin}/`,
+      publisher: { "@id": organizationId },
+    },
+    {
+      "@type": "Person",
+      "@id": authorId,
+      name: "Kris Reynolds",
+      alternateName: frontmatter.author,
+      url: `${siteOrigin}/about/`,
+    },
+    ...(seoImage ? [{
+      "@type": "ImageObject",
+      "@id": imageId,
+      contentUrl: toAbsoluteUrl(seoImage),
+      caption: frontmatter.heroAlt ?? frontmatter.title,
+    }] : []),
+    {
+      "@type": "WebPage",
+      "@id": webpageId,
+      url: canonicalUrl,
+      name: frontmatter.title,
+      description,
+      isPartOf: { "@id": websiteId },
+      mainEntity: { "@id": articleId },
+      ...(seoImage ? { primaryImageOfPage: { "@id": imageId } } : {}),
+    },
+    {
+      "@type": "Article",
+      "@id": articleId,
+      headline: frontmatter.title,
+      description,
+      ...(seoImage ? { image: { "@id": imageId } } : {}),
+      datePublished: publishedAt.toISOString(),
+      dateModified: (updatedAt ?? publishedAt).toISOString(),
+      author: { "@id": authorId },
+      publisher: { "@id": organizationId },
+      mainEntityOfPage: { "@id": webpageId },
+      articleSection: sectionLabel,
+      keywords: meshKeywords,
+      about: subjectEntities.length ? subjectEntities : undefined,
+      mentions: mentionedEntities.length ? mentionedEntities : undefined,
+      citation: citations.length ? citations : undefined,
+      isPartOf: collectionMembership.length ? collectionMembership : undefined,
+    },
+  ],
 };
 ---
 

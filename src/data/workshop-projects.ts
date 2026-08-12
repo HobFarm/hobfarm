@@ -100,7 +100,46 @@ const otherAliceAssets = [
   otherAliceMap,
 ] as const;
 
+const hobFarmAssets = [
+  getMedia("home.site-banner"),
+  getMedia("workshop.graphics.hero"),
+] as const;
+
+const cuteCorruptedAssets = [
+  getMedia("workshop.program-index.cute-corrupted"),
+] as const;
+
+const avatarHostAssets = [
+  getMedia("workshop.ami-legacy.hero"),
+  getMedia("avatar.identity.ami"),
+] as const;
+
 export const selectedWorkshopProjects: readonly WorkshopProject[] = [
+  {
+    id: "hobfarm-site",
+    title: "HobFarm",
+    projectType: "Web, publishing, and operations",
+    brief:
+      "The publication itself is a working case study in content architecture, front-end development, repository context, deployment, release, and revision.",
+    promise:
+      "Keep editorial, media, commerce, learning, and interactive work legible inside one maintainable publishing system.",
+    startingMaterial: "published work, operating rules, content models, and a live Astro codebase",
+    productionProblem:
+      "Let different kinds of work keep their own identity while sharing navigation, metadata, deployment, quality checks, and a durable public home.",
+    stages: ["project context", "repository context", "implementation", "validation", "Cloudflare release", "observation and revision"],
+    possibleOutputs: ["public routes", "content collections", "interactive applications", "release records", "deployment"],
+    capabilities: ["Astro", "content architecture", "AI-assisted coding", "Cloudflare"],
+    media: hobFarmAssets[0],
+    secondaryMedia: hobFarmAssets[1],
+    approvedAssets: hobFarmAssets,
+    destination: "/workshop/projects/hobfarm/",
+    status: "Active program",
+    featuredPosition: 1,
+    homepagePosition: 1,
+    sourceLabel: "Publishing system",
+    resultLabel: "Workshop method",
+    visualVariant: "source-to-campaign",
+  },
   {
     id: "future-carriage",
     title: "Future Carriage",
@@ -120,8 +159,8 @@ export const selectedWorkshopProjects: readonly WorkshopProject[] = [
     approvedAssets: futureCarriageAssets,
     destination: "/workshop/future-carriage/",
     status: "Published case study",
-    featuredPosition: 1,
-    homepagePosition: 1,
+    featuredPosition: 4,
+    homepagePosition: 4,
     sourceLabel: "Historical source",
     resultLabel: "Product study",
     visualVariant: "source-to-campaign",
@@ -145,8 +184,8 @@ export const selectedWorkshopProjects: readonly WorkshopProject[] = [
     approvedAssets: beforeAfterAssets,
     destination: "/workshop/before-and-after/",
     status: "Active program",
-    featuredPosition: 2,
-    homepagePosition: 2,
+    featuredPosition: 3,
+    homepagePosition: 3,
     sourceLabel: "Source photograph",
     resultLabel: "Speculative restoration",
     visualVariant: "evidence-grid",
@@ -170,8 +209,8 @@ export const selectedWorkshopProjects: readonly WorkshopProject[] = [
     approvedAssets: styleFusionAssets,
     destination: "/workshop/stylefusion/",
     status: "Public application study",
-    featuredPosition: 3,
-    homepagePosition: 3,
+    featuredPosition: 2,
+    homepagePosition: 2,
     sourceLabel: "Reference analysis",
     resultLabel: "Directed output",
     visualVariant: "reference-compiler",
@@ -195,8 +234,7 @@ export const selectedWorkshopProjects: readonly WorkshopProject[] = [
     approvedAssets: characterAssets,
     destination: "/workshop/character-mannequin/",
     status: "Active program",
-    featuredPosition: 4,
-    homepagePosition: 4,
+    featuredPosition: 7,
     sourceLabel: "Identity sheet",
     resultLabel: "Directed character",
     visualVariant: "production-rail",
@@ -220,11 +258,55 @@ export const selectedWorkshopProjects: readonly WorkshopProject[] = [
     approvedAssets: otherAliceAssets,
     destination: "/presents/other-alice-adventures/world-guide/",
     status: "Published world record",
-    featuredPosition: 5,
-    homepagePosition: 5,
+    featuredPosition: 8,
     sourceLabel: "Authored world",
     resultLabel: "Atlas and cast",
     visualVariant: "world-atlas",
+  },
+  {
+    id: "cute-corrupted",
+    title: "Cute & Corrupted",
+    projectType: "Concept, taxonomy, and product family",
+    brief:
+      "One recognizable subject branches into paired visual modes with explicit rules for tone, palette, material, damage, humor, and destination.",
+    promise:
+      "Build a repeatable family from a clear concept instead of treating each image as an unrelated variation.",
+    startingMaterial: "one recognizable subject and a rejected obvious framing",
+    productionProblem:
+      "Push the two modes far enough apart while preserving the shared silhouette and keeping the pair useful across media and products.",
+    stages: ["concept", "shared base", "mode rules", "paired production", "family and destination"],
+    possibleOutputs: ["paired still", "motion pair", "character good", "visual family", "marketplace collection"],
+    capabilities: ["concept development", "naming", "taxonomy", "product family"],
+    media: cuteCorruptedAssets[0],
+    approvedAssets: cuteCorruptedAssets,
+    destination: "/workshop/cute-and-corrupted/",
+    status: "Active program",
+    featuredPosition: 5,
+    visualVariant: "evidence-grid",
+  },
+  {
+    id: "avatar-host",
+    title: "Avatar & Host",
+    projectType: "Identity, voice, and motion system",
+    brief:
+      "A stable identity gains a speaking role, voice, presentation rules, motion direction, recurring looks, and a real destination.",
+    promise:
+      "Keep the same host recognizable while the assignment, wardrobe, set, camera, and delivery format change.",
+    startingMaterial: "a photograph, existing character, or approved mannequin",
+    productionProblem:
+      "Make a reusable host feel connected to the publication rather than producing isolated presenter clips with no public job.",
+    stages: ["identity", "role", "voice and look", "performance direction", "destination"],
+    possibleOutputs: ["presenter clip", "campaign host", "series guide", "article introduction", "motion proof"],
+    capabilities: ["role design", "identity continuity", "voice", "motion"],
+    media: avatarHostAssets[0],
+    secondaryMedia: avatarHostAssets[1],
+    approvedAssets: avatarHostAssets,
+    destination: "/workshop/avatar-host/",
+    status: "Active program",
+    featuredPosition: 6,
+    sourceLabel: "Campaign role",
+    resultLabel: "Stable identity",
+    visualVariant: "production-rail",
   },
 ];
 

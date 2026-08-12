@@ -30,7 +30,7 @@ test("Songs We Learned Backwards owns the August 19 publication slot", async () 
   assert.equal(field(article, "canonical"), '"/articles/songs-we-learned-backwards/"');
   assert.equal(field(article, "pubDate"), "2026-08-19");
   assert.equal(field(article, "publishedAt"), "2026-08-19T16:20:00-07:00");
-  assert.equal(field(article, "status"), "scheduled");
+  assert.ok(["scheduled", "published"].includes(field(article, "status")));
   assert.equal(new Date(field(article, "publishedAt")).getUTCDay(), 3);
   assert.equal(
     Date.parse(field(article, "publishedAt")) - Date.parse(field(predecessor, "publishedAt")),
@@ -97,19 +97,6 @@ test("the article preserves the personal argument, internal paths, and editorial
   assert.doesNotMatch(article, /\bTikTok\b/);
   assert.doesNotMatch(article, /\bstole\b/i);
   assert.doesNotMatch(article, /Draft receipt|\[HERO|\[FIGURE|\[INTERNAL LINK/);
-});
-
-test("the one-time publisher protects the exact August 19 release", async () => {
-  const [scheduler, workflow] = await Promise.all([
-    readFile("scripts/publish-scheduled-songs-we-learned-backwards.mjs", "utf8"),
-    readFile(".github/workflows/publish-songs-we-learned-backwards.yml", "utf8"),
-  ]);
-
-  assert.match(scheduler, /expectedPublication = "2026-08-19T16:20:00-07:00"/);
-  assert.match(scheduler, /Date\.now\(\) < Date\.parse\(expectedPublication\)/);
-  assert.match(workflow, /cron: "20 23 19 8 \*"/);
-  assert.match(workflow, /node scripts\/publish-scheduled-songs-we-learned-backwards\.mjs/);
-  assert.match(workflow, /git rm \.github\/workflows\/publish-songs-we-learned-backwards\.yml/);
 });
 
 test("the supplied hero and social crop are verified immutable R2 objects", async () => {

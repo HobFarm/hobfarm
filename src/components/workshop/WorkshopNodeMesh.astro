@@ -1,0 +1,81 @@
+---
+import { publicHobFarmEdges, publicHobFarmNodes } from "@/data/workshop-node-mesh";
+
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+const compactIds = new Set(["articles", "presents", "hobfarm-site", "workshop", "stylefusion", "before-after", "future-carriage", "academy", "shop"]);
+const nodes = compact ? publicHobFarmNodes.filter((node) => compactIds.has(node.id)) : publicHobFarmNodes;
+const visibleIds = new Set(nodes.map((node) => node.id));
+const edges = publicHobFarmEdges.filter((edge) => visibleIds.has(edge.from) && visibleIds.has(edge.to));
+---
+
+<figure class:list={["node-mesh", compact && "node-mesh--compact"]} aria-labelledby="node-mesh-caption">
+  <div class="node-mesh__field">
+    <svg viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M72 112 C230 112 265 250 430 250 S680 98 905 112" />
+      <path d="M80 402 C220 402 260 270 430 250 S690 418 914 402" />
+      <path d="M430 250 C510 250 520 92 650 90" />
+      <path d="M430 250 C520 250 540 414 650 414" />
+      <path d="M650 90 C760 90 750 250 905 250" />
+      <path d="M650 414 C760 414 755 250 905 250" />
+    </svg>
+    <ol class="node-mesh__nodes">
+      {nodes.map((node) => (
+        <li class:list={[`node-${node.id}`, `kind-${node.kind}`]}>
+          {node.href ? <a href={node.href}><span>{node.kind}</span><strong>{node.label}</strong></a> : <div><span>{node.kind}</span><strong>{node.label}</strong></div>}
+        </li>
+      ))}
+    </ol>
+  </div>
+  {!compact && (
+    <ul class="node-mesh__edges" aria-label="Public HobFarm relationships">
+      {edges.map((edge) => {
+        const from = nodes.find((node) => node.id === edge.from)!;
+        const to = nodes.find((node) => node.id === edge.to)!;
+        return (
+          <li>
+            {from.href ? <a href={from.href}>{from.label}</a> : <strong>{from.label}</strong>}
+            <span>{edge.meaning}</span>
+            {to.href ? <a href={to.href}>{to.label}</a> : <strong>{to.label}</strong>}
+          </li>
+        );
+      })}
+    </ul>
+  )}
+  <figcaption id="node-mesh-caption">
+    Each line is a real publishing or production relationship. The nodes share selected artifacts and decisions; they do not share one unlimited context.
+  </figcaption>
+</figure>
+
+<style>
+  .node-mesh { margin: 0; overflow: hidden; border: 1px solid #302744; border-radius: .8rem; background: radial-gradient(circle at 48% 45%, rgb(85 215 255 / .09), transparent 22rem), #09070e; }
+  .node-mesh__field { position: relative; min-height: 35rem; overflow: hidden; }
+  svg { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .48; }
+  path { fill: none; stroke: #55d7ff; stroke-width: 1.15; vector-effect: non-scaling-stroke; }
+  path:nth-child(even) { stroke: #d04a93; }
+  .node-mesh__nodes { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; margin: 0; padding: 1rem; list-style: none; }
+  .node-mesh__nodes li { min-width: 0; }
+  .node-mesh__nodes a, .node-mesh__nodes li > div { display: flex; min-height: 6.25rem; flex-direction: column; justify-content: space-between; padding: .8rem; border: 1px solid #393048; border-radius: .45rem; background: rgb(12 9 18 / .94); color: #f1edf6; text-decoration: none; }
+  .node-mesh__nodes a:hover, .node-mesh__nodes a:focus-visible { border-color: #55d7ff; outline: 2px solid rgb(85 215 255 / .38); outline-offset: 2px; }
+  .node-mesh__nodes span { color: #817b91; font-family: var(--font-mono); font-size: .5rem; letter-spacing: .1em; text-transform: uppercase; }
+  .node-mesh__nodes strong { font-family: var(--font-display); font-size: clamp(1.15rem, 2vw, 1.7rem); font-weight: 400; line-height: 1; }
+  .kind-project a { border-color: #31505d; }
+  .kind-infrastructure > div { border-style: dashed !important; border-color: #644365 !important; }
+  .kind-record a { border-color: #5d4e31; }
+  .node-mesh__edges { display: grid; gap: 1px; margin: 0; padding: 1px 0 0; background: #302744; list-style: none; }
+  .node-mesh__edges li { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: .8rem; align-items: center; padding: .7rem 1rem; background: #0d0a13; color: #c5c0cf; font-size: .68rem; }
+  .node-mesh__edges strong:last-child, .node-mesh__edges a:last-child { text-align: right; }
+  .node-mesh__edges a { color: #e9e4f0; text-decoration-color: #514969; text-underline-offset: .2rem; }
+  .node-mesh__edges a:hover, .node-mesh__edges a:focus-visible { color: #55d7ff; text-decoration-color: currentColor; }
+  .node-mesh__edges span { color: #55d7ff; font-family: var(--font-mono); font-size: .5rem; letter-spacing: .07em; text-transform: uppercase; }
+  figcaption { padding: .8rem 1rem; border-top: 1px solid #302744; color: #8f899e; font-family: var(--font-mono); font-size: .56rem; line-height: 1.55; text-transform: uppercase; }
+  .node-mesh--compact .node-mesh__field { min-height: 24rem; }
+  .node-mesh--compact .node-mesh__nodes a, .node-mesh--compact .node-mesh__nodes li > div { min-height: 5rem; }
+  @media (min-width: 48rem) {
+    .node-mesh__nodes { grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 1.5rem; }
+    .node-mesh--compact .node-mesh__nodes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+</style>

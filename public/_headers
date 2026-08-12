@@ -73,6 +73,18 @@
   Content-Signal: ai-train=no, search=no, ai-input=no
   X-Robots-Tag: noindex, nofollow
 
+/academy/checkout/*
+  Content-Signal: ai-train=no, search=no, ai-input=no
+  X-Robots-Tag: noindex, nofollow
+
+/membership/success*
+  Content-Signal: ai-train=no, search=no, ai-input=no
+  X-Robots-Tag: noindex, nofollow
+
+/shop/order-received*
+  Content-Signal: ai-train=no, search=no, ai-input=no
+  X-Robots-Tag: noindex, nofollow
+
 # Prevent pages.dev from being indexed (keep hob.farm as canonical)
 https://:project.pages.dev/*
   X-Robots-Tag: noindex

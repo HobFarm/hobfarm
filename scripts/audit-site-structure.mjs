@@ -98,6 +98,17 @@ function schemaTypes(value, found = new Set()) {
   return found;
 }
 
+function schemaNodes(value, found = []) {
+  if (Array.isArray(value)) {
+    for (const item of value) schemaNodes(item, found);
+    return found;
+  }
+  if (!value || typeof value !== "object") return found;
+  if (value["@type"]) found.push(value);
+  for (const item of Object.values(value)) schemaNodes(item, found);
+  return found;
+}
+
 function redirectMap() {
   const redirects = new Map();
   const source = fs.readFileSync(path.join(root, "public", "_redirects"), "utf8");
@@ -220,6 +231,21 @@ for (const article of releasedArticles) {
     : "";
   const section = editorialSections.find((candidate) => candidate.slug === article.data.mesh?.section);
   if (html && section && !html.includes(section.label)) errors.push(`${route}: article does not expose its primary section`);
+  if (html && route.startsWith("/articles/")) {
+    const nodes = jsonLdFromHtml(html, route, errors).flatMap((value) => schemaNodes(value));
+    const articleNode = nodes.find((node) => node["@type"] === "Article");
+    const webpageNode = nodes.find((node) => node["@type"] === "WebPage");
+    if (!articleNode) errors.push(`${route}: missing Article JSON-LD`);
+    if (!webpageNode) errors.push(`${route}: missing WebPage JSON-LD`);
+    if (articleNode && !String(articleNode["@id"] ?? "").endsWith("#article")) errors.push(`${route}: Article JSON-LD has no stable @id`);
+    if (articleNode && !articleNode.mainEntityOfPage) errors.push(`${route}: Article JSON-LD has no mainEntityOfPage`);
+    if (article.data.mesh?.subjects.length && !articleNode?.about) errors.push(`${route}: Article JSON-LD omits canonical subjects`);
+    const entityCount = article.data.mesh
+      ? Object.values(article.data.mesh.entities).reduce((count, values) => count + values.length, 0)
+      : 0;
+    if (entityCount && !articleNode?.mentions) errors.push(`${route}: Article JSON-LD omits named-entity mentions`);
+    if (article.data.sourceNotes?.length && !articleNode?.citation) errors.push(`${route}: Article JSON-LD omits source citations`);
+  }
 }
 
 for (const section of editorialSections) {
@@ -253,13 +279,68 @@ for (const slug of falseLegacy3dm) {
 }
 
 const sitemapFiles = routeFiles.filter((file) => /sitemap.*\.xml$/.test(file));
+const sitemapTargets = new Set();
+const forbiddenSitemapPrefixes = [
+  "/account",
+  "/api/",
+  "/login",
+  "/articles/tags/",
+  "/academy/checkout/",
+  "/membership/success/",
+  "/shop/order-received/",
+  "/workshop/stylefusion/prototype/",
+  "/workshop/visual-lab/",
+];
 for (const file of sitemapFiles) {
   const route = routeForFile(file);
   const xml = fs.readFileSync(file, "utf8");
   for (const match of xml.matchAll(/<loc>([^<]+)<\/loc>/g)) {
     const target = normalizePathname(match[1]);
+    sitemapTargets.add(target);
     if (!routeExists(target, routeSet, redirectSources, sourceRouteSet)) errors.push(`${route}: sitemap target does not exist: ${target}`);
+    if (forbiddenSitemapPrefixes.some((prefix) => target === prefix || target.startsWith(prefix))) {
+      errors.push(`${route}: private, transactional, or thin route is in the sitemap: ${target}`);
+    }
+    const htmlTarget = htmlInventory.find((entry) => entry.route === target);
+    if (htmlTarget && !htmlTarget.indexable) errors.push(`${route}: noindex route is in the sitemap: ${target}`);
   }
+}
+
+for (const requiredRoute of [
+  "/",
+  "/about/",
+  "/articles/",
+  "/articles/topics/",
+  ...editorialSections.map((section) => `/articles/${section.slug}/`),
+  "/presents/",
+  "/workshop/",
+  "/workshop/projects/",
+  "/workshop/projects/hobfarm/",
+  "/workshop/workshop-notes/",
+  "/academy/",
+  "/shop/",
+]) {
+  if (!sitemapTargets.has(requiredRoute)) errors.push(`sitemaps: missing required public route ${requiredRoute}`);
+}
+
+for (const file of routeFiles.filter((candidate) => /(?:^|[\\/])rss\.xml$/.test(candidate))) {
+  const route = routeForFile(file);
+  const xml = fs.readFileSync(file, "utf8");
+  if (!/<rss\b/i.test(xml) || !/<channel>/i.test(xml)) errors.push(`${route}: invalid RSS root`);
+  const dates = [];
+  for (const item of xml.matchAll(/<item>([\s\S]*?)<\/item>/g)) {
+    const link = item[1].match(/<link>(?:<!\[CDATA\[)?([^<\]]+)/)?.[1]?.trim();
+    const pubDate = item[1].match(/<pubDate>([^<]+)<\/pubDate>/)?.[1]?.trim();
+    if (!link) errors.push(`${route}: RSS item has no link`);
+    if (link) {
+      const target = normalizePathname(link);
+      if (!routeExists(target, routeSet, redirectSources, sourceRouteSet)) errors.push(`${route}: RSS item target does not exist: ${target}`);
+      if (!new URL(link, siteOrigin).pathname.endsWith("/")) errors.push(`${route}: RSS item does not use its canonical trailing slash: ${link}`);
+    }
+    if (!pubDate || !Number.isFinite(Date.parse(pubDate))) errors.push(`${route}: RSS item has an invalid publication date`);
+    else dates.push(Date.parse(pubDate));
+  }
+  if (dates.some((date, index) => index > 0 && date > dates[index - 1])) errors.push(`${route}: RSS items are not newest first`);
 }
 
 const leakSurfaces = ["/rss.xml", "/articles/mesh.json", "/sitemap.xml"];

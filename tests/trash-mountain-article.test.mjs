@@ -4,29 +4,21 @@ import test from "node:test";
 
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
 
-test("Trash Mountain is complete and scheduled for the requested August 11 slot", async () => {
-  const [article, data, timeline, proof, mechanism, ledger, script, workflow] = await Promise.all([
+test("Trash Mountain is complete and published in the requested August 11 slot", async () => {
+  const [article, data, timeline, proof, mechanism, ledger] = await Promise.all([
     read("src/content/articles/trash-mountain.mdx"),
     read("src/data/trash-mountain.ts"),
     read("src/components/articles/trash-mountain/SatelliteTimeline.astro"),
     read("src/components/articles/trash-mountain/BeforeAfterProof.astro"),
     read("src/components/articles/trash-mountain/WasteSlopeMechanism.astro"),
     read("src/components/articles/trash-mountain/CaseLedger.astro"),
-    read("scripts/publish-scheduled-trash-mountain.mjs"),
-    read(".github/workflows/publish-trash-mountain.yml"),
   ]);
 
   assert.match(article, /pubDate: 2026-08-11/);
   assert.match(article, /publishedAt: 2026-08-11T16:20:00-07:00/);
-  assert.match(article, /status: scheduled/);
+  assert.match(article, /status: published/);
   assert.match(article, /draft: false/);
   assert.match(article, /canonical: "\/articles\/trash-mountain\/"/);
-  assert.match(script, /expectedPublication = "2026-08-11T16:20:00-07:00"/);
-  assert.match(script, /status:\\s\*scheduled/);
-  assert.match(workflow, /cron: "20 23 11 8 \*"/);
-  assert.match(workflow, /node scripts\/publish-scheduled-trash-mountain\.mjs/);
-  assert.match(workflow, /git push origin main/);
-
   for (let index = 1; index <= 11; index += 1) {
     assert.match(`${article}\n${data}`, new RegExp(`trash-${String(index).padStart(3, "0")}-`));
   }
