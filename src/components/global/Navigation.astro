@@ -81,15 +81,13 @@ function isActive(href: string): boolean {
         >
           <SearchIcon size="sm" />
         </button>
-        <!-- One auth-aware CTA per responsive navigation. The default href
-             sends signed-out visitors through login; JS updates it in place
-             when an authenticated session is present. -->
+        <!-- Account owns the authentication redirect. Keeping this link
+             static avoids probing session state from every public page. -->
         <Button
           isLink
           size="sm"
           variant="green"
-          href="/login?next=/account"
-          data-account-cta
+          href="/account/"
         >
           Account
         </Button>
@@ -118,18 +116,6 @@ function isActive(href: string): boolean {
     window.addEventListener("scroll", handleScroll);
     handleScroll();
 
-    // Update the existing Account links in place when the session is active.
-    (async () => {
-      try {
-        const res = await fetch("/api/auth/me", { credentials: "include" });
-        if (res.status !== 200) return;
-        document
-          .querySelectorAll<HTMLAnchorElement>("[data-account-cta]")
-          .forEach((el) => el.setAttribute("href", "/account"));
-      } catch {
-        // Network failure: keep the signed-out login destination.
-      }
-    })();
   });
 </script>
 

@@ -38,6 +38,17 @@ test("the public assistant is disabled by default", () => {
   assert.match(chat, /Chat is not available/);
 });
 
+test("public navigation leaves authentication checks to the account route", () => {
+  const navigation = read("src/components/global/Navigation.astro");
+  const mobileNavigation = read("src/components/global/MobileNav.astro");
+
+  for (const source of [navigation, mobileNavigation]) {
+    assert.match(source, /href="\/account\/"/);
+    assert.doesNotMatch(source, /data-account-cta/);
+    assert.doesNotMatch(source, /\/api\/auth\/me/);
+  }
+});
+
 test("Pages functions add no-store and browser security headers", () => {
   const middleware = read("functions/_middleware.ts");
   const headers = read("public/_headers");

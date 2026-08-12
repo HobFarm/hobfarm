@@ -18,7 +18,7 @@ const coverStory = articles[0];
 const recentArticles = coverStory ? articles.slice(1, 6) : articles.slice(0, 5);
 const coverDate = coverStory ? getArticleDate(coverStory) : null;
 const coverHero = coverStory ? getArticleHero(coverStory.data) : undefined;
-const coverHref = coverStory ? articlePath(coverStory) : "/articles/";
+const coverHref = coverStory ? `${articlePath(coverStory)}/` : "/articles/";
 const coverHeroSrc = coverHero
   ? transformImageUrl(coverHero, { width: 960, quality: 84, fit: "cover" })
   : undefined;
