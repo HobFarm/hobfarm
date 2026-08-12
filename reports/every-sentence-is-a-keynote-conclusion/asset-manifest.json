@@ -1,0 +1,43 @@
+{
+  "article": "every-sentence-is-a-keynote-conclusion",
+  "generatedAt": "2026-08-11",
+  "assets": [
+    {
+      "path": "public/articles/every-sentence-is-a-keynote-conclusion/hero.svg",
+      "mimeType": "image/svg+xml",
+      "width": 1600,
+      "height": 900,
+      "bytes": 11526,
+      "sha256": "ca05c135fc7c58a2c38258b97c0a7a59dce63ba2230d3d367502e08e1d0d5bc0",
+      "role": "editable source"
+    },
+    {
+      "path": "public/articles/every-sentence-is-a-keynote-conclusion/hero.webp",
+      "mimeType": "image/webp",
+      "width": 1600,
+      "height": 900,
+      "bytes": 101692,
+      "sha256": "6511d913126d60f78901bb99eb42d78a0f2db0342ec3cca0c79ded4e622ab8d4",
+      "role": "article hero"
+    },
+    {
+      "path": "public/articles/every-sentence-is-a-keynote-conclusion/social.webp",
+      "mimeType": "image/webp",
+      "width": 1200,
+      "height": 630,
+      "bytes": 70178,
+      "sha256": "eef01a5ae5b780047e1b675fb492c6543d5679997fd1b475a2846b587bd1647d",
+      "role": "social preview"
+    }
+  ],
+  "liveFigures": [
+    "default-paragraph",
+    "paper-versus-post",
+    "market-dilution",
+    "fingerprint-depth",
+    "cross-media",
+    "recursion",
+    "workflow"
+  ],
+  "privateAssetsPublished": false
+}

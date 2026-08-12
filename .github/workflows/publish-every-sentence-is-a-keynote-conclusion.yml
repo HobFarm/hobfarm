@@ -1,0 +1,36 @@
+name: Publish Every Sentence Is a Keynote Conclusion
+
+on:
+  schedule:
+    - cron: "20 23 19 8 *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-every-sentence-is-a-keynote-conclusion
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Publish when the scheduled time has arrived
+        id: article
+        run: node scripts/publish-scheduled-every-sentence-is-a-keynote-conclusion.mjs
+
+      - name: Remove the one-time schedule and trigger the production build
+        if: steps.article.outputs.published == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/publish-every-sentence-is-a-keynote-conclusion.yml
+          git add src/content/articles/every-sentence-is-a-keynote-conclusion.mdx
+          git commit -m "Publish Every Sentence Is a Keynote Conclusion"
+          git push origin main

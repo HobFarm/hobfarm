@@ -21,8 +21,8 @@ const emptyEntities = () => ({
 
 test("the migrated corpus has one valid primary section per live article", () => {
   const result = auditEditorialMesh();
-  assert.equal(result.articles.length, 66);
-  assert.equal(result.liveArticles.length, 65);
+  assert.equal(result.articles.length, 67);
+  assert.equal(result.liveArticles.length, 66);
   assert.deepEqual(result.errors, []);
   assert.ok(result.liveArticles.every(({ data }) => data.mesh?.section));
 });

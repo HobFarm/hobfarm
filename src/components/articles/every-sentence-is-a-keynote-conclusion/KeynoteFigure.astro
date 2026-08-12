@@ -1,0 +1,463 @@
+---
+type FigureKind =
+  | "default-paragraph"
+  | "paper-versus-post"
+  | "market-dilution"
+  | "fingerprint-depth"
+  | "cross-media"
+  | "recursion"
+  | "workflow";
+
+interface Props {
+  kind: FigureKind;
+}
+
+const figures: Record<FigureKind, {
+  eyebrow: string;
+  title: string;
+  caption: string;
+  transcript: string[];
+}> = {
+  "default-paragraph": {
+    eyebrow: "Graphic 2 · Rhetorical assembly",
+    title: "Anatomy of the default paragraph",
+    caption: "The paragraph is assembled from reusable modules. No single module proves AI authorship. The complete stack is the object under examination.",
+    transcript: [
+      "A staged conversational pivot introduces an objection that the post itself has not established.",
+      "A reasonable-person position leads into a vague metaphor about value moving.",
+      "Production and judgment form a mirrored scarcity pair.",
+      "Making, fixing, and deleting form a rhythmic triplet.",
+      "Coaching commands lead to a human-versus-machine conclusion and a follow call to action.",
+    ],
+  },
+  "paper-versus-post": {
+    eyebrow: "Graphic 3 · Evidence retention",
+    title: "The paper and the LinkedIn lever",
+    caption: "The post keeps one directional claim and drops the study's scope, measures, mixed welfare result, and author-selection finding.",
+    transcript: [
+      "The July 2026 NBER revision studies a stratified sample of more than 330,000 Amazon ebooks released from 2020 through 2025 and an AI-detection sample of nearly 50,000 titles.",
+      "Its measures include reader ratings, sales rank, and average star rating. Monthly releases nearly tripled after 2022, average usage declined, and the number of modestly used books increased.",
+      "Detected AI appeared in more than half of 2025 releases. Author selection explains most of the usage gap, and the model estimates about seven percent more consumer surplus in 2025.",
+      "The compressed post becomes four claims: books tripled, quality sank, production became cheap, and judgment became scarce.",
+    ],
+  },
+  "market-dilution": {
+    eyebrow: "Graphic 4 · Working paper under review",
+    title: "The catalog grew faster than attention",
+    caption: "Substantial-AI books underperformed their catalog share, but the flood still captured meaningful sales while titles multiplied faster than spending.",
+    transcript: [
+      "No detected AI: 62.9 percent of the catalog, 71.7 percent of sales, and 72.5 percent of revenue.",
+      "Light detected AI: 17.1 percent of the catalog, 16.2 percent of sales, and 16.2 percent of revenue.",
+      "Substantial detected AI: 20 percent of the catalog, 12.1 percent of sales, and 11.3 percent of revenue.",
+      "From early 2023 through early 2026, the cumulative catalog grew 38.3 times, selling titles 19.2 times, unit sales 7.3 times, and revenue 8.9 times.",
+      "The top substantial-AI title produced about 643,000 dollars in gross consumer revenue from 80,431 sales. One observed author identity produced about 1.7 million dollars across eight titles.",
+    ],
+  },
+  "fingerprint-depth": {
+    eyebrow: "Graphic 5 · Structural cutaway",
+    title: "Fingerprints below the punctuation",
+    caption: "Surface cleanup can leave the sentence and narrative architecture untouched.",
+    transcript: [
+      "The surface layer contains punctuation, stock words, generic transitions, and formal tone.",
+      "The sentence layer contains recurring syntactic templates, mirrored contrasts, exposition, low specificity, and repeated paragraph rhythm.",
+      "The story or argument layer contains theme explanation, tidy single-track plots, protagonist-centered resolution, forced lessons, and removed loose ends.",
+    ],
+  },
+  "cross-media": {
+    eyebrow: "Graphic 6 · Comparison practice",
+    title: "One output impresses. A comparison set reveals the model.",
+    caption: "Comparison changes the object of attention. Repeated fallback decisions become visible across outputs.",
+    transcript: [
+      "A single polished paragraph is followed by a wall of paragraphs with repeated pivots, balance, and closure.",
+      "A single striking image is followed by a contact sheet with recurring poses, lighting, haze, and composition.",
+      "A single attractive video frame is followed by a motion strip with repeated camera drift, head turns, walking cadence, and fabric lag.",
+      "The visual distinguishes first-person pattern recognition from formal forensic attribution research.",
+    ],
+  },
+  "recursion": {
+    eyebrow: "Graphic 7 · Training-data paths",
+    title: "Uncontrolled recursion and the curated path",
+    caption: "Replacement and provenance loss create the dangerous setup. Retained originals and evaluated synthetic data change the experiment, without guaranteeing success.",
+    transcript: [
+      "In the uncontrolled path, human work trains a model, generated output is published at scale, mixed web data trains successors, and rare material and diversity shrink.",
+      "In the curated path, original human data is retained and combined with provenance, explicit task purpose, evaluated synthetic data, and quality checks.",
+      "The curated path is a tested mitigation pattern and an active research area, not a guarantee.",
+    ],
+  },
+  "workflow": {
+    eyebrow: "Graphic 8 · HobFarm production record",
+    title: "The article workflow has contamination points",
+    caption: "Context is production material. It can preserve the point of view, and it can carry stale instructions or generated errors into the next draft.",
+    transcript: [
+      "The main path runs from an irritating discovery to notes, primary research, thesis, project files, AI-assisted composition, revision, graphics, publication, and future article wires.",
+      "Contamination can enter through stale facts, obsolete instructions, weak early theories, irrelevant context, or generated drafts treated as evidence.",
+      "Controls include source priority, fact and inference labels, live-source checks, explicit prose failure modes, comparison with the development thread, reading aloud, and deletion.",
+    ],
+  },
+};
+
+const figure = figures[Astro.props.kind];
+const titleId = `keynote-${Astro.props.kind}-title`;
+---
+
+<figure class={`keynote-figure keynote-figure--${Astro.props.kind} article-wide`} aria-labelledby={titleId}>
+  <figcaption class="keynote-figure__heading">
+    <p>{figure.eyebrow}</p>
+    <h3 id={titleId}>{figure.title}</h3>
+  </figcaption>
+
+  {Astro.props.kind === "default-paragraph" && (
+    <div class="compiler" aria-label="Annotated sequence of rhetorical modules">
+      <div class="compiler__module"><span>01</span><b>"Here's the thing"</b><small>staged pivot</small></div>
+      <div class="compiler__arrow" aria-hidden="true">↓</div>
+      <div class="compiler__module"><span>02</span><b>invented anti-AI objection</b><small>reasonable-person position</small></div>
+      <div class="compiler__arrow" aria-hidden="true">↓</div>
+      <div class="compiler__module"><span>03</span><b>"value is moving"</b><small>vague mechanism metaphor</small></div>
+      <div class="compiler__arrow" aria-hidden="true">↓</div>
+      <div class="compiler__module compiler__module--split"><span>04</span><b>production / judgment</b><small>mirrored scarcity pair</small></div>
+      <div class="compiler__arrow" aria-hidden="true">↓</div>
+      <div class="compiler__module"><span>05</span><b>making / fixing / deleting</b><small>rhythmic triplet</small></div>
+      <div class="compiler__arrow" aria-hidden="true">↓</div>
+      <div class="compiler__module"><span>06</span><b>commands + machine/human finish</b><small>coaching and keynote conclusion</small></div>
+      <div class="compiler__arrow" aria-hidden="true">↓</div>
+      <div class="compiler__module compiler__module--cta"><span>07</span><b>follow CTA</b><small>the conversion gate</small></div>
+    </div>
+  )}
+
+  {Astro.props.kind === "paper-versus-post" && (
+    <div class="press" aria-label="A research paper compressed into a social-media argument">
+      <section class="press__paper">
+        <span class="press__label">NBER working paper · revised July 2026</span>
+        <h4>Amazon ebooks, 2020-2025</h4>
+        <ul>
+          <li>monthly releases nearly tripled after 2022</li>
+          <li>ratings, sales rank, and star rating as usage and quality signals</li>
+          <li>average usage down; modest-use count up</li>
+          <li>detected AI above half of 2025 releases</li>
+          <li>author selection explains most of the usage gap</li>
+          <li>about 7% modeled consumer-surplus increase in 2025</li>
+        </ul>
+      </section>
+      <div class="press__machine" aria-hidden="true">
+        <span>COMPRESSION</span>
+        <i></i><i></i><i></i>
+      </div>
+      <section class="press__post">
+        <span class="press__label">social post</span>
+        <p>books tripled</p>
+        <p>quality sank</p>
+        <p>production cheap</p>
+        <p>judgment scarce</p>
+      </section>
+    </div>
+  )}
+
+  {Astro.props.kind === "market-dilution" && (
+    <div class="market" aria-label="Book catalog, sales, revenue, and growth comparisons">
+      <section class="market__shares">
+        <h4>Share of catalog, sales, and revenue</h4>
+        <div class="share-row share-row--head"><span>Detection band</span><span>Catalog</span><span>Sales</span><span>Revenue</span></div>
+        <div class="share-row"><b>No detected AI</b><span>62.9%</span><span>71.7%</span><span>72.5%</span></div>
+        <div class="share-row"><b>Light AI</b><span>17.1%</span><span>16.2%</span><span>16.2%</span></div>
+        <div class="share-row share-row--hot"><b>Substantial AI</b><span>20.0%</span><span>12.1%</span><span>11.3%</span></div>
+      </section>
+      <section class="market__growth">
+        <h4>Growth since 2023 Q1</h4>
+        <div><b>38.3×</b><span>cumulative catalog</span></div>
+        <div><b>19.2×</b><span>selling titles</span></div>
+        <div><b>7.3×</b><span>unit sales</span></div>
+        <div><b>8.9×</b><span>revenue</span></div>
+      </section>
+      <section class="market__exceptions">
+        <span>Scale exceptions</span>
+        <p><b>$643K</b> gross consumer revenue and <b>80,431</b> sales for the top substantial-AI title.</p>
+        <p><b>$1.7M</b> across eight titles tied to one observed author identity.</p>
+      </section>
+      <p class="market__caveat">Working paper under review · Amazon self-published genre-fiction sample · Detection and observational limits apply</p>
+    </div>
+  )}
+
+  {Astro.props.kind === "fingerprint-depth" && (
+    <div class="cutaway" aria-label="Three layers of generated-writing fingerprints">
+      <section class="cutaway__layer cutaway__layer--surface">
+        <div><span>01</span><h4>Surface</h4></div>
+        <p>punctuation · stock words · formal tone · generic transitions</p>
+        <i>fresh paint</i>
+      </section>
+      <section class="cutaway__layer cutaway__layer--sentence">
+        <div><span>02</span><h4>Sentence</h4></div>
+        <p>syntactic templates · mirrored contrasts · exposition · low specificity · repeated rhythm</p>
+      </section>
+      <section class="cutaway__layer cutaway__layer--story">
+        <div><span>03</span><h4>Story / argument</h4></div>
+        <p>theme explanation · single-track plot · protagonist resolution · compulsory lesson · no loose ends</p>
+      </section>
+      <div class="cutaway__scraper" aria-hidden="true">HUMANIZER<br />APPLIED</div>
+    </div>
+  )}
+
+  {Astro.props.kind === "cross-media" && (
+    <div class="contact-sheet" aria-label="Single and comparison outputs in writing, images, and video">
+      <section class="contact-sheet__lane">
+        <header><span>Writing</span><small>1 paragraph → 12 paragraphs</small></header>
+        <div class="contact-sheet__single"><i></i><i></i><i></i><i></i></div>
+        <div class="contact-sheet__many contact-sheet__many--text">{Array.from({ length: 9 }).map(() => <span><i></i><i></i><i></i></span>)}</div>
+        <p>pivots · balance · closure</p>
+      </section>
+      <section class="contact-sheet__lane">
+        <header><span>Image</span><small>1 frame → contact sheet</small></header>
+        <div class="contact-sheet__single contact-sheet__single--image"><b></b></div>
+        <div class="contact-sheet__many contact-sheet__many--image">{Array.from({ length: 9 }).map((_, i) => <span style={`--shift:${i * 7}deg`}><b></b></span>)}</div>
+        <p>pose · light · haze · lens</p>
+      </section>
+      <section class="contact-sheet__lane">
+        <header><span>Video</span><small>1 frame → motion strip</small></header>
+        <div class="contact-sheet__single contact-sheet__single--video"><b></b><i></i></div>
+        <div class="contact-sheet__many contact-sheet__many--video">{Array.from({ length: 9 }).map((_, i) => <span><b style={`--step:${i * 5}px`}></b><i></i></span>)}</div>
+        <p>drift · head turn · cadence · fabric lag</p>
+      </section>
+      <div class="contact-sheet__rule"><span>one result</span><b>evaluate the result</b><i>→</i><span>many results</span><b>evaluate the model</b></div>
+    </div>
+  )}
+
+  {Astro.props.kind === "recursion" && (
+    <div class="loops" aria-label="Uncontrolled and curated recursive training paths">
+      <section class="loop loop--bad">
+        <header><span>Path A</span><h4>Uncontrolled recursion</h4></header>
+        <ol>
+          <li>human distribution</li>
+          <li>model output</li>
+          <li>mass publication</li>
+          <li>mixed web data</li>
+          <li>successor training</li>
+          <li class="loop__loss">tails and diversity shrink</li>
+        </ol>
+        <div class="loop__rare" aria-label="Rare material falling out"><i></i><i></i><i></i><span>rare material</span></div>
+      </section>
+      <section class="loop loop--curated">
+        <header><span>Path B</span><h4>Curated accumulation</h4></header>
+        <div class="loop__inputs">
+          <p>retained originals</p><b>+</b><p>provenance</p><b>+</b><p>evaluated synthetic data</p><b>+</b><p>explicit task and checks</p>
+        </div>
+        <div class="loop__gate">mixed training set</div>
+        <small>Tested mitigation pattern · active research area · no guarantee</small>
+      </section>
+    </div>
+  )}
+
+  {Astro.props.kind === "workflow" && (
+    <div class="patchbay" aria-label="HobFarm article workflow with contamination and control points">
+      <div class="patchbay__path">
+        <div><span>01</span><b>irritation or discovery</b></div>
+        <div><span>02</span><b>notes and screenshots</b><i>stale fact</i></div>
+        <div><span>03</span><b>primary research</b><small>live-source check</small></div>
+        <div><span>04</span><b>thesis and article arc</b><i>weak early theory</i></div>
+        <div><span>05</span><b>instructions and source files</b><i>obsolete rule</i><small>source priority</small></div>
+        <div><span>06</span><b>AI-assisted composition</b><i>default paragraph</i></div>
+        <div><span>07</span><b>reject, verify, rewrite</b><small>fact / inference / memory labels</small></div>
+        <div><span>08</span><b>graphics and article</b><small>read aloud · delete · defer</small></div>
+        <div><span>09</span><b>future article wires</b><i>draft treated as source</i></div>
+      </div>
+      <div class="patchbay__legend"><span><i></i>contamination point</span><span><i></i>control point</span></div>
+    </div>
+  )}
+
+  <p class="keynote-figure__caption">{figure.caption}</p>
+  <details class="keynote-figure__transcript">
+    <summary>Read this graphic as text</summary>
+    <ol>{figure.transcript.map((item) => <li>{item}</li>)}</ol>
+  </details>
+</figure>
+
+<style>
+  .keynote-figure {
+    --ink: #171415;
+    --paper: #f1e7cf;
+    --paper-2: #dfd0ae;
+    --red: #e54c40;
+    --cyan: #29bfd0;
+    --acid: #c9ed4e;
+    --purple: #7664d7;
+    box-sizing: border-box;
+    gap: 0;
+    margin-block: 3.5rem !important;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--ink) 28%, transparent);
+    border-radius: 0.3rem;
+    background:
+      linear-gradient(90deg, rgb(23 20 21 / 0.035) 1px, transparent 1px),
+      linear-gradient(rgb(23 20 21 / 0.035) 1px, transparent 1px),
+      var(--paper);
+    background-size: 24px 24px;
+    box-shadow: 0 1.25rem 3rem rgb(0 0 0 / 0.22);
+    color: var(--ink);
+    font-family: var(--font-mono, ui-monospace, monospace);
+  }
+
+  .keynote-figure *, .keynote-figure *::before, .keynote-figure *::after { box-sizing: border-box; }
+  .keynote-figure p, .keynote-figure h3, .keynote-figure h4 { margin: 0; }
+
+  .keynote-figure__heading {
+    padding: clamp(1.1rem, 3vw, 2rem);
+    border-bottom: 1px solid rgb(23 20 21 / 0.22);
+    background: rgb(241 231 207 / 0.88);
+  }
+  .keynote-figure__heading p { color: #8b332d; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase; }
+  .keynote-figure__heading h3 { max-width: 46rem; margin-top: 0.4rem; color: var(--ink); font-family: var(--font-sans, sans-serif); font-size: clamp(1.55rem, 4vw, 2.65rem); line-height: 1.03; }
+
+  .keynote-figure__caption { padding: 1rem clamp(1.1rem, 3vw, 2rem); border-top: 1px solid rgb(23 20 21 / 0.2); background: #211d1f; color: #f3ead7; font: 0.78rem/1.55 var(--font-mono, monospace); }
+  .keynote-figure__transcript { margin: 0; border-top: 1px solid rgb(255 255 255 / 0.08); background: #211d1f; color: #d7ccb5; font-size: 0.75rem; line-height: 1.55; }
+  .keynote-figure__transcript summary { cursor: pointer; padding: 0.8rem clamp(1.1rem, 3vw, 2rem); color: #c9ed4e; font-weight: 800; }
+  .keynote-figure__transcript ol { margin: 0 !important; padding: 0.1rem 1.2rem 1.2rem 2.8rem !important; }
+  .keynote-figure__transcript li { margin: 0.35rem 0 !important; }
+
+  .compiler { display: grid; grid-template-columns: minmax(0, 1fr); width: min(42rem, calc(100% - 2rem)); margin: 2rem auto; }
+  .compiler__module { position: relative; display: grid; grid-template-columns: 2.2rem minmax(0, 1fr) auto; align-items: center; gap: 0.8rem; padding: 0.9rem 1rem; border: 1px solid var(--ink); background: #fff9e9; box-shadow: 0.35rem 0.35rem 0 var(--paper-2); }
+  .compiler__module span { color: var(--red); font-weight: 900; }
+  .compiler__module b { font: 800 0.85rem/1.3 var(--font-mono, monospace); }
+  .compiler__module small { color: #6d5e55; font-size: 0.66rem; letter-spacing: 0.05em; text-transform: uppercase; }
+  .compiler__module--split { border-left: 0.5rem solid var(--purple); }
+  .compiler__module--cta { background: var(--acid); }
+  .compiler__arrow { height: 1.55rem; color: #8b332d; font-size: 1rem; line-height: 1.55rem; text-align: center; }
+
+  .press { display: grid; grid-template-columns: minmax(0, 1.4fr) 8rem minmax(13rem, 0.8fr); align-items: center; gap: 0; padding: clamp(1rem, 3vw, 2rem); }
+  .press__paper, .press__post { position: relative; min-height: 22rem; padding: 1.4rem; border: 1px solid var(--ink); background: #fffaf0; }
+  .press__paper { transform: rotate(-0.7deg); box-shadow: -0.45rem 0.45rem 0 var(--paper-2); }
+  .press__post { display: flex; flex-direction: column; justify-content: center; transform: rotate(0.8deg); background: #211d1f; box-shadow: 0.45rem 0.45rem 0 var(--red); color: #fff5df; }
+  .press__label { color: var(--red); font-size: 0.64rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+  .press__paper h4 { margin-top: 0.7rem; font: 800 clamp(1.1rem, 2vw, 1.55rem)/1.15 var(--font-sans, sans-serif); }
+  .press__paper ul { margin: 1rem 0 0 !important; padding-left: 1.1rem !important; font-size: 0.72rem; line-height: 1.5; }
+  .press__paper li { margin: 0.4rem 0 !important; }
+  .press__post p { padding: 0.7rem 0; border-bottom: 1px solid rgb(255 255 255 / 0.16); font-size: clamp(0.9rem, 2vw, 1.25rem); font-weight: 800; }
+  .press__machine { position: relative; display: grid; place-items: center; height: 8rem; border-block: 2px solid var(--ink); background: var(--red); color: #fff8e8; font-size: 0.62rem; font-weight: 900; letter-spacing: 0.08em; writing-mode: vertical-rl; }
+  .press__machine::before, .press__machine::after { position: absolute; top: 50%; width: 1.2rem; height: 4.5rem; border: 2px solid var(--ink); background: var(--paper-2); content: ""; transform: translateY(-50%); }
+  .press__machine::before { left: -1.2rem; } .press__machine::after { right: -1.2rem; }
+  .press__machine i { position: absolute; right: 0.8rem; width: 1.1rem; height: 1.1rem; border: 1px solid var(--ink); border-radius: 50%; background: var(--acid); }
+  .press__machine i:nth-child(1) { top: 0.8rem; } .press__machine i:nth-child(2) { top: 2.2rem; } .press__machine i:nth-child(3) { top: 3.6rem; }
+
+  .market { display: grid; grid-template-columns: 1.35fr 0.75fr; gap: 1rem; padding: clamp(1rem, 3vw, 2rem); }
+  .market > section { border: 1px solid var(--ink); background: #fffaf0; }
+  .market h4 { padding: 0.85rem 1rem; border-bottom: 1px solid var(--ink); background: var(--ink); color: #fff7e3; font: 800 0.78rem/1.2 var(--font-mono, monospace); text-transform: uppercase; }
+  .share-row { display: grid; grid-template-columns: 1.55fr repeat(3, 0.7fr); }
+  .share-row > * { min-width: 0; padding: 0.75rem 0.7rem; border-right: 1px solid rgb(23 20 21 / 0.17); border-bottom: 1px solid rgb(23 20 21 / 0.17); font-size: 0.69rem; text-align: right; }
+  .share-row > :first-child { text-align: left; }
+  .share-row--head { background: var(--paper-2); font-weight: 900; text-transform: uppercase; }
+  .share-row--hot { background: color-mix(in srgb, var(--red) 18%, #fffaf0); }
+  .market__growth { display: grid; grid-template-columns: repeat(2, 1fr); }
+  .market__growth h4 { grid-column: 1 / -1; }
+  .market__growth div { display: flex; flex-direction: column; justify-content: center; min-height: 7rem; padding: 1rem; border-right: 1px solid rgb(23 20 21 / 0.17); border-bottom: 1px solid rgb(23 20 21 / 0.17); }
+  .market__growth b { color: #8b332d; font-size: clamp(1.4rem, 4vw, 2.5rem); line-height: 1; }
+  .market__growth span { margin-top: 0.35rem; font-size: 0.65rem; }
+  .market__exceptions { grid-column: 1 / -1; display: grid; grid-template-columns: auto 1fr 1fr; align-items: center; gap: 1rem; padding: 1rem; background: var(--acid) !important; }
+  .market__exceptions > span { font-size: 0.67rem; font-weight: 900; text-transform: uppercase; writing-mode: vertical-rl; }
+  .market__exceptions p { font-size: 0.73rem; line-height: 1.45; }
+  .market__exceptions b { font-size: 1rem; }
+  .market__caveat { grid-column: 1 / -1; color: #705e50; font-size: 0.62rem; line-height: 1.4; text-align: center; }
+
+  .cutaway { position: relative; padding: clamp(1rem, 4vw, 3rem); }
+  .cutaway__layer { position: relative; display: grid; grid-template-columns: 13rem 1fr; align-items: center; gap: 1rem; min-height: 7.5rem; padding: 1.2rem 6rem 1.2rem 1.2rem; border: 2px solid var(--ink); border-bottom-width: 0; }
+  .cutaway__layer:last-of-type { border-bottom-width: 2px; }
+  .cutaway__layer > div { display: flex; align-items: baseline; gap: 0.7rem; }
+  .cutaway__layer span { color: var(--red); font-weight: 900; }
+  .cutaway__layer h4 { font: 900 clamp(1.1rem, 3vw, 1.8rem)/1 var(--font-sans, sans-serif); }
+  .cutaway__layer p { font-size: 0.72rem; line-height: 1.5; }
+  .cutaway__layer--surface { background: linear-gradient(100deg, #fbf7eb 0 68%, var(--cyan) 68%); }
+  .cutaway__layer--sentence { background: repeating-linear-gradient(135deg, #dfd0ae 0 12px, #d5c39f 12px 24px); }
+  .cutaway__layer--story { background: #292429; color: #fff4dd; }
+  .cutaway__layer > i { position: absolute; top: 0.7rem; right: 0.8rem; padding: 0.25rem 0.4rem; border: 1px solid var(--ink); background: var(--acid); color: var(--ink); font-size: 0.55rem; font-style: normal; font-weight: 900; text-transform: uppercase; }
+  .cutaway__scraper { position: absolute; top: 2rem; right: clamp(1.4rem, 5vw, 4rem); display: grid; place-items: center; width: 4.2rem; height: 7rem; border: 2px solid var(--ink); background: var(--red); color: #fff; font-size: 0.55rem; font-weight: 900; text-align: center; transform: rotate(5deg); }
+
+  .contact-sheet { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; padding: clamp(1rem, 3vw, 2rem); background: #252124; color: #f5ead5; }
+  .contact-sheet__lane { display: grid; grid-template-columns: 1fr 1.5fr; gap: 0.7rem; padding: 0.9rem; border: 1px solid rgb(255 255 255 / 0.24); background: #171416; }
+  .contact-sheet__lane header, .contact-sheet__lane > p { grid-column: 1 / -1; }
+  .contact-sheet__lane header { display: flex; align-items: baseline; justify-content: space-between; gap: 0.6rem; }
+  .contact-sheet__lane header span { color: var(--acid); font-weight: 900; text-transform: uppercase; }
+  .contact-sheet__lane header small { color: #ad9f91; font-size: 0.56rem; }
+  .contact-sheet__single, .contact-sheet__many span { overflow: hidden; border: 1px solid rgb(255 255 255 / 0.25); background: #f0e5cf; }
+  .contact-sheet__single { min-height: 7rem; padding: 0.7rem; }
+  .contact-sheet__single i { display: block; height: 0.25rem; margin: 0.55rem 0; background: #30282a; }
+  .contact-sheet__many { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.25rem; }
+  .contact-sheet__many span { position: relative; min-height: 2rem; padding: 0.18rem; }
+  .contact-sheet__many--text i { display: block; height: 0.11rem; margin: 0.24rem 0; background: #382e30; }
+  .contact-sheet__single--image, .contact-sheet__many--image span { background: linear-gradient(145deg, #29798c, #6a4d9d 55%, #e2c052); }
+  .contact-sheet__single--image b, .contact-sheet__many--image b { display: block; width: 44%; aspect-ratio: 0.75; margin: 1rem auto 0; border-radius: 48% 48% 35% 35%; background: #e8c7a5; box-shadow: 0 0 2rem #f8e27b; transform: rotate(var(--shift, 0deg)); }
+  .contact-sheet__many--image b { margin-top: 0.35rem; }
+  .contact-sheet__single--video, .contact-sheet__many--video span { background: linear-gradient(#3d5c62 60%, #1d2729 60%); }
+  .contact-sheet__single--video b, .contact-sheet__many--video b { display: block; width: 1rem; height: 2.2rem; margin: 2.2rem auto 0; border-radius: 45% 45% 20% 20%; background: #edd0a8; transform: translateX(var(--step, 0)); }
+  .contact-sheet__many--video b { width: 0.35rem; height: 0.8rem; margin-top: 0.7rem; }
+  .contact-sheet__lane > p { color: #aebbc0; font-size: 0.57rem; text-transform: uppercase; }
+  .contact-sheet__rule { grid-column: 1 / -1; display: grid; grid-template-columns: auto 1fr auto auto 1fr; align-items: center; gap: 0.8rem; padding: 0.8rem 1rem; border: 1px solid var(--acid); color: #d7cab8; font-size: 0.66rem; }
+  .contact-sheet__rule b { color: #fff; }
+  .contact-sheet__rule i { color: var(--acid); font-size: 1.4rem; font-style: normal; }
+
+  .loops { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; padding: clamp(1rem, 3vw, 2rem); }
+  .loop { position: relative; min-height: 28rem; padding: 1.2rem; border: 2px solid var(--ink); background: #fffaf0; }
+  .loop header { display: flex; align-items: baseline; gap: 0.7rem; padding-bottom: 0.9rem; border-bottom: 1px solid var(--ink); }
+  .loop header span { color: var(--red); font-size: 0.65rem; font-weight: 900; text-transform: uppercase; }
+  .loop header h4 { font: 900 clamp(1rem, 2.5vw, 1.45rem)/1.1 var(--font-sans, sans-serif); }
+  .loop ol { counter-reset: loop; margin: 1.2rem 0 0 !important; padding: 0 !important; list-style: none; }
+  .loop ol li { position: relative; margin: 0 2.5rem 0.8rem 0 !important; padding: 0.65rem 0.8rem; border: 1px solid var(--ink); background: var(--paper); font-size: 0.68rem; font-weight: 800; }
+  .loop ol li::after { position: absolute; right: -1.6rem; bottom: -1rem; color: var(--red); content: "↓"; font-size: 1.2rem; }
+  .loop ol li:last-child::after { right: -2.4rem; bottom: 50%; content: "↺"; font-size: 2.4rem; transform: translateY(50%); }
+  .loop ol .loop__loss { background: color-mix(in srgb, var(--red) 30%, var(--paper)); }
+  .loop__rare { display: flex; align-items: flex-end; gap: 0.35rem; margin-top: 1.2rem; color: #705f55; font-size: 0.55rem; }
+  .loop__rare i { display: block; width: 0.55rem; height: 0.55rem; background: var(--purple); transform: translateY(var(--drop, 0)); }
+  .loop__rare i:nth-child(2) { --drop: 0.45rem; opacity: 0.7; } .loop__rare i:nth-child(3) { --drop: 0.9rem; opacity: 0.35; }
+  .loop--curated { background: #252124; color: #fff4dd; }
+  .loop--curated header { border-color: rgb(255 255 255 / 0.35); }
+  .loop__inputs { display: grid; grid-template-columns: 1fr; gap: 0.4rem; margin-top: 1.2rem; }
+  .loop__inputs p { padding: 0.7rem; border: 1px solid rgb(255 255 255 / 0.35); background: #342e31; font-size: 0.7rem; font-weight: 800; text-align: center; }
+  .loop__inputs b { color: var(--acid); text-align: center; }
+  .loop__gate { margin-top: 1.3rem; padding: 1rem; border: 2px solid var(--acid); color: var(--acid); font-size: 0.8rem; font-weight: 900; text-align: center; text-transform: uppercase; }
+  .loop--curated small { display: block; margin-top: 0.75rem; color: #b7a99b; font-size: 0.58rem; line-height: 1.5; text-align: center; }
+
+  .patchbay { padding: clamp(1rem, 3vw, 2rem); background: #252124; color: #f4ead7; }
+  .patchbay__path { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .patchbay__path > div { position: relative; display: flex; min-height: 8rem; flex-direction: column; justify-content: space-between; padding: 0.9rem; border: 1px solid rgb(255 255 255 / 0.3); background: #171416; box-shadow: inset 0 -0.35rem 0 var(--route, var(--cyan)); }
+  .patchbay__path > div::after { position: absolute; top: 50%; right: -0.85rem; z-index: 2; color: var(--acid); content: "→"; font-size: 1rem; }
+  .patchbay__path > div:nth-child(3n)::after { right: 50%; top: auto; bottom: -0.85rem; content: "↓"; }
+  .patchbay__path span { color: var(--acid); font-size: 0.62rem; font-weight: 900; }
+  .patchbay__path b { font: 800 0.76rem/1.35 var(--font-mono, monospace); }
+  .patchbay__path i, .patchbay__path small { margin-top: 0.4rem; padding: 0.3rem; font-size: 0.55rem; font-style: normal; line-height: 1.3; }
+  .patchbay__path i { border: 1px solid var(--red); color: #ff8f85; }
+  .patchbay__path small { border: 1px solid var(--cyan); color: #77ddeb; }
+  .patchbay__legend { display: flex; justify-content: center; gap: 1.4rem; margin-top: 1.2rem; color: #baaea0; font-size: 0.6rem; }
+  .patchbay__legend span { display: flex; align-items: center; gap: 0.35rem; }
+  .patchbay__legend i { display: block; width: 0.7rem; height: 0.7rem; border: 2px solid var(--red); }
+  .patchbay__legend span:last-child i { border-color: var(--cyan); }
+
+  @media (min-width: 640px) { .keynote-figure__transcript { display: none; } }
+
+  @media (max-width: 800px) {
+    .compiler__module { grid-template-columns: 1.7rem minmax(0, 1fr); }
+    .compiler__module small { grid-column: 2; }
+    .press { grid-template-columns: 1fr; }
+    .press__paper, .press__post { min-height: 0; transform: none; }
+    .press__machine { width: 8rem; height: 4rem; margin: 0 auto; border: 2px solid var(--ink); writing-mode: initial; }
+    .press__machine::before, .press__machine::after { top: auto; left: 50%; width: 4.5rem; height: 1rem; transform: translateX(-50%); }
+    .press__machine::before { top: -1rem; } .press__machine::after { right: auto; bottom: -1rem; }
+    .press__machine i { display: none; }
+    .market { grid-template-columns: 1fr; }
+    .market__exceptions, .market__caveat { grid-column: 1; }
+    .contact-sheet { grid-template-columns: 1fr; }
+    .contact-sheet__rule { grid-column: 1; grid-template-columns: 1fr; text-align: center; }
+    .contact-sheet__rule i { transform: rotate(90deg); }
+    .loops { grid-template-columns: 1fr; }
+    .patchbay__path { grid-template-columns: repeat(2, 1fr); }
+    .patchbay__path > div:nth-child(3n)::after { right: -0.85rem; top: 50%; bottom: auto; content: "→"; }
+    .patchbay__path > div:nth-child(2n)::after { right: 50%; top: auto; bottom: -0.85rem; content: "↓"; }
+  }
+
+  @media (max-width: 520px) {
+    .share-row { grid-template-columns: 1.25fr repeat(3, 0.75fr); }
+    .share-row > * { padding: 0.6rem 0.35rem; font-size: 0.57rem; }
+    .market__exceptions { grid-template-columns: 1fr; }
+    .market__exceptions > span { writing-mode: initial; }
+    .cutaway__layer { grid-template-columns: 1fr; gap: 0.55rem; padding: 1rem; }
+    .cutaway__layer--surface { padding-right: 4.8rem; background: linear-gradient(100deg, #fbf7eb 0 72%, var(--cyan) 72%); }
+    .cutaway__scraper { right: 1.5rem; width: 3.3rem; }
+    .patchbay__path { grid-template-columns: 1fr; }
+    .patchbay__path > div::after, .patchbay__path > div:nth-child(2n)::after, .patchbay__path > div:nth-child(3n)::after { right: 50%; top: auto; bottom: -0.85rem; content: "↓"; }
+    .patchbay__legend { flex-direction: column; }
+  }
+</style>

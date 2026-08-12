@@ -1,0 +1,176 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Research enters a rhetorical assembly line</title>
+  <desc id="desc">A research paper and loose source notes enter a machine that produces identical polished pages. A second belt carries a visibly revised article covered in annotations and irregular marks.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#171415"/>
+      <stop offset="0.58" stop-color="#282023"/>
+      <stop offset="1" stop-color="#0f1e24"/>
+    </linearGradient>
+    <linearGradient id="machine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#53484a"/>
+      <stop offset="0.5" stop-color="#2d282a"/>
+      <stop offset="1" stop-color="#171416"/>
+    </linearGradient>
+    <linearGradient id="belt" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#231f20"/>
+      <stop offset="0.46" stop-color="#41383a"/>
+      <stop offset="1" stop-color="#1b1819"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff8e8"/>
+      <stop offset="1" stop-color="#e4d2ad"/>
+    </linearGradient>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse">
+      <path d="M42 0H0V42" fill="none" stroke="#f3e5c2" stroke-opacity=".055" stroke-width="1"/>
+    </pattern>
+    <pattern id="beltRibs" width="54" height="28" patternUnits="userSpaceOnUse" patternTransform="skewX(-18)">
+      <rect width="54" height="28" fill="none"/>
+      <path d="M2 0v28" stroke="#948286" stroke-opacity=".25" stroke-width="3"/>
+    </pattern>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="22" stdDeviation="18" flood-color="#000" flood-opacity=".42"/>
+    </filter>
+    <filter id="rough" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency=".7" numOctaves="2" seed="7" result="noise"/>
+      <feColorMatrix in="noise" type="saturate" values="0" result="gray"/>
+      <feComponentTransfer in="gray" result="soft">
+        <feFuncA type="table" tableValues="0 .08"/>
+      </feComponentTransfer>
+      <feBlend in="SourceGraphic" in2="soft" mode="multiply"/>
+    </filter>
+    <clipPath id="paperClip"><rect x="0" y="0" width="278" height="360" rx="4"/></clipPath>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#background)"/>
+  <rect width="1600" height="900" fill="url(#grid)"/>
+  <path d="M0 738C315 670 487 744 746 694c303-58 527-184 854-154v360H0Z" fill="#0d1114" opacity=".75"/>
+  <path d="M0 717C292 656 509 728 754 678c302-62 525-177 846-153" fill="none" stroke="#29bfd0" stroke-opacity=".18" stroke-width="2"/>
+
+  <g transform="translate(76 153) rotate(-7 192 230)" filter="url(#shadow)">
+    <rect x="34" y="34" width="320" height="430" rx="5" fill="#8b332d" opacity=".7"/>
+    <rect x="18" y="18" width="320" height="430" rx="5" fill="#d3c099"/>
+    <rect width="320" height="430" rx="5" fill="url(#paper)" stroke="#171415" stroke-width="3"/>
+    <path d="M33 68H287M33 82H238M33 119H284M33 133H274M33 147H252M33 188H291M33 202H265M33 216H279M33 257H289M33 271H237M33 285H277" stroke="#554c45" stroke-width="7" opacity=".63"/>
+    <path d="M36 341h155M36 359h226M36 377h188" stroke="#7664d7" stroke-width="9" opacity=".75"/>
+    <rect x="24" y="22" width="139" height="28" fill="#171415"/>
+    <text x="37" y="42" fill="#f1e7cf" font-family="ui-monospace, monospace" font-size="15" font-weight="700" letter-spacing="2">WORKING PAPER</text>
+    <circle cx="280" cy="386" r="21" fill="none" stroke="#e54c40" stroke-width="5"/>
+    <path d="m266 386 9 9 20-23" fill="none" stroke="#e54c40" stroke-width="5"/>
+  </g>
+
+  <g font-family="ui-monospace, monospace" font-weight="700" filter="url(#rough)">
+    <g transform="translate(205 107) rotate(8)">
+      <rect width="184" height="74" rx="2" fill="#c9ed4e"/>
+      <text x="16" y="27" fill="#171415" font-size="13" letter-spacing="1.5">SOURCE NOTE 04</text>
+      <path d="M17 44h146M17 56h108" stroke="#171415" stroke-width="5" opacity=".58"/>
+    </g>
+    <g transform="translate(40 487) rotate(-3)">
+      <rect width="206" height="92" rx="2" fill="#f1e7cf" stroke="#171415" stroke-width="2"/>
+      <text x="18" y="30" fill="#8b332d" font-size="14">MEASURE != CLAIM</text>
+      <path d="M18 49h168M18 64h130" stroke="#171415" stroke-width="5" opacity=".55"/>
+    </g>
+    <g transform="translate(287 527) rotate(6)">
+      <rect width="174" height="74" rx="2" fill="#29bfd0"/>
+      <text x="15" y="28" fill="#102226" font-size="13">CHECK THE SAMPLE</text>
+      <path d="M16 47h141M16 59h94" stroke="#102226" stroke-width="5" opacity=".55"/>
+    </g>
+  </g>
+
+  <g transform="translate(343 531)">
+    <path d="M0 58 422 5l31 125L27 186Z" fill="url(#belt)" stroke="#0b0a0b" stroke-width="4"/>
+    <path d="M7 59 421 8l28 116L30 178Z" fill="url(#beltRibs)" opacity=".75"/>
+    <ellipse cx="38" cy="178" rx="37" ry="18" fill="#0e0d0e" stroke="#786b6d" stroke-width="5"/>
+    <ellipse cx="429" cy="129" rx="37" ry="18" fill="#0e0d0e" stroke="#786b6d" stroke-width="5"/>
+  </g>
+
+  <g transform="translate(553 170)" filter="url(#shadow)">
+    <path d="M42 99h361l54 72v410H0V171Z" fill="url(#machine)" stroke="#0b090a" stroke-width="6"/>
+    <path d="M42 99h361l54 72H0Z" fill="#68585b" stroke="#0b090a" stroke-width="6"/>
+    <rect x="50" y="23" width="356" height="118" rx="8" fill="#211d1f" stroke="#9b878b" stroke-width="4"/>
+    <rect x="73" y="47" width="310" height="68" rx="2" fill="#c9ed4e"/>
+    <text x="228" y="76" fill="#171415" font-family="ui-monospace, monospace" font-size="17" font-weight="900" text-anchor="middle" letter-spacing="3">RHETORIC</text>
+    <text x="228" y="101" fill="#171415" font-family="ui-monospace, monospace" font-size="17" font-weight="900" text-anchor="middle" letter-spacing="3">COMPILER</text>
+    <g font-family="ui-monospace, monospace" font-size="13" font-weight="800">
+      <rect x="44" y="198" width="174" height="49" fill="#f1e7cf" stroke="#171415" stroke-width="2"/>
+      <text x="59" y="228" fill="#171415">STAGED PIVOT</text>
+      <rect x="236" y="198" width="174" height="49" fill="#f1e7cf" stroke="#171415" stroke-width="2"/>
+      <text x="252" y="228" fill="#171415">FALSE BINARY</text>
+      <rect x="44" y="263" width="174" height="49" fill="#7664d7" stroke="#171415" stroke-width="2"/>
+      <text x="59" y="293" fill="#fff8e8">MIRRORED PAIR</text>
+      <rect x="236" y="263" width="174" height="49" fill="#e54c40" stroke="#171415" stroke-width="2"/>
+      <text x="252" y="293" fill="#fff8e8">TIDY TRIPLET</text>
+      <rect x="44" y="328" width="174" height="49" fill="#29bfd0" stroke="#171415" stroke-width="2"/>
+      <text x="59" y="358" fill="#102226">HUMANIST END</text>
+      <rect x="236" y="328" width="174" height="49" fill="#c9ed4e" stroke="#171415" stroke-width="2"/>
+      <text x="252" y="358" fill="#171415">FOLLOW CTA</text>
+    </g>
+    <g transform="translate(74 414)">
+      <circle cx="47" cy="47" r="42" fill="#191617" stroke="#968286" stroke-width="6"/>
+      <circle cx="47" cy="47" r="11" fill="#e54c40"/>
+      <path d="M47 13v20M47 61v20M13 47h20M61 47h20" stroke="#f1e7cf" stroke-width="5"/>
+      <circle cx="154" cy="47" r="42" fill="#191617" stroke="#968286" stroke-width="6"/>
+      <circle cx="154" cy="47" r="11" fill="#29bfd0"/>
+      <path d="M154 13v20M154 61v20M120 47h20M168 47h20" stroke="#f1e7cf" stroke-width="5"/>
+      <rect x="232" y="11" width="102" height="72" rx="4" fill="#151314" stroke="#968286" stroke-width="4"/>
+      <circle cx="258" cy="47" r="11" fill="#c9ed4e"/>
+      <circle cx="290" cy="47" r="11" fill="#e54c40"/>
+      <circle cx="320" cy="47" r="11" fill="#7664d7"/>
+    </g>
+    <path d="M45 544h365" stroke="#0d0b0c" stroke-width="9"/>
+    <path d="M76 565h304" stroke="#968286" stroke-width="5" stroke-dasharray="22 12"/>
+  </g>
+
+  <g transform="translate(963 436)">
+    <path d="M0 48 587 119l-14 139L-7 182Z" fill="url(#belt)" stroke="#0b0a0b" stroke-width="4"/>
+    <path d="M5 53 582 122l-13 128L0 178Z" fill="url(#beltRibs)" opacity=".75"/>
+    <ellipse cx="4" cy="181" rx="38" ry="18" fill="#0e0d0e" stroke="#786b6d" stroke-width="5"/>
+    <ellipse cx="568" cy="256" rx="38" ry="18" fill="#0e0d0e" stroke="#786b6d" stroke-width="5"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <g transform="translate(1035 267) rotate(5)">
+      <rect width="238" height="306" rx="3" fill="url(#paper)" stroke="#171415" stroke-width="3"/>
+      <rect x="23" y="24" width="104" height="20" fill="#171415"/>
+      <path d="M24 74h185M24 89h165M24 104h176M24 143h185M24 158h153M24 173h176M24 212h185M24 227h163M24 242h177" stroke="#554c45" stroke-width="7" opacity=".58"/>
+      <path d="M25 274h93" stroke="#e54c40" stroke-width="11"/>
+    </g>
+    <g transform="translate(1219 323) rotate(7)">
+      <rect width="238" height="306" rx="3" fill="url(#paper)" stroke="#171415" stroke-width="3"/>
+      <rect x="23" y="24" width="104" height="20" fill="#171415"/>
+      <path d="M24 74h185M24 89h165M24 104h176M24 143h185M24 158h153M24 173h176M24 212h185M24 227h163M24 242h177" stroke="#554c45" stroke-width="7" opacity=".58"/>
+      <path d="M25 274h93" stroke="#e54c40" stroke-width="11"/>
+    </g>
+    <g transform="translate(1367 378) rotate(9)">
+      <rect width="196" height="252" rx="3" fill="url(#paper)" stroke="#171415" stroke-width="3"/>
+      <rect x="20" y="21" width="87" height="18" fill="#171415"/>
+      <path d="M20 66h155M20 80h140M20 94h149M20 130h155M20 144h128M20 158h146M20 194h155M20 208h131" stroke="#554c45" stroke-width="6" opacity=".58"/>
+    </g>
+  </g>
+
+  <g transform="translate(918 677)" filter="url(#shadow)">
+    <path d="M0 31 584 2l11 103L10 137Z" fill="#10262c" stroke="#071013" stroke-width="4"/>
+    <path d="M8 35 584 7l8 92L12 131Z" fill="url(#beltRibs)" opacity=".55"/>
+  </g>
+
+  <g transform="translate(1052 547) rotate(-4)" filter="url(#shadow)">
+    <rect width="326" height="256" rx="3" fill="#fff9e9" stroke="#171415" stroke-width="4"/>
+    <path d="M28 47h213M28 65h255M28 83h196M28 121h246M28 139h177M28 157h263M28 195h224M28 213h269" stroke="#393335" stroke-width="8" opacity=".62"/>
+    <path d="M20 108c69-30 143-2 254-35M47 175c54 26 117 15 214-6" fill="none" stroke="#e54c40" stroke-width="5"/>
+    <path d="m252 36 20 14-24 22M69 186l-25 12 20 21" fill="none" stroke="#e54c40" stroke-width="5"/>
+    <circle cx="273" cy="204" r="28" fill="none" stroke="#29bfd0" stroke-width="6"/>
+    <path d="m260 204 9 10 21-27" fill="none" stroke="#29bfd0" stroke-width="6"/>
+    <rect x="24" y="16" width="126" height="20" fill="#c9ed4e"/>
+    <text x="32" y="31" fill="#171415" font-family="ui-monospace, monospace" font-size="12" font-weight="900" letter-spacing="1.4">REJECT / REWRITE</text>
+  </g>
+
+  <g font-family="ui-monospace, monospace" font-weight="900" letter-spacing="2">
+    <text x="70" y="778" fill="#f1e7cf" font-size="16">SOURCE MATERIAL</text>
+    <text x="70" y="805" fill="#8f7d80" font-size="12">MEASURES · CAVEATS · IRRITATION · POINT OF VIEW</text>
+    <text x="1140" y="838" fill="#29bfd0" font-size="15">EDITORIAL PATH</text>
+    <path d="M1044 821h74" stroke="#29bfd0" stroke-width="4"/>
+    <text x="1285" y="708" fill="#e54c40" font-size="14">DEFAULT OUTPUT</text>
+  </g>
+
+  <rect x="1.5" y="1.5" width="1597" height="897" fill="none" stroke="#f1e7cf" stroke-opacity=".16" stroke-width="3"/>
+</svg>
