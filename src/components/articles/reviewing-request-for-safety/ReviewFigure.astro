@@ -1,0 +1,211 @@
+---
+type FigureKey =
+  | "two-schemas"
+  | "priority-inversion"
+  | "meta-process"
+  | "interpretation-stack"
+  | "interpretation-debt"
+  | "slop-pipeline"
+  | "experiment";
+
+interface Props {
+  kind: FigureKey;
+}
+
+const figures: Record<FigureKey, {
+  file: string;
+  title: string;
+  alt: string;
+  caption: string;
+  transcript: string[];
+  width: number;
+  height: number;
+  editable?: boolean;
+}> = {
+  "two-schemas": {
+    file: "diagrams/02-two-schemas.svg",
+    title: "Two schemas in one request",
+    alt: "A side-by-side systems diagram separates an explicit request schema from the different output schema inferred by an AI product.",
+    caption: "A product can preserve every field in the request and still build from a different governing schema.",
+    transcript: [
+      "The request schema contains the user's explicit subject, pose, composition, style, color, and output requirements.",
+      "The product forms an output schema from its interpretation of the request, policy, defaults, optimization, and model behavior.",
+      "Failure occurs when the inferred output schema governs the result while the interface continues to imply that the original schema is in control.",
+    ],
+    width: 1600,
+    height: 1000,
+    editable: true,
+  },
+  "priority-inversion": {
+    file: "diagrams/03-priority-inversion.svg",
+    title: "Instruction priority inversion",
+    alt: "A diagram shows explicit user constraints losing priority while an inferred safety interpretation becomes the governing requirement.",
+    caption: "The user did not omit the requirement. The system lowered its practical priority.",
+    transcript: [
+      "The user supplies a clear schema with several constraints.",
+      "The system infers that one constraint may conflict with a higher-priority concern.",
+      "Instead of refusing or asking a question, the product silently substitutes a safer nearby interpretation.",
+      "The output can look polished while failing the request's most important field.",
+    ],
+    width: 1600,
+    height: 1000,
+    editable: true,
+  },
+  "meta-process": {
+    file: "diagrams/04-meta-process-timeline.svg",
+    title: "Displayed process narration",
+    alt: "A timeline separates Meta AI's displayed process narration from its generated outputs and from any claim about inaccessible internal reasoning.",
+    caption: "The interface text is useful evidence about what the product displayed. It is not a forensic audit of hidden computation.",
+    transcript: [
+      "The interface displayed a sequence of review and generation messages during the author's Meta AI session.",
+      "The author retained those messages and four resulting images as the observable experiment record.",
+      "The record supports claims about the interface and outputs, not claims that the text exposes Meta's private reasoning trace or production architecture.",
+    ],
+    width: 1600,
+    height: 1000,
+    editable: true,
+  },
+  "interpretation-stack": {
+    file: "diagrams/05-ai-interpretation-stack.svg",
+    title: "The AI interpretation stack",
+    alt: "A layered diagram traces a request through interface, instruction hierarchy, prompt transformation, policy, model, tools, and output selection.",
+    caption: "A request reaches the output through a stack of product decisions, not through the model alone.",
+    transcript: [
+      "The interface collects and may reshape the request.",
+      "An instruction hierarchy decides which instructions can override others.",
+      "Prompt transformation may expand, paraphrase, or normalize the request.",
+      "Policy systems classify or redirect it.",
+      "The model and any tools generate candidates, and the product chooses what to show.",
+      "Evaluation must test the whole route because each layer can change the effective request.",
+    ],
+    width: 1600,
+    height: 1000,
+    editable: true,
+  },
+  "interpretation-debt": {
+    file: "diagrams/06-interpretation-debt.svg",
+    title: "Interpretation debt",
+    alt: "A diagram shows corrections accumulating when an AI product preserves its inferred interpretation instead of the user's explicit schema.",
+    caption: "Every correction can become work the product transfers back to the user without repairing the original interpretation.",
+    transcript: [
+      "A near miss creates the first correction.",
+      "If the system edits the result without revisiting its interpretation, the same hidden assumption survives.",
+      "Later corrections grow narrower, stranger, and more expensive because the user is now negotiating against accumulated product decisions.",
+      "The unpaid work includes diagnosis, rewording, comparison, verification, and sometimes rebuilding the artifact elsewhere.",
+    ],
+    width: 1600,
+    height: 1000,
+    editable: true,
+  },
+  "slop-pipeline": {
+    file: "diagrams/07-slop-pipeline.svg",
+    title: "The slop pipeline",
+    alt: "A pipeline traces a specific request through generic interpretation, polished nearby output, correction fatigue, and user acceptance.",
+    caption: "Slop does not require a vague user. It can emerge when a product makes the request generic and the user eventually accepts the nearest polished result.",
+    transcript: [
+      "A user starts with a specific request.",
+      "The product gives greater weight to familiar patterns or safer defaults.",
+      "A polished nearby result arrives and appears finished.",
+      "Corrections cost more time while the system's governing interpretation remains hidden.",
+      "The user accepts, publishes, or abandons the nearby result because defending the original request has become the more expensive job.",
+    ],
+    width: 1600,
+    height: 1000,
+    editable: true,
+  },
+  experiment: {
+    file: "experiment-contact-sheet.webp",
+    title: "Controlled image request contact sheet",
+    alt: "A six-image contact sheet shows one kneeling Meta AI intermediate, three standing Meta variations, and kneeling ChatGPT and Grok control outputs.",
+    caption: "One request, six retained outputs. The Meta sequence contains a kneeling intermediate and three standing variations; ChatGPT and Grok are controls. This small test illustrates a failure mode. It does not rank providers.",
+    transcript: [
+      "The request described a stylized adult woman kneeling on one knee and included that pose in the structured schema.",
+      "The retained Meta AI sequence contains one kneeling intermediate followed by three standing variations, including the altered result the product presented.",
+      "A ChatGPT control and a Grok control followed the kneeling requirement in their displayed outputs.",
+      "The sample is too small and too narrow to support a provider benchmark. It records one controlled comparison.",
+    ],
+    width: 1800,
+    height: 1425,
+  },
+};
+
+const figure = figures[Astro.props.kind];
+const src = `https://cdn.hob.farm/articles/reviewing-request-for-safety/${figure.file}`;
+---
+
+<figure class="article-wide review-figure">
+  <a class="review-figure__image" href={src} target="_blank" rel="noreferrer" aria-label={`Open ${figure.title} at full size`}>
+    <img src={src} alt={figure.alt} width={figure.width} height={figure.height} loading="lazy" decoding="async" />
+  </a>
+  <figcaption>
+    {figure.caption}
+    {figure.editable && <a href={src} target="_blank" rel="noreferrer">Open the editable SVG.</a>}
+  </figcaption>
+  <details class="review-figure__transcript">
+    <summary>Read this graphic as text</summary>
+    <ol>
+      {figure.transcript.map((item) => <li>{item}</li>)}
+    </ol>
+  </details>
+</figure>
+
+<style>
+  .review-figure {
+    gap: 0.65rem;
+    margin-block: 2.5rem !important;
+  }
+
+  .review-figure__image {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--color-base-400, #a0a0a0) 24%, transparent);
+    border-radius: 0.35rem;
+    background: #f2ead9;
+    box-shadow: 0 1rem 3rem rgb(0 0 0 / 0.28);
+  }
+
+  .review-figure__image img {
+    width: 100%;
+    height: auto;
+    margin: 0 !important;
+  }
+
+  figcaption a {
+    margin-left: 0.35rem;
+  }
+
+  .review-figure__transcript {
+    width: 100%;
+    border: 1px solid color-mix(in srgb, var(--color-base-400, #a0a0a0) 22%, transparent);
+    border-radius: 0.35rem;
+    background: color-mix(in srgb, var(--color-base-900, #0e0b16) 82%, transparent);
+    color: var(--color-base-300, #c7c7c7);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    line-height: 1.55;
+    text-align: left;
+  }
+
+  .review-figure__transcript summary {
+    cursor: pointer;
+    padding: 0.75rem 0.9rem;
+    color: var(--color-accent-300, #be9aff);
+    letter-spacing: 0.04em;
+  }
+
+  .review-figure__transcript ol {
+    margin: 0 !important;
+    padding: 0 1.1rem 0.9rem 2.3rem !important;
+  }
+
+  .review-figure__transcript li {
+    margin: 0.35rem 0 !important;
+  }
+
+  @media (min-width: 640px) {
+    .review-figure__transcript {
+      display: none;
+    }
+  }
+</style>

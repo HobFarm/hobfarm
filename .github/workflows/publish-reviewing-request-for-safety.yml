@@ -1,15 +1,15 @@
-name: Publish I Want My MTV
+name: Publish Reviewing Request for Safety
 
 on:
   schedule:
-    - cron: "20 23 16 8 *"
+    - cron: "20 23 14 8 *"
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: publish-i-want-my-mtv
+  group: publish-reviewing-request-for-safety
   cancel-in-progress: false
 
 jobs:
@@ -23,14 +23,14 @@ jobs:
 
       - name: Publish when the scheduled time has arrived
         id: article
-        run: node scripts/publish-scheduled-i-want-my-mtv.mjs
+        run: node scripts/publish-scheduled-reviewing-request-for-safety.mjs
 
       - name: Remove the one-time schedule and trigger the production build
         if: steps.article.outputs.published == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git rm .github/workflows/publish-i-want-my-mtv.yml
-          git add src/content/articles/i-want-my-mtv.mdx
-          git commit -m "Publish I Want My MTV"
+          git rm .github/workflows/publish-reviewing-request-for-safety.yml
+          git add src/content/articles/reviewing-request-for-safety.mdx
+          git commit -m "Publish Reviewing Request for Safety"
           git push origin main

@@ -6,7 +6,7 @@
 - Route: `/articles/from-wetlands-to-the-wash/`
 - Source: `src/content/articles/from-wetlands-to-the-wash.mdx`
 - Status: `scheduled`
-- Publication time: August 15, 2026 at 4:20 p.m. PDT (`2026-08-15T16:20:00-07:00`)
+- Publication time: August 17, 2026 at 4:20 p.m. PDT (`2026-08-17T16:20:00-07:00`)
 - Predecessor: `I Want My MTV`, scheduled exactly 24 hours earlier
 - Feature length: 5,235 words under the article test's MDX count
 

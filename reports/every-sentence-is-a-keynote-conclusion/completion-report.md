@@ -6,9 +6,9 @@ Completed August 11, 2026 on `main`. No commit, push, deployment, CDN upload, or
 
 - Canonical route: `/articles/every-sentence-is-a-keynote-conclusion/`
 - Status: `scheduled`
-- Publication instant: August 19, 2026 at 4:20 p.m. America/Los_Angeles (`2026-08-19T16:20:00-07:00`)
-- Predecessor: `The Future Was Already There`, August 18, 2026 at 4:20 p.m. America/Los_Angeles
-- Interval: exactly 24 hours
+- Publication instant: August 15, 2026 at 4:20 p.m. America/Los_Angeles (`2026-08-15T16:20:00-07:00`)
+- Predecessor: `Reviewing Request for Safety`, scheduled for August 14, 2026 at 4:20 p.m. America/Los_Angeles
+- Intended interval: exactly 24 hours after that Workshop entry
 - Canonical Editorial section: Technology
 - Department and format: Workshop Notes / workshop note
 - Strict series membership: none
@@ -42,7 +42,7 @@ The production build printed the repository's existing Vite/esbuild deprecation 
 
 ## Visual QA
 
-The future date was temporarily moved into the past for a local build, then restored to August 19 before the final focused test. The simulated article returned HTTP 200 at desktop and mobile widths. Both views contained the correct title, seven figures, and seven text transcripts. Document width matched viewport width at 1440 and 390 pixels, so no horizontal overflow was detected.
+The future date was temporarily moved into the past for a local build, then restored to its scheduled state before the final focused test. It was later moved to August 15 as part of the trilogy follow-up sequence. The simulated article returned HTTP 200 at desktop and mobile widths. Both views contained the correct title, seven figures, and seven text transcripts. Document width matched viewport width at 1440 and 390 pixels, so no horizontal overflow was detected.
 
 The static-only QA server returned a 404 for `/api/auth/me` because it served `dist/client` without Cloudflare Pages Functions. No article image, stylesheet, script, or content request failed. The final source and production validation use the original scheduled timestamp.
 

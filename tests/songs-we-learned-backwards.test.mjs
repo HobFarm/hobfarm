@@ -19,7 +19,7 @@ function articleWordCount(source) {
   return body.split(/\s+/).filter(Boolean).length;
 }
 
-test("Songs We Learned Backwards owns the open August 17 publication slot", async () => {
+test("Songs We Learned Backwards owns the August 19 publication slot", async () => {
   const [article, predecessor, names] = await Promise.all([
     readFile(articlePath, "utf8"),
     readFile("src/content/articles/before-wavy-gravy-was-ice-cream.mdx", "utf8"),
@@ -28,10 +28,10 @@ test("Songs We Learned Backwards owns the open August 17 publication slot", asyn
 
   assert.equal(field(article, "title"), '"Songs We Learned Backwards"');
   assert.equal(field(article, "canonical"), '"/articles/songs-we-learned-backwards/"');
-  assert.equal(field(article, "pubDate"), "2026-08-17");
-  assert.equal(field(article, "publishedAt"), "2026-08-17T16:20:00-07:00");
+  assert.equal(field(article, "pubDate"), "2026-08-19");
+  assert.equal(field(article, "publishedAt"), "2026-08-19T16:20:00-07:00");
   assert.equal(field(article, "status"), "scheduled");
-  assert.equal(new Date(field(article, "publishedAt")).getUTCDay(), 1);
+  assert.equal(new Date(field(article, "publishedAt")).getUTCDay(), 3);
   assert.equal(
     Date.parse(field(article, "publishedAt")) - Date.parse(field(predecessor, "publishedAt")),
     24 * 60 * 60 * 1000,
@@ -41,7 +41,7 @@ test("Songs We Learned Backwards owns the open August 17 publication slot", asyn
   for (const name of names.filter((name) => /\.mdx?$/.test(name))) {
     if (name === "songs-we-learned-backwards.mdx") continue;
     const source = await readFile(`src/content/articles/${name}`, "utf8");
-    if (/^publishedAt:\s*2026-08-17T16:20:00-07:00$/m.test(source)) collisions.push(name);
+    if (/^publishedAt:\s*2026-08-19T16:20:00-07:00$/m.test(source)) collisions.push(name);
   }
   assert.deepEqual(collisions, []);
 });
@@ -99,15 +99,15 @@ test("the article preserves the personal argument, internal paths, and editorial
   assert.doesNotMatch(article, /Draft receipt|\[HERO|\[FIGURE|\[INTERNAL LINK/);
 });
 
-test("the one-time publisher protects the exact August 17 release", async () => {
+test("the one-time publisher protects the exact August 19 release", async () => {
   const [scheduler, workflow] = await Promise.all([
     readFile("scripts/publish-scheduled-songs-we-learned-backwards.mjs", "utf8"),
     readFile(".github/workflows/publish-songs-we-learned-backwards.yml", "utf8"),
   ]);
 
-  assert.match(scheduler, /expectedPublication = "2026-08-17T16:20:00-07:00"/);
+  assert.match(scheduler, /expectedPublication = "2026-08-19T16:20:00-07:00"/);
   assert.match(scheduler, /Date\.now\(\) < Date\.parse\(expectedPublication\)/);
-  assert.match(workflow, /cron: "20 23 17 8 \*"/);
+  assert.match(workflow, /cron: "20 23 19 8 \*"/);
   assert.match(workflow, /node scripts\/publish-scheduled-songs-we-learned-backwards\.mjs/);
   assert.match(workflow, /git rm \.github\/workflows\/publish-songs-we-learned-backwards\.yml/);
 });

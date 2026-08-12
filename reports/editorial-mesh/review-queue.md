@@ -36,6 +36,7 @@ Aliases resolve to one internal entity ID and do not generate parallel archive r
 | Christopher Knight | christopher-knight | North Pond Hermit |
 | Daisy Earles | daisy-earles | Hilda Schneider |
 | Dick Miller | dick-miller | Richard Miller |
+| Daniel Pink | daniel-pink | Daniel H. Pink |
 | Gala Dalí | gala-dali | Gala Dali |
 | Gracie Doll | gracie-doll | Frieda Schneider |
 | Harry Earles | harry-earles | Kurt Schneider |

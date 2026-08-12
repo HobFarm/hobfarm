@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-11T07:26:59.125Z",
-  "articleCount": 65,
+  "generatedAt": "2026-08-12T03:51:13.638Z",
+  "articleCount": 67,
   "articles": [
     {
       "slug": "1956-automation",
@@ -731,7 +731,7 @@
       "slug": "before-wavy-gravy-was-ice-cream",
       "title": "Before Wavy Gravy Was Ice Cream",
       "status": "scheduled",
-      "date": "2026-08-16T23:20:00.000Z",
+      "date": "2026-08-18T23:20:00.000Z",
       "legacy": {
         "category": "magazine-time-machine",
         "department": "magazine-time-machine",
@@ -1232,6 +1232,91 @@
       "ambiguityNotes": "The originating artifact is a paperback rather than a magazine, so canonical Magazine Time Machine membership is omitted while the legacy route remains."
     },
     {
+      "slug": "every-sentence-is-a-keynote-conclusion",
+      "title": "Every Sentence Is a Keynote Conclusion",
+      "status": "scheduled",
+      "date": "2026-08-15T23:20:00.000Z",
+      "legacy": {
+        "category": "",
+        "department": "workshop-notes",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "workshop-notes",
+        "entryType": "feature",
+        "format": "workshop-note"
+      },
+      "tags": [
+        "artificial intelligence",
+        "AI writing",
+        "publishing",
+        "ChatGPT",
+        "model collapse",
+        "synthetic data",
+        "editing",
+        "writing process"
+      ],
+      "relatedArticles": [
+        "reviewing-request-for-safety",
+        "the-card-catalog-started-talking-back",
+        "same-same-but-different",
+        "the-model-is-free",
+        "you-should-write-about-sharks"
+      ],
+      "centralObject": "The recurring rhetorical and narrative defaults that flatten AI-assisted writing, and the editorial workflow required to keep a point of view intact.",
+      "primarySection": "technology",
+      "subjects": [
+        "artificial-intelligence",
+        "publishing",
+        "model-behavior",
+        "publishing-workflow",
+        "synthetic-media"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [
+          "daniel-pink",
+          "kasey-steinbrinck"
+        ],
+        "organizations": [
+          "amazon",
+          "linkedin",
+          "openai",
+          "hobfarm"
+        ],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "chatgpt",
+          "artificial-intelligence"
+        ]
+      },
+      "sourceArtifacts": [
+        {
+          "id": "kasey-steinbrinck-linkedin-post-2026",
+          "type": "other",
+          "label": "Kasey Steinbrinck LinkedIn post about memorable AI-assisted work",
+          "publication": "LinkedIn",
+          "role": "origin"
+        },
+        {
+          "id": "daniel-pink-linkedin-post-2026",
+          "type": "other",
+          "label": "Daniel Pink LinkedIn post about AI and books",
+          "publication": "LinkedIn",
+          "role": "origin"
+        }
+      ],
+      "storyModes": [
+        "process-essay",
+        "systems-investigation",
+        "field-report"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
       "slug": "everything-is-still-loading",
       "title": "Everything Is Still Loading",
       "status": "published",
@@ -1379,7 +1464,7 @@
       "slug": "from-wetlands-to-the-wash",
       "title": "From Wetlands to the Wash",
       "status": "scheduled",
-      "date": "2026-08-15T23:20:00.000Z",
+      "date": "2026-08-17T23:20:00.000Z",
       "legacy": {
         "category": "magazine-time-machine",
         "department": "magazine-time-machine",
@@ -2254,7 +2339,7 @@
       "slug": "i-want-my-mtv",
       "title": "I Want My MTV",
       "status": "scheduled",
-      "date": "2026-08-14T23:20:00.000Z",
+      "date": "2026-08-16T23:20:00.000Z",
       "legacy": {
         "category": "magazine-time-machine",
         "department": "magazine-time-machine",
@@ -2851,6 +2936,100 @@
       "ambiguityNotes": ""
     },
     {
+      "slug": "reviewing-request-for-safety",
+      "title": "Reviewing Request for Safety",
+      "status": "scheduled",
+      "date": "2026-08-14T23:20:00.000Z",
+      "legacy": {
+        "category": "",
+        "department": "workshop-notes",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "workshop-notes",
+        "entryType": "feature",
+        "format": "workshop-note"
+      },
+      "tags": [
+        "artificial intelligence",
+        "instruction following",
+        "AI image generation",
+        "prompt engineering",
+        "schemas",
+        "safety systems",
+        "human oversight",
+        "creative workflows"
+      ],
+      "relatedArticles": [
+        "the-model-is-free",
+        "same-same-but-different",
+        "every-sentence-is-a-keynote-conclusion",
+        "the-card-catalog-started-talking-back"
+      ],
+      "centralObject": "How AI products transform, reprioritize, and sometimes replace a user's explicit request before producing an answer.",
+      "primarySection": "technology",
+      "subjects": [
+        "artificial-intelligence",
+        "model-behavior",
+        "platform-design",
+        "schema-design",
+        "prompt-engineering",
+        "human-agency",
+        "creative-workflows"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [
+          "dibakar-ghosh"
+        ],
+        "organizations": [
+          "meta",
+          "anthropic",
+          "openai",
+          "google",
+          "xai",
+          "microsoft",
+          "hobfarm"
+        ],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [
+          "how-to-geek"
+        ],
+        "technologies": [
+          "artificial-intelligence",
+          "ai-image-generation",
+          "meta-ai",
+          "chatgpt",
+          "claude",
+          "gemini",
+          "grok"
+        ]
+      },
+      "sourceArtifacts": [
+        {
+          "id": "meta-image-experiment-2026",
+          "type": "other",
+          "label": "Author-held Meta AI structured image experiment",
+          "role": "origin"
+        },
+        {
+          "id": "how-to-geek-ai-resume-comparison-2026",
+          "type": "other",
+          "label": "How-To Geek AI résumé comparison",
+          "publication": "how-to-geek",
+          "role": "organizing"
+        }
+      ],
+      "storyModes": [
+        "systems-investigation",
+        "process-essay",
+        "field-report"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
       "slug": "same-model-different-surface",
       "title": "Same Model, Different Surface",
       "status": "published",
@@ -2935,6 +3114,7 @@
         "production systems"
       ],
       "relatedArticles": [
+        "reviewing-request-for-safety",
         "invisible-variable",
         "same-model-different-surface",
         "i-could-be-playing-civilization",
@@ -3051,7 +3231,7 @@
       "slug": "songs-we-learned-backwards",
       "title": "Songs We Learned Backwards",
       "status": "scheduled",
-      "date": "2026-08-17T23:20:00.000Z",
+      "date": "2026-08-19T23:20:00.000Z",
       "legacy": {
         "category": "magazine-time-machine",
         "department": "magazine-time-machine",
@@ -3514,7 +3694,7 @@
       "slug": "the-future-was-already-there",
       "title": "The Future Was Already There",
       "status": "scheduled",
-      "date": "2026-08-18T23:20:00.000Z",
+      "date": "2026-08-20T23:20:00.000Z",
       "legacy": {
         "category": "",
         "department": "before-after-eras",
@@ -3605,6 +3785,7 @@
         "production systems"
       ],
       "relatedArticles": [
+        "reviewing-request-for-safety",
         "same-same-but-different",
         "you-do-not-own-the-ai-you-pay-for",
         "too-big-for-the-box",
@@ -3972,7 +4153,7 @@
     {
       "slug": "trash-mountain",
       "title": "We Built a Mountain and It Moved",
-      "status": "scheduled",
+      "status": "published",
       "date": "2026-08-11T23:20:00.000Z",
       "legacy": {
         "category": "research",

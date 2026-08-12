@@ -1,12 +1,12 @@
 # Current Article Taxonomy Audit
 
-This inventory records 65 published or scheduled articles. The one draft placeholder is excluded.
+This inventory records 67 published or scheduled articles. The one draft placeholder is excluded.
 
 The legacy model mixes broad desks, formats, imprints, projects, series, and workflow programs. These fields remain in place for route and template compatibility, but they no longer define the canonical semantic layer.
 
 ## category
 
-60 of 65 articles use this field.
+60 of 67 articles use this field.
 
 | Value | Articles |
 | --- | ---: |
@@ -21,19 +21,19 @@ The legacy model mixes broad desks, formats, imprints, projects, series, and wor
 
 ## department
 
-65 of 65 articles use this field.
+67 of 67 articles use this field.
 
 | Value | Articles |
 | --- | ---: |
 | essays-arguments | 23 |
-| workshop-notes | 18 |
+| workshop-notes | 20 |
 | magazine-time-machine | 15 |
 | hobfarm-presents | 8 |
 | before-after-eras | 1 |
 
 ## series
 
-23 of 65 articles use this field.
+23 of 67 articles use this field.
 
 | Value | Articles |
 | --- | ---: |
@@ -48,7 +48,7 @@ The legacy model mixes broad desks, formats, imprints, projects, series, and wor
 
 ## presentsSeries
 
-8 of 65 articles use this field.
+8 of 67 articles use this field.
 
 | Value | Articles |
 | --- | ---: |
@@ -56,30 +56,30 @@ The legacy model mixes broad desks, formats, imprints, projects, series, and wor
 
 ## workshopProgram
 
-3 of 65 articles use this field.
+5 of 67 articles use this field.
 
 | Value | Articles |
 | --- | ---: |
+| workshop-notes | 3 |
 | stylefusion | 2 |
-| workshop-notes | 1 |
 
 ## entryType
 
-36 of 65 articles use this field.
+38 of 67 articles use this field.
 
 | Value | Articles |
 | --- | ---: |
-| feature | 35 |
+| feature | 37 |
 | connection-map | 1 |
 
 ## format
 
-65 of 65 articles use this field.
+67 of 67 articles use this field.
 
 | Value | Articles |
 | --- | ---: |
 | article | 48 |
-| workshop-note | 17 |
+| workshop-note | 19 |
 
 ## Migration finding
 

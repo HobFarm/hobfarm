@@ -22,7 +22,7 @@
 - Department: Magazine Time Machine
 - Final deck: “Before the retired Ben & Jerry's flavor, Hugh Romney and Bonnie Beecher moved through poetry, television, improvisation, buses, ballrooms, and an actual hog farm.”
 - Body word count by the repository test method: 4,709
-- Final publication timestamp: `2026-08-16T16:20:00-07:00`
+- Final publication timestamp: `2026-08-18T16:20:00-07:00`
 - Timezone and local clock: America/Los_Angeles, 4:20 p.m. PDT
 
 The user's title replaces the older title fixed inside the pack. The opening now says directly that Ben & Jerry's named the flavor for Hugh Romney's existing Wavy Gravy persona. It includes Ben Cohen's San Francisco approach, the 1993, 2001, and 2005 flavor dates, Cherry Garcia, Phish Food, related pop-culture flavors, and the company's mix of showmanship and public causes.
@@ -31,17 +31,17 @@ The user's title replaces the older title fixed inside the pack. The opening now
 
 - Predecessor title: **From Wetlands to the Wash**
 - Predecessor route: `/articles/from-wetlands-to-the-wash/`
-- Predecessor timestamp: `2026-08-15T16:20:00-07:00`
-- New article timestamp: `2026-08-16T16:20:00-07:00`
+- Predecessor timestamp: `2026-08-17T16:20:00-07:00`
+- New article timestamp: `2026-08-18T16:20:00-07:00`
 - Verified difference: exactly 86,400,000 milliseconds, or 24 hours
-- Slot collision result: no other article uses the August 16 timestamp
+- Slot collision result: no other article uses the August 18 timestamp
 - Previous/next behavior: the shared publication-order code sorts by `publishedAt`; at release, Wetlands is the immediately older article
 - Future-date visibility: the restored scheduled entry is excluded by `getPublishedArticles()` until its timestamp
 - RSS and sitemap: both use the same published-article filter, so the scheduled article stays absent before release and enters after release
 - Related content: frontmatter selects Wetlands and **Fear and Loathing After the American Dream**
-- Scheduled publication: one-time GitHub Actions workflow at `20 23 16 8 *`, which is 4:20 p.m. PDT on August 16, 2026
+- Scheduled publication: one-time GitHub Actions workflow at `20 23 18 8 *`, which is 4:20 p.m. PDT on August 18, 2026
 
-The pack expected August 17 only if the predecessor proved to be August 16. The repository copy of Wetlands is August 15, so August 16 is the controlling result.
+The article was later moved to August 18 as part of a user-directed queue change that reserves August 14 for a new Workshop entry and places *Every Sentence Is a Keynote Conclusion* on August 15.
 
 ## 4. Editorial implementation
 
@@ -239,13 +239,13 @@ No predecessor metadata or unrelated page was changed.
 | Media | Playwright and public URL checks | all article images loaded; PBS inserted an iframe from keyboard activation; Spotify and PBS fallbacks present |
 | Accessibility | semantic/DOM and keyboard audit | no heading skips, duplicate IDs, broken images, or horizontal overflow; all diagrams have live-text equivalents |
 | Em-dash scan | `rg` across article and article components | none |
-| Schedule restoration | direct frontmatter check after QA | `2026-08-16T16:20:00-07:00`, `status: scheduled` |
+| Schedule restoration | direct frontmatter check after QA | `2026-08-18T16:20:00-07:00`, `status: scheduled` |
 
 The full-test failures predate this work in the current tree. Their tests still expect one-time workflow files that have already been removed. This task did not recreate or change those unrelated workflows.
 
 ## 14. Browser QA
 
-The future-dated route was built with a temporary past timestamp for local inspection, including a second visual pass after the hero replacement. The source was restored to the exact August 16 schedule before final checks. A clean scheduled-state build used a new output directory because the normal local `dist` retained the temporary QA route as a stale generated file and environment policy blocked destructive cleanup. The clean output omitted the route and all feed, sitemap, and search references. No preview was deployed.
+The future-dated route was built with a temporary past timestamp for local inspection, including a second visual pass after the hero replacement. The source was restored to the scheduled state before final checks and later moved to August 18 in the publication queue. A clean scheduled-state build used a new output directory because the normal local `dist` retained the temporary QA route as a stale generated file and environment policy blocked destructive cleanup. The clean output omitted the route and all feed, sitemap, and search references. No preview was deployed.
 
 | Width / mode | Result | Screenshot path | Notes |
 | --- | --- | --- | --- |

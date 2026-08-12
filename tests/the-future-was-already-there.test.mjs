@@ -20,7 +20,7 @@ function articleWordCount(source) {
   return body.split(/\s+/).filter(Boolean).length;
 }
 
-test("The Future Was Already There owns the August 18 publication slot", async () => {
+test("The Future Was Already There owns the August 20 publication slot", async () => {
   const [article, predecessor, names] = await Promise.all([
     readFile(articlePath, "utf8"),
     readFile("src/content/articles/songs-we-learned-backwards.mdx", "utf8"),
@@ -29,8 +29,8 @@ test("The Future Was Already There owns the August 18 publication slot", async (
 
   assert.equal(field(article, "title"), '"The Future Was Already There"');
   assert.equal(field(article, "canonical"), '"/articles/the-future-was-already-there/"');
-  assert.equal(field(article, "pubDate"), "2026-08-18");
-  assert.equal(field(article, "publishedAt"), "2026-08-18T16:20:00-07:00");
+  assert.equal(field(article, "pubDate"), "2026-08-20");
+  assert.equal(field(article, "publishedAt"), "2026-08-20T16:20:00-07:00");
   assert.equal(field(article, "status"), "scheduled");
   assert.equal(
     Date.parse(field(article, "publishedAt")) - Date.parse(field(predecessor, "publishedAt")),
@@ -41,7 +41,7 @@ test("The Future Was Already There owns the August 18 publication slot", async (
   for (const name of names.filter((name) => /\.mdx?$/.test(name))) {
     if (name === "the-future-was-already-there.mdx") continue;
     const source = await readFile(`src/content/articles/${name}`, "utf8");
-    if (/^publishedAt:\s*2026-08-18T16:20:00-07:00$/m.test(source)) collisions.push(name);
+    if (/^publishedAt:\s*2026-08-20T16:20:00-07:00$/m.test(source)) collisions.push(name);
   }
   assert.deepEqual(collisions, []);
 });
@@ -87,15 +87,15 @@ test("multimedia uses original graphics and click-to-load author video", async (
   assert.doesNotMatch(article, /<img[^>]+(?:pressherald|thebollard|mikerichart)/i);
 });
 
-test("the one-time publisher protects the exact August 18 release", async () => {
+test("the one-time publisher protects the exact August 20 release", async () => {
   const [scheduler, workflow] = await Promise.all([
     readFile("scripts/publish-scheduled-the-future-was-already-there.mjs", "utf8"),
     readFile(".github/workflows/publish-the-future-was-already-there.yml", "utf8"),
   ]);
 
-  assert.match(scheduler, /expectedPublication = "2026-08-18T16:20:00-07:00"/);
+  assert.match(scheduler, /expectedPublication = "2026-08-20T16:20:00-07:00"/);
   assert.match(scheduler, /Date\.now\(\) < Date\.parse\(expectedPublication\)/);
-  assert.match(workflow, /cron: "20 23 18 8 \*"/);
+  assert.match(workflow, /cron: "20 23 20 8 \*"/);
   assert.match(workflow, /node scripts\/publish-scheduled-the-future-was-already-there\.mjs/);
   assert.match(workflow, /git rm \.github\/workflows\/publish-the-future-was-already-there\.yml/);
 });

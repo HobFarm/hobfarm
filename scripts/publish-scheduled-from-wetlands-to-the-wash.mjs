@@ -2,7 +2,7 @@ import { appendFile, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 
 const articlePath = resolve("src/content/articles/from-wetlands-to-the-wash.mdx");
-const expectedPublication = "2026-08-15T16:20:00-07:00";
+const expectedPublication = "2026-08-17T16:20:00-07:00";
 const outputPath = process.env.GITHUB_OUTPUT;
 const article = await readFile(articlePath, "utf8");
 

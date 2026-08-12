@@ -274,6 +274,21 @@ export const editorialMeshBackfill = {
       centralObject: "The change from a finished game in a box to a distributed service that is always still loading.",
     },
   ),
+  "every-sentence-is-a-keynote-conclusion": record(
+    "technology",
+    ["artificial-intelligence", "publishing", "model-behavior", "publishing-workflow", "synthetic-media"],
+    {
+      people: ["daniel-pink", "kasey-steinbrinck"],
+      organizations: ["amazon", "linkedin", "openai", "hobfarm"],
+      technologies: ["chatgpt", "artificial-intelligence"],
+      sourceArtifacts: [
+        { id: "kasey-steinbrinck-linkedin-post-2026", type: "other", label: "Kasey Steinbrinck LinkedIn post about memorable AI-assisted work", publication: "LinkedIn", role: "origin" },
+        { id: "daniel-pink-linkedin-post-2026", type: "other", label: "Daniel Pink LinkedIn post about AI and books", publication: "LinkedIn", role: "origin" },
+      ],
+      storyModes: ["process-essay", "systems-investigation", "field-report"],
+      centralObject: "The recurring rhetorical and narrative defaults that flatten AI-assisted writing, and the editorial workflow required to keep a point of view intact.",
+    },
+  ),
   "fear-and-loathing-after-the-american-dream": record(
     "culture",
     ["personal-history", "road-culture", "political-culture", "urban-history", "place-memory"],
@@ -569,6 +584,22 @@ export const editorialMeshBackfill = {
       technologies: ["model-apis", "comfyui", "stylefusion"],
       storyModes: ["systems-investigation", "field-report"],
       centralObject: "A production-oriented way to evaluate AI models, platforms, wrappers, routes, and accepted-result cost.",
+    },
+  ),
+  "reviewing-request-for-safety": record(
+    "technology",
+    ["artificial-intelligence", "model-behavior", "platform-design", "schema-design", "prompt-engineering", "human-agency", "creative-workflows"],
+    {
+      people: ["dibakar-ghosh"],
+      organizations: ["meta", "anthropic", "openai", "google", "xai", "microsoft", "hobfarm"],
+      publications: ["how-to-geek"],
+      technologies: ["artificial-intelligence", "ai-image-generation", "meta-ai", "chatgpt", "claude", "gemini", "grok"],
+      sourceArtifacts: [
+        { id: "meta-image-experiment-2026", type: "other", label: "Author-held Meta AI structured image experiment", role: "origin" },
+        { id: "how-to-geek-ai-resume-comparison-2026", type: "other", label: "How-To Geek AI résumé comparison", publication: "how-to-geek", role: "organizing" },
+      ],
+      storyModes: ["systems-investigation", "process-essay", "field-report"],
+      centralObject: "How AI products transform, reprioritize, and sometimes replace a user's explicit request before producing an answer.",
     },
   ),
   "sharksploitation": record(

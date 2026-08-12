@@ -2,7 +2,7 @@ name: Publish Every Sentence Is a Keynote Conclusion
 
 on:
   schedule:
-    - cron: "20 23 19 8 *"
+    - cron: "20 23 15 8 *"
   workflow_dispatch:
 
 permissions:

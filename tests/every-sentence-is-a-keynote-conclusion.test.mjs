@@ -23,20 +23,20 @@ function articleWordCount(source) {
   return body.split(/\s+/).filter(Boolean).length;
 }
 
-test("Every Sentence Is a Keynote Conclusion owns the August 19 publication slot", async () => {
-  const [article, predecessor, names] = await Promise.all([
+test("Every Sentence Is a Keynote Conclusion owns the August 15 follow-up slot", async () => {
+  const [article, trilogyAnchor, names] = await Promise.all([
     readFile(articlePath, "utf8"),
-    readFile("src/content/articles/the-future-was-already-there.mdx", "utf8"),
+    readFile("src/content/articles/reviewing-request-for-safety.mdx", "utf8"),
     readdir("src/content/articles"),
   ]);
 
   assert.equal(field(article, "title"), '"Every Sentence Is a Keynote Conclusion"');
   assert.equal(field(article, "canonical"), '"/articles/every-sentence-is-a-keynote-conclusion/"');
-  assert.equal(field(article, "pubDate"), "2026-08-19");
-  assert.equal(field(article, "publishedAt"), "2026-08-19T16:20:00-07:00");
+  assert.equal(field(article, "pubDate"), "2026-08-15");
+  assert.equal(field(article, "publishedAt"), "2026-08-15T16:20:00-07:00");
   assert.equal(field(article, "status"), "scheduled");
   assert.equal(
-    Date.parse(field(article, "publishedAt")) - Date.parse(field(predecessor, "publishedAt")),
+    Date.parse(field(article, "publishedAt")) - Date.parse(field(trilogyAnchor, "publishedAt")),
     24 * 60 * 60 * 1000,
   );
 
@@ -44,7 +44,7 @@ test("Every Sentence Is a Keynote Conclusion owns the August 19 publication slot
   for (const name of names.filter((name) => /\.mdx?$/.test(name))) {
     if (name === `${slug}.mdx`) continue;
     const source = await readFile(`src/content/articles/${name}`, "utf8");
-    if (/^publishedAt:\s*2026-08-19T16:20:00-07:00$/m.test(source)) collisions.push(name);
+    if (/^publishedAt:\s*2026-08-15T16:20:00-07:00$/m.test(source)) collisions.push(name);
   }
   assert.deepEqual(collisions, []);
 });
@@ -97,15 +97,15 @@ test("the visual package is original, readable, and complete", async () => {
   assert.ok(socialWebp.size > 20_000);
 });
 
-test("the one-time publisher protects the exact August 19 release", async () => {
+test("the one-time publisher protects the exact August 15 release", async () => {
   const [scheduler, workflow] = await Promise.all([
     readFile("scripts/publish-scheduled-every-sentence-is-a-keynote-conclusion.mjs", "utf8"),
     readFile(".github/workflows/publish-every-sentence-is-a-keynote-conclusion.yml", "utf8"),
   ]);
 
-  assert.match(scheduler, /expectedPublication = "2026-08-19T16:20:00-07:00"/);
+  assert.match(scheduler, /expectedPublication = "2026-08-15T16:20:00-07:00"/);
   assert.match(scheduler, /Date\.now\(\) < Date\.parse\(expectedPublication\)/);
-  assert.match(workflow, /cron: "20 23 19 8 \*"/);
+  assert.match(workflow, /cron: "20 23 15 8 \*"/);
   assert.match(workflow, /node scripts\/publish-scheduled-every-sentence-is-a-keynote-conclusion\.mjs/);
   assert.match(workflow, /git rm \.github\/workflows\/publish-every-sentence-is-a-keynote-conclusion\.yml/);
 });

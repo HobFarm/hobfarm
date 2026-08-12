@@ -27,8 +27,8 @@ test("article preserves the protected route, release slot, and longform brief", 
 
   assert.equal(field(article, "title"), '"I Want My MTV"');
   assert.equal(field(article, "canonical"), '"/articles/i-want-my-mtv/"');
-  assert.equal(field(article, "pubDate"), "2026-08-14");
-  assert.equal(field(article, "publishedAt"), "2026-08-14T16:20:00-07:00");
+  assert.equal(field(article, "pubDate"), "2026-08-16");
+  assert.equal(field(article, "publishedAt"), "2026-08-16T16:20:00-07:00");
   assert.equal(field(article, "status"), "scheduled");
   assert.equal(field(article, "draft"), "false");
   assert.match(article, /MTV did not disappear\. It became raw material\./);
@@ -43,7 +43,7 @@ test("article preserves the protected route, release slot, and longform brief", 
 test("the one-time publisher protects the next vacant standard slot", async () => {
   const [article, predecessor, scheduler, workflow] = await Promise.all([
     readFile(articlePath, "utf8"),
-    readFile("src/content/articles/the-model-is-free.mdx", "utf8"),
+    readFile("src/content/articles/every-sentence-is-a-keynote-conclusion.mdx", "utf8"),
     readFile("scripts/publish-scheduled-i-want-my-mtv.mjs", "utf8"),
     readFile(".github/workflows/publish-i-want-my-mtv.yml", "utf8"),
   ]);
@@ -51,10 +51,10 @@ test("the one-time publisher protects the next vacant standard slot", async () =
   const release = Date.parse(field(article, "publishedAt"));
   const priorStandardSlot = Date.parse(field(predecessor, "publishedAt"));
   assert.equal(release - priorStandardSlot, 24 * 60 * 60 * 1000);
-  assert.match(scheduler, /expectedPublication = "2026-08-14T16:20:00-07:00"/);
+  assert.match(scheduler, /expectedPublication = "2026-08-16T16:20:00-07:00"/);
   assert.match(scheduler, /Date\.now\(\) < Date\.parse\(expectedPublication\)/);
   assert.match(scheduler, /status:\\s\*scheduled/);
-  assert.match(workflow, /cron: "20 23 14 8 \*"/);
+  assert.match(workflow, /cron: "20 23 16 8 \*"/);
   assert.match(workflow, /git rm \.github\/workflows\/publish-i-want-my-mtv\.yml/);
 });
 

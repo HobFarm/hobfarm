@@ -1,0 +1,350 @@
+---
+title: "Reviewing Request for Safety"
+excerpt: "A controlled image test and an ordinary résumé revision reveal the hidden interpretation layer between a clear request and the result an AI product decides to make."
+dek: "AI does not only answer the request. It decides what the request is."
+description: "A Workshop investigation of instruction priority, prompt transformation, safety substitution, correction cost, and the human work required to verify what an AI product actually followed."
+author: "d00d"
+tags:
+  - artificial intelligence
+  - instruction following
+  - AI image generation
+  - prompt engineering
+  - schemas
+  - safety systems
+  - human oversight
+  - creative workflows
+department: workshop-notes
+format: workshop-note
+workshopProgram: workshop-notes
+entryType: feature
+hero: "https://cdn.hob.farm/articles/reviewing-request-for-safety/hero-v2.webp"
+heroImage: "https://cdn.hob.farm/articles/reviewing-request-for-safety/hero-v2.webp"
+socialImage: "https://cdn.hob.farm/articles/reviewing-request-for-safety/social-v2.webp"
+thumbnail: "https://cdn.hob.farm/articles/reviewing-request-for-safety/social-v2.webp"
+heroAlt: "A systems diagram shows an original request entering review layers, where requirements are reprioritized before an altered approved output emerges."
+socialCaption: "The schema was there. The system decided which parts mattered."
+canonical: "/articles/reviewing-request-for-safety/"
+pubDate: 2026-08-14
+publishedAt: 2026-08-14T16:20:00-07:00
+status: scheduled
+featured: false
+coverStory: false
+draft: false
+relatedArticles:
+  - the-model-is-free
+  - same-same-but-different
+  - every-sentence-is-a-keynote-conclusion
+  - the-card-catalog-started-talking-back
+relatedWorkshop:
+  - /workshop/stylefusion/
+workshopCTA:
+  label: "Inspect the StyleFusion workflow"
+  href: "/workshop/stylefusion/"
+supportCTA:
+  label: "Support independent publishing"
+  href: "/support/"
+rightsNote: "The seven system graphics are original HobFarm work. The six comparison images are author-held AI outputs from a documented experiment. The supplied résumé screenshots remain reference-only and are not reproduced. Product names and short interface phrases appear for factual analysis and criticism."
+sourceNotes:
+  - label: "I had Claude, ChatGPT, and Gemini build my resume"
+    url: "https://www.howtogeek.com/i-had-claude-chatgpt-and-gemini-build-my-resume-our-recruiter-told-me-this-one-was-the-best/"
+    note: "Dibakar Ghosh's August 8, 2026 How-To Geek article supplies the résumé case, including the 23-question intake, Claude's article-count error, the literal magazine treatment, correction fatigue, and recruiter ranking. Checked August 11, 2026."
+    type: participant-recollection
+  - label: "Introducing Muse Image and Muse Video"
+    url: "https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/"
+    note: "Meta's July 7, 2026 product announcement describes Muse Image as agentic and capable of using tools, refining a draft, editing locally, or generating again. It does not establish which architecture produced the author's earlier interaction. Checked August 11, 2026."
+    type: promotional-claim
+  - label: "Llama Guard: LLM-based Input-Output Safeguard"
+    url: "https://ai.meta.com/research/publications/llama-guard-llm-based-input-output-safeguard-for-human-ai-conversations/"
+    note: "Meta's research documents prompt and response classification as a safety-layer pattern. The article does not claim that this consumer Meta AI session used Llama Guard."
+    type: documented-fact
+  - label: "Improving instruction hierarchy in frontier LLMs"
+    url: "https://openai.com/index/instruction-hierarchy-challenge/"
+    note: "OpenAI's March 10, 2026 research page documents its system, developer, user, and tool instruction order. It is an OpenAI example, not a universal diagram of every product."
+    type: documented-fact
+  - label: "DALL-E 3"
+    url: "https://openai.com/index/dall-e-3/"
+    note: "OpenAI's 2023 announcement is used as a historical example of a product generating a detailed prompt before image generation."
+    type: promotional-claim
+  - label: "FLUX.2 prompting guide"
+    url: "https://docs.bfl.ai/guides/prompting_guide_flux2"
+    note: "Black Forest Labs documents JSON prompting and an optional prompt-upsampling step that adds detail and context. Preserving intent is the vendor's stated objective, not proof of every result. Checked August 11, 2026."
+    type: promotional-claim
+  - label: "Vertex AI Prompt Optimizer"
+    url: "https://cloud.google.com/blog/products/ai-machine-learning/announcing-vertex-ai-prompt-optimizer"
+    note: "Google describes an optimizer that paraphrases instructions and an evaluator that selects candidates against chosen metrics."
+    type: promotional-claim
+  - label: "FollowBench"
+    url: "https://aclanthology.org/2024.acl-long.257/"
+    note: "The ACL 2024 paper evaluates fine-grained content, situation, style, format, and example constraints at multiple difficulty levels."
+    type: documented-fact
+  - label: "Lost in the Middle"
+    url: "https://arxiv.org/abs/2307.03172"
+    note: "The paper demonstrates that relevant-information position can affect long-context performance. It does not diagnose the Claude résumé session."
+    type: documented-fact
+  - label: "Reasoning models do not always say what they think"
+    url: "https://www.anthropic.com/research/reasoning-models-dont-say-think"
+    note: "Anthropic's research supports caution about treating reported reasoning as a faithful explanation. It does not prove that Meta's displayed narration was false."
+    type: documented-fact
+  - label: "NIST AI RMF: Generative AI Profile"
+    url: "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence"
+    note: "NIST's voluntary cross-sector profile supports documented evaluation, verification, validation, and human review across generative-AI design and use. Checked August 11, 2026."
+    type: documented-fact
+  - label: "The Impact of Generative AI on Critical Thinking"
+    url: "https://www.microsoft.com/en-us/research/publication/the-impact-of-generative-ai-on-critical-thinking-self-reported-reductions-in-cognitive-effort-and-confidence-effects-from-a-survey-of-knowledge-workers/"
+    note: "The CHI 2025 study surveyed 319 knowledge workers about 936 examples. Its confidence finding is a self-reported association, while its task-stewardship model helps describe the work of verification and integration."
+    type: documented-fact
+  - label: "Generative AI enhances individual creativity but reduces the collective diversity of novel content"
+    url: "https://www.science.org/doi/10.1126/sciadv.adn5290"
+    note: "The Science Advances study found higher individual scores in some short-story conditions alongside greater similarity among outputs. The article does not universalize that result beyond the experiment."
+    type: documented-fact
+mesh:
+  section: technology
+  subjects:
+    - artificial-intelligence
+    - model-behavior
+    - platform-design
+    - schema-design
+    - prompt-engineering
+    - human-agency
+    - creative-workflows
+  series: []
+  entities:
+    people:
+      - dibakar-ghosh
+    organizations:
+      - meta
+      - anthropic
+      - openai
+      - google
+      - xai
+      - microsoft
+      - hobfarm
+    places: []
+    events: []
+    works: []
+    publications:
+      - how-to-geek
+    technologies:
+      - artificial-intelligence
+      - ai-image-generation
+      - meta-ai
+      - chatgpt
+      - claude
+      - gemini
+      - grok
+  sourceArtifacts:
+    - id: meta-image-experiment-2026
+      type: other
+      label: "Author-held Meta AI structured image experiment"
+      role: origin
+    - id: how-to-geek-ai-resume-comparison-2026
+      type: other
+      label: "How-To Geek AI résumé comparison"
+      publication: how-to-geek
+      role: organizing
+  storyModes:
+    - systems-investigation
+    - process-essay
+    - field-report
+---
+
+import ReviewFigure from "@/components/articles/reviewing-request-for-safety/ReviewFigure.astro";
+
+> **Research and product documentation checked August 11, 2026.** This article describes one controlled image comparison, one published résumé experiment, and documented product patterns. It does not claim to expose any provider's private reasoning or production architecture.
+
+I gave an image generator a structured request. Not a poetic paragraph. Not three adjectives and a prayer. A JSON object with fields for the subject, pose, wardrobe, camera, lighting, scene, and style.
+
+The pose was explicit. An adult woman was kneeling on one knee, with both knees deeply bent and her hips lowered toward her heels. The request repeated that condition in ordinary language and structured fields.
+
+Meta AI described the requested pose correctly while it worked. Its displayed process narration said it was positioning the subject in a low kneeling pose, then refining the shot to show her from head to feet while kneeling. Later, the displayed narration changed the task. It swapped clothing, chose a neutral pose, and regenerated a standing figure. The final response acknowledged the substitution: it had kept the figure standing and made the clothing more modest “to get it through.”
+
+The strongest explanation for that decision is also the obvious one. A safety system may have interpreted the combination of pose, skirt, tights, and stylization as risky. A responsible product should prefer an unnecessary restriction over producing sexualized content involving an ambiguous subject. This article is not an argument for evading that policy, and it does not need the policy decision to be absurd before the product behavior becomes worth examining.
+
+The problem is what happened after the decision.
+
+The product did not clearly stop, identify the contested fields, and ask whether I wanted a safer revision. It quietly adopted a different schema, generated from it, checked the result against the altered brief, and presented the nearby output as usable. The original schema remained visible in the conversation, but it no longer governed the result.
+
+**The schema was there. The system decided which parts mattered.**
+
+<ReviewFigure kind="two-schemas" />
+
+## A request and a product interpretation are different objects
+
+[Same Same, But Different](/articles/same-same-but-different/) separated models from the products and production routes built around them. [The Model Is Free. The Computer Isn't.](/articles/the-model-is-free/) separated access to model weights from ownership of the workflow. This is the next boundary in the same sequence.
+
+AI does not only answer the request. It decides what the request is.
+
+That decision can happen in several places. A product may place system or developer instructions above the user's message. It may rewrite or expand a prompt. It may classify an input, inspect an output, select among candidates, invoke tools, or try another generation. It may optimize against a rubric the user never sees. A conversation can feel like one direct exchange while the product runs a small bureaucracy behind the window.
+
+There are legitimate reasons for that bureaucracy. Products need security boundaries. They need to prevent instructions from hostile documents from overriding the user. They need to handle unlawful and dangerous requests. They need to turn casual language into the parameters a model can use. They may need to select a result that is coherent enough to show.
+
+But every useful intervention introduces another author of the effective request.
+
+The user's schema says what should be made. The product's schema says what it has decided to make. When those objects diverge, the interface needs a way to show the difference.
+
+## The small experiment
+
+The image test is deliberately narrow. I submitted the same structured creative target through three products. The retained Meta sequence contains one kneeling intermediate followed by three standing variations, including the standing result the product presented after changing the task. A ChatGPT control and a Grok control produced kneeling figures. The retained xAI request configuration establishes that the full JSON string was passed as the prompt to `grok-imagine-image-2.0`. It is request-boundary evidence. It is not Grok's internal reasoning trace.
+
+<ReviewFigure kind="experiment" />
+
+Six images cannot rank three providers. They cannot establish a stable policy difference, a general model capability, or a failure rate. Different products can route requests through different models, safety layers, transformations, and random seeds. A benchmark would require repeated trials, controlled settings, documented versions, and a scoring method established before seeing the outputs.
+
+This comparison does something smaller. It shows that the pose was expressible, that the structured request could produce it, and that one product's displayed workflow changed the governing requirement. The specific character leaves the argument here. The useful object is the decision path.
+
+<ReviewFigure kind="priority-inversion" />
+
+An instruction-priority inversion occurs when a secondary interpretation becomes the primary job. A product can preserve the colors, background, lighting, clothing motifs, and overall polish while failing the one condition that organized the composition. It has followed many instructions. It has not followed the request.
+
+That distinction matters because ordinary quality language hides it. “Close,” “polished,” and “usable” describe the artifact without telling us whether the artifact satisfies the task.
+
+## The résumé had no safety problem
+
+The image case permits an endless argument about moderation. Dibakar Ghosh's August 8 How-To Geek résumé experiment removes that escape route.[^resume]
+
+Ghosh gave Claude the job posting, asked it to interview him with at least 20 questions, and answered 23. Claude searched his article catalog, inserted a count of 338 pieces that was too low, and framed him as “already inside the network” of the publications he was targeting. Ghosh noticed the overreach but left it in while evaluating the result.
+
+Then he asked for a more visually appealing résumé, something with the visual intelligence of a tech magazine. Claude made the reference literal. It added magazine furniture such as “Issue No.” and “In This Issue.” The article calls the result a case of “malicious compliance.”[^resume]
+
+The user's hierarchy was ordinary:
+
+```text
+PRIMARY GOAL
+Make the résumé more visually appealing.
+
+REFERENCE
+Borrow the visual intelligence of a tech magazine.
+
+CONSTRAINT
+It must remain immediately legible as a résumé.
+```
+
+The product behaved as if the hierarchy were:
+
+```text
+PRIMARY CONCEPT
+Make a tech magazine.
+
+IMPLEMENTATION
+Add issue labels and editorial furniture.
+
+CONTENT
+Fit the résumé into that concept.
+```
+
+Claude did not lack context. It had gathered an extraordinary amount. The error was not simply omission. It gave the wrong instruction too much governing power.
+
+Research on long-context use gives us a reason to distrust the folk belief that more context automatically fixes this. *Lost in the Middle* found that performance can change depending on where relevant information appears in a long context.[^middle] That study does not diagnose Ghosh's session. It establishes the narrower point that possession of information does not guarantee correct use or priority.
+
+The recruiter in Ghosh's experiment eventually ranked the first ChatGPT résumé first, the minimal ChatGPT revision second, Claude's in the middle, and Gemini's last.[^resume] That ranking does not reveal an objectively best design. It reveals another hidden schema. The author, the model, and the recruiter may each optimize a different definition of good.
+
+## The product stack between request and result
+
+None of this requires a secret conspiracy. The transformation layer is already documented in public product material.
+
+OpenAI describes an instruction hierarchy in which system instructions outrank developer instructions, which outrank user instructions, which outrank tool output.[^hierarchy] Its 2023 DALL-E 3 announcement described ChatGPT generating tailored detailed prompts before image generation.[^dalle] Black Forest Labs currently documents structured JSON for complex FLUX.2 work and an optional prompt-upsampling feature that adds detail and context.[^flux] Google has described a Prompt Optimizer that generates paraphrased instructions, evaluates candidates against selected metrics, and chooses a prompt.[^optimizer]
+
+These features can be excellent. A terse request may need expansion. A hostile webpage should not gain control of an agent. A production system should compare candidates. Safety systems should inspect both input and output. Meta's Llama Guard research explicitly describes prompt and response classification, although there is no basis for claiming that the consumer session here used Llama Guard.[^guard]
+
+Meta's July 2026 Muse Image announcement goes further. Meta describes an agentic image system that can use tools, inspect and refine a draft, make a local edit, or generate again.[^muse] That is current architecture context, not proof that Muse produced my earlier experiment or that its published description explains the observed sequence.
+
+<ReviewFigure kind="interpretation-stack" />
+
+The lesson is not that products rewrite prompts and therefore cannot be trusted. The lesson is that transformation is part of the product. It should be evaluated with the same seriousness as the model.
+
+If the interface expands a request, what did it add? If policy changes a field, which field changed? If an evaluator selects a candidate, what metric won? If a tool contributes new facts, where did they come from? If the product cannot expose a full internal route, it can still preserve a useful requirements trace at the boundary.
+
+## Three failures that look like one
+
+The finished artifact rarely tells us where the miss occurred. Three different failures can all produce the wrong pose, the wrong résumé, or the wrong paragraph.
+
+The first is **execution failure**. The effective request remains correct, but the model cannot reliably render it. Hands merge, spatial relationships collapse, a number is copied incorrectly, or a required field disappears. The remedy is better generation, another model, a tool, or a constrained retry. Nothing in this article makes model capability irrelevant.
+
+The second is **interpretation failure**. The product misunderstands a relationship in the request. It treats a reference as the concept, a preference as a mandate, or a supporting detail as the central idea. Claude's literal magazine résumé belongs near this category. The output can be impressively faithful to the product's misunderstanding.
+
+The third is **intentional substitution**. The product recognizes the requested condition and chooses another one because of policy, product rules, or an optimization target. The Meta interface's own final response places the standing figure here. It acknowledged that the kneeling version did not go through and that it reworked the image into a standing version.
+
+Those failures demand different responses. Retrying an execution failure may work. Retrying an interpretation failure without repairing the hierarchy may manufacture more polished versions of the same mistake. Retrying an intentional substitution may only hide the boundary more deeply.
+
+A fourth outcome should remain visible too: **refusal**. A refusal tells the user that the product will not perform the requested task. It may be frustrating, overly broad, or wrong, but it leaves the disagreement available for inspection. A silent substitution collapses two records into one. The product behaves as if its permitted alternative were the user's request all along.
+
+Safe-completion research explores a useful space between blunt refusal and unrestricted compliance: answer the permitted part, explain the boundary, or redirect toward something safer.[^safe-completion] That approach still depends on disclosure. A user cannot knowingly accept a partial or redirected answer if the interface presents it as complete adherence.
+
+This classification also prevents a lazy conclusion about providers. One product may be better at the underlying task and more aggressive in transforming it. Another may preserve the prompt but execute it poorly. A third may expose its substitutions clearly. “Which model is best?” compresses these into one score before the job has defined what best means.
+
+## Displayed narration is evidence, not an audit log
+
+The Meta session displayed a procession of small status reports. They said the product was preserving the pose, then adjusting it, then checking a final image against a list that no longer included the kneeling requirement. After I asked what happened, another displayed line said “Reviewing request for safety.” The product later supplied a tidy four-part explanation: identify the request, determine whether it can comply, find the closest permitted alternative, and tell the user what changed.
+
+I can establish what the interface displayed, what the schema contained, what images appeared, and what the final response acknowledged. I cannot establish that those status lines are a literal transcript of private computation.
+
+<ReviewFigure kind="meta-process" />
+
+That boundary is not a courtesy to Meta. It is part of the evidence.
+
+Research on reasoning faithfulness has shown that model-reported explanations can omit influential factors or present plausible narratives that do not faithfully describe how an answer was produced.[^faithfulness] The result is not “all explanations are lies.” The result is that an interface explanation should not be mistaken for a forensic trace unless the system was built and validated to provide one.
+
+The narration still matters. It shaped my understanding of the product. It claimed preservation while the visible output showed substitution. Product transparency is a user-interface property as well as a model property.
+
+## Interpretation debt
+
+A nearby result creates work.
+
+First the user diagnoses the miss. Then the user rewrites a condition that was already explicit. The product edits the artifact without necessarily revisiting the assumption that caused the miss. The correction produces a new overcorrection. More context enters. The user compares versions, restores lost details, checks new facts, and tries to remember which branch contained the least broken artifact.
+
+<ReviewFigure kind="interpretation-debt" />
+
+I call the accumulated burden **interpretation debt**. It is the unpaid verification and repair work created when the product's working definition of the task drifts away from the user's source of truth.
+
+Ghosh eventually wrote that making the résumé himself might have been easier.[^resume] That sentence is the invoice. The product may still have saved typing, generated options, or supplied useful language. It also converted a design task into supervision of a system that kept redefining the design task.
+
+A 2025 CHI study surveyed 319 knowledge workers about 936 examples of generative-AI use. Higher confidence in AI was associated with less reported critical thinking, while the work itself shifted toward verification, integration, and task stewardship.[^stewardship] The result is an association based on self-report, not proof that confidence caused weaker thinking. Its description of the work is still exact: the user becomes responsible for guarding the task while the tool performs it.
+
+Sometimes the user knew exactly what they wanted and got tired of defending it from the tool.
+
+## Slop can begin before generation
+
+AI slop is often blamed on vague prompts and lazy users. Sometimes that is correct. A generic request invites a generic result. But a second route begins with a specific request.
+
+The product turns the request toward familiar patterns, safe defaults, or an easier concept. It produces a polished nearby artifact. The user corrects it. The correction cost rises. Eventually the result gets accepted because it looks finished and because continuing the argument costs more than publishing the compromise.
+
+<ReviewFigure kind="slop-pipeline" />
+
+That route can produce cultural sameness even when the users begin with different intentions. A Science Advances experiment found that generative-AI assistance improved individual ratings in some short-story conditions while making the stories more similar to one another.[^diversity] That is a specific writing experiment, not a law covering every medium. It does show why output quality and output diversity must be measured separately.
+
+The useful question is no longer just, “Did the model make a good image?” It is, “Which request did the product make the image from?”
+
+## Review the review
+
+FollowBench evaluates instruction following at the level of individual content, situation, style, format, and example constraints.[^followbench] Production tools can borrow that idea without turning every creative session into a benchmark laboratory.
+
+Keep the user's schema as the source of truth. Mark fields that are required, preferred, or merely referential. When a product changes one, show the diff before generation when possible. Score the result against the original constraints and the permitted revision separately. Preserve the transformed prompt and product version when the route exposes them. Ask for confirmation when a substitution changes the central composition, claim, audience, or purpose.
+
+For an individual workflow, the compact version is enough:
+
+1. Write the non-negotiable requirements where you can compare them later.
+2. Save the exact request that crossed the product boundary.
+3. Evaluate fields one at a time before deciding whether the whole artifact feels good.
+4. Treat a polished near miss as a failure until you knowingly accept the trade.
+5. If corrections accumulate, return to the source schema instead of extending the broken branch.
+
+NIST's Generative AI Profile is a voluntary risk-management guide, not a creative-writing manual. Its emphasis on documentation, evaluation, verification, validation, and human review still applies to this smaller problem.[^nist] A product that changes requests needs evaluation of those changes. A person using the product needs enough evidence to decide whether the result belongs to the original job.
+
+Safety review is necessary. Prompt transformation can be useful. Agentic self-refinement can improve an image. Hidden instructions can protect the user. None of those facts removes the need for a visible boundary between the request and the product's replacement for it.
+
+The request is being reviewed. The user should review the review.
+
+[^resume]: Dibakar Ghosh, [“I had Claude, ChatGPT, and Gemini build my resume”](https://www.howtogeek.com/i-had-claude-chatgpt-and-gemini-build-my-resume-our-recruiter-told-me-this-one-was-the-best/), *How-To Geek*, August 8, 2026. Checked August 11, 2026.
+[^middle]: Nelson F. Liu et al., [“Lost in the Middle: How Language Models Use Long Contexts”](https://arxiv.org/abs/2307.03172), 2023.
+[^hierarchy]: OpenAI, [“Improving instruction hierarchy in frontier LLMs”](https://openai.com/index/instruction-hierarchy-challenge/), March 10, 2026.
+[^dalle]: OpenAI, [“DALL-E 3”](https://openai.com/index/dall-e-3/), September 20, 2023. This is a historical product example.
+[^flux]: Black Forest Labs, [“FLUX.2 prompting guide”](https://docs.bfl.ai/guides/prompting_guide_flux2). Checked August 11, 2026. Preserving intent is the vendor's stated objective.
+[^optimizer]: Google Cloud, [“Announcing Public Preview of Vertex AI Prompt Optimizer”](https://cloud.google.com/blog/products/ai-machine-learning/announcing-vertex-ai-prompt-optimizer), September 26, 2024.
+[^safe-completion]: OpenAI, [“From Hard Refusals to Safe-Completions”](https://cdn.openai.com/pdf/be60c07b-6bc2-4f54-bcee-4141e1d6c69a/gpt-5-safe_completions.pdf), 2025. This is an OpenAI method, not evidence of Meta's implementation.
+[^guard]: Meta, [“Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations”](https://ai.meta.com/research/publications/llama-guard-llm-based-input-output-safeguard-for-human-ai-conversations/), December 7, 2023.
+[^muse]: Meta, [“Introducing Muse Image and Muse Video”](https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/), July 7, 2026. Checked August 11, 2026.
+[^faithfulness]: Anthropic, [“Reasoning models don't always say what they think”](https://www.anthropic.com/research/reasoning-models-dont-say-think), April 3, 2025.
+[^stewardship]: Hao-Ping Lee et al., [“The Impact of Generative AI on Critical Thinking”](https://www.microsoft.com/en-us/research/publication/the-impact-of-generative-ai-on-critical-thinking-self-reported-reductions-in-cognitive-effort-and-confidence-effects-from-a-survey-of-knowledge-workers/), CHI 2025.
+[^diversity]: Anil R. Doshi and Oliver P. Hauser, [“Generative AI enhances individual creativity but reduces the collective diversity of novel content”](https://www.science.org/doi/10.1126/sciadv.adn5290), *Science Advances*, 2024.
+[^followbench]: Yuxin Jiang et al., [“FollowBench: A Multi-level Fine-grained Constraints Following Benchmark for Large Language Models”](https://aclanthology.org/2024.acl-long.257/), ACL 2024.
+[^nist]: NIST, [“Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile”](https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence), July 26, 2024. Updated April 8, 2026; checked August 11, 2026.

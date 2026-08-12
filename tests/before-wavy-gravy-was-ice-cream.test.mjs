@@ -16,7 +16,7 @@ function articleWordCount(source) {
   return body.split(/\s+/).filter(Boolean).length;
 }
 
-test("article uses the requested title and the first open slot after Wetlands", async () => {
+test("article uses the requested title and the queued slot after Wetlands", async () => {
   const [article, predecessor, names] = await Promise.all([
     readFile(articlePath, "utf8"),
     readFile("src/content/articles/from-wetlands-to-the-wash.mdx", "utf8"),
@@ -25,8 +25,8 @@ test("article uses the requested title and the first open slot after Wetlands", 
 
   assert.equal(field(article, "title"), '"Before Wavy Gravy Was Ice Cream"');
   assert.equal(field(article, "canonical"), '"/articles/before-wavy-gravy-was-ice-cream/"');
-  assert.equal(field(article, "pubDate"), "2026-08-16");
-  assert.equal(field(article, "publishedAt"), "2026-08-16T16:20:00-07:00");
+  assert.equal(field(article, "pubDate"), "2026-08-18");
+  assert.equal(field(article, "publishedAt"), "2026-08-18T16:20:00-07:00");
   assert.equal(field(article, "status"), "scheduled");
   assert.equal(
     Date.parse(field(article, "publishedAt")) - Date.parse(field(predecessor, "publishedAt")),
@@ -37,7 +37,7 @@ test("article uses the requested title and the first open slot after Wetlands", 
   for (const name of names.filter((name) => /\.mdx?$/.test(name))) {
     if (name === "before-wavy-gravy-was-ice-cream.mdx") continue;
     const source = await readFile(`src/content/articles/${name}`, "utf8");
-    if (/^publishedAt:\s*2026-08-16T16:20:00-07:00$/m.test(source)) collisions.push(name);
+    if (/^publishedAt:\s*2026-08-18T16:20:00-07:00$/m.test(source)) collisions.push(name);
   }
   assert.deepEqual(collisions, []);
 
@@ -98,15 +98,15 @@ test("multimedia uses owned assets, live-text graphics, and official fallbacks",
   assert.match(manifestSource, /de7d21c23375f3d672261ee458ad8816a369a2c534a5a342d088b5c48f5d9b34/);
 });
 
-test("one-time publisher protects the exact August 16 release", async () => {
+test("one-time publisher protects the exact August 18 release", async () => {
   const [scheduler, workflow] = await Promise.all([
     readFile("scripts/publish-scheduled-before-wavy-gravy-was-ice-cream.mjs", "utf8"),
     readFile(".github/workflows/publish-before-wavy-gravy-was-ice-cream.yml", "utf8"),
   ]);
 
-  assert.match(scheduler, /expectedPublication = "2026-08-16T16:20:00-07:00"/);
+  assert.match(scheduler, /expectedPublication = "2026-08-18T16:20:00-07:00"/);
   assert.match(scheduler, /Date\.now\(\) < Date\.parse\(expectedPublication\)/);
-  assert.match(workflow, /cron: "20 23 16 8 \*"/);
+  assert.match(workflow, /cron: "20 23 18 8 \*"/);
   assert.match(workflow, /node scripts\/publish-scheduled-before-wavy-gravy-was-ice-cream\.mjs/);
   assert.match(workflow, /git rm \.github\/workflows\/publish-before-wavy-gravy-was-ice-cream\.yml/);
 });
