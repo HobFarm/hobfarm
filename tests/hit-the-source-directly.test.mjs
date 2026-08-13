@@ -27,6 +27,10 @@ test("Hit the Source Directly owns the next exact publication slot", () => {
   assert.equal(frontmatter.draft, false);
   assert.equal(frontmatter.mesh.section, "technology");
   assert.deepEqual(frontmatter.mesh.series, []);
+  assert.equal(
+    frontmatter.socialImage,
+    "https://cdn.hob.farm/articles/hit-the-source-directly/social-illustrated-v2.webp",
+  );
 });
 
 test("the scheduled article is excluded before release and public at the boundary", () => {
@@ -52,6 +56,7 @@ test("the article carries the required argument, provenance, and practical path"
   assert.doesNotMatch(body, /Eric Schwartz/);
   assert.match(body, /Karpathy did not curate the 92 blogs/);
   assert.match(body, /https:\/\/hob\.farm\/rss\.xml/);
+  assert.match(body, /<EngagementFactoryIllustration \/>/);
   for (const kind of ["timeline", "pipelines", "opml", "consumers"]) {
     assert.match(body, new RegExp(`<RSSFigure kind="${kind}"`));
   }
@@ -71,10 +76,10 @@ test("feed discovery and human subscription routes stay connected", () => {
   assert.match(subscribeComponent, /aria-live="polite"/);
 });
 
-test("the six publication assets match the verified immutable manifest", () => {
+test("the eight publication assets match the verified immutable manifest", () => {
   const manifest = JSON.parse(readFileSync("reports/hit-the-source-directly/asset-manifest.json", "utf8"));
   assert.equal(manifest.article_slug, "hit-the-source-directly");
-  assert.equal(manifest.assets.length, 6);
+  assert.equal(manifest.assets.length, 8);
   assert.equal(manifest.policy.new_keys_only, true);
   assert.equal(manifest.policy.overwrite_existing, false);
 

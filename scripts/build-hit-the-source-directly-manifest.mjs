@@ -7,6 +7,17 @@ const articleSlug = "hit-the-source-directly";
 const prefix = `articles/${articleSlug}/`;
 const publicHostname = "https://cdn.hob.farm";
 const diagramRoot = `assets/${articleSlug}/diagrams`;
+const manifestPath = resolve(`reports/${articleSlug}/asset-manifest.json`);
+
+let previousManifest;
+try {
+  previousManifest = JSON.parse(await readFile(manifestPath, "utf8"));
+} catch {
+  previousManifest = undefined;
+}
+const previousAssets = new Map(
+  (previousManifest?.assets ?? []).map((asset) => [asset.destination_key, asset]),
+);
 
 const definitions = [
   {
@@ -28,6 +39,32 @@ const definitions = [
     alt_text: "A direct feed line connects HobFarm to readers without entering an engagement-ranking system.",
     editable_source: `${diagramRoot}/01-direct-line.svg`,
     placement: "Social metadata",
+  },
+  {
+    asset_id: "engagement-factory-illustration",
+    source_file: `assets/${articleSlug}/engagement-factory-illustration-v2.webp`,
+    destination_key: `${prefix}engagement-factory-illustration-v2.webp`,
+    purpose: "Lead explanatory illustration",
+    caption: "An independent publisher sends a new article through a direct RSS pipeline to several reader-controlled destinations while an engagement factory loops through outrage, reaction, repetition, and retention.",
+    alt_text: "A detailed illustrated diagram contrasts an orange RSS pipeline from an independent publisher to desktop, phone, podcast, and local AI readers with a dark engagement factory producing outrage, reaction, repetition, retention, and endless scrolling.",
+    editable_source: "_cdn/articles/hit-the-source-directly/source/engagement-factory-illustration-original.png",
+    placement: "Article body after the central claim",
+    credit: "HobFarm / ChatGPT image generation",
+    rights_basis: "Author-supplied AI-generated illustration provided directly for HobFarm publication.",
+    construction: "Original supplied PNG preserved in the local source archive; publication WebP retains the full composition without cropping.",
+  },
+  {
+    asset_id: "social-illustrated-v2",
+    source_file: `assets/${articleSlug}/social-illustrated-v2.webp`,
+    destination_key: `${prefix}social-illustrated-v2.webp`,
+    purpose: "Illustrated Open Graph and social image",
+    caption: "RSS bypasses the engagement factory.",
+    alt_text: "An independent publisher and an orange RSS pipeline sit beside a dark engagement factory built around outrage, reaction, repetition, and retention.",
+    editable_source: "_cdn/articles/hit-the-source-directly/source/engagement-factory-illustration-original.png",
+    placement: "Social metadata",
+    credit: "HobFarm / ChatGPT image generation",
+    rights_basis: "Author-supplied AI-generated illustration provided directly for HobFarm publication.",
+    construction: "A versioned 1200 by 630 north-aligned crop of the supplied PNG for social previews.",
   },
   ...[
     ["two-pipelines", "02-two-pipelines.svg", "Two distribution pipelines", "A social engagement pipeline and a reader-chosen RSS pipeline show where source selection occurs."],
@@ -63,7 +100,7 @@ async function dimensions(sourceFile) {
 const assets = [];
 for (const definition of definitions) {
   const bytes = await readFile(resolve(definition.source_file));
-  assets.push({
+  const record = {
     ...definition,
     ...(await dimensions(definition.source_file)),
     destination_bucket: "hobfarm-cdn",
@@ -71,16 +108,29 @@ for (const definition of definitions) {
     content_type: contentType(definition.source_file),
     bytes: bytes.length,
     sha256: createHash("sha256").update(bytes).digest("hex"),
-    credit: "HobFarm",
-    rights_basis: "Original HobFarm explanatory graphic created for this article.",
-    construction: "Source-controlled SVG assembled from original vector shapes and live labels; WebP files are deterministic raster derivatives.",
+    credit: definition.credit ?? "HobFarm",
+    rights_basis:
+      definition.rights_basis ??
+      "Original HobFarm explanatory graphic created for this article.",
+    construction:
+      definition.construction ??
+      "Source-controlled SVG assembled from original vector shapes and live labels; WebP files are deterministic raster derivatives.",
     editable_source: definition.editable_source ?? definition.source_file,
-    mobile_qa: "pending",
-    collision_check: "pending",
     replacement_policy: "new-key-only; version filename on conflict; never overwrite",
-    upload_status: "not-checked",
-    verification_status: "not-checked",
-  });
+  };
+  const previous = previousAssets.get(record.destination_key);
+
+  assets.push(
+    previous?.sha256 === record.sha256
+      ? { ...previous, ...record }
+      : {
+          ...record,
+          mobile_qa: "pending",
+          collision_check: "pending",
+          upload_status: "not-checked",
+          verification_status: "not-checked",
+        },
+  );
 }
 
 const manifest = {
@@ -105,7 +155,7 @@ const manifest = {
 
 await mkdir(resolve(`reports/${articleSlug}`), { recursive: true });
 await writeFile(
-  resolve(`reports/${articleSlug}/asset-manifest.json`),
+  manifestPath,
   `${JSON.stringify(manifest, null, 2)}\n`,
   "utf8",
 );

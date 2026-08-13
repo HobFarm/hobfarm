@@ -182,6 +182,9 @@ for (const item of manifest.assets) {
     if (resume) {
       item.remote_sha256 = await existingObjectMatches(item);
       item.upload_status = "uploaded";
+      if (!item.collision_check || item.collision_check === "pending") {
+        item.collision_check = "destination already existed; SHA-256 matched in resume mode";
+      }
       if (item.verification_status !== "verified") {
         item.verification_status = "r2-checksum-matched";
       }
@@ -195,6 +198,7 @@ for (const item of manifest.assets) {
   }
   item.upload_status = "ready";
   item.verification_status = "destination-absent";
+  item.collision_check = "destination absent in required prefix before upload";
   console.log(`READY ${item.destination_key}`);
 }
 
