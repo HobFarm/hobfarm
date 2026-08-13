@@ -1,0 +1,378 @@
+---
+title: "Hit the Source Directly"
+excerpt: "RSS is not a quality filter. It is an open distribution layer that lets readers choose sources before algorithms, digests, and personal AI systems decide what to do with them."
+dek: "I learned RSS while putting video online twenty years ago. It still powers podcasts, alerts, research, automation, and personal reading systems that bypass the engagement factory."
+description: "A first-person history and practical guide to RSS, Atom, OPML, direct subscriptions, and reader-controlled filtering for HobFarm articles."
+author: "d00d"
+tags:
+  - RSS
+  - Atom
+  - independent publishing
+  - feed readers
+  - recommendation systems
+department: essays-arguments
+format: article
+entryType: feature
+hero: "https://cdn.hob.farm/articles/hit-the-source-directly/hero.webp"
+heroImage: "https://cdn.hob.farm/articles/hit-the-source-directly/hero.webp"
+heroAlt: "An orange feed line runs from a HobFarm publishing terminal to three reader screens while a tangled engagement factory sits below."
+socialImage: "https://cdn.hob.farm/articles/hit-the-source-directly/social.webp"
+thumbnail: "https://cdn.hob.farm/articles/hit-the-source-directly/social.webp"
+socialCaption: "RSS does not need to decide whether a new HobFarm article can beat whatever is trending. Subscribe to the source and receive what it publishes."
+canonical: "/articles/hit-the-source-directly/"
+pubDate: 2026-08-21
+publishedAt: 2026-08-21T16:20:00-07:00
+status: scheduled
+featured: false
+coverStory: false
+draft: false
+relatedArticles:
+  - the-future-was-already-there
+  - every-sentence-is-a-keynote-conclusion
+  - reviewing-request-for-safety
+  - the-number-one-song-ive-never-heard
+supportCTA:
+  label: "Support the next HobFarm release"
+  href: "/support/"
+rightsNote: "The hero and four article diagrams are original HobFarm vector graphics. Their editable SVG sources, captions, transcripts, checksums, rights basis, and CDN destinations are recorded in the article production report."
+mesh:
+  section: technology
+  subjects:
+    - publishing
+    - recommendation-systems
+    - information-systems
+    - attention-economy
+    - content-discovery
+    - open-computing
+    - personal-history
+  series: []
+  entities:
+    people:
+      - andrej-karpathy
+      - evan-schwartz
+      - michael-lynch
+    organizations:
+      - google
+      - hobfarm
+      - youtube
+    places: []
+    events: []
+    works:
+      - subone-graffiti-art
+    publications: []
+    technologies:
+      - rss
+      - atom
+      - opml
+      - feed-readers
+      - recommendation-algorithms
+      - artificial-intelligence
+  sourceArtifacts:
+    - id: karpathy-rss-post-2026
+      type: other
+      label: "Andrej Karpathy's February 1, 2026 RSS post"
+      role: organizing
+    - id: most-popular-blogs-hn-2025-opml
+      type: other
+      label: "Evan Schwartz's 92-feed OPML conversion"
+      role: organizing
+  storyModes:
+    - personal-history-trail
+    - media-genealogy
+    - technical-explainer
+    - systems-investigation
+sourceNotes:
+  - label: "RSS History"
+    url: "https://www.rssboard.org/rss-history"
+    note: "The RSS Advisory Board chronology dates RSS 0.90 to March 15, 1999 and traces the specification through RSS 2.0. Checked August 12, 2026."
+    type: documented-fact
+  - label: "RSS 0.90 Specification"
+    url: "https://www.rssboard.org/rss-0-9-0"
+    note: "The Netscape specification includes an instruction to place an Add Channel button on a site."
+    type: documented-fact
+  - label: "RSS 0.92 Specification"
+    url: "https://www.rssboard.org/rss-0-9-2"
+    note: "The December 2000 specification defines the optional enclosure element with a URL, byte length, and media type."
+    type: documented-fact
+  - label: "RFC 4287: The Atom Syndication Format"
+    url: "https://www.rfc-editor.org/rfc/rfc4287"
+    note: "The IETF standard defines Atom as a distinct XML syndication format and is dated December 2005."
+    type: documented-fact
+  - label: "A second spring of cleaning"
+    url: "https://googlereader.blogspot.com/2013/03/powering-down-google-reader.html"
+    note: "Google announced that Reader would retire on July 1, 2013, citing declining use and a focus on fewer products."
+    type: documented-fact
+  - label: "Feed reader replacements for Firefox"
+    url: "https://support.mozilla.org/en-US/kb/feed-reader-replacements-firefox"
+    note: "Mozilla documents the removal of built-in feed preview and Live Bookmarks in Firefox 64 in December 2018, along with OPML export."
+    type: documented-fact
+  - label: "Podcast RSS feed requirements"
+    url: "https://podcasters.apple.com/support/823-podcast-requirements"
+    note: "Apple documents current RSS 2.0 podcast requirements, including unique episode enclosures and GUIDs."
+    type: documented-fact
+  - label: "Andrej Karpathy RSS post"
+    url: "https://x.com/karpathy/status/2018043254986703167"
+    note: "Karpathy's February 1, 2026 post argues for RSS and links Evan Schwartz's 92-feed OPML file as a cold start."
+    type: participant-recollection
+  - label: "Most Popular Blogs HN 2025"
+    url: "https://gist.github.com/emschwartz/e6d2bf860ccc367fe37ff953ba6de66b"
+    note: "Evan Schwartz's gist contains 92 feed outlines and identifies Michael Lynch's Hacker News Popularity Contest as its source."
+    type: documented-fact
+  - label: "Hacker News Popularity Contest methodology"
+    url: "https://refactoringenglish.com/tools/hn-popularity/methodology/"
+    note: "Michael Lynch explains the personal-blog criteria and Hacker News scoring method behind the 2025 source list."
+    type: participant-recollection
+  - label: "Thunderbird feed subscriptions"
+    url: "https://support.mozilla.org/en-US/kb/how-subscribe-news-feeds-and-blogs"
+    note: "Mozilla documents feed-account setup, URL subscription, reading, update checks, and OPML import and export in Thunderbird."
+    type: documented-fact
+  - label: "NetNewsWire getting started"
+    url: "https://netnewswire.com/help/mac/6.1/en/getting-started.html"
+    note: "NetNewsWire documents adding a web feed by URL and importing OPML."
+    type: documented-fact
+  - label: "How to follow sources in Feedly"
+    url: "https://docs.feedly.com/article/806-how-to-follow-sources"
+    note: "Feedly documents following a site or feed address and saving it to a folder."
+    type: documented-fact
+  - label: "FreshRSS subscription management"
+    url: "https://freshrss.github.io/FreshRSS/en/users/04_Subscriptions.html"
+    note: "FreshRSS documents adding an RSS or Atom address through subscription management."
+    type: documented-fact
+  - label: "YouTube push notifications"
+    url: "https://developers.google.com/youtube/v3/guides/push_notifications"
+    note: "YouTube documents channel update notifications delivered as Atom entries. Checked August 12, 2026."
+    type: documented-fact
+  - label: "Deliver podcasts using an RSS feed"
+    url: "https://support.google.com/youtube/answer/13973017"
+    note: "YouTube documents RSS ingestion for eligible audio-first podcast publishers."
+    type: documented-fact
+  - label: "GitHub REST API feeds"
+    url: "https://docs.github.com/en/rest/activity/feeds"
+    note: "GitHub documents activity and security-advisory feeds with Atom support."
+    type: documented-fact
+  - label: "arXiv RSS Feeds"
+    url: "https://info.arxiv.org/help/rss.html"
+    note: "arXiv documents daily RSS and Atom feeds for active subject areas."
+    type: documented-fact
+  - label: "USGS earthquake feeds"
+    url: "https://earthquake.usgs.gov/earthquakes/feed/"
+    note: "USGS publishes real-time earthquake feeds and recommends Atom for most reader uses."
+    type: documented-fact
+  - label: "National Weather Service alerts web service"
+    url: "https://www.weather.gov/documentation/services-web-alerts"
+    note: "NWS documents active-alert indexes in Atom and individual alert documents in CAP."
+    type: documented-fact
+  - label: "SEC structured disclosure RSS feeds"
+    url: "https://www.sec.gov/data-research/structured-data/structured-disclosure-rss-feeds"
+    note: "The SEC documents recurring structured-disclosure submission feeds."
+    type: documented-fact
+  - label: "GovInfo RSS feeds"
+    url: "https://www.govinfo.gov/feeds"
+    note: "GovInfo documents collection and search-based feeds."
+    type: documented-fact
+  - label: "Feed, a headless RSS engine"
+    url: "https://github.com/odysseus0/feed"
+    note: "The small public software project documents discovery, OPML import and export, local search, and agent-facing feed tools."
+    type: promotional-claim
+  - label: "RSS MCP server"
+    url: "https://github.com/0xquinto/rss-mcp"
+    note: "The small public software project documents subscription management, search, OPML, and digest features."
+    type: promotional-claim
+  - label: "AI Daily Digest"
+    url: "https://github.com/HarrisHan/ai-daily-digest"
+    note: "The small public software project documents feed fetching, time filtering, language-model scoring, summaries, and digest output. Its Karpathy-curated attribution is not repeated because the source lineage is more specific."
+    type: promotional-claim
+  - label: "The Future Was Already There"
+    url: "https://hob.farm/articles/the-future-was-already-there/"
+    note: "The preceding HobFarm article documents the author's SUBONE Graffiti Art production and May 28, 2006 YouTube upload."
+    type: participant-recollection
+---
+
+import RSSFigure from "@/components/articles/hit-the-source-directly/RSSFigure.astro";
+import SubscribeToHobFarm from "@/components/articles/SubscribeToHobFarm.astro";
+
+*Hero graphic: a clean feed line carries HobFarm releases straight to readers while the engagement factory churns below. Original HobFarm graphic.*
+
+I learned about RSS while I was trying to put video online around 2006. I remember adding feeds to Thunderbird, or to another application that looked and behaved like email. A new item arrived. I opened it. The whole arrangement felt less like visiting a website and more like receiving something from one.
+
+That memory returned while I was writing [The Future Was Already There](/articles/the-future-was-already-there/), the article about the Portland graffiti film I finished and uploaded to YouTube on May 28, 2006. YouTube was young. The routines around online video were young. RSS was already old enough to be ordinary.
+
+The browser and the reader helped explain what a feed was. Websites displayed orange icons. Applications provided a place to paste an address. Firefox could preview feeds. Google Reader put subscriptions in a clean column. I did not need to know the XML vocabulary beneath the interface before using it.
+
+Twenty years later, HobFarm is publishing articles on a near-daily cadence. They do not fit one subject. One day may bring a media history, the next an argument about model behavior, then music, art, a place, an old film, or the production system behind the work. Some articles grow images and video. The research, construction, argument, and connections consume most of the available production time.
+
+The direct subscription method is still here. It is healthier than the visible interface around it suggests.
+
+RSS does not solve the quality problem. A feed can carry junk, spam, recycled claims, synthetic filler, and rage bait as easily as it can carry a carefully researched article. What RSS changes is the distribution problem. The reader chooses a source. The source publishes an item. The reader receives that item without requiring an engagement-ranking system to decide whether it can compete with whatever is trending that hour.
+
+That is the mechanism I mean when I say: **RSS bypasses the engagement factory.**
+
+## A small document with a durable job
+
+RSS is a family of XML formats used to publish a changing list of items. A website usually exposes one feed address. Each item can contain a title, date, description, permanent link, categories, author information, and other structured fields. A reader checks that address on a schedule and displays what has been added.
+
+A simplified item looks like this:
+
+```xml
+<item>
+  <title>Hit the Source Directly</title>
+  <link>https://hob.farm/articles/hit-the-source-directly/</link>
+  <pubDate>Fri, 21 Aug 2026 23:20:00 GMT</pubDate>
+  <description>A first-person history and practical guide to RSS.</description>
+</item>
+```
+
+The designed article page can change. A reader app can change. The feed remains a plain contract between them.
+
+Atom does a similar job, but it is not another name for RSS. It is a separate XML syndication format standardized by the Internet Engineering Task Force as RFC 4287 in December 2005.[^atom] Most current feed readers handle both, which is why people often say “RSS reader” even when some subscriptions are Atom feeds.
+
+OPML is a third thing. It does not carry the articles. It carries a portable outline, often a list of feed subscriptions. Export an OPML file from one reader and import it into another, and the reader can rebuild the source list without making you subscribe to every publication again.
+
+These are modest parts with clean boundaries:
+
+- RSS or Atom carries published items.
+- OPML carries a list of subscriptions.
+- The reader fetches, stores, displays, searches, and organizes those items.
+
+No central feed company has to own the whole route.
+
+## The button used to explain the machine
+
+Netscape published RSS 0.90 on March 15, 1999.[^rss-history] Its specification did not assume the feed would spread by magic. It told a publisher to place an **Add Channel** button on the site.[^rss-090] The open format and its human invitation arrived together.
+
+By RSS 0.92 in December 2000, an item could include an `enclosure`: a URL for a media file, its length in bytes, and its media type.[^rss-092] That small element became part of the distribution system for podcasting. A podcast app reads the feed, sees a new episode, and retrieves the linked audio. Apple still requires RSS 2.0 podcast feeds to provide unique episode enclosures and GUIDs.[^apple-podcast]
+
+This is one reason the “RSS died” story has never been accurate. A major public use of RSS did not die. It changed its label. Millions of people learned to press **Follow** on a show without being asked to learn the word `enclosure`.
+
+The same concealment happened elsewhere. Software got better at discovering and consuming feeds while the visible button became less common. Google announced that Reader would close on July 1, 2013, citing declining use and a decision to focus on fewer products.[^google-reader] Firefox removed its built-in feed preview and Live Bookmarks in Firefox 64 in December 2018. Mozilla gave users a way to export their saved Live Bookmarks as OPML, but another ordinary browser lesson had disappeared.[^firefox]
+
+The specifications did not vanish when those interfaces left. The reader's path into them became less obvious.
+
+<RSSFigure kind="timeline" />
+
+I can remember a feed going into an email-shaped application because the application made a conceptual bridge for me. Messages arrived from people. Feed items arrived from publications. Both could live in folders. Both could be read when I chose to read them. The metaphor did useful teaching before the mechanism became invisible.
+
+## Source selection comes before ranking
+
+An engagement feed solves a different problem. It has a pool of possible posts and a limited surface. It predicts what will make each person stop, click, reply, watch, share, or return. Those predictions decide distribution.
+
+The incentives are not mysterious. Material that provokes can outperform material that informs. A repeated claim can win because it is familiar. A synthetic answer can win because it was cheap to produce at scale. A careful article may lose because its title asks for patience. The system does not need to hate quality. It only needs to reward another measurable behavior more reliably.
+
+RSS makes no claim about what deserves attention. It handles a prior choice: *I want releases from this source.* Once the reader makes that choice, a new HobFarm article does not need to win a platform-wide contest before entering the reader.
+
+Chronology is not magic either. A person can subscribe to too much. A noisy publisher can exhaust its readers. An unread count can become another burden. A feed reader can add its own ranking features. The advantage is the reader's ability to inspect and change the parts. Unsubscribe from a source. Move it to a folder. Export the list. Change applications. Run a local filter. Keep the chosen sources while replacing the tool that presents them.
+
+<RSSFigure kind="pipelines" />
+
+This difference is easy to flatten into nostalgia: blogs good, social media bad, bring back the old internet. Nostalgia is not required. The useful point is architectural. A direct feed separates publication from recommendation. That separation leaves room for many recommenders, including one a reader controls.
+
+Direct does not mean untouched by software. A publisher uses a server. A reader app fetches the feed. Hosting companies and network operators still carry the bytes. A feed service may synchronize a person's subscriptions across devices. Any of those parts can fail, collect some operational data, or make poor product decisions. RSS is not a tunnel outside the internet.
+
+The useful freedom comes from substituting the parts. If a reader application closes, OPML can carry the subscription list elsewhere. If a synchronization service becomes irritating, a desktop reader or a self-hosted reader can fetch the same public addresses. If an AI digest summarizes badly, the reader can turn off the digest and keep the feeds. The source does not have to rebuild its publishing system for each move.
+
+Publishers also control how much they put in a feed. Some provide the full article. Some provide an excerpt and a link. Some update an item when the article changes. Others treat the feed as a release notice. Those choices affect the reading experience, but they do not change the basic relationship: the source exposes a recurring public document, and the reader decides to monitor it.
+
+Email can provide another direct relationship, but it has different machinery. A mailing list stores addresses, manages delivery reputation, handles bounces and unsubscribes, and sends a copy into each mailbox. RSS publishes once at a stable location. The reader's software comes to check it. A publication can offer both without pretending they are the same system.
+
+That distinction matters for HobFarm because the feed already exists as part of the site. Recommending it does not add another account database, another campaign dashboard, or another copy of each article. It makes an existing public route legible to humans again.
+
+## The 92-feed cold start
+
+On February 1, 2026, Andrej Karpathy wrote that he was returning to RSS and Atom. He contrasted long-form writing with “slop intended to provoke” and called RSS “open, pervasive, hackable.”[^karpathy] He also offered a practical answer to the blank-reader problem: an OPML file containing 92 feeds.
+
+The file has a provenance worth preserving.
+
+Michael Lynch built the Hacker News Popularity Contest, a ranking of personal blogs based on qualifying Hacker News submissions and scores. His methodology describes the rules and thresholds behind the list.[^hn-method] Evan Schwartz converted the 2025 results into an OPML file that a reader could import.[^opml] Karpathy shared Schwartz's file as a cold start.
+
+Karpathy did not curate the 92 blogs. Schwartz did not create the underlying ranking. OPML did not choose what anyone should value. Each person contributed a distinct part: ranking, conversion, circulation.
+
+That distinction matters because the file demonstrates the strength of the open system. One person published a useful list on the web. Another transformed it into a portable subscription format. Another brought a large audience to it. Any reader could import it, delete 87 feeds, add 40 different ones, sort them into folders, export the revised list, or ignore it entirely.
+
+<RSSFigure kind="opml" />
+
+Some small public software projects now place search or language models downstream from feed subscriptions. One headless feed engine offers discovery, OPML import and export, local full-text search, and agent-facing tools.[^feed-engine] An RSS MCP server exposes subscription management, search, imports, and digests.[^rss-mcp] An AI digest project fetches the 92 feeds, applies a time window, scores items with a language model, summarizes them, and produces a digest.[^ai-digest]
+
+These repositories are examples, not proof of a mass movement. One of them also calls the list “Karpathy-curated,” which skips Lynch and Schwartz. The code can still demonstrate a useful pattern while its shorthand attribution needs correction.
+
+The pattern is the important part:
+
+1. The reader chooses or accepts a source list.
+2. Open feeds provide new items from those sources.
+3. A local tool searches, filters, ranks, or summarizes the items.
+4. The reader can inspect and replace the source list or the downstream tool.
+
+That is a bring-your-own-algorithm system. It can use a simple keyword rule, a chronological folder, a script, or an AI model. The intelligence is downstream from consent to the sources. It does not inherit a social platform's source-selection logic as an invisible first step.
+
+## The web still runs feeds in plain sight
+
+Blogs are only the familiar edge of the system.
+
+Podcasting still uses RSS enclosures to connect shows, episodes, and audio files. YouTube can send channel updates as Atom entries, and it allows eligible audio-first podcast publishers to connect an RSS feed through YouTube Studio.[^youtube-push][^youtube-podcast] In one case YouTube is the source of an open update stream. In the other it is a consumer of a publisher's feed.
+
+GitHub exposes activity and security-advisory feeds with Atom support.[^github] arXiv publishes daily RSS and Atom feeds for active subject areas, giving researchers a way to watch new papers without repeatedly searching each category page.[^arxiv]
+
+USGS publishes real-time earthquake feeds and recommends Atom for most feed-reader uses.[^usgs] The National Weather Service publishes indexes of active alerts as Atom while serving individual alerts in the Common Alerting Protocol.[^nws]
+
+The Securities and Exchange Commission publishes structured-disclosure submission feeds.[^sec] GovInfo publishes feeds for collections and for saved searches.[^govinfo] These uses are not trying to recreate a social timeline. They are recurring, structured notices from a known institution.
+
+<RSSFigure kind="consumers" />
+
+One open output can serve a person reading in Thunderbird, a podcast app retrieving audio, a monitor watching official alerts, an archive recording changes, or a script looking for a specific term. The publisher does not need a separate private deal with every possible consumer.
+
+This is also why feeds remain useful for a small publisher. HobFarm can publish one combined article feed and section feeds. A reader can choose all of Editorial or only Technology, Art & Design, Culture, Film & TV, Music, or Places & Systems. The feed carries only released articles. A scheduled article remains absent until its publication time.
+
+## Subscribe to HobFarm
+
+The combined HobFarm feed is:
+
+`https://hob.farm/rss.xml`
+
+Copy that address into a feed reader if you want every article. The Technology-only feed is available beside it below.
+
+<SubscribeToHobFarm mode="expanded" sectionSlug="technology" id="article-rss-instructions" />
+
+Thunderbird still supports the email-shaped arrangement I remember. Create or select a Feeds account, open subscription management, and add the address.[^thunderbird] In NetNewsWire, choose the plus button and add a new web feed.[^netnewswire] Feedly accepts a site or feed address under Follow Sources.[^feedly] FreshRSS accepts it through subscription management.[^freshrss]
+
+The exact labels can move when an application updates. The durable action is: **add a feed by URL**.
+
+If the address opens as a page of raw XML, nothing is broken. The browser is showing the machine-readable document. Copy the address from the browser bar and paste it into a reader. The reader will turn the XML into titles, dates, descriptions, and article links.
+
+Feed readers normally check on a schedule. Some feed systems also support push notifications, but a direct subscription should not be described as universally instant. The promise is simpler: the reader has asked the software to check the source, and a ranking system does not decide whether the release deserves delivery.
+
+## Twenty years later
+
+In 2006, I was trying to find a route for a video that did not fit the old television system. YouTube provided one route. Feeds provided another kind of structure around the changing web. I understood them through an application that made publications look a little like correspondents.
+
+Now HobFarm has the opposite problem. Publishing is possible. Distribution is everywhere. Attention arrives through systems that may reward the cheapest provocation more reliably than the most carefully built work.
+
+RSS cannot make the work good. It cannot make a reader care. It cannot prevent a publisher from flooding the channel. It can keep one part of the relationship clean.
+
+The publication exposes an address. The reader chooses it. New work moves across that line.
+
+Hit the source directly.
+
+[^rss-history]: [RSS Advisory Board, “RSS History”](https://www.rssboard.org/rss-history).
+[^rss-090]: [Netscape, “RSS 0.90 Specification”](https://www.rssboard.org/rss-0-9-0).
+[^rss-092]: [RSS 0.92 Specification](https://www.rssboard.org/rss-0-9-2).
+[^atom]: [IETF, RFC 4287: The Atom Syndication Format](https://www.rfc-editor.org/rfc/rfc4287).
+[^apple-podcast]: [Apple Podcasts for Creators, “Podcast RSS feed requirements”](https://podcasters.apple.com/support/823-podcast-requirements).
+[^google-reader]: [Google Reader Blog, “A second spring of cleaning”](https://googlereader.blogspot.com/2013/03/powering-down-google-reader.html).
+[^firefox]: [Mozilla Support, “Feed reader replacements for Firefox”](https://support.mozilla.org/en-US/kb/feed-reader-replacements-firefox).
+[^karpathy]: [Andrej Karpathy, RSS and Atom post, February 1, 2026](https://x.com/karpathy/status/2018043254986703167).
+[^hn-method]: [Michael Lynch, “Hacker News Popularity Contest Methodology”](https://refactoringenglish.com/tools/hn-popularity/methodology/).
+[^opml]: [Evan Schwartz, “Most Popular Blogs HN 2025” OPML gist](https://gist.github.com/emschwartz/e6d2bf860ccc367fe37ff953ba6de66b).
+[^feed-engine]: [odysseus0/feed](https://github.com/odysseus0/feed).
+[^rss-mcp]: [0xquinto/rss-mcp](https://github.com/0xquinto/rss-mcp).
+[^ai-digest]: [HarrisHan/ai-daily-digest](https://github.com/HarrisHan/ai-daily-digest).
+[^youtube-push]: [YouTube Data API, “Push notifications”](https://developers.google.com/youtube/v3/guides/push_notifications).
+[^youtube-podcast]: [YouTube Help, “Deliver podcasts using an RSS feed”](https://support.google.com/youtube/answer/13973017).
+[^github]: [GitHub REST API, “Feeds”](https://docs.github.com/en/rest/activity/feeds).
+[^arxiv]: [arXiv, “RSS Feeds”](https://info.arxiv.org/help/rss.html).
+[^usgs]: [USGS Earthquake Hazards Program, feeds](https://earthquake.usgs.gov/earthquakes/feed/).
+[^nws]: [National Weather Service, “Alerts Web Service”](https://www.weather.gov/documentation/services-web-alerts).
+[^sec]: [SEC, “Structured Disclosure RSS Feeds”](https://www.sec.gov/data-research/structured-data/structured-disclosure-rss-feeds).
+[^govinfo]: [GovInfo, “RSS Feeds”](https://www.govinfo.gov/feeds).
+[^thunderbird]: [Mozilla Support, “How to subscribe to news feeds and blogs”](https://support.mozilla.org/en-US/kb/how-subscribe-news-feeds-and-blogs).
+[^netnewswire]: [NetNewsWire Help, “Getting Started”](https://netnewswire.com/help/mac/6.1/en/getting-started.html).
+[^feedly]: [Feedly Documentation, “How to follow sources”](https://docs.feedly.com/article/806-how-to-follow-sources).
+[^freshrss]: [FreshRSS Documentation, “Subscriptions”](https://freshrss.github.io/FreshRSS/en/users/04_Subscriptions.html).

@@ -1,0 +1,144 @@
+---
+import { getEditorialSection } from "@/data/editorial-mesh";
+
+interface Props {
+  mode?: "compact" | "expanded";
+  sectionSlug?: string;
+  heading?: string;
+  id?: string;
+}
+
+const {
+  mode = "compact",
+  sectionSlug,
+  heading = mode === "expanded" ? "Subscribe directly to HobFarm" : "Get the next article from the source",
+  id = "subscribe-to-hobfarm",
+} = Astro.props;
+
+const origin = Astro.site?.origin ?? "https://hob.farm";
+const combinedUrl = new URL("/rss.xml", origin).toString();
+const section = getEditorialSection(sectionSlug);
+const sectionUrl = section
+  ? new URL(`/articles/${section.slug}/rss.xml`, origin).toString()
+  : undefined;
+---
+
+<section
+  id={id}
+  class:list={[
+    "not-prose scroll-mt-24 border border-base-800 bg-base-950/75",
+    mode === "expanded" ? "p-6 sm:p-8" : "p-5 sm:p-6",
+  ]}
+  data-direct-subscribe
+>
+  <p class="font-mono text-[10px] uppercase tracking-[.16em] text-accent-cyan">
+    RSS / direct subscription
+  </p>
+  <h2 class:list={["font-display font-light text-white", mode === "expanded" ? "mt-3 text-3xl sm:text-4xl" : "mt-2 text-2xl"]}>
+    {heading}
+  </h2>
+  <p class="mt-3 max-w-3xl text-sm leading-relaxed text-base-300 sm:text-base">
+    Put this address in an RSS reader. New HobFarm articles arrive from the publication without waiting for a social platform to rank them.
+  </p>
+
+  <div class:list={["grid gap-4", mode === "expanded" && sectionUrl ? "mt-6 md:grid-cols-2" : "mt-5"]}>
+    <div class="min-w-0 border border-base-800 bg-base-900/65 p-4" data-feed-card>
+      <p class="font-mono text-[10px] uppercase tracking-wider text-base-400">Every HobFarm article</p>
+      <a
+        href={combinedUrl}
+        class="mt-2 block break-all font-mono text-xs leading-relaxed text-accent-cyan underline decoration-base-700 underline-offset-4 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-cyan"
+        data-feed-address
+      >
+        {combinedUrl}
+      </a>
+      <div class="mt-4 flex flex-wrap gap-2">
+        <button
+          type="button"
+          class="min-h-11 border border-accent-cyan/45 px-4 py-2 font-mono text-[10px] uppercase tracking-wider text-accent-cyan hover:border-accent-cyan hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-cyan"
+          data-copy-feed
+        >
+          Copy feed address
+        </button>
+        <a href={combinedUrl} class="inline-flex min-h-11 items-center border border-base-700 px-4 py-2 font-mono text-[10px] uppercase tracking-wider text-base-300 hover:border-base-400 hover:text-white">
+          Open raw feed
+        </a>
+      </div>
+    </div>
+
+    {mode === "expanded" && sectionUrl && (
+      <div class="min-w-0 border border-base-800 bg-base-900/65 p-4" data-feed-card>
+        <p class="font-mono text-[10px] uppercase tracking-wider text-base-400">{section?.label} articles only</p>
+        <a
+          href={sectionUrl}
+          class="mt-2 block break-all font-mono text-xs leading-relaxed text-accent-cyan underline decoration-base-700 underline-offset-4 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-cyan"
+          data-feed-address
+        >
+          {sectionUrl}
+        </a>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <button
+            type="button"
+            class="min-h-11 border border-accent-cyan/45 px-4 py-2 font-mono text-[10px] uppercase tracking-wider text-accent-cyan hover:border-accent-cyan hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-cyan"
+            data-copy-feed
+          >
+            Copy section feed
+          </button>
+          <a href={sectionUrl} class="inline-flex min-h-11 items-center border border-base-700 px-4 py-2 font-mono text-[10px] uppercase tracking-wider text-base-300 hover:border-base-400 hover:text-white">
+            Open raw feed
+          </a>
+        </div>
+      </div>
+    )}
+  </div>
+
+  <p class="mt-4 text-xs leading-relaxed text-base-500" data-feed-status aria-live="polite">
+    No copy button? Select the visible address, copy it, and paste it into your reader.
+  </p>
+
+  {mode === "compact" ? (
+    <a href="/subscribe/" class="mt-4 inline-flex font-mono text-[10px] uppercase tracking-wider text-base-300 underline decoration-base-700 underline-offset-4 hover:text-accent-cyan">
+      Reader instructions and section feeds
+    </a>
+  ) : (
+    <ol class="mt-6 grid gap-3 text-sm leading-relaxed text-base-300 sm:grid-cols-3">
+      <li class="border-t border-base-700 pt-3"><strong class="text-white">1.</strong> Copy a feed address.</li>
+      <li class="border-t border-base-700 pt-3"><strong class="text-white">2.</strong> Add it as a new feed or source in your reader.</li>
+      <li class="border-t border-base-700 pt-3"><strong class="text-white">3.</strong> Let the reader check for new articles on its schedule.</li>
+    </ol>
+  )}
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-direct-subscribe]").forEach((root) => {
+    const status = root.querySelector<HTMLElement>("[data-feed-status]");
+
+    root.querySelectorAll<HTMLButtonElement>("[data-copy-feed]").forEach((button) => {
+      button.addEventListener("click", async () => {
+        const card = button.closest<HTMLElement>("[data-feed-card]");
+        const address = card?.querySelector<HTMLAnchorElement>("[data-feed-address]")?.href;
+        if (!address) return;
+
+        try {
+          await navigator.clipboard.writeText(address);
+          const originalLabel = button.textContent;
+          button.textContent = "Address copied";
+          if (status) status.textContent = `Copied ${address}`;
+          window.setTimeout(() => {
+            button.textContent = originalLabel;
+          }, 1800);
+        } catch {
+          if (status) status.textContent = "Copy was unavailable. Select the visible address and copy it manually.";
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  @media (prefers-reduced-motion: reduce) {
+    [data-direct-subscribe] * {
+      scroll-behavior: auto;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>

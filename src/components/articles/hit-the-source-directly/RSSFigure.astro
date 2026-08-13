@@ -1,0 +1,96 @@
+---
+type FigureKind = "pipelines" | "timeline" | "consumers" | "opml";
+
+interface Props {
+  kind: FigureKind;
+}
+
+const figures = {
+  pipelines: {
+    file: "02-two-pipelines.svg",
+    width: 900,
+    height: 1160,
+    alt: "Two pipelines compare a social platform choosing distribution through engagement ranking with an RSS reader receiving releases from sources selected by the reader.",
+    caption: "RSS does not certify the quality of a source. It moves source selection ahead of distribution, where the reader controls it.",
+    source: "Original HobFarm diagram based on the RSS and Atom specifications and documented feed-reader behavior.",
+    transcript: [
+      "Engagement feed: many sources enter, a platform ranks posts by predicted engagement, and the reader sees the selected winners.",
+      "Direct feed: the reader chooses sources, RSS or Atom carries chronological items, and the reader receives releases.",
+      "Optional downstream step: the reader can apply a personal filter, search tool, digest, or AI to the already chosen sources.",
+    ],
+  },
+  timeline: {
+    file: "03-rss-timeline.svg",
+    width: 900,
+    height: 1500,
+    alt: "Timeline from RSS 0.90 in 1999 through enclosures, Atom, the author's 2006 publishing period, Google Reader's closure, Firefox feed-tool removal, and renewed RSS attention in 2026.",
+    caption: "The formats kept working while the interfaces that taught ordinary browser users about feeds became harder to see.",
+    source: "Dates from the RSS Advisory Board, IETF RFC 4287, Google, and Mozilla. Original HobFarm diagram.",
+    transcript: [
+      "1999: Netscape publishes RSS 0.90 and tells sites to add an Add Channel button.",
+      "2000: RSS 0.92 includes enclosures, which later become essential to podcast distribution.",
+      "2005: Atom becomes an IETF standard through RFC 4287.",
+      "2006: the author's remembered period of publishing video and using an email-style feed reader.",
+      "2013: Google Reader closes, while the underlying feed formats remain available.",
+      "2018: Firefox 64 removes built-in feed preview and Live Bookmarks.",
+      "2026: a 92-feed OPML cold start helps bring RSS back into the public argument.",
+    ],
+  },
+  consumers: {
+    file: "04-one-feed-many-consumers.svg",
+    width: 900,
+    height: 1160,
+    alt: "A central RSS or Atom feed branches to a reader app, podcast app, alert monitor, research folder, archive, script, and personal AI digest.",
+    caption: "A feed is a small public output that many kinds of software can consume without a private integration for each one.",
+    source: "Examples documented by Apple, YouTube, GitHub, arXiv, USGS, NWS, SEC, and GovInfo. Original HobFarm diagram.",
+    transcript: [
+      "One RSS or Atom output can serve article readers and podcast applications.",
+      "Institutional uses include alert monitors, research folders, and archives.",
+      "Scripts and personal AI digests can search or summarize the same chosen inputs downstream.",
+    ],
+  },
+  opml: {
+    file: "05-opml-lineage.svg",
+    width: 900,
+    height: 1260,
+    alt: "Michael Lynch's 2025 Hacker News blog ranking leads to Evan Schwartz's 92-feed OPML conversion, which Andrej Karpathy shares before readers choose their own folders, search, rules, or digests.",
+    caption: "The 92-feed list has a traceable lineage. Michael Lynch produced the ranking, Evan Schwartz converted it to OPML, and Andrej Karpathy shared it as a cold start.",
+    source: "Hacker News Popularity Contest, Evan Schwartz's OPML gist, and Andrej Karpathy's February 1, 2026 post. Original HobFarm diagram.",
+    transcript: [
+      "Step one: Michael Lynch produces the Hacker News Popularity Contest and its 2025 personal-blog results.",
+      "Step two: Evan Schwartz converts that list into an OPML file containing 92 feeds. OPML is a portable subscription list, not a feed.",
+      "Step three: Andrej Karpathy shares the file as a cold start. He did not create or curate the underlying list.",
+      "The reader can then organize the portable source list with folders, search, local rules, or an optional AI digest.",
+    ],
+  },
+} as const;
+
+const figure = figures[Astro.props.kind];
+const src = `https://cdn.hob.farm/articles/hit-the-source-directly/diagrams/${figure.file}`;
+---
+
+<figure class="not-prose my-12 border-y border-base-800 py-6 sm:my-16 sm:py-8">
+  <div class="mx-auto max-w-[46rem] overflow-hidden rounded-2xl border border-base-800 bg-base-950 shadow-2xl shadow-black/20">
+    <img
+      src={src}
+      alt={figure.alt}
+      width={figure.width}
+      height={figure.height}
+      loading="lazy"
+      decoding="async"
+      class="h-auto w-full"
+    />
+  </div>
+  <figcaption class="mx-auto mt-4 max-w-[46rem] text-sm leading-relaxed text-base-300">
+    {figure.caption}
+    <span class="mt-1 block text-xs text-base-500">{figure.source}</span>
+  </figcaption>
+  <details class="mx-auto mt-4 max-w-[46rem] border border-base-800 bg-base-950/60 p-4 text-sm text-base-300">
+    <summary class="cursor-pointer font-mono text-[10px] uppercase tracking-wider text-accent-cyan focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-cyan">
+      Read the graphic transcript
+    </summary>
+    <ul class="mt-3 space-y-2 pl-5 leading-relaxed">
+      {figure.transcript.map((line: string) => <li>{line}</li>)}
+    </ul>
+  </details>
+</figure>

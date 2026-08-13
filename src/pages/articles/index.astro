@@ -7,7 +7,7 @@ import ArticlePagination from "@/components/articles/ArticlePagination.astro";
 import EditorialSectionRail from "@/components/articles/EditorialSectionRail.astro";
 import EditorialSpecials from "@/components/articles/EditorialSpecials.astro";
 import EditorialSubjectLinks from "@/components/articles/EditorialSubjectLinks.astro";
-import Subscribe from "@/components/articles/Subscribe.astro";
+import SubscribeToHobFarm from "@/components/articles/SubscribeToHobFarm.astro";
 import {
   articlePath,
   getArticleDate,
@@ -114,6 +114,10 @@ const structuredData = {
         </aside>
       </Wrapper>
     </ContentPanel>
-    <Subscribe />
+    <ContentPanel>
+      <Wrapper variant="narrow" class="py-12">
+        <SubscribeToHobFarm mode="expanded" id="article-subscribe" />
+      </Wrapper>
+    </ContentPanel>
   </section>
 </BaseLayout>

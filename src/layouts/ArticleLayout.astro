@@ -25,6 +25,7 @@ import BaseLayout from "./BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import ContentPanel from "@/components/ContentPanel.astro";
 import ShareButtons from "@/components/articles/ShareButtons.astro";
+import SubscribeToHobFarm from "@/components/articles/SubscribeToHobFarm.astro";
 import EditorialSectionRail from "@/components/articles/EditorialSectionRail.astro";
 import ArticleCard from "@/components/articles/ArticleCard.astro";
 import Lightbox from "@/components/gallery/Lightbox";
@@ -478,6 +479,13 @@ const articleJsonLd = {
           <p class="text-xs uppercase tracking-wider text-base-500 mb-3">Share this article</p>
           <ShareButtons title={frontmatter.title} text={description} url={canonicalUrl} tags={frontmatter.tags} />
         </div>
+      </Wrapper>
+
+      <Wrapper variant="narrow" class="mt-12">
+        <SubscribeToHobFarm
+          id="article-direct-subscribe"
+          sectionSlug={frontmatter.mesh?.section}
+        />
       </Wrapper>
 
       {(previous || next) && (

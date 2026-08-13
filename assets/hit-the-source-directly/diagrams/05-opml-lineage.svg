@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1260" viewBox="0 0 900 1260" role="img" aria-labelledby="title desc">
+  <title id="title">The provenance and downstream use of a 92-feed OPML file</title>
+  <desc id="desc">Michael Lynch's Hacker News Popularity Contest leads to Evan Schwartz's 92-feed OPML conversion, which Andrej Karpathy shares as a cold start. Readers then choose filters, folders, search, scripts, or AI digests.</desc>
+  <rect width="900" height="1260" rx="28" fill="#0b0d19"/>
+  <text x="60" y="78" fill="#ffb44f" font-family="IBM Plex Mono, monospace" font-size="18" letter-spacing="4">92 FEEDS, TRACEABLE PROVENANCE</text>
+  <text x="60" y="128" fill="#f1eff8" font-family="IBM Plex Sans, sans-serif" font-size="34" font-weight="700">Bring your own source list.</text>
+
+  <g font-family="IBM Plex Sans, sans-serif">
+    <g transform="translate(90 205)"><rect width="720" height="142" rx="18" fill="#171725" stroke="#6c6a80"/><circle cx="60" cy="71" r="31" fill="#2b2b3c"/><text x="60" y="80" text-anchor="middle" fill="#fff" font-size="25" font-weight="700">1</text><text x="120" y="52" fill="#fff" font-size="25" font-weight="700">Michael Lynch</text><text x="120" y="86" fill="#aaa6ba" font-size="19">Hacker News Popularity Contest, 2025 results</text><text x="120" y="116" fill="#77758e" font-size="17">Ranks qualifying personal blogs from HN activity.</text></g>
+    <path d="M450 347V405" stroke="#ffb44f" stroke-width="6"/><path d="m437 393 13 16 13-16" fill="none" stroke="#ffb44f" stroke-width="6"/>
+    <g transform="translate(90 415)"><rect width="720" height="155" rx="18" fill="#211c18" stroke="#ffb44f" stroke-width="2"/><circle cx="60" cy="77" r="31" fill="#ffb44f"/><text x="60" y="86" text-anchor="middle" fill="#141019" font-size="25" font-weight="700">2</text><text x="120" y="53" fill="#fff" font-size="25" font-weight="700">Evan Schwartz</text><text x="120" y="87" fill="#d9b98b" font-size="19">Converts the list into an OPML file with 92 feeds.</text><text x="120" y="119" fill="#ac9270" font-size="17">OPML is a portable subscription list, not a feed.</text></g>
+    <path d="M450 570V628" stroke="#ffb44f" stroke-width="6"/><path d="m437 616 13 16 13-16" fill="none" stroke="#ffb44f" stroke-width="6"/>
+    <g transform="translate(90 638)"><rect width="720" height="142" rx="18" fill="#171725" stroke="#55d7ff" stroke-width="2"/><circle cx="60" cy="71" r="31" fill="#55d7ff"/><text x="60" y="80" text-anchor="middle" fill="#0b0d19" font-size="25" font-weight="700">3</text><text x="120" y="52" fill="#fff" font-size="25" font-weight="700">Andrej Karpathy</text><text x="120" y="86" fill="#b0c3cf" font-size="19">Shares the OPML file as a cold start for RSS.</text><text x="120" y="116" fill="#8295a1" font-size="17">He did not create or curate the underlying list.</text></g>
+  </g>
+
+  <path d="M450 780V850" stroke="#55d7ff" stroke-width="6"/><path d="m437 838 13 16 13-16" fill="none" stroke="#55d7ff" stroke-width="6"/>
+  <text x="450" y="900" text-anchor="middle" fill="#55d7ff" font-family="IBM Plex Mono, monospace" font-size="18" letter-spacing="3">THE READER DECIDES WHAT HAPPENS NEXT</text>
+  <g font-family="IBM Plex Sans, sans-serif" font-size="20" text-anchor="middle">
+    <g transform="translate(60 940)"><rect width="180" height="105" rx="13" fill="#15202a" stroke="#55d7ff"/><text x="90" y="47" fill="#fff" font-weight="700">Folders</text><text x="90" y="77" fill="#a9b7c4">by subject</text></g>
+    <g transform="translate(260 940)"><rect width="180" height="105" rx="13" fill="#15202a" stroke="#55d7ff"/><text x="90" y="47" fill="#fff" font-weight="700">Search</text><text x="90" y="77" fill="#a9b7c4">across feeds</text></g>
+    <g transform="translate(460 940)"><rect width="180" height="105" rx="13" fill="#15202a" stroke="#55d7ff"/><text x="90" y="47" fill="#fff" font-weight="700">Rules</text><text x="90" y="77" fill="#a9b7c4">local filters</text></g>
+    <g transform="translate(660 940)"><rect width="180" height="105" rx="13" fill="#15202a" stroke="#55d7ff"/><text x="90" y="47" fill="#fff" font-weight="700">Digest</text><text x="90" y="77" fill="#a9b7c4">optional AI</text></g>
+  </g>
+  <rect x="90" y="1100" width="720" height="96" rx="14" fill="#151522" stroke="#39394d"/>
+  <text x="450" y="1141" text-anchor="middle" fill="#fff" font-family="IBM Plex Sans, sans-serif" font-size="22" font-weight="700">The source list stays portable.</text>
+  <text x="450" y="1173" text-anchor="middle" fill="#aaa6ba" font-family="IBM Plex Sans, sans-serif" font-size="18">Change readers or filters without asking every publisher again.</text>
+  <text x="60" y="1228" fill="#77758e" font-family="IBM Plex Sans, sans-serif" font-size="15">Sources: HN Popularity Contest, Evan Schwartz OPML gist, Andrej Karpathy post</text>
+</svg>

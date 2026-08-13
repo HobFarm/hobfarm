@@ -1,0 +1,89 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ContentPanel from "@/components/ContentPanel.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import SubscribeToHobFarm from "@/components/articles/SubscribeToHobFarm.astro";
+import { editorialSections } from "@/data/editorial-mesh";
+
+const origin = Astro.site?.origin ?? "https://hob.farm";
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Subscribe directly to HobFarm",
+  description: "HobFarm RSS feeds and setup instructions for feed readers.",
+  url: new URL("/subscribe/", origin).toString(),
+};
+---
+
+<BaseLayout
+  title="Subscribe directly to HobFarm"
+  description="Follow every HobFarm article, or choose one Editorial section, with a direct RSS subscription."
+  canonical="/subscribe/"
+  structuredData={structuredData}
+>
+  <ContentPanel>
+    <Wrapper variant="narrow" class="py-10 sm:py-16">
+      <header class="max-w-3xl">
+        <p class="font-mono text-[10px] uppercase tracking-[.16em] text-accent-cyan">Hit the source directly</p>
+        <h1 class="mt-3 font-display text-4xl font-light text-white sm:text-5xl">Subscribe to HobFarm with RSS</h1>
+        <p class="mt-5 text-base leading-relaxed text-base-300 sm:text-lg">
+          RSS gives your reader a direct list of newly published work. It does not need an account, a recommendation feed, or permission from a social platform.
+        </p>
+      </header>
+
+      <div class="mt-10">
+        <SubscribeToHobFarm mode="expanded" id="all-articles-feed" />
+      </div>
+
+      <section class="mt-12" aria-labelledby="section-feeds-heading">
+        <h2 id="section-feeds-heading" class="font-display text-3xl font-light text-white">Choose one Editorial section</h2>
+        <p class="mt-3 text-sm leading-relaxed text-base-400">The combined feed carries every article. These feeds narrow the subscription to one of the six public Editorial sections.</p>
+        <ul class="mt-6 grid gap-3 sm:grid-cols-2">
+          {editorialSections.map((section) => {
+            const feedUrl = new URL(`/articles/${section.slug}/rss.xml`, origin).toString();
+            return (
+              <li class="min-w-0 border border-base-800 bg-base-950/65 p-4">
+                <a href={feedUrl} class="font-display text-xl text-white hover:text-accent-cyan">{section.label}</a>
+                <p class="mt-2 break-all font-mono text-[11px] leading-relaxed text-base-400">{feedUrl}</p>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+
+      <section class="mt-12" aria-labelledby="reader-steps-heading">
+        <h2 id="reader-steps-heading" class="font-display text-3xl font-light text-white">Where the address goes</h2>
+        <div class="mt-6 grid gap-4 sm:grid-cols-2">
+          <article class="border border-base-800 p-5">
+            <h3 class="font-display text-xl text-white">Thunderbird</h3>
+            <p class="mt-2 text-sm leading-relaxed text-base-400">Create or select a Feeds account, open Manage subscriptions, choose Add, paste the feed address, and confirm it.</p>
+          </article>
+          <article class="border border-base-800 p-5">
+            <h3 class="font-display text-xl text-white">NetNewsWire</h3>
+            <p class="mt-2 text-sm leading-relaxed text-base-400">Choose the plus button, select New Web Feed, paste the address, and add it to an account or folder.</p>
+          </article>
+          <article class="border border-base-800 p-5">
+            <h3 class="font-display text-xl text-white">Feedly</h3>
+            <p class="mt-2 text-sm leading-relaxed text-base-400">Open Follow Sources, paste the HobFarm feed address, select the matching source, and save it to a folder.</p>
+          </article>
+          <article class="border border-base-800 p-5">
+            <h3 class="font-display text-xl text-white">FreshRSS</h3>
+            <p class="mt-2 text-sm leading-relaxed text-base-400">Open subscription management, choose the add control, paste the address into Feed URL, and submit it.</p>
+          </article>
+        </div>
+        <p class="mt-5 text-xs leading-relaxed text-base-500">
+          Menu names can move between app versions. The durable action is the same: add a feed by URL. Readers normally check feeds on a schedule, so a new article may not appear the second it is published.
+        </p>
+      </section>
+
+      <aside class="mt-12 border-l-2 border-accent-cyan/60 bg-base-900/45 p-5" aria-labelledby="raw-feed-heading">
+        <h2 id="raw-feed-heading" class="font-display text-2xl font-light text-white">If the feed opens as raw XML</h2>
+        <p class="mt-3 text-sm leading-relaxed text-base-300">
+          That is normal. A feed is a machine-readable document, not a designed article page. Copy its address from the browser bar and add it to a feed reader. The reader turns the XML into a list of titles, dates, descriptions, and links.
+        </p>
+      </aside>
+
+      <p class="mt-10 text-sm text-base-400"><a href="/articles/" class="text-accent-cyan underline underline-offset-4 hover:text-white">Return to HobFarm Articles</a></p>
+    </Wrapper>
+  </ContentPanel>
+</BaseLayout>

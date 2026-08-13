@@ -1,0 +1,15 @@
+id,item,priority,action,status
+F01,Author's 2006 feed-reader memory,high,"Keep the application identification qualified as Thunderbird or another email-style reader unless the author confirms the exact client.",resolved in draft boundary
+F02,92-feed OPML author name,high,"Use Evan Schwartz. The task packet says Eric, but the linked GitHub profile and gist identify Evan.",resolved
+F03,Karpathy attribution,high,"Describe Karpathy as sharing the 92-feed list as a cold start. Do not call him its curator or creator.",resolved
+F04,HN list lineage,high,"Attribute the underlying 2025 ranking and methodology to Michael Lynch's Hacker News Popularity Contest, then the OPML conversion to Evan Schwartz.",resolved
+F05,Karpathy quotation length,medium,"Keep direct quotation under the source limit and use only short phrases that the post visibly supports.",resolved
+F06,Podcast enclosure claim,high,"Explain that RSS enclosures predate podcasting and that current podcast feeds use them. Do not claim HobFarm publishes a podcast feed or add fake enclosures.",resolved
+F07,Google Reader date,high,"State the announced July 1 2013 retirement. Avoid treating the final farewell post's next-day timestamp as the service date.",resolved
+F08,Firefox feed removal,medium,"Tie the removal to Firefox 64 in December 2018 and do not claim all browsers removed RSS support at once.",resolved
+F09,Feed delivery speed,medium,"Say readers poll on a schedule and some systems support push. Do not promise instant delivery.",resolved
+F10,AI feed projects,medium,"Label all three as small public projects and report repository behavior without claiming adoption, quality, or trend strength.",resolved
+F11,RSS versus Atom,high,"Name them as separate formats that readers commonly handle through the same workflow.",resolved
+F12,HobFarm feed coverage,high,"Audit the combined feed and all six section feeds before and after the change; test the scheduled publication boundary.",open until validation
+F13,Feed-reader instructions,medium,"Recheck Thunderbird, NetNewsWire, Feedly, and FreshRSS steps against current official help immediately before final copy lock.",resolved 2026-08-12
+F14,Asset rights and provenance,high,"Use only original HobFarm diagrams and generated raster derivatives; record hashes and intended CDN destinations.",open until manifest
