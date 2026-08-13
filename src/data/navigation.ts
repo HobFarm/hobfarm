@@ -54,6 +54,7 @@ export const footerLinkGroups: FooterGroup[] = [
   {
     title: "Studio",
     links: [
+      { label: "EZIZE", href: "/ezize/" },
       { label: "Workshop", href: "/workshop/" },
       { label: "Workshop Projects", href: "/workshop/projects/" },
       { label: "Workshop Notes", href: "/workshop/workshop-notes/" },

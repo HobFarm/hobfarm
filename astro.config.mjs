@@ -16,6 +16,7 @@ const noindexDepartmentPaths = new Set(
 const redirectedPaths = new Set([
   "/gallery/before-and-after/",
   "/gallery/cute-corrupted/",
+  "/visual-systems/cute-corrupted/",
   "/departments/workshop-notes/",
 ]);
 const privatePrototypePaths = new Set(["/workshop/visual-lab/", "/workshop/stylefusion/prototype/"]);

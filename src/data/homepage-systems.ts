@@ -148,7 +148,7 @@ export const cuteCorrupted = {
   copy:
     "A visual series about paired transformations. Every piece starts with a clean, charming version, then mutates into a darker version that keeps the same subject, silhouette, and appeal. Pick a branch and run the change yourself.",
   cta: "Every design starts clean. Every design comes back changed.",
-  landingHref: "/gallery/cute-corrupted/",
+  landingHref: "/ezize/",
   defaultBranch: "critters",
   // Each branch has a `featured` entry (shown in the homepage switcher) and a
   // full `entries` list (shown on the landing page). Media URLs and

@@ -7,13 +7,20 @@
 /stylefusion  /workshop/stylefusion/  301
 /sf           /workshop/stylefusion/  301
 
-# Workshop program hubs now own these visual/process archives.
+# EZIZE now owns the former Cute & Corrupted product and gallery hub. The
+# Workshop method page remains available as process material.
 /gallery/before-and-after   /workshop/before-and-after/    301
 /gallery/before-and-after/  /workshop/before-and-after/    301
-/gallery/cute-corrupted     /workshop/cute-and-corrupted/  301
-/gallery/cute-corrupted/    /workshop/cute-and-corrupted/  301
-/workshop/cute-corrupted    /workshop/cute-and-corrupted/  301
-/workshop/cute-corrupted/   /workshop/cute-and-corrupted/  301
+/gallery/cute-corrupted     /ezize/                        301
+/gallery/cute-corrupted/    /ezize/                        301
+/visual-systems/cute-corrupted   /ezize/                   301
+/visual-systems/cute-corrupted/  /ezize/                   301
+/workshop/cute-corrupted    /ezize/                        301
+/workshop/cute-corrupted/   /ezize/                        301
+/cute-corrupted             /ezize/                        301
+/cute-corrupted/            /ezize/                        301
+/cute-and-corrupted         /ezize/                        301
+/cute-and-corrupted/        /ezize/                        301
 /departments/workshop-notes  /workshop/workshop-notes/     301
 /departments/workshop-notes/ /workshop/workshop-notes/     301
 
@@ -167,9 +174,9 @@
 /departments/funnies                 /presents/funnies/   301
 /departments/funnies/                /presents/funnies/   301
 
-# Departments that were really Workshop programs.
-/departments/cute-corrupted     /workshop/cute-and-corrupted/   301
-/departments/cute-corrupted/    /workshop/cute-and-corrupted/   301
+# Departments that were really Workshop programs or product aliases.
+/departments/cute-corrupted     /ezize/                         301
+/departments/cute-corrupted/    /ezize/                         301
 /departments/before-after-eras  /workshop/before-and-after/     301
 /departments/before-after-eras/ /workshop/before-and-after/     301
 
