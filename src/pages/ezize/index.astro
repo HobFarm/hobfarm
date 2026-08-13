@@ -6,12 +6,13 @@ import BeforeAfterCompare from "@/components/ui/BeforeAfterCompare.astro";
 import { buildCompareItems } from "@/lib/cute-corrupted";
 
 const description =
-  "EZIZE is a probability-driven collectible image machine published by HobFarm, built around structured random generation and exact recipe probabilities.";
-// The public subdomain has no deployed DNS target yet. Make the CTA live only
-// after the application itself has been verified.
+  "EZIZE is HobFarm's private-alpha collectible image machine, built around structured random generation, exact recipe probabilities, and rendered easies.";
+// The machine is working in private alpha, but the custom domain still has no
+// confirmed DNS target. Publish the link only after its Access-protected
+// deployment has been verified at this exact address.
 const app = {
   href: "https://ez.hob.farm/",
-  live: false,
+  customDomainReady: false,
 };
 
 const pairs = await buildCompareItems([
@@ -104,7 +105,7 @@ const pullSteps = [
   "Render image",
   "Receive an easie",
 ];
-const rarityRecipe = ["Cute", "Character", "Skeleton", "Pirate", "Heavy body mass", "Fire"];
+const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake", "Melting condition"];
 ---
 
 <BaseLayout
@@ -124,23 +125,24 @@ const rarityRecipe = ["Cute", "Character", "Skeleton", "Pirate", "Heavy body mas
           <div class="hero-copy">
             <p class="eyebrow">A collectible image system published by HobFarm</p>
             <h1 id="ezize-title">EZIZE</h1>
-            <p class="pronunciation">Pronounced “easies.”</p>
+            <p class="pronunciation"><span>Private alpha</span> Pronounced “easies.”</p>
             <p class="deck">
               A probability-driven collectible image machine. Every pull resolves a structured combination of
-              traits, calculates how likely that exact recipe was, then prepares a one-of-a-kind image specification.
+              traits, calculates how likely that exact recipe was, builds the image specification, and renders an easie.
             </p>
             <div class="hero-actions">
-              {app.live ? (
-                <a class="primary-action" href={app.href}>Open the EZIZE arcade <span aria-hidden="true">↗</span></a>
+              {app.customDomainReady ? (
+                <a class="primary-action" href={app.href}>Open EZIZE <span aria-hidden="true">↗</span></a>
               ) : (
-                <span class="primary-action is-disabled" role="status" aria-label="The EZIZE application is in development">
-                  Application coming soon
+                <span class="primary-action is-disabled" role="status" aria-label="EZIZE is in private alpha; custom-domain access is pending verification">
+                  Private alpha access pending
                 </span>
               )}
               <a class="secondary-action" href="#cabinet">Open the cabinet</a>
             </div>
             <p class="app-home">
-              Future application home: <span>{app.href.replace("https://", "")}</span>
+              Private-alpha application: <span>{app.href.replace("https://", "")}</span>. Owner access only; the
+              custom-domain link will activate after deployment is confirmed.
             </p>
           </div>
 
@@ -181,9 +183,9 @@ const rarityRecipe = ["Cute", "Character", "Skeleton", "Pirate", "Heavy body mas
               recipe comes first. The image model does not choose the rarity, the form, or the underlying traits.
             </p>
             <p>
-              The current engine can resolve the recipe, genome, exact probability, and canonical image JSON. The
-              OpenAI image-provider connection that turns that specification into the finished picture is the next
-              implementation phase.
+              The private alpha now runs the complete path from compiled Grimoire packs through Wildcard Machine,
+              canonical image JSON, the EZIZE prompt compiler, and OpenAI GPT Image. The first development proof
+              rendered a 2336×3504 portrait PNG from a resolved Cute Character recipe.
             </p>
           </div>
         </div>
@@ -193,7 +195,7 @@ const rarityRecipe = ["Cute", "Character", "Skeleton", "Pirate", "Heavy body mas
             <li><span>{String(index + 1).padStart(2, "0")}</span><strong>{step}</strong></li>
           ))}
         </ol>
-        <p class="diagram-note">Conceptual pull path. Image rendering and the public arcade are still being built.</p>
+        <p class="diagram-note">Working private-alpha path. Public accounts, retail credits, and public generation access are not available.</p>
       </Wrapper>
     </section>
 
@@ -205,7 +207,8 @@ const rarityRecipe = ["Cute", "Character", "Skeleton", "Pirate", "Heavy body mas
             <h2 id="blind-pull-heading">Pull the handle. Let the cabinet decide.</h2>
             <p class="deck-small">
               EZIZE works like a vending machine, a gumball machine, or a sealed trading-card pack. It is not a
-              conventional prompt form. The structured surprise is the point.
+              conventional prompt form. The structured surprise is the point. Common pulls still need to make good
+              pictures; unusual combinations emerge naturally when several weighted choices meet.
             </p>
           </div>
           <ol class="arcade-sequence">
@@ -294,11 +297,14 @@ const rarityRecipe = ["Cute", "Character", "Skeleton", "Pirate", "Heavy body mas
           <div class="body-copy">
             <p>
               Every choice in the generation path has a probability. Those probabilities multiply, so rarity emerges
-              from the completed recipe. A common trait can become part of an extremely unusual combination.
+              from the completed recipe. A common trait can become part of an extremely unusual combination. The first
+              successful render resolved a feminine-coded alien chef decorating a cake, with stylized melting edges.
+              It remained a Character recipe; the cake was part of the action, not a switch into the Cake form.
             </p>
             <p>
-              The engine records the exact generation probability. That number describes the pull, not the edition
-              size and not a promise of market value.
+              The engine records exact full-genome probability. Highly detailed genomes can produce enormous “1 in X”
+              values, so the application will need a careful collector-facing summary. The number describes the recipe,
+              not the population, mint count, or a promise of market value.
             </p>
           </div>
         </div>
@@ -310,7 +316,7 @@ const rarityRecipe = ["Cute", "Character", "Skeleton", "Pirate", "Heavy body mas
           <div class="recipe-result"><span>=</span><strong>One extremely unusual recipe</strong></div>
         </div>
         <div class="rarity-separations" aria-label="Rarity distinctions">
-          <span>Generation probability</span><b>≠</b><span>Number minted</span><b>≠</b><span>Market value</span>
+          <span>Recipe probability</span><b>≠</b><span>Population count</span><b>≠</b><span>Mint count</span><b>≠</b><span>Market value</span>
         </div>
       </Wrapper>
     </section>
@@ -332,7 +338,7 @@ const rarityRecipe = ["Cute", "Character", "Skeleton", "Pirate", "Heavy body mas
           <div class="engine-nodes">
             <article><span>Authoring and schema</span><h3>Grimoire</h3><p>Defines what can exist.</p></article>
             <article><span>Deterministic runtime</span><h3>Wildcard Machine</h3><p>Performs the seeded pull and calculates its probability.</p></article>
-            <article><span>Image renderer</span><h3>OpenAI</h3><p>Will render the already-resolved visual specification.</p></article>
+            <article><span>Image renderer</span><h3>OpenAI</h3><p>Renders the already-resolved visual specification in the private alpha.</p></article>
           </div>
         </div>
       </Wrapper>
@@ -342,24 +348,25 @@ const rarityRecipe = ["Cute", "Character", "Skeleton", "Pirate", "Heavy body mas
       <Wrapper variant="standard" class="section-space">
         <header class="section-heading">
           <p class="eyebrow">Current build status</p>
-          <h2 id="status-heading">The engine exists. The public arcade comes next.</h2>
+          <h2 id="status-heading">The machine is rendering in private alpha.</h2>
         </header>
         <div class="status-grid">
           <article>
-            <span class="status-label available">Available in the engine</span>
-            <h3>Structured resolution</h3>
-            <p>Seed → Cabinet → persona → form → traits → genome → exact probability → canonical image JSON.</p>
+            <span class="status-label available">Working</span>
+            <h3>Deterministic pull</h3>
+            <p>Compiled packs → seed → Cabinet → persona → form → traits → genome → exact probability → canonical image JSON.</p>
             <ul><li>Cake v0.4</li><li>Critter v0.3</li><li>Character v0.1</li></ul>
           </article>
           <article>
-            <span class="status-label building">Being built</span>
-            <h3>Image and arcade layer</h3>
-            <p>OpenAI image-provider integration, visual QA, and the public application at <span>ez.hob.farm</span>.</p>
+            <span class="status-label building">Private alpha</span>
+            <h3>Prompt and image layer</h3>
+            <p>The EZIZE prompt compiler sends the resolved specification to OpenAI GPT Image and receives a rendered easie.</p>
+            <ul><li>First proof: Alien Chef</li><li>2336×3504 portrait PNG</li><li>Owner access only</li></ul>
           </article>
           <article>
             <span class="status-label planned">Planned</span>
-            <h3>Collection and ownership</h3>
-            <p>Downloads, collection records, public credits, and optional minting for selected easies.</p>
+            <h3>Public product layer</h3>
+            <p>Retail credits, public accounts, persistent collections, agent tools, downloads, and optional minting for selected easies.</p>
           </article>
         </div>
       </Wrapper>
@@ -408,14 +415,15 @@ const rarityRecipe = ["Cute", "Character", "Skeleton", "Pirate", "Heavy body mas
 
     <section class="final-cta" aria-labelledby="final-heading">
       <Wrapper variant="standard" class="section-space">
-        <p class="eyebrow">The cabinet is being wired</p>
-        <h2 id="final-heading">The public EZIZE arcade will live at ez.hob.farm.</h2>
+        <p class="eyebrow">Private alpha</p>
+        <h2 id="final-heading">EZIZE is working behind restricted access.</h2>
         <p>
-          Until it opens, the original Cute / Corrupted studies remain available in the HobFarm Gallery and the
-          production method remains in Workshop.
+          The machine can now resolve and render real easies. Public accounts and generation access do not exist yet,
+          and the custom domain is not linked here until its Access-protected deployment can be verified. The original
+          Cute / Corrupted studies remain available in the HobFarm Gallery, with the production method in Workshop.
         </p>
         <div class="hero-actions final-actions">
-          <span class="primary-action is-disabled" role="status">Application coming soon</span>
+          <span class="primary-action is-disabled" role="status">Private alpha access pending</span>
           <a class="secondary-action" href="/gallery/cute-corrupted/raccoon/">See a Critter study</a>
           <a class="secondary-action" href="/workshop/cute-and-corrupted/">Read the Workshop method</a>
         </div>
