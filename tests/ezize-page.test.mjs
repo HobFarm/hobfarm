@@ -12,8 +12,12 @@ test("EZIZE has a canonical public explainer with honest private-alpha status", 
   assert.match(page, /Cake v0\.4/);
   assert.match(page, /Critter v0\.3/);
   assert.match(page, /Character v0\.1/);
-  assert.match(page, /Private alpha access pending/);
-  assert.match(page, /customDomainReady: false/);
+  assert.match(page, /Open EZIZE · Private alpha/);
+  assert.match(page, /href: "https:\/\/ez\.hob\.farm\/"/);
+  assert.match(page, /customDomainReady: true/);
+  assert.match(page, /Owner access only/);
+  assert.match(page, /public generation is not open/);
+  assert.doesNotMatch(page, /access pending|domain pending|awaiting verification/i);
   assert.doesNotMatch(page, /Application coming soon/);
   assert.match(page, /Recipe probability/);
   assert.match(page, /Population count/);

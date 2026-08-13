@@ -7,12 +7,10 @@ import { buildCompareItems } from "@/lib/cute-corrupted";
 
 const description =
   "EZIZE is HobFarm's private-alpha collectible image machine, built around structured random generation, exact recipe probabilities, and rendered easies.";
-// The machine is working in private alpha, but the custom domain still has no
-// confirmed DNS target. Publish the link only after its Access-protected
-// deployment has been verified at this exact address.
+// The Access-protected private-alpha deployment has been verified at this address.
 const app = {
   href: "https://ez.hob.farm/",
-  customDomainReady: false,
+  customDomainReady: true,
 };
 
 const pairs = await buildCompareItems([
@@ -131,18 +129,14 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
               traits, calculates how likely that exact recipe was, builds the image specification, and renders an easie.
             </p>
             <div class="hero-actions">
-              {app.customDomainReady ? (
-                <a class="primary-action" href={app.href}>Open EZIZE <span aria-hidden="true">↗</span></a>
-              ) : (
-                <span class="primary-action is-disabled" role="status" aria-label="EZIZE is in private alpha; custom-domain access is pending verification">
-                  Private alpha access pending
-                </span>
+              {app.customDomainReady && (
+                <a class="primary-action" href={app.href}>Open EZIZE · Private alpha <span aria-hidden="true">↗</span></a>
               )}
               <a class="secondary-action" href="#cabinet">Open the cabinet</a>
             </div>
             <p class="app-home">
-              Private-alpha application: <span>{app.href.replace("https://", "")}</span>. Owner access only; the
-              custom-domain link will activate after deployment is confirmed.
+              Private-alpha application: <span>{app.href.replace("https://", "")}</span>. Owner access only;
+              Cloudflare Access protects the application, and public generation is not open.
             </p>
           </div>
 
@@ -418,12 +412,14 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
         <p class="eyebrow">Private alpha</p>
         <h2 id="final-heading">EZIZE is working behind restricted access.</h2>
         <p>
-          The machine can now resolve and render real easies. Public accounts and generation access do not exist yet,
-          and the custom domain is not linked here until its Access-protected deployment can be verified. The original
-          Cute / Corrupted studies remain available in the HobFarm Gallery, with the production method in Workshop.
+          The machine can resolve and render real easies. The application is live behind Cloudflare Access and remains
+          owner-only during private alpha. Public accounts and generation access do not exist yet. The original Cute /
+          Corrupted studies remain available in the HobFarm Gallery, with the production method in Workshop.
         </p>
         <div class="hero-actions final-actions">
-          <span class="primary-action is-disabled" role="status">Private alpha access pending</span>
+          {app.customDomainReady && (
+            <a class="primary-action" href={app.href}>Open EZIZE · Private alpha <span aria-hidden="true">↗</span></a>
+          )}
           <a class="secondary-action" href="/gallery/cute-corrupted/raccoon/">See a Critter study</a>
           <a class="secondary-action" href="/workshop/cute-and-corrupted/">Read the Workshop method</a>
         </div>
