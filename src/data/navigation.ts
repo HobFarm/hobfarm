@@ -7,7 +7,7 @@ const workshopNavLinks: NavLink[] = [
   { label: "Overview", href: "/workshop/" },
   { label: "Projects", href: "/workshop/projects/" },
   { label: "Workshop Notes", href: "/workshop/workshop-notes/" },
-  { label: "HobFarm project", href: "/workshop/projects/hobfarm/" },
+  { label: "EZIZE", href: "/ezize/" },
   { label: "StyleFusion", href: "/workshop/stylefusion/" },
   { label: "Before & After", href: "/workshop/before-and-after/" },
   { label: "Future Carriage", href: "/workshop/future-carriage/" },

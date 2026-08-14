@@ -47,10 +47,14 @@ test("Presents series calls to action keep explicit readable colors", () => {
 });
 
 test("Workshop hub uses still-image evidence without empty or autoplaying media", () => {
-  const page = read("src/pages/workshop/index.astro");
+  const page = [
+    read("src/pages/workshop/index.astro"),
+    read("src/components/workshop/EzizeEvidence.astro"),
+  ].join("\n");
 
-  assert.match(page, /carriage-evidence/);
-  assert.match(page, /loading="lazy"/);
+  assert.match(page, /EzizeEvidence/);
+  assert.match(page, /ezize-app-private-alpha/);
+  assert.match(page, /loading=\{priority \? "eager" : "lazy"\}/);
   assert.doesNotMatch(page, /<video/);
   assert.doesNotMatch(page, /autoplay/);
 });

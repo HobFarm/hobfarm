@@ -56,7 +56,7 @@ test("the long Process Film is removed from the compact hub and homepage", () =>
   assert.doesNotMatch(homepage, /WorkshopProcessFilm|autoplay/);
   assert.doesNotMatch(workshop, /WorkshopProcessFilm|id="process-film"/);
   assert.match(workshop, /Selected projects/);
-  assert.match(workshop, /Build the system around the job/);
+  assert.match(workshop, /Projects grow\. Build them so they can\./);
 });
 
 test("homepage Workshop projects use one shared data model and real routes", () => {

@@ -65,8 +65,9 @@ test("Workshop visibility keeps route generation separate from navigation", () =
   assert.match(programRoute, /getProcessPipelineBySlug\(program\.processSlug\)/);
   assert.match(programRoute, /noindex=\{program\.noindex === true\}/);
   assert.match(workshopHub, /WorkshopProjectGrid surface="workshop"/);
-  assert.match(workshopHub, /WorkshopNodeMesh/);
-  assert.match(workshopHub, /Tools and applications/);
+  assert.match(workshopHub, /ProjectGrowthDiagram/);
+  assert.match(workshopHub, /EzizeEvidence/);
+  assert.match(workshopHub, /Selected projects/);
 });
 
 test("Editorial section archives keep sections, specials, subjects, and feeds separate", () => {

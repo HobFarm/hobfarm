@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import test from "node:test";
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
@@ -30,8 +30,32 @@ test("EZIZE has a canonical public explainer with honest private-alpha status", 
   assert.match(page, /Grimoire/);
   assert.match(page, /Wildcard Machine/);
   assert.match(page, /OpenAI/);
+  assert.match(page, /A schema is not necessarily JSON\./);
+  assert.match(page, /PNG download/);
+  assert.match(page, /Development record/);
+  assert.match(page, /Not a public ledger/);
+  assert.match(page, /<EzizeEvidence priority \/>/);
   assert.match(page, /Base/);
   assert.match(page, /OpenSea/);
+});
+
+test("EZIZE public evidence uses cropped and responsive local media", () => {
+  const component = read("src/components/workshop/EzizeEvidence.astro");
+  const registry = read("src/data/media-registry.ts");
+
+  for (const path of [
+    "public/media/ezize/ezize-app-private-alpha-480.webp",
+    "public/media/ezize/ezize-app-private-alpha-640.webp",
+    "public/media/ezize/ezize-corrupted-cake-640.webp",
+    "public/media/ezize/ezize-corrupted-cake-1200.webp",
+  ]) {
+    assert.equal(existsSync(new URL(`../${path}`, import.meta.url)), true, `${path} must exist`);
+  }
+
+  assert.match(component, /srcset=/);
+  assert.match(component, /Private-alpha probability machine, cropped to the public-safe generation window/);
+  assert.match(registry, /"ezize\.app\.private-alpha"/);
+  assert.match(registry, /"ezize\.output\.corrupted-cake"/);
 });
 
 test("former Cute and Corrupted product routes resolve directly to EZIZE", () => {

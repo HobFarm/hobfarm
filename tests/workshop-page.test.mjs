@@ -37,12 +37,15 @@ test("Workshop navigation leads with system layers and keeps featured projects a
   const overviewPosition = navigation.indexOf('label: "Overview"');
   const projectsPosition = navigation.indexOf('label: "Projects"');
   const notesPosition = navigation.indexOf('label: "Workshop Notes"');
+  const ezizePosition = navigation.indexOf('label: "EZIZE"');
   const futureCarriagePosition = navigation.indexOf('label: "Future Carriage"');
 
   assert.ok(overviewPosition >= 0);
   assert.ok(projectsPosition > overviewPosition);
   assert.ok(notesPosition > projectsPosition);
+  assert.ok(ezizePosition > notesPosition);
   assert.ok(futureCarriagePosition > notesPosition);
+  assert.match(navigation, /href: "\/ezize\/"/);
   assert.match(navigation, /href: "\/workshop\/future-carriage\/"/);
 });
 
@@ -50,15 +53,11 @@ test("Workshop hub follows the requested section hierarchy", () => {
   const page = read("src/pages/workshop/index.astro");
   const markers = [
     "workshop-hero",
-    "notes-intro",
     'id="method"',
-    'id="system"',
-    "representation-section",
-    "production-paths",
+    'id="growth"',
+    'id="ezize"',
     'id="projects"',
-    '<section class="future-carriage"',
-    'aria-labelledby="outputs-heading"',
-    "tools-section",
+    "notes-section",
     "final-routes",
   ];
   const positions = markers.map((marker) => page.indexOf(marker));
@@ -66,24 +65,27 @@ test("Workshop hub follows the requested section hierarchy", () => {
   assert.ok(positions.every((position) => position >= 0));
   assert.deepEqual(positions, [...positions].sort((a, b) => a - b));
   assert.match(page, /One method for different projects\./);
-  assert.match(page, /Start with an idea and find the angle that makes it yours\./);
+  assert.match(page, /HobFarm work moves between research, writing, visual direction, software, and publishing\./);
   assert.match(page, /getMedia\("workshop\.graphics\.hero"\)/);
   assert.doesNotMatch(page, /workshop-hero__layout \{ grid-template-columns:/);
-  const hero = page.slice(page.indexOf('<section class="workshop-hero"'), page.indexOf('<section class="notes-intro"'));
+  const hero = page.slice(page.indexOf('<section class="workshop-hero"'), page.indexOf('<section id="method"'));
   assert.ok(hero.indexOf('class="workshop-hero__title"') < hero.indexOf("</figure>"));
   assert.ok(hero.indexOf('class="workshop-hero__after"') > hero.indexOf("</figure>"));
   assert.ok(hero.indexOf('<p class="deck">') > hero.indexOf("</figure>"));
-  assert.match(page, /The production record behind HobFarm\./);
   assert.match(page, /Start with the source\. Keep the decisions visible\./);
-  assert.match(page, /Build the system around the job\./);
-  assert.match(page, /A schema is not necessarily JSON\./);
-  assert.match(page, /Keep the representation stable while the tool changes\./);
+  assert.match(page, /Projects grow\. Build them so they can\./);
+  assert.match(page, /Separate experiments became one working machine\./);
   assert.match(page, /Selected projects/);
+  assert.doesNotMatch(page, /A schema is not necessarily JSON\./);
+  assert.doesNotMatch(page, /Build the system around the job\./);
+  assert.doesNotMatch(page, /<SchemaRepresentation/);
+  assert.doesNotMatch(page, /<ProviderProjection/);
 });
 
-test("Workshop hub exposes all primary routes and keeps StyleFusion supporting", () => {
+test("Workshop hub exposes the project registry, EZIZE, and one notes section", () => {
   const page = read("src/pages/workshop/index.astro");
   const hierarchy = read("src/data/site-hierarchy.ts");
+  const projects = read("src/data/workshop-projects.ts");
 
   for (const href of [
     "/workshop/workshop-notes/",
@@ -96,8 +98,11 @@ test("Workshop hub exposes all primary routes and keeps StyleFusion supporting",
     assert.match(hierarchy, new RegExp(href.replaceAll("/", "\\/")));
   }
 
-  assert.match(page, /Tools and applications/);
-  assert.match(page, /\/workshop\/stylefusion\//);
+  assert.match(page, /<WorkshopProjectGrid surface="workshop" \/>/);
+  assert.match(projects, /id: "ezize"/);
+  assert.match(projects, /destination: "\/ezize\/"/);
+  assert.match(projects, /id: "stylefusion"/);
+  assert.equal([...page.matchAll(/<section class="notes-section"/g)].length, 1);
 });
 
 test("program navigation derives previous and next links from the shared order", () => {
@@ -128,13 +133,14 @@ test("generic placeholder program copy is gone", () => {
   assert.match(combined, /failure or revision/);
 });
 
-test("Future Carriage connects the stable base, Ami, and the full case study", () => {
+test("Future Carriage remains a selected project with its full case study", () => {
   const hub = read("src/pages/workshop/index.astro");
+  const projects = read("src/data/workshop-projects.ts");
   const caseStudy = read("src/pages/workshop/future-carriage/index.astro");
 
-  assert.match(hub, /Ami as recurring avatar and spokesperson/);
-  assert.match(hub, /href="\/workshop\/avatar-host\/"/);
-  assert.match(hub, /href="\/workshop\/character-mannequin\/"/);
+  assert.match(hub, /<WorkshopProjectGrid surface="workshop" \/>/);
+  assert.match(projects, /id: "future-carriage"/);
+  assert.match(projects, /destination: "\/workshop\/future-carriage\/"/);
   assert.match(caseStudy, /View the avatar host system/);
   assert.match(caseStudy, /Follow the stable-base method/);
 });
@@ -162,10 +168,10 @@ test("Workshop method uses five durable production stages", () => {
   const page = read("src/pages/workshop/index.astro");
 
   for (const title of [
-    "Research the source",
+    "Conceptualize and research",
     "Define the base",
     "Build the transformation",
-    "Direct the result",
+    "Direct and test",
     "Publish and extend",
   ]) {
     assert.match(data, new RegExp(`title: "${title}"`));

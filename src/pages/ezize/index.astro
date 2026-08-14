@@ -3,7 +3,9 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Breadcrumbs from "@/components/global/Breadcrumbs.astro";
 import BeforeAfterCompare from "@/components/ui/BeforeAfterCompare.astro";
+import EzizeEvidence from "@/components/workshop/EzizeEvidence.astro";
 import { buildCompareItems } from "@/lib/cute-corrupted";
+import { getMedia } from "@/data/media-registry";
 
 const description =
   "EZIZE is HobFarm's private-alpha collectible image machine, built around structured random generation, exact recipe probabilities, and rendered easies.";
@@ -49,9 +51,8 @@ const cabinetForms = [
   return pair ? [{ ...form, pair }] : [];
 });
 
-// This poster is already an approved public preview and stays on the direct CDN
-// URL required by social crawlers. A dedicated EZIZE social card can replace it.
-const socialImage = "https://cdn.hob.farm/gallery/cute-corrupted/sienna-red/sienna-poster.jpg";
+const ezizeOutput = getMedia("ezize.output.corrupted-cake");
+const socialImage = ezizeOutput.src;
 const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
 const canonicalUrl = new URL("/ezize/", siteOrigin).toString();
 const structuredData = {
@@ -101,7 +102,7 @@ const pullSteps = [
   "Calculate probability",
   "Build image specification",
   "Render image",
-  "Receive an easie",
+  "Record and download",
 ];
 const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake", "Melting condition"];
 ---
@@ -111,7 +112,7 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
   description={description}
   canonical="/ezize/"
   image={socialImage}
-  imageAlt="A Cute and Corrupted character study from the image grammar behind EZIZE"
+  imageAlt={ezizeOutput.alt}
   structuredData={structuredData}
   palette="magenta-cyan"
 >
@@ -130,7 +131,7 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
             </p>
             <div class="hero-actions">
               {app.customDomainReady && (
-                <a class="primary-action" href={app.href}>Open EZIZE · Private alpha <span aria-hidden="true">↗</span></a>
+                <a class="primary-action" href={app.href}>Open EZIZE · Private alpha <span aria-hidden="true">&rarr;</span></a>
               )}
               <a class="secondary-action" href="#cabinet">Open the cabinet</a>
             </div>
@@ -140,26 +141,7 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
             </p>
           </div>
 
-          <div class="cabinet-preview" aria-label="Cake, Critter, and Character previews">
-            <div class="cabinet-marquee">
-              <span>Cabinet online</span>
-              <span aria-hidden="true">● ● ●</span>
-            </div>
-            <div class="cabinet-windows">
-              {cabinetForms.map((form, index) => {
-                const image = form.pair[form.side];
-                return (
-                  <figure>
-                    <img src={image.src} alt={image.alt} loading={index === 0 ? "eager" : "lazy"} decoding="async" />
-                    <figcaption><span>{form.version}</span>{form.name}</figcaption>
-                  </figure>
-                );
-              })}
-            </div>
-            <div class="cabinet-controls" aria-hidden="true">
-              <span></span><span></span><span></span><b>EZ</b>
-            </div>
-          </div>
+          <div class="hero-evidence"><EzizeEvidence priority /></div>
         </div>
       </Wrapper>
     </section>
@@ -179,7 +161,8 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
             <p>
               The private alpha now runs the complete path from compiled Grimoire packs through Wildcard Machine,
               canonical image JSON, the EZIZE prompt compiler, and OpenAI GPT Image. The first development proof
-              rendered a 2336×3504 portrait PNG from a resolved Cute Character recipe.
+              rendered a 2336×3504 portrait PNG from a resolved Cute Character recipe. The current Corrupted Cake
+              proof completes the same path and can be downloaded as a PNG from the owner view.
             </p>
           </div>
         </div>
@@ -190,6 +173,35 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
           ))}
         </ol>
         <p class="diagram-note">Working private-alpha path. Public accounts, retail credits, and public generation access are not available.</p>
+      </Wrapper>
+    </section>
+
+    <section class="lineage" aria-labelledby="lineage-heading">
+      <Wrapper variant="standard" class="section-space">
+        <div class="split-heading">
+          <div>
+            <p class="eyebrow">Project lineage</p>
+            <h2 id="lineage-heading">A visual series became a working application.</h2>
+          </div>
+          <div class="body-copy">
+            <p>
+              Cute &amp; Corrupted established the paired visual premise. Grimoire turned its concepts into authored
+              taxonomies and versioned packs. Wildcard Machine supplied the seeded probability runtime. EZIZE brought
+              those systems together with an interface, image compiler, renderer, download, and development record.
+            </p>
+            <p>
+              The final application was not fully specified when the first paired images were made. Each stage exposed
+              the next useful problem and preserved enough structure for that new branch to become possible.
+            </p>
+          </div>
+        </div>
+
+        <ol class="lineage-chain" aria-label="Systems that converged into EZIZE">
+          <li><span>01 / origin</span><strong>Cute &amp; Corrupted</strong><p>Persona and transformation grammar</p></li>
+          <li><span>02 / authoring</span><strong>Grimoire</strong><p>Taxonomies, weights, and compiled packs</p></li>
+          <li><span>03 / runtime</span><strong>Wildcard Machine</strong><p>Deterministic resolution and probability</p></li>
+          <li><span>04 / application</span><strong>EZIZE</strong><p>Pull, render, record, and PNG download</p></li>
+        </ol>
       </Wrapper>
     </section>
 
@@ -338,6 +350,36 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
       </Wrapper>
     </section>
 
+    <section class="representation" aria-labelledby="representation-heading">
+      <Wrapper variant="standard" class="section-space">
+        <div class="split-heading">
+          <div>
+            <p class="eyebrow">Representation between stages</p>
+            <h2 id="representation-heading">A schema is not necessarily JSON.</h2>
+          </div>
+          <div class="body-copy">
+            <p>
+              A schema is the explicit structure that lets the next stage understand the decisions that matter. JSON
+              is one serialization. EZIZE also depends on concept taxonomies, persona and form grammar, weighted trait
+              relationships, deterministic identity, image direction, and application state.
+            </p>
+            <p>
+              Each representation has a job. The image provider receives a resolved visual specification. It does not
+              decide the Cabinet, persona, form, traits, or probability that produced the recipe.
+            </p>
+          </div>
+        </div>
+
+        <dl class="representation-grid">
+          <div><dt>Authored grammar</dt><dd>Cabinet, persona, form, trait relationships, weights, and exclusions define what can exist.</dd></div>
+          <div><dt>Deterministic identity</dt><dd>Seed, resolved genome, and exact full-genome probability identify the completed pull.</dd></div>
+          <div><dt>Image contract</dt><dd>Canonical image JSON and the prompt compiler translate the recipe into a renderable specification.</dd></div>
+          <div><dt>Development record</dt><dd>EZIZE ID, render state, output dimensions, image hash, and PNG provenance fields stay attached to the owner-alpha result.</dd></div>
+        </dl>
+        <p class="representation-note">The development record is working. A public collection, ownership ledger, and mint record are future product work.</p>
+      </Wrapper>
+    </section>
+
     <section class="status" aria-labelledby="status-heading">
       <Wrapper variant="standard" class="section-space">
         <header class="section-heading">
@@ -352,15 +394,21 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
             <ul><li>Cake v0.4</li><li>Critter v0.3</li><li>Character v0.1</li></ul>
           </article>
           <article>
-            <span class="status-label building">Private alpha</span>
-            <h3>Prompt and image layer</h3>
-            <p>The EZIZE prompt compiler sends the resolved specification to OpenAI GPT Image and receives a rendered easie.</p>
-            <ul><li>First proof: Alien Chef</li><li>2336×3504 portrait PNG</li><li>Owner access only</li></ul>
+            <span class="status-label available">Working</span>
+            <h3>Render and PNG download</h3>
+            <p>The EZIZE prompt compiler sends the resolved specification to OpenAI GPT Image, receives the rendered easie, and exposes a PNG download in the owner view.</p>
+            <ul><li>Current proof: Corrupted Cake</li><li>2336×3504 portrait PNG</li><li>Owner access only</li></ul>
+          </article>
+          <article>
+            <span class="status-label building">Development record</span>
+            <h3>Identity and provenance fields</h3>
+            <p>The owner view records the seed, genome, exact probability, render state, output dimensions, hashes, and development PNG provenance fields.</p>
+            <ul><li>Not a public ledger</li><li>Not proof of ownership</li><li>Not mintable</li></ul>
           </article>
           <article>
             <span class="status-label planned">Planned</span>
             <h3>Public product layer</h3>
-            <p>Retail credits, public accounts, persistent collections, agent tools, downloads, and optional minting for selected easies.</p>
+            <p>Retail credits, public accounts, persistent collections, public generation, agent tools, and optional minting for selected easies.</p>
           </article>
         </div>
       </Wrapper>
@@ -418,10 +466,11 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
         </p>
         <div class="hero-actions final-actions">
           {app.customDomainReady && (
-            <a class="primary-action" href={app.href}>Open EZIZE · Private alpha <span aria-hidden="true">↗</span></a>
+            <a class="primary-action" href={app.href}>Open EZIZE · Private alpha <span aria-hidden="true">&rarr;</span></a>
           )}
           <a class="secondary-action" href="/gallery/cute-corrupted/raccoon/">See a Critter study</a>
           <a class="secondary-action" href="/workshop/cute-and-corrupted/">Read the Workshop method</a>
+          <a class="secondary-action" href="/workshop/">Visit HobFarm Workshop</a>
         </div>
       </Wrapper>
     </section>
@@ -450,7 +499,8 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
   .hero { background: radial-gradient(circle at 86% 18%, rgb(99 233 235 / .11), transparent 32rem), radial-gradient(circle at 12% 72%, rgb(230 96 167 / .12), transparent 30rem), #07060b; }
   :global(.hero-wrap) { padding-top: 1.3rem; padding-bottom: clamp(4rem, 8vw, 7rem); }
   .hero-grid { display: grid; gap: clamp(3rem, 7vw, 6rem); margin-top: clamp(3.5rem, 8vw, 6rem); align-items: center; }
-  .hero-copy { min-width: 0; }
+  .hero-copy { min-width: 0; max-width: 58rem; }
+  .hero-evidence { min-width: 0; max-width: 72rem; }
   h1 { margin: 1.1rem 0 0; color: white; font-size: clamp(5rem, 17vw, 12.5rem); font-weight: 650; letter-spacing: -.095em; line-height: .73; }
   .pronunciation { margin: 1.35rem 0 0; color: var(--ez-pink); font-family: var(--font-mono); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; }
   .deck { max-width: 47rem; margin: 1.7rem 0 0; color: #d2cdda; font-size: clamp(1.04rem, 2vw, 1.25rem); line-height: 1.75; }
@@ -463,18 +513,6 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
   .secondary-action:hover, .secondary-action:focus-visible { border-color: var(--ez-pink); color: white; outline: none; }
   .app-home { margin: 1rem 0 0; color: #777181; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .04em; }
   .app-home span { color: #aaa5b8; }
-  .cabinet-preview { min-width: 0; padding: .8rem; border: 1px solid #4a3b59; border-radius: 1rem; background: linear-gradient(145deg, #17111e, #09070c 65%); box-shadow: 0 1.4rem 4rem rgb(0 0 0 / .34), inset 0 0 0 1px rgb(255 255 255 / .035); }
-  .cabinet-marquee { display: flex; align-items: center; justify-content: space-between; padding: .55rem .7rem .8rem; color: #bcb5c7; font-family: var(--font-mono); font-size: .53rem; letter-spacing: .13em; text-transform: uppercase; }
-  .cabinet-marquee span:last-child { color: var(--ez-cyan); letter-spacing: .3em; }
-  .cabinet-windows { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .45rem; }
-  .cabinet-windows figure { min-width: 0; margin: 0; overflow: hidden; border: 1px solid #332b3b; border-radius: .55rem; background: #050407; }
-  .cabinet-windows img { display: block; width: 100%; aspect-ratio: 2 / 3; object-fit: cover; }
-  .cabinet-windows figcaption { display: flex; align-items: center; justify-content: space-between; gap: .4rem; padding: .65rem .55rem; color: #d4cfda; font-family: var(--font-mono); font-size: .5rem; letter-spacing: .06em; text-transform: uppercase; }
-  .cabinet-windows figcaption span { color: var(--ez-pink); }
-  .cabinet-controls { display: flex; align-items: center; gap: .6rem; padding: .8rem .4rem .15rem; }
-  .cabinet-controls span { width: .55rem; height: .55rem; border-radius: 50%; border: 1px solid #5e5269; background: #211927; }
-  .cabinet-controls span:first-child { background: var(--ez-pink); box-shadow: 0 0 1rem rgb(230 96 167 / .45); }
-  .cabinet-controls b { margin-left: auto; color: var(--ez-cyan); font-family: var(--font-mono); font-size: .62rem; letter-spacing: .1em; }
   .split-heading { display: grid; gap: clamp(2rem, 5vw, 5rem); }
   .body-copy { max-width: 46rem; }
   .body-copy p { margin: 0; }
@@ -484,6 +522,12 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
   .pull-path li span { display: block; color: var(--ez-cyan); font-family: var(--font-mono); font-size: .56rem; }
   .pull-path li strong { display: block; margin-top: 2rem; font-size: .74rem; font-weight: 500; line-height: 1.45; }
   .diagram-note { margin: 1rem 0 0; color: #777181; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .03em; }
+  .lineage { background: radial-gradient(circle at 12% 45%, rgb(230 96 167 / .075), transparent 30rem), #09070d; }
+  .lineage-chain { display: grid; gap: .7rem; margin: clamp(2.5rem, 5vw, 4rem) 0 0; padding: 0; list-style: none; }
+  .lineage-chain li { position: relative; min-width: 0; padding: 1.15rem; border: 1px solid var(--ez-line); background: #0c0910; }
+  .lineage-chain span { color: var(--ez-cyan); font-family: var(--font-mono); font-size: .55rem; letter-spacing: .08em; text-transform: uppercase; }
+  .lineage-chain strong { display: block; margin-top: 1.5rem; font-family: var(--font-display); font-size: clamp(1.55rem, 3vw, 2.15rem); font-weight: 350; line-height: 1; }
+  .lineage-chain p { margin: .75rem 0 0; color: #958f9e; font-size: .74rem; }
   .blind-pull { background: linear-gradient(90deg, rgb(230 96 167 / .045), transparent 40%), #0a0810; }
   .blind-grid { display: grid; gap: clamp(3rem, 7vw, 6rem); }
   .deck-small { max-width: 45rem; margin: 1.5rem 0 0; }
@@ -537,6 +581,12 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
   .product-node { border-color: #694058; background: linear-gradient(90deg, rgb(230 96 167 / .08), transparent), #0d0a13; }
   .engine-nodes { display: grid; gap: .8rem; }
   .engine-nodes h3 { margin: 1rem 0 0; font-size: clamp(1.5rem, 3vw, 2.2rem); letter-spacing: -.03em; }
+  .representation { background: linear-gradient(120deg, rgb(99 233 235 / .04), transparent 45%), #0a0810; }
+  .representation-grid { display: grid; gap: .8rem; margin: clamp(2.5rem, 5vw, 4rem) 0 0; }
+  .representation-grid > div { min-width: 0; padding: 1.2rem; border: 1px solid var(--ez-line); background: var(--ez-panel); }
+  .representation-grid dt { color: var(--ez-cyan); font-family: var(--font-mono); font-size: .57rem; letter-spacing: .08em; text-transform: uppercase; }
+  .representation-grid dd { margin: 1.25rem 0 0; color: #aaa4b2; font-size: .8rem; line-height: 1.65; }
+  .representation-note { max-width: 58rem; margin: .8rem 0 0; padding: 1rem; border-left: 3px solid var(--ez-pink); background: rgb(230 96 167 / .04); color: #aaa4b3; }
   .status { background: linear-gradient(135deg, rgb(99 233 235 / .035), transparent 48%), #09070d; }
   .status-grid { display: grid; gap: 1rem; margin-top: clamp(2.5rem, 5vw, 4rem); }
   .status-grid article { min-width: 0; padding: 1.35rem; border: 1px solid var(--ez-line); background: var(--ez-panel); }
@@ -569,13 +619,15 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
   @media (min-width: 42rem) {
     .pull-path { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .form-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .status-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .lineage-chain, .representation-grid, .status-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .engine-nodes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   }
   @media (min-width: 64rem) {
-    .hero-grid { grid-template-columns: minmax(0, 1.1fr) minmax(25rem, .75fr); }
     .split-heading { grid-template-columns: minmax(0, 1fr) minmax(24rem, .7fr); align-items: end; }
     .pull-path { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+    .lineage-chain { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; }
+    .lineage-chain li + li { border-left: 0; }
+    .lineage-chain li + li::before { position: absolute; z-index: 2; top: 50%; left: -.38rem; color: var(--ez-cyan); content: "→"; font-family: var(--font-mono); transform: translateY(-50%); }
     .blind-grid, .modes-grid, .mint-grid, .name-grid { grid-template-columns: minmax(0, 1fr) minmax(24rem, .78fr); }
     .modes-grid { grid-template-columns: minmax(25rem, .8fr) minmax(0, 1fr); }
     .system-map { grid-template-columns: minmax(10rem, .35fr) minmax(10rem, .35fr) minmax(0, 1fr); align-items: stretch; }
@@ -583,8 +635,6 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
     .engine-nodes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   }
   @media (max-width: 30rem) {
-    .cabinet-preview { margin-inline: -.25rem; padding: .55rem; }
-    .cabinet-windows figcaption { flex-direction: column; align-items: flex-start; }
     .primary-action, .secondary-action { width: 100%; }
     .recipe > div { width: 100%; }
   }

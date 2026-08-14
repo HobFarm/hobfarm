@@ -1,10 +1,10 @@
 export const workshopMethod = [
   {
     number: "01",
-    title: "Research the source",
+    title: "Conceptualize and research",
     description:
-      "Begin with a question, photograph, drawing, archive, object, place, character, style, story, or production problem.",
-    output: "Source record",
+      "Begin with an idea, question, problem, photograph, archive, object, experiment, application need, or visual concept. Find the premise and the evidence it needs.",
+    output: "Working premise + source record",
   },
   {
     number: "02",
@@ -22,10 +22,10 @@ export const workshopMethod = [
   },
   {
     number: "04",
-    title: "Direct the result",
+    title: "Direct and test",
     description:
-      "Choose the camera, composition, environment, voice, motion, interface, typography, and delivery format required by the job.",
-    output: "Directed frames",
+      "Choose the camera, composition, environment, voice, motion, interface, typography, and format. Compare the result with the project rules and revise it.",
+    output: "Directed and tested result",
   },
   {
     number: "05",

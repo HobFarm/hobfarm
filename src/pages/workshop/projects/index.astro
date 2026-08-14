@@ -26,7 +26,7 @@ const structuredData = {
       "@type": "CollectionPage",
       "@id": `${canonicalUrl}#collection`,
       name: "HobFarm Workshop Projects",
-      description: "Case studies showing how HobFarm builds different production systems around different jobs.",
+      description: "Case studies showing how HobFarm develops research, publishing, visual, application, and interactive projects from source through release.",
       url: canonicalUrl,
       isPartOf: { "@type": "CollectionPage", "@id": `${siteOrigin}/workshop/#collection`, name: "HobFarm Workshop", url: `${siteOrigin}/workshop/` },
       hasPart: projectItems.map((project) => ({ "@id": project["@id"] })),
@@ -46,15 +46,15 @@ const structuredData = {
 };
 ---
 
-<BaseLayout title="Workshop Projects | HobFarm" description="Different jobs need different systems. Explore HobFarm case studies in publishing, software, photography, campaigns, characters, motion, and interactive worlds." canonical="/workshop/projects/" palette="blue-red" structuredData={structuredData}>
-  <main class="projects-page">
+<BaseLayout title="Workshop Projects | HobFarm" description="Explore HobFarm case studies in publishing, software, photography, campaigns, structured generation, characters, motion, and interactive worlds." canonical="/workshop/projects/" palette="blue-red" structuredData={structuredData}>
+  <div class="projects-page">
     <Wrapper variant="standard" class="projects-breadcrumbs"><Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Workshop", href: "/workshop/" }, { label: "Projects" }]} /></Wrapper>
 
     <header class="projects-hero">
       <Wrapper variant="standard">
         <p class="eyebrow">HobFarm Workshop / Projects</p>
         <h1>Different jobs need different systems.</h1>
-        <p class="lead">Each project starts with its own sources, context, constraints, representation, tools, outputs, and checks. These records show how the Workshop method changes with the job.</p>
+        <p class="lead">Each project starts with its own idea, source, question, or problem. These records show what was built, which decisions had to remain visible, and how the Workshop method changes with the job.</p>
         <div class="hero-actions"><a href="#project-index">Browse the projects</a><a href="/workshop/">Read the method</a></div>
       </Wrapper>
     </header>
@@ -68,7 +68,7 @@ const structuredData = {
 
     <section id="project-index" class="project-index" aria-labelledby="projects-heading">
       <Wrapper variant="standard" class="section-space">
-        <div class="section-heading"><div><p class="eyebrow">Project index</p><h2 id="projects-heading">One method across a wider range of work.</h2></div><p>Web development, software, photography, historical research, product concepts, character systems, presenter media, and an interactive world all require different production records.</p></div>
+        <div class="section-heading"><div><p class="eyebrow">Project index</p><h2 id="projects-heading">One method across a wider range of work.</h2></div><p>Structured generation, web development, photography, historical research, product concepts, character systems, presenter media, and an interactive world all require different production records.</p></div>
         <div class="project-grid-space"><WorkshopProjectGrid surface="projects" /></div>
       </Wrapper>
     </section>
@@ -81,7 +81,7 @@ const structuredData = {
     </section>
 
     <Wrapper variant="standard" class="connected-space"><ConnectedWork links={[{ relationship: "Durable method", label: "Workshop overview", href: "/workshop/" }, { relationship: "Ongoing record", label: "Workshop Notes", href: "/workshop/workshop-notes/" }, { relationship: "Turn evidence into lessons", label: "Academy", href: "/academy/" }]} /></Wrapper>
-  </main>
+  </div>
 </BaseLayout>
 
 <style>

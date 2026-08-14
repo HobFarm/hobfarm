@@ -5,14 +5,14 @@ import { publicHobFarmEdges, publicHobFarmNodes } from "../src/data/workshop-nod
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
 
-test("Workshop Projects is a bounded case-study layer with eight real projects", () => {
+test("Workshop Projects is a bounded case-study layer with nine real projects", () => {
   const page = read("src/pages/workshop/projects/index.astro");
   const projects = read("src/data/workshop-projects.ts");
 
   assert.equal(existsSync(new URL("../src/pages/workshop/projects/hobfarm/index.astro", import.meta.url)), true);
   assert.match(page, /Different jobs need different systems/);
   assert.match(page, /WorkshopProjectGrid surface="projects"/);
-  for (const id of ["hobfarm-site", "stylefusion", "before-after", "future-carriage", "cute-corrupted", "character-mannequin", "avatar-host", "other-alice-world"]) {
+  for (const id of ["ezize", "hobfarm-site", "stylefusion", "before-after", "future-carriage", "cute-corrupted", "character-mannequin", "avatar-host", "other-alice-world"]) {
     assert.match(projects, new RegExp(`id: "${id}"`));
   }
 });

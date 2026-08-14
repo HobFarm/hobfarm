@@ -54,7 +54,14 @@ const projects = [...selectedWorkshopProjects]
           <span>{project.status}</span>
         </div>
         <h3>{project.title}</h3>
-        <p>{project.brief}</p>
+        {surface === "home" ? (
+          <p>{project.brief}</p>
+        ) : (
+          <dl class="workshop-project-card__summary">
+            <div><dt>Starts with</dt><dd>{project.startingMaterial}</dd></div>
+            <div><dt>Built</dt><dd>{project.brief}</dd></div>
+          </dl>
+        )}
         <ul aria-label={`${project.title} capabilities`}>
           {project.capabilities.map((capability) => <li>{capability}</li>)}
         </ul>
@@ -220,6 +227,32 @@ const projects = [...selectedWorkshopProjects]
     line-height: 1.65;
   }
 
+  .workshop-project-card__summary {
+    display: grid;
+    gap: 0.8rem;
+    margin: 1.1rem 0 0;
+  }
+
+  .workshop-project-card__summary div {
+    padding-top: 0.75rem;
+    border-top: 1px solid #30283e;
+  }
+
+  .workshop-project-card__summary dt {
+    color: #55d7ff;
+    font-family: var(--font-mono);
+    font-size: 0.52rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  .workshop-project-card__summary dd {
+    margin: 0.45rem 0 0;
+    color: #b5b0bf;
+    font-size: 0.78rem;
+    line-height: 1.6;
+  }
+
   ul {
     display: flex;
     flex-wrap: wrap;
@@ -257,10 +290,13 @@ const projects = [...selectedWorkshopProjects]
     }
 
     .workshop-project-card--future-carriage,
-    .workshop-project-card--other-alice-world {
+    .workshop-project-card--other-alice-world,
+    .workshop-project-card--ezize {
       grid-column: span 2;
       grid-template-columns: minmax(0, 1.25fr) minmax(18rem, 0.75fr);
     }
+
+    .workshop-project-card--ezize .workshop-project-card__copy { order: -1; }
 
     .workshop-project-card--other-alice-world {
       grid-template-columns: minmax(18rem, 0.75fr) minmax(0, 1.25fr);
@@ -290,6 +326,16 @@ const projects = [...selectedWorkshopProjects]
     .workshop-project-card--future-carriage {
       grid-column: span 4;
       grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
+    }
+
+    .workshop-project-card--ezize {
+      grid-column: span 6;
+      grid-template-columns: minmax(0, 1.25fr) minmax(22rem, 0.75fr);
+    }
+
+    .workshop-project-card--ezize .workshop-project-card__media img {
+      min-height: 24rem;
+      object-position: center top;
     }
 
     .workshop-project-card--before-after {
@@ -330,6 +376,35 @@ const projects = [...selectedWorkshopProjects]
     .workshop-project-grid--home .workshop-project-card--stylefusion {
       grid-column: span 3;
       grid-template-columns: 1fr;
+    }
+
+    .workshop-project-grid--workshop .workshop-project-card {
+      grid-column: span 3;
+      grid-template-columns: 1fr;
+    }
+
+    .workshop-project-grid--workshop .workshop-project-card__copy,
+    .workshop-project-grid--workshop .workshop-project-card__media {
+      order: initial;
+    }
+
+    .workshop-project-grid--workshop .workshop-project-card__media img {
+      min-height: 14rem;
+    }
+
+    .workshop-project-grid--workshop .workshop-project-card--future-carriage .workshop-project-card__media--pair {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: none;
+    }
+
+    .workshop-project-grid--workshop .workshop-project-card--future-carriage .workshop-project-card__media figure {
+      height: 100%;
+    }
+
+    .workshop-project-grid--workshop .workshop-project-card--future-carriage .workshop-project-card__media img {
+      height: 100%;
+      min-height: 14rem;
+      aspect-ratio: 16 / 10;
     }
   }
 

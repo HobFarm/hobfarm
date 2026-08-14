@@ -52,7 +52,7 @@ const methodMedia = showMedia ? methodMediaIds.map((id) => getMedia(id)) : [];
 
   li {
     display: flex;
-    min-height: 15rem;
+    min-height: 20rem;
     overflow: hidden;
     flex-direction: column;
     padding: 1rem;
@@ -72,7 +72,7 @@ const methodMedia = showMedia ? methodMediaIds.map((id) => getMedia(id)) : [];
   figure img {
     display: block;
     width: 100%;
-    aspect-ratio: 1;
+    aspect-ratio: 4 / 3;
     object-fit: cover;
   }
 
@@ -135,7 +135,15 @@ const methodMedia = showMedia ? methodMediaIds.map((id) => getMedia(id)) : [];
 
   @media (min-width: 64rem) {
     .workshop-method-strip {
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+
+    .workshop-method-strip li {
+      grid-column: span 3;
+    }
+
+    .workshop-method-strip li:nth-child(n + 3) {
+      grid-column: span 2;
     }
   }
 </style>

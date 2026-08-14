@@ -1,0 +1,215 @@
+<div class="project-growth-diagram" role="group" aria-labelledby="project-growth-title project-growth-description">
+  <p id="project-growth-title" class="sr-only">How a Workshop project grows</p>
+  <p id="project-growth-description" class="sr-only">
+    A project core connects research, structure, production, testing and revision, published outputs, and new projects. An unexpected result can also become a new branch.
+  </p>
+
+  <svg class="project-growth-diagram__desktop" viewBox="0 0 1000 610" role="img" aria-hidden="true">
+    <defs>
+      <marker id="growth-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor" />
+      </marker>
+    </defs>
+
+    <g class="links">
+      <path d="M 370 244 C 300 205, 258 160, 235 126" />
+      <path d="M 630 244 C 700 205, 742 160, 765 126" />
+      <path d="M 350 305 L 235 305" />
+      <path d="M 650 305 L 765 305" />
+      <path d="M 416 370 C 375 416, 330 451, 277 478" />
+      <path d="M 584 370 C 625 416, 670 451, 723 478" />
+      <path class="return-link" d="M 784 265 C 865 190, 842 84, 715 72" />
+      <path class="branch-link" d="M 500 391 L 500 506" />
+      <path class="branch-link" d="M 370 534 C 330 530, 300 518, 277 496" />
+    </g>
+
+    <g class="node node--core">
+      <rect x="350" y="220" width="300" height="170" rx="16" />
+      <text x="382" y="262" class="node-label">PROJECT CORE</text>
+      <text x="382" y="307" class="node-title">Idea, question,</text>
+      <text x="382" y="342" class="node-title">source, or problem</text>
+      <text x="382" y="369" class="node-copy">Sources and decisions stay attached.</text>
+    </g>
+
+    <g class="node">
+      <rect x="85" y="52" width="300" height="110" rx="12" />
+      <text x="113" y="91" class="node-label">RESEARCH</text>
+      <text x="113" y="126" class="node-title">Evidence and context</text>
+    </g>
+    <g class="node">
+      <rect x="615" y="52" width="300" height="110" rx="12" />
+      <text x="643" y="91" class="node-label">STRUCTURE</text>
+      <text x="643" y="126" class="node-title">Rules another step can use</text>
+    </g>
+    <g class="node">
+      <rect x="38" y="250" width="255" height="110" rx="12" />
+      <text x="66" y="289" class="node-label">PRODUCTION</text>
+      <text x="66" y="324" class="node-title">Write, code, draw, build</text>
+    </g>
+    <g class="node">
+      <rect x="707" y="250" width="255" height="110" rx="12" />
+      <text x="735" y="289" class="node-label">TEST + REVISE</text>
+      <text x="735" y="324" class="node-title">Compare the result</text>
+    </g>
+    <g class="node">
+      <rect x="78" y="448" width="300" height="110" rx="12" />
+      <text x="106" y="487" class="node-label">PUBLISHED OUTPUTS</text>
+      <text x="106" y="522" class="node-title">Article, image, application</text>
+    </g>
+    <g class="node">
+      <rect x="622" y="448" width="300" height="110" rx="12" />
+      <text x="650" y="487" class="node-label">PLANNED BRANCH</text>
+      <text x="650" y="522" class="node-title">Tool, course, or product path</text>
+    </g>
+    <g class="node node--unexpected">
+      <rect x="370" y="506" width="260" height="80" rx="40" />
+      <text x="500" y="538" text-anchor="middle" class="node-label">UNEXPECTED BRANCH</text>
+      <text x="500" y="565" text-anchor="middle" class="node-title">A new project begins</text>
+    </g>
+  </svg>
+
+  <ol class="project-growth-diagram__mobile" aria-hidden="true">
+    <li><span>Core</span><strong>Idea, question, source, or problem</strong></li>
+    <li><span>Discover</span><strong>Research and useful structure</strong></li>
+    <li><span>Make</span><strong>Production, testing, and revision</strong></li>
+    <li><span>Release</span><strong>Articles, images, tools, and applications</strong></li>
+    <li class="is-unexpected"><span>Unexpected branch</span><strong>A useful result starts a new project</strong></li>
+  </ol>
+</div>
+
+<style>
+  .project-growth-diagram {
+    overflow: hidden;
+    border: 1px solid #352b49;
+    border-radius: 0.9rem;
+    background:
+      linear-gradient(rgb(85 215 255 / 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(85 215 255 / 0.035) 1px, transparent 1px),
+      radial-gradient(circle at 50% 50%, rgb(85 215 255 / 0.07), transparent 34rem),
+      #0b0910;
+    background-size: 2rem 2rem, 2rem 2rem, auto, auto;
+  }
+
+  .project-growth-diagram__desktop {
+    display: none;
+    width: 100%;
+    height: auto;
+    color: #6b93ed;
+  }
+
+  .links path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    marker-end: url(#growth-arrow);
+  }
+
+  .links .return-link { color: #63e9eb; }
+  .links .branch-link { color: #e660a7; stroke-dasharray: 7 7; }
+
+  .node rect {
+    fill: #100d17;
+    stroke: #453a57;
+    stroke-width: 2;
+  }
+
+  .node--core rect {
+    fill: #15101b;
+    stroke: #63e9eb;
+  }
+
+  .node--unexpected rect {
+    fill: #17101a;
+    stroke: #e660a7;
+    stroke-dasharray: 7 6;
+  }
+
+  .node-label {
+    fill: #63e9eb;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+
+  .node--unexpected .node-label { fill: #e660a7; }
+
+  .node-title {
+    fill: #f2eff7;
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 350;
+  }
+
+  .node--core .node-title { font-size: 29px; }
+
+  .node-copy {
+    fill: #9e98aa;
+    font-family: var(--font-sans);
+    font-size: 14px;
+  }
+
+  .project-growth-diagram__mobile {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 1rem;
+    list-style: none;
+  }
+
+  .project-growth-diagram__mobile li {
+    position: relative;
+    padding: 1.15rem 1rem 1.15rem 2.4rem;
+    border-bottom: 1px solid #352b49;
+  }
+
+  .project-growth-diagram__mobile li::before {
+    position: absolute;
+    top: 1.35rem;
+    bottom: -1.15rem;
+    left: 0.65rem;
+    width: 1px;
+    background: #6b93ed;
+    content: "";
+  }
+
+  .project-growth-diagram__mobile li::after {
+    position: absolute;
+    top: 1.38rem;
+    left: 0.42rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    border: 1px solid #63e9eb;
+    border-radius: 50%;
+    background: #0b0910;
+    content: "";
+  }
+
+  .project-growth-diagram__mobile li:last-child { border-bottom: 0; }
+  .project-growth-diagram__mobile li:last-child::before { display: none; }
+  .project-growth-diagram__mobile .is-unexpected::after { border-color: #e660a7; }
+
+  .project-growth-diagram__mobile span {
+    display: block;
+    color: #63e9eb;
+    font-family: var(--font-mono);
+    font-size: 0.56rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  .project-growth-diagram__mobile .is-unexpected span { color: #e660a7; }
+
+  .project-growth-diagram__mobile strong {
+    display: block;
+    margin-top: 0.55rem;
+    color: #f2eff7;
+    font-size: 0.8rem;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  @media (min-width: 48rem) {
+    .project-growth-diagram__desktop { display: block; }
+    .project-growth-diagram__mobile { display: none; }
+  }
+</style>

@@ -4,7 +4,9 @@ export type WorkshopProjectStatus =
   | "Published case study"
   | "Active program"
   | "Public application study"
-  | "Published world record";
+  | "Published world record"
+  | "Private alpha case study"
+  | "Project origin";
 
 export type WorkshopProject = {
   id: string;
@@ -114,7 +116,36 @@ const avatarHostAssets = [
   getMedia("avatar.identity.ami"),
 ] as const;
 
+const ezizeAssets = [
+  getMedia("ezize.app.private-alpha"),
+  getMedia("ezize.output.corrupted-cake"),
+] as const;
+
 export const selectedWorkshopProjects: readonly WorkshopProject[] = [
+  {
+    id: "ezize",
+    title: "EZIZE",
+    projectType: "Deterministic image application",
+    brief:
+      "Cute & Corrupted, Grimoire, and Wildcard Machine became one private-alpha application that resolves weighted recipes, calculates exact probability, records generation identity, renders an image, and downloads the PNG.",
+    promise:
+      "Turn an authored visual grammar into repeatable surprise without giving the image model control over the underlying collectible recipe.",
+    startingMaterial: "a paired visual concept, authored taxonomies, and a deterministic weighted runtime",
+    productionProblem:
+      "Keep persona, form, traits, probability, image direction, and the generation record connected from the first pull through the rendered file.",
+    stages: ["concept grammar", "Grimoire packs", "deterministic pull", "image specification", "render and record"],
+    possibleOutputs: ["generated image", "downloadable PNG", "generation record", "process documentation", "future collection paths"],
+    capabilities: ["product development", "structured generation", "application design", "provenance"],
+    media: ezizeAssets[1],
+    secondaryMedia: ezizeAssets[0],
+    approvedAssets: ezizeAssets,
+    destination: "/ezize/",
+    status: "Private alpha case study",
+    featuredPosition: 1,
+    sourceLabel: "Working application",
+    resultLabel: "Rendered easie",
+    visualVariant: "evidence-grid",
+  },
   {
     id: "hobfarm-site",
     title: "HobFarm",
@@ -134,7 +165,7 @@ export const selectedWorkshopProjects: readonly WorkshopProject[] = [
     approvedAssets: hobFarmAssets,
     destination: "/workshop/projects/hobfarm/",
     status: "Active program",
-    featuredPosition: 1,
+    featuredPosition: 2,
     homepagePosition: 1,
     sourceLabel: "Publishing system",
     resultLabel: "Workshop method",
@@ -159,7 +190,7 @@ export const selectedWorkshopProjects: readonly WorkshopProject[] = [
     approvedAssets: futureCarriageAssets,
     destination: "/workshop/future-carriage/",
     status: "Published case study",
-    featuredPosition: 4,
+    featuredPosition: 5,
     homepagePosition: 4,
     sourceLabel: "Historical source",
     resultLabel: "Product study",
@@ -184,7 +215,7 @@ export const selectedWorkshopProjects: readonly WorkshopProject[] = [
     approvedAssets: beforeAfterAssets,
     destination: "/workshop/before-and-after/",
     status: "Active program",
-    featuredPosition: 3,
+    featuredPosition: 4,
     homepagePosition: 3,
     sourceLabel: "Source photograph",
     resultLabel: "Speculative restoration",
@@ -209,7 +240,7 @@ export const selectedWorkshopProjects: readonly WorkshopProject[] = [
     approvedAssets: styleFusionAssets,
     destination: "/workshop/stylefusion/",
     status: "Public application study",
-    featuredPosition: 2,
+    featuredPosition: 3,
     homepagePosition: 2,
     sourceLabel: "Reference analysis",
     resultLabel: "Directed output",
@@ -234,7 +265,7 @@ export const selectedWorkshopProjects: readonly WorkshopProject[] = [
     approvedAssets: characterAssets,
     destination: "/workshop/character-mannequin/",
     status: "Active program",
-    featuredPosition: 7,
+    featuredPosition: 9,
     sourceLabel: "Identity sheet",
     resultLabel: "Directed character",
     visualVariant: "production-rail",
@@ -258,7 +289,7 @@ export const selectedWorkshopProjects: readonly WorkshopProject[] = [
     approvedAssets: otherAliceAssets,
     destination: "/presents/other-alice-adventures/world-guide/",
     status: "Published world record",
-    featuredPosition: 8,
+    featuredPosition: 6,
     sourceLabel: "Authored world",
     resultLabel: "Atlas and cast",
     visualVariant: "world-atlas",
@@ -268,7 +299,7 @@ export const selectedWorkshopProjects: readonly WorkshopProject[] = [
     title: "Cute & Corrupted",
     projectType: "Concept, taxonomy, and product family",
     brief:
-      "One recognizable subject branches into paired visual modes with explicit rules for tone, palette, material, damage, humor, and destination.",
+      "The paired visual grammar that began with Cute and Corrupted characters, critters, and cakes now supplies persona and transformation rules inside EZIZE.",
     promise:
       "Build a repeatable family from a clear concept instead of treating each image as an unrelated variation.",
     startingMaterial: "one recognizable subject and a rejected obvious framing",
@@ -280,8 +311,8 @@ export const selectedWorkshopProjects: readonly WorkshopProject[] = [
     media: cuteCorruptedAssets[0],
     approvedAssets: cuteCorruptedAssets,
     destination: "/workshop/cute-and-corrupted/",
-    status: "Active program",
-    featuredPosition: 5,
+    status: "Project origin",
+    featuredPosition: 7,
     visualVariant: "evidence-grid",
   },
   {
@@ -303,7 +334,7 @@ export const selectedWorkshopProjects: readonly WorkshopProject[] = [
     approvedAssets: avatarHostAssets,
     destination: "/workshop/avatar-host/",
     status: "Active program",
-    featuredPosition: 6,
+    featuredPosition: 8,
     sourceLabel: "Campaign role",
     resultLabel: "Stable identity",
     visualVariant: "production-rail",
