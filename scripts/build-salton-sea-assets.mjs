@@ -61,7 +61,34 @@ const authorOwned = new Set([
   "salton-sea-beach3.JPG"
 ]);
 
+const museumArchive = new Set([
+  "SaltonCity500fourthAnnual.jpg",
+  "aerial-club-harbor-motel-1962.jpg",
+  "boat-races-1946.jpg",
+  "boat-races-1948.jpg",
+  "boat-races-beach.jpg",
+  "boat-races-beach2.JPG",
+  "boat-races-lift.jpg",
+  "boat-races.jpg",
+  "north-shore-ad.jpg",
+  "north-shore-aerial-render.jpg",
+  "north-shore-aerial.jpg",
+  "north-shore-marina1.jpg",
+  "north-shore-marina2.jpg",
+  "north-shore-yacht-club-classic.jpg",
+  "north-shore-yacht-club-drawing.jpg",
+  "north-shore-yacht-club-original.jpg",
+  "salton-city-500.jpg"
+]);
+
+const museumArchiveDates = {
+  "aerial-club-harbor-motel-1962.jpg": "1962-04-10",
+  "boat-races-1946.jpg": "1946 (museum archive filename)",
+  "boat-races-1948.jpg": "1948 (museum archive filename)"
+};
+
 const publicSelections = new Set([
+  ...museumArchive,
   "north-shore-marina-above-2008.jpg",
   "north-shore-marina-above-2026.jpg",
   "north-shore-yacht-club-2010-1.JPG",
@@ -79,6 +106,125 @@ const promptReferences = new Set([
 ]);
 
 const placementByFile = {
+  "SaltonCity500fourthAnnual.jpg": {
+    subject: "Fourth annual Salton City 500 poster",
+    section: "First too much water, then too little",
+    comparison: "Resort and racing boom",
+    caption: "A poster promoted the fourth annual Salton City 500 over Veterans Day weekend; the retained scan does not establish the year.",
+    alt: "Yellow poster advertising the fourth annual Salton City 500 speedboat race over Veterans Day weekend with twenty-five thousand dollars in guaranteed prize money.",
+  },
+  "aerial-club-harbor-motel-1962.jpg": {
+    subject: "North Shore Beach promotional supplement",
+    section: "North Shore, connected and disconnected",
+    comparison: "North Shore through time",
+    caption: "A Los Angeles Times promotional page dated April 10, 1962, sold North Shore as a complete resort.",
+    alt: "Sepia Los Angeles Times promotional page titled The North Shore Beach Story with an aerial view of the yacht club, harbor, motel, roads, and shoreline.",
+  },
+  "boat-races-1946.jpg": {
+    subject: "Salton Sea hydroplane race photograph",
+    section: "First too much water, then too little",
+    comparison: "Resort and racing boom",
+    caption: "A press photograph filed by the museum archive as 1946 shows hydroplane 7-A cutting across the Sea.",
+    alt: "Black-and-white press photograph of hydroplane 7-A throwing a high wake during a Salton Sea boat race.",
+  },
+  "boat-races-1948.jpg": {
+    subject: "Salton Sea hydroplane race photograph",
+    section: "First too much water, then too little",
+    comparison: "Resort and racing boom",
+    caption: "A second race photograph, filed as 1948, records a hydroplane running across open water.",
+    alt: "Black-and-white photograph of a driver racing a small hydroplane across the Salton Sea with a long wake behind it.",
+  },
+  "boat-races-beach.jpg": {
+    subject: "Salton Sea boat-race shoreline crowd",
+    section: "First too much water, then too little",
+    comparison: "Resort and racing boom",
+    caption: "Cars, trailers, spectators, and boats crowd an undated race-day shoreline.",
+    alt: "Black-and-white elevated view of cars, trailers, boats, and spectators packed along the Salton Sea shore for a boat race.",
+  },
+  "boat-races-beach2.JPG": {
+    subject: "Salton Sea race pits",
+    section: "First too much water, then too little",
+    comparison: "Resort and racing boom",
+    caption: "Race boats and support vehicles line the water's edge in an undated archive print.",
+    alt: "Black-and-white photograph of racing boats, support vehicles, crews, and spectators lined along the Salton Sea shoreline.",
+  },
+  "boat-races-lift.jpg": {
+    subject: "Hydroplane handling at the Salton Sea",
+    section: "First too much water, then too little",
+    comparison: "Resort and racing boom",
+    caption: "A crane lifts a hydroplane beside a working Salton Sea dock.",
+    alt: "Black-and-white photograph of a crane lifting a hydroplane above a dock while workers watch from shore and a small boat.",
+  },
+  "boat-races.jpg": {
+    subject: "Salton Sea race pits",
+    section: "First too much water, then too little",
+    comparison: "Resort and racing boom",
+    caption: "A wider race-day view shows how much temporary infrastructure gathered at the shore.",
+    alt: "Wide black-and-white photograph of race boats, cars, trailers, crews, and spectators covering a Salton Sea beach.",
+  },
+  "north-shore-ad.jpg": {
+    subject: "North Shore Beach advertisement",
+    section: "North Shore, connected and disconnected",
+    comparison: "North Shore through time",
+    caption: "An undated color advertisement called North Shore Beach the Salton Sea's glamour capital.",
+    alt: "Color North Shore Beach advertisement with illustrations of the yacht club, swimming, boating, golf, housing, and desert recreation.",
+  },
+  "north-shore-aerial-render.jpg": {
+    subject: "North Shore Beach master-plan rendering",
+    section: "North Shore, connected and disconnected",
+    comparison: "North Shore through time",
+    caption: "The master-plan rendering joined homes, roads, a marina, and the Sea into one development image.",
+    alt: "Painted aerial master-plan rendering of North Shore Beach with houses, roads, a marina, breakwaters, yacht club, and mountains around the Salton Sea.",
+  },
+  "north-shore-aerial.jpg": {
+    subject: "North Shore marina aerial photograph",
+    section: "North Shore, connected and disconnected",
+    comparison: "North Shore through time",
+    caption: "An undated aerial photograph records the built marina, breakwaters, roads, and shoreline.",
+    alt: "Black-and-white aerial photograph of North Shore roads, buildings, marina basin, curved breakwaters, and the adjoining Salton Sea.",
+  },
+  "north-shore-marina1.jpg": {
+    subject: "North Shore launch ramp",
+    section: "North Shore, connected and disconnected",
+    comparison: "North Shore through time",
+    caption: "A car and boat use the North Shore launch ramp below the yacht club.",
+    alt: "Archival color photograph of people launching a small boat beside a pale car with the North Shore Yacht Club above the water.",
+  },
+  "north-shore-marina2.jpg": {
+    subject: "Working North Shore marina",
+    section: "North Shore, connected and disconnected",
+    comparison: "North Shore through time",
+    caption: "Boats, palms, docks, and harbor equipment filled the working marina.",
+    alt: "Black-and-white photograph of boats, docks, palms, a crane, and waterfront buildings in the North Shore marina.",
+  },
+  "north-shore-yacht-club-classic.jpg": {
+    subject: "North Shore Yacht Club harbor view",
+    section: "North Shore, connected and disconnected",
+    comparison: "North Shore through time",
+    caption: "An archival color view shows boats between the camera and the yacht club.",
+    alt: "Archival color photograph of the North Shore Yacht Club across marina water with several motorboats in the foreground.",
+  },
+  "north-shore-yacht-club-drawing.jpg": {
+    subject: "North Shore Yacht Club architectural drawing",
+    section: "North Shore, connected and disconnected",
+    comparison: "North Shore through time",
+    caption: "An architectural perspective placed the yacht club directly over the harbor edge.",
+    alt: "Architectural perspective drawing of the North Shore Yacht Club, marina, boats, palms, and mountains beyond the Salton Sea.",
+  },
+  "north-shore-yacht-club-original.jpg": {
+    subject: "Early North Shore Yacht Club photograph",
+    section: "North Shore, connected and disconnected",
+    comparison: "North Shore through time",
+    caption: "An early photograph shows the finished yacht club beside an open marina basin.",
+    alt: "Black-and-white archival photograph of the North Shore Yacht Club beside water, pilings, palms, and an open shoreline.",
+  },
+  "salton-city-500.jpg": {
+    subject: "Salton City 500 promotional photograph",
+    section: "First too much water, then too little",
+    comparison: "Resort and racing boom",
+    caption: "A promotional photograph called the Salton City 500 the world's richest powerboat race.",
+    alt: "Black-and-white promotional image headed The Salton City 500 above a crowd gathered beside the water for a powerboat race.",
+  },
   "north-shore-marina-above-2008.jpg": {
     subject: "North Shore marina and yacht club aerial",
     section: "North Shore, connected and disconnected",
@@ -142,14 +288,20 @@ function editorialMetadata(file) {
   return {
     location: file.includes("north-shore") ? "North Shore, California" : "Salton Sea region, California",
     subject: selected?.subject ?? "Salton Sea source-media reference",
-    source: "HobFarm-supplied R2 source package",
+    source: museumArchive.has(file)
+      ? "Salton Sea History Museum materials retained by HobFarm during 2010 volunteer work inside the North Shore Yacht Club"
+      : "HobFarm-supplied R2 source package",
     owner_or_archive: authorOwned.has(file)
       ? "HobFarm"
+      : museumArchive.has(file)
+        ? "Salton Sea History Museum archive; item-level creator unverified"
       : file.includes("above-")
         ? "Google Earth imagery provider identified in embedded attribution"
         : "Supplied HobFarm historical archive; item-level owner unverified",
     rights_status: authorOwned.has(file)
       ? "author-owned"
+      : museumArchive.has(file)
+        ? "publisher-authorized archival reproduction; item-level creator unverified"
       : file.includes("above-")
         ? "editorial evidence with embedded attribution retained"
         : "unresolved; research use only",
@@ -159,9 +311,11 @@ function editorialMetadata(file) {
     comparison_group: selected?.comparison ?? null,
     crop_restrictions: file.includes("above-")
       ? "Do not crop, cover, or remove embedded Google Earth and imagery-provider attribution."
-      : "No crop restriction documented; preserve evidentiary content and avoid misleading crops.",
+      : museumArchive.has(file)
+        ? "Preserve printed captions, borders, and identifying text where present; do not imply a date beyond the visible record or retained archive label."
+        : "No crop restriction documented; preserve evidentiary content and avoid misleading crops.",
     derivative_keys: [],
-    receipt_still_needed: !authorOwned.has(file) && !file.includes("above-"),
+    receipt_still_needed: !authorOwned.has(file) && !file.includes("above-") && !museumArchive.has(file),
   };
 }
 
@@ -185,6 +339,13 @@ function rightsFor(file) {
       credit: "Google Earth / Airbus; imagery attribution embedded in source image",
       rights_basis: "Editorial geographic comparison; embedded interface and attribution retained",
       source_date: "2026",
+    };
+  }
+  if (museumArchive.has(file)) {
+    return {
+      credit: "Salton Sea History Museum archive; retained by HobFarm during 2010 volunteer work; creator unverified",
+      rights_basis: "Publisher-authorized historical archive reproduction with source context disclosed; no claim of authorship or item-level ownership",
+      source_date: museumArchiveDates[file] ?? null,
     };
   }
   return {
@@ -229,11 +390,17 @@ for (const file of sourceFiles) {
     capture_or_publication_date: rightsFor(file).source_date,
     ...editorialMetadata(file),
     article_use: publicSelections.has(file) ? "selected" : promptReferences.has(file) ? "generation-reference" : "not selected",
-    receipt_status: authorOwned.has(file) ? "author statement in build brief" : file.includes("above-") ? "embedded attribution" : "item-level receipt not supplied",
+    receipt_status: authorOwned.has(file)
+      ? "author statement in build brief"
+      : museumArchive.has(file)
+        ? "publisher authorization recorded August 14, 2026; materials retained during 2010 Salton Sea History Museum volunteer work"
+        : file.includes("above-")
+          ? "embedded attribution"
+          : "item-level receipt not supplied",
     notes: file === "dead-pelican.JPG"
       ? "Not selected: graphic carcass and cause cannot be established from the image."
       : file === "aerial-club-harbor-motel-1962.jpg"
-        ? "Scanned Los Angeles Times supplement page dated April 10, 1962; not selected because reuse rights are unresolved."
+        ? "Scanned Los Angeles Times supplement page visibly dated April 10, 1962."
         : undefined,
   });
 }
@@ -321,8 +488,8 @@ await writeFile(resolve(reportDir, "asset-manifest.json"), `${JSON.stringify({
   version: 1,
   article_slug: articleSlug,
   generated_at: assumptionsDate(),
-  scheduled_publication: "2026-08-24T16:20:00-07:00",
-  predecessor_publication: "2026-08-23T16:20:00-07:00",
+  scheduled_publication: "2026-08-25T16:20:00-07:00",
+  predecessor_publication: "2026-08-24T16:20:00-07:00",
   schedule_difference_seconds: 86400,
   bucket: "hobfarm-cdn",
   public_hostname: cdn,

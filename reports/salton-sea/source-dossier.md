@@ -7,12 +7,12 @@ Checked August 14, 2026. This dossier records the editorial decisions behind the
 - Article: `salton-sea-needs-an-outlet`
 - Section: Places & Systems
 - Department: Essays & Arguments
-- Predecessor: `deserts-remember-water`, published August 23, 2026 at 4:20 p.m. PDT (`2026-08-23T16:20:00-07:00`)
-- Scheduled publication: August 24, 2026 at 4:20 p.m. PDT (`2026-08-24T16:20:00-07:00`)
+- Planned predecessor slot: August 24, 2026 at 4:20 p.m. PDT (`2026-08-24T16:20:00-07:00`), reserved for the forthcoming follow-up to `hit-the-source-directly`
+- Scheduled publication: August 25, 2026 at 4:20 p.m. PDT (`2026-08-25T16:20:00-07:00`)
 - Difference: 86,400 seconds, exactly 24 hours
 - Schedule collision: none found
 
-The article uses one short link to the predecessor and does not repeat its Lake Cahuilla history. Its central claim is that an inlet specification, lake-side outlet, salt budget, power budget, customer, and binational operating agreement can be tested as one regional system. The deterministic annual balance closes at screening level. Full engineering, ecological, legal, financial, and binational feasibility remains unresolved.
+The article follows a reserved August 24 slot for the planned RSS follow-up. It links briefly to `deserts-remember-water` for Lake Cahuilla context without repeating that history. Its central claim is that an inlet specification, lake-side outlet, salt budget, power budget, customer, and binational operating agreement can be tested as one regional system. The deterministic annual balance closes at screening level. Full engineering, ecological, legal, financial, and binational feasibility remains unresolved.
 
 ## Evidence classes
 
@@ -57,11 +57,11 @@ The -230 ft checkpoint produces 1,943,096 AFY of treated inlet in the final inte
 
 ## Media and rights decisions
 
-The source inventory contains 31 objects under the read-only R2 prefix `articles/salton-sea/`. The machine-readable ledger records hashes, dimensions, MIME types, public URLs, dates where known, rights status, captions, alt text, placements, crop restrictions, and outstanding receipts.
+The source inventory contains 31 objects under the read-only R2 prefix `articles/salton-sea/`. The machine-readable ledger records hashes, dimensions, MIME types, public URLs, dates where known, rights status, captions, alt text, placements, crop restrictions, and the publisher's authorization record.
 
-Eight supplied images appear in the article. Six are author-owned 2010 HobFarm photographs. Two are dated Google Earth comparisons with their embedded interface and provider attribution retained. The supplied image named as a 2012 aerial visibly carries a February 2008 date, so it is published as 2008. The 2012 harbor relationship is represented by the official May 2012 USGS gauge record, not a falsely dated image.
+Twenty-five supplied images appear in the article. Six are author-owned 2010 HobFarm photographs, 17 are museum archive reproductions, and two are dated Google Earth comparisons with their embedded interface and provider attribution retained. The supplied image named as a 2012 aerial visibly carries a February 2008 date, so it is published as 2008. The 2012 harbor relationship is represented by the official May 2012 USGS gauge record, not a falsely dated image.
 
-Historical racing, resort, advertisement, and construction scans were useful research evidence but remain unpublished because item-level creator and reuse receipts are missing. The dead-pelican photograph is not used because its source details and cause cannot be established from the image, and the other field photographs make the ecological point without the most graphic supplied material.
+The publisher identified the historical racing, resort, advertisement, construction, and marina scans as materials retained during volunteer work at the Salton Sea History Museum in 2010, when the museum was housed inside the restored North Shore Yacht Club, and authorized their publication on August 14, 2026. They are credited to the museum archive, not to HobFarm as photographer or copyright owner. Item-level creators remain unverified, and dates appear only where the scan or retained archive filename supports them. The dead-pelican photograph is still not used because its cause cannot be established from the image, and the other field photographs make the ecological point without the most graphic supplied material.
 
 The generated hero is labeled as a proposal illustration. It uses three supplied images as visual references and does not claim to reconstruct an approved design. The approved WebP is stored at a new immutable R2 key under `articles/salton-sea-needs-an-outlet/`; no source object was overwritten, moved, renamed, or deleted.
 
@@ -69,4 +69,4 @@ The generated hero is labeled as a proposal illustration. It uses three supplied
 
 The article is ready as a sourced proposal, but a real project would still need current water assays; seasonal gauge and evaporation series; surveyed shoreline and parcel GIS; intake and pipeline studies in Mexico; tribal, land, and habitat consultation; treatment and membrane trials on each feed; salt and contaminant residual plans; power, transmission, and heat audits; customer and Colorado River accounting agreements; capital and operating costs; mineral purity and offtake evidence; and a specific binational agreement.
 
-Historical source scans also need item-level copyright receipts before future publication outside the present research ledger.
+The museum provenance and creator-unverified label should travel with any future reuse of the historical scans. They must not be recaptioned as author-owned photographs or stripped of their archive context.

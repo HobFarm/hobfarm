@@ -419,6 +419,7 @@ export const editorialEntities: EditorialEntity[] = [
   organization("paramount-plus", "Paramount+", ["Paramount Plus"]),
   organization("playboy-enterprises", "Playboy Enterprises"),
   organization("ringling-bros", "Ringling Bros. and Barnum & Bailey", ["Ringling"]),
+  organization("salton-sea-history-museum", "Salton Sea History Museum"),
   organization("salton-sea-management-program", "Salton Sea Management Program", ["SSMP"]),
   organization("seva-foundation", "Seva Foundation"),
   organization("spotify", "Spotify"),
