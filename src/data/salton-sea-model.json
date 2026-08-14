@@ -1,0 +1,1192 @@
+{
+  "modelVersion": "1.0.0",
+  "modelDate": "2026-08-14",
+  "purpose": "Deterministic screening model for The Salton Sea Needs an Outlet. Results are not a feasibility design.",
+  "assumptions": {
+    "datum": "NGVD 1929",
+    "currentElevationObservationDate": "2026-08-13",
+    "netEvaporationFeetPerYear": 5.6,
+    "netEvaporationSensitivityFeetPerYear": [
+      5,
+      6.2
+    ],
+    "plantAvailability": 0.9,
+    "productConveyanceEfficiency": 0.95,
+    "steadyStateRecovery": 0.45,
+    "transitionRecovery": 0.25,
+    "transitionSalinityPpt": 90,
+    "transitionSalinityStatus": "planning sensitivity, not a same-day field observation",
+    "currentInflowsSnapshotYear": 2025,
+    "returnFlowResponseFraction": 0.2
+  },
+  "comparisons": {
+    "bahrainActualAfy": 227847,
+    "bahrainActualAverageMigd": 169.37,
+    "bahrainActualShareOfCoachellaPercent": 87.6,
+    "bahrainNameplateAfy": 286535,
+    "bahrainNameplateCubicMetersPerDay": 968317,
+    "bahrainNameplateMinusCoachellaAfy": 26535,
+    "bahrainNameplateShareOfCaliforniaApportionmentPercent": 6.5,
+    "productionEquivalentFiveYearsAcreFeet": 1432675,
+    "productionEquivalentTenYearsAcreFeet": 2865350,
+    "bahrainHistoricalDesalinationAverageMegawatts": 144
+  },
+  "currentInflows": {
+    "componentsAcreFeet": {
+      "imperialValley": 759000,
+      "mexico": 43000,
+      "coachellaValley": 71000,
+      "localWatershed": 4900,
+      "groundwater": 12300
+    },
+    "grossAcreFeet": 890200,
+    "habitatAndProjectUseAcreFeet": 85600,
+    "netAcreFeet": 804600
+  },
+  "capacityReferences": {
+    "californiaMainstreamApportionmentAcreFeet": 4400000,
+    "existingBherGeothermalMegawatts": 345,
+    "regionalGeothermalOperatingMegawatts2023": 400,
+    "regionalGeothermalTechnicalPotentialMegawatts": 2950,
+    "bahrainDesalinationElectricity2017Gwh": 1260
+  },
+  "routeReference": {
+    "studyYear": 2016,
+    "corridorMiles": 120,
+    "maximumElevationFeetMsl": 300,
+    "referenceFlowAcreFeetPerYear": 150000,
+    "referencePipelineDiameterInches": 86,
+    "status": "geographic and hydraulic reference, not a selected alignment"
+  },
+  "shoreline": [
+    {
+      "id": "current",
+      "label": "Current observation",
+      "feet": -243.86,
+      "evidence": "observed",
+      "areaAcres": 188258,
+      "capacityAcreFeet": 4013698,
+      "refillFromCurrentAcreFeet": 0,
+      "netEvaporationAcreFeetPerYear": 1054244,
+      "northShoreHarborStatus": "isolated in 2026 aerial"
+    },
+    {
+      "id": "screening-minus-240",
+      "label": "Lower design study",
+      "feet": -240,
+      "evidence": "screening",
+      "areaAcres": 202308,
+      "capacityAcreFeet": 4768194,
+      "refillFromCurrentAcreFeet": 754496,
+      "netEvaporationAcreFeetPerYear": 1132925,
+      "northShoreHarborStatus": "requires site-specific topography and hydraulic modeling"
+    },
+    {
+      "id": "screening-minus-235",
+      "label": "Upper design study",
+      "feet": -235,
+      "evidence": "screening",
+      "areaAcres": 217116,
+      "capacityAcreFeet": 5819215,
+      "refillFromCurrentAcreFeet": 1805516,
+      "netEvaporationAcreFeetPerYear": 1215850,
+      "northShoreHarborStatus": "requires site-specific topography and hydraulic modeling"
+    },
+    {
+      "id": "screening-minus-230",
+      "label": "Flood-history comparison",
+      "feet": -230,
+      "evidence": "screening",
+      "areaAcres": 233277,
+      "capacityAcreFeet": 6941595,
+      "refillFromCurrentAcreFeet": 2927897,
+      "netEvaporationAcreFeetPerYear": 1306351,
+      "northShoreHarborStatus": "requires site-specific topography and hydraulic modeling"
+    },
+    {
+      "id": "north-shore-2010",
+      "label": "2010 field-year mean",
+      "feet": -231.3063,
+      "evidence": "USGS daily mean average",
+      "areaAcres": 228687,
+      "capacityAcreFeet": 6641501,
+      "refillFromCurrentAcreFeet": 2627802,
+      "netEvaporationAcreFeetPerYear": 1280645,
+      "northShoreHarborStatus": "connected in 2010 author photograph"
+    },
+    {
+      "id": "north-shore-may-2012",
+      "label": "May 15, 2012 gauge",
+      "feet": -231.2,
+      "evidence": "USGS daily mean",
+      "areaAcres": 229060,
+      "capacityAcreFeet": 6665921,
+      "refillFromCurrentAcreFeet": 2652222,
+      "netEvaporationAcreFeetPerYear": 1282737,
+      "northShoreHarborStatus": "requires site-specific topography and hydraulic modeling"
+    }
+  ],
+  "checkpoint": {
+    "id": "bahrain-nameplate-screening-minus-230-brief-checkpoint-35-5",
+    "productId": "bahrain-nameplate",
+    "productLabel": "Bahrain nameplate",
+    "lakeId": "screening-minus-230",
+    "mode": "brief-checkpoint",
+    "elevationFeetNgvd29": -230,
+    "lakeAreaAcres": 233277,
+    "lakeSalinityPpt": 35.5,
+    "recovery": 0.45,
+    "deliveredProductAfy": 286535,
+    "installedNameplateAfy": 335129,
+    "lakeWithdrawalAfy": 636745,
+    "netEvaporationAfy": 1306351,
+    "treatedInletAfy": 1943096,
+    "requiredInletSalinityPpt": 11.63,
+    "outletBrineAfy": 350209,
+    "idealOutletBrineSalinityPpt": 64.5,
+    "saltThroughOutletMetricTons": 27882155,
+    "hydraulicPondMinimumAcres": 62537,
+    "twentyFiveTonTruckloadsEquivalent": 1115286,
+    "energy": [
+      {
+        "kwhPerCubicMeter": 3,
+        "annualTwh": 1.06,
+        "averageMegawatts": 121
+      },
+      {
+        "kwhPerCubicMeter": 3.4,
+        "annualTwh": 1.202,
+        "averageMegawatts": 137
+      },
+      {
+        "kwhPerCubicMeter": 4,
+        "annualTwh": 1.414,
+        "averageMegawatts": 161
+      }
+    ],
+    "sourceBalance": {
+      "currentGrossInflowAfy": 890200,
+      "currentNetInflowAfy": 804600,
+      "reducedReturnFlowAfy": 57307,
+      "adjustedDrainageRawAfy": 832893,
+      "treatedDrainageAdmittedAfy": 749604,
+      "gulfRawAfy": 1326102,
+      "gulfAdmittedAfy": 1193492,
+      "requiredGulfOutletSalinityPpt": 17.37,
+      "upstreamWaterLossAfy": 215900,
+      "rawSaltMetricTons": 60636555,
+      "admittedSaltMetricTons": 27882155,
+      "upstreamSaltRejectedOrRetainedMetricTons": 32754400
+    }
+  },
+  "steadyScenarios": [
+    {
+      "id": "pilot-10-mgd-us-screening-minus-240-steady-state-35-5",
+      "productId": "pilot-10-mgd-us",
+      "productLabel": "10 MGD pilot",
+      "lakeId": "screening-minus-240",
+      "mode": "steady-state",
+      "elevationFeetNgvd29": -240,
+      "lakeAreaAcres": 202308,
+      "lakeSalinityPpt": 35.5,
+      "recovery": 0.45,
+      "deliveredProductAfy": 11201,
+      "installedNameplateAfy": 13101,
+      "lakeWithdrawalAfy": 24892,
+      "netEvaporationAfy": 1132925,
+      "treatedInletAfy": 1157817,
+      "requiredInletSalinityPpt": 0.76,
+      "outletBrineAfy": 13691,
+      "idealOutletBrineSalinityPpt": 64.5,
+      "saltThroughOutletMetricTons": 1089988,
+      "hydraulicPondMinimumAcres": 2445,
+      "twentyFiveTonTruckloadsEquivalent": 43600,
+      "energy": [
+        {
+          "kwhPerCubicMeter": 3,
+          "annualTwh": 0.041,
+          "averageMegawatts": 5
+        },
+        {
+          "kwhPerCubicMeter": 3.4,
+          "annualTwh": 0.047,
+          "averageMegawatts": 5
+        },
+        {
+          "kwhPerCubicMeter": 4,
+          "annualTwh": 0.055,
+          "averageMegawatts": 6
+        }
+      ],
+      "sourceBalance": {
+        "currentGrossInflowAfy": 890200,
+        "currentNetInflowAfy": 804600,
+        "reducedReturnFlowAfy": 2240,
+        "adjustedDrainageRawAfy": 887960,
+        "treatedDrainageAdmittedAfy": 799164,
+        "gulfRawAfy": 398504,
+        "gulfAdmittedAfy": 358653,
+        "requiredGulfOutletSalinityPpt": 0,
+        "upstreamWaterLossAfy": 128646,
+        "rawSaltMetricTons": 20188126,
+        "admittedSaltMetricTons": 1089988,
+        "upstreamSaltRejectedOrRetainedMetricTons": 19098137
+      }
+    },
+    {
+      "id": "pilot-10-mgd-us-screening-minus-240-steady-state-40",
+      "productId": "pilot-10-mgd-us",
+      "productLabel": "10 MGD pilot",
+      "lakeId": "screening-minus-240",
+      "mode": "steady-state",
+      "elevationFeetNgvd29": -240,
+      "lakeAreaAcres": 202308,
+      "lakeSalinityPpt": 40,
+      "recovery": 0.45,
+      "deliveredProductAfy": 11201,
+      "installedNameplateAfy": 13101,
+      "lakeWithdrawalAfy": 24892,
+      "netEvaporationAfy": 1132925,
+      "treatedInletAfy": 1157817,
+      "requiredInletSalinityPpt": 0.86,
+      "outletBrineAfy": 13691,
+      "idealOutletBrineSalinityPpt": 72.7,
+      "saltThroughOutletMetricTons": 1228156,
+      "hydraulicPondMinimumAcres": 2445,
+      "twentyFiveTonTruckloadsEquivalent": 49126,
+      "energy": [
+        {
+          "kwhPerCubicMeter": 3,
+          "annualTwh": 0.041,
+          "averageMegawatts": 5
+        },
+        {
+          "kwhPerCubicMeter": 3.4,
+          "annualTwh": 0.047,
+          "averageMegawatts": 5
+        },
+        {
+          "kwhPerCubicMeter": 4,
+          "annualTwh": 0.055,
+          "averageMegawatts": 6
+        }
+      ],
+      "sourceBalance": {
+        "currentGrossInflowAfy": 890200,
+        "currentNetInflowAfy": 804600,
+        "reducedReturnFlowAfy": 2240,
+        "adjustedDrainageRawAfy": 887960,
+        "treatedDrainageAdmittedAfy": 799164,
+        "gulfRawAfy": 398504,
+        "gulfAdmittedAfy": 358653,
+        "requiredGulfOutletSalinityPpt": 0,
+        "upstreamWaterLossAfy": 128646,
+        "rawSaltMetricTons": 20188126,
+        "admittedSaltMetricTons": 1228156,
+        "upstreamSaltRejectedOrRetainedMetricTons": 18959970
+      }
+    },
+    {
+      "id": "bahrain-actual-2024-screening-minus-240-steady-state-35-5",
+      "productId": "bahrain-actual-2024",
+      "productLabel": "Bahrain 2024 actual",
+      "lakeId": "screening-minus-240",
+      "mode": "steady-state",
+      "elevationFeetNgvd29": -240,
+      "lakeAreaAcres": 202308,
+      "lakeSalinityPpt": 35.5,
+      "recovery": 0.45,
+      "deliveredProductAfy": 227847,
+      "installedNameplateAfy": 266488,
+      "lakeWithdrawalAfy": 506326,
+      "netEvaporationAfy": 1132925,
+      "treatedInletAfy": 1639251,
+      "requiredInletSalinityPpt": 10.97,
+      "outletBrineAfy": 278479,
+      "idealOutletBrineSalinityPpt": 64.5,
+      "saltThroughOutletMetricTons": 22171323,
+      "hydraulicPondMinimumAcres": 49728,
+      "twentyFiveTonTruckloadsEquivalent": 886853,
+      "energy": [
+        {
+          "kwhPerCubicMeter": 3,
+          "annualTwh": 0.843,
+          "averageMegawatts": 96
+        },
+        {
+          "kwhPerCubicMeter": 3.4,
+          "annualTwh": 0.956,
+          "averageMegawatts": 109
+        },
+        {
+          "kwhPerCubicMeter": 4,
+          "annualTwh": 1.124,
+          "averageMegawatts": 128
+        }
+      ],
+      "sourceBalance": {
+        "currentGrossInflowAfy": 890200,
+        "currentNetInflowAfy": 804600,
+        "reducedReturnFlowAfy": 45569,
+        "adjustedDrainageRawAfy": 844631,
+        "treatedDrainageAdmittedAfy": 760168,
+        "gulfRawAfy": 976760,
+        "gulfAdmittedAfy": 879084,
+        "requiredGulfOutletSalinityPpt": 18.29,
+        "upstreamWaterLossAfy": 182139,
+        "rawSaltMetricTons": 45375537,
+        "admittedSaltMetricTons": 22171323,
+        "upstreamSaltRejectedOrRetainedMetricTons": 23204214
+      }
+    },
+    {
+      "id": "bahrain-actual-2024-screening-minus-240-steady-state-40",
+      "productId": "bahrain-actual-2024",
+      "productLabel": "Bahrain 2024 actual",
+      "lakeId": "screening-minus-240",
+      "mode": "steady-state",
+      "elevationFeetNgvd29": -240,
+      "lakeAreaAcres": 202308,
+      "lakeSalinityPpt": 40,
+      "recovery": 0.45,
+      "deliveredProductAfy": 227847,
+      "installedNameplateAfy": 266488,
+      "lakeWithdrawalAfy": 506326,
+      "netEvaporationAfy": 1132925,
+      "treatedInletAfy": 1639251,
+      "requiredInletSalinityPpt": 12.36,
+      "outletBrineAfy": 278479,
+      "idealOutletBrineSalinityPpt": 72.7,
+      "saltThroughOutletMetricTons": 24981772,
+      "hydraulicPondMinimumAcres": 49728,
+      "twentyFiveTonTruckloadsEquivalent": 999271,
+      "energy": [
+        {
+          "kwhPerCubicMeter": 3,
+          "annualTwh": 0.843,
+          "averageMegawatts": 96
+        },
+        {
+          "kwhPerCubicMeter": 3.4,
+          "annualTwh": 0.956,
+          "averageMegawatts": 109
+        },
+        {
+          "kwhPerCubicMeter": 4,
+          "annualTwh": 1.124,
+          "averageMegawatts": 128
+        }
+      ],
+      "sourceBalance": {
+        "currentGrossInflowAfy": 890200,
+        "currentNetInflowAfy": 804600,
+        "reducedReturnFlowAfy": 45569,
+        "adjustedDrainageRawAfy": 844631,
+        "treatedDrainageAdmittedAfy": 760168,
+        "gulfRawAfy": 976760,
+        "gulfAdmittedAfy": 879084,
+        "requiredGulfOutletSalinityPpt": 20.88,
+        "upstreamWaterLossAfy": 182139,
+        "rawSaltMetricTons": 45375537,
+        "admittedSaltMetricTons": 24981772,
+        "upstreamSaltRejectedOrRetainedMetricTons": 20393765
+      }
+    },
+    {
+      "id": "cvwd-farm-deliveries-screening-minus-240-steady-state-35-5",
+      "productId": "cvwd-farm-deliveries",
+      "productLabel": "Coachella farm deliveries",
+      "lakeId": "screening-minus-240",
+      "mode": "steady-state",
+      "elevationFeetNgvd29": -240,
+      "lakeAreaAcres": 202308,
+      "lakeSalinityPpt": 35.5,
+      "recovery": 0.45,
+      "deliveredProductAfy": 260000,
+      "installedNameplateAfy": 304094,
+      "lakeWithdrawalAfy": 577778,
+      "netEvaporationAfy": 1132925,
+      "treatedInletAfy": 1710703,
+      "requiredInletSalinityPpt": 11.99,
+      "outletBrineAfy": 317778,
+      "idealOutletBrineSalinityPpt": 64.5,
+      "saltThroughOutletMetricTons": 25300083,
+      "hydraulicPondMinimumAcres": 56746,
+      "twentyFiveTonTruckloadsEquivalent": 1012003,
+      "energy": [
+        {
+          "kwhPerCubicMeter": 3,
+          "annualTwh": 0.962,
+          "averageMegawatts": 110
+        },
+        {
+          "kwhPerCubicMeter": 3.4,
+          "annualTwh": 1.09,
+          "averageMegawatts": 124
+        },
+        {
+          "kwhPerCubicMeter": 4,
+          "annualTwh": 1.283,
+          "averageMegawatts": 146
+        }
+      ],
+      "sourceBalance": {
+        "currentGrossInflowAfy": 890200,
+        "currentNetInflowAfy": 804600,
+        "reducedReturnFlowAfy": 52000,
+        "adjustedDrainageRawAfy": 838200,
+        "treatedDrainageAdmittedAfy": 754380,
+        "gulfRawAfy": 1062581,
+        "gulfAdmittedAfy": 956323,
+        "requiredGulfOutletSalinityPpt": 19.48,
+        "upstreamWaterLossAfy": 190078,
+        "rawSaltMetricTons": 49113695,
+        "admittedSaltMetricTons": 25300083,
+        "upstreamSaltRejectedOrRetainedMetricTons": 23813612
+      }
+    },
+    {
+      "id": "cvwd-farm-deliveries-screening-minus-240-steady-state-40",
+      "productId": "cvwd-farm-deliveries",
+      "productLabel": "Coachella farm deliveries",
+      "lakeId": "screening-minus-240",
+      "mode": "steady-state",
+      "elevationFeetNgvd29": -240,
+      "lakeAreaAcres": 202308,
+      "lakeSalinityPpt": 40,
+      "recovery": 0.45,
+      "deliveredProductAfy": 260000,
+      "installedNameplateAfy": 304094,
+      "lakeWithdrawalAfy": 577778,
+      "netEvaporationAfy": 1132925,
+      "treatedInletAfy": 1710703,
+      "requiredInletSalinityPpt": 13.51,
+      "outletBrineAfy": 317778,
+      "idealOutletBrineSalinityPpt": 72.7,
+      "saltThroughOutletMetricTons": 28507136,
+      "hydraulicPondMinimumAcres": 56746,
+      "twentyFiveTonTruckloadsEquivalent": 1140285,
+      "energy": [
+        {
+          "kwhPerCubicMeter": 3,
+          "annualTwh": 0.962,
+          "averageMegawatts": 110
+        },
+        {
+          "kwhPerCubicMeter": 3.4,
+          "annualTwh": 1.09,
+          "averageMegawatts": 124
+        },
+        {
+          "kwhPerCubicMeter": 4,
+          "annualTwh": 1.283,
+          "averageMegawatts": 146
+        }
+      ],
+      "sourceBalance": {
+        "currentGrossInflowAfy": 890200,
+        "currentNetInflowAfy": 804600,
+        "reducedReturnFlowAfy": 52000,
+        "adjustedDrainageRawAfy": 838200,
+        "treatedDrainageAdmittedAfy": 754380,
+        "gulfRawAfy": 1062581,
+        "gulfAdmittedAfy": 956323,
+        "requiredGulfOutletSalinityPpt": 22.19,
+        "upstreamWaterLossAfy": 190078,
+        "rawSaltMetricTons": 49113695,
+        "admittedSaltMetricTons": 28507136,
+        "upstreamSaltRejectedOrRetainedMetricTons": 20606559
+      }
+    },
+    {
+      "id": "bahrain-nameplate-screening-minus-240-steady-state-35-5",
+      "productId": "bahrain-nameplate",
+      "productLabel": "Bahrain nameplate",
+      "lakeId": "screening-minus-240",
+      "mode": "steady-state",
+      "elevationFeetNgvd29": -240,
+      "lakeAreaAcres": 202308,
+      "lakeSalinityPpt": 35.5,
+      "recovery": 0.45,
+      "deliveredProductAfy": 286535,
+      "installedNameplateAfy": 335129,
+      "lakeWithdrawalAfy": 636745,
+      "netEvaporationAfy": 1132925,
+      "treatedInletAfy": 1769670,
+      "requiredInletSalinityPpt": 12.77,
+      "outletBrineAfy": 350209,
+      "idealOutletBrineSalinityPpt": 64.5,
+      "saltThroughOutletMetricTons": 27882155,
+      "hydraulicPondMinimumAcres": 62537,
+      "twentyFiveTonTruckloadsEquivalent": 1115286,
+      "energy": [
+        {
+          "kwhPerCubicMeter": 3,
+          "annualTwh": 1.06,
+          "averageMegawatts": 121
+        },
+        {
+          "kwhPerCubicMeter": 3.4,
+          "annualTwh": 1.202,
+          "averageMegawatts": 137
+        },
+        {
+          "kwhPerCubicMeter": 4,
+          "annualTwh": 1.414,
+          "averageMegawatts": 161
+        }
+      ],
+      "sourceBalance": {
+        "currentGrossInflowAfy": 890200,
+        "currentNetInflowAfy": 804600,
+        "reducedReturnFlowAfy": 57307,
+        "adjustedDrainageRawAfy": 832893,
+        "treatedDrainageAdmittedAfy": 749604,
+        "gulfRawAfy": 1133406,
+        "gulfAdmittedAfy": 1020066,
+        "requiredGulfOutletSalinityPpt": 20.32,
+        "upstreamWaterLossAfy": 196630,
+        "rawSaltMetricTons": 52198685,
+        "admittedSaltMetricTons": 27882155,
+        "upstreamSaltRejectedOrRetainedMetricTons": 24316530
+      }
+    },
+    {
+      "id": "bahrain-nameplate-screening-minus-240-steady-state-40",
+      "productId": "bahrain-nameplate",
+      "productLabel": "Bahrain nameplate",
+      "lakeId": "screening-minus-240",
+      "mode": "steady-state",
+      "elevationFeetNgvd29": -240,
+      "lakeAreaAcres": 202308,
+      "lakeSalinityPpt": 40,
+      "recovery": 0.45,
+      "deliveredProductAfy": 286535,
+      "installedNameplateAfy": 335129,
+      "lakeWithdrawalAfy": 636745,
+      "netEvaporationAfy": 1132925,
+      "treatedInletAfy": 1769670,
+      "requiredInletSalinityPpt": 14.39,
+      "outletBrineAfy": 350209,
+      "idealOutletBrineSalinityPpt": 72.7,
+      "saltThroughOutletMetricTons": 31416513,
+      "hydraulicPondMinimumAcres": 62537,
+      "twentyFiveTonTruckloadsEquivalent": 1256661,
+      "energy": [
+        {
+          "kwhPerCubicMeter": 3,
+          "annualTwh": 1.06,
+          "averageMegawatts": 121
+        },
+        {
+          "kwhPerCubicMeter": 3.4,
+          "annualTwh": 1.202,
+          "averageMegawatts": 137
+        },
+        {
+          "kwhPerCubicMeter": 4,
+          "annualTwh": 1.414,
+          "averageMegawatts": 161
+        }
+      ],
+      "sourceBalance": {
+        "currentGrossInflowAfy": 890200,
+        "currentNetInflowAfy": 804600,
+        "reducedReturnFlowAfy": 57307,
+        "adjustedDrainageRawAfy": 832893,
+        "treatedDrainageAdmittedAfy": 749604,
+        "gulfRawAfy": 1133406,
+        "gulfAdmittedAfy": 1020066,
+        "requiredGulfOutletSalinityPpt": 23.13,
+        "upstreamWaterLossAfy": 196630,
+        "rawSaltMetricTons": 52198685,
+        "admittedSaltMetricTons": 31416513,
+        "upstreamSaltRejectedOrRetainedMetricTons": 20782173
+      }
+    },
+    {
+      "id": "half-million-screening-minus-240-steady-state-35-5",
+      "productId": "half-million",
+      "productLabel": "500,000 AFY",
+      "lakeId": "screening-minus-240",
+      "mode": "steady-state",
+      "elevationFeetNgvd29": -240,
+      "lakeAreaAcres": 202308,
+      "lakeSalinityPpt": 35.5,
+      "recovery": 0.45,
+      "deliveredProductAfy": 500000,
+      "installedNameplateAfy": 584795,
+      "lakeWithdrawalAfy": 1111111,
+      "netEvaporationAfy": 1132925,
+      "treatedInletAfy": 2244036,
+      "requiredInletSalinityPpt": 17.58,
+      "outletBrineAfy": 611111,
+      "idealOutletBrineSalinityPpt": 64.5,
+      "saltThroughOutletMetricTons": 48654006,
+      "hydraulicPondMinimumAcres": 109127,
+      "twentyFiveTonTruckloadsEquivalent": 1946160,
+      "energy": [
+        {
+          "kwhPerCubicMeter": 3,
+          "annualTwh": 1.85,
+          "averageMegawatts": 211
+        },
+        {
+          "kwhPerCubicMeter": 3.4,
+          "annualTwh": 2.097,
+          "averageMegawatts": 239
+        },
+        {
+          "kwhPerCubicMeter": 4,
+          "annualTwh": 2.467,
+          "averageMegawatts": 282
+        }
+      ],
+      "sourceBalance": {
+        "currentGrossInflowAfy": 890200,
+        "currentNetInflowAfy": 804600,
+        "reducedReturnFlowAfy": 100000,
+        "adjustedDrainageRawAfy": 790200,
+        "treatedDrainageAdmittedAfy": 711180,
+        "gulfRawAfy": 1703173,
+        "gulfAdmittedAfy": 1532856,
+        "requiredGulfOutletSalinityPpt": 24.57,
+        "upstreamWaterLossAfy": 249337,
+        "rawSaltMetricTons": 77016334,
+        "admittedSaltMetricTons": 48654006,
+        "upstreamSaltRejectedOrRetainedMetricTons": 28362328
+      }
+    },
+    {
+      "id": "half-million-screening-minus-240-steady-state-40",
+      "productId": "half-million",
+      "productLabel": "500,000 AFY",
+      "lakeId": "screening-minus-240",
+      "mode": "steady-state",
+      "elevationFeetNgvd29": -240,
+      "lakeAreaAcres": 202308,
+      "lakeSalinityPpt": 40,
+      "recovery": 0.45,
+      "deliveredProductAfy": 500000,
+      "installedNameplateAfy": 584795,
+      "lakeWithdrawalAfy": 1111111,
+      "netEvaporationAfy": 1132925,
+      "treatedInletAfy": 2244036,
+      "requiredInletSalinityPpt": 19.81,
+      "outletBrineAfy": 611111,
+      "idealOutletBrineSalinityPpt": 72.7,
+      "saltThroughOutletMetricTons": 54821415,
+      "hydraulicPondMinimumAcres": 109127,
+      "twentyFiveTonTruckloadsEquivalent": 2192857,
+      "energy": [
+        {
+          "kwhPerCubicMeter": 3,
+          "annualTwh": 1.85,
+          "averageMegawatts": 211
+        },
+        {
+          "kwhPerCubicMeter": 3.4,
+          "annualTwh": 2.097,
+          "averageMegawatts": 239
+        },
+        {
+          "kwhPerCubicMeter": 4,
+          "annualTwh": 2.467,
+          "averageMegawatts": 282
+        }
+      ],
+      "sourceBalance": {
+        "currentGrossInflowAfy": 890200,
+        "currentNetInflowAfy": 804600,
+        "reducedReturnFlowAfy": 100000,
+        "adjustedDrainageRawAfy": 790200,
+        "treatedDrainageAdmittedAfy": 711180,
+        "gulfRawAfy": 1703173,
+        "gulfAdmittedAfy": 1532856,
+        "requiredGulfOutletSalinityPpt": 27.83,
+        "upstreamWaterLossAfy": 249337,
+        "rawSaltMetricTons": 77016334,
+        "admittedSaltMetricTons": 54821415,
+        "upstreamSaltRejectedOrRetainedMetricTons": 22194919
+      }
+    },
+    {
+      "id": "one-million-screening-minus-240-steady-state-35-5",
+      "productId": "one-million",
+      "productLabel": "1.0 MAFY",
+      "lakeId": "screening-minus-240",
+      "mode": "steady-state",
+      "elevationFeetNgvd29": -240,
+      "lakeAreaAcres": 202308,
+      "lakeSalinityPpt": 35.5,
+      "recovery": 0.45,
+      "deliveredProductAfy": 1000000,
+      "installedNameplateAfy": 1169591,
+      "lakeWithdrawalAfy": 2222222,
+      "netEvaporationAfy": 1132925,
+      "treatedInletAfy": 3355147,
+      "requiredInletSalinityPpt": 23.51,
+      "outletBrineAfy": 1222222,
+      "idealOutletBrineSalinityPpt": 64.5,
+      "saltThroughOutletMetricTons": 97308012,
+      "hydraulicPondMinimumAcres": 218254,
+      "twentyFiveTonTruckloadsEquivalent": 3892320,
+      "energy": [
+        {
+          "kwhPerCubicMeter": 3,
+          "annualTwh": 3.7,
+          "averageMegawatts": 422
+        },
+        {
+          "kwhPerCubicMeter": 3.4,
+          "annualTwh": 4.194,
+          "averageMegawatts": 479
+        },
+        {
+          "kwhPerCubicMeter": 4,
+          "annualTwh": 4.934,
+          "averageMegawatts": 563
+        }
+      ],
+      "sourceBalance": {
+        "currentGrossInflowAfy": 890200,
+        "currentNetInflowAfy": 804600,
+        "reducedReturnFlowAfy": 200000,
+        "adjustedDrainageRawAfy": 690200,
+        "treatedDrainageAdmittedAfy": 621180,
+        "gulfRawAfy": 3037741,
+        "gulfAdmittedAfy": 2733967,
+        "requiredGulfOutletSalinityPpt": 28.29,
+        "upstreamWaterLossAfy": 372794,
+        "rawSaltMetricTons": 135146830,
+        "admittedSaltMetricTons": 97308012,
+        "upstreamSaltRejectedOrRetainedMetricTons": 37838818
+      }
+    },
+    {
+      "id": "one-million-screening-minus-240-steady-state-40",
+      "productId": "one-million",
+      "productLabel": "1.0 MAFY",
+      "lakeId": "screening-minus-240",
+      "mode": "steady-state",
+      "elevationFeetNgvd29": -240,
+      "lakeAreaAcres": 202308,
+      "lakeSalinityPpt": 40,
+      "recovery": 0.45,
+      "deliveredProductAfy": 1000000,
+      "installedNameplateAfy": 1169591,
+      "lakeWithdrawalAfy": 2222222,
+      "netEvaporationAfy": 1132925,
+      "treatedInletAfy": 3355147,
+      "requiredInletSalinityPpt": 26.49,
+      "outletBrineAfy": 1222222,
+      "idealOutletBrineSalinityPpt": 72.7,
+      "saltThroughOutletMetricTons": 109642830,
+      "hydraulicPondMinimumAcres": 218254,
+      "twentyFiveTonTruckloadsEquivalent": 4385713,
+      "energy": [
+        {
+          "kwhPerCubicMeter": 3,
+          "annualTwh": 3.7,
+          "averageMegawatts": 422
+        },
+        {
+          "kwhPerCubicMeter": 3.4,
+          "annualTwh": 4.194,
+          "averageMegawatts": 479
+        },
+        {
+          "kwhPerCubicMeter": 4,
+          "annualTwh": 4.934,
+          "averageMegawatts": 563
+        }
+      ],
+      "sourceBalance": {
+        "currentGrossInflowAfy": 890200,
+        "currentNetInflowAfy": 804600,
+        "reducedReturnFlowAfy": 200000,
+        "adjustedDrainageRawAfy": 690200,
+        "treatedDrainageAdmittedAfy": 621180,
+        "gulfRawAfy": 3037741,
+        "gulfAdmittedAfy": 2733967,
+        "requiredGulfOutletSalinityPpt": 31.94,
+        "upstreamWaterLossAfy": 372794,
+        "rawSaltMetricTons": 135146830,
+        "admittedSaltMetricTons": 109642830,
+        "upstreamSaltRejectedOrRetainedMetricTons": 25504000
+      }
+    }
+  ],
+  "transitionScenarios": [
+    {
+      "id": "pilot-10-mgd-us-current-transition-sensitivity-90",
+      "productId": "pilot-10-mgd-us",
+      "productLabel": "10 MGD pilot",
+      "lakeId": "current",
+      "mode": "transition-sensitivity",
+      "elevationFeetNgvd29": -243.86,
+      "lakeAreaAcres": 188258,
+      "lakeSalinityPpt": 90,
+      "recovery": 0.25,
+      "deliveredProductAfy": 11201,
+      "installedNameplateAfy": 13101,
+      "lakeWithdrawalAfy": 44806,
+      "netEvaporationAfy": 1054244,
+      "treatedInletAfy": 1099050,
+      "requiredInletSalinityPpt": 3.67,
+      "outletBrineAfy": 33604,
+      "idealOutletBrineSalinityPpt": 120,
+      "saltThroughOutletMetricTons": 4974031,
+      "hydraulicPondMinimumAcres": 6001,
+      "twentyFiveTonTruckloadsEquivalent": 198961,
+      "energy": [
+        {
+          "kwhPerCubicMeter": 3,
+          "annualTwh": 0.041,
+          "averageMegawatts": 5
+        },
+        {
+          "kwhPerCubicMeter": 3.4,
+          "annualTwh": 0.047,
+          "averageMegawatts": 5
+        },
+        {
+          "kwhPerCubicMeter": 4,
+          "annualTwh": 0.055,
+          "averageMegawatts": 6
+        }
+      ],
+      "sourceBalance": {
+        "currentGrossInflowAfy": 890200,
+        "currentNetInflowAfy": 804600,
+        "reducedReturnFlowAfy": 2240,
+        "adjustedDrainageRawAfy": 887960,
+        "treatedDrainageAdmittedAfy": 799164,
+        "gulfRawAfy": 333207,
+        "gulfAdmittedAfy": 299886,
+        "requiredGulfOutletSalinityPpt": 6.78,
+        "upstreamWaterLossAfy": 122117,
+        "rawSaltMetricTons": 17328858,
+        "admittedSaltMetricTons": 4974031,
+        "upstreamSaltRejectedOrRetainedMetricTons": 12354827
+      }
+    },
+    {
+      "id": "bahrain-actual-2024-current-transition-sensitivity-90",
+      "productId": "bahrain-actual-2024",
+      "productLabel": "Bahrain 2024 actual",
+      "lakeId": "current",
+      "mode": "transition-sensitivity",
+      "elevationFeetNgvd29": -243.86,
+      "lakeAreaAcres": 188258,
+      "lakeSalinityPpt": 90,
+      "recovery": 0.25,
+      "deliveredProductAfy": 227847,
+      "installedNameplateAfy": 266488,
+      "lakeWithdrawalAfy": 911387,
+      "netEvaporationAfy": 1054244,
+      "treatedInletAfy": 1965631,
+      "requiredInletSalinityPpt": 41.73,
+      "outletBrineAfy": 683541,
+      "idealOutletBrineSalinityPpt": 120,
+      "saltThroughOutletMetricTons": 101176176,
+      "hydraulicPondMinimumAcres": 122061,
+      "twentyFiveTonTruckloadsEquivalent": 4047047,
+      "energy": [
+        {
+          "kwhPerCubicMeter": 3,
+          "annualTwh": 0.843,
+          "averageMegawatts": 96
+        },
+        {
+          "kwhPerCubicMeter": 3.4,
+          "annualTwh": 0.956,
+          "averageMegawatts": 109
+        },
+        {
+          "kwhPerCubicMeter": 4,
+          "annualTwh": 1.124,
+          "averageMegawatts": 128
+        }
+      ],
+      "sourceBalance": {
+        "currentGrossInflowAfy": 890200,
+        "currentNetInflowAfy": 804600,
+        "reducedReturnFlowAfy": 45569,
+        "adjustedDrainageRawAfy": 844631,
+        "treatedDrainageAdmittedAfy": 760168,
+        "gulfRawAfy": 1339404,
+        "gulfAdmittedAfy": 1205464,
+        "requiredGulfOutletSalinityPpt": 66.47,
+        "upstreamWaterLossAfy": 218403,
+        "rawSaltMetricTons": 61255233,
+        "admittedSaltMetricTons": 101176176,
+        "upstreamSaltRejectedOrRetainedMetricTons": 0
+      }
+    },
+    {
+      "id": "cvwd-farm-deliveries-current-transition-sensitivity-90",
+      "productId": "cvwd-farm-deliveries",
+      "productLabel": "Coachella farm deliveries",
+      "lakeId": "current",
+      "mode": "transition-sensitivity",
+      "elevationFeetNgvd29": -243.86,
+      "lakeAreaAcres": 188258,
+      "lakeSalinityPpt": 90,
+      "recovery": 0.25,
+      "deliveredProductAfy": 260000,
+      "installedNameplateAfy": 304094,
+      "lakeWithdrawalAfy": 1040000,
+      "netEvaporationAfy": 1054244,
+      "treatedInletAfy": 2094244,
+      "requiredInletSalinityPpt": 44.69,
+      "outletBrineAfy": 780000,
+      "idealOutletBrineSalinityPpt": 120,
+      "saltThroughOutletMetricTons": 115453900,
+      "hydraulicPondMinimumAcres": 139286,
+      "twentyFiveTonTruckloadsEquivalent": 4618156,
+      "energy": [
+        {
+          "kwhPerCubicMeter": 3,
+          "annualTwh": 0.962,
+          "averageMegawatts": 110
+        },
+        {
+          "kwhPerCubicMeter": 3.4,
+          "annualTwh": 1.09,
+          "averageMegawatts": 124
+        },
+        {
+          "kwhPerCubicMeter": 4,
+          "annualTwh": 1.283,
+          "averageMegawatts": 146
+        }
+      ],
+      "sourceBalance": {
+        "currentGrossInflowAfy": 890200,
+        "currentNetInflowAfy": 804600,
+        "reducedReturnFlowAfy": 52000,
+        "adjustedDrainageRawAfy": 838200,
+        "treatedDrainageAdmittedAfy": 754380,
+        "gulfRawAfy": 1488738,
+        "gulfAdmittedAfy": 1339864,
+        "requiredGulfOutletSalinityPpt": 68.45,
+        "upstreamWaterLossAfy": 232694,
+        "rawSaltMetricTons": 67774512,
+        "admittedSaltMetricTons": 115453900,
+        "upstreamSaltRejectedOrRetainedMetricTons": 0
+      }
+    },
+    {
+      "id": "bahrain-nameplate-current-transition-sensitivity-90",
+      "productId": "bahrain-nameplate",
+      "productLabel": "Bahrain nameplate",
+      "lakeId": "current",
+      "mode": "transition-sensitivity",
+      "elevationFeetNgvd29": -243.86,
+      "lakeAreaAcres": 188258,
+      "lakeSalinityPpt": 90,
+      "recovery": 0.25,
+      "deliveredProductAfy": 286535,
+      "installedNameplateAfy": 335129,
+      "lakeWithdrawalAfy": 1146140,
+      "netEvaporationAfy": 1054244,
+      "treatedInletAfy": 2200384,
+      "requiredInletSalinityPpt": 46.88,
+      "outletBrineAfy": 859605,
+      "idealOutletBrineSalinityPpt": 120,
+      "saltThroughOutletMetricTons": 127236876,
+      "hydraulicPondMinimumAcres": 153501,
+      "twentyFiveTonTruckloadsEquivalent": 5089475,
+      "energy": [
+        {
+          "kwhPerCubicMeter": 3,
+          "annualTwh": 1.06,
+          "averageMegawatts": 121
+        },
+        {
+          "kwhPerCubicMeter": 3.4,
+          "annualTwh": 1.202,
+          "averageMegawatts": 137
+        },
+        {
+          "kwhPerCubicMeter": 4,
+          "annualTwh": 1.414,
+          "averageMegawatts": 161
+        }
+      ],
+      "sourceBalance": {
+        "currentGrossInflowAfy": 890200,
+        "currentNetInflowAfy": 804600,
+        "reducedReturnFlowAfy": 57307,
+        "adjustedDrainageRawAfy": 832893,
+        "treatedDrainageAdmittedAfy": 749604,
+        "gulfRawAfy": 1611978,
+        "gulfAdmittedAfy": 1450780,
+        "requiredGulfOutletSalinityPpt": 69.81,
+        "upstreamWaterLossAfy": 244487,
+        "rawSaltMetricTons": 73154677,
+        "admittedSaltMetricTons": 127236876,
+        "upstreamSaltRejectedOrRetainedMetricTons": 0
+      }
+    },
+    {
+      "id": "half-million-current-transition-sensitivity-90",
+      "productId": "half-million",
+      "productLabel": "500,000 AFY",
+      "lakeId": "current",
+      "mode": "transition-sensitivity",
+      "elevationFeetNgvd29": -243.86,
+      "lakeAreaAcres": 188258,
+      "lakeSalinityPpt": 90,
+      "recovery": 0.25,
+      "deliveredProductAfy": 500000,
+      "installedNameplateAfy": 584795,
+      "lakeWithdrawalAfy": 2000000,
+      "netEvaporationAfy": 1054244,
+      "treatedInletAfy": 3054244,
+      "requiredInletSalinityPpt": 58.93,
+      "outletBrineAfy": 1500000,
+      "idealOutletBrineSalinityPpt": 120,
+      "saltThroughOutletMetricTons": 222026731,
+      "hydraulicPondMinimumAcres": 267857,
+      "twentyFiveTonTruckloadsEquivalent": 8881069,
+      "energy": [
+        {
+          "kwhPerCubicMeter": 3,
+          "annualTwh": 1.85,
+          "averageMegawatts": 211
+        },
+        {
+          "kwhPerCubicMeter": 3.4,
+          "annualTwh": 2.097,
+          "averageMegawatts": 239
+        },
+        {
+          "kwhPerCubicMeter": 4,
+          "annualTwh": 2.467,
+          "averageMegawatts": 282
+        }
+      ],
+      "sourceBalance": {
+        "currentGrossInflowAfy": 890200,
+        "currentNetInflowAfy": 804600,
+        "reducedReturnFlowAfy": 100000,
+        "adjustedDrainageRawAfy": 790200,
+        "treatedDrainageAdmittedAfy": 711180,
+        "gulfRawAfy": 2603404,
+        "gulfAdmittedAfy": 2343064,
+        "requiredGulfOutletSalinityPpt": 76.06,
+        "upstreamWaterLossAfy": 339360,
+        "rawSaltMetricTons": 116436193,
+        "admittedSaltMetricTons": 222026731,
+        "upstreamSaltRejectedOrRetainedMetricTons": 0
+      }
+    },
+    {
+      "id": "one-million-current-transition-sensitivity-90",
+      "productId": "one-million",
+      "productLabel": "1.0 MAFY",
+      "lakeId": "current",
+      "mode": "transition-sensitivity",
+      "elevationFeetNgvd29": -243.86,
+      "lakeAreaAcres": 188258,
+      "lakeSalinityPpt": 90,
+      "recovery": 0.25,
+      "deliveredProductAfy": 1000000,
+      "installedNameplateAfy": 1169591,
+      "lakeWithdrawalAfy": 4000000,
+      "netEvaporationAfy": 1054244,
+      "treatedInletAfy": 5054244,
+      "requiredInletSalinityPpt": 71.23,
+      "outletBrineAfy": 3000000,
+      "idealOutletBrineSalinityPpt": 120,
+      "saltThroughOutletMetricTons": 444053462,
+      "hydraulicPondMinimumAcres": 535714,
+      "twentyFiveTonTruckloadsEquivalent": 17762138,
+      "energy": [
+        {
+          "kwhPerCubicMeter": 3,
+          "annualTwh": 3.7,
+          "averageMegawatts": 422
+        },
+        {
+          "kwhPerCubicMeter": 3.4,
+          "annualTwh": 4.194,
+          "averageMegawatts": 479
+        },
+        {
+          "kwhPerCubicMeter": 4,
+          "annualTwh": 4.934,
+          "averageMegawatts": 563
+        }
+      ],
+      "sourceBalance": {
+        "currentGrossInflowAfy": 890200,
+        "currentNetInflowAfy": 804600,
+        "reducedReturnFlowAfy": 200000,
+        "adjustedDrainageRawAfy": 690200,
+        "treatedDrainageAdmittedAfy": 621180,
+        "gulfRawAfy": 4925627,
+        "gulfAdmittedAfy": 4433064,
+        "requiredGulfOutletSalinityPpt": 80.86,
+        "upstreamWaterLossAfy": 561583,
+        "rawSaltMetricTons": 217814695,
+        "admittedSaltMetricTons": 444053462,
+        "upstreamSaltRejectedOrRetainedMetricTons": 0
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "usbr-1995",
+      "url": "https://www.usbr.gov/tsc/techreferences/reservoir/Salton%20Sea%201995%20Hydrographic%20GPS%20Survey.pdf",
+      "role": "area-capacity table"
+    },
+    {
+      "id": "pacific-current",
+      "url": "https://pacinst.org/current-information-salton-sea/",
+      "role": "current elevation and 2025 inflow snapshot"
+    },
+    {
+      "id": "usgs-gauge",
+      "url": "https://waterdata.usgs.gov/monitoring-location/10254005/",
+      "role": "current and historical elevation gauge"
+    },
+    {
+      "id": "ewa-capacity",
+      "url": "https://www.ewa.bh/en/the-water-network",
+      "role": "Bahrain nameplate capacity"
+    },
+    {
+      "id": "bahrain-open-data",
+      "url": "https://www.data.gov.bh/explore/dataset/water-production-dataset0/",
+      "role": "Bahrain 2024 actual production"
+    },
+    {
+      "id": "ewa-2022-book",
+      "url": "https://www.ewa.bh/en/AboutUs/AnnualReport/2022.pdf",
+      "role": "imperial-gallon unit confirmation for the production series"
+    },
+    {
+      "id": "cvwd-colorado",
+      "url": "https://www.cvwd.org/594/Colorado-River-Water",
+      "role": "Coachella farm-delivery comparison"
+    },
+    {
+      "id": "doe-lithium",
+      "url": "https://www.energy.gov/sites/default/files/2023-11/Fact_Sheet_Improved_Quantification_of_Lithium_Resources_in_the_Salton_Sea_Region_11.2023_0.pdf",
+      "role": "regional geothermal capacity and potential"
+    },
+    {
+      "id": "bher-capacity",
+      "url": "https://www.bherenewables.com/geothermal-energy-projects",
+      "role": "Current BHER Imperial Valley plant count and net capacity"
+    },
+    {
+      "id": "ssa-2016",
+      "url": "https://saltonsea.com/wp-content/uploads/2019/11/SSA-Benchmark-7-for-FFAP.pdf",
+      "role": "2016 Gulf corridor reference"
+    }
+  ]
+}

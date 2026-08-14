@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "article_slug": "salton-sea-needs-an-outlet",
+  "generated_at": "2026-08-14T16:06:51.089Z",
+  "scheduled_publication": "2026-08-24T16:20:00-07:00",
+  "predecessor_publication": "2026-08-23T16:20:00-07:00",
+  "schedule_difference_seconds": 86400,
+  "bucket": "hobfarm-cdn",
+  "public_hostname": "https://cdn.hob.farm",
+  "policy": {
+    "new_keys_only": true,
+    "overwrite_existing": false,
+    "delete_or_rename_existing": false,
+    "dry_run_before_upload": true,
+    "allowed_prefixes": [
+      "articles/salton-sea-needs-an-outlet/"
+    ]
+  },
+  "assets": [
+    {
+      "asset_id": "proposal-hero-v1",
+      "object_key": "articles/salton-sea-needs-an-outlet/salton-sea-water-machine-proposal-v1.webp",
+      "filename": "salton-sea-water-machine-proposal-v1.webp",
+      "source_file": "assets/articles/salton-sea-needs-an-outlet/generated/salton-sea-water-machine-proposal-v1.webp",
+      "destination_key": "articles/salton-sea-needs-an-outlet/salton-sea-water-machine-proposal-v1.webp",
+      "purpose": "Article hero and social preview",
+      "caption": "Proposal illustration: a managed Salton Sea water district with lake-side treatment, salt handling, habitat cells, agriculture, and a mixed geothermal, solar, and wind power system.",
+      "alt_text": "Proposal illustration looking across a working North Shore marina toward lake-water treatment trains, broad salt-handling ponds, canals, farms, habitat cells, geothermal steam, solar fields, wind turbines, and transmission lines in the Salton Sea basin.",
+      "credit": "HobFarm / generated with OpenAI image generation under human direction",
+      "rights_basis": "Original HobFarm editorial proposal illustration",
+      "construction": "Built-in OpenAI image generation with three supplied visual references; approved result converted to WebP without compositional edits.",
+      "editable_source": "assets/articles/salton-sea-needs-an-outlet/generated/salton-sea-water-machine-proposal-source.png",
+      "placement": "Article hero and social metadata",
+      "article_section": "Article hero and social metadata",
+      "subject": "Proposed managed Salton Sea regional water system",
+      "source": "OpenAI image generation directed by HobFarm",
+      "owner_or_archive": "HobFarm",
+      "rights_status": "original generated editorial illustration",
+      "comparison_group": null,
+      "crop_restrictions": "Preserve enough of the full basin composition to keep the harbor, treatment works, salt handling, power, habitat, and agriculture legible; do not present as documentary imagery.",
+      "derivative_keys": [],
+      "receipt_still_needed": false,
+      "width": 1672,
+      "height": 941,
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "destination_bucket": "hobfarm-cdn",
+      "public_url": "https://cdn.hob.farm/articles/salton-sea-needs-an-outlet/salton-sea-water-machine-proposal-v1.webp",
+      "content_type": "image/webp",
+      "mime_type": "image/webp",
+      "bytes": 294096,
+      "sha256": "dd94fac4a509dcfb55ab5792ba02df168308d5a1605d40c7eea092c43320b0ea",
+      "mobile_qa": "passed at 390px; source image, labels, embedded attribution, caption, and alt text verified",
+      "collision_check": "destination absent in required prefix before upload",
+      "replacement_policy": "new-key-only; increment version filename on conflict; never overwrite",
+      "upload_status": "uploaded",
+      "verification_status": "verified",
+      "remote_sha256": "dd94fac4a509dcfb55ab5792ba02df168308d5a1605d40c7eea092c43320b0ea",
+      "http_status": 200,
+      "verified_content_type": "image/webp",
+      "verified_cache_control": "public, max-age=31536000, immutable",
+      "public_response_sha256": "dd94fac4a509dcfb55ab5792ba02df168308d5a1605d40c7eea092c43320b0ea",
+      "edge_transformed": false,
+      "verified_at": "2026-08-14T15:54:54.271Z"
+    }
+  ]
+}

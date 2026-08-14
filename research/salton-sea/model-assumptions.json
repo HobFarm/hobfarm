@@ -1,0 +1,114 @@
+{
+  "modelVersion": "1.0.0",
+  "modelDate": "2026-08-14",
+  "purpose": "Deterministic screening model for The Salton Sea Needs an Outlet. Results are not a feasibility design.",
+  "units": {
+    "acreFootToCubicMeters": 1233.48184,
+    "imperialGallonToCubicMeters": 0.00454609,
+    "usGallonToCubicMeters": 0.003785411784,
+    "daysPerYear": 365,
+    "metricTonsPerKilogram": 0.001
+  },
+  "operations": {
+    "plantAvailability": 0.9,
+    "productConveyanceEfficiency": 0.95,
+    "steadyStateRecovery": 0.45,
+    "transitionRecovery": 0.25,
+    "transitionSalinityPpt": 90,
+    "transitionSalinityStatus": "planning sensitivity, not a same-day field observation",
+    "targetSalinitiesPpt": [35.5, 40],
+    "roEnergyKwhPerCubicMeter": [3, 3.4, 4]
+  },
+  "lake": {
+    "datum": "NGVD 1929",
+    "netEvaporationFeetPerYear": 5.6,
+    "netEvaporationSensitivityFeetPerYear": [5, 6.2],
+    "currentElevationFeet": -243.86,
+    "currentObservationDate": "2026-08-13",
+    "referenceElevations": [
+      { "id": "current", "label": "Current observation", "feet": -243.86, "evidence": "observed" },
+      { "id": "screening-minus-240", "label": "Lower design study", "feet": -240, "evidence": "screening" },
+      { "id": "screening-minus-235", "label": "Upper design study", "feet": -235, "evidence": "screening" },
+      { "id": "screening-minus-230", "label": "Flood-history comparison", "feet": -230, "evidence": "screening" },
+      { "id": "north-shore-2010", "label": "2010 field-year mean", "feet": -231.3063, "evidence": "USGS daily mean average" },
+      { "id": "north-shore-may-2012", "label": "May 15, 2012 gauge", "feet": -231.2, "evidence": "USGS daily mean" }
+    ],
+    "areaCapacitySurvey": [
+      { "elevationFeet": -278.6, "areaAcres": 0, "capacityAcreFeet": 0 },
+      { "elevationFeet": -260, "areaAcres": 135213, "capacityAcreFeet": 1416238 },
+      { "elevationFeet": -258, "areaAcres": 141845, "capacityAcreFeet": 1693360 },
+      { "elevationFeet": -256, "areaAcres": 148347, "capacityAcreFeet": 1983551 },
+      { "elevationFeet": -254, "areaAcres": 154609, "capacityAcreFeet": 2286530 },
+      { "elevationFeet": -252, "areaAcres": 160491, "capacityAcreFeet": 2601713 },
+      { "elevationFeet": -250, "areaAcres": 166302, "capacityAcreFeet": 2928466 },
+      { "elevationFeet": -248, "areaAcres": 172553, "capacityAcreFeet": 3267194 },
+      { "elevationFeet": -246, "areaAcres": 179821, "capacityAcreFeet": 3619490 },
+      { "elevationFeet": -244, "areaAcres": 187711, "capacityAcreFeet": 3986856 },
+      { "elevationFeet": -242, "areaAcres": 195524, "capacityAcreFeet": 4370319 },
+      { "elevationFeet": -240, "areaAcres": 202308, "capacityAcreFeet": 4768194 },
+      { "elevationFeet": -238, "areaAcres": 208424, "capacityAcreFeet": 5178926 },
+      { "elevationFeet": -236, "areaAcres": 214542, "capacityAcreFeet": 5602108 },
+      { "elevationFeet": -234, "areaAcres": 219690, "capacityAcreFeet": 6036321 },
+      { "elevationFeet": -232, "areaAcres": 226249, "capacityAcreFeet": 6482138 },
+      { "elevationFeet": -230, "areaAcres": 233277, "capacityAcreFeet": 6941595 },
+      { "elevationFeet": -228, "areaAcres": 239125, "capacityAcreFeet": 7413997 },
+      { "elevationFeet": -226, "areaAcres": 244973, "capacityAcreFeet": 7898096 },
+      { "elevationFeet": -224, "areaAcres": 250821, "capacityAcreFeet": 8393890 },
+      { "elevationFeet": -222, "areaAcres": 256669, "capacityAcreFeet": 8901380 },
+      { "elevationFeet": -220, "areaAcres": 262517, "capacityAcreFeet": 9420566 }
+    ]
+  },
+  "inflows": {
+    "snapshotYear": 2025,
+    "salinityPpt": 2.5,
+    "treatmentRecovery": 0.9,
+    "returnFlowResponseFraction": 0.2,
+    "componentsAcreFeet": {
+      "imperialValley": 759000,
+      "mexico": 43000,
+      "coachellaValley": 71000,
+      "localWatershed": 4900,
+      "groundwater": 12300
+    },
+    "habitatAndProjectUseAcreFeet": 85600
+  },
+  "gulf": {
+    "rawSalinityPpt": 35.5,
+    "treatmentRecovery": 0.9
+  },
+  "productScenarios": [
+    { "id": "pilot-10-mgd-us", "label": "10 MGD pilot", "sourceUnit": "million US gallons per day", "millionGallonsPerDay": 10 },
+    { "id": "bahrain-actual-2024", "label": "Bahrain 2024 actual", "sourceUnit": "million imperial gallons per year", "millionGallonsPerYear": 61821.243 },
+    { "id": "cvwd-farm-deliveries", "label": "Coachella farm deliveries", "acreFeetPerYear": 260000 },
+    { "id": "bahrain-nameplate", "label": "Bahrain nameplate", "sourceUnit": "million imperial gallons per day", "millionGallonsPerDay": 213 },
+    { "id": "half-million", "label": "500,000 AFY", "acreFeetPerYear": 500000 },
+    { "id": "one-million", "label": "1.0 MAFY", "acreFeetPerYear": 1000000 }
+  ],
+  "comparisonCapacity": {
+    "californiaMainstreamApportionmentAcreFeet": 4400000,
+    "existingBherGeothermalMegawatts": 345,
+    "regionalGeothermalOperatingMegawatts2023": 400,
+    "regionalGeothermalTechnicalPotentialMegawatts": 2950,
+    "bahrainDesalinationElectricity2017Gwh": 1260
+  },
+  "routeReference": {
+    "studyYear": 2016,
+    "corridorMiles": 120,
+    "maximumElevationFeetMsl": 300,
+    "referenceFlowAcreFeetPerYear": 150000,
+    "referencePipelineDiameterInches": 86,
+    "status": "geographic and hydraulic reference, not a selected alignment"
+  },
+  "sources": [
+    { "id": "usbr-1995", "url": "https://www.usbr.gov/tsc/techreferences/reservoir/Salton%20Sea%201995%20Hydrographic%20GPS%20Survey.pdf", "role": "area-capacity table" },
+    { "id": "pacific-current", "url": "https://pacinst.org/current-information-salton-sea/", "role": "current elevation and 2025 inflow snapshot" },
+    { "id": "usgs-gauge", "url": "https://waterdata.usgs.gov/monitoring-location/10254005/", "role": "current and historical elevation gauge" },
+    { "id": "ewa-capacity", "url": "https://www.ewa.bh/en/the-water-network", "role": "Bahrain nameplate capacity" },
+    { "id": "bahrain-open-data", "url": "https://www.data.gov.bh/explore/dataset/water-production-dataset0/", "role": "Bahrain 2024 actual production" },
+    { "id": "ewa-2022-book", "url": "https://www.ewa.bh/en/AboutUs/AnnualReport/2022.pdf", "role": "imperial-gallon unit confirmation for the production series" },
+    { "id": "cvwd-colorado", "url": "https://www.cvwd.org/594/Colorado-River-Water", "role": "Coachella farm-delivery comparison" },
+    { "id": "doe-lithium", "url": "https://www.energy.gov/sites/default/files/2023-11/Fact_Sheet_Improved_Quantification_of_Lithium_Resources_in_the_Salton_Sea_Region_11.2023_0.pdf", "role": "regional geothermal capacity and potential" },
+    { "id": "bher-capacity", "url": "https://www.bherenewables.com/geothermal-energy-projects", "role": "Current BHER Imperial Valley plant count and net capacity" },
+    { "id": "ssa-2016", "url": "https://saltonsea.com/wp-content/uploads/2019/11/SSA-Benchmark-7-for-FFAP.pdf", "role": "2016 Gulf corridor reference" }
+  ]
+}
