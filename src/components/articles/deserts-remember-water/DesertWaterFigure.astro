@@ -1,0 +1,99 @@
+---
+interface Props {
+  fileRoot: string;
+  alt: string;
+  caption: string;
+  credit: string;
+  sourceUrl: string;
+  width: number;
+  height: number;
+  contain?: boolean;
+}
+
+const {
+  fileRoot,
+  alt,
+  caption,
+  credit,
+  sourceUrl,
+  width,
+  height,
+  contain = false,
+} = Astro.props;
+
+const base = "/articles/deserts-remember-water";
+const source = `${base}/${fileRoot}-lg.webp`;
+const sourceSet = [
+  `${base}/${fileRoot}-thumb.webp 480w`,
+  `${base}/${fileRoot}-md.webp 1000w`,
+  `${base}/${fileRoot}-lg.webp 1600w`,
+  `${base}/${fileRoot}-xl.webp 2400w`,
+].join(", ");
+---
+
+<figure class:list={["desert-water-figure", "article-wide", "not-prose", contain && "is-contained"]}>
+  <img
+    src={source}
+    srcset={sourceSet}
+    sizes="(min-width: 768px) 42rem, 92vw"
+    alt={alt}
+    width={width}
+    height={height}
+    loading="lazy"
+    decoding="async"
+    data-lightbox={`${base}/${fileRoot}-xl.webp`}
+    data-lightbox-caption={caption}
+  />
+  <figcaption>
+    <span>{caption}</span>
+    <small>
+      <span>{credit}</span>
+      <a href={sourceUrl} rel="noreferrer">Source and usage</a>
+    </small>
+  </figcaption>
+</figure>
+
+<style>
+  .desert-water-figure {
+    overflow: hidden;
+    border: 1px solid rgb(109 176 164 / 0.28);
+    border-radius: 0.55rem;
+    background: #090d0c;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #050707;
+  }
+
+  .is-contained img {
+    max-height: 44rem;
+    object-fit: contain;
+  }
+
+  figcaption {
+    box-sizing: border-box;
+    padding: 0.15rem 0.85rem 0.85rem;
+  }
+
+  figcaption > span {
+    display: block;
+  }
+
+  small {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.35rem 0.8rem;
+    margin-top: 0.4rem;
+    color: var(--color-base-500, #7f8582);
+    font-size: 0.7rem;
+  }
+
+  a {
+    color: var(--color-accent-cyan, #5cf0f0);
+    text-underline-offset: 0.15em;
+  }
+</style>

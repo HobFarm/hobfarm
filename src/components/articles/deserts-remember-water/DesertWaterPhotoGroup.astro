@@ -1,0 +1,224 @@
+---
+interface PhotoItem {
+  file: string;
+  alt: string;
+  caption: string;
+  width: number;
+  height: number;
+}
+
+interface Props {
+  id: string;
+  kicker: string;
+  title: string;
+  intro?: string;
+  photos: PhotoItem[];
+  layout?: "panorama" | "grid" | "pair" | "single";
+  credit: string;
+  sourceUrl?: string;
+  sourceLabel?: string;
+}
+
+const {
+  id,
+  kicker,
+  title,
+  intro,
+  photos,
+  layout = "grid",
+  credit,
+  sourceUrl,
+  sourceLabel = "Context and source notes",
+} = Astro.props;
+
+const cdnBase = "https://cdn.hob.farm/";
+const assetBase = "articles/desert-water";
+const encodePath = (value: string) =>
+  value.split("/").map((part) => encodeURIComponent(part)).join("/");
+const originalUrl = (file: string) => `${cdnBase}${assetBase}/${encodePath(file)}`;
+const transformedUrl = (file: string, width: number) =>
+  `${cdnBase}cdn-cgi/image/format=auto,quality=82,width=${width}/${assetBase}/${encodePath(file)}`;
+const imageWidths = (photo: PhotoItem) =>
+  [480, 800, 1200, 1600, 2400].filter((width) => width <= photo.width);
+---
+
+<section
+  class:list={["desert-water-photo-group", "article-wide", "not-prose", `layout-${layout}`]}
+  aria-labelledby={`${id}-title`}
+>
+  <header>
+    <p>{kicker}</p>
+    <h2 id={`${id}-title`}>{title}</h2>
+    {intro && <div>{intro}</div>}
+  </header>
+  <div class="photos">
+    {photos.map((photo) => {
+      const widths = imageWidths(photo);
+      const fallbackWidth = widths.at(-1) ?? photo.width;
+      const full = originalUrl(photo.file);
+      const srcset = widths
+        .map((width) => `${transformedUrl(photo.file, width)} ${width}w`)
+        .join(", ");
+
+      return (
+        <figure>
+          <img
+            src={transformedUrl(photo.file, fallbackWidth)}
+            srcset={srcset || undefined}
+            sizes={layout === "panorama" ? "(min-width: 900px) 72rem, 92vw" : "(min-width: 900px) 36rem, 92vw"}
+            alt={photo.alt}
+            width={photo.width}
+            height={photo.height}
+            loading="lazy"
+            decoding="async"
+            data-lightbox={full}
+            data-lightbox-group={`desert-water-${id}`}
+            data-lightbox-caption={photo.caption}
+          />
+          <figcaption>{photo.caption}</figcaption>
+        </figure>
+      );
+    })}
+  </div>
+  <footer>
+    <span>{credit}</span>
+    {sourceUrl && <a href={sourceUrl} rel="noreferrer">{sourceLabel}</a>}
+  </footer>
+</section>
+
+<style>
+  .desert-water-photo-group {
+    overflow: hidden;
+    border: 1px solid rgb(186 153 96 / 0.32);
+    border-radius: 0.65rem;
+    background: #080a09;
+  }
+
+  header {
+    padding: clamp(1rem, 3vw, 1.5rem);
+    background: linear-gradient(112deg, rgb(105 74 36 / 0.5), transparent 68%);
+  }
+
+  header p,
+  header h2,
+  header div {
+    margin: 0 !important;
+  }
+
+  header p {
+    color: #d4ad6b !important;
+    font: 700 0.66rem/1.2 var(--font-mono), monospace !important;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  header h2 {
+    margin-top: 0.3rem !important;
+    color: #f3eee4 !important;
+    font-size: clamp(1.35rem, 3vw, 2rem) !important;
+  }
+
+  header div {
+    max-width: 54rem;
+    margin-top: 0.65rem !important;
+    color: #b9b2a5;
+    font-size: 0.82rem;
+    line-height: 1.6;
+  }
+
+  .photos {
+    display: grid;
+    gap: 1px;
+    background: rgb(186 153 96 / 0.2);
+  }
+
+  .layout-grid .photos,
+  .layout-pair .photos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  figure {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    min-width: 0;
+    margin: 0 !important;
+    background: #050706;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-height: 44rem;
+    margin: 0 !important;
+    object-fit: contain;
+    background: #020303;
+    cursor: zoom-in;
+  }
+
+  .layout-grid img {
+    aspect-ratio: 4 / 3;
+  }
+
+  .layout-pair img {
+    aspect-ratio: 1.35;
+  }
+
+  .layout-single img,
+  .layout-panorama img {
+    height: auto;
+    max-height: none;
+  }
+
+  .layout-panorama .photos {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-color: #8f6d3d #10130f;
+  }
+
+  .layout-panorama figure {
+    flex: 0 0 min(72rem, 92vw);
+    scroll-snap-align: center;
+  }
+
+  figcaption {
+    box-sizing: border-box;
+    min-height: 4.5rem;
+    padding: 0.7rem 0.85rem 0.85rem;
+    color: #b9b2a5 !important;
+    font-size: 0.72rem !important;
+    line-height: 1.55 !important;
+    text-align: left !important;
+  }
+
+  footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.85rem;
+    padding: 0.8rem 1rem;
+    border-top: 1px solid rgb(186 153 96 / 0.18);
+    color: #8d877d;
+    font: 0.7rem/1.45 var(--font-mono), monospace;
+  }
+
+  footer a {
+    color: #74d7c5;
+    text-underline-offset: 0.15em;
+  }
+
+  @media (max-width: 699px) {
+    .layout-grid .photos,
+    .layout-pair .photos {
+      grid-template-columns: 1fr;
+    }
+
+    .layout-panorama figure {
+      flex-basis: 94vw;
+    }
+
+    figcaption {
+      min-height: 0;
+    }
+  }
+</style>

@@ -1,0 +1,158 @@
+---
+const events = [
+  {
+    clock: "Ice Age",
+    date: "100,000–12,500 years ago",
+    title: "Tule Springs wetlands",
+    text: "Spring-fed ponds, marshes, meadows, and streams repeatedly expanded and contracted in the Las Vegas Valley.",
+  },
+  {
+    clock: "Late Holocene",
+    date: "about 1000–1500 CE",
+    title: "Lake Cahuilla highstand",
+    text: "Colorado River water filled the Salton Trough and left a high shoreline on the surrounding rock.",
+  },
+  {
+    clock: "Engineered accident",
+    date: "1905–1907",
+    title: "The modern Salton Sea",
+    text: "Floodwater escaped a failed irrigation canal and refilled the basin in historic time.",
+  },
+  {
+    clock: "Reservoir operations",
+    date: "1985–2026",
+    title: "Two Lake Mead readings differ by 173 feet",
+    text: "The June 1985 and July 2026 end-of-month elevations differ by 173.15 feet.",
+  },
+  {
+    clock: "Weather variability",
+    date: "2026–2027",
+    title: "A strong El Niño develops",
+    text: "Seasonal odds change. The basin's long storage problem does not disappear with one forecast or one storm season.",
+  },
+];
+---
+
+<section class="water-memory-timeline article-wide not-prose" aria-labelledby="water-memory-title">
+  <header>
+    <p>Comparison graphic</p>
+    <h2 id="water-memory-title">Water moves on several clocks</h2>
+  </header>
+  <ol>
+    {events.map((event, index) => (
+      <li>
+        <div class="marker" aria-hidden="true">{String(index + 1).padStart(2, "0")}</div>
+        <div>
+          <p class="clock">{event.clock}</p>
+          <time>{event.date}</time>
+          <h3>{event.title}</h3>
+          <p>{event.text}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+  <footer>Dates are ordered for comparison; spacing is not proportional to elapsed time.</footer>
+</section>
+
+<style>
+  .water-memory-timeline {
+    overflow: hidden;
+    border: 1px solid rgb(186 153 96 / 0.35);
+    border-radius: 0.65rem;
+    background: #0c0b08;
+  }
+
+  header {
+    padding: clamp(1rem, 3vw, 1.5rem);
+    background: linear-gradient(110deg, rgb(108 76 34 / 0.5), transparent 65%);
+  }
+
+  header p,
+  header h2 {
+    margin: 0 !important;
+  }
+
+  header p,
+  .clock {
+    color: #d4ad6b !important;
+    font: 700 0.66rem/1.2 var(--font-mono), monospace !important;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  header h2 {
+    margin-top: 0.3rem !important;
+    color: #f3eee4 !important;
+    font-size: clamp(1.35rem, 3vw, 2rem) !important;
+  }
+
+  ol {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.65rem;
+    min-width: 0;
+    padding: 1rem 0.85rem 1.15rem;
+    border-top: 1px solid rgb(186 153 96 / 0.2);
+    border-right: 1px solid rgb(186 153 96 / 0.18);
+  }
+
+  li:last-child {
+    border-right: 0;
+  }
+
+  .marker {
+    color: rgb(212 173 107 / 0.5);
+    font: 800 1rem/1 var(--font-mono), monospace;
+  }
+
+  .clock,
+  li h3,
+  li p {
+    margin: 0 !important;
+  }
+
+  time {
+    display: block;
+    margin-top: 0.35rem;
+    color: #a9b6b1;
+    font: 0.68rem/1.35 var(--font-mono), monospace;
+  }
+
+  li h3 {
+    margin-top: 0.65rem !important;
+    color: #f3eee4 !important;
+    font-size: 0.95rem !important;
+  }
+
+  li p:last-child {
+    margin-top: 0.4rem !important;
+    color: #b9b2a5 !important;
+    font-size: 0.76rem !important;
+    line-height: 1.55 !important;
+  }
+
+  footer {
+    padding: 0.8rem 1rem;
+    border-top: 1px solid rgb(186 153 96 / 0.2);
+    color: #8d877d;
+    font: 0.7rem/1.45 var(--font-mono), monospace;
+  }
+
+  @media (max-width: 899px) {
+    ol {
+      display: block;
+    }
+
+    li {
+      border-right: 0;
+    }
+  }
+</style>

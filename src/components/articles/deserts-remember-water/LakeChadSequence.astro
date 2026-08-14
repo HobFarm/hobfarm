@@ -1,0 +1,154 @@
+---
+const base = "/articles/deserts-remember-water";
+const sourceUrl = "https://eros.usgs.gov/earthshots/lake-chad-west-africa";
+const frames = [
+  {
+    year: "1963",
+    root: "lake-chad-1963-usgs",
+    alt: "Black-and-white Argon reconnaissance satellite view of Lake Chad in October 1963.",
+    note: "A large connected lake is visible in declassified Argon imagery.",
+  },
+  {
+    year: "1987",
+    root: "lake-chad-1987-usgs",
+    alt: "False-color Landsat view of Lake Chad in January 1987 with the northern basin dry.",
+    note: "The northern basin is dry; water and wetland persist mainly in the south.",
+  },
+  {
+    year: "2013",
+    root: "lake-chad-2013-usgs",
+    alt: "False-color Landsat view of Lake Chad in May 2013 showing water, wetland, and desert.",
+    note: "Infrared bands separate open water from the surrounding wetland.",
+  },
+  {
+    year: "2024",
+    root: "lake-chad-2024-usgs",
+    alt: "False-color Landsat view of Lake Chad in May 2024 showing the modern water and wetland pattern.",
+    note: "The lake remains dynamic, but it has not returned to its 1960s extent.",
+  },
+];
+---
+
+<section class="lake-chad-sequence article-wide not-prose" aria-labelledby="lake-chad-sequence-title">
+  <header>
+    <p>USGS Earthshots</p>
+    <h2 id="lake-chad-sequence-title">One lake, four satellite records</h2>
+  </header>
+  <div class="frames">
+    {frames.map((frame) => (
+      <figure>
+        <time>{frame.year}</time>
+        <img
+          src={`${base}/${frame.root}-md.webp`}
+          srcset={`${base}/${frame.root}-thumb.webp 480w, ${base}/${frame.root}-md.webp 1000w`}
+          sizes="(min-width: 900px) 15rem, 78vw"
+          alt={frame.alt}
+          width="1000"
+          height="845"
+          loading="lazy"
+          decoding="async"
+          data-lightbox={`${base}/${frame.root}-xl.webp`}
+          data-lightbox-caption={`${frame.year}: ${frame.note}`}
+        />
+        <figcaption>{frame.note}</figcaption>
+      </figure>
+    ))}
+  </div>
+  <footer>
+    The sensors, seasons, and color systems differ. This is a dated comparison, not a seamless animation.
+    <a href={sourceUrl} rel="noreferrer">Imagery and notes: U.S. Geological Survey.</a>
+  </footer>
+</section>
+
+<style>
+  .lake-chad-sequence {
+    overflow: hidden;
+    border: 1px solid rgb(87 170 155 / 0.32);
+    border-radius: 0.65rem;
+    background: #080b0a;
+  }
+
+  header {
+    padding: clamp(1rem, 3vw, 1.5rem);
+    background: linear-gradient(115deg, rgb(25 89 79 / 0.54), transparent 64%);
+  }
+
+  header p,
+  header h2 {
+    margin: 0 !important;
+  }
+
+  header p {
+    color: #74d7c5 !important;
+    font: 700 0.68rem/1.2 var(--font-mono), monospace !important;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  header h2 {
+    margin-top: 0.3rem !important;
+    color: #f1f5ee !important;
+    font-size: clamp(1.35rem, 3vw, 2rem) !important;
+  }
+
+  .frames {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    background: rgb(87 170 155 / 0.2);
+  }
+
+  figure {
+    min-width: 0;
+    margin: 0 !important;
+    padding: 0.75rem;
+    background: #070908;
+  }
+
+  time {
+    display: block;
+    margin-bottom: 0.55rem;
+    color: #92e2d1;
+    font: 700 0.78rem/1.2 var(--font-mono), monospace;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1000 / 845;
+    object-fit: contain;
+    background: #020303;
+  }
+
+  figcaption {
+    min-height: 5.2rem;
+    text-align: left !important;
+  }
+
+  footer {
+    padding: 0.85rem 1rem 1rem;
+    color: #99aaa5;
+    font: 0.72rem/1.55 var(--font-mono), monospace;
+  }
+
+  footer a {
+    display: inline;
+    margin-left: 0.25rem;
+    color: #74d7c5;
+    text-underline-offset: 0.15em;
+  }
+
+  @media (max-width: 899px) {
+    .frames {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-color: #57aa9b #101714;
+    }
+
+    figure {
+      flex: 0 0 min(78vw, 25rem);
+      scroll-snap-align: start;
+    }
+  }
+</style>
