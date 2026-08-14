@@ -1,0 +1,288 @@
+---
+title: "I Stopped Writing Prompts and Built a Machine Instead"
+excerpt: "Cute & Corrupted began as a set of paired pictures. It became EZIZE, a deterministic image machine with schemas, weighted packs, exact probabilities, and a million-pull audit."
+dek: "I was preparing to retire an old image project. Then I noticed that the system underneath it was more interesting than the pictures it had been built to produce."
+description: "A Workshop Note about turning Cute & Corrupted into EZIZE, a deterministic digital collectible image machine built from schemas, weighted packs, draw traces, exact probabilities, and visual feedback."
+author: "d00d"
+tags:
+  - EZIZE
+  - Cute & Corrupted
+  - generative media
+  - prompt compilation
+  - schema design
+  - digital collectibles
+  - AI image generation
+department: workshop-notes
+format: workshop-note
+workshopProgram: cute-and-corrupted
+entryType: feature
+hero: "/articles/i-stopped-writing-prompts-and-built-a-machine-instead/hero.webp"
+heroImage: "/articles/i-stopped-writing-prompts-and-built-a-machine-instead/hero.webp"
+heroAlt: "A luminous EZIZE arcade cabinet surrounded by cakes, creatures, character fragments, schema sheets, and curling cables in a dark workshop."
+socialImage: "/articles/i-stopped-writing-prompts-and-built-a-machine-instead/social.webp"
+thumbnail: "/articles/i-stopped-writing-prompts-and-built-a-machine-instead/social.webp"
+socialCaption: "Cute & Corrupted began as a set of paired pictures. The system underneath it became EZIZE, a machine that decides what can exist before an image model ever receives a prompt."
+canonical: "/articles/i-stopped-writing-prompts-and-built-a-machine-instead/"
+pubDate: 2026-08-22
+publishedAt: 2026-08-22T16:20:00-07:00
+status: scheduled
+featured: false
+coverStory: false
+draft: false
+relatedWorkshop:
+  - cute-corrupted
+  - stylefusion
+relatedArticles:
+  - hit-the-source-directly
+  - you-should-write-about-sharks
+  - the-card-catalog-started-talking-back
+  - same-model-different-surface
+workshopCTA:
+  label: "Open the EZIZE case study"
+  href: "/ezize/"
+supportCTA:
+  label: "Support the next HobFarm release"
+  href: "/support/"
+rightsNote: "The hero and EZIZE outputs were supplied by the author for HobFarm publication. The system figures are original HobFarm HTML and CSS. Three small Garbage Pail Kids card references are reproduced for direct historical commentary, with artwork credited to John Pound and the property and card design credited to Topps; no ownership claim is made. Full application screenshots containing retired controls were excluded."
+mesh:
+  section: technology
+  subjects:
+    - ai-image-generation
+    - creative-systems
+    - generative-media
+    - production-systems
+    - prompt-compilation
+    - schema-design
+    - visual-systems
+  series: []
+  entities:
+    people:
+      - john-pound
+    organizations:
+      - hobfarm
+      - openai
+      - topps
+    places: []
+    events: []
+    works:
+      - garbage-pail-kids
+    publications: []
+    technologies:
+      - dynamic-prompts
+      - ezize
+      - gpt-image
+      - grimoire
+      - wildcard-machine
+  sourceArtifacts:
+    - id: garbage-pail-kids-original-series-2-card-pairs
+      type: other
+      label: "Three Garbage Pail Kids Original Series 2 A/B card pairs"
+      role: organizing
+  storyModes:
+    - process-essay
+    - systems-investigation
+    - technical-explainer
+sourceNotes:
+  - label: "Topps: Garbage Pail Kids"
+    url: "https://www.topps.com/pages/gpk-battle-of-the-bands"
+    note: "Topps identifies Garbage Pail Kids as its 1985 pop-culture parody property. Checked August 13, 2026."
+    type: documented-fact
+  - label: "GeePeeKay: Original Series 2"
+    url: "https://geepeekay.com/gallery_os2.html"
+    note: "The collector reference records Original Series 2 as an October 1985 set of 84 stickers, numbered 42a through 83a and 42b through 83b, with John Pound credited for the illustrated cards reproduced here. Checked August 13, 2026."
+    type: documented-fact
+  - label: "Dynamic Prompts"
+    url: "https://github.com/adieyal/sd-dynamic-prompts"
+    note: "The official project repository documents wildcard files, combinatorial variants, weighted choices, and recursive wildcard resolution. Checked August 13, 2026."
+    type: documented-fact
+  - label: "Dynamic Prompts syntax"
+    url: "https://github.com/adieyal/sd-dynamic-prompts/blob/main/docs/SYNTAX.md"
+    note: "The official syntax reference documents variants, weights, wildcards, and nested wildcard use. Checked August 13, 2026."
+---
+
+import EzizeArticleFigure from "@/components/articles/i-stopped-writing-prompts-and-built-a-machine-instead/EzizeArticleFigure.astro";
+import EzizeArticleMedia from "@/components/articles/i-stopped-writing-prompts-and-built-a-machine-instead/EzizeArticleMedia.astro";
+import EzizeEvidence from "@/components/workshop/EzizeEvidence.astro";
+
+*The prompt is one late-stage instruction in EZIZE. The machine has already decided what the object is.*
+
+I was rebuilding the Workshop when I found a project I had been quietly preparing to bury.
+
+Cute & Corrupted had started with a clean proposition: take the same basic subject and send it through two visual treatments. One version would be bright, soft, toy-like, polished, friendly. The other would be damaged, overgrown, occult, toxic, melted, or otherwise wrong in a way that still left the original object legible.
+
+It produced good pictures. It also produced too many possible futures.
+
+It could become a gallery format, a character system, or a repeatable production method. I had notes for all three. The problem was that each new picture needed another round of choices, another prompt, another attempt to remember which decisions belonged to the project and which had merely happened to work once.
+
+That is a common point of failure in generative-image work. A promising experiment becomes a stack of prompts. The stack gets larger, but the underlying idea does not become easier to inspect, revise, or reproduce.
+
+I did not want to write another prompt. I wanted to make the decisions explicit.
+
+That changed the project. Cute & Corrupted stopped being the finished object and became two Cabinets inside a larger machine. The machine is called [EZIZE](/ezize/). It creates an *easie*: a digital collectible image with a deterministic identity, a resolved genome, an exact recipe probability, and a record of how the image was produced.
+
+The strange part is that I almost deleted it before I understood what I had built.
+
+## The old project had three jobs
+
+The Workshop rebuild forced me to describe what each HobFarm project was actually for. Cute & Corrupted kept answering with three incompatible descriptions.
+
+As a gallery device, it was a paired-image format. The pleasure came from seeing the same subject survive a tonal change.
+
+As a character system, it was a way to generate families of related figures. The Cabinets could change color, surface, posture, costume, condition, lighting, and atmosphere without losing the underlying form.
+
+As a production method, it was a set of reusable rules for making those transformations deliberately.
+
+The third answer was the useful one. A method could produce the gallery and the characters. The reverse was not true. Once I recognized that, I could stop asking which pictures belonged in the project and start asking which decisions belonged in the system.
+
+That is also why EZIZE belongs in Workshop. The images are evidence, but the object under examination is the production machine.
+
+Yesterday I wrote about [going directly to the source](/articles/hit-the-source-directly/). If you are reading this, congratulations. You found the source. This is where the rough system, the visible results, and the decisions between them can stay together without being flattened into a social post.
+
+## The first clue was a pair of names
+
+The original idea had an older visual ancestor. Garbage Pail Kids appeared in 1985 as a Topps pop-culture parody, and its early sets paired two names with one piece of character art.[^1] Original Series 2 contains 84 stickers across the 42a to 83a and 42b to 83b ranges.[^2] Shrunken Ed and Cheeky Charles share an image. Hot Scott and Luke Warm share an image. Spacey Stacy and Janet Planet share an image.
+
+<EzizeArticleMedia kind="gpk" />
+
+The joke is not only in the drawing. It lives in the relation between a reusable image and a new label. The second name changes the reading without requiring a second illustration.
+
+Cute & Corrupted reversed that economy. I wanted to hold the subject steady and change the visual treatment. It was never a moral sorting system. Cute did not mean good, and Corrupted did not mean evil. They were art-direction Cabinets. One could be cheerful and vicious. The other could be gloomy and tender. What mattered was that the transformation stayed visible while the subject remained recognizable.
+
+That relation became the seed of the larger system: preserve an identity, vary the expression, and keep enough structure to explain what happened.
+
+## A wildcard folder became a schema
+
+My earlier experiments used wildcard files. A wildcard system can replace a token with a choice from a text list, and tools such as Dynamic Prompts support combinatorial variants, weighted choices, and nested wildcards.[^3] That is a useful way to stop typing the same alternatives into prompts.
+
+It is not yet a model of the object.
+
+A flat list can say `chocolate`, `vanilla`, or `lemon`. It does not necessarily know whether those words describe sponge, filling, frosting, scent, color, or scene. It can choose a mushroom, but it may not know whether the mushroom is edible decoration on a cake, a growth on an animal, a hat on a character, or a background prop. Once lists begin calling other lists, the output may become varied while the cause becomes harder to follow.
+
+I needed the machine to know the difference between a Cake, a Critter, and a Character before it chose any details. I needed each form to have its own grammar.
+
+Cake needs tier structure, sponge, flavor, filling, frosting, decoration, finish, and presentation logic. Critter needs species, anatomy, body treatment, pose, expression, and environment. Character needs role, body logic, clothing, props, action, and scene. Some concepts can be shared, but the structures cannot be collapsed into a generic subject field without losing the reason they exist.
+
+Cake is not Character with food substituted into the subject field.
+
+The wildcard files became versioned content packs attached to a schema. The schema defines the stable contract. The packs supply choices, weights, exclusions, dependencies, and visual direction. The Wildcard Machine performs the pull and records the draw trace. A prompt compiler translates the resolved object into an image specification only after the object exists.
+
+<EzizeArticleFigure kind="system-flow" />
+
+The schema became the stable contract. The packs became the adjustable content layer.
+
+That separation solved a problem I had been treating as an image problem. I could revise the taste of the system without rewriting the engine. I could add a motif, rebalance a form, or correct a weak relationship in one pack while leaving the identity contract intact. More importantly, I could ask whether a result came from an intentional rule, an unlucky combination, a rendering interpretation, or a defect in the machine.
+
+## The machine decides before the renderer sees anything
+
+An EZIZE pull begins with a seed. Under the same schema and pack versions, that seed resolves the same sequence of machine choices and the same genome. It does not promise the same bitmap from every image model. Image rendering remains its own process. The deterministic object is the recipe and its trace.
+
+The first decision selects Cute or Corrupted. The target is an even split. The next selects Cake, Critter, or Character at roughly one third each. Then the chosen form opens its own decision tree.
+
+Every selected branch records its node, candidates, weights, roll, chosen value, and local probability. The exact full-genome probability is the product of the choices that actually occurred. That number can become enormous because the genome is detailed. It says how likely that exact machine recipe was under those pack versions.
+
+It does not say how many similar-looking images exist. It does not say which image is more visually distinctive. It does not say what somebody ought to like. Recipe probability, observed population, visual distinction, and collector preference are separate questions.
+
+This distinction matters because a detailed generator can produce a spectacular `1 in 50 trillion` label on an image that looks fairly ordinary. The number may be mathematically exact and aesthetically unimportant. A collector-facing interface has to present it as a property of the recipe, not as a substitute for judgment.
+
+## A million imaginary EZIZE cost almost nothing
+
+Once the packs compiled, I did not begin by rendering thousands of images. I ran the selection machine one million times without calling an image provider.
+
+The audit took 155.167 seconds. Cute appeared in 49.9728 percent of pulls and Corrupted in 50.0272 percent. Cake appeared in 33.9470 percent, Critter in 33.0159 percent, and Character in 33.0371 percent. All 549 compiled choices were reached. The run found no invalid pulls, unreachable choices, semantic-trait mismatches, or exact-probability mismatches.[^4]
+
+<EzizeArticleFigure kind="audit" />
+
+This did not prove that the pictures would be good. It proved something narrower and more valuable at that stage: the machine could traverse its declared possibility space without breaking its own rules.
+
+The machine can generate a million imaginary EZIZE for almost nothing, then spend real money only when I choose to render one.
+
+That changes the economics of testing. A cloud image call is no longer the only way to learn whether the system works. I can test reachability, balance, semantic compatibility, and probability locally. Rendering becomes a selective form of visual verification.
+
+## Three pictures, three different explanations
+
+The earliest development render was an alien pastry chef with green skin, purple hair, a tall hat, and a piping bag. She was decorating a pink cake while parts of her body appeared to melt.
+
+<EzizeArticleMedia kind="alien-chef" />
+
+It would be easy to look at that picture and say the machine had mixed Cake and Character. It had not. The form was Character. `Alien` supplied the subject. `Chef` supplied the role. Feminine-coded presentation shaped the character. A cake-piping action and pastry-bag prop created the confectionery context. Melting was a condition applied to the character.
+
+The visible cake did not decide the form. The draw trace did.
+
+The Corrupted Cake record is more elaborate. It resolved as a single-tier square cake with chocolate sponge, lemon flavor, raspberry preserve, Swiss meringue buttercream, fresh fruit, white-chocolate curls, an ivory bow, dark ganache, controlled glossy drips, thorn-like flowers, fungus bloom, toxic underglow, and a nocturnal patisserie setting. Its exact recipe probability was approximately 1 in 50,054,475,140,670.
+
+<EzizeArticleMedia kind="corrupted-cake" />
+
+The cake demonstrates why form-specific grammar matters. The mushrooms, thorns, toxic light, and dark flowers read as corruption, but they remain edible illusions. The object is still clearly a cake. The Cabinet changes the treatment without discarding the form.
+
+The Corrupted Critter was a domestic cat with occult treatment, a sky-blue palette, storybook rendering, multiple eyes, organic growth, and mushrooms. Its exact recipe probability was approximately 1 in 2,400,784,376.
+
+<EzizeArticleMedia kind="corrupted-critter" />
+
+That second appearance of mushrooms could look like a bias. The records show that it came from a different node. The Cake selected `fungus bloom` from Cake motif logic. The Critter selected `mushrooms` from its own independent motif node at a weight of 2,800 out of 10,000. Corrupted supplied distortion, sheen, lighting, atmosphere, and treatment around the selection.
+
+<EzizeArticleFigure kind="trace" />
+
+The same is true of the visible drips. The alien chef's drips came from a melting condition. The cake's drips came from controlled ganache finish logic. The pictures rhyme, but the causes are not the same.
+
+The forms stay distinct, but they can still rhyme.
+
+## The rendered picture talks back
+
+A valid recipe can still make a weak image. A renderer may overstate a motif, ignore a structural distinction, merge nearby ideas, or make the most visually familiar interpretation of an unusual specification. This is why the system flow does not end at the image.
+
+Rendered outputs become feedback for later pack versions. If every Corrupted Critter grows mushrooms, I can inspect whether the motif weight is too high, whether another rule is amplifying it, or whether the image model treats several distinct organic motifs as mushrooms. If Cake decorations stop looking edible, I can strengthen the food-material constraint. If a character's prop takes over the scene, I can adjust how action and environment are compiled.
+
+The fix belongs at the level that caused the problem. A pack change is appropriate when the choice distribution or relationship is wrong. A compiler change is appropriate when valid structure is being translated poorly. A renderer-specific adjustment belongs at the provider boundary. Rewriting the entire system because one picture looks odd would throw away the evidence.
+
+This loop is the real advantage of moving beyond a prompt stack. The machine keeps a receipt.
+
+## The combination is the part I built
+
+I did not invent wildcard replacement, weighted variants, seeded selection, image prompting, metadata, or procedural character generation. Dynamic Prompts alone has long documented wildcard files, weighted syntax, and nested resolution.[^3]
+
+The claim is narrower. EZIZE combines those familiar parts into a form-aware image system with versioned schemas, content packs, deterministic genomes, complete draw traces, exact probability calculations, compiled image specifications, downloadable outputs, and visual feedback that can change later versions.
+
+The interesting work is in the boundaries.
+
+Which decisions belong in the schema? Which belong in the pack? Which traits may be shared across forms? Which only make sense inside one form? What does the image model receive, and what is it forbidden from deciding? Which identity travels with the file? Which facts describe the recipe, and which can only be learned by looking at a population of outputs?
+
+Those boundaries turn a collection of prompt tricks into a system that can be inspected.
+
+## The file is the collectible
+
+The current private alpha can perform a deterministic pull, compile the image specification, send it to GPT Image, receive the result, and provide a PNG download. The owner view records the EZIZE ID, seed, resolved genome, exact probability, render state, dimensions, hashes, and development provenance fields.
+
+<EzizeEvidence />
+
+That information does not need to make the image something else. An easie is already a digital collectible: a picture produced from a specific machine recipe, with enough structure to identify and revisit the object that generated it.
+
+Future public work may add credits, accounts, personal collections, public generation, agent tools, gallery curation, prints, or downloadable sets. None of those layers defines the core project. The machine can remain useful if only some of them happen.
+
+That is a relief. The old project kept asking me to choose its final container before I had finished understanding it. EZIZE can generate private development evidence now and grow public paths when those paths have a real job.
+
+The name helps. `EZ` carries the easy association. EZIZE is pronounced “easies,” the plural name for the things it makes. The interface has an arcade-cabinet quality because the central action should feel immediate even when the machinery underneath it is not.
+
+Pressing the button is easy. Building a machine worth pressing was the work.
+
+## The old job was keeping it small
+
+I began this rebuild thinking Cute & Corrupted was an image series that had lost its place. It had become one more folder full of promising outputs and unfinished explanations.
+
+The project survived because I stopped trying to preserve that job. Cute and Corrupted became Cabinets. Cake, Critter, and Character became different grammatical forms. Wildcards became packs. Prompts became compiled specifications. Randomness became a traceable selection process. Rarity became exact recipe probability. The pictures became evidence from a machine that can explain what it tried to do.
+
+A project does not necessarily fail when its original reason for existing disappears. Sometimes the old job was the thing keeping it small.
+
+I do not know every form EZIZE will eventually contain, which public features will earn their place, or how large the useful possibility space should become. I know the contract can stay stable while the packs change. I know a million-pull audit can test the machine before the renderer spends a cent. I know two images can share a mushroom while arriving there through different causes.
+
+And I know what happens when I want to see one.
+
+I press MAKE IMAGE. The machine decides what happens next.
+
+---
+
+## Sources and build notes
+
+[^1]: Topps, [“Garbage Pail Kids”](https://www.topps.com/pages/gpk-battle-of-the-bands). Topps identifies the property as a 1985 pop-culture parody.
+[^2]: GeePeeKay, [“Original Series 2”](https://geepeekay.com/gallery_os2.html). The collector reference records the October 1985 set, card numbering, A/B pairs, and John Pound art credits for the examples shown here.
+[^3]: Dynamic Prompts, [project repository](https://github.com/adieyal/sd-dynamic-prompts) and [syntax reference](https://github.com/adieyal/sd-dynamic-prompts/blob/main/docs/SYNTAX.md).
+[^4]: HobFarm deterministic development audit, August 2026: 1,000,000 pulls using the compiled Cake v0.4, Critter v0.3, and Character v0.1 packs. The audit ran locally without image-provider or cloud calls.

@@ -1,0 +1,184 @@
+{
+  "version": 1,
+  "articleSlug": "i-stopped-writing-prompts-and-built-a-machine-instead",
+  "sourceRecords": [
+    {
+      "file": "01-ezize-hero.png",
+      "bytes": 2723317,
+      "width": 1672,
+      "height": 941,
+      "mime": "image/png",
+      "sha256": "4ecef0e8cf7447e8442fc4d83bef9cc3a3609425349a65032af9a8cb4ffad5fa"
+    },
+    {
+      "file": "02-gpk-shrunken-ed-cheeky-charles.png",
+      "bytes": 408877,
+      "width": 514,
+      "height": 354,
+      "mime": "image/png",
+      "sha256": "a1a00c756a8c0041b0196c6eff24839105bf9b8f1bde4b7ceb5a53c9169075b6"
+    },
+    {
+      "file": "03-gpk-hot-scott-luke-warm.png",
+      "bytes": 448650,
+      "width": 509,
+      "height": 350,
+      "mime": "image/png",
+      "sha256": "87c71b4e0d3ba939b15bbc341b9f541cc88316cb17bf2970c4d600bee5d4e50e"
+    },
+    {
+      "file": "04-gpk-spacey-stacy-janet-planet.png",
+      "bytes": 438362,
+      "width": 514,
+      "height": 354,
+      "mime": "image/png",
+      "sha256": "ffeb40c050829c75fe3b06bff5f1bbab90e89b75e0558261f95fabab6b06ae77"
+    },
+    {
+      "file": "05-alien-chef.png",
+      "bytes": 5110140,
+      "width": 1365,
+      "height": 2048,
+      "mime": "image/png",
+      "sha256": "e8f1e19382cfa10f3b1baef3345c8fc8c201b9faa3fa8ee9cb277c20f2decba2"
+    },
+    {
+      "file": "06-corrupted-cake.png",
+      "bytes": 5325384,
+      "width": 1365,
+      "height": 2048,
+      "mime": "image/png",
+      "sha256": "f8a78e746c66f3c2cda14452065b986ae7c27e4a95adda53fccae3dd38b8035f"
+    },
+    {
+      "file": "08-corrupted-critter-cat.png",
+      "bytes": 5852152,
+      "width": 1365,
+      "height": 2048,
+      "mime": "image/png",
+      "sha256": "e66567069719bf566bad2bf95f2f46c9445887b3e29e48c1521daa70a7632355"
+    }
+  ],
+  "outputs": [
+    {
+      "file": "hero.webp",
+      "source": "01-ezize-hero.png",
+      "publicPath": "/articles/i-stopped-writing-prompts-and-built-a-machine-instead/hero.webp",
+      "bytes": 373352,
+      "width": 1600,
+      "height": 900,
+      "mime": "image/webp",
+      "sha256": "cec583dc4a55da5c1147b2164c83c84cb27936f0b169cc58edf0ca03a2321ae5"
+    },
+    {
+      "file": "social.webp",
+      "source": "01-ezize-hero.png",
+      "publicPath": "/articles/i-stopped-writing-prompts-and-built-a-machine-instead/social.webp",
+      "bytes": 213782,
+      "width": 1200,
+      "height": 630,
+      "mime": "image/webp",
+      "sha256": "efb5498cc153c04db19d277121040de46ead5fc03f6d720b1ad4c17f21dc14b9"
+    },
+    {
+      "file": "gpk-shrunken-ed-cheeky-charles.webp",
+      "source": "02-gpk-shrunken-ed-cheeky-charles.png",
+      "publicPath": "/articles/i-stopped-writing-prompts-and-built-a-machine-instead/gpk-shrunken-ed-cheeky-charles.webp",
+      "bytes": 36954,
+      "width": 514,
+      "height": 354,
+      "mime": "image/webp",
+      "sha256": "bb2325ae825f853d7da85e54a078a24eb2a15f9f1afedd5e4abb76aedd3bd649"
+    },
+    {
+      "file": "gpk-hot-scott-luke-warm.webp",
+      "source": "03-gpk-hot-scott-luke-warm.png",
+      "publicPath": "/articles/i-stopped-writing-prompts-and-built-a-machine-instead/gpk-hot-scott-luke-warm.webp",
+      "bytes": 49470,
+      "width": 509,
+      "height": 350,
+      "mime": "image/webp",
+      "sha256": "a6ca606b6ea62b717f2b246245f6264ce63b07be512cfa6bde77d8013aac2de4"
+    },
+    {
+      "file": "gpk-spacey-stacy-janet-planet.webp",
+      "source": "04-gpk-spacey-stacy-janet-planet.png",
+      "publicPath": "/articles/i-stopped-writing-prompts-and-built-a-machine-instead/gpk-spacey-stacy-janet-planet.webp",
+      "bytes": 47308,
+      "width": 514,
+      "height": 354,
+      "mime": "image/webp",
+      "sha256": "fa98b00e92655f00384132fcd5a4c85f08490a2f20c30807ecbc86297f632c2d"
+    },
+    {
+      "file": "alien-chef-640.webp",
+      "source": "05-alien-chef.png",
+      "publicPath": "/articles/i-stopped-writing-prompts-and-built-a-machine-instead/alien-chef-640.webp",
+      "bytes": 129210,
+      "width": 640,
+      "height": 960,
+      "mime": "image/webp",
+      "sha256": "593c4134f390602698758eb65180ecc3b88e7260b3b6e6f82625b5e5aeca6a5d"
+    },
+    {
+      "file": "alien-chef-1000.webp",
+      "source": "05-alien-chef.png",
+      "publicPath": "/articles/i-stopped-writing-prompts-and-built-a-machine-instead/alien-chef-1000.webp",
+      "bytes": 255858,
+      "width": 1000,
+      "height": 1500,
+      "mime": "image/webp",
+      "sha256": "056e6fc511464de051ccec32e55d53dcf336ff1c06f1fa7c48a42c5fedf33ce8"
+    },
+    {
+      "file": "corrupted-cake-640.webp",
+      "source": "06-corrupted-cake.png",
+      "publicPath": "/articles/i-stopped-writing-prompts-and-built-a-machine-instead/corrupted-cake-640.webp",
+      "bytes": 156506,
+      "width": 640,
+      "height": 960,
+      "mime": "image/webp",
+      "sha256": "7b1fddca6a161a4e2d91b44250281c16810b3ab4df5299c8d518cc513f683ade"
+    },
+    {
+      "file": "corrupted-cake-1000.webp",
+      "source": "06-corrupted-cake.png",
+      "publicPath": "/articles/i-stopped-writing-prompts-and-built-a-machine-instead/corrupted-cake-1000.webp",
+      "bytes": 367686,
+      "width": 1000,
+      "height": 1500,
+      "mime": "image/webp",
+      "sha256": "71cc4e415266ffa0d3a58afbfd8095a50129900b4972b4b548271556e74b73da"
+    },
+    {
+      "file": "corrupted-critter-cat-640.webp",
+      "source": "08-corrupted-critter-cat.png",
+      "publicPath": "/articles/i-stopped-writing-prompts-and-built-a-machine-instead/corrupted-critter-cat-640.webp",
+      "bytes": 142656,
+      "width": 640,
+      "height": 960,
+      "mime": "image/webp",
+      "sha256": "6e0d24fb1da4e3d7ba4b0b22e0e9ec09fc267dc3c416082bc387ce01bf33b58f"
+    },
+    {
+      "file": "corrupted-critter-cat-1000.webp",
+      "source": "08-corrupted-critter-cat.png",
+      "publicPath": "/articles/i-stopped-writing-prompts-and-built-a-machine-instead/corrupted-critter-cat-1000.webp",
+      "bytes": 362636,
+      "width": 1000,
+      "height": 1500,
+      "mime": "image/webp",
+      "sha256": "44a81ebc1004addca12ec853f33bc609329be95118e87f7c467f02456d594e2a"
+    }
+  ],
+  "omittedSuppliedAssets": [
+    {
+      "file": "07-corrupted-cake-ui.png",
+      "reason": "The full owner screenshot includes retired digital-ownership development fields. The article reuses the existing public-safe crop instead."
+    },
+    {
+      "file": "09-corrupted-critter-ui.png",
+      "reason": "The full owner screenshot includes a retired digital-ownership control and related diagnostics."
+    }
+  ]
+}

@@ -20,9 +20,9 @@ test("EZIZE has a canonical public explainer with honest private-alpha status", 
   assert.doesNotMatch(page, /access pending|domain pending|awaiting verification/i);
   assert.doesNotMatch(page, /Application coming soon/);
   assert.match(page, /Recipe probability/);
-  assert.match(page, /Population count/);
-  assert.match(page, /Mint count/);
-  assert.match(page, /Market value/);
+  assert.match(page, /Observed population/);
+  assert.match(page, /Visual distinction/);
+  assert.match(page, /Collector preference/);
   assert.match(page, /alien chef decorating a cake/);
   assert.match(page, /2336×3504 portrait PNG/);
   assert.match(page, /OpenAI GPT Image/);
@@ -33,10 +33,10 @@ test("EZIZE has a canonical public explainer with honest private-alpha status", 
   assert.match(page, /A schema is not necessarily JSON\./);
   assert.match(page, /PNG download/);
   assert.match(page, /Development record/);
-  assert.match(page, /Not a public ledger/);
+  assert.match(page, /The file is already the collectible/);
+  assert.match(page, /personal collections/);
   assert.match(page, /<EzizeEvidence priority \/>/);
-  assert.match(page, /Base/);
-  assert.match(page, /OpenSea/);
+  assert.doesNotMatch(page, /NFT|blockchain|OpenSea|on-chain|mint(?:ed|ing|able)?/i);
 });
 
 test("EZIZE public evidence uses cropped and responsive local media", () => {

@@ -310,7 +310,7 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
             <p>
               The engine records exact full-genome probability. Highly detailed genomes can produce enormous “1 in X”
               values, so the application will need a careful collector-facing summary. The number describes the recipe,
-              not the population, mint count, or a promise of market value.
+              not the observed population, visual distinction, or collector preference.
             </p>
           </div>
         </div>
@@ -322,7 +322,7 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
           <div class="recipe-result"><span>=</span><strong>One extremely unusual recipe</strong></div>
         </div>
         <div class="rarity-separations" aria-label="Rarity distinctions">
-          <span>Recipe probability</span><b>≠</b><span>Population count</span><b>≠</b><span>Mint count</span><b>≠</b><span>Market value</span>
+          <span>Recipe probability</span><b>≠</b><span>Observed population</span><b>≠</b><span>Visual distinction</span><b>≠</b><span>Collector preference</span>
         </div>
       </Wrapper>
     </section>
@@ -376,7 +376,7 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
           <div><dt>Image contract</dt><dd>Canonical image JSON and the prompt compiler translate the recipe into a renderable specification.</dd></div>
           <div><dt>Development record</dt><dd>EZIZE ID, render state, output dimensions, image hash, and PNG provenance fields stay attached to the owner-alpha result.</dd></div>
         </dl>
-        <p class="representation-note">The development record is working. A public collection, ownership ledger, and mint record are future product work.</p>
+        <p class="representation-note">The development record is working. Public accounts, personal collections, and gallery curation are future product work.</p>
       </Wrapper>
     </section>
 
@@ -403,38 +403,38 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
             <span class="status-label building">Development record</span>
             <h3>Identity and provenance fields</h3>
             <p>The owner view records the seed, genome, exact probability, render state, output dimensions, hashes, and development PNG provenance fields.</p>
-            <ul><li>Not a public ledger</li><li>Not proof of ownership</li><li>Not mintable</li></ul>
+            <ul><li>Local to the owner alpha</li><li>Identifies the recipe and file</li><li>Not a public collection</li></ul>
           </article>
           <article>
             <span class="status-label planned">Planned</span>
             <h3>Public product layer</h3>
-            <p>Retail credits, public accounts, persistent collections, public generation, agent tools, and optional minting for selected easies.</p>
+            <p>Retail credits, public accounts, personal collections, public generation, agent tools, and downloadable easies.</p>
           </article>
         </div>
       </Wrapper>
     </section>
 
-    <section class="minting" aria-labelledby="minting-heading">
+    <section class="collecting" aria-labelledby="collecting-heading">
       <Wrapper variant="standard" class="section-space">
-        <div class="mint-grid">
+        <div class="collect-grid">
           <div>
-            <p class="eyebrow">Generated first. Minted only by choice.</p>
-            <h2 id="minting-heading">An easie begins as an image, not an NFT.</h2>
+            <p class="eyebrow">Generated, recorded, and kept.</p>
+            <h2 id="collecting-heading">The file is already the collectible.</h2>
             <p>
-              The planned path starts with generation. An owner will be able to keep, download, and collect an easie,
-              then decide whether to mint a selected one. Minting is a separate action. It will not happen to every
-              generated image automatically.
+              An easie is a digital collectible with a structured identity, an exact recipe, and a record of how its
+              image was produced. The planned public path lets a person generate, download, keep, and organize selected
+              easies without changing what the work is.
             </p>
           </div>
           <div class="future-chain">
             <div><span>01</span><strong>EZIZE</strong><p>Creates and records the collectible.</p></div>
-            <div><span>02 / planned</span><strong>Base</strong><p>Provides on-chain ownership for selected minted easies.</p></div>
-            <div><span>03 / planned</span><strong>OpenSea</strong><p>Provides an external marketplace for minted EZIZE.</p></div>
+            <div><span>02</span><strong>PNG</strong><p>Stores the image and its portable development metadata.</p></div>
+            <div><span>03 / planned</span><strong>Collection</strong><p>Organizes the easies a person chooses to keep.</p></div>
           </div>
         </div>
-        <p class="mint-note">
-          These integrations are not live. HobFarm will remain the publisher and creator identity; EZIZE will be the
-          collection and product identity.
+        <p class="collect-note">
+          Public accounts and collections are not live. HobFarm remains the publisher and creator identity; EZIZE is
+          the collection and product identity.
         </p>
       </Wrapper>
     </section>
@@ -598,15 +598,15 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
   .status-grid p span { color: #d3ced9; font-family: var(--font-mono); font-size: .72rem; }
   .status-grid ul { display: flex; flex-wrap: wrap; gap: .45rem; margin: 1.2rem 0 0; padding: 0; list-style: none; }
   .status-grid li { padding: .35rem .5rem; border: 1px solid #3c3344; color: #a49ead; font-family: var(--font-mono); font-size: .56rem; }
-  .minting { background: #0a0810; }
-  .mint-grid { display: grid; gap: clamp(3rem, 7vw, 6rem); }
-  .mint-grid > div:first-child > p:last-child { max-width: 47rem; margin: 1.5rem 0 0; }
+  .collecting { background: #0a0810; }
+  .collect-grid { display: grid; gap: clamp(3rem, 7vw, 6rem); }
+  .collect-grid > div:first-child > p:last-child { max-width: 47rem; margin: 1.5rem 0 0; }
   .future-chain { display: grid; gap: .75rem; }
   .future-chain > div { padding: 1.15rem; border: 1px solid var(--ez-line); background: #08060b; }
   .future-chain span { display: block; color: var(--ez-pink); font-family: var(--font-mono); font-size: .55rem; letter-spacing: .07em; text-transform: uppercase; }
   .future-chain strong { display: block; margin-top: .8rem; color: white; font-family: var(--font-display); font-size: 1.55rem; font-weight: 300; }
   .future-chain p { margin: .55rem 0 0; color: #918b9b; font-size: .76rem; }
-  .mint-note { margin: 2rem 0 0; padding: 1rem; border-left: 3px solid var(--ez-pink); background: rgb(230 96 167 / .045); color: #aaa4b3; }
+  .collect-note { margin: 2rem 0 0; padding: 1rem; border-left: 3px solid var(--ez-pink); background: rgb(230 96 167 / .045); color: #aaa4b3; }
   .name-section { background: radial-gradient(circle at 15% 45%, rgb(230 96 167 / .11), transparent 25rem), #07060b; }
   .name-grid { display: grid; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
   .mini-wordmark { margin: 0; color: #1a1421; font-family: var(--font-display); font-size: clamp(5rem, 17vw, 12rem); font-weight: 650; letter-spacing: -.1em; line-height: .8; text-shadow: 1px 0 var(--ez-pink), -1px 0 var(--ez-cyan); }
@@ -628,7 +628,7 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
     .lineage-chain { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; }
     .lineage-chain li + li { border-left: 0; }
     .lineage-chain li + li::before { position: absolute; z-index: 2; top: 50%; left: -.38rem; color: var(--ez-cyan); content: "→"; font-family: var(--font-mono); transform: translateY(-50%); }
-    .blind-grid, .modes-grid, .mint-grid, .name-grid { grid-template-columns: minmax(0, 1fr) minmax(24rem, .78fr); }
+    .blind-grid, .modes-grid, .collect-grid, .name-grid { grid-template-columns: minmax(0, 1fr) minmax(24rem, .78fr); }
     .modes-grid { grid-template-columns: minmax(25rem, .8fr) minmax(0, 1fr); }
     .system-map { grid-template-columns: minmax(10rem, .35fr) minmax(10rem, .35fr) minmax(0, 1fr); align-items: stretch; }
     .publisher-node::after, .product-node::after { top: 50%; right: -.85rem; bottom: auto; left: auto; width: .85rem; height: 1px; }

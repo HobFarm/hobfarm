@@ -1,0 +1,256 @@
+---
+type FigureKind = "system-flow" | "audit" | "trace";
+
+interface Props {
+  kind: FigureKind;
+}
+
+const { kind } = Astro.props;
+---
+
+{kind === "system-flow" && (
+  <figure class="article-wide ezize-figure flow-figure">
+    <div class="figure-heading">
+      <span>System flow</span>
+      <strong>The prompt arrives near the end.</strong>
+    </div>
+    <ol class="flow" aria-label="EZIZE system flow">
+      <li><span>01</span><strong>Schema</strong><p>Defines the valid object.</p></li>
+      <li><span>02</span><strong>Versioned packs</strong><p>Supply weighted choices and relations.</p></li>
+      <li><span>03</span><strong>Genome and draw trace</strong><p>Record one deterministic pull.</p></li>
+      <li><span>04</span><strong>Exact probability</strong><p>Multiplies the choices that actually occurred.</p></li>
+      <li><span>05</span><strong>Image specification</strong><p>Compiles the resolved object for a renderer.</p></li>
+      <li><span>06</span><strong>Rendered output</strong><p>Turns the specification into a picture.</p></li>
+      <li class="feedback"><span>07</span><strong>Visual feedback</strong><p>Reveals what the next pack version should change.</p></li>
+    </ol>
+    <figcaption>The stable contract stays upstream. Rendered evidence travels back into later pack revisions.</figcaption>
+  </figure>
+)}
+
+{kind === "audit" && (
+  <figure class="article-wide ezize-figure audit-figure">
+    <div class="audit-lead">
+      <span>Deterministic development audit</span>
+      <strong>1,000,000</strong>
+      <p>imaginary Cabinet pulls</p>
+    </div>
+    <div class="audit-grid" aria-label="Million-pull audit results">
+      <div><span>Persona</span><strong>49.9728%</strong><p>Cute</p></div>
+      <div><span>Persona</span><strong>50.0272%</strong><p>Corrupted</p></div>
+      <div><span>Form</span><strong>33.9470%</strong><p>Cake</p></div>
+      <div><span>Form</span><strong>33.0159%</strong><p>Critter</p></div>
+      <div><span>Form</span><strong>33.0371%</strong><p>Character</p></div>
+    </div>
+    <ul class="audit-checks">
+      <li><strong>0</strong> invalid pulls</li>
+      <li><strong>0</strong> unreachable choices</li>
+      <li><strong>0</strong> semantic-trait mismatches</li>
+      <li><strong>0</strong> probability mismatches</li>
+      <li><strong>549 / 549</strong> choices reached</li>
+    </ul>
+    <figcaption>The audit made no image-provider or cloud calls. It checked the machine, not the quality of the pictures.</figcaption>
+  </figure>
+)}
+
+{kind === "trace" && (
+  <figure class="article-wide ezize-figure trace-figure">
+    <div class="figure-heading">
+      <span>Same visible feature, different node</span>
+      <strong>The draw trace keeps the cause inspectable.</strong>
+    </div>
+    <div class="trace-grid">
+      <div><span>Alien Chef</span><strong>condition: melting</strong><b aria-hidden="true">↓</b><p>visible drips</p></div>
+      <div><span>Corrupted Cake</span><strong>surface: controlled glossy drips</strong><b aria-hidden="true">↓</b><p>visible drips</p></div>
+      <div><span>Corrupted Cake</span><strong>motif: fungus bloom</strong><b aria-hidden="true">↓</b><p>mushrooms</p></div>
+      <div><span>Corrupted Critter</span><strong>motif: mushrooms</strong><b aria-hidden="true">↓</b><p>mushrooms</p></div>
+    </div>
+    <figcaption>Similar surfaces can come from independent choices. Two fungal pictures in a row do not establish a system-wide bias.</figcaption>
+  </figure>
+)}
+
+<style>
+  .ezize-figure {
+    gap: 1rem;
+    margin-block: 2.5rem !important;
+    padding: clamp(1rem, 3vw, 1.5rem);
+    overflow: hidden;
+    border: 1px solid #393342;
+    border-radius: 0.65rem;
+    background:
+      linear-gradient(rgb(216 255 58 / 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(216 255 58 / 0.035) 1px, transparent 1px),
+      #0a090d;
+    background-size: 28px 28px;
+  }
+
+  .figure-heading,
+  .audit-lead {
+    width: 100%;
+    text-align: left;
+  }
+
+  .figure-heading > span,
+  .audit-lead > span,
+  .flow li > span,
+  .audit-grid span,
+  .trace-grid span {
+    display: block;
+    color: #dfff36;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .figure-heading > strong {
+    display: block;
+    margin-top: 0.4rem;
+    color: #f4f0f7;
+    font-size: clamp(1.2rem, 3vw, 1.7rem);
+    font-weight: 500;
+  }
+
+  .flow {
+    display: grid;
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none;
+  }
+
+  .flow li {
+    position: relative;
+    display: grid;
+    grid-template-columns: 2rem minmax(10rem, 0.8fr) minmax(0, 1.2fr);
+    gap: 0.75rem;
+    align-items: baseline;
+    margin: 0 !important;
+    padding: 0.85rem;
+    border-top: 1px solid #312b38;
+    background: rgb(8 7 10 / 0.78);
+  }
+
+  .flow li strong,
+  .trace-grid strong {
+    color: #eee9f1;
+    font-weight: 500;
+  }
+
+  .flow li p,
+  .trace-grid p,
+  .audit-grid p,
+  .audit-lead p {
+    margin: 0 !important;
+    color: #a9a2af;
+  }
+
+  .flow .feedback {
+    border-bottom: 1px solid #312b38;
+    box-shadow: inset 3px 0 #ff774f;
+  }
+
+  .audit-lead {
+    padding: 1rem;
+    border-left: 3px solid #dfff36;
+    background: rgb(8 7 10 / 0.8);
+  }
+
+  .audit-lead strong {
+    display: block;
+    margin-top: 0.35rem;
+    color: white;
+    font-family: var(--font-mono);
+    font-size: clamp(2.4rem, 9vw, 5.5rem);
+    font-weight: 500;
+    letter-spacing: -0.07em;
+    line-height: 0.95;
+  }
+
+  .audit-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.45rem;
+    width: 100%;
+  }
+
+  .audit-grid > div,
+  .trace-grid > div {
+    min-width: 0;
+    padding: 0.85rem;
+    border: 1px solid #393342;
+    background: rgb(8 7 10 / 0.84);
+  }
+
+  .audit-grid strong {
+    display: block;
+    margin: 1.1rem 0 0.25rem;
+    color: #f5f1f7;
+    font-family: var(--font-mono);
+    font-size: clamp(0.8rem, 2.4vw, 1.05rem);
+  }
+
+  .audit-checks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none;
+  }
+
+  .audit-checks li {
+    margin: 0 !important;
+    padding: 0.45rem 0.65rem;
+    border: 1px solid #3e3846;
+    color: #aaa3b0;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+  }
+
+  .audit-checks strong {
+    color: #dfff36;
+  }
+
+  .trace-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
+    width: 100%;
+  }
+
+  .trace-grid strong {
+    display: block;
+    margin-top: 1rem;
+    overflow-wrap: anywhere;
+  }
+
+  .trace-grid b {
+    display: block;
+    margin: 0.45rem 0;
+    color: #ff774f;
+    font-weight: 400;
+  }
+
+  @media (max-width: 639px) {
+    .flow li {
+      grid-template-columns: 1.6rem minmax(0, 1fr);
+    }
+
+    .flow li p {
+      grid-column: 2;
+    }
+
+    .audit-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .audit-grid > div:last-child {
+      grid-column: span 2;
+    }
+
+    .trace-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
