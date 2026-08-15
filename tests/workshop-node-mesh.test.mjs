@@ -75,15 +75,16 @@ test("project and article relationships use established structured-data semantic
   assert.doesNotMatch(`${projects}\n${hobfarm}\n${articleLayout}`, /hobfarmNode|meshConnection|relatedBecause|aiRelationship/);
 });
 
-test("HobFarm project is source-backed and does not imply automatic context synchronization", () => {
+test("HobFarm project follows the working loop described by the project record", () => {
   const page = read("src/pages/workshop/projects/hobfarm/index.astro");
   const diagram = read("src/components/workshop/HobFarmProductionDiagram.astro");
   const combined = `${page}\n${diagram}`;
 
-  for (const phrase of ["Astro 7 and TypeScript", "Tailwind CSS 4", "PagesCMS", "Cloudflare Pages", "Git and GitHub", "AGENTS.md"]) {
+  for (const phrase of ["How projects develop", "Working record", "Adding something new", "Revision is the work", "Connected work", "Find the cost", "Put it somewhere"]) {
     assert.match(combined, new RegExp(phrase));
   }
-  assert.match(combined, /not presented as an automatic synchronization system/i);
+  assert.match(combined, /The repository shows what actually changed/i);
+  assert.match(combined, /does not have to become a business for the work to be useful/i);
 });
 
 test("Presents Funnies overview uses a dark panel while the canonical Funnies page remains independent", () => {

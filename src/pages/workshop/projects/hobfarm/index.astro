@@ -7,7 +7,7 @@ import ProjectNodeAnatomy from "@/components/workshop/ProjectNodeAnatomy.astro";
 import ConnectedWork from "@/components/workshop/ConnectedWork.astro";
 import { getMedia } from "@/data/media-registry";
 
-const hero = getMedia("home.site-banner");
+const hero = getMedia("workshop.hobfarm-project.hero");
 const workshop = getMedia("workshop.graphics.hero");
 const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
 const canonical = "/workshop/projects/hobfarm/";
@@ -40,7 +40,7 @@ const structuredData = {
       "@type": "CreativeWork",
       "@id": `${canonicalUrl}#project`,
       name: "HobFarm website and publishing system",
-      description: "A Workshop case study in web development, content architecture, repository context, Cloudflare deployment, publishing, and iteration.",
+      description: "An ongoing Workshop project about how HobFarm turns ideas into articles, tools, project records, and other work worth keeping.",
       url: canonicalUrl,
       image: hero.src,
       creator: { "@id": `${siteOrigin}/#organization` },
@@ -50,58 +50,121 @@ const structuredData = {
     },
   ],
 };
-const facts = [
-  ["Framework", "Astro 7 and TypeScript"],
-  ["Presentation", "Tailwind CSS 4 plus route-level Astro styles"],
-  ["Content", "Astro content collections and PagesCMS"],
-  ["Platform", "Cloudflare Pages, Pages Functions, and R2 media"],
-  ["Source control", "Git and GitHub"],
-  ["Validation", "Astro checks, Node tests, production builds, structural audits, and browser review"],
+const repositoryParts = [
+  ["Content", "Articles, project records, notes, and pages."],
+  ["Routes", "Where things live and how they connect."],
+  ["Components", "Reusable parts of the site."],
+  ["Media", "Images, video, diagrams, and project assets."],
+  ["Platform", "Builds, storage, deployment, accounts, and services."],
+  ["History", "The commits and revisions showing how it got here."],
+] as const;
+const newThingParts = [
+  { label: "Purpose", description: "What is this and why should it exist?" },
+  { label: "Route", description: "Where does it live on HobFarm?" },
+  { label: "Content", description: "Article, project record, application, gallery, video, or something else." },
+  { label: "Presentation", description: "The layout and visual treatment that fit the material." },
+  { label: "Media", description: "Images, video, diagrams, downloads, or generated assets." },
+  { label: "Platform", description: "Whatever hosting, storage, APIs, or services it actually requires." },
+  { label: "Connections", description: "What existing pages does it genuinely relate to?" },
+] as const;
+const relationshipExamples = [
+  ["Workshop → Article", "How the thing was built, followed by what the work revealed."],
+  ["Article → Article", "A subject leads naturally into another investigation."],
+  ["Project → Tool", "A method becomes something reusable."],
+  ["Project → Project", "One experiment provides the starting point for another."],
 ] as const;
 ---
 
-<BaseLayout title="HobFarm: Website and Publishing System | Workshop" description="How HobFarm uses project context, repository rules, Astro, Git, Cloudflare, tests, and observation to operate an independent publication and studio." canonical={canonical} image={hero.src} imageAlt={hero.alt} palette="blue-red" structuredData={structuredData}>
+<BaseLayout title="HobFarm: The Website Is Part of the Work | Workshop" description="How the HobFarm website turns ideas, experiments, research, and project work into useful public records." canonical={canonical} image={hero.src} imageAlt={hero.alt} palette="blue-red" structuredData={structuredData}>
   <div class="hobfarm-case">
     <Wrapper variant="standard" class="breadcrumbs"><Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Workshop", href: "/workshop/" }, { label: "Projects", href: "/workshop/projects/" }, { label: "HobFarm" }]} /></Wrapper>
     <header class="case-hero">
-      <Wrapper variant="standard" class="case-hero__layout">
-        <div><p class="eyebrow">Workshop project / Active publication</p><h1>The website is part of the work.</h1><p class="lead">HobFarm is an independent publication and studio, but it is also the clearest proof that the Workshop method extends beyond images. Content architecture, code, operating rules, media, commerce, deployment, and revision all have to remain connected.</p><div class="actions"><a href="#system">Inspect the system</a><a href="/workshop/projects/">Browse every project</a></div></div>
-        <figure><img src={hero.src} alt={hero.alt} width={hero.width} height={hero.height} loading="eager" fetchpriority="high" decoding="async" /><figcaption>HobFarm website banner / a public publishing surface built from the same Workshop record</figcaption></figure>
+      <Wrapper variant="standard">
+        <div class="case-hero__content">
+          <div class="case-hero__copy">
+            <div><p class="eyebrow">HobFarm / Ongoing project</p><h1>The website is part of the work.</h1></div>
+            <div class="hero-summary">
+              <p>HobFarm is an independent publication and studio, but the website is also one of the things I keep building. Articles, experiments, software, images, research, and project ideas all end up changing the site in some way.</p>
+              <p>Some become permanent parts of HobFarm. Some stay small. Some get parked until there is a reason, or enough money, to keep going.</p>
+              <div class="actions"><a href="#development">See how projects develop</a><a href="/workshop/projects/">Browse every project</a></div>
+            </div>
+          </div>
+          <figure><img src={hero.src} alt={hero.alt} width={hero.width} height={hero.height} loading="eager" fetchpriority="high" decoding="async" /><figcaption>HobFarm project system / ideas move through building, reality testing, and the publishing surfaces that keep useful work connected</figcaption></figure>
+        </div>
       </Wrapper>
     </header>
 
-    <section id="system" aria-labelledby="system-heading">
+    <section id="development" aria-labelledby="development-heading">
       <Wrapper variant="standard" class="section-space">
-        <div class="section-heading"><div><p class="eyebrow">The production loop</p><h2 id="system-heading">Context becomes code, routes, releases, and another round of observation.</h2></div><p>The project context describes the goal and editorial intent. The repository supplies the actual architecture and constraints. Development happens against both, then tests and visual review decide whether the result can ship.</p></div>
+        <div class="section-heading">
+          <div><p class="eyebrow">How projects develop</p><h2 id="development-heading">An idea usually changes once I start building it.</h2></div>
+          <div class="section-heading__copy">
+            <p>Most things start because I want to find out whether something will work.</p>
+            <p>That might mean researching a subject, building an application, testing an image system, trying a new production method, or putting together a page. Once the thing exists, the practical questions become much clearer: what does it cost, how much maintenance does it need, who is it for, and is there a reason to keep operating it?</p>
+            <p>The answer does not have to be a finished product.</p>
+          </div>
+        </div>
         <div class="diagram-space"><HobFarmProductionDiagram /></div>
       </Wrapper>
     </section>
 
     <section class="evidence" aria-labelledby="evidence-heading">
       <Wrapper variant="standard" class="section-space">
-        <div class="section-heading"><div><p class="eyebrow">Verified implementation</p><h2 id="evidence-heading">The repository is the evidence.</h2></div><p>This record names the systems present in the current HobFarm codebase. It does not imply a hidden automation layer between conversations, project instructions, and the repository.</p></div>
+        <div class="section-heading">
+          <div><p class="eyebrow">Working record</p><h2 id="evidence-heading">The repository shows what actually changed.</h2></div>
+          <div class="section-heading__copy">
+            <p>The site is easier to understand through its history than through a diagram of what it is supposed to be.</p>
+            <p>The repository contains the articles, routes, components, layouts, project pages, experiments, integrations, and revisions that gradually turned HobFarm into what it is now. Some changes are visible immediately. Others are infrastructure that makes the next thing easier to add.</p>
+          </div>
+        </div>
         <div class="evidence-grid">
-          <figure><img src={workshop.src} alt={workshop.alt} width={workshop.width} height={workshop.height} loading="lazy" decoding="async" /><figcaption>Workshop / the operating method made visible</figcaption></figure>
-          <dl>{facts.map(([term, detail]) => <div><dt>{term}</dt><dd>{detail}</dd></div>)}</dl>
+          <figure><img src={workshop.src} alt={workshop.alt} width={workshop.width} height={workshop.height} loading="lazy" decoding="async" /><figcaption>Workshop / the working record behind the site, its media, and each revision</figcaption></figure>
+          <dl>{repositoryParts.map(([term, detail]) => <div><dt>{term}</dt><dd>{detail}</dd></div>)}</dl>
         </div>
       </Wrapper>
     </section>
 
     <section aria-labelledby="node-heading">
       <Wrapper variant="standard" class="section-space">
-        <div class="section-heading"><div><p class="eyebrow">Bounded project context</p><h2 id="node-heading">The site knows what the site needs.</h2></div><p>HobFarm carries its route map, content contracts, design patterns, platform constraints, and validation rules. A separate image or story project can pass in a finished artifact without importing the entire website context.</p></div>
-        <div class="diagram-space"><ProjectNodeAnatomy /></div>
+        <div class="section-heading">
+          <div><p class="eyebrow">Adding something new</p><h2 id="node-heading">Every new thing has to fit somewhere.</h2></div>
+          <div class="section-heading__copy">
+            <p>A new article or project does not need its own independent system.</p>
+            <p>It needs a route, content, media, whatever presentation makes sense, and a way to connect it to the rest of HobFarm. The existing site handles the repetitive parts so the new work can stay focused on whatever made it interesting in the first place.</p>
+          </div>
+        </div>
+        <div class="diagram-space"><ProjectNodeAnatomy parts={newThingParts} coreLabel="" coreTitle="New thing" caption="The site provides the structure. The project provides the reason to use it." /></div>
       </Wrapper>
     </section>
 
     <section aria-labelledby="decisions-heading">
       <Wrapper variant="standard" class="section-space">
-        <div class="section-heading"><div><p class="eyebrow">Tests and decisions</p><h2 id="decisions-heading">The useful work happens between the first render and the release.</h2></div><p>Build errors expose broken contracts. Screenshots expose scale, contrast, and responsive problems. Link audits catch disconnected routes. Analytics and real content reveal what the architecture failed to anticipate.</p></div>
-        <ol class="decision-grid"><li><span>01</span><strong>Inspect</strong><p>Read the live route, nearby components, content model, and current working tree.</p></li><li><span>02</span><strong>Implement</strong><p>Make the smallest coherent change in the existing language and structure.</p></li><li><span>03</span><strong>Validate</strong><p>Run schema, type, structural, link, build, and browser checks in proportion to the risk.</p></li><li><span>04</span><strong>Observe</strong><p>Use the live publication, errors, reader paths, and new work to shape the next revision.</p></li></ol>
+        <div class="section-heading">
+          <div><p class="eyebrow">Revision is the work</p><h2 id="decisions-heading">The first version tells me what to change next.</h2></div>
+          <div class="section-heading__copy">
+            <p>A page usually starts as an idea about how something should work. Once it is real, the problems become visible.</p>
+            <p>The layout is wrong. Something is confusing. A feature costs more than expected. An API behaves differently from the documentation. The page needs another image. The idea turns out to be better as an article than an application.</p>
+            <p>So the site develops through repeated inspection and revision.</p>
+          </div>
+        </div>
+        <ol class="decision-grid"><li><span>01</span><strong>Make</strong><p>Get a real version on the screen.</p></li><li><span>02</span><strong>Use</strong><p>Look at the actual page, tool, or workflow instead of the plan.</p></li><li><span>03</span><strong>Change</strong><p>Fix what became obvious once it existed.</p></li><li><span>04</span><strong>Publish</strong><p>Put the useful version on the site.</p></li></ol>
       </Wrapper>
     </section>
 
-    <Wrapper variant="standard" class="connected-space"><ConnectedWork links={[{ relationship: "Method", label: "Workshop overview", href: "/workshop/" }, { relationship: "Technical application", label: "StyleFusion", href: "/workshop/stylefusion/" }, { relationship: "Editorial output", label: "Articles", href: "/articles/" }, { relationship: "Ongoing release record", label: "Changelog", href: "/changelog/" }]} /></Wrapper>
+    <section aria-labelledby="connections-heading">
+      <Wrapper variant="standard" class="section-space">
+        <div class="section-heading">
+          <div><p class="eyebrow">Connected work</p><h2 id="connections-heading">Things connect when there is a real relationship.</h2></div>
+          <div class="section-heading__copy">
+            <p>An article can lead to a Workshop project because it explains how something was made. A project can lead to another article because the work uncovered a different subject. A tool can sit beside the research that produced it.</p>
+            <p>Those connections are more useful than forcing everything into a series or category. The site can grow as a network of related work while each page still makes sense on its own.</p>
+          </div>
+        </div>
+        <dl class="relationship-grid">{relationshipExamples.map(([relationship, detail]) => <div><dt>{relationship}</dt><dd>{detail}</dd></div>)}</dl>
+      </Wrapper>
+    </section>
+
+    <Wrapper variant="standard" class="connected-space"><ConnectedWork eyebrow="Open related work" title="See where this project connects." links={[{ relationship: "Method", label: "Workshop overview", href: "/workshop/" }, { relationship: "Technical application", label: "StyleFusion", href: "/workshop/stylefusion/" }, { relationship: "Editorial output", label: "Articles", href: "/articles/" }, { relationship: "Ongoing release record", label: "Changelog", href: "/changelog/" }]} /></Wrapper>
   </div>
 </BaseLayout>
 
@@ -109,12 +172,15 @@ const facts = [
   .hobfarm-case { background: #07060b; color: #aaa5b8; }
   .breadcrumbs { padding-top: 1.25rem; }
   .case-hero { padding-block: clamp(3.5rem, 8vw, 7rem); border-bottom: 1px solid #2c2440; background: radial-gradient(circle at 16% 20%, rgb(85 215 255 / .13), transparent 30rem), #07060b; }
-  .case-hero__layout { display: grid; gap: 2rem; align-items: center; }
+  .case-hero__content { display: grid; gap: clamp(2rem, 5vw, 4rem); }
+  .case-hero__copy { display: grid; gap: 2rem; align-items: end; }
   .eyebrow { margin: 0; color: #55d7ff; font-family: var(--font-mono); font-size: .61rem; letter-spacing: .15em; text-transform: uppercase; }
   h1, h2 { color: #fff; font-family: var(--font-display); font-weight: 300; letter-spacing: -.055em; text-wrap: balance; }
   h1 { margin: 1rem 0 0; font-size: clamp(3.4rem, 8vw, 7rem); line-height: .88; }
   h2 { margin: .8rem 0 0; font-size: clamp(2.5rem, 6vw, 5rem); line-height: .94; }
-  .lead { max-width: 52rem; margin: 1.4rem 0 0; color: #c7c2cf; font-size: clamp(1rem, 2vw, 1.16rem); line-height: 1.75; }
+  .hero-summary { max-width: 46rem; }
+  .hero-summary p { margin: 0; color: #c7c2cf; font-size: clamp(1rem, 2vw, 1.16rem); line-height: 1.75; }
+  .hero-summary p + p { margin-top: .8rem; }
   .actions { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1.5rem; }
   .actions a { padding: .7rem .85rem; border: 1px solid #55d7ff; color: #eeeaf3; font-family: var(--font-mono); font-size: .59rem; text-decoration: none; text-transform: uppercase; }
   .actions a:first-child { background: #55d7ff; color: #07060b; }
@@ -125,8 +191,10 @@ const facts = [
   .evidence { background: #0a0810; }
   :global(.section-space) { padding-block: clamp(4rem, 8vw, 7rem); }
   .section-heading { display: grid; gap: 1.4rem; }
-  .section-heading > p { max-width: 45rem; margin: 0; line-height: 1.75; }
-  .diagram-space, .evidence-grid, .decision-grid { margin-top: clamp(2rem, 4vw, 3.5rem); }
+  .section-heading__copy { max-width: 45rem; }
+  .section-heading__copy p { margin: 0; line-height: 1.75; }
+  .section-heading__copy p + p { margin-top: .8rem; }
+  .diagram-space, .evidence-grid, .decision-grid, .relationship-grid { margin-top: clamp(2rem, 4vw, 3.5rem); }
   .evidence-grid { display: grid; gap: 1rem; align-items: start; }
   dl { display: grid; gap: .55rem; margin: 0; }
   dl div { padding: .85rem; border: 1px solid #342b45; background: #0d0a13; }
@@ -138,6 +206,6 @@ const facts = [
   .decision-grid strong { display: block; margin-top: 2.5rem; color: #fff; font-family: var(--font-display); font-size: 1.45rem; font-weight: 400; }
   .decision-grid p { margin: .7rem 0 0; color: #9f99aa; font-size: .73rem; line-height: 1.6; }
   :global(.connected-space) { padding-block: clamp(3rem, 6vw, 5rem); }
-  @media (min-width: 48rem) { .evidence-grid { grid-template-columns: minmax(0, 1.15fr) minmax(20rem, .85fr); } .decision-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-  @media (min-width: 64rem) { .case-hero__layout { grid-template-columns: minmax(0, 1fr) minmax(26rem, .8fr); } .section-heading { grid-template-columns: minmax(0, 1.15fr) minmax(24rem, .65fr); align-items: end; } }
+  @media (min-width: 48rem) { .evidence-grid { grid-template-columns: minmax(0, 1.15fr) minmax(20rem, .85fr); } .decision-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } .relationship-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 64rem) { .case-hero__copy { grid-template-columns: minmax(0, .9fr) minmax(26rem, 1.1fr); } .section-heading { grid-template-columns: minmax(0, 1.15fr) minmax(24rem, .65fr); align-items: end; } }
 </style>

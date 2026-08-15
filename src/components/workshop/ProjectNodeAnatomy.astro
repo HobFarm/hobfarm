@@ -1,13 +1,32 @@
 ---
 import { projectNodeParts } from "@/data/workshop-node-mesh";
+
+interface Part {
+  label: string;
+  description: string;
+}
+
+interface Props {
+  parts?: readonly Part[];
+  coreLabel?: string;
+  coreTitle?: string;
+  caption?: string;
+}
+
+const {
+  parts = projectNodeParts,
+  coreLabel = "Bounded project",
+  coreTitle = "One job",
+  caption = "A project carries enough context to do its job and clear boundaries that keep unrelated material out.",
+}: Props = Astro.props;
 ---
 
 <figure class="node-anatomy" aria-labelledby="node-anatomy-caption">
-  <div class="node-anatomy__core"><span>Bounded project</span><strong>One job</strong></div>
+  <div class="node-anatomy__core">{coreLabel && <span>{coreLabel}</span>}<strong>{coreTitle}</strong></div>
   <ol>
-    {projectNodeParts.map((part, index) => <li><span>{String(index + 1).padStart(2, "0")}</span><div><strong>{part.label}</strong><p>{part.description}</p></div></li>)}
+    {parts.map((part, index) => <li><span>{String(index + 1).padStart(2, "0")}</span><div><strong>{part.label}</strong><p>{part.description}</p></div></li>)}
   </ol>
-  <figcaption id="node-anatomy-caption">A project carries enough context to do its job and clear boundaries that keep unrelated material out.</figcaption>
+  <figcaption id="node-anatomy-caption">{caption}</figcaption>
 </figure>
 
 <style>

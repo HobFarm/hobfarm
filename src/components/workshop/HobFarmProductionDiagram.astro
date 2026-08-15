@@ -1,12 +1,10 @@
 ---
 const stages = [
-  { label: "Project context", detail: "goals, architecture, design rules, operating rules" },
-  { label: "Repository context", detail: "AGENTS.md, code, content models, current constraints" },
-  { label: "Development", detail: "inspection, implementation, tests, visual review" },
-  { label: "Source control", detail: "Git history, review, recovery" },
-  { label: "Platform", detail: "Cloudflare Pages, Functions, R2" },
-  { label: "hob.farm", detail: "the live publication and public catalog" },
-  { label: "Observe", detail: "content needs, errors, analytics, design changes" },
+  { label: "Idea", detail: "Something seems worth investigating." },
+  { label: "Build enough", detail: "Make the real thing, or enough of it to understand how it works." },
+  { label: "Find the cost", detail: "APIs, hosting, production time, maintenance, distribution, and everything else become visible." },
+  { label: "Decide what makes sense now", detail: "Keep developing it, use it privately, simplify it, publish what was learned, or park it for later." },
+  { label: "Put it somewhere", detail: "Article, Workshop page, tool, image, video, project record, or another part of HobFarm." },
 ] as const;
 ---
 
@@ -14,8 +12,7 @@ const stages = [
   <ol>
     {stages.map((stage, index) => <li><span>{String(index + 1).padStart(2, "0")}</span><div><strong>{stage.label}</strong><p>{stage.detail}</p></div></li>)}
   </ol>
-  <div class="site-production__return" aria-hidden="true">observe and revise ↺</div>
-  <figcaption id="site-production-caption">Project context and repository context are deliberately aligned. They are not presented as an automatic synchronization system.</figcaption>
+  <figcaption id="site-production-caption">The project does not have to become a business for the work to be useful.</figcaption>
 </figure>
 
 <style>
@@ -26,7 +23,6 @@ const stages = [
   li > span { color: #55d7ff; font-family: var(--font-mono); font-size: .58rem; }
   li strong { color: #fff; font-size: .78rem; }
   li p { margin: .35rem 0 0; color: #9c96a7; font-size: .68rem; line-height: 1.5; }
-  .site-production__return { margin-top: .7rem; padding: .65rem; border: 1px dashed #d04a93; color: #db71a9; font-family: var(--font-mono); font-size: .57rem; text-align: center; text-transform: uppercase; }
-  figcaption { margin-top: .75rem; color: #8f899e; font-family: var(--font-mono); font-size: .55rem; line-height: 1.55; text-transform: uppercase; }
-  @media (min-width: 64rem) { ol { grid-template-columns: repeat(7, minmax(0, 1fr)); } li { grid-template-columns: 1fr; min-height: 9rem; } li:not(:last-child)::after { top: 1rem; right: -.65rem; bottom: auto; content: "→"; } }
+  figcaption { margin-top: .75rem; padding: .65rem; border: 1px dashed #d04a93; color: #db71a9; font-family: var(--font-mono); font-size: .55rem; line-height: 1.55; text-align: center; text-transform: uppercase; }
+  @media (min-width: 64rem) { ol { grid-template-columns: repeat(5, minmax(0, 1fr)); } li { grid-template-columns: 1fr; min-height: 10rem; } li:not(:last-child)::after { top: 1rem; right: -.65rem; bottom: auto; content: "→"; } }
 </style>
