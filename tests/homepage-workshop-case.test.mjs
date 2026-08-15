@@ -74,7 +74,7 @@ test("homepage Workshop projects use one shared data model and real routes", () 
   }
 
   for (const token of [
-    "home.site-banner",
+    "workshop.hobfarm-project.hero",
     "workshop.ami-legacy.model-3917.vehicle",
     "before-after.north-shore.before",
     "stylefusion.banner.image",

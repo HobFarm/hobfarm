@@ -103,8 +103,7 @@ const otherAliceAssets = [
 ] as const;
 
 const hobFarmAssets = [
-  getMedia("home.site-banner"),
-  getMedia("workshop.graphics.hero"),
+  getMedia("workshop.hobfarm-project.hero"),
 ] as const;
 
 const cuteCorruptedAssets = [
@@ -161,14 +160,11 @@ export const selectedWorkshopProjects: readonly WorkshopProject[] = [
     possibleOutputs: ["public routes", "content collections", "interactive applications", "release records", "deployment"],
     capabilities: ["Astro", "content architecture", "AI-assisted coding", "Cloudflare"],
     media: hobFarmAssets[0],
-    secondaryMedia: hobFarmAssets[1],
     approvedAssets: hobFarmAssets,
     destination: "/workshop/projects/hobfarm/",
     status: "Active program",
     featuredPosition: 2,
     homepagePosition: 1,
-    sourceLabel: "Publishing system",
-    resultLabel: "Workshop method",
     visualVariant: "source-to-campaign",
   },
   {
