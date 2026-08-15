@@ -1,0 +1,93 @@
+---
+const steps = [
+  ["Trigger", "A photograph, feed item, old paper, place, memory, film, object, or question starts the trail."],
+  ["Research question", "Work out what needs explaining instead of assuming the first subject is the story."],
+  ["Source collection", "Gather primary records, strong secondary reporting, archives, maps, images, and technical material."],
+  ["Claim checking", "Compare dates, quantities, quotations, and contradictions before they harden into prose."],
+  ["Structure", "Arrange the evidence around the argument the research can actually support."],
+  ["Draft and revision", "Write, cut, reorder, test transitions, and keep returning to the record."],
+  ["Visual evidence", "Use photographs, maps, diagrams, screenshots, or original art when they add proof or clarity."],
+  ["Publish", "Release the article with its sources, media, metadata, relationships, and a durable route."],
+] as const;
+---
+
+<figure class="editorial-flow" aria-labelledby="editorial-flow-caption">
+  <ol>
+    {steps.map(([label, description], index) => (
+      <li>
+        <div class="editorial-flow__step">
+          <span>{String(index + 1).padStart(2, "0")}</span>
+          <h3>{label}</h3>
+        </div>
+        <p>{description}</p>
+      </li>
+    ))}
+  </ol>
+  <figcaption id="editorial-flow-caption">
+    Research can change the route. Publication keeps the surviving claims, evidence, and context together.
+  </figcaption>
+</figure>
+
+<style>
+  .editorial-flow {
+    margin: 0;
+    padding: 1px;
+    overflow: hidden;
+    border: 1px solid #3a304c;
+    border-radius: .8rem;
+    background: #342b45;
+  }
+  ol {
+    display: grid;
+    gap: 1px;
+    margin: 0;
+    padding: 0;
+    background: #342b45;
+    list-style: none;
+  }
+  li {
+    min-width: 0;
+    padding: .95rem;
+    background: #0b0911;
+  }
+  .editorial-flow__step {
+    display: flex;
+    align-items: baseline;
+    gap: .65rem;
+  }
+  span {
+    color: #d04a93;
+    font-family: var(--font-mono);
+    font-size: .56rem;
+    letter-spacing: .08em;
+  }
+  h3 {
+    margin: 0;
+    color: #f1edf5;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+  li p {
+    margin: .65rem 0 0;
+    color: #9e98aa;
+    font-size: .7rem;
+    line-height: 1.55;
+  }
+  figcaption {
+    padding: .7rem .95rem;
+    background: #09070e;
+    color: #8f899e;
+    font-family: var(--font-mono);
+    font-size: .55rem;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+  @media (min-width: 42rem) {
+    ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 64rem) {
+    ol { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+</style>

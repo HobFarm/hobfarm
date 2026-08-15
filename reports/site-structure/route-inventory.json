@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-15T00:35:57.805Z",
+  "generatedAt": "2026-08-15T14:04:40.291Z",
   "buildRoot": "dist/client",
   "counts": {
     "files": 1114,
@@ -151108,9 +151108,12 @@
         "/articles/art-design/",
         "/articles/culture/",
         "/articles/film-tv/",
+        "/articles/hey-its-that-guy/",
         "/articles/music/",
         "/articles/places-systems/",
         "/articles/technology/",
+        "/articles/the-model-is-free/",
+        "/articles/trash-mountain/",
         "/changelog/",
         "/contact/",
         "/ezize/",

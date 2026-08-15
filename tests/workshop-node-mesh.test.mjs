@@ -78,13 +78,31 @@ test("project and article relationships use established structured-data semantic
 test("HobFarm project follows the working loop described by the project record", () => {
   const page = read("src/pages/workshop/projects/hobfarm/index.astro");
   const diagram = read("src/components/workshop/HobFarmProductionDiagram.astro");
-  const combined = `${page}\n${diagram}`;
+  const editorialFlow = read("src/components/workshop/EditorialProductionFlow.astro");
+  const combined = `${page}\n${diagram}\n${editorialFlow}`;
 
-  for (const phrase of ["How projects develop", "Working record", "Adding something new", "Revision is the work", "Connected work", "Find the cost", "Put it somewhere"]) {
+  for (const phrase of ["How projects develop", "Working record", "Adding something new", "Editorial production", "Revision is the work", "Connected work", "Find the cost", "Put it somewhere"]) {
     assert.match(combined, new RegExp(phrase));
   }
   assert.match(combined, /The repository shows what actually changed/i);
   assert.match(combined, /does not have to become a business for the work to be useful/i);
+});
+
+test("HobFarm project documents editorial production with public proof", () => {
+  const page = read("src/pages/workshop/projects/hobfarm/index.astro");
+  const editorialFlow = read("src/components/workshop/EditorialProductionFlow.astro");
+
+  for (const step of ["Trigger", "Research question", "Source collection", "Claim checking", "Structure", "Draft and revision", "Visual evidence", "Publish"]) {
+    assert.match(editorialFlow, new RegExp(step));
+  }
+  assert.match(page, /ChatGPT does not replace the source record/);
+  assert.match(page, /getPublishedArticles/);
+  for (const slug of ["trash-mountain", "hey-its-that-guy", "the-model-is-free"]) {
+    assert.match(page, new RegExp(`slug: "${slug}"`));
+  }
+  assert.equal((page.match(/slug: "/g) ?? []).length, 3);
+  assert.match(page, /href="\/articles\/"/);
+  assert.doesNotMatch(page, /private chat|raw prompt/i);
 });
 
 test("Presents Funnies overview uses a dark panel while the canonical Funnies page remains independent", () => {

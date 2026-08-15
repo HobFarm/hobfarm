@@ -2,10 +2,18 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Breadcrumbs from "@/components/global/Breadcrumbs.astro";
+import EditorialProductionFlow from "@/components/workshop/EditorialProductionFlow.astro";
 import HobFarmProductionDiagram from "@/components/workshop/HobFarmProductionDiagram.astro";
 import ProjectNodeAnatomy from "@/components/workshop/ProjectNodeAnatomy.astro";
 import ConnectedWork from "@/components/workshop/ConnectedWork.astro";
 import { getMedia } from "@/data/media-registry";
+import {
+  articlePath,
+  getArticleHero,
+  getPublishedArticles,
+  stripArticleExt,
+} from "@/lib/articles";
+import { imageSrcset, transformImageUrl } from "@/lib/media-transforms";
 
 const hero = getMedia("workshop.hobfarm-project.hero");
 const workshop = getMedia("workshop.graphics.hero");
@@ -73,6 +81,48 @@ const relationshipExamples = [
   ["Project → Tool", "A method becomes something reusable."],
   ["Project → Project", "One experiment provides the starting point for another."],
 ] as const;
+const editorialArticleDefinitions = [
+  {
+    slug: "trash-mountain",
+    role: "Place / infrastructure",
+    proof: "Maps, public records, field imagery, and technical research turn an accidental Google Earth discovery into a documented study of waste infrastructure and slope failure.",
+  },
+  {
+    slug: "hey-its-that-guy",
+    role: "Media / culture / history",
+    proof: "One Tales from the Crypt episode becomes a sourced route through EC Comics, anthology television, production history, and the streets beneath Creepshow 2.",
+  },
+  {
+    slug: "the-model-is-free",
+    role: "Technology / systems",
+    proof: "Hardware prices, technical specifications, and workflow diagrams test what open AI costs an independent creator in practice.",
+  },
+] as const;
+const publishedArticles = await getPublishedArticles();
+const editorialArticles = editorialArticleDefinitions.map((definition) => {
+  const article = publishedArticles.find((entry) => stripArticleExt(entry.id) === definition.slug);
+  if (!article) throw new Error(`Editorial production proof article is not public: ${definition.slug}`);
+  const image = getArticleHero(article.data);
+  return {
+    ...definition,
+    article,
+    href: `${articlePath(article)}/`,
+    image,
+    imageSrc: image ? transformImageUrl(image, { width: 720, quality: 82, fit: "cover" }) : undefined,
+    imageSrcset: image && image.startsWith("https://cdn.hob.farm/")
+      ? imageSrcset(image, [360, 540, 720], { quality: 82, fit: "cover" })
+      : undefined,
+  };
+});
+const editorialCapabilities = [
+  "Research",
+  "Source handling",
+  "Editorial judgment",
+  "AI-assisted development",
+  "Verification",
+  "Multimedia production",
+  "Publishing",
+] as const;
 ---
 
 <BaseLayout title="HobFarm: The Website Is Part of the Work | Workshop" description="How the HobFarm website turns ideas, experiments, research, and project work into useful public records." canonical={canonical} image={hero.src} imageAlt={hero.alt} palette="blue-red" structuredData={structuredData}>
@@ -134,6 +184,57 @@ const relationshipExamples = [
           </div>
         </div>
         <div class="diagram-space"><ProjectNodeAnatomy parts={newThingParts} coreLabel="" coreTitle="New thing" caption="The site provides the structure. The project provides the reason to use it." /></div>
+      </Wrapper>
+    </section>
+
+    <section class="editorial-production" aria-labelledby="editorial-production-heading">
+      <Wrapper variant="standard" class="section-space">
+        <div class="section-heading">
+          <div><p class="eyebrow">Editorial production</p><h2 id="editorial-production-heading">An article is another production system.</h2></div>
+          <div class="section-heading__copy">
+            <p>A HobFarm article can begin with a photograph, an RSS item, an old newspaper, a place, a memory, a film, an object, or a question.</p>
+            <p>The first subject is not always the finished story. Research decides what the story becomes.</p>
+          </div>
+        </div>
+
+        <div class="diagram-space"><EditorialProductionFlow /></div>
+
+        <aside class="editorial-assistance" aria-labelledby="editorial-assistance-heading">
+          <div>
+            <p class="editorial-label">AI-assisted development</p>
+            <h3 id="editorial-assistance-heading">ChatGPT helps interrogate the work while it is being made.</h3>
+          </div>
+          <div class="editorial-assistance__copy">
+            <p>I use ChatGPT to interrogate source material, compare explanations and calculations, expose missing research, test structure, and develop drafts through revision.</p>
+            <p>ChatGPT does not replace the source record. Before an article is published, its claims still have to survive external evidence, contradictory material, visual inspection, and editorial judgment.</p>
+          </div>
+          <ol class="capability-chain" aria-label="Editorial production capabilities">
+            {editorialCapabilities.map((capability) => <li>{capability}</li>)}
+          </ol>
+        </aside>
+
+        <div class="editorial-proof-heading">
+          <div>
+            <p class="editorial-label">Published evidence</p>
+            <h3>Three routes through the same production loop.</h3>
+          </div>
+          <a href="/articles/">Browse the full Articles archive &rarr;</a>
+        </div>
+        <div class="editorial-examples">
+          {editorialArticles.map(({ article, href, role, proof, image, imageSrc, imageSrcset }) => (
+            <article class="editorial-example">
+              <a href={href} aria-label={`Read ${article.data.title}`}>
+                {image && <img src={imageSrc} srcset={imageSrcset} sizes="(min-width: 64rem) 33vw, (min-width: 42rem) 50vw, 100vw" alt={article.data.heroAlt || article.data.title} width="720" height="405" loading="lazy" decoding="async" />}
+                <div class="editorial-example__body">
+                  <p class="editorial-example__role">{role}</p>
+                  <h3>{article.data.title}</h3>
+                  <p>{proof}</p>
+                  <span>Read article &rarr;</span>
+                </div>
+              </a>
+            </article>
+          ))}
+        </div>
       </Wrapper>
     </section>
 
@@ -205,7 +306,32 @@ const relationshipExamples = [
   .decision-grid span { color: #d04a93; font-family: var(--font-mono); font-size: .58rem; }
   .decision-grid strong { display: block; margin-top: 2.5rem; color: #fff; font-family: var(--font-display); font-size: 1.45rem; font-weight: 400; }
   .decision-grid p { margin: .7rem 0 0; color: #9f99aa; font-size: .73rem; line-height: 1.6; }
+  .editorial-production { background: #0a0810; }
+  .editorial-assistance { display: grid; gap: 1.25rem; margin-top: 1rem; padding: clamp(1.25rem, 3vw, 2rem); border: 1px solid #3a304c; background: #0d0a13; }
+  .editorial-label { margin: 0; color: #d04a93; font-family: var(--font-mono); font-size: .57rem; letter-spacing: .12em; text-transform: uppercase; }
+  .editorial-assistance h3, .editorial-proof-heading h3, .editorial-example h3 { color: #f4f0f6; font-family: var(--font-display); font-weight: 400; }
+  .editorial-assistance h3 { max-width: 33rem; margin: .7rem 0 0; font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.08; }
+  .editorial-assistance__copy p { margin: 0; color: #bdb7c6; font-size: .86rem; line-height: 1.7; }
+  .editorial-assistance__copy p + p { margin-top: .75rem; }
+  .capability-chain { display: flex; flex-wrap: wrap; gap: .4rem .65rem; grid-column: 1 / -1; margin: .25rem 0 0; padding: .8rem 0 0; border-top: 1px solid #342b45; list-style: none; }
+  .capability-chain li { display: flex; align-items: center; gap: .65rem; color: #b8b2c1; font-family: var(--font-mono); font-size: .55rem; letter-spacing: .06em; text-transform: uppercase; }
+  .capability-chain li:not(:last-child)::after { color: #55d7ff; content: "→"; }
+  .editorial-proof-heading { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1rem; margin-top: clamp(2.5rem, 5vw, 4rem); }
+  .editorial-proof-heading h3 { margin: .55rem 0 0; font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.1; }
+  .editorial-proof-heading a { color: #55d7ff; font-family: var(--font-mono); font-size: .57rem; letter-spacing: .06em; text-decoration: none; text-transform: uppercase; }
+  .editorial-proof-heading a:hover { color: #fff; }
+  .editorial-examples { display: grid; gap: .8rem; margin-top: 1.25rem; }
+  .editorial-example { min-width: 0; overflow: hidden; border: 1px solid #342b45; background: #0d0a13; transition: border-color 180ms ease, transform 180ms ease; }
+  .editorial-example:hover { border-color: #55d7ff; transform: translateY(-2px); }
+  .editorial-example > a { display: block; height: 100%; color: inherit; text-decoration: none; }
+  .editorial-example img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+  .editorial-example__body { display: flex; min-height: 13rem; flex-direction: column; padding: 1rem; }
+  .editorial-example__role { margin: 0; color: #55d7ff; font-family: var(--font-mono); font-size: .54rem; letter-spacing: .08em; text-transform: uppercase; }
+  .editorial-example h3 { margin: .7rem 0 0; font-size: 1.25rem; line-height: 1.12; }
+  .editorial-example__body > p:not(.editorial-example__role) { margin: .8rem 0 0; color: #a9a3b2; font-size: .72rem; line-height: 1.6; }
+  .editorial-example span { margin-top: auto; padding-top: 1rem; color: #e8e3ec; font-family: var(--font-mono); font-size: .55rem; text-transform: uppercase; }
   :global(.connected-space) { padding-block: clamp(3rem, 6vw, 5rem); }
+  @media (min-width: 42rem) { .editorial-examples { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (min-width: 48rem) { .evidence-grid { grid-template-columns: minmax(0, 1.15fr) minmax(20rem, .85fr); } .decision-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } .relationship-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (min-width: 64rem) { .case-hero__copy { grid-template-columns: minmax(0, .9fr) minmax(26rem, 1.1fr); } .section-heading { grid-template-columns: minmax(0, 1.15fr) minmax(24rem, .65fr); align-items: end; } }
+  @media (min-width: 64rem) { .case-hero__copy { grid-template-columns: minmax(0, .9fr) minmax(26rem, 1.1fr); } .section-heading { grid-template-columns: minmax(0, 1.15fr) minmax(24rem, .65fr); align-items: end; } .editorial-assistance { grid-template-columns: minmax(0, .8fr) minmax(28rem, 1.2fr); } .editorial-examples { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 </style>
