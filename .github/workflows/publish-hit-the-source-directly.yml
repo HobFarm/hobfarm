@@ -1,0 +1,37 @@
+name: Publish Hit the Source Directly
+
+on:
+  schedule:
+    - cron: "20 23 21 8 *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-hit-the-source-directly
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Publish when the scheduled time has arrived
+        id: article
+        run: node scripts/publish-scheduled-hit-the-source-directly.mjs
+
+      - name: Remove the one-time schedule and trigger the production build
+        if: steps.article.outputs.published == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/publish-hit-the-source-directly.yml
+          git rm scripts/publish-scheduled-hit-the-source-directly.mjs
+          git add src/content/articles/hit-the-source-directly.mdx
+          git commit -m "Publish Hit the Source Directly"
+          git push origin main

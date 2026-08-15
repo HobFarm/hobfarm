@@ -12,16 +12,21 @@ assert.ok(frontmatterMatch, "article frontmatter should parse");
 const frontmatter = YAML.parse(frontmatterMatch[1]);
 const body = source.slice(frontmatterMatch[0].length);
 
-test("the EZIZE Workshop Note owns the slot after the RSS article", () => {
-  const predecessorSource = readFileSync("src/content/articles/hit-the-source-directly.mdx", "utf8");
+test("the EZIZE Workshop Note owns the open slot before the Salton Sea article", () => {
+  const predecessorSource = readFileSync("src/content/articles/deserts-remember-water.mdx", "utf8");
   const predecessorMatch = predecessorSource.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n/);
   assert.ok(predecessorMatch);
   const predecessor = YAML.parse(predecessorMatch[1]);
+  const successorSource = readFileSync("src/content/articles/salton-sea-needs-an-outlet.mdx", "utf8");
+  const successorMatch = successorSource.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n/);
+  assert.ok(successorMatch);
+  const successor = YAML.parse(successorMatch[1]);
 
   assert.equal(frontmatter.title, "I Stopped Writing Prompts and Built a Machine Instead");
   assert.equal(frontmatter.canonical, "/articles/i-stopped-writing-prompts-and-built-a-machine-instead/");
-  assert.equal(frontmatter.publishedAt, "2026-08-22T16:20:00-07:00");
+  assert.equal(frontmatter.publishedAt, "2026-08-24T16:20:00-07:00");
   assert.equal(Date.parse(frontmatter.publishedAt) - Date.parse(predecessor.publishedAt), 86_400_000);
+  assert.equal(Date.parse(successor.publishedAt) - Date.parse(frontmatter.publishedAt), 86_400_000);
   assert.equal(frontmatter.status, "scheduled");
   assert.equal(frontmatter.draft, false);
   assert.equal(frontmatter.department, "workshop-notes");
@@ -33,7 +38,7 @@ test("the EZIZE Workshop Note owns the slot after the RSS article", () => {
     .filter((name) => /\.mdx?$/.test(name) && name !== "i-stopped-writing-prompts-and-built-a-machine-instead.mdx")
     .filter((name) => {
       const candidate = readFileSync(`src/content/articles/${name}`, "utf8");
-      return /^publishedAt:\s*2026-08-22T16:20:00-07:00$/m.test(candidate);
+      return /^publishedAt:\s*2026-08-24T16:20:00-07:00$/m.test(candidate);
     });
   assert.deepEqual(collisions, []);
 });

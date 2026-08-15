@@ -1,0 +1,13 @@
+id,item,priority,action,status
+F01,"Doomscrolling study design and samples",high,"State 352 workers for the time-lagged study and 630 observations from 126 workers for the diary study; retain observational boundary.",resolved
+F02,"Treatment prevalence",high,"Use 19.2 percent in 2019 and 23.9 percent in 2023 for any reported treatment; do not assign a cause.",resolved
+F03,"2024 treatment categories",high,"Keep 19.3 percent medication and 14.0 percent counseling or therapy separate because respondents can appear in both.",resolved
+F04,"Negative headline effect",high,"Limit causal language to headline wording in the Upworthy experiments and describe the 2.3 percent result for one additional negative word in an average-length headline.",resolved
+F05,"Mood and browsing",high,"Describe the causal bidirectional result only within the measured experimental conditions; do not convert mood into diagnosis.",resolved
+F06,"Reddit differentiation",high,"Preserve the first-50-comment boundary and avoid claiming the mechanism explains every community or replaces platform incentives.",resolved
+F07,"Creator economy total",medium,"Attribute the more-than-100-billion-dollar figure to YouTube and note that it does not show typical or equal distribution.",resolved
+F08,"ASU degree",medium,"Use the official 2026-27 catalog and present the curriculum seriously; do not claim it teaches outrage.",resolved
+F09,"Relationship study",high,"Call the result an association based on cross-sectional self-report and reject cure or treatment-substitution claims.",resolved
+F10,"Complete feedback loop",high,"Label cross-study connectors as synthesis and distinguish them visually from measured relationships.",resolved
+F11,"Private/source screenshots",high,"No screenshot was supplied; use original graphics without inventing a screen or subscription list.",resolved
+F12,"Public-copy punctuation",medium,"Search for Unicode em dashes before publication.",resolved

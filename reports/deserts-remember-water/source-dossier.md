@@ -4,8 +4,8 @@ Checked August 14, 2026. The published article uses primary federal sources and 
 
 ## Schedule
 
-- EZIZE article: `i-stopped-writing-prompts-and-built-a-machine-instead.mdx`, August 22, 2026 at 4:20 p.m. PDT.
-- First open slot after EZIZE: August 23, 2026 at 4:20 p.m. PDT.
+- Preceding article: `the-feed-is-the-problem.mdx`, August 22, 2026 at 4:20 p.m. PDT.
+- This article's scheduled slot: August 23, 2026 at 4:20 p.m. PDT.
 - Article route: `/articles/deserts-remember-water/`.
 - Status: scheduled.
 
