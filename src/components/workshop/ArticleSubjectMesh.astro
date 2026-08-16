@@ -1,0 +1,47 @@
+---
+interface ArticleNode {
+  title: string;
+  href: string;
+}
+
+interface SubjectNode {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  articles: readonly [ArticleNode, ArticleNode];
+  subject: SubjectNode;
+}
+
+const { articles, subject } = Astro.props;
+---
+
+<figure class="article-mesh" aria-labelledby="article-mesh-caption">
+  <ol aria-label="Released Articles connected through a recurring subject">
+    <li class="article-mesh__node article-mesh__node--article"><span>Released Article</span><a href={articles[0].href}>{articles[0].title}</a></li>
+    <li class="article-mesh__edge"><span>references</span><b aria-hidden="true">↔</b></li>
+    <li class="article-mesh__node article-mesh__node--subject"><span>Recurring subject</span><a href={subject.href}>{subject.label}</a></li>
+    <li class="article-mesh__edge"><span>connects to</span><b aria-hidden="true">↔</b></li>
+    <li class="article-mesh__node article-mesh__node--article"><span>Released Article</span><a href={articles[1].href}>{articles[1].title}</a></li>
+  </ol>
+  <figcaption id="article-mesh-caption">Each Article remains readable on its own. The subject gives readers another route through work that entered the archive at different times.</figcaption>
+</figure>
+
+<style>
+  .article-mesh { margin: 0; padding: clamp(1rem, 3vw, 1.5rem); border: 1px solid #3a304c; border-radius: .8rem; background: #09070e; }
+  ol { display: grid; gap: .55rem; margin: 0; padding: 0; list-style: none; }
+  .article-mesh__node { display: flex; min-width: 0; min-height: 9rem; flex-direction: column; justify-content: space-between; padding: 1rem; border: 1px solid #3a304c; background: #0e0b16; }
+  .article-mesh__node--subject { border-color: #d04a93; background: radial-gradient(circle at 50% 20%, rgb(208 74 147 / .14), transparent 12rem), #0e0b16; }
+  .article-mesh__node span { color: #817b91; font-family: var(--font-mono); font-size: .52rem; letter-spacing: .1em; text-transform: uppercase; }
+  .article-mesh__node a { color: #f5f1f8; font-family: var(--font-display); font-size: clamp(1.15rem, 2.6vw, 1.75rem); line-height: 1.08; text-decoration-color: #566277; text-underline-offset: .22rem; }
+  .article-mesh__node a:hover, .article-mesh__node a:focus-visible { color: #55d7ff; }
+  .article-mesh__edge { display: flex; align-items: center; justify-content: center; gap: .55rem; color: #55d7ff; font-family: var(--font-mono); font-size: .5rem; letter-spacing: .08em; text-transform: uppercase; }
+  .article-mesh__edge b { font-size: .95rem; font-weight: 400; transform: rotate(90deg); }
+  figcaption { margin-top: 1rem; color: #8f899e; font-family: var(--font-mono); font-size: .56rem; line-height: 1.55; text-transform: uppercase; }
+  @media (min-width: 54rem) {
+    ol { grid-template-columns: minmax(0, 1fr) 7rem minmax(10rem, .65fr) 7rem minmax(0, 1fr); align-items: stretch; }
+    .article-mesh__edge { flex-direction: column; }
+    .article-mesh__edge b { transform: none; }
+  }
+</style>

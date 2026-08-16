@@ -1,0 +1,67 @@
+---
+import type { CompositionExample } from "@/data/workshop-node-mesh";
+
+interface Props {
+  example: CompositionExample;
+}
+
+const { example } = Astro.props;
+---
+
+<figure class:list={["composition", `composition--${example.status}`]} aria-labelledby={`${example.id}-caption`}>
+  <p class="composition__status">{example.eyebrow}</p>
+  <div class="composition__diagram">
+    <ol class="composition__inputs" aria-label="Existing input nodes">
+      {example.inputs.map((input) => (
+        <li>
+          <div class="composition__node">
+            <span>{input.kind}</span>
+            {input.href ? <a href={input.href}>{input.label}</a> : <strong>{input.label}</strong>}
+            <p>{input.contribution}</p>
+          </div>
+          <div class="composition__edge"><span>contributes to</span><b aria-hidden="true">→</b></div>
+        </li>
+      ))}
+    </ol>
+    <div class="composition__result">
+      <span>{example.output.kind}</span>
+      {example.output.href ? <a href={example.output.href}>{example.output.label}</a> : <strong>{example.output.label}</strong>}
+      <p>{example.output.description}</p>
+    </div>
+  </div>
+  <div class="composition__survival" aria-label="What remains after composition">
+    {example.inputs.map((input) => <span><b>{input.label}</b> remains independently reusable</span>)}
+    <span><b>{example.output.label}</b> keeps its own status and record</span>
+  </div>
+  <figcaption id={`${example.id}-caption`}>{example.caption}</figcaption>
+</figure>
+
+<style>
+  .composition { margin: 0; padding: clamp(1rem, 3vw, 1.5rem); border: 1px solid #3a304c; border-radius: .8rem; background: #09070e; }
+  .composition__status { display: inline-flex; margin: 0 0 1rem; padding: .4rem .55rem; border: 1px solid #55d7ff; color: #55d7ff; font-family: var(--font-mono); font-size: .55rem; letter-spacing: .1em; text-transform: uppercase; }
+  .composition--hypothetical .composition__status { border-style: dashed; border-color: #e1a052; color: #e1a052; }
+  .composition__diagram { display: grid; gap: 1rem; }
+  .composition__inputs { display: grid; gap: .65rem; margin: 0; padding: 0; list-style: none; }
+  .composition__inputs li { display: grid; gap: .55rem; min-width: 0; }
+  .composition__node, .composition__result { min-width: 0; padding: 1rem; border: 1px solid #3a304c; background: #0e0b16; }
+  .composition__node > span, .composition__result > span { display: block; color: #817b91; font-family: var(--font-mono); font-size: .53rem; letter-spacing: .1em; text-transform: uppercase; }
+  .composition__node a, .composition__node strong, .composition__result a, .composition__result strong { display: inline-block; margin-top: .7rem; color: #f5f1f8; font-family: var(--font-display); font-size: clamp(1.25rem, 2.8vw, 1.8rem); font-weight: 400; line-height: 1.05; text-decoration-color: #566277; text-underline-offset: .22rem; }
+  .composition__node a:hover, .composition__node a:focus-visible, .composition__result a:hover, .composition__result a:focus-visible { color: #55d7ff; }
+  .composition__node p, .composition__result p { margin: .8rem 0 0; color: #9f99aa; font-size: .73rem; line-height: 1.6; }
+  .composition__edge { display: flex; align-items: center; justify-content: center; gap: .6rem; color: #55d7ff; }
+  .composition__edge span { font-family: var(--font-mono); font-size: .5rem; letter-spacing: .08em; text-transform: uppercase; }
+  .composition__edge b { font-size: 1rem; font-weight: 400; transform: rotate(90deg); }
+  .composition__result { border-color: #55d7ff; background: radial-gradient(circle at 80% 10%, rgb(85 215 255 / .12), transparent 18rem), #0e0b16; }
+  .composition--hypothetical .composition__result { border-style: dashed; border-color: #e1a052; background: radial-gradient(circle at 80% 10%, rgb(225 160 82 / .1), transparent 18rem), #0e0b16; }
+  .composition__survival { display: grid; gap: .45rem; margin-top: 1rem; padding: .8rem; border: 1px dashed #514761; color: #928c9e; font-family: var(--font-mono); font-size: .53rem; line-height: 1.55; }
+  .composition__survival span { display: block; }
+  .composition__survival b { color: #c9c3d1; font-weight: 500; }
+  figcaption { margin-top: 1rem; color: #8f899e; font-family: var(--font-mono); font-size: .56rem; line-height: 1.55; text-transform: uppercase; }
+  @media (min-width: 54rem) {
+    .composition__diagram { grid-template-columns: minmax(0, 1fr) 1.1fr; align-items: stretch; }
+    .composition__inputs li { grid-template-columns: minmax(0, 1fr) 7.5rem; align-items: center; }
+    .composition__edge b { transform: none; }
+    .composition__result { display: flex; flex-direction: column; justify-content: center; }
+    .composition__survival { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+</style>

@@ -35,8 +35,9 @@ test("homepage gives the publication one compact architecture explanation", () =
 
   for (const phrase of [
     "How HobFarm works",
-    "One project can open several useful routes",
-    "Articles remain the editorial center",
+    "Useful work can stand alone and still connect",
+    "Articles are the largest public reading surface",
+    "The underlying system can begin anywhere",
     "EZIZE",
     "Insert coin. Get an EZ.",
     "Explore the Workshop",

@@ -2,25 +2,34 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Breadcrumbs from "@/components/global/Breadcrumbs.astro";
-import EditorialProductionFlow from "@/components/workshop/EditorialProductionFlow.astro";
+import ArticleSubjectMesh from "@/components/workshop/ArticleSubjectMesh.astro";
+import ConnectedWork from "@/components/workshop/ConnectedWork.astro";
 import HobFarmProductionDiagram from "@/components/workshop/HobFarmProductionDiagram.astro";
+import NodeCompositionDiagram from "@/components/workshop/NodeCompositionDiagram.astro";
 import ProjectNodeAnatomy from "@/components/workshop/ProjectNodeAnatomy.astro";
 import WorkshopNodeMesh from "@/components/workshop/WorkshopNodeMesh.astro";
-import ConnectedWork from "@/components/workshop/ConnectedWork.astro";
+import { getEditorialSubject } from "@/data/editorial-mesh";
 import { getMedia } from "@/data/media-registry";
 import {
+  acadiaComposition,
+  edgeVocabulary,
+  primaryComposition,
+  replaceableStructureExamples,
+} from "@/data/workshop-node-mesh";
+import {
   articlePath,
-  getArticleHero,
+  articleSubjectPath,
   getPublishedArticles,
   stripArticleExt,
 } from "@/lib/articles";
-import { imageSrcset, transformImageUrl } from "@/lib/media-transforms";
 
 const hero = getMedia("workshop.hobfarm-project.hero");
-const workshop = getMedia("workshop.graphics.hero");
+const processHero = getMedia("workshop.hobfarm-project.process");
 const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
 const canonical = "/workshop/projects/hobfarm/";
 const canonicalUrl = `${siteOrigin}${canonical}`;
+const description = "How HobFarm keeps Articles, projects, workflows, applications, media, and releases independently useful while connecting them to make new work.";
+
 const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
@@ -40,7 +49,8 @@ const structuredData = {
     {
       "@type": "WebPage",
       "@id": `${canonicalUrl}#webpage`,
-      name: "HobFarm website and publishing system",
+      name: "The HobFarm composable node mesh",
+      description,
       url: canonicalUrl,
       isPartOf: { "@id": `${siteOrigin}/#website` },
       mainEntity: { "@id": `${canonicalUrl}#project` },
@@ -48,297 +58,274 @@ const structuredData = {
     {
       "@type": "CreativeWork",
       "@id": `${canonicalUrl}#project`,
-      name: "HobFarm website and publishing system",
-      description: "An ongoing Workshop project about how HobFarm turns ideas into articles, tools, project records, and other work worth keeping.",
+      name: "The HobFarm composable node mesh",
+      description,
       url: canonicalUrl,
       image: hero.src,
       creator: { "@id": `${siteOrigin}/#organization` },
       mainEntityOfPage: { "@id": `${canonicalUrl}#webpage` },
-      isPartOf: { "@type": "CollectionPage", "@id": `${siteOrigin}/workshop/projects/#collection`, name: "HobFarm Workshop Projects", url: `${siteOrigin}/workshop/projects/` },
+      isPartOf: {
+        "@type": "CollectionPage",
+        "@id": `${siteOrigin}/workshop/projects/#collection`,
+        name: "HobFarm Workshop Projects",
+        url: `${siteOrigin}/workshop/projects/`,
+      },
       about: { "@id": `${siteOrigin}/#website` },
     },
   ],
 };
-const repositoryParts = [
-  ["Content", "Articles, project records, notes, and pages."],
-  ["Routes", "Where things live and how they connect."],
-  ["Components", "Reusable parts of the site."],
-  ["Media", "Images, video, diagrams, and project assets."],
-  ["Platform", "Builds, storage, deployment, accounts, and services."],
-  ["History", "The commits and revisions showing how it got here."],
+
+const standaloneExamples = [
+  { kind: "Project", label: "Future Carriage", href: "/workshop/future-carriage/", description: "A complete concept project with historical constraints, a vehicle family, campaign language, and its own public record." },
+  { kind: "Workflow", label: "Avatar & Host", href: "/workshop/avatar-host/", description: "A reusable character-continuity method with stable identity, role, reference, voice, and motion direction." },
+  { kind: "Application", label: "EZIZE", href: "/ezize/", description: "A private-alpha application whose recipe, probability math, pull, and Ledger make sense as one system." },
+  { kind: "Workflow", label: "Before & After", href: "/workshop/before-and-after/", description: "A source-integrity and transformation method that keeps documentary, restorative, and speculative work legible." },
+  { kind: "Editorial", label: "An Article", href: "/articles/", description: "A readable work with its own question, evidence, argument, media, metadata, and canonical route." },
+  { kind: "Subject", label: "A recurring subject", href: "/articles/topics/", description: "A useful path through two or more released Articles that share a durable concept." },
 ] as const;
-const newThingParts = [
-  { label: "Purpose", description: "What is this and why should it exist?" },
-  { label: "Route", description: "Where does it live on HobFarm?" },
-  { label: "Content", description: "Article, project record, application, gallery, video, or something else." },
-  { label: "Presentation", description: "The layout and visual treatment that fit the material." },
-  { label: "Media", description: "Images, video, diagrams, downloads, or generated assets." },
-  { label: "Platform", description: "Whatever hosting, storage, APIs, or services it actually requires." },
-  { label: "Connections", description: "What existing pages does it genuinely relate to?" },
+
+type PublishingSurface = { label: string; href?: string; job: string };
+
+const publishingSurfaces: readonly PublishingSurface[] = [
+  { label: "Articles", href: "/articles/", job: "Publish a real investigation, argument, report, release note, or reusable finding." },
+  { label: "Workshop", href: "/workshop/", job: "Keep the project, method, experiment, revision, and production record." },
+  { label: "Presents", href: "/presents/", job: "Give a recurring story, character, title, or developed world its audience-facing home." },
+  { label: "Applications", href: "/ezize/", job: "Let a tool or game operate through its own durable route." },
+  { label: "Gallery", href: "/gallery/", job: "Keep visual evidence and releases available across Editorial, Workshop, Presents, Projects, and Shop." },
+  { label: "Academy", href: "/academy/", job: "Teach a repeatable method after real work has tested it." },
+  { label: "Shop", href: "/shop/", job: "Route a verified finished deliverable to the right direct or external shelf." },
+  { label: "External distribution", job: "Handle audience, video, gallery, download, and marketplace jobs without becoming the source of truth." },
 ] as const;
-const relationshipExamples = [
-  ["Workshop → Article", "How the thing was built, followed by what the work revealed."],
-  ["Article → Article", "A subject leads naturally into another investigation."],
-  ["Project → Tool", "A method becomes something reusable."],
-  ["Project → Project", "One experiment provides the starting point for another."],
+
+const boundedExamples = [
+  "Avatar & Host can pass a character reference sheet into a Future Carriage scene. It does not pass the workflow's entire history.",
+  "Future Carriage can pass vehicle references and campaign constraints into a film scene. It does not absorb every Workshop transportation record.",
+  "An Article can reference a subject without importing every note ever attached to that subject.",
 ] as const;
-const durableStructureExamples = [
-  ["Web publishing", "Content records can survive a new layout, component, or navigation treatment."],
-  ["Applications and AI tools", "A schema, authored rule set, or working specification can survive a model or provider change."],
-  ["EZIZE", "Cake definitions, motif logic, and weights can change without rebuilding the deterministic runtime."],
-  ["Research", "Sources, questions, calculations, contradictions, and decisions remain useful when the research tools change."],
-] as const;
-const branchExamples = [
-  {
-    title: "Character development",
-    steps: ["Workshop record", "Workshop Note article when there is a story or reusable finding", "selected evidence in the article", "complete visual release on DeviantArt", "possible adoptable or product"],
-  },
-  {
-    title: "EZIZE",
-    steps: ["application and project page", "significant development articles", "selected EZ releases on DeviantArt", "optional public pulls when the application is ready"],
-  },
-  {
-    title: "Clip-art system",
-    steps: ["Workshop development", "article when the method or subject is worth publishing", "finished asset package", "Etsy listing"],
-  },
-] as const;
-const editorialArticleDefinitions = [
-  {
-    slug: "trash-mountain",
-    role: "Place / infrastructure",
-    proof: "Maps, public records, field imagery, and technical research turn an accidental Google Earth discovery into a documented study of waste infrastructure and slope failure.",
-  },
-  {
-    slug: "hey-its-that-guy",
-    role: "Media / culture / history",
-    proof: "One Tales from the Crypt episode becomes a sourced route through EC Comics, anthology television, production history, and the streets beneath Creepshow 2.",
-  },
-  {
-    slug: "the-model-is-free",
-    role: "Technology / systems",
-    proof: "Hardware prices, technical specifications, and workflow diagrams test what open AI costs an independent creator in practice.",
-  },
-] as const;
+
 const publishedArticles = await getPublishedArticles();
-const editorialArticles = editorialArticleDefinitions.map((definition) => {
-  const article = publishedArticles.find((entry) => stripArticleExt(entry.id) === definition.slug);
-  if (!article) throw new Error(`Editorial production proof article is not public: ${definition.slug}`);
-  const image = getArticleHero(article.data);
-  return {
-    ...definition,
-    article,
-    href: `${articlePath(article)}/`,
-    image,
-    imageSrc: image ? transformImageUrl(image, { width: 720, quality: 82, fit: "cover" }) : undefined,
-    imageSrcset: image && image.startsWith("https://cdn.hob.farm/")
-      ? imageSrcset(image, [360, 540, 720], { quality: 82, fit: "cover" })
-      : undefined,
-  };
-});
-const editorialCapabilities = [
-  "Research",
-  "Source handling",
-  "Editorial judgment",
-  "AI-assisted development",
-  "Verification",
-  "Multimedia production",
-  "Publishing",
-] as const;
+const articleExampleSlugs = ["gary-and-the-fork", "goth-get-boots"] as const;
+const articleExampleEntries = articleExampleSlugs.map((slug) => {
+  const article = publishedArticles.find((entry) => stripArticleExt(entry.id) === slug);
+  if (!article) throw new Error(`Living-book example Article is not public: ${slug}`);
+  if (!article.data.mesh?.subjects.includes("model-behavior")) {
+    throw new Error(`Living-book example Article does not use the model-behavior subject: ${slug}`);
+  }
+  return { title: article.data.title, href: `${articlePath(article)}/` };
+}) as [{ title: string; href: string }, { title: string; href: string }];
+const articleExampleSubject = getEditorialSubject("model-behavior");
+if (!articleExampleSubject) throw new Error("The model-behavior subject is not registered.");
 ---
 
-<BaseLayout title="HobFarm: The Website Is Part of the Work | Workshop" description="How the HobFarm website turns ideas, experiments, research, and project work into useful public records." canonical={canonical} image={hero.src} imageAlt={hero.alt} palette="blue-red" structuredData={structuredData}>
-  <div class="hobfarm-case">
-    <Wrapper variant="standard" class="breadcrumbs"><Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Workshop", href: "/workshop/" }, { label: "Projects", href: "/workshop/projects/" }, { label: "HobFarm" }]} /></Wrapper>
-    <header class="case-hero">
+<BaseLayout
+  title="Useful Work Can Stand Alone and Still Connect | HobFarm Workshop"
+  description={description}
+  canonical={canonical}
+  image={hero.src}
+  imageAlt={hero.alt}
+  palette="blue-red"
+  structuredData={structuredData}
+>
+  <div class="hobfarm-mesh-page">
+    <Wrapper variant="standard" class="breadcrumbs">
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Workshop", href: "/workshop/" }, { label: "Projects", href: "/workshop/projects/" }, { label: "HobFarm" }]} />
+    </Wrapper>
+
+    <header class="mesh-hero">
       <Wrapper variant="standard">
-        <div class="case-hero__content">
-          <div class="case-hero__copy">
-            <div><p class="eyebrow">HobFarm / Ongoing project</p><h1>The website is part of the work.</h1></div>
-            <div class="hero-summary">
-              <p>HobFarm is an independent publication and studio, but the website is also one of the things I keep building. Articles, experiments, software, images, research, and project ideas all end up changing the site in some way.</p>
-              <p>Some become permanent parts of HobFarm. Some stay small. Some get parked until there is a reason, or enough money, to keep going.</p>
-              <div class="actions"><a href="#development">See how projects develop</a><a href="/workshop/projects/">Browse every project</a></div>
-            </div>
+        <div class="mesh-hero__copy">
+          <div>
+            <p class="eyebrow">HobFarm / The website is part of the work</p>
+            <h1>Useful work can stand alone and still connect.</h1>
           </div>
-          <figure><img src={hero.src} alt={hero.alt} width={hero.width} height={hero.height} loading="eager" fetchpriority="high" decoding="async" /><figcaption>HobFarm project system / ideas move through building, reality testing, and the publishing surfaces that keep useful work connected</figcaption></figure>
+          <div class="hero-summary">
+            <p>HobFarm is built from Articles, projects, workflows, applications, characters, media, and releases that remain useful by themselves.</p>
+            <p>A real relationship can connect two nodes. Two or more nodes can also contribute selected parts to something new, while the original work stays intact and reusable.</p>
+            <div class="actions"><a href="#what-is-a-node">What counts as a node?</a><a href="#live-mesh">Open the live mesh</a></div>
+          </div>
         </div>
+        <figure class="hero-figure">
+          <img src={hero.src} alt={hero.alt} width={hero.width} height={hero.height} loading="eager" fetchpriority="high" decoding="async" />
+          <figcaption>HobFarm / independently useful work connected through selected editorial, production, and publishing relationships</figcaption>
+        </figure>
       </Wrapper>
     </header>
 
-    <section id="development" aria-labelledby="development-heading">
+    <section id="what-is-a-node" aria-labelledby="node-heading">
       <Wrapper variant="standard" class="section-space">
         <div class="section-heading">
-          <div><p class="eyebrow">How projects develop</p><h2 id="development-heading">An idea usually changes once I start building it.</h2></div>
-          <div class="section-heading__copy">
-            <p>Most things start because I want to find out whether something will work.</p>
-            <p>That might mean researching a subject, building an application, testing an image system, trying a new production method, or putting together a page. Once the thing exists, the practical questions become much clearer: what does it cost, how much maintenance does it need, who is it for, and is there a reason to keep operating it?</p>
-            <p>The answer does not have to be a finished product.</p>
+          <div><p class="eyebrow">What is a node?</p><h2 id="node-heading">A node is a bounded body of work with a reason to exist.</h2></div>
+          <div class="section-copy">
+            <p>A HobFarm node has enough identity, context, structure, or output to stand on its own and connect to other work.</p>
+            <p>A page, tag, card, image, or file does not become a node automatically. It becomes useful as a node when its identity or reusable value can support a real relationship.</p>
           </div>
         </div>
-        <div class="diagram-space"><HobFarmProductionDiagram /></div>
+        <div class="diagram-space"><ProjectNodeAnatomy /></div>
       </Wrapper>
     </section>
 
-    <section class="evidence" aria-labelledby="evidence-heading">
+    <section class="standalone" aria-labelledby="standalone-heading">
       <Wrapper variant="standard" class="section-space">
         <div class="section-heading">
-          <div><p class="eyebrow">Working record</p><h2 id="evidence-heading">The repository shows what actually changed.</h2></div>
-          <div class="section-heading__copy">
-            <p>The site is easier to understand through its history than through a diagram of what it is supposed to be.</p>
-            <p>The repository contains the articles, routes, components, layouts, project pages, experiments, integrations, and revisions that gradually turned HobFarm into what it is now. Some changes are visible immediately. Others are infrastructure that makes the next thing easier to add.</p>
+          <div><p class="eyebrow">Each node stands alone</p><h2 id="standalone-heading">Connections add capability. They do not rescue unfinished work.</h2></div>
+          <div class="section-copy">
+            <p>Each node keeps enough of its own sources, rules, decisions, and outputs to remain understandable by itself. Another project can use one of those parts without collapsing both records into the same thing.</p>
           </div>
         </div>
-        <div class="evidence-grid">
-          <figure><img src={workshop.src} alt={workshop.alt} width={workshop.width} height={workshop.height} loading="lazy" decoding="async" /><figcaption>Workshop / the working record behind the site, its media, and each revision</figcaption></figure>
-          <dl>{repositoryParts.map(([term, detail]) => <div><dt>{term}</dt><dd>{detail}</dd></div>)}</dl>
+        <div class="standalone-grid">
+          {standaloneExamples.map((example) => (
+            <article><span>{example.kind}</span><h3><a href={example.href}>{example.label}</a></h3><p>{example.description}</p></article>
+          ))}
         </div>
       </Wrapper>
     </section>
 
-    <section aria-labelledby="node-heading">
+    <section aria-labelledby="edges-heading">
       <Wrapper variant="standard" class="section-space">
         <div class="section-heading">
-          <div><p class="eyebrow">Adding something new</p><h2 id="node-heading">Every new thing has to fit somewhere.</h2></div>
-          <div class="section-heading__copy">
-            <p>A new article or project does not need its own independent system.</p>
-            <p>It needs a purpose, canonical route, content, presentation, media, platform requirements, and genuine connections to the rest of HobFarm. Shared infrastructure handles navigation, metadata, components, release, quality checks, search, RSS, and related-work routing where they apply.</p>
+          <div><p class="eyebrow">Connections have jobs</p><h2 id="edges-heading">An edge says why two nodes connect.</h2></div>
+          <div class="section-copy">
+            <p>HobFarm does not connect everything to everything. A relationship is added when an artifact, decision, subject, method, output, or destination actually travels across it.</p>
+            <p>Direction matters. A Workshop record may document a project; the project does not necessarily document the record.</p>
           </div>
         </div>
-        <div class="diagram-space"><ProjectNodeAnatomy parts={newThingParts} coreLabel="" coreTitle="New thing" caption="The site provides the structure. The project provides the reason to use it." /></div>
+        <dl class="edge-grid">
+          {edgeVocabulary.map((edge) => <div><dt>{edge.meaning}</dt><dd>{edge.description}</dd></div>)}
+        </dl>
+        <aside class="bounded-context" aria-labelledby="bounded-heading">
+          <div><p class="eyebrow">Bounded context</p><h3 id="bounded-heading">Only the useful part travels.</h3></div>
+          <ul>{boundedExamples.map((example) => <li>{example}</li>)}</ul>
+        </aside>
       </Wrapper>
     </section>
 
-    <section class="mesh-section" aria-labelledby="mesh-heading">
+    <section class="composition-section" aria-labelledby="composition-heading">
       <Wrapper variant="standard" class="section-space">
         <div class="section-heading">
-          <div><p class="eyebrow">The node mesh</p><h2 id="mesh-heading">The site is a network, not a required funnel.</h2></div>
-          <div class="section-heading__copy">
-            <p>Articles, Workshop records, Workshop Notes, Presents properties, applications, Academy lessons, Shop routes, and external platforms each have a different job.</p>
-            <p>A Workshop Note remains one canonical Article record and URL. Workshop indexes the same record so the production finding can appear in both places without duplicating RSS, search, or the page itself.</p>
-            <p>Project cores such as HobFarm, EZIZE, StyleFusion, Before &amp; After, Future Carriage, and Other Alice connect only where a useful artifact, decision, or release actually travels between them.</p>
+          <div><p class="eyebrow">Composition creates another node</p><h2 id="composition-heading">Existing work can supply the parts for a new production.</h2></div>
+          <div class="section-copy">
+            <p>Avatar &amp; Host and Future Carriage already have their own sources, rules, outputs, and routes. A campaign frame or scene can select continuity material from one and vehicle, setting, and campaign material from the other.</p>
+            <p>A video workflow could combine a character sheet with depth, camera, movement, and scene references to place the same character inside a moving environment. The permanent architecture does not depend on the current video provider.</p>
+          </div>
+        </div>
+        <div class="diagram-space"><NodeCompositionDiagram example={primaryComposition} /></div>
+      </Wrapper>
+    </section>
+
+    <section class="hypothetical" aria-labelledby="hypothetical-heading">
+      <Wrapper variant="standard" class="section-space">
+        <div class="section-heading">
+          <div><p class="eyebrow">Nodes can compose again</p><h2 id="hypothetical-heading">A third node can change the direction of an existing project.</h2></div>
+          <div class="section-copy">
+            <p>Future Carriage could combine with a future Acadia carriage-road research node to produce a speculative national-park carriage concept. That composite could later connect to Avatar &amp; Host for a campaign, fictional visitor story, film, advertisement, Article, or Workshop record.</p>
+            <p>This diagram explains reuse. It is not a factual Acadia study, a real park proposal, or evidence of involvement by Acadia or the National Park Service.</p>
+          </div>
+        </div>
+        <div class="diagram-space"><NodeCompositionDiagram example={acadiaComposition} /></div>
+      </Wrapper>
+    </section>
+
+    <section class="living-book" aria-labelledby="living-book-heading">
+      <Wrapper variant="standard" class="section-space">
+        <div class="section-heading">
+          <div><p class="eyebrow">Articles become a living book</p><h2 id="living-book-heading">Subjects create routes that chronology could not predict.</h2></div>
+          <div class="section-copy">
+            <p>An Article is an independent Editorial node. A recurring subject can connect Articles published at different times, asked through different questions, or filed in different sections.</p>
+            <p>HobFarm exposes a public subject route only after at least two released Articles share that canonical subject. A later Article can reveal a useful connection that did not exist when the earlier one was published.</p>
+          </div>
+        </div>
+        <div class="diagram-space">
+          <ArticleSubjectMesh articles={articleExampleEntries} subject={{ label: articleExampleSubject.label, href: articleSubjectPath(articleExampleSubject.id) }} />
+        </div>
+        <div class="mesh-behaviors">
+          <article><span>Knowledge and Editorial mesh</span><h3>Readers move through meaning.</h3><p>Articles connect through subjects, people, places, events, technologies, works, source artifacts, strict series, and selected related Articles.</p></article>
+          <article><span>Production and project mesh</span><h3>Existing work becomes usable again.</h3><p>Projects, workflows, applications, characters, avatars, media, visual systems, courses, products, and releases can contribute bounded parts to later work.</p></article>
+        </div>
+      </Wrapper>
+    </section>
+
+    <section aria-labelledby="surfaces-heading">
+      <Wrapper variant="standard" class="section-space">
+        <div class="section-heading">
+          <div><p class="eyebrow">Nodes publish in different forms</p><h2 id="surfaces-heading">Public surfaces are destinations, not steps in a funnel.</h2></div>
+          <div class="section-copy">
+            <p>A research question may need only an Article. A character workflow may need a Workshop record and an external visual release. A method may become an application and a Workshop Note. A recurring character world may belong in Presents.</p>
+            <p>No project has to become an Article, video, course, product, and social post. Each destination needs a real job.</p>
+          </div>
+        </div>
+        <div class="surface-grid">
+          {publishingSurfaces.map((surface) => (
+            <article><h3>{surface.href ? <a href={surface.href}>{surface.label}</a> : surface.label}</h3><p>{surface.job}</p></article>
+          ))}
+        </div>
+      </Wrapper>
+    </section>
+
+    <section class="replaceable" aria-labelledby="replaceable-heading">
+      <Wrapper variant="standard" class="section-space">
+        <div class="section-heading">
+          <div><p class="eyebrow">Tools can change</p><h2 id="replaceable-heading">The durable core should survive the next provider.</h2></div>
+          <div class="section-copy">
+            <p>Sources, identity, authored rules, constraints, expected inputs and outputs, validation, and the production record belong to the node. Models, renderers, APIs, editing tools, CMS components, and hosting services are replaceable implementation details.</p>
+          </div>
+        </div>
+        <div class="replacement-grid">
+          {replaceableStructureExamples.map((example) => (
+            <article><h3>{example.label}</h3><dl><div><dt>Stable core</dt><dd>{example.stable}</dd></div><div><dt>Replaceable</dt><dd>{example.replaceable}</dd></div></dl></article>
+          ))}
+        </div>
+      </Wrapper>
+    </section>
+
+    <section id="development" class="development" aria-labelledby="development-heading">
+      <Wrapper variant="standard" class="section-space">
+        <div class="section-heading">
+          <div><p class="eyebrow">How one node develops</p><h2 id="development-heading">Building exposes the real cost and the next useful decision.</h2></div>
+          <div class="section-copy">
+            <p>The old HobFarm lifecycle still describes how one node grows. An idea becomes concrete enough to test; code, production time, APIs, hosting, maintenance, and distribution become visible; then the work can continue, simplify, publish what it learned, or wait.</p>
+            <p>The repository keeps the sources, routes, components, media, platform decisions, revisions, and failures that explain what changed. The first version is evidence for the next one.</p>
+          </div>
+        </div>
+        <div class="process-layout">
+          <figure class="process-figure"><img src={processHero.src} alt={processHero.alt} width={processHero.width} height={processHero.height} loading="lazy" decoding="async" /><figcaption>Ideas go in. What matters stays. This diagram describes one node's development loop rather than the architecture of the whole mesh.</figcaption></figure>
+          <HobFarmProductionDiagram />
+        </div>
+      </Wrapper>
+    </section>
+
+    <section id="live-mesh" class="live-mesh" aria-labelledby="live-mesh-heading">
+      <Wrapper variant="standard" class="section-space">
+        <div class="section-heading">
+          <div><p class="eyebrow">The live HobFarm mesh</p><h2 id="live-mesh-heading">Current nodes keep their own routes and selected relationships.</h2></div>
+          <div class="section-copy">
+            <p>This curated view shows public HobFarm work that already has enough identity to stand alone. It does not register every URL, tag, file, image, or idea.</p>
+            <p>Article relationships continue to live in the Editorial Mesh and its public graph. The production view below stays small enough to maintain by hand.</p>
           </div>
         </div>
         <div class="diagram-space"><WorkshopNodeMesh /></div>
       </Wrapper>
     </section>
 
-    <section class="durable-structure" aria-labelledby="durable-heading">
-      <Wrapper variant="standard" class="section-space">
-        <div class="section-heading">
-          <div><p class="eyebrow">Persistent structure, replaceable tools</p><h2 id="durable-heading">Keep the useful record when the implementation changes.</h2></div>
-          <div class="section-heading__copy">
-            <p>The lasting part is the source, the rules, and the decisions another tool needs. Layouts, providers, models, and software can change without erasing that record.</p>
-          </div>
-        </div>
-        <dl class="structure-grid">{durableStructureExamples.map(([label, detail]) => <div><dt>{label}</dt><dd>{detail}</dd></div>)}</dl>
-      </Wrapper>
-    </section>
-
-    <section class="canonical-branches" aria-labelledby="canonical-heading">
-      <Wrapper variant="standard" class="section-space">
-        <div class="section-heading">
-          <div><p class="eyebrow">One canonical object, several connected routes</p><h2 id="canonical-heading">Use the branches that earn a place.</h2></div>
-          <div class="section-heading__copy">
-            <p>None of these branches is mandatory. HobFarm keeps the reason, source, story, method, and canonical record. External platforms handle the audience, gallery, video, marketplace, or storefront job they are better suited to do.</p>
-          </div>
-        </div>
-        <div class="branch-grid">
-          {branchExamples.map((example) => <article><h3>{example.title}</h3><ol>{example.steps.map((step: string) => <li>{step}</li>)}</ol></article>)}
-        </div>
-      </Wrapper>
-    </section>
-
-    <section class="editorial-production" aria-labelledby="editorial-production-heading">
-      <Wrapper variant="standard" class="section-space">
-        <div class="section-heading">
-          <div><p class="eyebrow">Editorial production</p><h2 id="editorial-production-heading">An article is another production system.</h2></div>
-          <div class="section-heading__copy">
-            <p>A HobFarm article can begin with a photograph, an RSS item, an old newspaper, a place, a memory, a film, an object, or a question.</p>
-            <p>The first subject is not always the finished story. Research decides what the story becomes.</p>
-          </div>
-        </div>
-
-        <div class="diagram-space"><EditorialProductionFlow /></div>
-
-        <aside class="editorial-assistance" aria-labelledby="editorial-assistance-heading">
-          <div>
-            <p class="editorial-label">AI-assisted development</p>
-            <h3 id="editorial-assistance-heading">Current models accelerate parts of an existing method.</h3>
-          </div>
-          <div class="editorial-assistance__copy">
-            <p>I use language and media models to compare technical explanations, translate documents, locate missing questions, test calculations, troubleshoot code, examine large source sets, test article structure, revise drafts, prepare working specifications, and produce or test media.</p>
-            <p>The persistent record is the source material, questions, constraints, calculations, evidence, contradictory material, decisions, verification, editorial judgment, and final production record. Model output is not evidence merely because a model produced it, and no model is the authority behind an article or project.</p>
-          </div>
-          <ol class="capability-chain" aria-label="Editorial production capabilities">
-            {editorialCapabilities.map((capability) => <li>{capability}</li>)}
-          </ol>
-        </aside>
-
-        <div class="editorial-proof-heading">
-          <div>
-            <p class="editorial-label">Published evidence</p>
-            <h3>Three routes through the same production loop.</h3>
-          </div>
-          <a href="/articles/">Browse the full Articles archive &rarr;</a>
-        </div>
-        <div class="editorial-examples">
-          {editorialArticles.map(({ article, href, role, proof, image, imageSrc, imageSrcset }) => (
-            <article class="editorial-example">
-              <a href={href} aria-label={`Read ${article.data.title}`}>
-                {image && <img src={imageSrc} srcset={imageSrcset} sizes="(min-width: 64rem) 33vw, (min-width: 42rem) 50vw, 100vw" alt={article.data.heroAlt || article.data.title} width="720" height="405" loading="lazy" decoding="async" />}
-                <div class="editorial-example__body">
-                  <p class="editorial-example__role">{role}</p>
-                  <h3>{article.data.title}</h3>
-                  <p>{proof}</p>
-                  <span>Read article &rarr;</span>
-                </div>
-              </a>
-            </article>
-          ))}
-        </div>
-      </Wrapper>
-    </section>
-
-    <section aria-labelledby="decisions-heading">
-      <Wrapper variant="standard" class="section-space">
-        <div class="section-heading">
-          <div><p class="eyebrow">Revision is the work</p><h2 id="decisions-heading">The first version tells me what to change next.</h2></div>
-          <div class="section-heading__copy">
-            <p>A page usually starts as an idea about how something should work. Once it is real, the problems become visible.</p>
-            <p>The layout is wrong. Something is confusing. A feature costs more than expected. An API behaves differently from the documentation. The page needs another image. The idea turns out to be better as an article than an application.</p>
-            <p>So the site develops through repeated inspection and revision.</p>
-          </div>
-        </div>
-        <ol class="decision-grid"><li><span>01</span><strong>Make</strong><p>Get a real version on the screen.</p></li><li><span>02</span><strong>Use</strong><p>Look at the actual page, tool, or workflow instead of the plan.</p></li><li><span>03</span><strong>Change</strong><p>Fix what became obvious once it existed.</p></li><li><span>04</span><strong>Publish</strong><p>Put the useful version on the site.</p></li></ol>
-      </Wrapper>
-    </section>
-
-    <section aria-labelledby="connections-heading">
-      <Wrapper variant="standard" class="section-space">
-        <div class="section-heading">
-          <div><p class="eyebrow">Connected work</p><h2 id="connections-heading">Things connect when there is a real relationship.</h2></div>
-          <div class="section-heading__copy">
-            <p>An article can lead to a Workshop project because it explains how something was made. A project can lead to another article because the work uncovered a different subject. A tool can sit beside the research that produced it.</p>
-            <p>Those connections are more useful than forcing everything into a series or category. The site can grow as a network of related work while each page still makes sense on its own.</p>
-          </div>
-        </div>
-        <dl class="relationship-grid">{relationshipExamples.map(([relationship, detail]) => <div><dt>{relationship}</dt><dd>{detail}</dd></div>)}</dl>
-      </Wrapper>
-    </section>
-
-    <Wrapper variant="standard" class="connected-space"><ConnectedWork eyebrow="Open related work" title="See where this project connects." links={[{ relationship: "Method", label: "Workshop overview", href: "/workshop/" }, { relationship: "Current application", label: "EZIZE", href: "/ezize/" }, { relationship: "Technical application", label: "StyleFusion", href: "/workshop/stylefusion/" }, { relationship: "Editorial output", label: "Articles", href: "/articles/" }, { relationship: "Ongoing release record", label: "Changelog", href: "/changelog/" }]} /></Wrapper>
+    <Wrapper variant="standard" class="connected-space">
+      <ConnectedWork eyebrow="Open related nodes" title="Follow a relationship with a job." links={[
+        { relationship: "Documents production", label: "Workshop", href: "/workshop/" },
+        { relationship: "Contributes continuity", label: "Avatar & Host", href: "/workshop/avatar-host/" },
+        { relationship: "Contributes a vehicle system", label: "Future Carriage", href: "/workshop/future-carriage/" },
+        { relationship: "Powers a current application", label: "EZIZE", href: "/ezize/" },
+        { relationship: "Connects the living book", label: "Article subjects", href: "/articles/topics/" },
+      ]} />
+    </Wrapper>
   </div>
 </BaseLayout>
 
 <style>
-  .hobfarm-case { background: #07060b; color: #aaa5b8; }
+  .hobfarm-mesh-page { background: #07060b; color: #aaa5b8; }
   .breadcrumbs { padding-top: 1.25rem; }
-  .case-hero { padding-block: clamp(3.5rem, 8vw, 7rem); border-bottom: 1px solid #2c2440; background: radial-gradient(circle at 16% 20%, rgb(85 215 255 / .13), transparent 30rem), #07060b; }
-  .case-hero__content { display: grid; gap: clamp(2rem, 5vw, 4rem); }
-  .case-hero__copy { display: grid; gap: 2rem; align-items: end; }
+  .mesh-hero { padding-block: clamp(3.5rem, 8vw, 7rem); border-bottom: 1px solid #2c2440; background: radial-gradient(circle at 16% 20%, rgb(85 215 255 / .13), transparent 30rem), radial-gradient(circle at 92% 28%, rgb(208 74 147 / .08), transparent 34rem), #07060b; }
+  .mesh-hero__copy { display: grid; gap: 2rem; align-items: end; }
   .eyebrow { margin: 0; color: #55d7ff; font-family: var(--font-mono); font-size: .61rem; letter-spacing: .15em; text-transform: uppercase; }
   h1, h2 { color: #fff; font-family: var(--font-display); font-weight: 300; letter-spacing: -.055em; text-wrap: balance; }
-  h1 { margin: 1rem 0 0; font-size: clamp(3.4rem, 8vw, 7rem); line-height: .88; }
+  h1 { max-width: 64rem; margin: 1rem 0 0; font-size: clamp(3.4rem, 8vw, 7rem); line-height: .88; }
   h2 { margin: .8rem 0 0; font-size: clamp(2.5rem, 6vw, 5rem); line-height: .94; }
   .hero-summary { max-width: 46rem; }
   .hero-summary p { margin: 0; color: #c7c2cf; font-size: clamp(1rem, 2vw, 1.16rem); line-height: 1.75; }
@@ -346,59 +333,56 @@ const editorialCapabilities = [
   .actions { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1.5rem; }
   .actions a { padding: .7rem .85rem; border: 1px solid #55d7ff; color: #eeeaf3; font-family: var(--font-mono); font-size: .59rem; text-decoration: none; text-transform: uppercase; }
   .actions a:first-child { background: #55d7ff; color: #07060b; }
-  figure { margin: 0; overflow: hidden; border: 1px solid #3a304c; background: #09070e; }
-  figure img { display: block; width: 100%; height: auto; }
-  figcaption { padding: .7rem; color: #8f899e; font-family: var(--font-mono); font-size: .55rem; line-height: 1.5; text-transform: uppercase; }
+  .hero-figure, .process-figure { margin: clamp(2rem, 5vw, 4rem) 0 0; overflow: hidden; border: 1px solid #3a304c; border-radius: .8rem; background: #09070e; }
+  .hero-figure img, .process-figure img { display: block; width: 100%; height: auto; }
+  .hero-figure figcaption, .process-figure figcaption { padding: .7rem; color: #8f899e; font-family: var(--font-mono); font-size: .55rem; line-height: 1.5; text-transform: uppercase; }
   section { border-bottom: 1px solid #2c2440; }
-  .evidence, .durable-structure, .canonical-branches { background: #0a0810; }
+  .standalone, .composition-section, .living-book, .replaceable, .live-mesh { background: #0a0810; }
   :global(.section-space) { padding-block: clamp(4rem, 8vw, 7rem); }
   .section-heading { display: grid; gap: 1.4rem; }
-  .section-heading__copy { max-width: 45rem; }
-  .section-heading__copy p { margin: 0; line-height: 1.75; }
-  .section-heading__copy p + p { margin-top: .8rem; }
-  .diagram-space, .evidence-grid, .decision-grid, .relationship-grid, .structure-grid, .branch-grid { margin-top: clamp(2rem, 4vw, 3.5rem); }
-  .evidence-grid { display: grid; gap: 1rem; align-items: start; }
-  dl { display: grid; gap: .55rem; margin: 0; }
-  dl div { padding: .85rem; border: 1px solid #342b45; background: #0d0a13; }
-  dt { color: #55d7ff; font-family: var(--font-mono); font-size: .54rem; letter-spacing: .08em; text-transform: uppercase; }
-  dd { margin: .4rem 0 0; color: #d0cbd6; font-size: .75rem; line-height: 1.55; }
-  .structure-grid, .branch-grid { display: grid; gap: .7rem; }
-  .branch-grid article { min-width: 0; padding: 1.1rem; border: 1px solid #342b45; background: #0d0a13; }
-  .branch-grid h3 { margin: 0; color: #fff; font-family: var(--font-display); font-size: 1.45rem; font-weight: 400; }
-  .branch-grid ol { display: grid; gap: .55rem; margin: 1rem 0 0; padding: 0; list-style: none; }
-  .branch-grid li { position: relative; padding-left: 1.25rem; color: #aaa4b3; font-size: .75rem; line-height: 1.55; }
-  .branch-grid li::before { position: absolute; left: 0; color: #55d7ff; content: "→"; }
-  .decision-grid { display: grid; gap: .65rem; padding: 0; list-style: none; }
-  .decision-grid li { min-height: 12rem; padding: 1rem; border: 1px solid #342b45; background: #0d0a13; }
-  .decision-grid span { color: #d04a93; font-family: var(--font-mono); font-size: .58rem; }
-  .decision-grid strong { display: block; margin-top: 2.5rem; color: #fff; font-family: var(--font-display); font-size: 1.45rem; font-weight: 400; }
-  .decision-grid p { margin: .7rem 0 0; color: #9f99aa; font-size: .73rem; line-height: 1.6; }
-  .editorial-production { background: #0a0810; }
-  .editorial-assistance { display: grid; gap: 1.25rem; margin-top: 1rem; padding: clamp(1.25rem, 3vw, 2rem); border: 1px solid #3a304c; background: #0d0a13; }
-  .editorial-label { margin: 0; color: #d04a93; font-family: var(--font-mono); font-size: .57rem; letter-spacing: .12em; text-transform: uppercase; }
-  .editorial-assistance h3, .editorial-proof-heading h3, .editorial-example h3 { color: #f4f0f6; font-family: var(--font-display); font-weight: 400; }
-  .editorial-assistance h3 { max-width: 33rem; margin: .7rem 0 0; font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.08; }
-  .editorial-assistance__copy p { margin: 0; color: #bdb7c6; font-size: .86rem; line-height: 1.7; }
-  .editorial-assistance__copy p + p { margin-top: .75rem; }
-  .capability-chain { display: flex; flex-wrap: wrap; gap: .4rem .65rem; grid-column: 1 / -1; margin: .25rem 0 0; padding: .8rem 0 0; border-top: 1px solid #342b45; list-style: none; }
-  .capability-chain li { display: flex; align-items: center; gap: .65rem; color: #b8b2c1; font-family: var(--font-mono); font-size: .55rem; letter-spacing: .06em; text-transform: uppercase; }
-  .capability-chain li:not(:last-child)::after { color: #55d7ff; content: "→"; }
-  .editorial-proof-heading { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1rem; margin-top: clamp(2.5rem, 5vw, 4rem); }
-  .editorial-proof-heading h3 { margin: .55rem 0 0; font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.1; }
-  .editorial-proof-heading a { color: #55d7ff; font-family: var(--font-mono); font-size: .57rem; letter-spacing: .06em; text-decoration: none; text-transform: uppercase; }
-  .editorial-proof-heading a:hover { color: #fff; }
-  .editorial-examples { display: grid; gap: .8rem; margin-top: 1.25rem; }
-  .editorial-example { min-width: 0; overflow: hidden; border: 1px solid #342b45; background: #0d0a13; transition: border-color 180ms ease, transform 180ms ease; }
-  .editorial-example:hover { border-color: #55d7ff; transform: translateY(-2px); }
-  .editorial-example > a { display: block; height: 100%; color: inherit; text-decoration: none; }
-  .editorial-example img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
-  .editorial-example__body { display: flex; min-height: 13rem; flex-direction: column; padding: 1rem; }
-  .editorial-example__role { margin: 0; color: #55d7ff; font-family: var(--font-mono); font-size: .54rem; letter-spacing: .08em; text-transform: uppercase; }
-  .editorial-example h3 { margin: .7rem 0 0; font-size: 1.25rem; line-height: 1.12; }
-  .editorial-example__body > p:not(.editorial-example__role) { margin: .8rem 0 0; color: #a9a3b2; font-size: .72rem; line-height: 1.6; }
-  .editorial-example span { margin-top: auto; padding-top: 1rem; color: #e8e3ec; font-family: var(--font-mono); font-size: .55rem; text-transform: uppercase; }
+  .section-copy { max-width: 45rem; }
+  .section-copy p { margin: 0; line-height: 1.75; }
+  .section-copy p + p { margin-top: .8rem; }
+  .diagram-space, .standalone-grid, .edge-grid, .bounded-context, .mesh-behaviors, .surface-grid, .replacement-grid, .process-layout { margin-top: clamp(2rem, 4vw, 3.5rem); }
+  .standalone-grid, .surface-grid, .replacement-grid, .mesh-behaviors { display: grid; gap: .7rem; }
+  .standalone-grid article, .surface-grid article, .replacement-grid article, .mesh-behaviors article { min-width: 0; padding: 1rem; border: 1px solid #342b45; background: #0d0a13; }
+  .standalone-grid span, .mesh-behaviors span { color: #55d7ff; font-family: var(--font-mono); font-size: .53rem; letter-spacing: .09em; text-transform: uppercase; }
+  .standalone-grid h3, .surface-grid h3, .replacement-grid h3, .mesh-behaviors h3, .bounded-context h3 { margin: .7rem 0 0; color: #f4f0f6; font-family: var(--font-display); font-size: 1.4rem; font-weight: 400; line-height: 1.08; }
+  .standalone-grid h3 a, .surface-grid h3 a { color: inherit; text-decoration-color: #566277; text-underline-offset: .2rem; }
+  .standalone-grid h3 a:hover, .standalone-grid h3 a:focus-visible, .surface-grid h3 a:hover, .surface-grid h3 a:focus-visible { color: #55d7ff; }
+  .standalone-grid p, .surface-grid p, .mesh-behaviors p { margin: .8rem 0 0; color: #9f99aa; font-size: .74rem; line-height: 1.6; }
+  .edge-grid { display: grid; gap: .55rem; }
+  .edge-grid div { padding: .85rem; border: 1px solid #342b45; background: #0d0a13; }
+  .edge-grid dt, .replacement-grid dt { color: #55d7ff; font-family: var(--font-mono); font-size: .53rem; letter-spacing: .07em; text-transform: uppercase; }
+  .edge-grid dd, .replacement-grid dd { margin: .4rem 0 0; color: #c5c0cc; font-size: .72rem; line-height: 1.55; }
+  .bounded-context { display: grid; gap: 1.25rem; padding: clamp(1.1rem, 3vw, 1.6rem); border: 1px solid #3a304c; border-left: 3px solid #d04a93; background: #0d0a13; }
+  .bounded-context ul { display: grid; gap: .65rem; margin: 0; padding-left: 1.15rem; }
+  .bounded-context li { color: #aaa4b4; font-size: .76rem; line-height: 1.6; }
+  .hypothetical { background: repeating-linear-gradient(135deg, rgb(225 160 82 / .022) 0 1px, transparent 1px 12px), #07060b; }
+  .mesh-behaviors article:first-child { border-top: 2px solid #d04a93; }
+  .mesh-behaviors article:last-child { border-top: 2px solid #55d7ff; }
+  .replacement-grid article { padding: 1.1rem; }
+  .replacement-grid h3 { margin: 0; }
+  .replacement-grid dl { display: grid; gap: .7rem; margin: 1rem 0 0; }
+  .replacement-grid dl div { padding-top: .7rem; border-top: 1px solid #342b45; }
+  .process-layout { display: grid; gap: 1rem; align-items: start; }
+  .process-figure { margin: 0; }
   :global(.connected-space) { padding-block: clamp(3rem, 6vw, 5rem); }
-  @media (min-width: 42rem) { .editorial-examples { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (min-width: 48rem) { .evidence-grid { grid-template-columns: minmax(0, 1.15fr) minmax(20rem, .85fr); } .decision-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } .relationship-grid, .structure-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (min-width: 64rem) { .case-hero__copy { grid-template-columns: minmax(0, .9fr) minmax(26rem, 1.1fr); } .section-heading { grid-template-columns: minmax(0, 1.15fr) minmax(24rem, .65fr); align-items: end; } .editorial-assistance { grid-template-columns: minmax(0, .8fr) minmax(28rem, 1.2fr); } .editorial-examples, .branch-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (min-width: 42rem) {
+    .standalone-grid, .surface-grid, .replacement-grid, .mesh-behaviors { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .edge-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 64rem) {
+    .mesh-hero__copy { grid-template-columns: minmax(0, .95fr) minmax(26rem, .75fr); }
+    .section-heading { grid-template-columns: minmax(0, 1.15fr) minmax(24rem, .65fr); align-items: end; }
+    .standalone-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .surface-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .replacement-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .edge-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .bounded-context { grid-template-columns: minmax(0, .65fr) minmax(0, 1.35fr); }
+    .process-layout { grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); }
+  }
+  @media (max-width: 30rem) {
+    .actions a { width: 100%; text-align: center; }
+  }
 </style>

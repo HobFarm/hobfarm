@@ -1,7 +1,12 @@
 import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import test from "node:test";
-import { publicHobFarmEdges, publicHobFarmNodes } from "../src/data/workshop-node-mesh.ts";
+import {
+  acadiaComposition,
+  primaryComposition,
+  publicHobFarmEdges,
+  publicHobFarmNodes,
+} from "../src/data/workshop-node-mesh.ts";
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
 
@@ -22,24 +27,25 @@ test("Workshop Projects keeps eight current records and one historical EZIZE ori
   assert.match(historical, /status: "Project origin"/);
 });
 
-test("the public mesh stays typed, static, and tied to real routes", () => {
+test("the public mesh stays typed, static, semantic, and tied to real routes", () => {
   const mesh = read("src/data/workshop-node-mesh.ts");
   const diagram = read("src/components/workshop/WorkshopNodeMesh.astro");
 
-  for (const kind of ["surface", "project", "infrastructure", "destination", "record"]) {
+  for (const kind of ["surface", "project", "workflow", "application", "subject", "composite", "infrastructure", "destination", "record"]) {
     assert.match(mesh, new RegExp(`"${kind}"`));
   }
-  for (const href of ["/workshop/projects/hobfarm/", "/ezize/", "/workshop/stylefusion/", "/workshop/before-and-after/", "/workshop/future-carriage/", "/presents/other-alice-adventures/world-guide/"]) {
+  for (const href of ["/workshop/projects/hobfarm/", "/ezize/", "/workshop/stylefusion/", "/workshop/before-and-after/", "/workshop/future-carriage/", "/workshop/avatar-host/", "/presents/other-alice-adventures/world-guide/"]) {
     assert.match(mesh, new RegExp(href.replaceAll("/", "\\/")));
   }
-  assert.match(mesh, /id: "applications", label: "Applications", kind: "surface"/);
-  assert.match(diagram, /<svg/);
+  assert.match(mesh, /id: "ezize", projectId: "ezize", label: "EZIZE", kind: "application"/);
+  assert.match(diagram, /Curated HobFarm nodes/);
+  assert.match(diagram, /Relationships with jobs/);
   assert.match(diagram, /from\.href \? <a href=\{from\.href\}/);
   assert.match(diagram, /to\.href \? <a href=\{to\.href\}/);
-  assert.doesNotMatch(diagram, /canvas|WebGL|three|force-graph/i);
+  assert.doesNotMatch(diagram, /canvas|WebGL|three|force-graph|<svg/i);
 });
 
-test("public mesh edges resolve and project nodes stay aligned with the project registry", () => {
+test("public mesh edges resolve and project-backed nodes align with the project registry", () => {
   const nodeById = new Map(publicHobFarmNodes.map((node) => [node.id, node]));
   const projectSource = read("src/data/workshop-projects.ts");
   const projectById = new Map(
@@ -53,7 +59,7 @@ test("public mesh edges resolve and project nodes stay aligned with the project 
       assert.match(node.href, /^\/(?!account|api\/|login)/);
       assert.ok(node.href.endsWith("/"), `${node.id} must use a canonical trailing slash.`);
     }
-    if (node.kind === "project") {
+    if (node.projectId) {
       const project = projectById.get(node.projectId);
       assert.ok(project, `${node.id} must map to a Workshop project record.`);
       assert.equal(node.href, project, `${node.id} must use the project registry destination.`);
@@ -81,37 +87,53 @@ test("project and article relationships use established structured-data semantic
   assert.doesNotMatch(`${projects}\n${hobfarm}\n${articleLayout}`, /hobfarmNode|meshConnection|relatedBecause|aiRelationship/);
 });
 
-test("HobFarm project follows the working loop described by the project record", () => {
+test("HobFarm project centers independent nodes and keeps the working loop subordinate", () => {
   const page = read("src/pages/workshop/projects/hobfarm/index.astro");
   const diagram = read("src/components/workshop/HobFarmProductionDiagram.astro");
-  const editorialFlow = read("src/components/workshop/EditorialProductionFlow.astro");
-  const combined = `${page}\n${diagram}\n${editorialFlow}`;
+  const anatomy = read("src/components/workshop/ProjectNodeAnatomy.astro");
+  const combined = `${page}\n${diagram}\n${anatomy}`;
 
-  for (const phrase of ["How projects develop", "Working record", "Adding something new", "Editorial production", "Revision is the work", "Connected work", "Find the cost", "Put it somewhere"]) {
+  for (const phrase of ["Useful work can stand alone and still connect", "What is a node?", "Each node stands alone", "Connections have jobs", "Composition creates another node", "Nodes can compose again", "Articles become a living book", "Tools can change", "How one node develops", "Find the cost", "Put it somewhere"]) {
     assert.match(combined, new RegExp(phrase));
   }
-  assert.match(combined, /The repository shows what actually changed/i);
+  assert.ok(page.indexOf("Composition creates another node") < page.indexOf("How one node develops"));
+  assert.match(page, /workshop\.hobfarm-project\.process/);
   assert.match(combined, /does not have to become a business for the work to be useful/i);
 });
 
-test("HobFarm project documents editorial production with public proof", () => {
+test("composition examples preserve parent nodes and label hypothetical work", () => {
   const page = read("src/pages/workshop/projects/hobfarm/index.astro");
-  const editorialFlow = read("src/components/workshop/EditorialProductionFlow.astro");
+  const diagram = read("src/components/workshop/NodeCompositionDiagram.astro");
 
-  for (const step of ["Trigger", "Research question", "Source collection", "Claim checking", "Structure", "Draft and revision", "Visual evidence", "Publish"]) {
-    assert.match(editorialFlow, new RegExp(step));
+  assert.equal(primaryComposition.status, "working");
+  assert.equal(acadiaComposition.status, "hypothetical");
+  assert.equal(primaryComposition.inputs.length, 2);
+  assert.equal(acadiaComposition.inputs.length, 2);
+  for (const example of [primaryComposition, acadiaComposition]) {
+    for (const input of example.inputs) assert.ok(input.contribution.length > 20);
   }
-  assert.match(page, /Current models accelerate parts of an existing method/);
-  assert.match(page, /Model output is not evidence merely because a model produced it/);
-  assert.match(page, /A Workshop Note remains one canonical Article record and URL/);
-  assert.match(page, /The site is a network, not a required funnel/);
+  assert.match(diagram, /remains independently reusable/);
+  assert.match(diagram, /contributes to/);
+  assert.match(page, /not a factual Acadia study/);
+  assert.match(page, /National Park Service/);
+  assert.doesNotMatch(diagram, /canvas|WebGL|three|force-graph|<svg/i);
+});
+
+test("HobFarm project uses released Articles for the living-book example", () => {
+  const page = read("src/pages/workshop/projects/hobfarm/index.astro");
+  const diagram = read("src/components/workshop/ArticleSubjectMesh.astro");
+  const subjectRoute = read("src/pages/articles/topics/[subject].astro");
+
   assert.match(page, /getPublishedArticles/);
-  for (const slug of ["trash-mountain", "hey-its-that-guy", "the-model-is-free"]) {
-    assert.match(page, new RegExp(`slug: "${slug}"`));
+  assert.match(page, /model-behavior/);
+  for (const slug of ["gary-and-the-fork", "goth-get-boots"]) {
+    assert.match(page, new RegExp(`"${slug}"`));
   }
-  assert.equal((page.match(/slug: "/g) ?? []).length, 3);
-  assert.match(page, /href="\/articles\/"/);
-  assert.doesNotMatch(page, /private chat|raw prompt/i);
+  assert.match(diagram, /Released Article/);
+  assert.match(diagram, /Recurring subject/);
+  assert.match(diagram, /Each Article remains readable on its own/);
+  assert.match(subjectRoute, /subject\.count >= 2/);
+  assert.doesNotMatch(diagram, /canvas|WebGL|three|force-graph|<svg/i);
 });
 
 test("Presents Funnies overview uses a dark panel while the canonical Funnies page remains independent", () => {

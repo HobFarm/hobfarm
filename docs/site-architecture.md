@@ -20,21 +20,26 @@ Support, Customer Help, contact, legal, Gallery, Projects, and Grimoire remain s
 Articles remain HobFarm's dominant editorial surface. Recurring properties, Workshop records, applications, courses, products, and other published objects keep their own canonical routes when those routes fit the work better.
 
 ```text
-source, question, or project core
-        |
-        +-- article
-        +-- Workshop record
-        +-- application
-        +-- Presents property
-        +-- video or media release
-        +-- Academy lesson
-        +-- product and Shop route
-        +-- external distribution
+independent node A -- meaningful relationship --> independent node B
 
-Any useful result may become the source of another project.
+independent node A ----+
+                       +--> new composite node C
+independent node B ----+
+
+A, B, and C remain independently useful.
 ```
 
-This is a set of available connections, not a fixed sequence. Each release has one primary canonical object. Related routes point to that object or add distinct context instead of duplicating it. External platforms handle reach, galleries, video, downloads, or marketplace sales while HobFarm keeps the durable source, story, method, and project record.
+A node is a bounded body of work with enough identity, context, structure, or output to stand on its own. Articles, recurring subjects, Workshop projects, workflows, applications, characters, media objects, Presents properties, courses, products, releases, and composite projects may become nodes when they have durable identity or reusable value. A URL, tag, file, or card is not automatically a node.
+
+Each edge has a job such as `references`, `documents`, `uses`, `contributes-to`, `produces`, `published-as`, `distributed-to`, `taught-as`, `sold-as`, or `powers`. Edges move selected artifacts and decisions between bounded contexts. They do not merge every source and record into one shared project, and they are not assumed to be bidirectional.
+
+Composition creates another bounded node without consuming its inputs. Avatar & Host can supply a character reference and continuity rules to a Future Carriage scene while Future Carriage supplies vehicle references, environments, and campaign constraints. Both original nodes keep their own routes, records, and future uses.
+
+The mesh has two overlapping behaviors. Articles and recurring subjects form a living Editorial book whose relationships may become visible after publication. Workshop projects, workflows, applications, characters, media, courses, products, and releases form a composable production mesh. These are not separate taxonomies or new top-level navigation systems.
+
+Articles, Workshop, Presents, applications, Gallery, Academy, Shop, and external platforms are optional publishing surfaces rather than sequential stages. Each release has one primary canonical object. Related routes add distinct context instead of duplicating it. External platforms handle reach, galleries, video, downloads, or marketplace sales while HobFarm keeps the durable source, story, method, and project record.
+
+Stable sources, identity, authored rules, constraints, representations, validation, and production records should survive changes in models, renderers, APIs, CMS components, layouts, hosting, and other implementation tools. Public mesh examples remain curated; the architecture does not require a graph database or universal node registry.
 
 Workshop Notes use the existing Articles collection. A note carries `format: workshop-note` and the current Workshop indexing metadata, remains in the Articles archive, and keeps its canonical article URL. The Workshop Notes archive and feed index that same record; they do not create a second copy or URL.
 

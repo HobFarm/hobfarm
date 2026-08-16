@@ -21,6 +21,7 @@
 /.playwright-mcp/
 hf-*.png
 hobfarm-*.png
+!/public/media/workshop/hobfarm/hobfarm-node-mesh-hero.png
 homepage-*.png
 /reports/other-alice-cast-foundation/after/
 

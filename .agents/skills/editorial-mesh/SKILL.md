@@ -46,6 +46,14 @@ The article may connect to any number of:
 
 A music connection does not make every article a Music article. A film connection does not make every article a 3DM entry. Placement and connection are different jobs.
 
+## Article nodes and the living book
+
+Each released Article is an independently readable node with its own question, evidence, argument, media, metadata, and canonical route. Relationships add another route through the work; they do not make an incomplete Article whole.
+
+A recurring subject may become a connective node when it has durable meaning and meets the current public-route threshold. It can connect Articles published at different times, filed in different sections, or entered through different questions. A later Article may reveal a relationship that was not visible when an earlier Article was published, so chronology is one useful route through the archive rather than its required outline.
+
+Keep Article and subject contexts bounded. Referencing a subject does not import every note, source, entity, or Article attached to it. Preserve the current Editorial Mesh registry, public subject threshold, explicit related-Article overrides, and evidence boundaries instead of building a second graph format.
+
 ## Metadata dimensions
 
 Treat these dimensions separately.

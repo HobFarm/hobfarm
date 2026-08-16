@@ -75,6 +75,17 @@ Use one primary canonical object for each release, then connect related routes i
 
 The node mesh is a network, not a required funnel. A source, question, or project may produce any useful combination of articles, Workshop records, applications, Presents entries, media, lessons, products, and external releases. None of those branches is mandatory, and any useful result may start another project.
 
+## Node mesh principles
+
+- A node is a bounded and independently useful body of work. It may originate in any HobFarm division or medium.
+- Nodes keep only the sources, identity, decisions, rules, outputs, and records they need. A connection transfers selected artifacts or decisions, not one unlimited shared context.
+- Every edge describes a real directional relationship. Do not infer edges from loose keyword similarity or assume a relationship is bidirectional.
+- Two or more nodes may contribute to a new composite node. The parent nodes remain intact, independently useful, and available for later composition.
+- Articles and recurring subjects form a living Editorial mesh. Workshop projects, workflows, applications, characters, media, visual systems, courses, products, and releases form an overlapping production mesh.
+- Articles, Workshop, Presents, applications, Gallery, Academy, Shop, and external platforms are optional public destinations. They are not required stages in a funnel.
+- Stable sources, identity, authored rules, constraints, representations, validation, and production records should survive changes in models, providers, APIs, components, and hosting tools.
+- Keep public mesh data curated. Do not build a graph database, universal node registry, or new graph infrastructure without a demonstrated publishing need.
+
 ---
 
 ## Priority Rules
