@@ -7,12 +7,12 @@ Checked August 14, 2026. This dossier records the editorial decisions behind the
 - Article: `salton-sea-needs-an-outlet`
 - Section: Places & Systems
 - Department: Essays & Arguments
-- Planned predecessor slot: August 24, 2026 at 4:20 p.m. PDT (`2026-08-24T16:20:00-07:00`), now assigned to `i-stopped-writing-prompts-and-built-a-machine-instead`
-- Scheduled publication: August 25, 2026 at 4:20 p.m. PDT (`2026-08-25T16:20:00-07:00`)
+- Planned predecessor slot: August 25, 2026 at 4:20 p.m. PDT (`2026-08-25T16:20:00-07:00`), assigned to `deserts-remember-water`
+- Scheduled publication: August 26, 2026 at 4:20 p.m. PDT (`2026-08-26T16:20:00-07:00`)
 - Difference: 86,400 seconds, exactly 24 hours
 - Schedule collision: none found
 
-The article follows the EZIZE article in the August 24 slot. The RSS follow-up now runs August 22, immediately after `hit-the-source-directly`, and `deserts-remember-water` remains on August 23. This article links briefly to `deserts-remember-water` for Lake Cahuilla context without repeating that history. Its central claim is that an inlet specification, lake-side outlet, salt budget, power budget, customer, and binational operating agreement can be tested as one regional system. The deterministic annual balance closes at screening level. Full engineering, ecological, legal, financial, and binational feasibility remains unresolved.
+The article follows `deserts-remember-water` in the August 25 slot. The RSS follow-up runs August 22, Dragon’s Lair runs August 23, and EZIZE remains on August 24. This article links briefly to `deserts-remember-water` for Lake Cahuilla context without repeating that history. Its central claim is that an inlet specification, lake-side outlet, salt budget, power budget, customer, and binational operating agreement can be tested as one regional system. The deterministic annual balance closes at screening level. Full engineering, ecological, legal, financial, and binational feasibility remains unresolved.
 
 ## Evidence classes
 

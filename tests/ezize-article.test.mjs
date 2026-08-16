@@ -12,12 +12,12 @@ assert.ok(frontmatterMatch, "article frontmatter should parse");
 const frontmatter = YAML.parse(frontmatterMatch[1]);
 const body = source.slice(frontmatterMatch[0].length);
 
-test("the EZIZE Workshop Note owns the open slot before the Salton Sea article", () => {
-  const predecessorSource = readFileSync("src/content/articles/deserts-remember-water.mdx", "utf8");
+test("the EZIZE Workshop Note sits between Dragon's Lair and Deserts Remember Water", () => {
+  const predecessorSource = readFileSync("src/content/articles/dragons-lair-was-better-once-we-stopped-playing-it.mdx", "utf8");
   const predecessorMatch = predecessorSource.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n/);
   assert.ok(predecessorMatch);
   const predecessor = YAML.parse(predecessorMatch[1]);
-  const successorSource = readFileSync("src/content/articles/salton-sea-needs-an-outlet.mdx", "utf8");
+  const successorSource = readFileSync("src/content/articles/deserts-remember-water.mdx", "utf8");
   const successorMatch = successorSource.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n/);
   assert.ok(successorMatch);
   const successor = YAML.parse(successorMatch[1]);

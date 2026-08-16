@@ -2,7 +2,7 @@ name: Publish Deserts Remember Water
 
 on:
   schedule:
-    - cron: "20 23 23 8 *"
+    - cron: "20 23 25 8 *"
   workflow_dispatch:
 
 permissions:

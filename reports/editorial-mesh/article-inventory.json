@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-12T03:51:13.638Z",
-  "articleCount": 67,
+  "generatedAt": "2026-08-16T00:00:13.234Z",
+  "articleCount": 73,
   "articles": [
     {
       "slug": "1956-automation",
@@ -1102,6 +1102,94 @@
       "ambiguityNotes": "Visual Systems is treated as a Workshop/program label rather than a canonical Editorial series."
     },
     {
+      "slug": "deserts-remember-water",
+      "title": "Deserts Remember Water",
+      "status": "scheduled",
+      "date": "2026-08-25T23:20:00.000Z",
+      "legacy": {
+        "category": "research",
+        "department": "essays-arguments",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "deserts",
+        "water",
+        "Lake Mead",
+        "Tule Springs",
+        "Lake Cahuilla",
+        "Salton Sea",
+        "Lake Chad",
+        "Colorado River",
+        "environmental history",
+        "infrastructure"
+      ],
+      "relatedArticles": [
+        "from-wetlands-to-the-wash",
+        "trash-mountain",
+        "california-used-to-race-here"
+      ],
+      "centralObject": "Arid landscapes read across several clocks, from fossil wetlands and recurring lakes to managed reservoirs and current displacement.",
+      "primarySection": "places-systems",
+      "subjects": [
+        "environmental-systems",
+        "infrastructure",
+        "regional-history",
+        "place-memory",
+        "settlement-patterns",
+        "urban-hydrology"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [
+          "bureau-of-reclamation",
+          "nasa",
+          "national-park-service",
+          "new-liverpool-salt-company",
+          "noaa",
+          "unhcr",
+          "us-geological-survey"
+        ],
+        "places": [
+          "colorado-river-basin",
+          "lake-cahuilla",
+          "lake-chad",
+          "lake-mead",
+          "lake-powell",
+          "las-vegas",
+          "salton-sea",
+          "southern-california",
+          "tule-springs-fossil-beds"
+        ],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "landsat"
+        ]
+      },
+      "sourceArtifacts": [
+        {
+          "id": "lake-mead-2000-2021-landsat-comparison",
+          "type": "map",
+          "label": "USGS/NASA Landsat comparison of Lake Mead in August 2000 and August 2021",
+          "role": "organizing"
+        }
+      ],
+      "storyModes": [
+        "comparative-history",
+        "place-study",
+        "systems-investigation",
+        "visual-study"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
       "slug": "divisionism-was-painting-before-pixels",
       "title": "Divisionism Was Painting Before Pixels",
       "status": "published",
@@ -1149,6 +1237,93 @@
       "storyModes": [
         "comparative-history",
         "visual-study"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "dragons-lair-was-better-once-we-stopped-playing-it",
+      "title": "Dragon’s Lair Was Better Once We Stopped Playing It",
+      "status": "scheduled",
+      "date": "2026-08-23T23:20:00.000Z",
+      "legacy": {
+        "category": "",
+        "department": "essays-arguments",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "Dragon’s Lair",
+        "Don Bluth",
+        "arcade games",
+        "game history",
+        "LaserDisc",
+        "Doom"
+      ],
+      "relatedArticles": [
+        "hit-the-source-directly",
+        "the-feed-is-the-problem",
+        "everything-is-still-loading",
+        "take-me-to-phobos"
+      ],
+      "centralObject": "Dragon’s Lair as spectacular Don Bluth animation constrained by the price, controls, and playback hardware of a coin-operated cabinet.",
+      "primarySection": "technology",
+      "subjects": [
+        "game-history",
+        "game-design",
+        "hardware-economics",
+        "computing-history",
+        "personal-history"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [
+          "don-bluth",
+          "rick-dyer"
+        ],
+        "organizations": [
+          "cinematronics",
+          "id-software",
+          "midway-games",
+          "nintendo"
+        ],
+        "places": [
+          "las-vegas"
+        ],
+        "events": [],
+        "works": [
+          "dragons-lair",
+          "led-storm",
+          "street-fighter-ii",
+          "mortal-kombat",
+          "wolfenstein-3d",
+          "doom"
+        ],
+        "publications": [
+          "boing-boing"
+        ],
+        "technologies": [
+          "arcade-video-games",
+          "laserdisc",
+          "atari-2600",
+          "nintendo-entertainment-system"
+        ]
+      },
+      "sourceArtifacts": [
+        {
+          "id": "boing-boing-dragons-lair-cost-2026",
+          "type": "other",
+          "label": "Dragon’s Lair only cost 50 cents to beat in 1983",
+          "publication": "Boing Boing",
+          "role": "origin"
+        }
+      ],
+      "storyModes": [
+        "personal-history-trail",
+        "media-genealogy"
       ],
       "confidence": "high",
       "ambiguityNotes": ""
@@ -1234,7 +1409,7 @@
     {
       "slug": "every-sentence-is-a-keynote-conclusion",
       "title": "Every Sentence Is a Keynote Conclusion",
-      "status": "scheduled",
+      "status": "published",
       "date": "2026-08-15T23:20:00.000Z",
       "legacy": {
         "category": "",
@@ -1982,6 +2157,95 @@
       "ambiguityNotes": ""
     },
     {
+      "slug": "hit-the-source-directly",
+      "title": "Hit the Source Directly",
+      "status": "scheduled",
+      "date": "2026-08-21T23:20:00.000Z",
+      "legacy": {
+        "category": "",
+        "department": "essays-arguments",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "RSS",
+        "Atom",
+        "independent publishing",
+        "feed readers",
+        "recommendation systems"
+      ],
+      "relatedArticles": [
+        "the-feed-is-the-problem",
+        "the-future-was-already-there",
+        "every-sentence-is-a-keynote-conclusion",
+        "reviewing-request-for-safety",
+        "the-number-one-song-ive-never-heard"
+      ],
+      "centralObject": "RSS as a reader-controlled route to source publications and a practical publishing system built around direct selection.",
+      "primarySection": "technology",
+      "subjects": [
+        "publishing",
+        "recommendation-systems",
+        "information-systems",
+        "attention-economy",
+        "content-discovery",
+        "open-computing",
+        "personal-history"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [
+          "andrej-karpathy",
+          "evan-schwartz",
+          "michael-lynch"
+        ],
+        "organizations": [
+          "google",
+          "hobfarm",
+          "youtube"
+        ],
+        "places": [],
+        "events": [],
+        "works": [
+          "subone-graffiti-art"
+        ],
+        "publications": [],
+        "technologies": [
+          "rss",
+          "atom",
+          "opml",
+          "feed-readers",
+          "recommendation-algorithms",
+          "artificial-intelligence"
+        ]
+      },
+      "sourceArtifacts": [
+        {
+          "id": "karpathy-rss-post-2026",
+          "type": "other",
+          "label": "Andrej Karpathy's February 1, 2026 RSS post",
+          "role": "organizing"
+        },
+        {
+          "id": "most-popular-blogs-hn-2025-opml",
+          "type": "other",
+          "label": "Evan Schwartz's 92-feed OPML conversion",
+          "role": "organizing"
+        }
+      ],
+      "storyModes": [
+        "personal-history-trail",
+        "media-genealogy",
+        "technical-explainer",
+        "systems-investigation"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
       "slug": "how-hobbot-keeps-the-lights-on",
       "title": "How HobBot Keeps the Lights On",
       "status": "published",
@@ -2331,6 +2595,86 @@
       "storyModes": [
         "personal-history-trail",
         "place-study"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "i-stopped-writing-prompts-and-built-a-machine-instead",
+      "title": "I Stopped Writing Prompts and Built a Machine Instead",
+      "status": "scheduled",
+      "date": "2026-08-24T23:20:00.000Z",
+      "legacy": {
+        "category": "",
+        "department": "workshop-notes",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "cute-and-corrupted",
+        "entryType": "feature",
+        "format": "workshop-note"
+      },
+      "tags": [
+        "EZIZE",
+        "Cute & Corrupted",
+        "generative media",
+        "prompt compilation",
+        "schema design",
+        "digital collectibles",
+        "AI image generation"
+      ],
+      "relatedArticles": [
+        "hit-the-source-directly",
+        "you-should-write-about-sharks",
+        "the-card-catalog-started-talking-back",
+        "same-model-different-surface"
+      ],
+      "centralObject": "EZIZE as a schema-driven image production machine that replaces one-off prompting with reusable subject systems and controlled variation.",
+      "primarySection": "technology",
+      "subjects": [
+        "ai-image-generation",
+        "creative-systems",
+        "generative-media",
+        "production-systems",
+        "prompt-compilation",
+        "schema-design",
+        "visual-systems"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [
+          "john-pound"
+        ],
+        "organizations": [
+          "hobfarm",
+          "openai",
+          "topps"
+        ],
+        "places": [],
+        "events": [],
+        "works": [
+          "garbage-pail-kids"
+        ],
+        "publications": [],
+        "technologies": [
+          "dynamic-prompts",
+          "ezize",
+          "gpt-image",
+          "grimoire",
+          "wildcard-machine"
+        ]
+      },
+      "sourceArtifacts": [
+        {
+          "id": "garbage-pail-kids-original-series-2-card-pairs",
+          "type": "other",
+          "label": "Three Garbage Pail Kids Original Series 2 A/B card pairs",
+          "role": "organizing"
+        }
+      ],
+      "storyModes": [
+        "process-essay",
+        "systems-investigation",
+        "technical-explainer"
       ],
       "confidence": "high",
       "ambiguityNotes": ""
@@ -2938,7 +3282,7 @@
     {
       "slug": "reviewing-request-for-safety",
       "title": "Reviewing Request for Safety",
-      "status": "scheduled",
+      "status": "published",
       "date": "2026-08-14T23:20:00.000Z",
       "legacy": {
         "category": "",
@@ -3030,6 +3374,114 @@
       "ambiguityNotes": ""
     },
     {
+      "slug": "salton-sea-needs-an-outlet",
+      "title": "The Salton Sea Needs an Outlet",
+      "status": "scheduled",
+      "date": "2026-08-26T23:20:00.000Z",
+      "legacy": {
+        "category": "research",
+        "department": "essays-arguments",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "Salton Sea",
+        "Colorado River",
+        "desalination",
+        "water infrastructure",
+        "North Shore",
+        "Gulf of California",
+        "geothermal energy",
+        "environmental systems"
+      ],
+      "relatedArticles": [
+        "deserts-remember-water",
+        "from-wetlands-to-the-wash",
+        "trash-mountain"
+      ],
+      "centralObject": "A Salton Sea inlet and outlet concept tested as one coupled water, salt, power, customer, and binational operating system.",
+      "primarySection": "places-systems",
+      "subjects": [
+        "environmental-systems",
+        "infrastructure",
+        "conceptual-engineering",
+        "public-safety",
+        "regional-history",
+        "settlement-patterns",
+        "urban-hydrology"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [
+          "bahrain-electricity-water-authority",
+          "bureau-of-reclamation",
+          "california-department-of-water-resources",
+          "coachella-valley-water-district",
+          "imperial-irrigation-district",
+          "international-boundary-and-water-commission",
+          "salton-sea-history-museum",
+          "salton-sea-management-program",
+          "state-water-resources-control-board",
+          "us-department-of-energy",
+          "us-geological-survey"
+        ],
+        "places": [
+          "coachella-valley",
+          "colorado-river-basin",
+          "gulf-of-california",
+          "imperial-valley",
+          "laguna-salada",
+          "lake-mead",
+          "lake-powell",
+          "north-shore-california",
+          "salton-sea",
+          "southern-california"
+        ],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "geothermal-power",
+          "google-earth",
+          "reverse-osmosis",
+          "water-desalination"
+        ]
+      },
+      "sourceArtifacts": [
+        {
+          "id": "salton-sea-history-museum-archive",
+          "type": "photograph",
+          "label": "Salton Sea History Museum archival image set retained during HobFarm volunteer work inside the North Shore Yacht Club, 2010",
+          "role": "organizing"
+        },
+        {
+          "id": "north-shore-2010-field-photographs",
+          "type": "photograph",
+          "label": "HobFarm North Shore field photographs, 2010",
+          "role": "organizing"
+        },
+        {
+          "id": "north-shore-2008-2026-aerial-comparison",
+          "type": "map",
+          "label": "Google Earth North Shore marina comparison, February 2008 and 2026",
+          "role": "organizing"
+        }
+      ],
+      "storyModes": [
+        "field-report",
+        "place-study",
+        "systems-investigation",
+        "technical-explainer",
+        "visual-study"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
       "slug": "same-model-different-surface",
       "title": "Same Model, Different Surface",
       "status": "published",
@@ -3091,7 +3543,7 @@
     {
       "slug": "same-same-but-different",
       "title": "Same Same, But Different",
-      "status": "scheduled",
+      "status": "published",
       "date": "2026-08-12T23:20:00.000Z",
       "legacy": {
         "category": "research",
@@ -3691,6 +4143,84 @@
       "ambiguityNotes": "Legacy 3DM fields and URL remain for compatibility, but the article contains no Dick Miller connection and is excluded from the canonical 3DM series."
     },
     {
+      "slug": "the-feed-is-the-problem",
+      "title": "The Feed Is the Problem",
+      "status": "scheduled",
+      "date": "2026-08-22T23:20:00.000Z",
+      "legacy": {
+        "category": "",
+        "department": "essays-arguments",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "article"
+      },
+      "tags": [
+        "social media",
+        "recommendation algorithms",
+        "RSS",
+        "creator economy",
+        "doomscrolling",
+        "mental health",
+        "friendship",
+        "media literacy"
+      ],
+      "relatedArticles": [
+        "hit-the-source-directly",
+        "every-sentence-is-a-keynote-conclusion"
+      ],
+      "centralObject": "The ranked public feed as an economic and cultural system that converts attention into production signals while leaving human aftermath outside its accounting.",
+      "primarySection": "culture",
+      "subjects": [
+        "attention-economy",
+        "content-discovery",
+        "creative-labor",
+        "mental-health",
+        "platform-economics",
+        "recommendation-systems",
+        "social-media",
+        "social-relationships"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [
+          "arizona-state-university",
+          "meta",
+          "reddit",
+          "youtube"
+        ],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [
+          "phys-org"
+        ],
+        "technologies": [
+          "feed-readers",
+          "recommendation-algorithms",
+          "rss",
+          "thunderbird"
+        ]
+      },
+      "sourceArtifacts": [
+        {
+          "id": "phys-org-doomscrolling-at-work-2026",
+          "type": "other",
+          "label": "Phys.org article 'Doomscrolling at work wastes time, but the real cost is what happens after'",
+          "publication": "Phys.org",
+          "role": "origin"
+        }
+      ],
+      "storyModes": [
+        "personal-history-trail",
+        "systems-investigation"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
       "slug": "the-future-was-already-there",
       "title": "The Future Was Already There",
       "status": "scheduled",
@@ -3762,7 +4292,7 @@
     {
       "slug": "the-model-is-free",
       "title": "The Model Is Free. The Computer Isn't.",
-      "status": "scheduled",
+      "status": "published",
       "date": "2026-08-13T23:20:00.000Z",
       "legacy": {
         "category": "research",
@@ -3829,7 +4359,7 @@
     {
       "slug": "the-number-one-song-ive-never-heard",
       "title": "The Number One Song I’ve Never Heard",
-      "status": "scheduled",
+      "status": "published",
       "date": "2026-08-13T23:19:00.000Z",
       "legacy": {
         "category": "cultural-thread",

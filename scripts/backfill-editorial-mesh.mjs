@@ -823,6 +823,90 @@ export const editorialMeshBackfill = {
       ambiguityNotes: "Technology owns the production system; Culture remains a plausible alternative if editorial method becomes a larger desk.",
     },
   ),
+  "deserts-remember-water": record(
+    "places-systems",
+    ["environmental-systems", "infrastructure", "regional-history", "place-memory", "settlement-patterns", "urban-hydrology"],
+    {
+      organizations: ["bureau-of-reclamation", "nasa", "national-park-service", "new-liverpool-salt-company", "noaa", "unhcr", "us-geological-survey"],
+      places: ["colorado-river-basin", "lake-cahuilla", "lake-chad", "lake-mead", "lake-powell", "las-vegas", "salton-sea", "southern-california", "tule-springs-fossil-beds"],
+      technologies: ["landsat"],
+      sourceArtifacts: [{ id: "lake-mead-2000-2021-landsat-comparison", type: "map", label: "USGS/NASA Landsat comparison of Lake Mead in August 2000 and August 2021", role: "organizing" }],
+      storyModes: ["comparative-history", "place-study", "systems-investigation", "visual-study"],
+      centralObject: "Arid landscapes read across several clocks, from fossil wetlands and recurring lakes to managed reservoirs and current displacement.",
+    },
+  ),
+  "dragons-lair-was-better-once-we-stopped-playing-it": record(
+    "technology",
+    ["game-history", "game-design", "hardware-economics", "computing-history", "personal-history"],
+    {
+      people: ["don-bluth", "rick-dyer"],
+      organizations: ["cinematronics", "id-software", "midway-games", "nintendo"],
+      places: ["las-vegas"],
+      works: ["dragons-lair", "led-storm", "street-fighter-ii", "mortal-kombat", "wolfenstein-3d", "doom"],
+      publications: ["boing-boing"],
+      technologies: ["arcade-video-games", "laserdisc", "atari-2600", "nintendo-entertainment-system"],
+      sourceArtifacts: [{ id: "boing-boing-dragons-lair-cost-2026", type: "other", label: "Dragon’s Lair only cost 50 cents to beat in 1983", publication: "Boing Boing", role: "origin" }],
+      storyModes: ["personal-history-trail", "media-genealogy"],
+      centralObject: "Dragon’s Lair as spectacular Don Bluth animation constrained by the price, controls, and playback hardware of a coin-operated cabinet.",
+    },
+  ),
+  "hit-the-source-directly": record(
+    "technology",
+    ["publishing", "recommendation-systems", "information-systems", "attention-economy", "content-discovery", "open-computing", "personal-history"],
+    {
+      people: ["andrej-karpathy", "evan-schwartz", "michael-lynch"],
+      organizations: ["google", "hobfarm", "youtube"],
+      works: ["subone-graffiti-art"],
+      technologies: ["rss", "atom", "opml", "feed-readers", "recommendation-algorithms", "artificial-intelligence"],
+      sourceArtifacts: [
+        { id: "karpathy-rss-post-2026", type: "other", label: "Andrej Karpathy's February 1, 2026 RSS post", role: "organizing" },
+        { id: "most-popular-blogs-hn-2025-opml", type: "other", label: "Evan Schwartz's 92-feed OPML conversion", role: "organizing" },
+      ],
+      storyModes: ["personal-history-trail", "media-genealogy", "technical-explainer", "systems-investigation"],
+      centralObject: "RSS as a reader-controlled route to source publications and a practical publishing system built around direct selection.",
+    },
+  ),
+  "i-stopped-writing-prompts-and-built-a-machine-instead": record(
+    "technology",
+    ["ai-image-generation", "creative-systems", "generative-media", "production-systems", "prompt-compilation", "schema-design", "visual-systems"],
+    {
+      people: ["john-pound"],
+      organizations: ["hobfarm", "openai", "topps"],
+      works: ["garbage-pail-kids"],
+      technologies: ["dynamic-prompts", "ezize", "gpt-image", "grimoire", "wildcard-machine"],
+      sourceArtifacts: [{ id: "garbage-pail-kids-original-series-2-card-pairs", type: "other", label: "Three Garbage Pail Kids Original Series 2 A/B card pairs", role: "organizing" }],
+      storyModes: ["process-essay", "systems-investigation", "technical-explainer"],
+      centralObject: "EZIZE as a schema-driven image production machine that replaces one-off prompting with reusable subject systems and controlled variation.",
+    },
+  ),
+  "salton-sea-needs-an-outlet": record(
+    "places-systems",
+    ["environmental-systems", "infrastructure", "conceptual-engineering", "public-safety", "regional-history", "settlement-patterns", "urban-hydrology"],
+    {
+      organizations: ["bahrain-electricity-water-authority", "bureau-of-reclamation", "california-department-of-water-resources", "coachella-valley-water-district", "imperial-irrigation-district", "international-boundary-and-water-commission", "salton-sea-history-museum", "salton-sea-management-program", "state-water-resources-control-board", "us-department-of-energy", "us-geological-survey"],
+      places: ["coachella-valley", "colorado-river-basin", "gulf-of-california", "imperial-valley", "laguna-salada", "lake-mead", "lake-powell", "north-shore-california", "salton-sea", "southern-california"],
+      technologies: ["geothermal-power", "google-earth", "reverse-osmosis", "water-desalination"],
+      sourceArtifacts: [
+        { id: "salton-sea-history-museum-archive", type: "photograph", label: "Salton Sea History Museum archival image set retained during HobFarm volunteer work inside the North Shore Yacht Club, 2010", role: "organizing" },
+        { id: "north-shore-2010-field-photographs", type: "photograph", label: "HobFarm North Shore field photographs, 2010", role: "organizing" },
+        { id: "north-shore-2008-2026-aerial-comparison", type: "map", label: "Google Earth North Shore marina comparison, February 2008 and 2026", role: "organizing" },
+      ],
+      storyModes: ["field-report", "place-study", "systems-investigation", "technical-explainer", "visual-study"],
+      centralObject: "A Salton Sea inlet and outlet concept tested as one coupled water, salt, power, customer, and binational operating system.",
+    },
+  ),
+  "the-feed-is-the-problem": record(
+    "culture",
+    ["attention-economy", "content-discovery", "creative-labor", "mental-health", "platform-economics", "recommendation-systems", "social-media", "social-relationships"],
+    {
+      organizations: ["arizona-state-university", "meta", "reddit", "youtube"],
+      publications: ["phys-org"],
+      technologies: ["feed-readers", "recommendation-algorithms", "rss", "thunderbird"],
+      sourceArtifacts: [{ id: "phys-org-doomscrolling-at-work-2026", type: "other", label: "Phys.org article 'Doomscrolling at work wastes time, but the real cost is what happens after'", publication: "Phys.org", role: "origin" }],
+      storyModes: ["personal-history-trail", "systems-investigation"],
+      centralObject: "The ranked public feed as an economic and cultural system that converts attention into production signals while leaving human aftermath outside its accounting.",
+    },
+  ),
 };
 
 function allArticleFiles(directory) {

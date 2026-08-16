@@ -12,13 +12,14 @@ assert.ok(frontmatterMatch, "article frontmatter should parse");
 const frontmatter = YAML.parse(frontmatterMatch[1]);
 const body = source.slice(frontmatterMatch[0].length);
 
-test("The Feed Is the Problem follows the RSS article and preserves the five-day queue", () => {
+test("The Feed Is the Problem follows the RSS article and preserves the six-day queue", () => {
   const schedule = [
     ["hit-the-source-directly.mdx", "2026-08-21T16:20:00-07:00"],
     ["the-feed-is-the-problem.mdx", "2026-08-22T16:20:00-07:00"],
-    ["deserts-remember-water.mdx", "2026-08-23T16:20:00-07:00"],
+    ["dragons-lair-was-better-once-we-stopped-playing-it.mdx", "2026-08-23T16:20:00-07:00"],
     ["i-stopped-writing-prompts-and-built-a-machine-instead.mdx", "2026-08-24T16:20:00-07:00"],
-    ["salton-sea-needs-an-outlet.mdx", "2026-08-25T16:20:00-07:00"],
+    ["deserts-remember-water.mdx", "2026-08-25T16:20:00-07:00"],
+    ["salton-sea-needs-an-outlet.mdx", "2026-08-26T16:20:00-07:00"],
   ];
   const timestamps = schedule.map(([filename, expected]) => {
     const article = readFileSync(`src/content/articles/${filename}`, "utf8");

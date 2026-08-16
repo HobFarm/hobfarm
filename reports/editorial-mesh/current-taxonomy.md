@@ -1,18 +1,18 @@
 # Current Article Taxonomy Audit
 
-This inventory records 67 published or scheduled articles. The one draft placeholder is excluded.
+This inventory records 73 published or scheduled articles. The one draft placeholder is excluded.
 
 The legacy model mixes broad desks, formats, imprints, projects, series, and workflow programs. These fields remain in place for route and template compatibility, but they no longer define the canonical semantic layer.
 
 ## category
 
-60 of 67 articles use this field.
+62 of 73 articles use this field.
 
 | Value | Articles |
 | --- | ---: |
 | cultural-thread | 31 |
 | magazine-time-machine | 10 |
-| research | 8 |
+| research | 10 |
 | technical | 4 |
 | grimoire | 3 |
 | stylefusion | 2 |
@@ -21,19 +21,19 @@ The legacy model mixes broad desks, formats, imprints, projects, series, and wor
 
 ## department
 
-67 of 67 articles use this field.
+73 of 73 articles use this field.
 
 | Value | Articles |
 | --- | ---: |
-| essays-arguments | 23 |
-| workshop-notes | 20 |
+| essays-arguments | 28 |
+| workshop-notes | 21 |
 | magazine-time-machine | 15 |
 | hobfarm-presents | 8 |
 | before-after-eras | 1 |
 
 ## series
 
-23 of 67 articles use this field.
+23 of 73 articles use this field.
 
 | Value | Articles |
 | --- | ---: |
@@ -48,7 +48,7 @@ The legacy model mixes broad desks, formats, imprints, projects, series, and wor
 
 ## presentsSeries
 
-8 of 67 articles use this field.
+8 of 73 articles use this field.
 
 | Value | Articles |
 | --- | ---: |
@@ -56,30 +56,31 @@ The legacy model mixes broad desks, formats, imprints, projects, series, and wor
 
 ## workshopProgram
 
-5 of 67 articles use this field.
+6 of 73 articles use this field.
 
 | Value | Articles |
 | --- | ---: |
 | workshop-notes | 3 |
 | stylefusion | 2 |
+| cute-and-corrupted | 1 |
 
 ## entryType
 
-38 of 67 articles use this field.
+44 of 73 articles use this field.
 
 | Value | Articles |
 | --- | ---: |
-| feature | 37 |
+| feature | 43 |
 | connection-map | 1 |
 
 ## format
 
-67 of 67 articles use this field.
+73 of 73 articles use this field.
 
 | Value | Articles |
 | --- | ---: |
-| article | 48 |
-| workshop-note | 19 |
+| article | 53 |
+| workshop-note | 20 |
 
 ## Migration finding
 

@@ -1,8 +1,8 @@
 import { appendFile, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 
-const articlePath = resolve("src/content/articles/deserts-remember-water.mdx");
-const expectedPublication = "2026-08-25T16:20:00-07:00";
+const articlePath = resolve("src/content/articles/dragons-lair-was-better-once-we-stopped-playing-it.mdx");
+const expectedPublication = "2026-08-23T16:20:00-07:00";
 const outputPath = process.env.GITHUB_OUTPUT;
 const article = await readFile(articlePath, "utf8");
 
@@ -13,7 +13,7 @@ function setOutput(value) {
 }
 
 const publicationMatch = article.match(/^publishedAt:\s*(.+)$/m);
-if (!publicationMatch) throw new Error("Deserts Remember Water has no publishedAt field.");
+if (!publicationMatch) throw new Error("Dragon's Lair Was Better Once We Stopped Playing It has no publishedAt field.");
 if (publicationMatch[1].trim() !== expectedPublication) throw new Error(`The publication date changed unexpectedly: ${publicationMatch[1].trim()}`);
 if (Date.now() < Date.parse(expectedPublication)) {
   console.log(`Not due until ${expectedPublication}.`);
@@ -21,11 +21,11 @@ if (Date.now() < Date.parse(expectedPublication)) {
   process.exit(0);
 }
 if (/^status:\s*published$/m.test(article)) {
-  console.log("Deserts Remember Water is already published.");
+  console.log("Dragon's Lair Was Better Once We Stopped Playing It is already published.");
   await setOutput("true");
   process.exit(0);
 }
-if (!/^status:\s*scheduled$/m.test(article)) throw new Error("Deserts Remember Water is neither scheduled nor published.");
+if (!/^status:\s*scheduled$/m.test(article)) throw new Error("Dragon's Lair Was Better Once We Stopped Playing It is neither scheduled nor published.");
 await writeFile(articlePath, article.replace(/^status:\s*scheduled$/m, "status: published"), "utf8");
-console.log("Marked Deserts Remember Water as published.");
+console.log("Marked Dragon's Lair Was Better Once We Stopped Playing It as published.");
 await setOutput("true");

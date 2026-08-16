@@ -6,12 +6,12 @@
 - **Canonical route:** `/articles/the-feed-is-the-problem/`
 - **Schedule:** August 22, 2026 at 4:20 p.m. PDT (`2026-08-22T16:20:00-07:00`)
 - **Predecessor:** Hit the Source Directly, exactly 24 hours earlier
-- **Successor:** Deserts Remember Water, exactly 24 hours later
+- **Successor:** Dragon’s Lair Was Better Once We Stopped Playing It, exactly 24 hours later
 - **Length:** 2,783 narrative words before source-note definitions; 3,089 body words including notes and imports
 - **Editorial section:** Culture
 - **Strict series:** none
 
-EZIZE moved from August 22 to the open August 24 slot. The resulting sequence is RSS on August 21, this follow-up on August 22, Deserts Remember Water on August 23, EZIZE on August 24, and The Salton Sea Needs an Outlet on August 25. Every adjacent timestamp differs by 86,400 seconds.
+The schedule was amended on August 15 to place Dragon’s Lair on August 23. The resulting sequence is RSS on August 21, this follow-up on August 22, Dragon’s Lair on August 23, EZIZE on August 24, Deserts Remember Water on August 25, and The Salton Sea Needs an Outlet on August 26. Every adjacent timestamp differs by 86,400 seconds.
 
 ## Editorial result
 
@@ -29,7 +29,7 @@ Both CDN objects were checked as absent before upload, written under `articles/t
 
 ## Publication automation
 
-The existing one-time GitHub Actions pattern now covers August 21 through 25. Each workflow checks its article's exact timestamp, refuses to publish early, changes `status: scheduled` to `status: published` after the release instant, removes itself and its paired script, commits the release, and pushes `main` to trigger the normal Cloudflare Pages build.
+The existing one-time GitHub Actions pattern now covers August 21 through 26. Each workflow checks its article's exact timestamp, refuses to publish early, changes `status: scheduled` to `status: published` after the release instant, removes itself and its paired script, commits the release, and pushes `main` to trigger the normal Cloudflare Pages build.
 
 The final pre-release build correctly excludes this article from its route, combined RSS feed, public mesh, and sitemap. The release-time boundary test changes from private to public at the exact scheduled instant.
 

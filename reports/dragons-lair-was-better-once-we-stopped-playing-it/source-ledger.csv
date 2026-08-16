@@ -1,0 +1,15 @@
+id,title,source_type,use,url,confidence,checked
+S01,"Dragon’s Lair only cost 50 cents to beat in 1983",origin article,"RSS trigger and theoretical one-credit claim; body not relied upon because direct retrieval met a CDN challenge",https://boingboing.net/2026/08/14/dragons-lair-cost-beat-1983.html,limited,2026-08-15
+S02,"Entering the Dragon’s Lair",museum history,"1983 debut; Cinematronics; LaserDisc; fifty-cent play; timing; memorization; three lives",https://www.museumofplay.org/blog/entering-the-dragons-lair-into-ichegs-collections/,high,2026-08-15
+S03,"Lasers in the Arcade",contemporary newspaper,"Controller-to-disc system; 1983 reception; animation and arcade intersection",https://www.washingtonpost.com/archive/lifestyle/1983/11/30/lasers-in-the-arcade/f131f25f-39df-42d7-8fed-8da3dc0112bc/,high,2026-08-15
+S04,"Playboy pencils and bags of cash",reported history,"Rick Dyer and Don Bluth collaboration; fifty-cent price; memorization design",https://arstechnica.com/gaming/2011/03/playboy-pencils-bags-of-cash-don-bluths-sordid-gaming-history/,medium-high,2026-08-15
+S05,"Don Bluth",official studio biography,"Disney credits and 1979 departure with Gary Goldman and John Pomeroy",https://d23.com/a-to-z/bluth-don/,high,2026-08-15
+S06,"Spy Hunter arcade game",museum collection,"Bally Midway and 1983 release",https://artsandculture.google.com/asset/arcade-game-spy-hunter-arcade-game-bally-midway/UAE6iGexnBy9gQ,high,2026-08-15
+S07,"Ghosts ’n Goblins",publisher history,"1985 arcade release and later home version",https://captown.capcom.com/en/classic_games/2,high,2026-08-15
+S08,"Street Fighter II",museum history,"1991 release and head-to-head arcade significance",https://www.museumofplay.org/games/street-fighter-ii/,high,2026-08-15
+S09,"Mortal Kombat",museum history,"1992 arcade release; digitized performers; competitive and ratings history",https://www.museumofplay.org/games/mortal-kombat/,high,2026-08-15
+S10,"Atari history",company history,"1977 VCS launch and home-cartridge context",https://atari.com/pages/history,medium,2026-08-15
+S11,"Nintendo history",company history,"Famicom and NES home-console chronology",https://www.nintendo.com/en-gb/Hardware/Nintendo-History/Nintendo-History-625945.html,medium,2026-08-15
+S12,"Generating Fun and Fears",museum history,"Wolfenstein 3D; Doom in 1993; network distribution; modding",https://www.computerhistory.org/revolution/story/202,high,2026-08-15
+S13,"Pinball Hall of Fame",state tourism listing,"Free admission; playable machines; nonprofit and charitable revenue description",https://travelnevada.com/museums/pinball-hall-of-fame/,medium,2026-08-15
+S14,"Museum of the Game release records",museum database,"Gauntlet; Rampage; LED Storm; Ghosts ’n Goblins; Spy Hunter release-year cross-checks",https://www.arcade-museum.com/,medium-high,2026-08-15

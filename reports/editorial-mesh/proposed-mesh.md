@@ -1,17 +1,17 @@
 # Proposed Editorial Mesh
 
-The corpus supports six broad reader-facing sections. Every one of the 67 published or scheduled articles has exactly one.
+The corpus supports six broad reader-facing sections. Every one of the 73 published or scheduled articles has exactly one.
 
 ## Primary sections
 
 | Section | Articles | Definition | Exclusion test |
 | --- | ---: | --- | --- |
-| Technology | 28 | A technical system, tool, game, model behavior, ownership boundary, or computing history drives the article. | Technology was merely used while producing an article about another subject. |
+| Technology | 31 | A technical system, tool, game, model behavior, ownership boundary, or computing history drives the article. | Technology was merely used while producing an article about another subject. |
+| Culture | 12 | The article follows people, institutions, media, belief, memory, or cultural change across more than one narrower desk. | A single musical, screen, visual, technical, or physical system clearly owns the article instead. |
 | Art & Design | 11 | The article's central object is a visual language, artwork, design method, or aesthetic history. | The visual material mainly demonstrates software, model behavior, infrastructure, or another technical system. |
-| Culture | 11 | The article follows people, institutions, media, belief, memory, or cultural change across more than one narrower desk. | A single musical, screen, visual, technical, or physical system clearly owns the article instead. |
 | Film & TV | 10 | A screen work, performer, production system, or broadcast history owns the article. | A movie or show is only an analogy, example, or doorway into a technology or culture article that quickly leaves the screen work behind. |
+| Places & Systems | 5 | A place or physical system is the organizing object rather than a backdrop. | The place is primarily scenery for a personal, musical, film, or cultural story. |
 | Music | 4 | Music is the article's central object, discovery path, or reader promise. | Music is only a scene, soundtrack, venue detail, or connection inside a broader cultural or place-based story. |
-| Places & Systems | 3 | A place or physical system is the organizing object rather than a backdrop. | The place is primarily scenery for a personal, musical, film, or cultural story. |
 
 ## Strict series and specials
 
@@ -28,35 +28,35 @@ Three legacy 3DM records do not pass the Dick Miller test. Their old fields and 
 | Value | Articles |
 | --- | ---: |
 | artificial-intelligence | 15 |
-| ai-image-generation | 11 |
+| ai-image-generation | 12 |
 | media-history | 11 |
 | creative-workflows | 10 |
 | film-history | 10 |
-| visual-systems | 7 |
+| visual-systems | 8 |
+| creative-systems | 7 |
+| personal-history | 7 |
+| platform-economics | 7 |
+| schema-design | 7 |
 | art-history | 6 |
-| creative-systems | 6 |
 | knowledge-systems | 6 |
 | model-behavior | 6 |
-| platform-economics | 6 |
-| schema-design | 6 |
+| publishing | 6 |
+| regional-history | 6 |
 | software-ownership | 6 |
 | censorship | 5 |
 | cloud-computing | 5 |
-| personal-history | 5 |
-| publishing | 5 |
+| computing-history | 5 |
+| open-computing | 5 |
+| social-media | 5 |
+| attention-economy | 4 |
 | automation | 4 |
 | character-actors | 4 |
-| computing-history | 4 |
 | creative-tools | 4 |
+| game-design | 4 |
+| generative-media | 4 |
+| infrastructure | 4 |
 | music-discovery | 4 |
-| open-computing | 4 |
-| pre-code-hollywood | 4 |
-| psychedelic-art | 4 |
-| publishing-workflow | 4 |
-| regional-history | 4 |
-| research-methods | 4 |
-| social-media | 4 |
-| benchmarking | 3 |
+| place-memory | 4 |
 
 ## Canonical dimensions
 
