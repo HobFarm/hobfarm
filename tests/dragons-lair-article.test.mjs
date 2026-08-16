@@ -14,7 +14,7 @@ const frontmatter = YAML.parse(frontmatterMatch[1]);
 const body = source.slice(frontmatterMatch[0].length);
 
 test("the Dragon's Lair article owns the August 23 slot in the six-day queue", () => {
-  assert.equal(frontmatter.title, "Dragon’s Lair Was Better Once We Stopped Playing It");
+  assert.equal(frontmatter.title, "Dragon's Lair is better on YouTube");
   assert.equal(frontmatter.canonical, `/articles/${slug}/`);
   assert.equal(frontmatter.publishedAt, "2026-08-23T16:20:00-07:00");
   assert.equal(frontmatter.status, "scheduled");

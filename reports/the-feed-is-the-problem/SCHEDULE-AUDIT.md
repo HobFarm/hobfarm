@@ -6,7 +6,7 @@ Checked against the article corpus on August 15, 2026 in `America/Los_Angeles`.
 | --- | --- |
 | August 21 | Hit the Source Directly |
 | August 22 | The Feed Is the Problem |
-| August 23 | Dragon’s Lair Was Better Once We Stopped Playing It |
+| August 23 | Dragon's Lair is better on YouTube |
 | August 24 | I Stopped Writing Prompts and Built a Machine Instead |
 | August 25 | Deserts Remember Water |
 | August 26 | The Salton Sea Needs an Outlet |

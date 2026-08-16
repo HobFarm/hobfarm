@@ -21,7 +21,7 @@ The user supplied the article brief and the publication order. Personal recollec
 
 1. Hit the Source Directly, August 21
 2. The Feed Is the Problem, August 22
-3. Dragon’s Lair Was Better Once We Stopped Playing It, August 23
+3. Dragon's Lair is better on YouTube, August 23
 4. I Stopped Writing Prompts and Built a Machine Instead, August 24
 5. Deserts Remember Water, August 25
 6. The Salton Sea Needs an Outlet, August 26

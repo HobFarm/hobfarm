@@ -2,7 +2,7 @@
 
 ## Publication
 
-- **Title:** Dragon’s Lair Was Better Once We Stopped Playing It
+- **Title:** Dragon's Lair is better on YouTube
 - **Canonical route:** `/articles/dragons-lair-was-better-once-we-stopped-playing-it/`
 - **Schedule:** August 23, 2026 at 4:20 p.m. PDT (`2026-08-23T16:20:00-07:00`)
 - **Predecessor:** The Feed Is the Problem, exactly 24 hours earlier

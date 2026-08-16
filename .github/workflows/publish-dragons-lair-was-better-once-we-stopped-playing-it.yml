@@ -1,4 +1,4 @@
-name: Publish Dragon's Lair Was Better Once We Stopped Playing It
+name: Publish Dragon's Lair is better on YouTube
 
 on:
   schedule:
@@ -33,5 +33,5 @@ jobs:
           git rm .github/workflows/publish-dragons-lair-was-better-once-we-stopped-playing-it.yml
           git rm scripts/publish-scheduled-dragons-lair-was-better-once-we-stopped-playing-it.mjs
           git add src/content/articles/dragons-lair-was-better-once-we-stopped-playing-it.mdx
-          git commit -m "Publish Dragon's Lair Was Better Once We Stopped Playing It"
+          git commit -m "Publish Dragon's Lair is better on YouTube"
           git push origin main

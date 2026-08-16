@@ -13,7 +13,7 @@ function setOutput(value) {
 }
 
 const publicationMatch = article.match(/^publishedAt:\s*(.+)$/m);
-if (!publicationMatch) throw new Error("Dragon's Lair Was Better Once We Stopped Playing It has no publishedAt field.");
+if (!publicationMatch) throw new Error("Dragon's Lair is better on YouTube has no publishedAt field.");
 if (publicationMatch[1].trim() !== expectedPublication) throw new Error(`The publication date changed unexpectedly: ${publicationMatch[1].trim()}`);
 if (Date.now() < Date.parse(expectedPublication)) {
   console.log(`Not due until ${expectedPublication}.`);
@@ -21,11 +21,11 @@ if (Date.now() < Date.parse(expectedPublication)) {
   process.exit(0);
 }
 if (/^status:\s*published$/m.test(article)) {
-  console.log("Dragon's Lair Was Better Once We Stopped Playing It is already published.");
+  console.log("Dragon's Lair is better on YouTube is already published.");
   await setOutput("true");
   process.exit(0);
 }
-if (!/^status:\s*scheduled$/m.test(article)) throw new Error("Dragon's Lair Was Better Once We Stopped Playing It is neither scheduled nor published.");
+if (!/^status:\s*scheduled$/m.test(article)) throw new Error("Dragon's Lair is better on YouTube is neither scheduled nor published.");
 await writeFile(articlePath, article.replace(/^status:\s*scheduled$/m, "status: published"), "utf8");
-console.log("Marked Dragon's Lair Was Better Once We Stopped Playing It as published.");
+console.log("Marked Dragon's Lair is better on YouTube as published.");
 await setOutput("true");

@@ -6,7 +6,7 @@ Checked August 15, 2026 in `America/Los_Angeles`.
 | --- | --- | --- |
 | August 21 | Hit the Source Directly | `20 23 21 8 *` |
 | August 22 | The Feed Is the Problem | `20 23 22 8 *` |
-| August 23 | Dragon’s Lair Was Better Once We Stopped Playing It | `20 23 23 8 *` |
+| August 23 | Dragon's Lair is better on YouTube | `20 23 23 8 *` |
 | August 24 | I Stopped Writing Prompts and Built a Machine Instead | `20 23 24 8 *` |
 | August 25 | Deserts Remember Water | `20 23 25 8 *` |
 | August 26 | The Salton Sea Needs an Outlet | `20 23 26 8 *` |

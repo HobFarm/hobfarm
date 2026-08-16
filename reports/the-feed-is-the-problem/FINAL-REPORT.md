@@ -6,7 +6,7 @@
 - **Canonical route:** `/articles/the-feed-is-the-problem/`
 - **Schedule:** August 22, 2026 at 4:20 p.m. PDT (`2026-08-22T16:20:00-07:00`)
 - **Predecessor:** Hit the Source Directly, exactly 24 hours earlier
-- **Successor:** Dragon’s Lair Was Better Once We Stopped Playing It, exactly 24 hours later
+- **Successor:** Dragon's Lair is better on YouTube, exactly 24 hours later
 - **Length:** 2,783 narrative words before source-note definitions; 3,089 body words including notes and imports
 - **Editorial section:** Culture
 - **Strict series:** none
