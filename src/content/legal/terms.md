@@ -10,9 +10,9 @@ These Terms of Service govern your access to hob.farm, HobFarm products, public 
 
 If you do not agree, do not use HobFarm services.
 
-## Who We Are
+## Who Operates HobFarm
 
-HobFarm is a creative technology studio based in Las Vegas, Nevada. HobFarm builds and sells digital media products, memberships, creative tools, educational materials, image and video generation credits, downloadable visual assets, and software-enabled creative workflows for creators.
+HobFarm is an independent publisher and creative studio operated by Kris Reynolds in Las Vegas, Nevada. HobFarm builds and sells digital media products, memberships, creative tools, educational materials, image and video generation credits, downloadable visual assets, and software-enabled creative workflows for creators.
 
 HobFarm products may include AI-assisted character art, gallery packs, book and album cover concepts, process files, prompt and workflow materials, online courses, custom creative work, and public experiments connected to the HobFarm, StyleFusion, Grimoire, and Daily Signal systems.
 
@@ -39,7 +39,7 @@ Some HobFarm services may require an account, membership, invite, authentication
 
 Do not share paid access, attempt to bypass access controls, scrape member content, resell account access, or use automated systems in a way that harms service availability.
 
-HobFarm may suspend, limit, or terminate access if we believe an account violates these terms, creates security risk, causes payment risk, abuses the service, or violates applicable law.
+HobFarm may suspend, limit, or terminate access if HobFarm determines that an account violates these terms, creates security risk, causes payment risk, abuses the service, or violates applicable law.
 
 ## Purchases, Renewals, and Payment Platforms
 
@@ -75,7 +75,7 @@ HobFarm does not guarantee that generated media is unique, copyrightable, regist
 
 Subject to your payment, product license, and these terms, you may use generated outputs for personal or commercial creative projects unless the product page says otherwise. You are responsible for reviewing outputs before publication and for making sure your use complies with law, platform rules, client requirements, and third-party rights.
 
-HobFarm may display outputs you intentionally submit to public gallery features, showcase forms, contests, or public demos. We will not treat private uploads as public gallery submissions unless the product flow clearly says so or you give permission.
+HobFarm may display outputs you intentionally submit to public gallery features, showcase forms, contests, or public demos. HobFarm will not treat private uploads as public gallery submissions unless the product flow clearly says so or you give permission.
 
 ## Downloads, Courses, and Product Licenses
 
@@ -106,13 +106,13 @@ You may not use HobFarm services to:
 
 HobFarm relies on third-party providers for hosting, security, analytics, authentication, AI generation, file storage, payments, tax handling, email, support, print-on-demand production, and marketplace delivery. These may include Cloudflare, Stripe, Ko-fi, Lemon Squeezy, PayPal, AI model providers, and other operational vendors.
 
-Third-party outages, model changes, moderation decisions, processing delays, payment holds, chargeback procedures, tax settings, marketplace rules, or policy changes may affect HobFarm services. HobFarm is not responsible for failures outside our reasonable control.
+Third-party outages, model changes, moderation decisions, processing delays, payment holds, chargeback procedures, tax settings, marketplace rules, or policy changes may affect HobFarm services. HobFarm is not responsible for failures outside its reasonable control.
 
 ## Service Availability
 
-HobFarm is provided on an "as-is" and "as-available" basis. We may modify, suspend, discontinue, or limit any service, product, demo, feature, membership benefit, or credit system at any time.
+HobFarm is provided on an "as-is" and "as-available" basis. HobFarm may modify, suspend, discontinue, or limit any service, product, demo, feature, membership benefit, or credit system at any time.
 
-We do not guarantee uptime, uninterrupted access, specific generation results, exact delivery times for experimental tools, or compatibility with every browser, device, marketplace, or creative pipeline.
+HobFarm does not guarantee uptime, uninterrupted access, specific generation results, exact delivery times for experimental tools, or compatibility with every browser, device, marketplace, or creative pipeline.
 
 ## Intellectual Property
 
@@ -140,9 +140,9 @@ You agree to indemnify and hold harmless HobFarm, its operators, contributors, v
 
 ## Changes to These Terms
 
-We may update these terms as HobFarm products, payment flows, laws, or provider requirements change. The updated version applies when posted unless a different effective date is stated.
+HobFarm may update these terms as its products, payment flows, laws, or provider requirements change. The updated version applies when posted unless a different effective date is stated.
 
-For material changes to paid memberships or products, we will make reasonable efforts to provide notice through the website, account area, email, or the applicable payment platform.
+For material changes to paid memberships or products, HobFarm will make reasonable efforts to provide notice through the website, account area, email, or the applicable payment platform.
 
 ## Governing Law
 

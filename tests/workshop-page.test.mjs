@@ -9,7 +9,6 @@ const expectedProgramIds = [
   "character-mannequin",
   "avatar-host",
   "before-after",
-  "cute-corrupted",
   "alter-ego",
 ];
 
@@ -17,12 +16,19 @@ test("Workshop preserves the program registry while public navigation uses syste
   const hierarchy = read("src/data/site-hierarchy.ts");
   const primaryBlock = hierarchy.slice(
     hierarchy.indexOf("export const primaryWorkshopPrograms"),
-    hierarchy.indexOf("export const supportingWorkshopPrograms"),
+    hierarchy.indexOf("export const historicalWorkshopPrograms"),
+  );
+  const historicalBlock = hierarchy.slice(
+    hierarchy.indexOf("export const historicalWorkshopPrograms"),
+    hierarchy.indexOf("export const workshopProgramDefinitions"),
   );
 
   const positions = expectedProgramIds.map((id) => primaryBlock.indexOf(`id: "${id}"`));
   assert.ok(positions.every((position) => position >= 0));
   assert.deepEqual(positions, [...positions].sort((a, b) => a - b));
+  assert.doesNotMatch(primaryBlock, /id: "cute-corrupted"/);
+  assert.match(historicalBlock, /id: "cute-corrupted"[\s\S]*name: "EZIZE Origins"/);
+  assert.match(historicalBlock, /inNav: false[\s\S]*status: "historical"/);
 
   const navigation = read("src/data/navigation.ts");
   assert.match(navigation, /label: "Overview", href: "\/workshop\/"/);
@@ -119,6 +125,9 @@ test("program navigation derives previous and next links from the shared order",
   assert.match(character, /WorkshopProgramNav currentId="character-mannequin"/);
   assert.match(beforeAfter, /WorkshopProgramNav currentId="before-after"/);
   assert.match(avatarHost, /WorkshopProgramNav currentId="avatar-host"/);
+  assert.doesNotMatch(component, /historicalWorkshopPrograms/);
+  assert.match(dynamicRoute, /workshopProgramDefinitions\.find/);
+  assert.match(dynamicRoute, /Historical origin \/ current project: EZIZE/);
 });
 
 test("generic placeholder program copy is gone", () => {

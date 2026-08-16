@@ -374,9 +374,9 @@ export const exploreLinks: Array<{ label: string; href: string; note: string; so
 ];
 
 export const supportLinks: Cta[] = [
-  { label: "Join the Lab", href: "/membership/" },
-  { label: "Premium galleries", href: "/gallery/" },
-  { label: "Support HobFarm", href: "/support/" },
+  { label: "HobFarm Club", href: "/membership/" },
+  { label: "One-time support", href: "/support/" },
+  { label: "Shop", href: "/shop/" },
 ];
 
 export const followLinks: Cta[] = [

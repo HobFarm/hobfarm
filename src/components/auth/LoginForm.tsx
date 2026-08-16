@@ -150,7 +150,7 @@ export default function LoginForm() {
       </button>
 
       <p className="text-xs text-base-500 font-mono">
-        New here? Enter your email; we'll create an account when you verify.
+        New here? Enter your email; an account is created when you verify.
       </p>
     </form>
   );

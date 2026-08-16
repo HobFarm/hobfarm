@@ -2,7 +2,7 @@
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Button from "@/components/fundations/elements/Button.astro";
-import KofiCta from "@/components/KofiCta.astro";
+import KofiTipCard from "@/components/support/KofiTipCard.astro";
 import { exploreLinks, supportLinks, followLinks } from "@/data/homepage-systems";
 ---
 
@@ -46,7 +46,7 @@ import { exploreLinks, supportLinks, followLinks } from "@/data/homepage-systems
         <div class="rounded-lg border border-base-800 bg-base-950/50 p-5">
           <p class="font-mono text-[10px] uppercase tracking-widest text-base-400">Support</p>
           <p class="mt-3 text-sm leading-relaxed text-base-400">
-            Support keeps the character systems, gallery drops, notes, courses, and tools moving: compute, storage, image generation, indexing, and publishing.
+            Support pays for reporting, hosting, tools, storage, and the next article, project, game, or release.
           </p>
           <div class="mt-4 flex flex-wrap gap-2">
             {supportLinks.map((link, index) => (
@@ -54,9 +54,6 @@ import { exploreLinks, supportLinks, followLinks } from "@/data/homepage-systems
                 {link.label}
               </Button>
             ))}
-          </div>
-          <div class="mt-4">
-            <KofiCta variant="logo" />
           </div>
         </div>
 
@@ -75,6 +72,8 @@ import { exploreLinks, supportLinks, followLinks } from "@/data/homepage-systems
           </ul>
         </div>
       </div>
+
+      <KofiTipCard variant="band" placement="homepage-next-steps" class="mt-4" />
     </div>
   </Wrapper>
 </section>

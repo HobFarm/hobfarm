@@ -1,6 +1,6 @@
 import { getMedia } from "@/data/media-registry";
 
-export type HierarchyStatus = "active" | "planned" | "coming-eventually";
+export type HierarchyStatus = "active" | "planned" | "coming-eventually" | "historical";
 export type HierarchyTheme =
   | "editorial"
   | "presents"
@@ -54,11 +54,11 @@ export type WorkshopProgramEntry = HierarchyEntry & {
 const hero = (filename: string) => `https://cdn.hob.farm/hero-images/${filename}`;
 
 export const siteSections: HierarchyEntry[] = [
-  { id: "articles", slug: "articles", name: "Articles", description: "The complete chronological feed: essays, reporting, research, announcements, and process writing from across HobFarm.", href: "/articles/", kind: "site-section", status: "active", heroImage: hero("essay-hero.png"), heroAlt: "HobFarm editorial artwork", theme: "editorial", order: 1, ctaLabel: "Read Articles", countNoun: "articles" },
-  { id: "presents", slug: "hobfarm-presents", name: "HobFarm Presents", shortName: "Presents", description: "The imprint for recurring stories, film history, cartoons, video, and named editorial worlds.", href: "/presents/", kind: "site-section", status: "active", heroImage: getMedia("presents.graphics.avatar-system").src, heroAlt: getMedia("presents.graphics.avatar-system").alt, theme: "presents", order: 2, ctaLabel: "Enter Presents", countNoun: "series" },
-  { id: "workshop", slug: "workshop", name: "Workshop", description: "The machinery beneath the magazine: experiments, methods, revisions, character systems, production notes, and finished tests.", href: "/workshop/", kind: "site-section", status: "active", heroImage: getMedia("workshop.graphics.landing").src, heroAlt: getMedia("workshop.graphics.landing").alt, theme: "workshop", order: 3, ctaLabel: "Open the Workshop", countNoun: "programs" },
-  { id: "academy", slug: "academy", name: "Academy", description: "Repeatable methods, lessons, courses, templates, and structured learning paths built from working projects.", href: "/academy/", kind: "site-section", status: "active", theme: "editorial", order: 4, ctaLabel: "Visit the Academy" },
-  { id: "shop", slug: "shop", name: "Shop", description: "A directory for digital packs, character releases, visual-world downloads, and one-off physical inventory across HobFarm storefronts.", href: "/shop/", kind: "site-section", status: "active", theme: "editorial", order: 5, ctaLabel: "Browse the Shop" },
+  { id: "articles", slug: "articles", name: "Articles", description: "HobFarm's main editorial body: essays, reporting, research, arguments, updates, process writing, and multimedia stories.", href: "/articles/", kind: "site-section", status: "active", heroImage: hero("essay-hero.png"), heroAlt: "HobFarm editorial artwork", theme: "editorial", order: 1, ctaLabel: "Read Articles", countNoun: "articles" },
+  { id: "presents", slug: "hobfarm-presents", name: "HobFarm Presents", shortName: "Presents", description: "Recurring properties with their own identity, archive, characters, visual language, world, or release pattern.", href: "/presents/", kind: "site-section", status: "active", heroImage: getMedia("presents.graphics.avatar-system").src, heroAlt: getMedia("presents.graphics.avatar-system").alt, theme: "presents", order: 2, ctaLabel: "Enter Presents", countNoun: "series" },
+  { id: "workshop", slug: "workshop", name: "Workshop", description: "Project development and production records: sources, methods, experiments, revisions, failures, decisions, and reusable findings.", href: "/workshop/", kind: "site-section", status: "active", heroImage: getMedia("workshop.graphics.landing").src, heroAlt: getMedia("workshop.graphics.landing").alt, theme: "workshop", order: 3, ctaLabel: "Open the Workshop", countNoun: "programs" },
+  { id: "academy", slug: "academy", name: "Academy", description: "Lessons and courses built only after a real Workshop method becomes repeatable enough to teach.", href: "/academy/", kind: "site-section", status: "active", theme: "editorial", order: 4, ctaLabel: "Visit the Academy" },
+  { id: "shop", slug: "shop", name: "Shop", description: "The product directory and direct-commerce surface, with verified routes to the correct HobFarm or marketplace shelf.", href: "/shop/", kind: "site-section", status: "active", theme: "editorial", order: 5, ctaLabel: "Browse the Shop" },
   { id: "about-support", slug: "about", name: "About & Support", description: "How HobFarm works, who makes it, how to contribute, and the practical ways to support the publication.", href: "/about/", kind: "site-section", status: "active", theme: "editorial", order: 6, ctaLabel: "About HobFarm" },
 ];
 
@@ -122,24 +122,11 @@ export const primaryWorkshopPrograms: readonly WorkshopProgramEntry[] = [
     featuredExample: "Salton Sea and abandoned laundry comparisons",
   },
   {
-    id: "cute-corrupted", slug: "cute-and-corrupted", name: "Cute & Corrupted",
-    description: "The same recognizable subject is developed in cute and corrupted modes by changing tone, palette, texture, materials, expression, damage, humor, environment, and motion.",
-    href: "/workshop/cute-and-corrupted/", parent: "workshop", kind: "workshop-program", status: "active",
-    heroImage: hero("cute-corrupted-hero.png"), heroAlt: "Cute and corrupted versions of the same subject",
-    theme: "comparison", order: 5, ctaLabel: "Enter both modes", featuredQuery: { galleryType: "cute-corrupted" },
-    startsWith: ["one recognizable subject", "a shared silhouette", "a readable identity"],
-    transformation: "Change the subject's tonal and material condition while keeping the base legible.",
-    outputs: ["paired stills", "character goods", "gross-out card", "motion pair or series"],
-    workflow: ["Define the shared mannequin", "Establish the cute baseline", "Write the corruption rule", "Build paired stills or motion", "Check identity continuity", "Package the pair as an entry, product, or series"],
-    featuredExample: "Cakes, critters, and character pairs",
-    distinction: "Cute & Corrupted changes a subject's tonal or material condition.",
-  },
-  {
     id: "alter-ego", slug: "alter-ego", name: "Alter Ego",
     description: "One mannequin produces two related personas that share an identity while role, posture, wardrobe, attitude, setting, and public function pull them apart.",
     href: "/workshop/alter-ego/", parent: "workshop", kind: "workshop-program", status: "active",
     heroImage: hero("alter-ego-hero.png"), heroAlt: "Two alternate versions of the same identity",
-    theme: "alter-ego", order: 6, ctaLabel: "Meet both personas",
+    theme: "alter-ego", order: 5, ctaLabel: "Meet both personas",
     startsWith: ["one mannequin", "shared identity locks", "two distinct roles or personas"],
     transformation: "Split one identity into related personas with different roles, posture, wardrobe, attitude, settings, and public jobs.",
     outputs: ["paired hero", "identity sheets", "poster", "host role or campaign"],
@@ -147,6 +134,31 @@ export const primaryWorkshopPrograms: readonly WorkshopProgramEntry[] = [
     featuredExample: "Sophia and Stella",
     distinction: "Alter Ego changes the persona the subject performs.",
   },
+];
+
+/**
+ * Historical records keep their original route and internal id for backlinks,
+ * taxonomy, and media compatibility. They do not appear as active programs.
+ */
+export const historicalWorkshopPrograms: readonly WorkshopProgramEntry[] = [
+  {
+    id: "cute-corrupted", slug: "cute-and-corrupted", name: "EZIZE Origins",
+    description: "The paired Cute & Corrupted visual experiment that supplied EZIZE with its first persona and transformation grammar.",
+    href: "/workshop/cute-and-corrupted/", parent: "workshop", inNav: false, kind: "workshop-program", status: "historical",
+    heroImage: hero("cute-corrupted-hero.png"), heroAlt: "Cute and corrupted studies from the visual experiment that became EZIZE",
+    theme: "comparison", order: 0, ctaLabel: "Read the origin record", featuredQuery: { galleryType: "cute-corrupted" },
+    startsWith: ["one recognizable subject", "a shared silhouette", "a readable identity"],
+    transformation: "The experiment changed tone and material condition while keeping the shared base legible.",
+    outputs: ["paired stills", "character studies", "gross-out cards", "motion pairs"],
+    workflow: ["Define the shared mannequin", "Establish the cute baseline", "Write the corruption rule", "Build paired stills or motion", "Check identity continuity", "Preserve the grammar for EZIZE"],
+    featuredExample: "The Cake, Critter, and Character studies that preceded EZIZE",
+    distinction: "Cute and corrupted are now descriptive modes inside EZIZE, not a separate current project.",
+  },
+];
+
+export const workshopProgramDefinitions: readonly WorkshopProgramEntry[] = [
+  ...primaryWorkshopPrograms,
+  ...historicalWorkshopPrograms,
 ];
 
 export const supportingWorkshopPrograms: readonly HierarchyEntry[] = [
@@ -158,7 +170,7 @@ export const supportingWorkshopPrograms: readonly HierarchyEntry[] = [
 ];
 
 export const workshopPrograms: readonly HierarchyEntry[] = [
-  ...primaryWorkshopPrograms,
+  ...workshopProgramDefinitions,
   ...supportingWorkshopPrograms,
 ];
 

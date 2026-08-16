@@ -1,48 +1,75 @@
 ---
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Button from "@/components/fundations/elements/Button.astro";
-import WorkshopMethodStrip from "@/components/workshop/WorkshopMethodStrip.astro";
 import WorkshopNodeMesh from "@/components/workshop/WorkshopNodeMesh.astro";
-import WorkshopProjectGrid from "@/components/workshop/WorkshopProjectGrid.astro";
+import { getMedia } from "@/data/media-registry";
+
+const ez = getMedia("ezize.output.corrupted-cake");
 ---
 
 <section id="home-workshop" class="home-workshop" aria-labelledby="home-workshop-heading">
   <Wrapper variant="standard" class="py-16 lg:py-24">
     <header class="home-workshop__header">
-      <div><p class="eyebrow">Behind the work</p><h2 id="home-workshop-heading">The publication is made in the Workshop.</h2></div>
-      <p>Different source material needs a production system built for the job. The Workshop keeps the sources, constraints, tools, decisions, tests, and finished routes connected without turning every project into the same thing.</p>
+      <div>
+        <p class="eyebrow">How HobFarm works</p>
+        <h2 id="home-workshop-heading">One project can open several useful routes.</h2>
+      </div>
+      <div class="home-workshop__copy">
+        <p>A source, question, or project core may become an article, Workshop record, application, recurring property, lesson, product, or external release. It uses only the branches that have a real job.</p>
+        <p>Articles remain the editorial center. Workshop keeps the development record, and each finished object keeps one canonical home.</p>
+      </div>
     </header>
 
     <div class="mesh-preview"><WorkshopNodeMesh compact /></div>
 
-    <section class="project-preview" aria-labelledby="home-projects-heading">
-      <div class="section-heading"><div><p class="eyebrow">Four project nodes</p><h3 id="home-projects-heading">Web, software, photography, and a concept campaign.</h3></div><p>HobFarm proves the publishing and code system. StyleFusion proves structured visual translation. Before &amp; After keeps source photography legible. Future Carriage carries historical research into a product and campaign.</p></div>
-      <div class="project-grid"><WorkshopProjectGrid surface="home" /></div>
-    </section>
-
-    <section class="method" aria-labelledby="home-method-heading">
-      <div class="section-heading"><div><p class="eyebrow">Five-stage method</p><h3 id="home-method-heading">Research. Define. Build. Direct. Finish and deliver.</h3></div><p>Every stage leaves something inspectable: source notes, constraints, production assets, directed media, and a delivery record that can support the next use.</p></div>
-      <WorkshopMethodStrip compact={true} showMedia={true} />
-    </section>
-
     <div class="actions">
       <Button isLink size="md" variant="green" href="/workshop/" data-event="homepage_workshop_open">Explore the Workshop</Button>
-      <Button isLink size="md" variant="muted" href="/workshop/projects/" data-event="homepage_projects_open">Browse Projects</Button>
+      <Button isLink size="md" variant="muted" href="/workshop/projects/hobfarm/" data-event="homepage_projects_open">How the HobFarm system works</Button>
     </div>
+
+    <article class="current-project">
+      <a class="current-project__media" href="/ezize/" aria-label="Open the EZIZE project">
+        <img src={ez.src} alt={ez.alt} width={ez.width} height={ez.height} loading="lazy" decoding="async" />
+      </a>
+      <div class="current-project__copy">
+        <p class="eyebrow">Current application / private alpha</p>
+        <h3>EZIZE</h3>
+        <p><strong>Insert coin. Get an EZ.</strong> The machine resolves an authored recipe, calculates its exact probability, sends the finished specification to the renderer, and keeps the pull in a ledger.</p>
+        <p class="status-note">The application remains owner-only behind Cloudflare Access. Public generation, accounts, and credits are not open.</p>
+        <a href="/ezize/" data-event="homepage_project_open">Open EZIZE <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </article>
   </Wrapper>
 </section>
 
 <style>
   .home-workshop { border-bottom: 1px solid #2c2440; background: radial-gradient(circle at 10% 8%, rgb(59 111 224 / .14), transparent 34rem), radial-gradient(circle at 92% 54%, rgb(224 33 138 / .08), transparent 38rem), #07060b; }
-  .home-workshop__header, .section-heading { display: grid; gap: 1.5rem; }
+  .home-workshop__header { display: grid; gap: 1.5rem; }
   .eyebrow { margin: 0; color: #55d7ff; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; }
   h2, h3 { color: #f0edf6; font-family: var(--font-display); font-weight: 300; letter-spacing: -.055em; text-wrap: balance; }
   h2 { max-width: 68rem; margin: .8rem 0 0; font-size: clamp(3rem, 7.2vw, 6rem); line-height: .93; }
-  h3 { margin: .7rem 0 0; font-size: clamp(2.3rem, 5vw, 4.2rem); line-height: .96; }
-  .home-workshop__header > p, .section-heading > p { max-width: 45rem; margin: 0; color: #b4afbc; line-height: 1.75; }
-  .mesh-preview, .project-preview, .method { margin-top: clamp(3rem, 7vw, 5rem); }
-  .project-preview, .method { padding-top: clamp(2.5rem, 5vw, 4rem); border-top: 1px solid #2c2440; }
-  .project-grid, .method :global(.workshop-method-strip) { margin-top: 1.5rem; }
-  .actions { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 2rem; }
-  @media (min-width: 64rem) { .home-workshop__header, .section-heading { grid-template-columns: minmax(0, 1.2fr) minmax(24rem, .62fr); align-items: end; } }
+  h3 { margin: .7rem 0 0; font-size: clamp(2.5rem, 5vw, 4.3rem); line-height: .92; }
+  .home-workshop__copy { max-width: 45rem; }
+  .home-workshop__copy p, .current-project__copy > p { margin: 0; color: #b4afbc; line-height: 1.75; }
+  .home-workshop__copy p + p { margin-top: .8rem; }
+  .mesh-preview { margin-top: clamp(2.5rem, 6vw, 4.5rem); }
+  .actions { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1rem; }
+  .current-project { display: grid; gap: 0; margin-top: clamp(2.5rem, 6vw, 4.5rem); overflow: hidden; border: 1px solid #343043; border-top: 2px solid #dfff36; border-radius: .75rem; background: #0d0a13; }
+  .current-project__media { height: clamp(22rem, 38vw, 32rem); overflow: hidden; background: #07060b; }
+  .current-project__media:focus-visible { outline: 2px solid #dfff36; outline-offset: -3px; }
+  .current-project__media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .current-project__copy { display: flex; min-width: 0; flex-direction: column; justify-content: center; padding: clamp(1.4rem, 4vw, 2.8rem); }
+  .current-project__copy strong { color: #edf3c5; font-weight: 600; }
+  .current-project__copy > p:not(.eyebrow) { margin-top: 1.1rem; }
+  .current-project__copy .status-note { padding-left: .9rem; border-left: 2px solid #dfff36; color: #8f899e; font-size: .78rem; }
+  .current-project__copy > a { align-self: flex-start; margin-top: 1.5rem; color: #dfff36; font-family: var(--font-mono); font-size: .6rem; letter-spacing: .06em; text-decoration: none; text-transform: uppercase; }
+  .current-project__copy > a:hover, .current-project__copy > a:focus-visible { color: white; }
+  @media (min-width: 64rem) {
+    .home-workshop__header { grid-template-columns: minmax(0, 1.2fr) minmax(24rem, .62fr); align-items: end; }
+    .current-project { grid-template-columns: minmax(0, 1.2fr) minmax(22rem, .8fr); }
+  }
+  @media (max-width: 34rem) {
+    .actions :global(a) { width: 100%; justify-content: center; }
+    .current-project__media { height: 17rem; }
+  }
 </style>

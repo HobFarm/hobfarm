@@ -45,17 +45,20 @@ test("Workshop visibility keeps route generation separate from navigation", () =
   const programRoute = read("src/pages/workshop/[program].astro");
   const workshopHub = read("src/pages/workshop/index.astro");
 
+  const primary = hierarchy.slice(hierarchy.indexOf("export const primaryWorkshopPrograms"), hierarchy.indexOf("export const historicalWorkshopPrograms"));
+  const historical = hierarchy.slice(hierarchy.indexOf("export const historicalWorkshopPrograms"), hierarchy.indexOf("export const workshopProgramDefinitions"));
   const visibleOrder = [
     'id: "workshop-notes"',
     'id: "character-mannequin"',
     'id: "avatar-host"',
     'id: "before-after"',
-    'id: "cute-corrupted"',
     'id: "alter-ego"',
-  ].map((token) => hierarchy.indexOf(token));
+  ].map((token) => primary.indexOf(token));
 
   assert.ok(visibleOrder.every((position) => position >= 0));
   assert.deepEqual(visibleOrder, [...visibleOrder].sort((a, b) => a - b));
+  assert.doesNotMatch(primary, /id: "cute-corrupted"/);
+  assert.match(historical, /id: "cute-corrupted"[\s\S]*name: "EZIZE Origins"/);
   assert.match(hierarchy, /id: "stylefusion"[^\n]*inNav: false, noindex: false/);
   assert.match(navigation, /label: "Overview", href: "\/workshop\/"/);
   assert.match(navigation, /label: "Projects", href: "\/workshop\/projects\/"/);
@@ -96,8 +99,10 @@ test("about page presents the independent publisher and its operating paths", ()
     "independent publication and working studio",
     "Articles are the editorial center",
     "Workshop keeps the sources",
-    "Courses, products, commissions, reader support",
-    "HobFarm is currently run by one person",
+    "Academy follows a method after real Workshop evidence",
+    "I currently run HobFarm alone",
+    "Kris Reynolds, the person who operates it",
+    "d00d</strong> is the editorial byline",
     "For employment, production, web, editorial, collaboration, and referral inquiries",
   ]) {
     assert.match(about, new RegExp(phrase));
@@ -105,7 +110,7 @@ test("about page presents the independent publisher and its operating paths", ()
 
   assert.doesNotMatch(about, /import AboutMedia/);
   assert.doesNotMatch(about, /import AboutPitch/);
-  assert.match(about, /href:\s*"\/workshop\/"/);
+  assert.match(about, /href:\s*"\/workshop\/projects\/hobfarm\/"/);
   assert.match(about, /href:\s*"\/shop\/"/);
   assert.match(about, /href:\s*"\/contact\/\?subject=employment"/);
 });

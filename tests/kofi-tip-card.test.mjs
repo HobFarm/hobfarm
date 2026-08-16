@@ -24,12 +24,13 @@ test("Ko-fi tip card uses native links and no provider assets or scripts", () =>
 test("the homepage and footer keep native Ko-fi support links", () => {
   const homepage = read("src/pages/index.astro");
   const frontPage = read("src/components/home/MagazineFrontPage.astro");
-  const support = read("src/components/home/HomeSupportBand.astro");
+  const support = read("src/components/home/ExploreSupportFollow.astro");
   const footer = read("src/components/global/Footer.astro");
 
-  assert.match(homepage, /<HomeSupportBand \/>/);
-  assert.ok(homepage.indexOf("<HomeEditorialSpecials />") < homepage.indexOf("<HomeSupportBand />"));
-  assert.match(support, /<KofiTipCard variant="band" placement="homepage-after-specials"/);
+  assert.match(homepage, /<ExploreSupportFollow \/>/);
+  assert.ok(homepage.indexOf("<SiteSections />") < homepage.indexOf("<ExploreSupportFollow />"));
+  assert.match(support, /<KofiTipCard variant="band" placement="homepage-next-steps"/);
+  assert.doesNotMatch(support, /KofiCta|kofi_logo|support_me_on_kofi/);
   assert.doesNotMatch(frontPage, /KofiTipCard|hobfarm-rabbit-hole-logo|hobfarm-drip-logo/);
   assert.match(footer, /<KofiTipCard variant="footer" placement="site-footer"/);
   assert.doesNotMatch(footer, /KofiCta|variant="symbol"|text="Ko-fi"/);

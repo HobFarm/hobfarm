@@ -18,7 +18,11 @@ test("homepage presents the six final HobFarm sections", () => {
     assert.match(data, new RegExp(`name: "${label.replace("&", "&")}"`));
   }
   assert.match(data, /parent: "presents"[\s\S]*name: "Funnies"|name: "Funnies"[\s\S]*parent: "presents"/);
-  assert.match(data, /parent: "workshop"[\s\S]*name: "Cute & Corrupted"|name: "Cute & Corrupted"[\s\S]*parent: "workshop"/);
+  const primary = data.slice(data.indexOf("export const primaryWorkshopPrograms"), data.indexOf("export const historicalWorkshopPrograms"));
+  const historical = data.slice(data.indexOf("export const historicalWorkshopPrograms"), data.indexOf("export const workshopProgramDefinitions"));
+  assert.doesNotMatch(primary, /cute-corrupted|Cute & Corrupted|EZIZE Origins/);
+  assert.match(historical, /id: "cute-corrupted"[\s\S]*name: "EZIZE Origins"/);
+  assert.match(historical, /inNav: false[\s\S]*status: "historical"/);
 });
 
 test("homepage separates sections from content formats", () => {
@@ -29,7 +33,8 @@ test("homepage separates sections from content formats", () => {
   }
 
   assert.match(data, /3 Degrees of Dick Miller/);
-  assert.match(data, /images, two-packs, character sheets, hero shots, posters, videos, commissions/);
+  assert.match(data, /Verified direct products and marketplace shelves/);
+  assert.match(data, /correct shelf for HobFarm products/);
 });
 
 test("homepage offers clear paths to explore, learn, or hire HobFarm", () => {

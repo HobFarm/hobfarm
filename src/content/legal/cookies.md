@@ -4,9 +4,9 @@ description: "How HobFarm uses cookies and similar technologies for Cloudflare s
 publishedAt: 2026-05-15
 ---
 
-## Cookies We Use
+## Cookies HobFarm Uses
 
-HobFarm uses a minimal set of cookies, all related to infrastructure and authentication. We don't use advertising cookies, tracking pixels, or third-party marketing cookies.
+HobFarm uses a minimal set of cookies, all related to infrastructure and authentication. HobFarm does not use advertising cookies, tracking pixels, or third-party marketing cookies.
 
 ### Cloudflare Cookies
 
@@ -32,7 +32,7 @@ This cookie is only set when you log into a gated service.
 |--------|---------|----------|
 | `session_id` | Maintains your session state across page loads. | Session (cleared when you close the browser) |
 
-## What We Don't Use
+## What HobFarm Does Not Use
 
 - No Google Analytics cookies
 - No Facebook/Meta tracking cookies
@@ -42,7 +42,7 @@ This cookie is only set when you log into a gated service.
 
 ## Managing Cookies
 
-You can clear or block cookies through your browser settings. Blocking Cloudflare cookies may affect site functionality and prevent access to gated services. Cloudflare Web Analytics (which we use for traffic measurement) doesn't use cookies at all.
+You can clear or block cookies through your browser settings. Blocking Cloudflare cookies may affect site functionality and prevent access to gated services. Cloudflare Web Analytics, which HobFarm uses for traffic measurement, does not use cookies.
 
 ## Contact
 

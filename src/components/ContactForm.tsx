@@ -3,22 +3,24 @@ import { useState, useEffect, useRef, type SubmitEvent } from "react";
 const TURNSTILE_SITEKEY = "0x4AAAAAACnfEXz9mYmnu2N6";
 
 const subjects = [
+  { value: "general", label: "General Inquiry" },
+  { value: "employment", label: "Employment / Work Inquiry" },
+  { value: "creative-project", label: "Creative Project / Commission" },
+  { value: "editorial", label: "Editorial / Research / Media" },
+  { value: "collaboration", label: "Collaboration" },
   { value: "support", label: "Support" },
   { value: "billing", label: "Billing / Payments" },
   { value: "refund", label: "Refund Request" },
-  { value: "general", label: "General Inquiry" },
-  { value: "employment", label: "Employment / Work Inquiry" },
   { value: "stylefusion", label: "StyleFusion" },
   { value: "grimoire", label: "Grimoire" },
   { value: "membership", label: "Membership" },
-  { value: "creative-project", label: "Creative Project / Commission" },
   { value: "business", label: "Business / Partnership" },
   { value: "custom-character", label: "Custom Character" },
   { value: "bug", label: "Bug Report" },
   { value: "security", label: "Security Report" },
 ];
 
-const DEFAULT_SUBJECT = "support";
+const DEFAULT_SUBJECT = "general";
 const subjectValues = new Set(subjects.map((subject) => subject.value));
 
 type ContactFormProps = {
@@ -115,7 +117,7 @@ export default function ContactForm({
       <div className="border border-accent-500/30 p-8">
         <p className="text-accent-500 font-mono text-sm">Message sent.</p>
         <p className="text-base-400 text-sm mt-2">
-          We'll get back to you soon.
+          I'll reply as soon as I can.
         </p>
       </div>
     );

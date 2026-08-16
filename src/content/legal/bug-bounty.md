@@ -5,19 +5,19 @@ publishedAt: 2025-02-02
 ---
 
 
-We acknowledge the crucial role that security researchers and our user community play in ensuring the security of HobFarm and our users. If you have discovered a vulnerability in our site or product, you may be eligible for a monetary reward based on the terms and conditions of our Bug Bounty Program.
+HobFarm recognizes the role that security researchers and its user community play in protecting HobFarm services and their users. If you have discovered a vulnerability in a HobFarm site or product, you may be eligible for a monetary reward under the terms of the HobFarm Bug Bounty Program.
 
 Please submit vulnerability reports through the [security report form](/contact/?subject=security).
 
 Rewards
 -------
 
-We strive to reward valid reports within 30 days of acceptance, often sooner. Bounty rewards will be calculated according to CVSS 3.1 standards where applicable. For our program, we refer to the official CVSS 3.1 reference at [https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator](https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator). At our discretion as program owners, certain report types may not receive rewards based on the CVSS 3.1 score. Such reports will either receive a fixed amount reward or will be evaluated on a case-by-case basis. Further details can be found in our official document.
+HobFarm aims to reward valid reports within 30 days of acceptance, often sooner. Bounty rewards will be calculated according to CVSS 3.1 standards where applicable. The program uses the official CVSS 3.1 reference at [https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator](https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator). At HobFarm's discretion as program owner, certain report types may not receive rewards based on the CVSS 3.1 score. Such reports will either receive a fixed amount reward or be evaluated case by case. Further details appear in the official program document.
 
 Rules
 -----
 
-Any activities conducted in accordance with this policy will be considered authorized conduct, and we will not take legal action against you. If a third party initiates legal action against you in connection with activities carried out in compliance with this policy, we will acknowledge that your actions were in accordance with this policy. HobFarm reserves all legal rights in the event of noncompliance with this policy.
+Any activities conducted in accordance with this policy will be considered authorized conduct, and HobFarm will not take legal action against you. If a third party initiates legal action against you in connection with activities carried out in compliance with this policy, HobFarm will confirm that your actions complied with this policy. HobFarm reserves all legal rights in the event of noncompliance.
 
 Eligibility
 -----------
@@ -32,7 +32,7 @@ The DOs
 
 *   Abide by the Program Terms.
 *   Respect privacy and make a good faith effort not to access, process, or destroy personal data.
-*   Be patient and provide clarifications in good faith to any questions we may have about your report.
+*   Be patient and provide clarifications in good faith to any questions HobFarm may have about your report.
 *   Interact respectfully with HobFarm, and you will receive the same consideration.
 *   Conduct testing only using your own personal/test accounts.
 *   Exercise caution during testing to avoid any negative impact on customers or the services they rely on.
@@ -45,17 +45,17 @@ The DO NOTs
 *   Engage in brute force or guess credentials to gain unauthorized access to systems.
 *   Participate in denial of service attacks.
 *   Upload shells or create any type of backdoor.
-*   Publicly disclose a vulnerability without our explicit review and consent.
+*   Publicly disclose a vulnerability without HobFarm's explicit review and consent.
 *   Engage in any form of social engineering targeting HobFarm employees, customers, affiliates, or partners.
 *   Attempt to extract, download, or exfiltrate data that may contain Personal Identifiable Information or other sensitive data, unless it belongs to you.
 *   Change passwords of any account that does not belong to you or for which you do not have explicit permission to change. If prompted to change the password for an account you did not create or were not authorized to use, immediately stop and report your findings.
-*   Engage in activities that violate privacy, cause data destruction, or disrupt our services.
+*   Engage in activities that violate privacy, cause data destruction, or disrupt HobFarm services.
 *   Interact with accounts that you do not own.
 
 Out of Scope
 ------------
 
-The following activities are considered out of scope for our Bug Bounty Program:
+The following activities are considered out of scope for the HobFarm Bug Bounty Program:
 
 *   Physical or social engineering attempts, including phishing attacks against HobFarm employees.
 *   Ability to send push notifications/SMS messages/emails without the ability to change content.
@@ -87,4 +87,4 @@ The following activities are considered out of scope for our Bug Bounty Program:
 Details
 -------
 
-When you are ready to make a submission, please ensure that you have thoroughly read our Bug Bounty Program Policy and then use the [security report form](/contact/?subject=security).
+When you are ready to make a submission, read the HobFarm Bug Bounty Program Policy and then use the [security report form](/contact/?subject=security).

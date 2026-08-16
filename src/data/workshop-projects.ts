@@ -133,7 +133,7 @@ export const selectedWorkshopProjects: readonly WorkshopProject[] = [
     productionProblem:
       "Keep persona, form, traits, probability, image direction, and the generation record connected from the first pull through the rendered file.",
     stages: ["concept grammar", "Grimoire packs", "deterministic pull", "image specification", "render and record"],
-    possibleOutputs: ["generated image", "downloadable PNG", "generation record", "process documentation", "future collection paths"],
+    possibleOutputs: ["generated image", "downloadable PNG", "ledger record", "process documentation", "selected external releases"],
     capabilities: ["product development", "structured generation", "application design", "provenance"],
     media: ezizeAssets[1],
     secondaryMedia: ezizeAssets[0],
@@ -142,7 +142,7 @@ export const selectedWorkshopProjects: readonly WorkshopProject[] = [
     status: "Private alpha case study",
     featuredPosition: 1,
     sourceLabel: "Working application",
-    resultLabel: "Rendered easie",
+    resultLabel: "Rendered EZ",
     visualVariant: "evidence-grid",
   },
   {
@@ -291,27 +291,6 @@ export const selectedWorkshopProjects: readonly WorkshopProject[] = [
     visualVariant: "world-atlas",
   },
   {
-    id: "cute-corrupted",
-    title: "Cute & Corrupted",
-    projectType: "Concept, taxonomy, and product family",
-    brief:
-      "The paired visual grammar that began with Cute and Corrupted characters, critters, and cakes now supplies persona and transformation rules inside EZIZE.",
-    promise:
-      "Build a repeatable family from a clear concept instead of treating each image as an unrelated variation.",
-    startingMaterial: "one recognizable subject and a rejected obvious framing",
-    productionProblem:
-      "Push the two modes far enough apart while preserving the shared silhouette and keeping the pair useful across media and products.",
-    stages: ["concept", "shared base", "mode rules", "paired production", "family and destination"],
-    possibleOutputs: ["paired still", "motion pair", "character good", "visual family", "marketplace collection"],
-    capabilities: ["concept development", "naming", "taxonomy", "product family"],
-    media: cuteCorruptedAssets[0],
-    approvedAssets: cuteCorruptedAssets,
-    destination: "/workshop/cute-and-corrupted/",
-    status: "Project origin",
-    featuredPosition: 7,
-    visualVariant: "evidence-grid",
-  },
-  {
     id: "avatar-host",
     title: "Avatar & Host",
     projectType: "Identity, voice, and motion system",
@@ -334,6 +313,30 @@ export const selectedWorkshopProjects: readonly WorkshopProject[] = [
     sourceLabel: "Campaign role",
     resultLabel: "Stable identity",
     visualVariant: "production-rail",
+  },
+];
+
+export const historicalWorkshopProjects: readonly WorkshopProject[] = [
+  {
+    id: "cute-corrupted",
+    title: "EZIZE Origins",
+    projectType: "Historical visual experiment",
+    brief:
+      "The paired Cute & Corrupted studies supplied the first persona and transformation grammar that now runs inside EZIZE.",
+    promise:
+      "Preserve the visual premise, historical evidence, and transformation rules without presenting the old name as a current project.",
+    startingMaterial: "one recognizable subject and two deliberately different modes",
+    productionProblem:
+      "Push the modes apart while keeping the shared silhouette and identity readable.",
+    stages: ["concept", "shared base", "mode rules", "paired production", "EZIZE grammar"],
+    possibleOutputs: ["paired still", "motion pair", "historical record", "EZIZE source grammar"],
+    capabilities: ["concept development", "visual grammar", "taxonomy", "project history"],
+    media: cuteCorruptedAssets[0],
+    approvedAssets: cuteCorruptedAssets,
+    destination: "/workshop/cute-and-corrupted/",
+    status: "Project origin",
+    featuredPosition: 99,
+    visualVariant: "evidence-grid",
   },
 ];
 
@@ -366,5 +369,5 @@ export const workshopCapabilities = [
 ] as const;
 
 export function getWorkshopProject(id: WorkshopProject["id"]) {
-  return selectedWorkshopProjects.find((project) => project.id === id);
+  return [...selectedWorkshopProjects, ...historicalWorkshopProjects].find((project) => project.id === id);
 }

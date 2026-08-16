@@ -5,7 +5,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import SectionHero from "@/components/sections/SectionHero.astro";
 import ArticleCard from "@/components/articles/ArticleCard.astro";
 import GalleryCard from "@/components/gallery/GalleryCard.astro";
-import { primaryWorkshopPrograms, workshopPrograms, type HierarchyEntry } from "@/data/site-hierarchy";
+import { workshopProgramDefinitions, workshopPrograms, type HierarchyEntry } from "@/data/site-hierarchy";
 import { getPublishedArticles, getArticleDepartment } from "@/lib/articles";
 import { getVisualSystem, visualSystemPath } from "@/data/visual-systems";
 import { transformImageUrl } from "@/lib/media-transforms";
@@ -27,7 +27,7 @@ export function getStaticPaths() {
 
 interface Props { program: HierarchyEntry }
 const { program } = Astro.props;
-const programDetails = primaryWorkshopPrograms.find((entry) => entry.id === program.id);
+const programDetails = workshopProgramDefinitions.find((entry) => entry.id === program.id);
 const processPipeline = program.processSlug ? getProcessPipelineBySlug(program.processSlug) : undefined;
 const articles = await getPublishedArticles();
 const gallery = (await getCollection("gallery")).filter((entry) => !entry.data.draft);
@@ -55,7 +55,11 @@ const alterVideo = `${alterMediaRoot}/hc-video-001.mp4`;
 const processStages = programDetails?.workflow ?? (program.id === "stylefusion"
   ? ["Assign approved reference roles", "Run specialized extraction agents", "Inspect the IR and compiled slots", "Export the diagnostic document"]
   : ["Define the source", "Record the stable rules", "Build the change", "Publish the result"]);
-const status = program.status === "coming-eventually" ? "Coming eventually" : undefined;
+const status = program.status === "coming-eventually"
+  ? "Coming eventually"
+  : program.status === "historical"
+    ? "Historical origin"
+    : undefined;
 const stylefusionHero = getMedia("stylefusion.banner.image");
 const pageHero = program.id === "stylefusion" ? stylefusionHero.src : program.heroImage;
 const pageHeroAlt = program.id === "stylefusion" ? stylefusionHero.alt : program.heroAlt;
@@ -86,12 +90,12 @@ const academyBridge = program.id === "cute-corrupted"
   />
 ) : (
 <BaseLayout title={`${program.name} | HobFarm Workshop`} description={program.description} canonical={program.href} image={pageHero} imageAlt={pageHeroAlt} structuredData={structuredData} palette="blue-red" noindex={program.noindex === true} feed={pageFeed}>
-  <SectionHero eyebrow="HobFarm Workshop program" title={program.name} deck={program.description} image={pageHero} imageAlt={pageHeroAlt} theme={program.theme} status={status} cta={{label:"See the work",href:"#work"}} breadcrumbs={[{label:"Home",href:"/"},{label:"Workshop",href:"/workshop/"},{label:program.name}]} />
+  <SectionHero eyebrow={program.status === "historical" ? "EZIZE development history" : "HobFarm Workshop program"} title={program.name} deck={program.description} image={pageHero} imageAlt={pageHeroAlt} theme={program.theme} status={status} cta={{label:program.status === "historical" ? "See the origin studies" : "See the work",href:"#work"}} breadcrumbs={[{label:"Home",href:"/"},{label:"Workshop",href:"/workshop/"},{label:program.name}]} />
 
   {program.id === "cute-corrupted" && <section class="ezize-bridge border-b border-base-800/70">
     <Wrapper variant="standard" class="py-8">
-      <div><p class="label">Project history / now part of EZIZE</p><p>Cute &amp; Corrupted remains the origin record for the paired persona and transformation grammar. That work now runs inside EZIZE, a private-alpha application with Cake, Critter, and Character forms.</p></div>
-      <a href="/ezize/">Follow the work into EZIZE <span aria-hidden="true">&rarr;</span></a>
+      <div><p class="label">Historical origin / current project: EZIZE</p><p>This route preserves the Cute &amp; Corrupted experiment, its paired visual studies, and the transformation grammar that became part of EZIZE. EZIZE is the current application and project identity.</p></div>
+      <a href="/ezize/">Open the current EZIZE project <span aria-hidden="true">&rarr;</span></a>
     </Wrapper>
   </section>}
 
@@ -99,8 +103,8 @@ const academyBridge = program.id === "cute-corrupted"
     <Wrapper variant="standard" class="py-12 lg:py-16">
       <div class="grid gap-8 lg:grid-cols-[minmax(0,.6fr)_minmax(0,1fr)]">
         <div>
-          <p class="label">Program definition</p>
-          <h2>{program.id === "workshop-notes" ? "Keep the production record with the work." : programDetails?.transformation ?? "Keep the source and the decisions visible."}</h2>
+          <p class="label">{program.status === "historical" ? "Origin record" : "Program definition"}</p>
+          <h2>{program.id === "workshop-notes" ? "Keep the production record with the work." : program.id === "cute-corrupted" ? "The visual premise that became EZIZE." : programDetails?.transformation ?? "Keep the source and the decisions visible."}</h2>
           <p>{program.id === "workshop-notes" ? "Each note records the question, source material, production decisions, visible tests, failure or revision, reusable finding, and final destination." : program.description}</p>
         </div>
         <ol class="stage-grid">

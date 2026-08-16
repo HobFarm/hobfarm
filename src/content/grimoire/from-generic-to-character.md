@@ -8,7 +8,7 @@ difficulty: "beginner"
 project: "stylefusion"
 ---
 
-This example walks through a real StyleFusion transformation, step by step. We start with a generic AI-generated portrait and end with a consistent character that holds identity across multiple styles.
+This example walks through a real StyleFusion transformation, step by step. I start with a generic AI-generated portrait and end with a consistent character that holds identity across multiple styles.
 
 ## The Problem
 
@@ -18,7 +18,7 @@ For creative projects, that's useless. You need a character, not a random face.
 
 ## The Starting Point
 
-Our source image is a straightforward portrait: front-facing, clear lighting, neutral expression. It's a good reference because the geometry analyzer can extract high-confidence measurements from every facial feature.
+My source image is a straightforward portrait: front-facing, clear lighting, neutral expression. It is a good reference because the geometry analyzer can extract high-confidence measurements from every facial feature.
 
 The extraction pipeline identifies:
 
@@ -42,7 +42,7 @@ The Grimoire also generates identity negatives: "round face, close-set eyes, coo
 
 ## The Outputs
 
-Using the same identity signature, we compile prompts for different styles:
+Using the same identity signature, I compile prompts for different styles:
 
 **Goth Anime Line Art:** the geometry holds through stylization. The wide-set eyes become a distinctive feature in anime proportions rather than getting averaged out. The auburn hair translates to deep burgundy in the gothic palette. Identity negatives keep the jaw shape consistent even as the rendering style changes dramatically.
 

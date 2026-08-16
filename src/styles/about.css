@@ -92,6 +92,18 @@
   text-wrap: pretty;
 }
 
+.about-identity {
+  max-width: 45rem;
+  margin: 1rem 0 0;
+  padding-left: 1rem;
+  border-left: 2px solid var(--color-accent-cyan);
+  color: var(--color-base-400);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.about-identity strong { color: white; }
+
 .about-actions {
   display: flex;
   flex-wrap: wrap;

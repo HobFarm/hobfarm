@@ -5,14 +5,23 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import ContactForm from "@/components/ContactForm";
 import ContentPanel from "@/components/ContentPanel.astro";
 
-const isCreativeProject = Astro.url.searchParams.get("subject") === "creative-project";
+const requestedSubject = Astro.url.searchParams.get("subject") ?? undefined;
+const isCreativeProject = requestedSubject === "creative-project";
+const contactRoutes = [
+  { title: "Employment and professional inquiries", description: "Roles, production work, referrals, and professional identification.", links: [{ label: "Choose employment", href: "/contact/?subject=employment" }] },
+  { title: "Project and contract work", description: "Image, video, visual development, web publishing, applications, and workflow projects.", links: [{ label: "Start a project brief", href: "/contact/?subject=creative-project" }] },
+  { title: "Editorial, research, and media", description: "Sources, interviews, corrections, rights questions, and media inquiries.", links: [{ label: "Choose editorial", href: "/contact/?subject=editorial" }] },
+  { title: "Collaboration", description: "A specific shared project, contribution, or production idea.", links: [{ label: "Choose collaboration", href: "/contact/?subject=collaboration" }] },
+  { title: "General message", description: "Anything that does not fit a more specific route.", links: [{ label: "Choose general", href: "/contact/?subject=general" }] },
+  { title: "Customer and security help", description: "Billing, orders, downloads, accounts, refunds, technical problems, and security reports.", links: [{ label: "Open Customer Help", href: "/helpcenter/" }, { label: "Report security", href: "/contact/?subject=security" }] },
+] as const;
 ---
 
 <BaseLayout
   title={isCreativeProject ? "Start a Creative Project | HobFarm" : "Contact | HobFarm"}
   description={isCreativeProject
-    ? "Tell HobFarm about a script, archive, photograph, character, reference pile, product, or world that needs visual development, motion, or web presentation."
-    : "Contact HobFarm for Customer Help, business questions, memberships, creative tools, digital products, and media projects."}
+    ? "Tell me about a script, archive, photograph, character, reference pile, product, or world that needs visual development, motion, or web presentation."
+    : "Contact HobFarm for employment, project work, editorial and media inquiries, collaboration, general messages, Customer Help, or security reports."}
 >
   <section>
     <ContentPanel>
@@ -24,13 +33,27 @@ const isCreativeProject = Astro.url.searchParams.get("subject") === "creative-pr
           variant="displayXL"
           class="mt-12 text-white text-balance font-display"
         >
-          {isCreativeProject ? "Tell me what you're trying to make" : "Get in Touch"}
+          {isCreativeProject ? "Tell me what you're trying to make" : "Choose the right contact path"}
         </Text>
         <Text tag="p" variant="textBase" class="mt-2 text-base-400 text-balance max-w-xl">
           {isCreativeProject
             ? "Start with the material you already have and the result you need. A rough idea is enough when you can explain what the project should become."
-            : "Customer Help, billing, refunds, membership access, product questions, creative projects, partnership ideas, and bug reports all start here."}
+            : "Professional, project, editorial, collaboration, and general inquiries can go straight to the form. Customer, billing, order, account, and security help have clear routes below."}
         </Text>
+
+        {!isCreativeProject && (
+          <nav class="mt-8 grid gap-3 sm:grid-cols-2" aria-label="Contact routes">
+            {contactRoutes.map((route) => (
+              <div class="border border-base-800 bg-base-900/40 p-4">
+                <h2 class="text-sm font-medium text-white">{route.title}</h2>
+                <p class="mt-2 text-xs leading-relaxed text-base-400">{route.description}</p>
+                <div class="mt-3 flex flex-wrap gap-x-4 gap-y-2">
+                  {route.links.map((link: { readonly label: string; readonly href: string }) => <a href={link.href} class="font-mono text-[10px] uppercase tracking-wider text-accent-cyan hover:text-white">{link.label} <span aria-hidden="true">&rarr;</span></a>)}
+                </div>
+              </div>
+            ))}
+          </nav>
+        )}
 
         {isCreativeProject ? (
           <div class="mt-10 border-y border-accent-500/30 py-6">
@@ -41,29 +64,17 @@ const isCreativeProject = Astro.url.searchParams.get("subject") === "creative-pr
               Include the starting material, the result you want, the formats that would be useful, your timing, and any references that explain the direction.
             </p>
             <p class="mt-3 text-sm text-base-500 leading-relaxed">
-              Do not send private source files through this form. Describe what exists and HobFarm can work out a safer handoff if the project continues.
+              Do not send private source files through this form. Describe what exists and I can arrange a safer handoff if the project continues.
             </p>
           </div>
-        ) : (
-          <div class="mt-10 border-y border-base-800 py-6">
-            <Text tag="h2" variant="textSM" class="text-white font-mono uppercase tracking-widest">
-              Customer Help path
-            </Text>
-            <p class="mt-4 text-sm text-base-400 leading-relaxed">
-              Start at <a href="/helpcenter/" class="text-white underline decoration-base-600 underline-offset-4 hover:decoration-white">Customer Help</a>, then use the form below when you need a reply. For payment questions, include your provider, order ID, account email, and the product or membership involved.
-            </p>
-            <p class="mt-3 text-sm text-base-500 leading-relaxed">
-              Security reports should use the <a href="/contact/?subject=security" class="text-white underline decoration-base-600 underline-offset-4 hover:decoration-white">security report subject</a>.
-            </p>
-          </div>
-        )}
+        ) : null}
       </div>
 
       <div class="lg:col-span-2">
         <div class="lg:mt-12">
           <ContactForm
             client:load
-            initialSubject={isCreativeProject ? "creative-project" : undefined}
+            initialSubject={requestedSubject}
             projectBrief={isCreativeProject}
           />
         </div>

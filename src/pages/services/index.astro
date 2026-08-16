@@ -11,28 +11,28 @@ type Offer = { title: string; body: string };
 
 const offers: Offer[] = [
   {
-    title: "Video production",
-    body: "Editing, motion graphics, trailers, social cuts, and AI-assisted video. From raw footage to a finished cut in Premiere and After Effects.",
+    title: "Image restoration and finishing",
+    body: "Photo restoration, retouching, cleanup, color correction, compositing, archival-image repair, and final image preparation and delivery.",
   },
   {
-    title: "Image + design",
-    body: "Character sheets, visual development, covers, posters, book layouts, and commercial imagery. Built with the HobFarm system and finished by hand in Photoshop, Illustrator, InDesign, and Acrobat.",
+    title: "Video editing and motion",
+    body: "Editing, image-to-video, photo animation, motion graphics, visual effects, trailers, long and short-form delivery, and versions for different destinations.",
   },
   {
-    title: "Web development",
-    body: "Fast static sites, landing pages, and small web apps, built on the same stack that runs hob.farm.",
+    title: "Visual development",
+    body: "Characters, identity and continuity sheets, visual systems, covers, posters, concept development, campaign imagery, and production specifications.",
   },
   {
-    title: "AI workflows",
-    body: "Custom AI workflow design: prompt systems, multi-model setups, and automation built to ship real work, not demos.",
+    title: "Web publishing and small applications",
+    body: "Content architecture, static sites, publishing workflows, landing and project pages, small web applications, and media or asset integration.",
   },
   {
-    title: "Marketing",
-    body: "Product media, mockups, lifestyle images, short ads, and social content built around what you actually sell.",
+    title: "Applied AI and workflow development",
+    body: "Structured generation, reference analysis, model and provider selection, prompt and schema systems, troubleshooting, evaluation, production records, and practical automation.",
   },
   {
-    title: "Reselling + sourcing",
-    body: "HobFarm also buys, restores, and sells physical goods, run as the BASS Show. See the shop for current finds.",
+    title: "Product and editorial media",
+    body: "Article packages, product images, demonstrations, short videos, visual explanations, and release assets built for a defined destination.",
   },
 ];
 
@@ -40,31 +40,31 @@ type ProcessCard = { title: string; body: string; href: string };
 
 const processCards: ProcessCard[] = [
   {
-    title: "Starlet",
-    body: "A character built from outfit logic, pose, accessories, material, and palette, packaged so it can be reused across new images.",
-    href: "/workshop/fashion-grammar/",
+    title: "Before & After",
+    body: "Source photographs become restorations, documentary comparisons, locked-camera transformations, and clearly labeled alternate histories.",
+    href: "/workshop/before-and-after/",
   },
   {
-    title: "Hellcat",
-    body: "One character turned into a short motion reel: four stills become animated clips, transitions, and an editorial loop.",
+    title: "Motion",
+    body: "A still-image system expands into animated clips, transitions, and an editorial loop with a clear production record.",
     href: "/workshop/motion/",
   },
   {
-    title: "The Star in the Skull",
-    body: "A story idea worked up into a cover, an illustration system, a motion teaser, and a reusable visual world.",
-    href: "/workshop/book-package/",
+    title: "The HobFarm publishing system",
+    body: "The live site shows content architecture, reusable components, media integration, release checks, and revision in one working project.",
+    href: "/workshop/projects/hobfarm/",
   },
   {
-    title: "Seed to World",
-    body: "A single base character developed into a small visual world: identity, style, world translation, and a motion proof.",
-    href: "/workshop/seed-to-world/",
+    title: "EZIZE",
+    body: "An authored visual grammar, deterministic pull, exact probability, renderer handoff, and ledger become one private application.",
+    href: "/ezize/",
   },
 ];
 ---
 
 <BaseLayout
   title="Services | HobFarm"
-  description="Hire HobFarm for video production, image and design, web development, AI workflow design, and marketing. See how the work gets made."
+  description="Hire Kris Reynolds through HobFarm for image finishing, video and motion, visual development, web publishing, small applications, and applied AI workflows."
 >
   {/* ── Hero ── */}
   <section class="bg-noise border-b border-base-800/50">
@@ -75,10 +75,10 @@ const processCards: ProcessCard[] = [
           Services
         </Text>
         <Text tag="p" variant="textBase" class="text-base-300 mt-6 max-w-2xl text-pretty leading-relaxed">
-          HobFarm takes on outside work. The same tools and systems behind every project here can be pointed at your video, images, site, or workflow. Fast where speed helps, careful where it counts.
+          I take on selected outside work through HobFarm. Tell me what you are making, what you already have, and where the process is stuck. I can help with a defined production problem or build the working system around it.
         </Text>
         <div class="mt-8 flex flex-wrap gap-3">
-          <Button isLink size="sm" variant="green" href="/contact/">Hire HobFarm</Button>
+          <Button isLink size="sm" variant="green" href="/contact/?subject=creative-project">Discuss a project</Button>
           <Button isLink size="sm" variant="muted" href="#process">See how it's made</Button>
         </div>
       </Wrapper>
@@ -89,7 +89,7 @@ const processCards: ProcessCard[] = [
   <section class="border-t border-base-800/50">
     <ContentPanel>
       <Wrapper variant="standard" class="py-12 lg:py-20">
-        <SectionHeader eyebrow="01" heading="What HobFarm does" note="Pick a lane, or describe the job." />
+        <SectionHeader eyebrow="01" heading="What I do" note="Pick a lane, or describe the job." />
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {offers.map((offer) => (
             <div class="rounded-lg border border-base-800 bg-base-900/40 p-6">
@@ -103,7 +103,7 @@ const processCards: ProcessCard[] = [
           ))}
         </div>
         <Text tag="p" variant="textSM" class="text-base-500 mt-8 max-w-2xl text-pretty leading-relaxed">
-          Production runs on professional tools (Photoshop, InDesign, Premiere, After Effects, Illustrator, Acrobat) alongside the HobFarm system. The tools exist because moving fast matters. The work is knowing where to aim them.
+          I use professional image, layout, editing, motion, web, and model tools as the job requires. Software and providers stay secondary to the source, specification, review, and finished delivery.
         </Text>
       </Wrapper>
     </ContentPanel>
@@ -115,7 +115,7 @@ const processCards: ProcessCard[] = [
       <Wrapper variant="standard" class="py-12 lg:py-20">
         <SectionHeader eyebrow="02" heading="How it's made" note="Real jobs, start to finish." />
         <Text tag="p" variant="textBase" class="text-base-400 max-w-2xl mb-10 text-pretty leading-relaxed">
-          Each of these is a real piece taken from first idea to finished output. They show how the work moves: what gets locked early, what stays flexible, and where the time goes.
+          These are real HobFarm routes. They show what I lock early, what stays flexible, how I test the result, and which record survives after delivery.
         </Text>
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
           {processCards.map((card) => (
@@ -147,11 +147,11 @@ const processCards: ProcessCard[] = [
           Have something in mind?
         </Text>
         <Text tag="p" variant="textBase" class="text-base-400 mt-4 max-w-2xl text-pretty leading-relaxed">
-          Tell HobFarm what you are making and what you need. Custom work is by request.
+          Tell me what you are making, what already exists, and what a useful finished result would look like. Selected project and contract work is by request.
         </Text>
         <div class="mt-8 flex flex-wrap gap-3">
-          <Button isLink size="sm" variant="green" href="/contact/">Hire HobFarm</Button>
-          <Button isLink size="sm" variant="muted" href="/gallery">See the visuals</Button>
+          <Button isLink size="sm" variant="green" href="/contact/?subject=creative-project">Discuss a project</Button>
+          <Button isLink size="sm" variant="muted" href="/workshop/projects/">See project evidence</Button>
         </div>
       </Wrapper>
     </ContentPanel>

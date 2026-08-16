@@ -152,6 +152,12 @@ Technical copy should stay direct:
 
 > The issue is probably instruction collision. Test it by running the same prompt in a clean chat, then inside the project, then inside the project with this source file removed. If the behavior changes, the style layer is involved.
 
+## Point of view for public HobFarm copy
+
+Use `I` when the operator describes actions, decisions, research, testing, writing, development, history, or judgment. Use `you` for direct instructions and invitations. Use third person for HobFarm as a publication or studio and for named systems such as Workshop, EZIZE, Grimoire, and Wildcard Machine.
+
+`d00d` remains the public editorial byline. Use Kris Reynolds where identification matters: About, Contact, employment, legal, resume, and professional contexts. Use `we` only when more than one real person did the work. Third person should describe the public object, not imitate an outside biographer describing the operator.
+
 ## Short instruction
 
 Use this guide as the final prose filter for drafted text. Prefer direct claims, ordinary punctuation, varied sentence rhythm, and concrete wording. Replace assistant-shaped contrast with the actual claim and the reason it matters. Keep Markdown functional. Preserve HobFarm's voice and the author's taste over generic polish.

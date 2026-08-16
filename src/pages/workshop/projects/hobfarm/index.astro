@@ -5,6 +5,7 @@ import Breadcrumbs from "@/components/global/Breadcrumbs.astro";
 import EditorialProductionFlow from "@/components/workshop/EditorialProductionFlow.astro";
 import HobFarmProductionDiagram from "@/components/workshop/HobFarmProductionDiagram.astro";
 import ProjectNodeAnatomy from "@/components/workshop/ProjectNodeAnatomy.astro";
+import WorkshopNodeMesh from "@/components/workshop/WorkshopNodeMesh.astro";
 import ConnectedWork from "@/components/workshop/ConnectedWork.astro";
 import { getMedia } from "@/data/media-registry";
 import {
@@ -80,6 +81,26 @@ const relationshipExamples = [
   ["Article → Article", "A subject leads naturally into another investigation."],
   ["Project → Tool", "A method becomes something reusable."],
   ["Project → Project", "One experiment provides the starting point for another."],
+] as const;
+const durableStructureExamples = [
+  ["Web publishing", "Content records can survive a new layout, component, or navigation treatment."],
+  ["Applications and AI tools", "A schema, authored rule set, or working specification can survive a model or provider change."],
+  ["EZIZE", "Cake definitions, motif logic, and weights can change without rebuilding the deterministic runtime."],
+  ["Research", "Sources, questions, calculations, contradictions, and decisions remain useful when the research tools change."],
+] as const;
+const branchExamples = [
+  {
+    title: "Character development",
+    steps: ["Workshop record", "Workshop Note article when there is a story or reusable finding", "selected evidence in the article", "complete visual release on DeviantArt", "possible adoptable or product"],
+  },
+  {
+    title: "EZIZE",
+    steps: ["application and project page", "significant development articles", "selected EZ releases on DeviantArt", "optional public pulls when the application is ready"],
+  },
+  {
+    title: "Clip-art system",
+    steps: ["Workshop development", "article when the method or subject is worth publishing", "finished asset package", "Etsy listing"],
+  },
 ] as const;
 const editorialArticleDefinitions = [
   {
@@ -180,10 +201,50 @@ const editorialCapabilities = [
           <div><p class="eyebrow">Adding something new</p><h2 id="node-heading">Every new thing has to fit somewhere.</h2></div>
           <div class="section-heading__copy">
             <p>A new article or project does not need its own independent system.</p>
-            <p>It needs a route, content, media, whatever presentation makes sense, and a way to connect it to the rest of HobFarm. The existing site handles the repetitive parts so the new work can stay focused on whatever made it interesting in the first place.</p>
+            <p>It needs a purpose, canonical route, content, presentation, media, platform requirements, and genuine connections to the rest of HobFarm. Shared infrastructure handles navigation, metadata, components, release, quality checks, search, RSS, and related-work routing where they apply.</p>
           </div>
         </div>
         <div class="diagram-space"><ProjectNodeAnatomy parts={newThingParts} coreLabel="" coreTitle="New thing" caption="The site provides the structure. The project provides the reason to use it." /></div>
+      </Wrapper>
+    </section>
+
+    <section class="mesh-section" aria-labelledby="mesh-heading">
+      <Wrapper variant="standard" class="section-space">
+        <div class="section-heading">
+          <div><p class="eyebrow">The node mesh</p><h2 id="mesh-heading">The site is a network, not a required funnel.</h2></div>
+          <div class="section-heading__copy">
+            <p>Articles, Workshop records, Workshop Notes, Presents properties, applications, Academy lessons, Shop routes, and external platforms each have a different job.</p>
+            <p>A Workshop Note remains one canonical Article record and URL. Workshop indexes the same record so the production finding can appear in both places without duplicating RSS, search, or the page itself.</p>
+            <p>Project cores such as HobFarm, EZIZE, StyleFusion, Before &amp; After, Future Carriage, and Other Alice connect only where a useful artifact, decision, or release actually travels between them.</p>
+          </div>
+        </div>
+        <div class="diagram-space"><WorkshopNodeMesh /></div>
+      </Wrapper>
+    </section>
+
+    <section class="durable-structure" aria-labelledby="durable-heading">
+      <Wrapper variant="standard" class="section-space">
+        <div class="section-heading">
+          <div><p class="eyebrow">Persistent structure, replaceable tools</p><h2 id="durable-heading">Keep the useful record when the implementation changes.</h2></div>
+          <div class="section-heading__copy">
+            <p>The lasting part is the source, the rules, and the decisions another tool needs. Layouts, providers, models, and software can change without erasing that record.</p>
+          </div>
+        </div>
+        <dl class="structure-grid">{durableStructureExamples.map(([label, detail]) => <div><dt>{label}</dt><dd>{detail}</dd></div>)}</dl>
+      </Wrapper>
+    </section>
+
+    <section class="canonical-branches" aria-labelledby="canonical-heading">
+      <Wrapper variant="standard" class="section-space">
+        <div class="section-heading">
+          <div><p class="eyebrow">One canonical object, several connected routes</p><h2 id="canonical-heading">Use the branches that earn a place.</h2></div>
+          <div class="section-heading__copy">
+            <p>None of these branches is mandatory. HobFarm keeps the reason, source, story, method, and canonical record. External platforms handle the audience, gallery, video, marketplace, or storefront job they are better suited to do.</p>
+          </div>
+        </div>
+        <div class="branch-grid">
+          {branchExamples.map((example) => <article><h3>{example.title}</h3><ol>{example.steps.map((step: string) => <li>{step}</li>)}</ol></article>)}
+        </div>
       </Wrapper>
     </section>
 
@@ -202,11 +263,11 @@ const editorialCapabilities = [
         <aside class="editorial-assistance" aria-labelledby="editorial-assistance-heading">
           <div>
             <p class="editorial-label">AI-assisted development</p>
-            <h3 id="editorial-assistance-heading">ChatGPT helps interrogate the work while it is being made.</h3>
+            <h3 id="editorial-assistance-heading">Current models accelerate parts of an existing method.</h3>
           </div>
           <div class="editorial-assistance__copy">
-            <p>I use ChatGPT to interrogate source material, compare explanations and calculations, expose missing research, test structure, and develop drafts through revision.</p>
-            <p>ChatGPT does not replace the source record. Before an article is published, its claims still have to survive external evidence, contradictory material, visual inspection, and editorial judgment.</p>
+            <p>I use language and media models to compare technical explanations, translate documents, locate missing questions, test calculations, troubleshoot code, examine large source sets, test article structure, revise drafts, prepare working specifications, and produce or test media.</p>
+            <p>The persistent record is the source material, questions, constraints, calculations, evidence, contradictory material, decisions, verification, editorial judgment, and final production record. Model output is not evidence merely because a model produced it, and no model is the authority behind an article or project.</p>
           </div>
           <ol class="capability-chain" aria-label="Editorial production capabilities">
             {editorialCapabilities.map((capability) => <li>{capability}</li>)}
@@ -265,7 +326,7 @@ const editorialCapabilities = [
       </Wrapper>
     </section>
 
-    <Wrapper variant="standard" class="connected-space"><ConnectedWork eyebrow="Open related work" title="See where this project connects." links={[{ relationship: "Method", label: "Workshop overview", href: "/workshop/" }, { relationship: "Technical application", label: "StyleFusion", href: "/workshop/stylefusion/" }, { relationship: "Editorial output", label: "Articles", href: "/articles/" }, { relationship: "Ongoing release record", label: "Changelog", href: "/changelog/" }]} /></Wrapper>
+    <Wrapper variant="standard" class="connected-space"><ConnectedWork eyebrow="Open related work" title="See where this project connects." links={[{ relationship: "Method", label: "Workshop overview", href: "/workshop/" }, { relationship: "Current application", label: "EZIZE", href: "/ezize/" }, { relationship: "Technical application", label: "StyleFusion", href: "/workshop/stylefusion/" }, { relationship: "Editorial output", label: "Articles", href: "/articles/" }, { relationship: "Ongoing release record", label: "Changelog", href: "/changelog/" }]} /></Wrapper>
   </div>
 </BaseLayout>
 
@@ -289,18 +350,24 @@ const editorialCapabilities = [
   figure img { display: block; width: 100%; height: auto; }
   figcaption { padding: .7rem; color: #8f899e; font-family: var(--font-mono); font-size: .55rem; line-height: 1.5; text-transform: uppercase; }
   section { border-bottom: 1px solid #2c2440; }
-  .evidence { background: #0a0810; }
+  .evidence, .durable-structure, .canonical-branches { background: #0a0810; }
   :global(.section-space) { padding-block: clamp(4rem, 8vw, 7rem); }
   .section-heading { display: grid; gap: 1.4rem; }
   .section-heading__copy { max-width: 45rem; }
   .section-heading__copy p { margin: 0; line-height: 1.75; }
   .section-heading__copy p + p { margin-top: .8rem; }
-  .diagram-space, .evidence-grid, .decision-grid, .relationship-grid { margin-top: clamp(2rem, 4vw, 3.5rem); }
+  .diagram-space, .evidence-grid, .decision-grid, .relationship-grid, .structure-grid, .branch-grid { margin-top: clamp(2rem, 4vw, 3.5rem); }
   .evidence-grid { display: grid; gap: 1rem; align-items: start; }
   dl { display: grid; gap: .55rem; margin: 0; }
   dl div { padding: .85rem; border: 1px solid #342b45; background: #0d0a13; }
   dt { color: #55d7ff; font-family: var(--font-mono); font-size: .54rem; letter-spacing: .08em; text-transform: uppercase; }
   dd { margin: .4rem 0 0; color: #d0cbd6; font-size: .75rem; line-height: 1.55; }
+  .structure-grid, .branch-grid { display: grid; gap: .7rem; }
+  .branch-grid article { min-width: 0; padding: 1.1rem; border: 1px solid #342b45; background: #0d0a13; }
+  .branch-grid h3 { margin: 0; color: #fff; font-family: var(--font-display); font-size: 1.45rem; font-weight: 400; }
+  .branch-grid ol { display: grid; gap: .55rem; margin: 1rem 0 0; padding: 0; list-style: none; }
+  .branch-grid li { position: relative; padding-left: 1.25rem; color: #aaa4b3; font-size: .75rem; line-height: 1.55; }
+  .branch-grid li::before { position: absolute; left: 0; color: #55d7ff; content: "→"; }
   .decision-grid { display: grid; gap: .65rem; padding: 0; list-style: none; }
   .decision-grid li { min-height: 12rem; padding: 1rem; border: 1px solid #342b45; background: #0d0a13; }
   .decision-grid span { color: #d04a93; font-family: var(--font-mono); font-size: .58rem; }
@@ -332,6 +399,6 @@ const editorialCapabilities = [
   .editorial-example span { margin-top: auto; padding-top: 1rem; color: #e8e3ec; font-family: var(--font-mono); font-size: .55rem; text-transform: uppercase; }
   :global(.connected-space) { padding-block: clamp(3rem, 6vw, 5rem); }
   @media (min-width: 42rem) { .editorial-examples { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (min-width: 48rem) { .evidence-grid { grid-template-columns: minmax(0, 1.15fr) minmax(20rem, .85fr); } .decision-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } .relationship-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (min-width: 64rem) { .case-hero__copy { grid-template-columns: minmax(0, .9fr) minmax(26rem, 1.1fr); } .section-heading { grid-template-columns: minmax(0, 1.15fr) minmax(24rem, .65fr); align-items: end; } .editorial-assistance { grid-template-columns: minmax(0, .8fr) minmax(28rem, 1.2fr); } .editorial-examples { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (min-width: 48rem) { .evidence-grid { grid-template-columns: minmax(0, 1.15fr) minmax(20rem, .85fr); } .decision-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } .relationship-grid, .structure-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 64rem) { .case-hero__copy { grid-template-columns: minmax(0, .9fr) minmax(26rem, 1.1fr); } .section-heading { grid-template-columns: minmax(0, 1.15fr) minmax(24rem, .65fr); align-items: end; } .editorial-assistance { grid-template-columns: minmax(0, .8fr) minmax(28rem, 1.2fr); } .editorial-examples, .branch-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 </style>

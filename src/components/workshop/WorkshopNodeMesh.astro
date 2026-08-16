@@ -6,7 +6,7 @@ interface Props {
 }
 
 const { compact = false } = Astro.props;
-const compactIds = new Set(["articles", "presents", "hobfarm-site", "workshop", "stylefusion", "before-after", "future-carriage", "academy", "shop"]);
+const compactIds = new Set(["hobfarm-site", "articles", "presents", "workshop", "applications", "ezize", "academy", "shop", "external-distribution"]);
 const nodes = compact ? publicHobFarmNodes.filter((node) => compactIds.has(node.id)) : publicHobFarmNodes;
 const visibleIds = new Set(nodes.map((node) => node.id));
 const edges = publicHobFarmEdges.filter((edge) => visibleIds.has(edge.from) && visibleIds.has(edge.to));
@@ -46,7 +46,7 @@ const edges = publicHobFarmEdges.filter((edge) => visibleIds.has(edge.from) && v
     </ul>
   )}
   <figcaption id="node-mesh-caption">
-    Each line is a real publishing or production relationship. The nodes share selected artifacts and decisions; they do not share one unlimited context.
+    Each line marks a real publishing or production relationship. A project uses only the routes that fit the work; the mesh is not a required funnel.
   </figcaption>
 </figure>
 

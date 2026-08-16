@@ -14,7 +14,7 @@ This policy does not limit any non-waivable rights you may have under applicable
 
 ## How to Request Help
 
-Before opening a payment dispute, contact HobFarm so we can review the issue.
+Before opening a payment dispute, contact HobFarm so the issue can be reviewed.
 
 Use the [contact page](/contact/). Include:
 

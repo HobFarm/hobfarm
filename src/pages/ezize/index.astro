@@ -8,7 +8,7 @@ import { buildCompareItems } from "@/lib/cute-corrupted";
 import { getMedia } from "@/data/media-registry";
 
 const description =
-  "EZIZE is HobFarm's private-alpha collectible image machine, built around structured random generation, exact recipe probabilities, and rendered easies.";
+  "EZIZE is HobFarm's private-alpha collectible image machine, built around authored random generation, exact recipe probabilities, rendered EZs, and a pull ledger.";
 // The Access-protected private-alpha deployment has been verified at this address.
 const app = {
   href: "https://ez.hob.farm/",
@@ -86,7 +86,7 @@ const structuredData = {
       "@type": "CreativeWork",
       "@id": `${canonicalUrl}#ezize`,
       name: "EZIZE",
-      alternateName: "easies",
+      alternateName: ["EZ", "pronounced easies"],
       description,
       url: canonicalUrl,
       creator: { "@id": `${siteOrigin}/#organization` },
@@ -102,7 +102,7 @@ const pullSteps = [
   "Calculate probability",
   "Build image specification",
   "Render image",
-  "Record and download",
+  "Write ledger and download",
 ];
 const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake", "Melting condition"];
 ---
@@ -125,9 +125,10 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
             <p class="eyebrow">A collectible image system published by HobFarm</p>
             <h1 id="ezize-title">EZIZE</h1>
             <p class="pronunciation"><span>Private alpha</span> Pronounced “easies.”</p>
+            <p class="coin-line">Insert coin. Get an EZ.</p>
             <p class="deck">
-              A probability-driven collectible image machine. Every pull resolves a structured combination of
-              traits, calculates how likely that exact recipe was, builds the image specification, and renders an easie.
+              You do not choose the exact image that comes out. Every pull resolves an authored combination of
+              traits, calculates how likely that recipe was, records its identity, and sends the finished specification to the renderer.
             </p>
             <div class="hero-actions">
               {app.customDomainReady && (
@@ -150,13 +151,14 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
       <Wrapper variant="standard" class="section-space">
         <div class="split-heading">
           <div>
-            <p class="eyebrow">What is an EZIZE?</p>
-            <h2 id="definition-heading">One pull. One recipe. One easie.</h2>
+            <p class="eyebrow">What is an EZ?</p>
+            <h2 id="definition-heading">One pull. One recipe. One EZ.</h2>
           </div>
           <div class="body-copy">
             <p>
-              An <strong>ezize</strong>, or <strong>easie</strong>, is one collectible produced by the machine. The
-              recipe comes first. The image model does not choose the rarity, the form, or the underlying traits.
+              An <strong>EZ</strong> is one collectible produced by EZIZE. The recipe comes first. The image model does
+              not choose the rarity, form, or underlying traits. Each EZ keeps its resolved recipe, exact probability,
+              generation identity, provenance, and event record in the ledger.
             </p>
             <p>
               The private alpha now runs the complete path from compiled Grimoire packs through Wildcard Machine,
@@ -210,9 +212,9 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
         <div class="blind-grid">
           <div>
             <p class="eyebrow">You do not choose what comes out</p>
-            <h2 id="blind-pull-heading">Pull the handle. Let the cabinet decide.</h2>
+            <h2 id="blind-pull-heading">Insert coin. Get an EZ.</h2>
             <p class="deck-small">
-              EZIZE works like a vending machine, a gumball machine, or a sealed trading-card pack. It is not a
+              EZIZE works like a penny-arcade machine, a gumball machine, or a sealed trading-card pack. It is not a
               conventional prompt form. The structured surprise is the point. Common pulls still need to make good
               pictures; unusual combinations emerge naturally when several weighted choices meet.
             </p>
@@ -344,7 +346,7 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
           <div class="engine-nodes">
             <article><span>Authoring and schema</span><h3>Grimoire</h3><p>Defines what can exist.</p></article>
             <article><span>Deterministic runtime</span><h3>Wildcard Machine</h3><p>Performs the seeded pull and calculates its probability.</p></article>
-            <article><span>Image renderer</span><h3>OpenAI</h3><p>Renders the already-resolved visual specification in the private alpha.</p></article>
+            <article><span>Current private-alpha renderer</span><h3>OpenAI</h3><p>Renders the already-resolved visual specification. It does not choose the recipe or rarity.</p></article>
           </div>
         </div>
       </Wrapper>
@@ -354,14 +356,14 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
       <Wrapper variant="standard" class="section-space">
         <div class="split-heading">
           <div>
-            <p class="eyebrow">Representation between stages</p>
-            <h2 id="representation-heading">A schema is not necessarily JSON.</h2>
+            <p class="eyebrow">The Ledger</p>
+            <h2 id="representation-heading">The ledger keeps the pull and the math together.</h2>
           </div>
           <div class="body-copy">
             <p>
-              A schema is the explicit structure that lets the next stage understand the decisions that matter. JSON
-              is one serialization. EZIZE also depends on concept taxonomies, persona and form grammar, weighted trait
-              relationships, deterministic identity, image direction, and application state.
+              The ledger preserves the EZIZE ID, seed, resolved recipe, exact full-genome probability, render state,
+              output dimensions, image hash, provenance, and pull event. It keeps the identity of the EZ attached to
+              the image and the math that produced it.
             </p>
             <p>
               Each representation has a job. The image provider receives a resolved visual specification. It does not
@@ -373,10 +375,10 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
         <dl class="representation-grid">
           <div><dt>Authored grammar</dt><dd>Cabinet, persona, form, trait relationships, weights, and exclusions define what can exist.</dd></div>
           <div><dt>Deterministic identity</dt><dd>Seed, resolved genome, and exact full-genome probability identify the completed pull.</dd></div>
-          <div><dt>Image contract</dt><dd>Canonical image JSON and the prompt compiler translate the recipe into a renderable specification.</dd></div>
-          <div><dt>Development record</dt><dd>EZIZE ID, render state, output dimensions, image hash, and PNG provenance fields stay attached to the owner-alpha result.</dd></div>
+          <div><dt>Renderer handoff</dt><dd>Canonical image JSON and the prompt compiler translate the recipe into a renderable specification.</dd></div>
+          <div><dt>Ledger record</dt><dd>EZIZE ID, recipe, probability, render state, output dimensions, image hash, provenance, and event details stay attached to the owner-alpha result.</dd></div>
         </dl>
-        <p class="representation-note">The development record is working. Public accounts, personal collections, and gallery curation are future product work.</p>
+        <p class="representation-note">The owner-alpha ledger is working. A public ledger view, accounts, credits, and public pulls belong to the separate public-launch task.</p>
       </Wrapper>
     </section>
 
@@ -396,19 +398,19 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
           <article>
             <span class="status-label available">Working</span>
             <h3>Render and PNG download</h3>
-            <p>The EZIZE prompt compiler sends the resolved specification to OpenAI GPT Image, receives the rendered easie, and exposes a PNG download in the owner view.</p>
+            <p>The EZIZE prompt compiler sends the resolved specification to OpenAI GPT Image, receives the rendered EZ, and exposes a PNG download in the owner view.</p>
             <ul><li>Current proof: Corrupted Cake</li><li>2336×3504 portrait PNG</li><li>Owner access only</li></ul>
           </article>
           <article>
             <span class="status-label building">Development record</span>
-            <h3>Identity and provenance fields</h3>
+            <h3>Ledger identity and provenance</h3>
             <p>The owner view records the seed, genome, exact probability, render state, output dimensions, hashes, and development PNG provenance fields.</p>
             <ul><li>Local to the owner alpha</li><li>Identifies the recipe and file</li><li>Not a public collection</li></ul>
           </article>
           <article>
             <span class="status-label planned">Planned</span>
             <h3>Public product layer</h3>
-            <p>Retail credits, public accounts, personal collections, public generation, agent tools, and downloadable easies.</p>
+            <p>Coin or credit pulls, public accounts, public generation, portable EZ downloads, and an appropriate public ledger view.</p>
           </article>
         </div>
       </Wrapper>
@@ -418,23 +420,23 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
       <Wrapper variant="standard" class="section-space">
         <div class="collect-grid">
           <div>
-            <p class="eyebrow">Generated, recorded, and kept.</p>
-            <h2 id="collecting-heading">The file is already the collectible.</h2>
+            <p class="eyebrow">Portable by design</p>
+            <h2 id="collecting-heading">An EZ does not need a HobFarm gallery.</h2>
             <p>
-              An easie is a digital collectible with a structured identity, an exact recipe, and a record of how its
-              image was produced. The planned public path lets a person generate, download, keep, and organize selected
-              easies without changing what the work is.
+              An EZ is a digital collectible with a structured identity, an exact recipe, and a record of how its image
+              was produced. The PNG and ledger preserve that record. Selected EZs may eventually be released through
+              DeviantArt, but no specific gallery, collection, or adoptable listing is live yet.
             </p>
           </div>
           <div class="future-chain">
             <div><span>01</span><strong>EZIZE</strong><p>Creates and records the collectible.</p></div>
             <div><span>02</span><strong>PNG</strong><p>Stores the image and its portable development metadata.</p></div>
-            <div><span>03 / planned</span><strong>Collection</strong><p>Organizes the easies a person chooses to keep.</p></div>
+            <div><span>03 / optional</span><strong>External release</strong><p>A selected EZ can go to the platform that fits the release.</p></div>
           </div>
         </div>
         <p class="collect-note">
-          Public accounts and collections are not live. HobFarm remains the publisher and creator identity; EZIZE is
-          the collection and product identity.
+          Public accounts, coin or credit pulls, and public generation are not live. HobFarm remains the publisher;
+          EZIZE is the application and product identity.
         </p>
       </Wrapper>
     </section>
@@ -445,10 +447,10 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
           <div><p class="mini-wordmark" aria-hidden="true">EZIZE</p></div>
           <div>
             <p class="eyebrow">Why EZIZE?</p>
-            <h2 id="name-heading">Easy to pull. Easies to collect.</h2>
+            <h2 id="name-heading">Easy to say. An EZ to pull.</h2>
             <p>
-              EZ carries the “easy” association. EZIZE is pronounced “easies,” which is also what the individual
-              collectibles are called. The product is EZIZE. The thing you receive is an ezize, or an easie.
+              EZIZE is pronounced “easies.” The full application and product name is EZIZE. One pull produces an
+              <strong>EZ</strong>; more than one are <strong>EZs</strong>.
             </p>
           </div>
         </div>
@@ -460,7 +462,7 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
         <p class="eyebrow">Private alpha</p>
         <h2 id="final-heading">EZIZE is working behind restricted access.</h2>
         <p>
-          The machine can resolve and render real easies. The application is live behind Cloudflare Access and remains
+          The machine can resolve and render real EZs. The application is live behind Cloudflare Access and remains
           owner-only during private alpha. Public accounts and generation access do not exist yet. The original Cute /
           Corrupted studies remain available in the HobFarm Gallery, with the production method in Workshop.
         </p>
@@ -503,6 +505,7 @@ const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake",
   .hero-evidence { min-width: 0; max-width: 72rem; }
   h1 { margin: 1.1rem 0 0; color: white; font-size: clamp(5rem, 17vw, 12.5rem); font-weight: 650; letter-spacing: -.095em; line-height: .73; }
   .pronunciation { margin: 1.35rem 0 0; color: var(--ez-pink); font-family: var(--font-mono); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; }
+  .coin-line { margin: 1.35rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(2rem, 5vw, 4.2rem); font-weight: 450; letter-spacing: -.04em; line-height: .95; }
   .deck { max-width: 47rem; margin: 1.7rem 0 0; color: #d2cdda; font-size: clamp(1.04rem, 2vw, 1.25rem); line-height: 1.75; }
   .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
   .primary-action, .secondary-action { display: inline-flex; min-height: 2.9rem; align-items: center; justify-content: center; padding: .72rem 1.1rem; border: 1px solid var(--ez-line); border-radius: 999px; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .06em; text-decoration: none; text-transform: uppercase; }

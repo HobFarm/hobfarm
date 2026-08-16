@@ -41,7 +41,7 @@ export const ffePhases: FFEPhase[] = [
     name: "Think in steps",
     oneLiner: "Think in steps. Recurse when needed.",
     description:
-      "AI gets a fixed amount of computation per word. Ask it to solve something complex in one shot and it will confidently give you the wrong answer. So we don't ask in one shot. Complex work gets broken into pieces small enough for AI to handle reliably. Each piece can spawn its own sub-pipeline, following the exact same six phases. This is the fractal: same structure, any depth.",
+      "AI gets a fixed amount of computation per word. Ask it to solve something complex in one shot and it will confidently give you the wrong answer. I break complex work into pieces small enough for AI to handle reliably. Each piece can spawn its own sub-pipeline, following the exact same six phases. This is the fractal: same structure, any depth.",
     animationDuration: 1500,
   },
   {

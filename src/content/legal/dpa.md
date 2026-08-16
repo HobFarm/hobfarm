@@ -49,7 +49,7 @@ HobFarm uses the following sub-processors to deliver services:
 | Google Cloud (Vertex AI) | AI model inference | Compiled text prompts, generation parameters | United States / Global |
 | Third-party AI model providers | Image generation | Compiled text prompts, generation parameters | Varies by provider |
 
-We will notify users of changes to sub-processors through updates to this document. Compiled prompts sent to AI providers do not include source images, email addresses, or other directly identifying information.
+HobFarm will notify users of changes to sub-processors through updates to this document. Compiled prompts sent to AI providers do not include source images, email addresses, or other directly identifying information.
 
 ## Security
 

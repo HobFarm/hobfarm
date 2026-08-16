@@ -67,6 +67,14 @@ the site keeps every route and relationship understandable
 
 Each published object still needs a durable primary route and useful relationships to other HobFarm work. Social media is a distribution option. It is not the source of truth, the site architecture, or a required step for every piece.
 
+### Publisher mesh
+
+HobFarm is the parent publisher and canonical source. Articles are its main editorial body. Workshop keeps the production record and explains how selected work developed. Presents collects recurring properties with their own identity and release pattern. Academy teaches methods proven through real work. Shop routes finished products to a verified direct or external shelf. External platforms handle the distribution, gallery, video, audience, or marketplace job they are suited to do.
+
+Use one primary canonical object for each release, then connect related routes instead of duplicating the work. An application owns its application or project page. A Workshop page explains its development. An article exists when there is a real story, investigation, argument, release note, or reusable finding. A product needs a credible deliverable and fulfillment path. A course needs a repeatable, tested method.
+
+The node mesh is a network, not a required funnel. A source, question, or project may produce any useful combination of articles, Workshop records, applications, Presents entries, media, lessons, products, and external releases. None of those branches is mandatory, and any useful result may start another project.
+
 ---
 
 ## Priority Rules
@@ -94,6 +102,20 @@ Use [`docs/regular-prose-guidelines.md`](docs/regular-prose-guidelines.md) as th
 Lead with the real claim. Use ordinary punctuation, varied sentence rhythm, concrete nouns, active verbs, and functional Markdown. Remove assistant-shaped contrast, generic setup, abstract corporate language, fake enthusiasm, and decorative formatting.
 
 The guide controls prose shape, not canon. Factual constraints, the user's current request, established character voice, and page-specific editorial briefs take priority. Preserve sharp, gothic, psychedelic, satirical, technical, or cinematic language when it carries actual meaning.
+
+Use this point-of-view system for publisher-level copy:
+
+| Subject | Point of view |
+| --- | --- |
+| Operator | Use `I` for actions, decisions, observations, history, testing, research, writing, development, and judgment |
+| Reader | Use `you` for direct instructions, invitations, and explanations |
+| HobFarm | Use third person for the publication, studio, archive, or operating system |
+| Workshop, EZIZE, Grimoire, Wildcard Machine, and named systems | Use third person when describing what the system does |
+| `d00d` | Public editorial byline and online author identity |
+| Kris Reynolds | About, contact, resume, employment, legal, professional, and identification contexts |
+| `we` | Use only when multiple real people are involved in the work being described |
+
+Third person may describe a public object or system. Do not use it to imitate an outside biographer describing the operator. Do not replace `d00d` article bylines or spread Kris Reynolds across publisher-level pages that do not need professional identification.
 
 ---
 

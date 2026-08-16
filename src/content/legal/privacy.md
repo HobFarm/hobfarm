@@ -6,11 +6,11 @@ publishedAt: 2026-05-15
 
 ## Overview
 
-This Privacy Policy explains what HobFarm collects, why we collect it, how we use it, and what choices you have. It applies to hob.farm, StyleFusion, Grimoire, Daily Signal, public demos, memberships, downloads, courses, generation credits, support channels, and related HobFarm services.
+This Privacy Policy explains what HobFarm collects, why it collects it, how it uses it, and what choices you have. It applies to hob.farm, StyleFusion, Grimoire, Daily Signal, public demos, memberships, downloads, courses, generation credits, support channels, and related HobFarm services.
 
 HobFarm aims to collect only what is needed to operate a creative technology business, deliver products, protect the service, and respond to customers.
 
-## What We Collect
+## What HobFarm Collects
 
 ### Website and Device Information
 
@@ -20,18 +20,18 @@ When you visit hob.farm, infrastructure and analytics systems may process:
 - Page views, traffic source, device type, browser type, approximate region, and aggregate usage data.
 - Cookie or session data needed for security, authentication, rate limiting, and site operation.
 
-HobFarm uses Cloudflare infrastructure and may use Cloudflare Web Analytics or similar privacy-conscious analytics. We do not use ad-tech tracking pixels to build advertising profiles.
+HobFarm uses Cloudflare infrastructure and may use Cloudflare Web Analytics or similar privacy-conscious analytics. HobFarm does not use ad-tech tracking pixels to build advertising profiles.
 
 ### Account, Membership, and Access Information
 
-If you create an account, join a membership, access gated services, or authenticate through Cloudflare Access or another provider, we may process:
+If you create an account, join a membership, access gated services, or authenticate through Cloudflare Access or another provider, HobFarm may process:
 
 - Name, email address, account identifiers, login timestamps, authentication tokens, and access status.
 - Membership tier, subscription status, credit balance, product access, usage limits, and account preferences.
 - Academy course entitlements, lesson progress, completion status, and support repair references.
 - Security and anti-abuse data, including rate-limit events and access logs.
 
-We do not store your password if authentication is handled by an external identity provider.
+HobFarm does not store your password if authentication is handled by an external identity provider.
 
 ### Purchases and Payment Information
 
@@ -47,7 +47,7 @@ HobFarm does not store full card numbers, bank account credentials, or card secu
 
 ### Uploads, Prompts, and Generated Media
 
-When you use creative tools, upload references, request generation, chat with Grimoire, submit gallery material, or buy custom work, we may process:
+When you use creative tools, upload references, request generation, chat with Grimoire, submit gallery material, or buy custom work, HobFarm may process:
 
 - Uploaded images, files, references, text, prompts, instructions, and project notes.
 - Generated images, videos, text, prompt outputs, process files, and related metadata.
@@ -56,7 +56,7 @@ When you use creative tools, upload references, request generation, chat with Gr
 
 ### Support and Contact Messages
 
-If you use the contact form, email HobFarm, request a refund, report a bug, submit a support ticket, or message through a payment platform, we collect the information you provide, including:
+If you use the contact form, email HobFarm, request a refund, report a bug, submit a support ticket, or message through a payment platform, HobFarm collects the information you provide, including:
 
 - Name, email address, subject, message, order details, attachments, and support history.
 - Payment provider, order ID, account email, and screenshots if you include them.
@@ -66,11 +66,11 @@ Signed-in learners may also submit a private Academy question tied to a course a
 
 ### Communications
 
-If you subscribe to updates or buy a product, we may send transactional messages, account notices, product updates, receipts, support replies, security notices, and legally required notices. Marketing messages, if used, will include an unsubscribe path where required.
+If you subscribe to updates or buy a product, HobFarm may send transactional messages, account notices, product updates, receipts, support replies, security notices, and legally required notices. Marketing messages, if used, will include an unsubscribe path where required.
 
-## How We Use Information
+## How HobFarm Uses Information
 
-We use information to:
+HobFarm uses information to:
 
 - Operate, secure, debug, and improve HobFarm services.
 - Deliver accounts, memberships, credits, downloads, courses, generated media, custom work, and support.
@@ -90,13 +90,13 @@ HobFarm uses payment provider records to verify purchases, provide access, answe
 
 HobFarm may use third-party AI model providers, infrastructure providers, storage providers, and creative workflow tools to generate or process media. Depending on the product, prompts, generation settings, uploaded references, or output data may be sent to those providers as needed to deliver the service.
 
-We try to send only what is needed for the requested workflow. Do not upload highly sensitive personal information, confidential business material, private medical information, financial records, or material you are not allowed to process through third-party services.
+HobFarm sends only what is needed for the requested workflow when practical. Do not upload highly sensitive personal information, confidential business material, private medical information, financial records, or material you are not allowed to process through third-party services.
 
-## How We Share Information
+## How HobFarm Shares Information
 
-We do not sell personal information to advertisers.
+HobFarm does not sell personal information to advertisers.
 
-We may share information with:
+HobFarm may share information with:
 
 - Infrastructure and security providers, including Cloudflare.
 - Payment, tax, marketplace, and subscription providers, including Stripe, Ko-fi, Lemon Squeezy, PayPal, and related processors.
@@ -133,7 +133,7 @@ HobFarm uses cookies and similar technologies for security, bot protection, auth
 
 ## Your Choices and Rights
 
-You may contact HobFarm to request access, correction, deletion, export, or restriction of personal information. We may need to verify your identity and may retain information when required for payment, legal, tax, security, dispute, or legitimate business reasons.
+You may contact HobFarm to request access, correction, deletion, export, or restriction of personal information. HobFarm may need to verify your identity and may retain information when required for payment, legal, tax, security, dispute, or legitimate business reasons.
 
 You can also:
 
@@ -152,19 +152,19 @@ California residents may have rights to know, access, correct, delete, and opt o
 
 ### International Users
 
-HobFarm is operated from the United States. If you access the service from another country, your information may be processed in the United States and other locations where our providers operate.
+HobFarm is operated from the United States. If you access the service from another country, your information may be processed in the United States and other locations where its providers operate.
 
 ## Children
 
-HobFarm is not directed to children under 13. We do not knowingly collect personal information from children under 13. If we learn that we collected such information, we will delete it.
+HobFarm is not directed to children under 13. HobFarm does not knowingly collect personal information from children under 13. If HobFarm learns that it collected such information, HobFarm will delete it.
 
 ## Security
 
-We use reasonable technical and organizational measures to protect personal information, but no internet service is completely secure. You are responsible for protecting your account credentials and using caution when sharing sensitive files or personal information.
+HobFarm uses reasonable technical and organizational measures to protect personal information, but no internet service is completely secure. You are responsible for protecting your account credentials and using caution when sharing sensitive files or personal information.
 
 ## Changes to This Policy
 
-We may update this policy as HobFarm products, payment providers, laws, or infrastructure change. The updated version applies when posted unless a different effective date is stated.
+HobFarm may update this policy as its products, payment providers, laws, or infrastructure change. The updated version applies when posted unless a different effective date is stated.
 
 ## Contact
 

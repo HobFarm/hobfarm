@@ -32,7 +32,7 @@ const marketplaceStorefronts: Storefront[] = [
     name: "DeviantArt",
     label: "Characters and visual worlds",
     description:
-      "Mannequin bases, character sheets, outfits, scenes, world packs, wallpapers, adoptables, exclusives, and collector downloads.",
+      "Character sheets, outfits, scenes, visual worlds, wallpapers, adoptables, exclusives, collector downloads, and selected EZ releases when those releases actually exist.",
     status: "active",
     statusLabel: "HobFarm profile",
     href: "https://www.deviantart.com/hobfarm",

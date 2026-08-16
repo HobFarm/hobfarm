@@ -4,13 +4,13 @@ import test from "node:test";
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
 
-test("the canonical definition and six Workshop programs stay in place", () => {
+test("the canonical definition, active Workshop programs, and historical origin stay in place", () => {
   const definition = read("docs/character-system/hobfarm-stylefusion-definition.md");
   const hierarchy = read("src/data/site-hierarchy.ts");
 
   assert.match(definition, /StyleFusion is a separate HobFarm reference-image application/);
   assert.match(definition, /A generated image, character Sheet, Hero, Poster, reel, or product packet is a downstream asset/);
-  for (const label of ["Before & After", "Alter Ego", "Cute & Corrupted", "Character / Mannequin", "StyleFusion", "Workshop Notes"]) {
+  for (const label of ["Before & After", "Alter Ego", "EZIZE Origins", "Character / Mannequin", "StyleFusion", "Workshop Notes"]) {
     assert.match(hierarchy, new RegExp(label.replace(/[&/]/g, ".")));
   }
   assert.match(hierarchy, /specialized extraction agents/);

@@ -15,6 +15,29 @@ HobFarm is the parent publisher and studio. The main navigation keeps six publis
 
 Support, Customer Help, contact, legal, Gallery, Projects, and Grimoire remain supporting routes. They are not promoted into a second competing primary navigation.
 
+## Publisher mesh
+
+Articles remain HobFarm's dominant editorial surface. Recurring properties, Workshop records, applications, courses, products, and other published objects keep their own canonical routes when those routes fit the work better.
+
+```text
+source, question, or project core
+        |
+        +-- article
+        +-- Workshop record
+        +-- application
+        +-- Presents property
+        +-- video or media release
+        +-- Academy lesson
+        +-- product and Shop route
+        +-- external distribution
+
+Any useful result may become the source of another project.
+```
+
+This is a set of available connections, not a fixed sequence. Each release has one primary canonical object. Related routes point to that object or add distinct context instead of duplicating it. External platforms handle reach, galleries, video, downloads, or marketplace sales while HobFarm keeps the durable source, story, method, and project record.
+
+Workshop Notes use the existing Articles collection. A note carries `format: workshop-note` and the current Workshop indexing metadata, remains in the Articles archive, and keeps its canonical article URL. The Workshop Notes archive and feed index that same record; they do not create a second copy or URL.
+
 ## Editorial mesh v1
 
 `src/data/editorial-mesh.ts` is the registry for Editorial mesh version `1.0.0`. The public sections are:

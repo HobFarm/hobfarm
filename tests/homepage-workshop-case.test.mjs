@@ -24,29 +24,28 @@ test("supplied mannequin and Wonderland graphics remain exact local source files
   assert.match(registry, /other-alice\.wonderland\.world-map/);
 });
 
-test("homepage connects the publication to four broad project proofs and the five-stage method", () => {
+test("homepage gives the publication one compact architecture explanation", () => {
   const homepage = read("src/pages/index.astro");
   const component = read("src/components/home/HomeWorkshop.astro");
-  const bridge = read("src/components/home/HomePublicationBridge.astro");
-  const projects = read("src/data/workshop-projects.ts");
-  const combined = `${component}\n${bridge}\n${projects}`;
 
   assert.match(homepage, /<HomeWorkshop \/>/);
+  assert.equal((homepage.match(/<HomeWorkshop \/>/g) ?? []).length, 1);
+  assert.doesNotMatch(homepage, /HomePublicationBridge|HomeSupportBand/);
   assert.doesNotMatch(homepage, /<VisualSystemFeature \/>/);
 
   for (const phrase of [
-    "The publication is made in the Workshop",
-    "HobFarm",
-    "StyleFusion",
-    "Before & After",
-    "Future Carriage",
-    "Research. Define. Build. Direct. Finish and deliver",
+    "How HobFarm works",
+    "One project can open several useful routes",
+    "Articles remain the editorial center",
+    "EZIZE",
+    "Insert coin. Get an EZ.",
     "Explore the Workshop",
-    "Browse Projects",
+    "How the HobFarm system works",
   ]) {
-    assert.match(combined, new RegExp(phrase));
+    assert.match(component, new RegExp(phrase.replace(/[.]/g, "\\.")));
   }
-  assert.match(bridge, /The publication is made in the Workshop/);
+  assert.match(component, /WorkshopNodeMesh compact/);
+  assert.doesNotMatch(component, /WorkshopProjectGrid|WorkshopMethodStrip/);
 });
 
 test("the long Process Film is removed from the compact hub and homepage", () => {
@@ -59,32 +58,17 @@ test("the long Process Film is removed from the compact hub and homepage", () =>
   assert.match(workshop, /Projects grow\. Build them so they can\./);
 });
 
-test("homepage Workshop projects use one shared data model and real routes", () => {
+test("homepage Workshop summary links to real system and current-project routes", () => {
   const component = read("src/components/home/HomeWorkshop.astro");
   const projects = read("src/data/workshop-projects.ts");
-  const combined = `${component}\n${projects}`;
 
-  for (const href of [
-    "/workshop/projects/hobfarm/",
-    "/workshop/before-and-after/",
-    "/workshop/stylefusion/",
-    "/workshop/future-carriage/",
-  ]) {
-    assert.match(combined, new RegExp(href.replaceAll("/", "\\/")));
+  for (const href of ["/workshop/", "/workshop/projects/hobfarm/", "/ezize/"]) {
+    assert.match(component, new RegExp(href.replaceAll("/", "\\/")));
   }
 
-  for (const token of [
-    "workshop.hobfarm-project.hero",
-    "workshop.ami-legacy.model-3917.vehicle",
-    "before-after.north-shore.before",
-    "stylefusion.banner.image",
-  ]) {
-    assert.match(combined, new RegExp(token));
-  }
-
+  assert.match(component, /ezize\.output\.corrupted-cake/);
   assert.match(component, /WorkshopNodeMesh compact/);
-  assert.match(component, /WorkshopProjectGrid surface="home"/);
-  assert.doesNotMatch(component, /Character \/ Mannequin/);
+  assert.doesNotMatch(component, /WorkshopProjectGrid|WorkshopMethodStrip/);
 
   for (const field of [
     "startingMaterial",
@@ -138,7 +122,9 @@ test("creative-project inquiry is contextual and accepted by the contact backend
 
   assert.match(page, /Tell me what you're trying to make/);
   assert.match(page, /starting material, the result you want, the formats that would be useful, your timing/);
-  assert.match(page, /initialSubject=\{isCreativeProject/);
+  assert.match(page, /initialSubject=\{requestedSubject\}/);
+  assert.match(page, /Employment and professional inquiries/);
+  assert.match(page, /Customer and security help/);
   assert.match(form, /Describe private material without pasting it into the form/);
   assert.match(endpoint, /"creative-project"/);
   assert.match(endpoint, /"custom-character"/);

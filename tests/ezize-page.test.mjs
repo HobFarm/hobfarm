@@ -30,12 +30,17 @@ test("EZIZE has a canonical public explainer with honest private-alpha status", 
   assert.match(page, /Grimoire/);
   assert.match(page, /Wildcard Machine/);
   assert.match(page, /OpenAI/);
-  assert.match(page, /A schema is not necessarily JSON\./);
   assert.match(page, /PNG download/);
   assert.match(page, /Development record/);
-  assert.match(page, /The file is already the collectible/);
-  assert.match(page, /personal collections/);
+  assert.match(page, /Insert coin\. Get an EZ\./);
+  assert.match(page, /What is an EZ\?/);
+  assert.match(page, /One pull\. One recipe\. One EZ\./);
+  assert.match(page, /Ledger identity and provenance/);
+  assert.match(page, /One pull produces an[\s\S]*<strong>EZ<\/strong>; more than one are <strong>EZs<\/strong>/);
+  assert.match(page, /An EZ does not need a HobFarm gallery/);
+  assert.match(page, /no specific gallery, collection, or adoptable listing is live yet/);
   assert.match(page, /<EzizeEvidence priority \/>/);
+  assert.doesNotMatch(page, /\beasie\b/i);
   assert.doesNotMatch(page, /NFT|blockchain|OpenSea|on-chain|mint(?:ed|ing|able)?/i);
 });
 
@@ -61,6 +66,8 @@ test("EZIZE public evidence uses cropped and responsive local media", () => {
 test("former Cute and Corrupted product routes resolve directly to EZIZE", () => {
   const redirects = read("public/_redirects");
   const navigation = read("src/data/navigation.ts");
+  const hierarchy = read("src/data/site-hierarchy.ts");
+  const programRoute = read("src/pages/workshop/[program].astro");
 
   for (const route of [
     "/gallery/cute-corrupted/",
@@ -71,4 +78,7 @@ test("former Cute and Corrupted product routes resolve directly to EZIZE", () =>
     assert.match(redirects, new RegExp(`${route.replaceAll("/", "\\/")}\\s+\\/ezize\\/\\s+301`));
   }
   assert.match(navigation, /label: "EZIZE", href: "\/ezize\/"/);
+  assert.match(hierarchy, /id: "cute-corrupted"[\s\S]*name: "EZIZE Origins"[\s\S]*href: "\/workshop\/cute-and-corrupted\/"/);
+  assert.match(hierarchy, /inNav: false[\s\S]*status: "historical"/);
+  assert.match(programRoute, /workshopPrograms[\s\S]*getStaticPaths/);
 });

@@ -37,7 +37,7 @@ You may not use HobFarm services to:
 
 ### System Abuse
 - Attempt to circumvent access controls, authentication, or rate limits
-- Probe, scan, or test the vulnerability of our systems without authorization (see our Bug Bounty policy for authorized security research)
+- Probe, scan, or test the vulnerability of HobFarm systems without authorization (see the HobFarm Bug Bounty policy for authorized security research)
 - Use automated tools to scrape, extract, or bulk-download content beyond normal API usage
 - Reverse-engineer, decompile, or attempt to extract proprietary models, pipelines, or knowledge graph data
 - Resell, redistribute, or sublicense access to HobFarm services without permission
@@ -60,7 +60,7 @@ Violations may result in:
 3. Permanent termination of access
 4. Reporting to law enforcement where legally required
 
-We reserve the right to skip steps and take immediate action for severe violations. We also reserve the right to remove any content that violates this policy without notice.
+HobFarm reserves the right to skip steps and take immediate action for severe violations. HobFarm also reserves the right to remove any content that violates this policy without notice.
 
 ## Reporting Violations
 

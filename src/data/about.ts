@@ -140,27 +140,27 @@ export const aboutHobFarmRoutes = [
     title: "Workshop",
     description:
       "Workshop keeps the sources, questions, decisions, tests, failures, revisions, and reusable findings attached to the finished release.",
-    links: [{ label: "Workshop", href: "/workshop/" }, { label: "Projects", href: "/workshop/projects/" }],
+    links: [{ label: "Workshop", href: "/workshop/" }, { label: "How HobFarm works", href: "/workshop/projects/hobfarm/" }],
   },
   {
-    title: "Projects",
+    title: "Presents",
     description:
-      "Case studies keep the source, production problem, method, evidence, outputs, and connected destinations attached to each body of work.",
+      "Presents packages recurring properties for the audience when they have their own identity, archive, characters, world, visual language, or release pattern. Workshop explains how selected parts were developed.",
     links: [
-      { label: "Workshop Projects", href: "/workshop/projects/" },
       { label: "Presents", href: "/presents/" },
+      { label: "Workshop Projects", href: "/workshop/projects/" },
     ],
   },
   {
     title: "Applications and interactive work",
     description:
-      "Games, creative applications, research tools, and small interactive experiments become public when they are useful, secure, and maintainable.",
-    links: [{ label: "Current projects", href: "/workshop/projects/" }],
+      "Applications own direct routes and honest status notes. They do not need an article wrapper before they can exist as HobFarm work.",
+    links: [{ label: "EZIZE", href: "/ezize/" }, { label: "Current projects", href: "/workshop/projects/" }],
   },
   {
-    title: "Support and future releases",
+    title: "Academy, Shop, and support",
     description:
-      "Courses, products, commissions, reader support, and other paid work fund the hosting, tools, research, production, and time required for the next release.",
+      "Academy follows a method after real Workshop evidence makes it repeatable enough to teach. Shop routes credible finished products to the correct direct or external shelf. Reader support funds the next release.",
     links: [
       { label: "Academy", href: "/academy/" },
       { label: "Shop", href: "/shop/" },

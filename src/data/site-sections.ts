@@ -61,9 +61,9 @@ export const siteSections: SiteSection[] = [
   {
     number: "05",
     label: "Shop",
-    kicker: "Finished media, packs, and custom work",
+    kicker: "Verified direct products and marketplace shelves",
     description:
-      "Get the finished thing: images, two-packs, character sheets, hero shots, posters, videos, commissions, and custom pieces.",
+      "Find the correct shelf for HobFarm products, digital asset packages, character and visual-world releases, and one-off physical inventory.",
     href: "/shop/",
     action: "Browse the Shop",
     accent: "#f24da6",

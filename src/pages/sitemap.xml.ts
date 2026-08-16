@@ -23,7 +23,7 @@ import {
   editorialSectionPath,
   editorialSeries,
 } from "@/data/editorial-mesh";
-import { selectedWorkshopProjects } from "@/data/workshop-projects";
+import { historicalWorkshopProjects, selectedWorkshopProjects } from "@/data/workshop-projects";
 
 type SitemapEntry = {
   loc: string;
@@ -75,6 +75,11 @@ const staticEntries: SitemapEntry[] = [
     loc: absoluteUrl(project.destination),
     changefreq: "monthly" as const,
     priority: "0.7",
+  })),
+  ...historicalWorkshopProjects.map((project) => ({
+    loc: absoluteUrl(project.destination),
+    changefreq: "yearly" as const,
+    priority: "0.4",
   })),
   { loc: absoluteUrl("/academy/"), changefreq: "monthly", priority: "0.7" },
   { loc: absoluteUrl("/shop/"), changefreq: "weekly", priority: "0.7" },
