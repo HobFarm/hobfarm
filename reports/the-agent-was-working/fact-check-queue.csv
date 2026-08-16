@@ -1,0 +1,17 @@
+id,claim,evidence,status,resolution
+F001,HobBot began February 2 2026,author account plus documentary screenshot,verified,Join date is visible
+F002,Exact visible H0BBOT post titles,complete documentary screenshot,verified,Capitalization follows screenshot
+F003,HobBot used Moltbook and X paths,author account plus legacy project records,verified,No reach or cost total invented
+F004,Cron is a trigger not reasoning,Cloudflare Cron Triggers,verified,Language narrowed
+F005,Current scheduled agent tasks can persist and use state,Cloudflare Agents docs,verified,Not described as exact historical implementation
+F006,Codex skills and AGENTS.md behavior,official OpenAI documentation,verified,Current routes and checked date recorded
+F007,Harness assumptions can go stale,Anthropic Managed Agents,verified,Claim paraphrased
+F008,Production study sample boundaries and percentages,arXiv version 2 HTML and metadata API,verified,Preprint and deployed/pilot subset stated
+F009,First Grimoire was larger and current Grimoire is smaller,current and legacy repository contracts,verified,Public prose describes boundaries only
+F010,Legacy HobBot workers are not current Grimoire runtime,current Grimoire instructions and README,verified,Legacy explicitly identified
+F011,Social boost amount and low reach,first-person observation,author-record,No platform causation inferred
+F012,Current media-package workflow,first-person operating description,author-record,Presented as capability with human review
+F013,Salton Sea predecessor schedule,integrated article frontmatter,verified,2026-08-26T16:20:00-07:00
+F014,Next standard slot is open,full August article schedule audit,verified,Selected 2026-08-27T16:20:00-07:00
+F015,Asset rights and R2 keys,manifest plus author ownership,verified,Original graphics and non-destructive crop only
+F016,Exact HobFarm operating cost,total billing records,not-used,No dollar total appears

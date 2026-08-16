@@ -1,12 +1,12 @@
 # Proposed Editorial Mesh
 
-The corpus supports six broad reader-facing sections. Every one of the 73 published or scheduled articles has exactly one.
+The corpus supports six broad reader-facing sections. Every one of the 74 published or scheduled articles has exactly one.
 
 ## Primary sections
 
 | Section | Articles | Definition | Exclusion test |
 | --- | ---: | --- | --- |
-| Technology | 31 | A technical system, tool, game, model behavior, ownership boundary, or computing history drives the article. | Technology was merely used while producing an article about another subject. |
+| Technology | 32 | A technical system, tool, game, model behavior, ownership boundary, or computing history drives the article. | Technology was merely used while producing an article about another subject. |
 | Culture | 12 | The article follows people, institutions, media, belief, memory, or cultural change across more than one narrower desk. | A single musical, screen, visual, technical, or physical system clearly owns the article instead. |
 | Art & Design | 11 | The article's central object is a visual language, artwork, design method, or aesthetic history. | The visual material mainly demonstrates software, model behavior, infrastructure, or another technical system. |
 | Film & TV | 10 | A screen work, performer, production system, or broadcast history owns the article. | A movie or show is only an analogy, example, or doorway into a technology or culture article that quickly leaves the screen work behind. |
@@ -27,29 +27,29 @@ Three legacy 3DM records do not pass the Dick Miller test. Their old fields and 
 
 | Value | Articles |
 | --- | ---: |
-| artificial-intelligence | 15 |
+| artificial-intelligence | 16 |
 | ai-image-generation | 12 |
+| creative-workflows | 11 |
 | media-history | 11 |
-| creative-workflows | 10 |
 | film-history | 10 |
+| platform-economics | 8 |
 | visual-systems | 8 |
 | creative-systems | 7 |
+| model-behavior | 7 |
 | personal-history | 7 |
-| platform-economics | 7 |
 | schema-design | 7 |
 | art-history | 6 |
 | knowledge-systems | 6 |
-| model-behavior | 6 |
 | publishing | 6 |
 | regional-history | 6 |
 | software-ownership | 6 |
+| automation | 5 |
 | censorship | 5 |
 | cloud-computing | 5 |
 | computing-history | 5 |
 | open-computing | 5 |
 | social-media | 5 |
 | attention-economy | 4 |
-| automation | 4 |
 | character-actors | 4 |
 | creative-tools | 4 |
 | game-design | 4 |

@@ -1,12 +1,12 @@
 # Current Article Taxonomy Audit
 
-This inventory records 73 published or scheduled articles. The one draft placeholder is excluded.
+This inventory records 74 published or scheduled articles. The one draft placeholder is excluded.
 
 The legacy model mixes broad desks, formats, imprints, projects, series, and workflow programs. These fields remain in place for route and template compatibility, but they no longer define the canonical semantic layer.
 
 ## category
 
-62 of 73 articles use this field.
+62 of 74 articles use this field.
 
 | Value | Articles |
 | --- | ---: |
@@ -21,19 +21,19 @@ The legacy model mixes broad desks, formats, imprints, projects, series, and wor
 
 ## department
 
-73 of 73 articles use this field.
+74 of 74 articles use this field.
 
 | Value | Articles |
 | --- | ---: |
 | essays-arguments | 28 |
-| workshop-notes | 21 |
+| workshop-notes | 22 |
 | magazine-time-machine | 15 |
 | hobfarm-presents | 8 |
 | before-after-eras | 1 |
 
 ## series
 
-23 of 73 articles use this field.
+23 of 74 articles use this field.
 
 | Value | Articles |
 | --- | ---: |
@@ -48,7 +48,7 @@ The legacy model mixes broad desks, formats, imprints, projects, series, and wor
 
 ## presentsSeries
 
-8 of 73 articles use this field.
+8 of 74 articles use this field.
 
 | Value | Articles |
 | --- | ---: |
@@ -56,7 +56,7 @@ The legacy model mixes broad desks, formats, imprints, projects, series, and wor
 
 ## workshopProgram
 
-6 of 73 articles use this field.
+6 of 74 articles use this field.
 
 | Value | Articles |
 | --- | ---: |
@@ -66,21 +66,21 @@ The legacy model mixes broad desks, formats, imprints, projects, series, and wor
 
 ## entryType
 
-44 of 73 articles use this field.
+45 of 74 articles use this field.
 
 | Value | Articles |
 | --- | ---: |
-| feature | 43 |
+| feature | 44 |
 | connection-map | 1 |
 
 ## format
 
-73 of 73 articles use this field.
+74 of 74 articles use this field.
 
 | Value | Articles |
 | --- | ---: |
 | article | 53 |
-| workshop-note | 20 |
+| workshop-note | 21 |
 
 ## Migration finding
 

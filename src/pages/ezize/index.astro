@@ -155,7 +155,6 @@ const structuredData = {
             <a class="text-link" href="#how-it-works">See how a pull works</a>
           </div>
         </div>
-        <p class="burst burst-one" aria-hidden="true">WOW! IT'S SO EZ!</p>
         <p class="burst burst-two" aria-hidden="true">1 COIN = 1 EZ</p>
       </section>
     </Wrapper>
@@ -170,7 +169,7 @@ const structuredData = {
       </ol>
     </Wrapper>
 
-    <Wrapper class="section-space">
+    <Wrapper class="section-space cabinet-space">
       <section aria-labelledby="cabinet-title">
         <div class="section-heading split-heading">
           <div>
@@ -462,7 +461,6 @@ const structuredData = {
   .machine-button:hover, .machine-button:focus-visible { transform: translate(.18rem,.18rem); box-shadow: .2rem .2rem 0 var(--orange); }
   .text-link { color: #fff; font: 700 .75rem/1.4 var(--font-mono); letter-spacing: .04em; text-transform: uppercase; text-underline-offset: .3em; }
   .burst { position: absolute; z-index: 3; display: grid; place-items: center; width: 8rem; aspect-ratio: 1; margin: 0; padding: 1rem; clip-path: polygon(50% 0,61% 17%,79% 7%,82% 28%,100% 31%,87% 49%,100% 64%,79% 69%,78% 91%,59% 81%,47% 100%,38% 81%,17% 94%,17% 72%,0 64%,13% 47%,0 31%,21% 27%,24% 6%,42% 17%); background: var(--lime); color: var(--ink); font: 900 .76rem/1.05 var(--font-display); text-align: center; transform: rotate(8deg); filter: drop-shadow(.35rem .35rem 0 rgba(0,0,0,.4)); }
-  .burst-one { top: 2.2rem; right: 2.2rem; }
   .burst-two { right: 28%; bottom: 2.1rem; width: 6.7rem; background: var(--orange); color: #fff; transform: rotate(-9deg); }
   .pull-wrap { position: relative; z-index: 4; margin-top: -1.25rem; }
   .pull-path { display: grid; grid-template-columns: repeat(5,1fr); margin: 0; padding: 0; border: 2px solid var(--ink); background: var(--paper); color: var(--ink); box-shadow: .45rem .45rem 0 var(--orange); list-style: none; }
@@ -470,6 +468,7 @@ const structuredData = {
   .pull-path li:last-child { border-right: 0; }
   .pull-path span { display: grid; flex: 0 0 auto; place-items: center; width: 1.75rem; height: 1.75rem; border-radius: 50%; background: var(--ink); color: var(--lime); font-size: .62rem; }
   .section-space { padding-top: clamp(5rem, 9vw, 9rem); padding-bottom: clamp(5rem, 9vw, 9rem); }
+  :global(.cabinet-space) { padding-top: clamp(4.5rem, 8vw, 7.5rem); padding-bottom: clamp(5rem, 9vw, 9rem); }
   .compact-top { padding-top: 1rem; }
   .section-heading { margin-bottom: 2.5rem; }
   .split-heading { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(18rem, .7fr); gap: 2rem 5rem; align-items: end; }
@@ -593,7 +592,6 @@ const structuredData = {
     .hero-image { height: auto; aspect-ratio: 16/9; object-position: center; }
     .hero-shade { display: none; }
     .hero-copy { width: 100%; min-height: 0; padding: 2rem 1.25rem 2.5rem; background: #071a31; }
-    .burst-one { top: .8rem; right: .8rem; width: 6rem; }
     .burst-two { top: calc(56.25cqw - 5.5rem); right: auto; bottom: auto; left: .8rem; width: 5.3rem; }
     .pull-path { grid-template-columns: 1fr; }
     .pull-path li { min-height: 3.6rem; border-right: 0; border-bottom: 1px dashed rgba(11,11,8,.35); }

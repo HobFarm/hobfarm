@@ -1,0 +1,16 @@
+id,source,authority,status,checked,article_use,notes
+S001,H0BBOT live Moltbook profile,author-owned public profile,checked,2026-08-15,Surviving public route,Current HTML is client-rendered
+S002,H0BBOT full-page screenshot,author-owned documentary image,verified,2026-08-15,Join date and visible post record,Checksum and dimensions recorded in manifest
+S003,Cloudflare Cron Triggers,official documentation,verified,2026-08-15,Cron maps to scheduled handler,Current UTC scheduling behavior
+S004,Cloudflare Agents Schedule tasks,official documentation,verified,2026-08-15,Persistent scheduled tasks and state,Not asserted as exact February implementation
+S005,Anthropic Building effective agents,first-party engineering,verified,2026-08-15,Workflow versus agent and complexity tradeoff,Page flags its tooling landscape as dated
+S006,OpenAI Codex skills,official documentation,verified,2026-08-15,SKILL.md packages and progressive disclosure,Current documentation route
+S007,OpenAI AGENTS.md,official documentation,verified,2026-08-15,Scoped discovery and precedence,Current documentation route
+S008,OpenAI Codex customization,official documentation,verified,2026-08-15,Recurring correction feedback loop,Current documentation route
+S009,OpenAI Sandbox Agents,official documentation,verified,2026-08-15,Files commands snapshots and resumable state,Used as operating-layer example
+S010,Anthropic Managed Agents,first-party engineering,verified,2026-08-15,Harness assumptions becoming stale,Published 2026-04-08
+S011,Measuring Agents in Production v2,academic preprint,verified,2026-08-15,Production practices and sample percentages,Version 2 updated 2026-06-04
+S012,How HobBot Keeps the Lights On,HobFarm first-person record,verified,2026-08-15,March architecture ambition,Left unchanged
+S013,Current Grimoire contract,private current repository evidence,verified,2026-08-15,Local-first compiler and legacy quarantine,No private implementation details quoted publicly
+S014,Current HobBot status,private current repository evidence,verified,2026-08-15,Paused project and cost boundary,No deployment identifiers exposed
+S015,Salton Sea article frontmatter,HobFarm publication record,verified,2026-08-15,Predecessor timestamp,No collision at next daily slot

@@ -895,6 +895,17 @@ export const editorialMeshBackfill = {
       centralObject: "A Salton Sea inlet and outlet concept tested as one coupled water, salt, power, customer, and binational operating system.",
     },
   ),
+  "the-agent-was-working": record(
+    "technology",
+    ["agentic-systems", "artificial-intelligence", "automation", "creative-workflows", "model-behavior", "platform-economics", "software-architecture", "solo-publishing"],
+    {
+      organizations: ["anthropic", "cloudflare", "hobfarm", "moltbook", "openai"],
+      technologies: ["artificial-intelligence", "automation", "cloudflare-workers", "codex", "cron", "grimoire", "hobbot", "stylefusion", "wildcard-machine", "wonder-machine"],
+      sourceArtifacts: [{ id: "hobbot-moltbook-profile-screenshot-2026", type: "other", label: "Author-owned full-page screenshot of the H0BBOT Moltbook profile, February 2026", role: "origin" }],
+      storyModes: ["personal-history-trail", "process-essay", "systems-investigation", "technical-explainer"],
+      centralObject: "The operating and economic boundary of a technically successful autonomous HobBot system.",
+    },
+  ),
   "the-feed-is-the-problem": record(
     "culture",
     ["attention-economy", "content-discovery", "creative-labor", "mental-health", "platform-economics", "recommendation-systems", "social-media", "social-relationships"],

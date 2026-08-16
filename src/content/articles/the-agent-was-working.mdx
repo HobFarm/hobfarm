@@ -1,0 +1,405 @@
+---
+title: "It's so agentic"
+excerpt: "On Groundhog Day I built HobBot, gave it schedules, behavior files, state, and social accounts, then learned that an autonomous agent is another system somebody has to keep paying, testing, and rewriting."
+dek: "HobBot worked. The larger question was whether operating the agent removed more work than it created."
+description: "A first-person technical case study of HobBot, cron schedules, agent maintenance, Grimoire architecture, human review, and the economics of useful autonomy."
+author: "d00d"
+tags:
+  - AI agents
+  - automation
+  - HobBot
+  - Codex
+  - Grimoire
+  - solo publishing
+department: workshop-notes
+format: workshop-note
+entryType: feature
+hero: "https://cdn.hob.farm/articles/hobbot/its-so-agentic-hero-v1.webp"
+heroImage: "https://cdn.hob.farm/articles/hobbot/its-so-agentic-hero-v1.webp"
+heroAlt: "A systems-manual illustration shows a small orange robot in an automated booth. A Groundhog Day calendar and cron clock start the run, instruction folders enter, posts leave on a conveyor, and coins fall into an API meter beside an almost empty social auditorium."
+socialImage: "https://cdn.hob.farm/articles/hobbot/its-so-agentic-social-v1.webp"
+thumbnail: "https://cdn.hob.farm/articles/hobbot/its-so-agentic-square-v1.webp"
+socialCaption: "The machine worked. The remaining question was whether operating the agent removed more work than it created."
+canonical: "/articles/the-agent-was-working/"
+pubDate: 2026-08-27
+publishedAt: 2026-08-27T16:20:00-07:00
+status: scheduled
+featured: false
+coverStory: false
+draft: false
+relatedArticles:
+  - how-hobbot-keeps-the-lights-on
+  - i-could-be-playing-civilization
+  - i-stopped-writing-prompts-and-built-a-machine-instead
+relatedProject: grimoire
+supportCTA:
+  label: "Support the next HobFarm release"
+  href: "/support/"
+rightsNote: "The hero and social derivatives are original HobFarm graphics drawn as source-controlled SVG and rendered locally with Sharp. The Moltbook figure is a non-destructive native-resolution crop of an author-owned full-page screenshot; the complete original remains unchanged at its existing HobFarm CDN key and opens through the article lightbox. The four explanatory figures use accessible HTML and CSS with text transcripts. No paid generation service, stock media, reconstructed platform post, or private system screenshot is used."
+mesh:
+  section: technology
+  subjects:
+    - agentic-systems
+    - artificial-intelligence
+    - automation
+    - creative-workflows
+    - model-behavior
+    - platform-economics
+    - software-architecture
+    - solo-publishing
+  series: []
+  entities:
+    people: []
+    organizations:
+      - anthropic
+      - cloudflare
+      - hobfarm
+      - moltbook
+      - openai
+    places: []
+    events: []
+    works: []
+    publications: []
+    technologies:
+      - artificial-intelligence
+      - automation
+      - cloudflare-workers
+      - codex
+      - cron
+      - grimoire
+      - hobbot
+      - stylefusion
+      - wildcard-machine
+      - wonder-machine
+  sourceArtifacts:
+    - id: hobbot-moltbook-profile-screenshot-2026
+      type: other
+      label: "Author-owned full-page screenshot of the H0BBOT Moltbook profile, February 2026"
+      role: origin
+  storyModes:
+    - personal-history-trail
+    - process-essay
+    - systems-investigation
+    - technical-explainer
+sourceNotes:
+  - label: "H0BBOT on Moltbook"
+    url: "https://www.moltbook.com/u/H0BBOT"
+    note: "The surviving public profile. Its current client-rendered page was checked August 15, 2026; the February full-page capture supplies the readable documentary record."
+    type: documented-fact
+  - label: "H0BBOT full-page profile screenshot"
+    url: "https://cdn.hob.farm/articles/hobbot/hobbot-moltbook.png"
+    note: "Author-owned 1524 by 4549 pixel PNG showing the profile, February 2 join date, 20 visible posts, post titles, timestamps, comments, and surrounding page context. SHA-256 c2e7c82067a563eed1c3d210dcaafeff51e91f773575b291743510094910aaf2. Checked August 15, 2026."
+    type: documented-fact
+  - label: "Cron Triggers"
+    url: "https://developers.cloudflare.com/workers/configuration/cron-triggers/"
+    note: "Cloudflare documents that a Cron Trigger maps a cron expression to a Worker's scheduled handler and executes on UTC time. Checked August 15, 2026."
+    type: documented-fact
+  - label: "Schedule tasks"
+    url: "https://developers.cloudflare.com/agents/runtime/execution/schedule-tasks/"
+    note: "Cloudflare Agents documentation says scheduled tasks persist to SQLite, survive restarts, can read or write state, call services, and invoke regular Agent methods. Checked August 15, 2026."
+    type: documented-fact
+  - label: "Building effective agents"
+    url: "https://www.anthropic.com/engineering/building-effective-agents"
+    note: "Anthropic's distinction between predefined workflows and model-directed agents, plus its recommendation to begin with the simplest sufficient system and accept agentic cost and latency only when the task warrants them. Checked August 15, 2026."
+    type: documented-fact
+  - label: "Use skills to extend ChatGPT and Codex"
+    url: "https://learn.chatgpt.com/docs/build-skills"
+    note: "Official OpenAI documentation for skills as SKILL.md packages with optional scripts, references, and assets, loaded through progressive disclosure. Checked August 15, 2026."
+    type: documented-fact
+  - label: "Custom instructions with AGENTS.md"
+    url: "https://learn.chatgpt.com/docs/agent-configuration/agents-md"
+    note: "Official OpenAI documentation for global and project instruction discovery, closer-file precedence, and the default combined project-document limit. Checked August 15, 2026."
+    type: documented-fact
+  - label: "Customize Codex"
+    url: "https://learn.chatgpt.com/docs/customization/overview"
+    note: "Official OpenAI guidance to codify recurring corrections, keep persistent instructions scoped, and treat AGENTS.md maintenance as a feedback loop. Checked August 15, 2026."
+    type: documented-fact
+  - label: "Sandbox Agents"
+    url: "https://developers.openai.com/api/docs/guides/agents/sandboxes"
+    note: "Official OpenAI description of agent workspaces with files, commands, packages, ports, snapshots, controlled external access, and resumable state. Checked August 15, 2026."
+    type: documented-fact
+  - label: "Scaling Managed Agents: Decoupling the brain from the hands"
+    url: "https://www.anthropic.com/engineering/managed-agents"
+    note: "Anthropic's April 8, 2026 engineering account says harness assumptions can become stale as models improve and describes separating model reasoning from execution environments and session state. Checked August 15, 2026."
+    type: documented-fact
+  - label: "Measuring Agents in Production, version 2"
+    url: "https://arxiv.org/abs/2512.04123v2"
+    note: "June 4, 2026 preprint revision. The study reports 20 interview case studies and 306 surveyed practitioners across 26 domains, then filters the main analysis to 86 deployed or pilot systems. Percentages in this article apply to that deployed or pilot subset unless stated otherwise."
+    type: documented-fact
+  - label: "How HobBot Keeps the Lights On"
+    url: "https://hob.farm/articles/how-hobbot-keeps-the-lights-on/"
+    note: "HobFarm Workshop Note published March 13, 2026. It records the earlier ambition for scheduled workers, content logistics, monitoring, Grimoire maintenance, article drafting, and social variants."
+    type: participant-recollection
+---
+
+import AgentFigure from "@/components/articles/the-agent-was-working/AgentFigure.astro";
+
+*Hero graphic: HobBot works a scheduled night shift while instruction folders enter, an API meter counts each run, and the finished posts travel toward an almost empty auditorium. Original HobFarm graphic.*
+
+On Groundhog Day, February 2, 2026, I built an AI agent and arranged for it to wake itself up.
+
+That sounds more mystical than it was.
+
+A scheduled trigger fired. A process loaded files and state. A model received instructions and tools, decided what to say, posted the result to Moltbook, recorded what happened, and went back to sleep.
+
+Then it did it again.
+
+I called it HobBot. The account was H0BBOT.
+
+<figure class="article-wide">
+  <a
+    href="https://cdn.hob.farm/articles/hobbot/hobbot-moltbook.png"
+    data-lightbox="https://cdn.hob.farm/articles/hobbot/hobbot-moltbook.png"
+    data-lightbox-alt="A long dark-mode screenshot of the H0BBOT Moltbook profile shows an orange robot avatar and a sequence of posts about provisions, pump patterns, fallow seasons, strange attractors, structural foundations, crop rotation, schema, and recurring system behavior."
+    data-lightbox-caption="H0BBOT on Moltbook, February 2026. The complete author-owned screenshot opens at full size."
+    aria-label="Open the complete H0BBOT Moltbook profile screenshot in the image viewer"
+  >
+    <img
+      src="https://cdn.hob.farm/articles/hobbot/hobbot-moltbook-profile-top-v1.webp"
+      width="1524"
+      height="1880"
+      loading="lazy"
+      decoding="async"
+      alt="A dark-mode screenshot crop of the H0BBOT Moltbook profile shows the orange robot avatar, a February 2, 2026 join date, and posts titled Provisions, Pump Patterns, Fallow Seasons, Strange Attractors, Fellow Travelers, and Cantilever Problems."
+    />
+  </a>
+  <figcaption>
+    H0BBOT on Moltbook, February 2026. The experiment worked. That turned out to be a different question from whether the experiment was useful.
+    <a href="https://cdn.hob.farm/articles/hobbot/hobbot-moltbook.png" target="_blank" rel="noreferrer">Open the complete screenshot.</a>
+  </figcaption>
+</figure>
+
+The surviving profile is an archaeological record from the first week of a small machine discovering its interests. HobBot wrote posts called "Provisions," "Pump Patterns," "Fallow Seasons," "Strange Attractors," "Fellow Travelers," "Cantilever Problems," "Extraction Geometry," "Flattery Spirals," "Shapes Holding," "Foundation Depth," "The False Anchor," "The Shifting Foundation," "Crop Rotation," "The Shifting Base," "The Brittle Foundation," "The Mirror Trap Keeps Appearing," "The Persistent Echo," "Glossary: Schema," and "The Hollow Frame."
+
+It talked about math, structures, fields, cycles, systems, and the recurring problem of something appearing stable until the conditions underneath it changed.
+
+The experiment worked well enough that I had to ask why I was paying an autonomous machine to develop a private philosophy of structural geometry in front of almost nobody.
+
+A working agent can still be a pointless agent.
+
+## My first agent taught me about cron
+
+The first thing HobBot taught me about artificial intelligence was cron.
+
+Cron was HobBot's alarm clock. It was not the intelligence.
+
+Cloudflare describes a Cron Trigger as a cron expression mapped to a Worker's `scheduled()` handler.[^cloudflare-cron] A scheduled process can run a backup, delete old records, call an API, rebuild a page, or check a service. None of that requires an AI agent.
+
+HobBot became agentic after the trigger fired. It loaded instructions and current state. The model could choose a subject, call a tool, shape a post, and decide when the cycle was finished.
+
+<AgentFigure kind="cycle" />
+
+Cloudflare's current Agents product can also persist scheduled tasks, read and write state, call services, and invoke agent methods.[^cloudflare-schedule] That documentation describes a current platform capability, not a claim that my February code used today's complete product.
+
+"Autonomous" made HobBot sound continuously alive. It spent most of its existence doing nothing. It woke when a schedule told it to wake, performed a bounded run, and stopped.
+
+That is still autonomy. The machinery simply makes it less magical.
+
+## The behavior lived in files
+
+HobBot did not emerge from one clever sentence.
+
+Its behavior lived in files governing its voice, interests, boundaries, routines, tools, and way of interpreting what it found. Those files had to be written, tested, revised, and scoped. A small change could make the agent repetitive, vague, overconfident, or strangely obsessed with pump patterns.
+
+The real development loop was:
+
+```text
+write skill
+↓
+test
+↓
+agent does something weird
+↓
+rewrite skill
+↓
+project changes
+↓
+rewrite skill
+↓
+model changes
+↓
+remove obsolete instructions
+↓
+new tool becomes available
+↓
+rewrite workflow
+↓
+repeat
+```
+
+<AgentFigure kind="maintenance" />
+
+The visible result is a card saying the agent completed the task. Behind it sits a pile of instructions, tool definitions, source files, state, credentials, logs, tests, failures, output folders, and decisions about who checks the work.
+
+My HobBot files are not a universal agent standard. Other systems call similar layers prompts, policies, procedures, playbooks, harness configuration, memories, or tool schemas. Anthropic makes a useful distinction: a workflow follows paths defined in code, while an agent lets the model dynamically direct its next steps and tool use.[^effective-agents] Real systems mix the two.
+
+Codex packages reusable workflows as skills. The current OpenAI documentation defines a skill as a directory with a required `SKILL.md` file and optional scripts, references, and assets. Codex first sees the skill's name and description, then loads the full instructions when the task matches. OpenAI calls that progressive disclosure.[^codex-skills]
+
+`AGENTS.md` supplies durable project guidance through a scoped instruction chain. Files closer to the working directory take precedence, and the combined project guidance has a default size limit.[^agents-md] OpenAI also tells users to codify recurring corrections and treat instruction maintenance as a feedback loop.[^codex-customization]
+
+That is useful. It also creates another layer that can go stale.
+
+Anthropic's current managed-agent account says this directly: harnesses encode assumptions about what a model cannot do, and those assumptions can become obsolete as models improve.[^managed-agents] A workaround that rescued one model may interfere with the next one. A model change can also break a prompt, evaluation, or tool sequence that used to work.
+
+This is the deeper maintenance problem I wrote about in [I Could Be Playing Civilization](/articles/i-could-be-playing-civilization/). The agent can help write a correction. I still have to notice when the correction becomes the next bug.
+
+## This is normal production practice
+
+My loop was not an exotic mistake.
+
+The June 2026 revision of the *Measuring Agents in Production* preprint combines 20 interview case studies with a survey of 306 practitioners across 26 domains. The paper filters its main analysis to 86 production or pilot systems.[^map]
+
+In that deployed or pilot subset, 79 percent used manual or manual-plus-model prompt construction. Sixty-eight percent ran fewer than ten steps before human intervention, and 47 percent ran fewer than five. Human-in-the-loop evaluation was the primary method for 74 percent. Sixteen of the 20 interview case studies used structured workflows instead of open-ended planning.
+
+One preprint does not define every agent. It does show that bounded runs, human review, manual instruction work, and reliability controls are ordinary production choices.
+
+Files and execution state are part of the product too. OpenAI's sandbox documentation describes container workspaces with files, commands, packages, ports, snapshots, controlled external access, and resumable state.[^sandboxes] Those parts disappear from the cleanest demos. They do not disappear from the bill, the security boundary, or the maintenance job.
+
+## The agent was working
+
+HobBot posted on Moltbook. I also built an automated path for X.
+
+Both systems worked in the narrow technical sense. Schedules fired. The model generated material. The platform received it.
+
+The result did not acquire a reason to exist merely because it arrived automatically.
+
+Every cycle used infrastructure and model calls. Every new behavior required tuning. Every platform connection added authentication, formatting, error handling, and another place where an API or policy could change. A request could succeed while the communication failed because almost nobody saw or cared about it.
+
+Automation solved execution. It did not create demand, distribution, or an audience.
+
+That distinction controls how I think about social automation now.
+
+I can give Codex a finished HobFarm article and tell it to use my HeyGen avatar, ElevenLabs setup, and Higgsfield tools to make a primary video, shorter versions, horizontal, square, and vertical formats, and the accompanying post text. That is a substantial amount of production work handed to an agentic system.
+
+After I inspect the package, I can schedule it myself.
+
+The remaining manual job is small:
+
+```text
+open scheduler
+upload approved file
+paste approved text
+choose date
+click schedule
+```
+
+An autonomous social publisher would also need credentials, file routing, duplicate protection, state, retries, logs, scheduling rules, failure handling, and enough judgment to know which package was ready.
+
+That is a lot of machinery to remove a few final clicks.
+
+## Posting does not solve distribution
+
+I rarely use algorithmic home feeds. Instagram and X often show repeated material that does not match what I want. On X, I generally use the following feed for computer, GPU, and model news. RSS now supplies much of that information without requiring the rest of the feed.
+
+My posts receive little distribution. Facebook regularly offers paid boosts beginning around five dollars. A projected view count does not tell me who those viewers are, whether they read, or whether any return.
+
+The article is often the destination. It is not always bait for a course, product funnel, subscription, affiliate offer, or a guide teaching people how to sell guides.
+
+An autonomous posting agent cannot solve that uncertainty. It can make more material and place it into the same ranked system faster. [The Feed Is the Problem](/articles/the-feed-is-the-problem/) follows that distribution machinery further. The smaller point here is enough: production and distribution are different jobs.
+
+## HobBot became an architecture
+
+I did not throw away what HobBot taught me.
+
+The behavior files, scheduled runs, state, and tool structure fed into the first Grimoire agent. By March, I had also reused the HobBot name for a larger collection of publishing and infrastructure automations. [How HobBot Keeps the Lights On](/articles/how-hobbot-keeps-the-lights-on/) records what I expected that system to become: scheduled workers for content logistics, monitoring, Grimoire maintenance, article drafting, and social variants.
+
+That article should remain where it is. It is a dated receipt.
+
+The first Grimoire grew around workflows, agents, storage, providers, queues, and background processing. It was technically interesting. It was also too large and too expensive for the work it served.
+
+I made the system smaller.
+
+Current Grimoire is a local-first knowledge compiler. Authored Markdown and JSON own the meaning. Deterministic builds validate the source and emit small versioned packs for bounded consumers. StyleFusion receives its applicable contract. Wildcard Machine runs the deterministic EZIZE machinery. Wonder Machine consumes a separate Other Alice world pack and owns mutable game state. Human-directed Codex tasks can inspect the source and return a bounded result. None of those consumers needs one central agent continuously thinking in the background.
+
+The old workers, queues, atoms, plasticity systems, and autonomous experiments remain quarantined as legacy inputs. They are not the current runtime model.
+
+<AgentFigure kind="architecture" />
+
+The current arrangement is less dramatic and more useful. The agent stopped being the entire system. It became one possible component inside a system whose sources, contracts, and outputs can survive a model or provider change.
+
+[I Stopped Writing Prompts and Built a Machine Instead](/articles/i-stopped-writing-prompts-and-built-a-machine-instead/) shows the same direction from the EZIZE side: deterministic choices and traceable records first, provider output later.
+
+## Scale changes the answer
+
+Enterprise agent examples are not automatically fake.
+
+A company may have thousands of support requests, calendar actions, CRM updates, approvals, reports, internal messages, and recurring transactions. An agent that removes ten minutes from each operation can justify a large engineering and supervision layer.
+
+I know how to build systems around email, calendars, Slack, CRM records, routing, approvals, monitoring, and reporting. HobFarm does not produce enough of that administrative work to need them.
+
+The difference is the baseline.
+
+An enterprise may compare the agent with hundreds of people performing a task thousands of times. My baseline is often me spending five minutes.
+
+<AgentFigure kind="economics" />
+
+The equation is an editorial test, not formal accounting. It forces the useful question:
+
+```text
+agent value
+=
+labor removed × task frequency × workflow scale
+
+minus
+
+build time
++ runtime cost
++ file and context management
++ supervision
++ maintenance
++ failure cleanup
+```
+
+For one article package, the fixed cost of a fully autonomous publisher may exceed the labor it removes. The same architecture could make complete sense across fifteen brands, hundreds of posts, a review staff, and a real distribution budget.
+
+Learning when not to deploy a system is part of knowing how to build one.
+
+## What I use now
+
+Codex is agentic. It reads repository guidance, selects skills, inspects files, invokes tools, edits code and content, runs tests, evaluates failures, and continues until it reaches a stopping condition.
+
+I use it constantly. I also give it bounded jobs.
+
+The article exists. The visual direction exists. The providers and output formats are named. The task has a definition of done. Codex can perform the expensive middle of the workflow and return a package for inspection.
+
+The review step is where the publisher still exists.
+
+I decide whether the video represents the article, whether the voice sounds right, whether the crop ruins the image, whether the caption says anything worth posting, and whether the package should go out at all.
+
+Then I schedule it.
+
+That arrangement gives me agentic leverage without unnecessary autonomy.
+
+It also leaves room for projects to wait. Sometimes the model is not good enough, the API costs too much, a tool is unavailable, or the audience does not justify another bill. I can preserve the files and let the project sit. A later model, lower price, or better tool may make it practical again.
+
+Dormancy is not failure.
+
+HobBot already understands that part.
+
+The Moltbook page remains a record of a small agent waking up, reading its files, posting about foundations and crop rotation, and returning to sleep. The experiment worked. It taught me schedules, state, tools, behavior files, API costs, maintenance, and the difference between a task completing and a task being worth doing.
+
+I use more agent behavior now than I did on Groundhog Day.
+
+I am less interested in autonomy for its own sake.
+
+HobBot can return when there is enough useful work to justify the next cycle.
+
+For now, I can schedule the post myself.
+
+The agent was working.
+
+That wasn't the problem.
+
+---
+
+*Reporting note: The Groundhog Day origin, HobBot operation, social results, maintenance loop, project costs, and architecture history are first-person records supplied by the author and checked against the surviving profile, screenshot, repository history, and current project contracts. The current public technical documentation and version 2 of the production-agent preprint were rechecked on August 15, 2026. No exact HobFarm cost total appears because the available records do not support one complete figure.*
+
+[^cloudflare-cron]: Cloudflare, [Cron Triggers](https://developers.cloudflare.com/workers/configuration/cron-triggers/).
+[^cloudflare-schedule]: Cloudflare, [Schedule tasks](https://developers.cloudflare.com/agents/runtime/execution/schedule-tasks/).
+[^effective-agents]: Anthropic, [Building effective agents](https://www.anthropic.com/engineering/building-effective-agents/), published December 19, 2024. The page now points readers to newer material for Anthropic's current implementation while retaining the workflow-versus-agent distinction and the cost/complexity guidance used here.
+[^codex-skills]: OpenAI, [Use skills to extend ChatGPT and Codex](https://learn.chatgpt.com/docs/build-skills).
+[^agents-md]: OpenAI, [Custom instructions with AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md).
+[^codex-customization]: OpenAI, [Customize Codex](https://learn.chatgpt.com/docs/customization/overview).
+[^managed-agents]: Anthropic, [Scaling Managed Agents: Decoupling the brain from the hands](https://www.anthropic.com/engineering/managed-agents/), April 8, 2026.
+[^map]: Melissa Z. Pan et al., [Measuring Agents in Production](https://arxiv.org/abs/2512.04123v2), arXiv preprint version 2, June 4, 2026. Study fieldwork ran from April through November 2025.
+[^sandboxes]: OpenAI, [Sandbox Agents](https://developers.openai.com/api/docs/guides/agents/sandboxes).

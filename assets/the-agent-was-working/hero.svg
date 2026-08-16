@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">HobBot working the night shift</title>
+  <desc id="desc">A small orange robot operates a scheduled posting booth while instruction folders enter, posts leave on a conveyor, an API meter collects coins, and the finished posts face an almost empty auditorium.</desc>
+  <defs>
+    <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0H0V36" fill="none" stroke="#27292d" stroke-width="1"/></pattern>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#000" flood-opacity=".35"/></filter>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5 0 9z" fill="#ff5a2f"/></marker>
+  </defs>
+  <rect width="1600" height="900" fill="#0b0c0e"/>
+  <rect width="1600" height="900" fill="url(#grid)" opacity=".55"/>
+  <path d="M0 705H1600" stroke="#474a50" stroke-width="4"/>
+  <path d="M70 788H1530" stroke="#25272b" stroke-width="9" stroke-dasharray="32 22"/>
+
+  <g filter="url(#shadow)">
+    <rect x="96" y="126" width="332" height="576" rx="10" fill="#17191c" stroke="#55585e" stroke-width="4"/>
+    <rect x="118" y="150" width="288" height="66" fill="#fff6e4" stroke="#d4c6a8" stroke-width="3"/>
+    <text x="142" y="177" fill="#4b453c" font-family="Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="2">GROUNDHOG DAY</text>
+    <text x="142" y="204" fill="#111214" font-family="Arial, sans-serif" font-size="30" font-weight="800">FEBRUARY 2</text>
+    <circle cx="262" cy="310" r="72" fill="#101113" stroke="#ff5a2f" stroke-width="7"/>
+    <path d="M262 250V310L302 336" fill="none" stroke="#fff6e4" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="262" cy="310" r="8" fill="#ff5a2f"/>
+    <text x="262" y="409" text-anchor="middle" fill="#ff7d54" font-family="monospace" font-size="15" letter-spacing="3">CRON CLOCK</text>
+    <rect x="133" y="452" width="258" height="214" rx="8" fill="#0c0d0f" stroke="#3e4146" stroke-width="3"/>
+    <text x="153" y="481" fill="#8f9298" font-family="monospace" font-size="13" letter-spacing="2">INSTRUCTION INTAKE</text>
+    <g transform="translate(153 510)">
+      <path d="M0 12h68l14 14h122v58H0z" fill="#f4d27a" stroke="#151618" stroke-width="3"/>
+      <text x="18" y="58" fill="#262117" font-family="monospace" font-size="16" font-weight="700">VOICE</text>
+      <path d="M10 93h68l14 14h112v58H10z" fill="#eaa45f" stroke="#151618" stroke-width="3"/>
+      <text x="28" y="139" fill="#261910" font-family="monospace" font-size="16" font-weight="700">SKILLS</text>
+    </g>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="485" y="188" width="444" height="514" rx="16" fill="#181a1d" stroke="#ff5a2f" stroke-width="5"/>
+    <rect x="507" y="210" width="400" height="46" fill="#25120d"/>
+    <circle cx="537" cy="233" r="8" fill="#62d98d"/>
+    <text x="562" y="239" fill="#ff8b67" font-family="monospace" font-size="15" letter-spacing="2">H0BBOT NIGHT SHIFT</text>
+    <g transform="translate(604 315)">
+      <circle cx="105" cy="78" r="74" fill="#ff5a2f"/>
+      <rect x="53" y="44" width="104" height="76" rx="25" fill="#d9e6e7" stroke="#101113" stroke-width="7"/>
+      <rect x="68" y="60" width="74" height="40" rx="14" fill="#202328"/>
+      <circle cx="89" cy="80" r="8" fill="#74d7f4"/><circle cx="121" cy="80" r="8" fill="#74d7f4"/>
+      <path d="M82 111q23 16 46 0" fill="none" stroke="#101113" stroke-width="7" stroke-linecap="round"/>
+      <path d="M76 39L64 17M134 39l12-22" stroke="#101113" stroke-width="7" stroke-linecap="round"/>
+      <circle cx="62" cy="14" r="9" fill="#f4d27a" stroke="#101113" stroke-width="5"/><circle cx="148" cy="14" r="9" fill="#f4d27a" stroke="#101113" stroke-width="5"/>
+      <rect x="61" y="155" width="88" height="120" rx="18" fill="#d9e6e7" stroke="#101113" stroke-width="7"/>
+      <circle cx="105" cy="190" r="15" fill="#ff5a2f"/>
+      <path d="M61 178L18 218M149 178l43 40M79 273l-18 45M131 273l18 45" stroke="#d9e6e7" stroke-width="17" stroke-linecap="round"/>
+    </g>
+    <rect x="537" y="612" width="340" height="58" rx="7" fill="#0d0e10" stroke="#3c3f44" stroke-width="3"/>
+    <text x="558" y="638" fill="#8c8f95" font-family="monospace" font-size="13">MODEL ↔ TOOLS ↔ STATE</text>
+    <text x="558" y="658" fill="#5bd89b" font-family="monospace" font-size="12">RUN COMPLETE · GOING DORMANT</text>
+  </g>
+
+  <path d="M428 563H485" stroke="#ff5a2f" stroke-width="5" marker-end="url(#arrow)"/>
+  <path d="M929 563H1028" stroke="#ff5a2f" stroke-width="5" marker-end="url(#arrow)"/>
+  <g filter="url(#shadow)">
+    <rect x="1018" y="476" width="492" height="226" rx="10" fill="#15171a" stroke="#50535a" stroke-width="4"/>
+    <text x="1043" y="508" fill="#a9abb0" font-family="monospace" font-size="13" letter-spacing="2">OUTBOUND CONVEYOR</text>
+    <path d="M1048 650H1478" stroke="#64676d" stroke-width="13" stroke-dasharray="22 14"/>
+    <g font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#f5f2e9">
+      <g transform="translate(1046 535) rotate(-2)"><rect width="128" height="78" rx="5" fill="#24272b" stroke="#ff5a2f" stroke-width="3"/><text x="14" y="34">PROVISIONS</text><text x="14" y="57" fill="#8d9096" font-family="monospace" font-size="10">MOLTBOOK</text></g>
+      <g transform="translate(1183 530) rotate(2)"><rect width="128" height="78" rx="5" fill="#24272b" stroke="#ff5a2f" stroke-width="3"/><text x="14" y="34">PUMP</text><text x="14" y="55">PATTERNS</text></g>
+      <g transform="translate(1320 536) rotate(-1)"><rect width="150" height="78" rx="5" fill="#24272b" stroke="#ff5a2f" stroke-width="3"/><text x="14" y="34">FALLOW</text><text x="14" y="55">SEASONS</text></g>
+    </g>
+  </g>
+
+  <g transform="translate(1034 144)" filter="url(#shadow)">
+    <rect width="190" height="260" rx="12" fill="#f4ead5" stroke="#141517" stroke-width="5"/>
+    <text x="95" y="38" text-anchor="middle" fill="#202124" font-family="monospace" font-size="13" font-weight="700">API METER</text>
+    <rect x="30" y="60" width="130" height="92" rx="6" fill="#1a1c1f"/>
+    <path d="M48 133A50 50 0 0 1 143 85" fill="none" stroke="#ff5a2f" stroke-width="10"/>
+    <path d="M95 129L134 91" stroke="#f5f2e9" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="95" cy="129" r="7" fill="#f5f2e9"/>
+    <g fill="#f0c96b" stroke="#2b2416" stroke-width="3"><circle cx="61" cy="198" r="19"/><circle cx="99" cy="218" r="19"/><circle cx="137" cy="190" r="19"/></g>
+    <text x="95" y="247" text-anchor="middle" fill="#5c5446" font-family="monospace" font-size="11">EACH RUN COSTS</text>
+  </g>
+
+  <g transform="translate(1260 137)" filter="url(#shadow)">
+    <path d="M10 250V60h280v190" fill="#101113" stroke="#4c4f55" stroke-width="4"/>
+    <text x="150" y="38" text-anchor="middle" fill="#868990" font-family="monospace" font-size="13" letter-spacing="2">SOCIAL AUDITORIUM</text>
+    <g fill="#2b2d31"><circle cx="62" cy="112" r="15"/><path d="M42 160q20-54 40 0z"/><circle cx="238" cy="174" r="15"/><path d="M218 222q20-54 40 0z"/></g>
+    <g fill="none" stroke="#2c2e32" stroke-width="3"><path d="M28 238H270"/><path d="M28 207H270"/><path d="M28 176H270"/><path d="M28 145H270"/></g>
+    <text x="150" y="280" text-anchor="middle" fill="#ff8b67" font-family="monospace" font-size="12">DELIVERED ≠ SEEN</text>
+  </g>
+
+  <g transform="translate(82 746)">
+    <text x="0" y="0" fill="#ff5a2f" font-family="monospace" font-size="16" font-weight="700" letter-spacing="2">THE MACHINE WORKS</text>
+    <text x="0" y="31" fill="#a8aaae" font-family="monospace" font-size="13">instructions in · model call · tool action · state recorded · repeat</text>
+  </g>
+  <g transform="translate(1010 754)">
+    <rect width="500" height="80" rx="7" fill="#15171a" stroke="#3f4247" stroke-width="3"/>
+    <text x="24" y="31" fill="#ff8b67" font-family="monospace" font-size="13">OPERATOR NOTE</text>
+    <text x="24" y="57" fill="#d2d3d0" font-family="monospace" font-size="15">Technical success still needs a reason to exist.</text>
+  </g>
+</svg>

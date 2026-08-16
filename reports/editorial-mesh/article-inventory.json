@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-16T01:35:04.330Z",
-  "articleCount": 73,
+  "generatedAt": "2026-08-16T06:53:27.208Z",
+  "articleCount": 74,
   "articles": [
     {
       "slug": "1956-automation",
@@ -3963,6 +3963,89 @@
       "storyModes": [
         "archive-trail",
         "media-genealogy"
+      ],
+      "confidence": "high",
+      "ambiguityNotes": ""
+    },
+    {
+      "slug": "the-agent-was-working",
+      "title": "It's so agentic",
+      "status": "scheduled",
+      "date": "2026-08-27T23:20:00.000Z",
+      "legacy": {
+        "category": "",
+        "department": "workshop-notes",
+        "series": "",
+        "presentsSeries": "",
+        "workshopProgram": "",
+        "entryType": "feature",
+        "format": "workshop-note"
+      },
+      "tags": [
+        "AI agents",
+        "automation",
+        "HobBot",
+        "Codex",
+        "Grimoire",
+        "solo publishing"
+      ],
+      "relatedArticles": [
+        "how-hobbot-keeps-the-lights-on",
+        "i-could-be-playing-civilization",
+        "i-stopped-writing-prompts-and-built-a-machine-instead"
+      ],
+      "centralObject": "The operating and economic boundary of a technically successful autonomous HobBot system.",
+      "primarySection": "technology",
+      "subjects": [
+        "agentic-systems",
+        "artificial-intelligence",
+        "automation",
+        "creative-workflows",
+        "model-behavior",
+        "platform-economics",
+        "software-architecture",
+        "solo-publishing"
+      ],
+      "seriesAndSpecials": [],
+      "entities": {
+        "people": [],
+        "organizations": [
+          "anthropic",
+          "cloudflare",
+          "hobfarm",
+          "moltbook",
+          "openai"
+        ],
+        "places": [],
+        "events": [],
+        "works": [],
+        "publications": [],
+        "technologies": [
+          "artificial-intelligence",
+          "automation",
+          "cloudflare-workers",
+          "codex",
+          "cron",
+          "grimoire",
+          "hobbot",
+          "stylefusion",
+          "wildcard-machine",
+          "wonder-machine"
+        ]
+      },
+      "sourceArtifacts": [
+        {
+          "id": "hobbot-moltbook-profile-screenshot-2026",
+          "type": "other",
+          "label": "Author-owned full-page screenshot of the H0BBOT Moltbook profile, February 2026",
+          "role": "origin"
+        }
+      ],
+      "storyModes": [
+        "personal-history-trail",
+        "process-essay",
+        "systems-investigation",
+        "technical-explainer"
       ],
       "confidence": "high",
       "ambiguityNotes": ""

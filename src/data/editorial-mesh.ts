@@ -112,6 +112,7 @@ export function getEditorialSeries(id: string | undefined | null) {
 export const editorialSubjects = [
   ["advertising", "Advertising"],
   ["aesthetics", "Aesthetics"],
+  ["agentic-systems", "Agentic systems"],
   ["ai-image-generation", "AI image generation"],
   ["anime", "Anime"],
   ["art-history", "Art history"],
@@ -414,6 +415,7 @@ export const editorialEntities: EditorialEntity[] = [
   organization("mgm", "Metro-Goldwyn-Mayer", ["MGM"]),
   organization("microsoft", "Microsoft"),
   organization("midway-games", "Midway Games", ["Midway", "Bally Midway"]),
+  organization("moltbook", "Moltbook"),
   organization("nasa", "NASA", ["National Aeronautics and Space Administration"]),
   organization("national-park-service", "National Park Service", ["NPS"]),
   organization("noaa", "NOAA", ["National Oceanic and Atmospheric Administration"]),
@@ -572,6 +574,7 @@ export const editorialEntities: EditorialEntity[] = [
   technology("codex", "Codex"),
   technology("comfyui", "ComfyUI"),
   technology("community-notes", "Community Notes"),
+  technology("cron", "Cron"),
   technology("dynamic-prompts", "Dynamic Prompts"),
   technology("ezize", "EZIZE"),
   technology("fable-5", "Fable 5"),
