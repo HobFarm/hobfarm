@@ -1,0 +1,59 @@
+---
+import EzizeLegalLayout from "@/layouts/EzizeLegalLayout.astro";
+---
+
+<EzizeLegalLayout title="Privacy notice" description="What EZIZE collects, why the service needs it, how long records are kept, and how to make a privacy request." active="privacy">
+  <p class="plain-summary"><strong>Plain-English summary:</strong> EZIZE needs a verified email, account and balance records, purchase references, generation records, and security logs to run the service. Payment cards stay with Stripe. Creating an account does not enroll you in marketing.</p>
+
+  <h2>1. Who handles the data</h2>
+  <p>EZIZE is a HobFarm service operated by Kris Reynolds in Las Vegas, Nevada. HobFarm is responsible for the information described in this notice. Privacy questions and requests can be sent through the <a href="/contact/">HobFarm contact page</a>.</p>
+
+  <h2>2. Information EZIZE collects</h2>
+  <h3>Account and contact information</h3>
+  <p>EZIZE collects the email address you provide, email-verification status, an internal account identifier, authentication events, and information you send when asking for support. Passwordless sign-in links are temporary credentials and should not be shared.</p>
+  <h3>Purchases, balance, and membership</h3>
+  <p>EZIZE keeps coin purchases and grants, balance changes, receipt references, currency and amount, payment status, subscription status, and Stripe customer, checkout, payment, or subscription identifiers. Stripe processes card details. HobFarm does not store full payment-card numbers or security codes.</p>
+  <h3>Generation records</h3>
+  <p>For each pull, EZIZE keeps the EZ ID, filename, timestamp, form, persona, Generation Path Odds, output location, status, service version, and the private information needed to verify or recover the generation. Private generation data can include a seed, structured selections, decision trace, provider request references, and operational error details. Those private fields are not included in the customer download.</p>
+  <h3>Technical and security information</h3>
+  <p>Hosting and security systems may process IP address, browser and device data, timestamps, request logs, cookie or session identifiers, rate-limit events, and signals used to prevent abuse, secure accounts, diagnose failures, and maintain availability.</p>
+
+  <h2>3. Why the information is used</h2>
+  <p>HobFarm uses this information to:</p>
+  <ul>
+    <li>create and authenticate accounts through verified email;</li>
+    <li>process purchases, membership billing, coin grants, balances, receipts, refunds, and disputes;</li>
+    <li>run generations, calculate and record Generation Path Odds, deliver files, and recover completed paid EZs;</li>
+    <li>protect EZIZE, investigate fraud or abuse, enforce service rules, and comply with legal obligations;</li>
+    <li>diagnose errors, measure reliability, and improve the machine and its public presentation;</li>
+    <li>respond to support, privacy, billing, and licensing requests.</li>
+  </ul>
+
+  <h2>4. Service email and marketing email</h2>
+  <p>Account creation does not subscribe you to marketing. EZIZE sends service messages needed for passwordless authentication, receipts, billing, security, recovery, support, and material changes to the service or its terms.</p>
+  <p>A HobFarm newsletter or other marketing list requires a separate choice and double opt-in confirmation. Marketing consent is recorded separately and can be withdrawn through the unsubscribe link without closing an EZIZE account or removing an existing balance.</p>
+
+  <h2>5. Service providers</h2>
+  <p>HobFarm shares limited information with providers that perform the service, including Cloudflare for hosting, delivery, storage, access protection, and security; Stripe for checkout, payment, billing, and fraud prevention; authentication and email-delivery providers; and AI rendering providers used to complete generations. Providers receive only the information reasonably needed for their role and operate under their own terms and privacy obligations.</p>
+  <p>Information may also be disclosed when required by law, to protect users or the service, in connection with a business transfer, or with your direction. HobFarm does not sell EZIZE account information as a data-broker product.</p>
+
+  <h2>6. Cookies and local storage</h2>
+  <p>EZIZE may use cookies or similar storage that are necessary for authentication, session continuity, security, preferences, checkout, and account operation. Optional analytics or marketing storage, if added, will be described and presented with any choice required by applicable law.</p>
+
+  <h2>7. Retention</h2>
+  <p>Account, transaction, membership, coin ledger, and generation records are kept while the account is active and for a reasonable period afterward to provide recovery, maintain accurate financial and generation records, prevent fraud, resolve disputes, and meet tax, accounting, and legal obligations. Security logs and failed-generation diagnostics may be kept for shorter operational periods. Newsletter consent records may be kept as evidence of the choice made.</p>
+  <p>No retention period is promised to be permanent. When information is no longer reasonably needed, HobFarm may delete it, aggregate it, or remove identifying details. Backups can persist for a limited rotation period before deletion is complete.</p>
+
+  <h2>8. Your choices and requests</h2>
+  <p>Depending on where you live, you may have rights to know or access information, correct it, request deletion, obtain a copy, or object to certain uses. You may also ask about service providers, account recovery, or how a generation record is connected to an EZ ID. HobFarm may need to verify the account email or request before acting.</p>
+  <p>Some information cannot be deleted immediately when it is needed to complete a transaction, preserve a paid output, maintain security, prevent fraud, comply with law, or establish or defend legal claims. A request to delete an account may make future recovery of files or balances impossible after the request is completed. HobFarm will explain any applicable limit.</p>
+
+  <h2>9. Security and international processing</h2>
+  <p>HobFarm uses reasonable technical and organizational safeguards suited to a small online service, including access controls, limited public data, provider-hosted payment fields, and security logging. No internet service can guarantee absolute security. Information may be processed in the United States or other locations where service providers operate, subject to applicable safeguards.</p>
+
+  <h2>10. Children</h2>
+  <p>EZIZE is not directed to children under 13, and HobFarm does not knowingly collect personal information from a child under 13 through the service. A parent or guardian who believes a child provided information should use the <a href="/contact/">contact page</a>.</p>
+
+  <h2>11. Changes and contact</h2>
+  <p>This notice may change as EZIZE or applicable requirements change. Material changes will be announced through the service, an account message, or another appropriate notice. To make a privacy request, use the <a href="/contact/">HobFarm contact page</a> and identify the request as an EZIZE privacy matter.</p>
+</EzizeLegalLayout>

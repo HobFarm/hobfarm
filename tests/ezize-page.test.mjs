@@ -4,44 +4,49 @@ import test from "node:test";
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
 
-test("EZIZE has a canonical public explainer with honest private-alpha status", () => {
+test("EZIZE has a canonical public product story for the live probability machine", () => {
   const page = read("src/pages/ezize/index.astro");
 
-  assert.match(page, /title="EZIZE \| HobFarm"/);
-  assert.match(page, /canonical="\/ezize\/"/);
-  assert.match(page, /Cake v0\.4/);
-  assert.match(page, /Critter v0\.3/);
-  assert.match(page, /Character v0\.1/);
-  assert.match(page, /Open EZIZE · Private alpha/);
-  assert.match(page, /href: "https:\/\/ez\.hob\.farm\/"/);
-  assert.match(page, /customDomainReady: true/);
-  assert.match(page, /Owner access only/);
-  assert.match(page, /public generation is not open/);
-  assert.doesNotMatch(page, /access pending|domain pending|awaiting verification/i);
-  assert.doesNotMatch(page, /Application coming soon/);
-  assert.match(page, /Recipe probability/);
-  assert.match(page, /Observed population/);
-  assert.match(page, /Visual distinction/);
-  assert.match(page, /Collector preference/);
-  assert.match(page, /alien chef decorating a cake/);
-  assert.match(page, /2336×3504 portrait PNG/);
-  assert.match(page, /OpenAI GPT Image/);
-  assert.match(page, /HobFarm/);
-  assert.match(page, /Grimoire/);
-  assert.match(page, /Wildcard Machine/);
-  assert.match(page, /OpenAI/);
-  assert.match(page, /PNG download/);
-  assert.match(page, /Development record/);
-  assert.match(page, /Insert coin\. Get an EZ\./);
-  assert.match(page, /What is an EZ\?/);
-  assert.match(page, /One pull\. One recipe\. One EZ\./);
-  assert.match(page, /Ledger identity and provenance/);
-  assert.match(page, /One pull produces an[\s\S]*<strong>EZ<\/strong>; more than one are <strong>EZs<\/strong>/);
-  assert.match(page, /An EZ does not need a HobFarm gallery/);
-  assert.match(page, /no specific gallery, collection, or adoptable listing is live yet/);
-  assert.match(page, /<EzizeEvidence priority \/>/);
-  assert.doesNotMatch(page, /\beasie\b/i);
-  assert.doesNotMatch(page, /NFT|blockchain|OpenSea|on-chain|mint(?:ed|ing|able)?/i);
+  assert.match(page, /title="EZIZE: The HobFarm Probability Machine"/);
+  assert.match(page, /new URL\("\/ezize\/", siteOrigin\)/);
+  assert.match(page, /const appUrl = "https:\/\/ezize\.hob\.farm\/"/);
+  assert.doesNotMatch(page, /https:\/\/ez\.hob\.farm\//);
+  assert.doesNotMatch(page, /private[- ]alpha|owner access only|public generation is not open/i);
+  assert.match(page, /Insert coin\.<br \/>Get an EZ\./);
+  assert.match(page, /Cake/);
+  assert.match(page, /Critter/);
+  assert.match(page, /Character/);
+  assert.match(page, /Cute/);
+  assert.match(page, /Corrupted/);
+  assert.match(page, /AI renders the final image\. EZIZE decides what image to ask for\./);
+  assert.match(page, /Generation Path Odds are the theoretical chance that the same version of EZIZE would make the same sequence of weighted selections again\./);
+  assert.match(page, /Generation Path Odds do not mean an identical pixel-for-pixel image would render again\. They describe the machine's selection path\./);
+  assert.match(page, /EZ-76BD76D0A0822404/);
+  assert.match(page, /ezize-76bd76d0a0822404-sheet\.png/);
+  assert.match(page, /ezize-76bd76d0a0822404\.mp4/);
+  assert.match(page, /1 EZ coin = 1 complete EZ generation\./);
+  for (const pack of ["$5", "$9", "$17", "$42", "$80"]) assert.match(page, new RegExp(pack.replace("$", "\\$")));
+  for (const route of ["terms", "privacy", "refunds", "license"]) assert.match(page, new RegExp(`\\/ezize\\/${route}\\/`));
+  assert.match(page, /YOUR EZ IS YOURS TO USE\./);
+  assert.match(page, /not cryptocurrency, blockchain tokens, an investment/);
+  assert.doesNotMatch(page, /\b(?:NFTs?|OpenSea|on-chain|mint(?:ed|ing|able)?|wallets?)\b/i);
+});
+
+test("EZIZE publishes dedicated service terms, privacy, refunds, and output rights", () => {
+  const terms = read("src/pages/ezize/terms.astro");
+  const privacy = read("src/pages/ezize/privacy.astro");
+  const refunds = read("src/pages/ezize/refunds.astro");
+  const license = read("src/pages/ezize/license.astro");
+
+  assert.match(terms, /Kris Reynolds in Las Vegas, Nevada/);
+  assert.match(terms, /One EZ coin pays for one complete EZ generation/);
+  assert.match(terms, /Each successfully paid month adds five EZ coins/);
+  assert.match(privacy, /Account creation does not subscribe you to marketing/);
+  assert.match(privacy, /HobFarm does not store full payment-card numbers or security codes/);
+  assert.match(refunds, /within 14 days of purchase if none of the coins/);
+  assert.match(refunds, /technical failure prevents EZIZE from delivering a completed output/);
+  assert.match(license, /worldwide, perpetual, non-exclusive, transferable, sublicensable, royalty-free license/);
+  assert.match(license, /does not promise that your EZ is eligible for copyright protection/);
 });
 
 test("EZIZE public evidence uses cropped and responsive local media", () => {

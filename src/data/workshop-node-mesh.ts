@@ -70,7 +70,7 @@ export const publicHobFarmNodes: readonly PublicNode[] = [
   { id: "academy", label: "Academy", kind: "surface", href: "/academy/", summary: "Lessons built from methods that survived real work." },
   { id: "shop", label: "Shop", kind: "surface", href: "/shop/", summary: "The commercial directory and verified HobFarm releases." },
   { id: "hobfarm-site", projectId: "hobfarm-site", label: "HobFarm", kind: "project", href: "/workshop/projects/hobfarm/", summary: "The publishing site, repository, content model, and relationship system." },
-  { id: "ezize", projectId: "ezize", label: "EZIZE", kind: "application", href: "/ezize/", summary: "An application with authored recipes, deterministic pulls, exact probability, and a ledger." },
+  { id: "ezize", projectId: "ezize", label: "EZIZE", kind: "application", href: "/ezize/", summary: "A public collectible image machine with authored weighted paths, Generation Path Odds, finished EZs, and account receipts." },
   { id: "stylefusion", projectId: "stylefusion", label: "StyleFusion", kind: "application", href: "/workshop/stylefusion/", summary: "A structured visual representation compiled for changing tools." },
   { id: "before-after", projectId: "before-after", label: "Before & After", kind: "workflow", href: "/workshop/before-and-after/", summary: "A source-integrity and transformation workflow built around one recognizable subject." },
   { id: "future-carriage", projectId: "future-carriage", label: "Future Carriage", kind: "project", href: "/workshop/future-carriage/", summary: "Historical constraints, a future vehicle family, and a self-directed concept campaign." },

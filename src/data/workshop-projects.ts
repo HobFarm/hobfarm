@@ -124,22 +124,22 @@ export const selectedWorkshopProjects: readonly WorkshopProject[] = [
   {
     id: "ezize",
     title: "EZIZE",
-    projectType: "Deterministic image application",
+    projectType: "Collectible image probability machine",
     brief:
-      "Cute & Corrupted, Grimoire, and Wildcard Machine became one private-alpha application that resolves weighted recipes, calculates exact probability, records generation identity, renders an image, and downloads the PNG.",
+      "Cute & Corrupted, Grimoire, and Wildcard Machine became one public application that resolves weighted generation paths, calculates their theoretical probability, renders a finished image, and keeps the EZ ID and receipt connected.",
     promise:
       "Turn an authored visual grammar into repeatable surprise without giving the image model control over the underlying collectible recipe.",
     startingMaterial: "a paired visual concept, authored taxonomies, and a deterministic weighted runtime",
     productionProblem:
       "Keep persona, form, traits, probability, image direction, and the generation record connected from the first pull through the rendered file.",
     stages: ["concept grammar", "Grimoire packs", "deterministic pull", "image specification", "render and record"],
-    possibleOutputs: ["generated image", "downloadable PNG", "ledger record", "process documentation", "selected external releases"],
+    possibleOutputs: ["generated image", "downloadable PNG", "generation record", "process documentation", "selected external releases"],
     capabilities: ["product development", "structured generation", "application design", "provenance"],
     media: ezizeAssets[1],
     secondaryMedia: ezizeAssets[0],
     approvedAssets: ezizeAssets,
     destination: "/ezize/",
-    status: "Private alpha case study",
+    status: "Public application study",
     featuredPosition: 1,
     sourceLabel: "Working application",
     resultLabel: "Rendered EZ",

@@ -2,59 +2,79 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Breadcrumbs from "@/components/global/Breadcrumbs.astro";
-import BeforeAfterCompare from "@/components/ui/BeforeAfterCompare.astro";
-import EzizeEvidence from "@/components/workshop/EzizeEvidence.astro";
-import { buildCompareItems } from "@/lib/cute-corrupted";
-import { getMedia } from "@/data/media-registry";
 
 const description =
-  "EZIZE is HobFarm's private-alpha collectible image machine, built around authored random generation, exact recipe probabilities, rendered EZs, and a pull ledger.";
-// The Access-protected private-alpha deployment has been verified at this address.
-const app = {
-  href: "https://ez.hob.farm/",
-  customDomainReady: true,
-};
+  "EZIZE is HobFarm's probability machine for collectible Cake, Critter, and Character images. Insert one EZ coin and the machine makes the selections for a finished high-resolution PNG.";
+const appUrl = "https://ezize.hob.farm/";
+const cdnRoot = "https://cdn.hob.farm/ezize";
+const socialImage = `${cdnRoot}/ezize-hero.png`;
+const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
+const canonicalUrl = new URL("/ezize/", siteOrigin).toString();
 
-const pairs = await buildCompareItems([
-  "cute-corrupted/cakes",
-  "cute-corrupted/raccoon",
-  "cute-corrupted/sienna",
-]);
-const pairBySlug = new Map(pairs.map((pair) => [pair.slug, pair]));
-const cabinetForms = [
+const imageUrl = (filename: string, width: number, quality = 82) =>
+  `https://cdn.hob.farm/cdn-cgi/image/width=${width},quality=${quality},format=auto/ezize/${encodeURIComponent(filename)}`;
+const imageSrcSet = (filename: string, widths: number[]) =>
+  widths.map((width) => `${imageUrl(filename, width)} ${width}w`).join(", ");
+
+const forms = [
   {
     name: "Cake",
-    version: "v0.4",
-    slug: "cute-corrupted/cakes",
-    side: "after" as const,
-    description:
-      "Constructed edible objects resolved from cake type, tiers, flavors, decorations, presentation, and cake-specific variables.",
+    file: "ezize-efb0ab2e5ad02c37.png",
+    alt: "An EZIZE cake with white frosting, chocolate layers, cherries, daisies, and a smiling face",
+    text: "A built edible object with shape, layers, flavor, frosting, decorations, presentation, and scene logic.",
   },
   {
     name: "Critter",
-    version: "v0.3",
-    slug: "cute-corrupted/raccoon",
-    side: "before" as const,
-    description:
-      "Animal-led collectible cartoons built from species identity, behavior, body logic, environment, and modifiers.",
+    file: "ezize-d6b613e86a33f971.png",
+    alt: "A colorful EZIZE otter-like critter with pink and teal striped body details",
+    text: "An animal-led figure assembled from species, body logic, behavior, setting, props, and modifiers.",
   },
   {
     name: "Character",
-    version: "v0.1",
-    slug: "cute-corrupted/sienna",
-    side: "after" as const,
-    description:
-      "Humanoid and persona-driven figures with identity, role, wardrobe, action, props, body traits, conditions, environments, and modifiers.",
+    file: "ezize-76bd76d0a0822404.png",
+    alt: "A smiling EZIZE character in an ocean-inspired outfit in a warm geometric landscape",
+    text: "A persona-driven figure with a role, wardrobe, action, body traits, environment, and other authored choices.",
   },
-].flatMap((form) => {
-  const pair = pairBySlug.get(form.slug);
-  return pair ? [{ ...form, pair }] : [];
-});
+];
 
-const ezizeOutput = getMedia("ezize.output.corrupted-cake");
-const socialImage = ezizeOutput.src;
-const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
-const canonicalUrl = new URL("/ezize/", siteOrigin).toString();
+const selectionLayers = [
+  "authored vocabularies",
+  "weighted choices",
+  "compatible relationships",
+  "conditional branches",
+  "versioned rules",
+  "deterministic selections",
+];
+
+const pricePacks = [
+  { coins: 5, price: "$5" },
+  { coins: 10, price: "$9" },
+  { coins: 20, price: "$17" },
+  { coins: 50, price: "$42" },
+  { coins: 100, price: "$80" },
+];
+
+const gallery = [
+  {
+    id: "EZ-3FA18FC59D7DB51E",
+    label: "Critter pull",
+    file: "ezize-3fa18fc59d7db51e.png",
+    alt: "A red and black glossy frog-like EZIZE critter surrounded by heart and ritual motifs",
+  },
+  {
+    id: "EZ-7F0E17704D1E71C8",
+    label: "Corrupted Cake",
+    file: "ezize-7f0e17704d1e71c8.png",
+    alt: "A dark chocolate and mushroom Corrupted Cake in a vivid gothic laboratory",
+  },
+  {
+    id: "EZ-9AD6FC992BC91702",
+    label: "Cake pull",
+    file: "ezize-9ad6fc992bc91702.png",
+    alt: "An ivory and purple crystal-studded EZIZE cake in a theatrical gothic setting",
+  },
+];
+
 const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
@@ -65,583 +85,552 @@ const structuredData = {
       url: `${siteOrigin}/`,
     },
     {
-      "@type": "WebSite",
-      "@id": `${siteOrigin}/#website`,
-      name: "HobFarm",
-      url: `${siteOrigin}/`,
-      publisher: { "@id": `${siteOrigin}/#organization` },
-    },
-    {
       "@type": "WebPage",
       "@id": `${canonicalUrl}#webpage`,
       url: canonicalUrl,
-      name: "EZIZE | HobFarm",
+      name: "EZIZE: The HobFarm Probability Machine",
       description,
-      isPartOf: { "@id": `${siteOrigin}/#website` },
+      image: socialImage,
       publisher: { "@id": `${siteOrigin}/#organization` },
-      mainEntity: { "@id": `${canonicalUrl}#ezize` },
-      ...(socialImage ? { image: socialImage } : {}),
+      mainEntity: { "@id": `${canonicalUrl}#application` },
     },
     {
-      "@type": "CreativeWork",
-      "@id": `${canonicalUrl}#ezize`,
+      "@type": "SoftwareApplication",
+      "@id": `${canonicalUrl}#application`,
       name: "EZIZE",
-      alternateName: ["EZ", "pronounced easies"],
+      applicationCategory: "MultimediaApplication",
+      operatingSystem: "Web browser",
+      url: appUrl,
       description,
-      url: canonicalUrl,
       creator: { "@id": `${siteOrigin}/#organization` },
-      publisher: { "@id": `${siteOrigin}/#organization` },
-      genre: ["Collectible image system", "Generative art"],
+      offers: {
+        "@type": "AggregateOffer",
+        priceCurrency: "USD",
+        lowPrice: "5",
+        highPrice: "80",
+        offerCount: "5",
+      },
     },
   ],
 };
-
-const pullSteps = [
-  "Pull",
-  "Resolve traits",
-  "Calculate probability",
-  "Build image specification",
-  "Render image",
-  "Write ledger and download",
-];
-const rarityRecipe = ["Cute", "Character", "Alien", "Chef", "Decorating a cake", "Melting condition"];
 ---
 
 <BaseLayout
-  title="EZIZE | HobFarm"
+  title="EZIZE: The HobFarm Probability Machine"
   description={description}
-  canonical="/ezize/"
+  canonical={canonicalUrl}
   image={socialImage}
-  imageAlt={ezizeOutput.alt}
+  imageAlt="The EZIZE machine surrounded by Cute and Corrupted Cakes, Critters, and Characters"
   structuredData={structuredData}
-  palette="magenta-cyan"
+  palette="purple-green"
 >
   <div class="ezize-page">
-    <section class="hero" aria-labelledby="ezize-title">
-      <Wrapper variant="standard" class="hero-wrap">
-        <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "EZIZE" }]} />
-        <div class="hero-grid">
-          <div class="hero-copy">
-            <p class="eyebrow">A collectible image system published by HobFarm</p>
-            <h1 id="ezize-title">EZIZE</h1>
-            <p class="pronunciation"><span>Private alpha</span> Pronounced “easies.”</p>
-            <p class="coin-line">Insert coin. Get an EZ.</p>
-            <p class="deck">
-              You do not choose the exact image that comes out. Every pull resolves an authored combination of
-              traits, calculates how likely that recipe was, records its identity, and sends the finished specification to the renderer.
-            </p>
-            <div class="hero-actions">
-              {app.customDomainReady && (
-                <a class="primary-action" href={app.href}>Open EZIZE · Private alpha <span aria-hidden="true">&rarr;</span></a>
-              )}
-              <a class="secondary-action" href="#cabinet">Open the cabinet</a>
-            </div>
-            <p class="app-home">
-              Private-alpha application: <span>{app.href.replace("https://", "")}</span>. Owner access only;
-              Cloudflare Access protects the application, and public generation is not open.
-            </p>
-          </div>
+    <Wrapper class="crumb-wrap">
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "EZIZE" }]} />
+    </Wrapper>
 
-          <div class="hero-evidence"><EzizeEvidence priority /></div>
-        </div>
-      </Wrapper>
-    </section>
-
-    <section class="definition" aria-labelledby="definition-heading">
-      <Wrapper variant="standard" class="section-space">
-        <div class="split-heading">
-          <div>
-            <p class="eyebrow">What is an EZ?</p>
-            <h2 id="definition-heading">One pull. One recipe. One EZ.</h2>
-          </div>
-          <div class="body-copy">
-            <p>
-              An <strong>EZ</strong> is one collectible produced by EZIZE. The recipe comes first. The image model does
-              not choose the rarity, form, or underlying traits. Each EZ keeps its resolved recipe, exact probability,
-              generation identity, provenance, and event record in the ledger.
-            </p>
-            <p>
-              The private alpha now runs the complete path from compiled Grimoire packs through Wildcard Machine,
-              canonical image JSON, the EZIZE prompt compiler, and OpenAI GPT Image. The first development proof
-              rendered a 2336×3504 portrait PNG from a resolved Cute Character recipe. The current Corrupted Cake
-              proof completes the same path and can be downloaded as a PNG from the owner view.
-            </p>
-          </div>
-        </div>
-
-        <ol class="pull-path" aria-label="Conceptual EZIZE pull path">
-          {pullSteps.map((step, index) => (
-            <li><span>{String(index + 1).padStart(2, "0")}</span><strong>{step}</strong></li>
-          ))}
-        </ol>
-        <p class="diagram-note">Working private-alpha path. Public accounts, retail credits, and public generation access are not available.</p>
-      </Wrapper>
-    </section>
-
-    <section class="lineage" aria-labelledby="lineage-heading">
-      <Wrapper variant="standard" class="section-space">
-        <div class="split-heading">
-          <div>
-            <p class="eyebrow">Project lineage</p>
-            <h2 id="lineage-heading">A visual series became a working application.</h2>
-          </div>
-          <div class="body-copy">
-            <p>
-              Cute &amp; Corrupted established the paired visual premise. Grimoire turned its concepts into authored
-              taxonomies and versioned packs. Wildcard Machine supplied the seeded probability runtime. EZIZE brought
-              those systems together with an interface, image compiler, renderer, download, and development record.
-            </p>
-            <p>
-              The final application was not fully specified when the first paired images were made. Each stage exposed
-              the next useful problem and preserved enough structure for that new branch to become possible.
-            </p>
-          </div>
-        </div>
-
-        <ol class="lineage-chain" aria-label="Systems that converged into EZIZE">
-          <li><span>01 / origin</span><strong>Cute &amp; Corrupted</strong><p>Persona and transformation grammar</p></li>
-          <li><span>02 / authoring</span><strong>Grimoire</strong><p>Taxonomies, weights, and compiled packs</p></li>
-          <li><span>03 / runtime</span><strong>Wildcard Machine</strong><p>Deterministic resolution and probability</p></li>
-          <li><span>04 / application</span><strong>EZIZE</strong><p>Pull, render, record, and PNG download</p></li>
-        </ol>
-      </Wrapper>
-    </section>
-
-    <section class="blind-pull" aria-labelledby="blind-pull-heading">
-      <Wrapper variant="standard" class="section-space">
-        <div class="blind-grid">
-          <div>
-            <p class="eyebrow">You do not choose what comes out</p>
-            <h2 id="blind-pull-heading">Insert coin. Get an EZ.</h2>
-            <p class="deck-small">
-              EZIZE works like a penny-arcade machine, a gumball machine, or a sealed trading-card pack. It is not a
-              conventional prompt form. The structured surprise is the point. Common pulls still need to make good
-              pictures; unusual combinations emerge naturally when several weighted choices meet.
-            </p>
-          </div>
-          <ol class="arcade-sequence">
-            <li><span>01</span><div><strong>Start with a seed</strong><p>The seed makes the pull repeatable.</p></div></li>
-            <li><span>02</span><div><strong>Resolve the branches</strong><p>Cabinet, persona, form, and traits follow their defined weights.</p></div></li>
-            <li><span>03</span><div><strong>Seal the recipe</strong><p>The genome, probability, and image specification are recorded together.</p></div></li>
-          </ol>
-        </div>
-      </Wrapper>
-    </section>
-
-    <section id="cabinet" class="cabinet-section" aria-labelledby="cabinet-heading">
-      <Wrapper variant="standard" class="section-space">
-        <header class="section-heading">
-          <p class="eyebrow">The Cabinet</p>
-          <h2 id="cabinet-heading">Three forms are in the machine.</h2>
-          <p>
-            Each form owns its variables. A cake does not borrow a character wardrobe, and a critter does not use a
-            cake-tier rule. The Cabinet chooses the correct grammar before the pull continues.
+    <Wrapper class="hero-wrap">
+      <section class="hero" aria-labelledby="ezize-title">
+        <img
+          class="hero-image"
+          src={imageUrl("ezize-hero.png", 1280, 88)}
+          srcset={imageSrcSet("ezize-hero.png", [720, 1080, 1440, 1920])}
+          sizes="(min-width: 1280px) 1216px, 100vw"
+          width="1672"
+          height="941"
+          alt="The EZIZE vending machine surrounded by Cute and Corrupted Cakes, Critters, and Characters"
+          decoding="async"
+          fetchpriority="high"
+        />
+        <div class="hero-shade"></div>
+        <div class="hero-copy">
+          <p class="kicker">The HobFarm probability machine</p>
+          <h1 id="ezize-title">EZIZE</h1>
+          <p class="hero-line">Insert coin.<br />Get an EZ.</p>
+          <p class="hero-dek">
+            The machine chooses a Cake, Critter, or Character, runs it through Cute or Corrupted logic, and renders one finished collectible image.
           </p>
-        </header>
-
-        <div class="form-grid">
-          {cabinetForms.map((form, index) => {
-            const image = form.pair[form.side];
-            return (
-              <article class="form-card">
-                <a href={form.pair.href} aria-label={`See the ${form.name} source study in the HobFarm Gallery`}>
-                  <div class="form-image"><img src={image.src} alt={image.alt} loading="lazy" decoding="async" /></div>
-                  <div class="form-copy">
-                    <div><span>{String(index + 1).padStart(2, "0")}</span><b>{form.version}</b></div>
-                    <h3>{form.name}</h3>
-                    <p>{form.description}</p>
-                    <strong>See the source study <span aria-hidden="true">→</span></strong>
-                  </div>
-                </a>
-              </article>
-            );
-          })}
-        </div>
-      </Wrapper>
-    </section>
-
-    {pairBySlug.get("cute-corrupted/raccoon") && (
-      <section class="modes" aria-labelledby="modes-heading">
-        <Wrapper variant="standard" class="section-space">
-          <div class="modes-grid">
-            <div class="compare-wrap">
-              <BeforeAfterCompare
-                before={pairBySlug.get("cute-corrupted/raccoon")!.before}
-                after={pairBySlug.get("cute-corrupted/raccoon")!.after}
-                video={pairBySlug.get("cute-corrupted/raccoon")!.video}
-                aspect={pairBySlug.get("cute-corrupted/raccoon")!.aspect}
-                ariaLabel="Raccoon in Cute and Corrupted modes"
-              />
-            </div>
-            <div>
-              <p class="eyebrow">Cute / Corrupted</p>
-              <h2 id="modes-heading">Two intentional modes.</h2>
-              <p class="mode-intro">
-                Cute and Corrupted began as the public name of the project. They now operate inside EZIZE as a core
-                persona and transformation grammar.
-              </p>
-              <dl class="mode-definitions">
-                <div><dt>Cute</dt><dd>Readable, charming, polished, and inviting.</dd></div>
-                <div><dt>Corrupted</dt><dd>Darker, stranger, theatrical, toxic, supernatural, warped, excessive, or otherwise intensified.</dd></div>
-              </dl>
-              <p class="mode-note">
-                Corrupted owns the transformation. It is not the failed version of a Cute image. Skeletons, aliens,
-                robots, and other unusual identities can appear in either mode.
-              </p>
-              <a class="text-link" href="/workshop/cute-and-corrupted/">Read the Workshop method <span aria-hidden="true">→</span></a>
-            </div>
+          <div class="hero-actions">
+            <a class="machine-button" href={appUrl}>Open the machine <span aria-hidden="true">→</span></a>
+            <a class="text-link" href="#how-it-works">See how a pull works</a>
           </div>
-        </Wrapper>
+        </div>
+        <p class="burst burst-one" aria-hidden="true">WOW! IT'S SO EZ!</p>
+        <p class="burst burst-two" aria-hidden="true">1 COIN = 1 EZ</p>
       </section>
-    )}
+    </Wrapper>
 
-    <section class="rarity" aria-labelledby="rarity-heading">
-      <Wrapper variant="standard" class="section-space">
-        <div class="split-heading rarity-heading">
+    <Wrapper class="pull-wrap" id="how-it-works">
+      <ol class="pull-path" aria-label="How an EZIZE pull works">
+        <li><span>01</span><strong>Get coins</strong></li>
+        <li><span>02</span><strong>Insert one</strong></li>
+        <li><span>03</span><strong>Press IT'S EZ</strong></li>
+        <li><span>04</span><strong>The machine chooses</strong></li>
+        <li><span>05</span><strong>Get your EZ</strong></li>
+      </ol>
+    </Wrapper>
+
+    <Wrapper class="section-space">
+      <section aria-labelledby="cabinet-title">
+        <div class="section-heading split-heading">
           <div>
-            <p class="eyebrow">Rarity comes from the machine</p>
-            <h2 id="rarity-heading">There is no “Legendary” die roll.</h2>
+            <p class="eyebrow">Inside the cabinet</p>
+            <h2 id="cabinet-title">Three forms. Two personas. A lot of possible paths.</h2>
           </div>
-          <div class="body-copy">
-            <p>
-              Every choice in the generation path has a probability. Those probabilities multiply, so rarity emerges
-              from the completed recipe. A common trait can become part of an extremely unusual combination. The first
-              successful render resolved a feminine-coded alien chef decorating a cake, with stylized melting edges.
-              It remained a Character recipe; the cake was part of the action, not a switch into the Cake form.
-            </p>
-            <p>
-              The engine records exact full-genome probability. Highly detailed genomes can produce enormous “1 in X”
-              values, so the application will need a careful collector-facing summary. The number describes the recipe,
-              not the observed population, visual distinction, or collector preference.
-            </p>
-          </div>
-        </div>
-
-        <div class="recipe" aria-label="Example of traits combining into an unusual recipe">
-          {rarityRecipe.map((trait, index) => (
-            <div><span>{index === 0 ? "" : "×"}</span><strong>{trait}</strong></div>
-          ))}
-          <div class="recipe-result"><span>=</span><strong>One extremely unusual recipe</strong></div>
-        </div>
-        <div class="rarity-separations" aria-label="Rarity distinctions">
-          <span>Recipe probability</span><b>≠</b><span>Observed population</span><b>≠</b><span>Visual distinction</span><b>≠</b><span>Collector preference</span>
-        </div>
-      </Wrapper>
-    </section>
-
-    <section class="system" aria-labelledby="system-heading">
-      <Wrapper variant="standard" class="section-space">
-        <header class="section-heading">
-          <p class="eyebrow">Inside the machine</p>
-          <h2 id="system-heading">The image model receives a resolved specification.</h2>
           <p>
-            HobFarm publishes EZIZE. Three supporting systems do separate jobs, so the collectible structure exists
-            before an image provider draws the final surface.
+            Every pull begins with one of three forms. Cute and Corrupted are separate authored personas, not a quality score. They change the choices the machine can make and how those choices relate.
           </p>
-        </header>
-
-        <div class="system-map">
-          <div class="publisher-node"><span>Publisher</span><strong>HobFarm</strong><p>Publishes and develops EZIZE.</p></div>
-          <div class="product-node"><span>Product</span><strong>EZIZE</strong><p>Creates and records the collectible recipe.</p></div>
-          <div class="engine-nodes">
-            <article><span>Authoring and schema</span><h3>Grimoire</h3><p>Defines what can exist.</p></article>
-            <article><span>Deterministic runtime</span><h3>Wildcard Machine</h3><p>Performs the seeded pull and calculates its probability.</p></article>
-            <article><span>Current private-alpha renderer</span><h3>OpenAI</h3><p>Renders the already-resolved visual specification. It does not choose the recipe or rarity.</p></article>
-          </div>
         </div>
-      </Wrapper>
-    </section>
+        <div class="form-grid">
+          {forms.map((form) => (
+            <article class="form-card">
+              <img
+                src={imageUrl(form.file, 640)}
+                srcset={imageSrcSet(form.file, [420, 640, 900])}
+                sizes="(min-width: 900px) 30vw, 92vw"
+                width="2336"
+                height="3504"
+                alt={form.alt}
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="form-copy">
+                <p class="form-number">FORM</p>
+                <h3>{form.name}</h3>
+                <p>{form.text}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+        <div class="persona-strip" aria-label="EZIZE personas">
+          <article>
+            <span class="persona-face" aria-hidden="true">☺</span>
+            <div><p class="eyebrow">Persona one</p><h3>Cute</h3><p>Warm, playful, appealing, and deliberately constructed. Cute has its own vocabulary and rules.</p></div>
+          </article>
+          <article class="corrupted">
+            <span class="persona-face" aria-hidden="true">☠</span>
+            <div><p class="eyebrow">Persona two</p><h3>Corrupted</h3><p>Mutated, damaged, uncanny, and still intentional. Corrupted owns the transformation instead of applying a generic horror filter.</p></div>
+          </article>
+        </div>
+      </section>
+    </Wrapper>
 
-    <section class="representation" aria-labelledby="representation-heading">
-      <Wrapper variant="standard" class="section-space">
-        <div class="split-heading">
+    <section class="decision-band" aria-labelledby="decision-title">
+      <Wrapper>
+        <div class="decision-grid">
           <div>
-            <p class="eyebrow">The Ledger</p>
-            <h2 id="representation-heading">The ledger keeps the pull and the math together.</h2>
+            <p class="eyebrow">The authored machine</p>
+            <h2 id="decision-title">AI renders the final image. EZIZE decides what image to ask for.</h2>
           </div>
-          <div class="body-copy">
+          <div class="decision-copy">
             <p>
-              The ledger preserves the EZIZE ID, seed, resolved recipe, exact full-genome probability, render state,
-              output dimensions, image hash, provenance, and pull event. It keeps the identity of the EZ attached to
-              the image and the math that produced it.
+              EZIZE is not a prompt box. The machine assembles a generation path from authored vocabularies, weights, relationships, compatibility rules, and conditional branches. The renderer turns that resolved instruction into an image.
             </p>
             <p>
-              Each representation has a job. The image provider receives a resolved visual specification. It does not
-              decide the Cabinet, persona, form, traits, or probability that produced the recipe.
+              Those rules live in versioned contracts. That keeps the selection logic inspectable and lets HobFarm calculate the theoretical odds of a path without pretending the rendered pixels are mathematically unique.
             </p>
           </div>
         </div>
-
-        <dl class="representation-grid">
-          <div><dt>Authored grammar</dt><dd>Cabinet, persona, form, trait relationships, weights, and exclusions define what can exist.</dd></div>
-          <div><dt>Deterministic identity</dt><dd>Seed, resolved genome, and exact full-genome probability identify the completed pull.</dd></div>
-          <div><dt>Renderer handoff</dt><dd>Canonical image JSON and the prompt compiler translate the recipe into a renderable specification.</dd></div>
-          <div><dt>Ledger record</dt><dd>EZIZE ID, recipe, probability, render state, output dimensions, image hash, provenance, and event details stay attached to the owner-alpha result.</dd></div>
-        </dl>
-        <p class="representation-note">The owner-alpha ledger is working. A public ledger view, accounts, credits, and public pulls belong to the separate public-launch task.</p>
+        <ul class="selection-list">
+          {selectionLayers.map((layer, index) => <li><span>{String(index + 1).padStart(2, "0")}</span>{layer}</li>)}
+        </ul>
       </Wrapper>
     </section>
 
-    <section class="status" aria-labelledby="status-heading">
-      <Wrapper variant="standard" class="section-space">
-        <header class="section-heading">
-          <p class="eyebrow">Current build status</p>
-          <h2 id="status-heading">The machine is rendering in private alpha.</h2>
-        </header>
-        <div class="status-grid">
-          <article>
-            <span class="status-label available">Working</span>
-            <h3>Deterministic pull</h3>
-            <p>Compiled packs → seed → Cabinet → persona → form → traits → genome → exact probability → canonical image JSON.</p>
-            <ul><li>Cake v0.4</li><li>Critter v0.3</li><li>Character v0.1</li></ul>
-          </article>
-          <article>
-            <span class="status-label available">Working</span>
-            <h3>Render and PNG download</h3>
-            <p>The EZIZE prompt compiler sends the resolved specification to OpenAI GPT Image, receives the rendered EZ, and exposes a PNG download in the owner view.</p>
-            <ul><li>Current proof: Corrupted Cake</li><li>2336×3504 portrait PNG</li><li>Owner access only</li></ul>
-          </article>
-          <article>
-            <span class="status-label building">Development record</span>
-            <h3>Ledger identity and provenance</h3>
-            <p>The owner view records the seed, genome, exact probability, render state, output dimensions, hashes, and development PNG provenance fields.</p>
-            <ul><li>Local to the owner alpha</li><li>Identifies the recipe and file</li><li>Not a public collection</li></ul>
-          </article>
-          <article>
-            <span class="status-label planned">Planned</span>
-            <h3>Public product layer</h3>
-            <p>Coin or credit pulls, public accounts, public generation, portable EZ downloads, and an appropriate public ledger view.</p>
-          </article>
+    <Wrapper class="section-space">
+      <section class="odds-section" aria-labelledby="odds-title">
+        <div class="odds-ticket">
+          <div class="ticket-stub">
+            <p>EZIZE</p>
+            <strong>GENERATION<br />PATH ODDS</strong>
+            <span>CALCULATED AFTER PULL</span>
+          </div>
+          <div class="ticket-body">
+            <p class="eyebrow">A precise claim</p>
+            <h2 id="odds-title">What the odds mean</h2>
+            <p class="definition">
+              Generation Path Odds are the theoretical chance that the same version of EZIZE would make the same sequence of weighted selections again.
+            </p>
+            <p class="caveat">
+              Generation Path Odds do not mean an identical pixel-for-pixel image would render again. They describe the machine's selection path.
+            </p>
+            <div class="odds-example">
+              <div><span>EZ ID</span><strong>EZ-76BD76D0A0822404</strong></div>
+              <div><span>FORM</span><strong>Character</strong></div>
+              <div><span>PERSONA</span><strong>Cute</strong></div>
+              <div><span>ODDS</span><strong>Recorded with the pull</strong></div>
+            </div>
+            <p class="fine-print">
+              The odds are not a count of images generated, sold, or available. EZIZE does not turn them into artificial rarity tiers.
+            </p>
+          </div>
         </div>
-      </Wrapper>
-    </section>
+      </section>
+    </Wrapper>
 
-    <section class="collecting" aria-labelledby="collecting-heading">
-      <Wrapper variant="standard" class="section-space">
-        <div class="collect-grid">
+    <Wrapper class="section-space compact-top">
+      <section class="receipt-grid" aria-labelledby="receipt-title">
+        <div>
+          <p class="eyebrow">One coin, one complete pull</p>
+          <h2 id="receipt-title">The result comes with a name and a record.</h2>
+          <p class="lede">
+            Every finished image receives a unique EZ ID, a filename, a timestamp, a private HobFarm generation record, and an account receipt. The ID identifies the result. It is not a claim that no similar image could ever exist.
+          </p>
+        </div>
+        <div class="receipt-card">
+          <div class="receipt-head"><strong>EZIZE RECEIPT</strong><span>COMPLETE</span></div>
+          <dl>
+            <div><dt>EZ ID</dt><dd>EZ-76BD76D0A0822404</dd></div>
+            <div><dt>Form</dt><dd>Character</dd></div>
+            <div><dt>Persona</dt><dd>Cute</dd></div>
+            <div><dt>Output</dt><dd>High-resolution PNG</dd></div>
+            <div><dt>Path odds</dt><dd>Included</dd></div>
+            <div><dt>Timestamp</dt><dd>Included</dd></div>
+          </dl>
+        </div>
+        <div class="included-card">
+          <h3>You receive</h3>
+          <ul>
+            <li>the finished high-resolution PNG</li>
+            <li>the EZ ID and filename</li>
+            <li>form, persona, timestamp, and odds</li>
+            <li>an account receipt for the pull</li>
+          </ul>
+        </div>
+        <div class="included-card private-card">
+          <h3>The machine keeps private</h3>
+          <ul>
+            <li>the seed and raw genome</li>
+            <li>the full decision trace and provider prompt</li>
+            <li>schemas, pack data, and exact weights</li>
+            <li>private code and internal generation records</li>
+          </ul>
+        </div>
+      </section>
+    </Wrapper>
+
+    <section class="derivative-band" aria-labelledby="derivative-title">
+      <Wrapper>
+        <div class="section-heading split-heading">
           <div>
-            <p class="eyebrow">Portable by design</p>
-            <h2 id="collecting-heading">An EZ does not need a HobFarm gallery.</h2>
-            <p>
-              An EZ is a digital collectible with a structured identity, an exact recipe, and a record of how its image
-              was produced. The PNG and ledger preserve that record. Selected EZs may eventually be released through
-              DeviantArt, but no specific gallery, collection, or adoptable listing is live yet.
-            </p>
+            <p class="eyebrow">One EZ can keep going</p>
+            <h2 id="derivative-title">The original, then the things made from it.</h2>
           </div>
-          <div class="future-chain">
-            <div><span>01</span><strong>EZIZE</strong><p>Creates and records the collectible.</p></div>
-            <div><span>02</span><strong>PNG</strong><p>Stores the image and its portable development metadata.</p></div>
-            <div><span>03 / optional</span><strong>External release</strong><p>A selected EZ can go to the platform that fits the release.</p></div>
-          </div>
+          <p>
+            The PNG made by the pull is the canonical EZ. Character sheets, animation, products, stories, and other extensions are later derivative work. EZIZE does not create them automatically.
+          </p>
         </div>
-        <p class="collect-note">
-          Public accounts, coin or credit pulls, and public generation are not live. HobFarm remains the publisher;
-          EZIZE is the application and product identity.
-        </p>
+        <div class="derivative-grid">
+          <figure class="original-figure">
+            <img
+              src={imageUrl("ezize-76bd76d0a0822404.png", 760)}
+              srcset={imageSrcSet("ezize-76bd76d0a0822404.png", [520, 760, 1080])}
+              sizes="(min-width: 900px) 40vw, 92vw"
+              width="2336"
+              height="3504"
+              alt="The original Cute Character EZ-76BD76D0A0822404"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption><span>01 / CANONICAL EZ</span><strong>EZ-76BD76D0A0822404.png</strong></figcaption>
+          </figure>
+          <figure class="sheet-figure">
+            <img
+              src={imageUrl("ezize-76bd76d0a0822404-sheet.png", 1000)}
+              srcset={imageSrcSet("ezize-76bd76d0a0822404-sheet.png", [720, 1000, 1400])}
+              sizes="(min-width: 900px) 48vw, 92vw"
+              width="3840"
+              height="2160"
+              alt="A later four-view character sheet derived from EZ-76BD76D0A0822404"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption><span>02 / LATER DERIVATIVE</span><strong>EZ-76BD76D0A0822404-sheet.png</strong></figcaption>
+          </figure>
+          <figure class="video-figure">
+            <video controls muted loop playsinline preload="metadata" poster={imageUrl("ezize-76bd76d0a0822404.png", 720)} aria-label="A short animation derived from EZ-76BD76D0A0822404">
+              <source src={`${cdnRoot}/ezize-76bd76d0a0822404.mp4`} type="video/mp4" />
+              Your browser does not support embedded video.
+            </video>
+            <figcaption><span>03 / LATER DERIVATIVE</span><strong>EZ-76BD76D0A0822404-video.mp4</strong></figcaption>
+          </figure>
+        </div>
+        <p class="derivative-note">Your output license lets you edit, animate, print, publish, merchandise, and build new work from your EZ, subject to applicable law and the full license.</p>
       </Wrapper>
     </section>
 
-    <section class="name-section" aria-labelledby="name-heading">
-      <Wrapper variant="standard" class="section-space">
-        <div class="name-grid">
-          <div><p class="mini-wordmark" aria-hidden="true">EZIZE</p></div>
-          <div>
-            <p class="eyebrow">Why EZIZE?</p>
-            <h2 id="name-heading">Easy to say. An EZ to pull.</h2>
-            <p>
-              EZIZE is pronounced “easies.” The full application and product name is EZIZE. One pull produces an
-              <strong>EZ</strong>; more than one are <strong>EZs</strong>.
-            </p>
-          </div>
+    <Wrapper class="section-space">
+      <section aria-labelledby="gallery-title">
+        <div class="section-heading split-heading">
+          <div><p class="eyebrow">From the machine</p><h2 id="gallery-title">Every pull has an address.</h2></div>
+          <p>HobFarm may curate exceptional EZs into gallery features, character packages, stories, animation tests, or products. Outside platforms can help distribute selected work, but they do not define the machine or its records.</p>
+        </div>
+        <div class="gallery-grid">
+          {gallery.map((item) => (
+            <figure>
+              <img src={imageUrl(item.file, 720)} srcset={imageSrcSet(item.file, [480, 720, 960])} sizes="(min-width: 900px) 30vw, 92vw" width="2336" height="3504" alt={item.alt} loading="lazy" decoding="async" />
+              <figcaption><span>{item.label}</span><strong>{item.id}</strong></figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+    </Wrapper>
+
+    <section class="coin-band" aria-labelledby="coin-title">
+      <Wrapper>
+        <div class="coin-intro">
+          <div><p class="eyebrow">Load the machine</p><h2 id="coin-title">1 EZ coin = 1 complete EZ generation.</h2></div>
+          <p>EZ coins are prepaid machine credit. They are not cryptocurrency, blockchain tokens, an investment, or money you can withdraw. A free account keeps your balance and completed EZs connected to your verified email.</p>
+        </div>
+        <div class="price-grid">
+          {pricePacks.map((pack) => (
+            <article><p><strong>{pack.coins}</strong><span>EZ coins</span></p><span class="price">{pack.price}</span></article>
+          ))}
+        </div>
+        <div class="account-grid">
+          <article>
+            <p class="eyebrow">Free account</p><h3>Your balance waits for you.</h3>
+            <p>Sign in through a passwordless link sent to a verified email address. Logging out does not remove unused coins. Completed paid EZs remain recoverable from the account, subject to the service's retention policy.</p>
+          </article>
+          <article class="club-card">
+            <p class="eyebrow">HobFarm Club · $5 monthly</p><h3>Five more pulls after every paid month.</h3>
+            <p>Each successfully paid month adds five EZ coins. Coins stack. Canceling stops future billing and grants; it does not erase the existing balance or earlier EZs. Restarting resumes grants after successful payments. Normal packs stay available.</p>
+          </article>
+        </div>
+        <div class="center-action">
+          <a class="machine-button dark-button" href={appUrl}>Get started at EZIZE <span aria-hidden="true">→</span></a>
+          <p>Account creation does not subscribe you to marketing email.</p>
         </div>
       </Wrapper>
     </section>
 
-    <section class="final-cta" aria-labelledby="final-heading">
-      <Wrapper variant="standard" class="section-space">
-        <p class="eyebrow">Private alpha</p>
-        <h2 id="final-heading">EZIZE is working behind restricted access.</h2>
-        <p>
-          The machine can resolve and render real EZs. The application is live behind Cloudflare Access and remains
-          owner-only during private alpha. Public accounts and generation access do not exist yet. The original Cute /
-          Corrupted studies remain available in the HobFarm Gallery, with the production method in Workshop.
-        </p>
-        <div class="hero-actions final-actions">
-          {app.customDomainReady && (
-            <a class="primary-action" href={app.href}>Open EZIZE · Private alpha <span aria-hidden="true">&rarr;</span></a>
-          )}
-          <a class="secondary-action" href="/gallery/cute-corrupted/raccoon/">See a Critter study</a>
-          <a class="secondary-action" href="/workshop/cute-and-corrupted/">Read the Workshop method</a>
-          <a class="secondary-action" href="/workshop/">Visit HobFarm Workshop</a>
+    <Wrapper class="section-space">
+      <section class="rights-grid" aria-labelledby="rights-title">
+        <div class="rights-callout">
+          <p class="eyebrow">Output rights</p><h2 id="rights-title">YOUR EZ IS YOURS TO USE.</h2>
+          <p>You receive broad permission to use the specific paid EZ output: personal work, commercial projects, edits, animation, prints, merchandise, publishing, and derivative work, subject to law, third-party rights, and the full EZIZE license.</p>
+          <a class="text-link light-link" href="/ezize/license/">Read the output license →</a>
         </div>
+        <div class="retained-callout">
+          <p class="eyebrow">What stays with HobFarm</p><h3>The output license does not transfer the machine.</h3>
+          <p>Your purchase does not transfer EZIZE or HobFarm names and logos, Grimoire, Wildcard, schemas, packs, weights, generation logic, algorithms, source code, APIs, documentation, the site, or anyone else's EZ.</p>
+          <p>No promise is made that an AI-assisted output is copyrightable in every jurisdiction or that a rendered image is exclusively unique.</p>
+        </div>
+      </section>
+    </Wrapper>
+
+    <section class="legal-band" aria-labelledby="legal-title">
+      <Wrapper>
+        <div>
+          <p class="eyebrow">Before you pull</p><h2 id="legal-title">Plain rules, visible from the product page.</h2>
+          <p>Service messages cover account access, receipts, billing, security, recovery, and material service changes. Marketing requires a separate double opt-in.</p>
+        </div>
+        <nav aria-label="EZIZE legal information">
+          <a href="/ezize/terms/"><span>01</span>Terms</a><a href="/ezize/privacy/"><span>02</span>Privacy</a><a href="/ezize/refunds/"><span>03</span>Refunds</a><a href="/ezize/license/"><span>04</span>Output license</a>
+        </nav>
       </Wrapper>
     </section>
+
+    <Wrapper class="final-wrap">
+      <section class="final-cta" aria-labelledby="final-title">
+        <p class="burst final-burst" aria-hidden="true">IT'S EZ!</p><p class="eyebrow">Cakes · Critters · Characters</p>
+        <h2 id="final-title">Insert coin. Let the machine decide.</h2>
+        <a class="machine-button" href={appUrl}>Open EZIZE <span aria-hidden="true">→</span></a>
+      </section>
+    </Wrapper>
   </div>
 </BaseLayout>
 
 <style>
-  .ezize-page {
-    --ez-line: #332940;
-    --ez-panel: #0d0a13;
-    --ez-paper: #ece9f5;
-    --ez-muted: #aaa5b8;
-    --ez-cyan: #63e9eb;
-    --ez-pink: #e660a7;
-    overflow: hidden;
-    background: #07060b;
-    color: var(--ez-muted);
+  :global(body) { background: #0b0b08; }
+  .ezize-page { --ink: #0b0b08; --paper: #f5f1de; --lime: #dfff36; --orange: #ff684d; --cyan: #79e2dd; --line: rgba(245, 241, 222, .18); color: var(--paper); overflow: clip; }
+  .crumb-wrap { padding-top: 1rem; padding-bottom: 1rem; }
+  .hero-wrap { max-width: 96rem; }
+  .hero { position: relative; min-height: 42rem; overflow: hidden; container-type: inline-size; border: 1px solid rgba(255,255,255,.16); background: #071a31; box-shadow: 0 2rem 7rem rgba(0,0,0,.44); isolation: isolate; }
+  .hero-image, .hero-shade { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .hero-image { object-fit: cover; object-position: center; }
+  .hero-shade { z-index: 1; background: linear-gradient(90deg, rgba(3,13,28,.98) 0%, rgba(3,13,28,.78) 31%, rgba(3,13,28,.08) 62%, rgba(3,13,28,.04) 100%); }
+  .hero-copy { position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; width: min(36rem, 48%); min-height: 42rem; padding: clamp(2rem, 5vw, 5.5rem); }
+  .kicker, .eyebrow { margin: 0 0 .8rem; font: 700 .72rem/1.2 var(--font-mono); letter-spacing: .13em; text-transform: uppercase; }
+  .kicker { color: var(--lime); }
+  h1, h2, h3, p { text-wrap: pretty; }
+  h1 { margin: 0; color: #fff6c6; font: 900 clamp(4.6rem, 10vw, 9rem)/.8 var(--font-display); letter-spacing: -.075em; text-shadow: .07em .07em 0 #b52619, .11em .11em 0 rgba(0,0,0,.45); }
+  .hero-line { margin: 1.6rem 0 .8rem; color: #fff; font: 800 clamp(1.8rem, 3vw, 3.1rem)/.96 var(--font-display); letter-spacing: -.035em; text-transform: uppercase; }
+  .hero-dek { max-width: 31rem; margin: .8rem 0 0; color: rgba(255,255,255,.8); font-size: 1.04rem; line-height: 1.65; }
+  .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.25rem; margin-top: 2rem; }
+  .machine-button { display: inline-flex; align-items: center; justify-content: space-between; gap: 1.4rem; min-width: 13rem; padding: .95rem 1.15rem; border: 2px solid var(--ink); border-radius: .25rem; background: var(--lime); color: var(--ink); box-shadow: .38rem .38rem 0 var(--orange); font: 800 .76rem/1 var(--font-mono); letter-spacing: .07em; text-transform: uppercase; text-decoration: none; transition: transform .18s ease, box-shadow .18s ease; }
+  .machine-button:hover, .machine-button:focus-visible { transform: translate(.18rem,.18rem); box-shadow: .2rem .2rem 0 var(--orange); }
+  .text-link { color: #fff; font: 700 .75rem/1.4 var(--font-mono); letter-spacing: .04em; text-transform: uppercase; text-underline-offset: .3em; }
+  .burst { position: absolute; z-index: 3; display: grid; place-items: center; width: 8rem; aspect-ratio: 1; margin: 0; padding: 1rem; clip-path: polygon(50% 0,61% 17%,79% 7%,82% 28%,100% 31%,87% 49%,100% 64%,79% 69%,78% 91%,59% 81%,47% 100%,38% 81%,17% 94%,17% 72%,0 64%,13% 47%,0 31%,21% 27%,24% 6%,42% 17%); background: var(--lime); color: var(--ink); font: 900 .76rem/1.05 var(--font-display); text-align: center; transform: rotate(8deg); filter: drop-shadow(.35rem .35rem 0 rgba(0,0,0,.4)); }
+  .burst-one { top: 2.2rem; right: 2.2rem; }
+  .burst-two { right: 28%; bottom: 2.1rem; width: 6.7rem; background: var(--orange); color: #fff; transform: rotate(-9deg); }
+  .pull-wrap { position: relative; z-index: 4; margin-top: -1.25rem; }
+  .pull-path { display: grid; grid-template-columns: repeat(5,1fr); margin: 0; padding: 0; border: 2px solid var(--ink); background: var(--paper); color: var(--ink); box-shadow: .45rem .45rem 0 var(--orange); list-style: none; }
+  .pull-path li { position: relative; display: flex; align-items: center; gap: .7rem; min-height: 4.8rem; padding: .9rem; border-right: 1px dashed rgba(11,11,8,.35); font: 700 .7rem/1.25 var(--font-mono); letter-spacing: .03em; text-transform: uppercase; }
+  .pull-path li:last-child { border-right: 0; }
+  .pull-path span { display: grid; flex: 0 0 auto; place-items: center; width: 1.75rem; height: 1.75rem; border-radius: 50%; background: var(--ink); color: var(--lime); font-size: .62rem; }
+  .section-space { padding-top: clamp(5rem, 9vw, 9rem); padding-bottom: clamp(5rem, 9vw, 9rem); }
+  .compact-top { padding-top: 1rem; }
+  .section-heading { margin-bottom: 2.5rem; }
+  .split-heading { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(18rem, .7fr); gap: 2rem 5rem; align-items: end; }
+  .section-heading .eyebrow, .receipt-grid .eyebrow, .rights-grid .eyebrow { color: var(--lime); }
+  h2 { margin: 0; color: #fff; font: 700 clamp(2.25rem, 5vw, 5rem)/.95 var(--font-display); letter-spacing: -.045em; }
+  .section-heading > p, .lede, .decision-copy p, .coin-intro > p { margin: 0; color: rgba(245,241,222,.68); font-size: 1rem; line-height: 1.7; }
+  .form-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.15rem; }
+  .form-card { position: relative; min-height: 32rem; overflow: hidden; border: 1px solid var(--line); background: #11110e; }
+  .form-card img { width: 100%; height: 100%; object-fit: cover; }
+  .form-card::after { content: ""; position: absolute; inset: 42% 0 0; background: linear-gradient(transparent, rgba(5,5,4,.96)); }
+  .form-copy { position: absolute; z-index: 1; right: 0; bottom: 0; left: 0; padding: 1.5rem; }
+  .form-number { margin: 0 0 .4rem; color: var(--lime); font: 700 .62rem/1 var(--font-mono); letter-spacing: .12em; }
+  .form-copy h3 { margin: 0; color: #fff; font: 700 2.4rem/1 var(--font-display); }
+  .form-copy p:last-child { max-width: 28rem; margin: .65rem 0 0; color: rgba(255,255,255,.75); font-size: .9rem; line-height: 1.55; }
+  .persona-strip { display: grid; grid-template-columns: 1fr 1fr; margin-top: 1.15rem; border: 1px solid var(--line); }
+  .persona-strip article { display: grid; grid-template-columns: auto 1fr; gap: 1.25rem; align-items: center; padding: 1.5rem; background: #f4d9d1; color: #261515; }
+  .persona-strip .corrupted { background: #241528; color: #fff; }
+  .persona-strip article + article { border-left: 1px solid var(--line); }
+  .persona-face { display: grid; place-items: center; width: 4.2rem; height: 4.2rem; border: 2px solid currentColor; border-radius: 50%; font-size: 2.1rem; }
+  .persona-strip h3 { margin: 0; font: 700 1.65rem/1 var(--font-display); }
+  .persona-strip p:last-child { margin: .4rem 0 0; color: inherit; opacity: .75; font-size: .88rem; line-height: 1.5; }
+  .persona-strip .eyebrow { margin-bottom: .35rem; }
+  .decision-band { padding: clamp(5rem, 9vw, 9rem) 0; background: var(--lime); color: var(--ink); }
+  .decision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem 6rem; }
+  .decision-band h2 { color: var(--ink); }
+  .decision-copy p { color: rgba(11,11,8,.72); }
+  .decision-copy p + p { margin-top: 1rem; }
+  .selection-list { display: grid; grid-template-columns: repeat(3,1fr); margin: 3rem 0 0; padding: 0; border-top: 2px solid var(--ink); border-left: 2px solid var(--ink); list-style: none; }
+  .selection-list li { display: flex; gap: .85rem; align-items: center; min-height: 4.5rem; padding: 1rem; border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); font: 800 .76rem/1.3 var(--font-mono); letter-spacing: .04em; text-transform: uppercase; }
+  .selection-list span { opacity: .48; }
+  .odds-ticket { display: grid; grid-template-columns: minmax(12rem,.34fr) minmax(0,1fr); overflow: hidden; border: 1px solid rgba(255,255,255,.2); background: #10100d; box-shadow: 1rem 1rem 0 #1b1b15; }
+  .ticket-stub { position: relative; display: flex; flex-direction: column; justify-content: space-between; min-height: 30rem; padding: 2rem; border-right: 2px dashed rgba(11,11,8,.4); background: var(--orange); color: var(--ink); }
+  .ticket-stub::before, .ticket-stub::after { content: ""; position: absolute; right: -.9rem; width: 1.7rem; height: 1.7rem; border-radius: 50%; background: var(--ink); }
+  .ticket-stub::before { top: -.85rem; }
+  .ticket-stub::after { bottom: -.85rem; }
+  .ticket-stub p, .ticket-stub span { margin: 0; font: 800 .67rem/1.2 var(--font-mono); letter-spacing: .12em; }
+  .ticket-stub strong { font: 800 clamp(2rem,4vw,4.4rem)/.88 var(--font-display); writing-mode: vertical-rl; transform: rotate(180deg); }
+  .ticket-body { padding: clamp(2rem,5vw,5rem); }
+  .ticket-body .eyebrow { color: var(--orange); }
+  .definition { max-width: 56rem; margin: 2rem 0 0; color: #fff; font: 600 clamp(1.3rem,2.4vw,2.1rem)/1.25 var(--font-display); }
+  .caveat { margin: 1.3rem 0 0; padding-left: 1.1rem; border-left: 3px solid var(--lime); color: rgba(245,241,222,.72); font-size: .96rem; line-height: 1.65; }
+  .odds-example { display: grid; grid-template-columns: repeat(2,1fr); margin-top: 2rem; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .odds-example div { padding: 1rem; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .odds-example span, .odds-example strong { display: block; }
+  .odds-example span { margin-bottom: .35rem; color: var(--orange); font: 700 .6rem/1 var(--font-mono); letter-spacing: .1em; }
+  .odds-example strong { overflow-wrap: anywhere; color: #fff; font: 700 .78rem/1.4 var(--font-mono); }
+  .fine-print { margin: 1.25rem 0 0; color: rgba(245,241,222,.48); font-size: .8rem; line-height: 1.55; }
+  .receipt-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; }
+  .receipt-grid > div:first-child { padding: 1.5rem 3rem 2rem 0; }
+  .receipt-grid .lede { margin-top: 1.4rem; }
+  .receipt-card { grid-row: span 2; padding: 1.4rem; border: 1px solid rgba(11,11,8,.35); background: var(--paper); color: var(--ink); box-shadow: .55rem .55rem 0 var(--orange); }
+  .receipt-head { display: flex; justify-content: space-between; gap: 1rem; padding-bottom: 1rem; border-bottom: 2px solid var(--ink); font: 800 .7rem/1 var(--font-mono); letter-spacing: .08em; }
+  .receipt-head span { color: #824214; }
+  .receipt-card dl { margin: 0; }
+  .receipt-card dl div { display: grid; grid-template-columns: .55fr 1fr; gap: 1rem; padding: .9rem 0; border-bottom: 1px dashed rgba(11,11,8,.3); }
+  .receipt-card dt { font: 700 .62rem/1.3 var(--font-mono); letter-spacing: .07em; text-transform: uppercase; }
+  .receipt-card dd { margin: 0; font: 700 .72rem/1.4 var(--font-mono); overflow-wrap: anywhere; text-align: right; }
+  .included-card { padding: 1.5rem; border: 1px solid var(--line); background: #11110e; }
+  .included-card h3 { margin: 0; color: #fff; font: 700 1.3rem/1.1 var(--font-display); }
+  .included-card ul { margin: 1rem 0 0; padding-left: 1.1rem; color: rgba(245,241,222,.7); font-size: .88rem; line-height: 1.7; }
+  .private-card { border-color: rgba(255,104,77,.4); }
+  .derivative-band { padding: clamp(5rem,9vw,9rem) 0; background: #161b1a; }
+  .derivative-grid { display: grid; grid-template-columns: .78fr 1.22fr; grid-template-rows: auto auto; gap: 1rem; align-items: start; }
+  .derivative-grid figure, .gallery-grid figure { margin: 0; overflow: hidden; border: 1px solid var(--line); background: #0d0e0d; }
+  .original-figure { grid-row: span 2; }
+  .original-figure img { aspect-ratio: 2/3; }
+  .sheet-figure img { aspect-ratio: 16/9; }
+  .derivative-grid img, .derivative-grid video, .gallery-grid img { display: block; width: 100%; object-fit: cover; }
+  .derivative-grid video { aspect-ratio: 2/3; max-height: 31rem; background: #050505; }
+  .video-figure { display: grid; grid-template-columns: minmax(10rem,.45fr) 1fr; }
+  .video-figure figcaption { align-self: end; }
+  .derivative-grid figcaption, .gallery-grid figcaption { display: flex; flex-direction: column; gap: .35rem; padding: 1rem; }
+  .derivative-grid figcaption span, .gallery-grid figcaption span { color: var(--lime); font: 700 .6rem/1 var(--font-mono); letter-spacing: .09em; text-transform: uppercase; }
+  .derivative-grid figcaption strong, .gallery-grid figcaption strong { overflow-wrap: anywhere; color: #fff; font: 700 .7rem/1.4 var(--font-mono); }
+  .derivative-note { max-width: 48rem; margin: 1.5rem 0 0 auto; color: rgba(245,241,222,.6); font-size: .86rem; line-height: 1.65; }
+  .gallery-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+  .gallery-grid img { aspect-ratio: 2/3; }
+  .coin-band { padding: clamp(5rem,9vw,9rem) 0; background: var(--orange); color: var(--ink); }
+  .coin-intro { display: grid; grid-template-columns: 1.2fr .8fr; gap: 2rem 5rem; align-items: end; }
+  .coin-band h2 { color: var(--ink); }
+  .coin-band .eyebrow { color: var(--ink); }
+  .price-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: .65rem; margin-top: 3rem; }
+  .price-grid article { display: flex; flex-direction: column; justify-content: space-between; min-height: 11rem; padding: 1.1rem; border: 2px solid var(--ink); background: var(--paper); box-shadow: .3rem .3rem 0 var(--ink); }
+  .price-grid p { margin: 0; }
+  .price-grid p strong, .price-grid p span { display: block; }
+  .price-grid p strong { font: 800 3rem/.9 var(--font-display); }
+  .price-grid p span { margin-top: .3rem; font: 700 .63rem/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; }
+  .price { align-self: flex-end; font: 800 1.2rem/1 var(--font-mono); }
+  .account-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 3rem; }
+  .account-grid article { padding: 1.5rem; border: 2px solid var(--ink); background: rgba(245,241,222,.82); }
+  .account-grid .club-card { background: var(--ink); color: var(--paper); }
+  .account-grid .club-card .eyebrow { color: var(--lime); }
+  .account-grid h3 { margin: 0; font: 700 1.8rem/1.05 var(--font-display); }
+  .account-grid p:last-child { margin: .8rem 0 0; font-size: .9rem; line-height: 1.6; }
+  .center-action { display: flex; flex-direction: column; align-items: center; margin-top: 3rem; text-align: center; }
+  .dark-button { border-color: var(--paper); background: var(--ink); color: #fff; box-shadow: .38rem .38rem 0 var(--lime); }
+  .dark-button:hover, .dark-button:focus-visible { box-shadow: .2rem .2rem 0 var(--lime); }
+  .center-action p { margin: 1rem 0 0; font-size: .75rem; }
+  .rights-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 1rem; }
+  .rights-callout, .retained-callout { padding: clamp(2rem,4vw,4rem); border: 1px solid var(--line); }
+  .rights-callout { background: #171d05; }
+  .retained-callout { background: #14110f; }
+  .rights-grid p:not(.eyebrow) { color: rgba(245,241,222,.68); line-height: 1.7; }
+  .retained-callout h3 { margin: 0; color: #fff; font: 700 2rem/1.05 var(--font-display); }
+  .light-link { display: inline-block; margin-top: 1rem; }
+  .legal-band { padding: 4rem 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #0f0f0c; }
+  .legal-band > :global(div) { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem 5rem; align-items: start; }
+  .legal-band h2 { font-size: clamp(2rem,4vw,3.8rem); }
+  .legal-band p:last-child { max-width: 38rem; color: rgba(245,241,222,.65); line-height: 1.65; }
+  .legal-band nav { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .legal-band nav a { display: flex; flex-direction: column; gap: .9rem; min-height: 7rem; padding: 1rem; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); color: #fff; font: 800 .82rem/1 var(--font-mono); text-decoration: none; text-transform: uppercase; }
+  .legal-band nav a:hover, .legal-band nav a:focus-visible { background: var(--lime); color: var(--ink); }
+  .legal-band nav span { color: var(--orange); font-size: .62rem; }
+  .final-wrap { padding-top: 6rem; padding-bottom: 7rem; }
+  .final-cta { position: relative; overflow: hidden; padding: clamp(3rem,7vw,7rem); border: 1px solid var(--line); background: radial-gradient(circle at 85% 20%, rgba(121,226,221,.18), transparent 28%), radial-gradient(circle at 15% 80%, rgba(255,104,77,.22), transparent 34%), #071a31; text-align: center; }
+  .final-cta h2 { max-width: 50rem; margin: 0 auto 2rem; }
+  .final-cta .machine-button { position: relative; z-index: 1; }
+  .final-burst { top: 1rem; right: 1rem; width: 7rem; }
+  @media (max-width: 900px) {
+    .hero { min-height: 0; padding-top: 56.25%; overflow: visible; }
+    .hero-image { height: auto; aspect-ratio: 16/9; object-position: center; }
+    .hero-shade { display: none; }
+    .hero-copy { width: 100%; min-height: 0; padding: 2rem 1.25rem 2.5rem; background: #071a31; }
+    .burst-one { top: .8rem; right: .8rem; width: 6rem; }
+    .burst-two { top: calc(56.25cqw - 5.5rem); right: auto; bottom: auto; left: .8rem; width: 5.3rem; }
+    .pull-path { grid-template-columns: 1fr; }
+    .pull-path li { min-height: 3.6rem; border-right: 0; border-bottom: 1px dashed rgba(11,11,8,.35); }
+    .pull-path li:last-child { border-bottom: 0; }
+    .split-heading, .decision-grid, .coin-intro, .rights-grid, .legal-band > :global(div) { grid-template-columns: 1fr; }
+    .form-grid, .gallery-grid { grid-template-columns: 1fr; }
+    .form-card { min-height: 38rem; }
+    .persona-strip, .account-grid, .receipt-grid { grid-template-columns: 1fr; }
+    .persona-strip article + article { border-top: 1px solid var(--line); border-left: 0; }
+    .selection-list { grid-template-columns: 1fr 1fr; }
+    .odds-ticket { grid-template-columns: 1fr; }
+    .ticket-stub { flex-direction: row; align-items: center; min-height: 7rem; border-right: 0; border-bottom: 2px dashed rgba(11,11,8,.4); }
+    .ticket-stub::before, .ticket-stub::after { top: auto; right: auto; bottom: -.9rem; }
+    .ticket-stub::before { left: -.85rem; }
+    .ticket-stub::after { right: -.85rem; }
+    .ticket-stub strong { font-size: 1.8rem; writing-mode: initial; transform: none; }
+    .receipt-card { grid-row: auto; }
+    .receipt-grid > div:first-child { padding-right: 0; }
+    .derivative-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+    .original-figure { grid-row: auto; }
+    .video-figure { grid-template-columns: 1fr; }
+    .derivative-grid video { max-height: none; }
+    .price-grid { grid-template-columns: repeat(2,1fr); }
+    .price-grid article:last-child { grid-column: 1/-1; }
   }
-  .ezize-page section { border-bottom: 1px solid var(--ez-line); }
-  :global(.ezize-page .section-space) { padding-block: clamp(4.75rem, 9vw, 8rem); }
-  .eyebrow { margin: 0; color: var(--ez-cyan); font-family: var(--font-mono); font-size: .64rem; letter-spacing: .18em; text-transform: uppercase; }
-  h1, h2, h3 { color: var(--ez-paper); font-family: var(--font-display); font-weight: 300; }
-  h2 { max-width: 16ch; margin: .95rem 0 0; font-size: clamp(2.6rem, 6vw, 5.8rem); letter-spacing: -.055em; line-height: .92; text-wrap: balance; }
-  p { line-height: 1.72; }
-  strong { color: #ded9e6; }
-  .hero { background: radial-gradient(circle at 86% 18%, rgb(99 233 235 / .11), transparent 32rem), radial-gradient(circle at 12% 72%, rgb(230 96 167 / .12), transparent 30rem), #07060b; }
-  :global(.hero-wrap) { padding-top: 1.3rem; padding-bottom: clamp(4rem, 8vw, 7rem); }
-  .hero-grid { display: grid; gap: clamp(3rem, 7vw, 6rem); margin-top: clamp(3.5rem, 8vw, 6rem); align-items: center; }
-  .hero-copy { min-width: 0; max-width: 58rem; }
-  .hero-evidence { min-width: 0; max-width: 72rem; }
-  h1 { margin: 1.1rem 0 0; color: white; font-size: clamp(5rem, 17vw, 12.5rem); font-weight: 650; letter-spacing: -.095em; line-height: .73; }
-  .pronunciation { margin: 1.35rem 0 0; color: var(--ez-pink); font-family: var(--font-mono); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; }
-  .coin-line { margin: 1.35rem 0 0; color: #fff; font-family: var(--font-display); font-size: clamp(2rem, 5vw, 4.2rem); font-weight: 450; letter-spacing: -.04em; line-height: .95; }
-  .deck { max-width: 47rem; margin: 1.7rem 0 0; color: #d2cdda; font-size: clamp(1.04rem, 2vw, 1.25rem); line-height: 1.75; }
-  .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
-  .primary-action, .secondary-action { display: inline-flex; min-height: 2.9rem; align-items: center; justify-content: center; padding: .72rem 1.1rem; border: 1px solid var(--ez-line); border-radius: 999px; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .06em; text-decoration: none; text-transform: uppercase; }
-  .primary-action { border-color: var(--ez-cyan); background: var(--ez-cyan); color: #071011; }
-  .primary-action:not(.is-disabled):hover, .primary-action:not(.is-disabled):focus-visible { background: white; border-color: white; outline: none; }
-  .primary-action.is-disabled { border-color: #47404e; background: #17131b; color: #857e8d; cursor: not-allowed; }
-  .secondary-action { color: #dcd7e3; }
-  .secondary-action:hover, .secondary-action:focus-visible { border-color: var(--ez-pink); color: white; outline: none; }
-  .app-home { margin: 1rem 0 0; color: #777181; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .04em; }
-  .app-home span { color: #aaa5b8; }
-  .split-heading { display: grid; gap: clamp(2rem, 5vw, 5rem); }
-  .body-copy { max-width: 46rem; }
-  .body-copy p { margin: 0; }
-  .body-copy p + p { margin-top: 1.15rem; }
-  .pull-path { display: grid; gap: .65rem; margin: clamp(2.5rem, 5vw, 4rem) 0 0; padding: 0; list-style: none; }
-  .pull-path li { min-width: 0; min-height: 7.5rem; padding: 1rem; border: 1px solid var(--ez-line); background: var(--ez-panel); }
-  .pull-path li span { display: block; color: var(--ez-cyan); font-family: var(--font-mono); font-size: .56rem; }
-  .pull-path li strong { display: block; margin-top: 2rem; font-size: .74rem; font-weight: 500; line-height: 1.45; }
-  .diagram-note { margin: 1rem 0 0; color: #777181; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .03em; }
-  .lineage { background: radial-gradient(circle at 12% 45%, rgb(230 96 167 / .075), transparent 30rem), #09070d; }
-  .lineage-chain { display: grid; gap: .7rem; margin: clamp(2.5rem, 5vw, 4rem) 0 0; padding: 0; list-style: none; }
-  .lineage-chain li { position: relative; min-width: 0; padding: 1.15rem; border: 1px solid var(--ez-line); background: #0c0910; }
-  .lineage-chain span { color: var(--ez-cyan); font-family: var(--font-mono); font-size: .55rem; letter-spacing: .08em; text-transform: uppercase; }
-  .lineage-chain strong { display: block; margin-top: 1.5rem; font-family: var(--font-display); font-size: clamp(1.55rem, 3vw, 2.15rem); font-weight: 350; line-height: 1; }
-  .lineage-chain p { margin: .75rem 0 0; color: #958f9e; font-size: .74rem; }
-  .blind-pull { background: linear-gradient(90deg, rgb(230 96 167 / .045), transparent 40%), #0a0810; }
-  .blind-grid { display: grid; gap: clamp(3rem, 7vw, 6rem); }
-  .deck-small { max-width: 45rem; margin: 1.5rem 0 0; }
-  .arcade-sequence { display: grid; gap: .7rem; margin: 0; padding: 0; list-style: none; }
-  .arcade-sequence li { display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: 1rem; align-items: start; padding: 1.2rem; border: 1px solid var(--ez-line); background: #08060b; }
-  .arcade-sequence li > span { color: var(--ez-pink); font-family: var(--font-mono); font-size: .6rem; }
-  .arcade-sequence strong { font-weight: 500; }
-  .arcade-sequence p { margin: .45rem 0 0; color: #8f8999; font-size: .78rem; }
-  .section-heading { max-width: 62rem; }
-  .section-heading > p:last-child { max-width: 49rem; margin: 1.5rem 0 0; }
-  .form-grid { display: grid; gap: 1rem; margin-top: clamp(2.5rem, 5vw, 4rem); }
-  .form-card { min-width: 0; overflow: hidden; border: 1px solid var(--ez-line); border-radius: .7rem; background: var(--ez-panel); }
-  .form-card > a { display: flex; height: 100%; flex-direction: column; color: inherit; text-decoration: none; }
-  .form-card:hover, .form-card:focus-within { border-color: var(--ez-cyan); }
-  .form-card > a:focus-visible { outline: 2px solid var(--ez-cyan); outline-offset: -2px; }
-  .form-image { overflow: hidden; border-bottom: 1px solid var(--ez-line); background: #050407; }
-  .form-image img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; transition: filter .25s ease, transform .4s ease; }
-  .form-card:hover img, .form-card:focus-within img { filter: brightness(1.08); transform: scale(1.02); }
-  .form-copy { display: flex; flex: 1; flex-direction: column; padding: 1.35rem; }
-  .form-copy > div { display: flex; justify-content: space-between; color: var(--ez-cyan); font-family: var(--font-mono); font-size: .56rem; letter-spacing: .08em; text-transform: uppercase; }
-  .form-copy > div b { color: var(--ez-pink); font-weight: 400; }
-  .form-copy h3 { margin: 1.4rem 0 0; font-size: clamp(2.1rem, 5vw, 3.4rem); letter-spacing: -.04em; line-height: .9; }
-  .form-copy p { margin: 1.2rem 0 0; color: #9a94a4; font-size: .84rem; }
-  .form-copy > strong { margin-top: auto; padding-top: 2rem; color: var(--ez-cyan); font-family: var(--font-mono); font-size: .58rem; font-weight: 400; letter-spacing: .05em; text-transform: uppercase; }
-  .modes { background: radial-gradient(circle at 7% 55%, rgb(99 233 235 / .07), transparent 28rem), #09070d; }
-  .modes-grid { display: grid; gap: clamp(3rem, 7vw, 6rem); align-items: center; }
-  .compare-wrap { min-width: 0; }
-  .mode-intro, .mode-note { max-width: 43rem; margin: 1.5rem 0 0; }
-  .mode-definitions { display: grid; gap: .7rem; margin: 2rem 0 0; }
-  .mode-definitions > div { padding: 1rem; border-left: 3px solid var(--ez-cyan); background: #0d0a13; }
-  .mode-definitions > div:last-child { border-left-color: var(--ez-pink); }
-  .mode-definitions dt { color: white; font-family: var(--font-display); font-size: 1.35rem; }
-  .mode-definitions dd { margin: .45rem 0 0; color: #9892a2; line-height: 1.6; }
-  .text-link { display: inline-block; margin-top: 1.7rem; color: var(--ez-cyan); font-family: var(--font-mono); font-size: .6rem; letter-spacing: .05em; text-decoration: none; text-transform: uppercase; }
-  .text-link:hover, .text-link:focus-visible { color: white; }
-  .rarity { background: #0a0810; }
-  .recipe { display: flex; flex-wrap: wrap; gap: .55rem; align-items: stretch; margin-top: clamp(2.5rem, 5vw, 4rem); }
-  .recipe > div { display: flex; min-height: 3.6rem; align-items: center; gap: .55rem; padding: .7rem .85rem; border: 1px solid var(--ez-line); background: #08060b; }
-  .recipe span { color: var(--ez-pink); font-family: var(--font-mono); }
-  .recipe strong { font-size: .72rem; font-weight: 500; }
-  .recipe .recipe-result { border-color: #4a4154; background: #15101a; }
-  .recipe .recipe-result strong { color: var(--ez-cyan); }
-  .rarity-separations { display: flex; flex-wrap: wrap; gap: .65rem; align-items: center; margin-top: 1rem; color: #918b9c; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .04em; text-transform: uppercase; }
-  .rarity-separations b { color: var(--ez-pink); font-size: 1rem; font-weight: 400; }
-  .system-map { position: relative; display: grid; gap: .8rem; margin-top: clamp(2.5rem, 5vw, 4rem); }
-  .publisher-node, .product-node, .engine-nodes article { position: relative; padding: 1.2rem; border: 1px solid var(--ez-line); background: var(--ez-panel); }
-  .publisher-node::after, .product-node::after { position: absolute; bottom: -.85rem; left: 50%; width: 1px; height: .85rem; background: var(--ez-pink); content: ""; }
-  .publisher-node span, .product-node span, .engine-nodes article span { display: block; color: var(--ez-cyan); font-family: var(--font-mono); font-size: .54rem; letter-spacing: .08em; text-transform: uppercase; }
-  .publisher-node strong, .product-node strong { display: block; margin-top: .8rem; color: white; font-family: var(--font-display); font-size: 2rem; font-weight: 300; }
-  .publisher-node p, .product-node p, .engine-nodes article p { margin: .6rem 0 0; color: #8f8998; font-size: .76rem; }
-  .product-node { border-color: #694058; background: linear-gradient(90deg, rgb(230 96 167 / .08), transparent), #0d0a13; }
-  .engine-nodes { display: grid; gap: .8rem; }
-  .engine-nodes h3 { margin: 1rem 0 0; font-size: clamp(1.5rem, 3vw, 2.2rem); letter-spacing: -.03em; }
-  .representation { background: linear-gradient(120deg, rgb(99 233 235 / .04), transparent 45%), #0a0810; }
-  .representation-grid { display: grid; gap: .8rem; margin: clamp(2.5rem, 5vw, 4rem) 0 0; }
-  .representation-grid > div { min-width: 0; padding: 1.2rem; border: 1px solid var(--ez-line); background: var(--ez-panel); }
-  .representation-grid dt { color: var(--ez-cyan); font-family: var(--font-mono); font-size: .57rem; letter-spacing: .08em; text-transform: uppercase; }
-  .representation-grid dd { margin: 1.25rem 0 0; color: #aaa4b2; font-size: .8rem; line-height: 1.65; }
-  .representation-note { max-width: 58rem; margin: .8rem 0 0; padding: 1rem; border-left: 3px solid var(--ez-pink); background: rgb(230 96 167 / .04); color: #aaa4b3; }
-  .status { background: linear-gradient(135deg, rgb(99 233 235 / .035), transparent 48%), #09070d; }
-  .status-grid { display: grid; gap: 1rem; margin-top: clamp(2.5rem, 5vw, 4rem); }
-  .status-grid article { min-width: 0; padding: 1.35rem; border: 1px solid var(--ez-line); background: var(--ez-panel); }
-  .status-label { display: inline-flex; padding: .35rem .55rem; border: 1px solid #4d4354; border-radius: 999px; color: #a39cab; font-family: var(--font-mono); font-size: .52rem; letter-spacing: .08em; text-transform: uppercase; }
-  .status-label.available { border-color: rgb(99 233 235 / .45); color: var(--ez-cyan); }
-  .status-label.building { border-color: rgb(230 96 167 / .45); color: var(--ez-pink); }
-  .status-grid h3 { margin: 1.6rem 0 0; font-size: 1.8rem; letter-spacing: -.03em; }
-  .status-grid p { margin: 1rem 0 0; color: #96909f; font-size: .82rem; overflow-wrap: anywhere; }
-  .status-grid p span { color: #d3ced9; font-family: var(--font-mono); font-size: .72rem; }
-  .status-grid ul { display: flex; flex-wrap: wrap; gap: .45rem; margin: 1.2rem 0 0; padding: 0; list-style: none; }
-  .status-grid li { padding: .35rem .5rem; border: 1px solid #3c3344; color: #a49ead; font-family: var(--font-mono); font-size: .56rem; }
-  .collecting { background: #0a0810; }
-  .collect-grid { display: grid; gap: clamp(3rem, 7vw, 6rem); }
-  .collect-grid > div:first-child > p:last-child { max-width: 47rem; margin: 1.5rem 0 0; }
-  .future-chain { display: grid; gap: .75rem; }
-  .future-chain > div { padding: 1.15rem; border: 1px solid var(--ez-line); background: #08060b; }
-  .future-chain span { display: block; color: var(--ez-pink); font-family: var(--font-mono); font-size: .55rem; letter-spacing: .07em; text-transform: uppercase; }
-  .future-chain strong { display: block; margin-top: .8rem; color: white; font-family: var(--font-display); font-size: 1.55rem; font-weight: 300; }
-  .future-chain p { margin: .55rem 0 0; color: #918b9b; font-size: .76rem; }
-  .collect-note { margin: 2rem 0 0; padding: 1rem; border-left: 3px solid var(--ez-pink); background: rgb(230 96 167 / .045); color: #aaa4b3; }
-  .name-section { background: radial-gradient(circle at 15% 45%, rgb(230 96 167 / .11), transparent 25rem), #07060b; }
-  .name-grid { display: grid; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
-  .mini-wordmark { margin: 0; color: #1a1421; font-family: var(--font-display); font-size: clamp(5rem, 17vw, 12rem); font-weight: 650; letter-spacing: -.1em; line-height: .8; text-shadow: 1px 0 var(--ez-pink), -1px 0 var(--ez-cyan); }
-  .name-grid > div:last-child > p:last-child { max-width: 45rem; margin: 1.5rem 0 0; }
-  .final-cta { border-bottom: 0 !important; text-align: center; }
-  .final-cta h2 { max-width: 18ch; margin-inline: auto; }
-  .final-cta > :global(div) > p:not(.eyebrow) { max-width: 45rem; margin: 1.5rem auto 0; }
-  .final-actions { justify-content: center; }
-
-  @media (min-width: 42rem) {
-    .pull-path { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .form-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .lineage-chain, .representation-grid, .status-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .engine-nodes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  @media (max-width: 520px) {
+    .hero-wrap { padding-right: 0; padding-left: 0; }
+    h1 { font-size: 4.5rem; }
+    .hero-line { font-size: 1.7rem; }
+    .hero-actions { align-items: stretch; flex-direction: column; }
+    .machine-button { width: 100%; }
+    .form-card { min-height: 32rem; }
+    .persona-strip article { grid-template-columns: 1fr; }
+    .selection-list, .odds-example, .legal-band nav { grid-template-columns: 1fr; }
+    .price-grid { gap: .5rem; }
+    .price-grid article { min-height: 9rem; }
+    .final-burst { width: 5.5rem; }
   }
-  @media (min-width: 64rem) {
-    .split-heading { grid-template-columns: minmax(0, 1fr) minmax(24rem, .7fr); align-items: end; }
-    .pull-path { grid-template-columns: repeat(6, minmax(0, 1fr)); }
-    .lineage-chain { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; }
-    .lineage-chain li + li { border-left: 0; }
-    .lineage-chain li + li::before { position: absolute; z-index: 2; top: 50%; left: -.38rem; color: var(--ez-cyan); content: "→"; font-family: var(--font-mono); transform: translateY(-50%); }
-    .blind-grid, .modes-grid, .collect-grid, .name-grid { grid-template-columns: minmax(0, 1fr) minmax(24rem, .78fr); }
-    .modes-grid { grid-template-columns: minmax(25rem, .8fr) minmax(0, 1fr); }
-    .system-map { grid-template-columns: minmax(10rem, .35fr) minmax(10rem, .35fr) minmax(0, 1fr); align-items: stretch; }
-    .publisher-node::after, .product-node::after { top: 50%; right: -.85rem; bottom: auto; left: auto; width: .85rem; height: 1px; }
-    .engine-nodes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  }
-  @media (max-width: 30rem) {
-    .primary-action, .secondary-action { width: 100%; }
-    .recipe > div { width: 100%; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .form-image img { transition: none; }
-  }
+  @media (prefers-reduced-motion: reduce) { .machine-button { transition: none; } }
 </style>

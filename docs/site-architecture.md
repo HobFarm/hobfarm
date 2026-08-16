@@ -43,6 +43,16 @@ Stable sources, identity, authored rules, constraints, representations, validati
 
 Workshop Notes use the existing Articles collection. A note carries `format: workshop-note` and the current Workshop indexing metadata, remains in the Articles archive, and keeps its canonical article URL. The Workshop Notes archive and feed index that same record; they do not create a second copy or URL.
 
+## EZIZE application boundary
+
+`/ezize/` is the canonical HobFarm product story for EZIZE. It explains the machine, current coin packs, account and membership behavior, output rights, Generation Path Odds, selected public examples, and links to the dedicated EZIZE terms, privacy, refund, and output-license routes.
+
+The public generation application lives at `https://ezize.hob.farm/`. The owner machine at `https://ez.hob.farm/` is a separate access-controlled operating surface and is not a public product destination. The website may consume approved EZIZE media from `https://cdn.hob.farm/ezize/`, but the CDN remains the source of truth for those assets and the generation application remains the source of truth for accounts, balances, purchases, generation records, and receipts.
+
+EZIZE is positioned as a collectible image probability machine. Its current product uses internal prepaid EZ coins; it has no active NFT, minting, cryptocurrency, blockchain, or wallet layer. Generation Path Odds describe the theoretical chance that the same version of the machine would repeat the same weighted selection path. They do not establish an artificial rarity tier, an edition count, copyright ownership, or pixel-level uniqueness.
+
+A successfully paid pull grants broad use rights in that specific delivered EZ under `/ezize/license/`. It does not transfer the EZIZE or HobFarm brands, Grimoire, Wildcard Machine, schemas, packs, weights, probability logic, algorithms, source code, APIs, documentation, private generation data, or another customer's EZ. DeviantArt may be used for selected curation or distribution when a release has a reason to be there; it is not an EZIZE dependency, record system, checkout requirement, or source of truth.
+
 ## Editorial mesh v1
 
 `src/data/editorial-mesh.ts` is the registry for Editorial mesh version `1.0.0`. The public sections are:

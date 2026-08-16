@@ -73,7 +73,9 @@ test("the article explains the machine without the retired ownership model", () 
 
   const retiredTerms = /\b(?:NFTs?|blockchain|OpenSea|on-chain|mint(?:ed|ing|able)?)\b/i;
   assert.doesNotMatch(source, retiredTerms);
-  assert.doesNotMatch(readFileSync("src/pages/ezize/index.astro", "utf8"), retiredTerms);
+  const productPage = readFileSync("src/pages/ezize/index.astro", "utf8");
+  assert.match(productPage, /not cryptocurrency, blockchain tokens, an investment/);
+  assert.doesNotMatch(productPage, /\b(?:NFTs?|OpenSea|on-chain|mint(?:ed|ing|able)?|wallets?)\b/i);
   assert.doesNotMatch(readFileSync("src/pages/workshop/index.astro", "utf8"), retiredTerms);
 });
 
