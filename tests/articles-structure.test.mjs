@@ -135,6 +135,7 @@ test("legacy blog URLs redirect to canonical articles URLs", () => {
 
 test("article tag routes use one case-insensitive canonical slug", () => {
   const articles = read("src/lib/articles.ts");
+  const comics = read("src/lib/comics.ts");
   const tagRoute = read("src/pages/articles/tags/[tag].astro");
   const redirects = read("public/_redirects");
 
@@ -142,7 +143,21 @@ test("article tag routes use one case-insensitive canonical slug", () => {
   assert.match(articles, /encodeURIComponent\(normalizeArticleTag\(tag\)\)/);
   assert.match(tagRoute, /params: \{ tag: normalizedTag \}/);
   assert.match(tagRoute, /post\.data\.tags\.some/);
+  assert.match(comics, /presents\/funnies\/tags\/\$\{encodeURIComponent\(tag\)\}\//);
   assert.match(redirects, /\/articles\/tags\/StyleFusion\/\s+\/articles\/tags\/stylefusion\/\s+301/);
+  assert.match(redirects, /\/articles\/tags\/Gilmore%20Stadium\/\s+\/articles\/tags\/gilmore%20stadium\/\s+301/);
+  assert.match(redirects, /\/articles\/tags\/performance\/\s+\/presents\/funnies\/tags\/performance\/\s+301/);
+});
+
+test("article cross-links use the current canonical Censor route", () => {
+  for (const file of [
+    "src/content/articles/hey-its-that-guy.mdx",
+    "src/content/articles/it-just-runs-programs.mdx",
+  ]) {
+    const article = read(file);
+    assert.match(article, /\/articles\/the-censor-eats-its-own-tail\//);
+    assert.doesNotMatch(article, /\/presents\/3-degrees-of-dick-miller\/the-censor-eats-its-own-tail\//);
+  }
 });
 
 test("legacy category URLs redirect to canonical category destinations", () => {

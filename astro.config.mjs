@@ -18,6 +18,10 @@ const redirectedPaths = new Set([
   "/gallery/cute-corrupted/",
   "/visual-systems/cute-corrupted/",
   "/departments/workshop-notes/",
+  "/process/book/",
+  "/process/fashion/",
+  "/process/motion/",
+  "/process/seed-to-world/",
 ]);
 const privatePrototypePaths = new Set(["/workshop/visual-lab/", "/workshop/stylefusion/prototype/"]);
 const privateTransactionPaths = new Set([

@@ -39,6 +39,7 @@ test("Legacy has a complete Workshop case study with the intro, design rules, an
   assert.match(page, /poster=/);
   assert.match(page, /preload="none"/);
   assert.doesNotMatch(page.match(/<video[\s\S]*?>/)?.[0] ?? "", /autoplay/);
+  assert.match(page, /uploadDate: "2026-07-22"/);
   assert.match(page, /duration: "PT36S"/);
   assert.match(page, /Historical source/);
   assert.match(page, /Product study/);

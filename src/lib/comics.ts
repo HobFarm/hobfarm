@@ -16,7 +16,7 @@ export function comicPath(comic: Comic): string {
 }
 
 export function comicTagPath(tag: string): string {
-  return `/presents/funnies/tags/${encodeURIComponent(tag)}`;
+  return `/presents/funnies/tags/${encodeURIComponent(tag)}/`;
 }
 
 export function getComicDate(comic: Comic): Date {

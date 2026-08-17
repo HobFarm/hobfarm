@@ -51,6 +51,8 @@
 /projects/courses/  /academy/   301
 /projects/grimoire  /grimoire/  301
 /projects/grimoire/ /grimoire/  301
+/projects/hob-grimoire   /grimoire/  301
+/projects/hob-grimoire/  /grimoire/  301
 # Retired brand: Gotta Lotta Gifts -> HobFarm shop
 /projects/gotta-lotta-gifts      /shop/  301
 /projects/gotta-lotta-gifts/     /shop/  301
@@ -58,6 +60,11 @@
 # Shows moved under the HobFarm TV channel hub
 /projects/magazine-time-machine   /presents/magazine-time-machine/   301
 /projects/magazine-time-machine/  /presents/magazine-time-machine/   301
+/projects/hobfarm-tv/magazine-time-machine   /presents/magazine-time-machine/   301
+/projects/hobfarm-tv/magazine-time-machine/  /presents/magazine-time-machine/   301
+
+# The retired PDF is now maintained as a public HTML document.
+/hobfarm-whitepaper.pdf  /whitepaper/  301
 
 # 3DM is now a canonical HobFarm Presents title.
 /projects/hobfarm-tv/3-degrees-of-dick-miller   /presents/3-degrees-of-dick-miller/   301
@@ -78,6 +85,12 @@
 # Retired character sheet archive -> current Cute / Corrupted entry
 /gallery/character-dev/neon-ghoul   /gallery/cute-corrupted/kareena/   301
 /gallery/character-dev/neon-ghoul/  /gallery/cute-corrupted/kareena/   301
+
+# Legacy gallery URLs with a direct surviving public record.
+/gallery/goth-anime   /gallery/model-lab/grok-vs-flux-cartoon-test/  301
+/gallery/goth-anime/  /gallery/model-lab/grok-vs-flux-cartoon-test/  301
+/gallery/hobgal       /workshop/avatar-host/                         301
+/gallery/hobgal/      /workshop/avatar-host/                         301
 
 # Canonical status page
 /helpcenter/status  /status  301
@@ -114,6 +127,8 @@
 /articles/category/dead-future-report/    /presents/magazine-time-machine/  301
 /articles/category/3-degrees-of-dick-miller   /presents/   301
 /articles/category/3-degrees-of-dick-miller/  /presents/   301
+/articles/category/magazine-time-machine      /presents/magazine-time-machine/  301
+/articles/category/magazine-time-machine/     /presents/magazine-time-machine/  301
 
 # Editorial mesh v1 replaces the remaining old department-style archives.
 /articles/magazine-time-machine    /presents/magazine-time-machine/  301
@@ -148,6 +163,8 @@
 /blog/category/dead-future-report/        /presents/magazine-time-machine/  301
 /blog/category/3-degrees-of-dick-miller   /presents/       301
 /blog/category/3-degrees-of-dick-miller/  /presents/       301
+/blog/category/magazine-time-machine      /presents/magazine-time-machine/  301
+/blog/category/magazine-time-machine/     /presents/magazine-time-machine/  301
 
 # Comics desk renamed: funny-pages -> funnies.
 /departments/funny-pages   /presents/funnies/   301
@@ -266,6 +283,12 @@
 /characters/    /presents/funnies/   301
 
 # Comic series folded into their surviving series.
+/funnies/fat-cat     /presents/funnies/gary/  301
+/funnies/fat-cat/    /presents/funnies/gary/  301
+/funnies/hobunny     /presents/funnies/       301
+/funnies/hobunny/    /presents/funnies/       301
+/funnies/one-offs    /presents/funnies/       301
+/funnies/one-offs/   /presents/funnies/       301
 /presents/funnies/gary-fat-cat/gary-fat-cat-design   /presents/funnies/gary/gary-fat-cat-design/   301
 /presents/funnies/gary-fat-cat/gary-fat-cat-design/  /presents/funnies/gary/gary-fat-cat-design/   301
 /presents/funnies/gary-fat-cat    /presents/funnies/gary/     301
@@ -292,12 +315,84 @@
 /articles/tags/StyleFusion            /articles/tags/stylefusion/           301
 /articles/tags/StyleFusion/           /articles/tags/stylefusion/           301
 
+# Mixed-case tag URLs emitted before article tag paths were normalized.
+/articles/tags/Gilmore%20Stadium             /articles/tags/gilmore%20stadium/             301
+/articles/tags/Gilmore%20Stadium/            /articles/tags/gilmore%20stadium/             301
+/articles/tags/Civilization                  /articles/tags/civilization/                   301
+/articles/tags/Civilization/                 /articles/tags/civilization/                   301
+/articles/tags/BBS                           /articles/tags/bbs/                            301
+/articles/tags/BBS/                          /articles/tags/bbs/                            301
+/articles/tags/Walter%20Paisley              /articles/tags/walter%20paisley/               301
+/articles/tags/Walter%20Paisley/             /articles/tags/walter%20paisley/               301
+/articles/tags/Alice%20in%20Wonderland       /articles/tags/alice%20in%20wonderland/        301
+/articles/tags/Alice%20in%20Wonderland/      /articles/tags/alice%20in%20wonderland/        301
+/articles/tags/Busby%20Berkeley              /articles/tags/busby%20berkeley/               301
+/articles/tags/Busby%20Berkeley/             /articles/tags/busby%20berkeley/               301
+/articles/tags/Other%20Alice%20Adventures    /articles/tags/other%20alice%20adventures/     301
+/articles/tags/Other%20Alice%20Adventures/   /articles/tags/other%20alice%20adventures/     301
+/articles/tags/California%20history          /articles/tags/california%20history/           301
+/articles/tags/California%20history/         /articles/tags/california%20history/           301
+/articles/tags/Southern%20California         /articles/tags/southern%20california/          301
+/articles/tags/Southern%20California/        /articles/tags/southern%20california/          301
+/articles/tags/Warner%20Bros.                /articles/tags/warner%20bros./                  301
+/articles/tags/Warner%20Bros./               /articles/tags/warner%20bros./                  301
+/articles/tags/They%20Live                   /articles/tags/they%20live/                    301
+/articles/tags/They%20Live/                  /articles/tags/they%20live/                    301
+/articles/tags/Salton%20Sea                  /articles/tags/salton%20sea/                   301
+/articles/tags/Salton%20Sea/                 /articles/tags/salton%20sea/                   301
+/articles/tags/John%20Carpenter              /articles/tags/john%20carpenter/               301
+/articles/tags/John%20Carpenter/             /articles/tags/john%20carpenter/               301
+/articles/tags/Keith%20David                 /articles/tags/keith%20david/                  301
+/articles/tags/Keith%20David/                /articles/tags/keith%20david/                  301
+/articles/tags/Atheer                       /articles/tags/atheer/                         301
+/articles/tags/Atheer/                      /articles/tags/atheer/                         301
+/articles/tags/Roddy%20Piper                /articles/tags/roddy%20piper/                  301
+/articles/tags/Roddy%20Piper/               /articles/tags/roddy%20piper/                  301
+
+# Early Funnies builds put comic tags under /articles/tags/.
+/articles/tags/web%20dev        /presents/funnies/tags/web%20dev/       301
+/articles/tags/web%20dev/       /presents/funnies/tags/web%20dev/       301
+/articles/tags/bauhaus          /presents/funnies/tags/bauhaus/         301
+/articles/tags/bauhaus/         /presents/funnies/tags/bauhaus/         301
+/articles/tags/cabaret          /presents/funnies/tags/cabaret/         301
+/articles/tags/cabaret/         /presents/funnies/tags/cabaret/         301
+/articles/tags/heidi            /presents/funnies/tags/heidi/           301
+/articles/tags/heidi/           /presents/funnies/tags/heidi/           301
+/articles/tags/dinner           /presents/funnies/tags/dinner/          301
+/articles/tags/dinner/          /presents/funnies/tags/dinner/          301
+/articles/tags/poodles          /presents/funnies/tags/poodles/         301
+/articles/tags/poodles/         /presents/funnies/tags/poodles/         301
+/articles/tags/helmut           /presents/funnies/tags/helmut/          301
+/articles/tags/helmut/          /presents/funnies/tags/helmut/          301
+/articles/tags/gothcat          /presents/funnies/tags/gothcat/         301
+/articles/tags/gothcat/         /presents/funnies/tags/gothcat/         301
+/articles/tags/larry            /presents/funnies/tags/larry/           301
+/articles/tags/larry/           /presents/funnies/tags/larry/           301
+/articles/tags/bowling          /presents/funnies/tags/bowling/         301
+/articles/tags/bowling/         /presents/funnies/tags/bowling/         301
+/articles/tags/gym              /presents/funnies/tags/gym/             301
+/articles/tags/gym/             /presents/funnies/tags/gym/             301
+/articles/tags/buffet           /presents/funnies/tags/buffet/          301
+/articles/tags/buffet/          /presents/funnies/tags/buffet/          301
+/articles/tags/performance      /presents/funnies/tags/performance/     301
+/articles/tags/performance/     /presents/funnies/tags/performance/     301
+/articles/tags/single%20panel   /presents/funnies/tags/single%20panel/  301
+/articles/tags/single%20panel/  /presents/funnies/tags/single%20panel/  301
+/articles/tags/guinea%20pig     /presents/funnies/tags/guinea%20pig/    301
+/articles/tags/guinea%20pig/    /presents/funnies/tags/guinea%20pig/    301
+/articles/tags/buffcock         /presents/funnies/tags/buffcock/        301
+/articles/tags/buffcock/        /presents/funnies/tags/buffcock/        301
+/articles/tags/rooster          /presents/funnies/tags/rooster/         301
+/articles/tags/rooster/         /presents/funnies/tags/rooster/         301
+
 # ---------------------------------------------------------------------------
 # Dynamic and splat redirects. Cloudflare Pages checks these in file order, so
 # every static rule above must remain ahead of this final matching block.
 # ---------------------------------------------------------------------------
 
 # Specific retired route trees before their broader fallbacks.
+/blog/posts/$%7Bresult.item.id%7D   /articles/   301
+/blog/posts/$%7Bresult.item.id%7D/  /articles/   301
 /projects/hobfarm-tv/*           /presents/hobfarm-tv/:splat   301
 /funnies/*                       /presents/funnies/:splat       301
 /departments/hobfarm-presents/*  /presents/:splat               301

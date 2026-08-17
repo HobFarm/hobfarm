@@ -48,7 +48,7 @@ function normalizePathname(value) {
   try {
     const url = new URL(value, siteOrigin);
     if (url.origin !== siteOrigin) return undefined;
-    return decodeURI(url.pathname.replace(/\/+/g, "/"));
+    return decodeURIComponent(url.pathname.replace(/\/+/g, "/"));
   } catch {
     return undefined;
   }

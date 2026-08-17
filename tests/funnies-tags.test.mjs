@@ -13,7 +13,7 @@ test("comic tags link to a real Funnies tag archive", async () => {
 
   assert.match(detail, /href=\{comicTagPath\(tag\)\}/);
   assert.doesNotMatch(detail, /\/articles\/tags\//);
-  assert.match(helpers, /return `\/presents\/funnies\/tags\/\$\{encodeURIComponent\(tag\)\}`/);
+  assert.match(helpers, /return `\/presents\/funnies\/tags\/\$\{encodeURIComponent\(tag\)\}\//);
   assert.match(archive, /getComicTagCounts\(allComics\)/);
   assert.match(archive, /comicsWithTag\(allComics, tag\)/);
   assert.match(archive, /<ComicCard comic=\{comic\} \/>/);

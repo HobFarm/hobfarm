@@ -47,11 +47,6 @@ const staticEntries: SitemapEntry[] = [
     changefreq: "weekly" as const,
     priority: "0.8",
   })),
-  {
-    loc: absoluteUrl("/articles/mesh.json"),
-    changefreq: "daily",
-    priority: "0.4",
-  },
   { loc: absoluteUrl("/gallery/"), changefreq: "weekly", priority: "0.9" },
   {
     loc: absoluteUrl("/presents/"),

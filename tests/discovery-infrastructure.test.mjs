@@ -5,13 +5,14 @@ import test from "node:test";
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
 
 test("sitemaps exclude thin discovery and private transaction routes", async () => {
-  const [config, curated, tagIndex, tagDetail, membership, headers] = await Promise.all([
+  const [config, curated, tagIndex, tagDetail, membership, headers, mesh] = await Promise.all([
     read("astro.config.mjs"),
     read("src/pages/sitemap.xml.ts"),
     read("src/pages/articles/tags/index.astro"),
     read("src/pages/articles/tags/[tag].astro"),
     read("src/pages/membership/success.astro"),
     read("public/_headers"),
+    read("src/pages/articles/mesh.json.ts"),
   ]);
 
   assert.match(config, /pathname\.startsWith\("\/articles\/tags\/"\)/);
@@ -25,6 +26,14 @@ test("sitemaps exclude thin discovery and private transaction routes", async () 
     assert.ok(config.includes(`"${route}"`), `${route} must be excluded from the generated sitemap`);
     assert.ok(headers.includes(route.replace(/\/$/, "*")) || headers.includes("/academy/checkout/*"));
   }
+  for (const route of [
+    "/process/book/",
+    "/process/fashion/",
+    "/process/motion/",
+    "/process/seed-to-world/",
+  ]) {
+    assert.ok(config.includes(`"${route}"`), `${route} must be excluded from the generated sitemap`);
+  }
   assert.match(tagIndex, /\bnoindex\b/);
   assert.match(tagDetail, /\bnoindex\b/);
   assert.match(membership, /\bnoindex\b/);
@@ -34,6 +43,9 @@ test("sitemaps exclude thin discovery and private transaction routes", async () 
     assert.ok(curated.includes(route));
   }
   assert.doesNotMatch(curated, /\/articles\/tags\//);
+  assert.doesNotMatch(curated, /\/articles\/mesh\.json/);
+  assert.match(mesh, /"X-Robots-Tag": "noindex"/);
+  assert.match(headers, /\/articles\/mesh\.json[\s\S]*?X-Robots-Tag: noindex/);
 });
 
 test("robots keeps public retrieval open and training crawlers separate", async () => {

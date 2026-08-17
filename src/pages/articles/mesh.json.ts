@@ -44,6 +44,7 @@ export const GET: APIRoute = async () => {
         "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400",
       "Content-Type": "application/json; charset=utf-8",
       "X-Content-Type-Options": "nosniff",
+      "X-Robots-Tag": "noindex",
     },
   });
 };
