@@ -504,6 +504,39 @@ export const editorialMeshBackfill = {
       centralObject: "The institutions and contracts that decide which programs AI runs and which models ordinary users may own.",
     },
   ),
+  "its-not-just-the-em-dash-but-also-the-pattern": record(
+    "technology",
+    ["artificial-intelligence", "model-behavior", "media-literacy", "publishing", "creative-workflows"],
+    {
+      people: ["dario-amodei"],
+      organizations: ["nvidia", "cloudflare", "openai", "anthropic", "google", "meta", "xai"],
+      technologies: ["artificial-intelligence", "chatgpt", "gpt-4o", "claude", "open-weight-models", "model-apis"],
+      sourceArtifacts: [
+        { id: "nvidia-800-vdc-technical-post-2025", type: "other", label: "NVIDIA 800 VDC Architecture Will Power the Next Generation of AI Factories", publication: "NVIDIA Technical Blog", role: "origin" },
+        { id: "cloudflare-shared-dictionaries-post-2026", type: "other", label: "Shared Dictionaries compression that keeps up with the agentic web", publication: "The Cloudflare Blog", role: "origin" },
+        { id: "archived-chatgpt-conversation-2025", type: "other", label: "Author's archived ChatGPT conversation about recurring prose patterns", publication: "ChatGPT", role: "organizing" },
+      ],
+      storyModes: ["field-report", "media-genealogy", "personal-history-trail", "systems-investigation"],
+      centralObject: "The recurring contrastive sentence patterns that became recognizable as model-influenced prose through repeated exposure to ChatGPT.",
+    },
+  ),
+  "the-carriage-comes-back": record(
+    "art-design",
+    ["speculative-design", "conceptual-engineering", "visual-development", "transportation-history", "ai-image-generation", "infrastructure"],
+    {
+      people: ["herman-stahmer"],
+      organizations: ["brewster-and-company", "metropolitan-museum-of-art", "national-park-service", "picryl", "zoox"],
+      places: ["acadia-national-park", "cadillac-mountain", "las-vegas", "sleeping-bear-dunes-national-lakeshore", "wright-brothers-national-memorial", "yellowstone-national-park"],
+      works: ["future-carriage"],
+      technologies: ["ai-image-generation", "automation", "autonomous-vehicles", "electric-vehicles", "robotics"],
+      sourceArtifacts: [
+        { id: "brewster-phaeton-4033-drawing", type: "other", label: "Design for 4 seat Phaeton, no top, no. 4033 (1889)", role: "origin" },
+        { id: "brewster-sleigh-3415-drawing", type: "other", label: "Design for 4 Seat Sleigh, no. 3415 (1878)", role: "origin" },
+      ],
+      storyModes: ["archive-trail", "process-essay", "systems-investigation", "visual-study"],
+      centralObject: "Historical Brewster carriage drawings transformed into plausible autonomous electric park vehicles through a source-controlled concept-design process.",
+    },
+  ),
   "mad-trump-and-the-magazine-time-machine": record(
     "culture",
     ["publishing", "satire", "censorship", "media-history", "media-genealogy"],

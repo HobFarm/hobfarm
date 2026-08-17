@@ -54,6 +54,7 @@ Aliases resolve to one internal entity ID and do not generate parallel archive r
 | Arizona State University | arizona-state-university | ASU |
 | Bahrain Electricity and Water Authority | bahrain-electricity-water-authority | EWA |
 | Ben & Jerry's | ben-and-jerrys | Ben and Jerry's |
+| Brewster & Company | brewster-and-company | Brewster & Co. |
 | Bureau of Reclamation | bureau-of-reclamation | U.S. Bureau of Reclamation, USBR |
 | California Department of Water Resources | california-department-of-water-resources | DWR |
 | Coachella Valley Water District | coachella-valley-water-district | CVWD |
@@ -65,6 +66,7 @@ Aliases resolve to one internal entity ID and do not generate parallel archive r
 | Imperial Irrigation District | imperial-irrigation-district | IID |
 | International Boundary and Water Commission | international-boundary-and-water-commission | IBWC, USIBWC |
 | Merry Pranksters | merry-pranksters | The Merry Pranksters |
+| The Metropolitan Museum of Art | metropolitan-museum-of-art | The Met, Metropolitan Museum of Art |
 | Metro-Goldwyn-Mayer | mgm | MGM |
 | Midway Games | midway-games | Midway, Bally Midway |
 | NASA | nasa | National Aeronautics and Space Administration |
@@ -83,6 +85,7 @@ Aliases resolve to one internal entity ID and do not generate parallel archive r
 | U.S. Geological Survey | us-geological-survey | USGS |
 | Topps | topps | The Topps Company |
 | Warner Bros. | warner-bros | Warner Brothers |
+| Acadia National Park | acadia-national-park | Acadia |
 | Aspen, Colorado | aspen | Aspen |
 | Bangor, Maine | bangor-maine | Bangor |
 | Conakry, Guinea | conakry | Conakry |
@@ -95,7 +98,9 @@ Aliases resolve to one internal entity ID and do not generate parallel archive r
 | Salton Sea | salton-sea | The Salton Sea |
 | San Francisco, California | san-francisco | San Francisco |
 | Sarasota, Florida | sarasota | Sarasota |
+| Sleeping Bear Dunes National Lakeshore | sleeping-bear-dunes-national-lakeshore | Sleeping Bear Dunes |
 | Tule Springs Fossil Beds National Monument | tule-springs-fossil-beds | Tule Springs |
+| Yellowstone National Park | yellowstone-national-park | Yellowstone |
 | COVID-19 pandemic | covid-19-pandemic | COVID-19, COVID |
 | Great Depression | great-depression | The Great Depression |
 | January 6 attack | january-6-attack | January 6 |
@@ -121,12 +126,14 @@ Aliases resolve to one internal entity ID and do not generate parallel archive r
 | Arcade video games | arcade-video-games | coin-operated video games |
 | Atari 2600 | atari-2600 | Atari VCS |
 | Artificial intelligence | artificial-intelligence | AI |
+| Autonomous vehicles | autonomous-vehicles | self-driving vehicles, driverless vehicles |
 | Atom syndication format | atom | Atom feed, Atom feeds |
 | Augmented reality | augmented-reality | AR |
 | Bulletin board systems | bbs | BBS, BBSs |
 | Cloudflare D1 | cloudflare-d1 | D1 |
 | Cloudflare R2 | cloudflare-r2 | R2 |
 | Cloudflare Workers | cloudflare-workers | Workers |
+| Electric vehicles | electric-vehicles | EVs |
 | Feed readers | feed-readers | RSS readers, news aggregators |
 | GPT Image | gpt-image | GPT Image 1.5 |
 | LaserDisc | laserdisc | laser disc |

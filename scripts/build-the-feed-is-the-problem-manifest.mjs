@@ -7,6 +7,7 @@ const slug = "the-feed-is-the-problem";
 const reportRoot = resolve(`reports/${slug}`);
 const manifestPath = resolve(reportRoot, "asset-manifest.json");
 const prefix = `articles/${slug}/`;
+const liveFigurePath = `src/components/articles/${slug}/FeedFigure.astro`;
 
 let previousManifest;
 try {
@@ -15,6 +16,7 @@ try {
   previousManifest = undefined;
 }
 const previousAssets = new Map((previousManifest?.assets ?? []).map((asset) => [asset.destination_key, asset]));
+const previousLiveFigures = new Map((previousManifest?.live_figures ?? []).map((figure) => [figure.figure_id, figure]));
 
 const definitions = [
   {
@@ -67,6 +69,30 @@ for (const definition of definitions) {
   });
 }
 
+const liveFigureBytes = await readFile(resolve(liveFigurePath));
+const loopFigure = {
+  figure_id: "reader-creator-platform-loop",
+  kind: "loop",
+  source_file: liveFigurePath,
+  purpose: "Explain how reader behavior, creator incentives, and platform advertising reinforce one another.",
+  caption: "Attention has a human cost, a creator price, and a platform value.",
+  alt_text: "A responsive three-part diagram connects reader attention and rumination, platform recommendation and advertising, and creator analytics and production pressure, with separate YouTube revenue and Meta trial callouts.",
+  text_equivalent: "Visible labels plus an expandable transcript in the live article figure.",
+  dimensions: {
+    maximum_width_css_pixels: 768,
+    height: "responsive auto",
+    minimum_qa_viewport_css_pixels: 390,
+  },
+  sha256: createHash("sha256").update(liveFigureBytes).digest("hex"),
+  source_label: "Hughes et al.; Robertson et al.; Kelly and Sharot; creator interview studies; YouTube policy; Cartoon Brew; Meta SEC filings; federal MDL 3047.",
+  public_route: `/articles/${slug}/`,
+  distribution: "Live HTML and CSS; no R2 object.",
+};
+const previousLoopFigure = previousLiveFigures.get(loopFigure.figure_id);
+const liveFigures = [previousLoopFigure?.sha256 === loopFigure.sha256
+  ? { ...previousLoopFigure, ...loopFigure }
+  : { ...loopFigure, mobile_qa: "pending" }];
+
 const manifest = {
   version: 1,
   article_slug: slug,
@@ -85,6 +111,7 @@ const manifest = {
     allowed_prefixes: [prefix],
   },
   assets,
+  live_figures: liveFigures,
 };
 
 await mkdir(reportRoot, { recursive: true });

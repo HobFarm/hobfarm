@@ -1,7 +1,7 @@
 {
   "version": 1,
   "article_slug": "the-feed-is-the-problem",
-  "generated_at": "2026-08-15T00:20:38.237Z",
+  "generated_at": "2026-08-17T18:08:39.166Z",
   "scheduled_publication": "2026-08-22T16:20:00-07:00",
   "predecessor_publication": "2026-08-21T16:20:00-07:00",
   "successor_publication": "2026-08-23T16:20:00-07:00",
@@ -83,6 +83,25 @@
       "verified_at": "2026-08-15T00:21:07.188Z"
     }
   ],
-  "dry_run_at": "2026-08-15T00:20:54.559Z",
-  "upload_completed_at": "2026-08-15T00:21:07.189Z"
+  "live_figures": [
+    {
+      "figure_id": "reader-creator-platform-loop",
+      "kind": "loop",
+      "source_file": "src/components/articles/the-feed-is-the-problem/FeedFigure.astro",
+      "purpose": "Explain how reader behavior, creator incentives, and platform advertising reinforce one another.",
+      "caption": "Attention has a human cost, a creator price, and a platform value.",
+      "alt_text": "A responsive three-part diagram connects reader attention and rumination, platform recommendation and advertising, and creator analytics and production pressure, with separate YouTube revenue and Meta trial callouts.",
+      "text_equivalent": "Visible labels plus an expandable transcript in the live article figure.",
+      "dimensions": {
+        "maximum_width_css_pixels": 768,
+        "height": "responsive auto",
+        "minimum_qa_viewport_css_pixels": 390
+      },
+      "sha256": "f439622c566ff79b137b35d3d7c2438405ad46761e65b47756a0eb673a769b75",
+      "source_label": "Hughes et al.; Robertson et al.; Kelly and Sharot; creator interview studies; YouTube policy; Cartoon Brew; Meta SEC filings; federal MDL 3047.",
+      "public_route": "/articles/the-feed-is-the-problem/",
+      "distribution": "Live HTML and CSS; no R2 object.",
+        "mobile_qa": "passed at 390px; reader, platform, and creator cards stack vertically; policy and legal callouts remain legible; no horizontal overflow"
+    }
+  ]
 }

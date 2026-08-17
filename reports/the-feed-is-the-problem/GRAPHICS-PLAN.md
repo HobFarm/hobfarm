@@ -4,7 +4,7 @@
 | --- | --- | --- | --- |
 | Behavior becomes a signal | Show ambiguous attention becoming ranking and a production lesson beside a reader-controlled RSS route | Hero and social metadata | Frontmatter alt text and opening caption |
 | Two accounting systems | Contrast the platform event with possible post-scroll rumination | After the doomscrolling evidence | Caption, live labels, expandable transcript |
-| Feedback loop | Separate measured findings from the article's cross-study synthesis | After mood and browsing | Solid/dotted legend, caption, live labels, transcript |
+| Feedback loop | Show the reader's human cost, the creator's revenue and production pressure, and the platform's advertising value; include the February 2027 Shorts gate and the attributed Meta legal question | After mood and browsing | Solid/dotted legend, source label, live labels, 390-pixel responsive stack, expandable transcript |
 | Curriculum | Show production, audience, analytics, ethics, law, and capstone work without mocking the degree | ASU section | Caption, live labels, transcript |
 | Feed versus friend | Distinguish public distribution from mutual relationship | Relationship section | Causal boundary in caption and transcript |
 | Ranked feed versus chosen source | Compare the place where source choice happens | Return to Thunderbird | Caption, ordered live labels, transcript |

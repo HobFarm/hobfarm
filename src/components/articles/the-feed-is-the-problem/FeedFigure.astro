@@ -19,16 +19,19 @@ const figures = {
   },
   loop: {
     eyebrow: "The feedback loop",
-    title: "Attention becomes a production signal",
+    title: "The reader, creator, and platform train one another",
     caption:
-      "Solid connectors summarize measured relationships in the cited studies. Dotted connectors mark the article's synthesis across separate findings. The path is possible, not universal.",
+      "Attention has a human cost, a creator price, and a platform value. The research supports individual links in this system; the complete reader-creator-platform loop is the article's synthesis, not a universal outcome.",
+    source:
+      "Sources: Hughes et al.; Robertson et al.; Kelly and Sharot; Verwiebe et al.; Hödl and Myrach; YouTube's August 2026 YPP policy; Cartoon Brew; Meta's 2025 Form 10-K and second-quarter 2026 Form 10-Q; federal MDL 3047.",
     transcript: [
-      "Measured route: low mood can influence selection of negative information, and negative browsing can worsen mood.",
-      "Measured route: doomscrolling is associated with rumination and lower work engagement.",
-      "Measured route: negative headline words increased click-through rates in the Upworthy experiments.",
-      "Measured route: creators report interpreting metrics and adapting later work under algorithmic and monetary control.",
+      "Reader: negative material attracts attention; doomscrolling can leave rumination after the session; mood and negative browsing can affect one another; later behavior becomes another measurable signal.",
+      "Platform: recommendation systems use behavior to shape distribution; longer sessions create more opportunities for ad impressions and targeting; Meta says advertising produces substantially all its revenue.",
+      "Creator: analytics report reach and qualified views; rolling revenue eligibility can pressure creators to adapt production, increase volume, or repeat successful formats.",
+      "Shorts revenue gate scheduled for February 1, 2027: 10 million qualified Shorts views over the previous 90 days. Below the threshold, a channel can remain in YPP while Shorts advertising and subscription revenue pauses. Long-form revenue is not affected.",
+      "Legal question under trial: the states allege that Meta used engagement-maximizing features in products for young users. Meta denies the allegations.",
       "Side input: pressure to make a distinct contribution can push a discussion toward more negative comments.",
-      "System synthesis: behavioral signals influence distribution, distribution produces more metrics, and those metrics can become production instructions.",
+      "System synthesis: reader behavior influences distribution, distribution produces creator metrics and advertising opportunities, and those results influence later production and recommendation.",
       "Exit routes: chosen sources through RSS and direct mutual relationships.",
     ],
   },
@@ -69,7 +72,7 @@ const figures = {
 const figure = figures[Astro.props.kind];
 ---
 
-<figure class="feed-figure not-prose my-12 border-y border-base-800 py-6 sm:my-16 sm:py-8" data-kind={Astro.props.kind}>
+<figure class="feed-figure not-prose my-12 border-y border-base-800 py-6 sm:my-16 sm:py-8" data-kind={Astro.props.kind} aria-label={figure.title}>
   <div class="mx-auto max-w-[48rem] overflow-hidden border border-base-800 bg-base-950 shadow-2xl shadow-black/20">
     <header class="border-b border-base-800 p-5 sm:p-7">
       <p class="font-mono text-[10px] uppercase tracking-[.18em] text-accent-cyan">{figure.eyebrow}</p>
@@ -97,22 +100,38 @@ const figure = figures[Astro.props.kind];
 
     {Astro.props.kind === "loop" && (
       <div class="p-5 sm:p-7">
-        <div class="loop-grid">
-          <span class="loop-node">Uncertainty or low mood</span>
-          <span class="loop-arrow solid" aria-hidden="true">↓</span>
-          <span class="loop-node warm">Negative information</span>
-          <span class="loop-arrow solid" aria-hidden="true">↓</span>
-          <span class="loop-node">Attention and behavior</span>
-          <span class="loop-arrow dotted" aria-hidden="true">↓</span>
-          <span class="loop-node cyan">Ranking and distribution</span>
-          <span class="loop-arrow dotted" aria-hidden="true">↓</span>
-          <span class="loop-node warm">More exposure</span>
-          <span class="loop-arrow solid" aria-hidden="true">↓</span>
-          <span class="loop-node">Rumination or mood effect</span>
-          <span class="loop-arrow dotted" aria-hidden="true">↓</span>
-          <span class="loop-node cyan">Creator analytics</span>
-          <span class="loop-arrow solid" aria-hidden="true">↓</span>
-          <span class="loop-node">Adapted production</span>
+        <div class="economy-grid">
+          <section class="economy-card warm">
+            <p class="lane-label">Reader</p>
+            <ul><li>Negative material</li><li>Attention</li><li>Rumination</li><li>Later behavior</li></ul>
+            <strong>Human cost</strong>
+          </section>
+          <span class="economy-arrow dotted" aria-hidden="true">→</span>
+          <section class="economy-card cyan">
+            <p class="lane-label">Platform</p>
+            <ul><li>Recommendation</li><li>Session time</li><li>Ad impressions</li><li>Targeting</li><li>Advertising revenue</li></ul>
+            <strong>Platform value</strong>
+          </section>
+          <span class="economy-arrow dotted" aria-hidden="true">→</span>
+          <section class="economy-card">
+            <p class="lane-label">Creator</p>
+            <ul><li>Analytics</li><li>Qualified views</li><li>Revenue eligibility</li><li>Adapted production</li><li>Greater volume</li></ul>
+            <strong>Creator price</strong>
+          </section>
+        </div>
+        <div class="mt-5 grid gap-3 md:grid-cols-2">
+          <section class="policy-card">
+            <p class="lane-label text-accent-cyan">Shorts revenue gate</p>
+            <strong>10,000,000 qualified views</strong>
+            <span>Rolling 90-day period</span>
+            <span>Effective February 1, 2027</span>
+            <small>Below threshold: channel can remain in YPP. Shorts ad and subscription revenue pauses. Long-form revenue is unaffected.</small>
+          </section>
+          <section class="legal-card">
+            <p class="lane-label">Legal question</p>
+            <strong>Were engagement-maximizing features deliberately used in products for young users?</strong>
+            <small>Allegation under trial. Meta denies the allegation.</small>
+          </section>
         </div>
         <div class="mt-6 grid gap-3 sm:grid-cols-3">
           <div class="side-card warm"><strong>Side input</strong><span>Pressure to stand out → more negative contribution</span></div>
@@ -165,6 +184,7 @@ const figure = figures[Astro.props.kind];
   </div>
 
   <figcaption class="mx-auto mt-4 max-w-[48rem] text-sm leading-relaxed text-base-300">{figure.caption}</figcaption>
+  {"source" in figure && <p class="mx-auto mt-2 max-w-[48rem] font-mono text-[9px] leading-relaxed uppercase tracking-wider text-base-500">{figure.source}</p>}
   <details class="mx-auto mt-4 max-w-[48rem] border border-base-800 bg-base-950/60 p-4 text-sm text-base-300">
     <summary class="cursor-pointer font-mono text-[10px] uppercase tracking-wider text-accent-cyan focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-cyan">Read the graphic transcript</summary>
     <ul class="mt-3 space-y-2 pl-5 leading-relaxed">{figure.transcript.map((line: string) => <li>{line}</li>)}</ul>
@@ -179,12 +199,19 @@ const figure = figures[Astro.props.kind];
   .result-box { margin-top: 1rem; border: 1px solid; padding: .75rem; font-family: var(--font-mono); font-size: .63rem; letter-spacing: .1em; text-transform: uppercase; }
   .result-box.cyan { border-color: rgb(85 215 255 / .55); color: rgb(85 215 255); }
   .result-box.orange { border-color: rgb(230 118 45 / .65); color: rgb(251 146 60); }
-  .loop-grid { display: grid; justify-items: center; }
-  .loop-node { width: min(100%, 29rem); border: 1px solid rgb(63 63 70); background: rgb(24 24 27); padding: .75rem 1rem; text-align: center; color: white; font-size: .78rem; }
-  .loop-node.warm { border-color: rgb(154 72 33 / .75); color: rgb(253 186 116); }
-  .loop-node.cyan { border-color: rgb(85 215 255 / .6); color: rgb(85 215 255); }
-  .loop-arrow { height: 1.55rem; display: grid; place-items: center; color: rgb(113 113 122); }
-  .loop-arrow.dotted { color: rgb(85 215 255); }
+  .economy-grid { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: .5rem; }
+  .economy-card { min-width: 0; border: 1px solid rgb(63 63 70); background: rgb(24 24 27); padding: .85rem; }
+  .economy-card.warm { border-color: rgb(154 72 33 / .75); }
+  .economy-card.cyan { border-color: rgb(85 215 255 / .6); }
+  .economy-card ul { display: grid; gap: .35rem; margin: .75rem 0 0; padding: 0; list-style: none; color: rgb(212 212 216); font-size: .69rem; }
+  .economy-card strong { display: block; margin-top: .85rem; color: white; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .09em; text-transform: uppercase; }
+  .economy-arrow { color: rgb(85 215 255); font-family: var(--font-mono); }
+  .policy-card, .legal-card { display: grid; gap: .45rem; border: 1px solid rgb(63 63 70); padding: 1rem; color: rgb(228 228 231); }
+  .policy-card { border-color: rgb(85 215 255 / .55); }
+  .legal-card { border-color: rgb(154 72 33 / .65); }
+  .policy-card > strong, .legal-card > strong { font-size: .82rem; }
+  .policy-card > span { color: rgb(165 243 252); font-family: var(--font-mono); font-size: .64rem; text-transform: uppercase; letter-spacing: .06em; }
+  .policy-card small, .legal-card small { color: rgb(161 161 170); font-size: .68rem; line-height: 1.5; }
   .side-card { display: grid; gap: .35rem; border: 1px solid rgb(63 63 70); padding: .8rem; font-size: .72rem; color: rgb(212 212 216); }
   .side-card strong { font-family: var(--font-mono); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; color: rgb(161 161 170); }
   .side-card.warm { border-color: rgb(154 72 33 / .65); }
@@ -200,6 +227,10 @@ const figure = figures[Astro.props.kind];
   .word-field span { border: 1px solid rgb(63 63 70); padding: .6rem .7rem; color: rgb(212 212 216); font-size: .72rem; }
   .word-field.direct span { border-color: rgb(85 215 255 / .45); color: rgb(165 243 252); }
   .curriculum-card { text-align: center; border-color: rgb(85 215 255 / .35); }
+  @media (max-width: 767px) {
+    .economy-grid { grid-template-columns: 1fr; }
+    .economy-arrow { justify-self: center; transform: rotate(90deg); }
+  }
   @media (max-width: 420px) { .signal-list { grid-template-columns: 1fr; } }
   @media (prefers-reduced-motion: reduce) { .feed-figure * { scroll-behavior: auto; transition-duration: .01ms !important; } }
 </style>

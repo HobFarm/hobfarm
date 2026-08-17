@@ -1,7 +1,5 @@
 id,item,priority,action,status
 F01,"Doomscrolling study design and samples",high,"State 352 workers for the time-lagged study and 630 observations from 126 workers for the diary study; retain observational boundary.",resolved
-F02,"Treatment prevalence",high,"Use 19.2 percent in 2019 and 23.9 percent in 2023 for any reported treatment; do not assign a cause.",resolved
-F03,"2024 treatment categories",high,"Keep 19.3 percent medication and 14.0 percent counseling or therapy separate because respondents can appear in both.",resolved
 F04,"Negative headline effect",high,"Limit causal language to headline wording in the Upworthy experiments and describe the 2.3 percent result for one additional negative word in an average-length headline.",resolved
 F05,"Mood and browsing",high,"Describe the causal bidirectional result only within the measured experimental conditions; do not convert mood into diagnosis.",resolved
 F06,"Reddit differentiation",high,"Preserve the first-50-comment boundary and avoid claiming the mechanism explains every community or replaces platform incentives.",resolved
@@ -11,3 +9,7 @@ F09,"Relationship study",high,"Call the result an association based on cross-sec
 F10,"Complete feedback loop",high,"Label cross-study connectors as synthesis and distinguish them visually from measured relationships.",resolved
 F11,"Private/source screenshots",high,"No screenshot was supplied; use original graphics without inventing a screen or subscription list.",resolved
 F12,"Public-copy punctuation",medium,"Search for Unicode em dashes before publication.",resolved
+F13,"YouTube Shorts revenue threshold",high,"State that the rolling 10-million-qualified-view rule begins February 1 2027 pauses only Shorts advertising and subscription revenue and does not remove the channel from YPP or affect long-form revenue.",resolved
+F14,"YouTube YPP entry threshold",high,"Keep the new-channel 20-million-qualified-Shorts-view and 1,000-subscriber entry path separate from the recurring 10-million Shorts revenue threshold.",resolved
+F15,"Meta federal trial posture",high,"As of August 17 jury selection had begun and opening statements were scheduled for August 18; identify four first-trial states within the broader 29-state case and attribute all allegations and Meta's denial.",resolved
+F16,"Meta advertising mechanism",high,"Use Meta's own 10-K and 10-Q for the advertising model and quarterly growth figures; do not assign a fixed revenue amount to an additional minute of engagement.",resolved

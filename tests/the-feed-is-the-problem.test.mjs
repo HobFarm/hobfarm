@@ -45,16 +45,30 @@ test("the scheduled follow-up stays private until its release instant", () => {
   assert.equal(isArticlePublicAt(frontmatter, release), true);
 });
 
-test("the article keeps the supplied argument and its medical and causal boundaries", () => {
-  const words = body.match(/\b[\p{L}\p{N}][\p{L}\p{N}'’.-]*\b/gu) ?? [];
-  assert.ok(words.length >= 2_500 && words.length <= 3_500, `article body has ${words.length} words`);
+test("the article explains the complete engagement economy and keeps its causal boundaries", () => {
+  const narrative = body.split(/^\[\^doom-paper\]:/m)[0];
+  const words = narrative.match(/\b[\p{L}\p{N}][\p{L}\p{N}'’.-]*\b/gu) ?? [];
+  assert.ok(words.length >= 3_000 && words.length <= 3_700, `article narrative has ${words.length} words`);
   assert.doesNotMatch(body, /—/);
+  assert.doesNotMatch(body, /CDC|psychiatric|medication|overmedicat/i);
   assert.match(body, /Behavior is observable\. Motivation is inferred\./);
-  assert.match(body, /Therapy is not the villain in this story\. Medication is not the feed\./);
-  assert.match(body, /I cannot connect those findings into a claim that social media caused the increase in therapy or medication\./);
+  assert.match(body, /one upstream system that can contribute to distress, amplify it, or keep it running/);
+  assert.match(body, /Therapy deals with the person after the session\. The platform gets paid for the session\./);
+  assert.match(body, /Beginning February 1, 2027/);
+  assert.match(body, /10 million qualified Shorts views during the previous 90 days/);
+  assert.match(body, /remain in the YouTube Partner Program/);
+  assert.match(body, /long-form revenue is not affected/);
+  assert.match(body, /20 million qualified Shorts views during the previous 90 days and 1,000 subscribers/);
+  assert.match(body, /The rule is scheduled, not active as I write this/);
+  assert.match(body, /Meta denies them/);
+  assert.match(body, /advertising revenue rose 27 percent.*delivered ad impressions rose 14 percent/s);
   assert.match(body, /A feed is not a friend\./);
   assert.match(body, /I choose a source\. The source publishes\./);
+  assert.match(body, /I use social platforms as databases with bad front doors\./);
+  assert.match(body, /I chose to stop using their shit as the client\./);
   assert.match(body, /\/articles\/hit-the-source-directly\//);
+  assert.match(body, /\/articles\/instagram-funnel-buckets\//);
+  assert.match(body, /\/articles\/how-the-money-eats-the-medium\//);
   assert.match(body, /<SubscribeToHobFarm/);
 
   for (const kind of ["accounting", "loop", "pipelines", "friend", "curriculum"]) {
@@ -69,6 +83,10 @@ test("the figures expose live text transcripts and distinguish evidence from syn
   assert.match(figures, /system synthesis/);
   assert.match(figures, /prefers-reduced-motion/);
   assert.match(figures, /Quality still depends on the source/);
+  assert.match(figures, /10,000,000 qualified views/);
+  assert.match(figures, /channel can remain in YPP/);
+  assert.match(figures, /Shorts ad and subscription revenue pauses/);
+  assert.match(figures, /Allegation under trial\. Meta denies the allegation\./);
 });
 
 test("the two publication assets match the verified immutable manifest", () => {
@@ -77,6 +95,10 @@ test("the two publication assets match the verified immutable manifest", () => {
   assert.equal(manifest.assets.length, 2);
   assert.equal(manifest.policy.new_keys_only, true);
   assert.equal(manifest.policy.overwrite_existing, false);
+  assert.equal(manifest.live_figures.length, 1);
+  assert.equal(manifest.live_figures[0].figure_id, "reader-creator-platform-loop");
+  assert.equal(manifest.live_figures[0].dimensions.minimum_qa_viewport_css_pixels, 390);
+  assert.match(manifest.live_figures[0].sha256, /^[a-f0-9]{64}$/);
 
   for (const asset of manifest.assets) {
     assert.ok(existsSync(asset.source_file), `${asset.asset_id} source should exist`);
