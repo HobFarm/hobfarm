@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 960" role="img" aria-labelledby="route-title route-desc">
+  <title id="route-title">Fictional route-specific operating domain</title>
+  <desc id="route-desc">A generic scenic loop connects a depot, charging point, boarding point, known stops, two overlooks, a turnaround, remote operations, and a return to the depot. It is not an official park map or announced service.</desc>
+  <defs>
+    <pattern id="contours" width="160" height="120" patternUnits="userSpaceOnUse">
+      <path d="M-30 95Q35 55 96 92T190 70" fill="none" stroke="#a7b7ad" stroke-opacity=".055" stroke-width="2"/>
+      <path d="M-30 118Q35 78 96 115T190 93" fill="none" stroke="#a7b7ad" stroke-opacity=".04" stroke-width="2"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#d5b36d"/></marker>
+  </defs>
+  <style>
+    text { font-family: "IBM Plex Sans", Arial, sans-serif; }
+    .kicker { fill: #86bca7; font-family: "IBM Plex Mono", monospace; font-size: 20px; font-weight: 700; letter-spacing: 3px; }
+    .title { fill: #f2ecdf; font-size: 50px; font-weight: 600; }
+    .note { fill: #9ca9a3; font-size: 20px; }
+    .route { fill: none; stroke: #d5b36d; stroke-width: 13; stroke-linecap: round; marker-end: url(#arrow); }
+    .return { fill: none; stroke: #86bca7; stroke-width: 5; stroke-dasharray: 15 13; marker-end: url(#arrow); }
+    .remote { fill: none; stroke: #a487d3; stroke-width: 4; stroke-dasharray: 9 10; }
+    .node { fill: #101815; stroke: #86bca7; stroke-width: 5; }
+    .accent { fill: #101815; stroke: #d5b36d; stroke-width: 5; }
+    .label { fill: #eee7d9; font-size: 25px; font-weight: 600; }
+    .sub { fill: #99a69f; font-size: 18px; }
+  </style>
+  <rect width="1600" height="960" fill="#07100d"/>
+  <rect width="1600" height="960" fill="url(#contours)"/>
+  <rect x="42" y="40" width="1516" height="880" rx="28" fill="none" stroke="#86bca7" stroke-opacity=".22" stroke-width="2"/>
+  <text x="82" y="94" class="kicker">DESIGN FICTION / GENERIC SCENIC LOOP</text>
+  <text x="82" y="157" class="title">Fictional route-specific operating domain</text>
+  <text x="82" y="196" class="note">A bounded route concept. No park approval, procurement, deployment, or official map is implied.</text>
+
+  <path d="M320 694C345 492 468 354 662 326C849 299 1010 377 1082 515C1150 645 1105 770 938 790C773 810 634 758 569 662C518 585 555 502 648 466C745 429 855 455 906 525" class="route"/>
+  <path d="M906 525C846 574 761 622 675 670C555 737 437 765 320 694" class="return"/>
+
+  <g transform="translate(246 657)">
+    <rect width="148" height="88" rx="18" class="accent"/>
+    <path d="M25 62V30h98v32M48 30V18h52v12" fill="none" stroke="#d5b36d" stroke-width="5"/>
+  </g>
+  <text x="190" y="790" class="label">Depot + maintenance</text>
+  <text x="190" y="818" class="sub">Inspection, recovery vehicles, charging</text>
+
+  <circle cx="420" cy="452" r="25" class="node"/>
+  <text x="246" y="407" class="label">Boarding point</text>
+  <text x="246" y="435" class="sub">Known platform and accessible step</text>
+
+  <circle cx="655" cy="326" r="22" class="node"/>
+  <text x="566" y="279" class="label">Known stop</text>
+  <text x="566" y="307" class="sub">Mapped pullout</text>
+
+  <circle cx="897" cy="349" r="28" class="accent"/>
+  <text x="836" y="293" class="label">Overlook</text>
+  <text x="836" y="321" class="sub">The ride pauses</text>
+
+  <circle cx="1084" cy="516" r="24" class="node"/>
+  <text x="1130" y="505" class="label">Turnaround</text>
+  <text x="1130" y="533" class="sub">Known maneuver zone</text>
+
+  <circle cx="1001" cy="748" r="28" class="accent"/>
+  <text x="1046" y="743" class="label">Second overlook</text>
+  <text x="1046" y="771" class="sub">Scheduled scenic stop</text>
+
+  <circle cx="675" cy="670" r="22" class="node"/>
+  <text x="608" y="724" class="label">Return leg</text>
+  <text x="608" y="752" class="sub">Same mapped domain</text>
+
+  <g transform="translate(1270 270)">
+    <rect width="210" height="124" rx="20" fill="#120f19" stroke="#a487d3" stroke-width="5"/>
+    <path d="M38 42h134M38 72h92M38 98h112" stroke="#a487d3" stroke-width="7"/>
+  </g>
+  <path d="M1270 332C1160 370 1110 430 1084 516M1270 352C1110 620 914 696 675 670" class="remote"/>
+  <text x="1268" y="433" class="label">Remote operations</text>
+  <text x="1268" y="461" class="sub">Supervision, support, shutdown</text>
+
+  <g transform="translate(246 544)">
+    <path d="M0 52h42l20-39h40l-18 39h44" fill="none" stroke="#86bca7" stroke-width="7"/>
+    <path d="M82 12h26v33" fill="none" stroke="#d5b36d" stroke-width="5"/>
+  </g>
+  <text x="208" y="530" class="label">Charging</text>
+  <text x="208" y="558" class="sub">Placed beside the depot</text>
+
+  <text x="82" y="880" class="note">Solid amber: slow scenic service • Dashed green: return to depot • Purple: remote supervision link</text>
+</svg>

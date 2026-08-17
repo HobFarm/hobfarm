@@ -92,6 +92,7 @@ const getCdnImageSrcset = (src: string, widths: number[]) => {
 
 const heroSrc = hero ? getCdnImageVariant(hero, 1280) : undefined;
 const heroSrcset = hero ? getCdnImageSrcset(hero, [640, 960, 1280, 1600]) : undefined;
+const preserveHorizontalHero = frontmatter.arrangement === "horizontal-hero";
 
 const allArticles = await getPublishedArticles();
 const relatedArticles = getRelatedArticles(article, allArticles, 4);
@@ -290,13 +291,16 @@ const articleJsonLd = {
         </div>
       </Wrapper>
       {hero && (
-        <div class="relative overflow-hidden rounded-t-lg aspect-[4/3] sm:aspect-21/9">
+        <div class="relative overflow-hidden rounded-t-lg bg-base-950 aspect-[4/3] sm:aspect-21/9">
           <img
             src={heroSrc}
             srcset={heroSrcset}
             sizes="(min-width: 1024px) 1024px, 100vw"
             alt={frontmatter.heroAlt || frontmatter.title}
-            class="absolute inset-0 size-full object-cover object-top"
+            class:list={[
+              "absolute inset-0 size-full object-top",
+              preserveHorizontalHero ? "object-contain" : "object-cover",
+            ]}
             loading="eager"
             decoding="async"
             fetchpriority="high"

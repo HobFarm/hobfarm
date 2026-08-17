@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-17T15:26:56.241Z",
+  "generatedAt": "2026-08-17T17:31:12.741Z",
   "buildRoot": "dist/client",
   "counts": {
-    "files": 1147,
+    "files": 1151,
     "routes": 762,
     "html": 732,
     "releasedArticles": 63,

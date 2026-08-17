@@ -1,0 +1,151 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption: string;
+  credit: string;
+  sourceUrl?: string;
+  width?: number;
+  height?: number;
+  archive?: boolean;
+  contain?: boolean;
+  lightbox?: boolean;
+  detailsLabel?: string;
+  details?: string[];
+}
+
+const {
+  src,
+  alt,
+  caption,
+  credit,
+  sourceUrl,
+  width,
+  height,
+  archive = false,
+  contain = false,
+  lightbox = true,
+  detailsLabel,
+  details = [],
+} = Astro.props;
+
+const cdnBase = "https://cdn.hob.farm/";
+const isCdnImage = src.startsWith(cdnBase) && !src.endsWith(".svg");
+const transformed = (size: number) =>
+  src.replace(cdnBase, `${cdnBase}cdn-cgi/image/format=auto,quality=84,width=${size}/`);
+const displaySrc = isCdnImage ? transformed(1280) : src;
+const sourceSet = isCdnImage
+  ? [640, 960, 1280, 1600]
+      .map((size) => `${transformed(size)} ${size}w`)
+      .join(", ")
+  : undefined;
+---
+
+<figure
+  class:list={[
+    "carriage-figure",
+    "not-prose",
+    "article-wide",
+    archive && "article-archive-viewer",
+    contain && "is-contained",
+  ]}
+>
+  <img
+    src={displaySrc}
+    srcset={sourceSet}
+    sizes="(min-width: 768px) 42rem, 92vw"
+    alt={alt}
+    width={width}
+    height={height}
+    loading="lazy"
+    decoding="async"
+    data-lightbox={lightbox ? src : undefined}
+    data-lightbox-caption={lightbox ? caption : undefined}
+  />
+  <figcaption>
+    <span>{caption}</span>
+    <small>
+      {
+        sourceUrl ? (
+          <a href={sourceUrl} rel="noreferrer">{credit}</a>
+        ) : (
+          <span>{credit}</span>
+        )
+      }
+    </small>
+  </figcaption>
+  {details.length > 0 && (
+    <details class="diagram-key">
+      <summary>{detailsLabel ?? "Diagram key"}</summary>
+      <ul>
+        {details.map((item) => <li>{item}</li>)}
+      </ul>
+    </details>
+  )}
+</figure>
+
+<style>
+  .carriage-figure {
+    margin-block: 2.75rem;
+  }
+
+  .carriage-figure > img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid rgb(138 186 169 / 0.3);
+    border-radius: 0.45rem;
+    background: #070b0a;
+    box-shadow: 0.45rem 0.55rem 0 rgb(2 7 6 / 0.72);
+  }
+
+  .carriage-figure.is-contained > img {
+    max-height: 44rem;
+    object-fit: contain;
+  }
+
+  .carriage-figure figcaption {
+    display: grid;
+    gap: 0.4rem;
+    margin-top: 0.8rem;
+  }
+
+  .carriage-figure figcaption small {
+    color: var(--color-base-500, #858585);
+    font-size: 0.72rem;
+  }
+
+  .carriage-figure figcaption a {
+    color: inherit;
+    text-decoration-color: currentColor;
+    text-underline-offset: 0.16em;
+  }
+
+  .diagram-key {
+    margin-top: 0.85rem;
+    border: 1px solid rgb(138 186 169 / 0.2);
+    border-radius: 0.4rem;
+    background: rgb(7 11 10 / 0.92);
+    color: var(--color-base-300, #c7c7c7);
+    text-align: left;
+  }
+
+  .diagram-key summary {
+    padding: 0.8rem 0.9rem;
+    color: #8abda9;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .diagram-key ul {
+    display: grid;
+    gap: 0.35rem;
+    margin: 0;
+    padding: 0 1.1rem 1rem 2rem;
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+</style>

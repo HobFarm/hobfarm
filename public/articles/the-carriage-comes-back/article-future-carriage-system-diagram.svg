@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 960" role="img" aria-labelledby="system-title system-desc">
+  <title id="system-title">Conceptual Future Carriage system placement</title>
+  <desc id="system-desc">A side-view carriage diagram labels possible locations for electric drive, batteries, steer-by-wire, redundant braking, sensors, onboard compute, remote supervision, an accessible boarding step, and depot charging. It is not an engineered design.</desc>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#d8e0d7" stroke-opacity=".045"/>
+    </pattern>
+    <marker id="dot" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="8" markerHeight="8"><circle cx="5" cy="5" r="3.5" fill="#d5b36d"/></marker>
+  </defs>
+  <style>
+    text { font-family: "IBM Plex Sans", Arial, sans-serif; }
+    .kicker { fill: #86bca7; font-family: "IBM Plex Mono", monospace; font-size: 20px; font-weight: 700; letter-spacing: 3px; }
+    .title { fill: #f2ecdf; font-size: 50px; font-weight: 600; }
+    .note { fill: #9ca9a3; font-size: 20px; }
+    .label { fill: #e9e3d5; font-size: 25px; font-weight: 600; }
+    .sub { fill: #97a59e; font-size: 18px; }
+    .call { fill: none; stroke: #d5b36d; stroke-width: 3; marker-start: url(#dot); }
+    .machine { fill: #101815; stroke: #86bca7; stroke-width: 5; }
+    .detail { fill: none; stroke: #c7a25e; stroke-width: 4; }
+  </style>
+  <rect width="1600" height="960" fill="#07100d"/>
+  <rect width="1600" height="960" fill="url(#grid)"/>
+  <rect x="42" y="40" width="1516" height="880" rx="28" fill="none" stroke="#86bca7" stroke-opacity=".22" stroke-width="2"/>
+  <text x="82" y="94" class="kicker">HOBFARM CONCEPT DIAGRAM</text>
+  <text x="82" y="157" class="title">Future Carriage system placement</text>
+  <text x="82" y="196" class="note">Plausible component roles, not dimensions, specifications, or a finished engineered design.</text>
+
+  <g aria-label="simplified side view of a four-wheel autonomous carriage">
+    <circle cx="520" cy="635" r="155" class="machine"/>
+    <circle cx="520" cy="635" r="34" class="detail"/>
+    <circle cx="1045" cy="635" r="176" class="machine"/>
+    <circle cx="1045" cy="635" r="38" class="detail"/>
+    <path d="M420 594H356L403 523H520L611 385H758L812 525H973L1035 409H1160L1216 594H1188" class="machine"/>
+    <path d="M603 384Q637 300 718 306L758 385M988 408Q1024 318 1110 327L1160 409" class="machine"/>
+    <path d="M647 350h74M1029 367h82" class="detail"/>
+    <path d="M728 554h278" class="detail"/>
+    <rect x="725" y="564" width="255" height="72" rx="16" fill="#18221e" stroke="#d5b36d" stroke-width="4"/>
+    <rect x="858" y="482" width="86" height="58" rx="11" fill="#18221e" stroke="#86bca7" stroke-width="4"/>
+    <path d="M667 592v60h-86v32h134" class="detail"/>
+    <circle cx="674" cy="298" r="18" fill="#d5b36d"/>
+    <circle cx="1090" cy="319" r="18" fill="#d5b36d"/>
+  </g>
+
+  <path d="M674 298 525 320H470" class="call"/>
+  <text x="88" y="252" class="label">Sensor housings</text>
+  <text x="88" y="279" class="sub">360-degree perception around the body</text>
+
+  <path d="M858 510 1185 310H1230" class="call"/>
+  <text x="1262" y="253" class="label">Onboard compute</text>
+  <text x="1262" y="280" class="sub">Perception and route control</text>
+
+  <path d="M520 635 430 460H390" class="call"/>
+  <text x="88" y="390" class="label">Steer-by-wire</text>
+  <text x="88" y="417" class="sub">No mechanical driver position</text>
+
+  <path d="M1045 635 1185 468H1230" class="call"/>
+  <text x="1305" y="400" class="label">Redundant braking</text>
+  <text x="1305" y="427" class="sub">Safe stopping after a fault</text>
+
+  <path d="M850 598 1175 575H1230" class="call"/>
+  <text x="1262" y="520" class="label">Battery enclosure</text>
+  <text x="1262" y="547" class="sub">Low, protected, serviceable</text>
+
+  <path d="M1168 696 1200 730H1230" class="call"/>
+  <text x="1262" y="668" class="label">Electric drive</text>
+  <text x="1262" y="695" class="sub">Motors in the running gear</text>
+
+  <path d="M620 684 430 810H390" class="call"/>
+  <text x="88" y="751" class="label">Accessible boarding step</text>
+  <text x="88" y="778" class="sub">A design requirement, not decoration</text>
+
+  <path d="M1180 510 1210 858H1230" class="call"/>
+  <text x="1262" y="797" class="label">Remote supervision</text>
+  <text x="1262" y="824" class="sub">Fleet support and fallback</text>
+
+  <path d="M770 636 770 862H470" class="call"/>
+  <text x="88" y="850" class="label">Depot charging</text>
+  <text x="88" y="877" class="sub">Return, inspect, charge, and maintain</text>
+</svg>
