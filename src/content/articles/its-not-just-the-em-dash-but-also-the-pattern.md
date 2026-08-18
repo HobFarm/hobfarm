@@ -40,6 +40,14 @@ supportCTA:
   href: "/support/"
 rightsNote: "The hero and social derivatives are original AI-generated HobFarm editorial art created from a HobFarm brief. The private 2025 ChatGPT conversation, the SHL0MS post, and Claude Monet's Water Lilies are discussed but not reproduced. Short quotations link to their public sources."
 sourceNotes:
+  - label: "How Claude’s text watermark works"
+    url: "https://www.anthropic.com/news/claude-text-watermark"
+    note: "Anthropic’s August 14, 2026 announcement describes its planned SynthID-Text implementation, detection limits, forthcoming detection API, and the exact AI phrasing tell discussed in this article. Checked August 18, 2026."
+    type: promotional-claim
+  - label: "Scalable watermarking for identifying large language model outputs"
+    url: "https://www.nature.com/articles/s41586-024-08025-4"
+    note: "The peer-reviewed SynthID-Text paper explains the keyed, context-dependent sampling method, its dependence on text length and entropy, and its production evaluation."
+    type: documented-fact
   - label: "NVIDIA 800 VDC Architecture Will Power the Next Generation of AI Factories"
     url: "https://developer.nvidia.com/blog/nvidia-800-v-hvdc-architecture-will-power-the-next-generation-of-ai-factories/"
     note: "NVIDIA's May 2025 technical post supplies the opening 800 VDC example and the quoted contrastive sentence. Checked August 17, 2026."
@@ -252,6 +260,20 @@ I asked it to stop building every point from a clean opposition. It explained th
 Eventually I accepted that this was how the thing talked.
 
 That experience changed how I hear prose. A human writer can now use the construction for a perfectly legitimate reason, and my brain still plays back the old ChatGPT response. The sentence arrives carrying somebody else’s interface.
+
+## Anthropic names the pattern
+
+On August 14, 2026, [Anthropic announced](https://www.anthropic.com/news/claude-text-watermark) that future Claude models will generate text carrying a statistical watermark based on Google DeepMind’s SynthID-Text. The mark does not appear as hidden characters or visible formatting. It enters through the sampling process, where a secret key and recent context influence low-stakes choices among plausible next tokens.
+
+Near the end of the announcement, Anthropic explains how this keyed system differs from AI-detection services. Those services lack the key, so they look for statistical features and recurring phrasing. Anthropic’s own example is the construction I had been collecting: “this isn’t [X], it’s [Y].” The same passage mentions the model habit of using “quietly” more often than a reader might expect.
+
+That sentence structure is the reason this article exists.
+
+Anthropic presents it as a tell, not an authorship verdict. Human writers used the construction long before Claude, ChatGPT, or modern language models. One occurrence can belong to an individual writer’s natural voice. Repetition across large quantities of model output is what turns an ordinary rhetorical construction into a recognizable statistical clue.
+
+The official watermark operates at another layer. [The SynthID-Text paper](https://www.nature.com/articles/s41586-024-08025-4) describes a keyed, context-dependent change to the sampling process among plausible next tokens. It adds no hidden characters, works more reliably across longer passages, and becomes weaker in short, factual, exact, or lightly edited text. Code and proofreading offer fewer choices where the mark can take hold. Anthropic says its forthcoming detector will estimate whether Claude was involved. It cannot identify a particular user, distinguish writing from heavy editing, or prove that Claude wrote every word.
+
+The two signals should remain distinct. The deliberate watermark is a keyed statistical signature added during generation. The other is a human sentence construction that some models select often enough to make it sound synthetic. Claude is getting a deliberate watermark. I would call its familiar prose habits an accidental stylistic watermark.
 
 ## The pattern belongs to human language
 
