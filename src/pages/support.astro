@@ -5,6 +5,7 @@ import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import ContentPanel from "@/components/ContentPanel.astro";
 import SupportWays from "@/components/support/SupportWays.astro";
+import SupportEmailLink from "@/components/support/SupportEmailLink.astro";
 ---
 
 <BaseLayout
@@ -95,7 +96,10 @@ import SupportWays from "@/components/support/SupportWays.astro";
               Customer Help handles payments, downloads, course access, refunds, accounts, applications, and marketplace orders.
             </Text>
           </div>
-          <Button isLink size="sm" variant="green" href="/helpcenter/">Go to Customer Help</Button>
+          <div class="flex flex-wrap gap-3">
+            <Button isLink size="sm" variant="green" href="/helpcenter/">Go to Customer Help</Button>
+            <SupportEmailLink compact subject="HobFarm Customer Help" />
+          </div>
         </div>
       </Wrapper>
     </ContentPanel>

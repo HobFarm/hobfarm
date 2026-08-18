@@ -91,6 +91,30 @@ test("funding and Customer Help are separate public destinations", () => {
   assert.match(productPage, /Go to Customer Help/);
 });
 
+test("Customer Help reveals the support mailbox only after a visitor acts", () => {
+  const component = read("src/components/support/SupportEmailLink.astro");
+  const help = read("src/pages/helpcenter/index.astro");
+  const support = read("src/pages/support.astro");
+  const legalLayout = read("src/layouts/LegalLayout.astro");
+  const ezizeLayout = read("src/layouts/EzizeLegalLayout.astro");
+  const refunds = read("src/content/legal/refunds.md");
+  const ezizeRefunds = read("src/pages/ezize/refunds.astro");
+  const encoded = component.match(/String\.fromCharCode\(([\s\S]*?)\);/)?.[1] ?? "";
+  const codes = [...encoded.matchAll(/\d+/g)].map((match) => Number(match[0]));
+
+  assert.equal(String.fromCharCode(...codes), "support@hob.farm");
+  assert.match(component, /data-support-email-open/);
+  assert.match(component, /data-support-email-copy/);
+  assert.match(component, /mailto:\$\{mailbox\}/);
+  assert.doesNotMatch(component, /mailto:support@hob\.farm/);
+
+  for (const source of [help, support, legalLayout, ezizeLayout]) {
+    assert.match(source, /SupportEmailLink/);
+  }
+  assert.match(refunds, /#legal-support-email/);
+  assert.match(ezizeRefunds, /#ezize-support-email/);
+});
+
 test("no Patreon reference remains in public source surfaces", () => {
   const files = [
     ...publicSourceFiles(join(root, "src")),

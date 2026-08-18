@@ -7,6 +7,11 @@ compatibility_flags = ["nodejs_compat"]
 # setup and, later, a service binding from the HobFarm Pages project.
 workers_dev = false
 
+[[send_email]]
+name = "CONTACT_EMAIL"
+allowed_sender_addresses = ["contact@forms.hob.farm"]
+allowed_destination_addresses = ["support@hob.farm", "hey@hob.farm"]
+
 [[d1_databases]]
 binding = "COMMERCE_DB"
 database_name = "hobfarm-commerce-db"

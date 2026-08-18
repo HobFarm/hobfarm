@@ -9,7 +9,7 @@ test("EZIZE has a canonical public product story for the live probability machin
 
   assert.match(page, /title="EZIZE: The HobFarm Probability Machine"/);
   assert.match(page, /new URL\("\/ezize\/", siteOrigin\)/);
-  assert.match(page, /const appUrl = "https:\/\/ezize\.hob\.farm\/"/);
+  assert.match(page, /const appUrl = "https:\/\/ezize\.hob\.farm\/play\/"/);
   assert.doesNotMatch(page, /https:\/\/ez\.hob\.farm\//);
   assert.doesNotMatch(page, /private[- ]alpha|owner access only|public generation is not open/i);
   assert.match(page, /Insert coin\.<br \/>Get a collectible EZ\./);
@@ -25,6 +25,9 @@ test("EZIZE has a canonical public product story for the live probability machin
   assert.match(page, /ezize-76bd76d0a0822404-sheet\.png/);
   assert.match(page, /ezize-76bd76d0a0822404\.mp4/);
   assert.match(page, /1 EZ coin = 1 complete collectible EZ\./);
+  assert.match(page, /Start EZIZE/);
+  assert.match(page, /Get EZ Coins/);
+  assert.doesNotMatch(page, /Open the machine|Open EZIZE/);
   for (const pack of ["$5", "$9", "$17", "$42", "$80"]) assert.match(page, new RegExp(pack.replace("$", "\\$")));
   for (const route of ["terms", "privacy", "refunds", "license"]) assert.match(page, new RegExp(`\\/ezize\\/${route}\\/`));
   assert.match(page, /YOUR EZ IS YOURS TO USE\./);

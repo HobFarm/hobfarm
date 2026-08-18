@@ -47,6 +47,7 @@ export default function ContactForm({
   const [errorMsg, setErrorMsg] = useState("");
   const [token, setToken] = useState("");
   const turnstileRef = useRef<HTMLDivElement>(null);
+  const turnstileWidgetIdRef = useRef<string | null>(null);
 
   useEffect(() => {
     const requestedSubject =
@@ -67,9 +68,11 @@ export default function ContactForm({
 
     script.onload = () => {
       if (turnstileRef.current && (window as any).turnstile) {
-        (window as any).turnstile.render(turnstileRef.current, {
+        turnstileWidgetIdRef.current = (window as any).turnstile.render(turnstileRef.current, {
           sitekey: TURNSTILE_SITEKEY,
           callback: (t: string) => setToken(t),
+          "expired-callback": () => setToken(""),
+          "error-callback": () => setToken(""),
           theme: "dark",
         });
       }
@@ -79,6 +82,14 @@ export default function ContactForm({
       document.head.removeChild(script);
     };
   }, []);
+
+  function resetVerification() {
+    setToken("");
+    const turnstile = (window as any).turnstile;
+    if (turnstile && turnstileWidgetIdRef.current !== null) {
+      turnstile.reset(turnstileWidgetIdRef.current);
+    }
+  }
 
   async function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -100,15 +111,18 @@ export default function ContactForm({
 
       if (res.ok) {
         setStatus("sent");
+        setToken("");
         setForm({ name: "", email: "", subject: initialSubject, message: "" });
       } else {
         const data = (await res.json().catch(() => ({}))) as { error?: string };
         setErrorMsg(data.error || "Something went wrong.");
         setStatus("error");
+        resetVerification();
       }
     } catch {
       setErrorMsg("Network error. Please try again.");
       setStatus("error");
+      resetVerification();
     }
   }
 
@@ -117,7 +131,7 @@ export default function ContactForm({
       <div className="border border-accent-500/30 p-8">
         <p className="text-accent-500 font-mono text-sm">Message sent.</p>
         <p className="text-base-400 text-sm mt-2">
-          I'll reply as soon as I can.
+          It was sent to the right HobFarm inbox. I'll reply as soon as I can.
         </p>
       </div>
     );

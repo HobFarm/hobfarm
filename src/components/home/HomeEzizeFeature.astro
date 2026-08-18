@@ -1,7 +1,7 @@
 ---
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 
-const appUrl = "https://ezize.hob.farm/";
+const appUrl = "https://ezize.hob.farm/play/";
 const imageUrl = (filename: string, width: number, quality = 82) =>
   `https://cdn.hob.farm/cdn-cgi/image/width=${width},quality=${quality},format=auto/ezize/${encodeURIComponent(filename)}`;
 const imageSrcSet = (filename: string, widths: number[]) =>
@@ -46,8 +46,14 @@ const forms = [
         </dl>
 
         <div class="ezize-actions">
-          <a class="machine-button" href={appUrl} data-event="homepage_ezize_machine_open">
-            Open the machine <span aria-hidden="true">&nearr;</span>
+          <a
+            class="machine-button"
+            href="/ezize/"
+            data-authenticated-href={appUrl}
+            data-ezize-session-link
+            data-event="homepage_ezize_machine_open"
+          >
+            Start EZIZE <span aria-hidden="true">&nearr;</span>
           </a>
           <a class="story-link" href="/ezize/" data-event="homepage_project_open">
             See how EZIZE works <span aria-hidden="true">&rarr;</span>
@@ -94,6 +100,29 @@ const forms = [
     </article>
   </Wrapper>
 </section>
+
+<script>
+  const ezizeSessionLink = document.querySelector<HTMLAnchorElement>("[data-ezize-session-link]");
+
+  if (ezizeSessionLink) {
+    const authenticatedHref = ezizeSessionLink.dataset.authenticatedHref;
+    if (authenticatedHref) {
+      fetch("https://ezize.hob.farm/api/account/session", {
+        credentials: "include",
+        headers: { Accept: "application/json" },
+        mode: "cors",
+      })
+        .then((response) => {
+          if (!response.ok) return;
+          ezizeSessionLink.href = authenticatedHref;
+          ezizeSessionLink.dataset.ezizeDestination = "play";
+        })
+        .catch(() => {
+          // The public product story remains the safe logged-out destination.
+        });
+    }
+  }
+</script>
 
 <style>
   .ezize-spotlight {

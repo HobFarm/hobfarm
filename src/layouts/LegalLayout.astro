@@ -2,9 +2,9 @@
 // Fundations
 import BaseLayout from "./BaseLayout.astro";
 import Text from "@/components/fundations/elements/Text.astro";
-import Button from "@/components/fundations/elements/Button.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import ContentPanel from "@/components/ContentPanel.astro";
+import SupportEmailLink from "@/components/support/SupportEmailLink.astro";
 const { frontmatter, slug } = Astro.props;
 const description = frontmatter.description || "Legal policies for HobFarm products, accounts, payments, privacy, refunds, and support.";
 const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
@@ -72,20 +72,8 @@ const legalJsonLd = {
 
       {/* Contact CTA */}
       <div class="max-w-3xl mx-auto mt-12 pt-8 border-t border-base-800">
-        <div class="flex flex-wrap items-center gap-4">
-          <Button
-            isLink
-            size="sm"
-            variant="muted"
-            href="/contact/"
-          >
-            <svg slot="left-icon" class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-            </svg>
-            Contact Us
-          </Button>
-          <span class="text-xs text-base-500">Questions about these terms or your data</span>
-        </div>
+        <p class="mb-4 text-xs text-base-500">Questions about these terms, billing, an order, or your data</p>
+        <SupportEmailLink id="legal-support-email" label="Email Customer Help" subject={`HobFarm: ${frontmatter.title}`} />
       </div>
     </Wrapper>
     </ContentPanel>

@@ -1,0 +1,110 @@
+---
+interface Props {
+  class?: string;
+  compact?: boolean;
+  id?: string;
+  label?: string;
+  subject?: string;
+}
+
+const {
+  class: className,
+  compact = false,
+  id,
+  label = "Email Customer Help",
+  subject = "HobFarm Customer Help",
+} = Astro.props;
+---
+
+<div
+  class:list={["support-email", compact && "support-email--compact", className]}
+  data-support-email
+  data-support-subject={subject}
+  id={id}
+>
+  <button class="support-email__primary" type="button" data-support-email-open>{label}</button>
+  <button class="support-email__copy" type="button" data-support-email-copy>Copy email address</button>
+  <span class="support-email__status" data-support-email-status aria-live="polite"></span>
+  <noscript><span class="support-email__noscript">JavaScript is required to reveal the protected email address.</span></noscript>
+</div>
+
+<script>
+  const mailbox = String.fromCharCode(
+    115, 117, 112, 112, 111, 114, 116, 64, 104, 111, 98, 46, 102, 97, 114, 109,
+  );
+
+  const copyText = async (value: string): Promise<void> => {
+    if (!navigator.clipboard?.writeText) throw new Error("Clipboard unavailable");
+    await navigator.clipboard.writeText(value);
+  };
+
+  document.querySelectorAll<HTMLElement>("[data-support-email]").forEach((root) => {
+    if (root.dataset.supportEmailBound === "true") return;
+    root.dataset.supportEmailBound = "true";
+    const openButton = root.querySelector<HTMLButtonElement>("[data-support-email-open]");
+    const copyButton = root.querySelector<HTMLButtonElement>("[data-support-email-copy]");
+    const status = root.querySelector<HTMLElement>("[data-support-email-status]");
+    const subject = root.dataset.supportSubject ?? "HobFarm Customer Help";
+
+    openButton?.addEventListener("click", () => {
+      window.location.assign(`mailto:${mailbox}?subject=${encodeURIComponent(subject)}`);
+    });
+
+    copyButton?.addEventListener("click", async () => {
+      try {
+        await copyText(mailbox);
+        if (status) status.textContent = `${mailbox} copied.`;
+      } catch {
+        if (status) status.textContent = `Email ${mailbox}.`;
+      }
+    });
+  });
+</script>
+
+<style>
+  .support-email {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .support-email button {
+    min-height: 2.6rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgb(255 255 255 / 0.3);
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .support-email .support-email__primary {
+    border-color: var(--color-accent-green-bright, #dfff36);
+    background: var(--color-accent-green-bright, #dfff36);
+    color: #0b0b08;
+  }
+
+  .support-email button:hover,
+  .support-email button:focus-visible {
+    border-color: white;
+    background: white;
+    color: #0b0b08;
+  }
+
+  .support-email__status,
+  .support-email__noscript {
+    width: 100%;
+    color: rgb(255 255 255 / 0.62);
+    font-size: 0.75rem;
+  }
+
+  .support-email--compact .support-email__status,
+  .support-email--compact .support-email__noscript {
+    width: auto;
+  }
+</style>

@@ -47,6 +47,7 @@ interface FulfillmentMessage {
 
 interface Env {
   PRINTFUL_API_TOKEN: SecretsStoreBinding;
+  CONTACT_EMAIL?: SendEmail;
   COMMERCE_DB?: D1Database;
   FULFILLMENT_QUEUE?: Queue<FulfillmentMessage>;
   COMMERCE_DATA_KEY?: string;
@@ -61,6 +62,9 @@ const JSON_HEADERS = {
   "Content-Type": "application/json; charset=utf-8",
   "X-Content-Type-Options": "nosniff",
 };
+
+const CONTACT_SENDER = "contact@forms.hob.farm";
+const CONTACT_DESTINATIONS = new Set(["support@hob.farm", "hey@hob.farm"]);
 
 function json(payload: unknown, status = 200): Response {
   return Response.json(payload, { status, headers: JSON_HEADERS });
@@ -87,6 +91,71 @@ async function readJson(request: Request, maxBytes = 64 * 1024): Promise<unknown
     });
   }
   return request.json();
+}
+
+function contactString(
+  body: Record<string, unknown>,
+  field: string,
+  maxLength: number,
+): string | null {
+  const value = body[field];
+  if (typeof value !== "string") return null;
+  const normalized = value.trim();
+  return normalized && normalized.length <= maxLength ? normalized : null;
+}
+
+function isContactEmail(value: string): boolean {
+  return value.length <= 254 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+async function sendContactEmail(request: Request, env: Env): Promise<Response> {
+  const input = await readJson(request, 24 * 1024);
+  if (!input || typeof input !== "object" || Array.isArray(input)) {
+    return json({ error: "invalid_contact_message" }, 400);
+  }
+
+  const body = input as Record<string, unknown>;
+  const to = contactString(body, "to", 254);
+  const replyTo = contactString(body, "replyTo", 254);
+  const subject = contactString(body, "subject", 200);
+  const text = contactString(body, "text", 12 * 1024);
+  const html = contactString(body, "html", 20 * 1024);
+
+  if (
+    !to ||
+    !CONTACT_DESTINATIONS.has(to) ||
+    !replyTo ||
+    !isContactEmail(replyTo) ||
+    !subject ||
+    /[\r\n]/.test(subject) ||
+    !text ||
+    !html
+  ) {
+    return json({ error: "invalid_contact_message" }, 400);
+  }
+  if (!env.CONTACT_EMAIL) {
+    return json({ error: "contact_email_not_configured" }, 503);
+  }
+
+  try {
+    const delivery = await env.CONTACT_EMAIL.send({
+      to,
+      from: { email: CONTACT_SENDER, name: "HobFarm contact form" },
+      replyTo,
+      subject,
+      text,
+      html,
+    });
+    console.log("Contact email accepted", {
+      destination: to,
+      messageId: delivery.messageId,
+    });
+    return json({ messageId: delivery.messageId });
+  } catch (error) {
+    const errorCode = codeFromError(error, "contact_email_failed");
+    console.error("Contact email delivery failed", { destination: to, errorCode });
+    return json({ error: "contact_email_failed" }, 502);
+  }
 }
 
 function requireLedger(env: Env): D1Database {
@@ -179,6 +248,10 @@ async function handleLedgerRequest(
   if (!url.pathname.startsWith("/internal/")) return null;
 
   try {
+    if (request.method === "POST" && url.pathname === "/internal/contact/send") {
+      return sendContactEmail(request, env);
+    }
+
     if (request.method === "GET" && url.pathname.startsWith("/internal/academy/products/")) {
       const productKey = decodeURIComponent(url.pathname.split("/").pop() ?? "");
       const product = await getAcademyProduct(requireLedger(env), productKey);

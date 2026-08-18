@@ -5,11 +5,20 @@ import Button from "@/components/fundations/elements/Button.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import ContentPanel from "@/components/ContentPanel.astro";
 import HelpCenterCard from "@/components/helpcenter/HelpCenterCard.astro";
+import SupportEmailLink from "@/components/support/SupportEmailLink.astro";
 import { getCollection } from "astro:content";
 
 const allHelpCenterCard = await getCollection("help");
 
-const hubLinks = [
+interface HubLink {
+  description: string;
+  emailSubject?: string;
+  linkHref?: string;
+  linkText: string;
+  title: string;
+}
+
+const hubLinks: HubLink[] = [
   {
     title: "Browse guides",
     description: "Read setup notes, preview documentation, gallery guidance, and project workflows.",
@@ -23,14 +32,22 @@ const hubLinks = [
     linkHref: "/status/",
   },
   {
-    title: "Contact Customer Help",
-    description: "Use the contact form for an order, account, access, refund, or application problem.",
-    linkText: "Contact Customer Help",
-    linkHref: "/contact/?subject=customer-help",
+    title: "Email Customer Help",
+    description: "Send an order, account, access, refund, or application problem directly to HobFarm.",
+    linkText: "Email Customer Help",
+    emailSubject: "HobFarm Customer Help",
   },
 ];
 
-const customerHelpTopics = [
+interface CustomerHelpTopic {
+  body: string;
+  cta?: string;
+  emailSubject?: string;
+  href?: string;
+  title: string;
+}
+
+const customerHelpTopics: CustomerHelpTopic[] = [
   {
     title: "Payments and refunds",
     body: "Include the payment provider, order ID or receipt, transaction date, and the email address used at checkout. Refund rules vary by item and provider.",
@@ -56,8 +73,8 @@ const customerHelpTopics = [
   {
     title: "Security reports",
     body: "Use the security subject for vulnerabilities or privacy concerns. Do not include live credentials, private user data, or access tokens.",
-    href: "/contact/?subject=security",
-    cta: "Send a security report",
+    emailSubject: "HobFarm security report",
+    cta: "Email a security report",
   },
 ];
 ---
@@ -78,7 +95,7 @@ const customerHelpTopics = [
             Help with orders, accounts, courses, and HobFarm tools.
           </Text>
           <Text tag="p" variant="textBase" class="mt-5 max-w-2xl text-balance leading-relaxed text-base-300">
-            Start with a guide or service status. If the problem involves a payment, account, download, course, refund, or application, send the details through the contact form.
+            Start with a guide or service status. If the problem involves a payment, account, download, course, refund, or application, email Customer Help with the details.
           </Text>
         </div>
 
@@ -88,7 +105,11 @@ const customerHelpTopics = [
               <Text tag="h2" variant="textLG" class="font-display text-white">{item.title}</Text>
               <Text tag="p" variant="textSM" class="mt-3 flex-1 leading-relaxed text-base-400">{item.description}</Text>
               <div class="mt-6">
-                <Button isLink size="sm" variant="muted" href={item.linkHref}>{item.linkText}</Button>
+                {item.emailSubject ? (
+                  <SupportEmailLink compact label={item.linkText} subject={item.emailSubject} />
+                ) : (
+                  <Button isLink size="sm" variant="muted" href={item.linkHref!}>{item.linkText}</Button>
+                )}
               </div>
             </li>
           ))}
@@ -112,6 +133,11 @@ const customerHelpTopics = [
                 <a class="mt-5 inline-flex text-sm text-white underline decoration-base-600 underline-offset-4 hover:decoration-white" href={topic.href}>
                   {topic.cta}
                 </a>
+              )}
+              {topic.emailSubject && topic.cta && (
+                <div class="mt-5">
+                  <SupportEmailLink compact label={topic.cta} subject={topic.emailSubject} />
+                </div>
               )}
             </article>
           ))}

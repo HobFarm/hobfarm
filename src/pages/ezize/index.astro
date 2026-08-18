@@ -5,7 +5,7 @@ import Breadcrumbs from "@/components/global/Breadcrumbs.astro";
 
 const description =
   "EZIZE is HobFarm's probability machine for collectible images. Insert one EZ coin to get a finished Cake, Critter, or Character with a unique ID and Generation Path Odds.";
-const appUrl = "https://ezize.hob.farm/";
+const appUrl = "https://ezize.hob.farm/play/";
 const cdnRoot = "https://cdn.hob.farm/ezize";
 const socialImage = `${cdnRoot}/ezize-hero.png`;
 const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
@@ -152,7 +152,7 @@ const structuredData = {
             An EZ is a collectible image, like a digital trading card. Each one has a unique ID and Generation Path Odds showing how likely that combination is to be chosen again.
           </p>
           <div class="hero-actions">
-            <a class="machine-button" href={appUrl}>Open the machine <span aria-hidden="true">→</span></a>
+            <a class="machine-button" href={appUrl}>Start EZIZE <span aria-hidden="true">→</span></a>
             <a class="text-link" href="#how-it-works">See how a pull works</a>
           </div>
         </div>
@@ -430,7 +430,7 @@ const structuredData = {
           </article>
         </div>
         <div class="center-action">
-          <a class="machine-button dark-button" href={appUrl}>Get started at EZIZE <span aria-hidden="true">→</span></a>
+          <a class="machine-button dark-button" href={appUrl}>Get EZ Coins <span aria-hidden="true">→</span></a>
           <p>Account creation does not subscribe you to marketing email.</p>
         </div>
       </Wrapper>
@@ -467,7 +467,7 @@ const structuredData = {
       <section class="final-cta" aria-labelledby="final-title">
         <p class="burst final-burst" aria-hidden="true">IT'S THAT EZ!</p><p class="eyebrow">Cakes · Critters · Characters</p>
         <h2 id="final-title">Insert coin. Get a collectible EZ.</h2>
-        <a class="machine-button" href={appUrl}>Open EZIZE <span aria-hidden="true">→</span></a>
+        <a class="machine-button" href={appUrl}>Start EZIZE <span aria-hidden="true">→</span></a>
       </section>
     </Wrapper>
   </div>

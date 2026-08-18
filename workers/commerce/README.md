@@ -2,7 +2,7 @@
 
 This is the server-side boundary for direct HobFarm physical goods and Academy account state. It is not deployed by the website build.
 
-The Worker owns the trusted catalog, order ledger, encrypted fulfillment address, Printful v2 draft builder, queue consumer, and provider reconciliation. It also keeps the read-only Printful inspection routes used to verify the Melting Rabbit Hole Dad Hat. The Worker has no public route and `workers_dev` is disabled; Pages Functions reach it through a service binding named `COMMERCE`.
+The Worker owns the trusted catalog, order ledger, encrypted fulfillment address, Printful v2 draft builder, queue consumer, provider reconciliation, and contact-form email dispatch. It also keeps the read-only Printful inspection routes used to verify the Melting Rabbit Hole Dad Hat. The Worker has no public route and `workers_dev` is disabled; Pages Functions reach it through a service binding named `COMMERCE`.
 
 The direct-order D1 schema is in `migrations/0001_orders.sql`. Academy products, purchases, permanent entitlements, progress, and unresolved questions are in `migrations/0002_academy.sql`. Production also needs a D1 binding named `COMMERCE_DB`, a queue binding named `FULFILLMENT_QUEUE`, and a base64-encoded 32-byte secret named `COMMERCE_DATA_KEY`.
 

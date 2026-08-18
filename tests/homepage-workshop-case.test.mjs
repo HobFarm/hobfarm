@@ -67,6 +67,7 @@ test("the long Process Film is removed from the compact hub and homepage", () =>
 test("homepage Workshop summary and promoted EZIZE release link to their real routes", () => {
   const component = read("src/components/home/HomeWorkshop.astro");
   const ezize = read("src/components/home/HomeEzizeFeature.astro");
+  const headers = read("public/_headers");
   const projects = read("src/data/workshop-projects.ts");
 
   for (const href of ["/workshop/", "/workshop/projects/hobfarm/"]) {
@@ -74,7 +75,13 @@ test("homepage Workshop summary and promoted EZIZE release link to their real ro
   }
 
   assert.match(ezize, /href="\/ezize\/"/);
-  assert.match(ezize, /https:\/\/ezize\.hob\.farm\//);
+  assert.match(ezize, /data-ezize-session-link/);
+  assert.match(ezize, /data-authenticated-href=\{appUrl\}/);
+  assert.match(ezize, /https:\/\/ezize\.hob\.farm\/play\//);
+  assert.match(ezize, /https:\/\/ezize\.hob\.farm\/api\/account\/session/);
+  assert.match(ezize, /credentials: "include"/);
+  assert.match(ezize, /Start EZIZE/);
+  assert.match(headers, /connect-src[^;]*https:\/\/ezize\.hob\.farm/);
   assert.match(ezize, /ezize-hero\.png/);
   assert.match(ezize, /ezize-efb0ab2e5ad02c37\.png/);
   assert.match(ezize, /ezize-d6b613e86a33f971\.png/);

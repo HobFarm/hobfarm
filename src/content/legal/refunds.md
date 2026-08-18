@@ -16,7 +16,7 @@ This policy does not limit any non-waivable rights you may have under applicable
 
 Before opening a payment dispute, contact HobFarm so the issue can be reviewed.
 
-Use the [contact page](/contact/). Include:
+Use the protected [Customer Help email button](#legal-support-email) below. Include:
 
 - The email address used for the order.
 - The payment platform, such as Stripe, Ko-fi, Lemon Squeezy, PayPal, or a marketplace.
@@ -96,6 +96,6 @@ HobFarm may provide the payment provider with order records, access logs, refund
 
 ## Contact
 
-Refund and billing questions: [contact HobFarm](/contact/)
+Refund and billing questions: use the protected [Customer Help email button](#legal-support-email) below.
 
 Customer Help: [payments, access, delivery, and refund help](/helpcenter/)

@@ -2,6 +2,7 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Breadcrumbs from "@/components/global/Breadcrumbs.astro";
+import SupportEmailLink from "@/components/support/SupportEmailLink.astro";
 
 interface Props {
   title: string;
@@ -51,8 +52,11 @@ const structuredData = {
         <slot />
       </article>
       <footer>
-        <div><strong>Questions about these terms?</strong><p>Use HobFarm's contact page for account, billing, privacy, or licensing questions.</p></div>
-        <div class="footer-actions"><a href="/contact/">Contact HobFarm</a><a href="https://ezize.hob.farm/">Open EZIZE</a></div>
+        <div><strong>Questions or account trouble?</strong><p>Email HobFarm Customer Help about billing, privacy, licensing, or an EZIZE account.</p></div>
+        <div class="footer-actions">
+          <SupportEmailLink id="ezize-support-email" compact label="Email Customer Help" subject={`EZIZE: ${title}`} />
+          <a href="https://ezize.hob.farm/play/">Start EZIZE</a>
+        </div>
       </footer>
     </Wrapper>
   </div>
