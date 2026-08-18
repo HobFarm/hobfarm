@@ -2,6 +2,7 @@
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 
 const appUrl = "https://ezize.hob.farm/play/";
+const heroImageUrl = "https://cdn.hob.farm/ezize/ezize-square.jpg";
 const imageUrl = (filename: string, width: number, quality = 82) =>
   `https://cdn.hob.farm/cdn-cgi/image/width=${width},quality=${quality},format=auto/ezize/${encodeURIComponent(filename)}`;
 const imageSrcSet = (filename: string, widths: number[]) =>
@@ -68,16 +69,15 @@ const forms = [
         data-event="homepage_ezize_feature_open"
       >
         <img
-          src={imageUrl("ezize-hero.png", 1080)}
-          srcset={imageSrcSet("ezize-hero.png", [720, 1080, 1440])}
+          src={heroImageUrl}
+          srcset={imageSrcSet("ezize-square.jpg", [600, 900, 1200])}
           sizes="(min-width: 1024px) 60vw, 100vw"
-          width="1672"
-          height="941"
+          width="1200"
+          height="1200"
           alt="The EZIZE vending machine surrounded by Cute and Corrupted Cakes, Critters, and Characters"
           loading="lazy"
           decoding="async"
         />
-        <span class="hero-stamp" aria-hidden="true"><strong>1 COIN</strong><strong>1 EZ</strong></span>
       </a>
 
       <div class="ezize-forms" aria-label="The three EZIZE forms">
@@ -299,30 +299,6 @@ const forms = [
     outline: 2px solid var(--ez-lime);
     outline-offset: -3px;
   }
-
-  .hero-stamp {
-    position: absolute;
-    z-index: 1;
-    right: clamp(0.8rem, 2vw, 1.25rem);
-    bottom: clamp(0.8rem, 2vw, 1.25rem);
-    display: grid;
-    place-items: center;
-    width: 4.4rem;
-    height: 4.4rem;
-    rotate: 7deg;
-    border: 1px solid rgb(11 11 8 / 0.45);
-    border-radius: 999px;
-    background: var(--ez-lime);
-    color: var(--ez-ink);
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.04em;
-    line-height: 1.05;
-    text-align: center;
-    box-shadow: 0 0.55rem 1.5rem rgb(0 0 0 / 0.32);
-  }
-
-  .hero-stamp strong { display: block; }
 
   .ezize-forms {
     display: grid;
