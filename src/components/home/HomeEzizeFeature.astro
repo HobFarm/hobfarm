@@ -1,0 +1,385 @@
+---
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
+const appUrl = "https://ezize.hob.farm/";
+const imageUrl = (filename: string, width: number, quality = 82) =>
+  `https://cdn.hob.farm/cdn-cgi/image/width=${width},quality=${quality},format=auto/ezize/${encodeURIComponent(filename)}`;
+const imageSrcSet = (filename: string, widths: number[]) =>
+  widths.map((width) => `${imageUrl(filename, width)} ${width}w`).join(", ");
+
+const forms = [
+  {
+    name: "Cake",
+    file: "ezize-efb0ab2e5ad02c37.png",
+    alt: "An EZIZE cake with white frosting, chocolate layers, cherries, daisies, and a smiling face",
+  },
+  {
+    name: "Critter",
+    file: "ezize-d6b613e86a33f971.png",
+    alt: "A colorful EZIZE otter-like critter with pink and teal striped body details",
+  },
+  {
+    name: "Character",
+    file: "ezize-76bd76d0a0822404.png",
+    alt: "A smiling EZIZE character in an ocean-inspired outfit in a warm geometric landscape",
+  },
+];
+---
+
+<section id="ezize-spotlight" class="ezize-spotlight" aria-labelledby="ezize-spotlight-heading">
+  <Wrapper variant="standard" class="py-12 lg:py-16">
+    <article class="ezize-feature">
+      <div class="ezize-feature__copy">
+        <div>
+          <p class="eyebrow"><span aria-hidden="true"></span> Live application / coin packs available</p>
+          <p class="wordmark" aria-hidden="true">EZIZE</p>
+          <h2 id="ezize-spotlight-heading">Insert one coin.<br />Get one collectible EZ.</h2>
+          <p class="dek">
+            EZIZE builds an authored Cake, Critter, or Character, calculates its Generation Path Odds, renders the finished image, and saves the EZ and receipt to your account.
+          </p>
+        </div>
+
+        <dl class="ezize-facts">
+          <div><dt>One coin</dt><dd>One complete pull</dd></div>
+          <div><dt>Your file</dt><dd>High-resolution PNG</dd></div>
+          <div><dt>Your account</dt><dd>EZs, receipts, and balance</dd></div>
+        </dl>
+
+        <div class="ezize-actions">
+          <a class="machine-button" href={appUrl} data-event="homepage_ezize_machine_open">
+            Open the machine <span aria-hidden="true">&nearr;</span>
+          </a>
+          <a class="story-link" href="/ezize/" data-event="homepage_project_open">
+            See how EZIZE works <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+
+      <a
+        class="ezize-feature__hero"
+        href="/ezize/"
+        aria-label="See how the EZIZE probability machine works"
+        data-event="homepage_ezize_feature_open"
+      >
+        <img
+          src={imageUrl("ezize-hero.png", 1080)}
+          srcset={imageSrcSet("ezize-hero.png", [720, 1080, 1440])}
+          sizes="(min-width: 1024px) 60vw, 100vw"
+          width="1672"
+          height="941"
+          alt="The EZIZE vending machine surrounded by Cute and Corrupted Cakes, Critters, and Characters"
+          loading="lazy"
+          decoding="async"
+        />
+        <span class="hero-stamp" aria-hidden="true"><strong>1 COIN</strong><strong>1 EZ</strong></span>
+      </a>
+
+      <div class="ezize-forms" aria-label="The three EZIZE forms">
+        {forms.map((form) => (
+          <a href="/ezize/" aria-label={`See the ${form.name} form in EZIZE`} data-event="homepage_ezize_form_open">
+            <img
+              src={imageUrl(form.file, 420)}
+              srcset={imageSrcSet(form.file, [280, 420, 620])}
+              sizes="(min-width: 1024px) 19vw, 33vw"
+              width="2336"
+              height="3504"
+              alt={form.alt}
+              loading="lazy"
+              decoding="async"
+            />
+            <span><small>Form</small>{form.name}</span>
+          </a>
+        ))}
+      </div>
+    </article>
+  </Wrapper>
+</section>
+
+<style>
+  .ezize-spotlight {
+    --ez-ink: #0b0b08;
+    --ez-paper: #f5f1de;
+    --ez-lime: #dfff36;
+    --ez-orange: #ff684d;
+    border-bottom: 1px solid #2c2440;
+    background:
+      radial-gradient(circle at 10% 12%, rgb(223 255 54 / 0.1), transparent 26rem),
+      radial-gradient(circle at 88% 90%, rgb(255 104 77 / 0.09), transparent 30rem),
+      #07060b;
+  }
+
+  .ezize-feature {
+    display: grid;
+    overflow: hidden;
+    border: 1px solid #363044;
+    border-top: 2px solid var(--ez-lime);
+    border-radius: 0.9rem;
+    background: #0d0a13;
+    box-shadow: 0 1.4rem 4rem rgb(0 0 0 / 0.24);
+  }
+
+  .ezize-feature__copy {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: clamp(1.5rem, 4vw, 3rem);
+    color: var(--ez-paper);
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin: 0;
+    color: var(--ez-lime);
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .eyebrow span {
+    width: 0.48rem;
+    height: 0.48rem;
+    border-radius: 999px;
+    background: var(--ez-lime);
+    box-shadow: 0 0 1rem rgb(223 255 54 / 0.75);
+  }
+
+  .wordmark {
+    margin: clamp(2rem, 6vw, 4.5rem) 0 0;
+    color: var(--ez-paper);
+    font-family: var(--font-display);
+    font-size: clamp(3.7rem, 8vw, 7.2rem);
+    font-weight: 300;
+    letter-spacing: -0.09em;
+    line-height: 0.72;
+  }
+
+  .ezize-feature h2 {
+    max-width: 12ch;
+    margin: 1.6rem 0 0;
+    color: white;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.7rem);
+    font-weight: 300;
+    letter-spacing: -0.05em;
+    line-height: 0.98;
+    text-wrap: balance;
+  }
+
+  .dek {
+    max-width: 39rem;
+    margin: 1.2rem 0 0;
+    color: #b6b0bf;
+    font-size: 0.88rem;
+    line-height: 1.7;
+  }
+
+  .ezize-facts {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    border-block: 1px solid #302a3a;
+  }
+
+  .ezize-facts div {
+    display: grid;
+    grid-template-columns: minmax(5.5rem, 0.55fr) minmax(0, 1fr);
+    gap: 1rem;
+    padding: 0.72rem 0;
+  }
+
+  .ezize-facts div + div { border-top: 1px solid #302a3a; }
+  .ezize-facts dt,
+  .ezize-facts dd { margin: 0; }
+  .ezize-facts dt {
+    color: var(--ez-orange);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .ezize-facts dd { color: #d9d4df; font-size: 0.72rem; }
+
+  .ezize-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.1rem;
+  }
+
+  .machine-button,
+  .story-link {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.07em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .machine-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    min-width: 12.5rem;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--ez-lime);
+    background: var(--ez-lime);
+    color: var(--ez-ink);
+    font-weight: 700;
+  }
+
+  .story-link { color: #c4becc; }
+  .machine-button:hover,
+  .machine-button:focus-visible { border-color: white; background: white; }
+  .story-link:hover,
+  .story-link:focus-visible { color: white; }
+
+  .ezize-feature__hero {
+    position: relative;
+    display: block;
+    min-height: 17rem;
+    overflow: hidden;
+    border-bottom: 1px solid #302a3a;
+    background: #07060b;
+  }
+
+  .ezize-feature__hero::after {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 45%, rgb(7 6 11 / 0.28));
+    content: "";
+    pointer-events: none;
+  }
+
+  .ezize-feature__hero img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 17rem;
+    object-fit: cover;
+    transition: transform 500ms ease, filter 300ms ease;
+  }
+
+  .ezize-feature__hero:focus-visible,
+  .ezize-forms a:focus-visible {
+    outline: 2px solid var(--ez-lime);
+    outline-offset: -3px;
+  }
+
+  .hero-stamp {
+    position: absolute;
+    z-index: 1;
+    right: clamp(0.8rem, 2vw, 1.25rem);
+    bottom: clamp(0.8rem, 2vw, 1.25rem);
+    display: grid;
+    place-items: center;
+    width: 4.4rem;
+    height: 4.4rem;
+    rotate: 7deg;
+    border: 1px solid rgb(11 11 8 / 0.45);
+    border-radius: 999px;
+    background: var(--ez-lime);
+    color: var(--ez-ink);
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.04em;
+    line-height: 1.05;
+    text-align: center;
+    box-shadow: 0 0.55rem 1.5rem rgb(0 0 0 / 0.32);
+  }
+
+  .hero-stamp strong { display: block; }
+
+  .ezize-forms {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    background: #07060b;
+  }
+
+  .ezize-forms a {
+    position: relative;
+    min-width: 0;
+    min-height: 8rem;
+    overflow: hidden;
+    color: white;
+    text-decoration: none;
+  }
+
+  .ezize-forms a + a { border-left: 1px solid #302a3a; }
+
+  .ezize-forms img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 8rem;
+    object-fit: cover;
+    object-position: center 24%;
+    filter: saturate(0.84) contrast(1.04);
+    transition: transform 450ms ease, filter 250ms ease;
+  }
+
+  .ezize-forms a::after {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgb(7 6 11 / 0.9), transparent 62%);
+    content: "";
+    pointer-events: none;
+  }
+
+  .ezize-forms span {
+    position: absolute;
+    z-index: 1;
+    right: 0.7rem;
+    bottom: 0.65rem;
+    left: 0.7rem;
+    color: white;
+    font-family: var(--font-display);
+    font-size: clamp(1.05rem, 2vw, 1.45rem);
+    letter-spacing: -0.02em;
+  }
+
+  .ezize-forms small {
+    display: block;
+    margin-bottom: 0.15rem;
+    color: var(--ez-lime);
+    font-family: var(--font-mono);
+    font-size: 0.47rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .ezize-feature__hero:hover img { transform: scale(1.02); }
+    .ezize-forms a:hover img { filter: saturate(1) contrast(1); transform: scale(1.035); }
+  }
+
+  @media (min-width: 64rem) {
+    .ezize-feature {
+      grid-template-columns: minmax(0, 1.35fr) minmax(21rem, 0.75fr);
+      grid-template-rows: minmax(22rem, 1fr) 10.5rem;
+    }
+    .ezize-feature__copy { grid-column: 2; grid-row: 1 / span 2; }
+    .ezize-feature__hero { grid-column: 1; grid-row: 1; }
+    .ezize-forms { grid-column: 1; grid-row: 2; }
+  }
+
+  @media (max-width: 36rem) {
+    .ezize-actions { align-items: stretch; flex-direction: column; }
+    .machine-button,
+    .story-link { width: 100%; }
+    .story-link { padding: 0.4rem 0; }
+    .ezize-forms a { min-height: 7rem; }
+    .ezize-forms img { min-height: 7rem; }
+    .ezize-forms span { right: 0.45rem; bottom: 0.5rem; left: 0.45rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ezize-feature__hero img,
+    .ezize-forms img { transition: none; }
+  }
+</style>

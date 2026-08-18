@@ -27,9 +27,13 @@ test("supplied mannequin and Wonderland graphics remain exact local source files
 test("homepage gives the publication one compact architecture explanation", () => {
   const homepage = read("src/pages/index.astro");
   const component = read("src/components/home/HomeWorkshop.astro");
+  const ezize = read("src/components/home/HomeEzizeFeature.astro");
 
   assert.match(homepage, /<HomeWorkshop \/>/);
   assert.equal((homepage.match(/<HomeWorkshop \/>/g) ?? []).length, 1);
+  assert.match(homepage, /<HomeEzizeFeature \/>/);
+  assert.ok(homepage.indexOf("<MagazineFrontPage />") < homepage.indexOf("<HomeEzizeFeature />"));
+  assert.ok(homepage.indexOf("<HomeEzizeFeature />") < homepage.indexOf("<HomeSectionOverview />"));
   assert.doesNotMatch(homepage, /HomePublicationBridge|HomeSupportBand/);
   assert.doesNotMatch(homepage, /<VisualSystemFeature \/>/);
 
@@ -38,14 +42,15 @@ test("homepage gives the publication one compact architecture explanation", () =
     "Useful work can stand alone and still connect",
     "Articles are the largest public reading surface",
     "The underlying system can begin anywhere",
-    "EZIZE",
-    "Insert coin. Get an EZ.",
     "Explore the Workshop",
     "How the HobFarm system works",
   ]) {
     assert.match(component, new RegExp(phrase.replace(/[.]/g, "\\.")));
   }
+  assert.match(ezize, /EZIZE/);
+  assert.match(ezize, /Insert one coin/);
   assert.match(component, /WorkshopNodeMesh compact/);
+  assert.doesNotMatch(component, /EZIZE|current-project/);
   assert.doesNotMatch(component, /WorkshopProjectGrid|WorkshopMethodStrip/);
 });
 
@@ -59,15 +64,21 @@ test("the long Process Film is removed from the compact hub and homepage", () =>
   assert.match(workshop, /Projects grow\. Build them so they can\./);
 });
 
-test("homepage Workshop summary links to real system and current-project routes", () => {
+test("homepage Workshop summary and promoted EZIZE release link to their real routes", () => {
   const component = read("src/components/home/HomeWorkshop.astro");
+  const ezize = read("src/components/home/HomeEzizeFeature.astro");
   const projects = read("src/data/workshop-projects.ts");
 
-  for (const href of ["/workshop/", "/workshop/projects/hobfarm/", "/ezize/"]) {
+  for (const href of ["/workshop/", "/workshop/projects/hobfarm/"]) {
     assert.match(component, new RegExp(href.replaceAll("/", "\\/")));
   }
 
-  assert.match(component, /ezize\.output\.corrupted-cake/);
+  assert.match(ezize, /href="\/ezize\/"/);
+  assert.match(ezize, /https:\/\/ezize\.hob\.farm\//);
+  assert.match(ezize, /ezize-hero\.png/);
+  assert.match(ezize, /ezize-efb0ab2e5ad02c37\.png/);
+  assert.match(ezize, /ezize-d6b613e86a33f971\.png/);
+  assert.match(ezize, /ezize-76bd76d0a0822404\.png/);
   assert.match(component, /WorkshopNodeMesh compact/);
   assert.doesNotMatch(component, /WorkshopProjectGrid|WorkshopMethodStrip/);
 
@@ -134,6 +145,7 @@ test("creative-project inquiry is contextual and accepted by the contact backend
 test("homepage proof and project paths expose stable analytics hooks", () => {
   const files = [
     read("src/components/home/MagazineFrontPage.astro"),
+    read("src/components/home/HomeEzizeFeature.astro"),
     read("src/components/home/HomeWorkshop.astro"),
     read("src/components/workshop/WorkshopProjectGrid.astro"),
     read("src/components/home/HomeOtherAlice.astro"),

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import MagazineFrontPage from "@/components/home/MagazineFrontPage.astro";
+import HomeEzizeFeature from "@/components/home/HomeEzizeFeature.astro";
 import HomeSectionOverview from "@/components/home/HomeSectionOverview.astro";
 import HomeEditorialSpecials from "@/components/home/HomeEditorialSpecials.astro";
 import SiteSections from "@/components/home/SiteSections.astro";
@@ -13,8 +14,10 @@ import ExploreSupportFollow from "@/components/home/ExploreSupportFollow.astro";
   description="HobFarm publishes original articles, stories, visual worlds, games, and creative applications, then opens the Workshop records behind their research, art direction, continuity, motion, and web presentation."
   palette="magenta-cyan"
 >
-  {/* 1 publisher intro · 2 sections · 3 current Editorial */}
+  {/* Publisher intro and the current Editorial front page stay first. */}
   <MagazineFrontPage />
+  {/* EZIZE is a live release with paid pulls, so it leads the wider catalog. */}
+  <HomeEzizeFeature />
   <HomeSectionOverview />
   <HomeEditorialSpecials />
   {/* One compact system summary follows the substantial Editorial front page. */}
