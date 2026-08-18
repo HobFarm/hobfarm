@@ -204,11 +204,37 @@ For every task:
 6. Run the correct validation command.
 7. Fix validation errors caused by the task.
 8. Leave validated work in the shared `main` worktree for user review.
-9. Commit or push only when the user explicitly asks for that Git action in the
-   current task.
+9. Follow the plain-language release authorization below. Do not make the user
+   translate an outcome such as "deploy this" into separate Git instructions.
 10. Summarize files changed, commands run, and results.
 
 If uncommitted changes exist in files you need to edit, inspect them first. Do not overwrite them blindly.
+
+### Plain-language release authorization
+
+Treat the user's requested outcome as the authorization boundary:
+
+- "Commit this" authorizes a focused commit of the validated task changes on
+  `main`.
+- "Push this" authorizes the focused commit when needed and a normal,
+  non-force push to `origin/main`.
+- "Deploy this," "publish this," "make it live," or "update the live site"
+  authorizes the normal end-to-end release path: validate, commit the scoped
+  task changes when the deployment gate requires committed source, push when
+  the configured hosting workflow requires it, deploy, and verify the live
+  result.
+
+Do not ask the user to identify files, stage changes, write a commit message,
+press a Git button, or repeat permission for those ordinary release steps.
+Resolve the correct repository and deployment target from the project. If more
+than one repository is involved, keep each commit scoped to its owning
+repository and complete the required release path in the correct order.
+
+This authorization does not include unrelated changes, force pushes,
+destructive Git operations, secret rotation, production data edits, paid
+provider calls, or creating new cloud resources unless the request clearly
+requires them. Stop only for a real conflict that cannot be separated safely or
+for a consequential choice the user has not made.
 
 ---
 
@@ -231,9 +257,10 @@ Use these rules for every task:
    not treat every uncommitted file as a draft or use a branch as a holding area.
 6. When several agents are active, coordinate file ownership in the same
    worktree and preserve each other's changes.
-7. Do not create a commit or push merely because the work is complete. Commit
-   to `main` only when the user explicitly asks for a commit, and push
-   `origin/main` only when the user explicitly asks for a push or publication.
+7. Do not create a commit or push merely because the work is complete. A direct
+   request to commit, push, publish, deploy, make live, or update the live site
+   is explicit authorization for the corresponding release steps described
+   above.
 8. Before handoff, verify that `main` is checked out. Require a clean working
    tree only when the user requested a commit, and require `main` to match
    `origin/main` only when the user requested a push.
@@ -873,10 +900,10 @@ Use local development and preview commands for review. Do not create
 non-production branches for Cloudflare preview deployments.
 
 Pushing a validated commit to `origin/main` triggers the normal HobFarm
-publishing workflow, but the single-branch policy does not authorize an
-automatic push. Push only when the user explicitly requests publication or a
-push. Direct Wrangler deployments and Cloudflare configuration changes also
-require explicit approval.
+publishing workflow. A request to publish, deploy, make live, or update the live
+site is explicit approval for the required scoped commit and normal push.
+Direct Wrangler deployments and Cloudflare configuration changes still require
+an explicit live-release request.
 
 Cloudflare Pages Functions live in:
 
@@ -1027,11 +1054,12 @@ feat(grimoire): add resolve endpoint
 style(home): tighten article card spacing
 ```
 
-When the user explicitly requests a commit, commit validated website work
-directly to `main`. Push `origin/main` only when the user explicitly requests a
-push or publication. Otherwise, leave the reviewed changes uncommitted in the
-shared `main` worktree. Do not create a pull request, PR branch, review branch,
-or separate worktree for the normal HobFarm workflow.
+When the user requests a commit or an outcome that requires one, commit
+validated website work directly to `main`. Push `origin/main` when the user
+requests a push, publication, deployment, or live update and the configured
+release path requires that push. Otherwise, leave the reviewed changes
+uncommitted in the shared `main` worktree. Do not create a pull request, PR
+branch, review branch, or separate worktree for the normal HobFarm workflow.
 
 ---
 
