@@ -460,7 +460,7 @@ const structuredData = {
   .machine-button:hover, .machine-button:focus-visible { transform: translate(.18rem,.18rem); box-shadow: .2rem .2rem 0 var(--orange); }
   .text-link { color: #fff; font: 700 .75rem/1.4 var(--font-mono); letter-spacing: .04em; text-transform: uppercase; text-underline-offset: .3em; }
   .burst { position: absolute; z-index: 3; display: grid; place-items: center; width: 8rem; aspect-ratio: 1; margin: 0; padding: 1rem; clip-path: polygon(50% 0,61% 17%,79% 7%,82% 28%,100% 31%,87% 49%,100% 64%,79% 69%,78% 91%,59% 81%,47% 100%,38% 81%,17% 94%,17% 72%,0 64%,13% 47%,0 31%,21% 27%,24% 6%,42% 17%); background: var(--lime); color: var(--ink); font: 900 .76rem/1.05 var(--font-display); text-align: center; transform: rotate(8deg); filter: drop-shadow(.35rem .35rem 0 rgba(0,0,0,.4)); }
-  .burst-two { position: static; flex: 0 0 auto; width: 6.25rem; background: var(--lime); color: var(--ink); font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif; font-size: .95rem; font-style: normal; font-weight: 400; letter-spacing: .025em; line-height: .82; transform: rotate(-8deg); }
+  .burst-two { position: static; display: flex; flex: 0 0 auto; flex-direction: column; align-items: center; justify-content: center; width: 6.25rem; background: var(--lime); color: var(--ink); font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif; font-size: 1.03rem; font-style: normal; font-weight: 400; letter-spacing: .025em; line-height: .82; transform: rotate(-8deg); }
   .burst-two span { display: block; }
   .pull-wrap { position: relative; z-index: 4; margin-top: -1.25rem; }
   .pull-path { display: grid; grid-template-columns: repeat(3,1fr); margin: 0; padding: 0; border: 2px solid var(--ink); background: var(--paper); color: var(--ink); box-shadow: .45rem .45rem 0 var(--orange); list-style: none; }
@@ -593,7 +593,7 @@ const structuredData = {
     .hero-shade { display: none; }
     .hero-copy { width: 100%; min-height: 0; padding: 2rem 1.25rem 2.5rem; background: #071a31; }
     .hero-title-row { gap: .45rem; }
-    .burst-two { width: 5.3rem; font-size: .8rem; }
+    .burst-two { width: 5.3rem; font-size: .86rem; }
     .pull-path { grid-template-columns: 1fr; }
     .pull-path li { min-height: 3.6rem; border-right: 0; border-bottom: 1px dashed rgba(11,11,8,.35); }
     .pull-path li:last-child { border-bottom: 0; }
