@@ -357,7 +357,7 @@ const structuredData = {
             <img
               src={imageUrl("ezize-76bd76d0a0822404.png", 760)}
               srcset={imageSrcSet("ezize-76bd76d0a0822404.png", [520, 760, 1080])}
-              sizes="(min-width: 900px) 40vw, 92vw"
+              sizes="(min-width: 900px) 46vw, 92vw"
               width="2336"
               height="3504"
               alt="The original Cute Character EZ-76BD76D0A0822404"
@@ -366,25 +366,25 @@ const structuredData = {
             />
             <figcaption><span>01 / CANONICAL EZ</span><strong>EZ-76BD76D0A0822404.png</strong></figcaption>
           </figure>
+          <figure class="video-figure">
+            <video controls muted loop playsinline preload="metadata" poster={imageUrl("ezize-76bd76d0a0822404.png", 720)} aria-label="A short animation derived from EZ-76BD76D0A0822404">
+              <source src={`${cdnRoot}/ezize-76bd76d0a0822404.mp4`} type="video/mp4" />
+              Your browser does not support embedded video.
+            </video>
+            <figcaption><span>02 / LATER DERIVATIVE</span><strong>EZ-76BD76D0A0822404-video.mp4</strong></figcaption>
+          </figure>
           <figure class="sheet-figure">
             <img
               src={imageUrl("ezize-76bd76d0a0822404-sheet.png", 1000)}
               srcset={imageSrcSet("ezize-76bd76d0a0822404-sheet.png", [720, 1000, 1400])}
-              sizes="(min-width: 900px) 48vw, 92vw"
+              sizes="92vw"
               width="3840"
               height="2160"
               alt="A later four-view character sheet derived from EZ-76BD76D0A0822404"
               loading="lazy"
               decoding="async"
             />
-            <figcaption><span>02 / LATER DERIVATIVE</span><strong>EZ-76BD76D0A0822404-sheet.png</strong></figcaption>
-          </figure>
-          <figure class="video-figure">
-            <video controls muted loop playsinline preload="metadata" poster={imageUrl("ezize-76bd76d0a0822404.png", 720)} aria-label="A short animation derived from EZ-76BD76D0A0822404">
-              <source src={`${cdnRoot}/ezize-76bd76d0a0822404.mp4`} type="video/mp4" />
-              Your browser does not support embedded video.
-            </video>
-            <figcaption><span>03 / LATER DERIVATIVE</span><strong>EZ-76BD76D0A0822404-video.mp4</strong></figcaption>
+            <figcaption><span>03 / LATER DERIVATIVE</span><strong>EZ-76BD76D0A0822404-sheet.png</strong></figcaption>
           </figure>
         </div>
         <p class="derivative-note">Your output license lets you edit, animate, print, publish, merchandise, and build new work from your EZ, subject to applicable law and the full license.</p>
@@ -573,15 +573,13 @@ const structuredData = {
   .proof-note h3 { margin: 0; color: #fff; font: 700 1.4rem/1.1 var(--font-display); }
   .proof-note p { margin: .8rem 0 0; color: rgba(245,241,222,.7); font-size: .9rem; line-height: 1.65; }
   .derivative-band { padding: clamp(5rem,9vw,9rem) 0; background: #161b1a; }
-  .derivative-grid { display: grid; grid-template-columns: .78fr 1.22fr; grid-template-rows: auto auto; gap: 1rem; align-items: start; }
+  .derivative-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem; align-items: start; }
   .derivative-grid figure, .gallery-grid figure { margin: 0; overflow: hidden; border: 1px solid var(--line); background: #0d0e0d; }
-  .original-figure { grid-row: span 2; }
   .original-figure img { aspect-ratio: 2/3; }
+  .sheet-figure { grid-column: 1/-1; }
   .sheet-figure img { aspect-ratio: 16/9; }
   .derivative-grid img, .derivative-grid video, .gallery-grid img { display: block; width: 100%; object-fit: cover; }
-  .derivative-grid video { aspect-ratio: 2/3; max-height: 31rem; background: #050505; }
-  .video-figure { display: grid; grid-template-columns: minmax(10rem,.45fr) 1fr; }
-  .video-figure figcaption { align-self: end; }
+  .derivative-grid video { aspect-ratio: 2/3; background: #050505; }
   .derivative-grid figcaption, .gallery-grid figcaption { display: flex; flex-direction: column; gap: .35rem; padding: 1rem; }
   .derivative-grid figcaption span, .gallery-grid figcaption span { color: var(--lime); font: 700 .6rem/1 var(--font-mono); letter-spacing: .09em; text-transform: uppercase; }
   .derivative-grid figcaption strong, .gallery-grid figcaption strong { overflow-wrap: anywhere; color: #fff; font: 700 .7rem/1.4 var(--font-mono); }
@@ -652,10 +650,8 @@ const structuredData = {
     .ticket-stub::after { right: -.85rem; }
     .ticket-stub strong { font-size: 1.8rem; writing-mode: initial; transform: none; }
     .live-proof-intro { gap: 1.25rem; }
-    .derivative-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
-    .original-figure { grid-row: auto; }
-    .video-figure { grid-template-columns: 1fr; }
-    .derivative-grid video { max-height: none; }
+    .derivative-grid { grid-template-columns: 1fr; }
+    .sheet-figure { grid-column: auto; }
     .price-grid { grid-template-columns: repeat(2,1fr); }
     .price-grid article:last-child { grid-column: 1/-1; }
   }
