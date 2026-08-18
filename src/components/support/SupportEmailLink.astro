@@ -19,6 +19,7 @@ const {
 <div
   class:list={["support-email", compact && "support-email--compact", className]}
   data-support-email
+  data-support-mailbox="c3VwcG9ydEBob2IuZmFybQ=="
   data-support-subject={subject}
   id={id}
 >
@@ -29,10 +30,6 @@ const {
 </div>
 
 <script>
-  const mailbox = String.fromCharCode(
-    115, 117, 112, 112, 111, 114, 116, 64, 104, 111, 98, 46, 102, 97, 114, 109,
-  );
-
   const copyText = async (value: string): Promise<void> => {
     if (!navigator.clipboard?.writeText) throw new Error("Clipboard unavailable");
     await navigator.clipboard.writeText(value);
@@ -45,6 +42,9 @@ const {
     const copyButton = root.querySelector<HTMLButtonElement>("[data-support-email-copy]");
     const status = root.querySelector<HTMLElement>("[data-support-email-status]");
     const subject = root.dataset.supportSubject ?? "HobFarm Customer Help";
+    const mailbox = globalThis.atob(root.dataset.supportMailbox ?? "");
+
+    if (!mailbox) return;
 
     openButton?.addEventListener("click", () => {
       window.location.assign(`mailto:${mailbox}?subject=${encodeURIComponent(subject)}`);

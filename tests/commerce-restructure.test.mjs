@@ -99,14 +99,13 @@ test("Customer Help reveals the support mailbox only after a visitor acts", () =
   const ezizeLayout = read("src/layouts/EzizeLegalLayout.astro");
   const refunds = read("src/content/legal/refunds.md");
   const ezizeRefunds = read("src/pages/ezize/refunds.astro");
-  const encoded = component.match(/String\.fromCharCode\(([\s\S]*?)\);/)?.[1] ?? "";
-  const codes = [...encoded.matchAll(/\d+/g)].map((match) => Number(match[0]));
+  const encoded = component.match(/data-support-mailbox="([^"]+)"/)?.[1] ?? "";
 
-  assert.equal(String.fromCharCode(...codes), "support@hob.farm");
+  assert.equal(Buffer.from(encoded, "base64").toString("utf8"), "support@hob.farm");
   assert.match(component, /data-support-email-open/);
   assert.match(component, /data-support-email-copy/);
   assert.match(component, /mailto:\$\{mailbox\}/);
-  assert.doesNotMatch(component, /mailto:support@hob\.farm/);
+  assert.doesNotMatch(component, /support@hob\.farm/);
 
   for (const source of [help, support, legalLayout, ezizeLayout]) {
     assert.match(source, /SupportEmailLink/);
