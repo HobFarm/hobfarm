@@ -4,7 +4,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Breadcrumbs from "@/components/global/Breadcrumbs.astro";
 
 const description =
-  "EZIZE is HobFarm's probability machine for collectible Cake, Critter, and Character images. Insert one EZ coin and the machine makes the selections for a finished high-resolution PNG.";
+  "EZIZE is HobFarm's probability machine for collectible images. Insert one EZ coin to get a finished Cake, Critter, or Character with a unique ID and Generation Path Odds.";
 const appUrl = "https://ezize.hob.farm/";
 const cdnRoot = "https://cdn.hob.farm/ezize";
 const socialImage = `${cdnRoot}/ezize-hero.png`;
@@ -146,9 +146,9 @@ const structuredData = {
         <div class="hero-copy">
           <p class="kicker">The HobFarm probability machine</p>
           <h1 id="ezize-title">EZIZE</h1>
-          <p class="hero-line">Insert coin.<br />Get an EZ.</p>
+          <p class="hero-line">Insert coin.<br />Get a collectible EZ.<br />It's that EZ.</p>
           <p class="hero-dek">
-            The machine chooses a Cake, Critter, or Character, runs it through Cute or Corrupted logic, and renders one finished collectible image.
+            An EZ is a collectible image, like a digital trading card. Each one has a unique ID and Generation Path Odds showing how likely that combination is to be chosen again.
           </p>
           <div class="hero-actions">
             <a class="machine-button" href={appUrl}>Open the machine <span aria-hidden="true">→</span></a>
@@ -160,24 +160,22 @@ const structuredData = {
     </Wrapper>
 
     <Wrapper class="pull-wrap" id="how-it-works">
-      <ol class="pull-path" aria-label="How an EZIZE pull works">
-        <li><span>01</span><strong>Get coins</strong></li>
-        <li><span>02</span><strong>Insert one</strong></li>
-        <li><span>03</span><strong>Press IT'S EZ</strong></li>
-        <li><span>04</span><strong>The machine chooses</strong></li>
-        <li><span>05</span><strong>Get your EZ</strong></li>
+      <ol class="pull-path" aria-label="EZIZE in three steps">
+        <li><span>01</span><strong>Insert coin</strong></li>
+        <li><span>02</span><strong>Get a collectible EZ</strong></li>
+        <li><span>03</span><strong>It's that EZ</strong></li>
       </ol>
     </Wrapper>
 
     <Wrapper class="section-space cabinet-space">
-      <section aria-labelledby="cabinet-title">
+      <section aria-labelledby="ez-definition-title">
         <div class="section-heading split-heading">
           <div>
-            <p class="eyebrow">Inside the cabinet</p>
-            <h2 id="cabinet-title">Three forms. Two personas. A lot of possible paths.</h2>
+            <p class="eyebrow">What is an EZ?</p>
+            <h2 id="ez-definition-title">A collectible image with its own ID and probability score.</h2>
           </div>
           <p>
-            Every pull begins with one of three forms. Cute and Corrupted are separate authored personas, not a quality score. They change the choices the machine can make and how those choices relate.
+            Think of it like a digital trading card. Each EZ is a finished Cake, Critter, or Character with a unique EZ ID and Generation Path Odds, the theoretical chance that the same version of EZIZE would choose that combination again.
           </p>
         </div>
         <div class="form-grid">
@@ -246,7 +244,7 @@ const structuredData = {
           </div>
           <div class="ticket-body">
             <p class="eyebrow">A precise claim</p>
-            <h2 id="odds-title">What the odds mean</h2>
+            <h2 id="odds-title">What the probability score means</h2>
             <p class="definition">
               Generation Path Odds are the theoretical chance that the same version of EZIZE would make the same sequence of weighted selections again.
             </p>
@@ -271,9 +269,9 @@ const structuredData = {
       <section class="receipt-grid" aria-labelledby="receipt-title">
         <div>
           <p class="eyebrow">One coin, one complete pull</p>
-          <h2 id="receipt-title">The result comes with a name and a record.</h2>
+          <h2 id="receipt-title">Every EZ comes with an ID and a record.</h2>
           <p class="lede">
-            Every finished image receives a unique EZ ID, a filename, a timestamp, a private HobFarm generation record, and an account receipt. The ID identifies the result. It is not a claim that no similar image could ever exist.
+            Every finished collectible receives a unique EZ ID, a filename, a timestamp, a private HobFarm generation record, and an account receipt. The ID identifies the result. It is not a claim that no similar image could ever exist.
           </p>
         </div>
         <div class="receipt-card">
@@ -361,7 +359,7 @@ const structuredData = {
     <Wrapper class="section-space">
       <section aria-labelledby="gallery-title">
         <div class="section-heading split-heading">
-          <div><p class="eyebrow">From the machine</p><h2 id="gallery-title">Every pull has an address.</h2></div>
+          <div><p class="eyebrow">From the machine</p><h2 id="gallery-title">Each collectible carries its EZ ID.</h2></div>
           <p>HobFarm may curate exceptional EZs into gallery features, character packages, stories, animation tests, or products. Outside platforms can help distribute selected work, but they do not define the machine or its records.</p>
         </div>
         <div class="gallery-grid">
@@ -378,7 +376,7 @@ const structuredData = {
     <section class="coin-band" aria-labelledby="coin-title">
       <Wrapper>
         <div class="coin-intro">
-          <div><p class="eyebrow">Load the machine</p><h2 id="coin-title">1 EZ coin = 1 complete EZ generation.</h2></div>
+          <div><p class="eyebrow">Load the machine</p><h2 id="coin-title">1 EZ coin = 1 complete collectible EZ.</h2></div>
           <p>EZ coins are prepaid machine credit. They are not cryptocurrency, blockchain tokens, an investment, or money you can withdraw. A free account keeps your balance and completed EZs connected to your verified email.</p>
         </div>
         <div class="price-grid">
@@ -432,8 +430,8 @@ const structuredData = {
 
     <Wrapper class="final-wrap">
       <section class="final-cta" aria-labelledby="final-title">
-        <p class="burst final-burst" aria-hidden="true">IT'S EZ!</p><p class="eyebrow">Cakes · Critters · Characters</p>
-        <h2 id="final-title">Insert coin. Let the machine decide.</h2>
+        <p class="burst final-burst" aria-hidden="true">IT'S THAT EZ!</p><p class="eyebrow">Cakes · Critters · Characters</p>
+        <h2 id="final-title">Insert coin. Get a collectible EZ.</h2>
         <a class="machine-button" href={appUrl}>Open EZIZE <span aria-hidden="true">→</span></a>
       </section>
     </Wrapper>
@@ -463,7 +461,7 @@ const structuredData = {
   .burst { position: absolute; z-index: 3; display: grid; place-items: center; width: 8rem; aspect-ratio: 1; margin: 0; padding: 1rem; clip-path: polygon(50% 0,61% 17%,79% 7%,82% 28%,100% 31%,87% 49%,100% 64%,79% 69%,78% 91%,59% 81%,47% 100%,38% 81%,17% 94%,17% 72%,0 64%,13% 47%,0 31%,21% 27%,24% 6%,42% 17%); background: var(--lime); color: var(--ink); font: 900 .76rem/1.05 var(--font-display); text-align: center; transform: rotate(8deg); filter: drop-shadow(.35rem .35rem 0 rgba(0,0,0,.4)); }
   .burst-two { right: 28%; bottom: 2.1rem; width: 6.7rem; background: var(--orange); color: #fff; transform: rotate(-9deg); }
   .pull-wrap { position: relative; z-index: 4; margin-top: -1.25rem; }
-  .pull-path { display: grid; grid-template-columns: repeat(5,1fr); margin: 0; padding: 0; border: 2px solid var(--ink); background: var(--paper); color: var(--ink); box-shadow: .45rem .45rem 0 var(--orange); list-style: none; }
+  .pull-path { display: grid; grid-template-columns: repeat(3,1fr); margin: 0; padding: 0; border: 2px solid var(--ink); background: var(--paper); color: var(--ink); box-shadow: .45rem .45rem 0 var(--orange); list-style: none; }
   .pull-path li { position: relative; display: flex; align-items: center; gap: .7rem; min-height: 4.8rem; padding: .9rem; border-right: 1px dashed rgba(11,11,8,.35); font: 700 .7rem/1.25 var(--font-mono); letter-spacing: .03em; text-transform: uppercase; }
   .pull-path li:last-child { border-right: 0; }
   .pull-path span { display: grid; flex: 0 0 auto; place-items: center; width: 1.75rem; height: 1.75rem; border-radius: 50%; background: var(--ink); color: var(--lime); font-size: .62rem; }
