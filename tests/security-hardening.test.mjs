@@ -60,6 +60,20 @@ test("Pages functions add no-store and browser security headers", () => {
   assert.match(security, /Contact: https:\/\/hob\.farm\/contact\/\?subject=security/);
 });
 
+test("incident scanner paths stop before Pages resolves static or application routes", () => {
+  const middleware = read("functions/_middleware.ts");
+  const probeGuard = middleware.indexOf("if (isKnownScannerProbe(url.pathname))");
+  const firstRouterHandoff = middleware.indexOf("context.next()", probeGuard);
+
+  assert.notEqual(probeGuard, -1);
+  assert.notEqual(firstRouterHandoff, -1);
+  assert.ok(probeGuard < firstRouterHandoff);
+  assert.match(middleware, /normalized\.endsWith\("\.php"\)/);
+  assert.match(middleware, /normalized\.endsWith\("\.sql"\)/);
+  assert.match(middleware, /"\/api\/node\/config\.js"/);
+  assert.match(middleware, /new Response\(null, \{/);
+});
+
 test("patched framework and platform dependencies are pinned above affected lines", () => {
   const pkg = JSON.parse(read("package.json"));
   assert.match(pkg.dependencies.astro, /^\^7\./);

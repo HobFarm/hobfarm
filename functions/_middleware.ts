@@ -6,6 +6,54 @@ interface Env {
 
 const PRIVATE_PREFIXES = ["/api/", "/account", "/login"];
 
+// These are deployment and source-file probes observed in the August 19,
+// 2026 traffic spike. Reject them before Pages asks the static/application
+// router to build a full 404 response. Keep this list narrow: broad extension
+// or directory blocks could interfere with real HobFarm assets and routes.
+const SCANNER_PROBE_PATHS = new Set([
+  "/.irb_history",
+  "/.pry_history",
+  "/api/node/config.js",
+  "/api/node/constants.js",
+  "/api/v1/executions",
+  "/app/amplify.yml",
+  "/app/config.yaml",
+  "/app/config.yml",
+  "/app/serverless.yaml",
+  "/appsettings.json",
+  "/appsettings.staging.json",
+  "/aws_credentials.ini",
+  "/dev/env.js",
+  "/docker-compose.production.yml",
+  "/integrations/*",
+  "/manage/env",
+  "/settings/*",
+  "/src/config.yaml",
+  "/stripe.json",
+  "/template.yaml",
+  "/webhook-test/*",
+]);
+
+const SCANNER_PROBE_FRAGMENTS = [
+  "/.streamlit/",
+  "/config/common.js",
+  "/config/constants.js",
+  "/config/stripe.",
+  "/stripe.config.",
+  "/team-provider-info.json",
+];
+
+function isKnownScannerProbe(pathname: string): boolean {
+  const normalized = pathname.toLowerCase();
+
+  return (
+    SCANNER_PROBE_PATHS.has(normalized) ||
+    SCANNER_PROBE_FRAGMENTS.some((fragment) => normalized.includes(fragment)) ||
+    normalized.endsWith(".php") ||
+    normalized.endsWith(".sql")
+  );
+}
+
 const MARKDOWN_PREFIXES = [
   "/",
   "/about/",
@@ -80,6 +128,17 @@ function withSecurityHeaders(response: Response, pathname: string): Response {
 
 export const onRequest: PagesFunction<Env> = async (context) => {
   const url = new URL(context.request.url);
+
+  if (isKnownScannerProbe(url.pathname)) {
+    return withSecurityHeaders(new Response(null, {
+      status: 404,
+      headers: {
+        "Cache-Control": "no-store",
+        "Content-Type": "text/plain; charset=utf-8",
+        "X-Robots-Tag": "noindex, nofollow",
+      },
+    }), url.pathname);
+  }
 
   if (!acceptsMarkdown(context.request)) {
     return withSecurityHeaders(await context.next(), url.pathname);
