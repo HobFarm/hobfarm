@@ -1,0 +1,117 @@
+<aside class="festival-price-ledger article-wide not-prose" aria-labelledby="festival-price-ledger-title">
+  <header>
+    <p>Admission ledger</p>
+    <h3 id="festival-price-ledger-title">Nominal entry prices across temporary communities</h3>
+  </header>
+
+  <dl>
+    <div>
+      <dt>The Great Went</dt>
+      <dd><strong>1997</strong><span>$70</span><small>Camping included</small></dd>
+    </div>
+    <div>
+      <dt>Festival 8</dt>
+      <dd><strong>2009</strong><span>$199 + $1</span><small>Vehicle pass extra</small></dd>
+    </div>
+    <div>
+      <dt>Lightning in a Bottle</dt>
+      <dd><strong>2013</strong><span>$240</span><small>Weekend pass</small></dd>
+    </div>
+    <div>
+      <dt>Burning Man</dt>
+      <dd><strong>2026</strong><span>$775</span><small>Cost-covering tier; vehicle pass extra</small></dd>
+    </div>
+  </dl>
+
+  <p>
+    These events differ in length, structure, inclusions, and purpose. The prices are nominal and are not adjusted for inflation.
+  </p>
+</aside>
+
+<style>
+  .festival-price-ledger {
+    box-sizing: border-box;
+    margin-block: 3rem !important;
+    padding: clamp(1rem, 3vw, 1.5rem);
+    border: 1px solid rgb(240 201 107 / 0.3);
+    border-radius: 0.65rem;
+    background:
+      linear-gradient(125deg, rgb(67 52 20 / 0.4), transparent 60%),
+      #090a08;
+  }
+
+  header p,
+  header h3 {
+    margin: 0 !important;
+  }
+
+  header p {
+    color: #f0c96b;
+    font: 700 0.66rem/1.2 var(--font-mono, monospace);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  header h3 {
+    margin-top: 0.35rem !important;
+    color: #f3eee4;
+    font-size: clamp(1.25rem, 2.5vw, 1.85rem);
+  }
+
+  dl {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.7rem;
+    margin: 1.2rem 0 0;
+  }
+
+  dl > div {
+    padding: 0.85rem;
+    border: 1px solid rgb(240 201 107 / 0.18);
+    border-radius: 0.45rem;
+    background: rgb(13 14 11 / 0.8);
+  }
+
+  dt {
+    color: #ddd8cd;
+    font-weight: 700;
+  }
+
+  dd {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.2rem 0.7rem;
+    margin: 0.55rem 0 0;
+  }
+
+  dd strong {
+    color: #9f9a8f;
+    font: 600 0.67rem/1.4 var(--font-mono, monospace);
+  }
+
+  dd span {
+    color: #f0c96b;
+    font: 800 1rem/1.1 var(--font-mono, monospace);
+    text-align: right;
+  }
+
+  dd small {
+    grid-column: 1 / -1;
+    color: #8f8b82;
+    font-size: 0.68rem;
+    line-height: 1.4;
+  }
+
+  aside > p {
+    margin: 1rem 0 0 !important;
+    color: #969188;
+    font-size: 0.72rem;
+    line-height: 1.55;
+  }
+
+  @media (max-width: 42rem) {
+    dl {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

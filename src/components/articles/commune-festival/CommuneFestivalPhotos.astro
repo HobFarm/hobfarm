@@ -1,0 +1,113 @@
+---
+interface PhotoItem {
+  file: string;
+  alt: string;
+  caption: string;
+  width: number;
+  height: number;
+}
+
+interface Props {
+  label: string;
+  items: PhotoItem[];
+  credit?: string;
+}
+
+const { label, items, credit = "Photograph by HobFarm" } = Astro.props;
+const cdnBase = "https://cdn.hob.farm/";
+const assetBase = "articles/commune-festival";
+const encodePath = (value: string) =>
+  value.split("/").map((part) => encodeURIComponent(part)).join("/");
+const originalUrl = (file: string) => `${cdnBase}${assetBase}/${encodePath(file)}`;
+const transformedUrl = (file: string, width: number) =>
+  `${cdnBase}cdn-cgi/image/format=auto,quality=84,width=${width}/${assetBase}/${encodePath(file)}`;
+const widthsFor = (item: PhotoItem) =>
+  [480, 800, 1200, 1600, 2400].filter((width) => width <= item.width);
+const isPair = items.length === 2;
+---
+
+<section
+  class:list={["commune-photos", "article-wide", "not-prose", isPair && "is-pair"]}
+  aria-label={label}
+>
+  {items.map((item) => {
+    const widths = widthsFor(item);
+    const fallbackWidth = widths.at(-1) ?? item.width;
+    const full = originalUrl(item.file);
+    const srcset = widths
+      .map((width) => `${transformedUrl(item.file, width)} ${width}w`)
+      .join(", ");
+
+    return (
+      <figure>
+        <img
+          src={transformedUrl(item.file, fallbackWidth)}
+          srcset={srcset || undefined}
+          sizes={isPair ? "(min-width: 768px) 36rem, 92vw" : "(min-width: 900px) 72rem, 92vw"}
+          alt={item.alt}
+          width={item.width}
+          height={item.height}
+          loading="lazy"
+          decoding="async"
+          data-lightbox={full}
+          data-lightbox-group="commune-festival"
+          data-lightbox-caption={`${item.caption} ${credit}.`}
+        />
+        <figcaption>
+          <span>{item.caption}</span>
+          <small>{credit}</small>
+        </figcaption>
+      </figure>
+    );
+  })}
+</section>
+
+<style>
+  .commune-photos {
+    display: grid;
+    gap: 1rem;
+    margin-block: 2.75rem !important;
+  }
+
+  .commune-photos.is-pair {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  figure {
+    min-width: 0;
+    margin: 0;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 !important;
+    border: 1px solid rgb(150 213 193 / 0.25);
+    border-radius: 0.45rem;
+    background: #050807;
+    box-shadow: 0.45rem 0.55rem 0 rgb(0 0 0 / 0.24);
+    cursor: zoom-in;
+  }
+
+  figcaption {
+    display: grid;
+    gap: 0.3rem;
+    margin-top: 0.7rem;
+    color: #c8c3b8;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    text-align: left;
+  }
+
+  small {
+    color: #8f8b82;
+    font: 600 0.65rem/1.4 var(--font-mono, monospace);
+  }
+
+  @media (max-width: 47rem) {
+    .commune-photos.is-pair {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
