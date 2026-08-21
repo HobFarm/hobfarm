@@ -267,7 +267,10 @@ for (const section of editorialSections) {
 
 for (const seriesId of editorialSeriesIds) {
   const members = releasedArticles.filter((article) => article.data.mesh?.series?.includes(seriesId));
-  if (!members.length) warnings.push(`series ${seriesId}: no released members`);
+  const scheduledMembers = unreleasedArticles.filter(
+    (article) => article.data.status === "scheduled" && article.data.mesh?.series?.includes(seriesId),
+  );
+  if (!members.length && !scheduledMembers.length) warnings.push(`series ${seriesId}: no released or scheduled members`);
 }
 
 for (const slug of falseLegacy3dm) {

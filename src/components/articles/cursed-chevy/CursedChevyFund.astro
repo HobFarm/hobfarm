@@ -1,0 +1,105 @@
+---
+import { cursedChevyFund } from "@/data/cursed-chevy-fund";
+---
+
+<aside class="chevy-fund article-wide not-prose" aria-labelledby="chevy-fund-title">
+  <p class="chevy-fund__kicker">Cursed Chevy Fund</p>
+  <h2 id="chevy-fund-title">Help turn the driveway ornament back into a van</h2>
+  <p>
+    The fund is for tires, fuel-system work, wiring, brakes, steering, and the shop time needed
+    to make the 1969 Chevrolet G10 safe and mobile. Stripe suggests
+    ${cursedChevyFund.suggestedAmountUsd}, but you can enter any one-time amount of
+    ${cursedChevyFund.minimumAmountUsd} or more.
+  </p>
+  <a
+    href={cursedChevyFund.checkoutUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    data-event="cursed_chevy_fund_checkout_open"
+  >
+    HELP FIX THE CURSED CHEVY <span aria-hidden="true">&nearr;</span>
+  </a>
+  <small>
+    This is a contribution to a personal vehicle project. It is not a charitable donation,
+    is not tax-deductible, and does not include a product or service.
+  </small>
+</aside>
+
+<style>
+  .chevy-fund {
+    box-sizing: border-box;
+    margin-block: 3rem;
+    padding: clamp(1.15rem, 3vw, 1.8rem);
+    border: 1px solid rgb(125 173 255 / 0.38);
+    border-left: 0.4rem solid #8247ff;
+    border-radius: 0.55rem;
+    background:
+      radial-gradient(circle at 88% 12%, rgb(130 71 255 / 0.2), transparent 18rem),
+      linear-gradient(145deg, #0a0d16, #10101a);
+    box-shadow: 0.5rem 0.65rem 0 rgb(0 0 0 / 0.24);
+  }
+
+  .chevy-fund__kicker {
+    margin: 0;
+    color: #aa8cff;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .chevy-fund h2 {
+    max-width: 35rem;
+    margin: 0.7rem 0 0;
+    color: #f3f0ff;
+    font-family: var(--font-display);
+    font-size: clamp(1.55rem, 4vw, 2.5rem);
+    font-weight: 400;
+    line-height: 1.08;
+  }
+
+  .chevy-fund > p:not(.chevy-fund__kicker) {
+    max-width: 39rem;
+    margin: 0.95rem 0 0;
+    color: var(--color-base-300, #c7c7c7);
+    line-height: 1.65;
+  }
+
+  .chevy-fund a {
+    display: inline-flex;
+    gap: 0.55rem;
+    align-items: center;
+    margin-top: 1.3rem;
+    padding: 0.85rem 1rem;
+    border: 1px solid #c0adff;
+    border-radius: 0.35rem;
+    background: #8247ff;
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.045em;
+    text-decoration: none;
+    transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+  }
+
+  .chevy-fund a:hover {
+    border-color: #fff;
+    background: #6f35ee;
+    transform: translateY(-1px);
+  }
+
+  .chevy-fund a:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+  }
+
+  .chevy-fund small {
+    display: block;
+    max-width: 39rem;
+    margin-top: 0.9rem;
+    color: var(--color-base-500, #858585);
+    font-size: 0.68rem;
+    line-height: 1.55;
+  }
+</style>

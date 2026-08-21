@@ -4,12 +4,17 @@ import {
   editorialSectionPath,
   editorialSeries,
 } from "@/data/editorial-mesh";
+import { articleUsesSeries, getPublishedArticles } from "@/lib/articles";
 
 interface Props {
   currentSection?: string;
 }
 
 const { currentSection } = Astro.props;
+const publishedArticles = await getPublishedArticles();
+const releasedSeries = editorialSeries.filter((series) =>
+  publishedArticles.some((article) => articleUsesSeries(article.data, series.id)),
+);
 ---
 
 <nav aria-label="Browse the article archive">
@@ -47,7 +52,7 @@ const { currentSection } = Astro.props;
     Series and specials
   </p>
   <div class="mt-3 flex flex-col gap-2">
-    {editorialSeries.map((series) => (
+    {releasedSeries.map((series) => (
       <a
         href={series.href}
         class="text-xs font-mono text-base-400 transition-colors hover:text-base-100"

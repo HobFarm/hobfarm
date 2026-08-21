@@ -24,6 +24,7 @@ const seriesPresentation = {
   },
   "3dm": { accent: "#f24da6", mark: "3DM / Cinema connection" },
   "built-over": { accent: "#5cf0a6", mark: "Built / Place record" },
+  "the-cursed-chevy": { accent: "#8247ff", mark: "Chevy / Project record" },
 } as const;
 const specials = editorialSeries.map((series) => {
   const entries = articles.filter((article) => articleUsesSeries(article.data, series.id));
@@ -44,7 +45,7 @@ const specials = editorialSeries.map((series) => {
       ? imageSrcset(visual, [360, 540, 720, 900], { quality: 82, fit: "cover" })
       : undefined,
   };
-});
+}).filter((special) => special.entries.length > 0);
 ---
 
 <section class:list={["editorial-specials", compact && "editorial-specials--compact"]} aria-labelledby="editorial-specials-heading">
@@ -114,6 +115,6 @@ const specials = editorialSeries.map((series) => {
   .editorial-specials__mark { position: absolute; z-index: 1; bottom: .8rem; left: 1rem; color: var(--series-accent) !important; font-size: .55rem !important; }
   .editorial-specials--compact .editorial-specials__card, .editorial-specials--compact .editorial-specials__body { min-height: 11rem; }
   @media (hover: hover) and (prefers-reduced-motion: no-preference) { .editorial-specials__card:hover .editorial-specials__visual img { filter: saturate(1) contrast(1.02); transform: scale(1.025); } }
-  @media (min-width: 720px) { .editorial-specials__grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 720px) { .editorial-specials__grid { grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); } }
   @media (prefers-reduced-motion: reduce) { .editorial-specials__visual img { transition: none; } }
 </style>

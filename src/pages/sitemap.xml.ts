@@ -42,11 +42,6 @@ const staticEntries: SitemapEntry[] = [
     changefreq: "weekly" as const,
     priority: "0.8",
   })),
-  ...editorialSeries.map((series) => ({
-    loc: absoluteUrl(series.href),
-    changefreq: "weekly" as const,
-    priority: "0.8",
-  })),
   { loc: absoluteUrl("/gallery/"), changefreq: "weekly", priority: "0.9" },
   {
     loc: absoluteUrl("/presents/"),
@@ -143,6 +138,15 @@ export async function GET() {
     ]);
 
   const dynamicEntries: SitemapEntry[] = [
+    ...editorialSeries
+      .filter((series) =>
+        articles.some((article) => article.data.mesh?.series.includes(series.id)),
+      )
+      .map((series) => ({
+        loc: absoluteUrl(series.href),
+        changefreq: "weekly" as const,
+        priority: "0.8",
+      })),
     ...getArticleSubjectCounts(articles)
       .filter((subject) => subject.count >= 2)
       .map((subject) => ({
