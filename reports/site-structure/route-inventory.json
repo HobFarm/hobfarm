@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-21T11:09:38.662Z",
+  "generatedAt": "2026-08-21T12:00:59.566Z",
   "buildRoot": "dist/client",
   "counts": {
     "files": 1202,
@@ -3588,7 +3588,7 @@
         "Article",
         "DefinedTerm",
         "Place",
-        "Event",
+        "Thing",
         "CreativeWork",
         "CollectionPage",
         "BreadcrumbList",
@@ -3662,7 +3662,6 @@
         "Article",
         "DefinedTerm",
         "Place",
-        "Event",
         "Thing",
         "CreativeWork",
         "CollectionPage",
@@ -4556,7 +4555,7 @@
         "Article",
         "DefinedTerm",
         "Place",
-        "Event",
+        "Thing",
         "CreativeWork",
         "CollectionPage",
         "CreativeWorkSeries",
@@ -179014,9 +179013,8 @@
         "WebPage",
         "Article",
         "DefinedTerm",
-        "Event",
-        "CreativeWork",
         "Thing",
+        "CreativeWork",
         "CollectionPage",
         "BreadcrumbList",
         "ListItem"

@@ -112,7 +112,9 @@ const schemaTypeByEntity = {
   people: "Person",
   organizations: "Organization",
   places: "Place",
-  events: "Event",
+  // Historical references are not attendable event pages and should not opt
+  // the article into Google's Event rich-result validation.
+  events: "Thing",
   works: "CreativeWork",
   publications: "CreativeWork",
   technologies: "Thing",

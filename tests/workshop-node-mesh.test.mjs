@@ -87,6 +87,15 @@ test("project and article relationships use established structured-data semantic
   assert.doesNotMatch(`${projects}\n${hobfarm}\n${articleLayout}`, /hobfarmNode|meshConnection|relatedBecause|aiRelationship/);
 });
 
+test("Workshop video structured data includes timezone-aware upload dates", () => {
+  const characterPage = read("src/pages/workshop/character-mannequin/index.astro");
+  const characterData = read("src/data/character-mannequin.ts");
+
+  assert.match(characterPage, /uploadDate: look\.motion\.uploadDate/);
+  assert.equal((characterData.match(/uploadDate\?: string/g) ?? []).length, 1);
+  assert.equal((characterData.match(/2026-07-15T05:52:0[1-3]Z/g) ?? []).length, 3);
+});
+
 test("HobFarm project centers independent nodes and keeps the working loop subordinate", () => {
   const page = read("src/pages/workshop/projects/hobfarm/index.astro");
   const diagram = read("src/components/workshop/HobFarmProductionDiagram.astro");

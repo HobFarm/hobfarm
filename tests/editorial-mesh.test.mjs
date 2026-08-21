@@ -97,3 +97,10 @@ test("scheduled articles stay out of public output until their release instant",
   assert.match(graphRoute, /getPublishedArticles\(\)/);
   assert.doesNotMatch(graphRoute, /getCollection\(/);
 });
+
+test("historical event mentions do not opt articles into Event rich results", () => {
+  const articleLayout = readFileSync("src/layouts/ArticleLayout.astro", "utf8");
+
+  assert.match(articleLayout, /events: "Thing"/);
+  assert.doesNotMatch(articleLayout, /events: "Event"/);
+});

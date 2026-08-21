@@ -6,6 +6,7 @@ export type MediaRef = {
   width: number;
   height: number;
   poster: string | null;
+  uploadDate?: string;
   caption: string;
   credit: string;
 };
@@ -75,12 +76,14 @@ const motion = (
   poster: MediaRef,
   alt: string,
   caption: string,
+  uploadDate: string,
 ): MediaRef => ({
   src: assetUrl("designs", file),
   alt,
   width: poster.width,
   height: poster.height,
   poster: poster.src,
+  uploadDate,
   caption,
   credit: CREDIT,
 });
@@ -215,6 +218,7 @@ export const characterLooks: CharacterLook[] = [
       yellowScene,
       "Short motion study of the blonde mannequin in the butter-yellow dress and neon pool setting",
       "Step 01 / dress look in motion",
+      "2026-07-15T05:52:01Z",
     ),
     changed: [
       "butter-yellow midi dress",
@@ -239,6 +243,7 @@ export const characterLooks: CharacterLook[] = [
       blackScene,
       "Short motion study of the blonde mannequin in the black leather outfit and marble courtyard",
       "Step 02 / black leather look in motion",
+      "2026-07-15T05:52:02Z",
     ),
     changed: [
       "lace-up leather crop top and shorts",
@@ -263,6 +268,7 @@ export const characterLooks: CharacterLook[] = [
       greenScene,
       "Short motion study of the green mannequin wearing the transferred black leather look in an Art Deco room",
       "Step 03 / transferred look in motion",
+      "2026-07-15T05:52:03Z",
     ),
     changed: [
       "green skin and facial stitches",

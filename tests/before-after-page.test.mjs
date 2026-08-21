@@ -17,6 +17,8 @@ test("Before & After uses a dedicated archive route", () => {
   assert.match(page, /Before & After: History, Restoration and Alternate Futures \| HobFarm/);
   assert.match(page, /"@type": "CollectionPage"/);
   assert.match(page, /"@type": "VideoObject"/);
+  assert.match(page, /uploadDate: "2026-07-15T10:24:59Z"/);
+  assert.match(page, /uploadDate: "2026-07-15T10:27:06Z"/);
   assert.match(genericRoute, /program\.id !== "before-after"/);
 });
 
