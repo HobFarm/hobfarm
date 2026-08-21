@@ -1,0 +1,262 @@
+---
+const eras = [
+  {
+    era: "1880s–1900s",
+    nodes: [
+      ["Propulsion", "Steam / electric / gasoline"],
+      ["Manufacturing", "Carriage and bicycle trades"],
+      ["Design", "Patent-Motorwagen"],
+      ["Infrastructure", "Roads and local energy"],
+    ],
+  },
+  {
+    era: "1910s–20s",
+    nodes: [
+      ["Manufacturing", "Moving assembly"],
+      ["Design", "Ford Model T"],
+      ["Infrastructure", "Fuel, roads, dealers, parts"],
+      ["Controls", "Electric starter"],
+    ],
+  },
+  {
+    era: "1930s",
+    nodes: [
+      ["Design", "Phantom II coachwork"],
+      ["Design", "Airflow and Tatra 77"],
+      ["Design", "Delahaye and Phantom Corsair"],
+      ["Institution", "Buick Y-Job"],
+    ],
+  },
+  {
+    era: "World War II",
+    nodes: [
+      ["Manufacturing", "Willow Run B-24 production"],
+      ["Industry", "Auto plants become war plants"],
+      ["People", "Aircraft skills move through industry"],
+      ["Materials", "Light structures and fabrication"],
+    ],
+  },
+  {
+    era: "1950s–60s",
+    nodes: [
+      ["Racing", "Alfa 158 and postwar Grand Prix"],
+      ["Aerospace", "Sayer, Costin, D-Type"],
+      ["Styling", "Cadillac fins and Motorama"],
+      ["Structure", "Mid-engine layout and monocoque"],
+    ],
+  },
+  {
+    era: "1970s–80s",
+    nodes: [
+      ["Racing", "P34 / Lotus 79 / BT46B"],
+      ["Design", "Carabo / Stratos Zero / Countach"],
+      ["Production", "Esprit and DeLorean"],
+      ["Regulation", "Wings, skirts, fans, flat floors"],
+    ],
+  },
+  {
+    era: "1990s–2000s",
+    nodes: [
+      ["Revival", "Plymouth Prowler"],
+      ["Manufacturing", "Aluminum-intensive production"],
+      ["Culture", "Retro design and accumulated memory"],
+      ["Controls", "Software enters vehicle systems"],
+    ],
+  },
+  {
+    era: "Current",
+    nodes: [
+      ["Packaging", "C8 / Pagani / Rimac"],
+      ["Aerodynamics", "McMurtry and active aero"],
+      ["Propulsion", "Hybrid and electric branches"],
+      ["Controls", "Zoox and autonomous cabins"],
+    ],
+  },
+] as const;
+
+const paths = [
+  ["Carriage + bicycle trades", "Patent-Motorwagen", "standard automobile package"],
+  ["Moving assembly", "Model T", "roads + fuel + service ecosystem"],
+  ["Aircraft production", "transferred people and methods", "postwar cars + racing"],
+  ["P-38 image", "Cadillac fin", "jet-age styling"],
+  ["Wings", "Lotus ground effect", "Brabham fan", "McMurtry suction"],
+  ["Carabo", "Stratos Zero", "Countach + Esprit", "DeLorean"],
+  ["1930s roadster", "hot rod", "Prowler concept", "production Prowler"],
+  ["2022 rulebook", "ride-height-sensitive floor", "porpoising response", "2026 active aero"],
+] as const;
+---
+
+<figure class="automobile-mesh article-wide">
+  <figcaption>
+    <span class="eyebrow">Master connection map</span>
+    <strong>The automobile mesh</strong>
+    <span>Chronology gives the columns. The recurring systems show how ideas cross between eras.</span>
+  </figcaption>
+
+  <ol class="era-grid">
+    {
+      eras.map((era) => (
+        <li>
+          <h3>{era.era}</h3>
+          <dl>
+            {era.nodes.map(([group, label]) => (
+              <div>
+                <dt>{group}</dt>
+                <dd>{label}</dd>
+              </div>
+            ))}
+          </dl>
+        </li>
+      ))
+    }
+  </ol>
+
+  <section class="paths" aria-labelledby="automobile-mesh-paths">
+    <h3 id="automobile-mesh-paths">Eight paths through the mesh</h3>
+    <ol>
+      {
+        paths.map((path) => (
+          <li>
+            {path.map((node: string, index: number) => (
+              <>
+                {index > 0 && <span aria-hidden="true">→</span>}
+                <span>{node}</span>
+              </>
+            ))}
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+</figure>
+
+<style>
+  .automobile-mesh {
+    margin-block: 2.8rem;
+    padding: clamp(1rem, 3vw, 2rem);
+    color: #f3f6fa;
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      #0e151d;
+    background-size: 28px 28px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 0.85rem;
+  }
+
+  figcaption {
+    display: grid;
+    gap: 0.45rem;
+    margin-bottom: 1.3rem;
+  }
+
+  figcaption strong {
+    font-size: clamp(1.25rem, 3vw, 1.8rem);
+  }
+
+  figcaption > span:last-child {
+    max-width: 70ch;
+    color: #bdc7d2;
+  }
+
+  .eyebrow {
+    color: #70ddff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .era-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.8rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .era-grid > li {
+    padding: 0.9rem;
+    background: rgba(14, 21, 29, 0.88);
+    border: 1px solid rgba(112, 221, 255, 0.24);
+    border-radius: 0.65rem;
+  }
+
+  h3 {
+    margin: 0 0 0.75rem;
+    color: #f07ac1;
+    font-size: 0.88rem;
+  }
+
+  dl {
+    display: grid;
+    gap: 0.55rem;
+    margin: 0;
+  }
+
+  dl div {
+    display: grid;
+    gap: 0.12rem;
+  }
+
+  dt {
+    color: #70ddff;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  dd {
+    margin: 0;
+    color: #d9e0e7;
+    font-size: 0.77rem;
+    line-height: 1.35;
+  }
+
+  .paths {
+    margin-top: 1.5rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .paths ol {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .paths li {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    align-items: center;
+    padding: 0.7rem;
+    color: #c9d2db;
+    background: rgba(255, 255, 255, 0.045);
+    border-radius: 0.5rem;
+    font-size: 0.74rem;
+    line-height: 1.35;
+  }
+
+  .paths li > span:nth-child(even) {
+    color: #f07ac1;
+  }
+
+  @media (max-width: 900px) {
+    .era-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 560px) {
+    .era-grid,
+    .paths ol {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

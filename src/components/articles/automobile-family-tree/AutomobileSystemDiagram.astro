@@ -1,0 +1,291 @@
+---
+type DiagramKind =
+  | "ford-loop"
+  | "concept-network"
+  | "aerospace-edges"
+  | "air-does-work"
+  | "prowler-loop"
+  | "porpoising"
+  | "regulation-eras"
+  | "current-divergence";
+
+interface Props {
+  kind: DiagramKind;
+}
+
+const { kind } = Astro.props;
+
+const diagrams = {
+  "ford-loop": {
+    eyebrow: "Manufacturing feedback loop",
+    title: "How gasoline became ordinary",
+    description: "The car and the system around it made one another cheaper and easier to use.",
+    mode: "flow",
+    steps: [
+      "Moving assembly",
+      "Lower build time",
+      "Lower price",
+      "More owners",
+      "More roads, fuel, dealers, mechanics, and parts",
+      "Easier ownership",
+      "Larger market",
+      "More manufacturing scale",
+    ],
+  },
+  "concept-network": {
+    eyebrow: "Industrial design system",
+    title: "A concept car is a network device",
+    description: "It lets several parts of a company meet before mass production fixes the answer in metal.",
+    mode: "grid",
+    groups: [
+      { title: "Inputs", items: ["Styling studio", "Engineering", "Clay models", "Full-scale prototype"] },
+      { title: "Public test", items: ["Publicity", "Exhibition", "Public reaction"] },
+      { title: "Output", items: ["Selected ideas move into production cars"] },
+    ],
+  },
+  "aerospace-edges": {
+    eyebrow: "Three different transfers",
+    title: "Aerospace entered the automobile more than once",
+    description: "A shared visual reference does not prove a shared engineering function.",
+    mode: "grid",
+    groups: [
+      { title: "Engineering", items: ["Aerodynamics", "Monocoques", "Pressure analysis", "Wind-tunnel methods"] },
+      { title: "Industrial experience", items: ["Aircraft factories", "Materials", "Production discipline", "Transferred personnel"] },
+      { title: "Visual language", items: ["Fins", "Canopies", "Intakes", "Instrument panels"] },
+    ],
+  },
+  "air-does-work": {
+    eyebrow: "Aerodynamic job change",
+    title: "Air stops being only resistance",
+    description: "Velocity is squared in the force relationship, so aerodynamic loads rise sharply as the car gets faster.",
+    mode: "compare",
+    groups: [
+      { title: "Streamlining", items: ["Reduce wake", "Reduce energy lost to the air", "Lower drag where possible"] },
+      { title: "Downforce", items: ["Create pressure differences", "Add tire load", "Trade some drag for faster corners"] },
+    ],
+  },
+  "prowler-loop": {
+    eyebrow: "Retrofuturist return loop",
+    title: "Yesterday's future returns through another door",
+    description: "The reference survives until new materials, rules, and production methods make another version possible.",
+    mode: "flow",
+    steps: [
+      "1930s roadster",
+      "Postwar hot rod",
+      "Magazines, toys, custom shows, and nostalgia",
+      "1993 Prowler concept",
+      "Aluminum manufacturing program",
+      "1997 production car",
+    ],
+  },
+  porpoising: {
+    eyebrow: "2022 ground-effect feedback loop",
+    title: "The floor makes the car oscillate",
+    description: "The sequence can repeat several times a second when ride height and underfloor flow destabilize one another.",
+    mode: "flow",
+    steps: [
+      "Speed rises",
+      "Underfloor suction increases",
+      "Ride height falls",
+      "Flow stalls or the floor contacts the track",
+      "Downforce collapses",
+      "The car rises",
+      "Flow recovers",
+      "Repeat",
+    ],
+  },
+  "regulation-eras": {
+    eyebrow: "The rulebook changes the species",
+    title: "Two legal solution spaces",
+    description: "The underlying physics remains. The permitted architecture changes.",
+    mode: "compare",
+    groups: [
+      { title: "2022–25", items: ["Deep underfloor tunnels", "Strong ride-height sensitivity", "Fixed front wing", "DRS rear wing"] },
+      { title: "2026", items: ["Flatter floor and revised diffuser", "Smaller dimensions", "Lower minimum mass", "Active front and rear aero states"] },
+    ],
+  },
+  "current-divergence": {
+    eyebrow: "Several futures at once",
+    title: "The advanced car is not converging on one answer",
+    description: "Each branch reorganizes the vehicle around a different problem.",
+    mode: "grid",
+    groups: [
+      { title: "C8 Corvette", items: ["Mid-engine packaging", "Racing", "Brand history"] },
+      { title: "Pagani", items: ["Sculptural composites", "Active aerodynamics", "Mechanical theater"] },
+      { title: "McMurtry", items: ["Electric propulsion", "Fan downforce", "Low-speed aerodynamic load"] },
+      { title: "Zoox", items: ["Bidirectional cabin", "No driver hierarchy", "Software-defined operation"] },
+    ],
+  },
+} as const;
+
+const diagram = diagrams[kind];
+---
+
+<figure class:list={["automobile-diagram", "article-wide", `is-${diagram.mode}`]}>
+  <figcaption>
+    <span class="eyebrow">{diagram.eyebrow}</span>
+    <strong>{diagram.title}</strong>
+    <span>{diagram.description}</span>
+  </figcaption>
+
+  {
+    diagram.mode === "flow" ? (
+      <ol class="flow-list">
+        {diagram.steps.map((step: string) => <li>{step}</li>)}
+      </ol>
+    ) : (
+      <div class="group-grid">
+        {diagram.groups.map((group: { title: string; items: readonly string[] }) => (
+          <section>
+            <h3>{group.title}</h3>
+            <ul>
+              {group.items.map((item: string) => <li>{item}</li>)}
+            </ul>
+          </section>
+        ))}
+      </div>
+    )
+  }
+</figure>
+
+<style>
+  .automobile-diagram {
+    --diagram-ink: #f4f7fb;
+    --diagram-muted: #bcc7d3;
+    --diagram-line: rgba(255, 255, 255, 0.15);
+    margin-block: 2.6rem;
+    padding: clamp(1.1rem, 3vw, 2rem);
+    overflow: hidden;
+    color: var(--diagram-ink);
+    background:
+      radial-gradient(circle at 10% 5%, rgba(85, 215, 255, 0.16), transparent 34%),
+      radial-gradient(circle at 95% 100%, rgba(242, 77, 166, 0.14), transparent 35%),
+      #111821;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 0.8rem;
+  }
+
+  figcaption {
+    display: grid;
+    gap: 0.45rem;
+    margin-bottom: 1.25rem;
+  }
+
+  figcaption strong {
+    font-size: clamp(1.15rem, 3vw, 1.65rem);
+    line-height: 1.15;
+  }
+
+  figcaption > span:last-child {
+    max-width: 68ch;
+    color: var(--diagram-muted);
+    line-height: 1.5;
+  }
+
+  .eyebrow {
+    color: #70ddff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .flow-list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.55rem 0.8rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: step;
+  }
+
+  .flow-list li {
+    position: relative;
+    min-width: 0;
+    padding: 0.85rem 0.8rem 0.85rem 2.45rem;
+    color: var(--diagram-ink);
+    background: rgba(255, 255, 255, 0.055);
+    border: 1px solid var(--diagram-line);
+    border-radius: 0.55rem;
+    font-size: 0.83rem;
+    line-height: 1.35;
+    counter-increment: step;
+  }
+
+  .flow-list li::before {
+    position: absolute;
+    top: 0.78rem;
+    left: 0.78rem;
+    display: grid;
+    width: 1.15rem;
+    height: 1.15rem;
+    place-items: center;
+    color: #0d151d;
+    background: #70ddff;
+    border-radius: 50%;
+    content: counter(step);
+    font-size: 0.65rem;
+    font-weight: 800;
+  }
+
+  .flow-list li:not(:last-child)::after {
+    position: absolute;
+    top: calc(100% + 0.22rem);
+    left: 50%;
+    color: #f07ac1;
+    content: "↓";
+    font-size: 1.05rem;
+  }
+
+  .group-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: 0.8rem;
+  }
+
+  .group-grid section {
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--diagram-line);
+    border-radius: 0.6rem;
+  }
+
+  h3 {
+    margin: 0 0 0.7rem;
+    color: #70ddff;
+    font-size: 0.9rem;
+  }
+
+  ul {
+    display: grid;
+    gap: 0.42rem;
+    margin: 0;
+    padding-left: 1.05rem;
+    color: var(--diagram-muted);
+    font-size: 0.82rem;
+    line-height: 1.4;
+  }
+
+  @media (min-width: 860px) {
+    .flow-list li:not(:last-child)::after {
+      top: 50%;
+      left: calc(100% + 0.18rem);
+      content: "→";
+      transform: translateY(-50%);
+    }
+  }
+
+  @media (max-width: 859px) {
+    .flow-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 520px) {
+    .flow-list,
+    .group-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
