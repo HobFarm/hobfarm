@@ -1,0 +1,143 @@
+<section class="cadillac-stop-system article-wide not-prose" aria-labelledby="cadillac-stop-system-title">
+  <header>
+    <p class="eyebrow">The moving support system</p>
+    <h2 id="cadillac-stop-system-title">What normally makes a car stop?</h2>
+    <p>Mattar kept the Cadillac moving by assigning each ordinary stopping problem to equipment, a crew member, or a coordinated piece of the road around it.</p>
+  </header>
+
+  <div class="system-grid">
+    <article>
+      <h3>Human needs</h3>
+      <dl>
+        <div><dt>Sleep</dt><dd>Three drivers working in shifts</dd></div>
+        <div><dt>Food and water</dt><dd>Stove, refrigerator, sink, drinking fountain</dd></div>
+        <div><dt>Bathroom and washing</dt><dd>Toilet, shower, washing machine</dd></div>
+      </dl>
+    </article>
+
+    <article>
+      <h3>Machine needs</h3>
+      <dl>
+        <div><dt>Fuel, oil, coolant</dt><dd>Trailer reserves and transfer plumbing</dd></div>
+        <div><dt>Tire pressure</dt><dd>Air fed through drilled axles</dd></div>
+        <div><dt>Flat tire or repair</dt><dd>Hydraulic lift, platform, transparent hood panels</dd></div>
+      </dl>
+    </article>
+
+    <article>
+      <h3>Road needs</h3>
+      <dl>
+        <div><dt>Traffic and signals</dt><dd>Police coordination and mandatory stops</dd></div>
+        <div><dt>Resupply</dt><dd>Moving trucks and airfield rendezvous</dd></div>
+        <div><dt>Mud and construction</dt><dd>Tractor, bulldozer, service-station loops</dd></div>
+      </dl>
+    </article>
+  </div>
+
+  <p class="conclusion">The car did not eliminate stopping. It distributed the stop across a larger system.</p>
+</section>
+
+<style>
+  .cadillac-stop-system {
+    --line: color-mix(in srgb, var(--color-text, #eee) 18%, transparent);
+    margin-block: 3rem;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 0.85rem;
+    background:
+      linear-gradient(135deg, color-mix(in srgb, #6e301f 24%, transparent), transparent 42%),
+      color-mix(in srgb, var(--color-surface, #151515) 92%, #000);
+    color: var(--color-text, #f4f1ec);
+  }
+
+  header {
+    max-width: 58rem;
+    padding: 1.5rem 1.5rem 1.25rem;
+  }
+
+  .eyebrow {
+    margin: 0 0 0.45rem;
+    color: #d7aa71;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(1.45rem, 3vw, 2.25rem);
+    line-height: 1.08;
+  }
+
+  header > p:last-child {
+    max-width: 49rem;
+    margin: 0.8rem 0 0;
+    color: color-mix(in srgb, currentColor 76%, transparent);
+    line-height: 1.55;
+  }
+
+  .system-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  article {
+    min-width: 0;
+    padding: 1.3rem 1.5rem 1.5rem;
+  }
+
+  article + article {
+    border-left: 1px solid var(--line);
+  }
+
+  h3 {
+    margin: 0 0 1rem;
+    color: #f1cf9e;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+  }
+
+  dl,
+  dl div {
+    display: grid;
+    gap: 0.28rem;
+  }
+
+  dl {
+    margin: 0;
+    gap: 1rem;
+  }
+
+  dt {
+    font-weight: 700;
+  }
+
+  dd {
+    margin: 0;
+    color: color-mix(in srgb, currentColor 72%, transparent);
+    font-size: 0.88rem;
+    line-height: 1.42;
+  }
+
+  .conclusion {
+    margin: 0;
+    padding: 1.15rem 1.5rem 1.25rem;
+    color: #f1cf9e;
+    font-weight: 700;
+    line-height: 1.45;
+  }
+
+  @media (max-width: 760px) {
+    .system-grid {
+      grid-template-columns: 1fr;
+    }
+
+    article + article {
+      border-top: 1px solid var(--line);
+      border-left: 0;
+    }
+  }
+</style>
