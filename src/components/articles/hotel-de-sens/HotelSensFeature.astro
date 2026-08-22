@@ -1,0 +1,567 @@
+---
+const assetRoot = "/articles/hotel-de-sens-before-and-after";
+const transitionVideo = "https://cdn.hob.farm/workshop/before-and-after/scene/hotel-de-sens-before-and-after.mp4";
+
+const archiveFrames = [
+  {
+    year: "1839",
+    medium: "Lithograph",
+    title: "A picturesque survivor",
+    file: "01-hotel-de-sens-1839.webp",
+    width: 1100,
+    height: 1600,
+    alt: "Thomas Shotter Boys lithograph showing the corner turret of the Hôtel de Sens above a busy Paris street in 1839.",
+    caption: "The building was already being framed as a picturesque remnant. This is an authored print, useful for architectural and street context but not a photographic record.",
+    credit: "Thomas Shotter Boys; Musée Carnavalet, CC0",
+    source: "https://www.parismuseescollections.paris.fr/fr/musee-carnavalet/oeuvres/hotel-de-sens-paris",
+  },
+  {
+    year: "1869",
+    medium: "Photograph",
+    title: "The jam factory entrance",
+    file: "02-hotel-de-sens-1869.webp",
+    width: 1070,
+    height: 1600,
+    alt: "Pierre Emonts photograph of the Hôtel de Sens street façade in 1869 with the Confiturerie de Saint James sign over the entrance.",
+    caption: "The Confiturerie de Saint James sign makes the building's commercial occupation explicit. The medieval residence was functioning inside a nineteenth-century working street.",
+    credit: "Pierre Emonts or Emonds; Musée Carnavalet, CC0",
+    source: "https://www.parismuseescollections.paris.fr/fr/musee-carnavalet/oeuvres/hotel-de-sens-rue-du-figuier-4eme-arrondissement-paris-0",
+  },
+  {
+    year: "c. 1880",
+    medium: "Painting",
+    title: "Winter in the old quarter",
+    file: "03-hotel-de-sens-c1880.webp",
+    width: 1600,
+    height: 1194,
+    alt: "Anonymous painting from around 1880 showing the Hôtel de Sens entrance and turrets on a snowy Paris street.",
+    caption: "An anonymous painter recorded the façade in winter. The scene supplies atmosphere and broad spatial evidence, not survey-grade detail.",
+    credit: "Anonymous; Musée Carnavalet, CC0",
+    source: "https://www.parismuseescollections.paris.fr/fr/musee-carnavalet/oeuvres/l-hotel-des-archeveques-de-sens-vers-1880-actuelle-bibliotheque-forney-4eme",
+  },
+  {
+    year: "1898–1900",
+    medium: "Photograph",
+    title: "Atget turns the corner",
+    file: "04-hotel-de-sens-1898.webp",
+    width: 1366,
+    height: 1600,
+    alt: "Eugène Atget photograph looking past a corner turret of the Hôtel de Sens into the adjoining street around 1898.",
+    caption: "Atget's angle shows how tightly the old house met its neighbors. It is a view of the building as urban fabric, not an isolated monument.",
+    credit: "Eugène Atget; Bibliothèque nationale de France, public domain",
+    source: "https://gallica.bnf.fr/ark:/12148/btv1b105174974",
+  },
+  {
+    year: "1911",
+    medium: "Press photograph",
+    title: "The year of municipal purchase",
+    file: "05-hotel-de-sens-1911.webp",
+    width: 1024,
+    height: 1434,
+    alt: "Agence Rol photograph of the Hôtel de Sens in 1911, with an adjoining market structure close to the left turret.",
+    caption: "The city bought the building in 1911. The photograph records the hemmed-in street setting at that moment; it does not by itself document the terms or purpose of the purchase.",
+    credit: "Agence Rol; Bibliothèque nationale de France, public domain",
+    source: "https://gallica.bnf.fr/ark:/12148/btv1b6916553v",
+  },
+  {
+    year: "1920",
+    medium: "Press photograph",
+    title: "The supplied before image",
+    file: "06-hotel-de-sens-1920-before.webp",
+    width: 1422,
+    height: 1054,
+    alt: "Agence Meurisse photograph of the dark, unrestored Hôtel de Sens street façade in 1920, with a market wall, advertisements, pedestrians, and a car.",
+    caption: "The BnF record dates this frame to May 26, 1920. The market wall, shopfront, signs, car, and pedestrians match the photograph supplied for this feature.",
+    credit: "Agence Meurisse; Bibliothèque nationale de France, public domain",
+    source: "https://gallica.bnf.fr/ark:/12148/btv1b9033733v",
+  },
+  {
+    year: "1926",
+    medium: "Drawing",
+    title: "Demolition across the street",
+    file: "07-hotel-de-sens-1926.webp",
+    width: 1600,
+    height: 1250,
+    alt: "Gustave Ferdinand Boberg drawing of old houses being demolished opposite the Hôtel de Sens in 1926.",
+    caption: "Boberg titled the drawing as demolitions opposite the Hôtel de Sens. It records the changing block around the monument, not restoration work on the building itself.",
+    credit: "Gustave Ferdinand Boberg; Musée Carnavalet, CC0",
+    source: "https://www.parismuseescollections.paris.fr/fr/musee-carnavalet/oeuvres/demolitions-de-vieilles-maisons-en-face-de-l-hotel-de-sens-1926",
+  },
+  {
+    year: "1928–29",
+    medium: "Stereoscopic photograph",
+    title: "At the restoration threshold",
+    file: "08-hotel-de-sens-1928-1929.webp",
+    width: 1600,
+    height: 722,
+    alt: "Paired stereoscopic photographs of the Hôtel de Sens façade, marked 1928–29.",
+    caption: "The mount is marked 1928–29, the period when the long restoration began. No specific construction operation should be inferred from this façade view alone.",
+    credit: "Anonymous; Musée Carnavalet, CC0",
+    source: "https://www.parismuseescollections.paris.fr/fr/musee-carnavalet/oeuvres/hotel-de-sens-rue-du-figuier-4eme-arrondissement-paris-3",
+  },
+  {
+    year: "2016",
+    medium: "Photograph",
+    title: "The restored street front",
+    file: "09-hotel-de-sens-2016.webp",
+    width: 1428,
+    height: 1600,
+    alt: "Guilhem Vellut photograph of the restored Hôtel de Sens street entrance and its two corner turrets in 2016.",
+    caption: "The pale masonry, repaired roofline, windows, and open street view belong to the building's current life as the Bibliothèque Forney.",
+    credit: "Guilhem Vellut, CC BY 2.0",
+    source: "https://commons.wikimedia.org/wiki/File:H%C3%B4tel_de_Sens,_Le_Marais,_Paris_28_August_2016.jpg",
+  },
+  {
+    year: "2017",
+    medium: "Photograph",
+    title: "A second modern angle",
+    file: "10-hotel-de-sens-2017.webp",
+    width: 1600,
+    height: 1066,
+    alt: "Bobo Boom photograph looking up at the restored Hôtel de Sens from an oblique street angle in 2017.",
+    caption: "The wider oblique view confirms the street entrance and corner turret arrangement while showing how a modern camera position changes the comparison.",
+    credit: "Bobo Boom, CC BY 2.0",
+    source: "https://commons.wikimedia.org/wiki/File:H%C3%B4tel_des_archev%C3%AAques_de_Sens_(25118983108).jpg",
+  },
+];
+---
+
+<section class="comparison-shell article-wide not-prose" aria-labelledby="hotel-sens-comparison-title">
+  <header class="feature-header">
+    <p class="eyebrow">Documentary comparison</p>
+    <h2 id="hotel-sens-comparison-title">The street front, 1920 and 2016</h2>
+    <p>Drag the handle across two real photographs. The crops bring the façade to a similar scale, but the camera positions are not identical and no perspective correction was applied.</p>
+  </header>
+
+  <hotel-sens-comparison style="--split: 50%">
+    <div class="comparison-stage">
+      <img
+        class="after-image"
+        src={`${assetRoot}/comparison/after-2016.webp`}
+        alt="Restored Hôtel de Sens street façade photographed in 2016."
+        width="1200"
+        height="900"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="before-window" aria-hidden="true">
+        <img
+          src={`${assetRoot}/comparison/before-1920.webp`}
+          alt=""
+          width="1200"
+          height="900"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <span class="image-label image-label-before">1920</span>
+      <span class="image-label image-label-after">2016</span>
+      <span class="comparison-line" aria-hidden="true"><span>↔</span></span>
+      <label class="sr-only" for="hotel-sens-range">Compare the 1920 and 2016 photographs</label>
+      <input
+        id="hotel-sens-range"
+        class="comparison-range"
+        type="range"
+        min="0"
+        max="100"
+        value="50"
+        aria-valuetext="50 percent 1920 photograph and 50 percent 2016 photograph"
+      />
+    </div>
+  </hotel-sens-comparison>
+
+  <div class="comparison-credits">
+    <p><strong>Before:</strong> Agence Meurisse, May 26, 1920. Bibliothèque nationale de France, public domain. <a href="https://gallica.bnf.fr/ark:/12148/btv1b9033733v" rel="noreferrer">Source record</a>.</p>
+    <p><strong>After:</strong> Guilhem Vellut, August 28, 2016. <a href="https://creativecommons.org/licenses/by/2.0" rel="license noreferrer">CC BY 2.0</a>. <a href="https://commons.wikimedia.org/wiki/File:H%C3%B4tel_de_Sens,_Le_Marais,_Paris_28_August_2016.jpg" rel="noreferrer">Source record</a>.</p>
+  </div>
+</section>
+
+<section class="transition-shell article-wide not-prose" aria-labelledby="hotel-sens-transition-title">
+  <header class="feature-header">
+    <p class="eyebrow">Generated transition</p>
+    <h2 id="hotel-sens-transition-title">A six-second passage between the documented frames</h2>
+    <p>The opening and closing photographs are real. Everything between them is a model-generated interpretation of urban clearance and restoration.</p>
+  </header>
+
+  <figure class="transition-figure">
+    <div class="transition-video">
+      <video
+        controls
+        playsinline
+        preload="metadata"
+        width="1732"
+        height="1192"
+        aria-describedby="hotel-sens-transition-caption"
+      >
+        <source src={transitionVideo} type="video/mp4" />
+        <p>Your browser cannot play this video. <a href={transitionVideo}>Open the video file directly.</a></p>
+      </video>
+    </div>
+    <figcaption id="hotel-sens-transition-caption">
+      <p><strong>Generated visualization between documented stills. Not archival footage.</strong></p>
+      <p>Kling 3.0 interpolates between the May 26, 1920 Agence Meurisse photograph and Guilhem Vellut's August 28, 2016 photograph. The intermediate frames are not a record of the 1929–61 restoration.</p>
+    </figcaption>
+  </figure>
+</section>
+
+<section class="archive-shell article-wide not-prose" aria-labelledby="hotel-sens-archive-title">
+  <header class="feature-header">
+    <p class="eyebrow">Archive progression</p>
+    <h2 id="hotel-sens-archive-title">Ten views, 1839–2017</h2>
+    <p>Prints and paintings are labeled as authored images. Photographs remain tied to their dated institutional records.</p>
+  </header>
+
+  <ol class="archive-grid">
+    {archiveFrames.map((frame) => {
+      const src = `${assetRoot}/processed/${frame.file}`;
+      return (
+        <li>
+          <figure>
+            <div class="frame-heading">
+              <time>{frame.year}</time>
+              <span>{frame.medium}</span>
+            </div>
+            <img
+              src={src}
+              alt={frame.alt}
+              width={frame.width}
+              height={frame.height}
+              loading="lazy"
+              decoding="async"
+              data-lightbox={src}
+              data-lightbox-caption={`${frame.year}: ${frame.title}. ${frame.credit}`}
+            />
+            <figcaption>
+              <h3>{frame.title}</h3>
+              <p>{frame.caption}</p>
+              <a href={frame.source} rel="noreferrer">{frame.credit}</a>
+            </figcaption>
+          </figure>
+        </li>
+      );
+    })}
+  </ol>
+</section>
+
+<script>
+  class HotelSensComparison extends HTMLElement {
+    connectedCallback() {
+      const range = this.querySelector("input[type='range']");
+      if (!(range instanceof HTMLInputElement)) return;
+
+      const update = () => {
+        const value = Number(range.value);
+        this.style.setProperty("--split", `${value}%`);
+        range.setAttribute(
+          "aria-valuetext",
+          `${value} percent 1920 photograph and ${100 - value} percent 2016 photograph`,
+        );
+      };
+
+      range.addEventListener("input", update);
+      update();
+    }
+  }
+
+  if (!customElements.get("hotel-sens-comparison")) {
+    customElements.define("hotel-sens-comparison", HotelSensComparison);
+  }
+</script>
+
+<style>
+  .comparison-shell,
+  .transition-shell,
+  .archive-shell {
+    overflow: hidden;
+    margin-block: clamp(2.25rem, 6vw, 4.5rem) !important;
+    border: 1px solid rgb(196 175 133 / 0.34);
+    border-radius: 0.85rem;
+    background: #0c0c0b;
+    box-shadow: 0 1.4rem 4rem rgb(0 0 0 / 0.26);
+  }
+
+  .feature-header {
+    padding: clamp(1.1rem, 3vw, 1.8rem);
+    background:
+      radial-gradient(circle at 100% 0%, rgb(72 102 92 / 0.32), transparent 42%),
+      linear-gradient(115deg, rgb(105 83 51 / 0.3), transparent 58%);
+  }
+
+  .feature-header p,
+  .feature-header h2 {
+    margin: 0 !important;
+  }
+
+  .feature-header h2 {
+    margin-top: 0.35rem !important;
+    color: #f4ead6 !important;
+    font: 700 clamp(1.45rem, 3.3vw, 2.35rem)/1.08 var(--font-serif), serif !important;
+  }
+
+  .feature-header > p:last-child {
+    max-width: 64rem;
+    margin-top: 0.7rem !important;
+    color: #bdb4a4 !important;
+    font-size: 0.85rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .eyebrow {
+    color: #88c9ac !important;
+    font: 700 0.7rem/1.2 var(--font-mono), monospace !important;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  hotel-sens-comparison {
+    display: block;
+  }
+
+  .comparison-stage {
+    position: relative;
+    isolation: isolate;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #050505;
+    touch-action: pan-y;
+  }
+
+  .comparison-stage img,
+  .before-window {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .comparison-stage img {
+    margin: 0 !important;
+    object-fit: cover;
+  }
+
+  .before-window {
+    z-index: 1;
+    overflow: hidden;
+    clip-path: inset(0 calc(100% - var(--split)) 0 0);
+  }
+
+  .comparison-line {
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    bottom: 0;
+    left: var(--split);
+    width: 2px;
+    background: #fff;
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 0.36);
+    pointer-events: none;
+    transform: translateX(-1px);
+  }
+
+  .comparison-line span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: grid;
+    width: 2.9rem;
+    height: 2.9rem;
+    place-items: center;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    background: rgb(15 16 15 / 0.88);
+    color: #fff;
+    font: 700 1.05rem/1 var(--font-mono), monospace;
+    box-shadow: 0 0.4rem 1.4rem rgb(0 0 0 / 0.44);
+    transform: translate(-50%, -50%);
+  }
+
+  .comparison-range {
+    position: absolute;
+    z-index: 4;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    cursor: ew-resize;
+    opacity: 0;
+  }
+
+  .comparison-range:focus-visible {
+    outline: 3px solid #88c9ac;
+    outline-offset: -5px;
+  }
+
+  hotel-sens-comparison:focus-within .comparison-stage {
+    box-shadow: inset 0 0 0 3px #88c9ac;
+  }
+
+  .image-label {
+    position: absolute;
+    z-index: 2;
+    top: 0.85rem;
+    padding: 0.42rem 0.58rem;
+    border: 1px solid rgb(255 255 255 / 0.38);
+    border-radius: 0.2rem;
+    background: rgb(0 0 0 / 0.72);
+    color: #fff;
+    font: 700 0.7rem/1 var(--font-mono), monospace;
+    letter-spacing: 0.08em;
+  }
+
+  .image-label-before { left: 0.85rem; }
+  .image-label-after { right: 0.85rem; }
+
+  .comparison-credits {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    background: rgb(196 175 133 / 0.2);
+  }
+
+  .comparison-credits p {
+    margin: 0 !important;
+    padding: 0.85rem 1rem;
+    background: #10100f;
+    color: #aaa294 !important;
+    font: 0.7rem/1.5 var(--font-mono), monospace !important;
+  }
+
+  .comparison-credits a,
+  .transition-figure a,
+  .archive-grid a {
+    color: #88c9ac;
+    text-underline-offset: 0.16em;
+  }
+
+  .transition-figure {
+    margin: 0 !important;
+  }
+
+  .transition-video {
+    aspect-ratio: 1732 / 1192;
+    background: #050505;
+  }
+
+  .transition-video video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0 !important;
+    object-fit: contain;
+  }
+
+  .transition-figure figcaption {
+    display: grid;
+    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+    gap: 1px;
+    background: rgb(196 175 133 / 0.2);
+  }
+
+  .transition-figure figcaption p {
+    margin: 0 !important;
+    padding: 0.9rem 1rem;
+    background: #10100f;
+    color: #aaa294 !important;
+    font: 0.72rem/1.55 var(--font-mono), monospace !important;
+  }
+
+  .transition-figure figcaption strong {
+    color: #f0d9a9;
+  }
+
+  .archive-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    margin: 0 !important;
+    padding: 1px 0 0 !important;
+    list-style: none !important;
+    background: rgb(196 175 133 / 0.2);
+  }
+
+  .archive-grid li {
+    min-width: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #0d0d0c;
+  }
+
+  .archive-grid figure {
+    display: grid;
+    grid-template-rows: auto minmax(17rem, 30rem) auto;
+    height: 100%;
+    margin: 0 !important;
+  }
+
+  .frame-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 0.9rem;
+  }
+
+  .frame-heading time {
+    color: #f0d9a9;
+    font: 700 0.82rem/1 var(--font-mono), monospace;
+  }
+
+  .frame-heading span {
+    color: #8f8a80;
+    font: 600 0.65rem/1 var(--font-mono), monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .archive-grid img {
+    width: 100%;
+    height: 100%;
+    max-height: 30rem;
+    margin: 0 !important;
+    object-fit: contain;
+    background: #050505;
+  }
+
+  .archive-grid figcaption {
+    padding: 0.9rem 1rem 1.1rem;
+  }
+
+  .archive-grid h3,
+  .archive-grid p {
+    margin: 0 !important;
+  }
+
+  .archive-grid h3 {
+    color: #eee3cd !important;
+    font-size: 1rem !important;
+  }
+
+  .archive-grid p {
+    margin-top: 0.45rem !important;
+    color: #aaa294 !important;
+    font-size: 0.76rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .archive-grid a {
+    display: inline-block;
+    margin-top: 0.7rem;
+    font: 0.65rem/1.4 var(--font-mono), monospace;
+  }
+
+  @media (max-width: 719px) {
+    .comparison-credits,
+    .transition-figure figcaption,
+    .archive-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .archive-grid figure {
+      grid-template-rows: auto minmax(15rem, 24rem) auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .comparison-line { transition: none; }
+  }
+</style>

@@ -1,0 +1,152 @@
+{
+  "title": "Hôtel de Sens sources and rights",
+  "updated": "2026-08-21",
+  "sources": [
+    {
+      "id": "ville-paris-forney",
+      "kind": "institutional-history",
+      "institution": "Ville de Paris",
+      "title": "Bibliothèque Forney",
+      "url": "https://www.paris.fr/lieux/bibliotheque-forney-18",
+      "supports": ["construction dates", "Tristan de Salazar", "later occupants", "commercial uses", "1911 purchase", "1929–1961 restoration", "Forney transfer"],
+      "accessed": "2026-08-21"
+    },
+    {
+      "id": "pop-merimee",
+      "kind": "heritage-record",
+      "institution": "Ministère de la Culture",
+      "title": "Hôtel de Sens; Bibliothèque Forney, PA00086316",
+      "url": "https://www.pop.culture.gouv.fr/notice/merimee/PA00086316",
+      "supports": ["address", "current library use", "historic-monument status", "classification order dated March 20, 1912"],
+      "accessed": "2026-08-21"
+    },
+    {
+      "id": "ville-paris-building-history",
+      "kind": "institutional-interpretation",
+      "institution": "Ville de Paris",
+      "title": "De la Renaissance aux Trente Glorieuses: l'Hôtel de Sens, un bâtiment à travers l'histoire",
+      "url": "https://www.paris.fr/evenements/de-la-renaissance-aux-trente-glorieuses-l-hotel-de-sens-un-batiment-a-travers-l-histoire-114683",
+      "supports": ["successive uses", "nineteenth- and twentieth-century remaking of the surrounding urban environment"],
+      "accessed": "2026-08-21"
+    },
+    {
+      "id": "paris-musees-1839",
+      "kind": "image-record",
+      "institution": "Musée Carnavalet / Paris Musées",
+      "title": "Hôtel de Sens, Paris",
+      "creator": "Thomas Shotter Boys",
+      "date": "1839",
+      "url": "https://www.parismuseescollections.paris.fr/fr/musee-carnavalet/oeuvres/hotel-de-sens-paris",
+      "rights": "CC0 1.0",
+      "rightsUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "accessed": "2026-08-21"
+    },
+    {
+      "id": "paris-musees-1869",
+      "kind": "image-record",
+      "institution": "Musée Carnavalet / Paris Musées",
+      "title": "Hôtel de Sens, rue du Figuier, 4ème arrondissement, Paris",
+      "creator": "Pierre Emonts or Emonds",
+      "date": "1869-04-27",
+      "url": "https://www.parismuseescollections.paris.fr/fr/musee-carnavalet/oeuvres/hotel-de-sens-rue-du-figuier-4eme-arrondissement-paris-0",
+      "rights": "CC0 1.0",
+      "rightsUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "accessed": "2026-08-21"
+    },
+    {
+      "id": "paris-musees-c1880",
+      "kind": "image-record",
+      "institution": "Musée Carnavalet / Paris Musées",
+      "title": "L'Hôtel des archevêques de Sens, actuelle Bibliothèque Forney, vers 1880",
+      "creator": "Anonymous",
+      "date": "1875–1885",
+      "url": "https://www.parismuseescollections.paris.fr/fr/musee-carnavalet/oeuvres/l-hotel-des-archeveques-de-sens-actuelle-bibliotheque-forney-vers-1880",
+      "rights": "CC0 1.0",
+      "rightsUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "accessed": "2026-08-21"
+    },
+    {
+      "id": "bnf-atget-1898",
+      "kind": "image-record",
+      "institution": "Bibliothèque nationale de France",
+      "title": "Hôtel de Sens - 1898",
+      "creator": "Eugène Atget",
+      "date": "1898–1900",
+      "url": "https://gallica.bnf.fr/ark:/12148/btv1b105174974",
+      "rights": "Public domain",
+      "accessed": "2026-08-21"
+    },
+    {
+      "id": "bnf-rol-1911",
+      "kind": "image-record",
+      "institution": "Bibliothèque nationale de France",
+      "title": "Hôtel de Sens, Paris, rue des Figuiers",
+      "creator": "Agence Rol",
+      "date": "1911",
+      "url": "https://gallica.bnf.fr/ark:/12148/btv1b6916553v",
+      "rights": "Public domain",
+      "accessed": "2026-08-21"
+    },
+    {
+      "id": "bnf-meurisse-1920",
+      "kind": "image-record",
+      "institution": "Bibliothèque nationale de France",
+      "title": "Hôtel des archevêques de Sens, rue des Figuiers: vue extérieure",
+      "creator": "Agence Meurisse",
+      "date": "1920-05-26",
+      "catalogNumber": "Meurisse 80722",
+      "url": "https://gallica.bnf.fr/ark:/12148/btv1b9033733v",
+      "rights": "Public domain",
+      "matchNote": "Exact visual match to the supplied image: building, market wall, right-hand advertisements, street lamp, pedestrians, and car.",
+      "accessed": "2026-08-21"
+    },
+    {
+      "id": "paris-musees-1926",
+      "kind": "image-record",
+      "institution": "Musée Carnavalet / Paris Musées",
+      "title": "Démolitions de vieilles maisons en face de l'Hôtel de Sens",
+      "creator": "Gustave Ferdinand Boberg",
+      "date": "1926",
+      "url": "https://www.parismuseescollections.paris.fr/fr/musee-carnavalet/oeuvres/demolitions-de-vieilles-maisons-en-face-de-l-hotel-de-sens-1926",
+      "rights": "CC0 1.0",
+      "rightsUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "accessed": "2026-08-21"
+    },
+    {
+      "id": "paris-musees-1928",
+      "kind": "image-record",
+      "institution": "Musée Carnavalet / Paris Musées",
+      "title": "Hôtel de Sens, rue du Figuier, 4ème arrondissement, Paris",
+      "creator": "Anonymous",
+      "date": "1928–1929 inscription; object dated 1923–1933",
+      "url": "https://www.parismuseescollections.paris.fr/fr/musee-carnavalet/oeuvres/hotel-de-sens-rue-du-figuier-4eme-arrondissement-paris-3",
+      "rights": "CC0 1.0",
+      "rightsUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "accessed": "2026-08-21"
+    },
+    {
+      "id": "commons-vellut-2016",
+      "kind": "image-record",
+      "institution": "Wikimedia Commons; source photograph by Guilhem Vellut",
+      "title": "Hôtel de Sens, Le Marais, Paris 28 August 2016",
+      "creator": "Guilhem Vellut",
+      "date": "2016-08-28",
+      "url": "https://commons.wikimedia.org/wiki/File:H%C3%B4tel_de_Sens,_Le_Marais,_Paris_28_August_2016.jpg",
+      "rights": "CC BY 2.0",
+      "rightsUrl": "https://creativecommons.org/licenses/by/2.0/",
+      "accessed": "2026-08-21"
+    },
+    {
+      "id": "commons-bobo-boom-2017",
+      "kind": "image-record",
+      "institution": "Wikimedia Commons; source photograph by Bobo Boom",
+      "title": "Hôtel des archevêques de Sens",
+      "creator": "Bobo Boom",
+      "date": "2017-04-06",
+      "url": "https://commons.wikimedia.org/wiki/File:H%C3%B4tel_des_archev%C3%AAques_de_Sens_(25118983108).jpg",
+      "rights": "CC BY 2.0",
+      "rightsUrl": "https://creativecommons.org/licenses/by/2.0/",
+      "accessed": "2026-08-21"
+    }
+  ]
+}

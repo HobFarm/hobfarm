@@ -1,0 +1,118 @@
+{
+  "title": "Hôtel de Sens historical timeline",
+  "updated": "2026-08-21",
+  "events": [
+    {
+      "from": 1475,
+      "to": 1519,
+      "label": "Construction",
+      "description": "The Hôtel de Sens was built on the order of Tristan de Salazar, archbishop of Sens.",
+      "claimType": "documented-fact",
+      "sources": ["ville-paris-forney"]
+    },
+    {
+      "from": 1605,
+      "to": 1606,
+      "label": "Marguerite de Valois",
+      "description": "Marguerite de Valois, known as Queen Margot, occupied the house for a short period. The Ville de Paris page describes the stay as lasting several months; the year range comes from the Musée Carnavalet object history.",
+      "claimType": "documented-fact",
+      "sources": ["ville-paris-forney", "paris-musees-1839"]
+    },
+    {
+      "from": 1622,
+      "to": 1789,
+      "label": "Private rentals",
+      "description": "The archbishops left in 1622. The building was rented to private occupants until the Revolution.",
+      "claimType": "documented-fact",
+      "sources": ["ville-paris-forney"]
+    },
+    {
+      "from": 1789,
+      "to": 1911,
+      "label": "Commercial and industrial uses",
+      "description": "After sale as national property, successive occupants used the building for transport, laundry, food production, hare-hair cutting, jam making, and glass storage.",
+      "claimType": "documented-fact",
+      "sources": ["ville-paris-forney"]
+    },
+    {
+      "from": 1839,
+      "to": 1839,
+      "label": "Thomas Shotter Boys lithograph",
+      "description": "A published lithograph records the corner turret and a busy street scene. It is an authored print, not a photograph.",
+      "claimType": "documented-source",
+      "sources": ["paris-musees-1839"]
+    },
+    {
+      "from": 1869,
+      "to": 1869,
+      "label": "Saint James jam works photographed",
+      "description": "Pierre Emonts or Emonds photographed the street façade with the Confiturerie de Saint James sign over the entrance on April 27, 1869.",
+      "claimType": "documented-source",
+      "sources": ["paris-musees-1869"]
+    },
+    {
+      "from": 1898,
+      "to": 1900,
+      "label": "Eugène Atget photograph",
+      "description": "Atget photographed a corner turret and the tightly adjoining street fabric.",
+      "claimType": "documented-source",
+      "sources": ["bnf-atget-1898"]
+    },
+    {
+      "from": 1911,
+      "to": 1911,
+      "label": "Municipal acquisition",
+      "description": "The City of Paris bought the building in a state described by the city as extremely dilapidated.",
+      "claimType": "documented-fact",
+      "sources": ["ville-paris-forney", "bnf-rol-1911"]
+    },
+    {
+      "from": 1912,
+      "to": 1912,
+      "label": "Historic-monument classification order",
+      "description": "The current Ministry of Culture record lists a classification order dated March 20, 1912.",
+      "claimType": "documented-fact",
+      "sources": ["pop-merimee"]
+    },
+    {
+      "from": 1920,
+      "to": 1920,
+      "label": "Agence Meurisse before frame",
+      "description": "The supplied photograph matches Agence Meurisse image 80722, dated May 26, 1920, in the Bibliothèque nationale de France.",
+      "claimType": "documented-source",
+      "sources": ["bnf-meurisse-1920"]
+    },
+    {
+      "from": 1926,
+      "to": 1926,
+      "label": "Demolition opposite the hotel",
+      "description": "Gustave Ferdinand Boberg made a drawing explicitly titled as demolition of old houses opposite the Hôtel de Sens.",
+      "claimType": "documented-source",
+      "sources": ["paris-musees-1926"]
+    },
+    {
+      "from": 1929,
+      "to": 1961,
+      "label": "Restoration",
+      "description": "The municipal restoration began in 1929 and ended in 1961. The sources reviewed for this package do not provide an element-by-element inventory of replaced and retained fabric.",
+      "claimType": "documented-fact-with-open-detail",
+      "sources": ["ville-paris-forney"]
+    },
+    {
+      "from": 1929,
+      "to": 1961,
+      "label": "Bibliothèque Forney transfer",
+      "description": "Paris adopted the transfer plan in 1929. The collections began moving 32 years later, in 1961.",
+      "claimType": "documented-fact",
+      "sources": ["ville-paris-forney"]
+    },
+    {
+      "from": 2016,
+      "to": 2016,
+      "label": "Modern after frame",
+      "description": "Guilhem Vellut photographed the restored street façade on August 28, 2016.",
+      "claimType": "documented-source",
+      "sources": ["commons-vellut-2016"]
+    }
+  ]
+}
