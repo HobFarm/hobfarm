@@ -61,10 +61,10 @@ export function articlePath(articleOrId: Article | string): string {
   ) {
     const title = getPresentsTitle("3dm");
     const slug = stripArticleExt(articleOrId.id).split("/").pop();
-    if (title && slug) return `${title.href}${slug}`;
+    if (title && slug) return `${title.href}${slug}/`;
   }
   const id = typeof articleOrId === "string" ? articleOrId : articleOrId.id;
-  return `/articles/${stripArticleExt(id)}`;
+  return `/articles/${stripArticleExt(id)}/`;
 }
 
 export function articleTagPath(tag: string): string {
@@ -101,6 +101,10 @@ export function getArticleUpdatedDate(articleOrData: Article | ArticleData): Dat
 
 export function getArticleDescription(data: ArticleData): string {
   return data.description ?? data.dek ?? data.excerpt;
+}
+
+export function getArticleSeoTitle(data: ArticleData): string {
+  return data.seoTitle ?? data.title;
 }
 
 export function getArticleDek(data: ArticleData): string {

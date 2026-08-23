@@ -155,7 +155,7 @@ export async function GET() {
         priority: "0.6",
       })),
     ...articles.map((article) => ({
-      loc: absoluteUrl(`${articlePath(article)}/`),
+      loc: absoluteUrl(articlePath(article)),
       lastmod: formatDate(
         getArticleUpdatedDate(article) ?? getArticleDate(article),
       ),

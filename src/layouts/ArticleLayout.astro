@@ -3,7 +3,6 @@ import type { Article } from "@/lib/articles";
 import {
   articlePath,
   articleSubjectPath,
-  articleTagPath,
   getArticleAboutEntities,
   getArticleDate,
   getArticleDek,
@@ -14,6 +13,7 @@ import {
   getArticleMeshKeywords,
   getArticleSectionLabel,
   getArticleSectionPath,
+  getArticleSeoTitle,
   getArticleSubjectCounts,
   getArticleUpdatedDate,
   getPublishedArticles,
@@ -47,6 +47,7 @@ const frontmatter = article.data;
 const publishedAt = getArticleDate(article);
 const updatedAt = getArticleUpdatedDate(article);
 const description = getArticleDescription(frontmatter);
+const seoTitle = getArticleSeoTitle(frontmatter);
 const dek = getArticleDek(frontmatter);
 const hero = getArticleHero(frontmatter);
 const seoImage = getArticleImage(frontmatter);
@@ -68,7 +69,7 @@ const formattedDate = publishedAt.toLocaleDateString("en-US", {
 
 const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
 const toAbsoluteUrl = (value: string) => new URL(value, siteOrigin).toString();
-const canonicalPath = frontmatter.canonical ?? `${articlePath(article)}/`;
+const canonicalPath = frontmatter.canonical ?? articlePath(article);
 const canonicalUrl = toAbsoluteUrl(canonicalPath);
 
 const cdnImageBase = "https://cdn.hob.farm/";
@@ -268,7 +269,7 @@ const articleJsonLd = {
 ---
 
 <BaseLayout
-  title={`${frontmatter.title} | HobFarm Articles`}
+  title={`${seoTitle} | HobFarm`}
   description={description}
   canonical={canonicalUrl}
   image={seoImage}
@@ -404,12 +405,9 @@ const articleJsonLd = {
             </span>
           )}
           {frontmatter.tags.map((tag: string) => (
-            <a
-              href={articleTagPath(tag)}
-              class="text-xs font-mono px-2 py-1 border border-base-700 text-base-400 hover:text-base-100 hover:border-base-500 transition-colors capitalize"
-            >
+            <span class="text-xs font-mono px-2 py-1 border border-base-700 text-base-400 capitalize">
               {tag}
-            </a>
+            </span>
           ))}
         </div>
         {articleSubjects.length > 0 && (

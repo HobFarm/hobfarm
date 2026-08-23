@@ -8,7 +8,7 @@ import MediaPlayer from "@/components/media/MediaPlayer.astro";
 import ConnectionChain from "@/components/presents/ConnectionChain.astro";
 import ThreeDMEntryCard from "@/components/presents/ThreeDMEntryCard.astro";
 import Lightbox from "@/components/gallery/Lightbox";
-import { articlePath, getArticleDate, getArticleDescription, getArticleHero, getArticleSectionLabel, getArticleSectionPath, getArticleUpdatedDate } from "@/lib/articles";
+import { articlePath, getArticleDate, getArticleDescription, getArticleHero, getArticleSectionLabel, getArticleSectionPath, getArticleSeoTitle, getArticleUpdatedDate } from "@/lib/articles";
 import { THREE_DM_GPT_URL, THREE_DM_LOGO, THREE_DM_PATH } from "@/data/presents-titles";
 
 interface Props {
@@ -21,12 +21,13 @@ const { article, readingTime, related } = Astro.props;
 const data = article.data;
 const publishedAt = getArticleDate(article);
 const updatedAt = getArticleUpdatedDate(article) ?? publishedAt;
-const canonicalPath = data.canonical ?? `${articlePath(article)}/`;
+const canonicalPath = data.canonical ?? articlePath(article);
 const canonicalUrl = new URL(canonicalPath, Astro.site?.origin ?? "https://hob.farm").toString();
 const image = getArticleHero(data) ?? THREE_DM_LOGO;
 const socialImage = data.socialImage ?? image;
 const usesSeriesLogo = image === THREE_DM_LOGO;
 const description = getArticleDescription(data);
+const seoTitle = getArticleSeoTitle(data);
 const sectionLabel = getArticleSectionLabel(data);
 const sectionHref = getArticleSectionPath(data);
 const entryType = (data.entryType ?? "article").replaceAll("-", " ");
@@ -74,7 +75,7 @@ const structuredData = {
 ---
 
 <BaseLayout
-  title={`${data.title} | 3 Degrees of Dick Miller`}
+  title={`${seoTitle} | HobFarm`}
   description={description}
   canonical={canonicalPath}
   image={socialImage}

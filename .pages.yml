@@ -30,6 +30,7 @@ content:
         order: desc
     fields:
       - { name: title, label: Title, type: string, required: true }
+      - { name: seoTitle, label: Search Result Title, type: string }
       - { name: excerpt, label: Excerpt, type: text, required: true }
       - { name: dek, label: Dek, type: text }
       - { name: description, label: SEO Description, type: text }

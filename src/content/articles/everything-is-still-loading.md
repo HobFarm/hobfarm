@@ -146,7 +146,7 @@ The game often isn't.
 ## The game was ready
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/everything-is-still-loading/doom-packard-bell-upgrade.png" alt="A printed service-manual diagram showing a Packard Bell 486 with 4 MB of RAM and a 2400-bps modem upgraded with another 4 MB and a 14.4k modem, followed by a maze game and an open BBS terminal." loading="lazy" decoding="async" data-lightbox="https://cdn.hob.farm/articles/everything-is-still-loading/doom-packard-bell-upgrade.png" data-lightbox-caption="Four megabytes became eight. A 2400-bps modem became 14.4k. The computer gained access to Doom and a much larger BBS world." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/everything-is-still-loading/doom-packard-bell-upgrade.png" alt="A printed service-manual diagram showing a Packard Bell 486 with 4 MB of RAM and a 2400-bps modem upgraded with another 4 MB and a 14.4k modem, followed by a maze game and an open BBS terminal." width="1536" height="1024" loading="lazy" decoding="async" data-lightbox="https://cdn.hob.farm/articles/everything-is-still-loading/doom-packard-bell-upgrade.png" data-lightbox-caption="Four megabytes became eight. A 2400-bps modem became 14.4k. The computer gained access to Doom and a much larger BBS world." />
   <figcaption>Four megabytes became eight. A 2400-bps modem became 14.4k. The computer gained access to <em>Doom</em> and a much larger BBS world.</figcaption>
 </figure>
 
@@ -203,7 +203,7 @@ Modern systems are easier until they are not. Then the failure may live inside a
 Computers became easier to operate while becoming harder to control.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/everything-is-still-loading/personal-pc-gaming-timeline.png" alt="A wide foldout timeline connecting an early 1990s borrowed PC, a Packard Bell and BBS, Diablo, DV and FireWire video work, The Witcher, Dragon Age, Civilization, modern troubled launches, a blocked 2026 workstation, and future VR worlds." loading="lazy" decoding="async" data-lightbox="https://cdn.hob.farm/articles/everything-is-still-loading/personal-pc-gaming-timeline.png" data-lightbox-caption="The personal computer moves from borrowed access and hardware upgrades into authored worlds, digital platforms, Early Access, compatibility barriers, and whatever comes next." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/everything-is-still-loading/personal-pc-gaming-timeline.png" alt="A wide foldout timeline connecting an early 1990s borrowed PC, a Packard Bell and BBS, Diablo, DV and FireWire video work, The Witcher, Dragon Age, Civilization, modern troubled launches, a blocked 2026 workstation, and future VR worlds." width="1774" height="887" loading="lazy" decoding="async" data-lightbox="https://cdn.hob.farm/articles/everything-is-still-loading/personal-pc-gaming-timeline.png" data-lightbox-caption="The personal computer moves from borrowed access and hardware upgrades into authored worlds, digital platforms, Early Access, compatibility barriers, and whatever comes next." />
   <figcaption>The personal computer moves from borrowed access and hardware upgrades into authored worlds, digital platforms, Early Access, compatibility barriers, and whatever comes next.</figcaption>
 </figure>
 
@@ -296,7 +296,7 @@ That is why I wait.
 I no longer buy a new *Civilization* when it comes out. I give it at least two years. By then, the worst technical problems have usually been patched, the design has settled, the community understands what is missing, the first wave of additional content has arrived, and the price has stopped behaving like I am financing the invention of agriculture.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/everything-is-still-loading/civilization-two-year-rule.png" alt="A circular infographic showing a mature Civilization game as a finished city, a new release as an expensive construction site, patches and expansions adding the missing structures, and a calendar reaching two years before replacement." loading="lazy" decoding="async" data-lightbox="https://cdn.hob.farm/articles/everything-is-still-loading/civilization-two-year-rule.png" data-lightbox-caption="Every new Civilization launches against the complete edition that players were using yesterday." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/everything-is-still-loading/civilization-two-year-rule.png" alt="A circular infographic showing a mature Civilization game as a finished city, a new release as an expensive construction site, patches and expansions adding the missing structures, and a calendar reaching two years before replacement." width="1448" height="1086" loading="lazy" decoding="async" data-lightbox="https://cdn.hob.farm/articles/everything-is-still-loading/civilization-two-year-rule.png" data-lightbox-caption="Every new Civilization launches against the complete edition that players were using yesterday." />
   <figcaption>Every new <em>Civilization</em> launches against the complete edition that players were using yesterday.</figcaption>
 </figure>
 
@@ -318,7 +318,7 @@ The patience required to wait until the product catches up with its price.
 ## Five ways to release a game
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/everything-is-still-loading/modern-game-release-contracts.png" alt="Five construction metaphors compare The Witcher 3 as a complete building with defects, Baldur's Gate 3 as a signed Early Access site, Cyberpunk 2077 as an unfinished building behind a finished facade, Fallout 76 as a ride opening during construction, and Civilization VII as a foundation with a two-year calendar." loading="lazy" decoding="async" data-lightbox="https://cdn.hob.farm/articles/everything-is-still-loading/modern-game-release-contracts.png" data-lightbox-caption="Modern games do not all launch unfinished in the same way. The important difference is what the company told the customer before taking the money." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/everything-is-still-loading/modern-game-release-contracts.png" alt="Five construction metaphors compare The Witcher 3 as a complete building with defects, Baldur's Gate 3 as a signed Early Access site, Cyberpunk 2077 as an unfinished building behind a finished facade, Fallout 76 as a ride opening during construction, and Civilization VII as a foundation with a two-year calendar." width="1672" height="941" loading="lazy" decoding="async" data-lightbox="https://cdn.hob.farm/articles/everything-is-still-loading/modern-game-release-contracts.png" data-lightbox-caption="Modern games do not all launch unfinished in the same way. The important difference is what the company told the customer before taking the money." />
   <figcaption>Modern games do not all launch unfinished in the same way. The important difference is what the company told the customer before taking the money.</figcaption>
 </figure>
 
@@ -471,7 +471,7 @@ They had been buried inside Steam's folders when I wiped the failed Windows 11 i
 One image had survived somewhere else.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/everything-is-still-loading/only-surviving-game-screenshot.jpg" alt="A personal Civilization VI screenshot showing Basil II denouncing the player in front of a palace at sunset." loading="lazy" decoding="async" data-lightbox="https://cdn.hob.farm/articles/everything-is-still-loading/only-surviving-game-screenshot.jpg" data-lightbox-caption="The only personal game screenshot I found while making this article. The search mattered more than the file: it brought me back to the Windows 11 upgrade that broke the workstation and the Windows 10 reinstall that fixed it." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/everything-is-still-loading/only-surviving-game-screenshot.jpg" alt="A personal Civilization VI screenshot showing Basil II denouncing the player in front of a palace at sunset." width="1920" height="975" loading="lazy" decoding="async" data-lightbox="https://cdn.hob.farm/articles/everything-is-still-loading/only-surviving-game-screenshot.jpg" data-lightbox-caption="The only personal game screenshot I found while making this article. The search mattered more than the file: it brought me back to the Windows 11 upgrade that broke the workstation and the Windows 10 reinstall that fixed it." />
   <figcaption>The only personal game screenshot I found while making this article. The search mattered more than the file: it brought me back to the Windows 11 upgrade that broke the workstation and the Windows 10 reinstall that fixed it.</figcaption>
 </figure>
 
@@ -496,7 +496,7 @@ Nothing has to break.
 The doors close around it.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/everything-is-still-loading/no-support.png" alt="A healthy 2018 workstation with green hardware status lights is surrounded by Windows support notices, application and driver warnings, mobile app barriers, locked gates, and expensive replacement components." loading="lazy" decoding="async" data-lightbox="https://cdn.hob.farm/articles/everything-is-still-loading/no-support.png" data-lightbox-caption="The hardware is not dead. Its permission to participate expired." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/everything-is-still-loading/no-support.png" alt="A healthy 2018 workstation with green hardware status lights is surrounded by Windows support notices, application and driver warnings, mobile app barriers, locked gates, and expensive replacement components." width="1448" height="1086" loading="lazy" decoding="async" data-lightbox="https://cdn.hob.farm/articles/everything-is-still-loading/no-support.png" data-lightbox-caption="The hardware is not dead. Its permission to participate expired." />
   <figcaption>The hardware is not dead. Its permission to participate expired.</figcaption>
 </figure>
 
@@ -527,7 +527,7 @@ Now every part of the machine looks like it has been placed behind glass at an a
 ## The future is visible
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/everything-is-still-loading/the-next-world-is-loading.png" alt="A player in a VR headset stands at a checkpoint of GPU prices, account logins, operating-system support, compatibility scans, updates, and patch roadmaps while a vast branching world opens beyond it." loading="lazy" decoding="async" data-lightbox="https://cdn.hob.farm/articles/everything-is-still-loading/the-next-world-is-loading.png" data-lightbox-caption="The world beyond the checkpoint is worth reaching. The checkpoint is the problem." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/everything-is-still-loading/the-next-world-is-loading.png" alt="A player in a VR headset stands at a checkpoint of GPU prices, account logins, operating-system support, compatibility scans, updates, and patch roadmaps while a vast branching world opens beyond it." width="1672" height="941" loading="lazy" decoding="async" data-lightbox="https://cdn.hob.farm/articles/everything-is-still-loading/the-next-world-is-loading.png" data-lightbox-caption="The world beyond the checkpoint is worth reaching. The checkpoint is the problem." />
   <figcaption>The world beyond the checkpoint is worth reaching. The checkpoint is the problem.</figcaption>
 </figure>
 

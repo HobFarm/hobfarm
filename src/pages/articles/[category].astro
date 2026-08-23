@@ -47,7 +47,7 @@ const sectionJsonLd = editorialSection ? {
     itemListElement: posts.map((post, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      url: new URL(`${articlePath(post)}/`, Astro.site ?? "https://hob.farm").toString(),
+      url: new URL(articlePath(post), Astro.site ?? "https://hob.farm").toString(),
       name: post.data.title,
     })),
   },

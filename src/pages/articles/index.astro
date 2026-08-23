@@ -42,7 +42,7 @@ const structuredData = {
       "@type": "ListItem",
       position: index + 1,
       name: post.data.title,
-      url: new URL(`${articlePath(post)}/`, Astro.site ?? "https://hob.farm").toString(),
+      url: new URL(articlePath(post), Astro.site ?? "https://hob.farm").toString(),
     })),
   },
 };

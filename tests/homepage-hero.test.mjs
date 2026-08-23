@@ -30,13 +30,13 @@ test("homepage masthead unifies the publisher intro, current Editorial, and rece
   assert.doesNotMatch(homepage, /hobfarm-rabbit-hole-logo\.mp4|hobfarm-drip-logo\.png/);
   assert.doesNotMatch(homepage, /<video|autoplay/);
   assert.match(homepage, /recentArticles = coverStory \? articles\.slice\(1, 6\)/);
-  assert.match(homepage, /`\$\{articlePath\(coverStory\)\}\/`/);
+  assert.match(homepage, /articlePath\(coverStory\)/);
 });
 
 test("homepage article cards use each article's own hero image", () => {
   const card = read("src/components/articles/ArticleCard.astro");
 
-  assert.match(card, /`\$\{articlePath\(post\)\}\/`/);
+  assert.match(card, /articlePath\(post\)/);
   assert.match(card, /const hero = getArticleHero\(post\.data\)/);
   assert.doesNotMatch(card, /THREE_DM_LOGO/);
   assert.doesNotMatch(card, /presentsSeries === "3dm"/);
@@ -47,7 +47,7 @@ test("homepage section and Specials cards reuse published Editorial imagery", ()
   const specials = read("src/components/articles/EditorialSpecials.astro");
   const homeSpecials = read("src/components/home/HomeEditorialSpecials.astro");
 
-  assert.match(sections, /`\$\{articlePath\(section\.newest\)\}\/`/);
+  assert.match(sections, /articlePath\(section\.newest\)/);
   for (const component of [sections, specials]) {
     assert.match(component, /getArticleHero/);
     assert.match(component, /imageSrcset/);

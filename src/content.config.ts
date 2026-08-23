@@ -64,6 +64,9 @@ const articles = defineCollection({
   schema: z
     .object({
       title: z.string(),
+      // Optional search-result title. Keep the visible editorial headline in
+      // `title`; use this only when a clearer entity/query label helps search.
+      seoTitle: z.string().optional(),
       excerpt: z.string(),
       dek: z.string().optional(),
       description: z.string().optional(),

@@ -22,7 +22,7 @@ export async function GET(context: APIContext) {
         title: `${entry.data.title} | 3 Degrees of Dick Miller`,
         pubDate: getArticleDate(entry),
         description: getArticleDescription(entry.data),
-        link: `${articlePath(entry)}/`,
+        link: articlePath(entry),
         customData: mediaContent(getArticleImage(entry.data) ?? THREE_DM_CDN_LOGO),
       })),
     ].sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime()),

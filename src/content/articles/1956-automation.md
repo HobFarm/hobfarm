@@ -61,7 +61,7 @@ mesh:
 ---
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/blog/1956-automation/1956-automation-playboy-cartoon.jpg" alt="Original January 1956 Playboy Labor cartoon about IBM automation and a mechanical woman on a bed." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/blog/1956-automation/1956-automation-playboy-cartoon.jpg" alt="Original January 1956 Playboy Labor cartoon about IBM automation and a mechanical woman on a bed." width="812" height="561" loading="lazy" decoding="async" />
   <figcaption>"Labor," from Playboy's January 1956 forecast package. The joke is about IBM, automation, and the supposedly safe zones of specialized human work.</figcaption>
 </figure>
 
@@ -104,7 +104,7 @@ That did not mean every worker vanished. That is the lazy version of the story. 
 IBM did not eliminate labor. IBM moved labor into the machine room.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/blog/1956-automation/ibm-1930s-magnetictapeunit-thp-master-box.jpg" alt="IBM punched-card and keypunch-era business machine image." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/blog/1956-automation/ibm-1930s-magnetictapeunit-thp-master-box.jpg" alt="IBM punched-card and keypunch-era business machine image." width="2000" height="1338" loading="lazy" decoding="async" />
   <figcaption>IBM punch-card systems helped turn business and government records into machine-readable workflows.</figcaption>
 </figure>
 
@@ -127,7 +127,7 @@ That is still how a lot of automation works.
 ## 1950s: IBM becomes the office monster
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/blog/1956-automation/1953-ibm-650-with-operator.jpg" alt="IBM 650 with an operator in a 1950s machine room." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/blog/1956-automation/1953-ibm-650-with-operator.jpg" alt="IBM 650 with an operator in a 1950s machine room." width="1280" height="1051" loading="lazy" decoding="async" />
   <figcaption>IBM 650, announced in 1953, helped make commercial business computing feel real.</figcaption>
 </figure>
 
@@ -154,7 +154,7 @@ AI agents are not employees. They are weird interns with root access unless some
 ## 1959 to the 1980s: the machine becomes a platform
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/blog/1956-automation/ibm1401.jpg" alt="IBM 1401 machine-room scene with business computing equipment and operators." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/blog/1956-automation/ibm1401.jpg" alt="IBM 1401 machine-room scene with business computing equipment and operators." width="2048" height="1653" loading="lazy" decoding="async" />
   <figcaption>The IBM 1401 pushed business computing deeper into ordinary commercial workflows.</figcaption>
 </figure>
 
@@ -163,7 +163,7 @@ The IBM 1401, introduced in 1959, helped push computing into more business envir
 Then came System/360 in 1964.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/blog/1956-automation/1965-system360-model-65.jpg" alt="IBM System/360 Model 65 computer installation." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/blog/1956-automation/1965-system360-model-65.jpg" alt="IBM System/360 Model 65 computer installation." width="2048" height="1606" loading="lazy" decoding="async" />
   <figcaption>IBM System/360 turned business computing into a platform logic, not just a machine purchase.</figcaption>
 </figure>
 
@@ -196,7 +196,7 @@ IBM helped create a machine world so large that everyone eventually needed a rel
 ## IBM also made strange futures possible
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/blog/1956-automation/IBM-research-fractal-style-lab.png" alt="Corporate machine-room and fractal-style lab editorial image." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/blog/1956-automation/IBM-research-fractal-style-lab.png" alt="Corporate machine-room and fractal-style lab editorial image." width="1448" height="1086" loading="lazy" decoding="async" />
   <figcaption>Corporate machine rooms did not only produce business automation. They also produced researchers, ideas, and visual systems that escaped the office.</figcaption>
 </figure>
 
@@ -219,7 +219,7 @@ The problem is not that machines exist. The problem is who controls them, who ca
 ## 2026: IBM is still here, just quieter
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/blog/1956-automation/modern-ibm.png" alt="Modern IBM, watsonx, AI, mainframe, and quantum computing editorial image." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/blog/1956-automation/modern-ibm.png" alt="Modern IBM, watsonx, AI, mainframe, and quantum computing editorial image." width="1536" height="1024" loading="lazy" decoding="async" />
   <figcaption>IBM today is less visible in consumer AI culture, but still active in enterprise AI, hybrid cloud, mainframes, consulting, automation, and quantum computing.</figcaption>
 </figure>
 
@@ -297,7 +297,7 @@ The reality is that the worker has to learn the machine, manage the machine, rou
 ## The word-and-logic brush
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/blog/1956-automation/future-workshop.png" alt="Generated future creative workshop scene with people steering automated tools." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/blog/1956-automation/future-workshop.png" alt="Generated future creative workshop scene with people steering automated tools." width="1448" height="1086" loading="lazy" decoding="async" />
   <figcaption>The better future is not workerless. It is smaller, more legible, and more distributed, with people steering automated tools instead of being trapped inside them.</figcaption>
 </figure>
 

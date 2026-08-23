@@ -271,7 +271,7 @@ I am independent of your team.
 That position should be simple. It has become difficult to process because They, Inc. sells two main membership packages, and every refusal is filed as an order for the other one.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/brought-to-you-by-they-inc/they-inc-information-supply-chain.png" alt="Diagram of an information supply chain moving from an event through reporting, commentary, clips, group interpretation, memory, and finally the phrase they say." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/brought-to-you-by-they-inc/they-inc-information-supply-chain.png" alt="Diagram of an information supply chain moving from an event through reporting, commentary, clips, group interpretation, memory, and finally the phrase they say." width="1800" height="1160" loading="lazy" decoding="async" />
   <figcaption>The supply chain does not require a fabricated event. Each layer selects, compresses, interprets, and repackages what came before.</figcaption>
 </figure>
 
@@ -514,7 +514,7 @@ The new capability was vocabulary ownership.
 The word became a jersey before it became a description.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/brought-to-you-by-they-inc/thirty-years-of-they-inc.png" alt="Timeline from 1998 through 2026 showing each new capability acquired by They, Inc., including continuous scandal, emergency certainty, symbolic extraction, identity claims, physical subscription, and AI loyalty tests." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/brought-to-you-by-they-inc/thirty-years-of-they-inc.png" alt="Timeline from 1998 through 2026 showing each new capability acquired by They, Inc., including continuous scandal, emergency certainty, symbolic extraction, identity claims, physical subscription, and AI loyalty tests." width="1800" height="1325" loading="lazy" decoding="async" />
   <figcaption>Thirty years of expansion: the subject changes while the machinery keeps the capability.</figcaption>
 </figure>
 
@@ -609,7 +609,7 @@ Those are not trivia. They are part of the infrastructure behind military operat
 The country appears less often because infrastructure is harder to sell than an enemy.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/brought-to-you-by-they-inc/iran-vs-djibouti.png" alt="A dated comparison of Google News results for Iran and Djibouti above a simple map locating Djibouti, the Bab el-Mandeb strait, the Red Sea, and Camp Lemonnier." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/brought-to-you-by-they-inc/iran-vs-djibouti.png" alt="A dated comparison of Google News results for Iran and Djibouti above a simple map locating Djibouti, the Bab el-Mandeb strait, the Red Sea, and Camp Lemonnier." width="2000" height="1410" loading="lazy" decoding="async" />
   <figcaption>Google News on July 24, 2026: a temporary search snapshot, paired with the durable infrastructure the quieter search can hide.</figcaption>
 </figure>
 
@@ -618,7 +618,7 @@ The lesson is not that Iran coverage is fake or that Google must give every coun
 The lesson is that public familiarity follows attention. A country can become a daily moral object while a strategically important neighbor remains almost invisible. One produces stories. The other helps operate the system those stories are about.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/brought-to-you-by-they-inc/identity-badge-department.png" alt="Satirical retail display offering flags, masks, celebrities, foods, countries, brands, and slogans as packaged political identity badges." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/brought-to-you-by-they-inc/identity-badge-department.png" alt="Satirical retail display offering flags, masks, celebrities, foods, countries, brands, and slogans as packaged political identity badges." width="1800" height="1190" loading="lazy" decoding="async" />
   <figcaption>Flags and Identity Products: ordinary objects arrive with a presumed political subscription attached.</figcaption>
 </figure>
 
@@ -687,7 +687,7 @@ I criticize the thing.
 I refuse both membership packages.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/brought-to-you-by-they-inc/factoid-factory.png" alt="Diagram showing a complex event entering a factory where context, scope, comparison, and uncertainty are removed while certainty, moral charge, and enemy assignment are added." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/brought-to-you-by-they-inc/factoid-factory.png" alt="Diagram showing a complex event entering a factory where context, scope, comparison, and uncertainty are removed while certainty, moral charge, and enemy assignment are added." width="1800" height="1250" loading="lazy" decoding="async" />
   <figcaption>The Factoid Factory starts with a real issue. Its efficiency comes from removing everything that limits the conclusion.</figcaption>
 </figure>
 
@@ -755,7 +755,7 @@ The phrase does not mean I already know the complete truth.
 It means the package has failed inspection.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/brought-to-you-by-they-inc/i-dont-care-thats-bullshit-flowchart.png" alt="Decision tree for claims introduced by they say, asking who they are, what they said, whether the source is recoverable, whether it applies here, and whether the conclusion survives without team packaging." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/brought-to-you-by-they-inc/i-dont-care-thats-bullshit-flowchart.png" alt="Decision tree for claims introduced by they say, asking who they are, what they said, whether the source is recoverable, whether it applies here, and whether the conclusion survives without team packaging." width="1800" height="1325" loading="lazy" decoding="async" />
   <figcaption>The exits are not only true and false. Useful information, unresolved, “I don’t care,” and “that’s bullshit” are different decisions.</figcaption>
 </figure>
 
@@ -799,12 +799,12 @@ Do not force compliance.
 Do not treat my refusal to perform your approved moral signal as proof that I secretly belong to your enemy.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/brought-to-you-by-they-inc/same-event-different-packages.png" alt="A press conference at the center of a branching diagram leading to establishment, opposition, corporate, foreign, influencer, and lunchroom packages." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/brought-to-you-by-they-inc/same-event-different-packages.png" alt="A press conference at the center of a branching diagram leading to establishment, opposition, corporate, foreign, influencer, and lunchroom packages." width="1800" height="1285" loading="lazy" decoding="async" />
   <figcaption>One source statement, six audience products. The disagreement may begin with selection rather than fabrication.</figcaption>
 </figure>
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/brought-to-you-by-they-inc/some-people-llc.png" alt="Satirical machine in which a television pundit pulls a lever labeled some people say and produces a crowd of anonymous silhouettes." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/brought-to-you-by-they-inc/some-people-llc.png" alt="Satirical machine in which a television pundit pulls a lever labeled some people say and produces a crowd of anonymous silhouettes." width="1800" height="1190" loading="lazy" decoding="async" />
   <figcaption>Some People, LLC manufactures a public large enough to carry the allegation and vague enough to avoid inspection.</figcaption>
 </figure>
 

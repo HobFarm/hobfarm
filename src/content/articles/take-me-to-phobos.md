@@ -162,7 +162,7 @@ Then the trail moved forward again, through personal computers, modems, bulletin
 This is the computer-game history that happened before most people think the Internet began.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/take-me-to-phobos/arpanet-logical-map-march-1977-pdp-10.png" alt="ARPANET logical map from March 1977 with PDP-10 systems highlighted." loading="lazy" decoding="async" data-lightbox="https://cdn.hob.farm/articles/take-me-to-phobos/arpanet-logical-map-march-1977-pdp-10.png" data-lightbox-caption="ARPANET in March 1977. The highlighted PDP-10 systems show how heavily this early network culture depended on large institutional computers rather than privately owned PCs." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/take-me-to-phobos/arpanet-logical-map-march-1977-pdp-10.png" alt="ARPANET logical map from March 1977 with PDP-10 systems highlighted." width="1000" height="716" loading="lazy" decoding="async" data-lightbox="https://cdn.hob.farm/articles/take-me-to-phobos/arpanet-logical-map-march-1977-pdp-10.png" data-lightbox-caption="ARPANET in March 1977. The highlighted PDP-10 systems show how heavily this early network culture depended on large institutional computers rather than privately owned PCs." />
   <figcaption>ARPANET in March 1977. The highlighted PDP-10 systems show how heavily this early network culture depended on large institutional computers rather than privately owned PCs.</figcaption>
 </figure>
 
@@ -187,7 +187,7 @@ The network connects the computers.
 That distinction matters because saying somebody “played a computer game in 1977” creates the wrong mental picture. They were not necessarily sitting in front of a self-contained desktop machine. They might have been typing into a video terminal connected to a refrigerator-sized installation shared with researchers, programmers, administrators, and whoever else had an account.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/take-me-to-phobos/pdp-10.jpg" alt="A DECsystem-10 PDP-10 installation with several cabinets and disk drives." loading="lazy" decoding="async" data-lightbox="https://cdn.hob.farm/articles/take-me-to-phobos/pdp-10.jpg" data-lightbox-caption="A DECsystem-10 installation from the PDP-10 family. The computer was an arrangement of cabinets, drives, processors, memory, and supporting equipment." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/take-me-to-phobos/pdp-10.jpg" alt="A DECsystem-10 PDP-10 installation with several cabinets and disk drives." width="1280" height="898" loading="lazy" decoding="async" data-lightbox="https://cdn.hob.farm/articles/take-me-to-phobos/pdp-10.jpg" data-lightbox-caption="A DECsystem-10 installation from the PDP-10 family. The computer was an arrangement of cabinets, drives, processors, memory, and supporting equipment." />
   <figcaption>A DECsystem-10 installation from the PDP-10 family. The computer was an arrangement of cabinets, drives, processors, memory, and supporting equipment.</figcaption>
 </figure>
 
@@ -196,7 +196,7 @@ The PDP-10 was built for interactive timesharing. Many users could run programs 
 Some terminals had screens. Others were teleprinters, essentially networked electric typewriters that printed the machine’s replies onto a roll of paper.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/take-me-to-phobos/teleprinter.jpg" alt="A teleprinter terminal with a keyboard and a roll of printed paper." loading="lazy" decoding="async" data-lightbox="https://cdn.hob.farm/articles/take-me-to-phobos/teleprinter.jpg" data-lightbox-caption="On a teleprinter, the game transcript became a physical object. Every command and response accumulated on paper." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/take-me-to-phobos/teleprinter.jpg" alt="A teleprinter terminal with a keyboard and a roll of printed paper." width="1280" height="960" loading="lazy" decoding="async" data-lightbox="https://cdn.hob.farm/articles/take-me-to-phobos/teleprinter.jpg" data-lightbox-caption="On a teleprinter, the game transcript became a physical object. Every command and response accumulated on paper." />
   <figcaption>On a teleprinter, the game transcript became a physical object. Every command and response accumulated on paper.</figcaption>
 </figure>
 
@@ -219,7 +219,7 @@ During the mid-1970s, Crowther combined his experience underground with ideas fr
 This was *Adventure*, later known as *Colossal Cave Adventure*.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/take-me-to-phobos/colossal-cave-adventure.png" alt="Opening text from Colossal Cave Adventure explaining that the program knows about places, actions, and things." loading="lazy" decoding="async" data-lightbox="https://cdn.hob.farm/articles/take-me-to-phobos/colossal-cave-adventure.png" data-lightbox-caption="The Crowther and Woods version introduces itself as a program that knows about places, actions, and things." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/take-me-to-phobos/colossal-cave-adventure.png" alt="Opening text from Colossal Cave Adventure explaining that the program knows about places, actions, and things." width="668" height="501" loading="lazy" decoding="async" data-lightbox="https://cdn.hob.farm/articles/take-me-to-phobos/colossal-cave-adventure.png" data-lightbox-caption="The Crowther and Woods version introduces itself as a program that knows about places, actions, and things." />
   <figcaption>The Crowther and Woods version introduces itself as a program that knows about places, actions, and things.</figcaption>
 </figure>
 
@@ -259,7 +259,7 @@ Eventually the world moved.
 This basic loop still feels familiar.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/take-me-to-phobos/colossal-cave-adventure-terminal.jpg" alt="Colossal Cave Adventure displayed as green text on a DEC VT100 terminal." loading="lazy" decoding="async" data-lightbox="https://cdn.hob.farm/articles/take-me-to-phobos/colossal-cave-adventure-terminal.jpg" data-lightbox-caption="The cave rendered as lines of text on a DEC VT100 terminal." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/take-me-to-phobos/colossal-cave-adventure-terminal.jpg" alt="Colossal Cave Adventure displayed as green text on a DEC VT100 terminal." width="1280" height="960" loading="lazy" decoding="async" data-lightbox="https://cdn.hob.farm/articles/take-me-to-phobos/colossal-cave-adventure-terminal.jpg" data-lightbox-caption="The cave rendered as lines of text on a DEC VT100 terminal." />
   <figcaption>The cave rendered as lines of text on a DEC VT100 terminal.</figcaption>
 </figure>
 
@@ -306,7 +306,7 @@ Tim Anderson, Marc Blank, Bruce Daniels, and Dave Lebling began constructing a n
 *Zork* tried to make the data understand better sentences.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/take-me-to-phobos/zork-map.jpg" alt="Map of the original mainframe Zork and its connected underground locations." loading="lazy" decoding="async" data-lightbox="https://cdn.hob.farm/articles/take-me-to-phobos/zork-map.jpg" data-lightbox-caption="The original mainframe Zork contained an enormous invisible geography behind its textual descriptions." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/take-me-to-phobos/zork-map.jpg" alt="Map of the original mainframe Zork and its connected underground locations." width="1280" height="1020" loading="lazy" decoding="async" data-lightbox="https://cdn.hob.farm/articles/take-me-to-phobos/zork-map.jpg" data-lightbox-caption="The original mainframe Zork contained an enormous invisible geography behind its textual descriptions." />
   <figcaption>The original mainframe Zork contained an enormous invisible geography behind its textual descriptions.</figcaption>
 </figure>
 
@@ -317,7 +317,7 @@ The player saw prose.
 The program contained architecture.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/take-me-to-phobos/zork-terminal.jpg" alt="Zork running as green text on a Kaypro terminal." loading="lazy" decoding="async" data-lightbox="https://cdn.hob.farm/articles/take-me-to-phobos/zork-terminal.jpg" data-lightbox-caption="Zork reduced a large fictional empire to a prompt and made the player reconstruct it through language." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/take-me-to-phobos/zork-terminal.jpg" alt="Zork running as green text on a Kaypro terminal." width="960" height="1440" loading="lazy" decoding="async" data-lightbox="https://cdn.hob.farm/articles/take-me-to-phobos/zork-terminal.jpg" data-lightbox-caption="Zork reduced a large fictional empire to a prompt and made the player reconstruct it through language." />
   <figcaption>Zork reduced a large fictional empire to a prompt and made the player reconstruct it through language.</figcaption>
 </figure>
 
@@ -448,7 +448,7 @@ While *Adventure* and the first *Zork* were spreading through institutional comp
 Steve Wozniak built the Apple I around an inexpensive 6502 processor and designed it to work with a keyboard and video display. It was an assembled circuit board rather than the complete consumer appliance now suggested by the word “computer.” The owner still needed supporting hardware, including a display, keyboard, power supply, and usually some kind of enclosure. ([Computer History Museum](https://computerhistory.org/blog/steve-jobs/))
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/take-me-to-phobos/apple1.webp" alt="An Apple I circuit board connected to a keyboard and television display." loading="lazy" decoding="async" data-lightbox="https://cdn.hob.farm/articles/take-me-to-phobos/apple1.webp" data-lightbox-caption="The original Apple I made personal computing look less like a room and more like a workbench." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/take-me-to-phobos/apple1.webp" alt="An Apple I circuit board connected to a keyboard and television display." width="1248" height="702" loading="lazy" decoding="async" data-lightbox="https://cdn.hob.farm/articles/take-me-to-phobos/apple1.webp" data-lightbox-caption="The original Apple I made personal computing look less like a room and more like a workbench." />
   <figcaption>The original Apple I made personal computing look less like a room and more like a workbench.</figcaption>
 </figure>
 

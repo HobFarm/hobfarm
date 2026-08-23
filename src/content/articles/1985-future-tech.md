@@ -71,18 +71,18 @@ Looking back from 2026, the pattern is obvious: Playboy mostly got the **interfa
 The future did not arrive as a CD-ROM robot girlfriend, TV mask, satellite hat, and arcade dashboard cockpit. It arrived as phones, cloud maps, robot vacuums, FPV drones, smart glasses, cheap sensors, software subscriptions, and cars slowly absorbing the driver.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/mtm/1985-future-tech/future-tech-playboy-december-1985.jpg" alt="Playboy December 1985 future-tech spread titled Hold On, It's Comin'." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/mtm/1985-future-tech/future-tech-playboy-december-1985.jpg" alt="Playboy December 1985 future-tech spread titled Hold On, It's Comin'." width="1920" height="1311" loading="lazy" decoding="async" />
   <figcaption>Playboy's December 1985 future-tech spread, "Hold On, It's Comin'," treated the future like an electronic drawing board: robot dolls, TV goggles, wearable satellite receivers, computerized dashboards, infrared driving, and something close to automatic pilot.</figcaption>
 </figure>
 
 <div class="article-grid cols-2">
-  <img src="https://cdn.hob.farm/articles/mtm/1985-future-tech/future-tech1.jpg" alt="Detail image from Playboy's December 1985 future-tech spread." />
-  <img src="https://cdn.hob.farm/articles/mtm/1985-future-tech/future-tech2.jpg" alt="Second detail image from Playboy's December 1985 future-tech spread." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/mtm/1985-future-tech/future-tech1.jpg" alt="Detail image from Playboy's December 1985 future-tech spread." width="1080" height="1350" loading="lazy" decoding="async" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/mtm/1985-future-tech/future-tech2.jpg" alt="Second detail image from Playboy's December 1985 future-tech spread." width="1080" height="1350" loading="lazy" decoding="async" />
 </div>
 <span class="article-grid-caption">Source details from Playboy's December 1985 future-tech spread.</span>
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/mtm/1985-future-tech/1985-2026-future-tech-hero.png" alt="Then-and-now montage of 1985 future-tech illustrations transforming into modern autonomous cars, humanoid robots, smart glasses, and FPV drone goggles." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/mtm/1985-future-tech/1985-2026-future-tech-hero.png" alt="Then-and-now montage of 1985 future-tech illustrations transforming into modern autonomous cars, humanoid robots, smart glasses, and FPV drone goggles." width="1672" height="941" loading="lazy" decoding="async" />
   <figcaption>The 1985 future looked like robot companions, TV masks, satellite headgear, and glowing dashboard cockpits. The 2026 version arrived as phones, smart glasses, cloud maps, drones, humanoid demos, and cars slowly eating the driver.</figcaption>
 </figure>
 
@@ -121,8 +121,8 @@ Roomba launched in 2002 as a round automatic floor cleaner. It did not have skin
 </figure>
 
 <div class="article-grid cols-2">
-  <img src="https://cdn.hob.farm/articles/mtm/1985-future-tech/1985-droid.jpg" alt="1985 robot companion illustration from Playboy's future-tech spread." />
-  <img src="https://cdn.hob.farm/articles/mtm/1985-future-tech/2026-droid.jpg" alt="2026 humanoid companion robot comparison image." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/mtm/1985-future-tech/1985-droid.jpg" alt="1985 robot companion illustration from Playboy's future-tech spread." width="1200" height="1200" loading="lazy" decoding="async" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/mtm/1985-future-tech/2026-droid.jpg" alt="2026 humanoid companion robot comparison image." width="1200" height="1200" loading="lazy" decoding="async" />
 </div>
 <span class="article-grid-caption">Before and after: robot companion as magazine fantasy, then humanoid demo object.</span>
 
@@ -150,8 +150,8 @@ Sony later sold products like the Glasstron. In 1998, Sony announced the PC Glas
 </figure>
 
 <div class="article-grid cols-2">
-  <img src="https://cdn.hob.farm/articles/mtm/1985-future-tech/1985-vr.jpg" alt="1985 TV goggles illustration from Playboy's future-tech spread." />
-  <img src="https://cdn.hob.farm/articles/mtm/1985-future-tech/2026-vr.jpg" alt="2026 FPV drone goggles comparison image." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/mtm/1985-future-tech/1985-vr.jpg" alt="1985 TV goggles illustration from Playboy's future-tech spread." width="1200" height="1200" loading="lazy" decoding="async" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/mtm/1985-future-tech/2026-vr.jpg" alt="2026 FPV drone goggles comparison image." width="1200" height="1200" loading="lazy" decoding="async" />
 </div>
 <span class="article-grid-caption">Before and after: private television mask to remote machine vision.</span>
 
@@ -177,8 +177,8 @@ The "Dishmon" is the funniest object in the spread: a portable satellite dish wo
 </figure>
 
 <div class="article-grid cols-2">
-  <img src="https://cdn.hob.farm/articles/mtm/1985-future-tech/1985-mobile.jpg" alt="1985 wearable satellite dish headgear illustration from Playboy's future-tech spread." />
-  <img src="https://cdn.hob.farm/articles/mtm/1985-future-tech/2026-mobile.jpg" alt="2026 smart glasses comparison image." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/mtm/1985-future-tech/1985-mobile.jpg" alt="1985 wearable satellite dish headgear illustration from Playboy's future-tech spread." width="1200" height="1200" loading="lazy" decoding="async" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/mtm/1985-future-tech/2026-mobile.jpg" alt="2026 smart glasses comparison image." width="1200" height="1200" loading="lazy" decoding="async" />
 </div>
 <span class="article-grid-caption">Before and after: satellite dish headgear to smart-glasses network interface.</span>
 
@@ -212,8 +212,8 @@ That is not fantasy. That is a preview of the modern navigation stack.
 </figure>
 
 <div class="article-grid cols-2">
-  <img src="https://cdn.hob.farm/articles/mtm/1985-future-tech/1985-car.jpg" alt="1985 digital dashboard and car navigation illustration from Playboy's future-tech spread." />
-  <img src="https://cdn.hob.farm/articles/mtm/1985-future-tech/2026-car.jpg" alt="2026 autonomous-car interior comparison image." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/mtm/1985-future-tech/1985-car.jpg" alt="1985 digital dashboard and car navigation illustration from Playboy's future-tech spread." width="1200" height="1200" loading="lazy" decoding="async" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/mtm/1985-future-tech/2026-car.jpg" alt="2026 autonomous-car interior comparison image." width="1200" height="1200" loading="lazy" decoding="async" />
 </div>
 <span class="article-grid-caption">Before and after: digital dashboard prediction to autonomous-car cockpit.</span>
 

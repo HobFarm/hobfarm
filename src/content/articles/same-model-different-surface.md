@@ -80,7 +80,7 @@ The differences are subtle. The API output is looser, more willing to add visual
 This is what consistency looks like. The surface changed; the model's interpretation didn't.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/blog/web-vs-api/gemini-comparison.png" alt="Gemini comparison: Gemini Create Image Web vs Nano Banana 2 API, showing consistent interpretation across both surfaces with minor stylistic differences" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/blog/web-vs-api/gemini-comparison.png" alt="Gemini comparison: Gemini Create Image Web vs Nano Banana 2 API, showing consistent interpretation across both surfaces with minor stylistic differences" width="1600" height="1200" loading="lazy" decoding="async" />
   <figcaption>Gemini "Create Image" Web vs Nano Banana 2 API. Both surfaces produce siblings: same composition, same palette, minor stylistic variation.</figcaption>
 </figure>
 
@@ -95,7 +95,7 @@ The web version lands in a different neighborhood. The architecture simplifies. 
 You can see these came from the same model. The character reads as the same person. The mood is consistent. But the style interpretation shifted. The API went Art Nouveau maximalism. The web went contemporary fantasy illustration. The IR asked for psychedelic poster art; the API delivered it more literally, the web translated it into a more modern idiom. Neither is wrong, but they're making different creative decisions from the same input.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/blog/web-vs-api/chatgpt-comparison.png" alt="ChatGPT comparison: ChatGPT Image Web vs GPT Image 1.5 API, showing family resemblance but divergent style interpretation" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/blog/web-vs-api/chatgpt-comparison.png" alt="ChatGPT comparison: ChatGPT Image Web vs GPT Image 1.5 API, showing family resemblance but divergent style interpretation" width="1600" height="1200" loading="lazy" decoding="async" />
   <figcaption>ChatGPT Image Web vs GPT Image 1.5 API. Same model, same mood, different creative neighborhoods. The API went Art Nouveau maximalism; the web went contemporary fantasy.</figcaption>
 </figure>
 
@@ -104,7 +104,7 @@ You can see these came from the same model. The character reads as the same pers
 Then there's Grok.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/blog/web-vs-api/grok-comparison.png" alt="Grok comparison: Grok Imagine Web vs Grok Imagine 1.5 API, showing dramatically different outputs that look like entirely different models" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/blog/web-vs-api/grok-comparison.png" alt="Grok comparison: Grok Imagine Web vs Grok Imagine 1.5 API, showing dramatically different outputs that look like entirely different models" width="1600" height="1200" loading="lazy" decoding="async" />
   <figcaption>Grok Imagine Web vs Grok Imagine 1.5 API. You would not guess these came from the same model, the same prompt, or the same session.</figcaption>
 </figure>
 
@@ -154,12 +154,12 @@ The original test in this article was run on the morning of April 3. That same d
 I ran the same structured prompts through Grok's web interface in Quality mode with new subjects. The results are completely reversed.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/blog/web-vs-api/grok-comparison2.png" alt="Grok comparison: Vampire pinup with bat wings. Web Quality mode produces full illustration with psychedelic forest, floating cubes, and complete style adherence. API produces photorealistic figure pasted into illustrated background." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/blog/web-vs-api/grok-comparison2.png" alt="Grok comparison: Vampire pinup with bat wings. Web Quality mode produces full illustration with psychedelic forest, floating cubes, and complete style adherence. API produces photorealistic figure pasted into illustrated background." width="1600" height="1200" loading="lazy" decoding="async" />
   <figcaption>Web Quality mode produces fully committed illustrated vampire pinups with psychedelic forests and floating geometric elements. The API puts photorealistic women against painted backgrounds with a visible seam between the figure and environment.</figcaption>
 </figure>
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/blog/web-vs-api/grok-comparison3.png" alt="Grok comparison: Dark-haired vampire pinup. Same reversal. Web Quality mode commits to illustrated style with galaxy spirals and floating geometric elements. API renders photorealistic figure against painted background." />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/blog/web-vs-api/grok-comparison3.png" alt="Grok comparison: Dark-haired vampire pinup. Same reversal. Web Quality mode commits to illustrated style with galaxy spirals and floating geometric elements. API renders photorealistic figure against painted background." width="1600" height="1200" loading="lazy" decoding="async" />
   <figcaption>Same reversal with a different subject. Web Quality mode commits to the illustrated style with galaxy spirals and geometric elements. The API renders a photorealistic figure against a painted background.</figcaption>
 </figure>
 

@@ -64,7 +64,7 @@ const sections = editorialSections.map((section, index) => {
             </div>
           </a>
           {section.newest && (
-            <a href={`${articlePath(section.newest)}/`} class="section-overview__latest">
+            <a href={articlePath(section.newest)} class="section-overview__latest">
               <span>Newest</span>
               <strong>{section.newest.data.title}</strong>
               <time datetime={getArticleDate(section.newest).toISOString()}>

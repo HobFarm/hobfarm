@@ -65,7 +65,7 @@ Then I did what every responsible creative genius does with a useful idea.
 I ignored it for twenty years and let it sit in the back of my brain.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/color-becomes-cast/technodelic.png" alt="Technodelic concept graphic showing psychedelic flow plus science-fiction technology as a visual formula." loading="lazy" decoding="async" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/color-becomes-cast/technodelic.png" alt="Technodelic concept graphic showing psychedelic flow plus science-fiction technology as a visual formula." width="1448" height="1086" loading="lazy" decoding="async" />
   <figcaption>Technodelic was the seed: psychedelic motion, fractal geometry, alien interface shapes, chrome, screen glow, and black negative space.</figcaption>
 </figure>
 
@@ -76,7 +76,7 @@ The first major style blend I used for the site was **atomic noir**. That one co
 Atomic noir worked because it had rules. It was not retro as a vague mood. It had ingredients: atomic optimism, art deco order, noir danger. Put them together and you get a specific visual territory: space-age glamour under criminal lighting.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/color-becomes-cast/atomic-noir.png" alt="Atomic noir style sample with chrome starbursts, gold geometry, wet pavement, neon, and moody midcentury lighting." loading="lazy" decoding="async" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/color-becomes-cast/atomic-noir.png" alt="Atomic noir style sample with chrome starbursts, gold geometry, wet pavement, neon, and moody midcentury lighting." width="1672" height="941" loading="lazy" decoding="async" />
   <figcaption>Atomic noir gave HobFarm an early visual lane: atomic-era futurism, art deco structure, and noir lighting working as one repeatable style blend.</figcaption>
 </figure>
 
@@ -101,7 +101,7 @@ Psygoth is **psychedelic flow plus gothic structure**.
 That is the cleanest definition.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/color-becomes-cast/psygoth.png" alt="Definition card for psygoth, showing psychedelic flow plus gothic structure with fractals, luminous distortion, black lace, shadow, and cathedral forms." loading="lazy" decoding="async" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/color-becomes-cast/psygoth.png" alt="Definition card for psygoth, showing psychedelic flow plus gothic structure with fractals, luminous distortion, black lace, shadow, and cathedral forms." width="1122" height="1402" loading="lazy" decoding="async" />
   <figcaption>Psygoth became useful once it had a short definition: psychedelic flow plus gothic structure.</figcaption>
 </figure>
 
@@ -141,7 +141,7 @@ Green made the whole thing click.
 Em is the green side: earth, moss, swamp, stone, rot, growth, rain, jade, oxidized copper, verdigris, botanical shadow, and the patience of something that can outlive both the fire and the frost. She is not nature girl. She is the ground after the storm. She is the thing that grows where the argument falls as rain.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/color-becomes-cast/zima-em-nina.png" alt="Zima, Em, and Nina shown side by side as blue, green, and red glamour-host characters with shared storm logic." loading="lazy" decoding="async" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/color-becomes-cast/zima-em-nina.png" alt="Zima, Em, and Nina shown side by side as blue, green, and red glamour-host characters with shared storm logic." width="1672" height="941" loading="lazy" decoding="async" />
   <figcaption>Zima, Em, and Nina turn the color system into a cast: blue cold, green growth, red heat.</figcaption>
 </figure>
 
@@ -160,7 +160,7 @@ The color mixing is the metaphor. The actual subject is aesthetic mixing.
 Red and blue make magenta. Fire and ice make tension. Psychedelic and goth make psygoth. Atomic era, art deco, and noir make atomic noir. The same operation keeps repeating: combine inputs, define the overlap, see what new territory appears.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/color-becomes-cast/additive-color.png" alt="RGB additive-color infographic mapping red, green, and blue overlaps to aesthetic blends and character combinations." loading="lazy" decoding="async" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/color-becomes-cast/additive-color.png" alt="RGB additive-color infographic mapping red, green, and blue overlaps to aesthetic blends and character combinations." width="1448" height="1086" loading="lazy" decoding="async" />
   <figcaption>RGB gives the cast a screen-native skeleton: red, green, and blue as both color logic and aesthetic-blending logic.</figcaption>
 </figure>
 
@@ -173,9 +173,9 @@ The rule is not "make everything a pretty girl." The rule is: choose an avatar f
 A tech tutorial might want a robot. A recycling archive might want a found-object mascot. A cooking system might want a kitchen host. A fashion, color, and aesthetic-blending system works well as a trio of glamour hosts because glamour is a fast visual language. People inspect it automatically. The bait is the image. The subject is the system underneath it.
 
 <div class="article-grid cols-3">
-  <img src="https://cdn.hob.farm/articles/color-becomes-cast/zima-blue.jpg" alt="Zima character sheet defining the blue lane: cold, ice, dream, control, silver, glass, frost, satin, and black lace." loading="lazy" decoding="async" />
-  <img src="https://cdn.hob.farm/articles/color-becomes-cast/nina-red.jpg" alt="Nina character sheet defining the red lane: fire, heat, danger, glamour, gold, lacquer, ember light, and black mesh." loading="lazy" decoding="async" />
-  <img src="https://cdn.hob.farm/articles/color-becomes-cast/em-green.jpg" alt="Em character sheet defining the green lane: earth, moss, rot, growth, jade, oxidized copper, verdigris, and botanical lace." loading="lazy" decoding="async" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/color-becomes-cast/zima-blue.jpg" alt="Zima character sheet defining the blue lane: cold, ice, dream, control, silver, glass, frost, satin, and black lace." width="1920" height="1072" loading="lazy" decoding="async" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/color-becomes-cast/nina-red.jpg" alt="Nina character sheet defining the red lane: fire, heat, danger, glamour, gold, lacquer, ember light, and black mesh." width="1920" height="1072" loading="lazy" decoding="async" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/color-becomes-cast/em-green.jpg" alt="Em character sheet defining the green lane: earth, moss, rot, growth, jade, oxidized copper, verdigris, and botanical lace." width="1920" height="1072" loading="lazy" decoding="async" />
 </div>
 <span class="article-grid-caption">The sheets keep each character from drifting into a generic color costume. Zima needs cold logic. Nina needs pressure. Em needs earth, rot, growth, and verdict.</span>
 

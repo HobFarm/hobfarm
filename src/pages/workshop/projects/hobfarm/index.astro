@@ -111,7 +111,7 @@ const articleExampleEntries = articleExampleSlugs.map((slug) => {
   if (!article.data.mesh?.subjects.includes("model-behavior")) {
     throw new Error(`Living-book example Article does not use the model-behavior subject: ${slug}`);
   }
-  return { title: article.data.title, href: `${articlePath(article)}/` };
+  return { title: article.data.title, href: articlePath(article) };
 }) as [{ title: string; href: string }, { title: string; href: string }];
 const articleExampleSubject = getEditorialSubject("model-behavior");
 if (!articleExampleSubject) throw new Error("The model-behavior subject is not registered.");

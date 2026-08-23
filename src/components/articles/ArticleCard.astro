@@ -16,7 +16,7 @@ interface Props {
 
 const { post, featured = false } = Astro.props;
 
-const url = `${articlePath(post)}/`;
+const url = articlePath(post);
 const { title, heroAlt } = post.data;
 const hero = getArticleHero(post.data);
 const heroSrc = hero

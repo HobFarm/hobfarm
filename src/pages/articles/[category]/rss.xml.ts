@@ -39,7 +39,7 @@ export async function GET(context: {
       title: post.data.title,
       pubDate: getArticleDate(post),
       description: getArticleDescription(post.data),
-      link: `${articlePath(post)}/`,
+      link: articlePath(post),
       categories: [section.label, ...(post.data.mesh?.subjects ?? [])],
       customData: mediaContent(getArticleImage(post.data), site),
     })),

@@ -56,7 +56,7 @@ The third layer is the one nobody's discussing at all: vocabulary reinforcement.
 Most people are optimizing layer one. I built a system that controls all three. Then I ran the test nobody else can run.
 
 <figure>
-  <img src="https://cdn.hob.farm/blog/invisible-variable/chart-graphic.jpg" alt="5 AI providers: Gemini, Grok, ChatGPT, Z.AI, Qwen" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/blog/invisible-variable/chart-graphic.jpg" alt="5 AI providers: Gemini, Grok, ChatGPT, Z.AI, Qwen" width="3264" height="1312" loading="lazy" decoding="async" />
   <figcaption>5 AI providers: Gemini, Grok, ChatGPT, Z.AI, Qwen</figcaption>
 </figure>
 
@@ -83,7 +83,7 @@ The IR gets compiled into provider-specific prompts and sent to whatever generat
 Every step produces inspectable, diffable JSON. Nothing is a black box except the generation model itself. That transparency is what makes this study possible.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/pages/blog/invisible-variable-pipeline.png" alt="StyleFusion pipeline: reference images flow through extraction agents into an Intermediate Representation, then compile to provider-specific prompts" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/pages/blog/invisible-variable-pipeline.png" alt="StyleFusion pipeline: reference images flow through extraction agents into an Intermediate Representation, then compile to provider-specific prompts" width="2752" height="1536" loading="lazy" decoding="async" />
   <figcaption>The IR gets compiled into provider-specific prompts and sent to whatever generation model you choose.</figcaption>
 </figure>
 
@@ -100,7 +100,7 @@ The practical upside: I'm not starting from blank prompts. I feed in images that
 Three reference images. Each assigned a different role. Each chosen to stress the pipeline in specific ways.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/blog/invisible-variable/subject-style-composition-reference-grid.png" alt="Subject, style, and composition reference grid" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/blog/invisible-variable/subject-style-composition-reference-grid.png" alt="Subject, style, and composition reference grid" width="1000" height="1000" loading="lazy" decoding="async" />
   <figcaption>Subject: A 1920s theatrical performer in a butterfly costume. Style: A kaleidoscopic digital mandala of repeating eye motifs. Composition: A baroque-era optical diagram.</figcaption>
 </figure>
 
@@ -131,7 +131,7 @@ The generation grid reflects this precision. Outputs are structural, restrained,
 The outlier in the grid is a Bauhaus-influenced colorful panel where one generator interpreted "mathematical aesthetics" as constructivist design rather than digital fractal art. Different training data, different interpretation of the same vocabulary.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/blog/invisible-variable/grok-grid.png" alt="Grok 4.2 Reasoning generation grid" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/blog/invisible-variable/grok-grid.png" alt="Grok 4.2 Reasoning generation grid" width="1000" height="1000" loading="lazy" decoding="async" />
   <figcaption>Grok 4.2 Reasoning. Style anchors: "computational art, fractal visualization, generative mathematics, mathematical aesthetics, digital symmetry, chaos theory art."</figcaption>
 </figure>
 
@@ -144,7 +144,7 @@ Where Grok filed a technical report, Qwen wrote a creative brief. The subject de
 The grid is the most saturated of the five. Neon everywhere. The mandala palette made it into the wings, the bodysuit, the environment, everything. Several outputs show the composition reference surviving as geometric diagram elements scattered around the figure. The standout is the center monochrome line-art butterfly panel: one generation model heard "technical diagram" louder than "neon fractal" and went full composition-reference, dropping the psychedelic style entirely. That's a generation model making its own priority call from the same IR that produced neon explosions elsewhere in the grid.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/blog/invisible-variable/qwen-grid.png" alt="Qwen 3.5 Plus generation grid" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/blog/invisible-variable/qwen-grid.png" alt="Qwen 3.5 Plus generation grid" width="1000" height="1000" loading="lazy" decoding="async" />
   <figcaption>Qwen 3.5 Plus. Style anchors: "psychedelic art, visionary fractal, kaleidoscope symmetry, digital surrealism."</figcaption>
 </figure>
 
@@ -157,7 +157,7 @@ Gemini was the only extractor to pull an Art Nouveau reference from the eye mand
 This is also the widest-range grid. Same IR, and the outputs include vintage sepia, neon psychedelic, technical drawing, and earth-toned Art Nouveau. Gemini's balanced extraction didn't push hard in any single direction, which means the generation models had maximum interpretive latitude. What you're seeing in the Gemini grid isn't just Gemini's personality. It's every generation model's default personality revealed by a neutral extraction.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/blog/invisible-variable/gemini-grid.png" alt="Gemini 3.1 Pro generation grid" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/blog/invisible-variable/gemini-grid.png" alt="Gemini 3.1 Pro generation grid" width="1000" height="1000" loading="lazy" decoding="async" />
   <figcaption>Gemini 3.1 Pro. Style anchors: "psychedelic art, visionary art, kaleidoscope symmetry, Art Nouveau influence, digital surrealism."</figcaption>
 </figure>
 
@@ -170,12 +170,12 @@ The "1960s" specificity is unique to GLM. No other extractor dated the psychedel
 The bottom-right panel is one of the strongest three-way fusions in the entire dataset (image model is Qwen Image 2512 from [Fal.ai](https://fal.ai/)). An Art Nouveau fairy figure against aged parchment with geometric diagram elements. Subject preserved, style applied as illustrative design language, composition reference present as background texture and layout logic. All three references, all three integrated, none dominating. That's what clean fusion looks like.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/blog/invisible-variable/glm-grid.png" alt="GLM 4.6V generation grid" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/blog/invisible-variable/glm-grid.png" alt="GLM 4.6V generation grid" width="1000" height="1000" loading="lazy" decoding="async" />
   <figcaption>GLM 4.6V. Style anchors: "psychedelic art, kaleidoscope symmetry, Art Nouveau-inspired, 1960s psychedelic, psychedelic poster art."</figcaption>
 </figure>
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/blog/invisible-variable/qwen-image-2512-fal.png" alt="Best fusion example: Qwen Image 2512 from Fal.ai" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/blog/invisible-variable/qwen-image-2512-fal.png" alt="Best fusion example: Qwen Image 2512 from Fal.ai" width="832" height="1248" loading="lazy" decoding="async" />
   <figcaption>Image model: Qwen Image 2512 from Fal.ai API.</figcaption>
 </figure>
 
@@ -190,7 +190,7 @@ The grid is the most elegant of the five. Warm gold and champagne tones dominate
 The sketch panel went fully illustrative in a direction no other IR produced. One generation model took GPT-5 Mini's restrained vocabulary and went full storybook. That interpretive freedom comes from the precision: when the IR doesn't over-specify, the generator fills in its own aesthetic.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/blog/invisible-variable/chatgpt-grid.png" alt="GPT-5 Mini generation grid" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/blog/invisible-variable/chatgpt-grid.png" alt="GPT-5 Mini generation grid" width="1000" height="1000" loading="lazy" decoding="async" />
   <figcaption>GPT-5 Mini. Style anchors: "psychedelic, visionary art, neo-psychedelia, ornamental symmetry, contemporary digital ornament."</figcaption>
 </figure>
 
@@ -211,7 +211,7 @@ You learn this the same way you learn any creative material. Use them long enoug
 I first noticed this about three years ago when Midjourney released the /describe feature. You'd feed it an image and it would tell you what it saw, essentially reverse-engineering its own prompt language. The output always followed the same structure: subject, in the style of, compositional elements, color, lighting and camera, texture. That decomposition wasn't arbitrary. It was Midjourney revealing how its model organized visual information internally. The terms it chose were the terms it had been trained on: weirdcore, cottagecore, nintencore, mommy's-on-the-phonecore. An entire taxonomy of aesthetic vocabulary that existed because those were the captions attached to the training images.
 
 <figure>
-  <img src="https://cdn.hob.farm/blog/invisible-variable/midjourney-mommy-on-the-phonecore.png" alt="Midjourney /describe example output" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/blog/invisible-variable/midjourney-mommy-on-the-phonecore.png" alt="Midjourney /describe example output" width="896" height="1344" loading="lazy" decoding="async" />
   <figcaption>Example of a Midjourney describe prompt: "a retro woman with her hand on her chin, in the style of bold, cartoonish lines, mommy's on-the-phonecore, meticulous inking, creative commons attribution, holotone printing, black and white contrasts, charming illustrations." Model: Midjourney niji 7 with 2 custom profiles.</figcaption>
 </figure>
 
@@ -254,7 +254,7 @@ Two providers refused to generate from IRs extracted from this image. The struct
 The most revealing case: ChatGPT refused the Qwen-extracted IR in the app, then accepted the exact same content as JSON on their website and produced one of the strongest images in the entire study.
 
 <figure>
-  <img src="https://cdn.hob.farm/blog/invisible-variable/chatgpt-web-json.png" alt="ChatGPT web JSON prompt result" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/blog/invisible-variable/chatgpt-web-json.png" alt="ChatGPT web JSON prompt result" width="1024" height="1536" loading="lazy" decoding="async" />
   <figcaption>Image created on ChatGPT's website using the JSON prompt.</figcaption>
 </figure>
 
@@ -263,12 +263,12 @@ The most revealing case: ChatGPT refused the Qwen-extracted IR in the app, then 
 I needed a header image for this article. I gave Grok an early draft of the text and some IR exports from the tests, then asked it to create a banner. Then I ran the same prompt through Gemini. Each model received an IR that had been extracted by its own vision model from a previous generation, so Grok was working from Grok-extracted data and Gemini from Gemini-extracted data.
 
 <figure>
-  <img src="https://cdn.hob.farm/blog/invisible-variable/grok-banner.jpg" alt="Grok generated banner" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/blog/invisible-variable/grok-banner.jpg" alt="Grok generated banner" width="1280" height="720" loading="lazy" decoding="async" />
   <figcaption>Grok generated banner for this article.</figcaption>
 </figure>
 
 <figure>
-  <img src="https://cdn.hob.farm/blog/invisible-variable/header-invisible-variable-hobfarm.jpg" alt="Gemini (Nano Banana 2) generated banner" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/blog/invisible-variable/header-invisible-variable-hobfarm.jpg" alt="Gemini (Nano Banana 2) generated banner" width="3264" height="1312" loading="lazy" decoding="async" />
   <figcaption>Gemini (Nano Banana 2) generated banner for this article.</figcaption>
 </figure>
 

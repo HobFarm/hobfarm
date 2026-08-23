@@ -277,12 +277,26 @@ test("legacy funny-pages department redirects to funnies", () => {
 });
 
 test("search and rss use the canonical article path helper", () => {
+  const articles = read("src/lib/articles.ts");
   const searchIndex = read("src/lib/search-index.ts");
   const rss = read("src/pages/rss.xml.js");
 
+  assert.match(articles, /return `\/articles\/\$\{stripArticleExt\(id\)\}\/`/);
   assert.match(searchIndex, /type:\s*"article"/);
   assert.match(searchIndex, /href:\s*articlePath\(post\)/);
-  assert.match(rss, /link:\s*`\$\{articlePath\(post\)\}\/`/);
+  assert.match(rss, /link:\s*articlePath\(post\)/);
+});
+
+test("article pages support focused search titles and unrestricted search previews", () => {
+  const contentConfig = read("src/content.config.ts");
+  const articleLayout = read("src/layouts/ArticleLayout.astro");
+  const seo = read("src/components/fundations/head/Seo.astro");
+
+  assert.match(contentConfig, /seoTitle:\s*z\.string\(\)\.optional\(\)/);
+  assert.match(articleLayout, /title=\{`\$\{seoTitle\} \| HobFarm`\}/);
+  assert.match(seo, /max-image-preview:large/);
+  assert.match(seo, /max-snippet:-1/);
+  assert.match(seo, /max-video-preview:-1/);
 });
 
 test("article sharing uses the standard seven controls and a generated share caption", () => {

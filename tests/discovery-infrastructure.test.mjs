@@ -82,7 +82,7 @@ test("public feeds use canonical article URLs, release dates, and optional image
   for (const feed of feeds) {
     assert.match(feed, /getPublishedArticles\(\)/);
     assert.match(feed, /getArticleDate/);
-    assert.match(feed, /link:\s*`\$\{articlePath\([^)]+\)\}\/`/);
+    assert.match(feed, /link:\s*articlePath\([^)]+\)/);
     assert.match(feed, /media:content/);
   }
 

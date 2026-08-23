@@ -120,7 +120,7 @@ That is the real engine here: this music was built for immediate work. It had to
 The Italian version of that engine is especially rich. Anthology Film Archives, in its "Beyond Morricone" series notes, points past the obvious monument of Ennio Morricone toward Piero Piccioni, Armando Trovajoli, Giovanni Fusco, Piero Umiliani, Nino Rota, Bruno Nicolai, Riz Ortolani, Stelvio Cipriani, and others, describing them as crucial to European arthouse and pop cinema and unusually open to experimentation. That is the good part. Once you stop treating Italian soundtrack music as a Morricone-only museum, the side rooms get wild.
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/topless-party/topless-party-graphic2.png" alt="Retro infographic styled as an Italian soundtrack filing cabinet, with drawers for mondo, giallo, library, science, space, party, crime, leisure, and documentary music." loading="lazy" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/topless-party/topless-party-graphic2.png" alt="Retro infographic styled as an Italian soundtrack filing cabinet, with drawers for mondo, giallo, library, science, space, party, crime, leisure, and documentary music." width="1122" height="1402" loading="lazy" decoding="async" />
   <figcaption><strong>Inside the Italian Soundtrack Cabinet.</strong> The useful categories are also the joke: crime, mondo, library, science, party, documentary, space, work, leisure. It is mood architecture with better percussion.</figcaption>
 </figure>
 
@@ -226,7 +226,7 @@ Spock goes to the lounge. The lounge goes to Middle-earth. Nobody asks permissio
 </div>
 
 <figure class="article-wide">
-  <img src="https://cdn.hob.farm/articles/topless-party/topless-party-graphic1.png" alt="Retro infographic titled The Weird Chain, mapping Italian soundtrack and library music to documentary cues, lounge party tracks, nonsense vocal hooks, children's TV afterlives, ad-lounge instrumentals, space-age novelty songs, and fantasy-pop oddities." loading="lazy" />
+  <img src="https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1280/articles/topless-party/topless-party-graphic1.png" alt="Retro infographic titled The Weird Chain, mapping Italian soundtrack and library music to documentary cues, lounge party tracks, nonsense vocal hooks, children's TV afterlives, ad-lounge instrumentals, space-age novelty songs, and fantasy-pop oddities." width="1122" height="1402" loading="lazy" decoding="async" />
   <figcaption><strong>The Weird Chain.</strong> The path is not linear. It is a set of leaks: soundtrack cues become lounge objects, ad music becomes pop, novelty songs become fossils, and a mondo-film chant becomes puppet DNA.</figcaption>
 </figure>
 

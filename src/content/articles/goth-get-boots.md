@@ -525,7 +525,7 @@ Two caveats keep this honest. First, the model has no introspective access to it
 
 Which lands the mechanical point of this whole post in three sentences. The knowledge was in the context. The bias is in the weights. A conversation cannot retrain a distribution, so the model can describe its gravity wells with perfect fluency and fall into them in the next reply, forever.
 
-This is the opposite failure from the one in the [Gary post](/articles/gary-and-the-fork). The fork was a ghost in one conversation; kill the thread, kill the ghost. Mara doesn't live in a thread. She follows you into every fresh start, across apps, across model versions, because she isn't haunting the room. She's load-bearing.
+This is the opposite failure from the one in the [Gary post](/articles/gary-and-the-fork/). The fork was a ghost in one conversation; kill the thread, kill the ghost. Mara doesn't live in a thread. She follows you into every fresh start, across apps, across model versions, because she isn't haunting the room. She's load-bearing.
 
 ## Three depths of binding
 
@@ -695,4 +695,4 @@ That's the whole finding, three years of archive compressed: the model's default
 
 ---
 
-*This is the hub of an ongoing series on AI defaults. Already live: [Gary and the Fork](/articles/gary-and-the-fork), the ghost that does die with the thread. What building the system looks like: the [Agency post](/articles/a-world-of-geniuses-needs-a-system). The full conversation-portraits corpus lives in the [gallery](/gallery). More wells to map; the digging continues.*
+*This is the hub of an ongoing series on AI defaults. Already live: [Gary and the Fork](/articles/gary-and-the-fork/), the ghost that does die with the thread. What building the system looks like: the [Agency post](/articles/a-world-of-geniuses-needs-a-system/). The full conversation-portraits corpus lives in the [gallery](/gallery/). More wells to map; the digging continues.*
