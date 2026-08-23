@@ -1,0 +1,231 @@
+---
+const frames = [
+  {
+    span: "7 million years",
+    title: "The hominin frame",
+    note: "This is the scale on which lineages branch, overlap, and exchange genes.",
+    events: [
+      ["7–6 million years ago", "Sahelanthropus lived in Chad"],
+      ["1.89 million years ago", "Homo erectus appears in the record"],
+      ["about 300,000 years ago", "Early Homo sapiens fossils"],
+      ["recent deep time", "Several hominin populations interbred"],
+    ],
+  },
+  {
+    span: "100,000 years",
+    title: "The surviving-image frame",
+    note: "A hand stencil can be older than most coastlines people now recognize.",
+    events: [
+      ["at least 67,800 years ago", "Liang Metanduno hand stencil"],
+      ["about 50,000–70,000 years ago", "Krijn lived on land now beneath the North Sea"],
+      ["30,000–32,000 years ago", "Chauvet images"],
+      ["about 13,500 years ago", "Engraved bison bone from the North Sea"],
+    ],
+  },
+  {
+    span: "15,000 years",
+    title: "The landscape-change frame",
+    note: "Within this narrow slice, deserts green, lakes expand, coasts drown, and archives accumulate.",
+    events: [
+      ["12,000 BCE–100 CE", "Tadrart Acacus image sequence"],
+      ["about 7,000 years ago", "Lake Mega-Chad near its maximum"],
+      ["by about 7,000 years ago", "North Sea approaches its modern extent"],
+      ["historic era", "Horses, camels, scripts, film paint, initials, and COVID-19"],
+    ],
+  },
+];
+---
+
+<section class="deep-time article-wide not-prose" aria-labelledby="deep-time-title">
+  <header>
+    <p>Three nested clocks</p>
+    <h2 id="deep-time-title">Deep time changes the size of the question</h2>
+    <span>Each row expands the final sliver of the row above. Spacing within rows is schematic.</span>
+  </header>
+  <ol>
+    {frames.map((frame, index) => (
+      <li>
+        <div class="frame-label">
+          <span>{String(index + 1).padStart(2, "0")}</span>
+          <p>{frame.span}</p>
+          <h3>{frame.title}</h3>
+          <small>{frame.note}</small>
+        </div>
+        <div class="track" aria-hidden="true"><i></i><b></b></div>
+        <ul>
+          {frame.events.map(([date, event]) => (
+            <li><time>{date}</time><span>{event}</span></li>
+          ))}
+        </ul>
+      </li>
+    ))}
+  </ol>
+  <footer>“Years ago” is approximate unless the accompanying article gives a dated range or calibrated minimum.</footer>
+</section>
+
+<style>
+  .deep-time {
+    overflow: hidden;
+    border: 1px solid rgb(197 155 93 / 0.34);
+    border-radius: 0.7rem;
+    background: #0c0a08;
+  }
+
+  header {
+    padding: clamp(1rem, 3vw, 1.55rem);
+    background: linear-gradient(112deg, rgb(95 65 27 / 0.58), transparent 68%);
+  }
+
+  header p,
+  header h2,
+  header span,
+  .frame-label p,
+  .frame-label h3,
+  .frame-label small {
+    margin: 0 !important;
+  }
+
+  header p {
+    color: #dbb46e !important;
+    font: 700 0.66rem/1.2 var(--font-mono), monospace !important;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  header h2 {
+    margin-top: 0.3rem !important;
+    color: #f5efe5 !important;
+    font-size: clamp(1.35rem, 3vw, 2rem) !important;
+  }
+
+  header span {
+    display: block;
+    margin-top: 0.55rem !important;
+    color: #bcb3a6;
+    font-size: 0.82rem;
+  }
+
+  ol,
+  ul {
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none;
+  }
+
+  ol > li {
+    display: grid;
+    grid-template-columns: minmax(11rem, 0.8fr) minmax(5rem, 0.45fr) minmax(17rem, 1.65fr);
+    gap: 1rem;
+    padding: 1rem;
+    border-top: 1px solid rgb(197 155 93 / 0.19);
+  }
+
+  .frame-label {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.15rem 0.55rem;
+  }
+
+  .frame-label > span {
+    grid-row: 1 / 4;
+    color: rgb(219 180 110 / 0.5);
+    font: 800 1.05rem/1 var(--font-mono), monospace;
+  }
+
+  .frame-label p {
+    color: #dbb46e !important;
+    font: 700 0.64rem/1.2 var(--font-mono), monospace !important;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .frame-label h3 {
+    color: #f5efe5 !important;
+    font-size: 0.95rem !important;
+  }
+
+  .frame-label small {
+    grid-column: 2;
+    margin-top: 0.3rem !important;
+    color: #9f978c;
+    font-size: 0.7rem;
+    line-height: 1.45;
+  }
+
+  .track {
+    position: relative;
+    align-self: center;
+    height: 0.35rem;
+    border-radius: 999px;
+    background: rgb(219 180 110 / 0.2);
+  }
+
+  .track i {
+    position: absolute;
+    inset: -0.2rem 0 -0.2rem auto;
+    width: calc(36% - var(--frame, 0%));
+    min-width: 1rem;
+    border: 1px solid #dbb46e;
+    border-radius: 999px;
+    background: rgb(219 180 110 / 0.25);
+  }
+
+  ol > li:nth-child(2) .track i { width: 14%; }
+  ol > li:nth-child(3) .track i { width: 7%; }
+
+  .track b {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background: #e4934c;
+    transform: translate(35%, -50%);
+  }
+
+  ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem 1rem;
+  }
+
+  ul li {
+    display: grid;
+    gap: 0.2rem;
+  }
+
+  time {
+    color: #dbb46e;
+    font: 0.63rem/1.3 var(--font-mono), monospace;
+  }
+
+  ul span {
+    color: #bcb3a6;
+    font-size: 0.72rem;
+    line-height: 1.45;
+  }
+
+  footer {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid rgb(197 155 93 / 0.19);
+    color: #8d857b;
+    font: 0.68rem/1.45 var(--font-mono), monospace;
+  }
+
+  @media (max-width: 849px) {
+    ol > li {
+      grid-template-columns: 1fr;
+    }
+
+    .track {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 559px) {
+    ul {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

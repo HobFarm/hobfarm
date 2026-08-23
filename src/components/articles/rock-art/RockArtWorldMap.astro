@@ -1,0 +1,203 @@
+---
+const sites = [
+  { n: 1, name: "Atlatl Rock", region: "Nevada, United States", date: "Multi-period; the photographed panel is not directly dated", medium: "Petroglyphs", x: 182, y: 149 },
+  { n: 2, name: "Barker Dam", region: "California, United States", date: "Prehistoric marks; exact age unresolved", medium: "Petroglyphs, later painted over", x: 177, y: 156 },
+  { n: 3, name: "Sierra de San Francisco", region: "Baja California Sur, Mexico", date: "about 100 BCE–1300 CE", medium: "Paintings", x: 186, y: 173 },
+  { n: 4, name: "Cueva de las Manos", region: "Patagonia, Argentina", date: "about 13,000–9,500 years ago", medium: "Paintings", x: 304, y: 381 },
+  { n: 5, name: "Chauvet Cave", region: "France", date: "about 30,000–32,000 years ago", medium: "Paintings and engravings", x: 512, y: 127 },
+  { n: 6, name: "Tassili n’Ajjer", region: "Algeria", date: "about 6000 BCE–early centuries CE", medium: "Paintings and engravings", x: 525, y: 179 },
+  { n: 7, name: "Tadrart Acacus", region: "Libya", date: "about 12,000 BCE–100 CE", medium: "Paintings and carvings", x: 536, y: 186 },
+  { n: 8, name: "Ennedi Massif", region: "Chad", date: "Long Holocene sequence; many individual works undated", medium: "Paintings and engravings", x: 562, y: 202 },
+  { n: 9, name: "Ḥimā Cultural Area", region: "Saudi Arabia", date: "At least 7,000 years through recent centuries", medium: "Petroglyphs and inscriptions", x: 623, y: 199 },
+  { n: 10, name: "Bhimbetka", region: "Madhya Pradesh, India", date: "Mesolithic through medieval periods", medium: "Paintings", x: 715, y: 186 },
+  { n: 11, name: "Zuojiang Huashan", region: "Guangxi, China", date: "about 5th century BCE–2nd century CE", medium: "Paintings", x: 797, y: 187 },
+  { n: 12, name: "Liang Metanduno", region: "Sulawesi, Indonesia", date: "At least 67,800 years old", medium: "Hand stencil", x: 840, y: 264 },
+];
+---
+
+<section class="world-map article-wide not-prose" aria-labelledby="rock-art-world-title">
+  <header>
+    <p>Selected sites</p>
+    <h2 id="rock-art-world-title">Rock art belongs to no single continent or age</h2>
+    <span>The dates describe documented site ranges or minimum ages. They do not date every mark on a wall.</span>
+  </header>
+  <div class="map-wrap">
+    <svg viewBox="0 0 1000 500" role="img" aria-labelledby="map-title map-desc">
+      <title id="map-title">World map of twelve selected rock-art sites</title>
+      <desc id="map-desc">Numbered dots locate sites across the Americas, Europe, Africa, Asia, and Indonesia. There are no route arrows or implied sequence.</desc>
+      <g class="graticule" aria-hidden="true">
+        <path d="M0 125H1000M0 250H1000M0 375H1000M250 0V500M500 0V500M750 0V500" />
+      </g>
+      <g class="land" aria-hidden="true">
+        <path d="M49 74 117 43 191 58 238 92 262 130 235 166 205 175 183 213 151 202 132 166 89 143 61 111Z" />
+        <path d="m262 189 50 15 34 47-4 69-34 91-27-25-8-64-35-69Z" />
+        <path d="m449 109 45-33 87 4 57 30 110 3 91 46-12 65-74 21-66-18-43 15-53-12-29 88-49 53-38-72 16-67-47-49Z" />
+        <path d="m524 185 61 4 44 58-17 91-47 62-42-51-20-92Z" />
+        <path d="m790 314 58-23 79 25 22 52-53 37-79-13-42-38Z" />
+        <path d="m932 422 24-10 18 16-21 18Z" />
+      </g>
+      <g class="markers">
+        {sites.map((site) => (
+          <g transform={`translate(${site.x} ${site.y})`}>
+            <circle r="15" />
+            <text x="0" y="5" text-anchor="middle">{site.n}</text>
+          </g>
+        ))}
+      </g>
+    </svg>
+  </div>
+  <ol>
+    {sites.map((site) => (
+      <li>
+        <span class="number">{String(site.n).padStart(2, "0")}</span>
+        <div>
+          <h3>{site.name}</h3>
+          <p>{site.region}</p>
+          <p><strong>{site.date}</strong> · {site.medium}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+  <footer>Locations are approximate. Selection is comparative, not comprehensive.</footer>
+</section>
+
+<style>
+  .world-map {
+    overflow: hidden;
+    border: 1px solid rgb(109 176 164 / 0.34);
+    border-radius: 0.7rem;
+    background: #08100f;
+  }
+
+  header {
+    padding: clamp(1rem, 3vw, 1.55rem);
+    background: linear-gradient(115deg, rgb(27 83 72 / 0.62), transparent 70%);
+  }
+
+  header p,
+  header h2,
+  header span {
+    margin: 0 !important;
+  }
+
+  header p {
+    color: #78d7c4 !important;
+    font: 700 0.66rem/1.2 var(--font-mono), monospace !important;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  header h2 {
+    margin-top: 0.3rem !important;
+    color: #f1f5ed !important;
+    font-size: clamp(1.35rem, 3vw, 2rem) !important;
+  }
+
+  header span {
+    display: block;
+    margin-top: 0.55rem !important;
+    color: #b2c3bd;
+    font-size: 0.82rem;
+  }
+
+  .map-wrap {
+    padding: clamp(0.6rem, 2vw, 1.2rem);
+    border-block: 1px solid rgb(109 176 164 / 0.2);
+    background: radial-gradient(circle at 48% 50%, #12211e, #050807 74%);
+  }
+
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .graticule path {
+    fill: none;
+    stroke: rgb(120 215 196 / 0.1);
+    stroke-width: 1;
+  }
+
+  .land path {
+    fill: #25342f;
+    stroke: #687a73;
+    stroke-width: 1.4;
+  }
+
+  .markers circle {
+    fill: #e4934c;
+    stroke: #fff1df;
+    stroke-width: 2;
+  }
+
+  .markers text {
+    fill: #180d06;
+    font: 800 13px/1 var(--font-mono), monospace;
+  }
+
+  ol {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.65rem;
+    min-width: 0;
+    padding: 0.9rem;
+    border-right: 1px solid rgb(109 176 164 / 0.16);
+    border-bottom: 1px solid rgb(109 176 164 / 0.16);
+  }
+
+  .number {
+    color: #e4934c;
+    font: 800 0.82rem/1.2 var(--font-mono), monospace;
+  }
+
+  li h3,
+  li p {
+    margin: 0 !important;
+  }
+
+  li h3 {
+    color: #f1f5ed !important;
+    font-size: 0.86rem !important;
+  }
+
+  li p {
+    margin-top: 0.25rem !important;
+    color: #9caaa5 !important;
+    font-size: 0.68rem !important;
+    line-height: 1.45 !important;
+  }
+
+  li strong {
+    color: #c8d7d2;
+  }
+
+  footer {
+    padding: 0.75rem 1rem;
+    color: #83918c;
+    font: 0.68rem/1.45 var(--font-mono), monospace;
+  }
+
+  @media (max-width: 849px) {
+    ol {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 559px) {
+    ol {
+      grid-template-columns: 1fr;
+    }
+
+    .markers circle {
+      r: 19;
+    }
+  }
+</style>

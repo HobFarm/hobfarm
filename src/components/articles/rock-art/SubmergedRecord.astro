@@ -1,0 +1,171 @@
+<section class="submerged-record article-wide not-prose" aria-labelledby="submerged-record-title">
+  <header>
+    <p>The missing map</p>
+    <h2 id="submerged-record-title">Some of the record is under water</h2>
+    <span>Present coastlines are recent boundaries. During glacial low stands, people occupied land that now lies beneath continental-shelf seas.</span>
+  </header>
+  <div class="cross-section" role="img" aria-label="Schematic cross section showing a modern sea above a former land surface with artifacts, and a present shoreline at the right">
+    <svg viewBox="0 0 1000 330" aria-hidden="true">
+      <defs>
+        <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#17606b" stop-opacity="0.75" />
+          <stop offset="1" stop-color="#0a2830" stop-opacity="0.92" />
+        </linearGradient>
+      </defs>
+      <path class="water" d="M0 40H1000V178C900 183 856 196 783 214 663 245 525 267 383 269 235 272 114 247 0 232Z" />
+      <path class="ground" d="M0 232C114 247 235 272 383 269 525 267 663 245 783 214 856 196 900 183 1000 178V330H0Z" />
+      <path class="old-ground" d="M72 234C196 219 312 222 432 237 553 251 652 240 760 208" />
+      <path class="shore" d="M760 208 829 162 1000 152" />
+      <g class="objects">
+        <path d="m280 226 18-16 22 15-19 10Z" />
+        <path d="m476 243 10-24 10 25Z" />
+        <path d="m604 230 24-7 12 13-27 6Z" />
+      </g>
+      <text x="38" y="76">MODERN SEA</text>
+      <text x="780" y="137">PRESENT LAND</text>
+      <text x="102" y="215">FORMER LAND SURFACE</text>
+      <text x="265" y="202">artifact</text>
+      <text x="451" y="205">bone</text>
+      <text x="584" y="207">fossil</text>
+    </svg>
+  </div>
+  <div class="cases">
+    <article>
+      <p>North Sea</p>
+      <h3>Doggerland</h3>
+      <dl>
+        <div><dt>Observed</dt><dd>A Neanderthal skull fragment was dredged from the North Sea. A decorated bison bone and later human remains also came up in fishing nets.</dd></div>
+        <div><dt>Established context</dt><dd>Sea level was lower, and land connected Britain to continental Europe.</dd></div>
+        <div><dt>Unresolved</dt><dd>Dredging removes precise archaeological context. The full distribution of camps, images, and organic material remains unknown.</dd></div>
+      </dl>
+    </article>
+    <article>
+      <p>Taiwan Strait</p>
+      <h3>Penghu Channel</h3>
+      <dl>
+        <div><dt>Observed</dt><dd>Penghu 1, a robust human jaw, was recovered by a fishing net from a submarine channel. Ancient proteins identified it as Denisovan in 2025.</dd></div>
+        <div><dt>Established context</dt><dd>The channel was exposed land during Pleistocene low sea levels.</dd></div>
+        <div><dt>Unresolved</dt><dd>The jaw lacks an excavated layer, and its age falls within broad possible windows.</dd></div>
+      </dl>
+    </article>
+  </div>
+  <footer>Diagram is schematic and not to scale. It shows why discovery context differs from an excavated terrestrial site.</footer>
+</section>
+
+<style>
+  .submerged-record {
+    overflow: hidden;
+    border: 1px solid rgb(91 190 205 / 0.32);
+    border-radius: 0.7rem;
+    background: #071013;
+  }
+
+  header {
+    padding: clamp(1rem, 3vw, 1.55rem);
+    background: linear-gradient(112deg, rgb(20 85 96 / 0.6), transparent 70%);
+  }
+
+  header p,
+  header h2,
+  header span,
+  article p,
+  article h3,
+  dl,
+  dd {
+    margin: 0 !important;
+  }
+
+  header p,
+  article > p {
+    color: #78d9e8 !important;
+    font: 700 0.66rem/1.2 var(--font-mono), monospace !important;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  header h2 {
+    margin-top: 0.3rem !important;
+    color: #edf6f6 !important;
+    font-size: clamp(1.35rem, 3vw, 2rem) !important;
+  }
+
+  header span {
+    display: block;
+    max-width: 58rem;
+    margin-top: 0.55rem !important;
+    color: #adc3c6;
+    font-size: 0.82rem;
+  }
+
+  .cross-section {
+    border-block: 1px solid rgb(91 190 205 / 0.18);
+    background: #04090b;
+  }
+
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .water { fill: url(#water); }
+  .ground { fill: #443526; }
+  .old-ground { fill: none; stroke: #e6ba76; stroke-width: 4; stroke-dasharray: 9 8; }
+  .shore { fill: none; stroke: #8c7457; stroke-width: 6; }
+  .objects { fill: #e8c17f; stroke: #21180f; stroke-width: 2; }
+  svg text { fill: #c7dfe2; font: 700 16px/1 var(--font-mono), monospace; letter-spacing: 0.08em; }
+
+  .cases {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    background: rgb(91 190 205 / 0.18);
+  }
+
+  article {
+    padding: 1rem;
+    background: #071013;
+  }
+
+  article h3 {
+    margin-top: 0.3rem !important;
+    color: #edf6f6 !important;
+    font-size: 1.08rem !important;
+  }
+
+  dl {
+    display: grid;
+    gap: 0.65rem;
+    margin-top: 0.8rem !important;
+  }
+
+  dt {
+    color: #78d9e8;
+    font: 700 0.63rem/1.3 var(--font-mono), monospace;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  dd {
+    margin-top: 0.2rem !important;
+    color: #adbec0;
+    font-size: 0.73rem;
+    line-height: 1.52;
+  }
+
+  footer {
+    padding: 0.75rem 1rem;
+    color: #81999c;
+    font: 0.68rem/1.45 var(--font-mono), monospace;
+  }
+
+  @media (max-width: 699px) {
+    .cases {
+      grid-template-columns: 1fr;
+    }
+
+    svg text {
+      font-size: 20px;
+    }
+  }
+</style>

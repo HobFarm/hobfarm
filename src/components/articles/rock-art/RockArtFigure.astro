@@ -1,0 +1,82 @@
+---
+import { imageSrcset, transformImageUrl } from "@/lib/media-transforms";
+
+interface Props {
+  src: string;
+  alt: string;
+  caption: string;
+  credit: string;
+  sourceUrl: string;
+  sourceLabel?: string;
+  width: number;
+  height: number;
+  license?: string;
+}
+
+const { src, alt, caption, credit, sourceUrl, sourceLabel = "Source record", width, height, license } = Astro.props;
+---
+
+<figure class="rock-art-figure article-wide not-prose">
+  <img
+    src={transformImageUrl(src, { width: 1600, quality: 86, fit: "contain" })}
+    srcset={imageSrcset(src, [640, 960, 1280, 1600], { quality: 86, fit: "contain" })}
+    sizes="(min-width: 900px) 68rem, 92vw"
+    alt={alt}
+    width={width}
+    height={height}
+    loading="lazy"
+    decoding="async"
+    data-lightbox={src}
+    data-lightbox-caption={caption}
+  />
+  <figcaption>
+    <span>{caption}</span>
+    <small>
+      <span>{credit}</span>
+      {license && <span>{license}</span>}
+      <a href={sourceUrl} rel="noreferrer">{sourceLabel}</a>
+    </small>
+  </figcaption>
+</figure>
+
+<style>
+  .rock-art-figure {
+    overflow: hidden;
+    border: 1px solid rgb(208 143 75 / 0.3);
+    border-radius: 0.6rem;
+    background: #080706;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 48rem;
+    margin: 0 !important;
+    object-fit: contain;
+    background: #020202;
+  }
+
+  figcaption {
+    padding: 0.2rem 0.9rem 0.9rem;
+  }
+
+  figcaption > span {
+    display: block;
+  }
+
+  small {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.3rem 0.75rem;
+    margin-top: 0.45rem;
+    color: #8f8780;
+    font-size: 0.68rem;
+  }
+
+  a {
+    color: #78d7c4;
+    text-underline-offset: 0.15em;
+  }
+</style>
