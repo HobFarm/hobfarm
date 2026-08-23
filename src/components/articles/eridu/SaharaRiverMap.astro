@@ -1,0 +1,175 @@
+<figure class="sahara-map article-wide not-prose" aria-labelledby="sahara-map-title">
+  <div class="sahara-map__header">
+    <p>Drainage and movement schematic</p>
+    <h3 id="sahara-map-title">Following the dead rivers</h3>
+  </div>
+  <svg viewBox="0 0 1200 680" role="img" aria-labelledby="sahara-map-svg-title sahara-map-svg-desc">
+    <title id="sahara-map-svg-title">Schematic map of Lake Mega-Chad, the Ennedi highlands, Wadi Howar and the Nile</title>
+    <desc id="sahara-map-svg-desc">The diagram shows water draining west from the Ennedi region toward Lake Mega-Chad and east through Wadi Howar toward the Nile, with a separate dashed route indicating possible human movement across the watershed.</desc>
+    <defs>
+      <linearGradient id="sahara-ground" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#7d472b" />
+        <stop offset="0.52" stop-color="#3b2a22" />
+        <stop offset="1" stop-color="#181c1b" />
+      </linearGradient>
+      <radialGradient id="sahara-lake" cx="42%" cy="42%" r="68%">
+        <stop offset="0" stop-color="#6ccbd1" />
+        <stop offset="1" stop-color="#205963" />
+      </radialGradient>
+      <pattern id="sahara-ridges" width="34" height="34" patternUnits="userSpaceOnUse" patternTransform="rotate(22)">
+        <path d="M0 7 H34 M0 23 H34" stroke="#d28b52" stroke-width="2" opacity="0.13" />
+      </pattern>
+      <marker id="sahara-water-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+        <path d="M0 0 L10 5 L0 10 Z" fill="#73d4da" />
+      </marker>
+      <marker id="sahara-human-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+        <path d="M0 0 L10 5 L0 10 Z" fill="#f0bf70" />
+      </marker>
+    </defs>
+
+    <rect width="1200" height="680" fill="url(#sahara-ground)" />
+    <rect width="1200" height="680" fill="url(#sahara-ridges)" />
+
+    <path d="M92 358 C104 287 183 240 269 259 C336 273 377 329 354 400 C338 449 270 484 188 463 C118 445 77 409 92 358 Z" fill="url(#sahara-lake)" opacity="0.9" />
+    <path d="M985 15 C961 128 995 229 971 338 C949 438 976 553 943 680" fill="none" stroke="#73d4da" stroke-width="14" stroke-linecap="round" />
+
+    <path d="M555 245 C493 266 441 293 383 335 C329 374 289 393 243 397" class="water-route" marker-end="url(#sahara-water-arrow)" />
+    <path d="M611 276 C686 307 744 334 805 365 C870 397 922 409 965 408" class="water-route" marker-end="url(#sahara-water-arrow)" />
+    <path d="M589 214 C660 178 735 183 803 215" class="human-route" marker-end="url(#sahara-human-arrow)" />
+    <path d="M803 215 C868 247 911 299 954 354" class="human-route" marker-end="url(#sahara-human-arrow)" />
+
+    <g class="highlands">
+      <path d="M493 253 L537 172 L583 247 L624 149 L674 258 Z" />
+      <path d="M521 285 L561 219 L598 286 L641 206 L704 292 Z" opacity="0.7" />
+    </g>
+
+    <circle cx="965" cy="408" r="8" fill="#f0bf70" />
+    <circle cx="965" cy="408" r="16" fill="none" stroke="#f0bf70" stroke-opacity="0.42" />
+
+    <g class="label">
+      <text x="113" y="349" class="label--water">Lake Mega-Chad</text>
+      <text x="493" y="124" class="label--point">Ennedi highlands</text>
+      <text x="711" y="345" class="label--water">Wadi Howar</text>
+      <text x="1002" y="332" class="label--water">Nile</text>
+      <text x="995" y="425" class="label--point">Dongola</text>
+      <text x="666" y="151" class="label--human">people, animals, tools and stories</text>
+      <text x="359" y="447" class="label--small">westward drainage</text>
+      <text x="735" y="422" class="label--small">eastward drainage</text>
+      <text x="1044" y="70" class="label--north">N ↑</text>
+    </g>
+
+    <g class="legend" transform="translate(64 570)">
+      <rect width="420" height="74" rx="8" fill="#121817" fill-opacity="0.78" stroke="#f0e3cd" stroke-opacity="0.18" />
+      <path d="M22 24 H92" class="water-route" marker-end="url(#sahara-water-arrow)" />
+      <text x="112" y="31">water drainage</text>
+      <path d="M22 51 H92" class="human-route" marker-end="url(#sahara-human-arrow)" />
+      <text x="112" y="58">possible human movement</text>
+    </g>
+  </svg>
+  <figcaption>Schematic, with modern borders omitted. Water drains away from the Ennedi watershed in different directions; the dashed route shows how people could cross the high country between those systems.</figcaption>
+</figure>
+
+<style>
+  .sahara-map {
+    margin-block: 3rem !important;
+    overflow: hidden;
+    border: 1px solid rgb(240 191 112 / 0.32);
+    border-radius: 0.55rem;
+    background: #0d1110;
+    color: #f2ecdf;
+    box-shadow: 0.7rem 0.8rem 0 rgb(0 0 0 / 0.26);
+  }
+
+  .sahara-map__header {
+    display: grid;
+    gap: 0.35rem;
+    padding: 1.1rem 1.25rem;
+    border-bottom: 1px solid rgb(240 191 112 / 0.22);
+  }
+
+  .sahara-map__header p,
+  .sahara-map__header h3 {
+    margin: 0;
+  }
+
+  .sahara-map__header p {
+    color: #73d4da;
+    font: 700 0.68rem/1.3 var(--font-mono, monospace);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .sahara-map__header h3 {
+    color: #fff;
+    font-size: clamp(1.35rem, 3vw, 2rem);
+  }
+
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .water-route {
+    fill: none;
+    stroke: #73d4da;
+    stroke-width: 7;
+    stroke-linecap: round;
+  }
+
+  .human-route {
+    fill: none;
+    stroke: #f0bf70;
+    stroke-width: 5;
+    stroke-dasharray: 10 10;
+    stroke-linecap: round;
+  }
+
+  .highlands path {
+    fill: #ad6340;
+    stroke: #e2a66e;
+    stroke-width: 4;
+  }
+
+  .label text,
+  .legend text {
+    fill: #f5ead9;
+    paint-order: stroke;
+    stroke: rgb(20 17 15 / 0.82);
+    stroke-width: 5px;
+    font: 700 22px/1 var(--font-mono, monospace);
+  }
+
+  .label .label--point {
+    fill: #f0bf70;
+    font-size: 25px;
+  }
+
+  .label .label--water {
+    fill: #8be1e6;
+  }
+
+  .label .label--human {
+    fill: #f0bf70;
+    font-size: 17px;
+  }
+
+  .label .label--small,
+  .label .label--north {
+    fill: #d4caba;
+    font-size: 16px;
+  }
+
+  .legend text {
+    stroke-width: 4px;
+    font-size: 17px;
+  }
+
+  figcaption {
+    padding: 0.85rem 1rem 0.95rem;
+    border-top: 1px solid rgb(240 191 112 / 0.2);
+    color: #b7aea2;
+    font-size: 0.76rem;
+    line-height: 1.5;
+  }
+</style>

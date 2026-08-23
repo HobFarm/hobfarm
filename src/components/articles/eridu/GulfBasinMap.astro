@@ -1,0 +1,189 @@
+<figure class="gulf-map article-wide not-prose" aria-labelledby="gulf-map-title">
+  <div class="gulf-map__header">
+    <p>Landscape schematic</p>
+    <h3 id="gulf-map-title">The Gulf before it was a gulf</h3>
+  </div>
+  <svg viewBox="0 0 1200 680" role="img" aria-labelledby="gulf-map-svg-title gulf-map-svg-desc">
+    <title id="gulf-map-svg-title">Schematic map of the exposed Persian Gulf basin</title>
+    <desc id="gulf-map-svg-desc">The map shows Eridu, the Tigris, Euphrates, Karun and Arabian paleodrainages entering the formerly exposed basin, with broad shoreline stages advancing northwest after the last glacial period.</desc>
+    <defs>
+      <linearGradient id="gulf-land" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#64553e" />
+        <stop offset="1" stop-color="#241f1b" />
+      </linearGradient>
+      <linearGradient id="gulf-water" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#2f858f" />
+        <stop offset="1" stop-color="#0d303a" />
+      </linearGradient>
+      <pattern id="gulf-silt" width="18" height="18" patternUnits="userSpaceOnUse">
+        <circle cx="4" cy="4" r="1.4" fill="#d5b575" opacity="0.36" />
+        <circle cx="13" cy="11" r="1" fill="#d5b575" opacity="0.22" />
+      </pattern>
+      <marker id="gulf-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+        <path d="M0 0 L10 5 L0 10 Z" fill="#70d3dc" />
+      </marker>
+      <filter id="gulf-shadow" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity="0.28" />
+      </filter>
+    </defs>
+
+    <rect width="1200" height="680" fill="url(#gulf-land)" />
+    <path d="M1120 40 C1010 78 927 118 870 165 C786 234 736 320 655 380 C565 447 465 481 350 520 C522 583 704 640 925 680 H1200 V40 Z" fill="url(#gulf-water)" filter="url(#gulf-shadow)" />
+    <path d="M1105 48 C986 104 903 160 837 224 C746 313 682 400 578 455 C507 493 436 518 350 520 C493 558 646 610 925 680 H1200 V40 Z" fill="url(#gulf-silt)" opacity="0.72" />
+
+    <path d="M180 0 C190 92 213 129 266 176 C315 220 338 264 351 330" class="river" />
+    <path d="M315 0 C304 86 333 150 389 201 C425 234 437 284 430 342" class="river" />
+    <path d="M784 0 C775 92 739 144 688 188 C650 222 624 270 610 325" class="river" />
+    <path d="M205 625 C315 586 384 545 438 489" class="paleoriver" />
+    <path d="M65 540 C194 522 313 503 420 458" class="paleoriver" />
+    <path d="M363 335 C445 363 524 395 579 438 C631 479 693 534 777 601" class="trunk" />
+
+    <path d="M756 326 C675 393 574 451 449 495" class="shoreline shoreline--old" />
+    <path d="M843 247 C743 338 643 419 512 476" class="shoreline shoreline--middle" />
+    <path d="M930 165 C814 269 720 367 606 438" class="shoreline shoreline--recent" />
+
+    <circle cx="344" cy="308" r="7" fill="#f2c274" />
+    <circle cx="344" cy="308" r="15" fill="none" stroke="#f2c274" stroke-opacity="0.38" />
+    <path d="M842 466 C770 437 706 414 651 407" fill="none" stroke="#70d3dc" stroke-width="4" stroke-dasharray="8 9" marker-end="url(#gulf-arrow)" />
+
+    <g class="label">
+      <text x="130" y="46">Tigris</text>
+      <text x="332" y="46">Euphrates</text>
+      <text x="804" y="46">Karun</text>
+      <text x="94" y="575">Arabian paleodrainages</text>
+      <text x="366" y="304" class="label--point">Eridu</text>
+      <text x="633" y="520" class="label--basin">exposed basin</text>
+      <text x="963" y="574" class="label--water">Persian Gulf today</text>
+      <text x="736" y="484" class="label--water">marine advance</text>
+      <text x="882" y="213" class="label--shore">about 6 ka</text>
+      <text x="785" y="299" class="label--shore">about 9 ka</text>
+      <text x="679" y="375" class="label--shore">earlier shoreline</text>
+      <text x="1015" y="76" class="label--north">N ↑</text>
+    </g>
+  </svg>
+  <figcaption>Schematic, not a surveyed shoreline reconstruction. It shows the basin's main drainage relationships and the broad direction of postglacial marine advance.</figcaption>
+</figure>
+
+<style>
+  .gulf-map {
+    margin-block: 3rem !important;
+    overflow: hidden;
+    border: 1px solid rgb(112 211 220 / 0.3);
+    border-radius: 0.55rem;
+    background: #0a1113;
+    color: #eef4ee;
+    box-shadow: 0.7rem 0.8rem 0 rgb(0 0 0 / 0.26);
+  }
+
+  .gulf-map__header {
+    display: grid;
+    gap: 0.35rem;
+    padding: 1.1rem 1.25rem;
+    border-bottom: 1px solid rgb(112 211 220 / 0.22);
+  }
+
+  .gulf-map__header p,
+  .gulf-map__header h3 {
+    margin: 0;
+  }
+
+  .gulf-map__header p {
+    color: #e2b66e;
+    font: 700 0.68rem/1.3 var(--font-mono, monospace);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .gulf-map__header h3 {
+    color: #fff;
+    font-size: clamp(1.35rem, 3vw, 2rem);
+  }
+
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .river,
+  .trunk {
+    fill: none;
+    stroke: #80d8df;
+    stroke-linecap: round;
+  }
+
+  .river {
+    stroke-width: 8;
+  }
+
+  .trunk {
+    stroke-width: 11;
+    opacity: 0.92;
+  }
+
+  .paleoriver {
+    fill: none;
+    stroke: #a6c9c3;
+    stroke-width: 5;
+    stroke-dasharray: 10 10;
+    stroke-linecap: round;
+    opacity: 0.82;
+  }
+
+  .shoreline {
+    fill: none;
+    stroke: #d9d1b8;
+    stroke-width: 3;
+    stroke-dasharray: 6 10;
+    opacity: 0.7;
+  }
+
+  .shoreline--old {
+    opacity: 0.34;
+  }
+
+  .shoreline--middle {
+    opacity: 0.5;
+  }
+
+  .label text {
+    fill: #efe9d7;
+    paint-order: stroke;
+    stroke: rgb(14 18 18 / 0.82);
+    stroke-width: 5px;
+    font: 700 22px/1 var(--font-mono, monospace);
+  }
+
+  .label .label--point {
+    fill: #f2c274;
+    font-size: 26px;
+  }
+
+  .label .label--water {
+    fill: #8ee6ee;
+  }
+
+  .label .label--basin {
+    fill: #e0c99a;
+    font-size: 27px;
+    text-transform: uppercase;
+  }
+
+  .label .label--shore {
+    fill: #c8c4b8;
+    font-size: 17px;
+  }
+
+  .label .label--north {
+    fill: #e2b66e;
+    font-size: 18px;
+  }
+
+  figcaption {
+    padding: 0.85rem 1rem 0.95rem;
+    border-top: 1px solid rgb(112 211 220 / 0.22);
+    color: #aab7b4;
+    font-size: 0.76rem;
+    line-height: 1.5;
+  }
+</style>
