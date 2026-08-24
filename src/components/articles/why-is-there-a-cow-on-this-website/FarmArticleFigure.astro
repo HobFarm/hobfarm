@@ -1,0 +1,313 @@
+---
+import { imageSrcset, transformImageUrl } from "@/lib/media-transforms";
+
+type FigureKind =
+  | "tongues"
+  | "horse-before-after"
+  | "horse-influencer"
+  | "goat-before-after"
+  | "node-mesh";
+
+interface Props {
+  kind: FigureKind;
+}
+
+interface FigureItem {
+  file: string;
+  alt: string;
+  label: string;
+  caption: string;
+  credit: string;
+  width: number;
+  height: number;
+  lightBackground?: boolean;
+}
+
+interface FigureDefinition {
+  label: string;
+  layout: "single" | "pair" | "trio";
+  items: FigureItem[];
+  caption: string;
+}
+
+const base = "https://cdn.hob.farm/articles/farm/";
+
+const figures: Record<FigureKind, FigureDefinition> = {
+  tongues: {
+    label: "Three farm animals sticking out their tongues",
+    layout: "trio",
+    items: [
+      {
+        file: "cow.jpg",
+        alt: "A black-and-white cow faces the camera with its tongue sticking out inside a livestock barn.",
+        label: "Cow",
+        caption: "Date Fest, Indio, California, 2011.",
+        credit: "Photograph by the author.",
+        width: 2616,
+        height: 1812,
+      },
+      {
+        file: "goat.jpg",
+        alt: "A white goat turns toward the camera with its tongue out against a warm blurred barn background.",
+        label: "Goat",
+        caption: "Blue Hill Fair, Maine, 2017.",
+        credit: "Photograph and generative-fill cleanup by the author.",
+        width: 1920,
+        height: 1412,
+      },
+      {
+        file: "horse.png",
+        alt: "An isolated brown horse with a white blaze and its tongue slightly out.",
+        label: "Horse",
+        caption: "Blue Hill Fair, Maine, 2017.",
+        credit: "Photograph and manual Photoshop cutout by the author.",
+        width: 1920,
+        height: 1803,
+        lightBackground: true,
+      },
+    ],
+    caption: "One animal sticking its tongue out is a funny picture. Three is apparently a collection.",
+  },
+  "horse-before-after": {
+    label: "The original horse photograph beside the manual Photoshop cutout",
+    layout: "pair",
+    items: [
+      {
+        file: "horse-original.png",
+        alt: "A brown horse at the Blue Hill Fair wearing a halter beside a wooden stall, ropes, and a hanging bucket.",
+        label: "Blue Hill Fair, 2017",
+        caption: "The original photograph still contains the halter, rope, stall, bucket, and red decoration.",
+        credit: "Photograph by the author.",
+        width: 1920,
+        height: 1803,
+      },
+      {
+        file: "horse.png",
+        alt: "The same brown horse isolated from the stall after the halter, rope, bucket, and surrounding material were removed.",
+        label: "Manual Photoshop cutout",
+        caption: "The cutout became a profile image and later became source material again.",
+        credit: "Photograph and edit by the author.",
+        width: 1920,
+        height: 1803,
+        lightBackground: true,
+      },
+    ],
+    caption: "The horse moved from fair photograph to Photoshop project to durable profile image.",
+  },
+  "horse-influencer": {
+    label: "The horse reimagined as an Instagram influencer",
+    layout: "single",
+    items: [
+      {
+        file: "horse-instagram.png",
+        alt: "The brown horse poses as a lifestyle influencer with heart-shaped sunglasses, a ring light, avocado toast, a green drink, and an Influencer Energy medallion beneath a Good Hay Only sign.",
+        label: "Influencer horse",
+        caption: "The horse eventually acquired a ring light, avocado toast, a green drink, and an Influencer Energy medallion.",
+        credit: "Generated with ChatGPT from the author's horse cutout.",
+        width: 1122,
+        height: 1402,
+      },
+    ],
+    caption: "A profile image became source material for a generated joke, then visual evidence in an article about recombination.",
+  },
+  "goat-before-after": {
+    label: "The original goat photograph beside the generative-fill cleanup",
+    layout: "pair",
+    items: [
+      {
+        file: "goat-original.jpg",
+        alt: "A white goat behind a black metal gate with green ropes crossing above and beside its head.",
+        label: "Original photograph",
+        caption: "The gate and ropes cut through the portrait.",
+        credit: "Photograph by the author.",
+        width: 1449,
+        height: 970,
+      },
+      {
+        file: "goat.jpg",
+        alt: "The same white goat after the gate and ropes were removed, leaving a clean portrait against the barn background.",
+        label: "Generative fill",
+        caption: "The cleaned portrait took about a minute to produce.",
+        credit: "Photograph and edit by the author.",
+        width: 1920,
+        height: 1412,
+      },
+    ],
+    caption: "Both states remain visible. The faster tool changed the cleanup time, not the reason for making the edit.",
+  },
+  "node-mesh": {
+    label: "An original abstract visualization of the young HobFarm node mesh",
+    layout: "single",
+    items: [
+      {
+        file: "hobfarm-node-mesh-v1.png",
+        alt: "An asymmetric web of fine cyan, green, magenta, amber, and white lines grows across a black field, with bright dense clusters near the center and sparse unfinished branches at the edges.",
+        label: "The graph is young",
+        caption: "Dense clusters have started to form, but many branches still end in open space.",
+        credit: "Original HobFarm image generated with OpenAI image generation under human direction.",
+        width: 1672,
+        height: 941,
+      },
+    ],
+    caption: "The image is visual shorthand for a growing mesh, not a map of the internet or a literal diagram of HobFarm's current links.",
+  },
+};
+
+const figure = figures[Astro.props.kind];
+---
+
+<section class:list={["farm-figure", "article-wide", "not-prose", `farm-figure--${figure.layout}`]} aria-label={figure.label}>
+  <div class="farm-figure__grid">
+    {figure.items.map((item) => {
+      const original = `${base}${item.file}`;
+      const widths = [480, 800, 1200, 1600].filter((width) => width <= item.width);
+      return (
+        <figure class:list={[item.lightBackground && "farm-figure__item--light"]}>
+          <span class="farm-figure__label">{item.label}</span>
+          <img
+            src={transformImageUrl(original, { width: Math.min(item.width, 1600), quality: 84, fit: "contain" })}
+            srcset={imageSrcset(original, widths, { quality: 84, fit: "contain" })}
+            sizes={figure.layout === "trio" ? "(min-width: 900px) 29vw, 92vw" : figure.layout === "pair" ? "(min-width: 760px) 44vw, 92vw" : "(min-width: 760px) 42rem, 92vw"}
+            alt={item.alt}
+            width={item.width}
+            height={item.height}
+            loading="lazy"
+            decoding="async"
+            data-lightbox={original}
+            data-lightbox-group={`farm-${Astro.props.kind}`}
+            data-lightbox-caption={`${item.caption} ${item.credit}`}
+          />
+          <figcaption>
+            <span>{item.caption}</span>
+            <small>{item.credit}</small>
+          </figcaption>
+        </figure>
+      );
+    })}
+  </div>
+  <p class="farm-figure__caption">{figure.caption}</p>
+</section>
+
+<style>
+  .farm-figure {
+    overflow: hidden;
+    margin-block: clamp(2.4rem, 7vw, 4.5rem) !important;
+    border: 1px solid rgb(224 177 83 / 0.3);
+    border-radius: 0.7rem;
+    background: #0b0907;
+    box-shadow: 0.7rem 0.8rem 0 rgb(0 0 0 / 0.25);
+  }
+
+  .farm-figure__grid {
+    display: grid;
+    gap: 1px;
+    align-items: stretch;
+    background: rgb(224 177 83 / 0.22);
+  }
+
+  .farm-figure--pair .farm-figure__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .farm-figure--trio .farm-figure__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  figure {
+    position: relative;
+    display: grid !important;
+    grid-template-rows: 1fr auto;
+    min-width: 0;
+    margin: 0 !important;
+    background: #050403;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-height: 48rem;
+    margin: 0 !important;
+    object-fit: contain;
+    background: #050403;
+  }
+
+  .farm-figure--pair img,
+  .farm-figure--trio img {
+    aspect-ratio: 4 / 3;
+  }
+
+  .farm-figure--single img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    margin-inline: auto !important;
+  }
+
+  .farm-figure__item--light img {
+    background:
+      linear-gradient(135deg, rgb(126 83 48 / 0.08), transparent 48%),
+      #e7ddcd;
+  }
+
+  .farm-figure__label {
+    position: absolute;
+    z-index: 1;
+    top: 0.7rem;
+    left: 0.7rem;
+    padding: 0.36rem 0.52rem;
+    border: 1px solid rgb(255 255 255 / 0.3);
+    border-radius: 0.25rem;
+    background: rgb(8 7 5 / 0.86);
+    color: #fff6dc;
+    font: 700 0.66rem/1 var(--font-mono), monospace;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  figcaption {
+    box-sizing: border-box;
+    min-height: 6.5rem;
+    margin: 0 !important;
+    padding: 0.85rem 0.95rem 1rem;
+    color: #d7cfc1 !important;
+    font-size: 0.75rem !important;
+    line-height: 1.5 !important;
+    text-align: left !important;
+  }
+
+  figcaption span,
+  figcaption small {
+    display: block;
+  }
+
+  figcaption small {
+    margin-top: 0.4rem;
+    color: #8f877a;
+    font-size: 0.66rem;
+  }
+
+  .farm-figure__caption {
+    margin: 0 !important;
+    padding: 0.85rem 1rem 1rem;
+    color: #a9a095;
+    font: 0.72rem/1.55 var(--font-mono), monospace;
+    text-align: center;
+  }
+
+  @media (max-width: 799px) {
+    .farm-figure--trio .farm-figure__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 679px) {
+    .farm-figure--pair .farm-figure__grid {
+      grid-template-columns: 1fr;
+    }
+
+    figcaption {
+      min-height: 0;
+    }
+  }
+</style>
