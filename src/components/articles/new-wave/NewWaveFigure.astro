@@ -1,0 +1,103 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption: string;
+  width: number;
+  height: number;
+  textEquivalent: string[];
+  compact?: boolean;
+}
+
+const {
+  src,
+  alt,
+  caption,
+  width,
+  height,
+  textEquivalent,
+  compact = false,
+} = Astro.props;
+---
+
+<figure class:list={["new-wave-figure", "article-wide", "not-prose", compact && "article-compact"]}>
+  <img
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading="lazy"
+    decoding="async"
+    data-lightbox={src}
+    data-lightbox-caption={caption}
+  />
+  <figcaption>
+    {caption}
+    <small>Original HobFarm editorial graphic.</small>
+  </figcaption>
+  <details>
+    <summary>Read the graphic as text</summary>
+    <ul>
+      {textEquivalent.map((item) => <li>{item}</li>)}
+    </ul>
+  </details>
+</figure>
+
+<style>
+  .new-wave-figure {
+    margin-block: 2.7rem !important;
+    overflow: hidden;
+    border: 1px solid rgb(232 224 196 / 0.24);
+    border-radius: 0.35rem;
+    background: #070b0e;
+    box-shadow: 0.65rem 0.72rem 0 rgb(0 0 0 / 0.26);
+  }
+
+  .new-wave-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .new-wave-figure figcaption {
+    margin: 0 !important;
+    padding: 0.9rem 1rem 1rem;
+    color: #bec4c2 !important;
+    border-top: 4px solid #e54b4b;
+    background: #101518;
+    text-align: left !important;
+  }
+
+  .new-wave-figure figcaption small {
+    display: block;
+    margin-top: 0.3rem;
+    color: #7c8787;
+    font-size: 0.64rem;
+  }
+
+  details {
+    padding: 0.8rem 1rem 0.95rem;
+    color: #9eaaa8;
+    border-top: 1px solid rgb(232 224 196 / 0.12);
+    background: #0b1012;
+    font-size: 0.74rem;
+    text-align: left;
+  }
+
+  summary {
+    color: #78d6e5;
+    font: 700 0.68rem/1.4 var(--font-mono), monospace;
+    cursor: pointer;
+  }
+
+  ul {
+    margin: 0.7rem 0 0 !important;
+    padding-left: 1.15rem !important;
+  }
+
+  li {
+    margin: 0.35rem 0 !important;
+  }
+</style>

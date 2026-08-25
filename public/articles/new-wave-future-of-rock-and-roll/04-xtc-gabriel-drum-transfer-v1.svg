@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1100" viewBox="0 0 1400 1100" role="img" aria-label="A flow diagram connects XTC's Drums and Wires through Lillywhite and Padgham to Peter Gabriel's Intruder, then explains room microphones, compression, a noise gate and the cut drum tail.">
+  <defs>
+    <pattern id="paper" width="24" height="24" patternUnits="userSpaceOnUse">
+      <rect width="24" height="24" fill="#eee6cf"/>
+      <path d="M0 5H24M0 17H24" stroke="#b9af96" stroke-width="0.6" opacity="0.23"/>
+      <circle cx="4" cy="12" r="0.8" fill="#7c7463" opacity="0.18"/>
+      <circle cx="19" cy="3" r="0.6" fill="#7c7463" opacity="0.15"/>
+    </pattern>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#9eaaab" stroke-width="1" opacity="0.12"/>
+    </pattern>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#e54b4b"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#168eaa"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="9" dy="11" stdDeviation="0" flood-color="#000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <rect width="1400" height="1100" fill="#080d10"/>
+  <rect width="1400" height="1100" fill="url(#grid)"/>
+  
+    <text x="70" y="74" fill="#e54b4b" font-family="Consolas, monospace" font-size="19" font-weight="700" letter-spacing="3">ONE CONCRETE TRANSFER</text>
+    <text x="70" y="126" fill="#eee6cf" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="800">XTC TO GABRIEL</text>
+    <text x="70" y="163" fill="#aeb8b5" font-family="Arial, Helvetica, sans-serif" font-size="21">A production team carries a drum experiment from one record into the structure of another.</text>
+    <path d="M70 188H1330" stroke="#f0c74f" stroke-width="5"/>
+  
+    <g filter="url(#shadow)">
+      <rect x="90" y="245" width="350" height="210" rx="10" fill="#11181b" stroke="#f0c74f" stroke-width="3"/>
+      <rect x="90" y="245" width="12" height="210" fill="#f0c74f"/>
+      <text x="120" y="287" fill="#eee6cf" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="800">XTC</text>
+      <text x="120" y="321" fill="#aeb8b5" font-family="Consolas, monospace" font-size="17">DRUMS AND WIRES / 1979</text><text x="120" y="350" fill="#aeb8b5" font-family="Consolas, monospace" font-size="17">STEVE LILLYWHITE / PRODUCER</text><text x="120" y="379" fill="#aeb8b5" font-family="Consolas, monospace" font-size="17">HUGH PADGHAM / ENGINEER</text>
+    </g>
+  
+    <g filter="url(#shadow)">
+      <rect x="525" y="245" width="350" height="240" rx="10" fill="#11181b" stroke="#e54b4b" stroke-width="3"/>
+      <rect x="525" y="245" width="12" height="240" fill="#e54b4b"/>
+      <text x="555" y="287" fill="#eee6cf" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="800">PETER GABRIEL 3</text>
+      <text x="555" y="321" fill="#aeb8b5" font-family="Consolas, monospace" font-size="17">1980</text><text x="555" y="350" fill="#aeb8b5" font-family="Consolas, monospace" font-size="17">PHIL COLLINS / DRUMS</text><text x="555" y="379" fill="#aeb8b5" font-family="Consolas, monospace" font-size="17">INTRUDER / OPENING TRACK</text><text x="555" y="408" fill="#aeb8b5" font-family="Consolas, monospace" font-size="17">NO CYMBALS ON THE ALBUM</text>
+    </g>
+  
+    <g filter="url(#shadow)">
+      <rect x="960" y="245" width="350" height="210" rx="10" fill="#11181b" stroke="#168eaa" stroke-width="3"/>
+      <rect x="960" y="245" width="12" height="210" fill="#168eaa"/>
+      <text x="990" y="287" fill="#eee6cf" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="800">THE SONG</text>
+      <text x="990" y="321" fill="#aeb8b5" font-family="Consolas, monospace" font-size="17">DRUM SOUND AS STRUCTURE</text><text x="990" y="350" fill="#aeb8b5" font-family="Consolas, monospace" font-size="17">SPACE + REPETITION</text><text x="990" y="379" fill="#aeb8b5" font-family="Consolas, monospace" font-size="17">HUGE, THEN ABRUPTLY CUT</text>
+    </g>
+  <path d="M442 348H510" stroke="#e54b4b" stroke-width="7" marker-end="url(#arrow-red)"/>
+  <path d="M877 348H945" stroke="#e54b4b" stroke-width="7" marker-end="url(#arrow-red)"/>
+  <text x="476" y="327" fill="#b8c2bf" text-anchor="middle" font-family="Consolas, monospace" font-size="15">TEAM</text>
+  <text x="911" y="327" fill="#b8c2bf" text-anchor="middle" font-family="Consolas, monospace" font-size="15">COMPOSITION</text>
+  <text x="90" y="575" fill="#f0c74f" font-family="Consolas, monospace" font-size="18" font-weight="700" letter-spacing="2">SIMPLIFIED MECHANISM</text>
+  <g><circle cx="150" cy="710" r="62" fill="#168eaa" stroke="#eee6cf" stroke-width="4"/><text x="150" y="726" fill="#fff" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="43" font-weight="900">1</text><text x="150" y="810" fill="#eee6cf" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="800">ROOM MICS</text><text x="150" y="843" fill="#aab4b1" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17">Capture the space around the kit</text><path d="M228 710H382" stroke="#f0c74f" stroke-width="5" marker-end="url(#arrow-red)"/></g><g><circle cx="470" cy="710" r="62" fill="#e54b4b" stroke="#eee6cf" stroke-width="4"/><text x="470" y="726" fill="#fff" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="43" font-weight="900">2</text><text x="470" y="810" fill="#eee6cf" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="800">COMPRESSION</text><text x="470" y="843" fill="#aab4b1" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17">Emphasize the room and impact</text><path d="M548 710H702" stroke="#f0c74f" stroke-width="5" marker-end="url(#arrow-red)"/></g><g><circle cx="790" cy="710" r="62" fill="#168eaa" stroke="#eee6cf" stroke-width="4"/><text x="790" y="726" fill="#fff" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="43" font-weight="900">3</text><text x="790" y="810" fill="#eee6cf" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="800">NOISE GATE</text><text x="790" y="843" fill="#aab4b1" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17">Close the signal at a threshold</text><path d="M868 710H1022" stroke="#f0c74f" stroke-width="5" marker-end="url(#arrow-red)"/></g><g><circle cx="1110" cy="710" r="62" fill="#e54b4b" stroke="#eee6cf" stroke-width="4"/><text x="1110" y="726" fill="#fff" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="43" font-weight="900">4</text><text x="1110" y="810" fill="#eee6cf" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="800">CUT TAIL</text><text x="1110" y="843" fill="#aab4b1" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17">Huge hit, unnatural stop</text></g>
+  <rect x="90" y="930" width="1220" height="105" fill="#11181b" stroke="#334044" stroke-width="3"/>
+  <text x="120" y="972" fill="#e54b4b" font-family="Consolas, monospace" font-size="18" font-weight="700">LIMIT OF THE DIAGRAM</text>
+  <text x="120" y="1008" fill="#acb6b3" font-family="Arial, Helvetica, sans-serif" font-size="20">This explains the audible principle. It is not every studio's exact wiring diagram or a single-person invention claim.</text>
+</svg>

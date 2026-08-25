@@ -1,0 +1,138 @@
+{
+  "status": "verified for year-level public timeline on 2026-08-25",
+  "events": [
+    {
+      "year": 1973,
+      "label": "Fripp and Eno release (No Pussyfooting). Cheech & Chong headline a New Jersey bill with Springsteen.",
+      "sources": [
+        "https://www.brian-eno.net/about/",
+        "https://brucespringsteenspecialcollection.monmouth.edu/newspaper-articles-a-b/"
+      ],
+      "verification_status": "verified; Monmouth archive index records the June 6 notice"
+    },
+    {
+      "year": 1977,
+      "label": "Bowie's Low and Heroes period. Donna Summer and Moroder release I Feel Love.",
+      "sources": [
+        "https://www.davidbowie.com/",
+        "https://www.loc.gov/static/programs/national-recording-preservation-board/documents/I-Feel-Love.pdf"
+      ],
+      "verification_status": "verified at year level; individual production roles qualified in prose"
+    },
+    {
+      "year": 1978,
+      "label": "Eno produces Talking Heads and Devo projects.",
+      "sources": [
+        "https://www.brian-eno.net/about/",
+        "https://www.theguardian.com/music/2022/apr/14/devo-richard-branson-almost-killed-us-in-the-jamaican-mountains"
+      ],
+      "verification_status": "verified"
+    },
+    {
+      "year": 1979,
+      "label": "Drums and Wires. Life in Tokyo. Quiet Life.",
+      "sources": [
+        "https://petergabriel.com/release/peter-gabriel-3/",
+        "https://soundcloud.com/giorgiomoroder/japan-life-in-tokyo",
+        "https://www.soundonsound.com/techniques/classic-tracks-japan-ghosts"
+      ],
+      "verification_status": "verified at year level"
+    },
+    {
+      "year": 1980,
+      "label": "Peter Gabriel 3. Remain in Light. Cheech & Chong's Next Movie.",
+      "sources": [
+        "https://petergabriel.com/release/peter-gabriel-3/",
+        "https://store.talkingheadsofficial.com/collections/remain-in-light",
+        "https://catalog.afi.com/Film/56386-CHEECH-AND-CHONG%27S-NEXT-MOVIE"
+      ],
+      "verification_status": "verified"
+    },
+    {
+      "year": 1981,
+      "label": "Nice Dreams. Discipline. Tin Drum. MTV. My Life in the Bush of Ghosts.",
+      "sources": [
+        "https://catalog.afi.com/Film/56571-NICE-DREAMS",
+        "https://dgmlive.com/tours?artist=8&order=&year=",
+        "https://www.soundonsound.com/techniques/classic-tracks-japan-ghosts",
+        "https://www.britannica.com/topic/MTV",
+        "https://www.brian-eno.net/about/"
+      ],
+      "verification_status": "verified at year level"
+    },
+    {
+      "year": 1982,
+      "label": "Beat. Peter Gabriel 4. Cat People.",
+      "sources": [
+        "https://dgmlive.com/tours?artist=8&order=&year=",
+        "https://petergabriel.com/release/peter-gabriel-4/",
+        "https://www.giorgiomoroder.com/music/cat-people/"
+      ],
+      "verification_status": "verified"
+    },
+    {
+      "year": 1984,
+      "label": "Three of a Perfect Pair. The NeverEnding Story.",
+      "sources": [
+        "https://dgmlive.com/tours?artist=8&order=&year=",
+        "https://music.apple.com/us/album/the-neverending-story-original-motion-picture-soundtrack/691264356",
+        "https://www.giorgiomoroder.com/music/"
+      ],
+      "verification_status": "verified; Doldinger and Moroder soundtrack credit retained"
+    },
+    {
+      "year": 1985,
+      "label": "Pee-wee's Big Adventure. Danny Elfman's score.",
+      "sources": [
+        "https://groundlings.com/people/phil-hartman",
+        "https://www.theringer.com/2021/06/10/music/danny-elfman-big-mess-interview-oingo-boingo"
+      ],
+      "verification_status": "verified"
+    },
+    {
+      "year": 1986,
+      "label": "Pee-wee's Playhouse. Mark Mothersbaugh's music.",
+      "sources": [
+        "https://groundlings.com/about/history",
+        "https://pitchfork.com/news/devos-mark-motherbaugh-remembers-pee-wees-playhouse-collaborator-paul-reubens/"
+      ],
+      "verification_status": "verified"
+    },
+    {
+      "year": 1992,
+      "label": "Primus releases Miscellaneous Debris.",
+      "sources": [
+        "https://www.prnewswire.com/news-releases/primus-to-release-seven-remastered-albums-and-eps-on-black-vinyl--limited-edition-color-vinyl-300743408.html",
+        "https://open.spotify.com/track/5EvpklpOJu1dJK5MGsRNzx"
+      ],
+      "verification_status": "verified"
+    },
+    {
+      "year": 1993,
+      "label": "Primus releases Hamburger Train on Pork Soda, opening with the Nice Dreams restaurant scene.",
+      "sources": [
+        "https://open.spotify.com/track/0tdWYwH8xIOoSeNoEz7QqV",
+        "https://www.youtube.com/watch?v=ICzJOmFRoJc&t=561s"
+      ],
+      "verification_status": "track object verified; scene-source identification supplied by the author"
+    },
+    {
+      "year": 1998,
+      "label": "Primus releases Rhinoplasty.",
+      "sources": [
+        "https://www.prnewswire.com/news-releases/primus-to-release-seven-remastered-albums-and-eps-on-black-vinyl--limited-edition-color-vinyl-300743408.html",
+        "https://open.spotify.com/track/4pSRdrjShKkblJgcIFiieL"
+      ],
+      "verification_status": "verified"
+    },
+    {
+      "year": 2013,
+      "label": "Daft Punk releases Giorgio by Moroder.",
+      "sources": [
+        "https://daftpunk.com/randomaccessmemories/",
+        "https://open.spotify.com/track/0oks4FnzhNp5QPTZtoet7c"
+      ],
+      "verification_status": "verified"
+    }
+  ]
+}

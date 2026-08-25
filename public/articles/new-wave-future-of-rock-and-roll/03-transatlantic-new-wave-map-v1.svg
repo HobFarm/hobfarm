@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900" role="img" aria-label="A flat map connects London, New York, Akron, Los Angeles, Wolperath and Munich with labeled project and cultural exchange arrows.">
+  <defs>
+    <pattern id="paper" width="24" height="24" patternUnits="userSpaceOnUse">
+      <rect width="24" height="24" fill="#eee6cf"/>
+      <path d="M0 5H24M0 17H24" stroke="#b9af96" stroke-width="0.6" opacity="0.23"/>
+      <circle cx="4" cy="12" r="0.8" fill="#7c7463" opacity="0.18"/>
+      <circle cx="19" cy="3" r="0.6" fill="#7c7463" opacity="0.15"/>
+    </pattern>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#9eaaab" stroke-width="1" opacity="0.12"/>
+    </pattern>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#e54b4b"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#168eaa"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="9" dy="11" stdDeviation="0" flood-color="#000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <rect width="1400" height="900" fill="#080d10"/>
+  <rect width="1400" height="900" fill="url(#grid)"/>
+  
+    <text x="70" y="74" fill="#e54b4b" font-family="Consolas, monospace" font-size="19" font-weight="700" letter-spacing="3">GEOGRAPHY AS FEEDBACK</text>
+    <text x="70" y="126" fill="#eee6cf" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="800">THE ATLANTIC KEEPS SENDING THE SIGNAL BACK</text>
+    <text x="70" y="163" fill="#aeb8b5" font-family="Arial, Helvetica, sans-serif" font-size="21">The projects move both ways. The arrows name the actual vehicle.</text>
+    <path d="M70 188H1330" stroke="#f0c74f" stroke-width="5"/>
+  <path d="M120 300C270 210 430 220 560 310C655 375 734 350 820 280C945 178 1110 216 1280 320L1275 690C1090 743 910 720 770 635C640 555 523 574 400 670C308 741 207 716 105 650Z" fill="#10191d" stroke="#263238" stroke-width="4"/>
+  <text x="225" y="280" fill="#59696c" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="900">NORTH AMERICA</text>
+  <text x="920" y="280" fill="#59696c" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="900">EUROPE</text>
+  <g><circle cx="270" cy="420" r="15" fill="#f0c74f" stroke="#fff" stroke-width="3"/><text x="270" y="390" fill="#eee6cf" text-anchor="middle" font-family="Consolas, monospace" font-size="22" font-weight="800">NEW YORK</text><text x="270" y="462" fill="#98a5a3" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18">Talking Heads</text></g><g><circle cx="180" cy="535" r="15" fill="#e54b4b" stroke="#fff" stroke-width="3"/><text x="180" y="505" fill="#eee6cf" text-anchor="middle" font-family="Consolas, monospace" font-size="22" font-weight="800">AKRON</text><text x="180" y="577" fill="#98a5a3" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18">Devo</text></g><g><circle cx="330" cy="670" r="15" fill="#f0c74f" stroke="#fff" stroke-width="3"/><text x="330" y="640" fill="#eee6cf" text-anchor="middle" font-family="Consolas, monospace" font-size="22" font-weight="800">LOS ANGELES</text><text x="330" y="712" fill="#98a5a3" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18">Reubens / Elfman</text></g><g><circle cx="930" cy="400" r="15" fill="#e54b4b" stroke="#fff" stroke-width="3"/><text x="930" y="370" fill="#eee6cf" text-anchor="middle" font-family="Consolas, monospace" font-size="22" font-weight="800">LONDON</text><text x="930" y="442" fill="#98a5a3" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18">Eno / Bowie / XTC</text></g><g><circle cx="1130" cy="520" r="15" fill="#f0c74f" stroke="#fff" stroke-width="3"/><text x="1130" y="490" fill="#eee6cf" text-anchor="middle" font-family="Consolas, monospace" font-size="22" font-weight="800">WOLPERATH</text><text x="1130" y="562" fill="#98a5a3" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18">Conny Plank studio</text></g><g><circle cx="1010" cy="670" r="15" fill="#e54b4b" stroke="#fff" stroke-width="3"/><text x="1010" y="640" fill="#eee6cf" text-anchor="middle" font-family="Consolas, monospace" font-size="22" font-weight="800">MUNICH</text><text x="1010" y="712" fill="#98a5a3" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18">Moroder</text></g>
+  <g fill="none" stroke-width="5">
+    <path d="M895 415C700 300 530 310 300 410" stroke="#168eaa" marker-end="url(#arrow-blue)"/>
+    <path d="M210 520C500 435 760 450 1095 510" stroke="#e54b4b" stroke-dasharray="16 10" marker-end="url(#arrow-red)"/>
+    <path d="M990 650C760 755 555 730 360 675" stroke="#168eaa" marker-end="url(#arrow-blue)"/>
+    <path d="M355 645C575 555 760 560 970 640" stroke="#e54b4b" stroke-dasharray="16 10" marker-end="url(#arrow-red)"/>
+  </g>
+  <g font-family="Consolas, monospace" font-size="18" font-weight="700">
+    <rect x="500" y="270" width="320" height="54" rx="27" fill="#11191c" stroke="#168eaa" stroke-width="3"/><text x="660" y="304" fill="#eee6cf" text-anchor="middle">ENO + TALKING HEADS / 1978-80</text>
+    <rect x="505" y="430" width="318" height="54" rx="27" fill="#11191c" stroke="#e54b4b" stroke-width="3"/><text x="664" y="464" fill="#eee6cf" text-anchor="middle">DEVO TO GERMANY / 1978</text>
+    <rect x="560" y="700" width="290" height="54" rx="27" fill="#11191c" stroke="#168eaa" stroke-width="3"/><text x="705" y="734" fill="#eee6cf" text-anchor="middle">MORODER TO FILM + POP</text>
+    <rect x="510" y="545" width="380" height="54" rx="27" fill="#11191c" stroke="#e54b4b" stroke-width="3"/><text x="700" y="579" fill="#eee6cf" text-anchor="middle">FUNK / R&amp;B / AFROBEAT FEEDBACK</text>
+  </g>
+  <text x="70" y="846" fill="#8e9997" font-family="Consolas, monospace" font-size="15">SOLID = DOCUMENTED COLLABORATION OR RELEASE PATH   DASHED = BROADER CULTURAL AND RHYTHMIC EXCHANGE DISCUSSED IN PROSE</text>
+</svg>

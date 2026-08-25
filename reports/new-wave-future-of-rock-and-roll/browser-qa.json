@@ -1,0 +1,76 @@
+{
+  "route": "http://127.0.0.1:4322/articles/new-wave-future-of-rock-and-roll/",
+  "checkedAt": "2026-08-25T15:26:43.979Z",
+  "viewports": [
+    {
+      "width": 1440,
+      "innerWidth": 1440,
+      "scrollWidth": 1440,
+      "iframeCount": 0,
+      "pairs": 4,
+      "spotifyButtons": 10,
+      "figureTextEquivalents": 5,
+      "videoButtons": 1,
+      "exactSpotifyLinks": 10,
+      "headingCount": 36,
+      "pass": true
+    },
+    {
+      "width": 1024,
+      "innerWidth": 1024,
+      "scrollWidth": 1024,
+      "iframeCount": 0,
+      "pairs": 4,
+      "spotifyButtons": 10,
+      "figureTextEquivalents": 5,
+      "videoButtons": 1,
+      "exactSpotifyLinks": 10,
+      "headingCount": 36,
+      "pass": true
+    },
+    {
+      "width": 768,
+      "innerWidth": 768,
+      "scrollWidth": 768,
+      "iframeCount": 0,
+      "pairs": 4,
+      "spotifyButtons": 10,
+      "figureTextEquivalents": 5,
+      "videoButtons": 1,
+      "exactSpotifyLinks": 10,
+      "headingCount": 36,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "innerWidth": 390,
+      "scrollWidth": 390,
+      "iframeCount": 0,
+      "pairs": 4,
+      "spotifyButtons": 10,
+      "figureTextEquivalents": 5,
+      "videoButtons": 1,
+      "exactSpotifyLinks": 10,
+      "headingCount": 36,
+      "pass": true
+    }
+  ],
+  "interactive": {
+    "hamburgerSrc": "https://open.spotify.com/embed/track/0tdWYwH8xIOoSeNoEz7QqV?utm_source=generator&theme=0",
+    "spotifySrc": "https://open.spotify.com/embed/track/1XT5kxg6Tk0ukCO2vBQN4v?utm_source=generator&theme=0",
+    "spotifyAllow": "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture",
+    "videoSrc": "https://www.youtube-nocookie.com/embed/ICzJOmFRoJc?start=561&autoplay=0&rel=0",
+    "keyboardActivation": true,
+    "fallbacksRemain": true,
+    "pass": true
+  },
+  "noJavaScript": {
+    "status": 200,
+    "exactSpotifyLinks": 10,
+    "timestampedVideoLink": true,
+    "iframeCount": 0,
+    "articleReadable": true,
+    "pass": true
+  },
+  "pass": true
+}

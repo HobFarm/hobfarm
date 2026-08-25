@@ -1,0 +1,123 @@
+---
+import { hearTheMeshTracks, spotifySearchUrl } from "@/data/new-wave-article";
+---
+
+<aside class="hear-the-mesh article-wide not-prose" aria-labelledby="hear-the-mesh-heading">
+  <header>
+    <span>Compact listening rail</span>
+    <h3 id="hear-the-mesh-heading">Hear the mesh</h3>
+    <p>Nine stops through the route. These are links, not nine more players.</p>
+  </header>
+  <ol>
+    {hearTheMeshTracks.map((track, index) => (
+      <li>
+        <span>{String(index + 1).padStart(2, "0")}</span>
+        <a href={spotifySearchUrl(track.artist, track.title)} target="_blank" rel="noopener noreferrer">
+          <strong>{track.title}</strong>
+          <small>{track.artist} · {track.year}</small>
+        </a>
+      </li>
+    ))}
+  </ol>
+</aside>
+
+<style>
+  .hear-the-mesh {
+    margin-block: 2.7rem !important;
+    overflow: hidden;
+    border: 1px solid rgb(232 224 196 / 0.24);
+    border-radius: 0.35rem;
+    background: #090e10;
+  }
+
+  header {
+    padding: 1rem;
+    border-bottom: 4px solid #f0c74f;
+    background: linear-gradient(110deg, rgb(240 199 79 / 0.12), transparent 55%);
+  }
+
+  header span {
+    color: #79d8e7;
+    font: 750 0.62rem/1.3 var(--font-mono), monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  h3,
+  p {
+    margin: 0 !important;
+  }
+
+  h3 {
+    margin-top: 0.2rem !important;
+    color: #f3eee1;
+    font-size: 1.1rem;
+  }
+
+  header p {
+    margin-top: 0.25rem !important;
+    color: #9da9a6;
+    font-size: 0.72rem;
+  }
+
+  ol {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.55rem;
+    margin: 0 !important;
+    padding: 0.75rem !important;
+    border-right: 1px solid rgb(232 224 196 / 0.12);
+    border-bottom: 1px solid rgb(232 224 196 / 0.12);
+  }
+
+  li > span {
+    color: #e54b4b;
+    font: 750 0.62rem/1.5 var(--font-mono), monospace;
+  }
+
+  a {
+    display: grid;
+    min-width: 0;
+    color: #edf2ee !important;
+    text-decoration: none !important;
+  }
+
+  a:hover strong,
+  a:focus-visible strong {
+    color: #65e88f;
+  }
+
+  strong,
+  small {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  strong {
+    font-size: 0.7rem;
+  }
+
+  small {
+    color: #8e9a97;
+    font-size: 0.61rem;
+  }
+
+  @media (max-width: 39rem) {
+    ol {
+      grid-template-columns: 1fr;
+    }
+
+    li {
+      border-right: 0;
+    }
+  }
+</style>

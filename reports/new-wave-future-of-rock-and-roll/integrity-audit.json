@@ -1,0 +1,91 @@
+{
+  "checkedAt": "2026-08-25T15:27:15.870Z",
+  "article": {
+    "path": "src/content/articles/new-wave-future-of-rock-and-roll.mdx",
+    "scheduledAt": "2026-09-09T16:20:00-07:00",
+    "sourceItems": 36,
+    "sourceReferenceCount": 37,
+    "highestSourceReference": 36,
+    "allSourceReferencesResolve": true,
+    "sourceBodyWordEstimateExcludingGeneratedModuleText": 4405,
+    "renderedReaderVisibleWordsBeforeSourcesFromBrowserQa": 5163,
+    "unicodeEmDashCount": 0
+  },
+  "ledgers": {
+    "sourceRows": 40,
+    "networkEdgeRows": 41,
+    "timelineRows": 14,
+    "trackRows": 10,
+    "exactTrackSetMatches": true
+  },
+  "assets": {
+    "rows": 10,
+    "r2KeysUnique": true,
+    "isolatedR2Prefix": true,
+    "r2UploadPerformed": false,
+    "allChecksumsAndSizesMatch": true,
+    "checks": [
+      {
+        "local_path": "public/articles/new-wave-future-of-rock-and-roll/01-new-wave-future-hero-master.svg",
+        "exists": true,
+        "bytesMatch": true,
+        "checksumMatch": true
+      },
+      {
+        "local_path": "public/articles/new-wave-future-of-rock-and-roll/02-new-wave-mesh-v1.svg",
+        "exists": true,
+        "bytesMatch": true,
+        "checksumMatch": true
+      },
+      {
+        "local_path": "public/articles/new-wave-future-of-rock-and-roll/03-transatlantic-new-wave-map-v1.svg",
+        "exists": true,
+        "bytesMatch": true,
+        "checksumMatch": true
+      },
+      {
+        "local_path": "public/articles/new-wave-future-of-rock-and-roll/04-xtc-gabriel-drum-transfer-v1.svg",
+        "exists": true,
+        "bytesMatch": true,
+        "checksumMatch": true
+      },
+      {
+        "local_path": "public/articles/new-wave-future-of-rock-and-roll/05-reubens-new-wave-bridge-v1.svg",
+        "exists": true,
+        "bytesMatch": true,
+        "checksumMatch": true
+      },
+      {
+        "local_path": "public/articles/new-wave-future-of-rock-and-roll/06-new-wave-timeline-v1.svg",
+        "exists": true,
+        "bytesMatch": true,
+        "checksumMatch": true
+      },
+      {
+        "local_path": "public/articles/new-wave-future-of-rock-and-roll/01-new-wave-future-hero-v1.webp",
+        "exists": true,
+        "bytesMatch": true,
+        "checksumMatch": true
+      },
+      {
+        "local_path": "public/articles/new-wave-future-of-rock-and-roll/01-new-wave-future-social-v1.png",
+        "exists": true,
+        "bytesMatch": true,
+        "checksumMatch": true
+      },
+      {
+        "local_path": "public/articles/new-wave-future-of-rock-and-roll/01-new-wave-future-portrait-v1.webp",
+        "exists": true,
+        "bytesMatch": true,
+        "checksumMatch": true
+      },
+      {
+        "local_path": "public/articles/new-wave-future-of-rock-and-roll/01-new-wave-future-square-v1.webp",
+        "exists": true,
+        "bytesMatch": true,
+        "checksumMatch": true
+      }
+    ]
+  },
+  "pass": true
+}

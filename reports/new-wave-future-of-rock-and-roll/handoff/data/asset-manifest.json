@@ -1,0 +1,74 @@
+{
+  "article": "new-wave-future-of-rock-and-roll",
+  "status": "starter",
+  "assets": [
+    {
+      "asset_id": "source-nice-dreams-still",
+      "role": "source reference; possible limited opening figure",
+      "filename": "references/nice-dreams-new-wave-scene.png",
+      "mime": "image/png",
+      "width": 1086,
+      "height": 894,
+      "bytes": 894924,
+      "sha256": "c110ba8730092a688c91afa35cd1c9ddeed5f6e509b818a47f6b1db05af0f7aa",
+      "source": "user-supplied screenshot",
+      "rights_status": "evaluate before public hosting",
+      "status": "supplied"
+    },
+    {
+      "asset_id": "source-old-new-wave-mesh",
+      "role": "conceptual ancestor and optional process artifact",
+      "filename": "references/new-wave-mesh-original-concept.jpeg",
+      "mime": "image/jpeg",
+      "width": 2048,
+      "height": 1117,
+      "bytes": 1076496,
+      "sha256": "49bf39e5c2ec7303786bd9ddec3bd69bbe4c40c72051bd8c361747eafe49506e",
+      "source": "user-created infographic",
+      "rights_status": "user-owned",
+      "status": "supplied"
+    }
+  ],
+  "planned_assets": [
+    {
+      "asset_id": "01-new-wave-future-hero",
+      "role": "hero and social derivatives",
+      "status": "planned"
+    },
+    {
+      "asset_id": "02-new-wave-mesh",
+      "role": "main relationship diagram",
+      "status": "planned"
+    },
+    {
+      "asset_id": "03-transatlantic-new-wave-map",
+      "role": "geography and exchange",
+      "status": "planned"
+    },
+    {
+      "asset_id": "04-xtc-gabriel-drum-transfer",
+      "role": "technical mechanism",
+      "status": "planned"
+    },
+    {
+      "asset_id": "05-reubens-new-wave-bridge",
+      "role": "comedy, film, and scoring bridge",
+      "status": "planned"
+    },
+    {
+      "asset_id": "06-new-wave-timeline",
+      "role": "chronology",
+      "status": "planned"
+    },
+    {
+      "asset_id": "07-japan-mutation",
+      "role": "optional before-and-after",
+      "status": "optional"
+    },
+    {
+      "asset_id": "08-both-futures",
+      "role": "optional final coda",
+      "status": "optional"
+    }
+  ]
+}

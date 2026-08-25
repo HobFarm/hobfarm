@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1250" viewBox="0 0 1200 1250" role="img" aria-label="A diagram connects the Groundlings, Paul Reubens and Phil Hartman to Cheech and Chong films, the Nice Dreams New Wave scene, Primus's Hamburger Train sample, Pee-wee's Big Adventure with Danny Elfman and Pee-wee's Playhouse with Mark Mothersbaugh.">
+  <defs>
+    <pattern id="paper" width="24" height="24" patternUnits="userSpaceOnUse">
+      <rect width="24" height="24" fill="#eee6cf"/>
+      <path d="M0 5H24M0 17H24" stroke="#b9af96" stroke-width="0.6" opacity="0.23"/>
+      <circle cx="4" cy="12" r="0.8" fill="#7c7463" opacity="0.18"/>
+      <circle cx="19" cy="3" r="0.6" fill="#7c7463" opacity="0.15"/>
+    </pattern>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#9eaaab" stroke-width="1" opacity="0.12"/>
+    </pattern>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#e54b4b"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#168eaa"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="9" dy="11" stdDeviation="0" flood-color="#000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="1250" fill="#080d10"/>
+  <rect width="1200" height="1250" fill="url(#grid)"/>
+  
+    <text x="70" y="74" fill="#e54b4b" font-family="Consolas, monospace" font-size="19" font-weight="700" letter-spacing="3">SCREEN BRIDGE</text>
+    <text x="70" y="126" fill="#eee6cf" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="800">PAUL REUBENS'S NEW WAVE ROUTE</text>
+    <text x="70" y="163" fill="#aeb8b5" font-family="Arial, Helvetica, sans-serif" font-size="21">The line fits the performance culture around him. It does not prove private intent.</text>
+    <path d="M70 188H1130" stroke="#f0c74f" stroke-width="5"/>
+  
+    <g filter="url(#shadow)">
+      <rect x="100" y="240" width="430" height="175" rx="10" fill="#11181b" stroke="#f0c74f" stroke-width="3"/>
+      <rect x="100" y="240" width="12" height="175" fill="#f0c74f"/>
+      <text x="130" y="282" fill="#eee6cf" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="800">THE GROUNDLINGS</text>
+      <text x="130" y="316" fill="#aeb8b5" font-family="Consolas, monospace" font-size="17">PAUL REUBENS</text><text x="130" y="345" fill="#aeb8b5" font-family="Consolas, monospace" font-size="17">PHIL HARTMAN</text><text x="130" y="374" fill="#aeb8b5" font-family="Consolas, monospace" font-size="17">CHARACTER WORK + REVUES</text>
+    </g>
+  
+    <g filter="url(#shadow)">
+      <rect x="670" y="240" width="430" height="175" rx="10" fill="#11181b" stroke="#168eaa" stroke-width="3"/>
+      <rect x="670" y="240" width="12" height="175" fill="#168eaa"/>
+      <text x="700" y="282" fill="#eee6cf" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="800">CHEECH &amp; CHONG</text>
+      <text x="700" y="316" fill="#aeb8b5" font-family="Consolas, monospace" font-size="17">NEXT MOVIE / 1980</text><text x="700" y="345" fill="#aeb8b5" font-family="Consolas, monospace" font-size="17">PEE-WEE ON FILM</text><text x="700" y="374" fill="#aeb8b5" font-family="Consolas, monospace" font-size="17">NICE DREAMS / 1981 / HOWIE</text>
+    </g>
+  <path d="M532 328H654" stroke="#e54b4b" stroke-width="7" marker-end="url(#arrow-red)"/>
+  <g filter="url(#shadow)">
+    <rect x="300" y="520" width="600" height="150" rx="75" fill="#e54b4b" stroke="#f0c74f" stroke-width="5"/>
+    <text x="600" y="585" fill="#fff5df" text-anchor="middle" font-family="Consolas, monospace" font-size="22">NICE DREAMS / 1981</text>
+    <text x="600" y="633" fill="#fff5df" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="900">NEW WAVE!</text>
+  </g>
+  
+    <g filter="url(#shadow)">
+      <rect x="25" y="520" width="240" height="150" rx="10" fill="#11181b" stroke="#f0c74f" stroke-width="3"/>
+      <rect x="25" y="520" width="12" height="150" fill="#f0c74f"/>
+      <text x="55" y="562" fill="#eee6cf" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="800">PRIMUS</text>
+      <text x="55" y="596" fill="#aeb8b5" font-family="Consolas, monospace" font-size="17">HAMBURGER TRAIN</text><text x="55" y="625" fill="#aeb8b5" font-family="Consolas, monospace" font-size="17">PORK SODA / 1993</text><text x="55" y="654" fill="#aeb8b5" font-family="Consolas, monospace" font-size="17">SAMPLES THIS SCENE</text>
+    </g>
+  <path d="M300 595H280" stroke="#f0c74f" stroke-width="7" marker-end="url(#arrow-red)"/>
+  <path d="M600 670V745H310V790M600 745H890V790" fill="none" stroke="#e54b4b" stroke-width="7" marker-end="url(#arrow-red)"/>
+  
+    <g filter="url(#shadow)">
+      <rect x="80" y="800" width="470" height="225" rx="10" fill="#11181b" stroke="#e54b4b" stroke-width="3"/>
+      <rect x="80" y="800" width="12" height="225" fill="#e54b4b"/>
+      <text x="110" y="842" fill="#eee6cf" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="800">PEE-WEE'S BIG ADVENTURE</text>
+      <text x="110" y="876" fill="#aeb8b5" font-family="Consolas, monospace" font-size="17">1985</text><text x="110" y="905" fill="#aeb8b5" font-family="Consolas, monospace" font-size="17">DANNY ELFMAN / SCORE</text><text x="110" y="934" fill="#aeb8b5" font-family="Consolas, monospace" font-size="17">OINGO BOINGO / BAND ROUTE</text><text x="110" y="963" fill="#aeb8b5" font-family="Consolas, monospace" font-size="17">HARTMAN / CO-WRITER</text>
+    </g>
+  
+    <g filter="url(#shadow)">
+      <rect x="650" y="800" width="470" height="225" rx="10" fill="#11181b" stroke="#168eaa" stroke-width="3"/>
+      <rect x="650" y="800" width="12" height="225" fill="#168eaa"/>
+      <text x="680" y="842" fill="#eee6cf" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="800">PEE-WEE'S PLAYHOUSE</text>
+      <text x="680" y="876" fill="#aeb8b5" font-family="Consolas, monospace" font-size="17">1986</text><text x="680" y="905" fill="#aeb8b5" font-family="Consolas, monospace" font-size="17">MARK MOTHERSBAUGH / MUSIC</text><text x="680" y="934" fill="#aeb8b5" font-family="Consolas, monospace" font-size="17">DEVO / BAND ROUTE</text><text x="680" y="963" fill="#aeb8b5" font-family="Consolas, monospace" font-size="17">SCREEN-COMPOSING TURN</text>
+    </g>
+  <path d="M315 1028V1110M885 1028V1110" stroke="#f0c74f" stroke-width="7" marker-end="url(#arrow-red)"/>
+  <text x="315" y="1160" fill="#eee6cf" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800">FILM SCORING</text>
+  <text x="885" y="1160" fill="#eee6cf" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800">TELEVISION MUSIC</text>
+</svg>

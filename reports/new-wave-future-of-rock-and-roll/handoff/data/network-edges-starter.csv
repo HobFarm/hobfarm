@@ -1,0 +1,34 @@
+source_node,target_node,edge_type,date_or_period,project_or_work,evidence_source,confidence,article_section,public_graphic,notes
+Brian Eno,Roxy Music,member of,1971-1973,Roxy Music,official Eno biography,high,routers,yes,Verify exact role and dates.
+Brian Eno,Robert Fripp,collaborated with,1973 onward,No Pussyfooting and later work,official discographies,high,routers,yes,Use project-specific dates.
+Brian Eno,David Bowie,collaborated with,1977-1979,Berlin-era albums,official Bowie and Eno credits,high,routers,yes,Avoid reducing albums to Eno alone.
+Brian Eno,Talking Heads,produced,1978-1980,three studio albums,official album credits,high,mesh audible,yes,Verify exact album list.
+Brian Eno,Devo,produced,1978,Q: Are We Not Men? A: We Are Devo!,official album credits and interviews,high,mesh audible,yes,Bowie involvement must be worded precisely.
+Brian Eno,David Byrne,collaborated with,1981 onward,My Life in the Bush of Ghosts and later work,official discographies,high,routers,yes,Verify chronology.
+Robert Fripp,David Bowie,performed on,1977,Heroes,official album credits,high,routers,yes,Name track/album precisely.
+Adrian Belew,David Bowie,performed on,1978-1979,tour and recordings,official credits,medium,King Crimson node,yes,Verify exact projects.
+Adrian Belew,Talking Heads,performed on,1980,Remain in Light era,official credits,high,King Crimson node,yes,Separate studio from tour roles.
+Adrian Belew,King Crimson,member of,1981 onward,Discipline-era lineup,official King Crimson source,high,King Crimson node,yes,Verify album-by-album personnel.
+Tony Levin,Peter Gabriel,performed on,1977 onward,solo albums and tours,Tony Levin official biography,high,King Crimson node,yes,Use exact first project.
+Tony Levin,King Crimson,member of,1981 onward,Discipline-era lineup,official King Crimson source,high,King Crimson node,yes,Verify periods.
+Steve Lillywhite,XTC,produced,1979,Drums and Wires,album credits,high,XTC to Gabriel,yes,Verify all relevant XTC albums.
+Hugh Padgham,XTC,engineered,1979,Drums and Wires,album credits,high,XTC to Gabriel,yes,Verify exact title/role.
+Steve Lillywhite,Peter Gabriel,produced,1980,Peter Gabriel 3,Peter Gabriel official site,high,XTC to Gabriel,yes,Use official release page.
+Hugh Padgham,Peter Gabriel,engineered,1980,Peter Gabriel 3,Peter Gabriel official site,high,XTC to Gabriel,yes,Explain gate mechanism accurately.
+Phil Collins,Peter Gabriel,performed on,1980,Intruder,official album credits,high,XTC to Gabriel,yes,Do not overclaim invention.
+Giorgio Moroder,Donna Summer,produced,1977,I Feel Love,official and archival sources,high,Moroder,yes,Verify writers and production roles.
+Giorgio Moroder,Japan,produced,1979,Life in Tokyo,Moroder official source and Japan sources,high,Japan mutation,yes,Do not imply entire band transformation came from one single.
+Giorgio Moroder,Blondie,collaborated with,1980,Call Me,official soundtrack/artist credits,high,Moroder,optional,Verify writing and production roles.
+Giorgio Moroder,David Bowie,collaborated with,1982,Cat People,official soundtrack credits,high,Moroder,yes,Use exact version and credit.
+Giorgio Moroder,Limahl,produced,1984,The NeverEnding Story,Moroder official source,high,film and television,yes,Verify Keith Forsey and soundtrack split.
+Daft Punk,Giorgio Moroder,featured oral history,2013,Giorgio by Moroder,Daft Punk official source,high,coda,yes,Use short quotations only.
+Paul Reubens,The Groundlings,member of,1970s-1980s,stage work,Groundlings and reputable biography,high,Reubens bridge,yes,Verify dates.
+Phil Hartman,The Groundlings,member of,1975-1986,Groundlings,Groundlings official page,high,Reubens bridge,yes,Official dates available.
+Phil Hartman,Pee-wee's Big Adventure,co-wrote,1985,film,official film credits,high,Reubens bridge,yes,Verify exact credit.
+Danny Elfman,Pee-wee's Big Adventure,film or television collaboration,1985,score,official film credits and interviews,high,Reubens bridge,yes,Connect to Oingo Boingo.
+Mark Mothersbaugh,Pee-wee's Playhouse,film or television collaboration,1986 onward,score/music,official credits and interview,high,Reubens bridge,yes,Verify seasons/role.
+Paul Reubens,Mark Mothersbaugh,collaborated with,1985-1986,Big Adventure approach and Playhouse,first-party interview,high,Reubens bridge,yes,Distinguish proposed and completed work.
+Paul Reubens,Danny Elfman,collaborated with,1985,Pee-wee's Big Adventure,first-party interview and credits,high,Reubens bridge,yes,Verify selection story.
+Primus,XTC,covered,1992 and 1998,Making Plans For Nigel; Scissor Man,album and Spotify credits,high,later inheritance,yes,Two separate edges in final data may be clearer.
+Primus,Peter Gabriel,covered,1992 and 1998,Intruder; The Family And The Fishing Net,album and Spotify credits,high,later inheritance,yes,Two separate edges in final data may be clearer.
+MTV,New Wave visual culture,platform amplification,1981 onward,music video distribution,MTV archival/official history,medium,future becomes ordinary,optional,Do not present MTV as origin.

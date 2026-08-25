@@ -1,0 +1,77 @@
+{
+  "status": "starter; every event requires source verification before public use",
+  "events": [
+    {
+      "year": 1973,
+      "label": "Fripp and Eno release their first collaboration",
+      "status": "verify exact date and title"
+    },
+    {
+      "year": 1977,
+      "label": "Bowie/Eno period and Donna Summer's I Feel Love",
+      "status": "verify exact dates and credits"
+    },
+    {
+      "year": 1978,
+      "label": "Eno produces Talking Heads and Devo projects",
+      "status": "verify album dates"
+    },
+    {
+      "year": 1979,
+      "label": "XTC releases Drums and Wires; Japan works with Moroder and moves toward Quiet Life",
+      "status": "verify dates and wording"
+    },
+    {
+      "year": 1980,
+      "label": "Peter Gabriel 3, Remain in Light, and Cheech & Chong's Next Movie",
+      "status": "verify release dates"
+    },
+    {
+      "year": 1981,
+      "label": "Nice Dreams, Discipline, Tin Drum, MTV, and My Life in the Bush of Ghosts",
+      "status": "verify release dates and ordering"
+    },
+    {
+      "year": 1982,
+      "label": "Beat, Peter Gabriel's fourth album, and Cat People",
+      "status": "verify exact dates and project versions"
+    },
+    {
+      "year": 1984,
+      "label": "Three of a Perfect Pair and The NeverEnding Story",
+      "status": "verify release dates"
+    },
+    {
+      "year": 1985,
+      "label": "Pee-wee's Big Adventure with Danny Elfman score",
+      "status": "verify date"
+    },
+    {
+      "year": 1986,
+      "label": "Pee-wee's Playhouse begins with Mark Mothersbaugh music",
+      "status": "verify date and role"
+    },
+    {
+      "year": 1992,
+      "label": "Primus releases Miscellaneous Debris",
+      "status": "verify release date"
+    },
+    {
+      "year": 1998,
+      "label": "Primus releases Rhinoplasty",
+      "status": "verify release date"
+    },
+    {
+      "year": 2013,
+      "label": "Daft Punk releases Giorgio by Moroder",
+      "status": "verify release date"
+    }
+  ],
+  "optional_events": [
+    {
+      "year": 1972,
+      "label": "Springsteen appears on a bill with Cheech & Chong",
+      "status": "include only with reliable archival receipt"
+    }
+  ]
+}

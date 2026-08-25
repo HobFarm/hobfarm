@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="An illustrated restaurant table sends diagram lines toward New Wave names while a separate saxophone lane represents Bruce Springsteen.">
+  <defs>
+    <pattern id="paper" width="24" height="24" patternUnits="userSpaceOnUse">
+      <rect width="24" height="24" fill="#eee6cf"/>
+      <path d="M0 5H24M0 17H24" stroke="#b9af96" stroke-width="0.6" opacity="0.23"/>
+      <circle cx="4" cy="12" r="0.8" fill="#7c7463" opacity="0.18"/>
+      <circle cx="19" cy="3" r="0.6" fill="#7c7463" opacity="0.15"/>
+    </pattern>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#9eaaab" stroke-width="1" opacity="0.12"/>
+    </pattern>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#e54b4b"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#168eaa"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="9" dy="11" stdDeviation="0" flood-color="#000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#paper)"/>
+  <rect x="0" y="0" width="1600" height="66" fill="#111619"/>
+  <text x="62" y="43" fill="#eee6cf" font-family="Consolas, monospace" font-size="20" font-weight="700" letter-spacing="4">HOBFARM / MUSIC / 1981 SIGNAL MAP</text>
+  <g transform="rotate(-2 760 470)" filter="url(#shadow)">
+    <rect x="255" y="174" width="1040" height="620" rx="28" fill="#171b1b" stroke="#0d1011" stroke-width="8"/>
+    <rect x="295" y="214" width="960" height="540" rx="18" fill="#75604c"/>
+    <path d="M295 356H1255M550 214V754M990 214V754" stroke="#96785e" stroke-width="6" opacity="0.65"/>
+    <circle cx="480" cy="470" r="118" fill="#e9e1ca" stroke="#161b1d" stroke-width="8"/>
+    <circle cx="480" cy="470" r="67" fill="#d0cab9" stroke="#b0a894" stroke-width="3"/>
+    <path d="M442 484C470 449 511 453 535 484" fill="none" stroke="#b4454d" stroke-width="11" stroke-linecap="round"/>
+    <circle cx="1100" cy="370" r="80" fill="#e9e1ca" stroke="#161b1d" stroke-width="8"/>
+    <circle cx="1100" cy="370" r="50" fill="#1e292b"/>
+    <path d="M1168 350C1220 341 1226 416 1173 424" fill="none" stroke="#e9e1ca" stroke-width="19"/>
+    <rect x="670" y="292" width="256" height="337" rx="4" fill="#f2ead6" stroke="#171b1b" stroke-width="5"/>
+    <text x="702" y="337" fill="#7a7262" font-family="Consolas, monospace" font-size="18">CHECK NO. 1981</text>
+    <path d="M704 365H893M704 396H893M704 427H893M704 458H893M704 489H893" stroke="#a99f89" stroke-width="2"/>
+    <text x="700" y="548" fill="#e54b4b" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="900">NEW WAVE!</text>
+    <text x="716" y="583" fill="#49443b" font-family="Consolas, monospace" font-size="17">THE FUTURE / TABLE 9</text>
+    <path d="M338 650L425 614M346 674L437 634" stroke="#181c1d" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <g fill="none" stroke-width="8" stroke-linecap="round">
+    <path d="M805 635C810 725 630 732 614 833" stroke="#e54b4b"/>
+    <path d="M861 631C902 723 1010 713 1055 820" stroke="#168eaa"/>
+    <path d="M738 629C701 687 482 676 370 808" stroke="#f0c74f"/>
+  </g>
+  <g font-family="Consolas, monospace" font-weight="700" font-size="20" text-anchor="middle">
+    <g><rect x="159" y="719" width="172" height="54" rx="27" fill="#f4ecd8" stroke="#e54b4b" stroke-width="3"/><text x="245" y="753" fill="#111619">ENO</text></g><g><rect x="328" y="801" width="172" height="54" rx="27" fill="#111619" stroke="#7bdbea" stroke-width="3"/><text x="414" y="835" fill="#eee6cf">BOWIE / FRIPP</text></g><g><rect x="514" y="819" width="172" height="54" rx="27" fill="#f4ecd8" stroke="#e54b4b" stroke-width="3"/><text x="600" y="853" fill="#111619">TALKING HEADS</text></g><g><rect x="708" y="797" width="172" height="54" rx="27" fill="#111619" stroke="#7bdbea" stroke-width="3"/><text x="794" y="831" fill="#eee6cf">DEVO</text></g><g><rect x="914" y="822" width="172" height="54" rx="27" fill="#f4ecd8" stroke="#e54b4b" stroke-width="3"/><text x="1000" y="856" fill="#111619">XTC / GABRIEL</text></g><g><rect x="1115" y="780" width="172" height="54" rx="27" fill="#111619" stroke="#7bdbea" stroke-width="3"/><text x="1201" y="814" fill="#eee6cf">JAPAN</text></g><g><rect x="1288" y="673" width="172" height="54" rx="27" fill="#f4ecd8" stroke="#e54b4b" stroke-width="3"/><text x="1374" y="707" fill="#111619">ELFMAN</text></g>
+  </g>
+  <g transform="translate(94 205) rotate(-8)">
+    <rect width="230" height="118" fill="#e54b4b"/>
+    <text x="18" y="40" fill="#fff5df" font-family="Consolas, monospace" font-size="17" font-weight="700">THE FUTURE OF</text>
+    <text x="18" y="75" fill="#fff5df" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="900">ROCK &amp; ROLL</text>
+    <text x="18" y="101" fill="#fff5df" font-family="Consolas, monospace" font-size="14">IS BEING IGNORED</text>
+  </g>
+  <g transform="translate(1280 194)">
+    <path d="M84 12C32 57 39 122 71 153C96 177 107 218 77 258" fill="none" stroke="#111619" stroke-width="18" stroke-linecap="round"/>
+    <path d="M74 260C33 261 17 310 57 328C97 346 135 316 117 278" fill="none" stroke="#111619" stroke-width="16"/>
+    <circle cx="85" cy="3" r="14" fill="#f0c74f" stroke="#111619" stroke-width="6"/>
+    <text x="-6" y="365" fill="#111619" font-family="Consolas, monospace" font-size="18" font-weight="700">SPRINGSTEEN LANE</text>
+  </g>
+</svg>

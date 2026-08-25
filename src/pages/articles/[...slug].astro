@@ -1,11 +1,19 @@
 ---
-import { render } from "astro:content";
+import { getCollection, render } from "astro:content";
 import ArticleLayout from "@/layouts/ArticleLayout.astro";
 import { readingTime } from "@/lib/reading-time";
 import { articleUsesSeries, byOldestArticle, getPublishedArticles, stripArticleExt } from "@/lib/articles";
 
 export async function getStaticPaths() {
-  const articles = (await getPublishedArticles())
+  // Scheduled articles stay out of production until their release time, but
+  // remain reviewable at their canonical route during local development.
+  const includeScheduledForReview =
+    import.meta.env.DEV || import.meta.env.MODE === "review";
+  const articleEntries = includeScheduledForReview
+    ? await getCollection("articles", ({ data }) =>
+        !data.draft && data.status !== "draft" && data.status !== "archived")
+    : await getPublishedArticles();
+  const articles = articleEntries
     .filter((entry) => !articleUsesSeries(entry.data, "3dm"))
     .sort(byOldestArticle);
   return articles.map((entry, i) => ({

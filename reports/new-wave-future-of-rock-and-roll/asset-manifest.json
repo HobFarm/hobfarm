@@ -1,0 +1,122 @@
+[
+  {
+    "asset_id": "01-new-wave-future-hero-master",
+    "local_path": "public/articles/new-wave-future-of-rock-and-roll/01-new-wave-future-hero-master.svg",
+    "mime": "image/svg+xml",
+    "width": 1600,
+    "height": 900,
+    "bytes": 5764,
+    "sha256": "8db54d242813eab849ee632c0132136b6384a955e3e80a0cd5a8b79b022e79ab",
+    "r2_key": "articles/new-wave-future-of-rock-and-roll/01-new-wave-future-hero-master.svg",
+    "public_url": "https://hob.farm/articles/new-wave-future-of-rock-and-roll/01-new-wave-future-hero-master.svg",
+    "status": "source-controlled local asset; R2 not uploaded"
+  },
+  {
+    "asset_id": "02-new-wave-mesh-v1",
+    "local_path": "public/articles/new-wave-future-of-rock-and-roll/02-new-wave-mesh-v1.svg",
+    "mime": "image/svg+xml",
+    "width": 1200,
+    "height": 1450,
+    "bytes": 14819,
+    "sha256": "dbf488cc352bdea2401ce3dc9a6f0f54bc431f06e535c7784409d007b89acc90",
+    "r2_key": "articles/new-wave-future-of-rock-and-roll/02-new-wave-mesh-v1.svg",
+    "public_url": "https://hob.farm/articles/new-wave-future-of-rock-and-roll/02-new-wave-mesh-v1.svg",
+    "status": "source-controlled local asset; R2 not uploaded"
+  },
+  {
+    "asset_id": "03-transatlantic-new-wave-map-v1",
+    "local_path": "public/articles/new-wave-future-of-rock-and-roll/03-transatlantic-new-wave-map-v1.svg",
+    "mime": "image/svg+xml",
+    "width": 1400,
+    "height": 900,
+    "bytes": 6283,
+    "sha256": "f8c3da0c61b6dda2dfe3c9363779439db978ce9c361b9c90c1f5a65bdf97c192",
+    "r2_key": "articles/new-wave-future-of-rock-and-roll/03-transatlantic-new-wave-map-v1.svg",
+    "public_url": "https://hob.farm/articles/new-wave-future-of-rock-and-roll/03-transatlantic-new-wave-map-v1.svg",
+    "status": "source-controlled local asset; R2 not uploaded"
+  },
+  {
+    "asset_id": "04-xtc-gabriel-drum-transfer-v1",
+    "local_path": "public/articles/new-wave-future-of-rock-and-roll/04-xtc-gabriel-drum-transfer-v1.svg",
+    "mime": "image/svg+xml",
+    "width": 1400,
+    "height": 1100,
+    "bytes": 7764,
+    "sha256": "1485c42e54d8963dcc57256c7d496ef74a434d1768095c9981c72fbd57bdb5bc",
+    "r2_key": "articles/new-wave-future-of-rock-and-roll/04-xtc-gabriel-drum-transfer-v1.svg",
+    "public_url": "https://hob.farm/articles/new-wave-future-of-rock-and-roll/04-xtc-gabriel-drum-transfer-v1.svg",
+    "status": "source-controlled local asset; R2 not uploaded"
+  },
+  {
+    "asset_id": "05-reubens-new-wave-bridge-v1",
+    "local_path": "public/articles/new-wave-future-of-rock-and-roll/05-reubens-new-wave-bridge-v1.svg",
+    "mime": "image/svg+xml",
+    "width": 1200,
+    "height": 1250,
+    "bytes": 7054,
+    "sha256": "1586d7e0e74b5216af9a1c0f28d7b634afe4fe8895d255990dfc5ea0348e8702",
+    "r2_key": "articles/new-wave-future-of-rock-and-roll/05-reubens-new-wave-bridge-v1.svg",
+    "public_url": "https://hob.farm/articles/new-wave-future-of-rock-and-roll/05-reubens-new-wave-bridge-v1.svg",
+    "status": "source-controlled local asset; R2 not uploaded"
+  },
+  {
+    "asset_id": "06-new-wave-timeline-v1",
+    "local_path": "public/articles/new-wave-future-of-rock-and-roll/06-new-wave-timeline-v1.svg",
+    "mime": "image/svg+xml",
+    "width": 1400,
+    "height": 1500,
+    "bytes": 9574,
+    "sha256": "6b906b8d92c53bddc6d900bb0d842360ddc8905874ed66262794193ddf595750",
+    "r2_key": "articles/new-wave-future-of-rock-and-roll/06-new-wave-timeline-v1.svg",
+    "public_url": "https://hob.farm/articles/new-wave-future-of-rock-and-roll/06-new-wave-timeline-v1.svg",
+    "status": "source-controlled local asset; R2 not uploaded"
+  },
+  {
+    "asset_id": "01-new-wave-future-hero-v1",
+    "local_path": "public/articles/new-wave-future-of-rock-and-roll/01-new-wave-future-hero-v1.webp",
+    "mime": "image/webp",
+    "width": 1600,
+    "height": 900,
+    "bytes": 64006,
+    "sha256": "0b8168dc7587c91ccb9d6754b59423e39a15e588a6a19f1bbf35a135441115fd",
+    "r2_key": "articles/new-wave-future-of-rock-and-roll/01-new-wave-future-hero-v1.webp",
+    "public_url": "https://hob.farm/articles/new-wave-future-of-rock-and-roll/01-new-wave-future-hero-v1.webp",
+    "status": "source-controlled local asset; R2 not uploaded"
+  },
+  {
+    "asset_id": "01-new-wave-future-social-v1",
+    "local_path": "public/articles/new-wave-future-of-rock-and-roll/01-new-wave-future-social-v1.png",
+    "mime": "image/png",
+    "width": 1200,
+    "height": 630,
+    "bytes": 108960,
+    "sha256": "a37a69b71f01e97e731e94d16b146a045fdab7db6dad10526a167268f6a6546f",
+    "r2_key": "articles/new-wave-future-of-rock-and-roll/01-new-wave-future-social-v1.png",
+    "public_url": "https://hob.farm/articles/new-wave-future-of-rock-and-roll/01-new-wave-future-social-v1.png",
+    "status": "source-controlled local asset; R2 not uploaded"
+  },
+  {
+    "asset_id": "01-new-wave-future-portrait-v1",
+    "local_path": "public/articles/new-wave-future-of-rock-and-roll/01-new-wave-future-portrait-v1.webp",
+    "mime": "image/webp",
+    "width": 1080,
+    "height": 1350,
+    "bytes": 42244,
+    "sha256": "28f7a310f050847816b034d631e55240344a561e4aabbdcec3ef757deeb1a6d7",
+    "r2_key": "articles/new-wave-future-of-rock-and-roll/01-new-wave-future-portrait-v1.webp",
+    "public_url": "https://hob.farm/articles/new-wave-future-of-rock-and-roll/01-new-wave-future-portrait-v1.webp",
+    "status": "source-controlled local asset; R2 not uploaded"
+  },
+  {
+    "asset_id": "01-new-wave-future-square-v1",
+    "local_path": "public/articles/new-wave-future-of-rock-and-roll/01-new-wave-future-square-v1.webp",
+    "mime": "image/webp",
+    "width": 1080,
+    "height": 1080,
+    "bytes": 41098,
+    "sha256": "d9eaf276be262c208722a3fe8fb71e0b7ec209f9b83018bdf88b7fada135705b",
+    "r2_key": "articles/new-wave-future-of-rock-and-roll/01-new-wave-future-square-v1.webp",
+    "public_url": "https://hob.farm/articles/new-wave-future-of-rock-and-roll/01-new-wave-future-square-v1.webp",
+    "status": "source-controlled local asset; R2 not uploaded"
+  }
+]

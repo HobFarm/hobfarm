@@ -1,0 +1,219 @@
+{
+  "checkedAt": "2026-08-25T15:27:23.126Z",
+  "method": "HTTP GET with redirects, 20 second timeout, Range header; 403 and 429 recorded as reachable but access-limited",
+  "total": 35,
+  "reachable": 35,
+  "unresolved": [],
+  "records": [
+    {
+      "url": "https://catalog.afi.com/Film/56571-NICE-DREAMS",
+      "status": 200,
+      "finalUrl": "https://catalog.afi.com/Film/56571-NICE-DREAMS",
+      "ok": true
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=ICzJOmFRoJc&t=561s",
+      "status": 200,
+      "finalUrl": "https://www.youtube.com/watch?v=ICzJOmFRoJc&t=561s",
+      "ok": true
+    },
+    {
+      "url": "https://catalog.afi.com/Film/56386-CHEECH-AND-CHONG%27S-NEXT-MOVIE",
+      "status": 200,
+      "finalUrl": "https://catalog.afi.com/Film/56386-CHEECH-AND-CHONG%27S-NEXT-MOVIE",
+      "ok": true
+    },
+    {
+      "url": "https://groundlings.com/about/history",
+      "status": 200,
+      "finalUrl": "https://groundlings.com/about/history",
+      "ok": true
+    },
+    {
+      "url": "https://groundlings.com/people/phil-hartman",
+      "status": 200,
+      "finalUrl": "https://groundlings.com/people/phil-hartman",
+      "ok": true
+    },
+    {
+      "url": "https://pitchfork.com/news/devos-mark-motherbaugh-remembers-pee-wees-playhouse-collaborator-paul-reubens/",
+      "status": 206,
+      "finalUrl": "https://pitchfork.com/news/devos-mark-motherbaugh-remembers-pee-wees-playhouse-collaborator-paul-reubens/",
+      "ok": true
+    },
+    {
+      "url": "https://www.theringer.com/2021/06/10/music/danny-elfman-big-mess-interview-oingo-boingo",
+      "status": 200,
+      "finalUrl": "https://www.theringer.com/2021/06/10/music/danny-elfman-big-mess-interview-oingo-boingo",
+      "ok": true
+    },
+    {
+      "url": "https://www.brian-eno.net/about/",
+      "status": 206,
+      "finalUrl": "https://www.brian-eno.net/about/",
+      "ok": true
+    },
+    {
+      "url": "https://www.theguardian.com/music/2010/jan/17/brian-eno-interview-paul-morley",
+      "status": 206,
+      "finalUrl": "https://www.theguardian.com/music/2010/jan/17/brian-eno-interview-paul-morley",
+      "ok": true
+    },
+    {
+      "url": "https://www.davidbowie.com/",
+      "status": 206,
+      "finalUrl": "https://www.davidbowie.com/",
+      "ok": true
+    },
+    {
+      "url": "https://store.talkingheadsofficial.com/collections/remain-in-light",
+      "status": 200,
+      "finalUrl": "https://store.talkingheadsofficial.com/collections/remain-in-light",
+      "ok": true
+    },
+    {
+      "url": "https://www.theguardian.com/music/2022/apr/14/devo-richard-branson-almost-killed-us-in-the-jamaican-mountains",
+      "status": 206,
+      "finalUrl": "https://www.theguardian.com/music/2022/apr/14/devo-richard-branson-almost-killed-us-in-the-jamaican-mountains",
+      "ok": true
+    },
+    {
+      "url": "https://clubdevo.com/",
+      "status": 206,
+      "finalUrl": "https://clubdevo.com/",
+      "ok": true
+    },
+    {
+      "url": "https://www.loc.gov/static/programs/national-recording-preservation-board/documents/I-Feel-Love.pdf",
+      "status": 206,
+      "finalUrl": "https://www.loc.gov/static/programs/national-recording-preservation-board/documents/I-Feel-Love.pdf",
+      "ok": true
+    },
+    {
+      "url": "https://www.giorgiomoroder.com/music/",
+      "status": 200,
+      "finalUrl": "https://www.giorgiomoroder.com/music/",
+      "ok": true
+    },
+    {
+      "url": "https://daftpunk.com/randomaccessmemories/",
+      "status": 206,
+      "finalUrl": "https://daftpunk.com/randomaccessmemories/",
+      "ok": true
+    },
+    {
+      "url": "https://music.apple.com/us/artist/david-byrne/47192943",
+      "status": 200,
+      "finalUrl": "https://music.apple.com/us/artist/david-byrne/47192943",
+      "ok": true
+    },
+    {
+      "url": "https://petergabriel.com/release/peter-gabriel-3/",
+      "status": 200,
+      "finalUrl": "https://petergabriel.com/release/peter-gabriel-3/",
+      "ok": true
+    },
+    {
+      "url": "https://www.soundonsound.com/techniques/how-optimise-your-reverb-treatments",
+      "status": 200,
+      "finalUrl": "https://www.soundonsound.com/techniques/how-optimise-your-reverb-treatments",
+      "ok": true
+    },
+    {
+      "url": "https://dgmlive.com/tours?artist=8&order=&year=",
+      "status": 200,
+      "finalUrl": "https://dgmlive.com/tours?artist=8&order=&year=",
+      "ok": true
+    },
+    {
+      "url": "https://adrianbelew.net/adrian-belew-bio/",
+      "status": 206,
+      "finalUrl": "https://adrianbelew.net/adrian-belew-bio/",
+      "ok": true
+    },
+    {
+      "url": "https://tonylevin.com/about",
+      "status": 206,
+      "finalUrl": "https://tonylevin.com/about",
+      "ok": true
+    },
+    {
+      "url": "https://www.soundonsound.com/techniques/classic-tracks-japan-ghosts",
+      "status": 200,
+      "finalUrl": "https://www.soundonsound.com/techniques/classic-tracks-japan-ghosts",
+      "ok": true
+    },
+    {
+      "url": "https://soundcloud.com/giorgiomoroder/japan-life-in-tokyo",
+      "status": 200,
+      "finalUrl": "https://soundcloud.com/giorgiomoroder/japan-life-in-tokyo",
+      "ok": true
+    },
+    {
+      "url": "https://www.vam.ac.uk/blog/club-to-catwalk",
+      "status": 206,
+      "finalUrl": "https://www.vam.ac.uk/blog/club-to-catwalk",
+      "ok": true
+    },
+    {
+      "url": "https://rockhall.com/inductees/kraftwerk/",
+      "status": 200,
+      "finalUrl": "https://rockhall.com/inductees/kraftwerk/",
+      "ok": true
+    },
+    {
+      "url": "https://rockhall.com/inductees/cure/",
+      "status": 200,
+      "finalUrl": "https://rockhall.com/inductees/cure/",
+      "ok": true
+    },
+    {
+      "url": "https://brucespringsteen.net/albums/the-river/",
+      "status": 200,
+      "finalUrl": "https://brucespringsteen.net/albums/the-river/",
+      "ok": true
+    },
+    {
+      "url": "https://brucespringsteen.net/band/roy-bittan/",
+      "status": 200,
+      "finalUrl": "https://brucespringsteen.net/band/roy-bittan/",
+      "ok": true
+    },
+    {
+      "url": "https://brucespringsteenspecialcollection.monmouth.edu/newspaper-articles-a-b/",
+      "status": 200,
+      "finalUrl": "https://specialcollection.springsteencenter.org/newspaper-articles-a-b/",
+      "ok": true
+    },
+    {
+      "url": "https://petergabriel.com/release/peter-gabriel-4/",
+      "status": 200,
+      "finalUrl": "https://petergabriel.com/release/peter-gabriel-4/",
+      "ok": true
+    },
+    {
+      "url": "https://music.apple.com/us/album/the-neverending-story-original-motion-picture-soundtrack/691264356",
+      "status": 200,
+      "finalUrl": "https://music.apple.com/us/album/the-neverending-story-original-motion-picture-soundtrack/691264356",
+      "ok": true
+    },
+    {
+      "url": "https://www.prnewswire.com/news-releases/primus-to-release-seven-remastered-albums-and-eps-on-black-vinyl--limited-edition-color-vinyl-300743408.html",
+      "status": 206,
+      "finalUrl": "https://www.prnewswire.com/news-releases/primus-to-release-seven-remastered-albums-and-eps-on-black-vinyl--limited-edition-color-vinyl-300743408.html",
+      "ok": true
+    },
+    {
+      "url": "https://developer.spotify.com/documentation/embeds",
+      "status": 200,
+      "finalUrl": "https://developer.spotify.com/documentation/embeds",
+      "ok": true
+    },
+    {
+      "url": "https://open.spotify.com/track/0tdWYwH8xIOoSeNoEz7QqV",
+      "status": 200,
+      "finalUrl": "https://open.spotify.com/track/0tdWYwH8xIOoSeNoEz7QqV",
+      "ok": true
+    }
+  ]
+}
