@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Vung Tau shoreline deposition cycle</title>
+  <desc id="desc">Waste from river, vessel, and coastal sources moves through the sea, deposits on the shoreline, becomes buried in sand and wrack, and is later exposed again by dune erosion.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0 0 10 5 0 10z" fill="#55d7ff"/></marker>
+    <style>
+      .bg{fill:#07110f}.kicker{font:700 18px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:2px;fill:#f0c96b}.title{font:700 42px Inter,Arial,sans-serif;fill:#f5f3ec}.head{font:700 18px Inter,Arial,sans-serif;fill:#f5f3ec}.body{font:500 14px Inter,Arial,sans-serif;fill:#b8c4bf}.num{font:800 28px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#07110f}.node{fill:#10221d;stroke:#42675b;stroke-width:2}.badge{fill:#f0c96b}.flow{fill:none;stroke:#55d7ff;stroke-width:4;marker-end:url(#arrow)}.sand{fill:#947b52}.wrack{fill:#3d5233}.seam{fill:#1e2522;stroke:#f27c69;stroke-width:3}
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="720" rx="18"/>
+  <text class="kicker" x="64" y="62">VŨNG TÀU · DEPOSITION CYCLE</text>
+  <text class="title" x="64" y="110">The beach can return the same waste more than once.</text>
+  <text class="body" x="64" y="143">The author’s dune photograph documents the final transition: an older debris seam exposed by erosion.</text>
+  <g>
+    <rect class="node" x="68" y="208" width="238" height="136" rx="14"/><circle class="badge" cx="105" cy="246" r="22"/><text class="num" x="105" y="256" text-anchor="middle">1</text><text class="head" x="139" y="246">Sources</text><text class="body" x="94" y="284">river and drain inputs</text><text class="body" x="94" y="307">vessel and fishing material</text><text class="body" x="94" y="330">coastal settlement waste</text>
+    <rect class="node" x="360" y="208" width="204" height="136" rx="14"/><circle class="badge" cx="397" cy="246" r="22"/><text class="num" x="397" y="256" text-anchor="middle">2</text><text class="head" x="431" y="246">Sea transport</text><text class="body" x="386" y="284">currents · wind · tide</text><text class="body" x="386" y="307">floating, sinking, snagging</text>
+    <rect class="node" x="618" y="208" width="224" height="136" rx="14"/><circle class="badge" cx="655" cy="246" r="22"/><text class="num" x="655" y="256" text-anchor="middle">3</text><text class="head" x="689" y="246">Deposition</text><text class="body" x="644" y="284">foam, wood, plants, plastic</text><text class="body" x="644" y="307">collect in the wrack line</text>
+    <rect class="node" x="896" y="208" width="236" height="136" rx="14"/><circle class="badge" cx="933" cy="246" r="22"/><text class="num" x="933" y="256" text-anchor="middle">4</text><text class="head" x="967" y="246">Burial</text><text class="body" x="922" y="284">sand and new wrack cover</text><text class="body" x="922" y="307">the deposited layer</text>
+    <path class="flow" d="M306 276H350"/><path class="flow" d="M564 276H608"/><path class="flow" d="M842 276H886"/>
+  </g>
+  <path class="flow" d="M1014 354C1014 431 944 470 855 470H350C254 470 195 496 195 553"/>
+  <rect class="node" x="68" y="518" width="1058" height="140" rx="14"/>
+  <circle class="badge" cx="112" cy="560" r="24"/><text class="num" x="112" y="570" text-anchor="middle">5</text>
+  <text class="head" x="152" y="555">Dune erosion and re-exposure</text>
+  <text class="body" x="152" y="581">Wind, waves, foot traffic, or storms remove newer material.</text>
+  <text class="body" x="152" y="604">The older debris seam becomes visible again.</text>
+  <path class="sand" d="M610 548H1078V622H610Z"/><path class="wrack" d="M610 548C715 523 780 560 864 542C944 526 1008 543 1078 526V567H610Z"/><path class="seam" d="M610 596C712 574 786 611 873 588C958 567 1010 600 1078 577V606H610Z"/>
+  <circle cx="730" cy="590" r="8" fill="#55d7ff"/><rect x="808" y="580" width="34" height="13" rx="3" fill="#f27c69"/><path d="M936 588l18-12 18 11-16 15z" fill="#f0c96b"/>
+</svg>

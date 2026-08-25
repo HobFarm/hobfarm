@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Maine river change timeline</title>
+  <desc id="desc">The Penobscot and Belfast sequence moves from direct sewage, pulp mill, and poultry waste discharges through state and federal regulation and treatment, then later mill closure and cleaner-looking water, while mercury contamination and economic loss remain.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0 0 10 5 0 10z" fill="#5cf0a6"/></marker>
+    <style>
+      .bg{fill:#07110f}.kicker{font:700 18px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:2px;fill:#f0c96b}.title{font:700 42px Inter,Arial,sans-serif;fill:#f5f3ec}.year{font:800 22px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#f0c96b}.head{font:700 18px Inter,Arial,sans-serif;fill:#f5f3ec}.body{font:500 14px Inter,Arial,sans-serif;fill:#b8c4bf}.card{fill:#10211d;stroke:#39584f;stroke-width:2}.flow{fill:none;stroke:#5cf0a6;stroke-width:4;marker-end:url(#arrow)}.legacy{fill:#251914;stroke:#f27c69;stroke-width:2}
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="620" rx="18"/>
+  <text class="kicker" x="64" y="62">MAINE · RIVER CHANGE</text>
+  <text class="title" x="64" y="110">Treatment came before most mill closures.</text>
+  <text class="body" x="64" y="143">Cleaner water is real. So are the contamination and economic losses that remained after the visible waste disappeared.</text>
+  <rect class="card" x="64" y="204" width="242" height="208" rx="14"/><text class="year" x="88" y="245">1960s</text><text class="head" x="88" y="281">Direct discharge</text><text class="body" x="88" y="316">untreated municipal sewage</text><text class="body" x="88" y="340">pulp and paper effluent</text><text class="body" x="88" y="364">poultry fat, blood, feathers</text><text class="body" x="88" y="388">foam and low dissolved oxygen</text>
+  <rect class="card" x="340" y="204" width="242" height="208" rx="14"/><text class="year" x="364" y="245">1967–1979</text><text class="head" x="364" y="281">Rules and treatment</text><text class="body" x="364" y="316">Maine water standards</text><text class="body" x="364" y="340">industrial abatement systems</text><text class="body" x="364" y="364">municipal treatment plants</text><text class="body" x="364" y="388">Clean Water Act permits</text>
+  <rect class="card" x="616" y="204" width="242" height="208" rx="14"/><text class="year" x="640" y="245">1977 onward</text><text class="head" x="640" y="281">Visible recovery</text><text class="body" x="640" y="316">lower oxygen-demand loads</text><text class="body" x="640" y="340">less foam and sludge</text><text class="body" x="640" y="364">ordinary-looking harbor water</text><text class="body" x="640" y="388">while mills still operated</text>
+  <rect class="card" x="892" y="204" width="244" height="208" rx="14"/><text class="year" x="916" y="245">2000–2014+</text><text class="head" x="916" y="281">Industrial decline</text><text class="body" x="916" y="316">mill closures remove load</text><text class="body" x="916" y="340">and well-paid jobs</text><text class="body" x="916" y="364">Bucksport loses 570 positions</text><text class="body" x="916" y="388">and much of its tax base</text>
+  <path class="flow" d="M306 308H330"/><path class="flow" d="M582 308H606"/><path class="flow" d="M858 308H882"/>
+  <rect class="legacy" x="64" y="462" width="1072" height="94" rx="12"/>
+  <text class="head" x="88" y="498">What the clean surface does not settle</text>
+  <text class="body" x="88" y="528">Mercury remains in Penobscot sediment and food webs. Treatment did not prevent later deindustrialization. Closure was not the only cause of cleanup.</text>
+</svg>
+

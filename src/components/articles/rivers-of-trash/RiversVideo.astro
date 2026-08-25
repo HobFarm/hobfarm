@@ -1,0 +1,170 @@
+---
+interface Props {
+  videoId: string;
+  title: string;
+  note: string;
+  start?: number;
+}
+
+const { videoId, title, note, start = 0 } = Astro.props;
+const watchUrl = `https://www.youtube.com/watch?v=${videoId}${start ? `&t=${start}s` : ""}`;
+const posterUrl = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
+---
+
+<figure class="rivers-video article-wide not-prose" data-rivers-video data-video-id={videoId} data-video-start={start}>
+  <div class="rivers-video__screen" data-video-screen>
+    <img src={posterUrl} alt="" width="1280" height="720" loading="lazy" decoding="async" />
+    <button type="button" data-video-load aria-label={`Play ${title}`}>
+      <span aria-hidden="true">▶</span>
+      Play source video
+    </button>
+  </div>
+  <figcaption>
+    <div>
+      <strong>{title}</strong>
+      <span>Wendall · YouTube</span>
+      <small>{note}</small>
+    </div>
+    <a href={watchUrl} target="_blank" rel="noopener noreferrer">Open at cited scene <span aria-hidden="true">↗</span></a>
+  </figcaption>
+  <p class="sr-only" aria-live="polite" data-video-status></p>
+</figure>
+
+<script>
+  function installRiversVideo() {
+    document.querySelectorAll<HTMLElement>("[data-rivers-video]").forEach((player) => {
+      const button = player.querySelector<HTMLButtonElement>("[data-video-load]");
+      const screen = player.querySelector<HTMLElement>("[data-video-screen]");
+      const status = player.querySelector<HTMLElement>("[data-video-status]");
+      if (!button || !screen || button.dataset.ready === "true") return;
+      button.dataset.ready = "true";
+
+      button.addEventListener("click", () => {
+        const videoId = player.dataset.videoId;
+        const start = Number(player.dataset.videoStart ?? "0");
+        if (!videoId) return;
+
+        const iframe = document.createElement("iframe");
+        const startParam = start > 0 ? `&start=${Math.floor(start)}` : "";
+        iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?autoplay=1&rel=0${startParam}`;
+        iframe.title = button.getAttribute("aria-label")?.replace(/^Play /, "") ?? "YouTube video";
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        iframe.referrerPolicy = "strict-origin-when-cross-origin";
+        iframe.allowFullscreen = true;
+        iframe.addEventListener("load", () => {
+          if (status) status.textContent = `${iframe.title} loaded.`;
+          iframe.focus();
+        });
+
+        screen.replaceChildren(iframe);
+        if (status) status.textContent = `Loading ${iframe.title}.`;
+      }, { once: true });
+    });
+  }
+
+  installRiversVideo();
+  document.addEventListener("astro:page-load", installRiversVideo);
+</script>
+
+<style>
+  .rivers-video {
+    margin-block: 2.7rem !important;
+    overflow: hidden;
+    border: 1px solid rgb(92 240 166 / 0.34);
+    border-radius: 0.5rem;
+    background: #06100e;
+    box-shadow: 0.7rem 0.8rem 0 rgb(0 0 0 / 0.24);
+  }
+
+  .rivers-video__screen {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #020504;
+  }
+
+  .rivers-video__screen::after {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 44%, rgb(0 0 0 / 0.76));
+    content: "";
+    pointer-events: none;
+  }
+
+  .rivers-video__screen img,
+  .rivers-video__screen :global(iframe) {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    object-fit: cover;
+  }
+
+  .rivers-video__screen :global(iframe) {
+    position: relative;
+    z-index: 2;
+  }
+
+  button {
+    position: absolute;
+    z-index: 1;
+    right: 1rem;
+    bottom: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-height: 2.75rem;
+    padding: 0.72rem 0.9rem;
+    border: 1px solid rgb(255 255 255 / 0.75);
+    border-radius: 0.2rem;
+    background: rgb(3 10 8 / 0.94);
+    color: #fff;
+    font: 700 0.72rem/1 var(--font-mono, monospace);
+    cursor: pointer;
+  }
+
+  button:hover,
+  button:focus-visible {
+    border-color: #5cf0a6;
+    outline: 2px solid #5cf0a6;
+    outline-offset: 2px;
+  }
+
+  figcaption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.9rem 1rem;
+    border-top: 4px solid #f0c96b;
+  }
+
+  figcaption div {
+    display: grid;
+    gap: 0.17rem;
+  }
+
+  strong {
+    color: #f5f3ec;
+    font-size: 0.86rem;
+  }
+
+  figcaption span,
+  small {
+    color: #a7b1b0;
+    font-size: 0.7rem;
+  }
+
+  a {
+    flex: 0 0 auto;
+    color: #5cf0a6 !important;
+    font: 700 0.68rem/1.3 var(--font-mono, monospace);
+  }
+
+  @media (max-width: 34rem) {
+    figcaption {
+      align-items: start;
+      flex-direction: column;
+    }
+  }
+</style>
+

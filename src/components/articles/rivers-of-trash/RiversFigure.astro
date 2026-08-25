@@ -1,0 +1,74 @@
+---
+import { imageSrcset, transformImageUrl } from "@/lib/media-transforms";
+
+interface Props {
+  src: string;
+  alt: string;
+  caption: string;
+  width: number;
+  height: number;
+  credit?: string;
+  compact?: boolean;
+}
+
+const { src, alt, caption, width, height, credit = "Photograph: HobFarm", compact = false } = Astro.props;
+const displaySrc = transformImageUrl(src, { width: compact ? 900 : 1440, quality: 84 });
+const srcset = imageSrcset(src, compact ? [480, 720, 900] : [640, 960, 1280, 1600]);
+---
+
+<figure class:list={["rivers-figure", "article-wide", "not-prose", compact && "article-compact"]}>
+  <img
+    src={displaySrc}
+    srcset={srcset}
+    sizes={compact ? "(min-width: 640px) 30rem, 90vw" : "(min-width: 768px) 46rem, 94vw"}
+    alt={alt}
+    width={width}
+    height={height}
+    loading="lazy"
+    decoding="async"
+    data-lightbox={src}
+    data-lightbox-caption={caption}
+  />
+  <figcaption>
+    <span>{caption}</span>
+    <small>{credit}</small>
+  </figcaption>
+</figure>
+
+<style>
+  .rivers-figure {
+    margin-block: 2.5rem !important;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+    border-radius: 0.5rem;
+    background: #07100f;
+    box-shadow: 0.7rem 0.8rem 0 rgb(0 0 0 / 0.22);
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 48rem;
+    object-fit: contain;
+    background: #020504;
+  }
+
+  figcaption {
+    box-sizing: border-box;
+    padding: 0.85rem 1rem 1rem;
+    border-top: 4px solid #5cf0a6;
+  }
+
+  figcaption > span,
+  small {
+    display: block;
+  }
+
+  small {
+    margin-top: 0.35rem;
+    color: var(--color-base-500, #89928e);
+    font-size: 0.68rem;
+  }
+</style>
+

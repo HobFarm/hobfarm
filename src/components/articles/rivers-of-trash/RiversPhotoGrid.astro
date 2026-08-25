@@ -1,0 +1,90 @@
+---
+import { imageSrcset, transformImageUrl } from "@/lib/media-transforms";
+
+type Photo = {
+  src: string;
+  alt: string;
+  caption: string;
+  width: number;
+  height: number;
+};
+
+interface Props {
+  photos: Photo[];
+  label: string;
+  columns?: 2 | 3;
+}
+
+const { photos, label, columns = 2 } = Astro.props;
+---
+
+<section class:list={["rivers-photo-grid", "article-wide", "not-prose", `cols-${columns}`]} aria-label={label}>
+  {photos.map((photo) => (
+    <figure>
+      <img
+        src={transformImageUrl(photo.src, { width: 900, quality: 84 })}
+        srcset={imageSrcset(photo.src, [420, 640, 900])}
+        sizes={columns === 3 ? "(min-width: 768px) 15rem, 92vw" : "(min-width: 768px) 23rem, 92vw"}
+        alt={photo.alt}
+        width={photo.width}
+        height={photo.height}
+        loading="lazy"
+        decoding="async"
+        data-lightbox={photo.src}
+        data-lightbox-caption={photo.caption}
+      />
+      <figcaption>{photo.caption}<small>Photograph: HobFarm</small></figcaption>
+    </figure>
+  ))}
+</section>
+
+<style>
+  .rivers-photo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+    margin-block: 2.5rem !important;
+  }
+
+  .rivers-photo-grid.cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  figure {
+    min-width: 0;
+    margin: 0 !important;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, currentColor 17%, transparent);
+    border-radius: 0.45rem;
+    background: #070b0a;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    max-height: 34rem;
+    object-fit: contain;
+    background: #020403;
+  }
+
+  figcaption {
+    box-sizing: border-box;
+    padding: 0.72rem 0.78rem 0.82rem;
+    border-top: 3px solid rgb(92 240 166 / 0.8);
+  }
+
+  small {
+    display: block;
+    margin-top: 0.35rem;
+    color: var(--color-base-500, #89928e);
+    font-size: 0.67rem;
+  }
+
+  @media (max-width: 719px) {
+    .rivers-photo-grid,
+    .rivers-photo-grid.cols-3 {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+

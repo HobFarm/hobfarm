@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="920" viewBox="0 0 1200 920" role="img" aria-labelledby="title desc">
+  <title id="title">Working and broken pathways for three waste streams</title>
+  <desc id="desc">Solid waste, domestic wastewater, and industrial wastewater each have a controlled route. When collection or treatment breaks, drains and rivers replace the missing stage.</desc>
+  <defs>
+    <marker id="arrow-good" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#5cf0a6"/></marker>
+    <marker id="arrow-bad" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#f27c69"/></marker>
+    <style>
+      .bg{fill:#07110f}.rule{stroke:#26413a;stroke-width:2}.kicker{font:700 18px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:2px;fill:#f0c96b}.title{font:700 42px Inter,Arial,sans-serif;fill:#f5f3ec}.stream{font:700 20px Inter,Arial,sans-serif;fill:#f5f3ec}.label{font:650 15px Inter,Arial,sans-serif;fill:#eff6f1}.small{font:500 13px Inter,Arial,sans-serif;fill:#aebcb6}.good{fill:#0b211a;stroke:#5cf0a6;stroke-width:2}.bad{fill:#261512;stroke:#f27c69;stroke-width:2}.river{fill:#0a1b25;stroke:#55d7ff;stroke-width:2}.goodline{fill:none;stroke:#5cf0a6;stroke-width:3;marker-end:url(#arrow-good)}.badline{fill:none;stroke:#f27c69;stroke-width:3;marker-end:url(#arrow-bad)}
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="920" rx="18"/>
+  <text class="kicker" x="64" y="64">THE RIVER GETS THE JOB</text>
+  <text class="title" x="64" y="112">Three systems. Three missing destinations.</text>
+  <text class="small" x="64" y="145">Green shows the managed path. Red shows the fallback path when collection, connection, or treatment ends early.</text>
+
+  <line class="rule" x1="64" y1="178" x2="1136" y2="178"/>
+  <text class="stream" x="64" y="225">Solid waste</text>
+  <text class="small" x="64" y="249">objects and packaging</text>
+  <rect class="good" x="250" y="197" width="145" height="66" rx="9"/><text class="label" x="322.5" y="225" text-anchor="middle">household</text><text class="small" x="322.5" y="245" text-anchor="middle">or market</text>
+  <rect class="good" x="450" y="197" width="145" height="66" rx="9"/><text class="label" x="522.5" y="225" text-anchor="middle">collection</text><text class="small" x="522.5" y="245" text-anchor="middle">truck or cart</text>
+  <rect class="good" x="650" y="197" width="145" height="66" rx="9"/><text class="label" x="722.5" y="225" text-anchor="middle">transfer</text><text class="small" x="722.5" y="245" text-anchor="middle">sorting and haul</text>
+  <rect class="good" x="850" y="197" width="258" height="66" rx="9"/><text class="label" x="979" y="225" text-anchor="middle">controlled destination</text><text class="small" x="979" y="245" text-anchor="middle">landfill, recycling, incineration</text>
+  <path class="goodline" d="M395 230H442"/><path class="goodline" d="M595 230H642"/><path class="goodline" d="M795 230H842"/>
+  <rect class="bad" x="450" y="286" width="145" height="58" rx="9"/><text class="label" x="522.5" y="311" text-anchor="middle">pile or dump</text><text class="small" x="522.5" y="330" text-anchor="middle">uncollected</text>
+  <rect class="bad" x="650" y="286" width="145" height="58" rx="9"/><text class="label" x="722.5" y="311" text-anchor="middle">gutter / drain</text><text class="small" x="722.5" y="330" text-anchor="middle">rain moves it</text>
+  <rect class="river" x="850" y="286" width="258" height="58" rx="9"/><text class="label" x="979" y="311" text-anchor="middle">river → lagoon → ocean</text><text class="small" x="979" y="330" text-anchor="middle">beach, burial, fire, cleanup</text>
+  <path class="badline" d="M395 230C420 230 420 315 442 315"/><path class="badline" d="M595 315H642"/><path class="badline" d="M795 315H842"/>
+
+  <line class="rule" x1="64" y1="382" x2="1136" y2="382"/>
+  <text class="stream" x="64" y="420">Domestic</text>
+  <text class="stream" x="64" y="443">wastewater</text>
+  <text class="small" x="64" y="465">toilets and greywater</text>
+  <rect class="good" x="250" y="401" width="145" height="66" rx="9"/><text class="label" x="322.5" y="429" text-anchor="middle">household</text><text class="small" x="322.5" y="449" text-anchor="middle">toilet / drain</text>
+  <rect class="good" x="450" y="401" width="145" height="66" rx="9"/><text class="label" x="522.5" y="429" text-anchor="middle">sewer / septic</text><text class="small" x="522.5" y="449" text-anchor="middle">contained flow</text>
+  <rect class="good" x="650" y="401" width="145" height="66" rx="9"/><text class="label" x="722.5" y="429" text-anchor="middle">treatment</text><text class="small" x="722.5" y="449" text-anchor="middle">solids and pathogens</text>
+  <rect class="good" x="850" y="401" width="258" height="66" rx="9"/><text class="label" x="979" y="429" text-anchor="middle">monitored discharge</text><text class="small" x="979" y="449" text-anchor="middle">or reuse</text>
+  <path class="goodline" d="M395 434H442"/><path class="goodline" d="M595 434H642"/><path class="goodline" d="M795 434H842"/>
+  <rect class="bad" x="450" y="490" width="345" height="58" rx="9"/><text class="label" x="622.5" y="515" text-anchor="middle">open drain or broken connection</text><text class="small" x="622.5" y="534" text-anchor="middle">sewerage ends before treatment</text>
+  <rect class="river" x="850" y="490" width="258" height="58" rx="9"/><text class="label" x="979" y="515" text-anchor="middle">river</text><text class="small" x="979" y="534" text-anchor="middle">the available pipe</text>
+  <path class="badline" d="M395 434C420 434 420 519 442 519"/><path class="badline" d="M795 519H842"/>
+
+  <line class="rule" x1="64" y1="586" x2="1136" y2="586"/>
+  <text class="stream" x="64" y="624">Industrial</text>
+  <text class="stream" x="64" y="647">wastewater</text>
+  <text class="small" x="64" y="669">process water and chemicals</text>
+  <rect class="good" x="250" y="605" width="145" height="66" rx="9"/><text class="label" x="322.5" y="633" text-anchor="middle">factory process</text><text class="small" x="322.5" y="653" text-anchor="middle">defined waste stream</text>
+  <rect class="good" x="450" y="605" width="145" height="66" rx="9"/><text class="label" x="522.5" y="633" text-anchor="middle">pretreatment</text><text class="small" x="522.5" y="653" text-anchor="middle">at the source</text>
+  <rect class="good" x="650" y="605" width="145" height="66" rx="9"/><text class="label" x="722.5" y="633" text-anchor="middle">effluent plant</text><text class="small" x="722.5" y="653" text-anchor="middle">controlled process</text>
+  <rect class="good" x="850" y="605" width="258" height="66" rx="9"/><text class="label" x="979" y="633" text-anchor="middle">monitored discharge</text><text class="small" x="979" y="653" text-anchor="middle">or reuse</text>
+  <path class="goodline" d="M395 638H442"/><path class="goodline" d="M595 638H642"/><path class="goodline" d="M795 638H842"/>
+  <rect class="bad" x="450" y="694" width="345" height="58" rx="9"/><text class="label" x="622.5" y="719" text-anchor="middle">bypass, outfall, or canal</text><text class="small" x="622.5" y="738" text-anchor="middle">treatment absent or avoided</text>
+  <rect class="river" x="850" y="694" width="258" height="58" rx="9"/><text class="label" x="979" y="719" text-anchor="middle">river</text><text class="small" x="979" y="738" text-anchor="middle">the available outfall</text>
+  <path class="badline" d="M395 638C420 638 420 723 442 723"/><path class="badline" d="M795 723H842"/>
+
+  <rect x="64" y="802" width="1072" height="72" rx="10" fill="#10211e" stroke="#f0c96b" stroke-width="2"/>
+  <text class="stream" x="600" y="834" text-anchor="middle">The river is not the cause. It is the available transportation system.</text>
+  <text class="small" x="600" y="856" text-anchor="middle">The same waterway can replace a truck, a sewer, and a factory outfall at once.</text>
+</svg>

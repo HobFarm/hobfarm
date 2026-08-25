@@ -1,0 +1,63 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption: string;
+  width: number;
+  height: number;
+  source?: string;
+}
+
+const { src, alt, caption, width, height, source } = Astro.props;
+---
+
+<figure class="rivers-diagram article-wide not-prose">
+  <img
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading="lazy"
+    decoding="async"
+    data-lightbox={src}
+    data-lightbox-caption={caption}
+  />
+  <figcaption>
+    <span>{caption}</span>
+    {source && <small>{source}</small>}
+  </figcaption>
+</figure>
+
+<style>
+  .rivers-diagram {
+    margin-block: 2.7rem !important;
+    overflow: hidden;
+    border: 1px solid rgb(92 240 166 / 0.32);
+    border-radius: 0.5rem;
+    background: #06100e;
+    box-shadow: 0.7rem 0.8rem 0 rgb(0 0 0 / 0.22);
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  figcaption {
+    box-sizing: border-box;
+    padding: 0.85rem 1rem 1rem;
+    border-top: 4px solid #f0c96b;
+  }
+
+  figcaption > span,
+  small {
+    display: block;
+  }
+
+  small {
+    margin-top: 0.35rem;
+    color: var(--color-base-500, #89928e);
+    font-size: 0.68rem;
+  }
+</style>

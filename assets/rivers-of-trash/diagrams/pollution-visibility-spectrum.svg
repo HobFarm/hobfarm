@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">Pollution visibility spectrum</title>
+  <desc id="desc">Pollution moves from visible whole objects through smaller fragments, pathogens, dissolved chemicals, and contaminated sediment. Visibility decreases across the sequence, but consequence does not.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 10 5 0 10z" fill="#81958e"/></marker>
+    <linearGradient id="fade" x1="0" x2="1"><stop stop-color="#f27c69"/><stop offset="1" stop-color="#213d38"/></linearGradient>
+    <style>
+      .bg{fill:#07110f}.kicker{font:700 18px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:2px;fill:#f0c96b}.title{font:700 42px Inter,Arial,sans-serif;fill:#f5f3ec}.head{font:700 18px Inter,Arial,sans-serif;fill:#f5f3ec}.body{font:500 14px Inter,Arial,sans-serif;fill:#b8c4bf}.num{font:800 42px ui-monospace,SFMono-Regular,Consolas,monospace}.card{fill:#0d1d19;stroke:#355249;stroke-width:2}.line{fill:none;stroke:#81958e;stroke-width:2;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="560" rx="18"/>
+  <text class="kicker" x="64" y="62">WHAT THE SURFACE HIDES</text>
+  <text class="title" x="64" y="110">Less visible does not mean less consequential.</text>
+  <text class="body" x="64" y="143">A photograph is strong evidence for objects. It becomes weaker as pollution gets smaller, dissolves, or settles.</text>
+  <g>
+    <rect class="card" x="54" y="196" width="196" height="218" rx="12"/><text class="num" x="78" y="247" fill="#f27c69">01</text><text class="head" x="78" y="286">Whole objects</text><text class="body" x="78" y="317">bottles · bags</text><text class="body" x="78" y="339">foam · clothing</text><text class="body" x="78" y="361">rope · carcasses</text>
+    <rect class="card" x="278" y="196" width="196" height="218" rx="12"/><text class="num" x="302" y="247" fill="#e9a567">02</text><text class="head" x="302" y="286">Fragments</text><text class="body" x="302" y="317">fibers · flakes</text><text class="body" x="302" y="339">microplastics</text><text class="body" x="302" y="361">suspended solids</text>
+    <rect class="card" x="502" y="196" width="196" height="218" rx="12"/><text class="num" x="526" y="247" fill="#f0c96b">03</text><text class="head" x="526" y="286">Pathogens</text><text class="body" x="526" y="317">bacteria · viruses</text><text class="body" x="526" y="339">sewage organisms</text><text class="body" x="526" y="361">nutrient loads</text>
+    <rect class="card" x="726" y="196" width="196" height="218" rx="12"/><text class="num" x="750" y="247" fill="#5cf0a6">04</text><text class="head" x="750" y="286">Dissolved chemicals</text><text class="body" x="750" y="317">pesticides · dyes</text><text class="body" x="750" y="339">solvents · oils</text><text class="body" x="750" y="361">metals · mill compounds</text>
+    <rect class="card" x="950" y="196" width="196" height="218" rx="12"/><text class="num" x="974" y="247" fill="#55d7ff">05</text><text class="head" x="974" y="286">Stored in sediment</text><text class="body" x="974" y="317">buried contamination</text><text class="body" x="974" y="339">remobilized by flow</text><text class="body" x="974" y="361">available to food webs</text>
+    <path class="line" d="M250 305H270"/><path class="line" d="M474 305H494"/><path class="line" d="M698 305H718"/><path class="line" d="M922 305H942"/>
+  </g>
+  <text class="body" x="64" y="464">VISIBILITY</text><rect x="164" y="447" width="972" height="20" rx="10" fill="url(#fade)"/><text class="body" x="64" y="507">CONSEQUENCE</text><rect x="164" y="490" width="972" height="20" rx="10" fill="#f0c96b"/>
+</svg>
+

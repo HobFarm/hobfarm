@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Schematic route from Accra's urban catchment to Jamestown Beach</title>
+  <desc id="desc">A wide Accra catchment feeds streets, gutters, and tributaries into the Odaw River, Korle Lagoon, the Gulf of Guinea, and the Jamestown shoreline. Old Fadama is marked as one visible point beside the system, not the sole source.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0 0 10 5 0 10z" fill="#55d7ff"/></marker>
+    <pattern id="rain" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M9 5l-6 13M31 21l-6 13" stroke="#86a5a5" stroke-width="2" opacity=".2"/></pattern>
+    <style>
+      .bg{fill:#07110f}.land{fill:#10221d;stroke:#36554c;stroke-width:2}.water{fill:#0a2631;stroke:#55d7ff;stroke-width:3}.sea{fill:#08222d}.coast{fill:none;stroke:#f0c96b;stroke-width:4}.flow{fill:none;stroke:#55d7ff;stroke-width:5;stroke-linecap:round;marker-end:url(#arrow)}.catch{fill:none;stroke:#6a8c81;stroke-width:2;stroke-dasharray:10 10}.point{fill:#f27c69;stroke:#fff;stroke-width:2}.city{fill:#1c332d;stroke:#55736a;stroke-width:1}.kicker{font:700 18px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:2px;fill:#f0c96b}.title{font:700 40px Inter,Arial,sans-serif;fill:#f5f3ec}.label{font:700 20px Inter,Arial,sans-serif;fill:#f5f3ec}.small{font:500 14px Inter,Arial,sans-serif;fill:#b8c4bf}.note{font:650 15px Inter,Arial,sans-serif;fill:#07110f}.chip{fill:#f0c96b}
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="800" rx="18"/>
+  <text class="kicker" x="64" y="62">ACCRA · SOURCE TO SEA</text>
+  <text class="title" x="64" y="108">The beach is downstream of a catchment.</text>
+  <text class="small" x="64" y="140">Original geographic schematic. Positions explain the relationship; they are not survey coordinates.</text>
+  <path class="land" d="M64 182H1136V580C1030 548 930 543 824 572C705 606 596 601 478 572C342 539 215 544 64 585Z"/>
+  <path d="M64 182H1136V580C1030 548 930 543 824 572C705 606 596 601 478 572C342 539 215 544 64 585Z" fill="url(#rain)"/>
+  <path class="sea" d="M64 585C215 544 342 539 478 572C596 601 705 606 824 572C930 543 1030 548 1136 580V750H64Z"/>
+  <path class="coast" d="M64 585C215 544 342 539 478 572C596 601 705 606 824 572C930 543 1030 548 1136 580"/>
+  <path class="catch" d="M120 235C310 175 518 207 647 315C776 230 974 231 1096 340C1012 477 895 535 774 544C619 556 507 521 392 526C267 531 172 475 120 365Z"/>
+  <g opacity=".9">
+    <rect class="city" x="140" y="270" width="90" height="46" rx="6"/><rect class="city" x="250" y="236" width="116" height="54" rx="6"/><rect class="city" x="392" y="264" width="104" height="47" rx="6"/><rect class="city" x="530" y="215" width="126" height="55" rx="6"/>
+    <rect class="city" x="708" y="246" width="118" height="50" rx="6"/><rect class="city" x="850" y="218" width="106" height="54" rx="6"/><rect class="city" x="976" y="292" width="96" height="48" rx="6"/>
+  </g>
+  <text class="label" x="145" y="215">Wider Accra urban catchment</text>
+  <text class="small" x="145" y="238">streets · roofs · markets · households · workshops · drains</text>
+  <path class="flow" d="M230 330C325 352 356 390 438 400"/><path class="flow" d="M497 323C515 351 520 373 538 398"/><path class="flow" d="M812 322C739 350 691 374 624 408"/>
+  <path class="water" d="M438 399C516 388 590 401 640 435C689 469 703 489 739 515C770 538 796 546 820 553"/>
+  <text class="label" x="500" y="378">Odaw River</text>
+  <ellipse class="water" cx="825" cy="551" rx="77" ry="34"/>
+  <text class="label" x="780" y="505">Korle Lagoon</text>
+  <path class="flow" d="M901 555C937 561 961 570 986 586"/>
+  <circle class="point" cx="553" cy="416" r="10"/>
+  <text class="label" x="566" y="443">Old Fadama</text>
+  <text class="small" x="566" y="464">one visible point beside the system</text>
+  <circle class="point" cx="974" cy="572" r="10"/>
+  <text class="label" x="902" y="535">Jamestown</text>
+  <text class="small" x="902" y="555">receiving shoreline</text>
+  <text class="label" x="798" y="680">Gulf of Guinea</text>
+  <path d="M930 620C986 604 1042 606 1094 626" fill="none" stroke="#86e3ff" stroke-width="3" stroke-dasharray="12 10"/>
+  <rect class="chip" x="64" y="705" width="660" height="54" rx="9"/>
+  <text class="note" x="84" y="738">Old Fadama does not stand in for every source in the catchment.</text>
+  <text class="small" x="1136" y="776" text-anchor="end">Schematic informed by OpenStreetMap place relationships and cited Odaw/Korle research.</text>
+</svg>
+
