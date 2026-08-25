@@ -1,0 +1,515 @@
+---
+import {
+  comedyEdgeLabels,
+  comedyMeshEdges,
+  comedyMeshNodes,
+  comedyMeshRoutes,
+} from "@/data/print-is-dead-comedy-mesh";
+
+const defaultRoute = comedyMeshRoutes[0];
+const nodeMap = new Map(comedyMeshNodes.map((node) => [node.id, node]));
+const routeMembership = new Map(
+  comedyMeshNodes.map((node) => [
+    node.id,
+    comedyMeshRoutes.filter((route) => route.nodes.includes(node.id)).map((route) => route.id),
+  ]),
+);
+---
+
+<figure class="comedy-mesh article-wide not-prose" data-comedy-mesh data-routes={JSON.stringify(comedyMeshRoutes)}>
+  <header class="comedy-mesh__header">
+    <div>
+      <p>Interactive comedy mesh</p>
+      <h2>Follow one route at a time</h2>
+    </div>
+    <p class="comedy-mesh__scope">This is a curated route through one cluster, not a definitive map of American comedy.</p>
+  </header>
+
+  <div class="comedy-mesh__controls" aria-label="Choose a comedy route">
+    {comedyMeshRoutes.map((route, index) => (
+      <button type="button" data-route={route.id} aria-pressed={index === 0 ? "true" : "false"}>
+        {route.label}
+      </button>
+    ))}
+    <button type="button" data-route="all" aria-pressed="false">Show all verified</button>
+  </div>
+
+  <p class="comedy-mesh__route-copy" data-route-copy>{defaultRoute.description}</p>
+
+  <div class="comedy-mesh__stage" aria-label="Art-directed network diagram of comedy institutions, films, performers, and development-history links">
+    <svg viewBox="0 0 1000 700" role="img" aria-labelledby="comedy-mesh-title comedy-mesh-desc">
+      <title id="comedy-mesh-title">Ghostbusters comedy mesh</title>
+      <desc id="comedy-mesh-desc">A selectable network connecting Ghostbusters to Jumpin' Jack Flash, Coneheads, Airheads, and several side routes.</desc>
+      <g class="comedy-mesh__wires">
+        {comedyMeshEdges.map((edge) => {
+          const source = nodeMap.get(edge.source)!;
+          const target = nodeMap.get(edge.target)!;
+          const visible = edge.routes.includes(defaultRoute.id);
+          return (
+            <line
+              class={`edge edge--${edge.kind}`}
+              x1={source.x * 10}
+              y1={source.y * 7}
+              x2={target.x * 10}
+              y2={target.y * 7}
+              data-edge-routes={edge.routes.join(" ")}
+              data-visible={visible ? "true" : "false"}
+            >
+              <title>{`${source.label} → ${target.label}: ${edge.label}`}</title>
+            </line>
+          );
+        })}
+      </g>
+    </svg>
+
+    <div class="comedy-mesh__nodes">
+      {comedyMeshNodes.map((node) => {
+        const visible = defaultRoute.nodes.includes(node.id);
+        return (
+          <button
+            type="button"
+            class={`node node--${node.kind}`}
+            style={`--x:${node.x}%;--y:${node.y}%;`}
+            data-node={node.id}
+            data-node-routes={(routeMembership.get(node.id) ?? []).join(" ")}
+            data-node-kind={node.kind}
+            data-node-label={node.label}
+            data-node-note={node.note}
+            hidden={!visible}
+          >
+            <span>{node.label}</span>
+          </button>
+        );
+      })}
+    </div>
+  </div>
+
+  <div class="comedy-mesh__detail" aria-live="polite" data-node-detail>
+    <span>Film</span>
+    <strong>Ghostbusters</strong>
+    <p>The 1984 junction: a finished cast and an unrealized cast assembled from the same surrounding comedy routes.</p>
+  </div>
+
+  <div class="comedy-mesh__mobile" aria-label="Comedy mesh route summaries">
+    {comedyMeshRoutes.map((route) => (
+      <section>
+        <h3>{route.label}</h3>
+        <p>{route.description}</p>
+        <ol>
+          {route.nodes.map((nodeId) => <li>{nodeMap.get(nodeId)?.label}</li>)}
+        </ol>
+      </section>
+    ))}
+  </div>
+
+  <div class="comedy-mesh__legend" aria-label="Diagram legend">
+    <div class="comedy-mesh__node-legend">
+      <span><i class="swatch swatch--person"></i>Person</span>
+      <span><i class="swatch swatch--film"></i>Film</span>
+      <span><i class="swatch swatch--institution"></i>Institution</span>
+      <span><i class="swatch swatch--event"></i>Event</span>
+    </div>
+    <div class="comedy-mesh__edge-legend">
+      {Object.entries(comedyEdgeLabels).map(([kind, label]) => (
+        <span><i class={`wire wire--${kind}`}></i>{label}</span>
+      ))}
+    </div>
+  </div>
+
+  <noscript>
+    <img
+      src="https://cdn.hob.farm/articles/print-is-dead/static-comedy-mesh-v1.svg"
+      alt="Static route map showing Ghostbusters connected through Annie Potts to Jumpin' Jack Flash, then through Michael McKean to Coneheads and Airheads, with side routes through Murray, Moranis, and several comedy institutions."
+      width="1600"
+      height="1000"
+      loading="lazy"
+    />
+  </noscript>
+
+  <figcaption>
+    Solid lines are finished credits. Dashed and dotted lines mark development history, consideration, or institutional routes. Choose a node for a short note.
+  </figcaption>
+</figure>
+
+<script is:inline>
+  (() => {
+    const root = document.querySelector("[data-comedy-mesh]");
+    if (!root) return;
+
+    const routeButtons = [...root.querySelectorAll("[data-route]")];
+    const nodes = [...root.querySelectorAll("[data-node]")];
+    const edges = [...root.querySelectorAll("[data-edge-routes]")];
+    const copy = root.querySelector("[data-route-copy]");
+    const detail = root.querySelector("[data-node-detail]");
+    const routes = JSON.parse(root.getAttribute("data-routes") || "[]");
+    const setRoute = (routeId) => {
+      const route = routes.find((item) => item.id === routeId);
+      routeButtons.forEach((button) => button.setAttribute("aria-pressed", button.dataset.route === routeId ? "true" : "false"));
+      nodes.forEach((node) => {
+        node.hidden = routeId !== "all" && !node.dataset.nodeRoutes.split(" ").includes(routeId);
+      });
+      edges.forEach((edge) => {
+        edge.setAttribute(
+          "data-visible",
+          routeId !== "all" && !edge.dataset.edgeRoutes.split(" ").includes(routeId) ? "false" : "true",
+        );
+      });
+      if (copy) copy.textContent = route ? route.description : "Every verified edge in this selected cluster. The result is intentionally dense.";
+    };
+
+    routeButtons.forEach((button) => button.addEventListener("click", () => setRoute(button.dataset.route)));
+
+    nodes.forEach((node) => node.addEventListener("click", () => {
+      nodes.forEach((item) => item.classList.toggle("is-selected", item === node));
+      if (!detail) return;
+      detail.innerHTML = "";
+      const kind = document.createElement("span");
+      kind.textContent = node.dataset.nodeKind;
+      const title = document.createElement("strong");
+      title.textContent = node.dataset.nodeLabel;
+      const note = document.createElement("p");
+      note.textContent = node.dataset.nodeNote;
+      detail.append(kind, title, note);
+    }));
+  })();
+</script>
+
+<style>
+  .comedy-mesh.article-wide {
+    --paper: #efe4c5;
+    --ink: #171c1b;
+    --red: #bd402e;
+    --green: #4fae8a;
+    --blue: #3e748d;
+    --amber: #d89c3f;
+    width: min(96vw, 78rem) !important;
+    max-width: min(96vw, 78rem) !important;
+    margin-block: 3rem !important;
+    overflow: hidden;
+    color: var(--paper);
+    border: 1px solid rgb(239 228 197 / 0.28);
+    border-radius: 0.6rem;
+    background: #0b1111;
+    box-shadow: 0.9rem 1rem 0 rgb(0 0 0 / 0.3);
+    text-align: left !important;
+  }
+
+  .comedy-mesh__header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.72fr);
+    gap: 1.5rem;
+    align-items: end;
+    padding: clamp(1rem, 2vw, 1.5rem);
+    border-bottom: 1px solid rgb(239 228 197 / 0.2);
+    background: linear-gradient(120deg, #111b19, #171714);
+  }
+
+  .comedy-mesh__header p,
+  .comedy-mesh__header h2,
+  .comedy-mesh__route-copy,
+  .comedy-mesh__detail p,
+  .comedy-mesh__mobile p {
+    margin: 0 !important;
+  }
+
+  .comedy-mesh__header > div > p {
+    color: var(--green) !important;
+    font: 800 0.68rem/1.2 var(--font-mono), monospace !important;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .comedy-mesh__header h2 {
+    margin-top: 0.35rem !important;
+    color: var(--paper) !important;
+    font: 800 clamp(1.7rem, 4vw, 3rem)/0.95 var(--font-display), Georgia, serif !important;
+    letter-spacing: -0.035em;
+  }
+
+  .comedy-mesh__scope {
+    color: #b8b4a6 !important;
+    font-size: 0.78rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .comedy-mesh__controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid rgb(239 228 197 / 0.16);
+  }
+
+  .comedy-mesh__controls button {
+    padding: 0.5rem 0.68rem;
+    color: #aaa99f;
+    border: 1px solid #424a46;
+    border-radius: 999px;
+    background: #121918;
+    font: 700 0.62rem/1 var(--font-mono), monospace;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+  }
+
+  .comedy-mesh__controls button:hover,
+  .comedy-mesh__controls button:focus-visible,
+  .comedy-mesh__controls button[aria-pressed="true"] {
+    color: #0a1110;
+    border-color: var(--green);
+    background: var(--green);
+    outline: none;
+  }
+
+  .comedy-mesh__route-copy {
+    min-height: 3rem;
+    padding: 0.8rem 1rem;
+    color: #d1c6aa !important;
+    background: #111514;
+    font-size: 0.78rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .comedy-mesh__stage {
+    position: relative;
+    height: min(70vw, 54rem);
+    min-height: 42rem;
+    overflow: hidden;
+    background:
+      linear-gradient(rgb(79 174 138 / 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(79 174 138 / 0.07) 1px, transparent 1px),
+      radial-gradient(circle at 43% 42%, rgb(189 64 46 / 0.12), transparent 23%),
+      #07100f;
+    background-size: 2.5rem 2.5rem, 2.5rem 2.5rem, auto, auto;
+  }
+
+  .comedy-mesh__stage > svg,
+  .comedy-mesh__nodes {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .edge {
+    stroke: #71807b;
+    stroke-width: 2;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .edge[data-visible="false"] {
+    display: none;
+  }
+
+  .edge--wrote { stroke: #d89c3f; stroke-width: 3; }
+  .edge--directed { stroke: #bd402e; stroke-width: 3; }
+  .edge--produced { stroke: #d96f50; }
+  .edge--alumni { stroke: #3e748d; stroke-dasharray: 5 7; }
+  .edge--considered { stroke: #d89c3f; stroke-dasharray: 2 8; }
+  .edge--early-version { stroke: #bd402e; stroke-dasharray: 9 7; }
+
+  .node {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    z-index: 2;
+    width: clamp(4.5rem, 8.4vw, 7.2rem);
+    min-height: 2.8rem;
+    padding: 0.45rem 0.35rem;
+    color: #e8e1cf;
+    border: 1px solid #5d6864;
+    border-radius: 0.25rem;
+    background: #15201e;
+    box-shadow: 0.25rem 0.3rem 0 rgb(0 0 0 / 0.5);
+    font: 750 clamp(0.48rem, 0.78vw, 0.66rem)/1.2 var(--font-mono), monospace;
+    text-align: center;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+  }
+
+  .node--film {
+    color: #181a17;
+    border-color: #c7bb99;
+    background: var(--paper);
+  }
+
+  .node--institution {
+    color: #dbeef0;
+    border-color: var(--blue);
+    background: #102532;
+  }
+
+  .node--event {
+    color: #181a17;
+    border-color: var(--amber);
+    border-radius: 999px;
+    background: var(--amber);
+  }
+
+  .node:hover,
+  .node:focus-visible,
+  .node.is-selected {
+    z-index: 4;
+    border-color: var(--green);
+    outline: 3px solid rgb(79 174 138 / 0.3);
+    box-shadow: 0.25rem 0.3rem 0 rgb(0 0 0 / 0.5), 0 0 1.2rem rgb(79 174 138 / 0.3);
+  }
+
+  .comedy-mesh__detail {
+    display: grid;
+    grid-template-columns: auto minmax(10rem, 0.5fr) minmax(0, 1fr);
+    gap: 0.6rem 1rem;
+    align-items: baseline;
+    min-height: 4.5rem;
+    padding: 0.85rem 1rem;
+    border-top: 1px solid rgb(239 228 197 / 0.18);
+    background: #111715;
+  }
+
+  .comedy-mesh__detail span {
+    color: var(--green);
+    font: 800 0.58rem/1 var(--font-mono), monospace;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  .comedy-mesh__detail strong {
+    color: var(--paper);
+    font-size: 0.86rem;
+  }
+
+  .comedy-mesh__detail p {
+    color: #aaa99f !important;
+    font-size: 0.74rem !important;
+    line-height: 1.45 !important;
+  }
+
+  .comedy-mesh__legend {
+    display: grid;
+    gap: 0.75rem;
+    padding: 0.8rem 1rem 1rem;
+    color: #999b94;
+    border-top: 1px solid rgb(239 228 197 / 0.14);
+    background: #0d1211;
+    font: 650 0.58rem/1.2 var(--font-mono), monospace;
+    text-transform: uppercase;
+  }
+
+  .comedy-mesh__node-legend,
+  .comedy-mesh__edge-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem 1rem;
+  }
+
+  .comedy-mesh__legend span {
+    display: inline-flex;
+    gap: 0.35rem;
+    align-items: center;
+  }
+
+  .swatch {
+    width: 0.7rem;
+    height: 0.7rem;
+    border: 1px solid #68736f;
+    background: #15201e;
+  }
+
+  .swatch--film { border-color: #c7bb99; background: var(--paper); }
+  .swatch--institution { border-color: var(--blue); background: #102532; }
+  .swatch--event { border-color: var(--amber); border-radius: 50%; background: var(--amber); }
+
+  .wire {
+    width: 1.4rem;
+    height: 0;
+    border-top: 2px solid #71807b;
+  }
+
+  .wire--wrote { border-color: var(--amber); border-width: 3px; }
+  .wire--directed { border-color: var(--red); border-width: 3px; }
+  .wire--produced { border-color: #d96f50; }
+  .wire--alumni { border-color: var(--blue); border-style: dashed; }
+  .wire--considered { border-color: var(--amber); border-style: dotted; }
+  .wire--early-version { border-color: var(--red); border-style: dashed; }
+
+  .comedy-mesh__mobile {
+    display: none;
+  }
+
+  .comedy-mesh noscript img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .comedy-mesh figcaption {
+    margin: 0 !important;
+    padding: 0.8rem 1rem 1rem;
+    color: #8e928c !important;
+    border-top: 1px solid rgb(239 228 197 / 0.14);
+    background: #0d1211;
+    font-size: 0.7rem !important;
+    line-height: 1.5 !important;
+    text-align: left !important;
+  }
+
+  @media (max-width: 760px) {
+    .comedy-mesh {
+      width: calc(100vw - 1rem) !important;
+      max-width: calc(100vw - 1rem) !important;
+    }
+
+    .comedy-mesh__header {
+      grid-template-columns: 1fr;
+    }
+
+    .comedy-mesh__controls,
+    .comedy-mesh__route-copy,
+    .comedy-mesh__stage,
+    .comedy-mesh__detail {
+      display: none;
+    }
+
+    .comedy-mesh__mobile {
+      display: grid;
+      gap: 0.7rem;
+      padding: 0.75rem;
+    }
+
+    .comedy-mesh__mobile section {
+      padding: 0.85rem;
+      border: 1px solid #303b38;
+      background: #111918;
+    }
+
+    .comedy-mesh__mobile h3 {
+      margin: 0 !important;
+      color: var(--paper) !important;
+      font-size: 0.9rem !important;
+    }
+
+    .comedy-mesh__mobile p {
+      margin-top: 0.35rem !important;
+      color: #9ea39d !important;
+      font-size: 0.7rem !important;
+      line-height: 1.45 !important;
+    }
+
+    .comedy-mesh__mobile ol {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.32rem;
+      margin: 0.7rem 0 0 !important;
+      padding: 0 !important;
+      list-style: none !important;
+    }
+
+    .comedy-mesh__mobile li {
+      margin: 0 !important;
+      padding: 0.28rem 0.42rem !important;
+      color: #d9d4c5 !important;
+      border: 1px solid #3e4b47;
+      border-radius: 999px;
+      font: 600 0.58rem/1.2 var(--font-mono), monospace !important;
+    }
+  }
+</style>

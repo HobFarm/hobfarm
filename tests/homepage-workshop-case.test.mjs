@@ -82,7 +82,7 @@ test("homepage Workshop summary and promoted EZIZE release link to their real ro
   assert.match(ezize, /credentials: "include"/);
   assert.match(ezize, /Start EZIZE/);
   assert.match(headers, /connect-src[^;]*https:\/\/ezize\.hob\.farm/);
-  assert.match(ezize, /ezize-hero\.png/);
+  assert.match(ezize, /ezize-square\.jpg/);
   assert.match(ezize, /ezize-efb0ab2e5ad02c37\.png/);
   assert.match(ezize, /ezize-d6b613e86a33f971\.png/);
   assert.match(ezize, /ezize-76bd76d0a0822404\.png/);

@@ -33,13 +33,13 @@ test("The Feed Is the Problem follows the RSS article and preserves the six-day 
 
   assert.equal(frontmatter.title, "The Feed Is the Problem");
   assert.equal(frontmatter.canonical, "/articles/the-feed-is-the-problem/");
-  assert.equal(frontmatter.status, "scheduled");
+  assert.equal(frontmatter.status, "published");
   assert.equal(frontmatter.draft, false);
   assert.equal(frontmatter.mesh.section, "culture");
   assert.deepEqual(frontmatter.mesh.series, []);
 });
 
-test("the scheduled follow-up stays private until its release instant", () => {
+test("the follow-up stays private until its release instant", () => {
   const release = new Date(frontmatter.publishedAt);
   assert.equal(isArticlePublicAt(frontmatter, new Date(release.getTime() - 1)), false);
   assert.equal(isArticlePublicAt(frontmatter, release), true);

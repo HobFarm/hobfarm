@@ -17,7 +17,7 @@ test("the Dragon's Lair article owns the August 23 slot in the six-day queue", (
   assert.equal(frontmatter.title, "Dragon's Lair is better on YouTube");
   assert.equal(frontmatter.canonical, `/articles/${slug}/`);
   assert.equal(frontmatter.publishedAt, "2026-08-23T16:20:00-07:00");
-  assert.equal(frontmatter.status, "scheduled");
+  assert.equal(frontmatter.status, "published");
   assert.equal(frontmatter.draft, false);
   assert.equal(frontmatter.mesh.section, "technology");
   assert.deepEqual(frontmatter.mesh.series, []);
@@ -31,7 +31,7 @@ test("the Dragon's Lair article owns the August 23 slot in the six-day queue", (
   assert.deepEqual(collisions, []);
 });
 
-test("the scheduled article stays private until its release instant", () => {
+test("the article stays private until its release instant", () => {
   const release = new Date(frontmatter.publishedAt);
   assert.equal(isArticlePublicAt(frontmatter, new Date(release.getTime() - 1)), false);
   assert.equal(isArticlePublicAt(frontmatter, release), true);

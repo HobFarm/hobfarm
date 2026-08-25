@@ -1,0 +1,61 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption: string;
+  width: number;
+  height: number;
+  compact?: boolean;
+}
+
+const { src, alt, caption, width, height, compact = false } = Astro.props;
+---
+
+<figure class:list={["comedy-figure", "article-wide", "not-prose", compact && "article-compact"]}>
+  <img
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading="lazy"
+    decoding="async"
+    data-lightbox={src}
+    data-lightbox-caption={caption}
+  />
+  <figcaption>{caption}<small>Original HobFarm editorial diagram.</small></figcaption>
+</figure>
+
+<style>
+  .comedy-figure {
+    margin-block: 2.5rem !important;
+    overflow: hidden;
+    border: 1px solid rgb(239 228 197 / 0.22);
+    border-radius: 0.45rem;
+    background: #09100f;
+    box-shadow: 0.7rem 0.8rem 0 rgb(0 0 0 / 0.23);
+  }
+
+  .comedy-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .comedy-figure figcaption {
+    margin: 0 !important;
+    padding: 0.8rem 1rem 0.95rem;
+    color: #b7b8b0 !important;
+    border-top: 4px solid #4fae8a;
+    background: #101716;
+    text-align: left !important;
+  }
+
+  .comedy-figure small {
+    display: block;
+    margin-top: 0.32rem;
+    color: #737c78;
+    font-size: 0.64rem;
+  }
+</style>

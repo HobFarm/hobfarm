@@ -23,7 +23,7 @@ test("Hit the Source Directly owns the next exact publication slot", () => {
   assert.equal(frontmatter.title, "Hit the Source Directly");
   assert.equal(frontmatter.publishedAt, "2026-08-21T16:20:00-07:00");
   assert.equal(release.getTime() - priorRelease.getTime(), 86_400_000);
-  assert.equal(frontmatter.status, "scheduled");
+  assert.equal(frontmatter.status, "published");
   assert.equal(frontmatter.draft, false);
   assert.equal(frontmatter.mesh.section, "technology");
   assert.deepEqual(frontmatter.mesh.series, []);
@@ -33,7 +33,7 @@ test("Hit the Source Directly owns the next exact publication slot", () => {
   );
 });
 
-test("the scheduled article is excluded before release and public at the boundary", () => {
+test("the article is excluded before release and public at the boundary", () => {
   const release = new Date(frontmatter.publishedAt);
   assert.equal(isArticlePublicAt(frontmatter, new Date(release.getTime() - 1)), false);
   assert.equal(isArticlePublicAt(frontmatter, release), true);

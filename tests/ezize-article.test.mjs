@@ -27,12 +27,16 @@ test("the EZIZE Workshop Note sits between Dragon's Lair and Deserts Remember Wa
   assert.equal(frontmatter.publishedAt, "2026-08-24T16:20:00-07:00");
   assert.equal(Date.parse(frontmatter.publishedAt) - Date.parse(predecessor.publishedAt), 86_400_000);
   assert.equal(Date.parse(successor.publishedAt) - Date.parse(frontmatter.publishedAt), 86_400_000);
-  assert.equal(frontmatter.status, "scheduled");
+  assert.equal(frontmatter.status, "published");
   assert.equal(frontmatter.draft, false);
   assert.equal(frontmatter.department, "workshop-notes");
   assert.equal(frontmatter.format, "workshop-note");
   assert.equal(frontmatter.mesh.section, "technology");
   assert.deepEqual(frontmatter.mesh.series, []);
+  assert.equal(frontmatter.hero, "https://cdn.hob.farm/ezize/ezize-hero.png");
+  assert.equal(frontmatter.heroImage, "https://cdn.hob.farm/ezize/ezize-hero.png");
+  assert.equal(frontmatter.socialImage, "https://cdn.hob.farm/ezize/ezize-hero.png");
+  assert.equal(frontmatter.thumbnail, "https://cdn.hob.farm/ezize/ezize-square.jpg");
 
   const collisions = readdirSync("src/content/articles", { recursive: true })
     .filter((name) => /\.mdx?$/.test(name) && name !== "i-stopped-writing-prompts-and-built-a-machine-instead.mdx")
@@ -43,7 +47,7 @@ test("the EZIZE Workshop Note sits between Dragon's Lair and Deserts Remember Wa
   assert.deepEqual(collisions, []);
 });
 
-test("the scheduled article stays private until its release instant", () => {
+test("the article stays private until its release instant", () => {
   const release = new Date(frontmatter.publishedAt);
   assert.equal(isArticlePublicAt(frontmatter, new Date(release.getTime() - 1)), false);
   assert.equal(isArticlePublicAt(frontmatter, release), true);

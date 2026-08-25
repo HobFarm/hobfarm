@@ -19,6 +19,7 @@ test("homepage masthead unifies the publisher intro, current Editorial, and rece
   assert.match(homepage, /getArticleSectionLabel/);
   assert.match(homepage, /fetchpriority="high"/);
   assert.match(homepage, /imageSrcset/);
+  assert.match(homepage, /coverStory\.data\.thumbnail \?\? getArticleHero\(coverStory\.data\)/);
 
   for (const label of ["Read the latest", "Explore Presents", "Open the Workshop"]) {
     assert.match(homepage, new RegExp(label));

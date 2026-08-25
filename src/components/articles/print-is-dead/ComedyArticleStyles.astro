@@ -1,0 +1,137 @@
+<style is:global>
+  .comedy-scope-note,
+  .comedy-almost,
+  .comedy-fungi-note {
+    position: relative;
+    left: 50%;
+    box-sizing: border-box;
+    width: min(90vw, 39rem);
+    margin: 2rem 0;
+    padding: 1.1rem 1.2rem;
+    border: 1px solid rgb(79 174 138 / 0.38);
+    background: linear-gradient(135deg, #101a18, #0b1211);
+    box-shadow: 0.45rem 0.52rem 0 rgb(0 0 0 / 0.22);
+    transform: translateX(-50%);
+  }
+
+  .comedy-scope-note strong,
+  .comedy-almost strong,
+  .comedy-fungi-note strong {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: #62c99e;
+    font-family: var(--font-mono), monospace;
+    font-size: 0.67rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  .comedy-scope-note p,
+  .comedy-almost p,
+  .comedy-fungi-note p {
+    margin: 0 !important;
+    color: #c7c7bd !important;
+    font-size: 0.88rem !important;
+    line-height: 1.65 !important;
+  }
+
+  .comedy-almost {
+    border-color: rgb(216 156 63 / 0.48);
+    background: linear-gradient(135deg, #1a1710, #0f1210);
+  }
+
+  .comedy-almost strong {
+    color: #e0a84d;
+  }
+
+  .comedy-fungi-note {
+    border-color: rgb(130 117 188 / 0.5);
+    background: linear-gradient(135deg, #15121e, #0c1111);
+  }
+
+  .comedy-fungi-note strong {
+    color: #a99be8;
+  }
+
+  .comedy-route-chain {
+    position: relative;
+    left: 50%;
+    display: flex;
+    box-sizing: border-box;
+    width: min(92vw, 46rem);
+    margin: 2rem 0;
+    padding: 0;
+    overflow-x: auto;
+    color: #eae2cd;
+    border: 1px solid rgb(239 228 197 / 0.2);
+    background: #0d1413;
+    list-style: none;
+    transform: translateX(-50%);
+  }
+
+  .comedy-route-chain li {
+    position: relative;
+    flex: 1 0 9rem;
+    margin: 0 !important;
+    padding: 0.85rem 1.45rem 0.85rem 0.85rem !important;
+    border-right: 1px solid rgb(239 228 197 / 0.17);
+    font: 750 0.7rem/1.25 var(--font-mono), monospace !important;
+    text-align: center;
+  }
+
+  .comedy-route-chain li::after {
+    position: absolute;
+    top: 50%;
+    right: 0.42rem;
+    color: #4fae8a;
+    content: "→";
+    transform: translateY(-50%);
+  }
+
+  .comedy-route-chain li:last-child {
+    border-right: 0;
+  }
+
+  .comedy-route-chain li:last-child::after {
+    content: "";
+  }
+
+  .comedy-pullquote {
+    position: relative;
+    left: 50%;
+    width: min(90vw, 38rem);
+    margin: 2.5rem 0;
+    padding: 1.4rem 1.2rem;
+    color: #f0e4c3;
+    border-top: 1px solid #bd402e;
+    border-bottom: 1px solid #bd402e;
+    font: 650 clamp(1.25rem, 3.5vw, 1.9rem)/1.22 var(--font-display), Georgia, serif;
+    text-align: center;
+    transform: translateX(-50%);
+  }
+
+  .comedy-pullquote p {
+    margin: 0 !important;
+    color: inherit !important;
+    font: inherit !important;
+    line-height: inherit !important;
+  }
+
+  .prose .source-ref {
+    margin-left: 0.12rem;
+    font-family: var(--font-mono), monospace;
+    font-size: 0.68em;
+    vertical-align: super;
+  }
+
+  .prose .source-ref a {
+    color: #62c99e;
+    text-decoration: none;
+  }
+
+  @media (max-width: 600px) {
+    .comedy-route-chain {
+      width: calc(100vw - 1rem);
+    }
+  }
+</style>
