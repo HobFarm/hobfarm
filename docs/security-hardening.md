@@ -1,5 +1,10 @@
 # HobFarm security hardening
 
+The current architecture, findings, exact Cloudflare rules, rollout, rollback,
+and validation procedure are maintained in the repository-root
+[`SECURITY-HARDENING.md`](../SECURITY-HARDENING.md). This file records the
+earlier source pass and remains as historical context.
+
 This pass closes the source-side problems that could be fixed without changing live Cloudflare, Stripe, DNS, or deployment settings.
 
 ## Implemented in source
@@ -28,7 +33,7 @@ These items require account access or a deliberate production change and were no
 4. Keep Bot Fight Mode or the equivalent bot controls enabled, and review rather than blindly blocking verified search and feed readers.
 5. Enable DNSSEC and require phishing-resistant MFA for Cloudflare, GitHub, Stripe, Resend, and domain-registrar accounts. Remove unused account members and tokens.
 6. Use restricted Stripe keys where the integration permits them, keep webhook secrets separate by endpoint and environment, and rotate any credential whose history is uncertain.
-7. Replace the public `AUTH_WORKER_URL` hop with a Cloudflare service binding, then disable `workers.dev` for the auth worker. This needs coordinated Pages and worker configuration so login and supporter access do not break.
+7. Completed August 27, 2026: Pages uses the private `AUTH_HTTP` service binding, the stale production `AUTH_WORKER_URL` secret is removed, and the auth Worker's production and preview `workers.dev` URLs are disabled.
 8. Migrate the remaining necessary inline scripts to CSP hashes or nonces, then remove `'unsafe-inline'` from `script-src`.
 9. Add alerts for sustained authentication failures, webhook verification failures, checkout spikes, and unusual 4xx/5xx changes. Logs must keep emails, cookies, request bodies, Stripe identifiers, and secrets masked.
 

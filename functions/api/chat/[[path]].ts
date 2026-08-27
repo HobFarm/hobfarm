@@ -1,6 +1,8 @@
+import { fetchAuthService, type AuthHttpService } from "../../../src/lib/auth-service.ts";
+
 interface Env {
   HOBBOT_WORKER_URL: string;
-  AUTH_WORKER_URL: string;
+  AUTH_HTTP: AuthHttpService;
   HOBBOT_ENABLED?: string;
 }
 
@@ -277,8 +279,8 @@ function isMutation(route: ChatRoute, method: string): boolean {
 }
 
 async function requireAuth(request: Request, env: Env): Promise<Response | null> {
-  if (!env.AUTH_WORKER_URL) {
-    return jsonError("Authentication not configured", 500);
+  if (!env.AUTH_HTTP) {
+    return jsonError("Authentication not configured", 503);
   }
 
   const authValue = getCookieValue(request.headers.get("cookie"), AUTH_COOKIE_NAME);
@@ -286,7 +288,7 @@ async function requireAuth(request: Request, env: Env): Promise<Response | null>
 
   let res: Response;
   try {
-    res = await fetch(`${env.AUTH_WORKER_URL}/api/auth/me`, {
+    res = await fetchAuthService(env.AUTH_HTTP, "/api/auth/me", {
       headers: { Cookie: `${AUTH_COOKIE_NAME}=${authValue}` },
     });
   } catch {

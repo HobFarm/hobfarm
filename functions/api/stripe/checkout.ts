@@ -1,4 +1,5 @@
 import { createStripeClient } from "../../../src/lib/stripe-server";
+import type { AuthHttpService } from "../../../src/lib/auth-service.ts";
 import {
   resolveAuthUser,
   fetchAdminJson,
@@ -14,7 +15,7 @@ interface Env {
   STRIPE_CREATIVE_MEMBERSHIP_PRICE_ID: string;
   STRIPE_CHECKOUT_SUCCESS_URL?: string;
   STRIPE_CHECKOUT_CANCEL_URL?: string;
-  AUTH_WORKER_URL: string;
+  AUTH_HTTP: AuthHttpService;
   INTERNAL_ADMIN_HMAC_SECRET: string;
 }
 
@@ -116,6 +117,9 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   const priceId = env[product.priceEnv];
   if (!priceId) {
     return jsonError(`${product.priceEnv} not configured`, 500);
+  }
+  if (!env.AUTH_HTTP || !env.INTERNAL_ADMIN_HMAC_SECRET) {
+    return jsonError("Auth worker binding or credentials not configured", 503);
   }
 
   const wantsJson = acceptsJson(request);

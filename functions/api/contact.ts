@@ -163,14 +163,6 @@ export const onRequestPost: PagesFunction<ContactEnv> = async (context) => {
     return jsonError("Cross-origin contact requests are not allowed", 403);
   }
 
-  if (!env.TURNSTILE_SECRET) {
-    return jsonError("Contact verification is not configured", 500);
-  }
-
-  if (!env.COMMERCE) {
-    return jsonError("Contact delivery is not configured", 500);
-  }
-
   const contentType = request.headers.get("content-type") ?? "";
   if (!contentType.toLowerCase().includes("application/json")) {
     return jsonError("Content-Type must be application/json", 415);
@@ -208,6 +200,14 @@ export const onRequestPost: PagesFunction<ContactEnv> = async (context) => {
   const route = subjectRoutes[subject as keyof typeof subjectRoutes];
   if (!route) {
     return jsonError("Invalid contact subject", 400);
+  }
+
+  if (!env.TURNSTILE_SECRET) {
+    return jsonError("Contact verification is not configured", 500);
+  }
+
+  if (!env.COMMERCE) {
+    return jsonError("Contact delivery is not configured", 500);
   }
 
   // Verify Turnstile token

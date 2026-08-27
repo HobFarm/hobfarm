@@ -1,11 +1,12 @@
 import { resolveAuthUser } from "../stripe/internal";
+import type { AuthHttpService } from "../../../src/lib/auth-service.ts";
 import {
   fetchCommerceJson,
   type CommerceServiceEnv,
 } from "./internal";
 
 interface Env extends CommerceServiceEnv {
-  AUTH_WORKER_URL: string;
+  AUTH_HTTP: AuthHttpService;
 }
 
 export interface PublicOrder {
@@ -36,6 +37,7 @@ function response(payload: unknown, status = 200): Response {
 }
 
 export const onRequestGet: PagesFunction<Env> = async ({ request, env }) => {
+  if (!env.AUTH_HTTP) return response({ error: "auth_worker_not_configured" }, 503);
   const user = await resolveAuthUser(request, env);
   if (!user) return response({ error: "login_required" }, 401);
   if (!user.email_verified_at) {

@@ -1,8 +1,7 @@
 import { proxyAuthWorkerRequest } from "../../../src/lib/auth-proxy-core";
+import type { AuthServiceEnv } from "../../../src/lib/auth-service.ts";
 
-interface Env {
-  AUTH_WORKER_URL?: string;
-}
+interface Env extends AuthServiceEnv {}
 
 function getPath(params: Record<string, unknown>): string | string[] | undefined {
   const path = params.path;
@@ -12,5 +11,5 @@ function getPath(params: Record<string, unknown>): string | string[] | undefined
 }
 
 export const onRequest: PagesFunction<Env> = ({ request, env, params }) => {
-  return proxyAuthWorkerRequest(request, "/api/keys", getPath(params), env.AUTH_WORKER_URL);
+  return proxyAuthWorkerRequest(request, "/api/keys", getPath(params), env.AUTH_HTTP);
 };

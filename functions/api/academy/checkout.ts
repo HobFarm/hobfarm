@@ -65,12 +65,12 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
       redirect_url: `/academy/courses/${course.slug}/?checkout=not-active`,
     });
   }
-  if (!env.STRIPE_API_KEY || !env.AUTH_WORKER_URL || !env.INTERNAL_ADMIN_HMAC_SECRET || !env.COMMERCE) {
+  if (!env.STRIPE_API_KEY || !env.AUTH_HTTP || !env.INTERNAL_ADMIN_HMAC_SECRET || !env.COMMERCE) {
     return academyJson({ error: "checkout_not_configured" }, 503);
   }
   const priceId = env[config.priceEnv];
   if (!priceId) return academyJson({ error: "academy_price_not_configured" }, 503);
-  const user = await resolveAuthUser(request, { AUTH_WORKER_URL: env.AUTH_WORKER_URL });
+  const user = await resolveAuthUser(request, { AUTH_HTTP: env.AUTH_HTTP });
   if (!user) return checkoutError(request, "login_required", 401, {
     login_url: `/login?next=/academy/courses/${course.slug}/`,
     redirect_url: `/login?next=/academy/courses/${course.slug}/`,
@@ -109,7 +109,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
 
   const subscriptionLookup = await fetchAdminJson<{ subscription: AdminSubscriptionRecord | null }>(
     {
-      AUTH_WORKER_URL: env.AUTH_WORKER_URL,
+      AUTH_HTTP: env.AUTH_HTTP,
       INTERNAL_ADMIN_HMAC_SECRET: env.INTERNAL_ADMIN_HMAC_SECRET,
     },
     "GET",

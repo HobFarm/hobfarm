@@ -6,8 +6,8 @@ import { isBodyTooLargeError, readJsonBodyLimited } from "../request-body";
 
 export const onRequestPost: PagesFunction<AcademyEnv> = async ({ request, env }) => {
   if (!isSameOriginMutation(request)) return academyJson({ error: "cross_site_request" }, 403);
-  if (!env.AUTH_WORKER_URL) return academyJson({ error: "academy_help_not_configured" }, 503);
-  const user = await resolveAuthUser(request, { AUTH_WORKER_URL: env.AUTH_WORKER_URL });
+  if (!env.AUTH_HTTP) return academyJson({ error: "academy_help_not_configured" }, 503);
+  const user = await resolveAuthUser(request, { AUTH_HTTP: env.AUTH_HTTP });
   if (!user) return academyJson({ error: "login_required", login_url: "/login?next=/academy/help/" }, 401);
   let body: { course_slug?: unknown; lesson_slug?: unknown; category?: unknown; question?: unknown };
   try {

@@ -14,8 +14,8 @@ import {
 } from "./internal";
 
 export const onRequestGet: PagesFunction<AcademyEnv> = async ({ request, env }) => {
-  if (!env.AUTH_WORKER_URL) return academyJson({ error: "academy_access_not_configured" }, 503);
-  const user = await resolveAuthUser(request, { AUTH_WORKER_URL: env.AUTH_WORKER_URL });
+  if (!env.AUTH_HTTP) return academyJson({ error: "academy_access_not_configured" }, 503);
+  const user = await resolveAuthUser(request, { AUTH_HTTP: env.AUTH_HTTP });
   if (!user) return academyJson({ error: "login_required" }, 401);
 
   const [access, progress, subscription] = await Promise.all([
@@ -32,7 +32,7 @@ export const onRequestGet: PagesFunction<AcademyEnv> = async ({ request, env }) 
     env.INTERNAL_ADMIN_HMAC_SECRET
       ? fetchAdminJson<{ subscription: AdminSubscriptionRecord | null }>(
           {
-            AUTH_WORKER_URL: env.AUTH_WORKER_URL,
+            AUTH_HTTP: env.AUTH_HTTP,
             INTERNAL_ADMIN_HMAC_SECRET: env.INTERNAL_ADMIN_HMAC_SECRET,
           },
           "GET",

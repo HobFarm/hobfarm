@@ -6,11 +6,24 @@ interface Env {
 
 const PRIVATE_PREFIXES = ["/api/", "/account", "/login"];
 
+// These read-only endpoints intentionally publish short-lived cache policy.
+// Keep the global API privacy headers, but do not replace their route-specific
+// Cache-Control response with no-store.
+const PUBLIC_CACHEABLE_API_PATHS = new Set([
+  "/api/grimoire/archive",
+  "/api/grimoire/snapshot",
+  "/api/grimoire/synthesis",
+  "/api/status",
+]);
+
 // These are deployment and source-file probes observed in the August 19,
 // 2026 traffic spike. Reject them before Pages asks the static/application
 // router to build a full 404 response. Keep this list narrow: broad extension
 // or directory blocks could interfere with real HobFarm assets and routes.
 const SCANNER_PROBE_PATHS = new Set([
+  "/.env",
+  "/.env.local",
+  "/.env.production",
   "/.irb_history",
   "/.pry_history",
   "/api/node/config.js",
@@ -24,15 +37,29 @@ const SCANNER_PROBE_PATHS = new Set([
   "/appsettings.staging.json",
   "/aws_credentials.ini",
   "/dev/env.js",
+  "/docker-compose.yaml",
+  "/docker-compose.yml",
   "/docker-compose.production.yml",
-  "/integrations/*",
+  "/docker-compose.production.yaml",
+  "/fetch",
+  "/config/config.yaml",
+  "/config/config.yml",
   "/manage/env",
-  "/settings/*",
   "/src/config.yaml",
   "/stripe.json",
   "/template.yaml",
-  "/webhook-test/*",
 ]);
+
+const SCANNER_PROBE_PREFIXES = [
+  "/.git/",
+  "/integrations/",
+  "/phpmyadmin",
+  "/settings/",
+  "/webhook-test/",
+  "/wp-admin",
+  "/wp-content/",
+  "/wp-includes/",
+];
 
 const SCANNER_PROBE_FRAGMENTS = [
   "/.streamlit/",
@@ -48,6 +75,7 @@ function isKnownScannerProbe(pathname: string): boolean {
 
   return (
     SCANNER_PROBE_PATHS.has(normalized) ||
+    SCANNER_PROBE_PREFIXES.some((prefix) => normalized.startsWith(prefix)) ||
     SCANNER_PROBE_FRAGMENTS.some((fragment) => normalized.includes(fragment)) ||
     normalized.endsWith(".php") ||
     normalized.endsWith(".sql")
@@ -113,8 +141,10 @@ function withSecurityHeaders(response: Response, pathname: string): Response {
   headers.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
 
   if (pathname.startsWith("/api/")) {
-    headers.set("Cache-Control", "no-store");
-    headers.set("Pragma", "no-cache");
+    if (!PUBLIC_CACHEABLE_API_PATHS.has(pathname)) {
+      headers.set("Cache-Control", "no-store");
+      headers.set("Pragma", "no-cache");
+    }
     headers.set("Content-Signal", "ai-train=no, search=no, ai-input=no");
     headers.set("X-Robots-Tag", "noindex, nofollow");
   }

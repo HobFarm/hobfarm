@@ -1,3 +1,5 @@
+import { fetchAuthService, type AuthHttpService } from "./auth-service.ts";
+
 type AuthWorkerPrefix = "/api/auth" | "/api/keys";
 
 const noStoreHeaders = {
@@ -13,17 +15,7 @@ const jsonHeaders = {
 const METHODS_WITHOUT_BODY = new Set(["GET", "HEAD"]);
 const MAX_PROXY_BODY_BYTES = 32 * 1024;
 const MAX_QUERY_CHARS = 2048;
-
-function getAuthWorkerBase(value: string | undefined): string | null {
-  if (!value) return null;
-
-  try {
-    const url = new URL(value);
-    return url.toString().replace(/\/$/, "");
-  } catch {
-    return null;
-  }
-}
+const AUTH_COOKIE_NAME = "hf_session";
 
 function isSafePathSegment(segment: string): boolean {
   return (
@@ -51,13 +43,22 @@ function quietAnonymousMe(request: Request, upstreamPath: string): boolean {
   return request.method === "GET" && upstreamPath === "/api/auth/me";
 }
 
+function authCookieHeader(cookieHeader: string | null): string | null {
+  if (!cookieHeader) return null;
+  const prefix = `${AUTH_COOKIE_NAME}=`;
+  const cookie = cookieHeader
+    .split(";")
+    .map((part) => part.trim())
+    .find((part) => part.startsWith(prefix));
+  return cookie && cookie.length > prefix.length ? cookie : null;
+}
+
 function proxyHeaders(request: Request): Headers {
   const headers = new Headers();
   const allowed = [
     "accept",
     "accept-language",
     "content-type",
-    "cookie",
     "origin",
     "referer",
     "user-agent",
@@ -67,6 +68,9 @@ function proxyHeaders(request: Request): Headers {
     const value = request.headers.get(name);
     if (value) headers.set(name, value);
   }
+
+  const cookie = authCookieHeader(request.headers.get("cookie"));
+  if (cookie) headers.set("cookie", cookie);
 
   return headers;
 }
@@ -126,7 +130,7 @@ export async function proxyAuthWorkerRequest(
   request: Request,
   prefix: AuthWorkerPrefix,
   path: string | string[] | undefined,
-  authWorkerUrl: string | undefined,
+  authService: AuthHttpService | undefined,
 ): Promise<Response> {
   const upstreamPath = buildUpstreamPath(prefix, path);
   if (!upstreamPath) {
@@ -134,9 +138,7 @@ export async function proxyAuthWorkerRequest(
   }
 
   const quietAuthCheck = quietAnonymousMe(request, upstreamPath);
-  const base = getAuthWorkerBase(authWorkerUrl);
-
-  if (!base) {
+  if (!authService) {
     if (quietAuthCheck) {
       return new Response(null, { status: 204, headers: noStoreHeaders });
     }
@@ -152,8 +154,7 @@ export async function proxyAuthWorkerRequest(
     return jsonError("cross_origin_request_not_allowed", 403);
   }
 
-  const upstreamUrl = new URL(`${base}${upstreamPath}`);
-  upstreamUrl.search = requestUrl.search;
+  const upstreamPathWithQuery = `${upstreamPath}${requestUrl.search}`;
 
   let body: ArrayBuffer | undefined;
   if (!METHODS_WITHOUT_BODY.has(request.method)) {
@@ -169,7 +170,7 @@ export async function proxyAuthWorkerRequest(
 
   let upstream: Response;
   try {
-    upstream = await fetch(upstreamUrl, {
+    upstream = await fetchAuthService(authService, upstreamPathWithQuery, {
       method: request.method,
       headers: proxyHeaders(request),
       body,

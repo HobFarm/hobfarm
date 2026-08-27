@@ -1,4 +1,5 @@
 import { createStripeClient, stripeWebhookCryptoProvider } from "../../../src/lib/stripe-server";
+import type { AuthHttpService } from "../../../src/lib/auth-service.ts";
 import type Stripe from "stripe";
 import {
   fetchAdminJson,
@@ -16,7 +17,7 @@ import { isBodyTooLargeError, readTextBodyLimited } from "../request-body";
 interface Env extends CommerceServiceEnv {
   STRIPE_API_KEY: string;
   STRIPE_WEBHOOK_SECRET: string;
-  AUTH_WORKER_URL: string;
+  AUTH_HTTP: AuthHttpService;
   INTERNAL_ADMIN_HMAC_SECRET: string;
   STRIPE_CREATIVE_MEMBERSHIP_PRICE_ID: string;
   STRIPE_ACADEMY_AVATAR_PRICE_ID?: string;
@@ -383,8 +384,8 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     return jsonError("STRIPE_WEBHOOK_SECRET not configured", 500);
   }
 
-  if (!env.AUTH_WORKER_URL || !env.INTERNAL_ADMIN_HMAC_SECRET) {
-    return jsonError("Auth worker credentials not configured", 500);
+  if (!env.AUTH_HTTP || !env.INTERNAL_ADMIN_HMAC_SECRET) {
+    return jsonError("Auth worker binding or credentials not configured", 503);
   }
 
   let payload: string;

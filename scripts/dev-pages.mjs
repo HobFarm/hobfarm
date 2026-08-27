@@ -16,6 +16,8 @@
 //   3. Reads compat date + flags from dist/server/wrangler.json so the dev
 //      runtime matches what `wrangler deploy` would produce.
 //   4. Spawns `wrangler pages dev ./dist/client`, forwarding stdio.
+//      The local auth Worker must be running under the `hobfarm-auth` name;
+//      Wrangler's local service registry supplies the AUTH_HTTP binding.
 //   5. Restores the redirect on Ctrl+C / child exit, so a follow-up
 //      `wrangler deploy` works without rebuilding.
 
@@ -80,6 +82,8 @@ const args = [
   PORT,
   "--compatibility-date",
   compatibilityDate,
+  "--service",
+  "AUTH_HTTP=hobfarm-auth",
 ];
 for (const flag of compatibilityFlags) {
   args.push("--compatibility-flag", flag);

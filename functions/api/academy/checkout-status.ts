@@ -7,8 +7,8 @@ import {
 } from "./internal";
 
 export const onRequestGet: PagesFunction<AcademyEnv> = async ({ request, env }) => {
-  if (!env.AUTH_WORKER_URL) return academyJson({ error: "academy_access_not_configured" }, 503);
-  const user = await resolveAuthUser(request, { AUTH_WORKER_URL: env.AUTH_WORKER_URL });
+  if (!env.AUTH_HTTP) return academyJson({ error: "academy_access_not_configured" }, 503);
+  const user = await resolveAuthUser(request, { AUTH_HTTP: env.AUTH_HTTP });
   if (!user) return academyJson({ error: "login_required" }, 401);
   const sessionId = new URL(request.url).searchParams.get("session_id") ?? "";
   if (!/^cs_(test_|live_)?[A-Za-z0-9]{10,}$/.test(sessionId)) {

@@ -1,10 +1,7 @@
 import { env } from "cloudflare:workers";
 
 import { proxyAuthWorkerRequest } from "./auth-proxy-core";
-
-type AuthProxyEnv = {
-  AUTH_WORKER_URL?: string;
-};
+import type { AuthServiceEnv } from "./auth-service.ts";
 
 export async function proxyAuthWorker(
   request: Request,
@@ -15,6 +12,6 @@ export async function proxyAuthWorker(
     request,
     prefix,
     path,
-    (env as AuthProxyEnv).AUTH_WORKER_URL,
+    (env as AuthServiceEnv).AUTH_HTTP,
   );
 }

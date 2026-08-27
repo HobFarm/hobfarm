@@ -39,7 +39,7 @@ export const onRequestGet: PagesFunction<Env> = async ({ request, env, params })
     );
   }
 
-  if (!env.AUTH_WORKER_URL || !env.INTERNAL_ADMIN_HMAC_SECRET || !env.COMMERCE) {
+  if (!env.AUTH_HTTP || !env.INTERNAL_ADMIN_HMAC_SECRET || !env.COMMERCE) {
     return json({ error: "course_access_not_configured" }, 503);
   }
 

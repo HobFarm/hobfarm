@@ -3,6 +3,12 @@
 // for user resolution, and signs server-to-server admin calls with the
 // canonical scheme described in c:\Users\xkxxk\hobfarm-auth\src\crypto.ts.
 
+import {
+  fetchAuthService,
+  type AuthHttpService,
+  type AuthServiceEnv,
+} from "../../../src/lib/auth-service.ts";
+
 export interface UserPayload {
   id: string;
   email: string;
@@ -51,13 +57,14 @@ export interface AdminSubscriptionRecord {
   cancel_at: number | null;
 }
 
-export interface AdminEnv {
-  AUTH_WORKER_URL: string;
+export interface AdminEnv extends AuthServiceEnv {
+  AUTH_HTTP: AuthHttpService;
   INTERNAL_ADMIN_HMAC_SECRET: string;
 }
 
 const HEX = "0123456789abcdef";
 const ADMIN_SECRET_MIN_BYTES = 32;
+const AUTH_COOKIE_NAME = "hf_session";
 
 function requireAdminSecret(secret: string): void {
   if (typeof secret !== "string" || new TextEncoder().encode(secret).byteLength < ADMIN_SECRET_MIN_BYTES) {
@@ -128,7 +135,7 @@ export async function fetchAdminJson<T>(
   };
   if (method !== "GET") headers["Content-Type"] = "application/json";
 
-  const res = await fetch(`${env.AUTH_WORKER_URL}${pathname}`, {
+  const res = await fetchAuthService(env.AUTH_HTTP, pathname, {
     method,
     headers,
     body: method === "GET" ? undefined : rawBody,
@@ -143,17 +150,22 @@ export async function fetchAdminJson<T>(
   return { status: res.status, data };
 }
 
-// Resolve the current logged-in user by forwarding the session cookie to
-// the auth worker. AUTH_WORKER_URL must point at the worker's workers.dev
-// URL, NOT the zone URL — Pages Functions calling fetch("https://hob.farm/...")
-// loop back to the Pages project and bypass Worker route bindings.
+// Resolve the current logged-in user by forwarding only the session cookie
+// through the private auth service binding.
 export async function resolveAuthUser(
   request: Request,
-  env: { AUTH_WORKER_URL: string },
+  env: AuthServiceEnv,
 ): Promise<UserPayload | null> {
-  const cookie = request.headers.get("cookie");
-  if (!cookie) return null;
-  const res = await fetch(`${env.AUTH_WORKER_URL}/api/auth/me`, {
+  if (!env.AUTH_HTTP) return null;
+  const cookieHeader = request.headers.get("cookie");
+  if (!cookieHeader) return null;
+  const prefix = `${AUTH_COOKIE_NAME}=`;
+  const cookie = cookieHeader
+    .split(";")
+    .map((part) => part.trim())
+    .find((part) => part.startsWith(prefix));
+  if (!cookie || cookie.length <= prefix.length) return null;
+  const res = await fetchAuthService(env.AUTH_HTTP, "/api/auth/me", {
     method: "GET",
     headers: { Cookie: cookie },
   });

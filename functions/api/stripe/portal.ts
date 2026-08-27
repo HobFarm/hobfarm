@@ -1,4 +1,5 @@
 import { createStripeClient } from "../../../src/lib/stripe-server";
+import type { AuthHttpService } from "../../../src/lib/auth-service.ts";
 import {
   resolveAuthUser,
   fetchAdminJson,
@@ -11,7 +12,7 @@ import {
 interface Env {
   STRIPE_API_KEY: string;
   STRIPE_PORTAL_RETURN_URL?: string;
-  AUTH_WORKER_URL: string;
+  AUTH_HTTP: AuthHttpService;
   INTERNAL_ADMIN_HMAC_SECRET: string;
 }
 
@@ -130,8 +131,8 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   if (!env.STRIPE_API_KEY) {
     return jsonError("STRIPE_API_KEY not configured", 500);
   }
-  if (!env.AUTH_WORKER_URL || !env.INTERNAL_ADMIN_HMAC_SECRET) {
-    return jsonError("Auth worker credentials not configured", 500);
+  if (!env.AUTH_HTTP || !env.INTERNAL_ADMIN_HMAC_SECRET) {
+    return jsonError("Auth worker binding or credentials not configured", 503);
   }
 
   const wantsJson = acceptsJson(request);

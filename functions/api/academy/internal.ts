@@ -9,9 +9,9 @@ import {
   type CommerceServiceEnv,
 } from "../shop/internal";
 import { resolveAcademyGrant } from "../../../src/lib/academy-access.mjs";
+import type { AuthServiceEnv } from "../../../src/lib/auth-service.ts";
 
-export interface AcademyEnv extends CommerceServiceEnv {
-  AUTH_WORKER_URL?: string;
+export interface AcademyEnv extends CommerceServiceEnv, AuthServiceEnv {
   INTERNAL_ADMIN_HMAC_SECRET?: string;
 }
 
@@ -74,7 +74,7 @@ export async function resolveAcademyAccess(
   courseId: string,
   membershipIncluded = true,
 ): Promise<AcademyAccessDecision> {
-  if (!env.AUTH_WORKER_URL) {
+  if (!env.AUTH_HTTP) {
     return {
       allowed: false,
       source: "none",
@@ -85,7 +85,7 @@ export async function resolveAcademyAccess(
       repairCode: null,
     };
   }
-  const user = await resolveAuthUser(request, { AUTH_WORKER_URL: env.AUTH_WORKER_URL });
+  const user = await resolveAuthUser(request, { AUTH_HTTP: env.AUTH_HTTP });
   if (!user) {
     return {
       allowed: false,
@@ -110,7 +110,7 @@ export async function resolveAcademyAccess(
     env.INTERNAL_ADMIN_HMAC_SECRET
       ? fetchAdminJson<{ subscription: AdminSubscriptionRecord | null }>(
           {
-            AUTH_WORKER_URL: env.AUTH_WORKER_URL,
+            AUTH_HTTP: env.AUTH_HTTP,
             INTERNAL_ADMIN_HMAC_SECRET: env.INTERNAL_ADMIN_HMAC_SECRET,
           },
           "GET",
