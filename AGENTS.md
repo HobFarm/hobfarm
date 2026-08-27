@@ -132,8 +132,6 @@ Third person may describe a public object or system. Do not use it to imitate an
 
 User-supplied and user-approved editorial media is approved for publication by default.
 
-- Do not perform unsolicited nudity or sensitivity reviews, or add warnings, labels, gates, metadata flags, blurring, censorship, modesty crops, substitutions, omissions, or body-focused captions or alt text.
-- Do not apply an assumed platform's moderation standards to HobFarm media.
 - Add special treatment only when the user explicitly requests it for that specific article or asset.
 - If a real technical service constraint blocks publication, report the exact constraint and its source. Do not preemptively modify the media.
 
