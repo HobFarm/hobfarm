@@ -1,0 +1,103 @@
+---
+const fragments = [
+  "a fountain",
+  "a dark tile floor",
+  "a department-store sign",
+  "a hotel tower",
+  "a theater seen from a car",
+  "Sade in a ceiling speaker",
+  "TRON’s Grid",
+  "a dream circuit",
+  "Drago’s training hall",
+  "a city becoming a microchip",
+];
+---
+
+<figure class="memory-set article-wide not-prose">
+  <header>
+    <span>Reconstruction, not replay</span>
+    <h3>Memory keeps rebuilding the set</h3>
+  </header>
+  <div class="memory-set__fragments">
+    {fragments.map((fragment, index) => <span style={`--i:${index}`}>{fragment}</span>)}
+  </div>
+  <div class="memory-set__arrow" aria-hidden="true">↓</div>
+  <div class="memory-set__result">
+    <small>COMPOSITE LOCATION</small>
+    <strong>A mall that never had one real address</strong>
+  </div>
+  <figcaption>
+    Dream studies do not prove what caused one afternoon of déjà vu. They do show that remembered fragments from different periods and anticipated futures can appear together in a dream report.
+  </figcaption>
+</figure>
+
+<style>
+  .memory-set {
+    margin-block: 2.7rem !important;
+    padding: 1rem;
+    overflow: hidden;
+    border: 1px solid rgb(85 234 219 / 0.34);
+    background:
+      radial-gradient(circle at 80% 10%, rgb(255 94 203 / 0.15), transparent 30%),
+      linear-gradient(145deg, #0b0b1b, #160b22);
+    box-shadow: 0.65rem 0.72rem 0 rgb(4 2 10 / 0.3);
+  }
+
+  header span,
+  .memory-set__result small {
+    color: #55eadb;
+    font: 750 0.62rem/1.3 var(--font-mono), monospace;
+    letter-spacing: 0.08em;
+  }
+
+  header h3 {
+    margin: 0.25rem 0 1rem;
+    color: #fff;
+    font: 650 clamp(1.15rem, 3vw, 1.65rem)/1.15 var(--font-display), Georgia, serif;
+  }
+
+  .memory-set__fragments {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .memory-set__fragments span {
+    padding: 0.48rem 0.6rem;
+    color: #ded8e2;
+    border: 1px solid rgb(255 255 255 / 0.14);
+    background: rgb(255 255 255 / 0.04);
+    font: 650 0.68rem/1.2 var(--font-mono), monospace;
+    transform: translateY(calc((var(--i) % 3) * 0.08rem));
+  }
+
+  .memory-set__arrow {
+    padding: 0.7rem 0 0.45rem;
+    color: #ff5ecb;
+    font-size: 1.35rem;
+    text-align: center;
+  }
+
+  .memory-set__result {
+    display: grid;
+    gap: 0.24rem;
+    padding: 0.85rem;
+    border: 1px solid rgb(255 94 203 / 0.4);
+    background: rgb(6 5 14 / 0.68);
+    text-align: center;
+  }
+
+  .memory-set__result strong {
+    color: #fff;
+    font: 650 1.02rem/1.25 var(--font-display), Georgia, serif;
+  }
+
+  figcaption {
+    margin: 0.9rem 0 0 !important;
+    color: #a89db1;
+    font-size: 0.7rem;
+    line-height: 1.55;
+    text-align: left !important;
+  }
+</style>

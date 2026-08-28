@@ -1,0 +1,301 @@
+---
+const stages = [
+  {
+    date: "1910s",
+    title: "Metaphysical plaza",
+    work: "de Chirico",
+    operation: "Perspective makes the physical city lose its ordinary explanation.",
+    className: "plaza",
+  },
+  {
+    date: "1982",
+    title: "Electronic world",
+    work: "TRON",
+    operation: "Perspective becomes a coordinate system, landscape, and physics.",
+    className: "grid",
+  },
+  {
+    date: "1982",
+    title: "City as circuit",
+    work: "Koyaanisqatsi",
+    operation: "Montage finds the same repeated pathways in streets, chips, and textiles.",
+    className: "circuit",
+  },
+  {
+    date: "2011",
+    title: "Memory container",
+    work: "Floral Shoppe",
+    operation: "Synthetic depth holds fragments from several incompatible times.",
+    className: "shoppe",
+  },
+];
+---
+
+<figure class="spatial-logic article-wide not-prose">
+  <header>
+    <div>
+      <span>Recurring spatial logic</span>
+      <h3>Perspective becomes system</h3>
+    </div>
+    <strong>Formal comparison, not an influence chain</strong>
+  </header>
+  <ol>
+    {stages.map((stage) => (
+      <li>
+        <div class={`spatial-logic__field ${stage.className}`} aria-hidden="true">
+          <i></i><i></i><i></i>
+        </div>
+        <div class="spatial-logic__copy">
+          <span>{stage.date}</span>
+          <h4>{stage.title}</h4>
+          <b>{stage.work}</b>
+          <p>{stage.operation}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+  <figcaption>
+    The documented influence history stays separate: Nietzsche informed de Chirico, and de Chirico became important to Surrealists including Magritte. The four-part sequence above tracks a visual rhyme across works, not a claimed line of production influence.
+  </figcaption>
+</figure>
+
+<style>
+  .spatial-logic {
+    margin-block: 2.7rem !important;
+    overflow: hidden;
+    border: 1px solid rgb(255 94 203 / 0.38);
+    background: #080611;
+    box-shadow: 0.65rem 0.72rem 0 rgb(4 2 10 / 0.3);
+  }
+
+  header {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid rgb(85 234 219 / 0.22);
+  }
+
+  header span,
+  header strong,
+  .spatial-logic__copy > span {
+    color: #55eadb;
+    font: 750 0.62rem/1.3 var(--font-mono), monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  header h3 {
+    margin: 0.18rem 0 0;
+    color: #fff;
+    font: 650 clamp(1.15rem, 3vw, 1.65rem)/1.15 var(--font-display), Georgia, serif;
+  }
+
+  header strong {
+    max-width: 13rem;
+    color: #ff7fd6;
+    text-align: right;
+  }
+
+  ol {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    min-width: 0;
+    border-right: 1px solid rgb(85 234 219 / 0.16);
+  }
+
+  li:last-child {
+    border-right: 0;
+  }
+
+  .spatial-logic__field {
+    position: relative;
+    height: 8.4rem;
+    overflow: hidden;
+    background: #11101b;
+  }
+
+  .spatial-logic__field::before,
+  .spatial-logic__field::after,
+  .spatial-logic__field i {
+    position: absolute;
+    display: block;
+    content: "";
+  }
+
+  .plaza {
+    background: linear-gradient(#69c2be 0 47%, #c88758 47%);
+  }
+
+  .plaza::before {
+    right: 0;
+    bottom: 0;
+    width: 62%;
+    height: 55%;
+    clip-path: polygon(40% 0, 100% 15%, 100% 100%, 0 100%);
+    background: #8a3a51;
+  }
+
+  .plaza::after {
+    bottom: 0;
+    left: 29%;
+    width: 2px;
+    height: 54%;
+    background: #342039;
+    box-shadow: 1.3rem 0.4rem 0 #342039, 2.8rem 0.9rem 0 #342039;
+    transform: rotate(54deg);
+    transform-origin: bottom;
+  }
+
+  .grid {
+    background: linear-gradient(#05061a 0 44%, #17082a 44%);
+  }
+
+  .grid::before {
+    inset: 44% -30% -30%;
+    background:
+      repeating-linear-gradient(90deg, transparent 0 1.5rem, rgb(85 234 219 / 0.75) 1.54rem 1.6rem),
+      repeating-linear-gradient(0deg, transparent 0 1.25rem, rgb(255 94 203 / 0.58) 1.3rem 1.36rem);
+    transform: perspective(8rem) rotateX(58deg);
+    transform-origin: top;
+  }
+
+  .grid::after {
+    top: 43%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #55eadb;
+    box-shadow: 0 0 0.6rem #55eadb;
+  }
+
+  .circuit {
+    background:
+      linear-gradient(90deg, transparent 48%, rgb(255 188 83 / 0.8) 49% 51%, transparent 52%),
+      linear-gradient(#0c1022, #261135);
+  }
+
+  .circuit::before {
+    inset: 0;
+    background:
+      repeating-linear-gradient(90deg, transparent 0 1.1rem, rgb(85 234 219 / 0.22) 1.12rem 1.22rem),
+      repeating-linear-gradient(0deg, transparent 0 1.1rem, rgb(255 94 203 / 0.2) 1.12rem 1.22rem);
+  }
+
+  .circuit::after {
+    top: 26%;
+    left: 15%;
+    width: 0.5rem;
+    height: 0.5rem;
+    border: 1px solid #55eadb;
+    background: #090814;
+    box-shadow: 2.3rem 1.4rem 0 #ff5ecb, 4.7rem 0.2rem 0 #55eadb, 1rem 4rem 0 #ffcc65, 5.6rem 4.4rem 0 #ff5ecb;
+  }
+
+  .shoppe {
+    background: linear-gradient(#f59ecf 0 42%, #8049ab 42%);
+  }
+
+  .shoppe::before {
+    inset: 42% -30% -30%;
+    background:
+      repeating-linear-gradient(90deg, transparent 0 1.25rem, rgb(255 255 255 / 0.62) 1.27rem 1.34rem),
+      repeating-linear-gradient(0deg, transparent 0 1rem, rgb(255 255 255 / 0.55) 1.04rem 1.1rem);
+    transform: perspective(8rem) rotateX(58deg);
+    transform-origin: top;
+  }
+
+  .shoppe::after {
+    top: 1rem;
+    left: 50%;
+    width: 2.8rem;
+    height: 3.5rem;
+    border-radius: 50% 50% 42% 42%;
+    background: linear-gradient(90deg, #f5e9e3, #bea6cc 58%, #f5e9e3);
+    box-shadow: 0 0.55rem 0 -0.2rem rgb(255 255 255 / 0.35);
+    transform: translateX(-50%);
+  }
+
+  .spatial-logic__copy {
+    min-height: 12rem;
+    padding: 0.8rem;
+  }
+
+  .spatial-logic__copy h4 {
+    margin: 0.32rem 0 0.1rem;
+    color: #fff;
+    font: 650 0.95rem/1.18 var(--font-display), Georgia, serif;
+  }
+
+  .spatial-logic__copy b {
+    color: #ff7fd6;
+    font: 700 0.66rem/1.3 var(--font-mono), monospace;
+  }
+
+  .spatial-logic__copy p {
+    margin: 0.65rem 0 0 !important;
+    color: #b9b0c0 !important;
+    font-size: 0.73rem !important;
+    line-height: 1.5 !important;
+  }
+
+  figcaption {
+    margin: 0 !important;
+    padding: 0.8rem 1rem 0.9rem;
+    border-top: 1px solid rgb(85 234 219 / 0.2);
+    color: #a89db1;
+    font-size: 0.7rem;
+    line-height: 1.55;
+    text-align: left !important;
+  }
+
+  @media (max-width: 46rem) {
+    ol {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    li:nth-child(2) {
+      border-right: 0;
+    }
+
+    li:nth-child(-n + 2) {
+      border-bottom: 1px solid rgb(85 234 219 / 0.16);
+    }
+  }
+
+  @media (max-width: 29rem) {
+    header {
+      align-items: start;
+      flex-direction: column;
+    }
+
+    header strong {
+      text-align: left;
+    }
+
+    ol {
+      grid-template-columns: 1fr;
+    }
+
+    li,
+    li:nth-child(2) {
+      border-right: 0;
+      border-bottom: 1px solid rgb(85 234 219 / 0.16);
+    }
+
+    li:last-child {
+      border-bottom: 0;
+    }
+
+    .spatial-logic__copy {
+      min-height: 0;
+    }
+  }
+</style>

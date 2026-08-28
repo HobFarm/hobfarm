@@ -1,0 +1,187 @@
+---
+const base = "https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=82,width=1200/articles/vaporwave/";
+const photos = [
+  {
+    file: "florescent-hallway-liminal-space.jpg",
+    alt: "A long empty Las Vegas corridor under repeating fluorescent ceiling panels",
+    title: "The public approximation",
+    note: "Repeating panels, reflective floor, blank walls, and a vanishing point replace the backstage corridors where photography is prohibited.",
+    width: 4000,
+    height: 3000,
+  },
+  {
+    file: "sphere-hall.jpg",
+    alt: "A dark connector hallway near the Sphere with rows of small white ceiling lights",
+    title: "The connector between events",
+    note: "A transportation problem becomes a black chamber of evenly spaced light when the crowd is gone.",
+    width: 4032,
+    height: 3024,
+  },
+  {
+    file: "bellagio-terrace-1.jpg",
+    alt: "An empty symmetrical Bellagio terrace with columns, balustrades, and a centered doorway",
+    title: "The metaphysical terrace",
+    note: "Symmetry and artificial classicism wait for people who are not yet in the frame.",
+    width: 4032,
+    height: 3024,
+  },
+  {
+    file: "venetian-hall-2.jpg",
+    alt: "A long warm-toned Venetian hotel corridor repeating toward a distant doorway",
+    title: "The hotel that keeps going",
+    note: "Doors, arches, carpet, and ceiling lights repeat until circulation becomes the entire subject.",
+    width: 4032,
+    height: 3024,
+  },
+  {
+    file: "luxor-sphinx.jpg",
+    alt: "The monumental Sphinx at the Luxor with the pyramid rising behind it",
+    title: "Artificial antiquity",
+    note: "A commercial resort collapses ancient Egypt, the 1990s, and present-day Las Vegas into one usable exterior.",
+    width: 4032,
+    height: 3024,
+  },
+  {
+    file: "desert-rainbow.jpg",
+    alt: "A rainbow above a populated Las Vegas street in the desert",
+    title: "Function returns",
+    note: "People, traffic, weather, and ordinary use restore the context that liminal imagery removes.",
+    width: 5877,
+    height: 3520,
+  },
+];
+---
+
+<section class="vaporwave-photo-essay article-wide not-prose" aria-labelledby="vaporwave-photo-essay-title">
+  <header>
+    <span>Author photo essay</span>
+    <h3 id="vaporwave-photo-essay-title">Six spatial jobs in Las Vegas</h3>
+    <p>The sequence is organized by what each place does to perception, not by casino or neighborhood.</p>
+  </header>
+  <div class="vaporwave-photo-essay__grid">
+    {photos.map((photo, index) => (
+      <figure class={index === 0 || index === 5 ? "wide" : undefined}>
+        <img
+          src={`${base}${photo.file}`}
+          alt={photo.alt}
+          width={photo.width}
+          height={photo.height}
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption>
+          <strong>{photo.title}</strong>
+          <span>{photo.note}</span>
+        </figcaption>
+      </figure>
+    ))}
+  </div>
+  <footer>All photographs by the author.</footer>
+</section>
+
+<style>
+  .vaporwave-photo-essay {
+    margin-block: 2.8rem !important;
+    padding: 0.9rem;
+    border: 1px solid rgb(255 94 203 / 0.36);
+    background: #080611;
+    box-shadow: 0.65rem 0.72rem 0 rgb(4 2 10 / 0.3);
+  }
+
+  header {
+    padding: 0.2rem 0.1rem 0.85rem;
+  }
+
+  header > span,
+  footer {
+    color: #55eadb;
+    font: 750 0.62rem/1.35 var(--font-mono), monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  header h3 {
+    margin: 0.2rem 0 0.25rem;
+    color: #fff;
+    font: 650 clamp(1.15rem, 3vw, 1.65rem)/1.15 var(--font-display), Georgia, serif;
+  }
+
+  header p {
+    margin: 0 !important;
+    color: #aaa0b1 !important;
+    font-size: 0.76rem !important;
+  }
+
+  .vaporwave-photo-essay__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.72rem;
+  }
+
+  figure {
+    position: relative;
+    min-width: 0;
+    margin: 0 !important;
+    overflow: hidden;
+    background: #030207;
+  }
+
+  figure.wide {
+    grid-column: 1 / -1;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  figure.wide img {
+    aspect-ratio: 16 / 8.4;
+  }
+
+  figcaption {
+    display: grid;
+    gap: 0.24rem;
+    margin: 0 !important;
+    padding: 0.72rem 0.78rem 0.8rem;
+    border-top: 3px solid #ff5ecb;
+    color: #d9d3df;
+    text-align: left !important;
+  }
+
+  figure:nth-child(even) figcaption {
+    border-top-color: #55eadb;
+  }
+
+  figcaption strong {
+    color: #fff;
+    font-size: 0.78rem;
+  }
+
+  figcaption span {
+    color: #a89db1;
+    font-size: 0.68rem;
+    line-height: 1.5;
+  }
+
+  footer {
+    padding: 0.75rem 0.1rem 0.05rem;
+    color: #8d8398;
+  }
+
+  @media (max-width: 38rem) {
+    .vaporwave-photo-essay__grid {
+      grid-template-columns: 1fr;
+    }
+
+    figure.wide {
+      grid-column: auto;
+    }
+
+    figure.wide img {
+      aspect-ratio: 4 / 3;
+    }
+  }
+</style>

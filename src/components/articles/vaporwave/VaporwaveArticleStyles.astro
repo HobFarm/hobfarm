@@ -1,0 +1,120 @@
+<style is:global>
+  .vaporwave-note,
+  .vaporwave-boundary {
+    position: relative;
+    left: 50%;
+    box-sizing: border-box;
+    width: min(90vw, 40rem);
+    margin: 2rem 0;
+    padding: 1rem 1.15rem;
+    color: #d9d3df;
+    border: 1px solid rgb(85 234 219 / 0.36);
+    background:
+      linear-gradient(135deg, rgb(24 12 38 / 0.94), rgb(8 12 25 / 0.98)),
+      #0c0b17;
+    box-shadow: 0.48rem 0.55rem 0 rgb(5 2 12 / 0.3);
+    transform: translateX(-50%);
+  }
+
+  .vaporwave-boundary {
+    border-color: rgb(255 92 203 / 0.46);
+  }
+
+  .vaporwave-note strong,
+  .vaporwave-boundary strong {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: #55eadb;
+    font: 750 0.66rem/1.35 var(--font-mono), monospace;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  .vaporwave-boundary strong {
+    color: #ff5ecb;
+  }
+
+  .vaporwave-note p,
+  .vaporwave-boundary p {
+    margin: 0 !important;
+    color: inherit !important;
+    font-size: 0.88rem !important;
+    line-height: 1.65 !important;
+  }
+
+  .vaporwave-pullquote {
+    position: relative;
+    left: 50%;
+    width: min(90vw, 40rem);
+    margin: 2.7rem 0;
+    padding: 1.25rem 1rem;
+    color: #f7ebf8;
+    border-top: 1px solid #ff5ecb;
+    border-bottom: 1px solid #55eadb;
+    font: 650 clamp(1.25rem, 3.5vw, 1.9rem)/1.25 var(--font-display), Georgia, serif;
+    text-align: center;
+    text-wrap: balance;
+    transform: translateX(-50%);
+  }
+
+  .vaporwave-pullquote p {
+    margin: 0 !important;
+    color: inherit !important;
+    font: inherit !important;
+    line-height: inherit !important;
+  }
+
+  .vaporwave-repetition {
+    position: relative;
+    left: 50%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: min(90vw, 42rem);
+    margin: 2rem 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid rgb(85 234 219 / 0.25);
+    background: #090814;
+    list-style: none;
+    transform: translateX(-50%);
+  }
+
+  .vaporwave-repetition li {
+    margin: 0 !important;
+    padding: 0.8rem 0.55rem !important;
+    color: #dcd5e1;
+    border-right: 1px solid rgb(255 94 203 / 0.17);
+    border-bottom: 1px solid rgb(255 94 203 / 0.17);
+    font: 700 0.69rem/1.35 var(--font-mono), monospace !important;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .prose .source-ref {
+    margin-left: 0.12rem;
+    font-family: var(--font-mono), monospace;
+    font-size: 0.68em;
+    vertical-align: super;
+  }
+
+  .prose .source-ref a {
+    color: #55eadb;
+    text-decoration: none;
+  }
+
+  @media (max-width: 38rem) {
+    .vaporwave-repetition {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .vaporwave-article-media *,
+    .spatial-logic *,
+    .memory-set * {
+      scroll-behavior: auto !important;
+      transition: none !important;
+      animation: none !important;
+    }
+  }
+</style>

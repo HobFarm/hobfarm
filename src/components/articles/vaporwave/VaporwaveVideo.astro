@@ -1,0 +1,177 @@
+---
+interface Props {
+  videoId: string;
+  startSeconds: number;
+  startLabel: string;
+  title: string;
+  publisher: string;
+  note: string;
+}
+
+const { videoId, startSeconds, startLabel, title, publisher, note } = Astro.props;
+const watchUrl = `https://www.youtube.com/watch?v=${videoId}&t=${startSeconds}s`;
+const posterUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+---
+
+<figure
+  class="vaporwave-video vaporwave-article-media article-wide not-prose"
+  data-vaporwave-video
+  data-video-id={videoId}
+  data-video-start={startSeconds}
+>
+  <div class="vaporwave-video__screen" data-video-screen>
+    <img src={posterUrl} alt="" width="480" height="360" loading="lazy" decoding="async" />
+    <button type="button" data-video-load aria-label={`Load ${title} at ${startLabel}`}>
+      <span aria-hidden="true">▶</span>
+      Load scene at {startLabel}
+    </button>
+  </div>
+  <figcaption>
+    <div>
+      <strong>{title}</strong>
+      <span>{publisher}</span>
+      <small>{note}</small>
+    </div>
+    <a href={watchUrl} target="_blank" rel="noopener noreferrer">Watch at {startLabel} on YouTube <span aria-hidden="true">↗</span></a>
+  </figcaption>
+  <p class="sr-only" aria-live="polite" data-video-status></p>
+</figure>
+
+<script>
+  function installVaporwaveVideo() {
+    document.querySelectorAll<HTMLElement>("[data-vaporwave-video]").forEach((player) => {
+      const button = player.querySelector<HTMLButtonElement>("[data-video-load]");
+      const screen = player.querySelector<HTMLElement>("[data-video-screen]");
+      const status = player.querySelector<HTMLElement>("[data-video-status]");
+      if (!button || !screen || button.dataset.ready === "true") return;
+      button.dataset.ready = "true";
+
+      button.addEventListener("click", () => {
+        const videoId = player.dataset.videoId;
+        const start = player.dataset.videoStart ?? "0";
+        if (!videoId) return;
+
+        const iframe = document.createElement("iframe");
+        iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?start=${encodeURIComponent(start)}&autoplay=0&rel=0`;
+        iframe.title = button.getAttribute("aria-label")?.replace(/^Load /, "") ?? "YouTube video";
+        iframe.allow = "accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        iframe.referrerPolicy = "strict-origin-when-cross-origin";
+        iframe.allowFullscreen = true;
+        iframe.addEventListener("load", () => {
+          if (status) status.textContent = `${iframe.title} loaded. Use the player controls to begin.`;
+          iframe.focus();
+        });
+
+        screen.replaceChildren(iframe);
+        if (status) status.textContent = `Loading ${iframe.title}.`;
+      }, { once: true });
+    });
+  }
+
+  installVaporwaveVideo();
+  document.addEventListener("astro:page-load", installVaporwaveVideo);
+</script>
+
+<style>
+  .vaporwave-video {
+    margin-block: 2.5rem !important;
+    overflow: hidden;
+    border: 1px solid rgb(85 234 219 / 0.36);
+    background: #05040a;
+    box-shadow: 0.65rem 0.72rem 0 rgb(4 2 10 / 0.3);
+  }
+
+  .vaporwave-video__screen {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #020205;
+  }
+
+  .vaporwave-video__screen::after {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 42%, rgb(5 2 10 / 0.85));
+    content: "";
+    pointer-events: none;
+  }
+
+  .vaporwave-video__screen img,
+  .vaporwave-video__screen :global(iframe) {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    object-fit: cover;
+  }
+
+  .vaporwave-video__screen :global(iframe) {
+    position: relative;
+    z-index: 2;
+  }
+
+  button {
+    position: absolute;
+    z-index: 1;
+    right: 1rem;
+    bottom: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-height: 2.75rem;
+    padding: 0.72rem 0.9rem;
+    border: 1px solid rgb(255 255 255 / 0.75);
+    border-radius: 0.16rem;
+    background: rgb(8 6 17 / 0.94);
+    color: #fff;
+    font: 700 0.72rem/1 var(--font-mono), monospace;
+    cursor: pointer;
+  }
+
+  button:hover,
+  button:focus-visible {
+    border-color: #55eadb;
+    outline: 2px solid #55eadb;
+    outline-offset: 2px;
+  }
+
+  figcaption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 0 !important;
+    padding: 0.9rem 1rem;
+    border-top: 4px solid #ff5ecb;
+    color: #d9d3df;
+    text-align: left !important;
+  }
+
+  figcaption div {
+    display: grid;
+    gap: 0.18rem;
+  }
+
+  figcaption strong {
+    color: #fff;
+    font-size: 0.86rem;
+  }
+
+  figcaption span,
+  figcaption small {
+    color: #a89db1;
+    font-size: 0.7rem;
+  }
+
+  figcaption a {
+    flex: 0 0 auto;
+    color: #55eadb !important;
+    font: 700 0.68rem/1.35 var(--font-mono), monospace;
+  }
+
+  @media (max-width: 34rem) {
+    figcaption {
+      align-items: start;
+      flex-direction: column;
+    }
+  }
+</style>

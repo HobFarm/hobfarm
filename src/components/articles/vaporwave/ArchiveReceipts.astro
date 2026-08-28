@@ -1,0 +1,131 @@
+---
+const receipts = [
+  {
+    date: "1970 / 2026",
+    title: "Airport Mall",
+    note: "Retro interior details still visible in Bangor: square skylights, tile, brick, and faux eaves.",
+    href: "https://route1views.com/travel/bangors-airport-mall-a-hidden-gem-of-retro-design/",
+    source: "Route 1 Views",
+  },
+  {
+    date: "1978 / 2024",
+    title: "Bangor Mall",
+    note: "The active regional destination before later vacancy became the dominant image.",
+    href: "https://www.bangordailynews.com/2024/11/27/bangor/in-its-heyday-the-bangor-mall-was-the-biggest-thing-in-the-queen-city/",
+    source: "Bangor Daily News",
+  },
+  {
+    date: "1983",
+    title: "Maine Mall expansion",
+    note: "A dated archive record for the expansion-era environment the article remembers.",
+    href: "https://digitalcommons.portlandlibrary.com/pphnegs_images_business/461/",
+    source: "Portland Public Library",
+  },
+  {
+    date: "1979",
+    title: "Sheraton Inn",
+    note: "Black reflective glass, geometric restaurant, pool, saunas, and proximity to the mall and airport sold as one package.",
+    href: "https://www.cardcow.com/198564/sheraton-inn-south-portland/",
+    source: "CardCow postcard record",
+  },
+];
+---
+
+<aside class="archive-receipts article-wide not-prose" aria-labelledby="archive-receipts-title">
+  <header>
+    <span>Period receipts</span>
+    <h3 id="archive-receipts-title">The remembered atmosphere had real addresses</h3>
+  </header>
+  <div>
+    {receipts.map((receipt) => (
+      <a href={receipt.href} target="_blank" rel="noopener noreferrer">
+        <small>{receipt.date}</small>
+        <strong>{receipt.title}</strong>
+        <span>{receipt.note}</span>
+        <b>{receipt.source} ↗</b>
+      </a>
+    ))}
+  </div>
+  <footer>The external archives remain on their original hosts; HobFarm does not rehost their photographs or scans.</footer>
+</aside>
+
+<style>
+  .archive-receipts {
+    margin-block: 2.5rem !important;
+    padding: 0.9rem;
+    border: 1px solid rgb(85 234 219 / 0.32);
+    background: #090814;
+    box-shadow: 0.58rem 0.65rem 0 rgb(4 2 10 / 0.28);
+  }
+
+  header {
+    padding: 0.15rem 0.1rem 0.8rem;
+  }
+
+  header span,
+  a small,
+  a b,
+  footer {
+    color: #55eadb;
+    font: 750 0.61rem/1.35 var(--font-mono), monospace;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  header h3 {
+    margin: 0.2rem 0 0;
+    color: #fff;
+    font: 650 clamp(1.08rem, 3vw, 1.5rem)/1.15 var(--font-display), Georgia, serif;
+  }
+
+  aside > div {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+  }
+
+  a {
+    display: grid;
+    gap: 0.3rem;
+    padding: 0.8rem;
+    color: #ded8e2 !important;
+    border: 1px solid rgb(255 94 203 / 0.22);
+    background: rgb(255 255 255 / 0.025);
+    text-decoration: none !important;
+  }
+
+  a:hover,
+  a:focus-visible {
+    border-color: #ff5ecb;
+    outline: 2px solid #ff5ecb;
+    outline-offset: 2px;
+  }
+
+  a strong {
+    color: #fff;
+    font-size: 0.86rem;
+  }
+
+  a span {
+    color: #aaa0b1;
+    font-size: 0.69rem;
+    line-height: 1.5;
+  }
+
+  a b {
+    margin-top: 0.18rem;
+    color: #ff7fd6;
+  }
+
+  footer {
+    padding: 0.75rem 0.1rem 0.05rem;
+    color: #8d8398;
+    text-transform: none;
+  }
+
+  @media (max-width: 35rem) {
+    aside > div {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,134 @@
+---
+const original = "https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=84,width=1200/articles/vaporwave/caesars-palace-pool-statue.jpg";
+const transformed = "https://cdn.hob.farm/cdn-cgi/image/format=auto,quality=84,width=1000/articles/vaporwave/caesars-palace-pool-statue-vaporwave.png";
+const video = "https://cdn.hob.farm/articles/vaporwave/caesars-palace-pool-statue-vaporwave.mp4";
+---
+
+<figure class="vaporwave-transform vaporwave-article-media article-wide not-prose">
+  <div class="vaporwave-transform__pair">
+    <div>
+      <span>Photograph</span>
+      <img
+        src={original}
+        alt="A monumental classical statue and repeated arches beside the Caesars Palace pool under a blue Las Vegas sky"
+        width="4032"
+        height="3024"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+    <div>
+      <span>Reconstruction</span>
+      <img
+        src={transformed}
+        alt="The same Caesars Palace statue and arches rebuilt as a violet and cyan vaporwave cityscape"
+        width="1086"
+        height="1448"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  </div>
+  <video controls preload="metadata" playsinline poster={transformed} aria-label="Five-second vaporwave transformation of the Caesars Palace photograph">
+    <source src={video} type="video/mp4" />
+    <a href={video}>Open the transformation video</a>
+  </video>
+  <figcaption>
+    <strong>The architecture survives the edit.</strong>
+    <span>The source photograph and the author-directed transformation use the same statue, arches, tower, palms, and desert sky. The color and implied technology change; the temporal collision was already there.</span>
+    <small>Original photograph and transformation direction by the author; generated with ChatGPT and additional AI tools.</small>
+  </figcaption>
+</figure>
+
+<style>
+  .vaporwave-transform {
+    margin-block: 2.7rem !important;
+    overflow: hidden;
+    border: 1px solid rgb(255 94 203 / 0.38);
+    background: #080611;
+    box-shadow: 0.65rem 0.72rem 0 rgb(4 2 10 / 0.3);
+  }
+
+  .vaporwave-transform__pair {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .vaporwave-transform__pair > div {
+    position: relative;
+    min-width: 0;
+    background: #05040a;
+  }
+
+  .vaporwave-transform__pair > div + div {
+    border-left: 1px solid rgb(85 234 219 / 0.25);
+  }
+
+  .vaporwave-transform__pair span {
+    position: absolute;
+    z-index: 1;
+    top: 0.65rem;
+    left: 0.65rem;
+    padding: 0.3rem 0.45rem;
+    color: #fff;
+    background: rgb(8 6 17 / 0.82);
+    font: 750 0.61rem/1 var(--font-mono), monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .vaporwave-transform__pair > div:last-child img {
+    object-position: center 42%;
+  }
+
+  video {
+    display: block;
+    width: 100%;
+    max-height: 38rem;
+    border-top: 1px solid rgb(85 234 219 / 0.25);
+    background: #020105;
+  }
+
+  figcaption {
+    display: grid;
+    gap: 0.3rem;
+    margin: 0 !important;
+    padding: 0.9rem 1rem 1rem;
+    border-top: 4px solid #55eadb;
+    color: #d9d3df;
+    text-align: left !important;
+  }
+
+  figcaption strong {
+    color: #fff;
+    font-size: 0.85rem;
+  }
+
+  figcaption span {
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+
+  figcaption small {
+    color: #9d93aa;
+    font: 650 0.64rem/1.45 var(--font-mono), monospace;
+  }
+
+  @media (max-width: 35rem) {
+    .vaporwave-transform__pair {
+      grid-template-columns: 1fr;
+    }
+
+    .vaporwave-transform__pair > div + div {
+      border-top: 1px solid rgb(85 234 219 / 0.25);
+      border-left: 0;
+    }
+  }
+</style>

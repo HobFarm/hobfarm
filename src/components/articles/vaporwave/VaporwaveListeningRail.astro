@@ -1,0 +1,170 @@
+---
+const links = [
+  {
+    year: "2011",
+    title: "Far Side Virtual",
+    artist: "James Ferraro",
+    href: "https://www.thefader.com/2011/12/14/interview-james-ferraro",
+    note: "Ferraro describes the modern digital spaces, devices, and default sounds surrounding the record.",
+  },
+  {
+    year: "2014",
+    title: "Palm Mall",
+    artist: "猫 シ Corp.",
+    href: "https://catsystemcorp.bandcamp.com/album/palm-mall",
+    note: "An artist-hosted mallsoft environment entered through headphones.",
+  },
+  {
+    year: "2015",
+    title: "Birth of a New Day",
+    artist: "2814",
+    href: "https://2814.bandcamp.com/album/birth-of-a-new-day",
+    note: "A later virtual city built from atmosphere, scale, and distance.",
+  },
+];
+---
+
+<section class="vaporwave-listening article-wide not-prose" aria-labelledby="vaporwave-listening-title">
+  <header>
+    <span>Artist-hosted listening</span>
+    <h3 id="vaporwave-listening-title">The album cover is part of the instrument</h3>
+  </header>
+  <div class="vaporwave-listening__player">
+    <iframe
+      title="Floral Shoppe by Macintosh Plus on Bandcamp"
+      src="https://bandcamp.com/EmbeddedPlayer/album=571360365/size=large/bgcol=0b0714/linkcol=ff5ecb/transparent=true/"
+      seamless
+      loading="lazy"
+    ></iframe>
+    <div>
+      <strong>Floral Shoppe</strong>
+      <span>Macintosh Plus / Vektroid · 2011</span>
+      <p>The primary player stays with the artist’s official Bandcamp release. Additional records remain direct links instead of loading more players.</p>
+      <a href="https://vektroid.bandcamp.com/album/floral-shoppe" target="_blank" rel="noopener noreferrer">Open the official album page ↗</a>
+    </div>
+  </div>
+  <div class="vaporwave-listening__links">
+    {links.map((item) => (
+      <a href={item.href} target="_blank" rel="noopener noreferrer">
+        <small>{item.year}</small>
+        <strong>{item.title}</strong>
+        <span>{item.artist}</span>
+        <p>{item.note}</p>
+      </a>
+    ))}
+  </div>
+</section>
+
+<style>
+  .vaporwave-listening {
+    margin-block: 2.7rem !important;
+    padding: 0.9rem;
+    border: 1px solid rgb(255 94 203 / 0.38);
+    background:
+      radial-gradient(circle at 90% 5%, rgb(85 234 219 / 0.13), transparent 28%),
+      #080611;
+    box-shadow: 0.65rem 0.72rem 0 rgb(4 2 10 / 0.3);
+  }
+
+  header {
+    padding: 0.15rem 0.1rem 0.85rem;
+  }
+
+  header span,
+  small {
+    color: #55eadb;
+    font: 750 0.61rem/1.35 var(--font-mono), monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  header h3 {
+    margin: 0.2rem 0 0;
+    color: #fff;
+    font: 650 clamp(1.1rem, 3vw, 1.55rem)/1.15 var(--font-display), Georgia, serif;
+  }
+
+  .vaporwave-listening__player {
+    display: grid;
+    grid-template-columns: minmax(13rem, 42%) 1fr;
+    gap: 1rem;
+    padding: 0.8rem;
+    border: 1px solid rgb(85 234 219 / 0.22);
+    background: rgb(0 0 0 / 0.18);
+  }
+
+  iframe {
+    width: 100%;
+    height: 470px;
+    border: 0;
+  }
+
+  .vaporwave-listening__player > div {
+    align-self: center;
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .vaporwave-listening__player strong,
+  .vaporwave-listening__links strong {
+    color: #fff;
+    font: 650 1rem/1.2 var(--font-display), Georgia, serif;
+  }
+
+  .vaporwave-listening__player span,
+  .vaporwave-listening__links span {
+    color: #ff7fd6;
+    font: 700 0.64rem/1.35 var(--font-mono), monospace;
+  }
+
+  .vaporwave-listening__player p,
+  .vaporwave-listening__links p {
+    margin: 0.4rem 0 !important;
+    color: #aaa0b1 !important;
+    font-size: 0.72rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .vaporwave-listening__player a {
+    color: #55eadb !important;
+    font: 750 0.65rem/1.4 var(--font-mono), monospace;
+  }
+
+  .vaporwave-listening__links {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.65rem;
+    margin-top: 0.65rem;
+  }
+
+  .vaporwave-listening__links a {
+    display: grid;
+    align-content: start;
+    gap: 0.22rem;
+    padding: 0.75rem;
+    color: #ded8e2 !important;
+    border: 1px solid rgb(255 94 203 / 0.2);
+    text-decoration: none !important;
+  }
+
+  .vaporwave-listening__links a:hover,
+  .vaporwave-listening__links a:focus-visible {
+    border-color: #ff5ecb;
+    outline: 2px solid #ff5ecb;
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 42rem) {
+    .vaporwave-listening__player {
+      grid-template-columns: 1fr;
+    }
+
+    iframe {
+      height: 400px;
+    }
+
+    .vaporwave-listening__links {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

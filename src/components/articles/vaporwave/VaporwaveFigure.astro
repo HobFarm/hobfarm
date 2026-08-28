@@ -1,0 +1,74 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption: string;
+  credit?: string;
+  width: number;
+  height: number;
+  position?: string;
+}
+
+const {
+  src,
+  alt,
+  caption,
+  credit = "Photograph by the author",
+  width,
+  height,
+  position = "center",
+} = Astro.props;
+---
+
+<figure class="vaporwave-figure article-wide not-prose">
+  <img
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading="lazy"
+    decoding="async"
+    style={`object-position: ${position}`}
+  />
+  <figcaption>
+    <span>{caption}</span>
+    <small>{credit}</small>
+  </figcaption>
+</figure>
+
+<style>
+  .vaporwave-figure {
+    margin-block: 2.45rem !important;
+    overflow: hidden;
+    border: 1px solid rgb(85 234 219 / 0.3);
+    background: #080711;
+    box-shadow: 0.6rem 0.68rem 0 rgb(4 2 10 / 0.28);
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    max-height: 42rem;
+    object-fit: cover;
+  }
+
+  figcaption {
+    display: grid;
+    gap: 0.32rem;
+    margin: 0 !important;
+    padding: 0.8rem 0.95rem 0.88rem;
+    border-top: 3px solid #ff5ecb;
+    color: #d9d3df;
+    text-align: left !important;
+  }
+
+  figcaption span {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+
+  figcaption small {
+    color: #9d93aa;
+    font: 650 0.65rem/1.4 var(--font-mono), monospace;
+  }
+</style>
