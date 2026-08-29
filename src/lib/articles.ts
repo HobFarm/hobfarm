@@ -14,6 +14,7 @@ import {
   type EditorialSubjectId,
   getEditorialEntity,
   getEditorialSection,
+  getEditorialSeries,
   getEditorialSubject,
 } from "@/data/editorial-mesh";
 import {
@@ -23,6 +24,12 @@ import {
 import { isArticlePublicAt } from "@/lib/article-publication";
 
 export type { RelatedArticleScore } from "@/lib/editorial-mesh";
+export {
+  getArticleDek,
+  getArticleDescription,
+  getArticleDocumentTitle,
+  getArticleSeoTitle,
+} from "@/lib/article-metadata";
 
 export type Article = CollectionEntry<"articles">;
 export type ArticleData = Article["data"];
@@ -99,18 +106,6 @@ export function getArticleUpdatedDate(articleOrData: Article | ArticleData): Dat
   return value ? new Date(value) : undefined;
 }
 
-export function getArticleDescription(data: ArticleData): string {
-  return data.description ?? data.dek ?? data.excerpt;
-}
-
-export function getArticleSeoTitle(data: ArticleData): string {
-  return data.seoTitle ?? data.title;
-}
-
-export function getArticleDek(data: ArticleData): string {
-  return data.dek ?? data.excerpt;
-}
-
 export function getArticleImage(data: ArticleData): string | undefined {
   return data.socialImage ?? data.heroImage ?? data.hero;
 }
@@ -150,10 +145,16 @@ export function getArticleMeshKeywords(data: ArticleData): string[] {
   const mesh = data.mesh;
   if (!mesh) return data.tags;
 
+  const subjectLabels = mesh.subjects.map(
+    (id) => getEditorialSubject(id)?.label ?? id,
+  );
+  const seriesLabels = mesh.series.map(
+    (id) => getEditorialSeries(id)?.label ?? id,
+  );
   const entityLabels = editorialEntityTypes.flatMap((type) =>
     mesh.entities[type].map((id) => getEditorialEntity(id)?.label ?? id),
   );
-  return [...new Set([...mesh.subjects, ...mesh.series, ...entityLabels])];
+  return [...new Set([...subjectLabels, ...seriesLabels, ...entityLabels])];
 }
 
 export function getArticleAboutEntities(data: ArticleData) {

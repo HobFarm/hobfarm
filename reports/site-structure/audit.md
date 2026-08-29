@@ -1,11 +1,11 @@
 # Site structure audit
 
-Generated: 2026-08-25T15:29:55.400Z
+Generated: 2026-08-29T09:11:44.327Z
 
 ## Summary
 
-- 829 built route files, including 799 HTML pages.
-- 71 released article routes inspected.
+- 856 built route files, including 825 HTML pages.
+- 75 released article routes inspected.
 - 0 structural errors.
 - 0 review warnings.
 - 0 orphaned released articles.

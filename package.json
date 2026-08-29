@@ -12,6 +12,7 @@
     "audit:academy-paid": "node scripts/audit-academy-paid-content.mjs",
     "audit:editorial-mesh": "node scripts/audit-editorial-mesh.mjs",
     "audit:site-structure": "node scripts/audit-site-structure.mjs",
+    "preview:article-search": "node scripts/preview-article-search.mjs",
     "report:editorial-mesh": "node scripts/generate-editorial-mesh-reports.mjs",
     "build:self-defense-assets": "node scripts/build-intellectual-self-defense-assets.mjs",
     "build:too-big-for-box-assets": "node scripts/build-too-big-for-box-assets.mjs",

@@ -8,12 +8,12 @@ import {
   getArticleDek,
   getArticleDepartment,
   getArticleDescription,
+  getArticleDocumentTitle,
   getArticleHero,
   getArticleImage,
   getArticleMeshKeywords,
   getArticleSectionLabel,
   getArticleSectionPath,
-  getArticleSeoTitle,
   getArticleSubjectCounts,
   getArticleUpdatedDate,
   getPublishedArticles,
@@ -47,7 +47,6 @@ const frontmatter = article.data;
 const publishedAt = getArticleDate(article);
 const updatedAt = getArticleUpdatedDate(article);
 const description = getArticleDescription(frontmatter);
-const seoTitle = getArticleSeoTitle(frontmatter);
 const dek = getArticleDek(frontmatter);
 const hero = getArticleHero(frontmatter);
 const seoImage = getArticleImage(frontmatter);
@@ -269,7 +268,7 @@ const articleJsonLd = {
 ---
 
 <BaseLayout
-  title={`${seoTitle} | HobFarm`}
+  title={getArticleDocumentTitle(frontmatter)}
   description={description}
   canonical={canonicalUrl}
   image={seoImage}

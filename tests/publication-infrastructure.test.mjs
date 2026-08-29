@@ -8,13 +8,21 @@ const workflowDirectory = join(root, ".github", "workflows");
 const scriptDirectory = join(root, "scripts");
 
 const read = (path) => readFile(join(root, path), "utf8");
+const readDirectory = async (path) => {
+  try {
+    return await readdir(path, { withFileTypes: true });
+  } catch (error) {
+    if (error?.code === "ENOENT") return [];
+    throw error;
+  }
+};
 const escapeRegExp = (value) =>
   value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 test("remaining one-time article publishers are paired and self-removing", async () => {
   const [workflowEntries, scriptEntries] = await Promise.all([
-    readdir(workflowDirectory, { withFileTypes: true }),
-    readdir(scriptDirectory, { withFileTypes: true }),
+    readDirectory(workflowDirectory),
+    readDirectory(scriptDirectory),
   ]);
   const workflows = workflowEntries
     .filter((entry) => entry.isFile() && /^publish-.+\.yml$/.test(entry.name))

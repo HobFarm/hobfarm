@@ -293,7 +293,7 @@ test("article pages support focused search titles and unrestricted search previe
   const seo = read("src/components/fundations/head/Seo.astro");
 
   assert.match(contentConfig, /seoTitle:\s*z\.string\(\)\.optional\(\)/);
-  assert.match(articleLayout, /title=\{`\$\{seoTitle\} \| HobFarm`\}/);
+  assert.match(articleLayout, /title=\{getArticleDocumentTitle\(frontmatter\)\}/);
   assert.match(seo, /max-image-preview:large/);
   assert.match(seo, /max-snippet:-1/);
   assert.match(seo, /max-video-preview:-1/);
