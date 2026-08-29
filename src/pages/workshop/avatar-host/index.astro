@@ -6,6 +6,7 @@ import { avatars, getAvatar } from "@/data/avatars";
 import WorkshopProgramNav from "@/components/workshop/WorkshopProgramNav.astro";
 import { avatarHostMedia } from "@/data/avatar-host-media";
 import WorkshopCourseBridge from "@/components/academy/WorkshopCourseBridge.astro";
+import Breadcrumbs from "@/components/global/Breadcrumbs.astro";
 
 const hobgalVideo = getMedia("avatar-host.hobgal.prototype.video");
 const hobgalTranscript = getMedia("avatar-host.hobgal.prototype.transcript");
@@ -158,6 +159,7 @@ const structuredData = {
   <article class="host-study">
     <header class="hero">
       <Wrapper variant="standard" class="py-16 lg:py-24">
+        <div class="mb-8"><Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Workshop", href: "/workshop/" }, { label: "Avatar & Host" }]} /></div>
         <div class="hero-layout">
           <div>
             <p class="kicker">HobFarm Workshop program</p>

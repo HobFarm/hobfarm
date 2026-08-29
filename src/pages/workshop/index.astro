@@ -7,6 +7,7 @@ import WorkshopMethodStrip from "@/components/workshop/WorkshopMethodStrip.astro
 import ProjectGrowthDiagram from "@/components/workshop/ProjectGrowthDiagram.astro";
 import EzizeEvidence from "@/components/workshop/EzizeEvidence.astro";
 import WorkshopProjectGrid from "@/components/workshop/WorkshopProjectGrid.astro";
+import Breadcrumbs from "@/components/global/Breadcrumbs.astro";
 import { getArticleDepartment, getPublishedArticles } from "@/lib/articles";
 import { getMedia } from "@/data/media-registry";
 import { selectedWorkshopProjects } from "@/data/workshop-projects";
@@ -49,6 +50,7 @@ const workshopJsonLd = {
   <div class="workshop-hub">
     <section class="workshop-hero" aria-labelledby="workshop-hero-heading">
       <Wrapper variant="standard" class="workshop-hero__wrapper">
+        <div class="mb-8"><Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Workshop" }]} /></div>
         <figure class="workshop-hero__figure">
           <div class="workshop-hero__media">
             <img src={workshopHero.src} alt={workshopHero.alt} width={workshopHero.width} height={workshopHero.height} loading="eager" fetchpriority="high" decoding="async" />

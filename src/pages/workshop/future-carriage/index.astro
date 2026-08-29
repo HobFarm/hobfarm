@@ -2,6 +2,7 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Breadcrumbs from "@/components/global/Breadcrumbs.astro";
 import { getMedia } from "@/data/media-registry";
 
 const introVideo = getMedia("workshop.ami-legacy.intro.video");
@@ -168,6 +169,7 @@ const structuredData = {
   <article class="carriage-study">
     <header class="campaign-reveal">
       <Wrapper variant="standard" class="py-14 lg:py-24">
+        <div class="mb-8"><Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Workshop", href: "/workshop/" }, { label: "Future Carriage" }]} /></div>
         <div class="campaign-reveal__copy">
           <p class="kicker">Independent concept campaign / Product visualization</p>
           <h1>Future Carriage: A Concept Campaign from Historical Carriage Design</h1>

@@ -14,6 +14,7 @@ import ProcessStepGrid from "@/components/process/ProcessStepGrid.astro";
 import VisualDnaPanel from "@/components/process/VisualDnaPanel.astro";
 import GalleryCard from "@/components/gallery/GalleryCard.astro";
 import KofiCta from "@/components/KofiCta.astro";
+import Breadcrumbs from "@/components/global/Breadcrumbs.astro";
 import { getProcessAssetUrl, type ProcessPipeline } from "@/data/processPipelines";
 
 interface Props {
@@ -21,6 +22,7 @@ interface Props {
   canonical?: string;
   noindex?: boolean;
   backHref?: string;
+  breadcrumbs?: Array<{ label: string; href?: string }>;
 }
 
 const {
@@ -28,6 +30,7 @@ const {
   canonical,
   noindex = false,
   backHref = "/services/#process",
+  breadcrumbs,
 } = Astro.props;
 const ogUrl = getProcessAssetUrl(pipeline, pipeline.media.og ?? pipeline.media.hero);
 
@@ -74,6 +77,7 @@ const metadata = processMetadata[pipeline.slug] ?? {
   <section class="bg-noise">
     <ContentPanel>
       <Wrapper variant="standard" class="py-12 lg:py-16">
+        {breadcrumbs && <div class="mb-8"><Breadcrumbs items={breadcrumbs} /></div>}
         <a href={backHref} class="font-mono text-xs uppercase tracking-widest text-base-500 transition-colors hover:text-white">
           &larr; Back to how it's made
         </a>

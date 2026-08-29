@@ -69,6 +69,11 @@ const structuredData = { "@context":"https://schema.org", "@type":"CollectionPag
 const pageFeed = program.id === "workshop-notes"
   ? { href: "/workshop/workshop-notes/rss.xml", title: "HobFarm Workshop Notes" }
   : { href: "/rss.xml", title: "HobFarm Articles" };
+const programBreadcrumbs = [
+  { label: "Home", href: "/" },
+  { label: "Workshop", href: "/workshop/" },
+  { label: program.name },
+];
 const academyBridge = program.id === "cute-corrupted"
   ? {
       courseSlug: "one-base-two-modes",
@@ -87,10 +92,11 @@ const academyBridge = program.id === "cute-corrupted"
     canonical={program.href}
     noindex={program.noindex === true}
     backHref="/workshop/"
+    breadcrumbs={programBreadcrumbs}
   />
 ) : (
 <BaseLayout title={`${program.name} | HobFarm Workshop`} description={program.description} canonical={program.href} image={pageHero} imageAlt={pageHeroAlt} structuredData={structuredData} palette="blue-red" noindex={program.noindex === true} feed={pageFeed}>
-  <SectionHero eyebrow={program.status === "historical" ? "EZIZE development history" : "HobFarm Workshop program"} title={program.name} deck={program.description} image={pageHero} imageAlt={pageHeroAlt} theme={program.theme} status={status} cta={{label:program.status === "historical" ? "See the origin studies" : "See the work",href:"#work"}} breadcrumbs={[{label:"Home",href:"/"},{label:"Workshop",href:"/workshop/"},{label:program.name}]} />
+  <SectionHero eyebrow={program.status === "historical" ? "EZIZE development history" : "HobFarm Workshop program"} title={program.name} deck={program.description} image={pageHero} imageAlt={pageHeroAlt} theme={program.theme} status={status} cta={{label:program.status === "historical" ? "See the origin studies" : "See the work",href:"#work"}} breadcrumbs={programBreadcrumbs} />
 
   {program.id === "cute-corrupted" && <section class="ezize-bridge border-b border-base-800/70">
     <Wrapper variant="standard" class="py-8">

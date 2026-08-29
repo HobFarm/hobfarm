@@ -104,6 +104,14 @@ test("the post-deploy discovery checklist covers external state", async () => {
   }
 });
 
+test("discovery guidance separates Search Console monitoring from implementation defects", async () => {
+  const guidance = await read("docs/article-discovery-authoring.md");
+
+  assert.match(guidance, /“Discovered – currently not indexed” status as a monitoring state/);
+  assert.match(guidance, /does not establish a code defect/);
+  assert.match(guidance, /Never request indexing for scheduled, draft, private, or noindex URLs/);
+});
+
 test("Bing ownership verification is published at the site root", async () => {
   const verification = await read("public/BingSiteAuth.xml");
   assert.match(verification, /^<\?xml version="1\.0"\?>/);

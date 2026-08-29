@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-29T09:11:44.327Z",
+  "generatedAt": "2026-08-29T10:56:24.675Z",
   "buildRoot": "dist/client",
   "counts": {
     "files": 1304,
@@ -216808,7 +216808,8 @@
       "jsonLdTypes": [
         "CollectionPage",
         "ItemList",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "internalLinks": [
         "/",
@@ -216908,7 +216909,9 @@
       "indexable": true,
       "jsonLdTypes": [
         "TechArticle",
-        "CollectionPage"
+        "CollectionPage",
+        "BreadcrumbList",
+        "ListItem"
       ],
       "internalLinks": [
         "/",
@@ -217012,7 +217015,9 @@
       "jsonLdTypes": [
         "Organization",
         "WebSite",
-        "WebPage"
+        "WebPage",
+        "BreadcrumbList",
+        "ListItem"
       ],
       "internalLinks": [
         "/",
@@ -217063,7 +217068,8 @@
         "CollectionPage",
         "ItemList",
         "ListItem",
-        "VideoObject"
+        "VideoObject",
+        "BreadcrumbList"
       ],
       "internalLinks": [
         "/",
@@ -217172,7 +217178,9 @@
       "jsonLdTypes": [
         "Organization",
         "WebSite",
-        "WebPage"
+        "WebPage",
+        "BreadcrumbList",
+        "ListItem"
       ],
       "internalLinks": [
         "/",
@@ -217223,7 +217231,9 @@
       "jsonLdTypes": [
         "CreativeWork",
         "VideoObject",
-        "CollectionPage"
+        "CollectionPage",
+        "BreadcrumbList",
+        "ListItem"
       ],
       "internalLinks": [
         "/",
@@ -217276,7 +217286,9 @@
       "jsonLdTypes": [
         "Organization",
         "WebSite",
-        "WebPage"
+        "WebPage",
+        "BreadcrumbList",
+        "ListItem"
       ],
       "internalLinks": [
         "/",
@@ -217437,7 +217449,9 @@
       "jsonLdTypes": [
         "Organization",
         "WebSite",
-        "WebPage"
+        "WebPage",
+        "BreadcrumbList",
+        "ListItem"
       ],
       "internalLinks": [
         "/",
@@ -217491,7 +217505,9 @@
         "WebPage",
         "FAQPage",
         "Question",
-        "Answer"
+        "Answer",
+        "BreadcrumbList",
+        "ListItem"
       ],
       "internalLinks": [
         "/",
@@ -217693,7 +217709,9 @@
       "indexable": true,
       "jsonLdTypes": [
         "TechArticle",
-        "CollectionPage"
+        "CollectionPage",
+        "BreadcrumbList",
+        "ListItem"
       ],
       "internalLinks": [
         "/",

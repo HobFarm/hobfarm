@@ -7,6 +7,7 @@ import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import StatusBadge from "@/components/ui/StatusBadge.astro";
 import ProviderProjection from "@/components/workshop/ProviderProjection.astro";
+import Breadcrumbs from "@/components/global/Breadcrumbs.astro";
 import { getProjectHeroMedia } from "@/data/media-registry";
 
 interface Props {
@@ -172,6 +173,7 @@ const styleFusionJsonLd = {
   <section class="bg-noise overflow-hidden">
     <ContentPanel class="overflow-hidden">
       <Wrapper variant="standard" class="py-10 lg:py-16">
+        <div class="mb-8"><Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Workshop", href: "/workshop/" }, { label: "StyleFusion" }]} /></div>
         <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.82fr)] lg:items-center">
           <div class="max-w-3xl">
             <div class="mb-5 flex flex-wrap items-center gap-3">

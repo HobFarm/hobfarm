@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Breadcrumbs from "@/components/global/Breadcrumbs.astro";
 import { getMedia } from "@/data/media-registry";
 
 const cdnBase = "https://cdn.hob.farm/articles/color-becomes-cast";
@@ -90,6 +91,7 @@ const structuredData = {
   <article class="psygoth-study">
     <header class="hero">
       <Wrapper variant="standard" class="py-16 lg:py-24">
+        <div class="mb-8"><Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Workshop", href: "/workshop/" }, { label: "Workshop Notes", href: "/workshop/workshop-notes/" }, { label: "PsyGoth" }]} /></div>
         <div class="hero-layout">
           <div>
             <p class="kicker">Workshop Notes / Character systems</p>

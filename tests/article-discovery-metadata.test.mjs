@@ -78,3 +78,11 @@ test("structured metadata uses reader-facing mesh labels", () => {
   assert.match(articles, /getEditorialSubject\(id\)\?\.label/);
   assert.match(articles, /getEditorialSeries\(id\)\?\.label/);
 });
+
+test("Article image structured data keeps its valid content URL without a duplicate URL property", () => {
+  const articleLayout = readFileSync("src/layouts/ArticleLayout.astro", "utf8");
+  const imageObject = articleLayout.match(/"@type": "ImageObject",[\s\S]*?caption: frontmatter\.heroAlt \?\? frontmatter\.title,/)?.[0] ?? "";
+
+  assert.match(imageObject, /contentUrl: toAbsoluteUrl\(seoImage\)/);
+  assert.doesNotMatch(imageObject, /\n\s*url:/);
+});

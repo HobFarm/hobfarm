@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Breadcrumbs from "@/components/global/Breadcrumbs.astro";
 import AmbientVideoFrame from "@/components/media/AmbientVideoFrame.astro";
 import BeforeAfterCompare from "@/components/ui/BeforeAfterCompare.astro";
 import WorkshopProgramNav from "@/components/workshop/WorkshopProgramNav.astro";
@@ -57,9 +58,7 @@ const archiveCategories: ReadonlyArray<{ label: string; href?: string; note: str
 <div class="before-after-page">
   <section class="archive-hero" aria-labelledby="before-after-title">
     <Wrapper variant="standard" class="archive-hero__inner">
-      <nav class="breadcrumbs" aria-label="Breadcrumb">
-        <a href="/">Home</a><span aria-hidden="true">/</span><a href="/workshop/">Workshop</a><span aria-hidden="true">/</span><span>Before &amp; After</span>
-      </nav>
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Workshop", href: "/workshop/" }, { label: "Before & After" }]} />
 
       <div class="archive-hero__copy">
         <p class="archive-kicker">HobFarm Workshop / visual archive</p>
@@ -393,9 +392,6 @@ const archiveCategories: ReadonlyArray<{ label: string; href?: string; note: str
   .before-after-page { --archive-cyan:#71d6e8; --archive-amber:#d9b35f; --archive-red:#ef6b57; --archive-ink:#080a0c; background:var(--archive-ink); color:#ece9f5; }
   .archive-hero { overflow:hidden; border-bottom:1px solid #28313a; background:linear-gradient(90deg,rgba(113,214,232,.06) 1px,transparent 1px),linear-gradient(rgba(113,214,232,.045) 1px,transparent 1px),#080a0c; background-size:4rem 4rem; }
   .archive-hero__inner { padding-top:2rem; padding-bottom:3rem; }
-  .breadcrumbs { display:flex; flex-wrap:wrap; gap:.5rem; color:#87919b; font-family:var(--font-mono); font-size:.64rem; letter-spacing:.08em; text-transform:uppercase; }
-  .breadcrumbs a { color:#b8c1c9; text-decoration:none; }
-  .breadcrumbs a:hover { color:#fff; }
   .archive-hero__copy { display:grid; gap:1rem; max-width:74rem; margin-top:clamp(3rem,8vw,7rem); }
   .archive-kicker { margin:0; color:var(--archive-cyan); font-family:var(--font-mono); font-size:.66rem; letter-spacing:.17em; text-transform:uppercase; }
   .archive-hero h1 { margin:0; color:#fff; font-family:var(--font-display); font-size:clamp(4rem,14vw,10rem); font-weight:250; letter-spacing:-.07em; line-height:.78; }

@@ -1,6 +1,6 @@
 # Site structure audit
 
-Generated: 2026-08-29T09:11:44.327Z
+Generated: 2026-08-29T10:56:24.675Z
 
 ## Summary
 

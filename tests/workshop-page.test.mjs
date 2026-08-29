@@ -199,3 +199,34 @@ test("Workshop method uses five durable production stages", () => {
   assert.match(component, /showMedia\?: boolean/);
   assert.match(page, /<WorkshopMethodStrip showMedia \/>/);
 });
+
+test("public Workshop templates use the shared visible and structured breadcrumb source", () => {
+  const breadcrumb = read("src/components/global/Breadcrumbs.astro");
+  assert.match(breadcrumb, /<nav aria-label="Breadcrumb"/);
+  assert.match(breadcrumb, /<a href=\{item\.href\}>/);
+  assert.match(breadcrumb, /"@type": "BreadcrumbList"/);
+  assert.match(breadcrumb, /itemListElement: items\.map/);
+
+  for (const path of [
+    "src/pages/workshop/index.astro",
+    "src/pages/workshop/avatar-host/index.astro",
+    "src/pages/workshop/future-carriage/index.astro",
+    "src/pages/workshop/workshop-notes/psygoth/index.astro",
+    "src/components/projects/StyleFusionProjectPage.astro",
+    "src/components/workshop/CharacterMannequinPage.astro",
+    "src/components/workshop/BeforeAfterArchive.astro",
+  ]) {
+    const source = read(path);
+    assert.match(source, /import Breadcrumbs from "@\/components\/global\/Breadcrumbs\.astro"/);
+    assert.match(source, /<Breadcrumbs items=/);
+  }
+
+  const route = read("src/pages/workshop/[program].astro");
+  const process = read("src/components/process/ProcessMethodPage.astro");
+  assert.match(route, /const programBreadcrumbs =/);
+  assert.match(route, /breadcrumbs=\{programBreadcrumbs\}/);
+  assert.match(process, /breadcrumbs && <div class="mb-8"><Breadcrumbs items=\{breadcrumbs\}/);
+
+  const beforeAfterPage = read("src/pages/workshop/before-and-after/index.astro");
+  assert.doesNotMatch(beforeAfterPage, /"@type": "BreadcrumbList"/);
+});

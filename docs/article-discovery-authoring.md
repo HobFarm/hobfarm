@@ -57,4 +57,10 @@ Scheduled and draft articles may carry complete mesh metadata in the repository.
 
 Workshop Notes continue to use the Articles collection with `format: workshop-note`. Academy and project relationships use their existing public registries. A separate SEO taxonomy, entity-page generator, or Workshop content system is not needed for this contract.
 
+## Production monitoring
+
+Treat Google Search Console's “Discovered – currently not indexed” status as a monitoring state when the live URL inspection succeeds, the page allows indexing, the declared canonical is correct, and the URL appears in the sitemap and public internal links. That status alone does not establish a code defect.
+
+Record the affected canonical URL and revisit its coverage. Do not automate repeated indexing requests. Never request indexing for scheduled, draft, private, or noindex URLs.
+
 The implementation follows Google's current guidance for [title links](https://developers.google.com/search/docs/appearance/title-link), [snippets and meta descriptions](https://developers.google.com/search/docs/appearance/snippet), [crawlable links](https://developers.google.com/search/docs/crawling-indexing/links-crawlable), and [Article structured data](https://developers.google.com/search/docs/appearance/structured-data/article).
