@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-08-29T00:43:14.078Z",
+  "bucket": "hobfarm-cdn",
+  "publicDomain": "cdn.hob.farm",
+  "objectCount": 0,
+  "totalBytes": 0,
+  "policy": {
+    "classificationRequired": "orphan-high-confidence",
+    "executesDeletion": false,
+    "minimumAgeDays": 90,
+    "note": "This file is a proposal. It contains no command or authorization to delete R2 objects."
+  },
+  "objects": []
+}

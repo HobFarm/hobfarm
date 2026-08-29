@@ -554,6 +554,27 @@ Keep share controls visible, clean, and secondary to the article.
 
 ---
 
+## R2 Media Path Rules
+
+Use these prefixes for new public R2 uploads:
+
+```text
+articles/{article-slug}/{filename}
+presents/{title}/{filename}
+workshop/{program}/{filename}
+gallery/{collection}/{entry}/{filename}
+projects/{project-slug}/{filename}
+shop/{product}/{public-filename}
+```
+
+Do not add new objects under `blog/`, a generic `pages/` prefix, or an ad hoc
+root prefix when one of the established destinations fits. Treat existing R2
+keys as durable URLs. Do not move or rename old objects merely to make the
+bucket look consistent; a real migration must update references, preserve the
+old URL through verification, and remove it only after a separate review.
+
+---
+
 ## Gallery Rules
 
 Gallery is a shared visual archive. Its entries can support Editorial, HobFarm Presents, Workshop, Projects, games, and Shop without becoming a separate business division.

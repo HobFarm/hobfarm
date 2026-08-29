@@ -1,0 +1,1026 @@
+{
+  "generatedAt": "2026-08-29T00:43:14.078Z",
+  "bucket": "hobfarm-cdn",
+  "policy": "Duplicate evidence does not authorize deletion. Consolidation must preserve every active consumer and may require URL changes.",
+  "strongProbableGroupCount": 35,
+  "possibleGroupCount": 0,
+  "strongProbableTheoreticalRecoverableBytes": 138481900,
+  "strongProbable": [
+    {
+      "id": "etag-size-034",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 21620786,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 21620786,
+      "consolidationRequiresRepositoryChanges": false,
+      "objects": [
+        {
+          "key": "shop/videos-posters/hc-video-001.mp4",
+          "size": 21620786,
+          "etag": "5b6e2d06a84f9061e0e7528a74a38558",
+          "classification": "protected",
+          "repositoryReferenceCount": 0
+        },
+        {
+          "key": "workshop/alter-ego/hc-video-001.mp4",
+          "size": 21620786,
+          "etag": "5b6e2d06a84f9061e0e7528a74a38558",
+          "classification": "active",
+          "repositoryReferenceCount": 2
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-010",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 16670035,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 16670035,
+      "consolidationRequiresRepositoryChanges": false,
+      "objects": [
+        {
+          "key": "gallery/before-and-after/1926-2026/before-and-after-1926-2026.mp4",
+          "size": 16670035,
+          "etag": "d4cf14ea92215d4d48df1b3e733a2bfa",
+          "classification": "active",
+          "repositoryReferenceCount": 3
+        },
+        {
+          "key": "workshop/before-and-after/character/before-and-after-1926-2026.mp4",
+          "size": 16670035,
+          "etag": "d4cf14ea92215d4d48df1b3e733a2bfa",
+          "classification": "review",
+          "repositoryReferenceCount": 0
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-016",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 12399875,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 12399875,
+      "consolidationRequiresRepositoryChanges": false,
+      "objects": [
+        {
+          "key": "gallery/color-design/hobfarm-color-design-example-02.mp4",
+          "size": 12399875,
+          "etag": "fd5402b72c6b90a557f82228ae9ccf1c",
+          "classification": "active",
+          "repositoryReferenceCount": 2
+        },
+        {
+          "key": "workshop/psygoth/design/hobfarm-color-design-example-02.mp4",
+          "size": 12399875,
+          "etag": "fd5402b72c6b90a557f82228ae9ccf1c",
+          "classification": "review",
+          "repositoryReferenceCount": 0
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-014",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 11101466,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 11101466,
+      "consolidationRequiresRepositoryChanges": false,
+      "objects": [
+        {
+          "key": "gallery/color-design/hobfarm-color-design-example-01.mp4",
+          "size": 11101466,
+          "etag": "6dcbafbdb69f3067da9b7c24f4ecce18",
+          "classification": "active",
+          "repositoryReferenceCount": 2
+        },
+        {
+          "key": "workshop/psygoth/design/hobfarm-color-design-example-01.mp4",
+          "size": 11101466,
+          "etag": "6dcbafbdb69f3067da9b7c24f4ecce18",
+          "classification": "review",
+          "repositoryReferenceCount": 0
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-028",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 11074345,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 11074345,
+      "consolidationRequiresRepositoryChanges": true,
+      "objects": [
+        {
+          "key": "pages/home/stylefusion.mp4",
+          "size": 11074345,
+          "etag": "e4d693efd3dea9492733cf3d3b3dbc16",
+          "classification": "active",
+          "repositoryReferenceCount": 2
+        },
+        {
+          "key": "pages/projects/images/stylefusion-banner-video.mp4",
+          "size": 11074345,
+          "etag": "e4d693efd3dea9492733cf3d3b3dbc16",
+          "classification": "active",
+          "repositoryReferenceCount": 3
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-024",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 9105798,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 9105798,
+      "consolidationRequiresRepositoryChanges": false,
+      "objects": [
+        {
+          "key": "gallery/scene/scene-v1-001.mp4",
+          "size": 9105798,
+          "etag": "6454f4e014c420366dba1249d2f36b20",
+          "classification": "active",
+          "repositoryReferenceCount": 2
+        },
+        {
+          "key": "workshop/scene/scene-v1-001.mp4",
+          "size": 9105798,
+          "etag": "6454f4e014c420366dba1249d2f36b20",
+          "classification": "review",
+          "repositoryReferenceCount": 0
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-026",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 6325235,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 6325235,
+      "consolidationRequiresRepositoryChanges": false,
+      "objects": [
+        {
+          "key": "gallery/scene/scene-v1-003.png",
+          "size": 6325235,
+          "etag": "4be663450cd9ebcb2e956d2d0d506d11",
+          "classification": "active",
+          "repositoryReferenceCount": 2
+        },
+        {
+          "key": "workshop/scene/scene-v1-003.png",
+          "size": 6325235,
+          "etag": "4be663450cd9ebcb2e956d2d0d506d11",
+          "classification": "review",
+          "repositoryReferenceCount": 0
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-025",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 4718327,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 4718327,
+      "consolidationRequiresRepositoryChanges": false,
+      "objects": [
+        {
+          "key": "gallery/scene/scene-v1-002.png",
+          "size": 4718327,
+          "etag": "abddcbb21a17e74cc78c30a61608a8ca",
+          "classification": "active",
+          "repositoryReferenceCount": 2
+        },
+        {
+          "key": "workshop/scene/scene-v1-002.png",
+          "size": 4718327,
+          "etag": "abddcbb21a17e74cc78c30a61608a8ca",
+          "classification": "review",
+          "repositoryReferenceCount": 0
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-017",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 3853876,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 3853876,
+      "consolidationRequiresRepositoryChanges": false,
+      "objects": [
+        {
+          "key": "gallery/color-design/hobfarm-color-design-example-03.png",
+          "size": 3853876,
+          "etag": "dcad650aff9f1eb7907561f14ea9e0c9",
+          "classification": "active",
+          "repositoryReferenceCount": 2
+        },
+        {
+          "key": "workshop/psygoth/design/hobfarm-color-design-example-03.png",
+          "size": 3853876,
+          "etag": "dcad650aff9f1eb7907561f14ea9e0c9",
+          "classification": "review",
+          "repositoryReferenceCount": 0
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-027",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 3447055,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 3447055,
+      "consolidationRequiresRepositoryChanges": true,
+      "objects": [
+        {
+          "key": "pages/home/stylefusion.jpg",
+          "size": 3447055,
+          "etag": "37d467a5542aef180b029341d3629e8d",
+          "classification": "active",
+          "repositoryReferenceCount": 2
+        },
+        {
+          "key": "pages/projects/images/stylefusion-banner.jpg",
+          "size": 3447055,
+          "etag": "37d467a5542aef180b029341d3629e8d",
+          "classification": "active",
+          "repositoryReferenceCount": 5
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-035",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 3389886,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 3389886,
+      "consolidationRequiresRepositoryChanges": false,
+      "objects": [
+        {
+          "key": "workshop/before-and-after/scene/salton-city-2026.png",
+          "size": 3389886,
+          "etag": "e737b9eb63e97aade585a0d6a7ffc41d",
+          "classification": "review",
+          "repositoryReferenceCount": 0
+        },
+        {
+          "key": "workshop/before-and-after/scene/salton-city-2065.png",
+          "size": 3389886,
+          "etag": "e737b9eb63e97aade585a0d6a7ffc41d",
+          "classification": "active",
+          "repositoryReferenceCount": 8
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-020",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 3309620,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 3309620,
+      "consolidationRequiresRepositoryChanges": false,
+      "objects": [
+        {
+          "key": "gallery/color-design/hobfarm-color-design-example-hero.png",
+          "size": 3309620,
+          "etag": "b4d36353ee369e3de0100688089b0aac",
+          "classification": "active",
+          "repositoryReferenceCount": 5
+        },
+        {
+          "key": "workshop/psygoth/design/hobfarm-color-design-example-hero.png",
+          "size": 3309620,
+          "etag": "b4d36353ee369e3de0100688089b0aac",
+          "classification": "review",
+          "repositoryReferenceCount": 0
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-012",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 3146205,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 3146205,
+      "consolidationRequiresRepositoryChanges": false,
+      "objects": [
+        {
+          "key": "gallery/character-sheets/character-sheet-004.png",
+          "size": 3146205,
+          "etag": "2b19a9f586d88b18c46c4cc56d4d203e",
+          "classification": "staged",
+          "repositoryReferenceCount": 1
+        },
+        {
+          "key": "pages/process/fashion/fashion-sheet.png",
+          "size": 3146205,
+          "etag": "2b19a9f586d88b18c46c4cc56d4d203e",
+          "classification": "active",
+          "repositoryReferenceCount": 3
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-021",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 2734515,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 2734515,
+      "consolidationRequiresRepositoryChanges": true,
+      "objects": [
+        {
+          "key": "gallery/fashion/fashion-grammar-06.png",
+          "size": 2734515,
+          "etag": "07ae45d3ebb4d65909454d0bae58dccd",
+          "classification": "active",
+          "repositoryReferenceCount": 2
+        },
+        {
+          "key": "pages/process/fashion/fashion-hero.png",
+          "size": 2734515,
+          "etag": "07ae45d3ebb4d65909454d0bae58dccd",
+          "classification": "active",
+          "repositoryReferenceCount": 4
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-019",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 2660572,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 2660572,
+      "consolidationRequiresRepositoryChanges": false,
+      "objects": [
+        {
+          "key": "gallery/color-design/hobfarm-color-design-example-05.png",
+          "size": 2660572,
+          "etag": "c0d14bb7dc1febf26b4cd3af656c3d18",
+          "classification": "active",
+          "repositoryReferenceCount": 2
+        },
+        {
+          "key": "workshop/psygoth/design/hobfarm-color-design-example-05.png",
+          "size": 2660572,
+          "etag": "c0d14bb7dc1febf26b4cd3af656c3d18",
+          "classification": "review",
+          "repositoryReferenceCount": 0
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-018",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 2635877,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 2635877,
+      "consolidationRequiresRepositoryChanges": false,
+      "objects": [
+        {
+          "key": "gallery/color-design/hobfarm-color-design-example-04.png",
+          "size": 2635877,
+          "etag": "40716540ea956c740e186bc61baf5a17",
+          "classification": "active",
+          "repositoryReferenceCount": 2
+        },
+        {
+          "key": "workshop/psygoth/design/hobfarm-color-design-example-04.png",
+          "size": 2635877,
+          "etag": "40716540ea956c740e186bc61baf5a17",
+          "classification": "review",
+          "repositoryReferenceCount": 0
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-011",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 2590925,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 2590925,
+      "consolidationRequiresRepositoryChanges": false,
+      "objects": [
+        {
+          "key": "gallery/before-and-after/1926-2026/before-and-after-1926-2026.png",
+          "size": 2590925,
+          "etag": "412bc9db956093485c1a67d9abfb23c9",
+          "classification": "active",
+          "repositoryReferenceCount": 8
+        },
+        {
+          "key": "workshop/before-and-after/character/before-and-after-1926-2026.png",
+          "size": 2590925,
+          "etag": "412bc9db956093485c1a67d9abfb23c9",
+          "classification": "review",
+          "repositoryReferenceCount": 0
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-022",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 2436549,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 2436549,
+      "consolidationRequiresRepositoryChanges": false,
+      "objects": [
+        {
+          "key": "gallery/psychedelic-elephant/nano-banana-2.png",
+          "size": 2436549,
+          "etag": "c3e293446fda5ee679335944eb4b1ef9",
+          "classification": "staged",
+          "repositoryReferenceCount": 2
+        },
+        {
+          "key": "pages/home/style-range-2.png",
+          "size": 2436549,
+          "etag": "c3e293446fda5ee679335944eb4b1ef9",
+          "classification": "active",
+          "repositoryReferenceCount": 2
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-033",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 2182037,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 2182037,
+      "consolidationRequiresRepositoryChanges": false,
+      "objects": [
+        {
+          "key": "shop/videos-posters/hc-hd-poster-001.jpg",
+          "size": 2182037,
+          "etag": "c37a0fb61157f8522ee61a45803cbebf",
+          "classification": "protected",
+          "repositoryReferenceCount": 0
+        },
+        {
+          "key": "workshop/alter-ego/hc-hd-poster-001.jpg",
+          "size": 2182037,
+          "etag": "c37a0fb61157f8522ee61a45803cbebf",
+          "classification": "review",
+          "repositoryReferenceCount": 0
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-030",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 1799887,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 1799887,
+      "consolidationRequiresRepositoryChanges": false,
+      "objects": [
+        {
+          "key": "shop/character-sheets/hc-hd-sheet-001_2.jpg",
+          "size": 1799887,
+          "etag": "4c14ce5963c03d907cd7ba99011e117b",
+          "classification": "protected",
+          "repositoryReferenceCount": 0
+        },
+        {
+          "key": "workshop/alter-ego/hc-hd-sheet-001_2.jpg",
+          "size": 1799887,
+          "etag": "4c14ce5963c03d907cd7ba99011e117b",
+          "classification": "active",
+          "repositoryReferenceCount": 2
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-031",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 1712388,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 1712388,
+      "consolidationRequiresRepositoryChanges": false,
+      "objects": [
+        {
+          "key": "shop/hero-images/hc-hd-hero-001_1.jpg",
+          "size": 1712388,
+          "etag": "9ca48586e4abf4c6c9fb5e965c03d8f7",
+          "classification": "protected",
+          "repositoryReferenceCount": 0
+        },
+        {
+          "key": "workshop/alter-ego/hc-hd-hero-001_1.jpg",
+          "size": 1712388,
+          "etag": "9ca48586e4abf4c6c9fb5e965c03d8f7",
+          "classification": "active",
+          "repositoryReferenceCount": 2
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-001",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 1645171,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 1645171,
+      "consolidationRequiresRepositoryChanges": false,
+      "objects": [
+        {
+          "key": "3dm/3dm-logo.png",
+          "size": 1645171,
+          "etag": "22d94b8f4e068696dc0b332477135bd3",
+          "classification": "active",
+          "repositoryReferenceCount": 4
+        },
+        {
+          "key": "pages/projects/3dm/3dm-logo.png",
+          "size": 1645171,
+          "etag": "22d94b8f4e068696dc0b332477135bd3",
+          "classification": "review",
+          "repositoryReferenceCount": 0
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-029",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 1497513,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 1497513,
+      "consolidationRequiresRepositoryChanges": false,
+      "objects": [
+        {
+          "key": "shop/character-sheets/hc-hd-sheet-001_1.jpg",
+          "size": 1497513,
+          "etag": "595227c53e50ec75f88fd60cf872afbd",
+          "classification": "protected",
+          "repositoryReferenceCount": 0
+        },
+        {
+          "key": "workshop/alter-ego/hc-hd-sheet-001_1.jpg",
+          "size": 1497513,
+          "etag": "595227c53e50ec75f88fd60cf872afbd",
+          "classification": "active",
+          "repositoryReferenceCount": 2
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-032",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 1427054,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 1427054,
+      "consolidationRequiresRepositoryChanges": false,
+      "objects": [
+        {
+          "key": "shop/hero-images/hc-hd-hero-001_2.jpg",
+          "size": 1427054,
+          "etag": "fac655c6874d509bfa459a4775ccb0d3",
+          "classification": "protected",
+          "repositoryReferenceCount": 0
+        },
+        {
+          "key": "workshop/alter-ego/hc-hd-hero-001_2.jpg",
+          "size": 1427054,
+          "etag": "fac655c6874d509bfa459a4775ccb0d3",
+          "classification": "active",
+          "repositoryReferenceCount": 2
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-003",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 1212384,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 1212384,
+      "consolidationRequiresRepositoryChanges": false,
+      "objects": [
+        {
+          "key": "articles/color-becomes-cast/em-intro-poster.WEBP",
+          "size": 1212384,
+          "etag": "7d5df7f8802fc5b4f4913cbd5417c4c9",
+          "classification": "review",
+          "repositoryReferenceCount": 0
+        },
+        {
+          "key": "workshop/psygoth/em-primary.webp",
+          "size": 1212384,
+          "etag": "7d5df7f8802fc5b4f4913cbd5417c4c9",
+          "classification": "active",
+          "repositoryReferenceCount": 4
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-005",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 1160432,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 1160432,
+      "consolidationRequiresRepositoryChanges": false,
+      "objects": [
+        {
+          "key": "articles/color-becomes-cast/zima-intro-poster.WEBP",
+          "size": 1160432,
+          "etag": "0fe45aa60cbb9f7f06e568c6d9b18150",
+          "classification": "review",
+          "repositoryReferenceCount": 0
+        },
+        {
+          "key": "workshop/psygoth/zima-primary.webp",
+          "size": 1160432,
+          "etag": "0fe45aa60cbb9f7f06e568c6d9b18150",
+          "classification": "active",
+          "repositoryReferenceCount": 5
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-009",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 1141270,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 1141270,
+      "consolidationRequiresRepositoryChanges": false,
+      "objects": [
+        {
+          "key": "articles/trash-mountain/source/trash-011-beach-foam-debris-date-unknown.jpg",
+          "size": 1141270,
+          "etag": "46094a5d3733e882bc630ec50c7055a0",
+          "classification": "active",
+          "repositoryReferenceCount": 3
+        },
+        {
+          "key": "articles/trash-river/beach-trash1.jpg",
+          "size": 1141270,
+          "etag": "46094a5d3733e882bc630ec50c7055a0",
+          "classification": "review",
+          "repositoryReferenceCount": 0
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-004",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 430210,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 430210,
+      "consolidationRequiresRepositoryChanges": false,
+      "objects": [
+        {
+          "key": "articles/color-becomes-cast/nina0intro-poster.WEBP",
+          "size": 430210,
+          "etag": "0b6b47b4f62df4659a0c5768478bd18e",
+          "classification": "review",
+          "repositoryReferenceCount": 0
+        },
+        {
+          "key": "workshop/psygoth/nina-primary.webp",
+          "size": 430210,
+          "etag": "0b6b47b4f62df4659a0c5768478bd18e",
+          "classification": "active",
+          "repositoryReferenceCount": 4
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-015",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 358526,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 358526,
+      "consolidationRequiresRepositoryChanges": false,
+      "objects": [
+        {
+          "key": "gallery/color-design/hobfarm-color-design-example-02.jpg",
+          "size": 358526,
+          "etag": "27e261e21bfe9759af9558d8205e65b0",
+          "classification": "active",
+          "repositoryReferenceCount": 2
+        },
+        {
+          "key": "workshop/psygoth/design/hobfarm-color-design-example-02.jpg",
+          "size": 358526,
+          "etag": "27e261e21bfe9759af9558d8205e65b0",
+          "classification": "review",
+          "repositoryReferenceCount": 0
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-023",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 357317,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 357317,
+      "consolidationRequiresRepositoryChanges": false,
+      "objects": [
+        {
+          "key": "gallery/scene/scene-v1-001-poster.jpg",
+          "size": 357317,
+          "etag": "bc8ba9446a1e1bebb026f9b67d5df41b",
+          "classification": "active",
+          "repositoryReferenceCount": 5
+        },
+        {
+          "key": "workshop/scene/scene-v1-001-poster.jpg",
+          "size": 357317,
+          "etag": "bc8ba9446a1e1bebb026f9b67d5df41b",
+          "classification": "review",
+          "repositoryReferenceCount": 0
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-013",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 255366,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 255366,
+      "consolidationRequiresRepositoryChanges": false,
+      "objects": [
+        {
+          "key": "gallery/color-design/hobfarm-color-design-example-01.jpg",
+          "size": 255366,
+          "etag": "d9d6e9d0dfe6f1e5e9e2a6b4f167f92c",
+          "classification": "active",
+          "repositoryReferenceCount": 2
+        },
+        {
+          "key": "workshop/psygoth/design/hobfarm-color-design-example-01.jpg",
+          "size": 255366,
+          "etag": "d9d6e9d0dfe6f1e5e9e2a6b4f167f92c",
+          "classification": "review",
+          "repositoryReferenceCount": 0
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-002",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 66183,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 66183,
+      "consolidationRequiresRepositoryChanges": true,
+      "objects": [
+        {
+          "key": "3dm/dick-miller/dick-miller-undead-1957.jpg",
+          "size": 66183,
+          "etag": "e9189f15597a16e01d13f9e56686e42d",
+          "classification": "active",
+          "repositoryReferenceCount": 2
+        },
+        {
+          "key": "articles/3dm-mouse-cat-musical/dick-miller-undead-1957.jpg",
+          "size": 66183,
+          "etag": "e9189f15597a16e01d13f9e56686e42d",
+          "classification": "active",
+          "repositoryReferenceCount": 2
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-006",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 5941,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 5941,
+      "consolidationRequiresRepositoryChanges": true,
+      "objects": [
+        {
+          "key": "articles/the-card-catalog-started-talking-back/card-catalog-vs-chatbot-v1-wide.svg",
+          "size": 5941,
+          "etag": "cf7c73bb1d4e2e1710c88bc06b8bebec",
+          "classification": "active",
+          "repositoryReferenceCount": 6
+        },
+        {
+          "key": "self-defense/lessons/00-card-catalog/card-catalog-talks-back-v1.svg",
+          "size": 5941,
+          "etag": "cf7c73bb1d4e2e1710c88bc06b8bebec",
+          "classification": "active",
+          "repositoryReferenceCount": 5
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-007",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 4637,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 4637,
+      "consolidationRequiresRepositoryChanges": true,
+      "objects": [
+        {
+          "key": "articles/the-card-catalog-started-talking-back/three-gap-rule-v1-wide.svg",
+          "size": 4637,
+          "etag": "aa9dc86a9b7ef89627eede4c6d68e819",
+          "classification": "active",
+          "repositoryReferenceCount": 6
+        },
+        {
+          "key": "self-defense/lessons/05-circuit-mint/three-gap-rule-v1.svg",
+          "size": 4637,
+          "etag": "aa9dc86a9b7ef89627eede4c6d68e819",
+          "classification": "active",
+          "repositoryReferenceCount": 4
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    },
+    {
+      "id": "etag-size-008",
+      "confidence": "strong-probable",
+      "evidence": [
+        "identical R2 ETag",
+        "identical byte size"
+      ],
+      "objectSize": 4637,
+      "objectCount": 2,
+      "theoreticalRecoverableBytes": 4637,
+      "consolidationRequiresRepositoryChanges": true,
+      "objects": [
+        {
+          "key": "articles/the-card-catalog-started-talking-back/three-lanes-learn-make-live-v1-wide.svg",
+          "size": 4637,
+          "etag": "6c5f7561be7e6d9212745350bd0cede9",
+          "classification": "active",
+          "repositoryReferenceCount": 6
+        },
+        {
+          "key": "self-defense/shared/three-lanes-learn-make-live-v1.svg",
+          "size": 4637,
+          "etag": "6c5f7561be7e6d9212745350bd0cede9",
+          "classification": "active",
+          "repositoryReferenceCount": 6
+        }
+      ],
+      "note": "This is duplicate evidence only. ETag matches do not authorize deletion."
+    }
+  ],
+  "possible": []
+}

@@ -1,0 +1,4079 @@
+{
+  "generatedAt": "2026-08-29T00:43:14.078Z",
+  "bucket": "hobfarm-cdn",
+  "policy": {
+    "minimumAgeDays": 90,
+    "highConfidenceRule": "No active, staged, protected, protected-prefix, dynamic-path, or recent-sibling evidence exists for the parent prefix.",
+    "reviewRule": "Recent, root-level, or mixed-prefix objects stay in review.",
+    "protectedPrefixRules": [
+      {
+        "prefix": "agents/",
+        "reason": "Agent/application assets may be consumed outside public page rendering; HobBot is explicitly retained in redevelopment."
+      },
+      {
+        "prefix": "ezize/",
+        "reason": "EZIZE media has a documented application consumer and a dedicated public story surface."
+      },
+      {
+        "prefix": "grimoire/",
+        "reason": "Grimoire is a knowledge and application data layer with consumers outside normal article routes."
+      },
+      {
+        "prefix": "shop/",
+        "reason": "Commerce media requires product, fulfillment, and buyer-file review before removal."
+      },
+      {
+        "prefix": "products/",
+        "reason": "Product media requires commerce review before removal."
+      },
+      {
+        "prefix": "self-defense/",
+        "reason": "Academy course media can be gated or account-linked rather than emitted by public article routes."
+      },
+      {
+        "prefix": "visual-systems/",
+        "reason": "Visual-system media includes deliberately capped previews and possible paid full-resolution counterparts."
+      },
+      {
+        "prefix": "pages/other-alice-adventures/",
+        "reason": "Other Alice has a public site surface plus a separate developing game/runtime consumer."
+      },
+      {
+        "prefix": "gallery/premium-showcase/",
+        "reason": "Premium showcase media may represent protected previews for off-site paid assets."
+      },
+      {
+        "prefix": "gallery/goth-anime-line-art/",
+        "reason": "The repository retains non-entry support/source files under src/content/gallery/goth-anime-line-art/. Treat the matching CDN tree as an intentional source archive pending human review."
+      },
+      {
+        "prefix": "gallery/gothic-fantasy/",
+        "reason": "The repository retains non-entry support/source files under src/content/gallery/gothic-fantasy/. Treat the matching CDN tree as an intentional source archive pending human review."
+      },
+      {
+        "prefix": "gallery/gothic-psychedelic/",
+        "reason": "The repository retains non-entry support/source files under src/content/gallery/gothic-psychedelic/. Treat the matching CDN tree as an intentional source archive pending human review."
+      },
+      {
+        "prefix": "gallery/psychedelic-elephant/",
+        "reason": "The repository retains non-entry support/source files under src/content/gallery/psychedelic-elephant/. Treat the matching CDN tree as an intentional source archive pending human review."
+      }
+    ]
+  },
+  "highConfidence": {
+    "objectCount": 0,
+    "totalBytes": 0,
+    "groups": [],
+    "objects": []
+  },
+  "review": {
+    "objectCount": 198,
+    "totalBytes": 646543406,
+    "groups": [
+      {
+        "prefix": "articles/commune-festival/",
+        "objectCount": 31,
+        "totalBytes": 139446234
+      },
+      {
+        "prefix": "articles/vaporwave/",
+        "objectCount": 17,
+        "totalBytes": 74974948
+      },
+      {
+        "prefix": "articles/they-live/",
+        "objectCount": 1,
+        "totalBytes": 50473244
+      },
+      {
+        "prefix": "articles/color-becomes-cast/",
+        "objectCount": 7,
+        "totalBytes": 47403005
+      },
+      {
+        "prefix": "workshop/psygoth/design/",
+        "objectCount": 8,
+        "totalBytes": 36575178
+      },
+      {
+        "prefix": "workshop/before-and-after/character/",
+        "objectCount": 3,
+        "totalBytes": 34269346
+      },
+      {
+        "prefix": "brand/",
+        "objectCount": 10,
+        "totalBytes": 23587491
+      },
+      {
+        "prefix": "workshop/scene/",
+        "objectCount": 4,
+        "totalBytes": 20506677
+      },
+      {
+        "prefix": "gallery/cute-corrupted/hobunny/",
+        "objectCount": 4,
+        "totalBytes": 20067686
+      },
+      {
+        "prefix": "articles/trash-mountain/",
+        "objectCount": 6,
+        "totalBytes": 17506800
+      },
+      {
+        "prefix": "blog/1956-automation/",
+        "objectCount": 1,
+        "totalBytes": 17250891
+      },
+      {
+        "prefix": "3dm/broadway-babies/",
+        "objectCount": 9,
+        "totalBytes": 17102628
+      },
+      {
+        "prefix": "workshop/mannequin-outfit-character/designs/",
+        "objectCount": 9,
+        "totalBytes": 16527958
+      },
+      {
+        "prefix": "articles/it-just-runs-programs/",
+        "objectCount": 11,
+        "totalBytes": 13798330
+      },
+      {
+        "prefix": "gallery/cute-corrupted/sienna-red/",
+        "objectCount": 1,
+        "totalBytes": 12452848
+      },
+      {
+        "prefix": "workshop/mannequin-outfit-character/page-graphics/",
+        "objectCount": 6,
+        "totalBytes": 11479853
+      },
+      {
+        "prefix": "gallery/character-sheets/",
+        "objectCount": 1,
+        "totalBytes": 10900587
+      },
+      {
+        "prefix": "workshop/mannequin-to-avatar/v1/renders/",
+        "objectCount": 2,
+        "totalBytes": 10654322
+      },
+      {
+        "prefix": "articles/rock-art/",
+        "objectCount": 2,
+        "totalBytes": 9758931
+      },
+      {
+        "prefix": "vid-files/",
+        "objectCount": 4,
+        "totalBytes": 9756709
+      },
+      {
+        "prefix": "blog/goth-get-boots/",
+        "objectCount": 5,
+        "totalBytes": 9413935
+      },
+      {
+        "prefix": "articles/trash-river/",
+        "objectCount": 7,
+        "totalBytes": 6590912
+      },
+      {
+        "prefix": "articles/3dm-1933-wb/",
+        "objectCount": 5,
+        "totalBytes": 5389272
+      },
+      {
+        "prefix": "blog/gary-fork/",
+        "objectCount": 2,
+        "totalBytes": 4255413
+      },
+      {
+        "prefix": "articles/desert-water/",
+        "objectCount": 5,
+        "totalBytes": 3852164
+      },
+      {
+        "prefix": "articles/cursed-chevy/",
+        "objectCount": 7,
+        "totalBytes": 3680113
+      },
+      {
+        "prefix": "workshop/before-and-after/scene/",
+        "objectCount": 1,
+        "totalBytes": 3389886
+      },
+      {
+        "prefix": "3dm/you-know-nothing-of-my-algorithm/",
+        "objectCount": 1,
+        "totalBytes": 2572671
+      },
+      {
+        "prefix": "workshop/future-carriage/",
+        "objectCount": 1,
+        "totalBytes": 2387530
+      },
+      {
+        "prefix": "workshop/alter-ego/",
+        "objectCount": 1,
+        "totalBytes": 2182037
+      },
+      {
+        "prefix": "articles/doll-family/",
+        "objectCount": 1,
+        "totalBytes": 1680399
+      },
+      {
+        "prefix": "pages/projects/3dm/",
+        "objectCount": 1,
+        "totalBytes": 1645171
+      },
+      {
+        "prefix": "articles/other-alice-origin/",
+        "objectCount": 1,
+        "totalBytes": 1290215
+      },
+      {
+        "prefix": "articles/wavy-gravy/",
+        "objectCount": 2,
+        "totalBytes": 927972
+      },
+      {
+        "prefix": "articles/3dm-mouse-cat-musical/",
+        "objectCount": 1,
+        "totalBytes": 869199
+      },
+      {
+        "prefix": "articles/california-racing/",
+        "objectCount": 2,
+        "totalBytes": 661183
+      },
+      {
+        "prefix": "articles/sharksploitation/",
+        "objectCount": 1,
+        "totalBytes": 616352
+      },
+      {
+        "prefix": "workshop/mannequin-to-avatar/v1/posters/",
+        "objectCount": 2,
+        "totalBytes": 522773
+      },
+      {
+        "prefix": "gallery/seed-to-world/",
+        "objectCount": 2,
+        "totalBytes": 80005
+      },
+      {
+        "prefix": "articles/trash-river/graphics/",
+        "objectCount": 5,
+        "totalBytes": 24648
+      },
+      {
+        "prefix": "workshop/mannequin-to-avatar/v2/",
+        "objectCount": 1,
+        "totalBytes": 9082
+      },
+      {
+        "prefix": "workshop/mannequin-to-avatar/v1/",
+        "objectCount": 1,
+        "totalBytes": 8808
+      },
+      {
+        "prefix": "(root)",
+        "objectCount": 1,
+        "totalBytes": 0
+      },
+      {
+        "prefix": "articles/",
+        "objectCount": 1,
+        "totalBytes": 0
+      },
+      {
+        "prefix": "gallery/cute-corrupted/",
+        "objectCount": 1,
+        "totalBytes": 0
+      },
+      {
+        "prefix": "pages/projects/",
+        "objectCount": 1,
+        "totalBytes": 0
+      },
+      {
+        "prefix": "workshop/",
+        "objectCount": 1,
+        "totalBytes": 0
+      },
+      {
+        "prefix": "workshop/psygoth/",
+        "objectCount": 1,
+        "totalBytes": 0
+      }
+    ],
+    "objects": [
+      {
+        "key": "3dm/broadway-babies/alice-white-1927.jpg",
+        "publicUrl": "https://cdn.hob.farm/3dm/broadway-babies/alice-white-1927.jpg",
+        "size": 602849,
+        "lastModified": "2026-07-11T21:31:05.639Z",
+        "etag": "4d94185d9536cba89a6a2ca39ef95321",
+        "storageClass": "Standard",
+        "prefix": "3dm",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 48.1 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "3dm/broadway-babies/alice-white-portrait2.png",
+        "publicUrl": "https://cdn.hob.farm/3dm/broadway-babies/alice-white-portrait2.png",
+        "size": 2055478,
+        "lastModified": "2026-07-11T21:31:05.980Z",
+        "etag": "abee0585d83df046ebc30f2a285b171d",
+        "storageClass": "Standard",
+        "prefix": "3dm",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 48.1 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "3dm/broadway-babies/alice-white-portrait3.png",
+        "publicUrl": "https://cdn.hob.farm/3dm/broadway-babies/alice-white-portrait3.png",
+        "size": 2356686,
+        "lastModified": "2026-07-11T21:31:06.114Z",
+        "etag": "6e04b2ddbc8691ba73598c276bd219c7",
+        "storageClass": "Standard",
+        "prefix": "3dm",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 48.1 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "3dm/broadway-babies/marion-byron-portrait.png",
+        "publicUrl": "https://cdn.hob.farm/3dm/broadway-babies/marion-byron-portrait.png",
+        "size": 2323964,
+        "lastModified": "2026-07-11T21:31:06.282Z",
+        "etag": "f64e09a7c66e00f2cd5c7db1c1b69678",
+        "storageClass": "Standard",
+        "prefix": "3dm",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 48.1 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "3dm/broadway-babies/marion-byron-portrait3.png",
+        "publicUrl": "https://cdn.hob.farm/3dm/broadway-babies/marion-byron-portrait3.png",
+        "size": 2032039,
+        "lastModified": "2026-07-11T21:31:06.917Z",
+        "etag": "e076c7ad7b60ecd35f47b1a8308fe7e3",
+        "storageClass": "Standard",
+        "prefix": "3dm",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 48.1 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "3dm/broadway-babies/marion-byron-portrait4.png",
+        "publicUrl": "https://cdn.hob.farm/3dm/broadway-babies/marion-byron-portrait4.png",
+        "size": 1882696,
+        "lastModified": "2026-07-11T21:31:06.897Z",
+        "etag": "d76646b3738cd4d119b9a62c72692def",
+        "storageClass": "Standard",
+        "prefix": "3dm",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 48.1 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "3dm/broadway-babies/sally-eilers-playing-golf-at-yosemite-national-park-1933.jpg",
+        "publicUrl": "https://cdn.hob.farm/3dm/broadway-babies/sally-eilers-playing-golf-at-yosemite-national-park-1933.jpg",
+        "size": 986234,
+        "lastModified": "2026-07-11T21:31:06.891Z",
+        "etag": "c601dd64cd0fdc7d2f3f1dec5450c272",
+        "storageClass": "Standard",
+        "prefix": "3dm",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 48.1 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "3dm/broadway-babies/sally-eilers-portrait2.png",
+        "publicUrl": "https://cdn.hob.farm/3dm/broadway-babies/sally-eilers-portrait2.png",
+        "size": 2453839,
+        "lastModified": "2026-07-11T21:31:07.781Z",
+        "etag": "028a6bae67b126543c24a78646c566f8",
+        "storageClass": "Standard",
+        "prefix": "3dm",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 48.1 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "3dm/broadway-babies/sally-eilers-portrait3.png",
+        "publicUrl": "https://cdn.hob.farm/3dm/broadway-babies/sally-eilers-portrait3.png",
+        "size": 2408843,
+        "lastModified": "2026-07-11T21:31:07.781Z",
+        "etag": "2ce543b383c5cd03eb0d61a6b69ee525",
+        "storageClass": "Standard",
+        "prefix": "3dm",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 48.1 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "3dm/you-know-nothing-of-my-algorithm/vertical-promo-9x16.png",
+        "publicUrl": "https://cdn.hob.farm/3dm/you-know-nothing-of-my-algorithm/vertical-promo-9x16.png",
+        "size": 2572671,
+        "lastModified": "2026-07-11T04:19:52.228Z",
+        "etag": "ae3883552e488fc18455fa33fabebd7e",
+        "storageClass": "Standard",
+        "prefix": "3dm",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 48.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/3dm-1933-wb/42nd-street-rehearsal1.png",
+        "publicUrl": "https://cdn.hob.farm/articles/3dm-1933-wb/42nd-street-rehearsal1.png",
+        "size": 811023,
+        "lastModified": "2026-07-11T19:05:46.417Z",
+        "etag": "1e13743882dc9146c001b8ec3ae62f2a",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 48.2 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "articles/3dm-1933-wb/42nd-street-rehearsal2.png",
+        "publicUrl": "https://cdn.hob.farm/articles/3dm-1933-wb/42nd-street-rehearsal2.png",
+        "size": 1157968,
+        "lastModified": "2026-07-11T19:05:47.637Z",
+        "etag": "6ace4a158b6987e7d4a1b295777ac319",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 48.2 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/3dm-1933-wb/gold-diggers-1933-billy-barty-baby-close-up.png",
+        "publicUrl": "https://cdn.hob.farm/articles/3dm-1933-wb/gold-diggers-1933-billy-barty-baby-close-up.png",
+        "size": 1084481,
+        "lastModified": "2026-07-11T19:05:48.749Z",
+        "etag": "f206b69ae12b308d454dcd0149579c08",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 48.2 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/3dm-1933-wb/gold-diggers-1933-billy-barty-baby-legs.png",
+        "publicUrl": "https://cdn.hob.farm/articles/3dm-1933-wb/gold-diggers-1933-billy-barty-baby-legs.png",
+        "size": 1198780,
+        "lastModified": "2026-07-11T19:05:49.438Z",
+        "etag": "35f8a896c54a7800dc438cc463d5f4c2",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 48.2 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/3dm-1933-wb/gold-diggers-1933-billy-barty-baby-skate1.png",
+        "publicUrl": "https://cdn.hob.farm/articles/3dm-1933-wb/gold-diggers-1933-billy-barty-baby-skate1.png",
+        "size": 1137020,
+        "lastModified": "2026-07-11T19:05:49.457Z",
+        "etag": "d59e777748c5f85636e507a6e1264421",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 48.2 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/3dm-mouse-cat-musical/billy-barty-compilation.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/3dm-mouse-cat-musical/billy-barty-compilation.jpg",
+        "size": 869199,
+        "lastModified": "2026-07-11T17:49:55.202Z",
+        "etag": "37f98430ca011ab4c807537476e22af6",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 48.3 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "articles/california-racing/la-mustangs-vs-oakland-giants-1943.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/california-racing/la-mustangs-vs-oakland-giants-1943.jpg",
+        "size": 164700,
+        "lastModified": "2026-07-26T03:38:42.188Z",
+        "etag": "a389e37b64fab34c46385f99ba0c35c7",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 33.9 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "articles/california-racing/xanadu.jpeg",
+        "publicUrl": "https://cdn.hob.farm/articles/california-racing/xanadu.jpeg",
+        "size": 496483,
+        "lastModified": "2026-07-26T03:38:44.576Z",
+        "etag": "e334ad05414b8e182e2896551190908a",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpeg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 33.9 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "articles/color-becomes-cast/em-intro-poster.WEBP",
+        "publicUrl": "https://cdn.hob.farm/articles/color-becomes-cast/em-intro-poster.WEBP",
+        "size": 1212384,
+        "lastModified": "2026-07-04T07:43:35.612Z",
+        "etag": "7d5df7f8802fc5b4f4913cbd5417c4c9",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "webp",
+        "contentType": "image/webp",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 55.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/color-becomes-cast/em-intro-video.mp4",
+        "publicUrl": "https://cdn.hob.farm/articles/color-becomes-cast/em-intro-video.mp4",
+        "size": 14393045,
+        "lastModified": "2026-07-04T07:43:37.131Z",
+        "etag": "4902bb49ddffe7e3cfba828d7109e74f",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "mp4",
+        "contentType": "video/mp4",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 55.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "10 MB to 100 MB"
+      },
+      {
+        "key": "articles/color-becomes-cast/nina-intro-vdeo.mp4",
+        "publicUrl": "https://cdn.hob.farm/articles/color-becomes-cast/nina-intro-vdeo.mp4",
+        "size": 13341019,
+        "lastModified": "2026-07-04T07:43:37.953Z",
+        "etag": "5c5c5469dac78e41f6cd770c455e6b0d",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "mp4",
+        "contentType": "video/mp4",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 55.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "10 MB to 100 MB"
+      },
+      {
+        "key": "articles/color-becomes-cast/nina0intro-poster.WEBP",
+        "publicUrl": "https://cdn.hob.farm/articles/color-becomes-cast/nina0intro-poster.WEBP",
+        "size": 430210,
+        "lastModified": "2026-07-04T07:43:35.515Z",
+        "etag": "0b6b47b4f62df4659a0c5768478bd18e",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "webp",
+        "contentType": "image/webp",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 55.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "articles/color-becomes-cast/rgb-landscape.png",
+        "publicUrl": "https://cdn.hob.farm/articles/color-becomes-cast/rgb-landscape.png",
+        "size": 2876168,
+        "lastModified": "2026-07-04T06:25:05.080Z",
+        "etag": "fab067b9062a38bc16c0077a1dba2b43",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 55.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/color-becomes-cast/zima-intro-poster.WEBP",
+        "publicUrl": "https://cdn.hob.farm/articles/color-becomes-cast/zima-intro-poster.WEBP",
+        "size": 1160432,
+        "lastModified": "2026-07-04T07:43:36.848Z",
+        "etag": "0fe45aa60cbb9f7f06e568c6d9b18150",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "webp",
+        "contentType": "image/webp",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 55.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/color-becomes-cast/zima-intro-video.mp4",
+        "publicUrl": "https://cdn.hob.farm/articles/color-becomes-cast/zima-intro-video.mp4",
+        "size": 13989747,
+        "lastModified": "2026-07-04T07:43:38.998Z",
+        "etag": "6720da5315daf913ecb986b0b8abe918",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "mp4",
+        "contentType": "video/mp4",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 55.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "10 MB to 100 MB"
+      },
+      {
+        "key": "articles/commune-festival/Gem-and-Jam Festival.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/Gem-and-Jam%20Festival.jpg",
+        "size": 431566,
+        "lastModified": "2026-08-19T04:44:15.375Z",
+        "etag": "dde447700f744c09189e64873d8fd685",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "articles/commune-festival/Gem-and-Jam Festival2.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/Gem-and-Jam%20Festival2.jpg",
+        "size": 317038,
+        "lastModified": "2026-08-19T04:44:15.394Z",
+        "etag": "cf893a05f5bc39e3b382c7ef2277014f",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "articles/commune-festival/Gem-and-Jam-Paintings.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/Gem-and-Jam-Paintings.jpg",
+        "size": 235757,
+        "lastModified": "2026-08-19T04:44:15.730Z",
+        "etag": "693db96f2e3b4512235e00226c8a446d",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "articles/commune-festival/gem-jam-Alex-Grey-Live-Painting.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/gem-jam-Alex-Grey-Live-Painting.jpg",
+        "size": 207493,
+        "lastModified": "2026-08-19T04:44:15.315Z",
+        "etag": "30e338d70c053001a689e3fa45871f23",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "articles/commune-festival/gem-jam-The-Motet.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/gem-jam-The-Motet.jpg",
+        "size": 319868,
+        "lastModified": "2026-08-19T04:44:15.693Z",
+        "etag": "f3e162daf930336979fa765501b430e9",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "articles/commune-festival/lib1.JPG",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/lib1.JPG",
+        "size": 2648233,
+        "lastModified": "2026-08-19T04:44:16.015Z",
+        "etag": "0993a04c3e2a787e94fcbdb7f3e9086d",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/commune-festival/lib10.JPG",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/lib10.JPG",
+        "size": 2270962,
+        "lastModified": "2026-08-19T04:44:18.916Z",
+        "etag": "c891943acff90d2c95dee6673505c2f2",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/commune-festival/lib11.JPG",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/lib11.JPG",
+        "size": 3565456,
+        "lastModified": "2026-08-19T04:44:19.034Z",
+        "etag": "b0f4fa4b70cbd2ea4e8f43fd8b470bca",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/commune-festival/lib2.JPG",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/lib2.JPG",
+        "size": 4179618,
+        "lastModified": "2026-08-19T04:44:16.397Z",
+        "etag": "ef5c4708587c87eeb239238ca773fad7",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/commune-festival/lib3.JPG",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/lib3.JPG",
+        "size": 2770294,
+        "lastModified": "2026-08-19T04:44:16.680Z",
+        "etag": "64220620288e993554b967e1bf43da06",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/commune-festival/lib4.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/lib4.jpg",
+        "size": 8447444,
+        "lastModified": "2026-08-19T04:44:17.684Z",
+        "etag": "66653421fe3f6d931b585ec7e106262b",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/commune-festival/lib5.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/lib5.jpg",
+        "size": 6394783,
+        "lastModified": "2026-08-19T04:44:17.804Z",
+        "etag": "f3d557dbd7abc5188028e9eb5e5d7935",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/commune-festival/lib6.JPG",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/lib6.JPG",
+        "size": 3622247,
+        "lastModified": "2026-08-19T04:44:18.071Z",
+        "etag": "b53c4ac8ccf300efbda064b1ce87dcb8",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/commune-festival/lib7.JPG",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/lib7.JPG",
+        "size": 3048259,
+        "lastModified": "2026-08-19T04:44:19.167Z",
+        "etag": "90bc190ee3a8b4cdccf2ac560f9f9e58",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/commune-festival/lib8.JPG",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/lib8.JPG",
+        "size": 2989815,
+        "lastModified": "2026-08-19T04:44:18.570Z",
+        "etag": "30a073d456eade63495851bbdd74383e",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/commune-festival/lib9.JPG",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/lib9.JPG",
+        "size": 2834546,
+        "lastModified": "2026-08-19T04:44:18.685Z",
+        "etag": "a40698a92d8d6fc32e33198c0faca244",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/commune-festival/phish-festival8-market.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/phish-festival8-market.jpg",
+        "size": 2831220,
+        "lastModified": "2026-08-19T07:34:40.608Z",
+        "etag": "dcc192a50f02a68f6346c3d07ef7dbfb",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/commune-festival/serenity-gathering1.JPG",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/serenity-gathering1.JPG",
+        "size": 8582659,
+        "lastModified": "2026-08-19T04:44:21.775Z",
+        "etag": "61d56d024d9db287afddd2b776ed1f3d",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/commune-festival/serenity-gathering10.JPG",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/serenity-gathering10.JPG",
+        "size": 5661752,
+        "lastModified": "2026-08-19T04:44:24.513Z",
+        "etag": "4d2b97f3218cb9cc0448895bc83ca23c",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/commune-festival/serenity-gathering11.JPG",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/serenity-gathering11.JPG",
+        "size": 5268918,
+        "lastModified": "2026-08-19T04:44:24.828Z",
+        "etag": "9206cb6c00867953be71bb7bb478e5ef",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/commune-festival/serenity-gathering12.JPG",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/serenity-gathering12.JPG",
+        "size": 4162420,
+        "lastModified": "2026-08-19T04:44:26.007Z",
+        "etag": "b145e4ead77108d05589129c78f0bc23",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/commune-festival/serenity-gathering13.JPG",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/serenity-gathering13.JPG",
+        "size": 8287649,
+        "lastModified": "2026-08-19T04:44:25.883Z",
+        "etag": "e6e9cb8b8e8d75a5a6568a019c274160",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/commune-festival/serenity-gathering14.JPG",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/serenity-gathering14.JPG",
+        "size": 5046053,
+        "lastModified": "2026-08-19T04:44:26.665Z",
+        "etag": "0ca912841654459dfee02bc82dbcd206",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/commune-festival/serenity-gathering2.JPG",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/serenity-gathering2.JPG",
+        "size": 6755408,
+        "lastModified": "2026-08-19T04:44:20.811Z",
+        "etag": "c99267b0c6f036e050682a97c8e57b4e",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/commune-festival/serenity-gathering3.JPG",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/serenity-gathering3.JPG",
+        "size": 6427276,
+        "lastModified": "2026-08-19T04:44:21.119Z",
+        "etag": "af4c784adb973deb4dd2d8a1a5bab3e1",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/commune-festival/serenity-gathering4.JPG",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/serenity-gathering4.JPG",
+        "size": 6983197,
+        "lastModified": "2026-08-19T04:44:21.771Z",
+        "etag": "a980c6f4851ce61e004cca1336b16c97",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/commune-festival/serenity-gathering5.JPG",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/serenity-gathering5.JPG",
+        "size": 7052948,
+        "lastModified": "2026-08-19T04:44:22.178Z",
+        "etag": "b33f64f6d1027d164133d4214f8a9469",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/commune-festival/serenity-gathering6.JPG",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/serenity-gathering6.JPG",
+        "size": 6607718,
+        "lastModified": "2026-08-19T04:44:22.520Z",
+        "etag": "f5dc1d9a4003cbcc0dd1a154cf84b541",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/commune-festival/serenity-gathering7.JPG",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/serenity-gathering7.JPG",
+        "size": 7047997,
+        "lastModified": "2026-08-19T04:44:22.956Z",
+        "etag": "4d87f488dcf6a25d9c2c47af3c212398",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/commune-festival/serenity-gathering8.JPG",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/serenity-gathering8.JPG",
+        "size": 6063916,
+        "lastModified": "2026-08-19T04:44:23.511Z",
+        "etag": "480852132fa5add7ad33c6c0f7e3f522",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/commune-festival/serenity-gathering9.JPG",
+        "publicUrl": "https://cdn.hob.farm/articles/commune-festival/serenity-gathering9.JPG",
+        "size": 8383724,
+        "lastModified": "2026-08-19T04:44:24.185Z",
+        "etag": "d0253c9706fe40bdca255e63d5943170",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 9.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/cursed-chevy/van-2013-1.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/cursed-chevy/van-2013-1.jpg",
+        "size": 369474,
+        "lastModified": "2026-08-21T06:46:55.762Z",
+        "etag": "144cf38641a5b6a32edfc7a3236ad82f",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 7.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "articles/cursed-chevy/van-2013-2.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/cursed-chevy/van-2013-2.jpg",
+        "size": 359533,
+        "lastModified": "2026-08-21T06:46:55.972Z",
+        "etag": "8689a4e492eeb5bbe72802bfca3ebf67",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 7.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "articles/cursed-chevy/van-2013-3.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/cursed-chevy/van-2013-3.jpg",
+        "size": 105974,
+        "lastModified": "2026-08-21T06:46:55.927Z",
+        "etag": "37db41e269e743352e2d00b66f4296d2",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 7.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "articles/cursed-chevy/van-2013-4.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/cursed-chevy/van-2013-4.jpg",
+        "size": 89801,
+        "lastModified": "2026-08-21T06:46:55.773Z",
+        "etag": "7a0850fda9a1092f41ffc8235f80b1eb",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 7.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "less than 100 KB"
+      },
+      {
+        "key": "articles/cursed-chevy/van-2026-2.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/cursed-chevy/van-2026-2.jpg",
+        "size": 1357107,
+        "lastModified": "2026-08-21T06:46:56.321Z",
+        "etag": "0cd33f08a7a40cd20a86bd88d274581d",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 7.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/cursed-chevy/van-2026-3.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/cursed-chevy/van-2026-3.jpg",
+        "size": 968637,
+        "lastModified": "2026-08-21T06:46:56.558Z",
+        "etag": "18f6ebfafc2cb7d3f9e958d252167fca",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 7.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "articles/cursed-chevy/van-purple-paint-dash.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/cursed-chevy/van-purple-paint-dash.jpg",
+        "size": 429587,
+        "lastModified": "2026-08-21T06:46:56.482Z",
+        "etag": "1c9872b78e4627d4e1d66afb6928db0d",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 7.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "articles/desert-water/lake-mead-las-vegas-bay-1950s.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/desert-water/lake-mead-las-vegas-bay-1950s.jpg",
+        "size": 472648,
+        "lastModified": "2026-08-14T08:38:23.113Z",
+        "etag": "6c51295df284315b0e7e1449a4d14257",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 14.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "articles/desert-water/lake-mead-las-vegas-bay-1950s1.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/desert-water/lake-mead-las-vegas-bay-1950s1.jpg",
+        "size": 547468,
+        "lastModified": "2026-08-14T08:38:23.149Z",
+        "etag": "bcda420196abbf53527ee6131f9e1788",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 14.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "articles/desert-water/lake-mead-las-vegas-bay-1950s2.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/desert-water/lake-mead-las-vegas-bay-1950s2.jpg",
+        "size": 752647,
+        "lastModified": "2026-08-14T08:38:23.269Z",
+        "etag": "9e15a1e8212b084ba22515020f4d762c",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 14.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "articles/desert-water/lake-mead-las-vegas-bay-1950s3.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/desert-water/lake-mead-las-vegas-bay-1950s3.jpg",
+        "size": 644858,
+        "lastModified": "2026-08-14T08:38:23.323Z",
+        "etag": "40a90021573954848600f619ae94c8b0",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 14.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "articles/desert-water/nevada-lake-mead-2020-vs-1950s.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/desert-water/nevada-lake-mead-2020-vs-1950s.jpg",
+        "size": 1434543,
+        "lastModified": "2026-08-14T08:38:24.356Z",
+        "etag": "1008715540435e89723e1d239adb64ab",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 14.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/doll-family/freaks-1932-film-poster.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/doll-family/freaks-1932-film-poster.jpg",
+        "size": 1680399,
+        "lastModified": "2026-07-26T03:58:16.517Z",
+        "etag": "e648b995cb13ba75e5d12d24f9f3f43d",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 33.9 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/it-just-runs-programs/animatrix1.png",
+        "publicUrl": "https://cdn.hob.farm/articles/it-just-runs-programs/animatrix1.png",
+        "size": 1579020,
+        "lastModified": "2026-07-30T00:36:07.572Z",
+        "etag": "63bdc9dd66894ad049c7af0f1e82d18f",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 30.0 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/it-just-runs-programs/animatrix10.png",
+        "publicUrl": "https://cdn.hob.farm/articles/it-just-runs-programs/animatrix10.png",
+        "size": 922356,
+        "lastModified": "2026-07-30T00:36:07.362Z",
+        "etag": "a261b95dd56acfce321c95bedee1452f",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 30.0 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "articles/it-just-runs-programs/animatrix11.png",
+        "publicUrl": "https://cdn.hob.farm/articles/it-just-runs-programs/animatrix11.png",
+        "size": 633751,
+        "lastModified": "2026-07-30T00:36:07.331Z",
+        "etag": "fa32bf6faeba16f2e51679bd12ebf3dd",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 30.0 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "articles/it-just-runs-programs/animatrix12.png",
+        "publicUrl": "https://cdn.hob.farm/articles/it-just-runs-programs/animatrix12.png",
+        "size": 1208323,
+        "lastModified": "2026-07-30T00:36:07.533Z",
+        "etag": "179d2f93d1d5f4d29100345056f84bdb",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 30.0 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/it-just-runs-programs/animatrix13.png",
+        "publicUrl": "https://cdn.hob.farm/articles/it-just-runs-programs/animatrix13.png",
+        "size": 709323,
+        "lastModified": "2026-07-30T00:36:07.394Z",
+        "etag": "6f2b8f21ae6092f6ac2846fde4a4fef8",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 30.0 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "articles/it-just-runs-programs/animatrix14.png",
+        "publicUrl": "https://cdn.hob.farm/articles/it-just-runs-programs/animatrix14.png",
+        "size": 850649,
+        "lastModified": "2026-07-30T00:36:07.944Z",
+        "etag": "f8a8d1ae76bbfdc5f55279c5cbe0a10a",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 30.0 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "articles/it-just-runs-programs/animatrix2.png",
+        "publicUrl": "https://cdn.hob.farm/articles/it-just-runs-programs/animatrix2.png",
+        "size": 1745314,
+        "lastModified": "2026-07-30T00:36:07.961Z",
+        "etag": "2fccc962cbf3c64bd8f24e73613b10cd",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 30.0 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/it-just-runs-programs/animatrix3.png",
+        "publicUrl": "https://cdn.hob.farm/articles/it-just-runs-programs/animatrix3.png",
+        "size": 1358109,
+        "lastModified": "2026-07-30T00:36:08.053Z",
+        "etag": "758ad9860bc606b7d56de0cd930d84ad",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 30.0 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/it-just-runs-programs/animatrix7.png",
+        "publicUrl": "https://cdn.hob.farm/articles/it-just-runs-programs/animatrix7.png",
+        "size": 1529141,
+        "lastModified": "2026-07-30T00:36:08.700Z",
+        "etag": "706e0ea07012ba7784562fe44ca4e070",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 30.0 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/it-just-runs-programs/animatrix8.png",
+        "publicUrl": "https://cdn.hob.farm/articles/it-just-runs-programs/animatrix8.png",
+        "size": 2178379,
+        "lastModified": "2026-07-30T00:36:08.931Z",
+        "etag": "6e1263e10fe58bfb38a99766b9ba4b61",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 30.0 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/it-just-runs-programs/animatrix9.png",
+        "publicUrl": "https://cdn.hob.farm/articles/it-just-runs-programs/animatrix9.png",
+        "size": 1083965,
+        "lastModified": "2026-07-30T00:36:08.820Z",
+        "etag": "20295f4f85e8c8f2283ae290e63e08d0",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 30.0 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/other-alice-origin/bloody-alice-original-stock.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/other-alice-origin/bloody-alice-original-stock.jpg",
+        "size": 1290215,
+        "lastModified": "2026-07-15T06:31:20.480Z",
+        "etag": "0e32d700dade10388f23d9747982363a",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 44.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/rock-art/valley-of-fire-atlatl-rock-1.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/rock-art/valley-of-fire-atlatl-rock-1.jpg",
+        "size": 5936928,
+        "lastModified": "2026-08-23T04:20:36.290Z",
+        "etag": "31bad975e7ed9d1a8baeceac660f4e5d",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 5.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/rock-art/valley-of-fire-atlatl-rock-2.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/rock-art/valley-of-fire-atlatl-rock-2.jpg",
+        "size": 3822003,
+        "lastModified": "2026-08-23T04:20:36.571Z",
+        "etag": "751b877eb0f47e8a27db3c3025788992",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 5.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/sharksploitation/mondo-cane3.png",
+        "publicUrl": "https://cdn.hob.farm/articles/sharksploitation/mondo-cane3.png",
+        "size": 616352,
+        "lastModified": "2026-08-04T04:28:46.714Z",
+        "etag": "7cdb96ff3f71da6bbcc9c9ad21b328bb",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 24.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "articles/that-guy/",
+        "publicUrl": "https://cdn.hob.farm/articles/that-guy/",
+        "size": 0,
+        "lastModified": "2026-07-30T03:31:39.696Z",
+        "etag": "d41d8cd98f00b204e9800998ecf8427e",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "",
+        "contentType": "application/octet-stream",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 29.9 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "0 bytes"
+      },
+      {
+        "key": "articles/they-live/they-live-clip.mp4",
+        "publicUrl": "https://cdn.hob.farm/articles/they-live/they-live-clip.mp4",
+        "size": 50473244,
+        "lastModified": "2026-07-28T02:02:08.235Z",
+        "etag": "7a92798da6993f706b8a47cf3a1f78c9",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "mp4",
+        "contentType": "video/mp4",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 31.9 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "10 MB to 100 MB"
+      },
+      {
+        "key": "articles/trash-mountain/20160721_225358.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/trash-mountain/20160721_225358.jpg",
+        "size": 2472232,
+        "lastModified": "2026-08-05T11:33:49.511Z",
+        "etag": "57921086b01e18fadf57253598103a38",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 23.5 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/trash-mountain/20181125_095123.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/trash-mountain/20181125_095123.jpg",
+        "size": 2663467,
+        "lastModified": "2026-08-05T11:33:49.713Z",
+        "etag": "975ba3ecdd3410aba40a9a7048ccb81c",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 23.5 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/trash-mountain/20191224_170706.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/trash-mountain/20191224_170706.jpg",
+        "size": 4701096,
+        "lastModified": "2026-08-05T11:33:49.949Z",
+        "etag": "0558a5656fecb7bb3a45a15764263237",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 23.5 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/trash-mountain/2020-05-13-01.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/trash-mountain/2020-05-13-01.jpg",
+        "size": 2212175,
+        "lastModified": "2026-08-05T11:33:49.071Z",
+        "etag": "8027e1451e624774c0e2b6b39f5a7a29",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 23.5 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/trash-mountain/2020-05-13-02.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/trash-mountain/2020-05-13-02.jpg",
+        "size": 2348526,
+        "lastModified": "2026-08-05T11:33:49.461Z",
+        "etag": "ce6d23b645067e8811ad1f1b0494aaca",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 23.5 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/trash-mountain/2020-05-13.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/trash-mountain/2020-05-13.jpg",
+        "size": 3109304,
+        "lastModified": "2026-08-05T11:33:48.878Z",
+        "etag": "80e1a0b564e940d038df39eb5a52a047",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 23.5 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/trash-river/beach-bottle3.JPG",
+        "publicUrl": "https://cdn.hob.farm/articles/trash-river/beach-bottle3.JPG",
+        "size": 1004316,
+        "lastModified": "2026-08-24T20:11:01.014Z",
+        "etag": "8055aed8aabf3721697a7c6c790251dd",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 4.2 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/trash-river/beach-trash1.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/trash-river/beach-trash1.jpg",
+        "size": 1141270,
+        "lastModified": "2026-08-24T20:11:01.080Z",
+        "etag": "46094a5d3733e882bc630ec50c7055a0",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 4.2 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/trash-river/beach-trash4.JPG",
+        "publicUrl": "https://cdn.hob.farm/articles/trash-river/beach-trash4.JPG",
+        "size": 1005598,
+        "lastModified": "2026-08-24T20:11:01.746Z",
+        "etag": "bd33066045472e850a7264cf58a7abe9",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 4.2 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/trash-river/beach-trash6.JPG",
+        "publicUrl": "https://cdn.hob.farm/articles/trash-river/beach-trash6.JPG",
+        "size": 1052664,
+        "lastModified": "2026-08-24T20:11:01.905Z",
+        "etag": "5aeb2a5426e76868c281b604c0196fe7",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 4.2 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/trash-river/beach-trash7.JPG",
+        "publicUrl": "https://cdn.hob.farm/articles/trash-river/beach-trash7.JPG",
+        "size": 969243,
+        "lastModified": "2026-08-24T20:11:01.905Z",
+        "etag": "923f9b70df4bb82937cd55b780371559",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 4.2 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "articles/trash-river/beach-trash9.JPG",
+        "publicUrl": "https://cdn.hob.farm/articles/trash-river/beach-trash9.JPG",
+        "size": 824171,
+        "lastModified": "2026-08-24T20:11:02.227Z",
+        "etag": "1badfe8071f4fbf22d13aa990ed8f552",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 4.2 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "articles/trash-river/bucksport-maine-mill.JPG",
+        "publicUrl": "https://cdn.hob.farm/articles/trash-river/bucksport-maine-mill.JPG",
+        "size": 593650,
+        "lastModified": "2026-08-24T20:11:02.787Z",
+        "etag": "3734f5b25328059ab5ed3464e154a0f1",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 4.2 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "articles/trash-river/graphics/accra-source-to-sea.svg",
+        "publicUrl": "https://cdn.hob.farm/articles/trash-river/graphics/accra-source-to-sea.svg",
+        "size": 4692,
+        "lastModified": "2026-08-25T04:49:16.399Z",
+        "etag": "90a0d09d9081572f368d750aa05cdfc7",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "svg",
+        "contentType": "image/svg+xml",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 3.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "less than 100 KB"
+      },
+      {
+        "key": "articles/trash-river/graphics/maine-river-change.svg",
+        "publicUrl": "https://cdn.hob.farm/articles/trash-river/graphics/maine-river-change.svg",
+        "size": 3851,
+        "lastModified": "2026-08-25T04:49:22.317Z",
+        "etag": "a0b7e79ba42ab89dca0a9a0ecf8ad87b",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "svg",
+        "contentType": "image/svg+xml",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 3.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "less than 100 KB"
+      },
+      {
+        "key": "articles/trash-river/graphics/pollution-visibility-spectrum.svg",
+        "publicUrl": "https://cdn.hob.farm/articles/trash-river/graphics/pollution-visibility-spectrum.svg",
+        "size": 3836,
+        "lastModified": "2026-08-25T04:49:18.383Z",
+        "etag": "16922ed16703ba678872de5514b708d6",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "svg",
+        "contentType": "image/svg+xml",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 3.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "less than 100 KB"
+      },
+      {
+        "key": "articles/trash-river/graphics/rivers-of-trash-flow.svg",
+        "publicUrl": "https://cdn.hob.farm/articles/trash-river/graphics/rivers-of-trash-flow.svg",
+        "size": 8077,
+        "lastModified": "2026-08-25T04:49:14.326Z",
+        "etag": "c291ef0153aae51357595de12974bebc",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "svg",
+        "contentType": "image/svg+xml",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 3.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "less than 100 KB"
+      },
+      {
+        "key": "articles/trash-river/graphics/vung-tau-deposition-cycle.svg",
+        "publicUrl": "https://cdn.hob.farm/articles/trash-river/graphics/vung-tau-deposition-cycle.svg",
+        "size": 4192,
+        "lastModified": "2026-08-25T04:49:20.296Z",
+        "etag": "f17a6c53b5ba4cc6627ac9b7403aee45",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "svg",
+        "contentType": "image/svg+xml",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 3.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "less than 100 KB"
+      },
+      {
+        "key": "articles/vaporwave/aria.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/vaporwave/aria.jpg",
+        "size": 4885494,
+        "lastModified": "2026-08-28T07:40:13.613Z",
+        "etag": "9503b95f21e2d436506c977f7f136983",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 0.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/vaporwave/bellagio-fountain.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/vaporwave/bellagio-fountain.jpg",
+        "size": 4079150,
+        "lastModified": "2026-08-28T07:40:15.006Z",
+        "etag": "6d553248d2f8055d5bb1e4ab46163c45",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 0.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/vaporwave/bellagio-hall.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/vaporwave/bellagio-hall.jpg",
+        "size": 4755854,
+        "lastModified": "2026-08-28T07:40:16.070Z",
+        "etag": "f271de499b1bb6b3183d963b8adf3a49",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 0.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/vaporwave/bellagio-hotel-hall.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/vaporwave/bellagio-hotel-hall.jpg",
+        "size": 3793414,
+        "lastModified": "2026-08-28T07:40:17.366Z",
+        "etag": "8cc89bc23a3e0ea71cb0d388747648ff",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 0.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/vaporwave/bellagio-statue.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/vaporwave/bellagio-statue.jpg",
+        "size": 4728620,
+        "lastModified": "2026-08-28T07:40:18.981Z",
+        "etag": "e216967ddfa0b5a3664688c8b38060b3",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 0.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/vaporwave/bellagio-terrace-2.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/vaporwave/bellagio-terrace-2.jpg",
+        "size": 4801903,
+        "lastModified": "2026-08-28T07:40:20.786Z",
+        "etag": "c8df84f6358b6906fbe7648f03b848d2",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 0.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/vaporwave/caesars-palace-lobby-statue.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/vaporwave/caesars-palace-lobby-statue.jpg",
+        "size": 3873371,
+        "lastModified": "2026-08-28T07:40:22.213Z",
+        "etag": "04e458d3455cd9ff041eb079b46a1473",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 0.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/vaporwave/caesars-palace-pool-1.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/vaporwave/caesars-palace-pool-1.jpg",
+        "size": 5001950,
+        "lastModified": "2026-08-28T07:40:23.542Z",
+        "etag": "0b875f030d24c0c041f4059c6af4ebf9",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 0.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/vaporwave/caesars-palace-pool-2.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/vaporwave/caesars-palace-pool-2.jpg",
+        "size": 2925054,
+        "lastModified": "2026-08-28T07:40:24.436Z",
+        "etag": "5b931593f353eea9749b437b2969cf95",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 0.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/vaporwave/caesars-palace-statue.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/vaporwave/caesars-palace-statue.jpg",
+        "size": 4394367,
+        "lastModified": "2026-08-28T07:40:29.680Z",
+        "etag": "00b6ec90d2b47e7bd9126f4df09d1b85",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 0.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/vaporwave/flamingo-fountain.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/vaporwave/flamingo-fountain.jpg",
+        "size": 4268990,
+        "lastModified": "2026-08-28T07:40:32.449Z",
+        "etag": "30fc74dfc49a44498b7957591ccb0f6d",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 0.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/vaporwave/gvr-pool.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/vaporwave/gvr-pool.jpg",
+        "size": 3321134,
+        "lastModified": "2026-08-28T07:40:34.098Z",
+        "etag": "acd8404175b6b17b40dd03f0d985e3b4",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 0.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/vaporwave/linq-promenade.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/vaporwave/linq-promenade.jpg",
+        "size": 4591114,
+        "lastModified": "2026-08-28T07:40:34.839Z",
+        "etag": "0ff8344636f22ca2c39e4e310b955c35",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 0.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/vaporwave/luxor-monolith.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/vaporwave/luxor-monolith.jpg",
+        "size": 3222490,
+        "lastModified": "2026-08-28T07:40:35.217Z",
+        "etag": "fe4bc1849360b239dec7e6851c5c0a41",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 0.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/vaporwave/sphere.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/vaporwave/sphere.jpg",
+        "size": 8247759,
+        "lastModified": "2026-08-28T07:40:37.717Z",
+        "etag": "160dbac94c9ca868d7cdf7ff678ad4fa",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 0.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/vaporwave/tmobile-arena.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/vaporwave/tmobile-arena.jpg",
+        "size": 4165972,
+        "lastModified": "2026-08-28T07:40:38.852Z",
+        "etag": "61fe91a9a0ecf885713dca10a77c431d",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 0.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/vaporwave/venetian-hall-1.jpg",
+        "publicUrl": "https://cdn.hob.farm/articles/vaporwave/venetian-hall-1.jpg",
+        "size": 3918312,
+        "lastModified": "2026-08-28T07:40:39.687Z",
+        "etag": "8dbf04d539ff7fbb412969dd45d4217e",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 0.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "articles/wavy-gravy/before-wavy-gravy-was-ice-cream-hero-v1.webp",
+        "publicUrl": "https://cdn.hob.farm/articles/wavy-gravy/before-wavy-gravy-was-ice-cream-hero-v1.webp",
+        "size": 629462,
+        "lastModified": "2026-08-10T17:45:51.533Z",
+        "etag": "76e7ee9b0a495ffdb266e4e6060d6bed",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "webp",
+        "contentType": "image/webp",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 18.3 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "articles/wavy-gravy/before-wavy-gravy-was-ice-cream-social-v1.webp",
+        "publicUrl": "https://cdn.hob.farm/articles/wavy-gravy/before-wavy-gravy-was-ice-cream-social-v1.webp",
+        "size": 298510,
+        "lastModified": "2026-08-10T17:45:58.042Z",
+        "etag": "2c2188931422947d7d6c6c6ec6d4b0ce",
+        "storageClass": "Standard",
+        "prefix": "articles",
+        "extension": "webp",
+        "contentType": "image/webp",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 18.3 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "blog/1956-automation/1956-automation-hero.mp4",
+        "publicUrl": "https://cdn.hob.farm/blog/1956-automation/1956-automation-hero.mp4",
+        "size": 17250891,
+        "lastModified": "2026-06-25T07:38:16.789Z",
+        "etag": "eef22dd411975b35d2a649a6af7bea08",
+        "storageClass": "Standard",
+        "prefix": "blog",
+        "extension": "mp4",
+        "contentType": "video/mp4",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 64.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "10 MB to 100 MB"
+      },
+      {
+        "key": "blog/gary-fork/gary-cartoon-winnings.png",
+        "publicUrl": "https://cdn.hob.farm/blog/gary-fork/gary-cartoon-winnings.png",
+        "size": 2424743,
+        "lastModified": "2026-06-12T06:25:10.116Z",
+        "etag": "313cd8e6adbb1d7c92f26d01f9604c18",
+        "storageClass": "Standard",
+        "prefix": "blog",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 77.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "blog/gary-fork/gary-cubicle.png",
+        "publicUrl": "https://cdn.hob.farm/blog/gary-fork/gary-cubicle.png",
+        "size": 1830670,
+        "lastModified": "2026-06-12T05:51:56.865Z",
+        "etag": "55fd64c4c6ac85e0a13633b21daa93f6",
+        "storageClass": "Standard",
+        "prefix": "blog",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 77.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "blog/goth-get-boots/elara-hero.png",
+        "publicUrl": "https://cdn.hob.farm/blog/goth-get-boots/elara-hero.png",
+        "size": 2235792,
+        "lastModified": "2026-06-12T22:45:24.969Z",
+        "etag": "a00162c0b5844a632dea8581a5293389",
+        "storageClass": "Standard",
+        "prefix": "blog",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 77.1 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "blog/goth-get-boots/maeric-image-context.png",
+        "publicUrl": "https://cdn.hob.farm/blog/goth-get-boots/maeric-image-context.png",
+        "size": 2729578,
+        "lastModified": "2026-06-12T22:45:27.649Z",
+        "etag": "339c44a12dbb6cd5348dbe366f6e592e",
+        "storageClass": "Standard",
+        "prefix": "blog",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 77.1 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "blog/goth-get-boots/maeric-memory.png",
+        "publicUrl": "https://cdn.hob.farm/blog/goth-get-boots/maeric-memory.png",
+        "size": 2048420,
+        "lastModified": "2026-06-12T22:45:27.837Z",
+        "etag": "e4c3797f5fd9f51c983f0e51313a25c4",
+        "storageClass": "Standard",
+        "prefix": "blog",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 77.1 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "blog/goth-get-boots/mara-hero.png",
+        "publicUrl": "https://cdn.hob.farm/blog/goth-get-boots/mara-hero.png",
+        "size": 2309177,
+        "lastModified": "2026-06-12T22:45:28.779Z",
+        "etag": "1d968a117a63fd75dc42d0a5319bca49",
+        "storageClass": "Standard",
+        "prefix": "blog",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 77.1 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "blog/goth-get-boots/reddit-conversation-dynamic.jpg",
+        "publicUrl": "https://cdn.hob.farm/blog/goth-get-boots/reddit-conversation-dynamic.jpg",
+        "size": 90968,
+        "lastModified": "2026-06-12T22:45:29.271Z",
+        "etag": "3ed1611b2cd8eaa40229daeb2ca9ab7c",
+        "storageClass": "Standard",
+        "prefix": "blog",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 77.1 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "less than 100 KB"
+      },
+      {
+        "key": "brand/hobfarm-contact.png",
+        "publicUrl": "https://cdn.hob.farm/brand/hobfarm-contact.png",
+        "size": 24958,
+        "lastModified": "2026-05-22T05:45:22.931Z",
+        "etag": "d6aef46bade31e982742137400449e75",
+        "storageClass": "Standard",
+        "prefix": "brand",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference, but the same parent prefix contains retained objects.",
+        "evidence": [
+          "retained sibling: brand/hobfarm-logo-white.svg"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "90 to 180 days",
+        "sizeRange": "less than 100 KB"
+      },
+      {
+        "key": "brand/hobfarm-drip-logo.mp4",
+        "publicUrl": "https://cdn.hob.farm/brand/hobfarm-drip-logo.mp4",
+        "size": 4382112,
+        "lastModified": "2026-07-08T10:49:25.090Z",
+        "etag": "2fd3d1127eac57af0de2e361112f5252",
+        "storageClass": "Standard",
+        "prefix": "brand",
+        "extension": "mp4",
+        "contentType": "video/mp4",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 51.6 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "brand/hobfarm-drip-logo.png",
+        "publicUrl": "https://cdn.hob.farm/brand/hobfarm-drip-logo.png",
+        "size": 1656062,
+        "lastModified": "2026-07-08T10:49:28.500Z",
+        "etag": "ce3671de609aeac528d63613a4f27a6d",
+        "storageClass": "Standard",
+        "prefix": "brand",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 51.6 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "brand/hobfarm-favicon-black.svg",
+        "publicUrl": "https://cdn.hob.farm/brand/hobfarm-favicon-black.svg",
+        "size": 2744,
+        "lastModified": "2026-02-11T10:23:36.841Z",
+        "etag": "461bac6da1a5f9d2717ca67064d69f64",
+        "storageClass": "Standard",
+        "prefix": "brand",
+        "extension": "svg",
+        "contentType": "image/svg+xml",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference, but the same parent prefix contains retained objects.",
+        "evidence": [
+          "retained sibling: brand/hobfarm-logo-white.svg"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "180 to 365 days",
+        "sizeRange": "less than 100 KB"
+      },
+      {
+        "key": "brand/hobfarm-favicon-white.svg",
+        "publicUrl": "https://cdn.hob.farm/brand/hobfarm-favicon-white.svg",
+        "size": 2744,
+        "lastModified": "2026-02-11T10:23:36.878Z",
+        "etag": "dda2e05771a40645ede4f77188c9977a",
+        "storageClass": "Standard",
+        "prefix": "brand",
+        "extension": "svg",
+        "contentType": "image/svg+xml",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference, but the same parent prefix contains retained objects.",
+        "evidence": [
+          "retained sibling: brand/hobfarm-logo-white.svg"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "180 to 365 days",
+        "sizeRange": "less than 100 KB"
+      },
+      {
+        "key": "brand/hobfarm-logo-black.svg",
+        "publicUrl": "https://cdn.hob.farm/brand/hobfarm-logo-black.svg",
+        "size": 7617,
+        "lastModified": "2026-02-11T10:23:36.777Z",
+        "etag": "b2b59461d8d3f52d34a62b20d56430ee",
+        "storageClass": "Standard",
+        "prefix": "brand",
+        "extension": "svg",
+        "contentType": "image/svg+xml",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference, but the same parent prefix contains retained objects.",
+        "evidence": [
+          "retained sibling: brand/hobfarm-logo-white.svg"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "180 to 365 days",
+        "sizeRange": "less than 100 KB"
+      },
+      {
+        "key": "brand/hobfarm-logo.jpg",
+        "publicUrl": "https://cdn.hob.farm/brand/hobfarm-logo.jpg",
+        "size": 684739,
+        "lastModified": "2026-07-08T10:49:41.783Z",
+        "etag": "5ba816eb34ca13ee8c9a244554692146",
+        "storageClass": "Standard",
+        "prefix": "brand",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 51.6 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "brand/hobfarm-rabbit-hole-logo.mp4",
+        "publicUrl": "https://cdn.hob.farm/brand/hobfarm-rabbit-hole-logo.mp4",
+        "size": 15263260,
+        "lastModified": "2026-07-22T06:55:59.034Z",
+        "etag": "1a682f98bb79c1e41cb08321d01520a3",
+        "storageClass": "Standard",
+        "prefix": "brand",
+        "extension": "mp4",
+        "contentType": "video/mp4",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 37.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "10 MB to 100 MB"
+      },
+      {
+        "key": "brand/kris-square.jpg",
+        "publicUrl": "https://cdn.hob.farm/brand/kris-square.jpg",
+        "size": 152558,
+        "lastModified": "2026-08-10T00:21:30.850Z",
+        "etag": "82edd70685a2d758b13fe51cb443967b",
+        "storageClass": "Standard",
+        "prefix": "brand",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 19.0 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "brand/melting-rabbit-icon.png",
+        "publicUrl": "https://cdn.hob.farm/brand/melting-rabbit-icon.png",
+        "size": 1410697,
+        "lastModified": "2026-06-29T01:39:52.864Z",
+        "etag": "13134ad1c0691ee838965723a7039589",
+        "storageClass": "Standard",
+        "prefix": "brand",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 61.0 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "gallery/character-sheets/character-sheet-008.jpg",
+        "publicUrl": "https://cdn.hob.farm/gallery/character-sheets/character-sheet-008.jpg",
+        "size": 10900587,
+        "lastModified": "2026-05-22T00:35:15.149Z",
+        "etag": "15d9cecfd22bbfd081ab17e8b846dc24",
+        "storageClass": "Standard",
+        "prefix": "gallery",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference, but the same parent prefix contains retained objects.",
+        "evidence": [
+          "retained sibling: gallery/character-sheets/character-sheet-001.png"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "90 to 180 days",
+        "sizeRange": "10 MB to 100 MB"
+      },
+      {
+        "key": "gallery/cute-corrupted/hobunny/",
+        "publicUrl": "https://cdn.hob.farm/gallery/cute-corrupted/hobunny/",
+        "size": 0,
+        "lastModified": "2026-06-22T07:55:00.666Z",
+        "etag": "d41d8cd98f00b204e9800998ecf8427e",
+        "storageClass": "Standard",
+        "prefix": "gallery",
+        "extension": "",
+        "contentType": "application/octet-stream",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 67.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "0 bytes"
+      },
+      {
+        "key": "gallery/cute-corrupted/hobunny/hobunny2026.jpg",
+        "publicUrl": "https://cdn.hob.farm/gallery/cute-corrupted/hobunny/hobunny2026.jpg",
+        "size": 2418143,
+        "lastModified": "2026-06-22T07:55:14.558Z",
+        "etag": "119c9648a48ca5f02d0feeb71410f99e",
+        "storageClass": "Standard",
+        "prefix": "gallery",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 67.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "gallery/cute-corrupted/hobunny/hobunny76-26-poster.png",
+        "publicUrl": "https://cdn.hob.farm/gallery/cute-corrupted/hobunny/hobunny76-26-poster.png",
+        "size": 2834851,
+        "lastModified": "2026-06-22T07:56:01.095Z",
+        "etag": "f23c2a277da2bb1573f363cd35e2a380",
+        "storageClass": "Standard",
+        "prefix": "gallery",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 67.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "gallery/cute-corrupted/hobunny/hobunny76.jpg",
+        "publicUrl": "https://cdn.hob.farm/gallery/cute-corrupted/hobunny/hobunny76.jpg",
+        "size": 2514040,
+        "lastModified": "2026-06-22T07:55:13.802Z",
+        "etag": "3cc133183f61c6f6e2c103e298297674",
+        "storageClass": "Standard",
+        "prefix": "gallery",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 67.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "gallery/cute-corrupted/hobunny/hobunny76.mp4",
+        "publicUrl": "https://cdn.hob.farm/gallery/cute-corrupted/hobunny/hobunny76.mp4",
+        "size": 12300652,
+        "lastModified": "2026-06-22T07:55:13.981Z",
+        "etag": "1455335f9ff506b2c6ee5d48906a7c84",
+        "storageClass": "Standard",
+        "prefix": "gallery",
+        "extension": "mp4",
+        "contentType": "video/mp4",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 67.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "10 MB to 100 MB"
+      },
+      {
+        "key": "gallery/cute-corrupted/sienna-red/cute-and-corrupted-sienna.mp4",
+        "publicUrl": "https://cdn.hob.farm/gallery/cute-corrupted/sienna-red/cute-and-corrupted-sienna.mp4",
+        "size": 12452848,
+        "lastModified": "2026-06-18T22:05:13.492Z",
+        "etag": "e8f292328656ff37fa4af3eced31c08b",
+        "storageClass": "Standard",
+        "prefix": "gallery",
+        "extension": "mp4",
+        "contentType": "video/mp4",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 71.1 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "10 MB to 100 MB"
+      },
+      {
+        "key": "gallery/seed-to-world/ir-female-figure-pale-grey-1779397851177.txt",
+        "publicUrl": "https://cdn.hob.farm/gallery/seed-to-world/ir-female-figure-pale-grey-1779397851177.txt",
+        "size": 34553,
+        "lastModified": "2026-05-21T21:58:47.208Z",
+        "etag": "7fa52ced09e12832fa7c6a6dbada1291",
+        "storageClass": "Standard",
+        "prefix": "gallery",
+        "extension": "txt",
+        "contentType": "text/plain",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference, but the same parent prefix contains retained objects.",
+        "evidence": [
+          "retained sibling: gallery/seed-to-world/s2w-v1-01.jpg"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "90 to 180 days",
+        "sizeRange": "less than 100 KB"
+      },
+      {
+        "key": "gallery/seed-to-world/ir-female-figure-pale-grey-1779399325223.txt",
+        "publicUrl": "https://cdn.hob.farm/gallery/seed-to-world/ir-female-figure-pale-grey-1779399325223.txt",
+        "size": 45452,
+        "lastModified": "2026-05-21T21:58:47.176Z",
+        "etag": "d90a1ef4918c47714c0688929948cb91",
+        "storageClass": "Standard",
+        "prefix": "gallery",
+        "extension": "txt",
+        "contentType": "text/plain",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference, but the same parent prefix contains retained objects.",
+        "evidence": [
+          "retained sibling: gallery/seed-to-world/s2w-v1-01.jpg"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "90 to 180 days",
+        "sizeRange": "less than 100 KB"
+      },
+      {
+        "key": "pages/projects/3dm/",
+        "publicUrl": "https://cdn.hob.farm/pages/projects/3dm/",
+        "size": 0,
+        "lastModified": "2026-06-04T02:41:10.980Z",
+        "etag": "d41d8cd98f00b204e9800998ecf8427e",
+        "storageClass": "Standard",
+        "prefix": "pages",
+        "extension": "",
+        "contentType": "application/octet-stream",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 85.9 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "0 bytes"
+      },
+      {
+        "key": "pages/projects/3dm/3dm-logo.png",
+        "publicUrl": "https://cdn.hob.farm/pages/projects/3dm/3dm-logo.png",
+        "size": 1645171,
+        "lastModified": "2026-06-04T02:41:16.683Z",
+        "etag": "22d94b8f4e068696dc0b332477135bd3",
+        "storageClass": "Standard",
+        "prefix": "pages",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 85.9 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "vid-files/",
+        "publicUrl": "https://cdn.hob.farm/vid-files/",
+        "size": 0,
+        "lastModified": "2026-06-02T06:43:18.779Z",
+        "etag": "d41d8cd98f00b204e9800998ecf8427e",
+        "storageClass": "Standard",
+        "prefix": "vid-files",
+        "extension": "",
+        "contentType": "application/octet-stream",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 87.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "0 bytes"
+      },
+      {
+        "key": "vid-files/claymation-test.png",
+        "publicUrl": "https://cdn.hob.farm/vid-files/claymation-test.png",
+        "size": 2571051,
+        "lastModified": "2026-06-02T07:01:56.750Z",
+        "etag": "e331f63d09ca977288983265c424134a",
+        "storageClass": "Standard",
+        "prefix": "vid-files",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 87.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "vid-files/kraken_city_world.png",
+        "publicUrl": "https://cdn.hob.farm/vid-files/kraken_city_world.png",
+        "size": 2962076,
+        "lastModified": "2026-06-05T23:24:41.595Z",
+        "etag": "dfe5733701aa1891bd742ddf9e836d95",
+        "storageClass": "Standard",
+        "prefix": "vid-files",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 84.1 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "vid-files/lollypop1.png",
+        "publicUrl": "https://cdn.hob.farm/vid-files/lollypop1.png",
+        "size": 2751417,
+        "lastModified": "2026-06-04T05:12:35.669Z",
+        "etag": "8ab6fb7d8b2575cb123830fe4625f108",
+        "storageClass": "Standard",
+        "prefix": "vid-files",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 85.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "vid-files/test1.png",
+        "publicUrl": "https://cdn.hob.farm/vid-files/test1.png",
+        "size": 1472165,
+        "lastModified": "2026-06-02T06:43:27.684Z",
+        "etag": "b57b434f73815619ed8d0f36bc852bb4",
+        "storageClass": "Standard",
+        "prefix": "vid-files",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 87.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "workshop/alter-ego/hc-hd-poster-001.jpg",
+        "publicUrl": "https://cdn.hob.farm/workshop/alter-ego/hc-hd-poster-001.jpg",
+        "size": 2182037,
+        "lastModified": "2026-07-11T23:01:27.272Z",
+        "etag": "c37a0fb61157f8522ee61a45803cbebf",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 48.1 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "workshop/before-and-after/character/before-and-after-1926-2026-web.mp4",
+        "publicUrl": "https://cdn.hob.farm/workshop/before-and-after/character/before-and-after-1926-2026-web.mp4",
+        "size": 15008386,
+        "lastModified": "2026-07-15T02:56:44.551Z",
+        "etag": "65bad58fe9b962cc0b74054618a3c6bc",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "mp4",
+        "contentType": "video/mp4",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 44.9 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "10 MB to 100 MB"
+      },
+      {
+        "key": "workshop/before-and-after/character/before-and-after-1926-2026.mp4",
+        "publicUrl": "https://cdn.hob.farm/workshop/before-and-after/character/before-and-after-1926-2026.mp4",
+        "size": 16670035,
+        "lastModified": "2026-07-15T02:56:46.387Z",
+        "etag": "d4cf14ea92215d4d48df1b3e733a2bfa",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "mp4",
+        "contentType": "video/mp4",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 44.9 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "10 MB to 100 MB"
+      },
+      {
+        "key": "workshop/before-and-after/character/before-and-after-1926-2026.png",
+        "publicUrl": "https://cdn.hob.farm/workshop/before-and-after/character/before-and-after-1926-2026.png",
+        "size": 2590925,
+        "lastModified": "2026-07-15T02:56:50.151Z",
+        "etag": "412bc9db956093485c1a67d9abfb23c9",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 44.9 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "workshop/before-and-after/scene/salton-city-2026.png",
+        "publicUrl": "https://cdn.hob.farm/workshop/before-and-after/scene/salton-city-2026.png",
+        "size": 3389886,
+        "lastModified": "2026-07-15T02:56:53.331Z",
+        "etag": "e737b9eb63e97aade585a0d6a7ffc41d",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 44.9 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "workshop/future-carriage/future-carriage-4033-ami.png",
+        "publicUrl": "https://cdn.hob.farm/workshop/future-carriage/future-carriage-4033-ami.png",
+        "size": 2387530,
+        "lastModified": "2026-08-17T16:22:10.554Z",
+        "etag": "b8daed9f6e21dcae36c7e749b50e93ad",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 11.3 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "workshop/mannequin-outfit-character/designs/character-scene-outfit2.mp4",
+        "publicUrl": "https://cdn.hob.farm/workshop/mannequin-outfit-character/designs/character-scene-outfit2.mp4",
+        "size": 1239532,
+        "lastModified": "2026-07-15T05:52:02.331Z",
+        "etag": "8cfd01742314989b4a3dd392bb6ff242",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "mp4",
+        "contentType": "video/mp4",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 44.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "workshop/mannequin-outfit-character/designs/character-scene-outfit2.png",
+        "publicUrl": "https://cdn.hob.farm/workshop/mannequin-outfit-character/designs/character-scene-outfit2.png",
+        "size": 3240432,
+        "lastModified": "2026-07-15T05:52:04.598Z",
+        "etag": "5dbd07f2a4a63a225cbf673c7b61760a",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 44.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "workshop/mannequin-outfit-character/designs/clean-base-001-sheet.png",
+        "publicUrl": "https://cdn.hob.farm/workshop/mannequin-outfit-character/designs/clean-base-001-sheet.png",
+        "size": 1297402,
+        "lastModified": "2026-08-01T06:44:38.336Z",
+        "etag": "2d67ad476d51e7f5691514896a0982f1",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 27.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "workshop/mannequin-outfit-character/designs/cyberpop-bauhaus-character.png",
+        "publicUrl": "https://cdn.hob.farm/workshop/mannequin-outfit-character/designs/cyberpop-bauhaus-character.png",
+        "size": 1469191,
+        "lastModified": "2026-08-01T06:44:38.420Z",
+        "etag": "d8ff096e91f9266639c6b92e6ef1c132",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 27.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "workshop/mannequin-outfit-character/designs/cyberpop-bauhaus-scene.png",
+        "publicUrl": "https://cdn.hob.farm/workshop/mannequin-outfit-character/designs/cyberpop-bauhaus-scene.png",
+        "size": 1997454,
+        "lastModified": "2026-08-01T06:44:38.526Z",
+        "etag": "6c20b11e525913405fdf5e1649494c39",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 27.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "workshop/mannequin-outfit-character/designs/cyberpop-y2kfut-001-sheet.png",
+        "publicUrl": "https://cdn.hob.farm/workshop/mannequin-outfit-character/designs/cyberpop-y2kfut-001-sheet.png",
+        "size": 1789281,
+        "lastModified": "2026-08-01T06:44:38.665Z",
+        "etag": "e73062149459bf40941b114c64811317",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 27.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "workshop/mannequin-outfit-character/designs/demon-chick.jpg",
+        "publicUrl": "https://cdn.hob.farm/workshop/mannequin-outfit-character/designs/demon-chick.jpg",
+        "size": 1367350,
+        "lastModified": "2026-08-01T07:41:21.488Z",
+        "etag": "194c331f940d7363f3b9662434258cb0",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 27.7 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "less than 30 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "workshop/mannequin-outfit-character/designs/mannequin-outfit2.png",
+        "publicUrl": "https://cdn.hob.farm/workshop/mannequin-outfit-character/designs/mannequin-outfit2.png",
+        "size": 2659132,
+        "lastModified": "2026-07-15T05:52:05.761Z",
+        "etag": "3deef04a801a310f2934afffaf3654bf",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 44.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "workshop/mannequin-outfit-character/designs/outfit2.png",
+        "publicUrl": "https://cdn.hob.farm/workshop/mannequin-outfit-character/designs/outfit2.png",
+        "size": 1468184,
+        "lastModified": "2026-07-15T05:52:06.625Z",
+        "etag": "aab88431c799815b40fffaca7daa0f49",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 44.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "workshop/mannequin-outfit-character/page-graphics/hobfarm-mannequin-character-outfit-design-apply-scene.png",
+        "publicUrl": "https://cdn.hob.farm/workshop/mannequin-outfit-character/page-graphics/hobfarm-mannequin-character-outfit-design-apply-scene.png",
+        "size": 1952704,
+        "lastModified": "2026-07-15T05:52:07.049Z",
+        "etag": "9262f552e4360fd0cdcc77db4b37805e",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 44.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "workshop/mannequin-outfit-character/page-graphics/hobfarm-mannequin-character-outfit-scene-design.png",
+        "publicUrl": "https://cdn.hob.farm/workshop/mannequin-outfit-character/page-graphics/hobfarm-mannequin-character-outfit-scene-design.png",
+        "size": 2041546,
+        "lastModified": "2026-07-15T05:52:07.267Z",
+        "etag": "210d9af7c334ec1b2bc9f6de8be0513a",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 44.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "workshop/mannequin-outfit-character/page-graphics/hobfarm-mannequin-character-outfit-scene-video-design.png",
+        "publicUrl": "https://cdn.hob.farm/workshop/mannequin-outfit-character/page-graphics/hobfarm-mannequin-character-outfit-scene-video-design.png",
+        "size": 1717099,
+        "lastModified": "2026-07-15T05:52:07.585Z",
+        "etag": "0e70956ac6d7ac0c06e89b68d9cac911",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 44.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "workshop/mannequin-outfit-character/page-graphics/hobfarm-mannequin-design-.png",
+        "publicUrl": "https://cdn.hob.farm/workshop/mannequin-outfit-character/page-graphics/hobfarm-mannequin-design-.png",
+        "size": 1750910,
+        "lastModified": "2026-07-15T05:52:07.799Z",
+        "etag": "80f9c946663d5667f514ca8b371a0d00",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 44.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "workshop/mannequin-outfit-character/page-graphics/hobfarm-mannequin-outfit-design.png",
+        "publicUrl": "https://cdn.hob.farm/workshop/mannequin-outfit-character/page-graphics/hobfarm-mannequin-outfit-design.png",
+        "size": 1810786,
+        "lastModified": "2026-07-15T05:52:08.031Z",
+        "etag": "9b1e2f9162b260c8df3ed21c26aacecb",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 44.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "workshop/mannequin-outfit-character/page-graphics/hobfarm-scene-character-outfit-design.png",
+        "publicUrl": "https://cdn.hob.farm/workshop/mannequin-outfit-character/page-graphics/hobfarm-scene-character-outfit-design.png",
+        "size": 2206808,
+        "lastModified": "2026-07-15T05:52:08.074Z",
+        "etag": "b023fb59c290245337924fd1021fe7fe",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 44.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "workshop/mannequin-to-avatar/v1/manifest.json",
+        "publicUrl": "https://cdn.hob.farm/workshop/mannequin-to-avatar/v1/manifest.json",
+        "size": 8808,
+        "lastModified": "2026-07-20T02:53:02.353Z",
+        "etag": "11c8394d681de30f815fe1d8ac0b7906",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "json",
+        "contentType": "application/json",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 39.9 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "less than 100 KB"
+      },
+      {
+        "key": "workshop/mannequin-to-avatar/v1/posters/zima-process-film-vertical-poster-v1.jpg",
+        "publicUrl": "https://cdn.hob.farm/workshop/mannequin-to-avatar/v1/posters/zima-process-film-vertical-poster-v1.jpg",
+        "size": 269334,
+        "lastModified": "2026-07-20T02:53:22.616Z",
+        "etag": "e0f8e5ab494b9761f60b5ffedc4bf356",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 39.9 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "workshop/mannequin-to-avatar/v1/posters/zima-process-film-wide-poster-v1.jpg",
+        "publicUrl": "https://cdn.hob.farm/workshop/mannequin-to-avatar/v1/posters/zima-process-film-wide-poster-v1.jpg",
+        "size": 253439,
+        "lastModified": "2026-07-20T02:52:59.272Z",
+        "etag": "4d8746db134c30011488a30d3ccb1de7",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 39.9 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "workshop/mannequin-to-avatar/v1/renders/zima-process-film-vertical-v1.mp4",
+        "publicUrl": "https://cdn.hob.farm/workshop/mannequin-to-avatar/v1/renders/zima-process-film-vertical-v1.mp4",
+        "size": 4515862,
+        "lastModified": "2026-07-20T02:52:48.904Z",
+        "etag": "d6628abd743c03dd40111a2974777f81",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "mp4",
+        "contentType": "video/mp4",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 39.9 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "workshop/mannequin-to-avatar/v1/renders/zima-process-film-wide-v1.mp4",
+        "publicUrl": "https://cdn.hob.farm/workshop/mannequin-to-avatar/v1/renders/zima-process-film-wide-v1.mp4",
+        "size": 6138460,
+        "lastModified": "2026-07-20T02:52:53.313Z",
+        "etag": "e37fe11c0c898cc7c2bb42f65811d28b",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "mp4",
+        "contentType": "video/mp4",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 39.9 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "workshop/mannequin-to-avatar/v2/manifest.json",
+        "publicUrl": "https://cdn.hob.farm/workshop/mannequin-to-avatar/v2/manifest.json",
+        "size": 9082,
+        "lastModified": "2026-07-20T04:21:30.636Z",
+        "etag": "50ef78f4b0850760c22ec901cb93eeaf",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "json",
+        "contentType": "application/json",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 39.8 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "less than 100 KB"
+      },
+      {
+        "key": "workshop/psygoth/design/",
+        "publicUrl": "https://cdn.hob.farm/workshop/psygoth/design/",
+        "size": 0,
+        "lastModified": "2026-07-15T20:52:23.872Z",
+        "etag": "d41d8cd98f00b204e9800998ecf8427e",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "",
+        "contentType": "application/octet-stream",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 44.2 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "0 bytes"
+      },
+      {
+        "key": "workshop/psygoth/design/hobfarm-color-design-example-01.jpg",
+        "publicUrl": "https://cdn.hob.farm/workshop/psygoth/design/hobfarm-color-design-example-01.jpg",
+        "size": 255366,
+        "lastModified": "2026-07-15T20:52:47.354Z",
+        "etag": "d9d6e9d0dfe6f1e5e9e2a6b4f167f92c",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 44.2 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "workshop/psygoth/design/hobfarm-color-design-example-01.mp4",
+        "publicUrl": "https://cdn.hob.farm/workshop/psygoth/design/hobfarm-color-design-example-01.mp4",
+        "size": 11101466,
+        "lastModified": "2026-07-15T20:52:49.216Z",
+        "etag": "6dcbafbdb69f3067da9b7c24f4ecce18",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "mp4",
+        "contentType": "video/mp4",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 44.2 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "10 MB to 100 MB"
+      },
+      {
+        "key": "workshop/psygoth/design/hobfarm-color-design-example-02.jpg",
+        "publicUrl": "https://cdn.hob.farm/workshop/psygoth/design/hobfarm-color-design-example-02.jpg",
+        "size": 358526,
+        "lastModified": "2026-07-15T20:52:47.481Z",
+        "etag": "27e261e21bfe9759af9558d8205e65b0",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 44.2 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "workshop/psygoth/design/hobfarm-color-design-example-02.mp4",
+        "publicUrl": "https://cdn.hob.farm/workshop/psygoth/design/hobfarm-color-design-example-02.mp4",
+        "size": 12399875,
+        "lastModified": "2026-07-15T20:52:51.247Z",
+        "etag": "fd5402b72c6b90a557f82228ae9ccf1c",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "mp4",
+        "contentType": "video/mp4",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 44.2 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "10 MB to 100 MB"
+      },
+      {
+        "key": "workshop/psygoth/design/hobfarm-color-design-example-03.png",
+        "publicUrl": "https://cdn.hob.farm/workshop/psygoth/design/hobfarm-color-design-example-03.png",
+        "size": 3853876,
+        "lastModified": "2026-07-15T20:52:51.116Z",
+        "etag": "dcad650aff9f1eb7907561f14ea9e0c9",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 44.2 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "workshop/psygoth/design/hobfarm-color-design-example-04.png",
+        "publicUrl": "https://cdn.hob.farm/workshop/psygoth/design/hobfarm-color-design-example-04.png",
+        "size": 2635877,
+        "lastModified": "2026-07-15T20:52:51.176Z",
+        "etag": "40716540ea956c740e186bc61baf5a17",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 44.2 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "workshop/psygoth/design/hobfarm-color-design-example-05.png",
+        "publicUrl": "https://cdn.hob.farm/workshop/psygoth/design/hobfarm-color-design-example-05.png",
+        "size": 2660572,
+        "lastModified": "2026-07-15T20:52:51.638Z",
+        "etag": "c0d14bb7dc1febf26b4cd3af656c3d18",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 44.2 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "workshop/psygoth/design/hobfarm-color-design-example-hero.png",
+        "publicUrl": "https://cdn.hob.farm/workshop/psygoth/design/hobfarm-color-design-example-hero.png",
+        "size": 3309620,
+        "lastModified": "2026-07-15T20:52:51.897Z",
+        "etag": "b4d36353ee369e3de0100688089b0aac",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 44.2 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "workshop/scene/",
+        "publicUrl": "https://cdn.hob.farm/workshop/scene/",
+        "size": 0,
+        "lastModified": "2026-07-15T21:39:08.226Z",
+        "etag": "d41d8cd98f00b204e9800998ecf8427e",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "",
+        "contentType": "application/octet-stream",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 44.1 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "0 bytes"
+      },
+      {
+        "key": "workshop/scene/scene-v1-001-poster.jpg",
+        "publicUrl": "https://cdn.hob.farm/workshop/scene/scene-v1-001-poster.jpg",
+        "size": 357317,
+        "lastModified": "2026-07-15T21:39:15.736Z",
+        "etag": "bc8ba9446a1e1bebb026f9b67d5df41b",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "jpg",
+        "contentType": "image/jpeg",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 44.1 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "100 KB to 1 MB"
+      },
+      {
+        "key": "workshop/scene/scene-v1-001.mp4",
+        "publicUrl": "https://cdn.hob.farm/workshop/scene/scene-v1-001.mp4",
+        "size": 9105798,
+        "lastModified": "2026-07-15T21:39:17.629Z",
+        "etag": "6454f4e014c420366dba1249d2f36b20",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "mp4",
+        "contentType": "video/mp4",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 44.1 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "workshop/scene/scene-v1-002.png",
+        "publicUrl": "https://cdn.hob.farm/workshop/scene/scene-v1-002.png",
+        "size": 4718327,
+        "lastModified": "2026-07-15T21:39:17.838Z",
+        "etag": "abddcbb21a17e74cc78c30a61608a8ca",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 44.1 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      },
+      {
+        "key": "workshop/scene/scene-v1-003.png",
+        "publicUrl": "https://cdn.hob.farm/workshop/scene/scene-v1-003.png",
+        "size": 6325235,
+        "lastModified": "2026-07-15T21:39:18.397Z",
+        "etag": "4be663450cd9ebcb2e956d2d0d506d11",
+        "storageClass": "Standard",
+        "prefix": "workshop",
+        "extension": "png",
+        "contentType": "image/png",
+        "classification": "review",
+        "classificationReason": "No deterministic repository reference; object is newer than 90 days.",
+        "evidence": [
+          "age: 44.1 days"
+        ],
+        "repositoryReferenceCount": 0,
+        "ageRange": "30 to 90 days",
+        "sizeRange": "1 MB to 10 MB"
+      }
+    ]
+  }
+}

@@ -65,6 +65,7 @@
     "qa:oaa-browser": "node scripts/qa-other-alice.mjs",
     "build": "astro build",
     "inventory": "node scripts/media-inventory.mjs",
+    "audit:r2-cdn": "npm run build && node scripts/audit-r2-cdn.mjs --include-dist",
     "preview": "astro preview",
     "astro": "astro",
     "test:e2e": "playwright test",

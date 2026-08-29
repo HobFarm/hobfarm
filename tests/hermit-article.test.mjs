@@ -65,10 +65,11 @@ test("Hermit article local assets exist and have documented rights", async () =>
 
   for (const asset of manifest.assets) {
     await access(asset.source_file);
-    assert.match(article, new RegExp(asset.destination_key.split("/").at(-1).replaceAll(".", "\\.")));
+    assert.match(article, new RegExp(asset.public_url.replaceAll(".", "\\.")));
     assert.ok(asset.rights_basis);
-    assert.equal(asset.upload_status, "ready");
-    assert.equal(asset.verification_status, "destination-absent");
+    assert.equal(asset.upload_status, "uploaded");
+    assert.equal(asset.verification_status, "verified-public-url");
+    assert.ok(asset.verified_at);
   }
 
   for (const source of sources.assets) {

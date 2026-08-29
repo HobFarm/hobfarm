@@ -45,8 +45,9 @@
       "width": 1200,
       "height": 1240,
       "replacement_policy": "new-key-only; version filename on conflict; never overwrite",
-      "upload_status": "ready",
-      "verification_status": "destination-absent"
+      "upload_status": "uploaded",
+      "verification_status": "verified-public-url",
+      "verified_at": "2026-08-29T00:38:51.283Z"
     },
     {
       "asset_id": "hermit-shoichi-yokoi-young",
@@ -70,8 +71,9 @@
       "width": 543,
       "height": 700,
       "replacement_policy": "new-key-only; version filename on conflict; never overwrite",
-      "upload_status": "ready",
-      "verification_status": "destination-absent"
+      "upload_status": "uploaded",
+      "verification_status": "verified-public-url",
+      "verified_at": "2026-08-29T00:38:51.283Z"
     },
     {
       "asset_id": "hermit-hiroo-onoda-young",
@@ -95,9 +97,11 @@
       "width": 373,
       "height": 455,
       "replacement_policy": "new-key-only; version filename on conflict; never overwrite",
-      "upload_status": "ready",
-      "verification_status": "destination-absent"
+      "upload_status": "uploaded",
+      "verification_status": "verified-public-url",
+      "verified_at": "2026-08-29T00:38:51.283Z"
     }
   ],
-  "dry_run_at": "2026-08-04T03:14:39.795Z"
+  "dry_run_at": "2026-08-04T03:14:39.795Z",
+  "uploaded_at": "2026-08-29T00:38:51.283Z"
 }
