@@ -56,6 +56,7 @@
     "r2:trash-mountain:upload": "node scripts/r2-upload-manifest.mjs --manifest reports/trash-mountain/asset-manifest.json --upload",
     "build:songs-we-learned-backwards-assets": "node scripts/build-songs-we-learned-backwards-assets.mjs",
     "build:new-wave-assets": "node scripts/build-new-wave-assets.mjs",
+    "build:bobby-fischer-assets": "node scripts/build-bobby-fischer-assets.mjs",
     "manifest:songs-we-learned-backwards-assets": "node scripts/build-songs-we-learned-backwards-manifest.mjs",
     "r2:songs-we-learned-backwards:dry-run": "node scripts/r2-upload-manifest.mjs --manifest reports/songs-we-learned-backwards/asset-manifest.json",
     "r2:songs-we-learned-backwards:upload": "node scripts/r2-upload-manifest.mjs --manifest reports/songs-we-learned-backwards/asset-manifest.json --upload",

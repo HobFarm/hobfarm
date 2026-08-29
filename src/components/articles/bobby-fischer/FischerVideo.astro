@@ -1,0 +1,229 @@
+---
+interface Timestamp {
+  seconds: number;
+  label: string;
+}
+
+interface Props {
+  videoId: string;
+  title: string;
+  dateLabel: string;
+  note: string;
+  timestamps?: Timestamp[];
+}
+
+const { videoId, title, dateLabel, note, timestamps = [] } = Astro.props;
+const watchUrl = `https://www.youtube.com/watch?v=${videoId}`;
+const posterUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+---
+
+<figure class="fischer-video article-wide not-prose" data-fischer-video data-video-id={videoId}>
+  <div class="fischer-video__screen" data-video-screen>
+    <img src={posterUrl} alt="" width="480" height="360" loading="lazy" decoding="async" />
+    <button type="button" data-video-load aria-label={`Load ${title}`}>
+      <span aria-hidden="true">▶</span>
+      Load official clip
+    </button>
+  </div>
+  <figcaption>
+    <div class="fischer-video__copy">
+      <span class="fischer-video__date">{dateLabel}</span>
+      <strong>{title}</strong>
+      <small>{note}</small>
+    </div>
+    {timestamps.length > 0 && (
+      <ul aria-label="Useful moments">
+        {timestamps.map((timestamp) => (
+          <li>
+            <a href={`${watchUrl}&t=${timestamp.seconds}s`} target="_blank" rel="noopener noreferrer">
+              {Math.floor(timestamp.seconds / 60)}:{String(timestamp.seconds % 60).padStart(2, "0")} {timestamp.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+    <a class="fischer-video__watch" href={watchUrl} target="_blank" rel="noopener noreferrer">
+      Watch on YouTube <span aria-hidden="true">↗</span>
+    </a>
+  </figcaption>
+  <p class="sr-only" aria-live="polite" data-video-status></p>
+</figure>
+
+<script>
+  function installFischerVideos() {
+    document.querySelectorAll<HTMLElement>("[data-fischer-video]").forEach((player) => {
+      const button = player.querySelector<HTMLButtonElement>("[data-video-load]");
+      const screen = player.querySelector<HTMLElement>("[data-video-screen]");
+      const status = player.querySelector<HTMLElement>("[data-video-status]");
+      if (!button || !screen || button.dataset.ready === "true") return;
+      button.dataset.ready = "true";
+
+      button.addEventListener("click", () => {
+        const videoId = player.dataset.videoId;
+        if (!videoId) return;
+
+        const iframe = document.createElement("iframe");
+        iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?rel=0`;
+        iframe.title = button.getAttribute("aria-label")?.replace(/^Load /, "") ?? "YouTube video";
+        iframe.allow = "accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        iframe.referrerPolicy = "strict-origin-when-cross-origin";
+        iframe.allowFullscreen = true;
+        iframe.addEventListener("load", () => {
+          if (status) status.textContent = `${iframe.title} loaded. Use the player controls to begin.`;
+          iframe.focus();
+        });
+
+        screen.replaceChildren(iframe);
+        if (status) status.textContent = `Loading ${iframe.title}.`;
+      }, { once: true });
+    });
+  }
+
+  installFischerVideos();
+  document.addEventListener("astro:page-load", installFischerVideos);
+</script>
+
+<style>
+  .fischer-video {
+    margin-block: 2.7rem !important;
+    overflow: hidden;
+    border: 1px solid rgb(188 73 45 / 0.5);
+    border-radius: 0.25rem;
+    background: #101314;
+    box-shadow: 0.65rem 0.75rem 0 rgb(22 17 12 / 0.2);
+  }
+
+  .fischer-video__screen {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #050707;
+  }
+
+  .fischer-video__screen::after {
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent 0 4px, rgb(7 9 9 / 0.15) 4px 5px),
+      linear-gradient(180deg, transparent 45%, rgb(7 9 9 / 0.8));
+    content: "";
+    pointer-events: none;
+  }
+
+  .fischer-video__screen img,
+  .fischer-video__screen :global(iframe) {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    object-fit: cover;
+  }
+
+  .fischer-video__screen :global(iframe) {
+    position: relative;
+    z-index: 2;
+  }
+
+  button {
+    position: absolute;
+    z-index: 1;
+    right: 1rem;
+    bottom: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-height: 2.75rem;
+    padding: 0.72rem 0.9rem;
+    border: 1px solid #efe5cd;
+    border-radius: 0.16rem;
+    background: rgb(16 19 20 / 0.95);
+    color: #fff8e7;
+    font: 700 0.72rem/1 var(--font-mono), monospace;
+    cursor: pointer;
+  }
+
+  button:hover,
+  button:focus-visible {
+    border-color: #d66a43;
+    outline: 2px solid #d66a43;
+    outline-offset: 2px;
+  }
+
+  figcaption {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.85rem 1.2rem;
+    margin: 0 !important;
+    padding: 1rem;
+    border-top: 0.35rem solid #bc492d;
+    color: #d9d1c0;
+    text-align: left !important;
+  }
+
+  .fischer-video__copy {
+    display: grid;
+    gap: 0.2rem;
+  }
+
+  .fischer-video__date {
+    color: #d69651;
+    font: 700 0.65rem/1.2 var(--font-mono), monospace;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  figcaption strong {
+    color: #fff8e7;
+    font-size: 0.92rem;
+  }
+
+  figcaption small {
+    max-width: 44rem;
+    color: #aaa393;
+    font-size: 0.72rem;
+    line-height: 1.45;
+  }
+
+  figcaption ul {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.42rem;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none;
+  }
+
+  figcaption li {
+    margin: 0 !important;
+  }
+
+  figcaption a {
+    color: #efb66c !important;
+    font: 700 0.66rem/1.35 var(--font-mono), monospace;
+  }
+
+  figcaption li a {
+    display: block;
+    padding: 0.35rem 0.48rem;
+    border: 1px solid rgb(239 182 108 / 0.3);
+  }
+
+  .fischer-video__watch {
+    align-self: center;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 38rem) {
+    figcaption {
+      grid-template-columns: 1fr;
+    }
+
+    .fischer-video__watch {
+      grid-row: 3;
+    }
+
+    figcaption ul {
+      grid-column: 1;
+    }
+  }
+</style>

@@ -1,0 +1,41 @@
+{
+  "article": "who-the-hell-is-bobby-fischer",
+  "generatedAt": "2026-08-29T11:45:01.507Z",
+  "source": {
+    "path": "/articles/who-the-hell-is-bobby-fischer/bobby-fischer-hero-original.png",
+    "origin": "Original editorial illustration generated with OpenAI image generation for this article.",
+    "treatment": "No factual labels or headline are baked into the raster. Published derivatives are center-cropped WebP files."
+  },
+  "files": [
+    {
+      "role": "article hero",
+      "publicPath": "/articles/who-the-hell-is-bobby-fischer/bobby-fischer-hero.webp",
+      "bytes": 433172,
+      "width": 1600,
+      "height": 900,
+      "sha256": "f39ac5be3b4196173a1816959045def15abf9e918644b6d9015445e420da7c1d"
+    },
+    {
+      "role": "social preview",
+      "publicPath": "/articles/who-the-hell-is-bobby-fischer/bobby-fischer-social.webp",
+      "bytes": 239852,
+      "width": 1200,
+      "height": 630,
+      "sha256": "305d0ef6260b7535b72226f2d9efc91cf0f4abbdf48228f5fda480bb0ced057c"
+    },
+    {
+      "role": "article thumbnail",
+      "publicPath": "/articles/who-the-hell-is-bobby-fischer/bobby-fischer-thumbnail.webp",
+      "bytes": 88636,
+      "width": 800,
+      "height": 450,
+      "sha256": "c2a18d1f9f12364a05edde51565ca875f7066cbeed80db753451396906a96392"
+    }
+  ],
+  "codeNativeFigures": [
+    "Chess skill: pattern recognition and selective search",
+    "July 1972 FIDE top ten",
+    "Chess as public metaphor, 1972 to now",
+    "Broadcast fame versus personalized routing"
+  ]
+}
