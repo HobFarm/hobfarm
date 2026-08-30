@@ -152,6 +152,8 @@ Use local `public/` assets only for files intentionally served from the repo.
 
 Cloudflare Pages deploys from `main`.
 
+Scheduled Editorial releases use the permanent workflow at `.github/workflows/release-scheduled-articles.yml`. Its Cloudflare Pages deploy hook is stored only in the protected GitHub Actions secret `CLOUDFLARE_PAGES_DEPLOY_HOOK_URL`. Never write, print, or commit the hook URL. The workflow checks the live canonical route before requesting a build and verifies the route after Cloudflare accepts the hook.
+
 Use local development and preview commands for review. Do not create
 non-production branches for Cloudflare preview deployments.
 

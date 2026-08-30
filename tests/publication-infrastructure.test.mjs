@@ -2,6 +2,11 @@ import assert from "node:assert/strict";
 import { readdir, readFile } from "node:fs/promises";
 import { join } from "node:path";
 import test from "node:test";
+import {
+  parseArticleSource,
+  selectLatestEligibleArticle,
+  validateDeployHookUrl,
+} from "../scripts/release-scheduled-articles.mjs";
 
 const root = process.cwd();
 const workflowDirectory = join(root, ".github", "workflows");
@@ -88,4 +93,63 @@ test("repository guidance defines the publication automation boundary", async ()
   );
   assert.match(guidance, /Do not create an article-specific workflow, cron job, deployment path, build pipeline, permanent CI test/);
   assert.match(guidance, /Test durable publishing behavior/);
+});
+
+test("one durable workflow monitors scheduled releases without mutating articles", async () => {
+  const workflow = await read(".github/workflows/release-scheduled-articles.yml");
+  const helper = await read("scripts/release-scheduled-articles.mjs");
+
+  assert.match(workflow, /timezone: "America\/Los_Angeles"/);
+  assert.match(workflow, /workflow_dispatch:/);
+  assert.match(workflow, /cancel-in-progress: false/);
+  assert.match(workflow, /secrets\.CLOUDFLARE_PAGES_DEPLOY_HOOK_URL/);
+  assert.match(workflow, /node scripts\/release-scheduled-articles\.mjs/);
+  assert.doesNotMatch(workflow, /\bgit\s+(?:add|commit|push|rm)\b/);
+  assert.match(helper, /selectLatestEligibleArticle/);
+  assert.match(helper, /Article is already live/);
+  assert.match(helper, /triggering the protected Pages deploy hook/);
+});
+
+test("scheduled release selection follows the publication clock and evidence state", () => {
+  const articleRoot = join(root, "src", "content", "articles");
+  const article = (name, frontmatter) =>
+    parseArticleSource(
+      `---\n${frontmatter}\n---\n`,
+      join(articleRoot, name),
+      articleRoot,
+    );
+  const articles = [
+    article("older.mdx", "title: Older\npublishedAt: 2026-08-29T16:20:00-07:00\nstatus: published"),
+    article(
+      "due.mdx",
+      'title: Due\ncanonical: "/articles/due/"\npublishedAt: 2026-08-30T16:20:00-07:00\nstatus: scheduled',
+    ),
+    article("future.mdx", "title: Future\npublishedAt: 2026-08-31T16:20:00-07:00\nstatus: scheduled"),
+    article("draft.mdx", "title: Draft\npublishedAt: 2026-08-30T16:21:00-07:00\nstatus: scheduled\ndraft: true"),
+    article("archived.mdx", "title: Archived\npublishedAt: 2026-08-30T16:22:00-07:00\nstatus: archived"),
+  ].filter(Boolean);
+
+  assert.equal(
+    selectLatestEligibleArticle(
+      articles,
+      new Date("2026-08-30T16:19:59-07:00"),
+    )?.title,
+    "Older",
+  );
+  const due = selectLatestEligibleArticle(
+    articles,
+    new Date("2026-08-30T16:20:01-07:00"),
+  );
+  assert.equal(due?.title, "Due");
+  assert.equal(due?.route, "/articles/due/");
+});
+
+test("scheduled release hooks are restricted to Cloudflare HTTPS endpoints", () => {
+  assert.doesNotThrow(() =>
+    validateDeployHookUrl(
+      "https://api.cloudflare.com/client/v4/pages/webhooks/deploy_hooks/example",
+    ),
+  );
+  assert.throws(() => validateDeployHookUrl("http://api.cloudflare.com/example"));
+  assert.throws(() => validateDeployHookUrl("https://example.com/hook"));
 });

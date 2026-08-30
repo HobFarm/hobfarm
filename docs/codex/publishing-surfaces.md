@@ -80,7 +80,9 @@ Every article needs `publishedAt` or `pubDate`. Inspect `src/content.config.ts` 
 
 New scheduled articles should normally publish at 4:20 p.m. in the `America/Los_Angeles` time zone, spaced 24 hours apart. Preserve publication times that were already scheduled unless the user asks to change them. Use the correct UTC offset for the release date so daylight saving time is handled explicitly.
 
-A publication timestamp records when an article becomes eligible for release. Astro produces static output, so an existing deployment does not change when the clock passes that timestamp. A future-dated article becomes public only when a production build runs after the release instant and that output is deployed. Setting the timestamp is separate from arranging or performing the authorized production build and deployment. Do not describe an article as automatically publishing unless the repository has actual timed build-and-deploy infrastructure for it.
+A publication timestamp records when an article becomes eligible for release. Astro produces static output, so an existing deployment does not change when the clock passes that timestamp. The durable workflow at `.github/workflows/release-scheduled-articles.yml` checks the newest eligible route at 4:20 p.m. Pacific and several fallback times. When that route is missing, it triggers a protected Cloudflare Pages deploy hook, waits for the new build, and verifies that the article came online.
+
+The article source must be committed and pushed to `main` before its release time. Once it is there, the release monitor performs the post-timestamp build automatically; the author does not need to make another commit or manually redeploy. The timestamp remains release eligibility rather than an executing scheduler by itself.
 
 Keep optional fields optional unless the user explicitly requests a schema migration.
 
@@ -89,7 +91,7 @@ Keep optional fields optional unless the user explicitly requests a schema migra
 Use existing publication infrastructure. Content is data inside the publishing system, not a reason to create another publishing system.
 
 - An ordinary article task may change content, media, metadata, relationships, and scheduled publication data. Do not create an article-specific workflow, cron job, deployment path, build pipeline, permanent CI test, or other infrastructure unless the user explicitly requests it or the existing architecture demonstrably requires it.
-- Never commit, push, or deploy an article automatically. Leave completed changes on `main` for user review unless the current request explicitly authorizes the outward Git or deployment step.
+- The durable scheduled-release monitor is the only standing automatic deployment path for articles. It may rebuild committed `main` after a release timestamp, but it does not edit article files, create commits, or push source changes. Do not add another automatic article deployment path without an explicit infrastructure request.
 - Remove temporary task scaffolding before completion unless it has become intentional durable infrastructure.
 - Test durable publishing behavior and content invariants. Do not require temporary task artifacts to remain in the repository.
 - Investigate full-suite failures caused by likely stale task residue. Do not dismiss them as unrelated without tracing the current intent.

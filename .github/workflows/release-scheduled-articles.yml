@@ -1,0 +1,31 @@
+name: Release scheduled articles
+
+on:
+  schedule:
+    - cron: "20,37,52 16 * * *"
+      timezone: "America/Los_Angeles"
+    - cron: "7,37 17 * * *"
+      timezone: "America/Los_Angeles"
+  workflow_dispatch:
+
+concurrency:
+  group: scheduled-article-release
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    name: Check and release eligible article
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+
+      - name: Trigger and verify a needed Pages rebuild
+        env:
+          CLOUDFLARE_PAGES_DEPLOY_HOOK_URL: ${{ secrets.CLOUDFLARE_PAGES_DEPLOY_HOOK_URL }}
+          PUBLICATION_SITE_ORIGIN: https://hob.farm
+        run: node scripts/release-scheduled-articles.mjs
