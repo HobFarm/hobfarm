@@ -81,7 +81,7 @@ test("article tests verify durable content behavior, not one-time task artifacts
 });
 
 test("repository guidance defines the publication automation boundary", async () => {
-  const guidance = await read("AGENTS.md");
+  const guidance = await read("docs/codex/publishing-surfaces.md");
   assert.match(
     guidance,
     /Use existing publication infrastructure\. Content is data inside the publishing system, not a reason to create another publishing system\./,

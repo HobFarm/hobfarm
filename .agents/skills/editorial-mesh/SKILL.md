@@ -1,6 +1,6 @@
 ---
 name: editorial-mesh
-description: Use for any HobFarm article creation, edit, publication, taxonomy, navigation, related-reading, archive, or content-graph task. Classify each article into one primary human-facing section while building a many-to-many editorial mesh of subjects, series, entities, places, events, works, source artifacts, and article relationships. Enforce strict series rules for Magazine Time Machine and 3DM, normalize aliases, preserve factual versus speculative boundaries, and improve relationships without forcing the corpus into a tree or optimizing topics for job listings.
+description: Finalize HobFarm Editorial classification and discovery after article content is substantially complete, or handle a direct taxonomy, related-reading, archive, navigation, series, subject, entity, or content-graph task. Assign one canonical section and maintain the many-to-many mesh without taking over research, prose, visual selection, or article assembly.
 ---
 
 # HobFarm Editorial Mesh
@@ -9,7 +9,7 @@ description: Use for any HobFarm article creation, edit, publication, taxonomy, 
 
 HobFarm should read like a magazine to a human and behave like a knowledge graph underneath.
 
-Use this skill whenever an article is created, substantially edited, scheduled, published, reclassified, linked to other articles, or used to change article navigation.
+Use this skill near the end of article work, after the piece has a stable center, or when classification and discovery are the task itself.
 
 The goal is not to make every article fit one tree. The goal is to give every article one understandable shelf while preserving the real network of relationships that makes HobFarm useful.
 
@@ -23,9 +23,7 @@ Every article gets one primary section. The section answers:
 
 > If a reader encountered this article in a magazine, which broad desk would most naturally own it?
 
-The final controlled section list comes from the current corpus and lives in the section registry. Do not invent a new top-level section during routine article production.
-
-Possible section families to test during the corpus audit include Music, Film & TV, Art & Design, Technology, Culture, and a place/system/history section. These are candidates, not a required final list.
+The controlled section list lives in `src/data/editorial-mesh.ts`: Music, Film & TV, Art & Design, Technology, Culture, and Places & Systems. Use the registry as the executable source of truth.
 
 ### Mesh layer: many-to-many editorial relationships
 
