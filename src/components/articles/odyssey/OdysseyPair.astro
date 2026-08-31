@@ -1,0 +1,132 @@
+---
+import { imageSrcset, transformImageUrl } from "@/lib/media-transforms";
+
+type PairImage = {
+  src: string;
+  alt: string;
+  caption: string;
+  width: number;
+  height: number;
+  label?: string;
+  credit?: string;
+};
+
+interface Props {
+  images: [PairImage, PairImage];
+  label: string;
+  group?: string;
+}
+
+const { images, label, group = "2001-the-odyssey" } = Astro.props;
+
+const preparedImages = images.map((image) => {
+  const widths = [480, 720, 1000].filter((candidate) => candidate <= image.width);
+  if (!widths.includes(image.width) && image.width < 1000) widths.push(image.width);
+  return {
+    ...image,
+    widths,
+    credit: image.credit ?? "Author photograph",
+  };
+});
+---
+
+<section class="odyssey-pair article-wide not-prose" aria-label={label}>
+  {
+    preparedImages.map((image) => (
+      <figure>
+        {image.label && <span class="odyssey-label">{image.label}</span>}
+        <img
+          src={transformImageUrl(image.src, { width: Math.min(image.width, 1000), quality: 85, fit: "contain" })}
+          srcset={imageSrcset(image.src, image.widths, { quality: 85, fit: "contain" })}
+          sizes="(min-width: 800px) 34rem, 92vw"
+          alt={image.alt}
+          width={image.width}
+          height={image.height}
+          loading="lazy"
+          decoding="async"
+          data-lightbox={image.src}
+          data-lightbox-group={group}
+          data-lightbox-caption={`${image.caption} ${image.credit}`}
+        />
+        <figcaption>
+          <span>{image.caption}</span>
+          <small>{image.credit}</small>
+        </figcaption>
+      </figure>
+    ))
+  }
+</section>
+
+<style>
+  .odyssey-pair {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+    margin-block: 2.4rem !important;
+  }
+
+  figure {
+    position: relative;
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+    min-width: 0;
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid rgb(115 207 224 / 0.25);
+    border-radius: 0.55rem;
+    background: #05080b;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: clamp(18rem, 36vw, 35rem);
+    margin: 0 !important;
+    background: #020304;
+    object-fit: contain;
+  }
+
+  .odyssey-label {
+    position: absolute;
+    z-index: 1;
+    top: 0.65rem;
+    left: 0.65rem;
+    padding: 0.27rem 0.5rem;
+    border: 1px solid rgb(255 255 255 / 0.24);
+    border-radius: 999px;
+    background: rgb(3 9 14 / 0.82);
+    color: #d7f6fb;
+    font: 700 0.62rem/1 var(--font-mono), monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    backdrop-filter: blur(6px);
+  }
+
+  figcaption {
+    display: grid;
+    gap: 0.3rem;
+    padding: 0.7rem 0.8rem 0.85rem;
+  }
+
+  figcaption > span {
+    color: #d8dde2;
+  }
+
+  small {
+    color: #89939b;
+    font: 600 0.65rem/1.4 var(--font-mono), monospace;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 700px) {
+    .odyssey-pair {
+      grid-template-columns: 1fr;
+    }
+
+    img {
+      height: auto;
+      max-height: 42rem;
+    }
+  }
+</style>
