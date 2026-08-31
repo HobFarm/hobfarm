@@ -1,0 +1,228 @@
+---
+const albums = [
+  {
+    id: "5Z73lmyC6OYW90wPImcGXR",
+    label: "The original album sequence",
+    title: "Europe ’72 (Live) [50th Anniversary Edition]",
+    detail: "The tour distilled into the record released in 1972, heard here in its 50th-anniversary remaster.",
+  },
+  {
+    id: "75u5l9TfTohni1xWrAUfxe",
+    label: "One complete European night",
+    title: "Wembley Empire Pool · April 8, 1972",
+    detail: "The second night of the tour kept in show order instead of rebuilt as an anthology.",
+  },
+  {
+    id: "1E4MXxSYoAMN5qpy1y6aBm",
+    label: "The complete benefit concert",
+    title: "Veneta, Oregon · August 27, 1972",
+    detail: "The full Sunshine Daydream concert, including the Dark Star → El Paso turn discussed above.",
+  },
+];
+---
+
+<section class="dead-listening article-wide not-prose" aria-labelledby="dead-listening-title">
+  <header>
+    <span>Listen to 1972 three ways</span>
+    <h3 id="dead-listening-title">The record, one whole European show, and Veneta</h3>
+  </header>
+
+  <div class="dead-listening__grid">
+    {albums.map((album) => {
+      const spotifyUrl = `https://open.spotify.com/album/${album.id}`;
+      return (
+        <article class="dead-album">
+          <span class="dead-album__label">{album.label}</span>
+          <h4>{album.title}</h4>
+          <p>{album.detail}</p>
+          <div class="dead-album__player" data-dead-spotify data-spotify-id={album.id}>
+            <button type="button" data-spotify-load aria-label={`Load Spotify album: ${album.title}`}>
+              <span aria-hidden="true">♫</span>
+              Load Spotify album
+            </button>
+          </div>
+          <a href={spotifyUrl} target="_blank" rel="noopener noreferrer">
+            Open in Spotify <span aria-hidden="true">↗</span>
+          </a>
+          <p class="sr-only" aria-live="polite" data-spotify-status></p>
+        </article>
+      );
+    })}
+  </div>
+</section>
+
+<script>
+  function installDeadSpotifyAlbums() {
+    document.querySelectorAll<HTMLElement>("[data-dead-spotify]").forEach((slot) => {
+      const button = slot.querySelector<HTMLButtonElement>("[data-spotify-load]");
+      const status = slot.parentElement?.querySelector<HTMLElement>("[data-spotify-status]");
+      if (!button || button.dataset.ready === "true") return;
+      button.dataset.ready = "true";
+
+      button.addEventListener("click", () => {
+        const spotifyId = slot.dataset.spotifyId;
+        if (!spotifyId) return;
+
+        slot.closest<HTMLElement>(".dead-listening__grid")?.classList.add("dead-listening__grid--playing");
+
+        const iframe = document.createElement("iframe");
+        iframe.src = `https://open.spotify.com/embed/album/${encodeURIComponent(spotifyId)}?utm_source=generator&theme=0`;
+        iframe.title = button.getAttribute("aria-label")?.replace(/^Load /, "") ?? "Spotify album";
+        iframe.loading = "lazy";
+        iframe.allow = "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture";
+        iframe.referrerPolicy = "strict-origin-when-cross-origin";
+        iframe.addEventListener("load", () => {
+          if (status) status.textContent = `${iframe.title} loaded.`;
+          iframe.focus();
+        });
+
+        slot.replaceChildren(iframe);
+        if (status) status.textContent = `Loading ${iframe.title}.`;
+      }, { once: true });
+    });
+  }
+
+  installDeadSpotifyAlbums();
+  document.addEventListener("astro:page-load", installDeadSpotifyAlbums);
+</script>
+
+<style>
+  .dead-listening {
+    margin-block: 2.7rem !important;
+    overflow: hidden;
+    border: 1px solid rgb(115 228 219 / 0.34);
+    border-radius: 0.38rem;
+    background: #07070c;
+    box-shadow: 0.7rem 0.75rem 0 rgb(41 10 55 / 0.25);
+  }
+
+  header {
+    padding: 1rem;
+    border-bottom: 0.35rem solid #d036d6;
+    background: linear-gradient(100deg, rgb(208 54 214 / 0.16), transparent 62%);
+  }
+
+  header span,
+  .dead-album__label {
+    color: #73e4db;
+    font: 700 0.63rem/1.3 var(--font-mono), monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  h3,
+  h4,
+  p {
+    margin: 0 !important;
+  }
+
+  h3 {
+    margin-top: 0.22rem !important;
+    color: #fff;
+    font-size: 1.05rem;
+  }
+
+  .dead-listening__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .dead-listening__grid--playing {
+    grid-template-columns: 1fr;
+  }
+
+  .dead-album {
+    display: flex;
+    min-width: 0;
+    padding: 1rem;
+    flex-direction: column;
+  }
+
+  .dead-album + .dead-album {
+    border-left: 1px solid rgb(115 228 219 / 0.18);
+  }
+
+  .dead-listening__grid--playing .dead-album + .dead-album {
+    border-top: 1px solid rgb(115 228 219 / 0.18);
+    border-left: 0;
+  }
+
+  h4 {
+    margin-top: 0.32rem !important;
+    color: #f6f2f8;
+    font-size: 0.9rem;
+    line-height: 1.35;
+  }
+
+  .dead-album > p:not(.sr-only) {
+    min-height: 4.5rem;
+    margin-top: 0.42rem !important;
+    color: #aaa4b1;
+    font-size: 0.72rem;
+    line-height: 1.5;
+  }
+
+  .dead-listening__grid--playing .dead-album > p:not(.sr-only) {
+    min-height: 0;
+  }
+
+  .dead-album__player {
+    display: grid;
+    min-height: 8.7rem;
+    margin-top: 0.85rem;
+    place-items: center;
+    overflow: hidden;
+    border: 1px solid rgb(30 215 96 / 0.28);
+    border-radius: 0.7rem;
+    background: linear-gradient(140deg, rgb(30 215 96 / 0.1), rgb(2 5 3 / 0.92));
+  }
+
+  .dead-album__player :global(iframe) {
+    display: block;
+    width: 100%;
+    height: 352px;
+    border: 0;
+  }
+
+  button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0.72rem 0.85rem;
+    border: 1px solid rgb(84 235 136 / 0.72);
+    border-radius: 999px;
+    background: #08150c;
+    color: #e8f7ed;
+    font: 700 0.67rem/1 var(--font-mono), monospace;
+    cursor: pointer;
+  }
+
+  button:hover,
+  button:focus-visible {
+    outline: 2px solid #54eb88;
+    outline-offset: 2px;
+  }
+
+  .dead-album > a {
+    align-self: flex-start;
+    margin-top: 0.72rem;
+    color: #65e88f !important;
+    font: 700 0.66rem/1.4 var(--font-mono), monospace;
+  }
+
+  @media (max-width: 56rem) {
+    .dead-listening__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .dead-album + .dead-album {
+      border-top: 1px solid rgb(115 228 219 / 0.18);
+      border-left: 0;
+    }
+
+    .dead-album > p:not(.sr-only) {
+      min-height: 0;
+    }
+  }
+</style>

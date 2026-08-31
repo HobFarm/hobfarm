@@ -21,8 +21,8 @@ const emptyEntities = () => ({
 
 test("the migrated corpus has one valid primary section per live article", () => {
   const result = auditEditorialMesh();
-  assert.equal(result.articles.length, 90);
-  assert.equal(result.liveArticles.length, 89);
+  assert.equal(result.articles.length, 91);
+  assert.equal(result.liveArticles.length, 90);
   assert.deepEqual(result.errors, []);
   assert.ok(result.liveArticles.every(({ data }) => data.mesh?.section));
 });
@@ -31,7 +31,7 @@ test("strict MTM and 3DM membership survives the corpus audit", () => {
   const { liveArticles } = auditEditorialMesh();
   const mtm = liveArticles.filter(({ data }) => data.mesh.series.includes("magazine-time-machine"));
   const threeDm = liveArticles.filter(({ data }) => data.mesh.series.includes("3dm"));
-  assert.equal(mtm.length, 4);
+  assert.equal(mtm.length, 5);
   assert.equal(threeDm.length, 5);
   assert.ok(
     mtm.every(({ data }) =>

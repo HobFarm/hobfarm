@@ -1,0 +1,208 @@
+---
+interface Props {
+  videoId: string;
+  title: string;
+  dateLabel: string;
+  publisher: string;
+  note: string;
+  startSeconds?: number;
+  loadLabel?: string;
+}
+
+const {
+  videoId,
+  title,
+  dateLabel,
+  publisher,
+  note,
+  startSeconds = 0,
+  loadLabel = "Load video",
+} = Astro.props;
+const watchUrl = `https://www.youtube.com/watch?v=${videoId}${startSeconds > 0 ? `&t=${startSeconds}s` : ""}`;
+const posterUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+---
+
+<figure
+  class="dead-video article-wide not-prose"
+  data-dead-video
+  data-video-id={videoId}
+  data-video-start={startSeconds}
+>
+  <div class="dead-video__screen" data-video-screen>
+    <img src={posterUrl} alt="" width="480" height="360" loading="lazy" decoding="async" />
+    <button type="button" data-video-load aria-label={`${loadLabel}: ${title}`}>
+      <span aria-hidden="true">▶</span>
+      {loadLabel}
+    </button>
+  </div>
+  <figcaption>
+    <div class="dead-video__copy">
+      <span class="dead-video__date">{dateLabel}</span>
+      <strong>{title}</strong>
+      <span>{publisher}</span>
+      <small>{note}</small>
+    </div>
+    <a href={watchUrl} target="_blank" rel="noopener noreferrer">
+      Watch on YouTube <span aria-hidden="true">↗</span>
+    </a>
+  </figcaption>
+  <p class="sr-only" aria-live="polite" data-video-status></p>
+</figure>
+
+<script>
+  function installDeadVideos() {
+    document.querySelectorAll<HTMLElement>("[data-dead-video]").forEach((player) => {
+      const button = player.querySelector<HTMLButtonElement>("[data-video-load]");
+      const screen = player.querySelector<HTMLElement>("[data-video-screen]");
+      const status = player.querySelector<HTMLElement>("[data-video-status]");
+      if (!button || !screen || button.dataset.ready === "true") return;
+      button.dataset.ready = "true";
+
+      button.addEventListener("click", () => {
+        const videoId = player.dataset.videoId;
+        const start = player.dataset.videoStart ?? "0";
+        if (!videoId) return;
+
+        const iframe = document.createElement("iframe");
+        iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?start=${encodeURIComponent(start)}&autoplay=0&rel=0`;
+        iframe.title = button.getAttribute("aria-label")?.replace(/^[^:]+: /, "") ?? "YouTube video";
+        iframe.allow = "accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        iframe.referrerPolicy = "strict-origin-when-cross-origin";
+        iframe.allowFullscreen = true;
+        iframe.addEventListener("load", () => {
+          if (status) status.textContent = `${iframe.title} loaded. Use the player controls to begin.`;
+          iframe.focus();
+        });
+
+        screen.replaceChildren(iframe);
+        if (status) status.textContent = `Loading ${iframe.title}.`;
+      }, { once: true });
+    });
+  }
+
+  installDeadVideos();
+  document.addEventListener("astro:page-load", installDeadVideos);
+</script>
+
+<style>
+  .dead-video {
+    margin-block: 2.7rem !important;
+    overflow: hidden;
+    border: 1px solid rgb(115 228 219 / 0.34);
+    border-radius: 0.38rem;
+    background: #07070c;
+    box-shadow: 0.7rem 0.75rem 0 rgb(41 10 55 / 0.25);
+  }
+
+  .dead-video__screen {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #030306;
+  }
+
+  .dead-video__screen::after {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 24% 15%, rgb(211 48 220 / 0.18), transparent 34%),
+      linear-gradient(180deg, transparent 42%, rgb(2 2 5 / 0.78));
+    content: "";
+    pointer-events: none;
+  }
+
+  .dead-video__screen img,
+  .dead-video__screen :global(iframe) {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    object-fit: cover;
+  }
+
+  .dead-video__screen img {
+    filter: saturate(0.88) contrast(1.04);
+  }
+
+  .dead-video__screen :global(iframe) {
+    position: relative;
+    z-index: 2;
+  }
+
+  button {
+    position: absolute;
+    z-index: 1;
+    right: 1rem;
+    bottom: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-height: 2.75rem;
+    padding: 0.72rem 0.9rem;
+    border: 1px solid rgb(255 255 255 / 0.78);
+    border-radius: 0.16rem;
+    background: rgb(7 7 12 / 0.94);
+    color: #fff;
+    font: 700 0.72rem/1 var(--font-mono), monospace;
+    cursor: pointer;
+  }
+
+  button:hover,
+  button:focus-visible {
+    border-color: #73e4db;
+    outline: 2px solid #73e4db;
+    outline-offset: 2px;
+  }
+
+  figcaption {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 !important;
+    padding: 1rem;
+    border-top: 0.35rem solid #d036d6;
+    color: #d9d4de;
+    text-align: left !important;
+  }
+
+  .dead-video__copy {
+    display: grid;
+    gap: 0.18rem;
+  }
+
+  .dead-video__date {
+    color: #73e4db;
+    font: 700 0.65rem/1.2 var(--font-mono), monospace;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  figcaption strong {
+    color: #fff;
+    font-size: 0.92rem;
+  }
+
+  figcaption span,
+  figcaption small {
+    color: #aaa4b1;
+    font-size: 0.72rem;
+    line-height: 1.45;
+  }
+
+  figcaption a {
+    color: #ff82eb !important;
+    font: 700 0.68rem/1.35 var(--font-mono), monospace;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 36rem) {
+    figcaption {
+      grid-template-columns: 1fr;
+    }
+
+    button {
+      right: 0.75rem;
+      bottom: 0.75rem;
+    }
+  }
+</style>
