@@ -10,7 +10,6 @@ import { getPublishedArticles, getArticleDepartment } from "@/lib/articles";
 import { getVisualSystem, visualSystemPath } from "@/data/visual-systems";
 import { transformImageUrl } from "@/lib/media-transforms";
 import { getMedia } from "@/data/media-registry";
-import StyleFusionMediaStudies from "@/components/workshop/StyleFusionMediaStudies.astro";
 import StyleCardArchive from "@/components/workshop/StyleCardArchive.astro";
 import ProcessMethodPage from "@/components/process/ProcessMethodPage.astro";
 import { getProcessPipelineBySlug } from "@/data/processPipelines";
@@ -33,16 +32,11 @@ const articles = await getPublishedArticles();
 const gallery = (await getCollection("gallery")).filter((entry) => !entry.data.draft);
 const relatedArticles = articles.filter((article) => {
   if (article.data.workshopProgram === program.slug) return true;
-  if (program.id === "stylefusion") return article.data.category === "stylefusion" || article.data.series?.toLowerCase() === "stylefusion";
   if (program.id === "workshop-notes") return getArticleDepartment(article.data) === "workshop-notes";
   return article.data.tags.some((tag) => tag.toLowerCase().replaceAll(" ", "-").includes(program.slug));
 }).slice(0, 6);
 const relatedGallery = gallery.filter((entry) => entry.data.workshopProgram === program.slug || entry.data.type === program.featuredQuery?.galleryType).slice(0, 6);
 const hasIndexedWork = relatedGallery.length > 0 || relatedArticles.length > 0;
-const stylefusionStudies = program.id === "stylefusion" ? await getCollection("stylefusionStudies") : [];
-const cathedralStudy = stylefusionStudies.find((entry) => entry.id === "tuxedo-cat-fusion");
-const hellcatStudy = stylefusionStudies.find((entry) => entry.id === "industrial-elf-neo-noir");
-
 const system = program.id === "alter-ego" ? getVisualSystem("sophia-stella") : undefined;
 const alterMediaRoot = "https://cdn.hob.farm/workshop/alter-ego";
 const alterProof = (file: string, width = 1000) => transformImageUrl(`${alterMediaRoot}/${file}`, { width, quality: 82, fit: "scale-down" });
@@ -52,18 +46,15 @@ const alterPoster = transformImageUrl(getMedia("workshop.alter-ego.poster").src,
 const alterSheetBright = alterProof("hc-hd-sheet-001_1.jpg", 1200);
 const alterSheetDark = alterProof("hc-hd-sheet-001_2.jpg", 1200);
 const alterVideo = `${alterMediaRoot}/hc-video-001.mp4`;
-const processStages = programDetails?.workflow ?? (program.id === "stylefusion"
-  ? ["Assign approved reference roles", "Run specialized extraction agents", "Inspect the IR and compiled slots", "Export the diagnostic document"]
-  : ["Define the source", "Record the stable rules", "Build the change", "Publish the result"]);
+const processStages = programDetails?.workflow ?? ["Define the source", "Record the stable rules", "Build the change", "Publish the result"];
 const status = program.status === "coming-eventually"
   ? "Coming eventually"
   : program.status === "historical"
     ? "Historical origin"
     : undefined;
-const stylefusionHero = getMedia("stylefusion.banner.image");
-const pageHero = program.id === "stylefusion" ? stylefusionHero.src : program.heroImage;
-const pageHeroAlt = program.id === "stylefusion" ? stylefusionHero.alt : program.heroAlt;
-const hasProgramFeature = program.id === "alter-ego" || program.id === "stylefusion" || program.id === "workshop-notes" || program.id === "cute-corrupted";
+const pageHero = program.heroImage;
+const pageHeroAlt = program.heroAlt;
+const hasProgramFeature = program.id === "alter-ego" || program.id === "workshop-notes" || program.id === "cute-corrupted";
 const siteOrigin = Astro.site?.origin ?? "https://hob.farm";
 const structuredData = { "@context":"https://schema.org", "@type":"CollectionPage", name:program.name, description:program.description, url:`${siteOrigin}${program.href}`, isPartOf:{"@type":"CollectionPage",name:"HobFarm Workshop",url:`${siteOrigin}/workshop/`} };
 const pageFeed = program.id === "workshop-notes"
@@ -135,7 +126,6 @@ const academyBridge = program.id === "cute-corrupted"
     </Wrapper>
   </section>}
 
-  {program.id === "stylefusion" && cathedralStudy && hellcatStudy && <div id="work"><StyleFusionMediaStudies cathedral={cathedralStudy} hellcat={hellcatStudy} /></div>}
   {program.id === "workshop-notes" && <div id="work"><StyleCardArchive /></div>}
 
   {programDetails && <section class="program-record border-b border-base-800/70" aria-labelledby="program-record-heading">

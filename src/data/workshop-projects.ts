@@ -3,6 +3,7 @@ import { getMedia, type MediaRecord } from "@/data/media-registry";
 export type WorkshopProjectStatus =
   | "Published case study"
   | "Active program"
+  | "Working application"
   | "Public application study"
   | "Published world record"
   | "Private alpha case study"
@@ -84,9 +85,10 @@ const beforeAfterAssets = [
 ] as const;
 
 const styleFusionAssets = [
-  getMedia("stylefusion.banner.image"),
-  getMedia("stylefusion.cathedral.hero"),
-  getMedia("stylefusion.hellcat.poster"),
+  getMedia("stylefusion.current.psychedelic.hero"),
+  getMedia("stylefusion.current.psychedelic.variant-a"),
+  getMedia("stylefusion.current.flame"),
+  getMedia("stylefusion.current.fire-dancer"),
 ] as const;
 
 const characterAssets = [
@@ -222,23 +224,23 @@ export const selectedWorkshopProjects: readonly WorkshopProject[] = [
     title: "StyleFusion",
     projectType: "Reference-analysis application",
     brief:
-      "Each approved reference gets a defined job. StyleFusion records the analysis, render instructions, and result in one production file.",
+      "Each reference gets a simple job. StyleFusion turns those assignments into a reusable modular pack, exact positive prose, and generation history.",
     promise:
-      "Give every reference a job, extract the useful rules, and turn the result into a production document.",
-    startingMaterial: "approved reference images with explicit roles",
+      "Give every reference one job and turn the useful visual decisions into a portable pack.",
+    startingMaterial: "one to six reference images assigned to Subject, Style, or Composition",
     productionProblem:
-      "Separate subject, style, color, texture, scene, and camera evidence so a useful reference pile becomes specific direction.",
-    stages: ["assign roles", "inspect evidence", "compile specification", "generate or diagnose", "export record"],
-    possibleOutputs: ["production brief", "generation document", "diagnostic", "hero image", "poster", "motion study"],
-    capabilities: ["reference roles", "structured analysis", "render instructions", "diagnostics"],
-    media: getMedia("stylefusion.cathedral.hero"),
-    secondaryMedia: getMedia("stylefusion.banner.image"),
+      "Separate subject, pose, style, environment, and shot decisions so a reference pile becomes coherent positive direction.",
+    stages: ["assign roles", "build pack", "inspect prompt", "choose model", "generate", "download pack"],
+    possibleOutputs: ["portable visual pack", "exact generation prompt", "hero image", "poster", "motion study"],
+    capabilities: ["reference roles", "modular packs", "positive prompt translation", "same-pack model comparison"],
+    media: getMedia("stylefusion.current.psychedelic.hero"),
+    secondaryMedia: getMedia("stylefusion.current.psychedelic.variant-a"),
     approvedAssets: styleFusionAssets,
     destination: "/workshop/stylefusion/",
-    status: "Public application study",
+    status: "Working application",
     featuredPosition: 3,
     homepagePosition: 2,
-    sourceLabel: "Reference analysis",
+    sourceLabel: "Role-assigned references",
     resultLabel: "Directed output",
     visualVariant: "reference-compiler",
   },

@@ -18,7 +18,7 @@ Develop theatrical pose cards, lens pairings, stage orientation, depth plans, an
 
 ### StyleFusion
 
-StyleFusion is a separate reference-image application. It assigns approved images to roles, extracts visual information through specialized agents, compiles an Intermediate Representation, and exports a model-ready image-generation document with routing and confidence diagnostics.
+StyleFusion is a separate working reference-image application. It assigns one to six references to simple Subject, Style, or Composition jobs, builds a modular pack, assembles only the useful visual modules, and translates the pack into positive prose for image generation. The pack stays canonical; the selected image model remains downstream.
 
 ### Alter Ego
 
@@ -151,35 +151,29 @@ before_after:
 
 ## StyleFusion method
 
-Begin with approved references and give each image an explicit role. The application runs specialized agents, records the model and confidence for each extraction, compiles the IR, and produces generation-facing JSON plus natural-language prompt slots.
+Begin with approved references and give each image an explicit contribution job. A reference can combine Subject, Style, and Composition roles. The application builds only the modules the project needs, binds them through assembly, and derives an exact positive prose handoff from the completed pack.
 
 ```yaml
 stylefusion:
   references:
-    - role: subject
+    - contributions: [subject, pose]
       image:
-      weight:
-    - role: style
+    - contributions: [style]
       image:
-      weight:
-    - role: composition
+    - contributions: [environment, shot]
       image:
-      weight:
-  extraction_agents:
-    - subject
-    - style
-    - composition
-    - color
-    - lighting
-    - texture
-    - exclusion_guidance
-  intermediate_representation:
-  compiled_slots:
-  image_generation_json:
-  diagnostic_export:
+  pack:
+    modules:
+      - subject
+      - pose_or_placement
+      - style
+      - environment
+      - shot
+    assembly:
+    prompt:
 ```
 
-The Complete Export is the StyleFusion artifact. Generated images and later Character / Mannequin work, Sheets, Heroes, Posters, videos, and products remain downstream production assets.
+The downloadable `.stylefusion.zip` pack is the portable StyleFusion artifact. Generated images and later Character / Mannequin work, Sheets, Heroes, Posters, videos, and products remain results or downstream production assets. The pack describes what should be present rather than maintaining a negative or exclusion list.
 
 ## Alter Ego study
 

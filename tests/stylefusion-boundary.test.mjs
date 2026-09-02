@@ -8,12 +8,15 @@ test("the canonical definition, active Workshop programs, and historical origin 
   const definition = read("docs/character-system/hobfarm-stylefusion-definition.md");
   const hierarchy = read("src/data/site-hierarchy.ts");
 
-  assert.match(definition, /StyleFusion is a separate HobFarm reference-image application/);
-  assert.match(definition, /A generated image, character Sheet, Hero, Poster, reel, or product packet is a downstream asset/);
+  assert.match(definition, /StyleFusion is a separate working HobFarm reference-image application/);
+  assert.match(definition, /The pack is the canonical visual record/);
+  assert.match(definition, /Generated images, character Sheets, Heroes, Posters, videos, and product packets are results or downstream assets/);
   for (const label of ["Before & After", "Alter Ego", "EZIZE Origins", "Character / Mannequin", "StyleFusion", "Workshop Notes"]) {
     assert.match(hierarchy, new RegExp(label.replace(/[&/]/g, ".")));
   }
-  assert.match(hierarchy, /specialized extraction agents/);
+  assert.match(hierarchy, /reusable modular pack/);
+  assert.match(hierarchy, /positive generation prose/);
+  assert.doesNotMatch(hierarchy, /Intermediate Representation|specialized extraction agents/);
   assert.doesNotMatch(hierarchy, /Style references translated into explicit visual ingredients/);
 });
 
@@ -51,15 +54,34 @@ test("the private prototype is source-backed, noindex, and keeps raw/private ass
   assert.doesNotMatch(page, /https?:\/\/(?!hob\.farm)/);
 });
 
-test("project and Workshop copy end the app at the Complete Export", () => {
+test("current project and Workshop copy keep the pack canonical and providers downstream", () => {
   const project = read("src/components/projects/StyleFusionProjectPage.astro");
+  const media = read("src/data/media-registry.ts");
   const workshop = read("docs/character-system/hobfarm-workshop-system.md");
   const route = read("src/pages/workshop/[program].astro");
 
-  assert.match(project, /Complete Export/);
-  assert.match(project, /later Character \/ Mannequin workflow/);
-  assert.doesNotMatch(project, /generation JSON, compact prompts, character sheets/);
-  assert.match(workshop, /The Complete Export is the StyleFusion artifact/);
-  assert.match(route, /Assign approved reference roles/);
-  assert.match(route, /Export the diagnostic document/);
+  assert.match(project, /\.stylefusion\.zip/);
+  assert.match(project, /The pack stays canonical; the provider remains replaceable/);
+  assert.match(project, /positive prose/);
+  assert.match(project, /Targeted module rewrite · current build study/);
+  assert.match(project, /They are implemented and tested locally; the application deployment is in progress/);
+  assert.match(project, /three times to eighteen seconds/);
+  assert.match(project, /One pose\. Two subjects\. Four interpretations\./);
+  assert.match(project, /content system and a research instrument/);
+  assert.match(project, /\/workshop\/workshop-notes\//);
+  for (const asset of [
+    "grok-video-stylefusion-untitled-blend.mp4",
+    "grok-video-stylefusion-untitled-blend.jpg",
+    "chatgpt-stylefusion-untitled-blend.png",
+    "chatgpt-pose-character.png",
+    "chatgpt-pose-character2.png",
+    "grok-pose-character1.jpg",
+    "grok-pose-character2.jpg",
+  ]) {
+    assert.match(media, new RegExp(asset.replaceAll(".", "\\.")));
+  }
+  assert.doesNotMatch(project, /Complete Export|Intermediate Representation|Visual IR|exclusion guidance/);
+  assert.match(workshop, /The downloadable `\.stylefusion\.zip` pack is the portable StyleFusion artifact/);
+  assert.match(workshop, /negative or exclusion list/);
+  assert.doesNotMatch(route, /StyleFusionMediaStudies|specialized extraction agents|Export the diagnostic document/);
 });
