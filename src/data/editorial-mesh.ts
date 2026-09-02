@@ -411,6 +411,7 @@ export const editorialEntities: EditorialEntity[] = [
   people("norman-mailer", "Norman Mailer"),
   people("olivia-dean", "Olivia Dean"),
   people("peter-shapiro", "Peter Shapiro"),
+  people("the-polish-ambassador", "The Polish Ambassador"),
   people("ron-mckernan", "Ron McKernan", ["Pigpen"]),
   people("penny-marshall", "Penny Marshall"),
   people("paul-reubens", "Paul Reubens"),
@@ -545,6 +546,7 @@ export const editorialEntities: EditorialEntity[] = [
   organization("nvidia", "NVIDIA", ["Nvidia"]),
   organization("official-charts-company", "Official Charts Company", ["Official Charts"]),
   organization("openai", "OpenAI"),
+  organization("papadosio", "Papadosio"),
   organization("paramount-plus", "Paramount+", ["Paramount Plus"]),
   organization("phish", "Phish"),
   organization("picryl", "PICRYL"),
@@ -709,6 +711,7 @@ export const editorialEntities: EditorialEntity[] = [
   event("woodstock-1969", "Woodstock, 1969", ["Woodstock"]),
 
   work("a-bucket-of-blood", "A Bucket of Blood"),
+  work("althea", "Althea"),
   work("a-hard-days-night", "A Hard Day's Night"),
   work("42nd-street-1933", "42nd Street (1933)", ["42nd Street"]),
   work("alone", "Alone"),

@@ -1,0 +1,253 @@
+---
+import { transformImageUrl } from "@/lib/media-transforms";
+
+interface Photo {
+  file: string;
+  alt: string;
+  caption: string;
+  width: number;
+  height: number;
+}
+
+interface Stop {
+  date: string;
+  dateTime: string;
+  place: string;
+  note: string;
+  photos: Photo[];
+}
+
+const assetBase = "https://cdn.hob.farm/articles/grateful-dead";
+const photoUrl = (file: string) => `${assetBase}/${encodeURIComponent(file)}`;
+const candidateWidths = [480, 800, 1200, 1600, 2000, 2400];
+const widthsFor = (photo: Photo) => candidateWidths.filter((width) => width <= photo.width);
+
+const stops: Stop[] = [
+  {
+    date: "March 29, 2013",
+    dateTime: "2013-03-29",
+    place: "El Rey Theatre · Los Angeles",
+    note: "A Do LaB bill put The Polish Ambassador and Papadosio on the same marquee.",
+    photos: [
+      {
+        file: "Sign.jpg",
+        alt: "Daytime view of the El Rey Theatre marquee reading The Do LaB Presents, The Polish Ambassador, and Papadosio.",
+        caption: "The Polish Ambassador and Papadosio under the El Rey neon.",
+        width: 1632,
+        height: 1224,
+      },
+    ],
+  },
+  {
+    date: "July 14, 2013",
+    dateTime: "2013-07-14",
+    place: "Lightning in a Bottle · Lake Skinner",
+    note: "Papadosio carried the connection onto the festival stage.",
+    photos: [
+      {
+        file: "IMG_1796.JPG",
+        alt: "A Papadosio guitarist performs beside a laptop and electronic equipment on an outdoor stage beneath a deep-red canopy.",
+        caption: "Papadosio at Lightning in a Bottle, seen from the left side of the stage.",
+        width: 4000,
+        height: 3000,
+      },
+      {
+        file: "IMG_1795.JPG",
+        alt: "Papadosio’s bassist, keyboardist, and drummer perform on a wood-framed outdoor festival stage.",
+        caption: "Papadosio’s bassist, keyboards, and drums on the same stage.",
+        width: 4000,
+        height: 3000,
+      },
+    ],
+  },
+  {
+    date: "October 5, 2013",
+    dateTime: "2013-10-05",
+    place: "El Rey Theatre · Los Angeles",
+    note: "The Polish Ambassador returned with Wildlight, DJ Vadim, and visuals by Liminus.",
+    photos: [
+      {
+        file: "20131005_224429_LLS.jpg",
+        alt: "Nighttime view of the El Rey Theatre neon and marquee announcing The Polish Ambassador, visuals by Liminus, DJ Vadim, and Wildlight.",
+        caption: "The October bill on the El Rey marquee before the headliner.",
+        width: 3264,
+        height: 1836,
+      },
+      {
+        file: "20131006_003431_LLS.jpg",
+        alt: "A crowd faces two figures behind electronic equipment while large concentric rings are projected across the El Rey stage.",
+        caption: "Concentric visuals fill the El Rey after midnight during the October 5 bill.",
+        width: 3264,
+        height: 1836,
+      },
+    ],
+  },
+];
+---
+
+<section class="dead-photo-trail article-wide not-prose" aria-labelledby="dead-photo-trail-title">
+  <header class="dead-photo-trail__intro">
+    <span>Author photographs · 2013</span>
+    <h3 id="dead-photo-trail-title">Three stops in the same circuit</h3>
+  </header>
+
+  <div class="dead-photo-trail__stops">
+    {stops.map((stop) => (
+      <article class="dead-photo-trail__stop">
+        <header>
+          <time datetime={stop.dateTime}>{stop.date}</time>
+          <strong>{stop.place}</strong>
+          <p>{stop.note}</p>
+        </header>
+
+        <div class:list={["dead-photo-trail__photos", stop.photos.length === 2 && "is-pair"]}>
+          {stop.photos.map((photo) => {
+            const source = photoUrl(photo.file);
+            const widths = widthsFor(photo);
+            const fallbackWidth = widths.at(-1) ?? photo.width;
+            const srcset = widths
+              .map((width) => `${transformImageUrl(source, { width, quality: 84 })} ${width}w`)
+              .join(", ");
+
+            return (
+              <figure>
+                <img
+                  src={transformImageUrl(source, { width: fallbackWidth, quality: 84 })}
+                  srcset={srcset}
+                  sizes={stop.photos.length === 2 ? "(min-width: 768px) 34rem, 92vw" : "(min-width: 768px) 48rem, 92vw"}
+                  alt={photo.alt}
+                  width={photo.width}
+                  height={photo.height}
+                  loading="lazy"
+                  decoding="async"
+                  data-lightbox={source}
+                  data-lightbox-group="grateful-dead-2013"
+                  data-lightbox-caption={`${photo.caption} Photograph by d00d.`}
+                />
+                <figcaption>
+                  <span>{photo.caption}</span>
+                  <small>Photograph by d00d</small>
+                </figcaption>
+              </figure>
+            );
+          })}
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .dead-photo-trail {
+    display: grid;
+    gap: 1rem;
+    margin-block: 2.8rem !important;
+  }
+
+  .dead-photo-trail__intro {
+    display: grid;
+    gap: 0.3rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 0.32rem solid #d036d6;
+  }
+
+  .dead-photo-trail__intro span,
+  time {
+    color: #73e4db;
+    font: 700 0.65rem/1.3 var(--font-mono), monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  h3,
+  p {
+    margin: 0 !important;
+  }
+
+  h3 {
+    color: #fff;
+    font-size: 1.1rem;
+  }
+
+  .dead-photo-trail__stops {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .dead-photo-trail__stop {
+    display: grid;
+    gap: 0.85rem;
+    padding: 1rem;
+    border: 1px solid rgb(115 228 219 / 0.28);
+    border-radius: 0.42rem;
+    background: linear-gradient(135deg, rgb(208 54 214 / 0.09), transparent 38%), #07070c;
+    box-shadow: 0.55rem 0.6rem 0 rgb(41 10 55 / 0.2);
+  }
+
+  .dead-photo-trail__stop > header {
+    display: grid;
+    gap: 0.2rem;
+  }
+
+  .dead-photo-trail__stop strong {
+    color: #fff;
+    font-size: 0.9rem;
+  }
+
+  .dead-photo-trail__stop p {
+    color: #aaa4b1;
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .dead-photo-trail__photos {
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .dead-photo-trail__photos.is-pair {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  figure {
+    min-width: 0;
+    margin: 0;
+  }
+
+  .dead-photo-trail__photos:not(.is-pair) figure {
+    width: min(100%, 48rem);
+    margin-inline: auto;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 !important;
+    border: 1px solid rgb(255 255 255 / 0.13);
+    border-radius: 0.32rem;
+    background: #030306;
+    cursor: zoom-in;
+  }
+
+  figcaption {
+    display: grid;
+    gap: 0.25rem;
+    margin-top: 0.58rem;
+    color: #c7c1ca;
+    font-size: 0.78rem;
+    line-height: 1.45;
+    text-align: left;
+  }
+
+  figcaption small {
+    color: #88828f;
+    font: 600 0.64rem/1.4 var(--font-mono), monospace;
+  }
+
+  @media (max-width: 47rem) {
+    .dead-photo-trail__photos.is-pair {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

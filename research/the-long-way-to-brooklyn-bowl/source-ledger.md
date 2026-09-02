@@ -1,6 +1,6 @@
 # The Long Way to Brooklyn Bowl — source ledger
 
-Last reviewed: 2026-08-31
+Last reviewed: 2026-09-02
 
 ## Editorial frame
 
@@ -65,6 +65,13 @@ The planned September 11 article is not present in the repository as of this rev
 | S26 | [Europe ’72 (Live) — 50th Anniversary Edition](https://open.spotify.com/album/5Z73lmyC6OYW90wPImcGXR) | Platform album record | Current Spotify album object and title | Spotify oEmbed metadata verified on 2026-08-31. |
 | S27 | [Wembley Empire Pool, April 8, 1972](https://open.spotify.com/album/75u5l9TfTohni1xWrAUfxe) | Platform album record | Complete-show Spotify release selected by the author | Spotify oEmbed metadata verified on 2026-08-31. |
 | S28 | [Veneta, August 27, 1972: The Complete Sunshine Daydream Concert](https://open.spotify.com/album/1E4MXxSYoAMN5qpy1y6aBm) | Platform album record | Complete-concert Spotify release selected by the author | Spotify oEmbed metadata verified on 2026-08-31. |
+| S29 | [Althea — Deep Funk Edit](https://open.spotify.com/track/5RsgqNZdtk0k0KufMi9AgK) | Platform track record | Track title; artists The Polish Ambassador and Dead Polish; September 2, 2026 release date | Spotify page metadata and oEmbed verified on 2026-09-02. The feed encounter is author firsthand observation. |
+| S30 | [The Polish Ambassador biography](https://thepolishambassador.com/bio) | First-party artist biography | Lightning in a Bottle belongs to the artist’s recurring festival circuit | Supports scene overlap, not a claim that the act is a Grateful Dead band. |
+| S31 | [The Do LaB presents The Polish Ambassador, Papadosio, Thriftworks & more](https://ra.co/events/465199) | Contemporary event listing | March 29, 2013 El Rey Theatre date; Do LaB presentation; The Polish Ambassador and Papadosio on the bill | Matches the author’s daytime marquee photograph. |
+| S32 | [The Polish Ambassador + Wildlight + DJ Vadim + Visuals by Liminus at El Rey Theatre](https://livemusicblog.com/recap-the-polish-ambassador-w-wildlight-dj-vadim-visuals-by-liminus-el-rey-theatre-la-10513/) | Contemporary show recap | October 5, 2013 El Rey Theatre date and named audiovisual lineup | Matches the author’s nighttime marquee. Embedded metadata records it at 10:44 p.m. and the interior photograph at 12:34 a.m. after the show crossed midnight. |
+| S33 | [KCRW: Lightning in a Bottle 2013 lineup](https://www.kcrw.com/stories/lightning-in-a-bottle-lineup-announced-nicholas-jaar-tycho-rusko-more) | Contemporary publication record | The Polish Ambassador and Papadosio both appeared on the July 2013 festival lineup; Do LaB produced the event | Supports the neighboring-scene example without labeling either act a Grateful Dead band. |
+| S34 | [Papadosio announces 2013 festival dates](https://www.gratefulweb.com/articles/papadosio-announces-future-forest-tour-2013-festival-dates/) | Contemporary artist announcement | Papadosio was billed at Lightning in a Bottle on July 14, 2013 and described at the time as a five-piece | Corroborates the author-confirmed identification; embedded metadata dates both supplied Papadosio photographs to July 14 at 5:57 p.m. |
+| S35 | [The Polish Ambassador live at Lightning in a Bottle 2013](https://www.youtube.com/watch?v=Lp9nUiqwiyE) | Primary performance video | The Polish Ambassador performing at the 2013 festival; surviving crowd and performance atmosphere | Hosted by the artist’s official YouTube channel, credited in the title to Viral Punk TV, 84 seconds, uploaded August 5, 2013. |
 
 ## Claim and evidence states
 
@@ -79,6 +86,10 @@ The planned September 11 article is not present in the repository as of this rev
 | Ben Strebel supplied the Jerry backdrop and the author later received a tie-dye. | Author firsthand observation | Clearly kept in first person; public work linked for context. |
 | The venue needed a video person and hired the author after his letter. | Author firsthand account | Kept practical and general; no internal hiring detail. |
 | Spotify carries the original *Europe ’72* album sequence, a complete April 8 Wembley show, and the complete Veneta concert as distinct album objects. | Direct platform records | Exact album objects linked; players load only after a reader requests them. |
+| Spotify surfaced The Polish Ambassador and Dead Polish’s new “Althea (Deep Funk Edit)” in the author’s feed on September 2, 2026. | Platform record plus author firsthand observation | Spotify directly supports the title, artist credits, and release date; the feed encounter is kept in first person. |
+| The author saw The Polish Ambassador several times in 2013 and understood him as part of a neighboring electronic-festival scene, not a Grateful Dead act. | Author recollection and interpretation | Kept in first person; the official artist biography independently supports the Lightning in a Bottle overlap. |
+| Two of the author’s 2013 Polish Ambassador shows were at the El Rey Theatre: March 29 with Papadosio on a Do LaB bill, and October 5 with Wildlight, DJ Vadim, and visuals by Liminus. | Author photographs plus contemporary listings | Public event records corroborate the visible marquee text and dates; attendance remains author firsthand observation. |
+| `IMG_1795.JPG` and `IMG_1796.JPG` show Papadosio at Lightning in a Bottle on July 14, 2013. | Author-confirmed identification with documentary corroboration | The author confirmed the identification. Embedded metadata dates both originals to July 14 at 5:57 p.m.; the contemporary festival-date announcement independently places Papadosio there that day. State naturally without “probably.” |
 
 ## Neighbor ownership and internal links
 
@@ -106,11 +117,20 @@ The new article’s explicit `relatedArticles` list contains the four ownership-
 | `5Z73lmyC6OYW90wPImcGXR` | Original *Europe ’72* album sequence | Click-to-load Spotify album player; official 50th-anniversary remaster. |
 | `75u5l9TfTohni1xWrAUfxe` | Complete April 8 Wembley show | Click-to-load Spotify album player; author-selected Europe ’72 example. |
 | `1E4MXxSYoAMN5qpy1y6aBm` | Complete Veneta concert | Click-to-load Spotify album player; author-selected companion to the Veneta film. |
+| `5RsgqNZdtk0k0KufMi9AgK` | “Althea (Deep Funk Edit)” | Click-to-load Spotify track player; present-day example of the article’s moving-circles argument. |
+| `Lp9nUiqwiyE` | The Polish Ambassador at Lightning in a Bottle | Click-to-load YouTube no-cookie iframe; official artist-channel upload; connects the author’s 2013 festival orbit to the 2026 Spotify encounter. |
+| [`Sign.jpg`](https://cdn.hob.farm/articles/grateful-dead/Sign.jpg) | March 29 El Rey show receipt | Published in the author-photo trail. The marquee text and contemporary event listing establish the bill; this file has no capture-date EXIF. Original is 1632×1224. |
+| [`IMG_1796.JPG`](https://cdn.hob.farm/articles/grateful-dead/IMG_1796.JPG) | Papadosio at Lightning in a Bottle | Published in the author-photo trail. Author-confirmed identification; embedded timestamp `2013:07:14 17:57:17`; original is 4000×3000. |
+| [`IMG_1795.JPG`](https://cdn.hob.farm/articles/grateful-dead/IMG_1795.JPG) | Papadosio at Lightning in a Bottle | Published beside `IMG_1796.JPG`. Author-confirmed identification; embedded timestamp `2013:07:14 17:57:09`; original is 4000×3000. |
+| [`20131005_224429_LLS.jpg`](https://cdn.hob.farm/articles/grateful-dead/20131005_224429_LLS.jpg) | October 5 El Rey show receipt | Published in the author-photo trail; embedded timestamp `2013:10:05 22:44:29`; original is 3264×1836. |
+| [`20131006_003431_LLS.jpg`](https://cdn.hob.farm/articles/grateful-dead/20131006_003431_LLS.jpg) | October El Rey room and visual-show atmosphere | Published beside the marquee; embedded timestamp `2013:10:06 00:34:31`; original is 3264×1836. Caption identifies the event context without asserting which performer is pictured. |
 
 No archival magazine crop was added to the public article. The supplied scans were used for source verification; the October item is quoted briefly and the 1972 essay is referenced without reproduction.
+
+The five author photographs use responsive Cloudflare image variants in the article and retain their CDN originals as lightbox targets.
 
 ## Deferred checks
 
 - Reassess a cross-reference after the September 11 article has a canonical slug and finished claim ownership.
-- Recheck the four YouTube IDs shortly before publication because third-party availability can change.
-- Recheck the three Spotify album objects shortly before publication because catalog availability can vary by market and time.
+- Recheck the five YouTube IDs shortly before publication because third-party availability can change.
+- Recheck the three Spotify album objects and the “Althea (Deep Funk Edit)” track shortly before publication because catalog availability can vary by market and time.
