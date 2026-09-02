@@ -38,6 +38,7 @@ highlights:
   - Model-authored positive prose derived from the canonical pack
   - Targeted module revisions without rebuilding the whole visual system
   - Pose and scene structure that can transfer between different subjects
+  - A 66-second edited loop that demonstrates modular swaps through motion
   - Same-pack generation across multiple image models
 features:
   - title: "Assign Reference Jobs"

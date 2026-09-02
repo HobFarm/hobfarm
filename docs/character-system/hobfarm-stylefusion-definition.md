@@ -168,7 +168,7 @@ The page should:
 2. show Subject, Style, and Composition jobs
 3. explain the modular pack without publishing its full private recipe
 4. demonstrate positive direction instead of negative lists
-5. use real current generated results and motion studies
+5. use real current generated results and motion studies, including an edited loop that demonstrates modular change over time
 6. show targeted module revision and transfer between subjects
 7. show same-pack provider comparisons
 8. describe StyleFusion as ongoing content production and research, with findings routed to Workshop Notes

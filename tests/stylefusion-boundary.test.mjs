@@ -67,6 +67,8 @@ test("current project and Workshop copy keep the pack canonical and providers do
   assert.match(project, /They are implemented and tested locally; the application deployment is in progress/);
   assert.match(project, /three times to eighteen seconds/);
   assert.match(project, /One pose\. Two subjects\. Four interpretations\./);
+  assert.match(project, /An image does not have to be one indivisible prompt\./);
+  assert.match(project, /Keep what works\. Swap what doesn.t\. Build the next image from the pieces\./);
   assert.match(project, /content system and a research instrument/);
   assert.match(project, /\/workshop\/workshop-notes\//);
   for (const asset of [
@@ -77,6 +79,7 @@ test("current project and Workshop copy keep the pack canonical and providers do
     "chatgpt-pose-character2.png",
     "grok-pose-character1.jpg",
     "grok-pose-character2.jpg",
+    "stylefusion-clip1.mp4",
   ]) {
     assert.match(media, new RegExp(asset.replaceAll(".", "\\.")));
   }

@@ -189,6 +189,17 @@ export const mediaRegistry = {
     alt: "Black, silver, teal, and amber lattice creature in a low hands-braced kneel before a collapsed building in the desert",
     status: "active",
   },
+  "stylefusion.current.modular-loop": {
+    src: cdn("workshop/stylefusion/stylefusion-clip1.mp4"),
+    poster: cdn("workshop/stylefusion/grok-video-stylefusion-untitled-blend.jpg"),
+    mediaType: "video",
+    width: 768,
+    height: 1168,
+    destination: "/workshop/stylefusion/",
+    role: "modular-loop-explainer",
+    alt: "A looping StyleFusion montage moves from a green goth character through a lattice creature, a black-haired trailer character, and a silver-haired cat character while pose, framing, and circular motifs recur",
+    status: "active",
+  },
   "stylefusion.current.flame": {
     src: cdn("workshop/stylefusion/flame-character-seedream-v5.webp"),
     mediaType: "image",

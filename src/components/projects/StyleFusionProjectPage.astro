@@ -52,6 +52,7 @@ const poseTransfer = {
     { media: getMedia("stylefusion.current.pose-transfer.subject-b.grok"), label: "Grok" },
   ],
 };
+const modularLoop = getMedia("stylefusion.current.modular-loop");
 const recentSets = [
   {
     media: getMedia("stylefusion.current.flame"),
@@ -176,6 +177,7 @@ const structuredData = {
         ...poseTransfer.subjectA.map(({ media }) => media.src),
         ...poseTransfer.subjectB.map(({ media }) => media.src),
       ],
+      video: modularLoop.src,
       isPartOf: { "@id": `${pageUrl}#application` },
       creator: { "@id": `${siteOrigin}/#organization` },
     },
@@ -539,6 +541,59 @@ const structuredData = {
       </Wrapper>
     </section>
 
+    <section id="modular-loop" class="section-block loop-section" aria-labelledby="loop-heading">
+      <Wrapper variant="standard">
+        <div class="loop-layout">
+          <div class="loop-copy">
+            <div class="section-intro">
+              <p class="eyebrow">The 66-second explainer · edited loop</p>
+              <h2 id="loop-heading">An image does not have to be one indivisible prompt.</h2>
+              <p>
+                I edited four generated sequences into one continuous demonstration. The piece keeps a few visual relationships legible while the subject, environment, pose, camera, and rendering language change around them.
+              </p>
+              <p>
+                The transitions partially mutate one character and world into the next. Instead of stopping to explain modular image direction from outside the work, the generated characters speak from inside it.
+              </p>
+            </div>
+
+            <ol class="loop-sequence" aria-label="The four movements in the StyleFusion loop">
+              <li>
+                <span>01</span>
+                <div><strong>Pose + camera</strong><p>A green goth character establishes the low kneel, forward engagement, and circular fisheye field.</p></div>
+              </li>
+              <li>
+                <span>02</span>
+                <div><strong>Subject swap</strong><p>A lattice creature replaces the human figure while the grounded structure and centered hierarchy remain readable.</p></div>
+              </li>
+              <li>
+                <span>03</span>
+                <div><strong>Style + scene</strong><p>The black-haired trailer character carries the world into a different rendering lane and a new performance.</p></div>
+              </li>
+              <li>
+                <span>04</span>
+                <div><strong>Rendering + return</strong><p>A cat character pushes the image into another visual language before the edit feeds back into its opening frame.</p></div>
+              </li>
+            </ol>
+          </div>
+
+          <figure class="loop-film">
+            <video controls loop playsinline preload="metadata" poster={modularLoop.poster} aria-label={modularLoop.alt}>
+              <source src={modularLoop.src} type="video/mp4" />
+            </video>
+            <figcaption>
+              <strong>StyleFusion clip 1 · 65.8-second edited loop</strong>
+              <span>Four generated sequences joined by recurring pose, forward camera engagement, centered subject hierarchy, and circular framing. Sound on for the characters.</span>
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="loop-bookend">
+          <strong>Keep what works. Swap what doesn’t. Build the next image from the pieces.</strong>
+          <p>The edit follows the same logic as the system: preserve a useful relationship, replace the module that needs to change, and let the result become the start of the next composition.</p>
+        </div>
+      </Wrapper>
+    </section>
+
     <section class="section-block recent-section" aria-labelledby="recent-heading">
       <Wrapper variant="standard">
         <div class="section-intro max-w-4xl">
@@ -726,6 +781,19 @@ const structuredData = {
   .pose-pair { display: grid; gap: 1rem; }
   .pose-pair img { aspect-ratio: 2 / 3; }
   .module-payoff { margin: 3rem auto 0; max-width: 54rem; color: #e1ddea; font-size: clamp(1.2rem, 2.4vw, 1.8rem); line-height: 1.5; text-align: center; }
+  .loop-section { border-bottom: 1px solid rgba(217,70,239,.18); background: radial-gradient(circle at 82% 18%, rgba(217,70,239,.13), transparent 28%), radial-gradient(circle at 12% 76%, rgba(34,211,238,.08), transparent 28%), #07060a; }
+  .loop-layout { display: grid; gap: 3rem; align-items: start; }
+  .loop-sequence { display: grid; gap: 1px; margin: 2.5rem 0 0; padding: 1px; overflow: hidden; border-radius: 1rem; background: #302a39; list-style: none; }
+  .loop-sequence li { display: grid; min-width: 0; gap: 1rem; padding: 1.1rem; background: rgba(12,10,15,.98); grid-template-columns: 2rem minmax(0, 1fr); }
+  .loop-sequence li > span { color: #d946ef; font-family: var(--font-mono); font-size: .68rem; letter-spacing: .08em; }
+  .loop-sequence strong { display: block; color: white; font-size: .9rem; font-weight: 500; }
+  .loop-sequence p { margin-top: .35rem; color: #90899d; font-size: .76rem; line-height: 1.6; }
+  .loop-film { width: min(100%, 34rem); margin: 0 auto; overflow: hidden; border: 1px solid rgba(96,227,239,.3); border-radius: 1.25rem; background: #08070a; box-shadow: 18px 18px 0 rgba(217,70,239,.055), 0 26px 80px rgba(0,0,0,.45); }
+  .loop-film video { display: block; width: 100%; aspect-ratio: 768 / 1168; background: black; object-fit: cover; }
+  .loop-film figcaption { display: grid; gap: .4rem; padding: 1rem; }
+  .loop-bookend { display: grid; gap: 1rem; max-width: 62rem; margin: 4rem auto 0; padding: clamp(1.5rem, 4vw, 2.5rem); border: 1px solid rgba(217,70,239,.28); border-radius: 1rem; background: linear-gradient(125deg, rgba(217,70,239,.1), rgba(34,211,238,.045)); text-align: center; }
+  .loop-bookend strong { color: white; font-size: clamp(1.25rem, 2.7vw, 2rem); font-weight: 450; line-height: 1.35; }
+  .loop-bookend p { max-width: 46rem; margin: 0 auto; color: #928b9f; font-size: .86rem; line-height: 1.7; }
   .recent-section { border-block: 1px solid rgba(34,211,238,.12); background: #0a090d; }
   .recent-grid { display: grid; gap: 1rem; margin-top: 2.5rem; }
   .recent-grid img { aspect-ratio: 2 / 3; }
@@ -761,6 +829,7 @@ const structuredData = {
     .module-map { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .revision-motion { grid-template-columns: minmax(0, .85fr) minmax(22rem, .65fr); }
     .pose-transfer-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .loop-layout { grid-template-columns: minmax(0, 1.15fr) minmax(22rem, .75fr); }
     .provider-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
     .status-panel { grid-template-columns: minmax(0, 1.25fr) minmax(14rem, .75fr); align-items: end; }
     .status-actions { align-items: flex-end; }

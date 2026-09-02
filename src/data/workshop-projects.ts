@@ -87,6 +87,7 @@ const beforeAfterAssets = [
 const styleFusionAssets = [
   getMedia("stylefusion.current.psychedelic.hero"),
   getMedia("stylefusion.current.psychedelic.variant-a"),
+  getMedia("stylefusion.current.modular-loop"),
   getMedia("stylefusion.current.flame"),
   getMedia("stylefusion.current.fire-dancer"),
 ] as const;
@@ -232,7 +233,7 @@ export const selectedWorkshopProjects: readonly WorkshopProject[] = [
       "Separate subject, pose, style, environment, and shot decisions so a reference pile becomes coherent positive direction.",
     stages: ["assign roles", "build pack", "inspect prompt", "choose model", "generate", "download pack"],
     possibleOutputs: ["portable visual pack", "exact generation prompt", "hero image", "poster", "motion study"],
-    capabilities: ["reference roles", "modular packs", "positive prompt translation", "same-pack model comparison"],
+    capabilities: ["reference roles", "modular packs", "positive prompt translation", "modular motion studies", "same-pack model comparison"],
     media: getMedia("stylefusion.current.psychedelic.hero"),
     secondaryMedia: getMedia("stylefusion.current.psychedelic.variant-a"),
     approvedAssets: styleFusionAssets,
