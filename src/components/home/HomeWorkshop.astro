@@ -1,27 +1,28 @@
 ---
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Button from "@/components/fundations/elements/Button.astro";
-import WorkshopNodeMesh from "@/components/workshop/WorkshopNodeMesh.astro";
+import WorkshopProjectGrid from "@/components/workshop/WorkshopProjectGrid.astro";
 ---
 
 <section id="home-workshop" class="home-workshop" aria-labelledby="home-workshop-heading">
   <Wrapper variant="standard" class="py-16 lg:py-24">
     <header class="home-workshop__header">
       <div>
-        <p class="eyebrow">How HobFarm works</p>
+        <p class="eyebrow">Projects and Workshop</p>
         <h2 id="home-workshop-heading">Useful work can stand alone and still connect.</h2>
       </div>
       <div class="home-workshop__copy">
-        <p>HobFarm is built from Articles, projects, methods, applications, and media that can stand alone, connect to related work, or combine into something new.</p>
-        <p>Articles are the largest public reading surface, so the homepage remains article-forward. The underlying system can begin anywhere, and each finished object keeps one canonical home.</p>
+        <p>EZIZE and StyleFusion are working applications with their own public pages. Their Workshop records keep the source material, method, and production decisions close to the finished work.</p>
+        <p>Other projects begin with photographs, historical objects, story worlds, or publishing problems. Each one keeps a canonical home and connects only where the relationship has a job.</p>
       </div>
     </header>
 
-    <div class="mesh-preview"><WorkshopNodeMesh compact /></div>
+    <div class="project-preview"><WorkshopProjectGrid surface="home" limit={2} /></div>
 
     <div class="actions">
-      <Button isLink size="md" variant="green" href="/workshop/" data-event="homepage_workshop_open">Explore the Workshop</Button>
-      <Button isLink size="md" variant="muted" href="/workshop/projects/hobfarm/" data-event="homepage_projects_open">How the HobFarm system works</Button>
+      <Button isLink size="md" variant="green" href="/workshop/projects/" data-event="homepage_projects_open">Browse all projects</Button>
+      <Button isLink size="md" variant="muted" href="/workshop/" data-event="homepage_workshop_open">Explore the Workshop</Button>
+      <Button isLink size="md" variant="muted" href="/workshop/projects/hobfarm/" data-event="homepage_system_open">How the HobFarm system works</Button>
     </div>
 
   </Wrapper>
@@ -36,7 +37,7 @@ import WorkshopNodeMesh from "@/components/workshop/WorkshopNodeMesh.astro";
   .home-workshop__copy { max-width: 45rem; }
   .home-workshop__copy p { margin: 0; color: #b4afbc; line-height: 1.75; }
   .home-workshop__copy p + p { margin-top: .8rem; }
-  .mesh-preview { margin-top: clamp(2.5rem, 6vw, 4.5rem); }
+  .project-preview { margin-top: clamp(2.5rem, 6vw, 4.5rem); }
   .actions { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1rem; }
   @media (min-width: 64rem) {
     .home-workshop__header { grid-template-columns: minmax(0, 1.2fr) minmax(24rem, .62fr); align-items: end; }

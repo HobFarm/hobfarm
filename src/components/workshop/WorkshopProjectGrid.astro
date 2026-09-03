@@ -3,14 +3,16 @@ import { selectedWorkshopProjects } from "@/data/workshop-projects";
 
 interface Props {
   surface?: "home" | "workshop" | "projects";
+  limit?: number;
 }
 
-const { surface = "workshop" } = Astro.props;
+const { surface = "workshop", limit } = Astro.props;
 const positionKey = surface === "home" ? "homepagePosition" : "featuredPosition";
-const projects = [...selectedWorkshopProjects]
+const eligibleProjects = [...selectedWorkshopProjects]
   .filter((project) => surface !== "home" || project.homepagePosition)
   .filter((project) => surface !== "workshop" || project.featuredPosition <= 6)
   .sort((a, b) => (a[positionKey] ?? 99) - (b[positionKey] ?? 99));
+const projects = typeof limit === "number" ? eligibleProjects.slice(0, limit) : eligibleProjects;
 ---
 
 <div class:list={["workshop-project-grid", `workshop-project-grid--${surface}`]}>
@@ -298,6 +300,15 @@ const projects = [...selectedWorkshopProjects]
 
     .workshop-project-card--ezize .workshop-project-card__copy { order: -1; }
 
+    .workshop-project-grid--home .workshop-project-card--ezize {
+      grid-column: auto;
+      grid-template-columns: 1fr;
+    }
+
+    .workshop-project-grid--home .workshop-project-card--ezize .workshop-project-card__copy {
+      order: initial;
+    }
+
     .workshop-project-card--other-alice-world {
       grid-template-columns: minmax(18rem, 0.75fr) minmax(0, 1.25fr);
     }
@@ -373,9 +384,15 @@ const projects = [...selectedWorkshopProjects]
     .workshop-project-grid--home .workshop-project-card--future-carriage,
     .workshop-project-grid--home .workshop-project-card--before-after,
     .workshop-project-grid--home .workshop-project-card--hobfarm-site,
-    .workshop-project-grid--home .workshop-project-card--stylefusion {
+    .workshop-project-grid--home .workshop-project-card--stylefusion,
+    .workshop-project-grid--home .workshop-project-card--ezize {
       grid-column: span 3;
       grid-template-columns: 1fr;
+    }
+
+    .workshop-project-grid--home .workshop-project-card--ezize .workshop-project-card__media img {
+      min-height: 14rem;
+      object-position: center;
     }
 
     .workshop-project-grid--workshop .workshop-project-card {
